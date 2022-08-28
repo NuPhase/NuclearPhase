@@ -4,6 +4,8 @@
 #define R_IDEAL_GAS_EQUATION       8.31    // kPa*L/(K*mol).
 #define ONE_ATMOSPHERE             101.325 // kPa.
 #define IDEAL_GAS_ENTROPY_CONSTANT 1164    // (mol^3 * s^3) / (kg^3 * L).
+#define KPA *1000
+#define MPA *1e+6
 
 #define GRAVITY_CONSTANT			9.80665 // m/s^2
 
