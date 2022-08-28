@@ -1,0 +1,106 @@
+{{if data.focus}}
+	<div class="notice" style="height: 22px">
+		{{:helper.link('Show List', 'cancel', { 'clear' : 1})}}   Sensor selected: {{:data.focus.name}} 
+	</div>
+	{{if data.focus.error}}
+		{{:data.focus.error}}
+	{{else}}
+		<h3>Network Information</h3>
+		<div class="itemLabel">
+			Network Load Status:
+		</div>
+		{{if data.focus.load_percentage >= 95}}
+			<div class="itemContent"><span class='bad'>DANGER: Overload</span></div>
+		{{else data.focus.load_percentage >= 85}}
+			<div class="itemContent"><span class='average'>WARNING: High Load</span></div>
+		{{else}}
+			<div class="itemContent"><span class='good'>Optimal</span></div>
+		{{/if}}
+		<div class="itemLabel">
+			Network Security Status:
+		</div>
+		{{if data.focus.alarm}}
+			<div class="itemContent"><span class='bad'>WARNING: Abnormal activity detected!</span></div>
+		{{else}}
+			<div class="itemContent"><span class='good'>Secure</span></div>
+		{{/if}}
+
+		<div class="itemLabel">
+			Load Percentage:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.focus.load_percentage, 0, 100, (data.focus.load_percentage <= 75) ? 'good' : (data.focus.load_percentage <= 90) ? 'average' : 'bad')}}{{:data.focus.load_percentage}}%
+		</div>
+		<div class="itemLabel">
+			Available Power:
+		</div>
+		<div class="itemContent">
+			{{:data.focus.total_avail}}
+		</div>
+		<div class="itemLabel">
+			APC Power Usage:
+		</div>
+		<div class="itemContent">
+			{{:data.focus.total_used_apc}}
+		</div>
+		<div class="itemLabel">
+			Other Power Usage:
+		</div>
+		<div class="itemContent">
+			{{:data.focus.total_used_other}}
+		</div>
+		<div class="itemLabel">
+			Total Usage:
+		</div>
+		<div class="itemContent">
+			{{:data.focus.total_used_all}}
+		</div>
+		<h3>Sensor Readings</h3>
+		<table><tr><th>APC Name<th>Breaker<th>RC<th>Equipment<th>Lighting<th>Environment<th>Cell Status<th>APC Load
+        {{for data.focus.apc_data}}
+            <tr>
+            {{if value.failure || value.telemetry}}
+				<td>{{:value.name}}
+                <td>{{:helper.link('MALFUNCT', 'alert', null, 'disabled', 'redButton')}}
+				<td>{{:helper.link('MALFUNCT', 'alert', null, 'disabled', 'redButton')}}
+				<td>{{:helper.link('MALFUNCT', 'alert', null, 'disabled', 'redButton')}}
+				<td>{{:helper.link('MALFUNCT', 'alert', null, 'disabled', 'redButton')}}
+				<td>{{:helper.link('MALFUNCT', 'alert', null, 'disabled', 'redButton')}}
+				<td>{{:helper.link('MALFUNCT', 'alert', null, 'disabled', 'redButton')}}
+				<td>{{:helper.link('MALFUNCT', 'alert', null, 'disabled', 'redButton')}}
+            {{else}}
+                <td>{{:value.name}}
+                <td>{{:helper.link(value.breaker ? 'On' : 'Off', 'power',{'toggle_breaker' : value.ref}, null, value.breaker ? 'greenButton' : 'redButton')}}
+				<td>{{:helper.link(value.remote_control ? 'Enabled' : 'Disabled', value.remote_control ? 'signal' : 'close', null, 'greenButton')}}
+                <td>{{:helper.link(value.s_equipment, null, {'toggle_powerchannel_equip' : value.ref}, null, value.n_equipment < 3 ? 'redButton' : 'greenButton')}}
+                <td>{{:helper.link(value.s_lighting, null, {'toggle_powerchannel_light' : value.ref}, null, value.n_lighting < 3 ? 'redButton' : 'greenButton')}}
+                <td>{{:helper.link(value.s_environment, null, {'toggle_powerchannel_enviro' : value.ref}, null, value.n_environment < 3 ? 'redButton' : 'greenButton')}}
+                {{if value.cell_status == "N"}}
+                    <td>{{:helper.link(value.cell_charge + '%', 'batt_disc', null,'disabled', 'width75btn')}}
+                {{else value.cell_status == "C"}}
+                    <td>{{:helper.link(value.cell_charge + '%', 'batt_chrg', null,'disabled', 'width75btn')}}
+                {{else}}
+                    <td>{{:helper.link(value.cell_charge + '%', 'batt_full', null,'disabled', 'width75btn')}}
+                {{/if}}
+				<td>{{:value.total_load}}           
+		   {{/if}}
+        {{empty}}
+            <tr><td>No APCs detected in connected powernet.
+        {{/for}}
+		</table>
+	{{/if}}
+{{else}}
+	<div class="notice" style="height: 22px">
+		{{:helper.link('Scan For Sensors', 'refresh', { 'refresh' : 1})}}   No active sensor. Printing sensor list.
+	</div><br><table>
+	{{for data.all_sensors}}
+		{{if value.alarm}}
+			<tr><td>{{:helper.link(value.name, 'alert', { 'setsensor' : value.name})}}
+		{{else}}
+			<tr><td>{{:helper.link(value.name, '' , { 'setsensor' : value.name})}}
+		{{/if}}
+	{{empty}}
+		<b>WARN: No Sensors Detected!</b>
+	{{/for}}
+	</table>
+{{/if}} 

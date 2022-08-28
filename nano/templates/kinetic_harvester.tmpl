@@ -1,0 +1,26 @@
+<h2>Fusion plant: {{:data.id}}</h2>
+{{if data.status}}
+	{{:helper.link('Online', null, {'toggle_power': 1})}}
+{{else}}
+	{{:helper.link('Offline', null, {'toggle_power': 1})}}
+{{/if}}
+
+{{for data.materials}}
+	<div class="item">
+		<div class="itemLabel">
+			{{:value.name}}
+		</div>
+		<div class="itemContent">
+			{{if value.harvest}}
+				{{:helper.link('Collecting', null, {'toggle_harvest': value.mat_ref})}}
+			{{else}}
+				{{:helper.link('Not collecting', null, {'toggle_harvest': value.mat_ref})}}
+			{{/if}}
+			{{if value.amount > 0}}
+				{{:helper.link('Remove ' + value.amount, null, {'remove_mat': value.mat_ref})}}
+			{{/if}}
+		</div>
+	</div>
+{{empty}}
+	<br>No materials available.
+{{/for}}

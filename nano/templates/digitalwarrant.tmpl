@@ -1,0 +1,76 @@
+{{if data.details}}
+	{{for data.details.fields}}
+		{{if value.access}}
+			<div class='item'>
+				{{if value.value}}
+					{{if value.access_edit && value.can_edit}}
+						<div class='itemLabel'>{{:helper.link(value.name, 'pencil', {'edit_field' : value.ID}, null)}}</div>
+					{{/if}}
+					{{if value.needs_big_box}}
+						<div style="display: inline-block;">
+						{{:value.value}}
+						</div>
+					{{else}}
+						<div class='itemBody'>{{:value.value}}</div>
+					{{/if}}
+				{{else}}
+						{{:value.name}}
+				{{/if}}
+			</div>
+		{{/if}}
+	{{/for}}
+	<br>
+	{{:helper.link('Back to Menu', null, {'back' : 1})}}
+	{{:helper.link('Save', null, {'savewarrant' : 1})}}
+
+{{else}}
+	<h2>Arrest warrants:</h2>
+	{{:helper.link('Add an Arrest Warrant', null, {'addwarrant' : "arrest"})}}
+	{{if data.arrest}}
+		<table style="width:100%">
+		<tr><td style="width:30%">Name<th>Charges<th>Authorized By
+		{{for data.arrest}}
+			<tr class="candystripe">
+			<td>{{:value.name}}
+			<td>{{:value.reason}}
+			<td>{{:value.auth}}
+			<td>{{:helper.link('', 'pencil', {'editwarrant' : value.id})}}
+			{{:helper.link('Archive', null, {'sendtoarchive' : value.id})}}
+			{{:helper.link('', 'trash', {'deletewarrant' : value.id})}}</td>
+		{{/for}}
+		</table>
+	{{/if}}
+	<h2>Search warrants:</h2>
+	{{:helper.link('Add a Search Warrant', null, {'addwarrant' : "search"})}}
+	{{if data.search}}
+		<table style="width:100%">
+		<tr><td style="width:30%">Location<th>Reason<th>Authorized By
+		{{for data.search}}
+			<tr class="candystripe">
+			<td>{{:value.name}}
+			<td>{{:value.reason}}
+			<td>{{:value.auth}}
+			<td>{{:helper.link('', 'pencil', {'editwarrant' : value.id})}}
+			{{:helper.link('Archive', null, {'sendtoarchive' : value.id})}}
+			{{:helper.link('', 'trash', {'deletewarrant' : value.id})}}</td>
+		{{/for}}
+		</table>
+	{{/if}}
+	<h2>Archived warrants:</h2>
+	{{if data.archive}}
+		<table style="width:100%">
+		<tr><td style="width:30%">Name<th>Charges<th>Authorized By
+		{{for data.archive}}
+			<tr class="candystripe">
+			<td>{{:value.name}}
+			<td>{{:value.reason}}
+			<td>{{:value.auth}}
+			<td>{{:helper.link('', 'pencil', {'editwarrant' : value.id})}}
+			{{:helper.link('Restore', null, {'restore' : value.id})}}
+			{{:helper.link('', 'trash', {'deletewarrant' : value.id})}}</td>
+		{{/for}}
+		</table>
+	{{else}}
+		<div>NONE</div>
+	{{/if}}
+{{/if}}

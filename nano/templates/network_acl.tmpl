@@ -1,0 +1,52 @@
+{{if data.error}}
+	<h2>An error has occured:</h2>
+	Additional information: {{:data.error}}<br>
+	<i>Please try again. If the problem persists contact your system administrator for assistance.</i>
+	<div class="item">
+		{{:helper.link('REFRESH', null, { "refresh" : 1 })}}
+		{{:helper.link("NETWORK SETTINGS", null, { "settings" : 1 })}}
+	</div>
+{{else}}
+	<i>Welcome to the Network Access Controller system. Please consult your system administrator if you have any questions about your device.</i><hr>
+	<div class="itemContent">
+		{{:helper.link("NETWORK SETTINGS", null, { "settings" : 1 })}}
+	</div>
+	{{if !data.connected}}
+		<h2>Disconnected from network.</h2>
+	{{else !data.current_group}}
+		<h2>Network Group Settings:</h2>
+		<table><th>Setting<th>Toggle<th>Info
+			<tr><td>PARENT GROUP SUBMANAGEMENT
+				<td>{{:helper.link(data.allow_submanagement ? 'ON' : 'OFF', null, { "toggle_submanagement" : 1 })}}
+				<td>{{:helper.link('?', null, { "info" : "submanagement"})}}
+			<tr><td>PARENT ACCOUNT CREATION
+				<td>{{:helper.link(data.parent_account_creation ? 'ON' : 'OFF', null, { "toggle_parent_account_creation" : 1 })}}
+				<td>{{:helper.link('?', null, { "info" : "parent_account_creation"})}}
+		</table>
+		<h2>Viewing Parent Groups:</h2>
+		<table>
+			<tr><th>Group
+			<th>Operations
+			{{for data.parent_groups}}
+				<tr><td>{{:helper.link(value.group_name, null, {"view_child_groups" : value.group_name})}}
+				<td>
+					{{:helper.link('Remove', null, { "remove_group" : value.group_name})}}
+			{{/for}}
+		</table>
+		{{:helper.link('Create Group', null, { "create_group" : 1})}}
+	{{else}}
+		<h2>Parent Group: {{:data.current_group}}</h2>
+		<hr>
+		<table>
+			<tr><th>Group
+			<th>Operations
+			{{for data.child_groups}}
+				<tr><td>{{:value.group_name}}
+				<td>
+					{{:helper.link('Remove', null, { "remove_group" : value.group_name})}}
+			{{/for}}
+		</table>
+		{{:helper.link('Create Group', null, { "create_group" : 1})}}
+		{{:helper.link('Back to parent group listing', null, { "view_child_groups" : null })}}
+	{{/if}}
+{{/if}}
