@@ -181,7 +181,7 @@ Class Procs:
 	condensing = TRUE
 	for(var/g in air.gas)
 		var/decl/material/mat = GET_DECL(g)
-		if(!isnull(mat.gas_condensation_point) && (air.temperature <= mat.gas_condensation_point))
+		if(!isnull(mat.gas_condensation_point) && (mat.phase_at_temperature(air.temperature, air.return_pressure()) == MAT_PHASE_LIQUID))
 			var/condensation_area = air.group_multiplier / length(air.gas)
 			while(condensation_area > 0 && length(contents))
 				condensation_area--

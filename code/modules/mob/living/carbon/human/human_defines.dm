@@ -94,6 +94,8 @@
 
 	ai = /datum/ai/human
 
+	var/vacuum_message_spam_cooldown = 0
+
 /mob/living/carbon/human/proc/get_age()
 	. = LAZYACCESS(appearance_descriptors, "age") || 30
 

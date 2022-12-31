@@ -52,7 +52,7 @@
 	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity()
 		var/decl/material/mat = GET_DECL(gasid)
-		var/giver_heat_capacity = mat.gas_specific_heat * moles
+		var/giver_heat_capacity = mat.get_specific_heat(temperature, return_pressure()) * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (temp * giver_heat_capacity + temperature * self_heat_capacity) / combined_heat_capacity
@@ -139,7 +139,13 @@
 	. = 0
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		. += mat.gas_specific_heat * gas[g]
+		switch(mat.phase_at_temperature(temperature, return_pressure()))
+			if(MAT_PHASE_GAS)
+				. += mat.gas_specific_heat * gas[g]
+			if(MAT_PHASE_LIQUID)
+				. += mat.liquid_specific_heat * gas[g]
+			if(MAT_PHASE_SOLID)
+				. += mat.solid_specific_heat * gas[g]
 	. *= max(1, group_multiplier)
 
 
@@ -198,8 +204,8 @@
 
 	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/decl/material/mat = GET_DECL(gasid)
-	var/molar_mass = mat.molar_mass
-	var/specific_heat = mat.gas_specific_heat
+	var/molar_mass = mat.get_molar_mass(temperature, return_pressure())
+	var/specific_heat = mat.get_specific_heat(temperature, return_pressure())
 	var/safe_temp = max(temperature, TCMB) // We're about to divide by this.
 	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * safe_temp)) * (molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
 
@@ -513,7 +519,7 @@
 /datum/gas_mixture/proc/get_mass()
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		. += gas[g] * mat.molar_mass * group_multiplier
+		. += gas[g] * mat.get_molar_mass() * group_multiplier
 
 /datum/gas_mixture/proc/specific_mass()
 	var/M = get_total_moles()

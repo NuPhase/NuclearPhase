@@ -1,10 +1,20 @@
-/datum/map/testing
-	name = "Testing"
-	full_name = "Testing Site"
-	path = "testing"
+/datum/map/avalon
+	name = "Avalon"
+	full_name = "Modified Emergency 'Avalon' Survival Site"
+	path = "example"
+
+	base_floor_type = /turf/exterior/wall/ice
+
+	exterior_atmos_temp = 7
+	exterior_atmos_composition = list(
+		/decl/material/gas/oxygen = 5,
+		/decl/material/gas/helium = 30,
+		/decl/material/gas/hydrogen = 25,
+		/decl/material/gas/nitrogen = 15
+	)
 
 	lobby_screens = list(
-		'maps/testing/testing_lobby.png'
+		'maps/example/example_lobby.png'
 	)
 
 	lobby_tracks = list(

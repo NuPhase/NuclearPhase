@@ -426,7 +426,17 @@
 		if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
 			adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
 		pressure_alert = -2
-
+	vacuum_message_spam_cooldown -= 1
+	if(pressure_alert && vacuum_message_spam_cooldown < 0)
+		vacuum_message_spam_cooldown = 30
+		var/pressure_message = ""
+		switch(pressure_alert)
+			if(-2)
+				pressure_message = "<span class=bigdanger>Your vision slowly becomes pitch red as the blood in your eyes slowly comes out. Air rushes out of your lungs, forcing your mouth open like some sort of a toy. Your saliva evaporates,\
+				but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
+			if(-1)
+				pressure_message = "<span class=danger>You feel the air getting thinner!</span>"
+		to_chat(src, pressure_message)
 	return
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
@@ -954,7 +964,7 @@
 	if (BITTEST(hud_updateflag, ID_HUD) && hud_list[ID_HUD])
 		var/image/holder = hud_list[ID_HUD]
 		holder.icon_state = "hudunknown"
-		
+
 		var/obj/item/id = get_equipped_item(slot_wear_id_str)
 		if(id)
 			var/obj/item/card/id/I = id.GetIdCard()

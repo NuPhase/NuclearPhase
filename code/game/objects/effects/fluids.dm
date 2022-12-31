@@ -118,6 +118,9 @@
 	fluid_type = /decl/material/liquid/fuel
 	fluid_initial = 10
 
+/obj/effect/fluid_mapped/helium
+	fluid_type = /decl/material/gas/helium
+
 // Permaflood overlay.
 var/global/obj/abstract/flood/flood_object = new
 /obj/abstract/flood

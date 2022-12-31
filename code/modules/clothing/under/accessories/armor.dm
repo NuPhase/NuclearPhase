@@ -137,14 +137,12 @@
 
 /obj/item/clothing/accessory/armor
 	name = "master armor"
-	icon = 'icons/clothing/accessories/tags/tag_small.dmi'
 	icon_state = ICON_STATE_WORLD
 
 //Decorative attachments
 /obj/item/clothing/accessory/armor/tag
 	name = "\improper WARDEN tag"
 	desc = "A tag with the word WARDEN printed in silver lettering on it."
-	icon = 'icons/clothing/accessories/tags/tag_large.dmi'
 	slot = ACCESSORY_SLOT_ARMOR_M
 
 /obj/item/clothing/accessory/armor/tag/press
@@ -160,42 +158,34 @@
 /obj/item/clothing/accessory/armor/tag/oneg
 	name = "\improper O- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as O NEGATIVE."
-	icon = 'icons/clothing/accessories/tags/tag_oneg.dmi'
 
 /obj/item/clothing/accessory/armor/tag/opos
 	name = "\improper O+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as O POSITIVE."
-	icon = 'icons/clothing/accessories/tags/tag_opos.dmi'
 
 /obj/item/clothing/accessory/armor/tag/apos
 	name = "\improper A+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as A POSITIVE."
-	icon = 'icons/clothing/accessories/tags/tag_apos.dmi'
 
 /obj/item/clothing/accessory/armor/tag/aneg
 	name = "\improper A- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as A NEGATIVE."
-	icon = 'icons/clothing/accessories/tags/tag_aneg.dmi'
 
 /obj/item/clothing/accessory/armor/tag/bpos
 	name = "\improper B+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as B POSITIVE."
-	icon = 'icons/clothing/accessories/tags/tag_bpos.dmi'
 
 /obj/item/clothing/accessory/armor/tag/bneg
 	name = "\improper B- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as B NEGATIVE."
-	icon = 'icons/clothing/accessories/tags/tag_bneg.dmi'
 
 /obj/item/clothing/accessory/armor/tag/abpos
 	name = "\improper AB+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as AB POSITIVE."
-	icon = 'icons/clothing/accessories/tags/tag_abpos.dmi'
 
 /obj/item/clothing/accessory/armor/tag/abneg
 	name = "\improper AB- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as AB NEGATIVE."
-	icon = 'icons/clothing/accessories/tags/tag_abneg.dmi'
 
 /obj/item/clothing/accessory/armor/helmcover
 	name = "helmet cover"

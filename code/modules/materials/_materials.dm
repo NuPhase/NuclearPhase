@@ -126,7 +126,16 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	/// kJ/kg, enthalpy of vaporization
 	var/latent_heat = 7000
 	/// kg/mol,
-	var/molar_mass = 0.06
+	var/molar_mass = 0.06 //OBSOLETE
+
+	var/gas_molar_mass
+	var/liquid_molar_mass
+	var/solid_molar_mass
+
+	var/gas_specific_heat = 20
+	var/liquid_specific_heat = 40
+	var/solid_specific_heat = 30
+
 	/// Brute damage to a wall is divided by this value if the wall is reinforced by this material.
 	var/brute_armor = 2
 	/// Same as above, but for Burn damage type. If blank brute_armor's value is used.
@@ -192,7 +201,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 
 	// Gas behavior.
 	var/gas_overlay_limit
-	var/gas_specific_heat = 20    // J/(mol*K)
 	var/gas_symbol_html
 	var/gas_symbol
 	var/gas_flags = 0
@@ -303,6 +311,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 // Make sure we have a use name and shard icon even if they aren't explicitly set.
 /decl/material/Initialize()
 	. = ..()
+	if(!gas_molar_mass)
+		gas_molar_mass = molar_mass
+		liquid_molar_mass = molar_mass * 2
+		solid_molar_mass = molar_mass * 1.5
+	if(!liquid_specific_heat)
+		liquid_specific_heat = gas_specific_heat * 2
+		solid_specific_heat = gas_specific_heat * 1.5
 	if(!use_name)
 		use_name = name
 	if(!liquid_name)
@@ -373,6 +388,24 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	else if(temperature >= heating_point)
 		return MAT_PHASE_LIQUID
 	return MAT_PHASE_SOLID
+
+/decl/material/proc/get_specific_heat(temperature, pressure)
+	switch(phase_at_temperature(temperature, pressure))
+		if(MAT_PHASE_GAS)
+			return gas_specific_heat
+		if(MAT_PHASE_LIQUID)
+			return liquid_specific_heat
+		if(MAT_PHASE_SOLID)
+			return solid_specific_heat
+
+/decl/material/proc/get_molar_mass(temperature, pressure)
+	switch(phase_at_temperature(temperature, pressure))
+		if(MAT_PHASE_GAS)
+			return gas_molar_mass
+		if(MAT_PHASE_LIQUID)
+			return liquid_molar_mass
+		if(MAT_PHASE_SOLID)
+			return solid_molar_mass
 
 // Returns the phase of matter this material is a standard temperature and pressure (20c at one atmosphere)
 /decl/material/proc/phase_at_stp()
