@@ -191,7 +191,7 @@
 	Move(landing, get_dir(previous, landing))
 	if(locate(/obj/structure/stairs) in landing)
 		return 1
-	if(landing.get_fluid_depth() >= FLUID_DEEP)
+	if(landing && landing.get_fluid_depth() >= FLUID_DEEP)
 		var/primary_fluid = landing.reagents.get_primary_reagent_name()
 		if(previous.get_fluid_depth() >= FLUID_DEEP) //We're sinking further
 			visible_message(SPAN_NOTICE("\The [src] sinks deeper down into \the [primary_fluid]!"), SPAN_NOTICE("\The [primary_fluid] rushes around you as you sink!"))

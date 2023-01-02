@@ -7,9 +7,10 @@
 
 	exterior_atmos_temp = 7
 	exterior_atmos_composition = list(
-		/decl/material/gas/oxygen = 5,
+		/decl/material/gas/oxygen = 2,
 		/decl/material/gas/helium = 30,
-		/decl/material/gas/hydrogen = 25,
+		/decl/material/gas/carbon_dioxide = 40,
+		/decl/material/gas/carbon_monoxide = 10,
 		/decl/material/gas/nitrogen = 15
 	)
 

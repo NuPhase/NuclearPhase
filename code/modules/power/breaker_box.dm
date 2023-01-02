@@ -37,6 +37,12 @@
 	set_state(1)
 	. = ..()
 
+/obj/machinery/power/breakerbox/emp_act(severity)
+	if(prob(50))
+		set_state(!on)
+	queue_icon_update()
+	..()
+
 /obj/machinery/power/breakerbox/examine(mob/user)
 	. = ..()
 	if(on)
@@ -80,7 +86,7 @@
 			SPAN_NOTICE("\The [user] [on ? "enabled" : "disabled"] \the [src]!"),\
 			SPAN_NOTICE("You [on ? "enabled" : "disabled"] \the [src]!"))
 		update_locked = 1
-		spawn(600)
+		spawn(50)
 			update_locked = 0
 	busy = 0
 	return TRUE

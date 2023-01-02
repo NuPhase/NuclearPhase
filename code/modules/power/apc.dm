@@ -870,15 +870,10 @@ var/global/list/all_apcs = list()
 /obj/machinery/power/apc/emp_act(severity)
 	if(emp_hardened)
 		return
-	// Fail for 8-12 minutes (divided by severity)
-	// Division by 2 is required, because machinery ticks are every two seconds. Without it we would fail for 16-24 minutes.
-	if(is_critical)
-		// Critical APCs are considered EMP shielded and will be offline only for about half minute. Prevents AIs being one-shot disabled by EMP strike.
-		// Critical APCs are also more resilient to cell corruption/power drain.
-		energy_fail(rand(240, 360) / severity / CRITICAL_APC_EMP_PROTECTION)
+	if(severity == 1)
+		critical_failure(2)
 	else
-		// Regular APCs fail for normal time.
-		energy_fail(rand(240, 360) / severity)
+		critical_failure(1)
 	queue_icon_update()
 	..()
 
@@ -935,6 +930,38 @@ var/global/list/all_apcs = list()
 					L.on = 1
 					L.broken()
 				sleep(1)
+
+/obj/machinery/power/apc/proc/critical_failure(var/severity = 1)
+	switch(severity)
+		if(1)
+			wires.CutAll()
+			visible_message("<span class='warning'>[src]'s screen goes blank with a loud bang!</span>")
+			playsound(src, 'sound/weapons/flashbang.ogg', 100)
+			overload_lighting()
+		if(2)
+			wires.CutAll()
+			cover_removed = TRUE
+			visible_message("<span class='warning'>[src]'s cover flies out with the remains of its power cell!</span>")
+			playsound(src, 'sound/weapons/flashbang.ogg', 100)
+			new /obj/effect/effect/smoke/illumination(loc, 5, 30, 1, "#ffffff")
+			var/obj/item/cell = get_cell()
+			overload_lighting()
+			qdel(cell)
+		if(3)
+			if(prob(50))
+				visible_message("<span class='warning'>[src]'s screen flashes loads of errors!</span>")
+			spawn(50)
+				visible_message("<span class='warning'>The [src] gets shredded to pieces by a large explosion!</span>")
+				wires.CutAll()
+				cover_removed = TRUE
+				overload_lighting()
+				var/obj/item/cell = get_cell()
+				qdel(cell)
+				var/turf/T = get_turf(src)
+				explosion(T, 0, 0, 2, 5)
+				src.fragmentate(T, 72, 7, list(/obj/item/projectile/bullet/pellet/fragment/flaming = 1))
+	update_icon()
+
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
 	switch(val)

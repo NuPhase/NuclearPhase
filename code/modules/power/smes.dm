@@ -165,9 +165,9 @@
 		var/is_input_available = FALSE
 		for(var/obj/item/stock_parts/power/terminal/term in power_components)
 			if(!term.terminal || !term.terminal.powernet)
-				continue			
+				continue
 			is_input_available = TRUE
-			term.terminal.powernet.smes_demand += target_load		
+			term.terminal.powernet.smes_demand += target_load
 			term.terminal.powernet.inputting.Add(src)
 		if(!is_input_available)
 			target_load = 0 // We won't input any power without powernet connection.
@@ -338,6 +338,8 @@
 			charge = 0
 	if(prob(50))
 		energy_fail(rand(0 + (severity * 30),30 + (severity * 30)))
+	if(prob(25))
+		explosion(get_turf(src), 0, 0, 3)
 	update_icon()
 	..()
 

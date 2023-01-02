@@ -48,6 +48,9 @@
 	name = "\improper Testing Site Ferry"
 	icon_state = "shuttle"
 
+/area/avalon/has_gravity()
+	return TRUE
+
 /area/avalon/shelter/expeditionpreparation
 /area/avalon/shelter/garage
 /area/avalon/shelter/upperhall
@@ -55,5 +58,24 @@
 /area/avalon/shelter/habitationdeck
 /area/avalon/shelter/freezer
 /area/avalon/shelter/messhall
+
+/area/avalon/shelter/reactor
 /area/avalon/shelter/reactormonitoring
 /area/avalon/shelter/engineering
+/area/avalon/shelter/atmos
+/area/avalon/shelter/climatecontrol
+/area/avalon/shelter/turbinehall
+/area/avalon/shelter/machinehall
+/area/avalon/shelter/breakerroom
+
+/area/avalon/shelter/brig
+/area/avalon/shelter/brig/interrogation
+/area/avalon/shelter/brig/medbay
+/area/avalon/shelter/brig/office
+/area/avalon/shelter/brig/reception
+/area/avalon/shelter/brig/breakroom
+/area/avalon/shelter/brig/armory
+/area/avalon/shelter/brig/preparation
+/area/avalon/shelter/brig/prison
+/area/avalon/shelter/brig/sergeantroom
+/area/avalon/shelter/brig/barracks

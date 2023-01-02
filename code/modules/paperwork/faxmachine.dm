@@ -18,19 +18,22 @@ var/global/list/adminfaxes = list()	//cache for faxes that have been sent to adm
 	var/sendcooldown = 0 // to avoid spamming fax messages
 	var/department = "Unknown" // our department
 	var/destination = null // the department we're sending to
+	var/hassignal = FALSE //We have no hope
 
 	var/static/list/admin_departments
 
 /obj/machinery/photocopier/faxmachine/Initialize()
 	. = ..()
 
+	//if(!admin_departments)
+	//	admin_departments = list("[global.using_map.boss_name]", "Sol Federal Police", "[global.using_map.boss_short] Supply") + global.using_map.map_admin_faxes
 	if(!admin_departments)
-		admin_departments = list("[global.using_map.boss_name]", "Sol Federal Police", "[global.using_map.boss_short] Supply") + global.using_map.map_admin_faxes
+		admin_departments = list("Central Planetary Emergency Uplink", "Rescue Operations Center")
 	global.allfaxes += src
 	if(!destination)
-		destination = "[global.using_map.boss_name]"
-	if( !(("[department]" in global.alldepartments) || ("[department]" in admin_departments)))
-		global.alldepartments |= department
+		destination = "Rescue Operations Center"
+	//if( !(("[department]" in global.alldepartments) || ("[department]" in admin_departments)))
+	//	global.alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card/id))
@@ -71,14 +74,12 @@ var/global/list/adminfaxes = list()	//cache for faxes that have been sent to adm
 		if(copyitem)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Item</a><br><br>"
 
-			if(sendcooldown)
-				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
-
-			else
-
+			if(!sendcooldown && hassignal)
 				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
 				dat += "<b>Currently sending:</b> [copyitem.name]<br>"
 				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[destination]</a><br>"
+			else
+				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
 
 		else
 			if(sendcooldown)

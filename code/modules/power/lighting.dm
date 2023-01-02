@@ -593,6 +593,16 @@
 	. = ..()
 	update_icon()
 
+/obj/machinery/light/emp_act(severity)
+	if(severity == 1)
+		if(prob(50))
+			broken()
+	else
+		if(prob(50))
+			flicker()
+	queue_icon_update()
+	..()
+
 // attack bulb/tube with object
 // if a syringe, can inject flammable liquids to make it explode
 /obj/item/light/attackby(var/obj/item/I, var/mob/user)

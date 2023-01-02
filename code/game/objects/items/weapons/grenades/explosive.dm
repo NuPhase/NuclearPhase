@@ -13,6 +13,16 @@
 /obj/item/projectile/bullet/pellet/fragment/strong
 	damage = 15
 
+/obj/item/projectile/bullet/pellet/fragment/flaming
+	damage = 5
+
+/obj/item/projectile/bullet/pellet/fragment/flaming/on_hit(atom/target, blocked)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		L.adjust_fire_stacks(rand(5,8))
+		L.IgniteMob()
+
 /obj/item/grenade/frag
 	name = "fragmentation grenade"
 	desc = "A military fragmentation grenade, designed to explode in a deadly shower of fragments, while avoiding massive structural damage."

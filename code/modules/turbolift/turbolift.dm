@@ -32,6 +32,20 @@
 	target_floor = null
 	open_doors()
 
+/datum/turbolift/proc/stuck()
+	queued_floors.Cut()
+	target_floor = null
+	var/weight = rand(1, 100)
+	switch(weight)
+		if(1 to 25)
+			control_panel_interior.visible_message("<span class='warning'>The elevator skids and stops abruptly!</span>")
+			var/area/A = current_floor.area_ref
+			for(var/obj/machinery/light/L in A)
+				if(prob(50))
+					L.flicker()
+		if(26 to 100)
+			control_panel_interior.visible_message("<span class='notice'>The elevator slowly comes to a stop after an error.</span>")
+
 /datum/turbolift/proc/doors_are_open(var/datum/turbolift_floor/use_floor = current_floor)
 	for(var/obj/machinery/door/airlock/door in (use_floor ? (doors + use_floor.doors) : doors))
 		if(!door.density)
@@ -149,6 +163,9 @@
 
 	if(floor_arrival_sound)
 		playsound(control_panel_interior.loc, floor_arrival_sound, 50, 1)
+
+	if(prob(5))
+		stuck()
 
 	return 1
 
