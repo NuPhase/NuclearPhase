@@ -212,6 +212,7 @@ meteor_act
 		attack_bloody(I, user, effective_force, hit_zone)
 
 		animate_receive_damage(src)
+	local_tension += 10
 
 	return 1
 

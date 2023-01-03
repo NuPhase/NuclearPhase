@@ -1271,6 +1271,7 @@
 	if(.)
 		update_body()
 		to_chat(src, SPAN_DANGER("You feel a chill and your skin feels lighter..."))
+		local_tension += 30
 
 /mob/living/carbon/human/increaseBodyTemp(value)
 	bodytemperature += value

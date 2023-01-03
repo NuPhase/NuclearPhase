@@ -32,7 +32,7 @@
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
-	
+
 	//Handle species-specific deaths.
 	species.handle_death(src)
 
@@ -56,6 +56,7 @@
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
+	local_tension += 100
 
 /mob/living/carbon/human/proc/is_husked()
 	return (MUTATION_HUSK in mutations)

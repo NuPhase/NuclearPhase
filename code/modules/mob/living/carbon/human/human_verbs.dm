@@ -313,12 +313,14 @@
 		current_limb.add_pain(30)
 		current_limb.take_external_damage(5)
 		shock_stage += 20
+		local_tension += 10
 	else
 		visible_message( \
 		"<span class='danger'>[U] pops [self ? "[G.his]" : "[S]'s"] [current_limb.joint] back in!</span>", \
 		"<span class='danger'>[self ? "You pop" : "[U] pops"] your [current_limb.joint] back in!</span>" \
 		)
 		current_limb.undislocate()
+		local_tension -= 20
 
 /mob/living/carbon/human/verb/pull_punches()
 	set name = "Switch Stance"
