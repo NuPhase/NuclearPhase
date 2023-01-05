@@ -79,3 +79,22 @@
 /area/avalon/shelter/brig/prison
 /area/avalon/shelter/brig/sergeantroom
 /area/avalon/shelter/brig/barracks
+
+/area/avalon/shelter/science
+
+/area/surface
+	name = "Surface"
+
+/*	var/hot_blurb = ""
+	var/cold_blurb = ""
+*/
+/area/surface/has_gravity()
+	return TRUE
+
+/*/area/surface/do_area_blurb(mob/living/L)
+	var/blurb = ""
+	if(air.temperature > 400)
+		blurb = "<span class='boldannounce'>[hot_blurb]</span>"
+	else
+		blurb = "<span class='boldannounce'>[cold_blurb]</span>"
+	to_chat(L, blurb)*/

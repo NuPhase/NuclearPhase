@@ -1,7 +1,7 @@
 /datum/map/avalon
 	name = "Avalon"
 	full_name = "Modified Emergency 'Avalon' Survival Site"
-	path = "example"
+	path = "avalon"
 
 	base_floor_type = /turf/exterior/wall/ice
 
@@ -15,11 +15,13 @@
 	)
 
 	lobby_screens = list(
-		'maps/example/example_lobby.png'
+		'maps/avalon/cdllobby.jpg',
+		'maps/avalon/pulsarlobby.jpg'
 	)
 
 	lobby_tracks = list(
-		/decl/music_track/absconditus
+		/decl/music_track/onewaytolife,
+		/decl/music_track/runningaftermyfate
 	)
 
 	allowed_spawns = list(
