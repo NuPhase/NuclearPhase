@@ -10,7 +10,7 @@
 	anchored = 1 //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	pass_flags = PASS_FLAG_TABLE
 	mouse_opacity = 0
-	randpixel = 0	
+	randpixel = 0
 	var/bumped = 0		//Prevents it from hitting more than one guy at once
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
@@ -201,7 +201,11 @@
 		return
 
 	//roll to-hit
-	var/miss_modifier = max(distance_falloff*(distance)*(distance) - hitchance_mod + special_miss_modifier, -30)
+	var/miss_modifier
+	if(distance < 2)
+		miss_modifier = 0
+	else
+		miss_modifier = max(distance_falloff*(distance) - hitchance_mod + special_miss_modifier, -30)
 	//makes moving targets harder to hit, and stationary easier to hit
 	var/movment_mod = min(5, (world.time - target_mob.l_move_time) - 20)
 	//running in a straight line isnt as helpful tho
