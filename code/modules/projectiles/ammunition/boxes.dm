@@ -122,6 +122,12 @@
 	labels = list("practice")
 	ammo_type = /obj/item/ammo_casing/pistol/small/practice
 
+/obj/item/ammo_magazine/smg/c11x25
+	name = "11x25 SMG magazine"
+	caliber = "11x25"
+	ammo_type = /obj/item/ammo_casing/c11x25
+	max_ammo = 40
+
 /obj/item/ammo_magazine/pistol
 	name = "pistol magazine"
 	icon_state = "pistol"
@@ -206,6 +212,22 @@
 /obj/item/ammo_magazine/rifle/practice
 	labels = list("practice")
 	ammo_type = /obj/item/ammo_casing/rifle/practice
+
+/obj/item/ammo_magazine/c6p8x51
+	name = "6.8x51 rifle magazine"
+	caliber = "6.8x51"
+	ammo_type = /obj/item/ammo_casing/c6p8x51
+	max_ammo = 25
+	icon_state = "bullup"
+	mag_type = MAGAZINE
+
+/obj/item/ammo_magazine/c10x77
+	name = "10x77-HS special sniper magazine"
+	caliber = "10x77"
+	ammo_type = /obj/item/ammo_casing/c10x77
+	max_ammo = 8
+	icon_state = "bullup"
+	mag_type = MAGAZINE
 
 /obj/item/ammo_magazine/caps
 	name = "speed loader"

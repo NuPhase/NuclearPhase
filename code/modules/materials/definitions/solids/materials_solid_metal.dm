@@ -474,3 +474,11 @@
 	taste_mult = 0 //no taste
 	color = "#dcdcdc"
 	value = 0.5
+
+/decl/material/solid/metal/tantalumhafniumcarbide
+	name = "tantalum hafnium carbide"
+	uid = "tantalum_hafnium_carbide"
+	weight = MAT_VALUE_VERY_HEAVY
+	taste_mult = 0 //no taste
+	color = "#a3358b"
+	value = 0.5

@@ -183,3 +183,32 @@
 	icon_state = "rock[rand(1,3)]"
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
+
+
+
+/obj/item/projectile/bullet/modern/
+	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
+	damage = 45
+	armor_penetration = 25
+	penetration_modifier = 1.5
+	penetrating = 1
+	distance_falloff = 1.5
+
+/obj/item/projectile/bullet/modern/c6p8x51
+	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
+	damage = 55
+	armor_penetration = 30
+
+/obj/item/projectile/bullet/modern/c11x25
+	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
+	damage = 20
+	armor_penetration = 10
+
+/obj/item/projectile/bullet/modern/c10x77
+	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
+	damage = 90
+	stun = 3
+	weaken = 3
+	armor_penetration = 70
+	penetration_modifier = 1.5
+	distance_falloff = 0.5

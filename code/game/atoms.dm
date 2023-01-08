@@ -1,4 +1,5 @@
 /atom
+	var/russian_desc
 	var/level = 2
 	var/atom_flags = ATOM_FLAG_NO_TEMP_CHANGE
 	var/list/blood_DNA

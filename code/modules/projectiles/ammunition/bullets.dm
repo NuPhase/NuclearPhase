@@ -31,7 +31,7 @@
 	icon = 'icons/obj/ammo/casings/small_pistol.dmi'
 	caliber = CALIBER_PISTOL_SMALL
 	projectile_type = /obj/item/projectile/bullet/pistol/holdout
-	
+
 /obj/item/ammo_casing/pistol/small/rubber
 	desc = "A small pistol rubber bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber/holdout
@@ -191,3 +191,24 @@
 	bullet_color = COLOR_BLUE_LIGHT
 	material = /decl/material/solid/glass
 	matter = list(/decl/material/solid/plastic = MATTER_AMOUNT_REINFORCEMENT)
+
+/obj/item/ammo_casing/c6p8x51
+	desc = "6.8x51 casing."
+	caliber = "6.8x51"
+	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51
+	icon = 'icons/obj/ammo/casings/rifle.dmi'
+
+/obj/item/ammo_casing/c11x25
+	desc = "11x25 casing."
+	caliber = "11x25"
+	projectile_type = /obj/item/projectile/bullet/modern/c11x25
+	icon = 'icons/obj/ammo/casings/pistol.dmi'
+
+/obj/item/ammo_casing/c10x77
+	name = "10x77-HS special casing"
+	desc = "A heavy sniper bullet covered in a thin layer of carbon-carbon alloy."
+	caliber = "10x77"
+	projectile_type = /obj/item/projectile/bullet/modern/c10x77
+	material = /decl/material/solid/metal/steel
+	color = COLOR_GRAY20
+	icon = 'icons/obj/ammo/casings/anti_materiel.dmi'
