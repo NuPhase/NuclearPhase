@@ -23,8 +23,6 @@
 
 /turf/exterior/Initialize(mapload, no_update_icon = FALSE)
 
-	color = null
-
 	if(possible_states > 0)
 		icon_state = "[rand(0, possible_states)]"
 	owner = LAZYACCESS(global.overmap_sectors, "[z]")
@@ -138,7 +136,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 	if(!istype(src, get_base_turf_by_area(src)) && (severity == 1 || (severity == 2 && prob(40))))
 		ChangeTurf(get_base_turf_by_area(src))
-	
+
 /turf/exterior/on_update_icon()
 	. = ..() // Recalc AO and flooding overlay.
 	cut_overlays()

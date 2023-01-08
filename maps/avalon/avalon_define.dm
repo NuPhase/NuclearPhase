@@ -1,18 +1,23 @@
 /datum/map/avalon
-	name = "Avalon"
-	full_name = "Modified Emergency 'Avalon' Survival Site"
+	name = "Solitude"
+	full_name = "Modified Emergency 'Solitude' Survival Site"
 	path = "avalon"
 
 	base_floor_type = /turf/exterior/wall/ice
 
 	exterior_atmos_temp = 7
 	exterior_atmos_composition = list(
-		/decl/material/gas/oxygen = 2,
-		/decl/material/gas/helium = 30,
-		/decl/material/gas/carbon_dioxide = 40,
-		/decl/material/gas/carbon_monoxide = 10,
-		/decl/material/gas/nitrogen = 15
+		/decl/material/gas/oxygen = 20,
+		/decl/material/gas/helium = 700,
+		/decl/material/gas/carbon_dioxide = 400,
+		/decl/material/gas/carbon_monoxide = 100,
+		/decl/material/gas/nitrogen = 150
 	)
+	lightlevel = 1
+	weather_system = /decl/state/weather/snow/heavy
+	water_material = /decl/material/gas/helium
+	ice_material = /decl/material/solid/ice/hydrogen
+	planetary_area = /area/surface
 
 	lobby_screens = list(
 		'maps/avalon/cdllobby.jpg',

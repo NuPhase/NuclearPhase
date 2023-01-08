@@ -177,22 +177,42 @@ Class Procs:
 			CHECK_TICK
 
 /zone/proc/handle_condensation()
-	set waitfor = FALSE
+	/*set waitfor = FALSE
 	condensing = TRUE
 	for(var/g in air.gas)
 		var/decl/material/mat = GET_DECL(g)
-		if(!isnull(mat.gas_condensation_point) && (mat.phase_at_temperature(air.temperature, air.return_pressure()) == MAT_PHASE_LIQUID))
+		if(mat.phase_at_temperature(air.temperature, air.return_pressure()) == MAT_PHASE_LIQUID)
 			var/condensation_area = air.group_multiplier / length(air.gas)
 			while(condensation_area > 0 && length(contents))
 				condensation_area--
 				var/turf/flooding = pick(contents)
-				var/condense_amt = min(air.gas[g], rand(1,3))
+				var/condense_amt = min(air.gas[g], rand(10,30))
 				if(condense_amt < 1)
 					break
 				air.adjust_gas(g, -condense_amt)
 				var/obj/effect/fluid/F = locate() in flooding
 				if(!F) F = new(flooding)
-				F.reagents.add_reagent(g, condense_amt * REAGENT_UNITS_PER_GAS_MOLE)
+				var/condense_reagent_amt = condense_amt * REAGENT_UNITS_PER_GAS_MOLE
+				F.reagents.add_reagent(g, condense_reagent_amt)
+				air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
+		CHECK_TICK
+	condensing = FALSE*/
+
+	condensing = TRUE
+
+	for(var/g in air.gas)
+		if(air.phases[g] == MAT_PHASE_LIQUID)
+			var/decl/material/mat = GET_DECL(g)
+			var/turf/flooding = pick(contents)
+			var/condense_amt = min(air.gas[g], rand(10,30))
+			if(condense_amt < 1)
+				return
+			air.adjust_gas(g, -condense_amt)
+			var/obj/effect/fluid/F = locate() in flooding
+			if(!F) F = new(flooding)
+			var/condense_reagent_amt = condense_amt * REAGENT_UNITS_PER_GAS_MOLE
+			F.reagents.add_reagent(g, condense_reagent_amt)
+			air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
 		CHECK_TICK
 	condensing = FALSE
 

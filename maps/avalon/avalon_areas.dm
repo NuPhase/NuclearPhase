@@ -84,15 +84,27 @@
 
 /area/surface
 	name = "Surface"
+	var/list/hot_ambience = list()
+	var/list/cold_ambience = list('sound/music/nothing.ogg', 'sound/music/stars.ogg')
+	forced_ambience = list('sound/music/nothing.ogg', 'sound/music/stars.ogg')
+	has_gravity = TRUE
+	is_outside = TRUE
 
 /*	var/hot_blurb = ""
 	var/cold_blurb = ""
 */
+
+/area/surface/proc/switch_phases(var/phase)
+	if(phase == 1) //hot
+		forced_ambience = hot_ambience
+	else
+		forced_ambience = cold_ambience
+
 /area/surface/has_gravity()
 	return TRUE
 
 /*/area/surface/do_area_blurb(mob/living/L)
-	var/blurb = ""
+	var/blurb = ""'sound/ambience/ambigen1.ogg'
 	if(air.temperature > 400)
 		blurb = "<span class='boldannounce'>[hot_blurb]</span>"
 	else

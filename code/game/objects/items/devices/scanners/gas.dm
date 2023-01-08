@@ -79,7 +79,7 @@
 						if(mat.flags & MAT_FLAG_FUSION_FUEL)
 							traits += "can be used to fuel fusion reaction"
 						perGas_add_string = "\n\tSpecific heat: [mat.gas_specific_heat] J/(mol*K), Molar mass: [mat.molar_mass] kg/mol.[traits.len ? "\n\tThis gas [english_list(traits)]" : ""]"
-				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string]"
+				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string] | Phase: [mat.phase_at_temperature(mixture.temperature, mixture.return_pressure())]"
 			var/totalGas_add_string = ""
 			if(mode == MV_MODE)
 				totalGas_add_string = ", Total moles: [round(mixture.total_moles, 0.01)], Volume: [mixture.volume]L"

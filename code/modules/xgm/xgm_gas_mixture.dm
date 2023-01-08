@@ -2,6 +2,8 @@
 	//Associative list of gas moles.
 	//Gases with 0 moles are not tracked and are pruned by update_values()
 	var/list/gas = list()
+
+	var/list/phases = list()
 	//Temperature in Kelvin of this gas mix.
 	var/temperature = 0
 
@@ -139,6 +141,8 @@
 	. = 0
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
+		if(!mat)
+			return
 		switch(mat.phase_at_temperature(temperature, return_pressure()))
 			if(MAT_PHASE_GAS)
 				. += mat.gas_specific_heat * gas[g]
@@ -213,15 +217,17 @@
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
 	//return R_IDEAL_GAS_EQUATION * ( log (1 + IDEAL_GAS_ENTROPY_CONSTANT/partial_pressure) + 20 )
 
-
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
+	phases.Cut()
 	total_moles = 0
 	for(var/g in gas)
 		if(gas[g] <= 0)
 			gas -= g
 		else
 			total_moles += gas[g]
+			var/decl/material/mat = GET_DECL(g)
+			phases[g] = mat.phase_at_temperature(temperature, return_pressure())
 
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
