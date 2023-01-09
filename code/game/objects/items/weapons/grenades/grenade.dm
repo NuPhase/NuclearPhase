@@ -73,6 +73,9 @@
 	active = TRUE
 	update_icon()
 	playsound(loc, arm_sound, 75, 0, -3)
+	if(det_time > 20)
+		spawn(det_time - 20)
+			playsound(loc, 'sound/weapons/preboom.ogg', 75, 0, -3)
 	addtimer(CALLBACK(src, .proc/detonate), det_time)
 
 /obj/item/grenade/proc/detonate()

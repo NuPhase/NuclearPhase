@@ -242,3 +242,11 @@
 /obj/item/ammo_magazine/speedloader/laser_revolver
 	caliber = CALIBER_PISTOL_LASBULB
 	ammo_type = /obj/item/ammo_casing/lasbulb
+
+/obj/item/ammo_magazine/railgunfletchette
+	name = "3x20 heatshielded magazine"
+	icon_state = "railgun"
+	caliber = "3x20"
+	ammo_type = /obj/item/ammo_casing/magneticfletchette
+	max_ammo = 120
+	mag_type = MAGAZINE

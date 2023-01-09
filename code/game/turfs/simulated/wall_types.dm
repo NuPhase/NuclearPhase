@@ -9,6 +9,7 @@
 	icon_state = "reinforced_solid"
 	material = /decl/material/solid/metal/plasteel
 	reinf_material = /decl/material/solid/metal/plasteel
+	shielding = 120
 
 /turf/simulated/wall/r_wall/hull
 	name = "hull"

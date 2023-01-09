@@ -28,6 +28,7 @@
 	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
 	mag_remove_sound = 'sound/weapons/guns/interaction/batrifle_magout.ogg'
 	material = /decl/material/solid/metal/tantalumhafniumcarbide
+	hot_color = COLOR_AMBER
 
 /obj/item/gun/projectile/sniper/ngdmr/update_base_icon()
 	if(ammo_magazine)

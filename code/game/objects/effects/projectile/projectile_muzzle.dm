@@ -22,6 +22,10 @@
 	icon_state = "muzzle_u_laser"
 	light_color = LIGHT_COLOR_BLUE
 
+/obj/effect/projectile/muzzle/gauss
+	icon_state = "muzzle_gauss"
+	light_color = LIGHT_COLOR_BLUE
+
 /obj/effect/projectile/muzzle/plasma_cutter
 	icon_state = "muzzle_plasmacutter"
 	light_color = LIGHT_COLOR_CYAN

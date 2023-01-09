@@ -45,6 +45,7 @@ var/global/list/wall_fullblend_objects = list(
 	var/paint_color
 	var/stripe_color
 	var/handle_structure_blending = TRUE
+	var/shielding = 70
 
 /turf/simulated/wall/Initialize(var/ml, var/materialtype, var/rmaterialtype)
 
@@ -116,21 +117,13 @@ var/global/list/wall_fullblend_objects = list(
 	else if(istype(Proj,/obj/item/projectile/ion))
 		burn(500)
 
-	var/proj_damage = Proj.get_structure_damage()
+	var/proj_damage = Proj.get_structure_damage() - shielding
 
 	if(Proj.ricochet_sounds && prob(15))
 		playsound(src, pick(Proj.ricochet_sounds), 100, 1)
 
-	if(reinf_material)
-		if(Proj.damage_type == BURN)
-			proj_damage /= reinf_material.burn_armor
-		else if(Proj.damage_type == BRUTE)
-			proj_damage /= reinf_material.brute_armor
-
-	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
-	var/damage = min(proj_damage, 100)
-
-	take_damage(damage)
+	if(proj_damage)
+		take_damage(damage)
 
 /turf/simulated/wall/hitby(AM, var/datum/thrownthing/TT)
 	..()

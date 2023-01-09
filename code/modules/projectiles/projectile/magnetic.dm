@@ -1,13 +1,14 @@
 // Rod for railguns. Slightly less nasty than the sniper round.
 /obj/item/projectile/bullet/magnetic
 	name = "rod"
-	icon_state = "rod"
-	damage = 55
+	icon_state = "gauss"
+	damage = 35
 	penetrating = 5
 	armor_penetration = 85
 	penetration_modifier = 1.1
 	fire_sound = 'sound/weapons/railgun.ogg'
 	distance_falloff = 1
+	muzzle_type = /obj/effect/projectile/muzzle/gauss
 
 /obj/item/projectile/bullet/magnetic/slug
 	name = "slug"

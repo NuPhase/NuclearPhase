@@ -97,6 +97,8 @@
 	var/last_fire_message_type
 	var/last_fire_message_time
 
+	var/hot_color
+
 /obj/item/gun/Initialize()
 	. = ..()
 	for(var/i in 1 to firemodes.len)

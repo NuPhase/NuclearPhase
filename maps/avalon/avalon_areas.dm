@@ -89,19 +89,37 @@
 	forced_ambience = list('sound/music/nothing.ogg', 'sound/music/stars.ogg')
 	has_gravity = TRUE
 	is_outside = TRUE
+	var/phase = 0
 
 /*	var/hot_blurb = ""
 	var/cold_blurb = ""
 */
 
-/area/surface/proc/switch_phases(var/phase)
-	if(phase == 1) //hot
+/area/surface/proc/switch_phases(var/newphase)
+	if(newphase == 1) //hot
 		forced_ambience = hot_ambience
 	else
 		forced_ambience = cold_ambience
+	phase = newphase
 
 /area/surface/has_gravity()
 	return TRUE
+
+/area/surface/Entered(mob/A)
+	. = ..()
+	if(!phase)
+		return
+	if(iscarbon(A))
+		for(var/obj/item/gun/W in A.contents)
+			if(W.hot_color)
+				W.color = W.hot_color
+
+/area/surface/Exited(mob/A)
+	. = ..()
+	if(iscarbon(A))
+		for(var/obj/item/gun/W in A.contents)
+			if(W.hot_color)
+				W.color = null
 
 /*/area/surface/do_area_blurb(mob/living/L)
 	var/blurb = ""'sound/ambience/ambigen1.ogg'

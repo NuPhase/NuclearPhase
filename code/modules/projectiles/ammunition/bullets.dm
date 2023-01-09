@@ -212,3 +212,12 @@
 	material = /decl/material/solid/metal/steel
 	color = COLOR_GRAY20
 	icon = 'icons/obj/ammo/casings/anti_materiel.dmi'
+
+/obj/item/ammo_casing/magneticfletchette
+	name = "3x20 railgun fletchette round"
+	desc = "A special heatshielded round for high-speed flight."
+	caliber = "3x20"
+	projectile_type = /obj/item/projectile/bullet/magnetic
+	material = /decl/material/solid/metal/titanium
+	color = COLOR_GRAY20
+	icon = 'icons/obj/ammo/casings/flechette.dmi'
