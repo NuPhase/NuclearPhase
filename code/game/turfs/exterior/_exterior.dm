@@ -134,8 +134,7 @@
 
 /turf/exterior/explosion_act(severity)
 	SHOULD_CALL_PARENT(FALSE)
-	if(!istype(src, get_base_turf_by_area(src)) && (severity == 1 || (severity == 2 && prob(40))))
-		ChangeTurf(get_base_turf_by_area(src))
+	return
 
 /turf/exterior/on_update_icon()
 	. = ..() // Recalc AO and flooding overlay.
