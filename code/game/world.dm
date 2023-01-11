@@ -132,8 +132,6 @@ var/global/world_topic_last = world.timeofday
 	return TC.try_use(T, addr, master, key)
 
 /world/Reboot(var/reason)
-	if(global.using_map.reboot_sound)
-		sound_to(world, sound(pick(global.using_map.reboot_sound)))// random end sounds!! - LastyBatsy
 
 	Master.Shutdown()
 

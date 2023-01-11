@@ -2,9 +2,9 @@
 	name = "Standard Gear"
 	abstract_type = /decl/hierarchy/outfit/job
 
-	uniform = /obj/item/clothing/under/color/grey
+	uniform = /obj/item/clothing/under/tactical
 	l_ear = /obj/item/radio/headset
-	shoes = /obj/item/clothing/shoes/color/black
+	shoes = /obj/item/clothing/under/tactical
 
 	id_slot = slot_wear_id_str
 	id_type = /obj/item/card/id/civilian
