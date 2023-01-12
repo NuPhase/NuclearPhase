@@ -110,3 +110,21 @@
 
 /turf/exterior/surface/open/cannot_build_cable()
 	return 0
+
+/turf/simulated/open/exterior
+	name = "canyon"
+	desc = "Looks very deep..."
+	var/datum/map/mapowner = null
+
+/turf/simulated/open/exterior/Initialize()
+	..()
+	mapowner = global.using_map
+	setup_environmental_lighting()
+
+/turf/simulated/open/exterior/proc/setup_environmental_lighting()
+	if (is_outside())
+		if (mapowner)
+			set_ambient_light(COLOR_SKY_SURFACE, mapowner.lightlevel)
+			return
+	else if (ambient_light)
+		clear_ambient_light()
