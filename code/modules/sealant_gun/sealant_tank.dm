@@ -1,7 +1,7 @@
 /obj/item/sealant_tank
 	name = "sealant tank"
 	desc = "A sealed tank used to keep hull sealant foam contained under pressure."
-	icon = 'icons/obj/sealant_stationary_canisters.dmi'
+	icon = 'icons/obj/sealant_tank.dmi'
 	icon_state = "tank"
 	var/foam_charges = 0
 	var/max_foam_charges = 60

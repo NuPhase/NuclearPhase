@@ -14,7 +14,7 @@
 
 /obj/structure/closet/secure_closet/freezer/meat
 	name = "meat fridge"
-	icon = 'icons/obj/closets/fridge.dmi'
+	icon = 'icons/obj/storage/fridge.dmi'
 	closet_appearance = null
 
 /obj/structure/closet/secure_closet/freezer/meat/WillContain()
@@ -25,7 +25,7 @@
 
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"
-	icon = 'icons/obj/closets/fridge.dmi'
+	icon = 'icons/obj/storage/fridge.dmi'
 	closet_appearance = null
 
 /obj/structure/closet/secure_closet/freezer/fridge/WillContain()
@@ -37,7 +37,7 @@
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "secure locker"
-	icon = 'icons/obj/closets/fridge.dmi'
+	icon = 'icons/obj/storage/fridge.dmi'
 	closet_appearance = null
 	req_access = list(access_heads_vault)
 

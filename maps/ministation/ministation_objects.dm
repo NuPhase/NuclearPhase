@@ -38,14 +38,14 @@
 			var/decl/strata/strata_info = GET_DECL(strata)
 			. = strata_info.ores_rich
 		if(!.)
-			. = SSmaterials.weighted_minerals_rich	
+			. = SSmaterials.weighted_minerals_rich
 
 //trash bins
 /decl/closet_appearance/crate/ministation
 	decals = null
 	extra_decals = null
 	base_icon =  'bin.dmi'
-	decal_icon = 'icons/obj/closets/decals/crate.dmi'
+	decal_icon = 'icons/obj/storage/decals/crate.dmi'
 	color = COLOR_WHITE
 
 /obj/structure/closet/crate/bin/ministation

@@ -1,7 +1,7 @@
 /obj/structure/closet/coffin
 	name = "coffin"
 	desc = "It's a burial receptacle for the dearly departed."
-	icon = 'icons/obj/closets/coffin.dmi'
+	icon = 'icons/obj/storage/coffin.dmi'
 	setup = 0
 	closet_appearance = null
 
@@ -11,7 +11,7 @@
 	. = ..()
 	if(distance <= 1 && !opened)
 		to_chat(user, "The lid is [locked ? "tightly secured with screws." : "unsecured and can be opened."]")
-		
+
 /obj/structure/closet/coffin/can_open()
 	. =  ..()
 	if(locked)
@@ -21,7 +21,7 @@
 	if(!opened && IS_SCREWDRIVER(W))
 		to_chat(user, SPAN_NOTICE("You begin screwing [src]'s lid [locked ? "open" : "shut"]."))
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
-		if(do_after(user, screwdriver_time_needed, src))	
+		if(do_after(user, screwdriver_time_needed, src))
 			locked = !locked
 			to_chat(user, SPAN_NOTICE("You [locked ? "screw down" : "unscrew"] [src]'s lid."))
 		else
@@ -46,6 +46,6 @@
 /obj/structure/closet/coffin/wooden
 	name = "coffin"
 	desc = "It's a burial receptacle for the dearly departed."
-	icon = 'icons/obj/closets/coffin_wood.dmi'
+	icon = 'icons/obj/storage/coffin_wood.dmi'
 	setup = 0
 	closet_appearance = null

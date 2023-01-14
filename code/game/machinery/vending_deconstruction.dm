@@ -3,7 +3,7 @@
 /obj/structure/vending_refill
 	name = "vendor restock"
 	desc = "A large sealed container containing items sold from a vending machine."
-	icon = 'icons/obj/closets/bases/large_crate.dmi'
+	icon = 'icons/obj/storage/bases/large_crate.dmi'
 	icon_state = "base"
 	color = COLOR_BEASTY_BROWN
 	w_class = ITEM_SIZE_HUGE
@@ -22,7 +22,7 @@
 
 /obj/structure/vending_refill/handle_mouse_drop(var/atom/over, var/mob/user)
 	if(istype(over, /obj/machinery/vending))
-		var/obj/machinery/vending/vendor = over 
+		var/obj/machinery/vending/vendor = over
 		var/target_type = vendor.base_type || vendor.type
 		if(ispath(expected_type, target_type))
 			for(var/datum/stored_items/R in product_records)

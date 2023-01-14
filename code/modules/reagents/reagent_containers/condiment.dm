@@ -8,7 +8,7 @@
 /obj/item/chems/condiment
 	name = "condiment container"
 	desc = "Just your average condiment container."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "emptycondiment"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	possible_transfer_amounts = @"[1,5,10]"
@@ -323,7 +323,7 @@
 /obj/item/chems/condiment/flour
 	name = "flour sack"
 	desc = "A big bag of flour. Good for baking!"
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "flour"
 	item_state = "flour"
 	randpixel = 10
@@ -335,7 +335,7 @@
 /obj/item/chems/condiment/salt
 	name = "big bag of salt"
 	desc = "A nonsensically large bag of salt. Carefully refined from countless shifts."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "salt"
 	item_state = "flour"
 	randpixel = 10
@@ -349,7 +349,7 @@
 /obj/item/chems/condiment/mint
 	name = "mint essential oil"
 	desc = "A small bottle of the essential oil of some kind of mint plant."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "coldsauce"
 	starting_reagents = list(/decl/material/liquid/drink/syrup/mint = 15)
 

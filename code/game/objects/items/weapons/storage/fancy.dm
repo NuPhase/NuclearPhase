@@ -39,7 +39,7 @@
  */
 
 /obj/item/storage/fancy/egg_box
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "eggbox"
 	name = "egg box"
 	storage_slots = 12
@@ -63,7 +63,7 @@
 
 /obj/item/storage/fancy/crackers
 	name = "\improper Getmore Crackers"
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "crackerbag"
 	storage_slots = 6
 	max_w_class = ITEM_SIZE_TINY

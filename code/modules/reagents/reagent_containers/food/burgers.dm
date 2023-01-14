@@ -58,7 +58,7 @@
 /obj/item/chems/food/burger
 	name = "burger"
 	desc = "The cornerstone of every nutritious breakfast."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "burger"
 	filling_color = "#d63c3c"
 	center_of_mass = @"{'x':16,'y':11}"
@@ -73,7 +73,7 @@
 /obj/item/chems/food/hamburger
 	name = "hamburger"
 	desc = "The cornerstone of every nutritious breakfast, now with ham!"
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "hamburger"
 	filling_color = "#d63c3c"
 	center_of_mass = @"{'x':16,'y':11}"

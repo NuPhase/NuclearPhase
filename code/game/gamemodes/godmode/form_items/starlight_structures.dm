@@ -9,7 +9,7 @@
 /obj/structure/deity/gateway
 	name = "gateway"
 	desc = "A gateway into the unknown."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/engine/singularity.dmi'
 	icon_state = "singularity_s1"
 	power_adjustment = 1
 	density = 0

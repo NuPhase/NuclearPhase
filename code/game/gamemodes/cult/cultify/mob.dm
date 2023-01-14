@@ -38,10 +38,10 @@
 		return
 	if((N.z == src.z)&&(get_dist(N,src) <= (N.consume_range+10)) && !(N in view(src)))
 		if(!narsimage) //Create narsimage
-			narsimage = image('icons/obj/narsie.dmi',src.loc,"narsie",9,1)
+			narsimage = image('icons/effects/narsie.dmi',src.loc,"narsie",9,1)
 			narsimage.mouse_opacity = 0
 		if(!narglow) //Create narglow
-			narglow = image('icons/obj/narsie.dmi',narsimage.loc,"glow-narsie",12,1)
+			narglow = image('icons/effects/narsie.dmi',narsimage.loc,"glow-narsie",12,1)
 			narglow.mouse_opacity = 0
 		//Else if no dir is given, simply send them the image of narsie
 		var/new_x = 32 * (N.x - src.x) + N.pixel_x

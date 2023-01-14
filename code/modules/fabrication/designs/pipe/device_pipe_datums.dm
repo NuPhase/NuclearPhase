@@ -179,7 +179,7 @@
 /datum/fabricator_recipe/pipe/device/drain
 	name = "gutter"
 	desc = "You probably can't get sucked down the plughole."
-	build_icon = 'icons/obj/drain.dmi'
+	build_icon = 'icons/obj/atmospherics/components/unary/drain.dmi'
 	build_icon_state = "drain"
 	path = /obj/item/drain
 	connect_types = null
@@ -191,7 +191,7 @@
 /datum/fabricator_recipe/pipe/device/drain/bath
 	name = "sealable gutter"
 	desc = "You probably can't get sucked down the plughole. Specially not when it's closed!"
-	build_icon = 'icons/obj/drain.dmi'
+	build_icon = 'icons/obj/atmospherics/components/unary/drain.dmi'
 	build_icon_state = "drain_bath"
 	path = /obj/item/drain/bath
 	connect_types = null
@@ -203,7 +203,7 @@
 /datum/fabricator_recipe/pipe/device/tank
 	name = "pressure tank"
 	desc = "A large vessel containing pressurized gas."
-	build_icon = 'icons/atmos/stationary_canisters.dmi'
+	build_icon = 'icons/obj/atmospherics/stationary_canisters.dmi'
 	build_icon_state = "air"
 	path = /obj/item/pipe/tank
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL

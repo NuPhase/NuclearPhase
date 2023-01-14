@@ -14,7 +14,7 @@
 
 	anchored = 1
 	density = 1
-	
+
 	var/temptext = ""
 	var/selfdestructing = 0
 	var/charges = 1
@@ -83,7 +83,7 @@
 /obj/machinery/singularity_beacon
 	name = "ominous beacon"
 	desc = "This looks suspicious..."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/engine/singularity.dmi'
 	icon_state = "beacon"
 
 	uncreated_component_parts = list(/obj/item/stock_parts/power/terminal)

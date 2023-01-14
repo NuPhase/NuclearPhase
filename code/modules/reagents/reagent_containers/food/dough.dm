@@ -1,7 +1,7 @@
 /obj/item/chems/food/dough
 	name = "dough"
 	desc = "A piece of dough."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "dough"
 	bitesize = 2
 	center_of_mass = @"{'x':16,'y':13}"
@@ -21,7 +21,7 @@
 /obj/item/chems/food/sliceable/flatdough
 	name = "flat dough"
 	desc = "A flattened dough."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "flat dough"
 	slice_path = /obj/item/chems/food/doughslice
 	slices_num = 3
@@ -35,7 +35,7 @@
 /obj/item/chems/food/doughslice
 	name = "dough slice"
 	desc = "A building block of an impressive dish."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "doughslice"
 	slice_path = /obj/item/chems/food/spagetti
 	slices_num = 1
@@ -48,7 +48,7 @@
 /obj/item/chems/food/bun
 	name = "bun"
 	desc = "A base for any self-respecting burger."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "bun"
 	bitesize = 2
 	center_of_mass = @"{'x':16,'y':12}"

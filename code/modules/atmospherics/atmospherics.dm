@@ -30,7 +30,7 @@ Pipelines + Other Objects -> Pipe network
 	var/list/nodes_to_networks // lazylist of node -> network to which the node connection belongs if any
 
 	var/atmos_initalized = FALSE
-	var/build_icon = 'icons/obj/pipe-item.dmi'
+	var/build_icon = 'icons/obj/atmospherics/pipes/pipe-item.dmi'
 	var/build_icon_state = "buildpipe"
 
 	var/pipe_class = PIPE_CLASS_OTHER //If somehow something isn't set properly, handle it as something with zero connections. This will prevent runtimes.
@@ -93,7 +93,7 @@ Pipelines + Other Objects -> Pipe network
 		else
 			state = "intact"
 
-	var/image/I = image('icons/obj/atmospherics/pipe_underlays.dmi', "[state][icon_connect_type]", dir = direction)
+	var/image/I = image('icons/obj/atmospherics/pipes/pipe_underlays.dmi', "[state][icon_connect_type]", dir = direction)
 	I.color = color_cache_name(node)
 	underlays += I
 

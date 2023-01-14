@@ -27,7 +27,7 @@
 	hide_inventory()
 
 /obj/screen/pai
-	icon = 'icons/mob/screen/pai.dmi'
+	icon = 'icons/hud/pai.dmi'
 
 /obj/screen/pai/Click()
 	if(!isobserver(usr) && (!usr.incapacitated() || usr.resting))

@@ -26,7 +26,7 @@
 	return FALSE
 
 /obj/item/clothing/suit/proc/get_collar()
-	var/icon/C = new('icons/mob/collar.dmi')
+	var/icon/C = new('icons/clothing/suit/collar.dmi')
 	if(icon_state in C.IconStates())
 		var/image/I = image(C, icon_state)
 		I.color = color

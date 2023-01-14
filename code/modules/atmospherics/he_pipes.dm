@@ -1,6 +1,6 @@
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging
-	icon = 'icons/obj/atmospherics/heat.dmi'
+	icon = 'icons/obj/atmospherics/pipes/heat.dmi'
 	icon_state = "11"
 	color = "#404040"
 	level = 2
@@ -110,7 +110,7 @@
 			set_light(0, 0)
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
-	icon = 'icons/obj/atmospherics/junction.dmi'
+	icon = 'icons/obj/atmospherics/pipes/junction.dmi'
 	icon_state = "11"
 	level = 2
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE|CONNECT_TYPE_FUEL

@@ -8,7 +8,7 @@
 */
 /obj/screen
 	name = ""
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	plane = HUD_PLANE
 	layer = HUD_BASE_LAYER
 	appearance_flags = NO_CLIENT_COLOR
@@ -204,11 +204,11 @@
 
 /obj/screen/zone_sel/on_update_icon()
 	overlays.Cut()
-	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
+	overlays += image('icons/hud/zone_sel.dmi', "[selecting]")
 
 /obj/screen/intent
 	name = "intent"
-	icon = 'icons/mob/screen/white.dmi'
+	icon = 'icons/hud/white.dmi'
 	icon_state = "intent_help"
 	screen_loc = ui_acti
 	var/intent = I_HELP

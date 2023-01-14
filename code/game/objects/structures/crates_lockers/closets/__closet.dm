@@ -3,7 +3,7 @@ var/global/list/closets = list()
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
-	icon = 'icons/obj/closets/bases/closet.dmi'
+	icon = 'icons/obj/storage/bases/closet.dmi'
 	icon_state = "base"
 	density = 1
 	maxhealth = 100
@@ -106,7 +106,7 @@ var/global/list/closets = list()
 		stored_units += store_mobs(stored_units)
 	if(storage_types & CLOSET_STORAGE_STRUCTURES)
 		stored_units += store_structures(stored_units)
-		
+
 /obj/structure/closet/proc/open()
 	if(src.opened)
 		return 0
@@ -237,7 +237,7 @@ var/global/list/closets = list()
 		take_damage(proj_damage)
 
 /obj/structure/closet/attackby(obj/item/W, mob/user)
-	
+
 	if(user.a_intent == I_HURT && W.force)
 		return ..()
 
@@ -520,7 +520,7 @@ var/global/list/closets = list()
 	if(.)
 		var/obj/structure/closet/C = target
 		. = !C.opened && (C.setup & CLOSET_HAS_LOCK)
-	
+
 /decl/interaction_handler/closet_lock_toggle/invoked(atom/target, mob/user, obj/item/prop)
 	var/obj/structure/closet/C = target
 	C.togglelock(user)

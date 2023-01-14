@@ -8,7 +8,7 @@ var/global/list/radial_menus = list()
 	return ..()
 
 /obj/screen/radial
-	icon = 'icons/screen/radial.dmi'
+	icon = 'icons/hud/radial.dmi'
 	layer = HUD_ABOVE_ITEM_LAYER
 	plane = HUD_PLANE
 	var/datum/radial_menu/parent
@@ -355,4 +355,4 @@ var/global/list/radial_menus = list()
 /proc/make_item_radial_menu_choices(var/list/items, var/name_prefix = "", var/name_suffix = "")
 	for(var/atom/movable/AM in items)
 		LAZYSET(., AM, make_item_radial_menu_button(AM, name_prefix, name_suffix))
-	
+

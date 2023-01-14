@@ -3,10 +3,10 @@
 /obj/item/bodybag
 	name = "body bag"
 	desc = "A folded bag designed for the storage and transportation of cadavers."
-	icon = 'icons/obj/closets/bodybag.dmi'
+	icon = 'icons/obj/storage/bodybag.dmi'
 	icon_state = "bodybag_folded"
 	w_class = ITEM_SIZE_SMALL
-	
+
 /obj/item/bodybag/attack_self(mob/user)
 	var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
 	R.add_fingerprint(user)
@@ -23,7 +23,7 @@
 /obj/structure/closet/body_bag
 	name = "body bag"
 	desc = "A plastic bag designed for the storage and transportation of cadavers."
-	icon = 'icons/obj/closets/bodybag.dmi'
+	icon = 'icons/obj/storage/bodybag.dmi'
 	closet_appearance = null
 	open_sound = 'sound/items/zip.ogg'
 	close_sound = 'sound/items/zip.ogg'
@@ -83,7 +83,7 @@
 /obj/item/robot_rack/body_bag
 	name = "stasis bag rack"
 	desc = "A rack for carrying folded stasis bags and body bags."
-	icon = 'icons/obj/closets/cryobag.dmi'
+	icon = 'icons/obj/storage/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	object_type = /obj/item/bodybag
 	interact_type = /obj/structure/closet/body_bag

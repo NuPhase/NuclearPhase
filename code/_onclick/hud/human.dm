@@ -1,7 +1,7 @@
 /mob/living/carbon/human
 	hud_type = /datum/hud/human
 
-/datum/hud/human/FinalizeInstantiation(var/ui_style='icons/mob/screen/white.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255)
+/datum/hud/human/FinalizeInstantiation(var/ui_style='icons/hud/white.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255)
 	var/mob/living/carbon/human/target = mymob
 	var/datum/hud_data/hud_data = istype(target) ? target.species.hud : new()
 	if(hud_data.icon)
@@ -149,14 +149,14 @@
 		hud_elements |= mymob.healths
 
 		mymob.oxygen = new /obj/screen/oxygen()
-		mymob.oxygen.icon = 'icons/mob/status_indicators.dmi'
+		mymob.oxygen.icon = 'icons/hud/status_indicators.dmi'
 		mymob.oxygen.icon_state = "oxy0"
 		mymob.oxygen.SetName("oxygen")
 		mymob.oxygen.screen_loc = ui_temp
 		hud_elements |= mymob.oxygen
 
 		mymob.toxin = new /obj/screen/toxins()
-		mymob.toxin.icon = 'icons/mob/status_indicators.dmi'
+		mymob.toxin.icon = 'icons/hud/status_indicators.dmi'
 		mymob.toxin.icon_state = "tox0"
 		mymob.toxin.SetName("toxin")
 		mymob.toxin.screen_loc = ui_temp
@@ -171,7 +171,7 @@
 
 	if(hud_data.has_pressure)
 		mymob.pressure = new /obj/screen/pressure()
-		mymob.pressure.icon = 'icons/mob/status_indicators.dmi'
+		mymob.pressure.icon = 'icons/hud/status_indicators.dmi'
 		mymob.pressure.icon_state = "pressure0"
 		mymob.pressure.SetName("pressure")
 		mymob.pressure.screen_loc = ui_temp
@@ -179,7 +179,7 @@
 
 	if(hud_data.has_bodytemp)
 		mymob.bodytemp = new /obj/screen/bodytemp()
-		mymob.bodytemp.icon = 'icons/mob/status_indicators.dmi'
+		mymob.bodytemp.icon = 'icons/hud/status_indicators.dmi'
 		mymob.bodytemp.icon_state = "temp1"
 		mymob.bodytemp.SetName("body temperature")
 		mymob.bodytemp.screen_loc = ui_temp
@@ -187,7 +187,7 @@
 
 	if(target.isSynthetic())
 		target.cells = new /obj/screen()
-		target.cells.icon = 'icons/mob/screen1_robot.dmi'
+		target.cells.icon = 'icons/hud/screen1_robot.dmi'
 		target.cells.icon_state = "charge-empty"
 		target.cells.SetName("cell")
 		target.cells.screen_loc = ui_nutrition
@@ -195,7 +195,7 @@
 
 	else if(hud_data.has_nutrition)
 		mymob.nutrition_icon = new /obj/screen/food()
-		mymob.nutrition_icon.icon = 'icons/mob/status_hunger.dmi'
+		mymob.nutrition_icon.icon = 'icons/hud/status_hunger.dmi'
 		mymob.nutrition_icon.pixel_w = 8
 		mymob.nutrition_icon.icon_state = "nutrition1"
 		mymob.nutrition_icon.SetName("nutrition")
@@ -203,7 +203,7 @@
 		hud_elements |= mymob.nutrition_icon
 
 		mymob.hydration_icon = new /obj/screen/drink()
-		mymob.hydration_icon.icon = 'icons/mob/status_hunger.dmi'
+		mymob.hydration_icon.icon = 'icons/hud/status_hunger.dmi'
 		mymob.hydration_icon.icon_state = "hydration1"
 		mymob.hydration_icon.SetName("hydration")
 		mymob.hydration_icon.screen_loc = ui_nutrition_small
@@ -225,7 +225,7 @@
 	mymob.zone_sel.color = ui_color
 	mymob.zone_sel.alpha = ui_alpha
 	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.overlays += image('icons/hud/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 	hud_elements |= mymob.zone_sel
 
 	target.attack_selector = new

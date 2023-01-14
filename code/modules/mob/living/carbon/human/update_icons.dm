@@ -814,7 +814,7 @@ var/global/list/damage_icon_parts = list()
 	set_tail_state("[tail_organ.get_tail()]_static")
 
 //Adds a collar overlay above the helmet layer if the suit has one
-//	Suit needs an identically named sprite in icons/mob/collar.dmi
+//	Suit needs an identically named sprite in icons/clothing/suit/collar.dmi
 /mob/living/carbon/human/proc/update_collar(var/update_icons=1)
 	var/obj/item/clothing/suit/S = get_equipped_item(slot_wear_suit_str)
 	if(istype(S))

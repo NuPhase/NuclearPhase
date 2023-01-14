@@ -21,7 +21,7 @@
 /obj/item/chems/drinks/bottle/champagne
 	name = "champagne bottle"
 	desc = "Sparkling wine made from exquisite grape varieties by the method of secondary fermentation in a bottle. Bubbling."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "champagne"
 	center_of_mass = @"{'x':12,'y':5}"
 	atom_flags = 0 //starts closed

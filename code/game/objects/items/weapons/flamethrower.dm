@@ -77,7 +77,7 @@
 		add_overlay("igniter_[secured]")
 
 	if(tank)
-		add_overlay(mutable_appearance(icon, istype(tank, /obj/item/tank/hydrogen)? "tank_hydrogen" : "tank", tank.color))			
+		add_overlay(mutable_appearance(icon, istype(tank, /obj/item/tank/hydrogen)? "tank_hydrogen" : "tank", tank.color))
 
 	if(lit)
 		add_overlay("lit")
@@ -113,7 +113,7 @@
 /obj/item/flamethrower/attackby(obj/item/W, mob/user)
 	if(user.incapacitated())
 		return TRUE
-	
+
 	if(IS_WRENCH(W) && !secured)//Taking this apart
 		var/turf/T = get_turf(src)
 		if(welding_tool)
@@ -157,7 +157,7 @@
 		if(tank)
 			to_chat(user, SPAN_WARNING("There appears to already be a tank loaded in \the [src]!"))
 			return TRUE
-	
+
 		user.drop_from_inventory(W, src)
 		tank = W
 		update_icon()
@@ -187,8 +187,8 @@
 	var/list/options = list(
 		"Eject Tank" = mutable_appearance('icons/obj/items/tanks/tank_greyscaled.dmi', "world", tank.color),
 		"Light" = mutable_appearance('icons/effects/effects.dmi', "fire_goon"),
-		"Lower Pressure" = mutable_appearance('icons/screen/radial.dmi', "radial_sub"),
-		"Raise Pressure" = mutable_appearance('icons/screen/radial.dmi', "radial_add")
+		"Lower Pressure" = mutable_appearance('icons/hud/radial.dmi', "radial_sub"),
+		"Raise Pressure" = mutable_appearance('icons/hud/radial.dmi', "radial_add")
 	)
 
 	var/handle = show_radial_menu(user, user, options, require_near = TRUE, radius = 42, tooltips = TRUE, check_locs = list(src))
@@ -210,7 +210,7 @@
 
 		if("Lower Pressure")
 			change_pressure(-50, user)
-		
+
 		if("Raise Pressure")
 			change_pressure(50, user)
 		else
@@ -282,10 +282,10 @@
 		if(!previous_turf && length(turflist)>1)
 			previous_turf = get_turf(src)
 			continue	//so we don't burn the tile we be standin on
-		
+
 		if(previous_turf && LinkBlocked(previous_turf, T))
 			break
-	
+
 		ignite_turf(T)
 		sleep(1)
 
@@ -294,7 +294,7 @@
 
 /obj/item/flamethrower/proc/ignite_turf(turf/target)
 	var/datum/gas_mixture/air_transfer = tank.air_contents.remove_ratio(0.02 * (throw_amount / 100))
-	
+
 	target.add_fluid(/decl/material/liquid/fuel, air_transfer.get_by_flag(XGM_GAS_FUEL))
 
 	air_transfer.remove_by_flag(XGM_GAS_FUEL, 0)

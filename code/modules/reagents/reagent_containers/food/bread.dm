@@ -123,7 +123,7 @@
 /obj/item/chems/food/flatbread
 	name = "flatbread"
 	desc = "Bland but filling."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "flatbread"
 	bitesize = 2
 	center_of_mass = @"{'x':16,'y':16}"

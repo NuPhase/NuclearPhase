@@ -209,7 +209,7 @@
 			pipe_state_key = "down"
 		else
 			pipe_state_key = "intact"
-		var/image/pipe_state = image('icons/obj/atmospherics/pipe_underlays.dmi', pipe_state_key, dir = P.direction)
+		var/image/pipe_state = image('icons/obj/atmospherics/pipes/pipe_underlays.dmi', pipe_state_key, dir = P.direction)
 		pipe_state.color = color_cache_name(node)
 
 		return list("on_icon" = ic_on, "off_icon" = ic_off, "pipe_icon" = pipe_state)

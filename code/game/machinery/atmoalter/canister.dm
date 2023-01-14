@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/canister
 	name = "\improper Canister: \[CAUTION\]"
-	icon = 'icons/obj/atmospherics/canister.dmi'
+	icon = 'icons/obj/atmospherics/canisters.dmi'
 	icon_state = "yellow"
 	density = 1
 	var/health = 100.0

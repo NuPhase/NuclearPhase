@@ -5,7 +5,7 @@
 
 /obj/item/chems/food/can
 	name = "empty can"
-	icon = 'icons/obj/food_canned.dmi'
+	icon = 'icons/obj/food/food_canned.dmi'
 	center_of_mass = @"{'x':15,'y':9}"
 	atom_flags = 0
 	bitesize = 3
