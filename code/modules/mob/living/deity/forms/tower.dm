@@ -35,13 +35,11 @@
 				/datum/deity_item/boon/single_charge/smoke,
 				/datum/deity_item/boon/single_charge/knock,
 				/datum/deity_item/boon/single_charge/burning_grip,
-				/datum/deity_item/phenomena/warp_body,
 				/datum/deity_item/boon/single_charge/jaunt,
 				/datum/deity_item/healing_spells,
 				/datum/deity_item/boon/single_charge/heal,
 				/datum/deity_item/boon/single_charge/heal/major,
 				/datum/deity_item/boon/single_charge/heal/area,
-				/datum/deity_item/phenomena/rock_form
 				)
 
 /datum/god_form/wizard/take_charge(var/mob/living/user, var/charge)

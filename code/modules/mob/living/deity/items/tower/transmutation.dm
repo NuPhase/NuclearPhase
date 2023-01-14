@@ -40,14 +40,6 @@
 	category = DEITY_TREE_TRANSMUTATION
 	requirements = list(DEITY_TREE_TRANSMUTATION = 2)
 
-/datum/deity_item/phenomena/warp_body
-	name = "Phenomena: Warp Body"
-	desc = "Gain the ability to warp the very structure of a target's body, wracking pain and weakness."
-	base_cost = 75
-	category = DEITY_TREE_TRANSMUTATION
-	requirements = list(DEITY_TREE_TRANSMUTATION = 2)
-	phenomena_path = /datum/phenomena/warp
-
 //Level 3
 /datum/deity_item/boon/single_charge/jaunt
 	name = "Ethereal Jaunt"
@@ -89,11 +81,3 @@
 	category = DEITY_TREE_TRANSMUTATION
 	requirements = list(DEITY_UNLOCK_HEAL = 1)
 	boon_path = /spell/targeted/heal_target/area/tower
-
-/datum/deity_item/phenomena/rock_form
-	name = "Phenomena: Rock Form"
-	desc = "Gain the ability to transform your followers into beings of rock and stone."
-	base_cost = 75
-	category = DEITY_TREE_TRANSMUTATION
-	requirements = list(DEITY_TREE_TRANSMUTATION = 3)
-	phenomena_path = /datum/phenomena/rock_form

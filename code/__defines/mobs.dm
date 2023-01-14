@@ -257,7 +257,6 @@
 #define SPECIES_HUMAN            "Human"
 #define SPECIES_MONKEY           "Monkey"
 #define SPECIES_ALIEN            "Humanoid"
-#define SPECIES_GOLEM            "Golem"
 
 #define BODY_FLAG_EXCLUDE        BITFLAG(0)
 #define BODY_FLAG_HUMANOID       BITFLAG(1)

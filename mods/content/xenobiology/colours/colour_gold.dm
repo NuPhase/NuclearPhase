@@ -2,9 +2,7 @@
 	name = "gold"
 	descendants = list(
 		/decl/slime_colour/gold,
-		/decl/slime_colour/gold,
-		/decl/slime_colour/adamantine,
-		/decl/slime_colour/adamantine
+		/decl/slime_colour/gold
 	)
 	baby_icon =    'mods/content/xenobiology/icons/slimes/slime_baby_gold.dmi'
 	adult_icon =   'mods/content/xenobiology/icons/slimes/slime_adult_gold.dmi'

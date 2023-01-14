@@ -15,7 +15,7 @@
 	var/contaminant_guard = 0
 	var/eye_colour = COLOR_BLACK
 	var/innate_flash_protection = FLASH_PROTECTION_NONE
-	var/eye_icon = 'icons/mob/human_races/species/default_eyes.dmi'
+	var/eye_icon = 'icons/mob/species/default_eyes.dmi'
 	var/apply_eye_colour = TRUE
 	var/tmp/last_cached_eye_colour
 	var/tmp/last_eye_cache_key
@@ -131,7 +131,7 @@
 
 	if(!owner || !BP_IS_PROSTHETIC(src))
 		verbs -= /obj/item/organ/internal/eyes/proc/change_eye_color
-		return	
+		return
 
 	if(owner.incapacitated())
 		return
@@ -152,7 +152,7 @@
 
 	if(!owner || !BP_IS_PROSTHETIC(src))
 		verbs -= /obj/item/organ/internal/eyes/proc/toggle_eye_glow
-		return	
+		return
 
 	if(owner.incapacitated())
 		return

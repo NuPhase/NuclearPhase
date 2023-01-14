@@ -68,12 +68,10 @@ var/global/list/limb_icon_cache = list()
 /obj/item/organ/external/proc/update_limb_icon_file()
 	if (BP_IS_PROSTHETIC(src))
 		if(!model)
-			icon = 'icons/mob/human_races/cyberlimbs/robotic.dmi'
+			icon = 'icons/mob/species/cyberlimbs/robotic.dmi'
 		else
 			var/decl/prosthetics_manufacturer/R = GET_DECL(model)
 			icon = R.get_base_icon(owner)
-	else if(status & ORGAN_MUTATED)
-		icon = bodytype.get_base_icon(owner, get_deform = TRUE)
 	else if(owner && (limb_flags & ORGAN_FLAG_SKELETAL))
 		icon = bodytype.get_skeletal_icon(owner)
 	else
@@ -170,7 +168,7 @@ var/global/list/robot_hud_colours = list("#ffffff","#cccccc","#aaaaaa","#888888"
 	return applying
 
 /obj/item/organ/external/proc/bandage_level()
-	if(damage_state_text() == "00") 
+	if(damage_state_text() == "00")
 		return 0
 	if(!is_bandaged())
 		return 0
