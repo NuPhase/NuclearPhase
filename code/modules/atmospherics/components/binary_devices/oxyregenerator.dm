@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/binary/oxyregenerator
 	name ="oxygen regenerator"
 	desc = "A machine for breaking bonds in carbon dioxide and releasing pure oxygen."
-	icon = 'icons/atmos/oxyregenerator.dmi'
+	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "off"
 	density = TRUE
 	use_power = POWER_USE_OFF

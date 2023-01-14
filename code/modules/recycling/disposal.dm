@@ -14,7 +14,7 @@ var/global/list/diversion_junctions = list()
 /obj/machinery/disposal
 	name = "disposal unit"
 	desc = "A pneumatic waste disposal unit."
-	icon = 'icons/obj/pipes/disposal.dmi'
+	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
@@ -113,7 +113,7 @@ var/global/list/diversion_junctions = list()
 	update_icon()
 
 /obj/machinery/disposal/receive_mouse_drop(atom/dropping, mob/user)
-	
+
 	. = (user?.a_intent != I_HURT && ..())
 
 	if(!. && !(stat & BROKEN))
@@ -130,7 +130,7 @@ var/global/list/diversion_junctions = list()
 		// Todo rewrite all of this.
 		var/atom/movable/AM = dropping
 		if(!istype(AM) || AM.anchored)
-			return FALSE 
+			return FALSE
 
 		// Determine object type and run necessary checks
 		var/mob/M = AM
@@ -310,7 +310,7 @@ var/global/list/diversion_junctions = list()
 
 	// flush handle
 	if(flush)
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
+		overlays += image('icons/obj/atmospherics/pipes/disposal.dmi', "dispover-handle")
 
 	// only handle is shown if no power
 	if(stat & NOPOWER || mode == -1)
@@ -318,13 +318,13 @@ var/global/list/diversion_junctions = list()
 
 	// 	check for items in disposal - occupied light
 	if(contents.len > LAZYLEN(component_parts))
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
+		overlays += image('icons/obj/atmospherics/pipes/disposal.dmi', "dispover-full")
 
 	// charging and ready light
 	if(mode == 1)
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-charge")
+		overlays += image('icons/obj/atmospherics/pipes/disposal.dmi', "dispover-charge")
 	else if(mode == 2)
-		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-ready")
+		overlays += image('icons/obj/atmospherics/pipes/disposal.dmi', "dispover-ready")
 
 // timed process
 // charge the gas reservoir and perform flush if ready
@@ -531,7 +531,7 @@ var/global/list/diversion_junctions = list()
 /obj/structure/disposaloutlet
 	name = "disposal outlet"
 	desc = "An outlet for the pneumatic disposal system."
-	icon = 'icons/obj/pipes/disposal.dmi'
+	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
 	icon_state = "outlet"
 	density = 1
 	anchored = 1

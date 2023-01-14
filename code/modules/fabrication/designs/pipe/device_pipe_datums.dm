@@ -138,7 +138,7 @@
 /datum/fabricator_recipe/pipe/device/dtvalve
 	name = "digital t-valve"
 	desc = "a three-way valve. T-shaped. This one can be controlled electronically."
-	build_icon = 'icons/atmos/digital_tvalve.dmi'
+	build_icon = 'icons/obj/atmospherics/components/binary/digital_tvalve.dmi'
 	build_icon_state = "map_tvalve0"
 	constructed_path = /obj/machinery/atmospherics/tvalve/digital
 	pipe_class = PIPE_CLASS_TRINARY
@@ -147,7 +147,7 @@
 /datum/fabricator_recipe/pipe/device/dtvalvem
 	name = "digital t-valve (mirrored)"
 	desc = "a three-way valve. T-shaped. This one can be controlled electronically."
-	build_icon = 'icons/atmos/digital_tvalve.dmi'
+	build_icon = 'icons/obj/atmospherics/components/binary/digital_tvalve.dmi'
 	build_icon_state = "map_tvalvem0"
 	constructed_path = /obj/machinery/atmospherics/tvalve/mirrored/digital
 	pipe_class = PIPE_CLASS_TRINARY
@@ -168,7 +168,7 @@
 /datum/fabricator_recipe/pipe/device/outlet_injector
 	name = "injector outlet"
 	desc = "Passively injects gas into its surroundings. Has a valve attached to it that can control flow rate."
-	build_icon = 'icons/atmos/injector.dmi'
+	build_icon = 'icons/obj/atmospherics/components/unary/injector.dmi'
 	build_icon_state = "map_injector"
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 	colorable = FALSE
@@ -203,7 +203,7 @@
 /datum/fabricator_recipe/pipe/device/tank
 	name = "pressure tank"
 	desc = "A large vessel containing pressurized gas."
-	build_icon = 'icons/atmos/tank.dmi'
+	build_icon = 'icons/atmos/stationary_canisters.dmi'
 	build_icon_state = "air"
 	path = /obj/item/pipe/tank
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL
@@ -214,7 +214,7 @@
 /datum/fabricator_recipe/pipe/device/plate
 	name = "thermal plate"
 	desc = "A device which transfers heat to and from an area."
-	build_icon = 'icons/obj/atmospherics/cold_sink.dmi'
+	build_icon = 'icons/obj/atmospherics/components/unary/cold_sink.dmi'
 	build_icon_state = "exposed"
 	path = /obj/item/pipe
 	connect_types = CONNECT_TYPE_REGULAR

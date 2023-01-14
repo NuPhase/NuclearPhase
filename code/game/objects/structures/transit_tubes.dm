@@ -24,7 +24,7 @@
 // Mappers: use "Generate Instances from Directions" for this
 //  one.
 /obj/structure/transit_tube/station
-	icon = 'icons/obj/pipes/transit_tube_station.dmi'
+	icon = 'icons/obj/atmospherics/pipes/transit_tube.dmi'
 	icon_state = "closed"
 	exit_delay = 2
 	enter_delay = 3
@@ -37,7 +37,7 @@
 
 
 /obj/structure/transit_tube_pod
-	icon = 'icons/obj/pipes/transit_tube_pod.dmi'
+	icon = 'icons/obj/atmospherics/pipes/transit_tube.dmi'
 	icon_state = "pod"
 	animate_movement = FORWARD_STEPS
 	anchored = 1.0

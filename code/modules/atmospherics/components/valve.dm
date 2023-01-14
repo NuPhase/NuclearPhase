@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/valve
-	icon = 'icons/atmos/valve.dmi'
+	icon = 'icons/obj/atmospherics/components/binary/valve.dmi'
 	icon_state = "map_valve0"
 
 	name = "manual valve"
@@ -57,7 +57,7 @@
 		..() // connect along each dir separately; this is base behavior
 
 /obj/machinery/atmospherics/valve/proc/open()
-	if(open) 
+	if(open)
 		return 0
 
 	open = TRUE
@@ -151,7 +151,7 @@
 /obj/machinery/atmospherics/valve/digital		// can be controlled by AI
 	name = "digital valve"
 	desc = "A digitally controlled valve."
-	icon = 'icons/atmos/digital_valve.dmi'
+	icon = 'icons/obj/atmospherics/components/binary/digital_valve.dmi'
 	uncreated_component_parts = list(
 		/obj/item/stock_parts/radio/receiver/buildable,
 		/obj/item/stock_parts/power/apc/buildable

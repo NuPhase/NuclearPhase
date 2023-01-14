@@ -3,7 +3,7 @@
 /obj/machinery/dehumidifier
 	name = "emergency dehumidifier"
 	desc = "A portable dehumidifier with emergency high-volume pump to help keep you dry when it's getting damp... just very slowly."
-	icon = 'icons/obj/atmos.dmi'
+	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "dhum-off"
 	anchored = FALSE
 	density = TRUE

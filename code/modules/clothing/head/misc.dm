@@ -211,7 +211,7 @@
 /obj/item/clothing/head/tank
 	name = "padded cap"
 	desc = "A padded skullcup for those prone to bumping their heads against hard surfaces."
-	icon = 'icons/clothing/head/tank.dmi'
+	icon = 'icons/clothing/head/stationary_canisters.dmi'
 	flags_inv = BLOCK_HEAD_HAIR
 	color = "#5f5f5f"
 	armor = list(
