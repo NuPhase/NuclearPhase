@@ -3,7 +3,7 @@
 	name = "rescue bag"
 	desc = "A folded, reusable bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
 	a hostile enviroment."
-	icon = 'icons/obj/closets/rescuebag.dmi'
+	icon = 'icons/obj/storage/rescuebag.dmi'
 	icon_state = "folded"
 	origin_tech = "{'biotech':2}"
 	var/obj/item/tank/airtank
@@ -53,12 +53,12 @@
 		to_chat(user,"The distribution valve on \the [airtank] is set to '[airtank.distribute_pressure] kPa'.")
 	else
 		to_chat(user, "<span class='warning'>The air tank is missing.</span>")
-		
+
 /obj/structure/closet/body_bag/rescue
 	name = "rescue bag"
 	desc = "A reusable plastic bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
 	a hostile enviroment."
-	icon = 'icons/obj/closets/rescuebag.dmi'
+	icon = 'icons/obj/storage/rescuebag.dmi'
 	item_path = /obj/item/bodybag/rescue
 	storage_types = CLOSET_STORAGE_MOBS
 	var/obj/item/tank/airtank

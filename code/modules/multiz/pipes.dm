@@ -2,7 +2,7 @@
 // parent class for pipes //
 ////////////////////////////
 /obj/machinery/atmospherics/pipe/zpipe
-	icon = 'icons/obj/pipe-item.dmi'
+	icon = 'icons/obj/atmospherics/pipes/pipe-item.dmi'
 	icon_state = "up"
 
 	name = "upwards pipe"

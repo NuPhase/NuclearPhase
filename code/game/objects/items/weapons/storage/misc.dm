@@ -27,7 +27,7 @@
 
 
 /obj/item/storage/box/donut
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "donutbox"
 	name = "donut box"
 	can_hold = list(/obj/item/chems/food/donut)
@@ -40,9 +40,9 @@
 	var/list/cur_overlays
 	var/i = 0
 	for(var/obj/item/chems/food/donut/D in contents)
-		LAZYADD(cur_overlays, overlay_image('icons/obj/food.dmi', "[i][D.overlay_state]", flags = RESET_COLOR))
+		LAZYADD(cur_overlays, overlay_image('icons/obj/food/food.dmi', "[i][D.overlay_state]", flags = RESET_COLOR))
 		i++
-		
+
 	if(LAZYLEN(cur_overlays))
 		add_overlay(cur_overlays)
 

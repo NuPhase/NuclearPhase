@@ -1,7 +1,7 @@
 /obj/item/ore
 	name = "ore"
 	icon_state = "lump"
-	icon = 'icons/obj/materials/ore.dmi'
+	icon = 'icons/obj/ore.dmi'
 	randpixel = 8
 	w_class = ITEM_SIZE_SMALL
 
@@ -84,7 +84,7 @@
 	set category = "Debug"
 	set src = usr
 
-	if(!check_rights(R_SPAWN)) 
+	if(!check_rights(R_SPAWN))
 		return
 
 	var/turf/T = get_turf(usr)

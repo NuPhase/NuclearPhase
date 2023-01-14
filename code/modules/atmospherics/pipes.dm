@@ -10,7 +10,7 @@
 	buckle_require_restraints = 1
 	buckle_lying = -1
 	build_icon_state = "simple"
-	build_icon = 'icons/obj/pipe-item.dmi'
+	build_icon = 'icons/obj/atmospherics/pipes/pipe-item.dmi'
 	pipe_class = PIPE_CLASS_BINARY
 	atom_flags = ATOM_FLAG_CAN_BE_PAINTED | ATOM_FLAG_NO_REACT
 	obj_flags = OBJ_FLAG_MOVES_UNSUPPORTED
@@ -210,7 +210,7 @@
 		. = PROCESS_KILL
 
 /obj/machinery/atmospherics/pipe/simple
-	icon = 'icons/atmos/pipes.dmi'
+	icon = 'icons/obj/atmospherics/pipes/pipes.dmi'
 	icon_state = "11"
 	name = "pipe"
 	desc = "A one meter section of regular pipe."
@@ -365,7 +365,7 @@
 	connect_types = CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/pipe/manifold
-	icon = 'icons/atmos/manifold.dmi'
+	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
 	icon_state = "map"
 	name = "pipe manifold"
 	desc = "A manifold composed of regular pipes."
@@ -488,7 +488,7 @@
 	connect_types = CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/pipe/manifold4w
-	icon = 'icons/atmos/manifold.dmi'
+	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
 	icon_state = ""
 	name = "4-way pipe manifold"
 	desc = "A manifold composed of regular pipes."
@@ -614,7 +614,7 @@
 /obj/machinery/atmospherics/pipe/cap
 	name = "pipe endcap"
 	desc = "An endcap for pipes."
-	icon = 'icons/atmos/pipes.dmi'
+	icon = 'icons/obj/atmospherics/pipes/pipes.dmi'
 	icon_state = "cap"
 	level = 2
 	volume = 35

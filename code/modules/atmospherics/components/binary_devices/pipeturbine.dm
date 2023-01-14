@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/pipeturbine
 	name = "turbine"
 	desc = "A gas turbine. Converting pressure into energy since 1884."
-	icon = 'icons/obj/pipeturbine.dmi'
+	icon = 'icons/obj/atmospherics/components/unary/pipeturbine.dmi'
 	icon_state = "turbine"
 	anchored = 0
 	density = 1
@@ -65,18 +65,18 @@
 /obj/machinery/atmospherics/pipeturbine/on_update_icon()
 	overlays.Cut()
 	if (dP > 10)
-		overlays += image('icons/obj/pipeturbine.dmi', "moto-turb")
+		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "moto-turb")
 	if (kin_energy > 100000)
-		overlays += image('icons/obj/pipeturbine.dmi', "low-turb")
+		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "low-turb")
 	if (kin_energy > 500000)
-		overlays += image('icons/obj/pipeturbine.dmi', "med-turb")
+		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "med-turb")
 	if (kin_energy > 1000000)
-		overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
+		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "hi-turb")
 
 /obj/machinery/turbinemotor
 	name = "motor"
 	desc = "Electrogenerator. Converts rotation into power."
-	icon = 'icons/obj/pipeturbine.dmi'
+	icon = 'icons/obj/atmospherics/components/unary/pipeturbine.dmi'
 	icon_state = "motor"
 	anchored = 0
 	density = 1

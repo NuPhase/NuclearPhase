@@ -1,11 +1,11 @@
-var/global/image/assigned = image('icons/Testing/Zone.dmi', icon_state = "assigned")
-var/global/image/created = image('icons/Testing/Zone.dmi', icon_state = "created")
-var/global/image/merged = image('icons/Testing/Zone.dmi', icon_state = "merged")
-var/global/image/invalid_zone = image('icons/Testing/Zone.dmi', icon_state = "invalid")
-var/global/image/air_blocked = image('icons/Testing/Zone.dmi', icon_state = "block")
-var/global/image/zone_blocked = image('icons/Testing/Zone.dmi', icon_state = "zoneblock")
-var/global/image/blocked = image('icons/Testing/Zone.dmi', icon_state = "fullblock")
-var/global/image/mark = image('icons/Testing/Zone.dmi', icon_state = "mark")
+var/global/image/assigned = image('icons/area/zones_test.dmi', icon_state = "assigned")
+var/global/image/created = image('icons/area/zones_test.dmi', icon_state = "created")
+var/global/image/merged = image('icons/area/zones_test.dmi', icon_state = "merged")
+var/global/image/invalid_zone = image('icons/area/zones_test.dmi', icon_state = "invalid")
+var/global/image/air_blocked = image('icons/area/zones_test.dmi', icon_state = "block")
+var/global/image/zone_blocked = image('icons/area/zones_test.dmi', icon_state = "zoneblock")
+var/global/image/blocked = image('icons/area/zones_test.dmi', icon_state = "fullblock")
+var/global/image/mark = image('icons/area/zones_test.dmi', icon_state = "mark")
 
 /connection_edge/var/dbg_out = 0
 

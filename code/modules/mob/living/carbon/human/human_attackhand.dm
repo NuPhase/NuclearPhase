@@ -191,8 +191,8 @@
 
 	else if (starting)
 		var/list/options = list(
-			"Compressions" = image('icons/screen/radial.dmi', "cpr"),
-			"Mouth-to-Mouth" = image('icons/screen/radial.dmi', "cpr_o2")
+			"Compressions" = image('icons/hud/radial.dmi', "cpr"),
+			"Mouth-to-Mouth" = image('icons/hud/radial.dmi', "cpr_o2")
 		)
 		cpr_mode = show_radial_menu(H, src, options, require_near = TRUE, tooltips = TRUE, no_repeat_close = TRUE)
 		if(!cpr_mode)

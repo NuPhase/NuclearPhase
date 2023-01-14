@@ -19,7 +19,7 @@ var/global/list/protected_objects = list(/obj/machinery,
 /mob/living/simple_animal/hostile/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
-	icon =  'icons/obj/closets/bases/crate.dmi'
+	icon =  'icons/obj/storage/bases/crate.dmi'
 	color = COLOR_STEEL
 	icon_state = "crate"
 

@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/unary/tank
-	icon = 'icons/atmos/tank.dmi'
+	icon = 'icons/obj/atmospherics/stationary_canisters.dmi'
 	icon_state = "air"
 
 	name = "Pressure Tank"
@@ -16,7 +16,7 @@
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL
 	pipe_class = PIPE_CLASS_UNARY
 
-	build_icon = 'icons/atmos/tank.dmi'
+	build_icon = 'icons/obj/atmospherics/stationary_canisters.dmi'
 	build_icon_state = "air"
 
 	construct_state = /decl/machine_construction/pipe
@@ -84,12 +84,12 @@
 	filling = list(/decl/material/gas/hydrogen = 1)
 
 /obj/item/pipe/tank
-	icon = 'icons/atmos/tank.dmi'
+	icon = 'icons/obj/atmospherics/stationary_canisters.dmi'
 	icon_state = "air"
 	name =  "Pressure Tank"
 	desc = "A large vessel containing pressurized gas."
 	color =  PIPE_COLOR_WHITE
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL	
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL
 	w_class = ITEM_SIZE_STRUCTURE
 	density = 1
 	level = 1

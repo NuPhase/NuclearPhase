@@ -21,7 +21,7 @@
 	var/processing = 0
 	var/active = 0
 	var/obj/screen/action_button/button = null
-	var/button_icon = 'icons/obj/action_buttons/actions.dmi'
+	var/button_icon = 'icons/hud/actions.dmi'
 	var/button_icon_state = "default"
 	var/background_icon_state = "bg_default"
 	var/mob/living/owner
@@ -167,7 +167,7 @@
 //Hide/Show Action Buttons ... Button
 /obj/screen/action_button/hide_toggle
 	name = "Hide Buttons"
-	icon = 'icons/obj/action_buttons/actions.dmi'
+	icon = 'icons/hud/actions.dmi'
 	icon_state = "bg_default"
 	var/hidden = 0
 
@@ -236,7 +236,7 @@
 
 /datum/action/item_action/organ
 	action_type = AB_ITEM_USE_ICON
-	button_icon = 'icons/obj/action_buttons/organs.dmi'
+	button_icon = 'icons/hud/organs.dmi'
 
 /datum/action/item_action/organ/SetTarget(var/atom/Target)
 	. = ..()

@@ -10,8 +10,8 @@
 	)
 	var/list/extra_decals
 	var/icon/icon
-	var/base_icon =  'icons/obj/closets/bases/closet.dmi'
-	var/decal_icon = 'icons/obj/closets/decals/closet.dmi'
+	var/base_icon =  'icons/obj/storage/bases/closet.dmi'
+	var/decal_icon = 'icons/obj/storage/decals/closet.dmi'
 	var/can_lock = FALSE
 
 /decl/closet_appearance/Initialize()
@@ -505,8 +505,8 @@
 /decl/closet_appearance/crate
 	decals = null
 	extra_decals = null
-	base_icon =  'icons/obj/closets/bases/crate.dmi'
-	decal_icon = 'icons/obj/closets/decals/crate.dmi'
+	base_icon =  'icons/obj/storage/bases/crate.dmi'
+	decal_icon = 'icons/obj/storage/decals/crate.dmi'
 	color = COLOR_GRAY40
 
 /decl/closet_appearance/crate/plastic
@@ -600,8 +600,8 @@
 
 // Large crates.
 /decl/closet_appearance/large_crate
-	base_icon =  'icons/obj/closets/bases/large_crate.dmi'
-	decal_icon = 'icons/obj/closets/decals/large_crate.dmi'
+	base_icon =  'icons/obj/storage/bases/large_crate.dmi'
+	decal_icon = 'icons/obj/storage/decals/large_crate.dmi'
 	decals = null
 	extra_decals = null
 
@@ -634,7 +634,7 @@
 
 // Cabinets.
 /decl/closet_appearance/cabinet
-	base_icon =  'icons/obj/closets/bases/cabinet.dmi'
+	base_icon =  'icons/obj/storage/bases/cabinet.dmi'
 	decal_icon = null
 	color = WOOD_COLOR_RICH
 	decals = null
@@ -645,8 +645,8 @@
 
 // Wall lockers.
 /decl/closet_appearance/wall
-	base_icon =  'icons/obj/closets/bases/wall.dmi'
-	decal_icon = 'icons/obj/closets/decals/wall.dmi'
+	base_icon =  'icons/obj/storage/bases/wall.dmi'
+	decal_icon = 'icons/obj/storage/decals/wall.dmi'
 	decals = list(
 		"vent"
 	)
@@ -686,8 +686,8 @@
 // Carts
 /decl/closet_appearance/cart
 	color = COLOR_GRAY20
-	base_icon =  'icons/obj/closets/bases/cart.dmi'
-	decal_icon = 'icons/obj/closets/decals/cart.dmi'
+	base_icon =  'icons/obj/storage/bases/cart.dmi'
+	decal_icon = 'icons/obj/storage/decals/cart.dmi'
 	decals = null
 	extra_decals = null
 

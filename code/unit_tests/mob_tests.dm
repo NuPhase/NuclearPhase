@@ -258,7 +258,7 @@ var/global/default_mobloc = null
 
 /datum/unit_test/robot_module_icons
 	name = "MOB: Robot Modules Shall Have UI Icons"
-	var/icon_file = 'icons/mob/screen1_robot.dmi'
+	var/icon_file = 'icons/hud/screen1_robot.dmi'
 
 /datum/unit_test/robot_module_icons/start_test()
 	var/failed = 0
@@ -346,7 +346,7 @@ var/global/default_mobloc = null
 
 	for(var/mobtype in subtypesof(/mob/living))
 
-		// Humans use species for their products and are 
+		// Humans use species for their products and are
 		// difficult to properly unit test because of this.
 		if(ispath(mobtype, /mob/living/carbon/human))
 			continue

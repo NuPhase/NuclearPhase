@@ -2,7 +2,7 @@
 /obj/machinery/the_singularitygen
 	name = "gravitational singularity generator"
 	desc = "An odd device which produces a gravitational singularity when set up."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/engine/singularity.dmi'
 	icon_state = "TheSingGen"
 	anchored = 0
 	density = 1

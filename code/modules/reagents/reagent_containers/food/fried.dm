@@ -29,7 +29,7 @@
 /obj/item/chems/food/rawsticks
 	name = "raw potato sticks"
 	desc = "Uncooked potato stick, not very tasty."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "rawsticks"
 	bitesize = 2
 	center_of_mass = @"{'x':16,'y':12}"

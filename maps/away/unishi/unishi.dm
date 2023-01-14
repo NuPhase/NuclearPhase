@@ -49,7 +49,7 @@
 
 /obj/machinery/power/supermatter/randomsample
 	name = "experimental supermatter sample"
-	icon = 'icons/obj/supermatter_32.dmi'
+	icon = 'icons/obj/engine/supermatter_32.dmi'
 	icon_state = "supermatter_shard"
 
 /obj/machinery/power/supermatter/randomsample/Initialize()
@@ -69,7 +69,7 @@
 
 /obj/machinery/power/supermatter/inert
 	name = "experimental supermatter sample"
-	icon = 'icons/obj/supermatter_32.dmi'
+	icon = 'icons/obj/engine/supermatter_32.dmi'
 	icon_state = "supermatter_shard"
 	thermal_release_modifier = 0 //Basically inert
 	product_release_modifier = 100000000000

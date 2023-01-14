@@ -3,7 +3,7 @@
 /obj/structure/undies_wardrobe
 	name = "underwear wardrobe"
 	desc = "Holds item of clothing you shouldn't be showing off in the hallways."
-	icon = 'icons/obj/undies_wardrobe.dmi'
+	icon = 'icons/obj/storage/undies_wardrobe.dmi'
 	icon_state = "closed"
 	density = TRUE
 	var/static/list/amount_of_underwear_by_id_card

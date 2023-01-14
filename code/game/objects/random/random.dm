@@ -435,7 +435,7 @@
 /obj/random/closet //A couple of random closets to spice up maint
 	name = "random closet"
 	desc = "This is a random closet."
-	icon = 'icons/obj/closets/bases/closet.dmi'
+	icon = 'icons/obj/storage/bases/closet.dmi'
 	icon_state = "base"
 	var/vermin_chance = 0.1
 	var/list/locker_vermin = list(
@@ -677,7 +677,7 @@
 /obj/random/snack
 	name = "random snack"
 	desc = "This is a random snack item."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "sosjerky"
 
 /obj/random/snack/spawn_choices()
@@ -1202,7 +1202,7 @@ var/global/list/random_useful_
 /obj/random/mre
 	name = "random MRE"
 	desc = "This is a random single MRE."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "mre"
 
 /obj/random/mre/spawn_choices()
@@ -1400,7 +1400,7 @@ var/global/list/random_useful_
 	name = "random potted plant"
 	desc = "This is a random potted plant."
 	icon = 'icons/obj/structures/potted_plants.dmi'
-	icon_state = "plant-26"	
+	icon_state = "plant-26"
 	spawn_nothing_percentage = 0
 	var/static/list/blacklisted_plants = list(/obj/structure/flora/pottedplant/unusual)
 

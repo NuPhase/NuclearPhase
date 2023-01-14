@@ -1,12 +1,12 @@
 
 
 var/global/all_ui_styles = list(
-	"Midnight"     = 'icons/mob/screen/midnight.dmi',
-	"Orange"       = 'icons/mob/screen/orange.dmi',
-	"Old"          = 'icons/mob/screen/old.dmi',
-	"White"        = 'icons/mob/screen/white.dmi',
-	"Old-noborder" = 'icons/mob/screen/old-noborder.dmi',
-	"Minimalist"   = 'icons/mob/screen/minimalist.dmi'
+	"Midnight"     = 'icons/hud/midnight.dmi',
+	"Orange"       = 'icons/hud/orange.dmi',
+	"Old"          = 'icons/hud/old.dmi',
+	"White"        = 'icons/hud/white.dmi',
+	"Old-noborder" = 'icons/hud/old-noborder.dmi',
+	"Minimalist"   = 'icons/hud/minimalist.dmi'
 	)
 
 var/global/all_tooltip_styles = list(

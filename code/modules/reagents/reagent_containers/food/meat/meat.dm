@@ -2,7 +2,7 @@
 /obj/item/chems/food/rawcutlet
 	name = "raw cutlet"
 	desc = "A thin piece of raw meat."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "rawcutlet"
 	bitesize = 1
 	center_of_mass = @"{'x':17,'y':20}"
@@ -15,7 +15,7 @@
 /obj/item/chems/food/cutlet
 	name = "cutlet"
 	desc = "A tasty meat slice."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "cutlet"
 	bitesize = 2
 	center_of_mass = @"{'x':17,'y':20}"
@@ -28,7 +28,7 @@
 /obj/item/chems/food/rawmeatball
 	name = "raw meatball"
 	desc = "A raw meatball."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "rawmeatball"
 	bitesize = 2
 	center_of_mass = @"{'x':16,'y':15}"
@@ -54,7 +54,7 @@
 /obj/item/chems/food/plainsteak
 	name = "plain steak"
 	desc = "A piece of unseasoned cooked meat."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "steak"
 	slice_path = /obj/item/chems/food/cutlet
 	slices_num = 3
@@ -164,7 +164,7 @@
 /obj/item/chems/food/sausage
 	name = "sausage"
 	desc = "A piece of mixed, long meat."
-	icon = 'icons/obj/food_ingredients.dmi'
+	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "sausage"
 	filling_color = "#db0000"
 	center_of_mass = @"{'x':16,'y':16}"

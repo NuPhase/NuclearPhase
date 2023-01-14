@@ -184,7 +184,7 @@
 /obj/item/pen/robopen/attack_self(mob/user)
 
 	var/choice = input("Would you like to change colour or mode?") as null|anything in list("Colour","Mode")
-	if(!choice) 
+	if(!choice)
 		return
 
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
@@ -193,7 +193,7 @@
 
 		if("Colour")
 			var/newcolour = input("Which colour would you like to use?") as null|anything in list("black","blue","red","green","yellow")
-			if(newcolour) 
+			if(newcolour)
 				set_medium_color(newcolour, newcolour)
 
 		if("Mode")
@@ -253,7 +253,7 @@
 /obj/item/borg/combat/shield
 	name = "personal shielding"
 	desc = "A powerful experimental module that turns aside or absorbs incoming attacks at the cost of charge."
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/turf/decals.dmi'
 	icon_state = "shock"
 	var/shield_level = 0.5 //Percentage of damage absorbed by the shield.
 
@@ -269,7 +269,7 @@
 /obj/item/borg/combat/mobility
 	name = "mobility module"
 	desc = "By retracting limbs and tucking in its head, a combat android can roll at high speeds."
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/turf/decals.dmi'
 	icon_state = "shock"
 
 /obj/item/inflatable_dispenser

@@ -3,7 +3,7 @@
 #define REGULATE_OUTPUT	2	//shuts off when output side is above the target pressure
 
 /obj/machinery/atmospherics/binary/passive_gate
-	icon = 'icons/atmos/passive_gate.dmi'
+	icon = 'icons/obj/atmospherics/components/binary/passive_gate.dmi'
 	icon_state = "map_off"
 	level = 1
 
@@ -35,7 +35,7 @@
 	)
 	public_methods = list(
 		/decl/public_access/public_method/toggle_unlocked,
-		/decl/public_access/public_method/toggle_input_toggle	
+		/decl/public_access/public_method/toggle_input_toggle
 	) // Does come with suggested stock configurations, though.
 	stock_part_presets = list(
 		/decl/stock_part_preset/radio/receiver/passive_gate = 1,

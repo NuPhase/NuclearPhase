@@ -106,7 +106,7 @@ var/global/list/supermatter_delam_accent_sounds = list(
 /obj/machinery/power/supermatter
 	name = "supermatter crystal"
 	desc = "A strangely translucent and iridescent crystal. <span class='danger'>You get headaches just from looking at it.</span>"
-	icon = 'icons/obj/supermatter_48.dmi'
+	icon = 'icons/obj/engine/supermatter_48.dmi'
 	icon_state = "supermatter"
 	density = 1
 	anchored = 0
@@ -674,7 +674,7 @@ var/global/list/supermatter_delam_accent_sounds = list(
 /obj/machinery/power/supermatter/shard //Small subtype, less efficient and more sensitive, but less boom.
 	name = "supermatter shard"
 	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. <span class='danger'>You get headaches just from looking at it.</span>"
-	icon = 'icons/obj/supermatter_32.dmi'
+	icon = 'icons/obj/engine/supermatter_32.dmi'
 	icon_state = "supermatter_shard"
 
 	warning_point = 50
@@ -687,7 +687,7 @@ var/global/list/supermatter_delam_accent_sounds = list(
 	explosion_power = 3
 
 /obj/machinery/power/supermatter/medium
-	icon = 'icons/obj/supermatter_32.dmi'
+	icon = 'icons/obj/engine/supermatter_32.dmi'
 
 /obj/machinery/power/supermatter/shard/announce_warning() //Shards don't get announcements
 	return

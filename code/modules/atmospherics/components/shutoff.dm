@@ -1,7 +1,7 @@
 var/global/list/shutoff_valves = list()
 
 /obj/machinery/atmospherics/valve/shutoff
-	icon = 'icons/atmos/clamp.dmi'
+	icon = 'icons/obj/atmospherics/components/binary/clamp.dmi'
 	icon_state = "map_vclamp0"
 
 	name = "automatic shutoff valve"

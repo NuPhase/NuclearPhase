@@ -5,7 +5,7 @@
 	anchored = 1
 	density = 1
 
-	icon = 'icons/obj/suitstorage.dmi'
+	icon = 'icons/obj/storage/suitstorage.dmi'
 	icon_state = "base"
 
 	initial_access = list(list(access_captain, access_bridge))

@@ -125,7 +125,7 @@
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "pizzabox1"
 
 	var/open = 0 // Is the box open?
@@ -177,7 +177,7 @@
 				doimgtag = 1
 
 		if( doimgtag )
-			add_overlay(image("food.dmi", "pizzabox_tag", pixel_y = (boxes.len * 3)))
+			add_overlay(image("food/food.dmi", "pizzabox_tag", pixel_y = (boxes.len * 3)))
 
 	icon_state = "pizzabox[boxes.len+1]"
 

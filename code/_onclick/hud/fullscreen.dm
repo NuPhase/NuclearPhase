@@ -71,7 +71,7 @@
 			client.screen |= screen
 
 /obj/screen/fullscreen
-	icon = 'icons/mob/screen_full.dmi'
+	icon = 'icons/hud/screen_full.dmi'
 	icon_state = "default"
 	screen_loc = ui_center_fullscreen
 	plane = FULLSCREEN_PLANE
@@ -100,7 +100,7 @@
 	layer = BLIND_LAYER
 
 /obj/screen/fullscreen/blackout
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	icon_state = "black"
 	screen_loc = ui_entire_screen
 	layer = BLIND_LAYER
@@ -110,13 +110,13 @@
 	layer = IMPAIRED_LAYER
 
 /obj/screen/fullscreen/blurry
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	screen_loc = ui_entire_screen
 	icon_state = "blurry"
 	alpha = 100
 
 /obj/screen/fullscreen/flash
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	screen_loc = ui_entire_screen
 	icon_state = "flash"
 
@@ -124,7 +124,7 @@
 	icon_state = "noise"
 
 /obj/screen/fullscreen/high
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	screen_loc = ui_entire_screen
 	icon_state = "druggy"
 	alpha = 127
@@ -138,7 +138,7 @@
 	alpha = 127
 
 /obj/screen/fullscreen/fadeout
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	icon_state = "black"
 	screen_loc = ui_entire_screen
 	layer = FULLSCREEN_LAYER

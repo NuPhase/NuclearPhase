@@ -11,7 +11,7 @@
 /obj/item/chems/food
 	name = "snack"
 	desc = "Yummy!"
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = null
 	randpixel = 6
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER

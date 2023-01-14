@@ -3,7 +3,7 @@
 /obj/machinery/emitter
 	name = "emitter"
 	desc = "A massive heavy industrial laser. This design is a fixed installation, capable of shooting in only one direction."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/engine/singularity.dmi'
 	icon_state = "emitter"
 	anchored = 0
 	density = 1
@@ -128,7 +128,7 @@
 		playsound(loc, A.fire_sound, 25, 1)
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
 		A.launch( get_step(loc, dir) )
-		
+
 		if(!powered)
 			powered = TRUE
 			update_icon()

@@ -78,7 +78,7 @@
 	name = "random ore"
 	desc = "This is a random ore."
 	icon_state = "lump"
-	icon = 'icons/obj/materials/ore.dmi'
+	icon = 'icons/obj/ore.dmi'
 
 /obj/random/ore_smug/spawn_choices()
 	return subtypesof(/obj/item/ore)

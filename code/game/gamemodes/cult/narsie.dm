@@ -4,7 +4,7 @@ var/global/list/narsie_list = list()
 /obj/singularity/narsie //Moving narsie to its own file for the sake of being clearer
 	name = "Nar-Sie"
 	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
-	icon = 'icons/obj/narsie.dmi'
+	icon = 'icons/effects/narsie.dmi'
 	icon_state = "narsie-small"
 	pixel_x = -236
 	pixel_y = -256
@@ -26,7 +26,7 @@ var/global/list/narsie_list = list()
 
 /obj/singularity/narsie/large
 	name = "Nar-Sie"
-	icon = 'icons/obj/narsie.dmi'
+	icon = 'icons/effects/narsie.dmi'
 	icon_state = "narsie"//mobs perceive the geometer of blood through their see_narsie proc
 
 	// Pixel stuff centers Narsie.
@@ -353,7 +353,7 @@ var/global/list/narsie_list = list()
 
 /obj/singularity/narsie/proc/narsie_spawn_animation()
 	set waitfor = FALSE
-	icon = 'icons/obj/narsie_spawn_anim.dmi'
+	icon = 'icons/effects/narsie_spawn_anim.dmi'
 	set_dir(SOUTH)
 	move_self = 0
 	flick("narsie_spawn_anim",src)
