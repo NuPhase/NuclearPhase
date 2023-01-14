@@ -27,5 +27,5 @@
 /decl/bodytype/proc/get_vulnerable_location(var/mob/living/carbon/human/H)
 	return vulnerable_location
 
-/decl/bodytype/proc/get_base_icon(var/mob/living/carbon/human/H, var/get_deform)
-	return get_deform ? icon_deformed : icon_base
+/decl/bodytype/proc/get_base_icon(var/mob/living/carbon/human/H)
+	return icon_base

@@ -11,7 +11,7 @@
 
 	available_bodytypes = list(
 		/decl/bodytype/human,
-		/decl/bodytype/human/masculine
+		/decl/bodytype/human/female
 	)
 
 	exertion_effect_chance = 10

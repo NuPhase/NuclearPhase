@@ -3,7 +3,7 @@
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now
 /decl/sprite_accessory/skin
-	icon = 'icons/mob/human_races/species/human/body_female.dmi'
+	icon = 'icons/mob/species/human/body_female.dmi'
 
 /decl/sprite_accessory/skin/human
 	name = "Default human skin"

@@ -112,7 +112,6 @@
 								) //Probably see about getting some more wizard based shit
 
 	speech = list("hail_generic"     = "Hello! Are you here on pleasure or business?",
-				"hail_Golem"         = "Interesting... how incredibly interesting... come! Let us do business!",
 				"hail_deny"          = "I'm sorry, but I REALLY don't want to speak to you.",
 
 				"trade_complete"     = "Pleasure doing business with you!",

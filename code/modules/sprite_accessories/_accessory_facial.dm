@@ -7,7 +7,7 @@
 */
 
 /decl/sprite_accessory/facial_hair
-	icon = 'icons/mob/human_races/species/human/facial.dmi'
+	icon = 'icons/mob/species/human/facial.dmi'
 	gender = MALE
 
 /decl/sprite_accessory/facial_hair/shaved
