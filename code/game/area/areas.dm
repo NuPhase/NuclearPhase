@@ -4,7 +4,7 @@ var/global/list/areas = list()
 
 	level = null
 	name = "Unknown"
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/area/areas.dmi'
 	icon_state = "unknown"
 	plane = DEFAULT_PLANE
 	layer = BASE_AREA_LAYER
@@ -78,7 +78,7 @@ var/global/list/areas = list()
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
 
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/area/areas.dmi'
 	icon_state = "white"
 	blend_mode = BLEND_MULTIPLY
 

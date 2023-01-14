@@ -35,7 +35,7 @@ var/global/intercom_range_display_status = 0
 	reset_offsets(0)
 
 /obj/effect/debugging/marker
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/area/areas.dmi'
 	icon_state = "yellow"
 
 /obj/effect/debugging/marker/Move()
