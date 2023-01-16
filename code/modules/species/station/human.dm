@@ -14,6 +14,11 @@
 		/decl/bodytype/human/female
 	)
 
+	available_pronouns = list(
+		/decl/pronouns/female,
+		/decl/pronouns/male
+	)
+
 	exertion_effect_chance = 10
 	exertion_hydration_scale = 1
 	exertion_charge_scale = 1

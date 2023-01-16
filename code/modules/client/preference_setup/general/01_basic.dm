@@ -68,20 +68,13 @@
 	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a>"
 	. += "<hr>"
 
-	. += "<b>Bodytype:</b> "
+	. += "<b>Gender:</b>"
 	var/decl/species/S = get_species_by_key(pref.species)
-	for(var/decl/bodytype/B in S.available_bodytypes)
-		if(B.name == pref.bodytype)
-			. += "<span class='linkOn'>[capitalize(B.name)]</span>"
+	for(var/decl/pronouns/P in S.available_pronouns)
+		if(P.name == pref.gender)
+			. += "<span class='linkOn'>[capitalize(P.name)]</span>"
 		else
-			. += "<a href='?src=\ref[src];bodytype=\ref[B]'>[capitalize(B.name)]</a>"
-
-	. += "<br><b>Pronouns:</b> "
-	for(var/decl/pronouns/G in S.available_pronouns)
-		if(G.name == pref.gender)
-			. += "<span class='linkOn'>[capitalize(G.name)]</span>"
-		else
-			. += "<a href='?src=\ref[src];gender=\ref[G]'>[capitalize(G.name)]</a>"
+			. += "<a href='?src=\ref[src];gender=\ref[P]'>[capitalize(P.name)]</a>"
 
 	var/decl/spawnpoint/spawnpoint = GET_DECL(pref.spawnpoint)
 	. += "<br><b>Spawn point</b>: <a href='?src=\ref[src];spawnpoint=1'>[spawnpoint.name]</a>"
@@ -116,16 +109,10 @@
 
 	else if(href_list["gender"])
 		var/decl/pronouns/new_gender = locate(href_list["gender"])
-		if(istype(new_gender) && CanUseTopic(user) && (new_gender in S.available_pronouns))
+		var/decl/bodytype/new_body = S.get_bodytype_by_pronouns(new_gender)
+		if(istype(new_gender) && CanUseTopic(user) && (new_gender in S.available_pronouns) && new_body)
 			pref.gender = new_gender.name
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["bodytype"])
-		var/decl/bodytype/new_body = locate(href_list["bodytype"])
-		if(istype(new_body) && CanUseTopic(user) && (new_body in S.available_bodytypes))
 			pref.bodytype = new_body.name
-			if(new_body.associated_gender) // Set to default for male/female to avoid confusing people
-				pref.gender = new_body.associated_gender
 			if(!(pref.f_style in S.get_facial_hair_style_types(new_body.associated_gender)))
 				ResetFacialHair()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
