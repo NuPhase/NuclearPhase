@@ -4,7 +4,7 @@
 	icon_base =           'icons/mob/species/human/body_male.dmi'
 	lip_icon =            'icons/mob/species/human/lips.dmi'
 	blood_overlays =      'icons/mob/species/human/blood_overlays.dmi'
-	bandages_icon =       'icons/mob//species/human/bandage.dmi'
+	bandages_icon =       'icons/mob/species/human/bandage.dmi'
 	limb_icon_intensity = 0.7
 	associated_gender =   MALE
 
