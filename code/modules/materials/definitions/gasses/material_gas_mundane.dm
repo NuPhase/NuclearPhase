@@ -366,3 +366,4 @@
 	gas_symbol_html = "WF<sub>6</sub>"
 	gas_symbol = "WF6"
 	neutron_absorption = 20
+	toxicity = 15
