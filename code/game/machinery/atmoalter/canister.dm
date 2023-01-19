@@ -69,7 +69,7 @@
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	start_pressure = 480
+	start_pressure = REACTOR_WATER_PRESSURE
 
 /obj/machinery/portable_atmospherics/canister/empty/water
 	icon_state = "purple"
@@ -80,6 +80,26 @@
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
+
+/obj/machinery/portable_atmospherics/canister/tungstenhexafluoride
+	name = "\improper Canister \[WF6\]"
+	icon_state = "black"
+	canister_color = "black"
+	can_label = 0
+
+/obj/machinery/portable_atmospherics/canister/empty/tungstenhexafluoride
+	icon_state = "black"
+	canister_type = /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride
+
+/obj/machinery/portable_atmospherics/canister/reactor
+	name = "\improper Canister \[W2\]"
+	icon_state = "black"
+	canister_color = "black"
+	can_label = 0
+
+/obj/machinery/portable_atmospherics/canister/empty/reactor
+	icon_state = "black"
+	canister_type = /obj/machinery/portable_atmospherics/canister/reactor
 
 /obj/machinery/portable_atmospherics/canister/air
 	name = "\improper Canister \[Air\]"
@@ -394,6 +414,19 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/water/Initialize()
 	. = ..()
 	air_contents.adjust_gas(/decl/material/liquid/water, MolesForPressure())
+	air_contents.temperature = 340
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/tungstenhexafluoride/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/tungstenhexafluoride, MolesForPressure())
+	air_contents.temperature = 240
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/reactor/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForPressure())
+	air_contents.temperature = 4150
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()

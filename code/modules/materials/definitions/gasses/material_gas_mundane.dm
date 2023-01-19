@@ -253,6 +253,7 @@
 	gas_symbol_html = "Xe"
 	gas_symbol = "Xe"
 	value = 0.25
+	neutron_absorption = 15
 
 /decl/material/gas/xenon/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/dosage = LAZYACCESS(M.chem_doses, type)
@@ -355,3 +356,13 @@
 	neutron_absorption = 5
 	neutron_cross_section = 3
 
+/decl/material/gas/tungstenhexafluoride
+	name = "tungsten hexafluoride"
+	color = "#999999"
+	molar_mass = 297
+	gas_specific_heat = 100
+	melting_point = 275
+	boiling_point = 290
+	gas_symbol_html = "WF<sub>6</sub>"
+	gas_symbol = "WF6"
+	neutron_absorption = 20

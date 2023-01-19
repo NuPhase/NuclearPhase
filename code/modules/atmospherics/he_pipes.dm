@@ -121,3 +121,6 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/set_dir(new_dir)
 	..()
 	initialize_directions_he = dir
+
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactor
+	surface = 1000 //TODO: CALCULATE THIS

@@ -43,8 +43,9 @@
 		INTERACTION_SCATTER = 5000
 	)
 	fission_products = list(
-		/decl/material/solid/metal/depleted_uranium = 0.6,
-		/decl/material/solid/metal/fission_byproduct = 0.4
+		/decl/material/solid/metal/depleted_uranium = 0.5,
+		/decl/material/solid/metal/fission_byproduct = 0.4,
+		/decl/material/gas/xenon = 0.1
 	)
 	absorption_products = list(
 		/decl/material/solid/metal/neptunium = 1

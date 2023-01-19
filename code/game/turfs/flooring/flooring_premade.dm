@@ -133,6 +133,20 @@
 /turf/simulated/floor/reinforced/airmix
 	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2ATMOS, /decl/material/gas/nitrogen = MOLES_N2ATMOS)
 
+/turf/simulated/floor/reinforced/reactor
+	initial_gas = list(/decl/material/gas/hydrogen = 50, /decl/material/solid/metal/uranium = 10)
+
+/turf/simulated/floor/reinforced/reactor/Initialize(ml, floortype)
+	. = ..()
+	air.temperature = 110000
+
+/turf/simulated/floor/reinforced/he
+	initial_gas = list(/decl/material/gas/hydrogen = 20)
+
+/turf/simulated/floor/reinforced/he/Initialize(ml, floortype)
+	. = ..()
+	air.temperature = 500
+
 /turf/simulated/floor/reinforced/nitrogen
 	initial_gas = list(/decl/material/gas/nitrogen = ATMOSTANK_NITROGEN)
 

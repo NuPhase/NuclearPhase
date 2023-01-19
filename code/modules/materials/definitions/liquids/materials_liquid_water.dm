@@ -2,13 +2,15 @@
 	name = "water"
 	uid = "liquid_water"
 	solid_name = "ice"
-	gas_name = "water vapour"
 	lore_text = "A ubiquitous chemical substance composed of hydrogen and oxygen."
 	color = COLOR_LIQUID_WATER
 	gas_tile_overlay = "generic"
 	gas_overlay_limit = 0.5
 	gas_specific_heat = 30
-	molar_mass = 0.020
+	molar_mass = 18.01
+	liquid_molar_mass = 18.01
+	gas_molar_mass = 0.01
+	solid_molar_mass = 16.05
 	boiling_point = 100 CELSIUS
 	melting_point = 0 CELSIUS
 	latent_heat = 2258

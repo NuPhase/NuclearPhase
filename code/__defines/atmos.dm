@@ -96,3 +96,5 @@
 
 #define MAX_PUMP_PRESSURE		15000	// Maximal pressure setting for pumps and vents
 #define MAX_OMNI_PRESSURE		15000	// Maximal output(s) pressure for omni devices (filters/mixers)
+
+#define REACTOR_WATER_PRESSURE 480

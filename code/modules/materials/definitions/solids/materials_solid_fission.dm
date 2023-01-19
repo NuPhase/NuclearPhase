@@ -25,7 +25,7 @@
 	fission_heat = 35000
 	fission_energy = 4000
 	neutron_absorption = 4
-	
+
 
 /decl/material/solid/metal/neptunium // Np-237.
 	name = "neptunium"
@@ -94,3 +94,4 @@
 		/decl/material/solid/metal/radium = 0.5,
 		/decl/material/solid/lithium = 0.5
 	)
+	neutron_absorption = 4
