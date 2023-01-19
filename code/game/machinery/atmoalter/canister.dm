@@ -64,6 +64,17 @@
 	canister_color = "purple"
 	can_label = 0
 
+/obj/machinery/portable_atmospherics/canister/water
+	name = "\improper Canister: \[Water\]"
+	icon_state = "purple"
+	canister_color = "purple"
+	can_label = 0
+	start_pressure = 480
+
+/obj/machinery/portable_atmospherics/canister/empty/water
+	icon_state = "purple"
+	canister_type = /obj/machinery/portable_atmospherics/canister/water
+
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
 	name = "\improper Canister \[CO2\]"
 	icon_state = "black"
@@ -378,6 +389,11 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/hydrogen/Initialize()
 	. = ..()
 	air_contents.adjust_gas(/decl/material/gas/hydrogen, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/water/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/liquid/water, MolesForPressure())
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()
