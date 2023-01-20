@@ -7,6 +7,7 @@
 	molar_mass = 0.032
 	latent_heat = 213
 	boiling_point = -183 CELSIUS
+	liquid_density = 1140
 	gas_flags = XGM_GAS_OXIDIZER
 	gas_symbol_html = "O<sub>2</sub>"
 	gas_symbol = "O2"
@@ -22,6 +23,7 @@
 	molar_mass = 0.004
 	latent_heat = 21
 	boiling_point = -269 CELSIUS
+	liquid_density = 113.9
 	gas_symbol_html = "He"
 	gas_symbol = "He"
 	taste_description = "nothing"
@@ -40,6 +42,7 @@
 	molar_mass = 0.044
 	latent_heat = 380
 	boiling_point = -78 CELSIUS
+	liquid_density = 1190
 	gas_symbol_html = "CO<sub>2</sub>"
 	gas_symbol = "CO2"
 
@@ -51,6 +54,7 @@
 	molar_mass = 0.028
 	latent_heat = 216
 	boiling_point = -192 CELSIUS
+	liquid_density = 790
 	gas_symbol_html = "CO"
 	gas_symbol = "CO"
 	taste_description = "stale air"
@@ -94,6 +98,7 @@
 	molar_mass = 0.095
 	latent_heat = 253
 	boiling_point = 4 CELSIUS
+	liquid_density = 1720
 	gas_symbol_html = "CH<sub>3</sub>Br"
 	gas_symbol = "CH3Br"
 	taste_description = "pestkiller"
@@ -123,6 +128,7 @@
 	molar_mass = 0.044
 	latent_heat = 376
 	boiling_point = -90 CELSIUS
+	liquid_density = 1000
 	gas_tile_overlay = "sleeping_agent"
 	gas_overlay_limit = 1
 	gas_flags = XGM_GAS_OXIDIZER //N2O is a powerful oxidizer
@@ -153,6 +159,7 @@
 	molar_mass = 0.028
 	latent_heat = 199
 	boiling_point = -195 CELSIUS
+	liquid_density = 804.3
 	gas_symbol_html = "N<sub>2</sub>"
 	gas_symbol = "N2"
 	gas_metabolically_inert = TRUE
@@ -165,6 +172,7 @@
 	molar_mass = 0.054
 	latent_heat = 272
 	boiling_point = -9 CELSIUS
+	liquid_density = 1439
 	gas_flags = XGM_GAS_OXIDIZER
 	gas_symbol_html = "NO<sub>2</sub>"
 	gas_symbol = "NO2"
@@ -176,6 +184,7 @@
 	molar_mass = 0.030
 	latent_heat = 410
 	boiling_point = -152 CELSIUS
+	liquid_density = 1269
 	gas_flags = XGM_GAS_OXIDIZER
 	gas_symbol_html = "NO"
 	gas_symbol = "NO"
@@ -187,6 +196,7 @@
 	molar_mass = 0.016
 	latent_heat = 510
 	boiling_point = -162 CELSIUS
+	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
 	gas_symbol_html = "CH<sub>4</sub>"
 	gas_symbol = "CH4"
@@ -199,6 +209,7 @@
 	molar_mass = 0.039
 	latent_heat = 163
 	boiling_point = -185 CELSIUS
+	liquid_density = 1373.9
 	gas_symbol_html = "Ar"
 	gas_symbol = "Ar"
 	value = 0.25
@@ -211,6 +222,7 @@
 	molar_mass = 0.083
 	latent_heat = 108
 	boiling_point = -153 CELSIUS
+	liquid_density = 2370.7
 	gas_symbol_html = "Kr"
 	gas_symbol = "Kr"
 	value = 0.25
@@ -222,6 +234,7 @@
 	molar_mass = 0.02
 	latent_heat = 86
 	boiling_point = -246 CELSIUS
+	liquid_density = 1204
 	gas_symbol_html = "Ne"
 	gas_symbol = "Ne"
 	value = 0.25
@@ -233,6 +246,7 @@
 	molar_mass = 0.017
 	latent_heat = 1370
 	boiling_point = -33 CELSIUS
+	liquid_density = 682.6
 	gas_symbol_html = "NH<sub>3</sub>"
 	gas_symbol = "NH3"
 	metabolism = 0.05 // So that low dosages have a chance to build up in the body.
@@ -250,6 +264,7 @@
 	molar_mass = 0.131
 	latent_heat = 96
 	boiling_point = -108 CELSIUS
+	liquid_density = 3520
 	gas_symbol_html = "Xe"
 	gas_symbol = "Xe"
 	value = 0.25
@@ -292,6 +307,7 @@
 	molar_mass = 0.064
 	latent_heat = 389
 	boiling_point = -10 CELSIUS
+	liquid_density = 1461
 	gas_symbol_html = "SO<sub>2</sub>"
 	gas_symbol = "SO2"
 	dissolves_into = list(
@@ -311,6 +327,7 @@
 	molar_mass = 0.002
 	latent_heat = 454
 	boiling_point = -252 CELSIUS
+	liquid_density = 70.516
 	gas_flags = XGM_GAS_FUEL
 	burn_product = /decl/material/liquid/water
 	gas_symbol_html = "H<sub>2</sub>"
