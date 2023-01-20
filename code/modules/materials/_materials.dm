@@ -136,6 +136,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/liquid_specific_heat = 40
 	var/solid_specific_heat = 30
 
+	//kg/m3
+	var/liquid_density = 1
+	var/solid_density = 1
+
 	/// Brute damage to a wall is divided by this value if the wall is reinforced by this material.
 	var/brute_armor = 2
 	/// Same as above, but for Burn damage type. If blank brute_armor's value is used.
