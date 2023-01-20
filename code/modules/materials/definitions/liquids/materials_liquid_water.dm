@@ -29,6 +29,7 @@
 	chilling_products = list(
 		/decl/material/solid/ice = 1
 	)
+	liquid_density = 997
 
 /decl/material/liquid/water/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
