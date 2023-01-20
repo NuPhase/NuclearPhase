@@ -23,7 +23,7 @@
 	name = "button"
 	anchored = 1
 	icon = 'icons/obj/power.dmi'
-	icon_state = "light0"
+	icon_state = "light0-flat"
 	layer = ABOVE_WINDOW_LAYER
 	power_channel = ENVIRON
 	idle_power_usage = 10

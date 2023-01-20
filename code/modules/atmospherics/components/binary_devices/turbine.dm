@@ -19,8 +19,6 @@
 
 	var/efficiency = 0.4
 	var/kin_energy = 0
-	var/datum/gas_mixture/air_in = new
-	var/datum/gas_mixture/air_out = new
 	var/volume_ratio = 0.2
 	var/kin_loss = 0.001
 
@@ -28,9 +26,7 @@
 
 /obj/machinery/atmospherics/binary/turbine/Initialize()
 	. = ..()
-	air_in.volume = 200
-	air_out.volume = 800
-	volume_ratio = air_in.volume / (air_in.volume + air_out.volume)
+	volume_ratio = air1.volume / (air1.volume + air2.volume)
 
 /obj/machinery/atmospherics/binary/turbine/on_update_icon()
 	overlays.Cut()
@@ -48,18 +44,18 @@
 /obj/machinery/atmospherics/binary/turbine/Process()
 	if(anchored)
 		kin_energy *= 1 - kin_loss
-		dP = max(air_in.return_pressure() - air_out.return_pressure(), 0)
+		dP = max(air1.return_pressure() - air2.return_pressure(), 0)
 		if(dP > 10)
-			kin_energy += 1/ADIABATIC_EXPONENT * dP * air_in.volume * (1 - volume_ratio**ADIABATIC_EXPONENT) * efficiency
-			air_in.temperature *= volume_ratio**ADIABATIC_EXPONENT
+			kin_energy += 1/ADIABATIC_EXPONENT * dP * air1.volume * (1 - volume_ratio**ADIABATIC_EXPONENT) * efficiency
+			air1.temperature *= volume_ratio**ADIABATIC_EXPONENT
 
 			var/datum/gas_mixture/air_all = new
-			air_all.volume = air_in.volume + air_out.volume
-			air_all.merge(air_in.remove_ratio(1))
-			air_all.merge(air_out.remove_ratio(1))
+			air_all.volume = air1.volume + air2.volume
+			air_all.merge(air1.remove_ratio(1))
+			air_all.merge(air2.remove_ratio(1))
 
-			air_in.merge(air_all.remove(volume_ratio))
-			air_out.merge(air_all)
+			air1.merge(air_all.remove(volume_ratio))
+			air2.merge(air_all)
 
 		update_icon()
 		update_networks()

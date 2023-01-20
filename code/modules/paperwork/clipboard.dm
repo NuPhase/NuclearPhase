@@ -41,7 +41,7 @@
 		to_chat(user, "It's holding \a [stored_pen].")
 	if(!LAZYLEN(papers))
 		to_chat(user, "It contains [length(papers)] / [max_papers] paper\s.")
-	else 
+	else
 		to_chat(user, "It has room for [max_papers] paper\s.")
 
 /obj/item/clipboard/proc/top_paper()
@@ -134,7 +134,7 @@
 	else if(!stored_pen)
 		to_chat(user, SPAN_WARNING("There is no pen in \the [src]."))
 	else
-		to_chat(user, SPAN_WARNING("Your hands are full.")) 
+		to_chat(user, SPAN_WARNING("Your hands are full."))
 
 /obj/item/clipboard/OnTopic(mob/user, href_list, datum/topic_state/state)
 	. = ..()

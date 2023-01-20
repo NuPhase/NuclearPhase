@@ -82,6 +82,14 @@
 
 /area/avalon/shelter/science
 
+
+/area/turbolift/e1
+	lift_floor_label = "Tech Operations Lobby"
+/area/turbolift/e2
+	lift_floor_label = "Machine Hall"
+/area/turbolift/e3
+	lift_floor_label = "Reactor Operations"
+
 /area/surface
 	name = "Surface"
 	var/list/hot_ambience = list()

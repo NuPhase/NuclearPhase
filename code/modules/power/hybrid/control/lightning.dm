@@ -11,5 +11,5 @@
 			L.update_icon()
 
 /obj/machinery/reactor_button/lighting/superstructure
-	name = "superstructure floodlights"
+	name = "FL-MAIN"
 	id = "superstructure"

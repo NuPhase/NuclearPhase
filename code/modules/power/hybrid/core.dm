@@ -1,7 +1,7 @@
 #define FISSION_RATE 0.15
 #define NEUTRON_FLUX_RATE 0.05
 #define NEUTRONS_PER_RAD 17
-#define REACTOR_POWER_MODIFIER
+#define REACTOR_POWER_MODIFIER 10
 
 /obj/machinery/power/hybrid_reactor
 	name = "reactor superstructure"

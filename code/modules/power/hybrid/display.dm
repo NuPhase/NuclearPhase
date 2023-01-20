@@ -16,6 +16,9 @@
 	if(emagged)
 		return "<span class='warning'>The [name] reads: 'NIGGER ALARM'.</span>"
 
+/obj/machinery/reactor_display/group
+	name = "group of displays"
+	icon_state = "displaygroup"
 
 /obj/machinery/reactor_display/feedpumps
 	name = "feed pumps display"
@@ -25,6 +28,6 @@
 	var/data = ""
 	data = "RPM: NO DATA.<br>\
 			Temperature: NO DATA<br>\
-			Flow rate: NO DATA<br>\
+			Mass flow: NO DATA<br>\
 			Status: NO DATA<br>"
 	return data
