@@ -67,6 +67,28 @@
 
 	return power_draw
 
+/proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_moles = null, var/available_power = null, var/efficiency = 0.4)
+	if (source.total_moles < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough gas just stop to avoid further processing
+		return -1
+
+	if (isnull(transfer_moles))
+		transfer_moles = source.total_moles
+	else
+		transfer_moles = min(source.total_moles, transfer_moles)
+
+	if (transfer_moles < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough gas just stop to avoid further processing
+		return -1
+
+	var/datum/gas_mixture/removed = source.remove(transfer_moles)
+	if (!removed) //Just in case
+		return -1
+
+	var/power_draw = transfer_moles * 5
+
+	sink.merge(removed)
+
+	return power_draw
+
 //Gas 'pumping' proc for the case where the gas flow is passive and driven entirely by pressure differences (but still one-way).
 /proc/pump_gas_passive(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_moles = null)
 	if (source.total_moles < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough gas just stop to avoid further processing

@@ -22,3 +22,8 @@
 /obj/item/clipboard/reactor
 	name = "personal reactor operations clipboard"
 	papers = list(/obj/item/paper/reactor/general)
+
+/obj/item/clipboard/reactor/Initialize()
+	. = ..()
+	for(var/obj/item/paper/P in papers)
+		P = new

@@ -7,9 +7,9 @@
 	gas_tile_overlay = "generic"
 	gas_overlay_limit = 0.5
 	gas_specific_heat = 30
-	molar_mass = 18.01
-	liquid_molar_mass = 18.01
-	gas_molar_mass = 0.01
+	molar_mass = 0.018
+	liquid_molar_mass = 0.018
+	gas_molar_mass = 0.018
 	solid_molar_mass = 16.05
 	boiling_point = 100 CELSIUS
 	melting_point = 0 CELSIUS

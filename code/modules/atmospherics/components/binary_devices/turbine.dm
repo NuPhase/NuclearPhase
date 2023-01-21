@@ -1,17 +1,20 @@
 /obj/machinery/atmospherics/binary/turbine
 	name = "turbine"
 	desc = "A gas turbine. Converting pressure into energy since 1884."
-	icon = 'icons/obj/atmospherics/components/unary/pipeturbine.dmi'
-	icon_state = "turbine"
+	icon = 'icons/obj/machines/power/turbine.dmi'
+	icon_state = "off"
+	layer = STRUCTURE_LAYER
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
 	level = 1
 	density = 1
+	bound_x = 96
+	bound_y = 192
 
 	use_power = POWER_USE_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 30000			// 30000 W ~ 40 HP
-	identifier = "AGP"
+	identifier = "TURBINE0"
 
-	obj_flags = OBJ_FLAG_ANCHORABLE | OBJ_FLAG_ROTATABLE
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
 	uncreated_component_parts = null
@@ -19,27 +22,13 @@
 
 	var/efficiency = 0.4
 	var/kin_energy = 0
-	var/volume_ratio = 0.2
+	var/volume_ratio = 0.5 //AKA expansion ratio. Higher means less steam is used, but results in better overall efficiency.
 	var/kin_loss = 0.001
 
 	var/dP = 0
 
-/obj/machinery/atmospherics/binary/turbine/Initialize()
-	. = ..()
-	volume_ratio = air1.volume / (air1.volume + air2.volume)
-
-/obj/machinery/atmospherics/binary/turbine/on_update_icon()
-	overlays.Cut()
-	if (dP > 10)
-		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "moto-turb")
-	if (kin_energy > 100000)
-		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "low-turb")
-	if (kin_energy > 500000)
-		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "med-turb")
-	if (kin_energy > 1000000)
-		overlays += image('icons/obj/atmospherics/components/unary/pipeturbine.dmi', "hi-turb")
-
-	build_device_underlays(FALSE)
+/obj/machinery/atmospherics/binary/turbine/hide(var/i)
+	return
 
 /obj/machinery/atmospherics/binary/turbine/Process()
 	if(anchored)
@@ -104,3 +93,12 @@
 	var/power_generated = kin_to_el_ratio * turbine.kin_energy
 	turbine.kin_energy -= power_generated
 	generate_power(power_generated)
+
+/obj/machinery/advturbine_computer
+	name = "Steam turbine control computer"
+	desc = "A computer to remotely control a steam turbine."
+	icon = 'icons/obj/modular_computers/modular_laptop.dmi'
+	icon_state = "laptop-open"
+	layer = STRUCTURE_LAYER
+	anchored = 1
+	density = 1

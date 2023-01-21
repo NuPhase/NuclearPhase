@@ -382,7 +382,7 @@
 	gas_symbol = "WF6"
 	gas_symbol_html = "WF<sub>6</sub>"
 	color = "#999999"
-	molar_mass = 297
+	molar_mass = 0.297
 	gas_specific_heat = 100
 	melting_point = 275
 	boiling_point = 290

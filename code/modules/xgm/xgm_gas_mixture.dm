@@ -9,6 +9,7 @@
 
 	//Sum of all the gas moles in this mix.  Updated by update_values()
 	var/total_moles = 0
+	var/gas_moles = 0
 	//Volume of this mix.
 	var/volume = CELL_VOLUME
 	//Size of the group this gas_mixture is representing.  1 for singletons.
@@ -221,6 +222,7 @@
 /datum/gas_mixture/proc/update_values()
 	phases.Cut()
 	total_moles = 0
+	gas_moles = 0
 	for(var/g in gas)
 		if(gas[g] <= 0)
 			gas -= g
@@ -228,14 +230,31 @@
 			total_moles += gas[g]
 			var/decl/material/mat = GET_DECL(g)
 			phases[g] = mat.phase_at_temperature(temperature, return_pressure())
+			if(phases[g] == MAT_PHASE_GAS)
+				gas_moles += gas[g]
 
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
-/datum/gas_mixture/proc/return_pressure()
+/datum/gas_mixture/proc/return_pressure() //Legacy support
+	return return_fluid_pressure()
+
+/datum/gas_mixture/proc/return_gas_pressure()
 	if(volume)
-		return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
+		if(!gas_moles)
+			return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
+		return gas_moles * R_IDEAL_GAS_EQUATION * temperature / volume
 	return 0
 
+/datum/gas_mixture/proc/return_fluid_pressure()
+	if(volume)
+		var/total_fpressure = 0
+		var/gaspressure = return_gas_pressure()
+		for(var/decl/material/mat in phases)
+			if(phases[mat] == MAT_PHASE_LIQUID)
+				var/ideal_volume = (gas[mat] * mat.molar_mass) / mat.liquid_density * 1000
+				total_fpressure += (ideal_volume / volume) * gaspressure
+		return total_fpressure + gaspressure
+	return 0
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
@@ -525,7 +544,7 @@
 /datum/gas_mixture/proc/get_mass()
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		. += gas[g] * mat.get_molar_mass() * group_multiplier
+		. += gas[g] * mat.get_molar_mass(temperature, return_pressure()) * group_multiplier
 
 /datum/gas_mixture/proc/specific_mass()
 	var/M = get_total_moles()
