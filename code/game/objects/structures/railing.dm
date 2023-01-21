@@ -5,7 +5,7 @@
 	icon_state = "railing_preview"
 	density = 1
 	throwpass = 1
-	layer = OBJ_LAYER
+	layer = ABOVE_HUMAN_LAYER
 	climb_speed_mult = 0.25
 	anchored = FALSE
 	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CHECKS_BORDER | ATOM_FLAG_CLIMBABLE
@@ -22,8 +22,6 @@
 
 /obj/structure/railing/mapped
 	anchored = TRUE
-	color = COLOR_ORANGE
-	painted_color = COLOR_ORANGE
 
 /obj/structure/railing/mapped/no_density
 	density = FALSE
@@ -95,7 +93,7 @@
 		material.place_shard(get_turf(usr))
 		qdel(src)
 
-/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
+/*/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
 	neighbor_status = 0
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
@@ -165,7 +163,7 @@
 						pix_offset_y = 32
 				add_overlay(image(icon, "mcorneroverlay[density]", pixel_x = pix_offset_x, pixel_y = pix_offset_y))
 				if (density)
-					add_overlay(image(icon, "_mcorneroverlay1", pixel_x = pix_offset_x, pixel_y = pix_offset_y, layer = ABOVE_HUMAN_LAYER))
+					add_overlay(image(icon, "_mcorneroverlay1", pixel_x = pix_offset_x, pixel_y = pix_offset_y, layer = ABOVE_HUMAN_LAYER))*/
 
 /obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"
