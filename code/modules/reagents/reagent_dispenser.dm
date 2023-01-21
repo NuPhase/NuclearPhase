@@ -112,6 +112,10 @@
 	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
 	movable_flags = MOVABLE_FLAG_WHEELED
 
+/obj/structure/reagent_dispensers/watertank/newtank
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "newwatertank"
+
 /obj/structure/reagent_dispensers/watertank/firefighter
 	name = "firefighting water reserve"
 	initial_capacity = 50000
@@ -135,6 +139,10 @@
 	movable_flags = MOVABLE_FLAG_WHEELED
 
 	var/obj/item/assembly_holder/rig = null
+
+/obj/structure/reagent_dispensers/fueltank/newtank
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "newweldtank"
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()
