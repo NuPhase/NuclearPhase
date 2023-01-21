@@ -28,6 +28,9 @@
 	var/list/connections
 	var/list/other_connections
 
+	var/set_color = TRUE
+	var/force_north_dir = FALSE
+
 /obj/structure/window/clear_connections()
 	connections = null
 	other_connections = null
@@ -59,7 +62,8 @@
 	..()
 	//set_anchored(!constructed) // calls update_connections, potentially
 
-	base_color = get_color()
+	if(set_color)
+		base_color = get_color()
 
 	update_connections(1)
 	update_icon()
@@ -403,6 +407,8 @@
 /obj/structure/window/on_update_icon()
 	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
 	//this way it will only update full-tile ones
+	if(dir == 1 && force_north_dir)
+		layer = BELOW_OBJ_LAYER
 	if(reinf_material)
 		basestate = reinf_basestate
 	else
@@ -456,10 +462,14 @@
 /obj/structure/window/basic
 	icon_state = "window"
 	color = GLASS_COLOR
+	set_color = FALSE
+	force_north_dir = TRUE
 
 /obj/structure/window/basic/full
 	dir = NORTHEAST
 	icon_state = "window_full"
+	set_color = TRUE
+	force_north_dir = FALSE
 
 /obj/structure/window/basic/full/polarized
 	polarized = 1
@@ -489,15 +499,20 @@
 	icon_state = "rwindow"
 	material = /decl/material/solid/glass
 	reinf_material = /decl/material/solid/metal/steel
+	set_color = FALSE
+	force_north_dir = TRUE
 
 /obj/structure/window/reinforced/full
 	dir = NORTHEAST
 	icon_state = "rwindow_full"
+	set_color = TRUE
+	force_north_dir = FALSE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	opacity = 1
 	color = GLASS_COLOR_TINTED
+	set_color = TRUE
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
