@@ -60,12 +60,15 @@
 /area/avalon/shelter/messhall
 
 /area/avalon/shelter/reactor
+	sound_env = LARGE_ENCLOSED
 /area/avalon/shelter/reactormonitoring
 /area/avalon/shelter/engineering
 /area/avalon/shelter/atmos
 /area/avalon/shelter/climatecontrol
 /area/avalon/shelter/turbinehall
+	sound_env = LARGE_ENCLOSED
 /area/avalon/shelter/machinehall
+	sound_env = LARGE_ENCLOSED
 /area/avalon/shelter/breakerroom
 
 /area/avalon/shelter/brig

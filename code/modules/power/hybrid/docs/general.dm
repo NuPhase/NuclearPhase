@@ -26,4 +26,4 @@
 /obj/item/clipboard/reactor/Initialize()
 	. = ..()
 	for(var/obj/item/paper/P in papers)
-		P = new
+		papers[P] = new

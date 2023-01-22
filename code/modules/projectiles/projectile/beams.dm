@@ -362,3 +362,12 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser/blue
 	tracer_type = /obj/effect/projectile/tracer/laser/blue
 	impact_type = /obj/effect/projectile/impact/laser/blue
+
+/obj/item/projectile/beam/sniper/reactor
+	name = "reactor laser beam"
+
+/obj/item/projectile/beam/sniper/reactor/on_hit(atom/target, blocked, def_zone)
+	..()
+	if(isliving(target))
+		var/mob/living/L = target
+		L.gib()

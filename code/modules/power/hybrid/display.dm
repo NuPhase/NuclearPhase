@@ -24,10 +24,44 @@
 	name = "feed pumps display"
 
 /obj/machinery/reactor_display/feedpumps/get_display_data()
-	..()
+	. = ..()
 	var/data = ""
 	data = "RPM: NO DATA.<br>\
 			Temperature: NO DATA<br>\
 			Mass flow: NO DATA<br>\
 			Status: NO DATA<br>"
 	return data
+
+/obj/machinery/reactor_monitor
+	name = "digital monitor"
+	icon = 'icons/obj/modernmonitor.dmi'
+	icon_state = "off"
+	active_power_usage = 480
+	idle_power_usage = 50
+	use_power = POWER_USE_IDLE
+	var/program_overlay = ""
+	var/on = FALSE
+
+/obj/machinery/reactor_monitor/Initialize()
+	. = ..()
+	if(on)
+		turn_on()
+
+/obj/machinery/reactor_monitor/physical_attack_hand(user)
+	. = ..()
+	if(on)
+		turn_off()
+	else
+		turn_on()
+
+/obj/machinery/reactor_monitor/proc/make_overlay()
+	overlays.Cut()
+	overlays += image(icon, "overlay-[program_overlay]")
+
+/obj/machinery/reactor_monitor/proc/turn_on()
+	icon_state = "on"
+	make_overlay()
+
+/obj/machinery/reactor_monitor/proc/turn_off()
+	icon_state = "off"
+	overlays.Cut()

@@ -46,3 +46,19 @@
 
 /obj/machinery/reactor_button/proc/do_action()
 	return
+
+
+/obj/machinery/reactor_button/rswitch
+	name = "switch"
+	icon_state = "light3"
+	var/state = 0 //0-1
+	var/on_icon_state = "light3-on"
+	var/off_icon_state = "light3"
+
+/obj/machinery/reactor_button/rswitch/do_action()
+	if(state)
+		state = 0
+		icon_state = off_icon_state
+	else
+		state = 1
+		icon_state = on_icon_state

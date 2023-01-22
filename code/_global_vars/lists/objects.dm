@@ -28,3 +28,4 @@ var/global/list/meteor_list = list()
 
 var/global/list/reactor_components = list()
 var/global/list/reactor_floodlights = list()
+var/global/list/laser_receivers = list()
