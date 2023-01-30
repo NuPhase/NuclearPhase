@@ -38,13 +38,13 @@
 
 	var/obj/machinery/reactor_control_node/cnode = reactor_components["control_node"]
 	if(cnode && cnode.check_controllability())
-		do_action()
+		do_action(user)
 
 	used = TRUE
 	spawn(cooldown)
 		used = FALSE
 
-/obj/machinery/reactor_button/proc/do_action()
+/obj/machinery/reactor_button/proc/do_action(mob/user)
 	return
 
 
@@ -55,7 +55,7 @@
 	var/on_icon_state = "light3-on"
 	var/off_icon_state = "light3"
 
-/obj/machinery/reactor_button/rswitch/do_action()
+/obj/machinery/reactor_button/rswitch/do_action(mob/user)
 	if(state)
 		state = 0
 		icon_state = off_icon_state

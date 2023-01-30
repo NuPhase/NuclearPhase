@@ -64,6 +64,8 @@
 			STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_ALL)
 
 /obj/machinery/rlaser/proc/prime()
+	if(!armed)
+		return FALSE
 	if(omode == LASER_MODE_IGNITION)
 		primed = TRUE
 		spawn(10)
