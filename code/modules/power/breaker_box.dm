@@ -47,6 +47,8 @@
 	. = ..()
 	if(on)
 		to_chat(user, "<span class='good'>It seems to be online.</span>")
+		for(var/obj/structure/cable/C in src.loc)
+			to_chat(user, "<span class='notice'>The load is: [C.powernet.load].</span>")
 	else
 		to_chat(user, "<span class='warning'>It seems to be offline.</span>")
 
