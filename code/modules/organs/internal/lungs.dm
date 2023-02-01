@@ -22,7 +22,6 @@
 	var/last_ext_pressure
 	var/max_pressure_diff = 60
 
-	var/oxygen_deprivation = 0
 	var/safe_exhaled_max = 6
 	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
@@ -30,6 +29,9 @@
 	var/breathing = 0
 	var/last_successful_breath
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
+	oxygen_consumption = 1
+	var/oxygen_generation = 12.5 // default
+	var/max_oxygen_generation = 22 //weak lungs
 
 /obj/item/organ/internal/lungs/proc/can_drown()
 	return (is_broken() || !has_gills)
@@ -217,6 +219,10 @@
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
 	if(!failed_breath)
+		if(!owner.add_oxygen(oxygen_generation))
+			oxygen_generation = Interpolate(oxygen_generation, max_oxygen_generation, 0.2)
+		else
+			oxygen_generation = Interpolate(oxygen_generation, initial(oxygen_generation), 0.2)
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
 		if(!BP_IS_PROSTHETIC(src) && species.breathing_sound && is_below_sound_pressure(get_turf(owner)))

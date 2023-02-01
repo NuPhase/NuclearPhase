@@ -5,7 +5,7 @@
 	icon_state = "heart-on"
 	dead_icon = "heart-off"
 	prosthetic_icon = "heart-prosthetic"
-	var/pulse = PULSE_NORM
+	var/pulse = 60
 	var/heartbeat = 0
 	var/beat_sound = 'sound/effects/singlebeat.ogg'
 	var/tmp/next_blood_squirt = 0
@@ -14,7 +14,12 @@
 	max_damage = 45
 	var/open
 	var/list/external_pump
-
+	var/cardiac_output = 1
+	var/instability = 0
+	var/list/arrythmias = list()
+	var/list/cardiac_output_modifiers = list()
+	var/list/bpm_modifiers = list()
+	var/list/stability_modifiers = list()
 /obj/item/organ/internal/heart/open
 	open = 1
 
@@ -23,14 +28,15 @@
 		handle_pulse()
 		if(pulse)
 			handle_heartbeat()
-			if(pulse == PULSE_2FAST && prob(1))
+			if(pulse > 120 && prob(1))
 				take_internal_damage(0.5)
-			if(pulse == PULSE_THREADY && prob(5))
+			if(pulse > 160 && prob(5))
 				take_internal_damage(0.5)
 		handle_blood()
 	..()
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
+	return
 	if(BP_IS_PROSTHETIC(src))
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
@@ -38,13 +44,13 @@
 	// pulse mod starts out as just the chemical effect amount
 	var/pulse_mod = GET_CHEMICAL_EFFECT(owner, CE_PULSE)
 	var/is_stable = GET_CHEMICAL_EFFECT(owner, CE_STABLE)
-		
+
 	// If you have enough heart chemicals to be over 2, you're likely to take extra damage.
 	if(pulse_mod > 2 && !is_stable)
 		var/damage_chance = (pulse_mod - 2) ** 2
 		if(prob(damage_chance))
 			take_internal_damage(0.5)
-	
+
 	// Now pulse mod is impacted by shock stage and other things too
 	if(owner.shock_stage > 30)
 		pulse_mod++
@@ -58,14 +64,14 @@
 		pulse_mod++
 
 	if(owner.status_flags & FAKEDEATH || GET_CHEMICAL_EFFECT(owner, CE_NOPULSE))
-		pulse = Clamp(PULSE_NONE + pulse_mod, PULSE_NONE, PULSE_2FAST) //pretend that we're dead. unlike actual death, can be inflienced by meds
+		pulse = Clamp(pulse + pulse_mod * 10, 0, 400) //pretend that we're dead. unlike actual death, can be inflienced by meds
 		return
 
 	//If heart is stopped, it isn't going to restart itself randomly.
-	if(pulse == PULSE_NONE)
+	if(pulse == 0)
 		return
 	else //and if it's beating, let's see if it should
-		var/should_stop = prob(80) && owner.get_blood_circulation() < BLOOD_VOLUME_SURVIVE //cardiovascular shock, not enough liquid to pump
+		var/should_stop = prob(80) && owner.get_blood_perfusion() < 0.5
 		should_stop = should_stop || prob(max(0, owner.getBrainLoss() - owner.maxHealth * 0.75)) //brain failing to work heart properly
 		should_stop = should_stop || (prob(5) && pulse == PULSE_THREADY) //erratic heart patterns, usually caused by oxyloss
 		if(should_stop) // The heart has stopped due to going into traumatic or cardiovascular shock.
@@ -74,26 +80,14 @@
 			return
 
 	// Pulse normally shouldn't go above PULSE_2FAST
-	pulse = Clamp(PULSE_NORM + pulse_mod, PULSE_SLOW, PULSE_2FAST)
-
-	// If fibrillation, then it can be PULSE_THREADY
-	var/fibrillation = oxy <= BLOOD_VOLUME_SURVIVE || (prob(30) && owner.shock_stage > 120)
-	if(pulse && fibrillation)	//I SAID MOAR OXYGEN
-		pulse = PULSE_THREADY
-
-	// Stablising chemicals pull the heartbeat towards the center
-	if(pulse != PULSE_NORM && is_stable)
-		if(pulse > PULSE_NORM)
-			pulse--
-		else
-			pulse++
+	pulse = Clamp(pulse + pulse_mod * 10, 0, 400)
 
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
-	if(pulse >= PULSE_2FAST || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))
+	if(pulse >= BPM_AUDIBLE_HEARTRATE || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
 		//High pulse value corresponds to a fast rate of heartbeat.
 		//Divided by 2, otherwise it is too slow.
-		var/rate = (PULSE_THREADY - pulse)/2
+		var/rate = (BPM_AUDIBLE_HEARTRATE - pulse)/2
 		if(owner.has_chemical_effect(CE_PULSE, 2))
 			heartbeat++
 
@@ -220,5 +214,5 @@
 	. = ..()
 	if(!BP_IS_PROSTHETIC(src))
 		pulse = PULSE_NORM
-	else 
+	else
 		pulse = PULSE_NONE

@@ -11,6 +11,8 @@
 	var/relative_size = 25   // Relative size of the organ. Roughly % of space they take in the target projection :D
 	var/min_bruised_damage = 10       // Damage before considered bruised
 	var/damage_reduction = 0.5     //modifier for internal organ injury
+	var/oxygen_consumption = 0 //per 2 seconds. 12.7 is available every 2 seconds in a body
+	var/oxygen_deprivation = 0
 
 /obj/item/organ/internal/Initialize(mapload, material_key, datum/dna/given_dna)
 	if(!alive_icon)
@@ -28,7 +30,7 @@
 	if(!affected)
 		log_warning("'[src]' called obj/item/organ/internal/do_install(), but its expected parent organ is null!")
 
-	//The organ may only update and etc if its being attached, or isn't cut away. 
+	//The organ may only update and etc if its being attached, or isn't cut away.
 	//Calls up the chain should have set the CUT_AWAY flag already
 	if(status & ORGAN_CUT_AWAY)
 		LAZYDISTINCTADD(affected.implants, src) //Add us to the detached organs list
@@ -60,7 +62,7 @@
 		if((status & ORGAN_CUT_AWAY) && detach)
 			LAZYDISTINCTADD(affected.implants, src)
 		else
-			LAZYREMOVE(affected.implants, src) 
+			LAZYREMOVE(affected.implants, src)
 
 //#TODO: Remove rejuv hacks
 /obj/item/organ/internal/remove_rejuv()
@@ -137,6 +139,7 @@
 /obj/item/organ/internal/Process()
 	..()
 	handle_regeneration()
+	owner.consume_oxygen(oxygen_consumption)
 
 /obj/item/organ/internal/proc/handle_regeneration()
 	if(!damage || BP_IS_PROSTHETIC(src) || !owner || GET_CHEMICAL_EFFECT(owner, CE_TOXIN) || owner.is_asystole())
@@ -177,7 +180,7 @@
 /obj/item/organ/internal/on_update_icon()
 	. = ..()
 	if(BP_IS_PROSTHETIC(src) && prosthetic_icon)
-		icon_state = ((status & ORGAN_DEAD) && prosthetic_dead_icon)? 	prosthetic_dead_icon : prosthetic_icon 
+		icon_state = ((status & ORGAN_DEAD) && prosthetic_dead_icon)? 	prosthetic_dead_icon : prosthetic_icon
 	else
 		icon_state = ((status & ORGAN_DEAD) && dead_icon)? 				dead_icon : alive_icon
 

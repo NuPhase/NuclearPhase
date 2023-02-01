@@ -71,6 +71,7 @@
 		handle_changeling()
 
 		//Organs and blood
+		process_hemodynamics()
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
@@ -1073,6 +1074,12 @@
 	..()
 	adjust_stamina(100)
 	UpdateAppearance()
+	bpm = initial(bpm)
+	syspressure = initial(syspressure)
+	dyspressure = initial(dyspressure)
+	meanpressure = initial(meanpressure)
+	mcv = initial(mcv)
+	oxygen_amount = max_oxygen_capacity
 
 /mob/living/carbon/human/reset_view(atom/A)
 	..()

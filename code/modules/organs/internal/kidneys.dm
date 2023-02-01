@@ -9,6 +9,7 @@
 	min_broken_damage = 45
 	max_damage = 70
 	relative_size = 10
+	oxygen_consumption = 0.8
 
 /obj/item/organ/internal/kidneys/Process()
 	..()

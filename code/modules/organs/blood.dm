@@ -333,25 +333,4 @@
 
 //Percentage of maximum blood volume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately matters for brain
 /mob/living/carbon/human/proc/get_blood_oxygenation()
-	var/blood_volume = get_blood_circulation()
-	if(blood_carries_oxygen())
-		if(is_asystole()) // Heart is missing or isn't beating and we're not breathing (hardcrit)
-			return min(blood_volume, BLOOD_VOLUME_SURVIVE)
-
-		if(!need_breathe())
-			return blood_volume
-	else
-		blood_volume = 100
-
-	var/blood_volume_mod = max(0, 1 - getOxyLoss()/(species.total_health/2))
-	var/oxygenated_mult = 0
-	switch(GET_CHEMICAL_EFFECT(src, CE_OXYGENATED))
-		if(1)
-			oxygenated_mult = 0.5
-		if(2)
-			oxygenated_mult = 0.7
-		if(3)
-			oxygenated_mult = 0.9
-	blood_volume_mod = blood_volume_mod + oxygenated_mult - (blood_volume_mod * oxygenated_mult)
-	blood_volume = blood_volume * blood_volume_mod
-	return min(blood_volume, 100)
+	return get_blood_perfusion() * 10
