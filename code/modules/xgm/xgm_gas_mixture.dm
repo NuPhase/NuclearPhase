@@ -249,10 +249,14 @@
 	if(volume)
 		var/total_fpressure = 0
 		var/gaspressure = return_gas_pressure()
+		var/hasfluid = FALSE
 		for(var/decl/material/mat in phases)
 			if(phases[mat] == MAT_PHASE_LIQUID)
 				var/ideal_volume = (gas[mat] * mat.molar_mass) / mat.liquid_density * 1000
 				total_fpressure += (ideal_volume / volume) * gaspressure
+				hasfluid = TRUE
+		if(hasfluid && total_fpressure == 0)
+			total_fpressure = ONE_ATMOSPHERE //To fix weird fluid bugs
 		return total_fpressure + gaspressure
 	return 0
 
