@@ -2,7 +2,6 @@
 	var/list/lobby_options = list(
 		/datum/lobby_option/setup,
 		/datum/lobby_option/view_manifest,
-		/datum/lobby_option/observe,
 		/datum/lobby_option/character_setup
 	)
 
@@ -42,12 +41,6 @@
 
 /datum/lobby_option/view_manifest/get_lobby_menu_string(var/mob/new_player/viewer)
 	return "<a href='byond://?src=\ref[viewer];lobby_crew=1'>View the Crew Manifest</A> "
-
-/datum/lobby_option/observe
-	sort_priority = 3
-
-/datum/lobby_option/observe/get_lobby_menu_string(var/mob/new_player/viewer)
-	return "<a href='byond://?src=\ref[viewer];lobby_observe=1'>Observe</A> "
 
 /datum/lobby_option/character_setup
 	sort_priority = 4

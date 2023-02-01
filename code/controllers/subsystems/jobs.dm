@@ -562,6 +562,98 @@ SUBSYSTEM_DEF(jobs)
 
 	return H
 
+/datum/controller/subsystem/jobs/proc/equip_ghostrank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
+	if(!H)
+		return
+
+	var/datum/job/job = get_by_title(rank)
+	var/list/spawn_in_storage
+
+	if(job)
+		if(H.client)
+			if(global.using_map.flags & MAP_HAS_BRANCH)
+				H.char_branch = mil_branches.get_branch(H.client.prefs.branches[rank])
+			if(global.using_map.flags & MAP_HAS_RANK)
+				H.char_rank = mil_branches.get_rank(H.client.prefs.branches[rank], H.client.prefs.ranks[rank])
+
+		// Transfers the skill settings for the job to the mob
+		H.skillset.obtain_from_client(job, H.client)
+
+		//Equip job items.
+		job.equip(H, H.mind ? H.mind.role_alt_title : "", H.char_branch, H.char_rank)
+		job.apply_fingerprints(H)
+		spawn_in_storage = equip_custom_loadout(H, job)
+		job.setup_account(H)
+	else
+		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
+
+	H.job = rank
+
+	if(!joined_late || job.latejoin_at_spawnpoints)
+		H.forceMove(pick(spawnpoint_office.turfs))
+		spawnpoint_office.after_join(H)
+		// Moving wheelchair if they have one
+		if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
+			H.buckled.forceMove(H.loc)
+			H.buckled.set_dir(H.dir)
+
+	if(!(ASSIGNMENT_ROBOT in job.event_categories) && !(ASSIGNMENT_COMPUTER in job.event_categories)) //These guys get their emails later.
+		var/datum/computer_network/network = get_local_network_at(get_turf(H))
+		if(network)
+			network.create_account(H, H.real_name, null, H.real_name, null, TRUE)
+
+	// If they're head, give them the account info for their department
+	if(H.mind && job.head_position)
+		var/remembered_info = ""
+		var/datum/money_account/department_account = department_accounts[job.primary_department]
+
+		if(department_account)
+			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
+			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
+			remembered_info += "<b>Your department's account funds are:</b> [department_account.format_value_by_currency(department_account.money)]<br>"
+
+		H.StoreMemory(remembered_info, /decl/memory_options/system)
+
+	var/alt_title = null
+	if(!H.mind)
+		H.mind_initialize()
+	H.mind.assigned_job = job
+	H.mind.assigned_role = rank
+	alt_title = H.mind.role_alt_title
+
+	var/mob/other_mob = job.handle_variant_join(H, alt_title)
+	if(other_mob)
+		job.post_equip_rank(other_mob, alt_title || rank)
+		return other_mob
+
+	if(spawn_in_storage)
+		for(var/decl/loadout_option/G in spawn_in_storage)
+			G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()[G.name])
+
+	to_chat(H, "<font size = 3><B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B></font>")
+
+	if(job.supervisors)
+		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+
+	if(H.has_headset_in_ears())
+		to_chat(H, "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>")
+
+	if(job.req_admin_notify)
+		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
+
+	if(H.needs_wheelchair())
+		equip_wheelchair(H)
+
+	BITSET(H.hud_updateflag, ID_HUD)
+	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
+	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
+
+	job.post_equip_rank(H, alt_title || rank)
+
+	H.client.show_location_blurb(30)
+
+	return H
+
 /datum/controller/subsystem/jobs/proc/titles_by_department(var/dept)
 	return positions_by_department[dept] || list()
 

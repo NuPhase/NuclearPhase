@@ -2,6 +2,7 @@ var/global/list/latejoin_locations =         list()
 var/global/list/latejoin_cryo_locations =    list()
 var/global/list/latejoin_cyborg_locations =  list()
 var/global/list/latejoin_gateway_locations = list()
+var/global/list/officejoin_locations = list()
 
 /obj/abstract/landmark/latejoin
 	delete_me = TRUE
@@ -21,3 +22,6 @@ var/global/list/latejoin_gateway_locations = list()
 
 /obj/abstract/landmark/latejoin/cyborg/add_loc()
 	global.latejoin_cyborg_locations |= get_turf(src)
+
+/obj/abstract/landmark/latejoin/office/add_loc()
+	global.officejoin_locations |= get_turf(src)

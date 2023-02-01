@@ -87,3 +87,12 @@
 /decl/spawnpoint/cyborg/Initialize()
 	. = ..()
 	turfs = global.latejoin_cyborg_locations
+
+/decl/spawnpoint/office
+	name = "Office Skyscraper"
+	msg = "has clocked out"
+	always_visible = FALSE
+
+/decl/spawnpoint/office/Initialize()
+	. = ..()
+	turfs = global.officejoin_locations

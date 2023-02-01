@@ -244,6 +244,9 @@ var/global/list/additional_antag_types = list()
 
 	next_spawn = world.time + rand(min_autotraitor_delay, max_autotraitor_delay)
 
+	spawnpoint_office = new
+	spawnpoint_office.Initialize()
+
 	refresh_event_modifiers()
 
 	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)

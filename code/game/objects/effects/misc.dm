@@ -13,6 +13,16 @@
 	name = "Geas"
 	desc = "You can't resist."
 
+/obj/effect/invisible_barrier
+	density = 1
+	anchored = 1
+	opacity = 0
+	icon_state = "empty"
+
+/obj/effect/invisible_barrier/Initialize()
+	. = ..()
+	icon_state = ""
+
 //Paints the wall it spawns on, then dies
 /obj/effect/paint
 	name = "coat of paint"

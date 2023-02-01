@@ -86,6 +86,7 @@ What is the naming convention for planes or layers?
 	#define WIRE_LAYER                  1.06
 	#define WIRE_TERMINAL_LAYER         1.07
 	#define ABOVE_WIRE_LAYER            1.08
+	#define CITY_SKYBOX_LAYER				1.09
 	//TURF PLANE
 	//TURF_LAYER = 2
 	#define TURF_DETAIL_LAYER           2.01

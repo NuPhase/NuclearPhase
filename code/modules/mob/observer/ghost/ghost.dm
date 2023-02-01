@@ -156,6 +156,43 @@ Works together with spawning an observer, noted above.
 			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 		return ghost
 
+var/global/decl/spawnpoint/office/spawnpoint_office
+/mob/living/carbon/human/ghostize(var/can_reenter_corpse = CORPSE_CAN_REENTER)
+	if(teleop && istype(teleop, /mob/observer/ghost))
+		var/mob/observer/ghost/G = teleop
+		if(G.admin_ghosted)
+			return
+	if(!client)
+		return
+	var/mob/living/carbon/human/new_character
+	var/turf/spawn_turf
+	spawn_turf = pick(spawnpoint_office.turfs)
+	new_character = new(spawn_turf)
+	new_character.lastarea = get_area(spawn_turf)
+	client.prefs.copy_to(new_character)
+	new_character.dna.ready_dna(new_character)
+	new_character.sync_organ_dna()
+	new_character.force_update_limbs()
+	new_character.update_eyes()
+	new_character.refresh_visible_overlays()
+	new_character.key = key
+	SSjobs.equip_ghostrank(new_character, "Office Clerk", 0)
+/*	// Are we the body of an aghosted admin? If so, don't make a ghost.
+	if(teleop && istype(teleop, /mob/observer/ghost))
+		var/mob/observer/ghost/G = teleop
+		if(G.admin_ghosted)
+			return
+	if(key)
+		hide_fullscreens()
+		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
+		ghost.can_reenter_corpse = can_reenter_corpse
+		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
+		ghost.key = key
+		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
+			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+		return ghost*/
+
+
 /mob/observer/ghostize() // Do not create ghosts of ghosts.
 
 /*
@@ -166,6 +203,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
+	return
 	if(stat == DEAD)
 		announce_ghost_joinleave(ghostize(1))
 	else

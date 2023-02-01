@@ -24,5 +24,6 @@
 		/datum/job/hos,
 		/datum/job/detective,
 		/datum/job/warden,
-		/datum/job/officer
+		/datum/job/officer,
+		/datum/job/officeman
 	)
