@@ -2228,6 +2228,10 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/open,
 /area/avalon/shelter/upperhall)
+"if" = (
+/obj/effect/floor_decal/floordetail/pryhole,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/upperhall)
 "ig" = (
 /obj/structure/table,
 /obj/item/towel/random,
@@ -2660,15 +2664,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "jB" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 21
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
@@ -6073,14 +6073,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "vf" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/flora/stump/tree/dead,
-/obj/effect/floor_decal/corner/white/border{
-	dir = 5
+/obj/structure/window/basic{
+	dir = 8
 	},
-/turf/exterior/dirt,
+/turf/simulated/floor/grass,
 /area/avalon/shelter/upperhall)
 "vg" = (
 /obj/item/stack/material/rods,
@@ -6526,16 +6523,18 @@
 /turf/exterior/surface,
 /area/surface)
 "wH" = (
-/obj/turbolift_map_holder{
-	dir = 4;
-	lift_size_x = 4;
-	lift_size_y = 4;
-	depth = 14;
-	areas_to_use = list(/area/turbolift/avalon/main/a1,/area/turbolift/avalon/main/a2,/area/turbolift/avalon/main/a3,/area/turbolift/avalon/main/a4,/area/turbolift/avalon/main/a5,/area/turbolift/avalon/main/a6,/area/turbolift/avalon/main/a7,/area/turbolift/avalon/main/a8,/area/turbolift/avalon/main/a9,/area/turbolift/avalon/main/a10,/area/turbolift/avalon/main/a11,/area/turbolift/avalon/main/a12,/area/turbolift/avalon/main/a13,/area/turbolift/avalon/main/a14);
-	wall_type = /turf/simulated/wall
+/obj/effect/floor_decal/corner/white/border{
+	dir = 1
 	},
-/turf/simulated/floor/reinforced/airless,
-/area/avalon/shelter/expeditionpreparation)
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/upperhall)
 "wI" = (
 /obj/machinery/door/airlock/atmos,
 /obj/structure/cable{
@@ -9942,14 +9941,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "Io" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/effect/dead_plant,
-/obj/effect/floor_decal/corner/white/border{
-	dir = 6
+/obj/structure/window/basic{
+	dir = 8
 	},
-/turf/exterior/dirt,
+/turf/simulated/floor/grass,
 /area/avalon/shelter/upperhall)
 "Ip" = (
 /obj/machinery/vending/hotfood{
@@ -241154,7 +241150,7 @@ uz
 ty
 Mx
 sg
-LZ
+if
 dC
 uz
 wo
@@ -241932,7 +241928,7 @@ nL
 nL
 nL
 nu
-SC
+wH
 Nm
 he
 Bm
@@ -242972,7 +242968,7 @@ oy
 oy
 oy
 oy
-wH
+oy
 wj
 HG
 oy
