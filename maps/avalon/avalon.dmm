@@ -2228,10 +2228,6 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/open,
 /area/avalon/shelter/upperhall)
-"if" = (
-/obj/effect/floor_decal/floordetail/pryhole,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/upperhall)
 "ig" = (
 /obj/structure/table,
 /obj/item/towel/random,
@@ -2263,8 +2259,8 @@
 /area/avalon/shelter/reactor)
 "ik" = (
 /obj/machinery/atmospherics/unary/vent_pump{
-	id_tag = "mainairlock";
-	tag = "mainairlock"
+	tag = "mainairlockp";
+	id_tag = "mainairlockp"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -4015,6 +4011,15 @@
 /obj/effect/floor_decal/corner/purple/bordercorner{
 	dir = 4
 	},
+/obj/machinery/button/access/interior{
+	pixel_y = 32;
+	id_tag = "mainairlock"
+	},
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	pixel_x = -7;
+	id_tag = "mainairlockints"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "op" = (
@@ -5395,9 +5400,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "sL" = (
-/obj/machinery/air_sensor{
-	tag = "mainairlockchamber";
-	id_tag = "mainairlockchamber"
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	id_tag = "mainairlockchambers"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -5562,13 +5567,6 @@
 /obj/structure/wall_frame/titanium,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactor)
-"tl" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 8;
-	pixel_y = -2
-	},
-/turf/simulated/wall/r_titanium,
-/area/avalon/shelter/expeditionpreparation)
 "tm" = (
 /obj/effect/floor_decal/corner/green/full,
 /turf/simulated/floor/tiled/dark,
@@ -6523,15 +6521,15 @@
 /turf/exterior/surface,
 /area/surface)
 "wH" = (
-/obj/effect/floor_decal/corner/white/border{
-	dir = 1
-	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
 	dir = 1;
 	pixel_y = 21
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
@@ -6922,12 +6920,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
 "yd" = (
-/obj/machinery/air_sensor{
-	id_tag = "mainairlockint";
-	tag = "mainairlockint"
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/avalon/shelter/expeditionpreparation)
+/obj/effect/floor_decal/floordetail/pryhole,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/upperhall)
 "ye" = (
 /obj/machinery/light/spot{
 	dir = 1
@@ -8300,9 +8295,9 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/machinery/air_sensor{
-	tag = "mainairlockext";
-	id_tag = "mainairlockext"
+/obj/machinery/button/access/exterior{
+	pixel_y = 32;
+	id_tag = "mainairlock"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -10989,8 +10984,8 @@
 	},
 /obj/machinery/alarm{
 	pixel_y = 22;
-	tag = "mainairlock";
-	id_tag = "mainairlock"
+	tag = "mainairlocka";
+	id_tag = "mainairlocka"
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/expeditionpreparation)
@@ -11167,13 +11162,12 @@
 	pixel_y = 24;
 	tag = "mainairlock";
 	id_tag = "mainairlock";
-	tag_air_alarm = "mainairlock";
-	tag_chamber_sensor = "mainairlockchamber";
+	tag_chamber_sensor = "mainairlockchambers";
 	tag_exterior_door = "mainairlockext";
-	tag_exterior_sensor = "mainairlockext";
+	tag_exterior_sensor = "mainairlockexts";
 	tag_interior_door = "mainairlockint";
-	tag_interior_sensor = "mainairlockint";
-	tag_airpump = "mainairlock"
+	tag_interior_sensor = "mainairlockints";
+	tag_airpump = "mainairlockp"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -12965,11 +12959,19 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "Sv" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_y = -2
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
 	},
-/turf/simulated/wall/r_titanium,
+/obj/machinery/button/access/exterior{
+	pixel_y = 32;
+	id_tag = "mainairlock"
+	},
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	pixel_x = -7;
+	id_tag = "mainairlockexts"
+	},
+/turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "Sw" = (
 /obj/structure/cable{
@@ -13550,12 +13552,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "Uk" = (
-/obj/machinery/atmospherics/unary/vent_pump{
-	tag = "mainairlock";
-	id_tag = "mainairlock"
+/obj/effect/floor_decal/corner/white/border{
+	dir = 6
 	},
-/turf/simulated/floor/reinforced/airless,
-/area/avalon/shelter/expeditionpreparation)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/upperhall)
 "Um" = (
 /obj/machinery/atmospherics/valve/digital,
 /turf/simulated/floor/tiled/techfloor,
@@ -15185,6 +15186,10 @@
 	},
 /obj/effect/floor_decal/corner/purple/bordercorner{
 	dir = 1
+	},
+/obj/machinery/button/access/interior{
+	pixel_y = 32;
+	id_tag = "mainairlock"
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
@@ -241150,7 +241155,7 @@ uz
 ty
 Mx
 sg
-if
+yd
 dC
 uz
 wo
@@ -241929,7 +241934,7 @@ nL
 nL
 nu
 wH
-Nm
+Uk
 he
 Bm
 Bm
@@ -242697,7 +242702,7 @@ RB
 rt
 Ls
 RF
-tl
+Hn
 ZF
 CN
 iE
@@ -242961,7 +242966,7 @@ Hn
 sL
 jl
 Hn
-xT
+Sv
 HG
 nJ
 oy
@@ -243088,7 +243093,7 @@ bK
 Ls
 Yp
 Hn
-Uk
+ik
 hF
 Qq
 Zi
@@ -243214,7 +243219,7 @@ nL
 se
 vK
 bK
-yd
+bK
 DA
 Hn
 Hn
@@ -243737,7 +243742,7 @@ Kn
 bK
 Ls
 mu
-Sv
+Hn
 on
 xs
 iE
