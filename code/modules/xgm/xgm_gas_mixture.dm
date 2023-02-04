@@ -554,3 +554,9 @@
 	var/M = get_total_moles()
 	if(M)
 		return get_mass()/M
+
+/datum/gas_mixture/proc/remove_air_volume(volume_to_return)
+	var/datum/gas_mixture/removed = remove(return_pressure()*volume_to_return/(R_IDEAL_GAS_EQUATION*temperature))
+	if(removed)
+		removed.volume = volume_to_return
+	return removed

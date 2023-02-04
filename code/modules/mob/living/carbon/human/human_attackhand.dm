@@ -139,6 +139,24 @@
 		miss_type = 2
 
 	H.do_attack_animation(src)
+	if(msuit && msuit.lifesupportsystem.propulsion_status == SUIT_PROPULSION_READY)
+		var/datum/gas_mixture/gm = msuit.lifesupportsystem.activate_propulsion(SUIT_PROPULSION_ATTACK_PERCENT)
+		if(gm.temperature > 400)
+			attack_message = "[H] activates their suit propulsion system right before [src]'s [affecting.name] and burns it severely!"
+			rand_damage += gm.temperature / 50 //TODO: CALCULATE THIS
+		else
+			attack_message = "[H] activates their suit propulsion system right before [src]'s [affecting.name]!"
+		if(hit_zone == BP_L_LEG || hit_zone == BP_R_LEG)
+			apply_effect(3, WEAKEN)
+			visible_message("<span class='danger'>[H] loses balance and [pick("falls", "drops")] down to the ground!</span>")
+		else
+			var/turf/T = get_step(get_turf(H), get_dir(get_turf(src), get_turf(H)))
+			if(!T.density)
+				step(H, get_dir(get_turf(src), get_turf(H)))
+				H.visible_message("<span class='danger'>[pick("[H] was sent flying backward!", "[H] staggers back from the flow!")]</span>")
+			if(prob(50))
+				H.set_dir(global.reverse_dir[H.dir])
+			H.apply_effect(rand_damage * 0.4, WEAKEN)
 	if(!attack_message)
 		attack.show_attack(H, src, hit_zone, rand_damage)
 	else

@@ -22,6 +22,10 @@
 	desc = "A tank of oxygen. This one is yellow."
 	icon = 'icons/obj/items/tanks/tank_yellow.dmi'
 
+/obj/item/tank/oxygen/modulated //Will use liquid oxygen and heat it up as needed
+	name = "cryogenic oxygen tank"
+	volume = 60
+
 /obj/item/tank/oxygen/empty
 	starting_pressure = list()
 
@@ -51,6 +55,24 @@
 /obj/item/tank/hydrogen/empty
 	starting_pressure = list()
 
+/obj/item/tank/propfuel
+	name = "rocket fuel tank"
+	desc = "Contains highly flammable rocket fuel."
+	icon = 'icons/obj/items/tanks/tank_greyscaled.dmi'
+	color = "#dd6f07"
+	gauge_icon = null
+	obj_flags = OBJ_FLAG_CONDUCTIBLE
+	slot_flags = null
+	starting_pressure = list(/decl/material/gas/hydrogen = 5*ONE_ATMOSPHERE*0.33, /decl/material/gas/oxygen = 5*ONE_ATMOSPHERE*0.67)
+/obj/item/tank/waste
+	name = "waste tank"
+	desc = "Contains biological waste and scrubbed CO2."
+	icon = 'icons/obj/items/tanks/tank_greyscaled.dmi'
+	color = "#472e17"
+	gauge_icon = null
+	obj_flags = OBJ_FLAG_CONDUCTIBLE
+	slot_flags = null
+	starting_pressure = list(/decl/material/gas/carbon_dioxide = 2.5*ONE_ATMOSPHERE)
 /*
  * Emergency Oxygen
  */

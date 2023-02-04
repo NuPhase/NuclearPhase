@@ -29,6 +29,7 @@
 	var/tinted = null	//Set to non-null for toggleable tint helmets
 	origin_tech = "{'materials':1}"
 	material = /decl/material/solid/metal/steel
+	//weight = 15
 
 /obj/item/clothing/head/helmet/modern/space/Destroy()
 	if(camera && !ispath(camera))
@@ -103,9 +104,12 @@
 	else
 		icon_state = base_icon
 
+///obj/item/clothing/head/helmet/modern/space/mob_can_equip(mob/living/M, slot, disable_warning, force)
+//	return FALSE
+
 /obj/item/clothing/suit/modern/space
 	name = "pressure suit"
-	desc = "A pinnacle of past-laden engineering, this suit is capable of surviving a wide variety of temperatures and pressures."
+	desc = "A pinnacle of past-laden engineering, this suit is capable of surviving a wide variety of temperatures and pressures. Doesn't look like it, though."
 	icon = 'icons/clothing/spacesuit/generic/suit.dmi'
 	w_class = ITEM_SIZE_HUGE
 	gas_transfer_coefficient = 0
@@ -121,7 +125,7 @@
 	cold_protection = SLOT_UPPER_BODY | SLOT_LOWER_BODY | SLOT_LEGS | SLOT_FEET | SLOT_ARMS | SLOT_HANDS
 	min_cold_protection_temperature = UNIVERSAL_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0
-	max_pressure_protection = RIG_MAX_PRESSURE
+	max_pressure_protection = PRESSURE_SUIT_MAX_PRESSURE
 	max_heat_protection_temperature = UNIVERSAL_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	center_of_mass = null
@@ -139,7 +143,36 @@
 	var/list/components = list()
 	var/datum/gas_mixture/internal_atmosphere = new
 	var/mob/living/carbon/human/wearer = null
+	var/obj/item/storage/backpack/lifesupportpack/lifesupportsystem = new
+	//weight = 100
 
 /obj/item/clothing/suit/modern/space/Initialize()
 	. = ..()
 	LAZYSET(slowdown_per_slot, slot_wear_suit_str, 1)
+	internal_atmosphere.volume = 20
+	lifesupportsystem.owner = src
+
+///obj/item/clothing/suit/modern/space/mob_can_equip(mob/living/M, slot, disable_warning, force)
+//	return FALSE
+
+/obj/item/clothing/suit/modern/space/equipped(mob/user)
+	. = ..()
+	if(user.get_equipped_item(slot_wear_suit_str) != src)
+		return
+	wearer = user
+	wearer.msuit = src
+	var/obj/item/backp = wearer.get_equipped_item(slot_back_str)
+	if(backp)
+		wearer.drop_from_inventory(backp, get_turf(wearer))
+	wearer.equip_to_slot(lifesupportsystem, slot_back_str)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/clothing/suit/modern/space/dropped(mob/user)
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+	wearer.msuit = null
+	wearer = null
+	user.drop_from_inventory(lifesupportsystem, src)
+
+/obj/item/clothing/suit/modern/space/Process()
+	lifesupportsystem.do_support()

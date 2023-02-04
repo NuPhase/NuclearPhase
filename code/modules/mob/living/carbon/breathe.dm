@@ -37,6 +37,8 @@
 	handle_post_breath(breath)
 
 /mob/living/carbon/proc/get_breath_from_internal(var/volume_needed=STD_BREATH_VOLUME) //hopefully this will allow overrides to specify a different default volume without breaking any cases where volume is passed in.
+	if(msuit)
+		return msuit.internal_atmosphere.remove_air_volume(volume_needed)
 	if(internal)
 		if (!contents.Find(internal))
 			set_internals(null)
@@ -50,7 +52,7 @@
 		else
 			if (internals)
 				internals.icon_state = "internal0"
-	return null
+		return null
 
 /mob/living/carbon/proc/get_breath_from_environment(var/volume_needed=STD_BREATH_VOLUME, var/atom/location = src.loc)
 	if(volume_needed <= 0)

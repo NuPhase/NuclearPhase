@@ -41,3 +41,5 @@
 	var/stasis_value
 
 	var/player_triggered_sleeping = 0
+
+	var/obj/item/clothing/suit/modern/space/msuit = null

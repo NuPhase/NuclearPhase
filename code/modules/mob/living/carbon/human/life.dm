@@ -281,6 +281,8 @@
 	..()
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=STD_BREATH_VOLUME)
+	if(msuit)
+		return msuit.internal_atmosphere.remove_air_volume(volume_needed)
 	if(internal)
 
 		var/obj/item/tank/rig_supply
