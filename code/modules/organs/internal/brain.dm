@@ -23,6 +23,9 @@
 	var/healed_threshold = 1
 	var/oxygen_reserve = 6
 	oxygen_consumption = 2.5
+	max_damage = 180
+	min_broken_damage = 90
+	min_bruised_damage = 30
 
 /obj/item/organ/internal/brain/getToxLoss()
 	return 0
@@ -128,7 +131,6 @@
 		// Brain damage from low oxygenation or lack of blood.
 		if(owner.should_have_organ(BP_HEART))
 			var/can_heal = damage && damage < max_damage && (damage % damage_threshold_value || GET_CHEMICAL_EFFECT(owner, CE_BRAIN_REGEN) || (!past_damage_threshold(3) && GET_CHEMICAL_EFFECT(owner, CE_STABLE)))
-			var/damprob
 			switch(owner.oxygen_amount)
 				if(OXYGEN_BRAIN_SAFE to INFINITY)
 					if(can_heal)
@@ -136,20 +138,11 @@
 				if(OXYGEN_BRAIN_OKAY to OXYGEN_BRAIN_SAFE)
 					if(prob(1))
 						to_chat(owner, "<span class='warning'>You feel [pick("dizzy","woozy","faint")]...</span>")
-					damprob = owner.chem_effects[CE_STABLE] ? 30 : 60
-					if(!past_damage_threshold(2) && prob(damprob))
-						take_internal_damage(1)
 				if(OXYGEN_BRAIN_BAD to OXYGEN_BRAIN_OKAY)
-					damprob = owner.chem_effects[CE_STABLE] ? 40 : 80
-					if(!past_damage_threshold(4) && prob(damprob))
-						take_internal_damage(1)
+					if(!past_damage_threshold(4) && prob(5))
 						to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
 				if(-INFINITY to OXYGEN_BRAIN_BAD)
-					damprob = owner.chem_effects[CE_STABLE] ? 60 : 100
-					if(!past_damage_threshold(6) && prob(damprob))
-						take_internal_damage(1)
-						to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
-						SET_STATUS_MAX(owner, STAT_PARA, 3)
+					SET_STATUS_MAX(owner, STAT_PARA, 3)
 	..()
 
 /obj/item/organ/internal/brain/take_internal_damage(var/damage, var/silent)

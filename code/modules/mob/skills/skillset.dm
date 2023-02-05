@@ -118,6 +118,20 @@ var/global/list/all_skill_verbs
 		else
 			return max(0, 1 + (SKILL_DEFAULT - points) * factor)
 
+/mob/proc/get_melee_attack_delay_modifier()
+	var/combat_skill = get_skill_value(SKILL_COMBAT)
+	switch(combat_skill)
+		if(SKILL_NONE)
+			return SKILL_COMBAT_ATTACK_COOLDOWN_NONE
+		if(SKILL_BASIC)
+			return SKILL_COMBAT_ATTACK_COOLDOWN_BASIC
+		if(SKILL_ADEPT)
+			return SKILL_COMBAT_ATTACK_COOLDOWN_ADEPT
+		if(SKILL_EXPERT)
+			return SKILL_COMBAT_ATTACK_COOLDOWN_EXPERT
+		if(SKILL_PROF)
+			return SKILL_COMBAT_ATTACK_COOLDOWN_PROF
+
 /mob/proc/do_skilled(base_delay, skill_path , atom/target = null, factor = 0.3, check_holding = FALSE)
 	return do_after(src, base_delay * skill_delay_mult(skill_path, factor), target, check_holding)
 

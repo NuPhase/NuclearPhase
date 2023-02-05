@@ -123,7 +123,7 @@
 
 			inspect_vision(vision, user)
 
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*user.get_melee_attack_delay_modifier()) //can be used offensively
 			M.flash_eyes()
 	else
 		return ..()
@@ -373,7 +373,7 @@
 	if(nofuel)
 		on = FALSE
 	. = ..()
-	icon_state = nofuel? "glowstick-empty" : icon_state 
+	icon_state = nofuel? "glowstick-empty" : icon_state
 	item_state = initial(item_state)
 	if(on)
 		var/image/I = overlay_image(icon, "glowstick-on", color)

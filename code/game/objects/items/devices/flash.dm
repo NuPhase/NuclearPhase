@@ -85,7 +85,7 @@
 	if(!user || !M || !general_flash_check(user))
 		return FALSE
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*user.get_melee_attack_delay_modifier())
 	do_flash_animation(user, M)
 
 	if(M.stat != DEAD && M.handle_flashed(src, rand(str_min,str_max)))
@@ -101,7 +101,7 @@
 /obj/item/flash/attack_self(mob/user, flag = 0, emp = 0)
 	if(!user || !general_flash_check(user))
 		return FALSE
-	
+
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	do_flash_animation(user)
 	for(var/mob/living/carbon/M in oviewers(3, null))

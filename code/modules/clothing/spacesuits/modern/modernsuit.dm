@@ -116,7 +116,7 @@
 	permeability_coefficient = 0
 	item_flags = ITEM_FLAG_THICKMATERIAL
 	body_parts_covered = SLOT_UPPER_BODY|SLOT_LOWER_BODY|SLOT_LEGS|SLOT_FEET|SLOT_ARMS|SLOT_HANDS
-	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency,/obj/item/suit_cooling_unit)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/baton,/obj/item/energy_blade/sword,/obj/item/handcuffs)
 	armor = list(
 		bio = ARMOR_BIO_SHIELDED,
 		rad = ARMOR_RAD_SMALL
@@ -144,7 +144,14 @@
 	var/datum/gas_mixture/internal_atmosphere = new
 	var/mob/living/carbon/human/wearer = null
 	var/obj/item/storage/backpack/lifesupportpack/lifesupportsystem = new
+
+	var/leakiness = 0 //0-100. Determines how much air leaks out in percent per second
+	var/leak_message_on_cooldown = FALSE
 	//weight = 100
+
+/obj/item/clothing/suit/modern/space/examine(mob/user)
+	. = ..()
+	to_chat(user, "The pressure in your suit is [internal_atmosphere.return_pressure()]")
 
 /obj/item/clothing/suit/modern/space/Initialize()
 	. = ..()
@@ -176,3 +183,16 @@
 
 /obj/item/clothing/suit/modern/space/Process()
 	lifesupportsystem.do_support()
+	if(leakiness)
+		internal_atmosphere.remove_ratio(leakiness * 0.01)
+		if(!leak_message_on_cooldown)
+			leak_message_on_cooldown = TRUE
+			spawn(50)
+				leak_message_on_cooldown = FALSE
+			switch(leakiness)
+				if(1 to 5)
+					to_chat(wearer, "<span class='notice'>[pick("You hear strange hissing from somewhere on your suit. Is it leaking?", "Something hisses on your suit.", "You feel gas flowing around in your suit.")]</span>")
+				if(6 to 25)
+					to_chat(wearer, "<span class='warning'>[pick("You see gas flowing out of your suit!", "Something is leaking out of your suit!", "There is a lot of gas escaping your suit!")]</span>")
+				if(26 to 100)
+					to_chat(wearer, "<span class='danger'>[pick("Gas rapidly escapes out of your suit!", "Your suit is losing pressure!", "Your suit is bleeding to death!")]</span>")

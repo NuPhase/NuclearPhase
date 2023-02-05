@@ -33,7 +33,7 @@
 /decl/maneuver/proc/show_initial_message(var/mob/user, var/atom/target)
 	return
 
-/decl/maneuver/proc/perform(var/mob/living/user, var/atom/target, var/strength, var/reflexively = FALSE)
+/decl/maneuver/proc/perform(var/mob/living/carbon/human/user, var/atom/target, var/strength, var/reflexively = FALSE)
 	if(can_be_used_by(user, target))
 		if(!reflexively)
 			show_initial_message(user, target)
@@ -42,4 +42,4 @@
 		if(cooldown)
 			user.last_special = world.time + cooldown
 		if(stamina_cost)
-			user.adjust_stamina(stamina_cost)
+			user.add_oxygen(-stamina_cost)

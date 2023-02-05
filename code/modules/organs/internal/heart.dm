@@ -25,6 +25,11 @@
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
+		bpm_modifiers.Cut()
+		cardiac_output_modifiers.Cut()
+		stability_modifiers.Cut()
+		calculate_instability()
+		get_modifiers()
 		handle_pulse()
 		if(pulse)
 			handle_heartbeat()
@@ -35,52 +40,41 @@
 		handle_blood()
 	..()
 
+/obj/item/organ/internal/heart/proc/get_modifiers()
+	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 100
+	bpm_modifiers["shock"] = owner.shock_stage
+
+/obj/item/organ/internal/heart/proc/calculate_instability()
+	var/ninstability = 0
+	if(owner.get_blood_perfusion() < 0.5)
+		ninstability += 20
+	if(pulse > 200)
+		ninstability += 20
+	if(cardiac_output < 0.5)
+		ninstability += 20
+	instability = Interpolate(instability, ninstability, 0.1)
+
 /obj/item/organ/internal/heart/proc/handle_pulse()
 	return
 	if(BP_IS_PROSTHETIC(src))
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
 
-	// pulse mod starts out as just the chemical effect amount
-	var/pulse_mod = GET_CHEMICAL_EFFECT(owner, CE_PULSE)
-	var/is_stable = GET_CHEMICAL_EFFECT(owner, CE_STABLE)
+	var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
+	pulse = Interpolate(pulse, target_pulse, 0.2)
 
-	// If you have enough heart chemicals to be over 2, you're likely to take extra damage.
-	if(pulse_mod > 2 && !is_stable)
-		var/damage_chance = (pulse_mod - 2) ** 2
-		if(prob(damage_chance))
-			take_internal_damage(0.5)
-
-	// Now pulse mod is impacted by shock stage and other things too
-	if(owner.shock_stage > 30)
-		pulse_mod++
-	if(owner.shock_stage > 80)
-		pulse_mod++
-
-	var/oxy = owner.get_blood_oxygenation()
-	if(oxy < BLOOD_VOLUME_OKAY) //brain wants us to get MOAR OXY
-		pulse_mod++
-	if(oxy < BLOOD_VOLUME_BAD) //MOAR
-		pulse_mod++
-
-	if(owner.status_flags & FAKEDEATH || GET_CHEMICAL_EFFECT(owner, CE_NOPULSE))
-		pulse = Clamp(pulse + pulse_mod * 10, 0, 400) //pretend that we're dead. unlike actual death, can be inflienced by meds
-		return
+	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers)
 
 	//If heart is stopped, it isn't going to restart itself randomly.
 	if(pulse == 0)
 		return
 	else //and if it's beating, let's see if it should
-		var/should_stop = prob(80) && owner.get_blood_perfusion() < 0.5
+		var/should_stop = prob(instability * 0.1) && instability > 30
 		should_stop = should_stop || prob(max(0, owner.getBrainLoss() - owner.maxHealth * 0.75)) //brain failing to work heart properly
-		should_stop = should_stop || (prob(5) && pulse == PULSE_THREADY) //erratic heart patterns, usually caused by oxyloss
 		if(should_stop) // The heart has stopped due to going into traumatic or cardiovascular shock.
 			to_chat(owner, "<span class='danger'>Your heart has stopped!</span>")
 			pulse = PULSE_NONE
 			return
-
-	// Pulse normally shouldn't go above PULSE_2FAST
-	pulse = Clamp(pulse + pulse_mod * 10, 0, 400)
 
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= BPM_AUDIBLE_HEARTRATE || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))

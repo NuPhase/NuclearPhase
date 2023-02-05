@@ -79,8 +79,6 @@
 
 		handle_pain()
 
-		handle_stamina()
-
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
@@ -88,25 +86,13 @@
 	SetName(get_visible_name())
 
 /mob/living/carbon/human/get_stamina()
-	return stamina
+	return oxygen_amount / max_oxygen_capacity * 100
 
 /mob/living/carbon/human/adjust_stamina(var/amt)
-	var/last_stamina = stamina
-	if(stat == DEAD)
-		stamina = 0
-	else
-		stamina = Clamp(stamina + amt, 0, 100)
-		if(stamina <= 0)
-			to_chat(src, SPAN_WARNING("You are exhausted!"))
-			if(MOVING_QUICKLY(src))
-				set_moving_slowly()
-	if(last_stamina != stamina && hud_used)
-		hud_used.update_stamina()
+	add_oxygen(amt)
 
 /mob/living/carbon/human/proc/handle_stamina()
-	if((world.time - last_quick_move_time) > 5 SECONDS)
-		var/mod = (lying + (nutrition / initial(nutrition))) / 2
-		adjust_stamina(max(config.minimum_stamina_recovery, config.maximum_stamina_recovery * mod) * (1 + GET_CHEMICAL_EFFECT(src, CE_ENERGETIC)))
+	return
 
 /mob/living/carbon/human/set_stat(var/new_stat)
 	var/old_stat = stat
@@ -401,10 +387,9 @@
 			burn_dam = COLD_DAMAGE_LEVEL_2
 		else
 			burn_dam = COLD_DAMAGE_LEVEL_3
-		SetStasis(getCryogenicFactor(bodytemperature), STASIS_COLD)
-		if(!has_chemical_effect(CE_CRYO, 1))
-			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
-			fire_alert = max(fire_alert, 1)
+		//SetStasis(getCryogenicFactor(bodytemperature), STASIS_COLD) //Pseudoscience
+		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
+		fire_alert = max(fire_alert, 1)
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
@@ -437,7 +422,7 @@
 		switch(pressure_alert)
 			if(-2)
 				pressure_message = "<span class=bigdanger>Your vision slowly becomes pitch red as the blood in your eyes slowly comes out. Air rushes out of your lungs, forcing your mouth open like some sort of a toy. Your saliva evaporates,\
-				but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
+				 but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
 			if(-1)
 				pressure_message = "<span class=danger>You feel the air getting thinner!</span>"
 		to_chat(src, pressure_message)
@@ -682,16 +667,17 @@
 		else
 			clear_fullscreen("crit")
 			//Oxygen damage overlay
-			if(getOxyLoss())
+			var/blood_perfusion = get_blood_perfusion()
+			if(blood_perfusion < 0.8)
 				var/severity = 0
-				switch(getOxyLoss())
-					if(10 to 20)		severity = 1
-					if(20 to 25)		severity = 2
-					if(25 to 30)		severity = 3
-					if(30 to 35)		severity = 4
-					if(35 to 40)		severity = 5
-					if(40 to 45)		severity = 6
-					if(45 to INFINITY)	severity = 7
+				switch(blood_perfusion)
+					if(0.71 to 0.8)			severity = 1
+					if(0.61 to 0.7)			severity = 2
+					if(0.51 to 0.6)			severity = 3
+					if(0.41 to 0.5)			severity = 4
+					if(0.31 to 0.4)			severity = 5
+					if(0.21 to 0.3)			severity = 6
+					if(-INFINITY to 0.2)	severity = 7
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 			else
 				clear_fullscreen("oxy")
@@ -893,6 +879,7 @@
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nohalloss = TRUE in these cases!
 		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 10, nohalloss = TRUE)
 
+	var/obj/item/organ/internal/heart/H = get_organ(BP_HEART)
 	if(shock_stage >= 30)
 		if(shock_stage == 30)
 			var/decl/pronouns/G = get_pronouns()
@@ -900,22 +887,29 @@
 		if(prob(30))
 			SET_STATUS_MAX(src, STAT_BLURRY, 2)
 			SET_STATUS_MAX(src, STAT_STUTTER, 5)
+		H.bpm_modifiers["shock"] += 20
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 3)
+		H.bpm_modifiers["shock"] += 20
+		H.stability_modifiers["shock"] += 20
 
 	if(shock_stage >= 80)
 		if (prob(5))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 5)
+		H.bpm_modifiers["shock"] += 40
+		H.stability_modifiers["shock"] += 20
 
 	if(shock_stage >= 120)
 		if(!HAS_STATUS(src, STAT_PARA) && prob(2))
 			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_PARA, 5)
+		H.bpm_modifiers["shock"] += 40
+		H.stability_modifiers["shock"] += 30
 
 	if(shock_stage == 150)
 		visible_message("<b>[src]</b> can no longer stand, collapsing!")
@@ -1074,7 +1068,6 @@
 	full_prosthetic = null
 	shock_stage = 0
 	..()
-	adjust_stamina(100)
 	UpdateAppearance()
 	bpm = initial(bpm)
 	syspressure = initial(syspressure)

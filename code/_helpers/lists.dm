@@ -775,7 +775,43 @@ var/global/list/json_cache = list()
 			if(islist(decoded)) // To prevent cache mutation.
 				return deepCopyList(decoded)
 			else if(decoded)
-				return decoded	
+				return decoded
 		catch(var/exception/e)
 			log_error("Exception during JSON decoding ([json_to_decode]): [e]")
 	return list()
+
+/proc/sumList(list/L)
+	. = 0
+	for(var/i in L)
+		. += i
+
+/proc/sumListAndCut(list/L)
+	. = sumList(L)
+	L.Cut()
+
+/proc/mulList(list/L)
+	. = 0
+	for(var/i in L)
+		. *= i
+
+/proc/mulListAndCut(list/L)
+	. = mulList(L)
+	L.Cut()
+
+/proc/sumListAssoc(list/L)
+	. = 0
+	for(var/I in L)
+		. += L[I]
+
+/proc/sumListAndCutAssoc(list/L)
+	. = sumListAssoc(L)
+	L.Cut()
+
+/proc/mulListAssoc(list/L)
+	. = 1
+	for(var/I in L)
+		. *= L[I]
+
+/proc/mulListAndCutAssoc(list/L)
+	. = mulListAssoc(L)
+	L.Cut()

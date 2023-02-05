@@ -1,3 +1,5 @@
+#define OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD 40
+
 /****************************************************
 				INTERNAL ORGANS DEFINES
 ****************************************************/
@@ -13,6 +15,9 @@
 	var/damage_reduction = 0.5     //modifier for internal organ injury
 	var/oxygen_consumption = 0 //per 2 seconds. 12.7 is available every 2 seconds in a body
 	var/oxygen_deprivation = 0
+
+/obj/item/organ/internal/proc/oxygen_starve(amount)
+	oxygen_deprivation = Clamp(oxygen_deprivation + amount, 0, 100)
 
 /obj/item/organ/internal/Initialize(mapload, material_key, datum/dna/given_dna)
 	if(!alive_icon)
@@ -140,6 +145,10 @@
 	..()
 	handle_regeneration()
 	owner.consume_oxygen(oxygen_consumption)
+	if(owner.oxygen_amount < oxygen_consumption)
+		oxygen_starve(1)
+		if(oxygen_deprivation > OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD)
+			take_internal_damage(0.2, 1)
 
 /obj/item/organ/internal/proc/handle_regeneration()
 	if(!damage || BP_IS_PROSTHETIC(src) || !owner || GET_CHEMICAL_EFFECT(owner, CE_TOXIN) || owner.is_asystole())

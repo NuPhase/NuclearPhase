@@ -70,7 +70,7 @@
 /obj/item/stool/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if (prob(5))
 		user.visible_message("<span class='danger'>[user] breaks [src] over [target]'s back!</span>")
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*user.get_melee_attack_delay_modifier())
 		user.do_attack_animation(target)
 		dismantle() //This deletes self.
 

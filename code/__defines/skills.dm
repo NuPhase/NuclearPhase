@@ -34,3 +34,10 @@
 #define SKILL_MEDICAL       /decl/hierarchy/skill/medical/medical
 #define SKILL_ANATOMY       /decl/hierarchy/skill/medical/anatomy
 #define SKILL_CHEMISTRY     /decl/hierarchy/skill/medical/chemistry
+
+//Modifiers for attack cooldowns.
+#define SKILL_COMBAT_ATTACK_COOLDOWN_NONE	 1.1
+#define SKILL_COMBAT_ATTACK_COOLDOWN_BASIC	 1
+#define SKILL_COMBAT_ATTACK_COOLDOWN_ADEPT	 0.9
+#define SKILL_COMBAT_ATTACK_COOLDOWN_EXPERT  0.75
+#define SKILL_COMBAT_ATTACK_COOLDOWN_PROF	 0.6

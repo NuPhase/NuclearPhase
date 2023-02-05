@@ -1371,6 +1371,7 @@
 	//Prevent attempting to create blood container if its already setup
 	if(!vessel)
 		reset_blood()
+	max_oxygen_capacity = round(vessel.total_volume / 4.975)
 
 //If the mob has its default name it'll try to generate /obtain a proper one
 /mob/living/carbon/human/proc/try_generate_default_name()

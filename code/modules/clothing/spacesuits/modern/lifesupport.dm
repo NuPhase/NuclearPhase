@@ -32,6 +32,8 @@
 
 	var/obj/item/cell/battery = new
 
+	canremove = FALSE
+
 /obj/item/storage/backpack/lifesupportpack/Initialize()
 	. = ..()
 	oxygen_tank = new /obj/item/tank/oxygen/modulated
