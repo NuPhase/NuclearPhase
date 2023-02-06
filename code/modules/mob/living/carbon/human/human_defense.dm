@@ -405,6 +405,8 @@ meteor_act
 	// We may also be taking a suit breach.
 	var/obj/item/clothing/suit/modern/space/suit = get_equipped_item(slot_wear_suit_str)
 	if(istype(suit))
+		if(damage < suit.minimum_leak_damage)
+			return
 		suit.leakiness = min(suit.leakiness + damage, 100)
 
 /mob/living/carbon/human/reagent_permeability()

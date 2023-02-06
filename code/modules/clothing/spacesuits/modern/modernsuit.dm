@@ -148,6 +148,7 @@
 
 	var/leakiness = 0 //0-100. Determines how much air leaks out in percent per second
 	var/leak_message_on_cooldown = FALSE
+	var/minimum_leak_damage = 10
 	//weight = 100
 
 /obj/item/clothing/suit/modern/space/attackby(obj/item/I, mob/user)
@@ -210,10 +211,11 @@
 /obj/item/clothing/suit/modern/space/Process()
 	lifesupportsystem.do_support()
 	if(leakiness)
-		internal_atmosphere.remove_ratio(leakiness * 0.01)
+		var/turf/T = get_turf(wearer)
+		var/datum/gas_mixture/external = T.return_air()
+		var/datum/gas_mixture/to_merge = internal_atmosphere.remove_ratio(leakiness * 0.01)
+		external.merge(to_merge)
 		if(leakiness > 25)
-			var/turf/T = get_turf(wearer)
-			var/datum/gas_mixture/external = T.return_air()
 			external.equalize(internal_atmosphere)
 		if(!leak_message_on_cooldown)
 			leak_message_on_cooldown = TRUE
