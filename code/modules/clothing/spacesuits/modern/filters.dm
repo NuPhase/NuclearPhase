@@ -1,11 +1,14 @@
 /obj/item/co2filter
-	name = "CO2 filter canister"
+	name = "small CO2 filter canister"
 	var/capacity = 300
 	var/power_consumption = 30 //watt
+	icon = 'icons/obj/items/chem/chem_cartridge.dmi'
+	icon_state = "cartridge"
 
 /obj/item/co2filter/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	to_chat(user, "It is [return_capacity()]% full")
+	to_chat(user, "It will last for approximately [capacity] seconds")
 
 /obj/item/co2filter/proc/clean_gasmix()
 	if(capacity)
@@ -15,3 +18,8 @@
 
 /obj/item/co2filter/proc/return_capacity()
 	return capacity / initial(capacity) * 100
+
+/obj/item/co2filter/large
+	name = "large CO2 filter canister"
+	capacity = 900 //15 minutes
+	power_consumption = 70
