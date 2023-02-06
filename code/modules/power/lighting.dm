@@ -80,6 +80,12 @@
 	base_type = /obj/machinery/light/spot
 	frame_type = /obj/item/frame/light/spot
 
+/obj/machinery/light/neon
+	light_type = /obj/item/light/tube/neon
+
+/obj/machinery/light/spot/neon
+	light_type = /obj/item/light/tube/large/neon
+
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, d=0, populate_parts = TRUE)
 	. = ..()
@@ -525,11 +531,16 @@
 	. = ..()
 	b_color = rgb(pick(0,255), pick(0,255), pick(0,255))
 
+/obj/item/light/tube/neon
+	b_color = LIGHT_COLOR_PURPLE
 /obj/item/light/tube/large
 	w_class = ITEM_SIZE_SMALL
 	name = "large light tube"
 	b_power = 4
 	b_range = 12
+
+/obj/item/light/tube/large/neon
+	b_color = LIGHT_COLOR_PURPLE
 
 /obj/item/light/tube/large/party/Initialize() //Randomly colored light tubes. Mostly for testing, but maybe someone will find a use for them.
 	. = ..()

@@ -116,6 +116,13 @@
 /turf/simulated/open/cannot_build_cable()
 	return 0
 
+/turf/simulated/open/skyscraper
+	name = "the city below"
+
+/turf/simulated/open/skyscraper/Initialize(ml)
+	. = ..()
+	overlays += image('icons/effects/weather.dmi', "rain")
+
 ////////////////////////////////
 // Open EXTERIOR
 ////////////////////////////////

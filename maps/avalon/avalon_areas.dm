@@ -143,3 +143,4 @@
 /area/skyscraper
 	name = "Skyscraper"
 	requires_power = FALSE
+	forced_ambience = list('sound/music/skyscraper_theme_1.ogg')

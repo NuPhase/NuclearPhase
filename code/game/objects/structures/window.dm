@@ -426,7 +426,8 @@
 
 	layer = FULL_WINDOW_LAYER
 	if(!is_fulltile())
-		layer = SIDE_WINDOW_LAYER
+		if(!force_north_dir)
+			layer = SIDE_WINDOW_LAYER
 		icon_state = basestate
 		return
 
