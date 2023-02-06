@@ -400,18 +400,12 @@ meteor_act
 
 /mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage, var/def_zone)
 
-	// Tox and oxy don't matter to suits.
-	if(damtype != BURN && damtype != BRUTE) return
-
-	// The rig might soak this hit, if we're wearing one.
-	var/obj/item/rig/rig = get_equipped_item(slot_back_str)
-	if(istype(rig))
-		rig.take_hit(damage)
+	if(damtype != BRUTE) return
 
 	// We may also be taking a suit breach.
-	var/obj/item/clothing/suit/space/suit = get_equipped_item(slot_wear_suit_str)
+	var/obj/item/clothing/suit/modern/space/suit = get_equipped_item(slot_wear_suit_str)
 	if(istype(suit))
-		suit.create_breaches(damtype, damage)
+		suit.leakiness = min(leakiness + damage, 100)
 
 /mob/living/carbon/human/reagent_permeability()
 	var/perm = 0

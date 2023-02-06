@@ -149,6 +149,30 @@
 	var/leak_message_on_cooldown = FALSE
 	//weight = 100
 
+/obj/item/clothing/suit/modern/space/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(istype(I, /obj/item/stack/tape_roll/suit_sealing))
+		var/obj/item/stack/tape_roll/suit_sealing/tape = I
+		var/use_message = ""
+		var/use_time = 0
+		var/leak_removal = 0
+		switch(leakiness)
+			if(1 to 5)
+				use_time = 100
+				use_message = "You take your time to find the last breach on your suit..."
+				leak_removal = 5
+			if(6 to 25)
+				use_time = 50
+				use_message = "You carefully seal some of the breaches on your suit."
+				leak_removal = 7
+			if(26 to 100)
+				use_time = 15
+				use_message = "You hastily apply the [tape.name] over flaps of material on your suit. It needs more."
+				leak_removal = 10
+		if(!do_after(user, use_time, user, can_move = TRUE))
+			return
+		leakiness = max(leakiness - leak_removal, 0)
+
 /obj/item/clothing/suit/modern/space/examine(mob/user)
 	. = ..()
 	to_chat(user, "The pressure in your suit is [internal_atmosphere.return_pressure()]")
@@ -185,6 +209,10 @@
 	lifesupportsystem.do_support()
 	if(leakiness)
 		internal_atmosphere.remove_ratio(leakiness * 0.01)
+		if(leakiness > 25)
+			var/turf/T = get_turf(wearer)
+			var/datum/gas_mixture/external = T.return_air()
+			external.equalize(internal_atmosphere)
 		if(!leak_message_on_cooldown)
 			leak_message_on_cooldown = TRUE
 			spawn(50)
