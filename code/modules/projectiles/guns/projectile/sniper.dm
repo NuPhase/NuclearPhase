@@ -42,7 +42,7 @@
 /obj/item/gun/projectile/sniper/ngdmr/handle_post_fire()
 	. = ..()
 	var/turf/T = get_turf(src)
-	for(var/mob/living/carbon/human/M in view(world.view, src))
+	for(var/mob/living/carbon/human/M in view(7, src))
 		var/eye_safety = 0
 		var/ear_safety = 0
 		if(istype(M))
