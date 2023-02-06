@@ -18,9 +18,6 @@
 	tally -= GET_CHEMICAL_EFFECT(src, CE_SPEEDBOOST)
 	tally += GET_CHEMICAL_EFFECT(src, CE_SLOWDOWN)
 
-	var/health_deficiency = (maxHealth - health)
-	if(health_deficiency >= 40) tally += (health_deficiency / 25)
-
 	if(can_feel_pain())
 		if(get_shock() >= 10) tally += (get_shock() / 10) //pain shouldn't slow you down if you can't even feel it
 
@@ -56,8 +53,8 @@
 	if(facing_dir)
 		tally += 3 // Locking direction will slow you down.
 
-	if (bodytemperature < species.cold_discomfort_level)
-		tally += (species.cold_discomfort_level - bodytemperature) / 10 * 1.75
+	//if (bodytemperature < species.cold_discomfort_level)
+	//	tally += (species.cold_discomfort_level - bodytemperature) / 10 * 1.75
 
 	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
 
