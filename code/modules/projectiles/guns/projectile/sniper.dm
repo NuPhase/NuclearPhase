@@ -38,3 +38,53 @@
 			icon_state = "[get_world_inventory_state()]-empty"
 	else
 		icon_state = get_world_inventory_state()
+
+/obj/item/gun/projectile/sniper/ngdmr/handle_post_fire()
+	. = ..()
+	var/turf/T = get_turf(src)
+	for(var/mob/living/carbon/human/M in view(world.view, src))
+		var/eye_safety = 0
+		var/ear_safety = 0
+		if(istype(M))
+			eye_safety = M.eyecheck()
+			if(M.get_sound_volume_multiplier() < 0.5)
+				ear_safety += 2
+			if(istype(M.get_equipped_item(slot_head_str), /obj/item/clothing/head/helmet))
+				ear_safety += 1
+		M.flash_eyes(FLASH_PROTECTION_MODERATE)
+		if(eye_safety < FLASH_PROTECTION_MODERATE)
+			SET_STATUS_MAX(M, STAT_STUN, 2)
+			SET_STATUS_MAX(M, STAT_CONFUSE, 5)
+
+		//Now applying sound
+		if(ear_safety)
+			if(ear_safety < 2 && get_dist(M, T) <= 2)
+				SET_STATUS_MAX(M, STAT_STUN, 1)
+				SET_STATUS_MAX(M, STAT_CONFUSE, 3)
+
+		else if(get_dist(M, T) <= 2)
+			SET_STATUS_MAX(M, STAT_STUN, 3)
+			SET_STATUS_MAX(M, STAT_CONFUSE, 8)
+			SET_STATUS_MAX(M, STAT_TINNITUS, rand(0, 5))
+			SET_STATUS_MAX(M, STAT_DEAF, 15)
+
+		else if(get_dist(M, T) <= 5)
+			SET_STATUS_MAX(M, STAT_STUN, 2)
+			SET_STATUS_MAX(M, STAT_CONFUSE, 5)
+			SET_STATUS_MAX(M, STAT_TINNITUS, rand(0, 3))
+			SET_STATUS_MAX(M, STAT_DEAF, 10)
+
+		else
+			SET_STATUS_MAX(M, STAT_STUN, 1)
+			SET_STATUS_MAX(M, STAT_CONFUSE, 3)
+			SET_STATUS_MAX(M, STAT_TINNITUS, rand(0, 1))
+			SET_STATUS_MAX(M, STAT_DEAF, 5)
+
+		switch(GET_STATUS(M, STAT_TINNITUS))
+			if(1 to 14)
+				to_chat(M, "<span class='danger'>Your ears start to ring!</span>")
+			if(15 to INFINITY)
+				to_chat(M, "<span class='danger'>Your ears start to ring badly!</span>")
+
+		if(!ear_safety)
+			sound_to(M, 'sound/weapons/flash_ring.ogg')

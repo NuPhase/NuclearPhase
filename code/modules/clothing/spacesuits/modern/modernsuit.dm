@@ -24,6 +24,7 @@
 	brightness_on = 4
 	light_wedge = LIGHT_WIDE
 	on = 0
+	volume_multiplier = 0.5
 
 	var/obj/machinery/camera/camera
 	var/tinted = null	//Set to non-null for toggleable tint helmets
@@ -172,6 +173,7 @@
 		if(!do_after(user, use_time, user, can_move = TRUE))
 			return
 		leakiness = max(leakiness - leak_removal, 0)
+		to_chat(user, "<span class='notice'>[use_message]</span>")
 
 /obj/item/clothing/suit/modern/space/examine(mob/user)
 	. = ..()

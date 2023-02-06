@@ -29,6 +29,7 @@
 	desc = "Cold Resistant Issued Combat System is a specialized suit made for engagement in harsh environments. Doesn't look very powerful, still."
 	min_cold_protection_temperature = COLD_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = COLD_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	volume_multiplier = 0.3
 	//weight = 40
 
 /obj/item/clothing/suit/modern/space/combat_specialized/cold
