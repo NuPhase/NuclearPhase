@@ -3242,12 +3242,6 @@
 /obj/structure/largecrate,
 /turf/exterior/concrete,
 /area/surface)
-"lz" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/avalon/shelter/messhall)
 "lB" = (
 /turf/simulated/wall/titanium,
 /area/surface)
@@ -7837,6 +7831,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/space)
 "Bi" = (
+/obj/structure/railing/mapped,
 /turf/simulated/floor/wood/walnut,
 /area/avalon/shelter/messhall)
 "Bj" = (
@@ -8622,9 +8617,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "DL" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/structure/emergency_dispenser/north{
 	pixel_x = 6
 	},
@@ -8900,7 +8892,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "EK" = (
-/obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -12707,10 +12698,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
 "Rk" = (
-/obj/structure/railing/mapped{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "Rl" = (
@@ -12782,12 +12773,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/climatecontrol)
-"Rz" = (
-/obj/structure/railing/mapped{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/avalon/shelter/messhall)
 "RA" = (
 /obj/structure/bed/chair/pew/left,
 /obj/random/clothing,
@@ -13442,6 +13427,9 @@
 "TD" = (
 /obj/machinery/oxygen_pump{
 	pixel_y = 28
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/messhall)
@@ -208230,8 +208218,8 @@ Nq
 ks
 Fr
 LX
-kj
-lz
+Rk
+hX
 hX
 CK
 hX
@@ -208490,7 +208478,7 @@ gK
 nz
 Nq
 Bi
-Rk
+kj
 DP
 kj
 SB
@@ -208620,7 +208608,7 @@ gK
 ig
 Nq
 Bi
-Rk
+kj
 vw
 DP
 RQ
@@ -208750,7 +208738,7 @@ gK
 nz
 Nq
 Bi
-Rz
+hX
 kj
 DP
 RQ
