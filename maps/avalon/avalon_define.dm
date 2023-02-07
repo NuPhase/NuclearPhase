@@ -3,6 +3,11 @@
 	full_name = "Modified Emergency 'Solitude' Survival Site"
 	path = "avalon"
 
+	system_name = "Sirius"
+	station_name = "Solitude"
+	station_short = "Solitude"
+	game_year = 185
+
 	base_floor_type = /turf/exterior/wall/ice
 
 	exterior_atmos_temp = 7
