@@ -7,6 +7,7 @@
 	color = "#e4cfed"
 	dirt_color = "#e4cfed"
 	var/datum/map/mapowner = null
+	footstep_type = null
 
 /turf/exterior/surface/get_air_graphic()
 	return mapowner.exterior_atmosphere?.graphic
@@ -45,10 +46,11 @@
 			else
 				T.update_icon()
 
-/turf/exterior/surface/setup_environmental_lighting()
+/turf/exterior/surface/setup_environmental_lighting(var/ncolor = COLOR_COLD_SURFACE)
 	if (is_outside())
+		surface_turfs += src
 		if (mapowner)
-			set_ambient_light(COLOR_SKY_SURFACE, mapowner.lightlevel)
+			set_ambient_light(ncolor, mapowner.lightlevel)
 			return
 	else if (ambient_light)
 		clear_ambient_light()
@@ -59,14 +61,23 @@
 	gas.copy_from(mapowner.exterior_atmosphere)
 
 	var/initial_temperature = gas.temperature
-	if(weather)
-		initial_temperature = weather.adjust_temperature(initial_temperature)
 	for(var/thing in affecting_heat_sources)
 		if((gas.temperature - initial_temperature) >= 100)
 			break
 		var/obj/structure/fire_source/heat_source = thing
 		gas.temperature = gas.temperature + heat_source.exterior_temperature / max(1, get_dist(src, get_turf(heat_source)))
 	return gas
+
+/turf/exterior/surface/proc/switch_cracks(var/remove_cracks = FALSE) //i shat myself
+	if(remove_cracks)
+		overlays.Cut()
+		return
+	if(prob(15))
+		overlays += image('icons/turf/snow.dmi', "cracks", dir = pick(cardinal))
+	else
+		spawn(50)
+			if(prob(15))
+				overlays += image('icons/turf/snow.dmi', "cracks", dir = pick(cardinal))
 
 /turf/exterior/surface/open
 	name = "open space"
@@ -121,10 +132,14 @@
 	mapowner = global.using_map
 	setup_environmental_lighting()
 
-/turf/simulated/open/exterior/proc/setup_environmental_lighting()
+/turf/simulated/open/exterior/proc/setup_environmental_lighting(var/ncolor = COLOR_COLD_SURFACE)
 	if (is_outside())
+		surface_turfs += src
 		if (mapowner)
-			set_ambient_light(COLOR_SKY_SURFACE, mapowner.lightlevel)
+			set_ambient_light(ncolor, mapowner.lightlevel)
 			return
 	else if (ambient_light)
 		clear_ambient_light()
+
+/turf/simulated/open/exterior/proc/switch_cracks()
+	return

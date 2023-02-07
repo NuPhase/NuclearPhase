@@ -78,7 +78,6 @@
 #define COLOR_AMBER            "#ffbf00"
 #define COLOR_COMMAND_BLUE     "#46698c"
 #define COLOR_SKY_BLUE         "#5ca1cc"
-#define COLOR_SKY_SURFACE	   "#0c61ae"
 #define COLOR_FONT_ORANGE      "#e67300"
 #define COLOR_PALE_ORANGE      "#b88a3b"
 #define COLOR_CIVIE_GREEN      "#b7f27d"
@@ -93,6 +92,13 @@
 #define COLOR_CRYSTAL          "#00c8a5"
 #define COLOR_ASTEROID_ROCK    "#735555"
 #define COLOR_DIAMOND          "#d8d4ea"
+
+#define COLOR_COLD_SURFACE	   "#0c61ae"
+#define COLOR_SUNRISE_SURFACE1 "#cc0000"
+#define COLOR_SUNRISE_SURFACE2 "#db2e03"
+#define COLOR_SUNRISE_SURFACE3 "#eb5600"
+#define COLOR_SUNRISE_SURFACE4 "#ebac00"
+#define COLOR_HOT_SURFACE	   "#d16500"
 
 #define	PIPE_COLOR_GREY        "#808080"
 #define	PIPE_COLOR_RED         "#ff0000"

@@ -86,6 +86,11 @@
 		/decl/state_transition/weather/rain
 	)
 
+/decl/state/weather/sunriseone
+	name = "Sunrise"
+	descriptor = "Something big approaches."
+	transitions = list()
+
 /decl/state/weather/snow
 	name = "Light Snow"
 	icon_state = "snowfall_light"

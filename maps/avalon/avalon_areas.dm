@@ -118,16 +118,16 @@
 
 /area/surface/Entered(mob/A)
 	. = ..()
-	if(!phase)
-		return
-	if(iscarbon(A))
+	if(ishuman(A))
+		surface_mobs += A
 		for(var/obj/item/gun/W in A.contents)
 			if(W.hot_color)
 				W.color = W.hot_color
 
 /area/surface/Exited(mob/A)
 	. = ..()
-	if(iscarbon(A))
+	if(ishuman(A))
+		surface_mobs -= A
 		for(var/obj/item/gun/W in A.contents)
 			if(W.hot_color)
 				W.color = null

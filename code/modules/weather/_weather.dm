@@ -1,21 +1,21 @@
 /*
  * Notes on weather:
  *
- * - Weather is a single object that sits in the vis_contents of all outside turfs on 
- *   its associated z-levels and is removed or added by /turf/proc/update_weather(), 
+ * - Weather is a single object that sits in the vis_contents of all outside turfs on
+ *   its associated z-levels and is removed or added by /turf/proc/update_weather(),
  *   which is usually called from /turf/proc/set_outside().
  *
  * - Weather generally assumes any atom that cares about it will ask it directly and
  *   mobs do this in /mob/living/proc/handle_environment().
  *
- * - For this system to be scalable, it should minimize the amount of list-based 
- *   processing it does and be primarily passive, allowing mobs to ignore it or 
+ * - For this system to be scalable, it should minimize the amount of list-based
+ *   processing it does and be primarily passive, allowing mobs to ignore it or
  *   poll it on their own time.
  *
  * - The weather object is queued on SSweather and is polled every fifteen seconds at time
  *   of writing. This is handled in /obj/abstract/weather_system/proc/tick().
  *
- * - When evaluating, weather will generally get more intense or more severe rather than 
+ * - When evaluating, weather will generally get more intense or more severe rather than
  *   jumping around randomly. Each state will set a minimum duration based on min/max time.
  *
  * - If polled between weather updates there is a chance of modifying wind speed and direction
@@ -41,6 +41,10 @@ var/global/list/weather_by_z = list()
 	var/obj/abstract/lightning_overlay/lightning_overlay // A visible atom used for animated lighting effects.
 	var/tmp/list/vis_contents_additions                  // Holder for a list used to add required atoms to turf vis_contents.
 
+/obj/abstract/weather_system/proc/trigger_event(var/datum/weather_event/event)
+	event = new event
+	event.start()
+
 // Main heartbeat proc, called by SSweather.
 /obj/abstract/weather_system/proc/tick()
 
@@ -62,7 +66,7 @@ var/global/list/weather_by_z = list()
 	// Clean ourselves out of the vis_contents of our affected turfs.
 	for(var/tz in affecting_zs)
 		if(global.weather_by_z["[tz]"] == src)
-			global.weather_by_z -= "[tz]" 
+			global.weather_by_z -= "[tz]"
 		for(var/turf/T as anything in block(locate(1, 1, tz), locate(world.maxx, world.maxy, tz)))
 			if(T.weather == src)
 				remove_vis_contents(T, vis_contents_additions)
@@ -72,13 +76,13 @@ var/global/list/weather_by_z = list()
 	. = ..()
 
 // Called by /turf/examine() to show current weather status.
-/obj/abstract/weather_system/examine(mob/user, distance)	
+/obj/abstract/weather_system/examine(mob/user, distance)
 	SHOULD_CALL_PARENT(FALSE)
 	var/decl/state/weather/weather_state = weather_system.current_state
 	if(istype(weather_state))
 		to_chat(user, weather_state.descriptor)
 	show_wind(user, force = TRUE)
-	
+
 // Called by /decl/state/weather to assess validity of a state in the weather FSM.
 /obj/abstract/weather_system/proc/supports_weather_state(var/decl/state/weather/next_state)
 	// Exoplanet stuff for the future:

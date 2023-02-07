@@ -61,6 +61,7 @@ var/global/list/areas = list()
 	var/list/blurbed_stated_to = list() //This list of names is here to make sure we don't state our descriptive blurb to a person more than once.
 
 	var/tmp/is_outside = OUTSIDE_NO
+	var/do_ambience = TRUE
 
 /area/New()
 	icon_state = ""
@@ -360,6 +361,8 @@ var/global/list/mob/living/forced_ambiance_list = new
 		to_chat(L, SPAN_NOTICE(FONT_SMALL("[description]")))
 
 /area/proc/play_ambience(var/mob/living/L)
+	if(!do_ambience)
+		return
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.client && L.get_preference_value(/datum/client_preference/play_ambiance) == PREF_YES))	return
 
