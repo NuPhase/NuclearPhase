@@ -6,4 +6,4 @@
 	economic_power = 1
 	access = list()
 	minimal_access = list()
-	outfit_type = /decl/hierarchy/outfit/job/generic/assistant
+	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent

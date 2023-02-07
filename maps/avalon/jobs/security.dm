@@ -1,5 +1,5 @@
 /datum/job/hos
-	title = "Head of Security"
+	title = "Lieutenant"
 	head_position = 1
 	department_types = list(
 		/decl/department/security,
@@ -7,8 +7,8 @@
 	)
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
-	selection_color = "#8e2929"
+	supervisors = "nobody"
+	selection_color = "#166320"
 	req_admin_notify = 1
 	economic_power = 10
 	access = list(
@@ -91,12 +91,12 @@
 		H.implant_loyalty(H)
 
 /datum/job/warden
-	title = "Warden"
+	title = "Sergeant"
 	department_types = list(/decl/department/security)
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of security"
-	selection_color = "#601c1c"
+	supervisors = "the lieutenant"
+	selection_color = "#166320"
 	economic_power = 5
 	access = list(
 		access_security,
@@ -145,7 +145,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of security"
-	selection_color = "#601c1c"
+	selection_color = "#166320"
 	alt_titles = list(
 		"Forensic Technician" = /decl/hierarchy/outfit/job/security/detective/forensic
 	)
@@ -187,13 +187,13 @@
 	)
 
 /datum/job/officer
-	title = "Security Officer"
+	title = "Private"
 	department_types = list(/decl/department/security)
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the head of security"
-	selection_color = "#601c1c"
-	alt_titles = list("Junior Officer")
+	supervisors = "the sergeant"
+	selection_color = "#166320"
+	alt_titles = list("Recruit")
 	economic_power = 4
 	access = list(
 		access_security,

@@ -33,6 +33,7 @@
 /obj/effect/floor_decal/spline/plain/blue{
 	dir = 8
 	},
+/obj/structure/flora/pottedplant/tropical,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/skyscraper)
 "cb" = (
@@ -50,6 +51,15 @@
 "cm" = (
 /obj/structure/bed/chair/armchair/black,
 /turf/simulated/floor/tiled/dark/monotile,
+/area/skyscraper)
+"cB" = (
+/obj/structure/flora/seaweed/mid,
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/structure/window/basic,
+/obj/effect/fluid_mapped,
+/turf/simulated/floor/asteroid,
 /area/skyscraper)
 "cW" = (
 /obj/effect/floor_decal/spline/plain/paleblue,
@@ -350,6 +360,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/skyscraper)
+"wz" = (
+/obj/structure/table/woodentable/walnut,
+/obj/effect/floor_decal/spline/plain/purple{
+	dir = 1
+	},
+/obj/structure/flora/pottedplant/shoot,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/skyscraper)
 "wD" = (
 /obj/abstract/level_data/player_level,
 /turf/simulated/open/skyscraper,
@@ -406,6 +424,18 @@
 /obj/effect/invisible_barrier,
 /turf/simulated/floor/grass,
 /area/skyscraper)
+"zm" = (
+/obj/structure/flora/seaweed/large,
+/obj/structure/window/basic{
+	dir = 1;
+	layer = 2.21
+	},
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/effect/fluid_mapped,
+/turf/simulated/floor/asteroid,
+/area/skyscraper)
 "zv" = (
 /obj/abstract/landmark/latejoin/office,
 /obj/machinery/light/neon{
@@ -421,6 +451,7 @@
 /obj/effect/floor_decal/spline/plain/blue{
 	dir = 4
 	},
+/obj/structure/flora/pottedplant/smalltree,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/skyscraper)
 "Bq" = (
@@ -654,6 +685,10 @@
 	},
 /turf/simulated/floor/grass,
 /area/skyscraper)
+"Np" = (
+/obj/structure/flora/pottedplant/tall,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/skyscraper)
 "NN" = (
 /obj/structure/flora/bush/sparsegrass,
 /obj/structure/flora/bush/sparsegrass,
@@ -770,6 +805,10 @@
 	},
 /turf/simulated/floor/grass,
 /area/skyscraper)
+"Tm" = (
+/obj/structure/flora/pottedplant/stoutbush,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/skyscraper)
 "UE" = (
 /obj/structure/kitchenspike,
 /turf/simulated/floor/tiled/monotile,
@@ -835,6 +874,11 @@
 "Zz" = (
 /obj/structure/table/woodentable/walnut,
 /obj/random/clipboard,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/skyscraper)
+"ZA" = (
+/obj/structure/table/woodentable/walnut,
+/obj/structure/flora/pottedplant/small,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/skyscraper)
 "ZD" = (
@@ -22370,7 +22414,7 @@ Zm
 IY
 DV
 yc
-DT
+wz
 FG
 FG
 FG
@@ -22617,7 +22661,7 @@ yc
 yc
 yc
 yc
-DV
+Np
 jW
 rq
 jW
@@ -22739,7 +22783,7 @@ yc
 jO
 BH
 yc
-DV
+Tm
 jW
 jW
 jW
@@ -22868,8 +22912,8 @@ yc
 gA
 yc
 yc
-yc
-yc
+zm
+cB
 yc
 yc
 vI
@@ -23105,7 +23149,7 @@ yc
 lt
 BH
 yc
-DV
+Tm
 jW
 yc
 ll
@@ -23227,7 +23271,7 @@ yc
 yc
 yc
 yc
-DV
+Np
 jW
 yw
 RB
@@ -23470,7 +23514,7 @@ DV
 yc
 DT
 FG
-FG
+ZA
 FG
 jW
 cb

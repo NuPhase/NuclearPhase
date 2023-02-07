@@ -3,7 +3,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/work/heph
 	l_ear = /obj/item/radio/headset/heads/captain
-	shoes = /obj/item/clothing/under/work/heph
+	shoes = /obj/item/clothing/shoes/workboots
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/modular_computer/pda/heads/captain
 	backpack_contents = list(/obj/item/storage/box/ids = 1)
@@ -31,7 +31,7 @@
 	name = "Job - Head of Personnel"
 	uniform = /obj/item/clothing/under/lawyer/infil
 	l_ear = /obj/item/radio/headset/heads/hop
-	shoes = /obj/item/clothing/under/work/heph
+	shoes = /obj/item/clothing/shoes/workboots
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/pda/heads/hop
 	backpack_contents = list(/obj/item/storage/box/ids = 1)

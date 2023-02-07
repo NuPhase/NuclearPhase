@@ -1,5 +1,5 @@
 /datum/job/cmo
-	title = "Chief Medical Officer"
+	title = "Hospital Deputee"
 	head_position = 1
 	department_types = list(
 		/decl/department/medical,
@@ -7,7 +7,7 @@
 	)
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "nobody"
 	selection_color = "#026865"
 	req_admin_notify = 1
 	economic_power = 10
@@ -74,12 +74,12 @@
 	event_categories = list(ASSIGNMENT_MEDICAL)
 
 /datum/job/doctor
-	title = "Medical Doctor"
+	title = "Medical Corpsman"
 	department_types = list(/decl/department/medical)
 	minimal_player_age = 3
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the chief medical officer"
+	supervisors = "the hospital deputee"
 	selection_color = "#013d3b"
 	economic_power = 7
 	access = list(
@@ -133,7 +133,7 @@
 	minimal_player_age = 7
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the chief medical officer"
+	supervisors = "the hospital deputee"
 	selection_color = "#013d3b"
 	economic_power = 5
 	access = list(
@@ -170,7 +170,7 @@
 	spawn_positions = 1
 	economic_power = 5
 	minimal_player_age = 3
-	supervisors = "the chief medical officer"
+	supervisors = "the hospital deputee"
 	selection_color = "#013d3b"
 	access = list(
 		access_medical,

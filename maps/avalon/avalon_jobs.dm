@@ -4,7 +4,6 @@
 	allowed_jobs = list(
 		/datum/job/captain,
 		/datum/job/hop,
-		/datum/job/chaplain,
 		/datum/job/bartender,
 		/datum/job/chef,
 		/datum/job/hydro,
@@ -22,7 +21,6 @@
 		/datum/job/scientist,
 		/datum/job/roboticist,
 		/datum/job/hos,
-		/datum/job/detective,
 		/datum/job/warden,
 		/datum/job/officer,
 		/datum/job/officeman

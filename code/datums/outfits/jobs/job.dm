@@ -4,7 +4,7 @@
 
 	uniform = /obj/item/clothing/under/tactical
 	l_ear = /obj/item/radio/headset
-	shoes = /obj/item/clothing/under/tactical
+	shoes = /obj/item/clothing/shoes/workboots
 
 	id_slot = slot_wear_id_str
 	id_type = /obj/item/card/id/civilian

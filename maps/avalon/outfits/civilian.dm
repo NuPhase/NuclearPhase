@@ -42,13 +42,10 @@
 
 /decl/hierarchy/outfit/job/internal_affairs_agent
 	name = "Job - Internal affairs agent"
-	l_ear = /obj/item/radio/headset/ia
 	uniform = /obj/item/clothing/under/internalaffairs
 	suit = /obj/item/clothing/suit/storage/toggle/suit/black
 	shoes = /obj/item/clothing/shoes/color/brown
-	glasses = /obj/item/clothing/glasses/sunglasses/big
-	hands = list(/obj/item/storage/briefcase)
-	id_type = /obj/item/card/id/civilian/internal_affairs_agent
+	id_type = /obj/item/card/id/civilian
 	pda_type = /obj/item/modular_computer/pda/heads/paperpusher
 
 /decl/hierarchy/outfit/job/chaplain
