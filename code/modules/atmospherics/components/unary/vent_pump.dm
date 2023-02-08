@@ -26,6 +26,7 @@
 
 	var/external_pressure_bound = EXTERNAL_PRESSURE_BOUND
 	var/internal_pressure_bound = INTERNAL_PRESSURE_BOUND
+	var/pumping_fluid = FALSE
 
 	var/pressure_checks = PRESSURE_CHECKS
 	//1: Do not pass external_pressure_bound
@@ -177,6 +178,14 @@
 
 	var/datum/gas_mixture/environment = loc.return_air()
 
+	if(pumping_fluid && !pump_direction)
+		var/obj/effect/fluid/F = locate() in loc
+		if(F)
+			var/decl/material/mat = F.reagents.get_primary_reagent_decl()
+			air_contents.adjust_gas_temp(mat.type, F.reagents.total_volume / REAGENT_UNITS_PER_GAS_MOLE, environment.temperature)
+			F.Destroy()
+			update_networks()
+
 	var/power_draw = -1
 
 	//Figure out the target pressure difference
@@ -194,6 +203,7 @@
 			//limit flow rate from turfs
 			transfer_moles = min(transfer_moles, environment.total_moles*air_contents.volume/environment.volume)	//group_multiplier gets divided out here
 			power_draw = pump_gas(src, environment, air_contents, transfer_moles, power_rating)
+
 
 	else
 		//If we're in an area that is fucking ideal, and we don't have to do anything, chances are we won't next tick either so why redo these calculations?

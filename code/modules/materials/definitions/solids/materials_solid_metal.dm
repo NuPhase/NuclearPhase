@@ -475,6 +475,7 @@
 	taste_mult = 0 //no taste
 	color = "#dcdcdc"
 	value = 0.5
+	liquid_density = 19250
 
 /decl/material/solid/metal/tantalumhafniumcarbide
 	name = "tantalum hafnium carbide"

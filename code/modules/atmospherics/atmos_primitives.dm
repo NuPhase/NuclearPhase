@@ -67,23 +67,25 @@
 
 	return power_draw
 
-/proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_moles = null, var/available_power = null, var/efficiency = 0.4)
-	if (source.total_moles < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough gas just stop to avoid further processing
+/proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0, var/kgs_rating = 0, var/npower_rating = 0, var/efficiency = 0.4)
+	var/source_mass = source.get_mass()
+	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing
 		return -1
 
-	if (isnull(transfer_moles))
-		transfer_moles = source.total_moles
-	else
-		transfer_moles = min(source.total_moles, transfer_moles)
+	if(isnull(transfer_mass))
+		transfer_mass = source_mass
+	transfer_mass = min(transfer_mass, kgs_rating)
+	var/decl/material/mat = null
+	for(var/g in source.gas) //TODO: MAKE MULTIPLE LIQUIDS PUMPING
+		if(source.phases[g] == MAT_PHASE_LIQUID)
+			mat = GET_DECL(g)
+			break
 
-	if (transfer_moles < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough gas just stop to avoid further processing
-		return -1
-
-	var/datum/gas_mixture/removed = source.remove(transfer_moles)
+	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.liquid_molar_mass)
 	if (!removed) //Just in case
 		return -1
 
-	var/power_draw = transfer_moles * 5
+	var/power_draw = transfer_mass / kgs_rating * npower_rating
 
 	sink.merge(removed)
 

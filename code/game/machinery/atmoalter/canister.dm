@@ -413,8 +413,9 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/water/Initialize()
 	. = ..()
-	air_contents.adjust_gas(/decl/material/liquid/water, MolesForPressure())
-	air_contents.temperature = 340
+	air_contents.adjust_gas(/decl/material/liquid/water, MolesForVolume(/decl/material/liquid/water))
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE))
+	air_contents.temperature = T20C
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride/Initialize()
@@ -425,7 +426,8 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/reactor/Initialize()
 	. = ..()
-	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForPressure())
+	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForVolume(/decl/material/solid/metal/tungsten))
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE))
 	air_contents.temperature = 4150
 	queue_icon_update()
 

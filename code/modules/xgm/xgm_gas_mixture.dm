@@ -12,6 +12,7 @@
 	var/gas_moles = 0
 	//Volume of this mix.
 	var/volume = CELL_VOLUME
+	var/available_volume = CELL_VOLUME
 	//Size of the group this gas_mixture is representing.  1 for singletons.
 	var/group_multiplier = 1
 
@@ -22,6 +23,7 @@
 
 /datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = 0, _group_multiplier = 1)
 	volume = _volume
+	available_volume = volume
 	temperature = _temperature
 	group_multiplier = _group_multiplier
 
@@ -223,6 +225,7 @@
 	phases.Cut()
 	total_moles = 0
 	gas_moles = 0
+	var/liquid_volume = 0
 	for(var/g in gas)
 		if(gas[g] <= 0)
 			gas -= g
@@ -232,32 +235,20 @@
 			phases[g] = mat.phase_at_temperature(temperature, return_pressure())
 			if(phases[g] == MAT_PHASE_GAS)
 				gas_moles += gas[g]
+			else if(phases[g] == MAT_PHASE_LIQUID)
+				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density
+	available_volume = volume - liquid_volume
 
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure() //Legacy support
-	return return_fluid_pressure()
+	return return_gas_pressure()
 
 /datum/gas_mixture/proc/return_gas_pressure()
 	if(volume)
 		if(!gas_moles)
 			return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
 		return gas_moles * R_IDEAL_GAS_EQUATION * temperature / volume
-	return 0
-
-/datum/gas_mixture/proc/return_fluid_pressure()
-	if(volume)
-		var/total_fpressure = 0
-		var/gaspressure = return_gas_pressure()
-		var/hasfluid = FALSE
-		for(var/decl/material/mat in phases)
-			if(phases[mat] == MAT_PHASE_LIQUID)
-				var/ideal_volume = (gas[mat] * mat.molar_mass) / mat.liquid_density * 1000
-				total_fpressure += (ideal_volume / volume) * gaspressure
-				hasfluid = TRUE
-		if(hasfluid && total_fpressure == 0)
-			total_fpressure = ONE_ATMOSPHERE //To fix weird fluid bugs
-		return total_fpressure + gaspressure
 	return 0
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.

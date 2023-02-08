@@ -55,7 +55,6 @@
 	instability = Interpolate(instability, ninstability, 0.1)
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
-	return
 	if(BP_IS_PROSTHETIC(src))
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
