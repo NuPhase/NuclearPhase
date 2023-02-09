@@ -88,6 +88,8 @@
 	var/tmp/use_single_icon
 	var/center_of_mass = @"{'x':16,'y':16}" //can be null for no exact placement behaviour
 
+	var/npc_optimal_distance = 0 //if used as weapon
+
 // Foley sound callbacks
 /obj/item/proc/equipped_sound_callback()
 	if(ismob(loc) && equip_sound)

@@ -98,6 +98,7 @@
 	var/last_fire_message_time
 
 	var/hot_color
+	npc_optimal_distance = 6
 
 /obj/item/gun/Initialize()
 	. = ..()
