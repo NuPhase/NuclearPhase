@@ -96,8 +96,6 @@
 
 	var/vacuum_message_spam_cooldown = 0
 
-	var/faction = "player"
-
 /mob/living/carbon/human/proc/get_age()
 	. = LAZYACCESS(appearance_descriptors, "age") || 30
 
