@@ -1,6 +1,6 @@
 /datum/map/avalon
 	name = "Solitude"
-	full_name = "Modified Emergency 'Solitude' Survival Site"
+	full_name = "'Solitude' Emergency Shelter"
 	path = "avalon"
 
 	system_name = "Sirius"
