@@ -1,3 +1,5 @@
+var/global/list/overmap_
+
 /datum/overmap
 	var/name
 	var/assigned_z
@@ -54,7 +56,7 @@
 		else
 			T = T.ChangeTurf(overmap_turf_type)
 		ChangeArea(T, A)
-		
+
 /datum/overmap/proc/generate_overmap()
 	testing("Building overmap [name]...")
 	INCREMENT_WORLD_Z_SIZE

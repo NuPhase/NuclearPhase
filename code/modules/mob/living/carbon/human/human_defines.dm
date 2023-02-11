@@ -96,6 +96,9 @@
 
 	var/vacuum_message_spam_cooldown = 0
 
+	var/traversing_overmap = FALSE
+	var/obj/effect/overmap/human/assigned_overmap_object = null
+
 /mob/living/carbon/human/proc/get_age()
 	. = LAZYACCESS(appearance_descriptors, "age") || 30
 
