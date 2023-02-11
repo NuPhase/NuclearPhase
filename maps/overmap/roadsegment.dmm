@@ -36,6 +36,14 @@
 /obj/structure/girder,
 /turf/exterior/surface,
 /area/surface)
+"i" = (
+/obj/effect/overmap_edge{
+	dir = 4;
+	edge_id = "hw4";
+	teleport_to_id = "av4"
+	},
+/turf/exterior/concrete/reinforced/road,
+/area/surface)
 "j" = (
 /obj/effect/floor_decal/industrial/traffic/fulltile,
 /obj/effect/overmap_edge{
@@ -54,6 +62,14 @@
 /obj/effect/decal/cleanable/molten_item,
 /turf/exterior/concrete/reinforced/road,
 /area/surface)
+"m" = (
+/obj/effect/overmap_edge{
+	dir = 8;
+	edge_id = "hw7";
+	teleport_to_id = "sc2"
+	},
+/turf/exterior/concrete/reinforced/road,
+/area/surface)
 "n" = (
 /obj/structure/railing/mapped{
 	dir = 4
@@ -67,14 +83,6 @@
 "p" = (
 /obj/structure/boulder,
 /turf/exterior/surface,
-/area/surface)
-"q" = (
-/obj/effect/overmap_edge{
-	dir = 8;
-	edge_id = "hw7";
-	teleport_to_id = "sc2"
-	},
-/turf/exterior/concrete/reinforced/road,
 /area/surface)
 "r" = (
 /obj/structure/railing/mapped{
@@ -93,12 +101,10 @@
 /turf/exterior/surface,
 /area/surface)
 "u" = (
-/obj/effect/overmap_edge{
-	dir = 8;
-	edge_id = "hw6";
-	teleport_to_id = "sc1"
+/obj/abstract/map_data/example{
+	height = 2
 	},
-/turf/exterior/concrete/reinforced/road,
+/turf/exterior/wall/ice,
 /area/surface)
 "v" = (
 /obj/structure/railing/mapped{
@@ -113,8 +119,8 @@
 "x" = (
 /obj/effect/overmap_edge{
 	dir = 8;
-	edge_id = "hw10";
-	teleport_to_id = "sc5"
+	edge_id = "hw6";
+	teleport_to_id = "sc1"
 	},
 /turf/exterior/concrete/reinforced/road,
 /area/surface)
@@ -131,12 +137,8 @@
 /turf/exterior/concrete,
 /area/surface)
 "A" = (
-/obj/effect/overmap_edge{
-	dir = 4;
-	edge_id = "hw4";
-	teleport_to_id = "av4"
-	},
-/turf/exterior/concrete/reinforced/road,
+/obj/abstract/level_data/player_level,
+/turf/exterior/wall/ice,
 /area/surface)
 "B" = (
 /turf/simulated/wall/r_wall,
@@ -146,21 +148,8 @@
 /turf/simulated/open/exterior,
 /area/surface)
 "D" = (
-/obj/effect/floor_decal/industrial/traffic/fulltile,
-/obj/effect/overmap_edge{
-	dir = 4;
-	edge_id = "hw3";
-	teleport_to_id = "av3"
-	},
-/turf/exterior/concrete/reinforced/road,
-/area/surface)
-"E" = (
-/obj/effect/overmap_edge{
-	dir = 4;
-	edge_id = "hw1";
-	teleport_to_id = "av1"
-	},
-/turf/exterior/concrete/reinforced/road,
+/obj/abstract/level_data/player_level,
+/turf/exterior/surface,
 /area/surface)
 "F" = (
 /obj/effect/decal/cleanable/ash,
@@ -170,8 +159,8 @@
 "G" = (
 /obj/effect/overmap_edge{
 	dir = 4;
-	edge_id = "hw5";
-	teleport_to_id = "av5"
+	edge_id = "hw2";
+	teleport_to_id = "av2"
 	},
 /turf/exterior/concrete/reinforced/road,
 /area/surface)
@@ -192,11 +181,19 @@
 /obj/effect/decal/cleanable/ash,
 /turf/exterior/surface,
 /area/surface)
-"M" = (
+"L" = (
 /obj/effect/overmap_edge{
 	dir = 8;
-	edge_id = "hw9";
-	teleport_to_id = "sc4"
+	edge_id = "hw10";
+	teleport_to_id = "sc5"
+	},
+/turf/exterior/concrete/reinforced/road,
+/area/surface)
+"M" = (
+/obj/effect/overmap_edge{
+	dir = 4;
+	edge_id = "hw1";
+	teleport_to_id = "av1"
 	},
 /turf/exterior/concrete/reinforced/road,
 /area/surface)
@@ -218,6 +215,14 @@
 /obj/effect/floor_decal/industrial/traffic/fulltile,
 /turf/exterior/concrete/reinforced/road,
 /area/surface)
+"R" = (
+/obj/effect/overmap_edge{
+	dir = 8;
+	edge_id = "hw9";
+	teleport_to_id = "sc4"
+	},
+/turf/exterior/concrete/reinforced/road,
+/area/surface)
 "S" = (
 /obj/effect/decal/cleanable/ash,
 /obj/structure/boulder,
@@ -234,11 +239,20 @@
 /obj/item/stack/material/sheet/mapped/steel/five,
 /turf/exterior/surface,
 /area/surface)
+"V" = (
+/obj/effect/floor_decal/industrial/traffic/fulltile,
+/obj/effect/overmap_edge{
+	dir = 4;
+	edge_id = "hw3";
+	teleport_to_id = "av3"
+	},
+/turf/exterior/concrete/reinforced/road,
+/area/surface)
 "X" = (
 /obj/effect/overmap_edge{
 	dir = 4;
-	edge_id = "hw2";
-	teleport_to_id = "av2"
+	edge_id = "hw5";
+	teleport_to_id = "av5"
 	},
 /turf/exterior/concrete/reinforced/road,
 /area/surface)
@@ -313,7 +327,7 @@ a
 a
 a
 a
-a
+D
 "}
 (3,1,1) = {"
 a
@@ -4104,11 +4118,11 @@ f
 f
 C
 z
-E
-X
-D
-A
+M
 G
+V
+i
+X
 Z
 a
 k
@@ -4122,7 +4136,7 @@ k
 k
 k
 k
-k
+u
 "}
 (2,1,2) = {"
 k
@@ -4154,7 +4168,7 @@ k
 k
 k
 k
-k
+A
 "}
 (3,1,2) = {"
 k
@@ -7912,11 +7926,11 @@ f
 f
 C
 z
-u
-q
-j
-M
 x
+m
+j
+R
+L
 Z
 f
 f

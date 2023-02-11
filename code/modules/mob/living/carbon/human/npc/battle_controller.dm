@@ -5,11 +5,16 @@
 	var/optimal_distance
 	var/on_delay = FALSE
 
+/datum/npc_controller/combat/New()
+	. = ..()
+	spawn(50)
+		handle_selfprocess()
+
 /datum/npc_controller/combat/trigger()
 	if(owner.stat)
 		return
 	target = null
-	for(var/mob/living/carbon/human/potential_target in view(9))
+	for(var/mob/living/carbon/human/potential_target in view(world.view))
 		if(potential_target.stat == CONSCIOUS && potential_target.faction != owner.faction)
 			target = potential_target
 			break
@@ -21,8 +26,11 @@
 	target_distance = get_dist(owner, target)
 	if(!current_weapon)
 		optimal_distance = 1
-	else
+	else if(!get_dist(current_weapon, owner))
 		optimal_distance = current_weapon.npc_optimal_distance
+	else
+		current_weapon = null
+		optimal_distance = 1
 	if(optimal_distance < target_distance)
 		if(!target_path.len || get_turf(target) != target_path[target_path.len])
 			target_path = AStar(get_turf(owner), get_turf(target), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30)
@@ -37,9 +45,12 @@
 			owner.drop_from_inventory(current_weapon, owner.loc)
 			current_weapon = null
 		else
-			ngun.Fire(target, owner)
+			for(var/mob/living/carbon/human/shooting_target in view(world.view))
+				if(shooting_target == target)
+					ngun.Fire(target, owner)
 	else if(target_distance == 1)
 		target.default_hurt_interaction(owner)
+	return
 
 /datum/npc_controller/combat/proc/do_step()
 	if(!target_path.len)

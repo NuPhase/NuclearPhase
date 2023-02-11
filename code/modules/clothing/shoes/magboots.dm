@@ -113,3 +113,10 @@
 	if(item_flags & ITEM_FLAG_NOSLIP)
 		state = "enabled"
 	to_chat(user, "Its mag-pulse traction system appears to be [state].")
+
+/obj/item/clothing/shoes/magboots/on/Initialize()
+	. = ..()
+	item_flags |= ITEM_FLAG_NOSLIP
+	magpulse = 1
+	set_slowdown()
+	force = 5

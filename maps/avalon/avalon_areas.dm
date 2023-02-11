@@ -48,6 +48,9 @@
 	name = "\improper Testing Site Ferry"
 	icon_state = "shuttle"
 
+/area/avalon
+	base_turf = /turf/simulated/floor
+
 /area/avalon/has_gravity()
 	return TRUE
 
@@ -101,6 +104,7 @@
 	has_gravity = TRUE
 	is_outside = TRUE
 	var/phase = 0
+	base_turf = /turf/exterior/surface
 
 /*	var/hot_blurb = ""
 	var/cold_blurb = ""

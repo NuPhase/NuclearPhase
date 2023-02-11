@@ -20,11 +20,10 @@
 		ngun.safety_state = FALSE
 		controller.current_weapon = ngun
 		break
-	qdel(outf)
-	sleep(50)
-	START_PROCESSING(SSnpc, controller)
-	controller.trigger()
+	anchored = 1
+	spawn(600)
+		anchored = 0
 
 /mob/living/carbon/human/npc/combat/death(gibbed, deathmessage, show_dead_message)
 	. = ..()
-	STOP_PROCESSING(SSnpc, controller)
+	qdel(controller)

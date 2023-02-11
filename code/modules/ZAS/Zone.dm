@@ -51,7 +51,7 @@ Class Procs:
 	var/list/graphic_add = list()
 	var/list/graphic_remove = list()
 	var/last_air_temperature = TCMB
-	var/condensing = FALSE
+	var/condensing = TRUE //temporarily disable that
 
 /zone/New()
 	SSair.add_zone(src)
