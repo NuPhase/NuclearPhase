@@ -97,7 +97,7 @@
 
 	var/datum/gas_mixture/prop_air = propulsion_tank.air_contents.remove_ratio(prop_percent * 0.01)
 	prop_air.volume = 1.2 //combustion chamber volume
-	prop_air.react(null, 1, 1)
+	prop_air.fire_react(null, 1, 1)
 	if(prop_air.temperature > 400)
 		playsound(owner.wearer, 'sound/machines/disperser_fire.ogg', 50, 1)
 	else

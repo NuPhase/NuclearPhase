@@ -46,7 +46,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /zone/proc/process_fire()
 	var/datum/gas_mixture/burn_gas = air.remove_ratio(vsc.fire_consuption_rate, fire_tiles.len)
 
-	var/firelevel = burn_gas.react(src, fire_tiles, force_burn = 1, no_check = 1)
+	var/firelevel = burn_gas.fire_react(src, fire_tiles, force_burn = 1, no_check = 1)
 
 	air.merge(burn_gas)
 
@@ -199,7 +199,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	fire_protection = world.time
 
 //Returns the firelevel
-/datum/gas_mixture/proc/react(zone/zone, force_burn, no_check = 0)
+/datum/gas_mixture/proc/fire_react(zone/zone, force_burn, no_check = 0)
 	. = 0
 	if((temperature > FLAMMABLE_GAS_MINIMUM_BURN_TEMPERATURE || force_burn) && (no_check ||check_recombustibility()))
 

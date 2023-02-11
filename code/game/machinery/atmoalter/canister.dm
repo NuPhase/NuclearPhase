@@ -269,7 +269,7 @@ update_flag
 	else
 		can_label = 0
 
-	air_contents.react()
+	air_contents.fire_react()
 
 /obj/machinery/portable_atmospherics/canister/proc/return_temperature()
 	var/datum/gas_mixture/GM = src.return_air()

@@ -372,7 +372,7 @@ var/global/list/global/tank_gauge_cache = list()
 	return removed
 
 /obj/item/tank/Process()
-	air_contents.react()
+	air_contents.fire_react()
 	check_status()
 
 /obj/item/tank/on_update_icon(var/override)
@@ -416,9 +416,9 @@ var/global/list/global/tank_gauge_cache = list()
 				log_and_message_admins("Explosive tank rupture! last key to touch the tank was [fingerprintslast].")
 
 			//Give the gas a chance to build up more pressure through reacting
-			air_contents.react()
-			air_contents.react()
-			air_contents.react()
+			air_contents.fire_react()
+			air_contents.fire_react()
+			air_contents.fire_react()
 
 			pressure = air_contents.return_pressure()
 			var/strength = ((pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE)

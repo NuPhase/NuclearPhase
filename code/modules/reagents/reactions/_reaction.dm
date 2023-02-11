@@ -86,3 +86,34 @@
 //this is called just before reactants are removed.
 /decl/chemical_reaction/proc/send_data(var/datum/reagents/holder, var/reaction_limit)
 	return null
+
+
+/decl/chemical_reaction/proc/process_gas(var/datum/gas_mixture/holder, var/limit)
+
+	var/reaction_volume = holder.volume
+	for(var/reactant in required_reagents)
+		var/A = holder.gas[reactant] * REAGENT_UNITS_PER_GAS_MOLE / required_reagents[reactant] / limit // How much of this reagent we are allowed to use
+		if(reaction_volume > A)
+			reaction_volume = A
+
+	for(var/reactant in required_reagents)
+		holder.adjust_gas(reactant, !(reaction_volume * required_reagents[reactant]))
+
+	//add the product
+	var/amt_produced = result_amount * reaction_volume
+	if(result)
+		holder.adjust_gas(result, amt_produced / REAGENT_UNITS_PER_GAS_MOLE)
+
+	//on_reaction(holder, amt_produced, reaction_flags)
+
+//called after processing reactions, if they occurred
+/decl/chemical_reaction/proc/post_reaction_gas(var/datum/gas_mixture/holder)
+	var/atom/container = holder.holder
+	if(mix_message && container && !ismob(container))
+		var/turf/T = get_turf(container)
+		if(istype(T))
+			T.visible_message(SPAN_NOTICE("[html_icon(container)] [mix_message]"))
+		else
+			container.visible_message(SPAN_NOTICE("[html_icon(container)] [mix_message]"))
+		if(reaction_sound)
+			playsound(T || container, reaction_sound, 80, 1)

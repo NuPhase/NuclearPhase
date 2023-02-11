@@ -131,7 +131,7 @@
 					qdel(removed)
 				changed = TRUE
 	if(changed)
-		cockpit.react()
+		cockpit.fire_react()
 
 /obj/item/mech_component/chassis/ready_to_install()
 	return (cell && diagnostics && m_armour)
@@ -167,7 +167,7 @@
 		var/obj/machinery/portable_atmospherics/canister/C = dropping
 		if(pilot_coverage < 100)
 			to_chat(user, SPAN_NOTICE("This type of chassis doesn't support internals."))
-			return TRUE	
+			return TRUE
 		if(!C.anchored && do_after(user, 5, src))
 			if(C.anchored)
 				return

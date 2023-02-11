@@ -72,7 +72,7 @@
 	if(hotspot && !isspaceturf(T))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
 		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
+		lowertemp.fire_react()
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 

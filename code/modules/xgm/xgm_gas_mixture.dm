@@ -21,6 +21,8 @@
 	//Cache of gas overlay objects
 	var/list/tile_overlay_cache
 
+	var/atom/holder = null //for chemistry
+
 /datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = 0, _group_multiplier = 1)
 	volume = _volume
 	available_volume = volume
@@ -522,7 +524,7 @@
 		combined.update_values()
 
 		//Allow for reactions
-		combined.react()
+		combined.fire_react()
 
 		//Average out the gases
 		for(var/g in combined.gas)
