@@ -24,7 +24,7 @@
 	scope_zoom = 1.5
 	one_hand_penalty = 8
 	bulk = 8
-	fire_delay = 20
+	fire_delay = 40
 	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
 	mag_remove_sound = 'sound/weapons/guns/interaction/batrifle_magout.ogg'
 	material = /decl/material/solid/metal/tantalumhafniumcarbide

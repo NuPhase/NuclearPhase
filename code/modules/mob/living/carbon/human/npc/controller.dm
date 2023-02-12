@@ -4,6 +4,11 @@
 
 /datum/npc_controller/proc/trigger()
 
+/datum/npc_controller/New()
+	. = ..()
+	spawn(50)
+		handle_selfprocess()
+
 /datum/npc_controller/proc/handle_selfprocess()
 	trigger()
 	spawn(3)

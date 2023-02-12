@@ -4,17 +4,15 @@
 	var/target_distance
 	var/optimal_distance
 	var/on_delay = FALSE
-
-/datum/npc_controller/combat/New()
-	. = ..()
-	spawn(50)
-		handle_selfprocess()
+	var/attack_on_cooldown = FALSE
 
 /datum/npc_controller/combat/trigger()
 	if(owner.stat)
+		owner.drop_from_inventory(current_weapon, owner.loc)
+		current_weapon = null
 		return
 	target = null
-	for(var/mob/living/carbon/human/potential_target in view(world.view))
+	for(var/mob/living/carbon/human/potential_target in view(world.view, owner))
 		if(potential_target.stat == CONSCIOUS && potential_target.faction != owner.faction)
 			target = potential_target
 			break
@@ -45,11 +43,16 @@
 			owner.drop_from_inventory(current_weapon, owner.loc)
 			current_weapon = null
 		else
-			for(var/mob/living/carbon/human/shooting_target in view(world.view))
+			for(var/mob/living/carbon/human/shooting_target in view(world.view, owner))
 				if(shooting_target == target)
-					ngun.Fire(target, owner)
+					spawn(2)
+						ngun.Fire(target, owner)
 	else if(target_distance == 1)
-		target.default_hurt_interaction(owner)
+		if(!attack_on_cooldown)
+			target.default_hurt_interaction(owner)
+			attack_on_cooldown = TRUE
+			spawn(15)
+				attack_on_cooldown = FALSE
 	return
 
 /datum/npc_controller/combat/proc/do_step()
