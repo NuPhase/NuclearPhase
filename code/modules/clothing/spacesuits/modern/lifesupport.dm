@@ -212,15 +212,3 @@
 		usr.put_in_hands(atmosphere_filter)
 		to_chat(usr, "<span class='notice'>You eject \the [atmosphere_filter].</span>")
 		atmosphere_filter = null
-
-/obj/item/storage/backpack/lifesupportpack/verb/purge()
-	set name = "Purge Internal Atmosphere"
-	set category = "Life Support"
-	set src in usr
-
-	if(!istype(src.loc,/mob/living)) return
-
-	owner.internal_atmosphere.remove(owner.internal_atmosphere.total_moles)
-	do_support() //fill it up immediately
-	to_chat(owner, SPAN_DANGER("INTERNAL ATMOSPHERE PURGED!"))
-	playsound(owner.wearer, 'sound/effects/undock.ogg', 100, 1)

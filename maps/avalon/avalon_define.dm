@@ -25,7 +25,8 @@
 	planetary_area = /area/surface
 
 	lobby_screens = list(
-		'maps/avalon/cdllobby.jpg'
+		'maps/avalon/cdllobby.jpg',
+		'maps/avalon/pulsarlobby.jpg'
 	)
 
 	lobby_tracks = list(

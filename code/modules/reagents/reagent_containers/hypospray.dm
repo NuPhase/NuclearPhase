@@ -188,11 +188,6 @@
 	band_color = COLOR_PURPLE
 	starts_with = list(/decl/material/liquid/painkillers = 5)
 
-/obj/item/chems/hypospray/autoinjector/adminordrazine
-	name = "autoinjector (panacea)"
-	band_color = COLOR_GOLD
-	starts_with = list(/decl/material/liquid/adminordrazine = 1)
-
 /obj/item/chems/hypospray/autoinjector/antirad
 	name = "autoinjector (anti-rad)"
 	band_color = COLOR_AMBER

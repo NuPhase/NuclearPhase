@@ -93,8 +93,6 @@
 #define COLOR_ASTEROID_ROCK    "#735555"
 #define COLOR_DIAMOND          "#d8d4ea"
 
-#define COLOR_LIQUID_HELIUM	   "#bd9ae0"
-
 #define COLOR_COLD_SURFACE	   "#0c61ae"
 #define COLOR_SUNRISE_SURFACE1 "#cc0000"
 #define COLOR_SUNRISE_SURFACE2 "#db2e03"
