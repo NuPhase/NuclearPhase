@@ -125,11 +125,11 @@
 		return TRUE
 
 	else if(user.zone_sel.selecting == BP_CHEST)
-		var/obj/item/clothing/suit/space/suit = H.get_equipped_item(slot_wear_suit_str)
+		var/obj/item/clothing/suit/modern/space/suit = H.get_equipped_item(slot_wear_suit_str)
 		if(istype(suit))
 			suit.attackby(src, user)//everything is handled by attackby
 		else
-			to_chat(user, SPAN_WARNING("\The [H] isn't wearing a spacesuit for you to reseal."))
+			to_chat(user, SPAN_WARNING("\The [H] isn't wearing a pressure suit for you to reseal."))
 		return TRUE
 	return ..()
 

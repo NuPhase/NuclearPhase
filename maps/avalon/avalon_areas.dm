@@ -99,8 +99,8 @@
 /area/surface
 	name = "Surface"
 	var/list/hot_ambience = list()
-	var/list/cold_ambience = list('sound/music/nothing.ogg', 'sound/music/stars.ogg')
-	forced_ambience = list('sound/music/nothing.ogg', 'sound/music/stars.ogg')
+	var/list/cold_ambience = list()
+	forced_ambience = list()
 	has_gravity = TRUE
 	is_outside = TRUE
 	var/phase = 0

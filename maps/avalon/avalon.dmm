@@ -564,10 +564,18 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/prison)
 "bY" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
+/obj/structure/rack,
+/obj/item/clothing/suit/modern/space/combat_specialized/cold,
+/obj/item/clothing/suit/modern/space/combat_specialized/cold,
+/obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
+/obj/item/gun/projectile/railgun,
+/obj/item/clothing/glasses/thermal/plain,
+/obj/machinery/door/window/northright{
+	layer = 2.21
 	},
-/turf/simulated/floor/plating,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "bZ" = (
 /obj/structure/cable{
@@ -664,8 +672,10 @@
 /obj/structure/fireaxecabinet{
 	pixel_y = 29
 	},
-/obj/item/clothing/suit/space/void/excavation/prepared,
-/obj/item/tank/oxygen/yellow,
+/obj/item/hatchet/machete/steel,
+/obj/item/hatchet/machete/steel,
+/obj/item/hatchet/machete/steel,
+/obj/item/hatchet/machete/steel,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "cp" = (
@@ -1278,6 +1288,11 @@
 "eA" = (
 /obj/structure/table/steel,
 /obj/random/trash,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "eC" = (
@@ -1941,7 +1956,7 @@
 /area/avalon/shelter/reactormonitoring)
 "gO" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "gP" = (
 /obj/structure/wall_frame/standard,
@@ -2348,9 +2363,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "ik" = (
-/obj/effect/fluid_mapped/helium,
-/turf/exterior/wall,
-/area/surface)
+/obj/structure/closet/l3closet,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/upperhall)
 "il" = (
 /obj/structure/hygiene/toilet,
 /obj/machinery/camera/autoname,
@@ -3527,10 +3542,13 @@
 /turf/simulated/open,
 /area/avalon/shelter/messhall)
 "mc" = (
-/obj/effect/floor_decal/industrial/warning/dust{
+/obj/effect/floor_decal/corner/brown/bordercorner{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "md" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -3578,6 +3596,7 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 6
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "mj" = (
@@ -5357,7 +5376,13 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/modern/space/combat_specialized/cold,
 /obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
-/obj/item/gun/projectile/sniper/ngdmr,
+/obj/item/gun/projectile/railgun,
+/obj/item/clothing/glasses/thermal/plain,
+/obj/machinery/door/window/northright{
+	layer = 2.21
+	},
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "sb" = (
@@ -5885,6 +5910,15 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig/breakroom)
+"tH" = (
+/obj/structure/table/steel,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/obj/item/crowbar,
+/turf/simulated/floor/tiled,
+/area/avalon/shelter/expeditionpreparation)
 "tJ" = (
 /obj/structure/cable{
 	icon_state = "32-8";
@@ -6032,6 +6066,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "uh" = (
@@ -6942,10 +6977,22 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "xq" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 10
+/obj/structure/rack,
+/obj/item/clothing/suit/modern/space/combat_specialized/cold,
+/obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
+/obj/item/gun/projectile/railgun,
+/obj/item/clothing/glasses/thermal/plain,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/turf/simulated/floor/plating,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.21
+	},
+/obj/machinery/door/window/southright,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "xr" = (
 /obj/structure/closet/secure_closet/guncabinet,
@@ -8198,6 +8245,7 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 4
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "BF" = (
@@ -8459,6 +8507,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "Cu" = (
@@ -8650,12 +8699,6 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/machinehall)
-"CU" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 5
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/expeditionpreparation)
 "CV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -9014,9 +9057,17 @@
 "Ej" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/modern/space/combat_specialized/cold,
-/obj/item/clothing/suit/modern/space/combat_specialized/cold,
 /obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
-/obj/item/gun/projectile/sniper/ngdmr,
+/obj/item/gun/projectile/railgun,
+/obj/item/clothing/glasses/thermal/plain,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/window/northright{
+	layer = 2.21
+	},
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "Ek" = (
@@ -9860,6 +9911,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "Ha" = (
@@ -10335,6 +10387,7 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 6
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "Iy" = (
@@ -10924,6 +10977,7 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
+/obj/structure/closet/crate,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "Ko" = (
@@ -11134,12 +11188,20 @@
 /area/avalon/shelter/science)
 "KY" = (
 /obj/structure/table/steel,
-/obj/item/ammo_magazine/c10x77,
-/obj/item/ammo_magazine/c10x77,
-/obj/item/ammo_magazine/c10x77,
-/obj/item/ammo_magazine/c10x77,
-/obj/item/ammo_magazine/c10x77,
-/obj/item/ammo_magazine/c10x77,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
+/obj/item/ammo_magazine/railgunfletchette,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "KZ" = (
@@ -11291,13 +11353,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/breakerroom)
 "Ly" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "Lz" = (
 /obj/machinery/chem_master,
@@ -11356,9 +11415,6 @@
 /obj/item/stack/material/puck/mapped/uranium/forty,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/engineering)
-"LL" = (
-/turf/simulated/floor/plating,
-/area/avalon/shelter/expeditionpreparation)
 "LM" = (
 /obj/effect/floor_decal/corner/white/border{
 	dir = 1
@@ -11377,15 +11433,12 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "LP" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 9
-	},
 /obj/machinery/alarm{
 	pixel_y = 22;
 	tag = "mainairlocka";
 	id_tag = "mainairlocka"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "LQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
@@ -11506,6 +11559,7 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 5
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "Mn" = (
@@ -11586,6 +11640,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "My" = (
@@ -11896,12 +11951,6 @@
 /obj/item/roller,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon)
-"Nu" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 6
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/expeditionpreparation)
 "Nv" = (
 /obj/effect/catwalk_plated/dark,
 /obj/structure/table/steel_reinforced,
@@ -12577,11 +12626,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "Pz" = (
-/obj/structure/rack,
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 10
 	},
 /obj/machinery/light,
+/obj/structure/closet/crate,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "PA" = (
@@ -12745,6 +12794,7 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 4
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "Qd" = (
@@ -12822,6 +12872,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "Qo" = (
@@ -13481,13 +13532,12 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "Sv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack,
-/obj/item/clothing/suit/modern/space/combat_specialized/cold,
-/obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
-/obj/item/gun/projectile/sniper/ngdmr,
-/turf/simulated/floor/tiled/monotile,
-/area/avalon/shelter/expeditionpreparation)
+/obj/effect/floor_decal/corner/white/border{
+	dir = 10
+	},
+/obj/abstract/landmark/start,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/upperhall)
 "Sw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -14863,12 +14913,21 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/stack/tape_roll/duct_tape,
+/obj/item/stack/tape_roll/suit_sealing,
+/obj/item/stack/tape_roll/suit_sealing,
+/obj/item/stack/tape_roll/suit_sealing,
+/obj/item/stack/tape_roll/suit_sealing,
+/obj/item/stack/tape_roll/suit_sealing,
+/obj/item/stack/tape_roll/suit_sealing,
+/obj/item/stack/tape_roll/suit_sealing,
+/obj/item/stack/tape_roll/suit_sealing,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "WU" = (
 /obj/structure/table/steel,
-/obj/item/stock_parts/access_lock,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "WV" = (
@@ -15251,12 +15310,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
-"XZ" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/expeditionpreparation)
 "Ya" = (
 /obj/structure/rack,
 /obj/item/storage/box/ammo/shotgunammo,
@@ -15391,6 +15444,7 @@
 /obj/effect/floor_decal/corner/white/border{
 	dir = 4
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "Yv" = (
@@ -15793,6 +15847,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "ZK" = (
@@ -15813,7 +15868,7 @@
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "ZO" = (
-/obj/structure/closet/masks,
+/obj/structure/closet/radiation,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/upperhall)
 "ZP" = (
@@ -15859,8 +15914,23 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "ZV" = (
-/obj/effect/floor_decal/industrial/warning/dust,
-/turf/simulated/floor/plating,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/clothing/suit/modern/space/combat_specialized/cold,
+/obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
+/obj/item/gun/projectile/railgun,
+/obj/item/clothing/glasses/thermal/plain,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.21
+	},
+/obj/machinery/door/window/southright,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/obj/item/chems/hypospray/autoinjector/adminordrazine,
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "ZX" = (
 /obj/structure/flora/bush/reedbush,
@@ -241729,7 +241799,7 @@ Mx
 Qn
 uf
 Ct
-uz
+Sv
 wo
 ra
 nu
@@ -242248,7 +242318,7 @@ BE
 Zq
 Nm
 nu
-ZO
+ik
 ZO
 Pv
 Pv
@@ -243010,7 +243080,7 @@ nL
 nL
 nL
 ay
-eA
+tH
 KY
 rt
 VD
@@ -243401,7 +243471,7 @@ nL
 ay
 Ov
 oF
-KD
+mc
 YK
 Ej
 Hn
@@ -243531,9 +243601,9 @@ nL
 ay
 Ms
 rt
-sa
+xq
 Ls
-sa
+Ej
 Hn
 sL
 jl
@@ -243553,9 +243623,9 @@ Hn
 nL
 nL
 nL
-ik
-ik
-ik
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -243661,7 +243731,7 @@ nL
 ay
 oI
 KD
-sa
+xq
 Ls
 sa
 Hn
@@ -243681,11 +243751,11 @@ oy
 iL
 Hn
 nL
-ik
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -243791,7 +243861,7 @@ nL
 se
 vK
 bK
-sa
+xq
 DA
 Hn
 Hn
@@ -243810,11 +243880,11 @@ Zi
 TM
 iL
 Hn
-ik
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -243921,9 +243991,9 @@ nL
 ay
 qB
 bh
-Sv
+ZV
 Ls
-sa
+Ej
 Hn
 Uk
 fL
@@ -243940,10 +244010,10 @@ Zi
 oy
 oy
 Hn
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -244051,9 +244121,9 @@ nL
 ay
 eA
 rt
-sa
+xq
 Ls
-sa
+Ej
 Hn
 oy
 oy
@@ -244070,10 +244140,10 @@ wj
 oy
 oy
 Hn
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -244183,7 +244253,7 @@ oz
 rt
 bK
 Ls
-Ej
+bY
 Hn
 th
 th
@@ -244200,11 +244270,11 @@ Xd
 iL
 Tk
 Hn
-ik
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -244330,11 +244400,11 @@ mr
 oy
 Hn
 Hn
-ik
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -244459,11 +244529,11 @@ Wi
 xT
 Hn
 Hn
-ik
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -244571,10 +244641,10 @@ nL
 nL
 ay
 NL
-bh
 bK
+xq
 bK
-bK
+xq
 mq
 wc
 sU
@@ -244589,11 +244659,11 @@ dE
 Hn
 nL
 nL
-ik
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -244702,8 +244772,8 @@ nL
 ay
 ay
 LP
-XZ
-XZ
+xq
+bK
 xq
 FV
 mR
@@ -244719,11 +244789,11 @@ Yc
 Hn
 nL
 nL
-ik
-ik
-ik
-ik
-ik
+nL
+nL
+nL
+nL
+nL
 Tp
 Tp
 Tp
@@ -244831,10 +244901,10 @@ nL
 nL
 nL
 ay
-mc
-LL
+bK
+xq
 gO
-ZV
+xq
 FV
 VW
 rt
@@ -244853,7 +244923,7 @@ HD
 HD
 HD
 HD
-ik
+nL
 Tp
 Tp
 Tp
@@ -244962,8 +245032,8 @@ nL
 nL
 ay
 Ly
-LL
-LL
+ZV
+bK
 ZV
 FV
 mR
@@ -244983,7 +245053,7 @@ HD
 ku
 Xb
 HD
-ik
+nL
 Tp
 Tp
 Tp
@@ -245091,10 +245161,10 @@ nL
 nL
 nL
 ay
-CU
-bY
-bY
-Nu
+bK
+xq
+bK
+xq
 Wn
 Jm
 KD
@@ -245113,7 +245183,7 @@ HD
 AN
 DQ
 HD
-ik
+nL
 Tp
 Tp
 Tp
@@ -245243,7 +245313,7 @@ HD
 HD
 HD
 HD
-ik
+nL
 Tp
 Tp
 Tp
@@ -245372,8 +245442,8 @@ nL
 nL
 nL
 nL
-ik
-ik
+nL
+nL
 Tp
 Tp
 Tp
