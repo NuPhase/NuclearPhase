@@ -138,7 +138,9 @@
 
 /turf/simulated/floor/reinforced/reactor/Initialize(ml, floortype)
 	. = ..()
-	air.temperature = 110000
+	var/datum/gas_mixture/gm = return_air()
+	if(gm)
+		gm.temperature = 110000
 
 /turf/simulated/floor/reinforced/he
 	initial_gas = list(/decl/material/gas/hydrogen = 20)

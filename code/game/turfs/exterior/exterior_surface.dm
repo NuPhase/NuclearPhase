@@ -56,6 +56,8 @@
 		clear_ambient_light()
 
 /turf/exterior/surface/return_air()
+	if(!mapowner)
+		return
 	var/datum/gas_mixture/gas
 	gas = new
 	gas.copy_from(mapowner.exterior_atmosphere)
