@@ -19,6 +19,7 @@
 	base_type = /obj/machinery/door/window
 	frame_type = /obj/structure/windoor_assembly
 	var/base_state = "left"
+	var/force_north_dir = FALSE
 
 /obj/machinery/door/window/get_auto_access()
 	var/area/A = get_area(src)
@@ -34,6 +35,9 @@
 	update_nearby_tiles()
 
 /obj/machinery/door/window/on_update_icon()
+	if(dir == 1 && force_north_dir)
+		layer = BELOW_OBJ_LAYER
+
 	if(density)
 		icon_state = base_state
 	else
@@ -220,6 +224,7 @@
 
 /obj/machinery/door/window/northleft
 	dir = NORTH
+	force_north_dir = TRUE
 
 /obj/machinery/door/window/eastleft
 	dir = EAST
@@ -234,6 +239,7 @@
 	dir = NORTH
 	icon_state = "right"
 	base_state = "right"
+	force_north_dir = TRUE
 
 /obj/machinery/door/window/eastright
 	dir = EAST
@@ -252,6 +258,7 @@
 
 /obj/machinery/door/window/brigdoor/northleft
 	dir = NORTH
+	force_north_dir = TRUE
 
 /obj/machinery/door/window/brigdoor/eastleft
 	dir = EAST
@@ -266,6 +273,7 @@
 	dir = NORTH
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
+	force_north_dir = TRUE
 
 /obj/machinery/door/window/brigdoor/eastright
 	dir = EAST

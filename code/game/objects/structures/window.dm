@@ -424,7 +424,6 @@
 	else
 		color = GLASS_COLOR
 
-	layer = FULL_WINDOW_LAYER
 	if(!is_fulltile())
 		if(!force_north_dir)
 			layer = SIDE_WINDOW_LAYER
