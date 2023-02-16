@@ -86,6 +86,11 @@
 /obj/machinery/light/spot/neon
 	light_type = /obj/item/light/tube/large/neon
 
+/obj/machinery/light/ultraviolet
+	name = "grow light"
+	light_type = /obj/item/light/tube/ultraviolet
+	active_power_usage = 200 //200W industrial grow light
+
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, d=0, populate_parts = TRUE)
 	. = ..()
@@ -538,6 +543,10 @@
 	name = "large light tube"
 	b_power = 4
 	b_range = 12
+
+/obj/item/light/tube/ultraviolet
+	name = "grow light tube"
+	b_color = LIGHT_COLOR_ULTRAVIOLET
 
 /obj/item/light/tube/large/neon
 	b_color = LIGHT_COLOR_PURPLE
