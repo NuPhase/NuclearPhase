@@ -14,6 +14,7 @@ GLOBAL_GETTER(headset, /obj/item/radio/announcer/subspace, new)
 var/global/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 var/global/datum/sun/sun = new
 var/global/datum/universal_state/universe = new
+var/global/datum/reactor_control_system/rcontrol = new
 
 /// Vowels.
 var/global/list/vowels = list("a","e","i","o","u")

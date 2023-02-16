@@ -22,6 +22,7 @@
 	var/list/tile_overlay_cache
 
 	var/atom/holder = null //for chemistry
+	var/net_flow_mass = 0 //kg/s, updated from networks
 
 /datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = 0, _group_multiplier = 1)
 	volume = _volume

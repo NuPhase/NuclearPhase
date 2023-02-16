@@ -21,9 +21,9 @@
 
 /obj/item/clipboard/reactor
 	name = "personal reactor operations clipboard"
-	papers = list(/obj/item/paper/reactor/general)
+	var/list/new_papers = list(/obj/item/paper/reactor/general)
 
 /obj/item/clipboard/reactor/Initialize()
+	for(var/P in new_papers)
+		papers += new P
 	. = ..()
-	for(var/obj/item/paper/P in papers)
-		papers[P] = new

@@ -26,3 +26,5 @@ var/global/list/mimic_defines = list(
 // Movable flags.
 #define ZMM_IGNORE 1	//! Do not copy this movable.
 #define ZMM_MANGLE_PLANES  2	//! Check this movable's overlays/underlays for explicit plane use and mangle for compatibility with Z-Mimic. If you're using emissive overlays, you probably should be using this flag. Expensive, only use if necessary.
+
+#define GET_ABOVE(T) (HasAbove(T:z) ? get_step(T, UP) : null)

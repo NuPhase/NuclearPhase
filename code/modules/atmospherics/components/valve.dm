@@ -26,6 +26,11 @@
 	base_type = /obj/machinery/atmospherics/valve/buildable
 	interact_offline = TRUE
 
+/obj/machinery/atmospherics/valve/Initialize()
+	. = ..()
+	if(uid)
+		rcontrol.reactor_valves[uid] = src
+
 /obj/machinery/atmospherics/valve/buildable
 	uncreated_component_parts = null
 

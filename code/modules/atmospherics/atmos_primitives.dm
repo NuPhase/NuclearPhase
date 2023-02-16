@@ -91,6 +91,25 @@
 
 	return power_draw
 
+/proc/pump_fluid_passive(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0)
+	var/source_mass = source.get_mass()
+	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing
+		return -1
+
+	if(isnull(transfer_mass))
+		transfer_mass = source_mass
+	var/decl/material/mat = null
+	for(var/g in source.gas) //TODO: MAKE MULTIPLE LIQUIDS PUMPING
+		if(source.phases[g] == MAT_PHASE_LIQUID)
+			mat = GET_DECL(g)
+			break
+
+	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.liquid_molar_mass)
+	if (!removed) //Just in case
+		return -1
+
+	sink.merge(removed)
+
 //Gas 'pumping' proc for the case where the gas flow is passive and driven entirely by pressure differences (but still one-way).
 /proc/pump_gas_passive(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_moles = null)
 	if (source.total_moles < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough gas just stop to avoid further processing

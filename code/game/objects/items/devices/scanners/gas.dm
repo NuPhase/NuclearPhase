@@ -82,7 +82,7 @@
 				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string] | Phase: [mat.phase_at_temperature(mixture.temperature, mixture.return_pressure())]"
 			var/totalGas_add_string = ""
 			if(mode == MV_MODE)
-				totalGas_add_string = ", Total weight: [round(mixture.get_mass(), 0.01)], Free Volume: [mixture.available_volume]L"
+				totalGas_add_string = ", Total weight: [round(mixture.get_mass(), 0.01)]kg, Free Volume: [mixture.available_volume]L"
 			. += "Temperature: [round(mixture.temperature-T0C)]&deg;C / [round(mixture.temperature)]K[totalGas_add_string]"
 
 			return

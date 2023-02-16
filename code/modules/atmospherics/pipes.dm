@@ -318,6 +318,11 @@
 	alert_pressure = 350*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_FUEL
 
+/obj/machinery/atmospherics/pipe/simple/visible/steam
+	name = "steam pipe"
+	color = PIPE_COLOR_ORANGE
+	volume = 6500 //2m diameter
+
 /obj/machinery/atmospherics/pipe/simple/hidden
 	level = 1
 	alpha = 128		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
@@ -442,6 +447,11 @@
 	name = "fuel pipe manifold"
 	color = PIPE_COLOR_ORANGE
 	connect_types = CONNECT_TYPE_FUEL
+
+/obj/machinery/atmospherics/pipe/manifold/visible/steam
+	name = "steam pipe manifold"
+	color = PIPE_COLOR_ORANGE
+	volume = 9000 //2m diameter
 
 /obj/machinery/atmospherics/pipe/manifold/hidden
 	icon_state = "map"

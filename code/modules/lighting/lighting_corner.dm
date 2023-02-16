@@ -116,8 +116,6 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 #undef OVERLAY_PRESENT
 
-#define GET_ABOVE(T) (HasAbove(T:z) ? get_step(T, UP) : null)
-
 #define UPDATE_APPARENT apparent_r = self_r + below_r + ambient_r; apparent_b = self_b + below_b + ambient_b; apparent_g = self_g + below_g + ambient_g
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
@@ -160,8 +158,6 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 		SSlighting.corner_queue += src
 	else
 		update_overlays(TRUE)
-
-#undef GET_ABOVE
 
 /datum/lighting_corner/proc/update_below_lumcount(delta_r, delta_g, delta_b, now = FALSE)
 	if (!(delta_r + delta_g + delta_b))
