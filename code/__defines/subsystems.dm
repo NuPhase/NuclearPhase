@@ -52,6 +52,7 @@
 #define SS_INIT_ZCOPY           -8
 #define SS_INIT_XENOARCH        -10
 #define SS_INIT_TICKER          -20
+#define SS_INIT_CHAT            -90
 #define SS_INIT_UNIT_TESTS      -100
 
 // SS runlevels
@@ -62,3 +63,5 @@
 #define RUNLEVEL_GAME 4
 #define RUNLEVEL_POSTGAME 8
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
+
+#define RUNLEVELS_ALL (~0)

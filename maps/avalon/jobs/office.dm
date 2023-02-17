@@ -7,3 +7,4 @@
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
+	is_ghost_role = TRUE

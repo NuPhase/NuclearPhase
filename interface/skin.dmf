@@ -233,6 +233,15 @@ window "outputwindow"
 		can-resize = false
 		is-pane = true
 		outer-size = 654x494
+	elem "browseroutput"
+		type = BROWSER
+		pos = 0,0
+		size = 640x456
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #ffffff
+		is-visible = false
+		saved-params = ""
 	elem "output"
 		type = OUTPUT
 		pos = 0,0
@@ -376,16 +385,6 @@ window "rpane"
 		command = ".winset \"rpanewindow.left=infowindow\""
 		group = "rpanemode"
 		button-type = pushbox
-	elem "button_codex"
-		type = BUTTON
-		pos = 133,0
-		size = 60x15
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Codex"
-		command = "Codex"
-		group = "rpanemode"
 
 window "preferences_window"
 	elem "preferences_window"

@@ -57,6 +57,7 @@
 	var/list/species_branch_rank_cache_ = list()
 
 	var/required_language
+	var/is_ghost_role = FALSE
 
 /datum/job/New()
 
@@ -203,7 +204,7 @@
 			apply_fingerprints_to_item(holder, sub_item)
 
 /datum/job/proc/is_position_available()
-	return (current_positions < total_positions) || (total_positions == -1)
+	return (current_positions < total_positions) || (total_positions == -1) && !is_ghost_role
 
 /datum/job/proc/has_alt_title(var/mob/H, var/supplied_title, var/desired_title)
 	return (supplied_title == desired_title) || (H.mind && H.mind.role_alt_title == desired_title)
@@ -235,6 +236,11 @@
 	if(special_blocker)
 		to_chat(feedback, "<span class='boldannounce'>Your current preferences are not appropriate for [title] due to: '[special_blocker]'.</span>")
 		return TRUE
+
+	if(is_ghost_role)
+		to_chat(feedback, "<span class='boldannounce'>This is ghost role!</span>")
+		return TRUE
+
 
 	return FALSE
 

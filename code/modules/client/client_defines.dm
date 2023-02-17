@@ -73,3 +73,8 @@
 	var/next_move_dir_sub
 	/// Movement dir of the most recently pressed movement key. Used in cardinal-only movement mode.
 	var/last_move_dir_pressed
+
+	///goonchat chatoutput of the client
+	var/datum/chatOutput/chatOutput
+
+	var/fullscreen = FALSE

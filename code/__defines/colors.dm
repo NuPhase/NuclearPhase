@@ -193,6 +193,10 @@
 #define LIGHT_COLOR_HALOGEN    "#f0fafa" //Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
 #define LIGHT_COLOR_EMERGENCY  "#ff3232" //Red color used by emergency lighting. rgb(255, 50, 50)
 
+#define COLOR_DARKMODE_BACKGROUND "#202020"
+#define COLOR_DARKMODE_DARKBACKGROUND "#171717"
+#define COLOR_DARKMODE_TEXT "#a4bad6"
+
 // Used by fluid system.
 #define COLOR_LIQUID_WATER "#99f5ff"
 #define COLOR_ICE          "#eef5ff"

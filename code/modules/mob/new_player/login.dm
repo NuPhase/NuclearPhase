@@ -33,6 +33,9 @@
 	client.playtitlemusic()
 	maybe_send_staffwarns("connected as new player")
 
+	if(client.get_preference_value(/datum/client_preference/goonchat) == PREF_YES)
+		client.chatOutput.start()
+
 	show_lobby_menu(TRUE)
 
 	var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)

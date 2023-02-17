@@ -278,3 +278,7 @@
 
 // arbitrary low pressure bound for wind weather effects
 #define MIN_WIND_PRESSURE 10
+
+//Misc text define. Does 4 spaces. Used as a makeshift tabulator.
+#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))

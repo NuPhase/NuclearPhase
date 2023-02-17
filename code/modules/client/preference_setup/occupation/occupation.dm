@@ -114,7 +114,8 @@
 			if(splitLimit) limit = round((LAZYLEN(map_job_list)+1)/2)
 
 			for(var/datum/job/job in map_job_list)
-
+				if (job.is_ghost_role)
+					continue
 				var/datum/mil_rank/player_rank
 				var/datum/mil_branch/player_branch
 				var/branch_string = ""

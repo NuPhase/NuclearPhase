@@ -92,12 +92,16 @@
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
 
 /proc/place_meta_charset(content)
-	if(istext(content))
-		content = "<meta charset=\"utf-8\">" + content
-	return content
+	if(isfile(content))
+		return content
+	else if(findtext(content, "<html>"))
+		return replacetext(content, "<html>", "<html><meta charset='UTF-8'>")
+	else
+		return "<HTML><meta charset='UTF-8'><BODY>[content]</BODY></HTML>"
 
-#define to_chat(target, message)                            target << (message)
-#define to_world(message)                                   world << (message)
+
+#define legacy_chat(target, message)        			    target << message
+#define to_world(message)                                   to_chat(world, message)
 #define to_world_log(message)                               world.log << (message)
 #define sound_to(target, sound)                             target << (sound)
 #define to_file(file_entry, source_var)                     file_entry << (source_var)

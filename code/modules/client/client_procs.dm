@@ -92,6 +92,11 @@ var/global/list/localhost_addresses = list(
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if("chat")		return chatOutput.Topic(href, href_list)
+
+	switch(href_list["action"])
+		if("openLink")
+			src << link(href_list["link"])
 
 	if(codex_topic(href, href_list))
 		return
@@ -129,6 +134,9 @@ var/global/list/localhost_addresses = list(
 	///////////
 /client/New(TopicData)
 	TopicData = null							//Prevent calls to client.Topic from connect
+
+	// Load goonchat
+	chatOutput = new(src)
 
 	switch (connection)
 		if ("seeker", "web") // check for invalid connection type. do nothing if valid
@@ -513,7 +521,7 @@ var/global/const/MAX_VIEW = 41
 	winset(src, "menu.icon[divisor]", "is-checked=true")
 
 	view = "[last_view_x_dim]x[last_view_y_dim]"
-	
+
 	// Reset eye/perspective
 	reset_click_catchers()
 	var/last_perspective = perspective
