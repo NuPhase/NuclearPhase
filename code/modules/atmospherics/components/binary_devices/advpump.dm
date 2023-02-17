@@ -25,6 +25,7 @@
 	identifier = "AFP"
 
 	var/flow_capacity = 600 //kg/s
+	var/initial_flow_capacity = 0
 	var/last_mass_flow = 0
 	var/mode = REACTOR_PUMP_MODE_OFF
 	var/rpm = 0
@@ -61,6 +62,7 @@
 	. = ..()
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
+	initial_flow_capacity = flow_capacity
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()
@@ -72,7 +74,7 @@
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
 		return
 
-	flow_capacity = initial(flow_capacity) * (rpm / REACTOR_PUMP_RPM_SAFE)
+	flow_capacity = initial_flow_capacity * (rpm / REACTOR_PUMP_RPM_SAFE)
 
 	var/power_draw = -1
 	var/air1_mass = air1.get_mass()
