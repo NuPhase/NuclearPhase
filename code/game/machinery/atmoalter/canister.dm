@@ -66,10 +66,17 @@
 
 /obj/machinery/portable_atmospherics/canister/water
 	name = "\improper Canister: \[Water\]"
-	icon_state = "purple"
-	canister_color = "purple"
+	icon_state = "water"
 	can_label = 0
 	start_pressure = REACTOR_WATER_PRESSURE
+
+/obj/machinery/portable_atmospherics/canister/water/tall
+	name = "\improper Industrial Tank: \[Water\]"
+	volume = 95000 //2m radius, 8m height
+	icon = 'icons/obj/atmospherics/96x192.dmi'
+	icon_state = "colorless"
+	canister_color = "colorless"
+	layer = ABOVE_HUMAN_LAYER
 
 /obj/machinery/portable_atmospherics/canister/empty/water
 	icon_state = "purple"
@@ -83,12 +90,12 @@
 
 /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride
 	name = "\improper Canister \[WF6\]"
-	icon_state = "black"
-	canister_color = "black"
+	icon_state = "wf6"
+	canister_color = "wf6"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/empty/tungstenhexafluoride
-	icon_state = "black"
+	icon_state = "wf6"
 	canister_type = /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride
 
 /obj/machinery/portable_atmospherics/canister/reactor
@@ -490,6 +497,18 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/helium/Initialize()
 	. = ..()
 	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/liquid_helium
+	name = "\improper Canister \[LHe2\]"
+	icon_state = "black"
+	canister_color = "black"
+	can_label = 0
+
+/obj/machinery/portable_atmospherics/canister/liquid_helium/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForVolume(/decl/material/gas/helium))
+	air_contents.temperature = 3
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/methyl_bromide
