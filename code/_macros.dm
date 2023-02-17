@@ -96,6 +96,8 @@
 		return content
 	else if(findtext(content, "<html>"))
 		return replacetext(content, "<html>", "<html><meta charset='UTF-8'>")
+	else if(isnull(content))
+		return null
 	else
 		return "<HTML><meta charset='UTF-8'><BODY>[content]</BODY></HTML>"
 
