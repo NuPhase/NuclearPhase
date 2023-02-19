@@ -3,7 +3,7 @@
 /turf/space,
 /area/space)
 "ab" = (
-/obj/machinery/power/generator/smes/buildable/preset/liberia,
+/obj/machinery/power/smes/buildable/preset/liberia,
 /obj/structure/cable/blue{
 	icon_state = "0-2"
 	},
@@ -215,7 +215,7 @@
 /turf/simulated/floor,
 /area/liberia/engineeringreactor)
 "aA" = (
-/obj/machinery/power/generator/port_gen/pacman/super/potato,
+/obj/machinery/port_gen/pacman/super/potato,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -966,7 +966,7 @@
 /obj/item/storage/secure/safe{
 	pixel_x = 30
 	},
-/obj/machinery/power/generator/smes/buildable{
+/obj/machinery/power/smes/buildable{
 	RCon_tag = null;
 	charge = 2.5e+006;
 	input_attempt = 1;
@@ -2244,7 +2244,7 @@
 	pixel_y = -21;
 	req_access = list("ACCESS_MERCHANT")
 	},
-/obj/structure/filingcabinet/wallcabinet{
+/obj/structure/filing_cabinet/wall{
 	pixel_x = 28
 	},
 /obj/item/folder,
@@ -2428,7 +2428,7 @@
 /obj/effect/floor_decal/corner/brown{
 	dir = 10
 	},
-/obj/item/instrument/guitar,
+/obj/item/guitar,
 /obj/structure/table,
 /obj/structure/cable/blue{
 	icon_state = "1-2"
@@ -2857,7 +2857,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/cryopod{
-	pixel_y = 32
+	dir = 2
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/liberia/cryo)
@@ -3480,7 +3480,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/structure/filingcabinet/chestdrawer,
+/obj/structure/filing_cabinet/chestdrawer,
 /turf/simulated/floor/tiled/monotile,
 /area/liberia/officeroom)
 "gf" = (
@@ -3761,7 +3761,7 @@
 	dir = 1;
 	pixel_y = 16
 	},
-/obj/item/storage/mirror{
+/obj/structure/mirror{
 	dir = 4;
 	pixel_x = -1;
 	pixel_y = 30
@@ -3776,7 +3776,7 @@
 	dir = 1;
 	pixel_y = 16
 	},
-/obj/item/storage/mirror{
+/obj/structure/mirror{
 	dir = 4;
 	pixel_x = -1;
 	pixel_y = 30
@@ -4198,7 +4198,7 @@
 "hz" = (
 /obj/machinery/vending/cigarette{
 	dir = 1;
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/simulated/floor/wood/walnut,
 /area/liberia/bar)
@@ -4912,7 +4912,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/power/generator/port_gen/pacman/mrs,
+/obj/machinery/port_gen/pacman/mrs,
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/cable/blue{
 	icon_state = "0-4"
@@ -4926,7 +4926,7 @@
 /area/liberia/engineeringstorage)
 "jt" = (
 /obj/structure/cable/blue,
-/obj/machinery/power/generator/smes/buildable/preset/liberia,
+/obj/machinery/power/smes/buildable/preset/liberia,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 24
@@ -5019,10 +5019,8 @@
 /area/liberia/bridge)
 "jD" = (
 /obj/structure/table/glass,
-/obj/machinery/photocopier/faxmachine{
-	department = "Merchant Outpost";
+/obj/machinery/faxmachine{
 	req_access = list("ACCESS_MERCHANT");
-	send_access = list("ACCESS_MERCHANT")
 	},
 /obj/effect/floor_decal/corner/blue/mono,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -5596,7 +5594,7 @@
 /obj/effect/floor_decal/corner/yellow{
 	dir = 6
 	},
-/obj/machinery/power/generator/smes/buildable/preset/liberia,
+/obj/machinery/power/smes/buildable/preset/liberia,
 /turf/simulated/floor/tiled/steel_grid,
 /area/liberia/atmos)
 "kM" = (
@@ -6281,6 +6279,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/liberia/hallway)
+"oJ" = (
+/obj/abstract/landmark/level_data_spawner/player{
+	name = "Liberia";
+},
+/turf/space,
+/area/space)
 "oM" = (
 /obj/effect/floor_decal/solarpanel,
 /obj/machinery/power/solar{
@@ -8192,7 +8196,7 @@
 /obj/structure/railing/mapped{
 	dir = 8
 	},
-/obj/structure/dispenser/oxygen,
+/obj/structure/tank_rack/oxygen,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/liberia/engineeringstorage)
 "SP" = (
@@ -8841,7 +8845,7 @@ aa
 "}
 (2,1,1) = {"
 aa
-aa
+oJ
 aa
 aa
 aa

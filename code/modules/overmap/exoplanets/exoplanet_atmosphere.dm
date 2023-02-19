@@ -1,23 +1,26 @@
 /obj/effect/overmap/visitable/sector/exoplanet/proc/generate_atmosphere()
-	atmosphere = new
+
+
 	var/target_temp = get_target_temperature()
 
 	//Make sure temperature can't damage people on casual planets
 	if(habitability_class <= HABITABILITY_OKAY)
 		var/decl/species/S = get_species_by_key(global.using_map.default_species)
-		target_temp = Clamp(target_temp, S.cold_level_1 + rand(1,5), S.heat_level_1 - rand(1,5))
-
-	atmosphere.temperature = target_temp
+		target_temp = clamp(target_temp, S.cold_level_1 + rand(1,5), S.heat_level_1 - rand(1,5))
 
 	//Skip fun gas gen for perfect terran worlds
 	if(habitability_class == HABITABILITY_IDEAL)
-		atmosphere.adjust_gas(/decl/material/gas/oxygen, MOLES_O2STANDARD, FALSE)
-		atmosphere.adjust_gas(/decl/material/gas/nitrogen, MOLES_N2STANDARD)
-		atmosphere.check_tile_graphic()
+		for(var/datum/level_data/level_data in zlevels)
+			level_data.exterior_atmos_temp = target_temp
+			level_data.exterior_atmosphere = list(
+				/decl/material/gas/oxygen = MOLES_O2STANDARD,
+				/decl/material/gas/nitrogen = MOLES_N2STANDARD
+			)
+			level_data.setup_level_data() //#FIXME: That's not very nice! Calling this again, when it should have been called before?
 		return
-	
+
 	var/total_moles = MOLES_CELLSTANDARD
-	
+
 	//Add the non-negotiable gasses
 	var/badflag = 0
 	var/gas_list = get_mandatory_gasses()
@@ -37,8 +40,6 @@
 	var/list/all_materials = decls_repository.get_decls_of_subtype(/decl/material)
 	for(var/mat_type in all_materials)
 		var/decl/material/mat = all_materials[mat_type]
-		if(mat.is_abstract())
-			continue
 		if(mat.exoplanet_rarity == MAT_RARITY_NOWHERE)
 			continue
 		if(isnull(mat.boiling_point) || mat.boiling_point > target_temp)
@@ -84,12 +85,15 @@
 
 	// Add all gasses, adjusted for target temperature and pressure
 	var/target_pressure = get_target_pressure()
-	var/target_moles = target_pressure * CELL_VOLUME / (atmosphere.temperature * R_IDEAL_GAS_EQUATION)
+	var/target_moles = target_pressure * CELL_VOLUME / (target_temp * R_IDEAL_GAS_EQUATION)
+	var/list/set_gasmix = list()
 	for(var/g in gas_list)
 		var/adjusted_moles = gas_list[g] * target_moles / MOLES_CELLSTANDARD
-		atmosphere.adjust_gas(g, adjusted_moles, FALSE)
-	atmosphere.update_values()
-	atmosphere.check_tile_graphic()
+		set_gasmix[g] = adjusted_moles
+	for(var/datum/level_data/level_data in zlevels)
+		level_data.exterior_atmos_temp = target_temp
+		level_data.exterior_atmosphere = set_gasmix.Copy()
+		level_data.setup_level_data()
 
 //List of gases that will be always present. Amounts are given assuming total of MOLES_CELLSTANDARD in atmosphere
 /obj/effect/overmap/visitable/sector/exoplanet/proc/get_mandatory_gasses()

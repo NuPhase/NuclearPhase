@@ -261,7 +261,7 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 			world.maxy = planet_size[2]
 	for(var/i = 0, i < num_exoplanets, i++)
 		var/exoplanet_type = pick_exoplanet()
-		INCREMENT_WORLD_Z_SIZE
+		var/datum/level_data/exoplanet/planet_level = SSmapping.increment_world_z_size(/datum/level_data/exoplanet, TRUE)
 		var/obj/effect/overmap/visitable/sector/exoplanet/new_planet = new exoplanet_type(null, world.maxz)
 		new_planet.build_level(planet_size[1], planet_size[2])
 

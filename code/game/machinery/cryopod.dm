@@ -228,12 +228,19 @@
 			B.force_open()
 			break
 
-	var/list/possible_locations = list()
-	var/obj/effect/overmap/visitable/O = global.overmap_sectors["[z]"]
-	if(istype(O))
-		for(var/obj/effect/overmap/visitable/OO in range(O,2))
-			if((OO.sector_flags & OVERMAP_SECTOR_IN_SPACE) || istype(OO,/obj/effect/overmap/visitable/sector/exoplanet))
-				possible_locations |= text2num(level)
+	var/newz
+	if(prob(10))
+		var/list/possible_locations
+		var/obj/effect/overmap/visitable/O = global.overmap_sectors[num2text(z)]
+		if(istype(O))
+			for(var/obj/effect/overmap/visitable/OO in range(O,2))
+				if((OO.sector_flags & OVERMAP_SECTOR_IN_SPACE) || istype(OO,/obj/effect/overmap/visitable/sector/exoplanet))
+					LAZYDISTINCTADD(possible_locations, text2num(level))
+		if(length(possible_locations))
+			newz = pick(possible_locations)
+	if(!newz)
+		var/datum/level_data/level = SSmapping.increment_world_z_size(/datum/level_data/space)
+		newz = level?.level_z
 
 	var/newz = get_empty_zlevel(/turf/space)
 	if(possible_locations.len && prob(10))

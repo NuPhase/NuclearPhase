@@ -38,6 +38,17 @@ SUBSYSTEM_DEF(mapping)
 	// Build away sites.
 	global.using_map.build_away_sites()
 
+	// Initialize z-level objects.
+#ifdef UNIT_TEST
+	config.generate_map = TRUE
+#endif
+	for(var/z = 1 to world.maxz)
+		var/datum/level_data/level = levels_by_z[z]
+		if(!istype(level))
+			level = new /datum/level_data/space(z)
+			PRINT_STACK_TRACE("Missing z-level data object for z[num2text(z)]!")
+		level.setup_level_data()
+
 	. = ..()
 
 /datum/controller/subsystem/mapping/Recover()
@@ -80,3 +91,88 @@ SUBSYSTEM_DEF(mapping)
 
 /datum/controller/subsystem/mapping/proc/get_templates_by_category(var/temple_cat) // :33
 	return map_templates_by_category[temple_cat]
+
+// Z-Level procs after this point.
+/datum/controller/subsystem/mapping/proc/get_gps_level_name(var/z)
+	if(z)
+		var/datum/level_data/level = levels_by_z[z]
+		. = level?.get_display_name()
+		if(length(.))
+			return .
+	return "Unknown Sector"
+
+/datum/controller/subsystem/mapping/proc/reindex_lists()
+	levels_by_z.len = world.maxz // Populate with nulls so we don't get index errors later.
+	base_turf_by_z.len = world.maxz
+	connected_z_cache.Cut()
+
+/datum/controller/subsystem/mapping/proc/increment_world_z_size(var/new_level_type, var/defer_setup = FALSE)
+
+	world.maxz++
+	reindex_lists()
+
+	if(SSzcopy.zlev_maximums.len)
+		SSzcopy.calculate_zstack_limits()
+	if(!new_level_type)
+		PRINT_STACK_TRACE("Missing z-level data type for z["[world.maxz]"]!")
+		return
+
+	var/datum/level_data/level = new new_level_type(world.maxz, defer_setup)
+	level.initialize_new_level()
+	return level
+
+/datum/controller/subsystem/mapping/proc/get_connected_levels(z)
+	if(z <= 0  || z > length(levels_by_z))
+		CRASH("Invalid z-level supplied to get_connected_levels: [isnull(z) ? "NULL" : z]")
+	. = list(z)
+	// Traverse up and down to get the multiz stack.
+	for(var/level = z, HasBelow(level), level--)
+		. |= level-1
+	for(var/level = z, HasAbove(level), level++)
+		. |= level+1
+	// Check stack for any laterally connected neighbors.
+	for(var/tz in .)
+		var/datum/level_data/level = levels_by_z[tz]
+		if(level)
+			level.find_connected_levels(.)
+
+/datum/controller/subsystem/mapping/proc/are_connected_levels(var/zA, var/zB)
+	if (zA <= 0 || zB <= 0 || zA > world.maxz || zB > world.maxz)
+		return FALSE
+	if (zA == zB)
+		return TRUE
+	if (length(connected_z_cache) >= zA && length(connected_z_cache[zA]) >= zB)
+		return connected_z_cache[zA][zB]
+	var/list/levels = get_connected_levels(zA)
+	var/list/new_entry = new(world.maxz)
+	for (var/entry in levels)
+		new_entry[entry] = TRUE
+	if (connected_z_cache.len < zA)
+		connected_z_cache.len = zA
+	connected_z_cache[zA] = new_entry
+	return new_entry[zB]
+
+/// Registers all the needed infos from a level_data into the mapping subsystem
+/datum/controller/subsystem/mapping/proc/register_level_data(var/datum/level_data/LD)
+	if(LD.base_turf)
+		SSmapping.base_turf_by_z[LD.level_z] = LD.base_turf
+	if(LD.level_flags & ZLEVEL_STATION)
+		SSmapping.station_levels |= LD.level_z
+	if(LD.level_flags & ZLEVEL_ADMIN)
+		SSmapping.admin_levels   |= LD.level_z
+	if(LD.level_flags & ZLEVEL_CONTACT)
+		SSmapping.contact_levels |= LD.level_z
+	if(LD.level_flags & ZLEVEL_PLAYER)
+		SSmapping.player_levels  |= LD.level_z
+	if(LD.level_flags & ZLEVEL_SEALED)
+		SSmapping.sealed_levels  |= LD.level_z
+	return TRUE
+
+/datum/controller/subsystem/mapping/proc/unregister_level_data(var/datum/level_data/LD)
+	SSmapping.base_turf_by_z[LD.level_z] = world.turf
+	SSmapping.station_levels -= LD.level_z
+	SSmapping.admin_levels   -= LD.level_z
+	SSmapping.contact_levels -= LD.level_z
+	SSmapping.player_levels  -= LD.level_z
+	SSmapping.sealed_levels  -= LD.level_z
+	return TRUE
