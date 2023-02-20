@@ -37,11 +37,11 @@
 	var/tmp/changing_turf
 	var/tmp/prev_type // Previous type of the turf, prior to turf translation.
 
-	// Some quick notes on the vars below: is_outside should be left set to OUTSIDE_AREA unless you 
+	// Some quick notes on the vars below: is_outside should be left set to OUTSIDE_AREA unless you
 	// EXPLICITLY NEED a turf to have a different outside state to its area (ie. you have used a
-	// roofing tile). By default, it will ask the area for the state to use, and will update on 
-	// area change. When dealing with weather, it will check the entire z-column for interruptions 
-	// that will prevent it from using its own state, so a floor above a level will generally 
+	// roofing tile). By default, it will ask the area for the state to use, and will update on
+	// area change. When dealing with weather, it will check the entire z-column for interruptions
+	// that will prevent it from using its own state, so a floor above a level will generally
 	// override both area is_outside, and turf is_outside. The only time the base value will be used
 	// by itself is if you are dealing with a non-multiz level, or the top level of a multiz chunk.
 
@@ -440,16 +440,21 @@ var/global/const/enterloopsanity = 100
 	// Notes for future self when confused: is_open() on higher
 	// turfs must match effective is_outside value if the turf
 	// should get to use the is_outside value it wants to. If it
-	// doesn't line up, we invert the outside value (roof is not 
+	// doesn't line up, we invert the outside value (roof is not
 	// open but turf wants to be outside, invert to OUTSIDE_NO).
 
 	// Do we have a roof over our head? Should we care?
+	var/res = .
 	if(HasAbove(z))
 		var/turf/top_of_stack = src
 		while(HasAbove(top_of_stack.z))
 			top_of_stack = GetAbove(top_of_stack)
 			if(top_of_stack.is_open() != . || (top_of_stack.is_outside != OUTSIDE_AREA && top_of_stack.is_outside != .))
-				return !.
+				res = !.
+			else
+				res = .
+
+	return res
 
 /turf/proc/set_outside(var/new_outside, var/skip_weather_update = FALSE)
 	if(is_outside != new_outside)

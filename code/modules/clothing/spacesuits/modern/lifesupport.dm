@@ -27,6 +27,7 @@
 	var/propulsion_cooldown = 30
 
 	var/status_warning_cooldown = FALSE
+	var/obj/abstract/modules_holder/modules = null
 
 	var/obj/item/clothing/suit/modern/space/owner = null
 
@@ -39,6 +40,10 @@
 	oxygen_tank = new /obj/item/tank/oxygen/modulated
 	propulsion_tank = new /obj/item/tank/propfuel
 	waste_tank = new /obj/item/tank/waste
+	modules = new /obj/abstract/modules_holder
+	oxygen_tank.forceMove(modules)
+	propulsion_tank.forceMove(modules)
+	waste_tank.forceMove(modules)
 
 /obj/item/storage/backpack/lifesupportpack/mob_can_equip(M, slot, disable_warning, force)
 	return FALSE
@@ -109,7 +114,7 @@
 	if(istype(W, /obj/item/co2filter))
 		if(!atmosphere_filter)
 			atmosphere_filter = W
-			user.drop_from_inventory(W, src)
+			user.drop_from_inventory(W, modules)
 			to_chat(usr, "<span class='notice'>You insert \the [W] into the [src].</span>")
 		else
 			to_chat(usr, "<span class='warning'>\The [src] already has a CO2 filter installed!</span>")
@@ -132,7 +137,7 @@
 				propulsion_tank = W
 			if("waste tank port")
 				waste_tank = W
-		user.drop_from_inventory(W, src)
+		user.drop_from_inventory(W, modules)
 		playsound(loc, 'sound/effects/spray3.ogg', 50)
 		to_chat(usr, "<span class='notice'>You insert \the [W] into the [tank_to_add].</span>")
 		return
@@ -224,3 +229,7 @@
 	do_support() //fill it up immediately
 	to_chat(owner, SPAN_DANGER("INTERNAL ATMOSPHERE PURGED!"))
 	playsound(owner.wearer, 'sound/effects/undock.ogg', 100, 1)
+
+
+/obj/abstract/modules_holder
+	name = "Modules holder unit"
