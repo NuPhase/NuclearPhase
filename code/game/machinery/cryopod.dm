@@ -240,7 +240,7 @@
 			newz = pick(possible_locations)
 	if(!newz)
 		var/datum/level_data/level = SSmapping.increment_world_z_size(/datum/level_data/space)
-		newz = level?.level_z
+		newz = level.level_z
 
 	var/newz = get_empty_zlevel(/turf/space)
 	if(possible_locations.len && prob(10))
