@@ -100,7 +100,7 @@
 
 	startswith = list(
 		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/wound_filler = 2,
+		/obj/item/stack/medical/wound_filler/hydrogel = 1,
 		/obj/item/stack/medical/ointment = 1,
 		/obj/item/storage/pill_bottle/betapace,
 		/obj/item/storage/pill_bottle/painkillers,
