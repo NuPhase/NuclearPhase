@@ -143,7 +143,7 @@
 	return list(/obj/random/medical/lite = 21,
 				/obj/item/bodybag = 2,
 				/obj/item/chems/glass/bottle/stabilizer = 2,
-				/obj/item/chems/glass/bottle/antitoxin = 2,
+				/obj/item/chems/glass/bottle/charcoal = 2,
 				/obj/item/storage/pill_bottle = 2,
 				/obj/item/storage/pill_bottle/painkillers = 1,
 				/obj/item/storage/pill_bottle/antidepressants = 2,

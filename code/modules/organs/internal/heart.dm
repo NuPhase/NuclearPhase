@@ -13,24 +13,26 @@
 	relative_size = 5
 	max_damage = 45
 	var/open
-	var/list/external_pump
+	var/external_pump = 0 //simulated beats per minute
 	var/cardiac_output = 1
 	var/instability = 0
 	var/list/arrythmias = list()
 	var/list/cardiac_output_modifiers = list()
 	var/list/bpm_modifiers = list()
 	var/list/stability_modifiers = list()
+	var/current_pattern = HEART_PATTERN_NORMAL
+
 /obj/item/organ/internal/heart/open
 	open = 1
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
-		bpm_modifiers.Cut()
 		cardiac_output_modifiers.Cut()
 		stability_modifiers.Cut()
 		calculate_instability()
 		get_modifiers()
 		handle_pulse()
+		bpm_modifiers.Cut()
 		if(pulse)
 			handle_heartbeat()
 			if(pulse > 120 && prob(1))
@@ -52,15 +54,17 @@
 		ninstability += 20
 	if(cardiac_output < 0.5)
 		ninstability += 20
-	instability = Interpolate(instability, ninstability, 0.1)
+	ninstability -= sumListAndCutAssoc(stability_modifiers)
+	instability = max(Interpolate(instability, ninstability, 0.1), 0)
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
 	if(BP_IS_PROSTHETIC(src))
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
 
-	var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
-	pulse = Interpolate(pulse, target_pulse, 0.2)
+	if(pulse)
+		var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
+		pulse = Interpolate(pulse, target_pulse, 0.2)
 
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers)
 
@@ -68,11 +72,12 @@
 	if(pulse == 0)
 		return
 	else //and if it's beating, let's see if it should
-		var/should_stop = prob(instability * 0.1) && instability > 30
+		var/should_stop = prob(instability * 0.05 + oxygen_deprivation)
 		should_stop = should_stop || prob(max(0, owner.getBrainLoss() - owner.maxHealth * 0.75)) //brain failing to work heart properly
 		if(should_stop) // The heart has stopped due to going into traumatic or cardiovascular shock.
 			to_chat(owner, "<span class='danger'>Your heart has stopped!</span>")
 			pulse = PULSE_NONE
+			current_pattern = HEART_PATTERN_ASYSTOLE
 			return
 
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
@@ -207,5 +212,6 @@
 	. = ..()
 	if(!BP_IS_PROSTHETIC(src))
 		pulse = PULSE_NORM
+		current_pattern = HEART_PATTERN_NORMAL
 	else
 		pulse = PULSE_NONE

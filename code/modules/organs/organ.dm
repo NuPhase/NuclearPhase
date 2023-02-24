@@ -71,8 +71,8 @@
 	if(!given_dna)
 		if(dna)
 			given_dna = dna //Use existing if possible
-		else if(owner) 
-			if(owner.dna) 
+		else if(owner)
+			if(owner.dna)
 				given_dna = owner.dna //Grab our owner's dna if we don't have any, and they have
 			else
 				//The owner having no DNA can be a valid reason to keep our dna null in some cases
@@ -83,7 +83,7 @@
 			//If we have NO OWNER and given_dna, just make one up for consistency
 			given_dna = new/datum/dna()
 			given_dna.check_integrity() //Defaults everything
-	
+
 	set_dna(given_dna)
 	setup_reagents()
 	return TRUE
@@ -99,7 +99,7 @@
 
 	if(istype(material))
 		robotize(apply_material = material.type)
-	else 
+	else
 		robotize()
 	return TRUE
 
@@ -123,7 +123,7 @@
 	if(istext(specie_name))
 		species = get_species_by_key(specie_name)
 	else
-		species = specie_name 
+		species = specie_name
 	if(!species)
 		species = get_species_by_key(global.using_map.default_species)
 		PRINT_STACK_TRACE("Invalid species. Expected a valid species name as string, was: [log_info_line(specie_name)]")
@@ -230,14 +230,14 @@
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
 	var/germ_immunity = owner.get_immunity() //reduces the amount of times we need to call this proc
-	var/antibiotics = REAGENT_VOLUME(owner.reagents, /decl/material/liquid/antibiotics)
+	var/antibiotics = GET_CHEMICAL_EFFECT(owner, CE_ANTIBIOTIC)
 
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(germ_immunity*0.3))
 		germ_level--
 
 	if (germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
-		if(antibiotics < 5 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
+		if(antibiotics < 1 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
 			if(germ_immunity > 0)
 				germ_level += Clamp(round(1/germ_immunity), 1, 10) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
 			else // Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
@@ -250,11 +250,12 @@
 	if (germ_level >= INFECTION_LEVEL_TWO)
 		var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
 		//spread germs
-		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(owner.immunity_weakness() * 0.3) ))
+		if (antibiotics < 2 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(owner.immunity_weakness() * 0.3) ))
 			parent.germ_level++
-
+	if(germ_level > INFECTION_LEVEL_FOUR)
 		if (prob(3))	//about once every 30 seconds
 			take_general_damage(1,silent=prob(30))
+		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.3)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -499,7 +500,7 @@ var/global/list/ailment_reference_cache = list()
 /obj/item/organ/proc/do_install(var/mob/living/carbon/human/target, var/obj/item/organ/external/affected, var/in_place = FALSE, var/update_icon = TRUE, var/detached = FALSE)
 	//Make sure to force the flag accordingly
 	set_detached(detached)
-	
+
 	owner = target
 	action_button_name = initial(action_button_name)
 	if(owner)
@@ -513,10 +514,10 @@ var/global/list/ailment_reference_cache = list()
 
 //Handles uninstalling the organ from its owner and parent limb, without triggering effects or deep updates
 //CASES:
-// 1. Before deletion to clear our references. 
+// 1. Before deletion to clear our references.
 // 2. Called through removal on surgery or dismemberement
 // 3. Called when we're changing a mob's species.
-//detach: If detach is true, we're going to set the organ to detached, and add it to the detached organs list, and remove it from processing lists. 
+//detach: If detach is true, we're going to set the organ to detached, and add it to the detached organs list, and remove it from processing lists.
 //        If its false, we just remove the organ from all lists
 /obj/item/organ/proc/do_uninstall(var/in_place = FALSE, var/detach = FALSE, var/ignore_children = FALSE, var/update_icon = TRUE)
 	action_button_name = null
@@ -526,11 +527,11 @@ var/global/list/ailment_reference_cache = list()
 		if(ailment.timer_id)
 			deltimer(ailment.timer_id)
 			ailment.timer_id = null
-	
+
 	//When we detach, we set the ORGAN_CUT_AWAY flag on, depending on whether the organ supports it or not
 	if(detach)
 		set_detached(TRUE)
-	else 
+	else
 		owner = null
 	return src
 

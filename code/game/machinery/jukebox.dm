@@ -19,12 +19,17 @@
 	var/playing = 0
 	var/volume = 20
 
+	var/specialization //Defines the additional tracks that it will have. Available at the moment: engineering, medical, expedition
+
 	var/sound_id
 	var/datum/sound_token/sound_token
 
 	var/datum/track/current_track
 	var/list/datum/track/tracks
 
+
+/obj/machinery/media/jukebox/engineering
+	specialization = "engineering"
 
 /obj/machinery/media/jukebox/old
 	name = "space jukebox"

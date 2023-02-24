@@ -18,21 +18,6 @@
 			ADJ_STATUS(M, STAT_BLIND, -5)
 			E.damage = max(E.damage - 5 * removed, 0)
 
-/decl/material/liquid/antirads
-	name = "antirads"
-	lore_text = "A synthetic recombinant protein, derived from entolimod, used in the treatment of radiation poisoning."
-	taste_description = "bitterness"
-	color = "#408000"
-	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-	value = 1.5
-	uid = "chem_antirads"
-
-/decl/material/liquid/antirads/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
-	M.radiation = max(M.radiation - 30 * removed, 0)
-
 /decl/material/liquid/brute_meds
 	name = "styptic powder"
 	lore_text = "An analgesic and bleeding suppressant that helps with recovery from physical trauma. Can assist with mending arteries if injected in large amounts, but will cause complications."
@@ -98,41 +83,6 @@
 
 /decl/material/liquid/adminordrazine/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	M.rejuvenate()
-
-/decl/material/liquid/antitoxins
-	name = "antitoxins"
-	lore_text = "A mix of broad-spectrum antitoxins used to neutralize poisons before they can do significant harm."
-	taste_description = "a roll of gauze"
-	color = "#00a000"
-	scannable = 1
-	flags = IGNORE_MOB_SIZE
-	value = 1.5
-	fruit_descriptor = "astringent"
-	uid = "chem_antitoxins"
-	var/remove_generic = 1
-	var/list/remove_toxins = list(
-		/decl/material/liquid/zombiepowder
-	)
-
-/decl/material/liquid/antitoxins/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
-	if(remove_generic)
-		ADJ_STATUS(M, STAT_DROWSY, -6 * removed)
-		M.adjust_hallucination(-9 * removed)
-		M.add_chemical_effect(CE_ANTITOX, 1)
-
-	var/removing = (4 * removed)
-	var/datum/reagents/ingested = M.get_ingested_reagents()
-	for(var/R in ingested.reagent_volumes)
-		var/decl/material/chem = GET_DECL(R)
-		if((remove_generic && chem.toxicity) || (R in remove_toxins))
-			M.reagents.remove_reagent(R, removing)
-			return
-
-	for(var/R in M.reagents?.reagent_volumes)
-		var/decl/material/chem = GET_DECL(R)
-		if((remove_generic && chem.toxicity) || (R in remove_toxins))
-			M.reagents.remove_reagent(R, removing)
-			return
 
 /decl/material/liquid/immunobooster
 	name = "immunobooster"
@@ -203,29 +153,6 @@
 			LAZYSET(holder.reagent_data, type, world.time)
 			to_chat(M, "<span class='notice'>Your mind feels stable... a little stable.</span>")
 
-/decl/material/liquid/antibiotics
-	name = "antibiotics"
-	lore_text = "An all-purpose antibiotic agent."
-	taste_description = "bitterness"
-	color = "#c1c1c1"
-	metabolism = REM * 0.1
-	overdose = REAGENTS_OVERDOSE/2
-	scannable = 1
-	value = 1.5
-	uid = "chem_antibiotics"
-
-/decl/material/liquid/antibiotics/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
-	var/mob/living/carbon/human/H = M
-	if(!istype(H))
-		return
-	var/volume = REAGENT_VOLUME(holder, type)
-	H.immunity = max(H.immunity - 0.1, 0)
-	H.add_chemical_effect(CE_ANTIBIOTIC, 1)
-	if(volume > 10)
-		H.immunity = max(H.immunity - 0.3, 0)
-	if(LAZYACCESS(H.chem_doses, type) > 15)
-		H.immunity = max(H.immunity - 0.25, 0)
-
 /decl/material/liquid/antibiotics/affect_overdose(var/mob/living/M, var/datum/reagents/holder)
 	..()
 	var/mob/living/carbon/human/H = M
@@ -268,36 +195,6 @@
 		M.dna.ResetSE()
 		domutcheck(M, null, MUTCHK_FORCED)
 		M.update_icon()
-
-/decl/material/liquid/adrenaline
-	name = "adrenaline"
-	lore_text = "Adrenaline is a hormone used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
-	taste_description = "rush"
-	color = "#c8a5dc"
-	scannable = 1
-	overdose = 20
-	metabolism = 0.1
-	value = 1.5
-	uid = "chem_adrenaline"
-
-/decl/material/liquid/adrenaline/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
-	var/volume = REAGENT_VOLUME(holder, type)
-	var/dose = LAZYACCESS(M.chem_doses, type)
-	if(dose < 0.2)	//not that effective after initial rush
-		M.add_chemical_effect(CE_PAINKILLER, min(30*volume, 80))
-		M.add_chemical_effect(CE_PULSE, 1)
-	else if(dose < 1)
-		M.add_chemical_effect(CE_PAINKILLER, min(10*volume, 20))
-	M.add_chemical_effect(CE_PULSE, 2)
-	if(dose > 10)
-		ADJ_STATUS(M, STAT_JITTER, 5)
-	if(volume >= 5 && M.is_asystole())
-		holder.remove_reagent(type, 5)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.resuscitate())
-				var/obj/item/organ/internal/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-				heart.take_internal_damage(heart.max_damage * 0.15)
 
 /decl/material/liquid/stabilizer
 	name = "stabilizer"

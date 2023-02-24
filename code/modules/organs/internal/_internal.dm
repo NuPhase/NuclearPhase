@@ -144,11 +144,13 @@
 /obj/item/organ/internal/Process()
 	..()
 	handle_regeneration()
-	owner.consume_oxygen(oxygen_consumption)
-	if(owner.oxygen_amount < oxygen_consumption)
+	if(!owner.consume_oxygen(oxygen_consumption))
 		oxygen_starve(1)
 		if(oxygen_deprivation > OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD)
 			take_internal_damage(0.2, 1)
+		return
+	if(oxygen_deprivation)
+		oxygen_starve(-1)
 
 /obj/item/organ/internal/proc/handle_regeneration()
 	if(!damage || BP_IS_PROSTHETIC(src) || !owner || GET_CHEMICAL_EFFECT(owner, CE_TOXIN) || owner.is_asystole())

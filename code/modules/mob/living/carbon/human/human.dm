@@ -1083,9 +1083,8 @@
 			visible_message(SPAN_NOTICE("\The [src] twitches a bit as [G.his] [heart.name] restarts!"))
 
 		shock_stage = min(shock_stage, 100) // 120 is the point at which the heart stops.
-		if(getOxyLoss() >= 75)
-			setOxyLoss(75)
 		heart.pulse = PULSE_NORM
+		heart.current_pattern = HEART_PATTERN_NORMAL
 		heart.handle_pulse()
 		return TRUE
 
@@ -1371,7 +1370,8 @@
 	//Prevent attempting to create blood container if its already setup
 	if(!vessel)
 		reset_blood()
-	max_oxygen_capacity = round(vessel.total_volume / 4.975)
+	max_oxygen_capacity = round(vessel.total_volume / 4.975) + get_skill_value(SKILL_HAULING) * 4 //healthy athlete spleen oxygen stores
+	metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_HAULING) * 0.05 //healthy athlete lower BPM
 
 //If the mob has its default name it'll try to generate /obtain a proper one
 /mob/living/carbon/human/proc/try_generate_default_name()

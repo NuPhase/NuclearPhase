@@ -7,7 +7,7 @@
 	var/mob/living/carbon/human/attached
 	var/mode = 1 // 1 is injecting, 0 is taking blood.
 	var/obj/item/chems/beaker
-	var/list/transfer_amounts = list(REM, 1, 2)
+	var/list/transfer_amounts = list(0.05, 0.1, 0.2, 5)
 	var/transfer_amount = 1
 
 /obj/structure/iv_drip/Initialize()
@@ -113,7 +113,7 @@
 
 	if(!beaker)
 		return
-	
+
 	//SSObj fires twice as fast as SSMobs, so gotta slow down to not OD our victims.
 	if(SSobj.times_fired % 2)
 		return
@@ -125,7 +125,7 @@
 	else // Take blood
 		var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 		amount = min(amount, 4)
-		
+
 		if(amount == 0) // If the beaker is full, ping
 			if(prob(5)) visible_message("\The [src] pings.")
 			return
@@ -158,23 +158,23 @@
 	set category = "Object"
 	set name = "Detach IV Drip"
 	set src in range(1)
-	
+
 	if(!attached)
 		return
-		
+
 	if(!CanPhysicallyInteractWith(usr, src))
 		to_chat(usr, SPAN_WARNING("You're in no condition to do that!"))
 		return
-		
+
 	if(!usr.skill_check(SKILL_MEDICAL, SKILL_BASIC))
 		rip_out()
 	else
 		visible_message("\The [attached] is taken off \the [src].")
 		attached = null
-	
+
 	queue_icon_update()
 	STOP_PROCESSING(SSobj,src)
-		
+
 /obj/structure/iv_drip/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle IV Mode"
@@ -188,7 +188,7 @@
 /obj/structure/iv_drip/examine(mob/user, distance)
 	. = ..()
 
-	if (distance >= 2) 
+	if (distance >= 2)
 		return
 
 	to_chat(user, "The IV drip is [mode ? "injecting" : "taking blood"].")

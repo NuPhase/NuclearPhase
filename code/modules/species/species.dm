@@ -250,6 +250,7 @@ var/global/const/DEFAULT_SPECIES_HEALTH = 200
 
 	// Order matters, higher pain level should be higher up
 	var/list/pain_emotes_with_pain_level = list(
+		list(/decl/emote/audible/agony) = 100,
 		list(/decl/emote/audible/scream, /decl/emote/audible/whimper, /decl/emote/audible/moan, /decl/emote/audible/cry) = 70,
 		list(/decl/emote/audible/grunt, /decl/emote/audible/groan, /decl/emote/audible/moan) = 40,
 		list(/decl/emote/audible/grunt, /decl/emote/audible/groan) = 10,

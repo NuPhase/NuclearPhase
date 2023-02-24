@@ -111,7 +111,7 @@
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	pickup_sound = 'sound/foley/knife1.ogg' 
+	pickup_sound = 'sound/foley/knife1.ogg'
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 	var/tool_quality = TOOL_QUALITY_DEFAULT
 
@@ -181,8 +181,8 @@
 	. = ..()
 	set_extension(src, /datum/extension/tool/variable, list(
 		TOOL_SAW =       TOOL_QUALITY_GOOD,
-		TOOL_SCALPEL =   TOOL_QUALITY_GOOD, 
-		TOOL_RETRACTOR = TOOL_QUALITY_GOOD, 
+		TOOL_SCALPEL =   TOOL_QUALITY_GOOD,
+		TOOL_RETRACTOR = TOOL_QUALITY_GOOD,
 		TOOL_HEMOSTAT =  TOOL_QUALITY_GOOD
 	))
 
@@ -244,6 +244,35 @@
 /obj/item/sutures/Initialize()
 	. = ..()
 	set_extension(src, /datum/extension/tool, list(TOOL_SUTURES = TOOL_QUALITY_DEFAULT))
+
+/obj/item/sutures/attack(var/mob/living/carbon/M, var/mob/user)
+	if(..())
+		return 1
+
+	if (istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, user.zone_sel.selecting) //nullchecked by ..()
+
+		if(affecting.is_clamped())
+			to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] are already closed."))
+			return 1
+		else
+			user.visible_message(SPAN_NOTICE("\The [user] starts suturing [M]'s [affecting.name]."), \
+					             SPAN_NOTICE("You start suturing [M]'s [affecting.name]."))
+			for (var/datum/wound/W in affecting.wounds)
+				if(W.wound_type != WOUND_TYPE_STITCHABLE)
+					to_chat(user, SPAN_NOTICE("Stitches are useless here."))
+					break
+				if(!do_mob(user, M, W.damage/5))
+					to_chat(user, SPAN_NOTICE("You must stand still to suture wounds."))
+					break
+
+				if (W.current_stage <= W.max_bleeding_stage)
+					user.visible_message(SPAN_NOTICE("\The [user] stitches \a [W.desc] on [M]'s [affecting.name]."), \
+					                              SPAN_NOTICE("You stitch \a [W.desc] on [M]'s [affecting.name]."))
+					W.clamped = TRUE
+			affecting.update_damages()
+			H.update_bandages(1)
 
 /obj/item/bonesetter
 	name = "bone setter"

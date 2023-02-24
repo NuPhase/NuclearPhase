@@ -68,9 +68,9 @@
 
 	M.updatehealth()
 /obj/item/stack/medical/bruise_pack
-	name = "roll of gauze"
-	singular_name = "gauze length"
-	desc = "Some sterile gauze to wrap around bloody stumps."
+	name = "roll of bandages"
+	singular_name = "bandage length"
+	desc = "Some sterile bandages to wrap around bloody stumps."
 	icon_state = "brutepack"
 	origin_tech = "{'biotech':1}"
 	animal_heal = 5
@@ -97,6 +97,9 @@
 					continue
 				if(used == amount)
 					break
+				if(W.wound_type == WOUND_TYPE_STITCHABLE)
+					to_chat(user, SPAN_WARNING("\The [W.desc] is too messed up to be bandaged!"))
+					break
 				if(!do_mob(user, M, W.damage/5))
 					to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
 					break
@@ -122,6 +125,78 @@
 					to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
 			use(used)
 			H.update_bandages(1)
+
+/obj/item/stack/medical/wound_filler
+	name = "absorbent cotton"
+	singular_name = "gauze length"
+	desc = "A pack of surgical cotton balls. Can be used to pack wounds."
+	icon = 'icons/obj/medicine.dmi'
+	icon_state = "cottonballs"
+	origin_tech = "{'biotech':1}"
+	animal_heal = 5
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
+	amount = 10
+	var/packing_speed = 0.5
+	var/should_disinfect = FALSE
+	var/sterile = FALSE
+
+/obj/item/stack/medical/wound_filler/attack(var/mob/living/carbon/M, var/mob/user)
+	if(..())
+		return 1
+
+	if (istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, user.zone_sel.selecting) //nullchecked by ..()
+
+		if(affecting.is_packed())
+			to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been packed."))
+			return 1
+		else
+			user.visible_message(SPAN_NOTICE("\The [user] starts packing wounds in [M]'s [affecting.name]."), \
+					             SPAN_NOTICE("You start packing wounds in [M]'s [affecting.name]."))
+			var/used = 0
+			for (var/datum/wound/W in affecting.wounds)
+				if(W.packed)
+					continue
+				if(used == amount)
+					break
+				if(W.wound_type != WOUND_TYPE_DEEP)
+					to_chat(user, SPAN_WARNING("\The [W.desc] does not require packing!"))
+					continue
+				if(!do_mob(user, M, W.damage/5 * packing_speed))
+					to_chat(user, SPAN_NOTICE("You must stand still to pack wounds."))
+					break
+				user.visible_message(SPAN_NOTICE("\The [user] packs the [W.desc] with [src]."), \
+					             	 SPAN_NOTICE("You pack the [W.desc] with the [src]."))
+				W.pack(sterile, should_disinfect)
+				playsound(src, pick(apply_sounds), 25)
+				used++
+			affecting.update_damages()
+			if(used == amount)
+				if(affecting.is_packed())
+					to_chat(user, SPAN_WARNING("\The [src] is used up."))
+				else
+					to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
+			use(used)
+			H.update_bandages(1)
+
+/obj/item/stack/medical/wound_filler/hydrogel
+	name = "hydrogel"
+	singular_name = "hydrogel"
+	icon = 'icons/obj/materials.dmi'
+	icon_state = "puck"
+	desc = "An elastic substance that can easily fill tricky spaces. Difficult to apply."
+	packing_speed = 0.4
+
+/obj/item/stack/medical/wound_filler/hydrofiber
+	name = "roll of hydrofiber dressing"
+	singular_name = "hydrofiber dressing length"
+	icon = 'icons/obj/medicine.dmi'
+	icon_state = "hydrogelpack"
+	desc = "Hydrofiber is a material capable of transforming into a gel on contact with wound fluid. Very easy to apply."
+	packing_speed = 1.5
+	sterile = TRUE
+	should_disinfect = TRUE
 
 /obj/item/stack/medical/ointment
 	name = "ointment"

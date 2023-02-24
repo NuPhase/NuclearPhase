@@ -205,8 +205,6 @@
 		if(gene.is_active(src))
 			gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,500)
-
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
 			set_light(0)
@@ -245,6 +243,9 @@
 		if(radiation > 150)
 			damage = 8
 			radiation -= 4 * RADIATION_SPEED_COEFFICIENT
+
+		if(radiation > 500)
+			add_chemical_effect(CE_GLOWINGEYES, 1)
 
 		damage = FLOOR(damage * species.get_radiation_mod(src))
 		if(damage)
@@ -389,6 +390,8 @@
 			burn_dam = COLD_DAMAGE_LEVEL_3
 		//SetStasis(getCryogenicFactor(bodytemperature), STASIS_COLD) //Pseudoscience
 		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
+		var/obj/item/organ/external/victim = pick(internal_organs)
+		victim.germ_level += burn_dam
 		fire_alert = max(fire_alert, 1)
 
 	// Account for massive pressure differences.  Done by Polymorph

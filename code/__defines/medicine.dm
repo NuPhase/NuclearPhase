@@ -21,3 +21,10 @@
 #define BLOOD_PRESSURE_HBAD 130
 #define BLOOD_PRESSURE_H2BAD 180
 #define BLOOD_PRESSURE_HCRITICAL 200
+
+#define WOUND_TYPE_DEEP "deep" //Won't stop bleeding if bandaged.
+#define WOUND_TYPE_BANDAGEABLE "bandageable" //Can be bandaged
+#define WOUND_TYPE_STITCHABLE "sticheable" //Should be stitched
+
+#define HEART_PATTERN_NORMAL "Sinus rhythme"
+#define HEART_PATTERN_ASYSTOLE "Asystole"

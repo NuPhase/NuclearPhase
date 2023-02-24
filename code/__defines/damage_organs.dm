@@ -89,6 +89,7 @@
 #define INFECTION_LEVEL_ONE   250
 #define INFECTION_LEVEL_TWO   500  // infections grow from ambient to two in ~5 minutes
 #define INFECTION_LEVEL_THREE 1000 // infections grow from two to three in ~10 minutes
+#define INFECTION_LEVEL_FOUR  2000 //necrosis
 
 //Blood levels. These are percentages based on the species blood_volume far.
 #define BLOOD_VOLUME_SAFE    85

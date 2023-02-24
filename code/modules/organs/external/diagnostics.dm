@@ -219,7 +219,7 @@
 	explanation = "Patient has low blood oxygenation."
 
 /decl/diagnostic_sign/oxygenation/manifested_in(obj/item/organ/external/victim)
-	return victim.owner && victim.owner.get_blood_oxygenation() <= 50
+	return victim.owner && victim.owner.get_blood_saturation() < 0.7
 
 /decl/diagnostic_sign/circulation
 	name = "Paleness"
@@ -227,7 +227,7 @@
 	explanation = "Patient has issues with blood circulaion or volume."
 
 /decl/diagnostic_sign/circulation/manifested_in(obj/item/organ/external/victim)
-	return victim.owner && victim.owner.get_blood_circulation() <= 60
+	return victim.owner && victim.owner.get_blood_perfusion() < 0.6
 
 /decl/diagnostic_sign/gangrene
 	name = "Rot"

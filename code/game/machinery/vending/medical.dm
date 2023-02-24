@@ -11,17 +11,17 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	initial_access = list(access_medical_equip)
 	products = list(
-		/obj/item/chems/glass/bottle/antitoxin = 4,
+		/obj/item/chems/glass/bottle/charcoal = 4,
 		/obj/item/chems/glass/bottle/stabilizer = 4,
 		/obj/item/chems/glass/bottle/sedatives = 4,
 		/obj/item/chems/glass/bottle/bromide = 4,
 		/obj/item/chems/syringe/antibiotic = 4,
 		/obj/item/chems/syringe = 12,
 		/obj/item/scanner/health = 5,
-		/obj/item/chems/glass/beaker = 4, 
+		/obj/item/chems/glass/beaker = 4,
 		/obj/item/chems/dropper = 2,
-		/obj/item/stack/medical/advanced/bruise_pack = 3, 
-		/obj/item/stack/medical/advanced/ointment = 3, 
+		/obj/item/stack/medical/advanced/bruise_pack = 3,
+		/obj/item/stack/medical/advanced/ointment = 3,
 		/obj/item/stack/medical/splint = 2,
 		/obj/item/chems/hypospray/autoinjector/pain = 4
 	)

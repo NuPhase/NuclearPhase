@@ -102,3 +102,10 @@
 
 /obj/item/chems/ivbag/blood/OMinus
 	blood_type = "O-"
+
+/obj/item/chems/ivbag/saline
+	name = "saline transfusion pack"
+
+/obj/item/chems/ivbag/saline/Initialize()
+	. = ..()
+	reagents.add_reagent(/decl/material/liquid/nanoblood/saline, volume)

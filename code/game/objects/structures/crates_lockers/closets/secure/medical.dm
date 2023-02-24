@@ -24,7 +24,7 @@
 		/obj/item/chems/dropper = 2,
 		/obj/item/chems/glass/beaker = 2,
 		/obj/item/chems/glass/bottle/stabilizer = 2,
-		/obj/item/chems/glass/bottle/antitoxin = 2,
+		/obj/item/chems/glass/bottle/charcoal = 2,
 		/obj/random/firstaid,
 		/obj/item/storage/box/masks,
 		/obj/item/storage/box/gloves
@@ -65,7 +65,7 @@
 	    /obj/item/storage/box/autoinjectors,
 	    /obj/item/storage/box/syringes,
 	    /obj/item/chems/glass/bottle/stabilizer,
-	    /obj/item/chems/glass/bottle/antitoxin,
+	    /obj/item/chems/glass/bottle/charcoal,
 	    /obj/item/storage/belt/medical/emt,
 	    /obj/item/clothing/mask/gas,
 	    /obj/item/clothing/suit/storage/toggle/fr_jacket,
@@ -127,7 +127,7 @@
 	wall_mounted = 1
 	storage_types = CLOSET_STORAGE_ITEMS
 	req_access = list(access_medical_equip)
-	
+
 /obj/structure/closet/secure_closet/medical_wall/Initialize()
 	. = ..()
 	tool_interaction_flags &= ~TOOL_INTERACTION_ANCHOR
@@ -171,7 +171,7 @@
 		/obj/item/chems/glass/bottle/stabilizer,
 		/obj/item/storage/pill_bottle/antibiotics,
 		/obj/item/chems/syringe/antibiotic,
-		/obj/item/chems/glass/bottle/antitoxin,
+		/obj/item/chems/glass/bottle/charcoal,
 		/obj/item/storage/box/masks,
 		/obj/item/storage/box/gloves,
 		/obj/item/clothing/under/virologist,

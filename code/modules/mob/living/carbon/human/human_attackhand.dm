@@ -225,7 +225,6 @@
 		H.visible_message(SPAN_NOTICE("\The [H] is trying to perform CPR on \the [src]."))
 
 	var/pumping_skill = max(H.get_skill_value(SKILL_MEDICAL), H.get_skill_value(SKILL_ANATOMY))
-	var/cpr_delay = 15 * H.skill_delay_mult(SKILL_ANATOMY, 0.2)
 
 	H.visible_message(SPAN_NOTICE("\The [H] performs CPR on \the [src]!"))
 
@@ -247,7 +246,7 @@
 		if(stat != DEAD && prob(10 + 5 * pumping_skill))
 			resuscitate()
 
-	if(!do_after(H, cpr_delay, FALSE)) //Chest compresssions are fast, need to wait for the loading bar to do mouth to mouth
+	if(!do_after(H, 6, FALSE)) //Chest compresssions are fast, need to wait for the loading bar to do mouth to mouth
 		to_chat(H, SPAN_NOTICE("You stop performing CPR on \the [src]."))
 		performing_cpr = FALSE //If it cancelled, cancel it. Simple.
 		return

@@ -58,7 +58,7 @@
 	//mcv = meanpressure * 132.32 * 60 / tpvr
 
 /mob/living/carbon/human/proc/consume_oxygen(amount)
-	var/available_oxygen = oxygen_amount * (mcv / NORMAL_MCV)
+	var/available_oxygen = oxygen_amount * get_blood_perfusion()
 	if(available_oxygen > amount)
 		oxygen_amount -= amount
 		return 1

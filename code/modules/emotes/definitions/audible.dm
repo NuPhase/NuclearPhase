@@ -137,6 +137,18 @@
 /decl/emote/audible/scream
 	key = "scream"
 	emote_message_3p = "USER screams!"
+	emote_sound = list(
+		MALE = list('sound/voice/Screams_Male_1.ogg', 'sound/voice/Screams_Male_2.ogg', 'sound/voice/Screams_Male_3.ogg', 'sound/voice/man_pain1.ogg'),
+		FEMALE = list('sound/voice/Screams_Woman_1.ogg', 'sound/voice/Screams_Woman_2.ogg')
+	)
+
+/decl/emote/audible/agony
+	key = "agony"
+	emote_message_3p = "USER screams in agony!"
+	emote_sound = list(
+		FEMALE = list('sound/voice/woman_agony1.ogg', 'sound/voice/woman_agony2.ogg', 'sound/voice/woman_agony3.ogg'),
+		MALE = list('sound/voice/male_onfire1.ogg')
+	)
 
 /decl/emote/audible/grunt
 	key = "grunt"

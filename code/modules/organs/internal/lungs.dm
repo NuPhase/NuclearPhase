@@ -30,21 +30,16 @@
 	var/last_successful_breath
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
 	oxygen_consumption = 1
-	var/oxygen_generation = 12.5 // default
+	var/oxygen_generation = 14.5 // default
 	var/max_oxygen_generation = 22 //weak lungs
+
+/obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
+	. = ..()
+	spawn(50) //ugly workaround, lungs don't have post initialize proc
+		max_oxygen_generation += owner.get_skill_value(SKILL_HAULING) * 1.5
 
 /obj/item/organ/internal/lungs/proc/can_drown()
 	return (is_broken() || !has_gills)
-
-/obj/item/organ/internal/lungs/proc/remove_oxygen_deprivation(var/amount)
-	var/last_suffocation = oxygen_deprivation
-	oxygen_deprivation = min(species.total_health,max(0,oxygen_deprivation - amount))
-	return -(oxygen_deprivation - last_suffocation)
-
-/obj/item/organ/internal/lungs/proc/add_oxygen_deprivation(var/amount)
-	var/last_suffocation = oxygen_deprivation
-	oxygen_deprivation = min(species.total_health,max(0,oxygen_deprivation + amount))
-	return (oxygen_deprivation - last_suffocation)
 
 // Returns a percentage value for use by GetOxyloss().
 /obj/item/organ/internal/lungs/proc/get_oxygen_deprivation()
@@ -134,7 +129,7 @@
 	if(!owner)
 		return 1
 
-	if(!breath || (max_damage <= 0))
+	if(!breath || (max_damage <= 0) || !owner.bpm)
 		breath_fail_ratio = 1
 		handle_failed_breath()
 		return 1

@@ -2,6 +2,7 @@
 /****************************************************
 					WOUNDS
 ****************************************************/
+
 /datum/wound
 	var/current_stage = 0      // number representing the current stage
 	var/desc = "wound"         // description of the wound. default in case something borks
@@ -12,6 +13,7 @@
 	var/bandaged = 0           // is the wound bandaged?
 	var/clamped = 0            // Similar to bandaged, but works differently
 	var/salved = 0             // is the wound salved?
+	var/packed = 0			   // Is the wound packed with something?
 	var/disinfected = 0        // is the wound disinfected?
 	var/created = 0
 	var/amount = 1             // number of wounds of this type
@@ -23,6 +25,8 @@
 	var/max_bleeding_stage = 0 // maximum stage at which bleeding should still happen. Beyond this stage bleeding is prevented.
 	var/damage_type = CUT      // one of CUT, PIERCE, BRUISE, BURN
 	var/autoheal_cutoff = 15   // the maximum amount of damage that this wound can have and still autoheal
+
+	var/wound_type = WOUND_TYPE_BANDAGEABLE
 
 	// helper lists
 	var/tmp/list/embedded_objects
@@ -140,6 +144,13 @@
 /datum/wound/proc/bandage()
 	bandaged = 1
 
+/datum/wound/proc/pack(is_sterile = FALSE, should_disinfect = FALSE)
+	packed = 1
+	if(!is_sterile)
+		germ_level += rand(50, 100)
+	else if(should_disinfect)
+		disinfect()
+
 /datum/wound/proc/salve()
 	salved = 1
 
@@ -201,7 +212,9 @@
 	for(var/obj/item/thing in embedded_objects)
 		if(thing.w_class > ITEM_SIZE_SMALL)
 			return FALSE
-	if(bandaged || clamped)
+	if(bandaged && wound_type == WOUND_TYPE_BANDAGEABLE)
+		return FALSE
+	if(clamped || packed)
 		return FALSE
 	return ((bleed_timer > 0 || wound_damage() > bleed_threshold) && current_stage <= max_bleeding_stage)
 

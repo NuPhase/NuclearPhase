@@ -11,7 +11,7 @@
 
 /obj/machinery/reactor_control_node/Initialize()
 	. = ..()
-	reactor_components["control_node"] += src
+	reactor_components["control_node"] = src
 
 /obj/machinery/reactor_control_node/proc/check_controllability()
 	if(operable)

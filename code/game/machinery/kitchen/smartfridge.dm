@@ -81,6 +81,70 @@
 		return 1
 	return 0
 
+/obj/machinery/smartfridge/secure/medbay/stocked
+	var/list/obj/item/stocked = list(
+		/obj/item/chems/glass/bottle/ampoule/adrenaline,
+		/obj/item/chems/glass/bottle/ampoule/adrenaline,
+		/obj/item/chems/glass/bottle/ampoule/adrenaline,
+		/obj/item/chems/glass/bottle/ampoule/adrenaline,
+		/obj/item/chems/glass/bottle/ampoule/adrenaline,
+		/obj/item/chems/glass/bottle/ampoule/noradrenaline,
+		/obj/item/chems/glass/bottle/ampoule/noradrenaline,
+		/obj/item/chems/glass/bottle/ampoule/noradrenaline,
+		/obj/item/chems/glass/bottle/ampoule/noradrenaline,
+		/obj/item/chems/glass/bottle/ampoule/atropine,
+		/obj/item/chems/glass/bottle/penicillin,
+		/obj/item/chems/glass/bottle/penicillin,
+		/obj/item/chems/glass/bottle/penicillin,
+		/obj/item/chems/glass/bottle/amicile,
+		/obj/item/chems/glass/bottle/ampoule/ceftriaxone,
+		/obj/item/chems/glass/bottle/ampoule/morphine,
+		/obj/item/chems/glass/bottle/ampoule/morphine,
+		/obj/item/chems/glass/bottle/ampoule/morphine,
+		/obj/item/chems/glass/bottle/ampoule/heroin/dirty,
+		/obj/item/chems/glass/bottle/ethanol,
+		/obj/item/chems/glass/bottle/ethanol,
+		/obj/item/chems/glass/bottle/ethanol,
+		/obj/item/chems/glass/bottle/nitroglycerin,
+		/obj/item/chems/glass/bottle/nitroglycerin,
+	)
+
+/obj/machinery/smartfridge/secure/medbay/stocked/Initialize()
+	. = ..()
+	for(var/T in stocked)
+		var/I = new T
+		stock_item(I)
+	stocked.Cut()
+
+/obj/machinery/smartfridge/secure/medbay/stocked/blood
+	name = "\improper Smart Transfusion Storage"
+	stocked = list(
+		/obj/item/chems/ivbag/saline,
+		/obj/item/chems/ivbag/saline,
+		/obj/item/chems/ivbag/saline,
+		/obj/item/chems/ivbag/saline,
+		/obj/item/chems/ivbag/saline,
+		/obj/item/chems/ivbag/blood/APlus,
+		/obj/item/chems/ivbag/blood/APlus,
+		/obj/item/chems/ivbag/blood/APlus,
+		/obj/item/chems/ivbag/blood/APlus,
+		/obj/item/chems/ivbag/blood/AMinus,
+		/obj/item/chems/ivbag/blood/AMinus,
+		/obj/item/chems/ivbag/blood/BPlus,
+		/obj/item/chems/ivbag/blood/BPlus,
+		/obj/item/chems/ivbag/blood/BPlus,
+		/obj/item/chems/ivbag/blood/BMinus,
+		/obj/item/chems/ivbag/blood/BMinus,
+		/obj/item/chems/ivbag/blood/OPlus,
+		/obj/item/chems/ivbag/blood/OPlus,
+		/obj/item/chems/ivbag/blood/OMinus
+	)
+
+/obj/machinery/smartfridge/secure/medbay/stocked/blood/accept_check(var/obj/item/O)
+	if(istype(O,/obj/item/chems/ivbag/))
+		return 1
+	return 0
+
 /obj/machinery/smartfridge/chemistry
 	name = "\improper Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."

@@ -228,3 +228,139 @@
 		H.seizure()
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("<font size = [rand(2,4)]>[pick(overdose_messages)]</font>"))
+
+/decl/material/liquid/opium
+	name = "opium"
+	lore_text = "Unrefined substance extracted from opium poppy flowers."
+	color = "#ccccff"
+	metabolism = 0.1
+	overdose = 6
+	uid = "chem_opium"
+	var/addictiveness = 10 //addiction gained per unit consumed
+	var/painkill_magnitude = 40
+	var/effective_dose = 3
+
+/decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/volume = REAGENT_VOLUME(holder, type)
+	var/dose = LAZYACCESS(H.chem_doses, type)
+	if(dose > effective_dose)
+		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
+		SET_STATUS_MAX(H, STAT_DRUGGY, 15)
+	heart.bpm_modifiers[name] = !volume * 3
+	var/boozed = isboozed(H)
+	if(boozed)
+		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
+		H.add_chemical_effect(CE_BREATHLOSS, 2 * boozed)
+
+/decl/material/liquid/opium/affect_overdose(mob/living/carbon/human/H, datum/reagents/holder)
+	. = ..()
+	H.add_chemical_effect(CE_BREATHLOSS, 5)
+	ADJ_STATUS(H, STAT_DIZZY,  3)
+
+/decl/material/liquid/opium/on_leaving_metabolism(atom/parent, metabolism_class)
+	. = ..()
+	var/mob/M = parent
+	spawn(60 SECONDS)
+		to_chat(M, SPAN_BOLD("You suddenly want more [name]..."))
+
+/decl/material/liquid/opium/proc/isboozed(var/mob/living/carbon/M)
+	. = 0
+	var/datum/reagents/ingested = M.get_ingested_reagents()
+	if(ingested)
+		var/list/pool = M.reagents.reagent_volumes | ingested.reagent_volumes
+		for(var/rtype in pool)
+			var/decl/material/liquid/ethanol/booze = GET_DECL(rtype)
+			if(!istype(booze) ||LAZYACCESS(M.chem_doses, rtype) < 2) //let them experience false security at first
+				continue
+			. = 1
+			if(booze.strength < 40) //liquor stuff hits harder
+				return 2
+
+/decl/material/liquid/opium/tramadol
+	name = "tramadol"
+	lore_text = "A linear painkiller."
+	addictiveness = 5
+	painkill_magnitude = 70
+	uid = "chem_tramadol"
+
+/decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/volume = REAGENT_VOLUME(holder, type)
+	var/dose = LAZYACCESS(H.chem_doses, type)
+	heart.bpm_modifiers[name] = !volume * 2
+	if(dose > effective_dose)
+		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
+	var/boozed = isboozed(H)
+	if(boozed)
+		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
+		H.add_chemical_effect(CE_BREATHLOSS, 1 * boozed)
+
+/decl/material/liquid/opium/codeine
+	name = "codeine"
+	lore_text = "A precursor to a large variety of opioids"
+	addictiveness = 1
+	painkill_magnitude = 10
+	uid = "chem_codeine"
+
+/decl/material/liquid/opium/codeine/desomorphine
+	name = "desomorphine"
+	lore_text = "An addictive painkiller with a very short window of action."
+	effective_dose = 0.5
+	painkill_magnitude =  80
+	uid = "chem_desomorphine"
+
+/decl/material/liquid/tianeptine
+	name = "tianeptine"
+	lore_text = "An addictive and effective antidepressant."
+	uid = "chem_tianeptine"
+
+/decl/material/liquid/sulfuric_morphine
+	name = "sulfuric morphine"
+	lore_text = "Morphine with a lot of sulfuric acid traces in it."
+	heating_products = list(/decl/material/liquid/opium/morphine = 1, /decl/material/solid/sulfur = 1)
+	heating_message = "All sulphuric acid evaporates, leaving a mess of purple liquid and yellow powder."
+	heating_point = 140 CELSIUS
+	uid = "chem_sulfuricmorphine"
+
+/decl/material/liquid/opium/morphine
+	name = "morphine"
+	painkill_magnitude = 60
+	uid = "chem_morphine"
+	effective_dose = 1
+
+/decl/material/liquid/opium/morphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/volume = REAGENT_VOLUME(holder, type)
+	var/dose = LAZYACCESS(H.chem_doses, type)
+	heart.bpm_modifiers[name] = !volume * 2
+	if(dose > effective_dose)
+		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
+		SET_STATUS_MAX(H, STAT_DRUGGY, 15)
+	var/boozed = isboozed(H)
+	if(boozed)
+		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
+		H.add_chemical_effect(CE_BREATHLOSS, 1 * boozed)
+
+/decl/material/liquid/opium/morphine/ethylmorphine
+	name = "ethylmorphine"
+	painkill_magnitude = 20
+	uid = "chem_ethylmorphine"
+
+/decl/material/liquid/opium/morphine/diamorphine
+	name = "diamorphine"
+	lore_text = "A synthetic morphine-derived drug."
+	painkill_magnitude = 110
+	uid = "chem_diamorphine"
+
+/decl/material/liquid/opium/morphine/diamorphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	H.set_hallucination(120, 30)
+
+/decl/material/liquid/opium/morphine/diamorphine/dirty
+	lore_text = "A synthetic morphine-derived drug. Looks unpure."
+	painkill_magnitude = 90
+	uid = "chem_diamorphinedirty"
+
+/decl/material/liquid/opium/morphine/diamorphine/dirty/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	. = ..()
+	H.adjustToxLoss(1)

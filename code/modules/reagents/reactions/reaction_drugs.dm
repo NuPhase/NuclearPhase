@@ -180,7 +180,7 @@
 	name = "Plant-B-Gone"
 	result = /decl/material/liquid/weedkiller
 	required_reagents = list(
-		/decl/material/liquid/bromide = 1, 
+		/decl/material/liquid/bromide = 1,
 		/decl/material/liquid/water = 4
 	)
 	result_amount = 5
@@ -220,8 +220,8 @@
 /decl/chemical_reaction/methyl_bromide
 	name = "Methyl Bromide"
 	required_reagents = list(
-		/decl/material/liquid/bromide = 1, 
-		/decl/material/liquid/ethanol = 1, 
+		/decl/material/liquid/bromide = 1,
+		/decl/material/liquid/ethanol = 1,
 		/decl/material/liquid/fuel/hydrazine = 1
 	)
 	result_amount = 3
@@ -260,3 +260,12 @@
 	required_reagents = list(/decl/material/liquid/presyncopics = 1, /decl/material/liquid/antitoxins = 1)
 	minimum_temperature = 40 CELSIUS
 	result_amount = 2
+
+
+
+/decl/chemical_reaction/sulfuric_morphine
+	name = "Morphine Synthesis - Step 1"
+	result = /decl/material/liquid/sulfuric_morphine
+	required_reagents = list(/decl/material/liquid/opium = 1, /decl/material/liquid/acid = 2)
+	mix_message = "The morphine binds to the sulfuric acid with a hiss."
+	result_amount = 3

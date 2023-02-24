@@ -2,7 +2,7 @@
 	name = "barrel"
 	desc = "Can contain liquid, or... Humans?"
 	icon_state = "barrel_open"
-	var/datum/gas_mixture/internal = new
+	var/datum/gas_mixture/internal
 	var/volume = 115 //average barrel
 	var/open = TRUE
 	var/is_acidic = FALSE
@@ -10,6 +10,7 @@
 
 /obj/structure/barrel/Initialize(ml, _mat, _reinf_mat)
 	. = ..()
+	internal = new
 	internal.volume = volume
 
 /obj/structure/barrel/update_icon()
@@ -43,7 +44,7 @@
 		contained = affecting_mob
 		START_PROCESSING(SSobj, src)
 		is_acidic = internal.is_acidic()
-		internal.volume = volume - HUMAN_BODY_VOLUME
+		internal.volume = internal.volume - HUMAN_BODY_VOLUME
 		internal.update_values()
 	..()
 

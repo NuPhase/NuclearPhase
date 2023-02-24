@@ -34,10 +34,10 @@ var/global/list/station_prefixes = list("", "Imperium", "Heretical", "Cuban",
 
 var/global/list/station_names = list("", "Stanford", "Dwarf", "Alien",
 	"Aegis", "Death-World", "Rogue", "Safety", "Paranoia",
-	"Explosive", "North", "West", "East", "South", "Slant-ways", 
-	"Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial", 
-	"Unidentified", "Immoral", "Carp", "Orc", "Pete", "Control", 
-	"Nettle", "Class", "Crab", "Fist", "Corrogated", "Skeleton", 
+	"Explosive", "North", "West", "East", "South", "Slant-ways",
+	"Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial",
+	"Unidentified", "Immoral", "Carp", "Orc", "Pete", "Control",
+	"Nettle", "Class", "Crab", "Fist", "Corrogated", "Skeleton",
 	"Gentleman", "Capitalist", "Communist", "Bear", "Beard", "Space",
 	"Star", "Moon", "System", "Mining", "Research", "Supply", "Military",
 	"Orbital", "Battle", "Science", "Asteroid", "Home", "Production",
@@ -74,39 +74,36 @@ var/global/list/numbers_as_words = list("One", "Two", "Three", "Four",
 var/global/list/music_tracks = list(
 	"Beyond" = /decl/music_track/ambispace,
 	"Clouds of Fire" = /decl/music_track/clouds_of_fire,
-	"Stage Three" = /decl/music_track/dilbert,
-	"Asteroids" = /decl/music_track/df_theme,
 	"Floating" = /decl/music_track/floating,
 	"Endless Space" = /decl/music_track/endless_space,
-	"Fleet Party Theme" = /decl/music_track/one_loop,
-	"Scratch" = /decl/music_track/level3_mod,
 	"Absconditus" = /decl/music_track/absconditus,
 	"lasers rip apart the bulkhead" = /decl/music_track/lasers,
-	"Maschine Klash" = /decl/music_track/digit_one,
 	"Comet Halley" = /decl/music_track/comet_haley,
 	"Please Come Back Any Time" = /decl/music_track/elevator,
 	"Human" = /decl/music_track/human,
 	"Memories of Lysendraa" = /decl/music_track/lysendraa,
 	"Marhaba" = /decl/music_track/marhaba,
 	"Space Oddity" = /decl/music_track/space_oddity,
-	"THUNDERDOME" = /decl/music_track/thunderdome,
 	"Treacherous Voyage" = /decl/music_track/treacherous_voyage,
-	"Wake" = /decl/music_track/wake,
-	"phoron will make us rich" = /decl/music_track/pwmur,
 	"every light is blinking at once" = /decl/music_track/elibao,
 	"In Orbit" = /decl/music_track/inorbit,
 	"Martian Cowboy" = /decl/music_track/martiancowboy,
 	"Monument" = /decl/music_track/monument,
-	"As Far As It Gets" = /decl/music_track/asfarasitgets,
-	"80s All Over Again" = /decl/music_track/eighties,
 	"Wild Encounters" = /decl/music_track/wildencounters,
 	"Torn" = /decl/music_track/torn,
 	"Nebula" = /decl/music_track/nebula
 )
 
-/proc/setup_music_tracks(var/list/tracks)
+var/global/list/engineering_music_tracks = list(
+	"Night Shift" = /decl/music_track/nightshift
+)
+
+/proc/setup_music_tracks(var/list/tracks, var/specialization) //engineering, medical, expedition
 	. = list()
 	var/track_list = LAZYLEN(tracks) ? tracks : global.music_tracks
+	switch(specialization)
+		if("engineering")
+			tracks.Add(engineering_music_tracks)
 	for(var/track_name in track_list)
 		var/track_path = track_list[track_name]
 		. += new/datum/track(track_name, track_path)

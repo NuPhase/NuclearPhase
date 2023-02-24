@@ -763,8 +763,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(germ_level < INFECTION_LEVEL_TWO)
 		return ..()
 
-	var/antibiotics = REAGENT_VOLUME(owner.reagents, /decl/material/liquid/antibiotics)
-
 	if(germ_level >= INFECTION_LEVEL_TWO)
 		//spread the infection to internal organs
 		var/obj/item/organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
@@ -796,14 +794,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < REAGENTS_OVERDOSE)	//overdosing is necessary to stop severe infections
-		if (!(status & ORGAN_DEAD))
-			status |= ORGAN_DEAD
-			to_chat(owner, "<span class='notice'>You can't feel your [name] anymore...</span>")
-			owner.update_body(1)
-
-		germ_level++
-		owner.adjustToxLoss(1)
+	if(germ_level > INFECTION_LEVEL_FOUR)
+		if (prob(3))	//about once every 30 seconds
+			take_general_damage(1,silent=prob(30))
+		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.3)
 
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /obj/item/organ/external/proc/update_wounds()
@@ -1100,6 +1094,18 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/is_bandaged()
 	for(var/datum/wound/W in wounds)
 		if(!W.bandaged)
+			return 0
+	return 1
+
+/obj/item/organ/external/proc/is_clamped()
+	for(var/datum/wound/W in wounds)
+		if(!W.clamped)
+			return 0
+	return 1
+
+/obj/item/organ/external/proc/is_packed()
+	for(var/datum/wound/W in wounds)
+		if(!W.packed)
 			return 0
 	return 1
 

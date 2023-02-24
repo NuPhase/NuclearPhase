@@ -38,7 +38,7 @@
 /obj/item/chems/glass/bottle/on_update_icon()
 	..()
 	cut_overlays()
-	
+
 	if(reagents?.total_volume)
 		var/percent = round(reagents.total_volume / volume * 100, 25)
 		add_overlay(mutable_appearance(icon, "[icon_state]_filling_[percent]", reagents.get_color()))
@@ -57,7 +57,7 @@
 
 	if (!ATOM_IS_OPEN_CONTAINER(src))
 		add_overlay(mutable_appearance(icon, "[icon_state]_lid", lid_color))
-	
+
 	compile_overlays()
 
 /obj/item/chems/glass/bottle/Initialize()
@@ -88,9 +88,9 @@
 	desc = "A small bottle of soporific medication. Just the fumes make you sleepy."
 	initial_reagents = list(/decl/material/liquid/sedatives = 60)
 
-/obj/item/chems/glass/bottle/antitoxin
-	desc = "A small bottle of antitoxins. Counters poisons, and repairs damage. A wonder drug."
-	initial_reagents = list(/decl/material/liquid/antitoxins = 60)
+/obj/item/chems/glass/bottle/charcoal
+	desc = "A small bottle of dissolved charcoal."
+	initial_reagents = list(/decl/material/liquid/antitoxins/charcoal = 60)
 
 /obj/item/chems/glass/bottle/mutagenics
 	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
@@ -143,3 +143,56 @@
 /obj/item/chems/glass/bottle/frostoil
 	desc = "A small bottle. Contains cold sauce."
 	initial_reagents = list(/decl/material/liquid/frostoil = 60)
+
+/obj/item/chems/glass/bottle/penicillin
+	initial_reagents = list(/decl/material/liquid/antibiotics/penicillin = 60)
+
+/obj/item/chems/glass/bottle/ethanol
+	initial_reagents = list(/decl/material/liquid/ethanol = 60)
+
+/obj/item/chems/glass/bottle/nitroglycerin
+	initial_reagents = list(/decl/material/liquid/nitroglycerin = 60)
+
+/obj/item/chems/glass/bottle/amicile
+	initial_reagents = list(/decl/material/liquid/antibiotics/amicile = 30)
+	volume = 30
+
+/obj/item/chems/glass/bottle/ampoule
+	name = "ampoule"
+	desc = "A small ampoule."
+	volume = 15
+	autolabel = FALSE
+
+/obj/item/chems/glass/bottle/ampoule/Initialize()
+	. = ..()
+	atom_flags ^= ATOM_FLAG_OPEN_CONTAINER
+	update_icon()
+
+/obj/item/chems/glass/bottle/ampoule/adrenaline
+	name = "adrenaline ampoule"
+	initial_reagents = list(/decl/material/liquid/adrenaline = 15)
+
+/obj/item/chems/glass/bottle/ampoule/noradrenaline
+	name = "noradrenaline ampoule"
+	initial_reagents = list(/decl/material/liquid/noradrenaline = 15)
+
+/obj/item/chems/glass/bottle/ampoule/atropine
+	name = "atropine ampoule"
+	initial_reagents = list(/decl/material/liquid/atropine = 15)
+
+/obj/item/chems/glass/bottle/ampoule/ceftriaxone
+	name = "ceftriaxone ampoule"
+	initial_reagents = list(/decl/material/liquid/antibiotics/ceftriaxone = 15)
+
+/obj/item/chems/glass/bottle/ampoule/morphine
+	name = "morphine ampoule"
+	initial_reagents = list(/decl/material/liquid/opium/morphine = 5)
+	volume = 5
+
+/obj/item/chems/glass/bottle/ampoule/heroin
+	name = "heroin ampoule"
+	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine = 5)
+	volume = 5
+
+/obj/item/chems/glass/bottle/ampoule/heroin/dirty
+	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine/dirty = 5)

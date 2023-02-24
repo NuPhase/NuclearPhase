@@ -95,6 +95,13 @@
 /obj/item/chems/pill/antitox/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/antitoxins, 25)
 
+/obj/item/chems/pill/charcoal
+	name = "charcoal pill"
+	desc = "Neutralizes many common toxins."
+	icon_state = "pill1"
+/obj/item/chems/pill/antitox/initialize_reagents()
+	reagents.add_reagent(/decl/material/liquid/antitoxins/charcoal, 50)
+
 /obj/item/chems/pill/bromide
 	name = "bromide pill"
 	desc = "Highly toxic."

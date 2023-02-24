@@ -250,9 +250,9 @@
 
 /decl/material/liquid/lactate/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/volume = REAGENT_VOLUME(holder, type)
-	M.add_chemical_effect(CE_PULSE, 1)
+	M.add_chemical_effect(CE_PULSE, volume * 5)
 	if(volume >= 10)
-		M.add_chemical_effect(CE_PULSE, 1)
+		M.add_chemical_effect(CE_PULSE, 50)
 		M.add_chemical_effect(CE_SLOWDOWN, (volume/15) ** 2)
 	else if(LAZYACCESS(M.chem_doses, type) > 30) //after prolonged exertion
 		ADJ_STATUS(M, STAT_JITTER, 5)
@@ -268,6 +268,7 @@
 	metabolism = 1
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nanoblood"
+	var/blood_power = 4
 
 /decl/material/liquid/nanoblood/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/mob/living/carbon/human/H = M
@@ -275,10 +276,19 @@
 		return
 	if(!H.should_have_organ(BP_HEART)) //We want the var for safety but we can do without the actual blood.
 		return
-	if(H.regenerate_blood(4 * removed))
+	if(H.regenerate_blood(blood_power * removed))
 		H.immunity = max(H.immunity - 0.1, 0)
 		if(LAZYACCESS(H.chem_doses, type) > H.species.blood_volume/8) //half of blood was replaced with us, rip white bodies
 			H.immunity = max(H.immunity - 0.5, 0)
+
+/decl/material/liquid/nanoblood/saline
+	name = "saline solution"
+	lore_text = "Saline (also known as saline solution) is a mixture of sodium chloride and water. It has a number of uses in medicine including cleaning wounds, removal and storage of contact lenses, and help with dry eyes."
+	overdose = 560
+	color = "#bebebe"
+	metabolism = 10
+	uid = "chem_saline"
+	blood_power = 1
 
 /decl/material/solid/tobacco
 	name = "tobacco"

@@ -96,6 +96,7 @@
 		"healing cut" = 2,
 		"small scab" = 0
 		)
+	wound_type = WOUND_TYPE_BANDAGEABLE
 
 /datum/wound/cut/deep
 	max_bleeding_stage = 3
@@ -107,6 +108,7 @@
 		"scab" = 2,
 		"fresh patch of skin" = 0
 		)
+	wound_type = WOUND_TYPE_STITCHABLE
 
 /datum/wound/cut/flesh
 	max_bleeding_stage = 4
@@ -118,6 +120,7 @@
 		"large scab" = 5,
 		"fresh patch of skin" = 0
 		)
+	wound_type = WOUND_TYPE_STITCHABLE
 
 /datum/wound/cut/gaping
 	max_bleeding_stage = 3
@@ -128,6 +131,7 @@
 		"small angry scar" = 5,
 		"small straight scar" = 0
 		)
+	wound_type = WOUND_TYPE_DEEP
 
 /datum/wound/cut/gaping_big
 	max_bleeding_stage = 3
@@ -138,6 +142,7 @@
 		"large angry scar" = 10,
 		"large straight scar" = 0
 		)
+	wound_type = WOUND_TYPE_DEEP
 
 /datum/wound/cut/massive
 	max_bleeding_stage = 3
@@ -148,11 +153,13 @@
 		"massive angry scar" = 10,
 		"massive jagged scar" = 0
 		)
+	wound_type = WOUND_TYPE_BANDAGEABLE
 
 /** PUNCTURES **/
 /datum/wound/puncture
 	bleed_threshold = 10
 	damage_type = PIERCE
+	wound_type = WOUND_TYPE_DEEP
 
 /datum/wound/puncture/can_worsen(damage_type, damage)
 	return 0 //puncture wounds cannot be enlargened
@@ -219,11 +226,13 @@
 	max_bleeding_stage = 3 //only large bruise and above can bleed.
 	autoheal_cutoff = 30
 	damage_type = BRUISE
+	wound_type = WOUND_TYPE_BANDAGEABLE
 
 /** BURNS **/
 /datum/wound/burn
 	damage_type = BURN
 	max_bleeding_stage = 0
+	wound_type = WOUND_TYPE_BANDAGEABLE
 
 /datum/wound/burn/bleeding()
 	return 0
@@ -270,6 +279,7 @@
 /** EXTERNAL ORGAN LOSS **/
 /datum/wound/lost_limb
 	var/limb_tag
+	wound_type = WOUND_TYPE_STITCHABLE
 
 /datum/wound/lost_limb/New(var/obj/item/organ/external/lost_limb, var/losstype, var/clean)
 	var/damage_amt = lost_limb.max_damage
