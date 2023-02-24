@@ -157,6 +157,9 @@
 	initial_reagents = list(/decl/material/liquid/antibiotics/amicile = 30)
 	volume = 30
 
+/obj/item/chems/glass/bottle/dronedarone
+	initial_reagents = list(/decl/material/liquid/dronedarone = 60)
+
 /obj/item/chems/glass/bottle/ampoule
 	name = "ampoule"
 	desc = "A small ampoule."

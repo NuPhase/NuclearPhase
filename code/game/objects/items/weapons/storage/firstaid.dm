@@ -26,9 +26,10 @@
 	icon_state = "firstaid"
 
 	startswith = list(
-		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/ointment = 2,
-		/obj/item/storage/pill_bottle/antibiotics,
+		/obj/item/stack/medical/bruise_pack = 1,
+		/obj/item/stack/medical/wound_filler = 1,
+		/obj/item/stack/medical/ointment = 1,
+		/obj/item/storage/pill_bottle/betapace,
 		/obj/item/storage/pill_bottle/painkillers,
 		/obj/item/stack/medical/splint
 		)
@@ -40,7 +41,10 @@
 	item_state = "firstaid-ointment"
 
 	startswith = list(
-		/obj/item/storage/med_pouch/trauma = 4
+		/obj/item/stack/medical/bruise_pack = 2,
+		/obj/item/stack/medical/wound_filler = 2,
+		/obj/item/stack/medical/ointment = 1,
+		/obj/item/storage/pill_bottle/painkillers
 		)
 
 /obj/item/storage/firstaid/trauma/Initialize()
@@ -54,7 +58,10 @@
 	item_state = "firstaid-ointment"
 
 	startswith = list(
-		/obj/item/storage/med_pouch/burn = 4
+		/obj/item/stack/medical/bruise_pack = 2,
+		/obj/item/stack/medical/wound_filler = 1,
+		/obj/item/stack/medical/ointment = 2,
+		/obj/item/storage/pill_bottle/painkillers
 		)
 
 /obj/item/storage/firstaid/fire/Initialize()
@@ -68,7 +75,7 @@
 	item_state = "firstaid-toxin"
 
 	startswith = list(
-		/obj/item/storage/med_pouch/toxin = 4
+		/obj/item/chems/pill/charcoal = 4
 		)
 
 /obj/item/storage/firstaid/toxin/Initialize()
@@ -92,9 +99,11 @@
 	item_state = "firstaid-advanced"
 
 	startswith = list(
-		/obj/item/storage/pill_bottle/assorted,
-		/obj/item/stack/medical/advanced/bruise_pack = 3,
-		/obj/item/stack/medical/advanced/ointment = 2,
+		/obj/item/stack/medical/bruise_pack = 2,
+		/obj/item/stack/medical/wound_filler = 2,
+		/obj/item/stack/medical/ointment = 1,
+		/obj/item/storage/pill_bottle/betapace,
+		/obj/item/storage/pill_bottle/painkillers,
 		/obj/item/stack/medical/splint
 		)
 
@@ -148,10 +157,7 @@
 		/obj/item/retractor,
 		/obj/item/scalpel,
 		/obj/item/surgicaldrill,
-		/obj/item/bonegel,
-		/obj/item/sutures,
-		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/nanopaste
+		/obj/item/sutures
 	)
 
 	startswith = list(
@@ -162,9 +168,7 @@
 		/obj/item/retractor,
 		/obj/item/scalpel,
 		/obj/item/surgicaldrill,
-		/obj/item/bonegel,
-		/obj/item/sutures,
-		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/sutures
 	)
 
 /obj/item/storage/firstaid/surgery/ghetto // Mostly just for debugging.

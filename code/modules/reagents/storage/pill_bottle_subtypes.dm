@@ -82,3 +82,10 @@
 			/obj/item/chems/pill/burn_meds = 2,
 			/obj/item/chems/pill/antirads
 		)
+
+/obj/item/storage/pill_bottle/betapace
+	name = "pill bottle (betapace)"
+	desc = "Betapace is a betablocker used in treating high heartrate and arrythmias. Dosed in 5ml."
+
+	startswith = list(/obj/item/chems/pill/betapace = 21)
+	wrapper_color = COLOR_GRAY

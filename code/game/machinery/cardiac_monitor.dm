@@ -2,7 +2,7 @@
 	name = "\improper cardiac monitor"
 	icon = 'icons/obj/medicine.dmi'
 	icon_state = "mon"
-	use_power = POWER_USE_OFF
+	use_power = POWER_USE_IDLE
 	anchored = 0
 	density = 0
 	var/mob/living/carbon/human/attached

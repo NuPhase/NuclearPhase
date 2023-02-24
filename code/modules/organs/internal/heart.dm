@@ -54,6 +54,7 @@
 		ninstability += 20
 	if(cardiac_output < 0.5)
 		ninstability += 20
+	ninstability += oxygen_deprivation * 0.1
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
 	instability = max(Interpolate(instability, ninstability, 0.1), 0)
 
@@ -72,7 +73,7 @@
 	if(pulse == 0)
 		return
 	else //and if it's beating, let's see if it should
-		var/should_stop = prob(instability * 0.05 + oxygen_deprivation)
+		var/should_stop = prob(instability * 0.05)
 		should_stop = should_stop || prob(max(0, owner.getBrainLoss() - owner.maxHealth * 0.75)) //brain failing to work heart properly
 		if(should_stop) // The heart has stopped due to going into traumatic or cardiovascular shock.
 			to_chat(owner, "<span class='danger'>Your heart has stopped!</span>")

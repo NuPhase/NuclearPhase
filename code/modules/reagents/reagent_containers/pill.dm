@@ -292,3 +292,10 @@
 
 /obj/item/chems/pill/pod/mint/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/drink/syrup/mint, 1) //mint is used as a catalyst in all reactions as of writing
+
+/obj/item/chems/pill/betapace
+	name = "betapace pill"
+	desc = "Commonly used to treat tachycardia and arrythmias. Dosed in 5ml."
+	icon_state = "pill3"
+/obj/item/chems/pill/stox/initialize_reagents()
+	reagents.add_reagent(/decl/material/solid/betapace, 5)

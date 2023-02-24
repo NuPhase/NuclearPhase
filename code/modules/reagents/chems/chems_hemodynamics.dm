@@ -73,3 +73,36 @@
 	var/volume = REAGENT_VOLUME(holder, type)
 	heart.cardiac_output_modifiers[name] = 1 - volume * 0.01
 	heart.oxygen_deprivation = max(0, heart.oxygen_deprivation - volume * 0.2)
+
+/decl/material/solid/betapace
+	name = "betapace"
+	mechanics_text = "Decreases pulse, increases heart stability"
+	taste_description = "burning"
+	color = "#353535"
+	scannable = 1
+	overdose = 15
+	metabolism = 0.05
+	value = 1.5
+	uid = "chem_betapace"
+
+/decl/material/solid/betapace/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/volume = REAGENT_VOLUME(holder, type)
+	heart.bpm_modifiers[name] = !(volume * 2)
+	heart.stability_modifiers[name] = volume * 7
+
+/decl/material/liquid/dronedarone
+	name = "dronedarone"
+	mechanics_text = "Increases heart stability"
+	taste_description = "comfort"
+	color = "#321f35"
+	scannable = 1
+	overdose = 10
+	metabolism = 0.05
+	value = 1.5
+	uid = "chem_dronedarone"
+
+/decl/material/liquid/dronedarone/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/volume = REAGENT_VOLUME(holder, type)
+	heart.stability_modifiers[name] = volume * 10

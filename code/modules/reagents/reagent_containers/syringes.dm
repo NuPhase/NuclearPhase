@@ -13,7 +13,7 @@
 	item_state = "rg0"
 	icon_state = "rg"
 	material = /decl/material/solid/glass
-	amount_per_transfer_from_this = 5
+	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = @"[1,2,3,4,5]"
 	volume = 15
 	w_class = ITEM_SIZE_TINY
