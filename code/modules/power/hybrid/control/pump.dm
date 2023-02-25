@@ -1,6 +1,5 @@
 /obj/machinery/reactor_button/pump
 	name = "pump switch"
-	var/id = ""
 
 /obj/machinery/reactor_button/pump/Initialize()
 	. = ..()
@@ -25,3 +24,7 @@
 
 /obj/machinery/reactor_button/pump/tcp2
 	id = "T-CP 2"
+
+/obj/machinery/reactor_button/pump/feedmakeup
+	name = "T-FEEDWATER CP-MAKEUP"
+	id = "T-FEEDWATER CP-MAKEUP"

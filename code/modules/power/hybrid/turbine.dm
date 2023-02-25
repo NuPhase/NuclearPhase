@@ -1,4 +1,5 @@
 #define TURBINE_MOMENT_OF_INERTIA 2375 //0.5m radius, 9500kg weight
+#define KGS_PER_KPA_DIFFERENCE 0.6 //For every kPa of pressure difference we gain that amount of kgs of flow
 
 /obj/machinery/atmospherics/binary/turbinestage
 	name = "turbine stage"
@@ -31,27 +32,28 @@
 	var/total_mass_flow = 0
 	var/rpm = 0
 	var/braking = FALSE //emergency brakes
+	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
 
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()
 	air1.volume = 20000
 	air2.volume = 80000
+	reactor_components[uid] = src
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
 	total_mass_flow = air1.net_flow_mass
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
+	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
 	steam_velocity = ((total_mass_flow * 3600) * 1.694) / 11304
 	var/kin_total = 0.05 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
-	air_all.merge(air1.remove_ratio(1))
-	air_all.merge(air2.remove_ratio(1))
-	air1.merge(air_all.remove(expansion_ratio))
+	pump_passive(air1, air_all, total_mass_flow)
+	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
 	air2.merge(air_all)
-	air2.temperature *= volume_ratio ** ADIABATIC_EXPONENT
 	var/new_rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 	if(braking) //TODO: MAKE DAMAGE FROM THIS
 		var/datum/gas_mixture/environment = loc.return_air()
@@ -73,6 +75,7 @@
 	uncreated_component_parts = null
 	construct_state = /decl/machine_construction/default/panel_closed
 	var/connected = FALSE
+	var/last_load = 0
 
 /obj/machinery/power/turbine_generator/Initialize()
 	. = ..()
@@ -93,6 +96,7 @@
 
 	if(connected)
 		var/power_generated = powernet.load + 100000
+		last_load = powernet.load
 		turbine.kin_energy -= power_generated
 		generate_power(power_generated)
 

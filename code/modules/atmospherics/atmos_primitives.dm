@@ -103,8 +103,29 @@
 		if(source.phases[g] == MAT_PHASE_LIQUID)
 			mat = GET_DECL(g)
 			break
-
+	if(!mat)
+		return
 	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.liquid_molar_mass)
+	if (!removed) //Just in case
+		return -1
+
+	sink.merge(removed)
+
+/proc/pump_passive(var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0)
+	var/source_mass = source.get_mass()
+	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing
+		return -1
+
+	if(isnull(transfer_mass))
+		transfer_mass = source_mass
+	var/decl/material/mat = null
+	var/transfer_moles = 0
+	for(var/g in source.gas)
+		mat = GET_DECL(g)
+		transfer_moles += transfer_mass / mat.molar_mass
+	if(!transfer_moles)
+		return
+	var/datum/gas_mixture/removed = source.remove(transfer_moles)
 	if (!removed) //Just in case
 		return -1
 

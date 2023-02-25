@@ -30,6 +30,11 @@
 	required_interaction_dexterity = DEXTERITY_SIMPLE_MACHINES
 	var/cooldown = 10
 	var/used = FALSE
+	var/id
+
+/obj/machinery/reactor_button/Initialize()
+	if(id)
+		reactor_buttons[id] = src
 
 /obj/machinery/reactor_button/physical_attack_hand(user)
 	. = ..()

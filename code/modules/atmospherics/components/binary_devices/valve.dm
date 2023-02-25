@@ -5,13 +5,14 @@
 	icon_state = "map_off"
 	level = 2
 	var/last_mass_flow = 0
+	var/portvolume = 2000
 
 /obj/machinery/atmospherics/binary/regulated_valve/Initialize()
 	. = ..()
 	if(uid)
 		rcontrol.reactor_valves[uid] = src
-	air1.volume = 2000
-	air2.volume = 2000
+	air1.volume = portvolume
+	air2.volume = portvolume
 
 /obj/machinery/atmospherics/binary/regulated_valve/proc/adjust_openage(percent)
 	open_to = Clamp(open_to + percent / 100, 0, 1)

@@ -124,3 +124,6 @@
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactor
 	surface = 1000 //TODO: CALCULATE THIS
+
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior
+	surface = 10 //TODO: CALCULATE THIS

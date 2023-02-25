@@ -508,7 +508,7 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/liquid_helium/Initialize()
 	. = ..()
 	air_contents.adjust_gas(/decl/material/gas/helium, MolesForVolume(/decl/material/gas/helium))
-	air_contents.temperature = 3
+	air_contents.temperature = 2
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/methyl_bromide

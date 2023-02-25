@@ -64,6 +64,8 @@
 
 /area/avalon/shelter/reactor
 	sound_env = LARGE_ENCLOSED
+	name = "Reactor Chamber"
+
 /area/avalon/shelter/reactormonitoring
 /area/avalon/shelter/engineering
 /area/avalon/shelter/atmos

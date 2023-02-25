@@ -1,5 +1,4 @@
 /obj/machinery/reactor_button/lighting
-	var/id = ""
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light0"
 

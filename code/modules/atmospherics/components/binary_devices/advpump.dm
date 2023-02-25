@@ -45,7 +45,7 @@
 /obj/machinery/atmospherics/binary/pump/adv/proc/spool_up()
 	icon_state = "on"
 	use_power = POWER_USE_IDLE
-	soundloop = new(list(src, GET_ABOVE(src.loc)), TRUE)
+	soundloop = new(list(src), TRUE)
 	while(rpm < REACTOR_PUMP_RPM_SAFE)
 		rpm += rand(50, 100)
 		sleep(5)

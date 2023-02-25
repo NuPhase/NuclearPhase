@@ -139,6 +139,7 @@ What is the naming convention for planes or layers?
 	#define MECH_GEAR_LAYER             4.07
 	//ABOVE HUMAN
 	#define ABOVE_HUMAN_LAYER           4.08
+	#define REACTOR_LAYER           4.081
 	#define VEHICLE_LOAD_LAYER          4.09
 	#define CAMERA_LAYER                4.10
 	//BLOB

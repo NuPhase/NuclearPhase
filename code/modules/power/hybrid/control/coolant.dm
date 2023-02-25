@@ -27,7 +27,7 @@
 	name = "T-PRES-CONTROL"
 	id = "T-PRES-CONTROL"
 
-/obj/machinery/reactor_button/presvalve/feedmakeup
+/obj/machinery/reactor_button/rswitch/valve/feedmakeup
 	name = "T-FEEDWATER V-MAKEUP"
 	id = "T-FEEDWATER V-MAKEUP"
 
