@@ -30,7 +30,9 @@
 		for(var/obj/machinery/atmospherics/binary/pump/adv/P in normal_members) //TODO: ACCOUNT FOR DIRECTION
 			net_flow_mass += P.last_mass_flow
 		for(var/obj/machinery/atmospherics/binary/regulated_valve/V in normal_members)
-			net_flow_mass += V.last_mass_flow
+			var/datum/gas_mixture/verify_mixture = pick(gases)
+			if(V.air2.temperature == verify_mixture.temperature) //A crazy workaround to having a valve constantly adding mass flow to itself
+				net_flow_mass += V.air1.net_flow_mass
 		for(var/datum/gas_mixture/gm in gases)
 			gm.net_flow_mass = net_flow_mass
 

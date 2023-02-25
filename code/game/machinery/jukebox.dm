@@ -41,7 +41,7 @@
 
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
-	tracks = setup_music_tracks(tracks)
+	tracks = setup_music_tracks(tracks, specialization)
 	queue_icon_update()
 	sound_id = "[/obj/machinery/media/jukebox]_[sequential_id(/obj/machinery/media/jukebox)]"
 

@@ -41,7 +41,7 @@
 
 /datum/powernet/proc/draw_power(var/amount)
 	var/draw = between(0, amount, avail - load)
-	load += draw
+	load += amount
 	return draw
 
 /datum/powernet/proc/is_empty()

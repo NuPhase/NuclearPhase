@@ -38,7 +38,7 @@
 	if(!mode)
 		return
 	for(var/obj/machinery/rlaser/las in reactor_components)
-		las.omode = mode
+		las.switch_omode(mode)
 
 /obj/machinery/reactor_button/lasnmode
 	name = "LAS-NMODE"

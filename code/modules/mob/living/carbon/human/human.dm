@@ -908,21 +908,7 @@
 	var/obj/item/organ/internal/heart/heart_organ = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 	if(!heart_organ)
 		return 0
-
-	switch(pulse())
-		if(PULSE_NONE)
-			return 0
-		if(PULSE_SLOW)
-			return rand(40, 60)
-		if(PULSE_NORM)
-			return rand(60, 90)
-		if(PULSE_FAST)
-			return rand(90, 120)
-		if(PULSE_2FAST)
-			return rand(120, 160)
-		if(PULSE_THREADY)
-			return PULSE_MAX_BPM
-	return 0
+	return heart_organ.pulse
 
 //generates realistic-ish pulse output based on preset levels as text
 /mob/living/carbon/human/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate

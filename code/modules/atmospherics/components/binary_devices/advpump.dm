@@ -9,7 +9,7 @@
 /datum/composite_sound/pump
 	mid_sounds = list('sound/machines/pumploop.ogg'=1)
 	mid_length = 40
-	volume = 25
+	volume = 15
 
 /obj/machinery/atmospherics/binary/pump/adv
 	icon = 'icons/obj/atmospherics/components/binary/pump.dmi'
@@ -63,6 +63,8 @@
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
+	air1.volume = initial_flow_capacity + 100
+	air2.volume = initial_flow_capacity + 100
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()
@@ -81,7 +83,7 @@
 	var/mass_transfer = max(air1_mass, flow_capacity)
 
 	power_draw = pump_fluid(src, air1, air2, mass_transfer, flow_capacity, power_rating)
-	last_mass_flow = min(mass_transfer, flow_capacity)
+	last_mass_flow = min(air1_mass, flow_capacity)
 
 	if(mass_transfer > 0)
 		update_networks()
