@@ -46,6 +46,8 @@
 			else
 				T.update_icon()
 
+	. = ..(mapload, no_update_icon)
+
 /turf/exterior/surface/setup_environmental_lighting(var/ncolor = COLOR_COLD_SURFACE)
 	if (is_outside())
 		surface_turfs += src

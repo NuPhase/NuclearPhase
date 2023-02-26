@@ -7,6 +7,7 @@
 	if(state == 1)
 		for(var/obj/machinery/rlaser/las in reactor_components)
 			las.armed = TRUE
+
 	else
 		for(var/obj/machinery/rlaser/las in reactor_components)
 			las.armed = FALSE

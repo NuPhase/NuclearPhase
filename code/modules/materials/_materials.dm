@@ -272,7 +272,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 
 	var/neutron_cross_section	  // How broad the neutron interaction curve is, independent of temperature. Materials that are harder to react with will have lower values.
 	var/absorption_products		  // Transmutes into these reagents following neutron absorption and/or subsequent beta decay. Generally forms heavier reagents.
-	var/decl/material/fission_products		  // Transmutes into these reagents following fission. Forms lighter reagents, and a lot of heat.
+	var/list/decl/material/fission_products		  // Transmutes into these reagents following fission. Forms lighter reagents, and a lot of heat.
 	var/neutron_production = 0		  // How many neutrons are created per unit per fission event.
 	var/neutron_absorption = 1		  // How many neutrons are absorbed per unit per absorption event.
 	var/fission_heat = 0			  // How much thermal energy per unit per fission event this material releases.

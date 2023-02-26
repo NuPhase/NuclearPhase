@@ -35,8 +35,9 @@
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
-	spawn(50) //ugly workaround, lungs don't have post initialize proc
-		max_oxygen_generation += owner.get_skill_value(SKILL_HAULING) * 1.5
+	if(ishuman(owner))
+		spawn(50) //ugly workaround, lungs don't have post initialize proc
+			max_oxygen_generation += owner.get_skill_value(SKILL_HAULING) * 1.5
 
 /obj/item/organ/internal/lungs/proc/can_drown()
 	return (is_broken() || !has_gills)

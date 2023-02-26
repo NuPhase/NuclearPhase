@@ -33,6 +33,7 @@
 	var/id
 
 /obj/machinery/reactor_button/Initialize()
+	. = ..()
 	if(id)
 		reactor_buttons[id] = src
 

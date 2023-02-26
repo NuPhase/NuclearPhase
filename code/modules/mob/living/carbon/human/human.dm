@@ -1354,11 +1354,6 @@
 
 	UpdateAppearance() //Apply dna appearance to mob, causes DNA to change because filler values are regenerated
 	//Prevent attempting to create blood container if its already setup
-	if(!vessel)
-		reset_blood()
-	max_oxygen_capacity = round(vessel.total_volume / 4.975) + get_skill_value(SKILL_HAULING) * 4 //healthy athlete spleen oxygen stores
-	oxygen_amount = max_oxygen_capacity
-	metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_HAULING) * 0.05 //healthy athlete lower BPM
 
 //If the mob has its default name it'll try to generate /obtain a proper one
 /mob/living/carbon/human/proc/try_generate_default_name()
@@ -1372,6 +1367,12 @@
 //Runs last after setup and after the parent init has been executed.
 /mob/living/carbon/human/proc/post_setup(var/species_name = null, var/datum/dna/new_dna = null)
 	refresh_visible_overlays() //Do this exactly once per setup
+	if(!vessel)
+		reset_blood()
+	max_oxygen_capacity = round(vessel.total_volume / 4.975) + get_skill_value(SKILL_HAULING) * 4 //healthy athlete spleen oxygen stores
+	oxygen_amount = max_oxygen_capacity
+	metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_HAULING) * 0.05 //healthy athlete lower BPM
+
 
 /mob/living/carbon/human/handle_flashed(var/obj/item/flash/flash, var/flash_strength)
 	var/safety = eyecheck()

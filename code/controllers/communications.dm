@@ -287,7 +287,9 @@ var/global/datum/controller/radio/radio_controller
 
 	if(frequency)
 		frequency.remove_listener(device)
-
+		if(frequency.devices.len == 0)
+			qdel(frequency)
+			frequencies -= f_text
 	return 1
 
 /datum/controller/radio/proc/return_frequency(var/new_frequency as num)
@@ -339,11 +341,13 @@ var/global/datum/controller/radio/radio_controller
 
 		device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 
-/datum/radio_frequency/proc/add_listener(obj/device, var/radio_filter)
+/datum/radio_frequency/proc/add_listener(obj/device as obj, var/radio_filter as text|null)
 	if(radio_filter == RADIO_NULL)
 		return // Just don't add them
 	if (!radio_filter)
 		radio_filter = RADIO_DEFAULT
+	if(!istext(radio_filter))
+		radio_filter = num2text(radio_filter)
 	var/list/obj/devices_line = devices[radio_filter]
 	if (!devices_line)
 		devices_line = new

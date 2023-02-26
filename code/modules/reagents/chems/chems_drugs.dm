@@ -357,6 +357,7 @@
 	H.set_hallucination(120, 30)
 
 /decl/material/liquid/opium/morphine/diamorphine/dirty
+	name = "murky diamorphine"
 	lore_text = "A synthetic morphine-derived drug. Looks unpure."
 	painkill_magnitude = 90
 	uid = "chem_diamorphinedirty"
