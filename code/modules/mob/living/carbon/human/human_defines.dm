@@ -99,6 +99,11 @@
 	var/traversing_overmap = FALSE
 	var/obj/effect/overmap/human/assigned_overmap_object = null
 
+	var/potenzia = 10
+	var/resistenza = 200
+
+	var/isLeaning = 0
+
 /mob/living/carbon/human/proc/get_age()
 	. = LAZYACCESS(appearance_descriptors, "age") || 30
 

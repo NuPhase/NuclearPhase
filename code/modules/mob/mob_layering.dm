@@ -19,6 +19,10 @@
 					adjust_layer = TRUE
 			if(adjust_layer)
 				new_layer += (draw_under ? -0.01 : 0.01)
+		else if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if(H.isLeaning)
+				new_layer -= 0.1
 	if(new_layer != last_layer)
 		layer = new_layer
 		UPDATE_OO_IF_PRESENT

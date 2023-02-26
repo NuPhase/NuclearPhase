@@ -76,7 +76,7 @@
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
 		handle_shock()
-
+		handle_lust()
 		handle_pain()
 
 	if(!handle_some_updates())

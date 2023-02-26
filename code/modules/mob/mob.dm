@@ -621,7 +621,10 @@
 		drop_held_items()
 	else
 		set_density(initial(density))
-
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.isLeaning)
+			set_density(0)
 	reset_layer()
 
 	//Temporarily moved here from the various life() procs

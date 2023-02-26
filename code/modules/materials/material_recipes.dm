@@ -18,7 +18,7 @@
 
 /decl/material/proc/generate_recipes(var/reinforce_material)
 	. = list()
-
+	. += new/datum/stack_recipe/dildo(src)
 	if(opacity < 0.6)
 		. += new/datum/stack_recipe/furniture/borderwindow(src, reinforce_material)
 		. += new/datum/stack_recipe/furniture/fullwindow(src, reinforce_material)

@@ -47,6 +47,28 @@ var/global/list/wall_fullblend_objects = list(
 	var/handle_structure_blending = TRUE
 	var/shielding = 70
 
+/turf/simulated/wall/receive_mouse_drop(atom/dropping, mob/M)
+	. = ..()
+	if(M != usr) return
+	if(!Adjacent(usr)) return
+	if(ishuman(M))
+		if(usr.get_active_hand())
+			return
+		var/turf/T = get_step(M, turn(M.dir, 180))
+		if(T == src && ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.isLeaning = 1
+			H.set_density(0)
+			switch(H.dir)
+				if(SOUTH)
+					H.pixel_y = 11
+				if(NORTH)
+					H.pixel_y = -11
+				if(WEST)
+					H.pixel_x = 11
+				if(EAST)
+					H.pixel_x = -11
+
 /turf/simulated/wall/Initialize(var/ml, var/materialtype, var/rmaterialtype)
 
 	..(ml)
