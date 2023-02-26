@@ -4,13 +4,11 @@
 
 /obj/machinery/reactor_button/rswitch/lasarm/do_action()
 	..()
-	if(state == 1)
-		for(var/obj/machinery/rlaser/las in reactor_components)
-			las.armed = TRUE
-
-	else
-		for(var/obj/machinery/rlaser/las in reactor_components)
-			las.armed = FALSE
+	for(var/tag in reactor_components)
+		var/obj/machinery/rlaser/las = reactor_components[tag]
+		if(!istype(las, /obj/machinery/rlaser))
+			continue
+		las.armed = state
 
 
 /obj/machinery/reactor_button/rswitch/lasprime
@@ -20,11 +18,17 @@
 /obj/machinery/reactor_button/rswitch/lasprime/do_action()
 	..()
 	if(state == 1)
-		for(var/obj/machinery/rlaser/las in reactor_components)
+		for(var/tag in reactor_components)
+			var/obj/machinery/rlaser/las = reactor_components[tag]
+			if(!istype(las, /obj/machinery/rlaser))
+				continue
 			if(las.prime())
 				playsound(src, 'sound/machines/switchbuzzer.ogg', 50)
 	else
-		for(var/obj/machinery/rlaser/las in reactor_components)
+		for(var/tag in reactor_components)
+			var/obj/machinery/rlaser/las = reactor_components[tag]
+			if(!istype(las, /obj/machinery/rlaser))
+				continue
 			las.primed = FALSE
 	spawn(50)
 		state = 0
@@ -38,7 +42,10 @@
 	var/mode = input(user, "Select a new laser operation mode", "LASER-OMODE") in list(LASER_MODE_CONTINUOUS, LASER_MODE_IGNITION, LASER_MODE_IMPULSE)
 	if(!mode)
 		return
-	for(var/obj/machinery/rlaser/las in reactor_components)
+	for(var/tag in reactor_components)
+		var/obj/machinery/rlaser/las = reactor_components[tag]
+		if(!istype(las, /obj/machinery/rlaser))
+			continue
 		las.switch_omode(mode)
 
 /obj/machinery/reactor_button/lasnmode
@@ -49,5 +56,8 @@
 	var/mode = input(user, "Select a new laser neutron mode", "LASER-OMODE") in list(NEUTRON_MODE_BOMBARDMENT, NEUTRON_MODE_MODERATION, NEUTRON_MODE_OFF)
 	if(!mode)
 		return
-	for(var/obj/machinery/rlaser/las in reactor_components)
+	for(var/tag in reactor_components)
+		var/obj/machinery/rlaser/las = reactor_components[tag]
+		if(!istype(las, /obj/machinery/rlaser))
+			continue
 		las.nmode = mode
