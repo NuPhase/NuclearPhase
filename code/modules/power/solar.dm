@@ -15,7 +15,7 @@ var/global/list/solars_list = list()
 	var/health = 10
 	var/obscured = 0
 	var/sunfrac = 0
-	var/efficiency = 1
+	efficiency = 0.4
 	var/adir = SOUTH // actual dir
 	var/ndir = SOUTH // target dir
 	var/turn_angle = 0
@@ -126,7 +126,7 @@ var/global/list/solars_list = list()
 			if(obscured) //get no light from the sun, so don't generate power
 				return
 			var/sgen = solar_gen_rate * sunfrac * efficiency
-			add_avail(sgen)
+			add_power(sgen)
 			control.gen += sgen
 		else //if we're no longer on the same powernet, remove from control computer
 			unset_control()

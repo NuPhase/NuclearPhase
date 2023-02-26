@@ -20,8 +20,8 @@
 	var/list/reactor_valves = list()
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine1 = null
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine2 = null
-	var/obj/machinery/power/turbine_generator/generator1 = null
-	var/obj/machinery/power/turbine_generator/generator2 = null
+	var/obj/machinery/power/generator/turbine_generator/generator1 = null
+	var/obj/machinery/power/generator/turbine_generator/generator2 = null
 
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]

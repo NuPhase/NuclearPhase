@@ -74,6 +74,6 @@ var/list/global/reactor_ports = list()
 	name = "large table"
 	anchored = 1
 	density = 1
-	opacity = 1
+	opacity = 0
 	layer = BELOW_OBJ_LAYER
 	icon = 'icons/obj/structures/reactor_panel.dmi'

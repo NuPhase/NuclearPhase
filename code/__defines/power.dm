@@ -7,3 +7,10 @@
 #define APC_POWERCHAN_EQUIPMENT 1
 #define APC_POWERCHAN_LIGHTING 2
 #define APC_POWERCHAN_ENVIRONMENT 3
+
+#define POWERNET_WATTAGE(powernet) (powernet.voltage ? min(powernet.lavailable, powernet.ldemand) : 0)
+#define POWERNET_AMPERAGE(powernet) (powernet.voltage ? (min(powernet.lavailable, powernet.ldemand) / powernet.voltage) : 0)
+#define POWERNET_HEAT(powernet, resistance) POWER2HEAT(POWERNET_AMPERAGE(powernet) ** 2 * (resistance))
+
+// {J} -> {delta K}
+#define POWER2HEAT(j) (0.30462405 * (j))

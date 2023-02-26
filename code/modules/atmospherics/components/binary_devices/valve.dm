@@ -8,6 +8,7 @@
 	level = 2
 	var/last_mass_flow = 0
 	var/portvolume = 2000
+	var/forced_mass_flow = 0
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 120
 
@@ -44,7 +45,7 @@
 	var/transfer_moles = air1.total_moles * open_to
 	if(!transfer_moles)
 		return
-	var/transfer_mass = air1.net_flow_mass * open_to
+	var/transfer_mass = air1.net_flow_mass * open_to + forced_mass_flow
 
 	pump_gas_passive(src, air1, air2, transfer_moles)
 	pump_fluid_passive(src, air1, air2, transfer_mass)

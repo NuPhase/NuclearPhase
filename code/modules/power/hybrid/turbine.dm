@@ -70,7 +70,7 @@
 		environment.add_thermal_energy(kin_energy * 0.1)
 	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, 5000)
 
-/obj/machinery/power/turbine_generator
+/obj/machinery/power/generator/turbine_generator
 	name = "motor"
 	desc = "Electrogenerator. Converts rotation into power."
 	icon = 'icons/obj/atmospherics/components/unary/pipeturbine.dmi'
@@ -86,26 +86,26 @@
 	var/connected = FALSE
 	var/last_load = 0
 
-/obj/machinery/power/turbine_generator/Initialize()
+/obj/machinery/power/generator/turbine_generator/Initialize()
 	. = ..()
 	updateConnection()
 	connect_to_network()
 
-/obj/machinery/power/turbine_generator/proc/updateConnection()
+/obj/machinery/power/generator/turbine_generator/proc/updateConnection()
 	turbine = null
 	if(src.loc && anchored)
 		turbine = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_step(src,dir)
 		if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 			turbine = null
 
-/obj/machinery/power/turbine_generator/Process()
+/obj/machinery/power/generator/turbine_generator/Process()
 	updateConnection()
 	if(!turbine || !anchored)
 		return
 
 	if(connected)
-		var/power_generated = powernet.load + 100000
-		last_load = powernet.load
+		var/power_generated = powernet.ldemand + 100000
+		last_load = powernet.ldemand
 		turbine.kin_energy -= power_generated
 		generate_power(power_generated)
 

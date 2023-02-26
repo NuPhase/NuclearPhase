@@ -768,10 +768,10 @@ var/global/list/all_apcs = list()
 	var/last_ch = charging
 
 	var/obj/machinery/power/terminal/terminal = terminal(TRUE)
-	var/avail = (terminal && terminal.avail()) || 0
+	var/lavailable = (terminal && terminal.available()) || 0
 	var/excess = (terminal && terminal.surplus()) || 0
 
-	if(!avail)
+	if(!lavailable)
 		main_status = 0
 	else if(excess < 0)
 		main_status = 1
