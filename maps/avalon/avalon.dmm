@@ -1691,6 +1691,9 @@
 	pixel_y = 4;
 	pixel_x = 4
 	},
+/obj/machinery/reactor_button/scram{
+	pixel_x = -12
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "fo" = (
@@ -6013,7 +6016,9 @@
 /area/avalon/shelter/atmos)
 "st" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/paper/reactor/general,
+/obj/machinery/reactor_monitor/turbine{
+	pixel_y = 11
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "su" = (
@@ -7025,6 +7030,13 @@
 /obj/structure/closet/reactordocuments,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
+"vt" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/reactor_button/mode_of_operation{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "vu" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 6
@@ -7734,10 +7746,6 @@
 /obj/structure/table/steel_reinforced,
 /obj/machinery/reactor_button/rswitch/lasprime{
 	pixel_x = -16
-	},
-/obj/machinery/reactor_monitor{
-	pixel_y = 16;
-	program_overlay = "turbine"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -8859,6 +8867,7 @@
 	dir = 1
 	},
 /obj/structure/table/steel_reinforced,
+/obj/item/paper/reactor/general,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "Bh" = (
@@ -14805,6 +14814,12 @@
 /obj/structure/flora/bush/ppflowers,
 /turf/simulated/floor/asteroid,
 /area/avalon/shelter/science)
+"SL" = (
+/obj/machinery/reactor_display/group/turbine{
+	pixel_y = 24
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "SM" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -195654,7 +195669,7 @@ Ek
 DR
 DR
 gR
-HX
+SL
 LO
 Sm
 bZ
@@ -212955,7 +212970,7 @@ Hs
 Uy
 pq
 pq
-DX
+vt
 eJ
 DX
 pS

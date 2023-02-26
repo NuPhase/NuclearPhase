@@ -34,6 +34,15 @@
 	var/braking = FALSE //emergency brakes
 	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
 
+/obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
+	switch(vibration)
+		if(0 to 25)
+			return "minor"
+		if(26 to 50)
+			return "major"
+		if(51 to INFINITY)
+			return "critical"
+
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()
 	air1.volume = 20000
@@ -45,7 +54,7 @@
 	total_mass_flow = air1.net_flow_mass
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
-	steam_velocity = ((total_mass_flow * 3600) * 1.694) / 11304
+	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
 	var/kin_total = 0.05 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency

@@ -42,6 +42,15 @@
 	var/program_overlay = ""
 	var/on = FALSE
 
+/obj/machinery/reactor_monitor/proc/get_display_data()
+	if(emagged)
+		return "<span class='warning'>The [name] reads: 'NIGGER ALARM'.</span>"
+
+/obj/machinery/reactor_monitor/examine(mob/user)
+	. = ..()
+	if(on)
+		to_chat(user, "<span class='notice'>[get_display_data()]</span>")
+
 /obj/machinery/reactor_monitor/Initialize()
 	. = ..()
 	if(on)
@@ -54,14 +63,17 @@
 	else
 		turn_on()
 
-/obj/machinery/reactor_monitor/proc/make_overlay()
+/obj/machinery/reactor_monitor/on_update_icon()
 	overlays.Cut()
-	overlays += image(icon, "overlay-[program_overlay]")
+	if(on)
+		overlays += image(icon, "overlay-[program_overlay]")
 
 /obj/machinery/reactor_monitor/proc/turn_on()
 	icon_state = "on"
-	make_overlay()
+	on = TRUE
+	update_icon()
 
 /obj/machinery/reactor_monitor/proc/turn_off()
 	icon_state = "off"
-	overlays.Cut()
+	on = FALSE
+	update_icon()
