@@ -26,13 +26,15 @@
 	var/kin_energy = 0
 	var/kin_loss = 0.001
 	var/expansion_ratio = 0.2
-	var/volume_ratio = 0.8
+	var/volume_ratio = 0.6
 	var/steam_velocity = 0
 	var/pressure_difference = 0
 	var/total_mass_flow = 0
 	var/rpm = 0
 	var/braking = FALSE //emergency brakes
 	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
+
+	var/obj/machinery/atmospherics/binary/regulated_valve/ingoing_valve = null
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
 	switch(vibration)
@@ -48,6 +50,7 @@
 	air1.volume = 20000
 	air2.volume = 80000
 	reactor_components[uid] = src
+	ingoing_valve = locate(/obj/machinery/atmospherics/binary/regulated_valve) in get_step(src,SOUTH)
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
@@ -62,6 +65,7 @@
 	air_all.volume = air1.volume + air2.volume
 	pump_passive(air1, air_all, total_mass_flow)
 	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
+	calculate_vibration(air_all)
 	air2.merge(air_all)
 	var/new_rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 	if(braking) //TODO: MAKE DAMAGE FROM THIS
@@ -69,6 +73,29 @@
 		kin_energy = kin_energy * 0.9
 		environment.add_thermal_energy(kin_energy * 0.1)
 	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, 5000)
+	ingoing_valve.forced_mass_flow = total_mass_flow //so we can succ enough steam
+
+	apply_vibration_effects()
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
+	vibration = 0
+	for(var/phase in turbine_internals.phases) //condensing inside of the turbine is incredibly dangerous
+		if(phase != MAT_PHASE_GAS)
+			vibration += total_mass_flow * 0.07
+	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
+		vibration += total_mass_flow * 0.06
+	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
+		vibration += 20
+	vibration += total_mass_flow * 0.005
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects() //cosmetic only for now
+	switch(vibration)
+		if(26 to 50)
+			for(var/mob/living/carbon/human/H in range(world.view, loc))
+				to_chat(H, SPAN_WARNING("All your surroundings vibrate like in an earthquake!"))
+		if(51 to INFINITY)
+			for(var/mob/living/carbon/human/H in range(world.view, loc))
+				to_chat(H, SPAN_DANGER("Everything around you shakes and rattles!"))
 
 /obj/machinery/power/generator/turbine_generator
 	name = "motor"

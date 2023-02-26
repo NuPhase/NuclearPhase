@@ -1184,8 +1184,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "dK" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 4
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 4;
+	target_pressure = 5000
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -1424,10 +1425,6 @@
 /obj/effect/floor_decal/corner/mauve/full,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
-"ev" = (
-/obj/machinery/atmospherics/pipe/zpipe/up/fuel,
-/turf/simulated/floor/plating,
-/area/avalon/shelter/turbinehall)
 "ew" = (
 /obj/effect/floor_decal/corner/mauve/full,
 /turf/simulated/floor/tiled/white,
@@ -6017,7 +6014,7 @@
 /area/avalon/shelter/turbinehall)
 "sr" = (
 /obj/structure/railing/mapped,
-/obj/machinery/atmospherics/pipe/zpipe/down/fuel,
+/obj/machinery/atmospherics/pipe/zpipe/down,
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
 "ss" = (
@@ -7476,7 +7473,8 @@
 	},
 /obj/machinery/atmospherics/binary/regulated_valve{
 	dir = 1;
-	uid = "TURB 2V-IN"
+	uid = "TURB 2V-IN";
+	portvolume = 20000
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
@@ -9881,12 +9879,13 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "Ei" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 1;
-	uid = "REACTOR-F-V-OUT"
-	},
 /obj/structure/railing/mapped{
 	dir = 8
+	},
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 1;
+	target_pressure = 10000;
+	regulate_mode = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -10034,7 +10033,8 @@
 	},
 /obj/machinery/atmospherics/binary/regulated_valve{
 	dir = 1;
-	uid = "TURB 1V-IN"
+	uid = "TURB 1V-IN";
+	portvolume = 20000
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
@@ -14372,9 +14372,8 @@
 /turf/simulated/open,
 /area/avalon/shelter/engineering)
 "Rx" = (
-/obj/machinery/atmospherics/binary/pump/adv{
-	dir = 4;
-	flow_capacity = 150
+/obj/machinery/atmospherics/binary/pump{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -163572,7 +163571,7 @@ IB
 Qk
 MA
 IB
-ev
+QP
 Iw
 fO
 fO
