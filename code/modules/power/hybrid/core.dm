@@ -14,12 +14,14 @@
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
 	reactor_components["core"] += src
+	rcontrol.initialize()
 
 /obj/machinery/power/hybrid_reactor/Destroy()
 	. = ..()
 	reactor_components["core"] = null
 
 /obj/machinery/power/hybrid_reactor/Process()
+	rcontrol.control()
 	var/turf/A = get_turf(src)
 	var/datum/gas_mixture/GM = A.return_air()
 	var/total_radiation = 0

@@ -33,3 +33,11 @@
 
 /obj/machinery/reactor_button/rswitch/preheat
 	name = "F-PREHEAT"
+
+/obj/machinery/reactor_button/regvalve/reactorfvin
+	name = "REACTOR-F-V-IN"
+	id = "REACTOR-F-V-IN"
+
+/obj/machinery/reactor_button/regvalve/reactorfvout
+	name = "REACTOR-F-V-OUT"
+	id = "REACTOR-F-V-OUT"

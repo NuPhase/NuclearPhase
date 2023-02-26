@@ -80,6 +80,8 @@
 		if(source.phases[g] == MAT_PHASE_LIQUID)
 			mat = GET_DECL(g)
 			break
+	if(!mat)
+		return
 
 	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.liquid_molar_mass)
 	if (!removed) //Just in case

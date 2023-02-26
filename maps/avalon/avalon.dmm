@@ -1686,14 +1686,24 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/science)
 "fn" = (
-/obj/structure/table/steel_reinforced,
 /obj/machinery/reactor_button/rswitch/lasarm{
-	pixel_y = 4;
-	pixel_x = 4
+	pixel_y = 12
 	},
-/obj/machinery/reactor_button/scram{
-	pixel_x = -12
+/obj/machinery/reactor_button/lasnmode{
+	pixel_x = 5;
+	pixel_y = 12
 	},
+/obj/machinery/reactor_button/lasomode{
+	pixel_x = -5;
+	pixel_y = 12
+	},
+/obj/machinery/reactor_button/rswitch/lasprime{
+	pixel_y = -3
+	},
+/obj/structure/reactor_table{
+	pixel_y = 6
+	},
+/obj/effect/floor_decal/corner/beige/border,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "fo" = (
@@ -2099,10 +2109,12 @@
 /turf/simulated/wall/r_wall,
 /area/avalon/shelter/messhall)
 "gA" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_display/group{
-	pixel_y = -3;
-	pixel_x = -9
+/obj/structure/reactor_table{
+	dir = 10;
+	pixel_y = 5
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -3346,14 +3358,13 @@
 /turf/exterior/concrete,
 /area/surface)
 "kn" = (
-/obj/effect/catwalk_plated/dark,
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/presvalve/moderator{
-	pixel_x = -4
+/obj/structure/reactor_table{
+	dir = 8;
+	pixel_y = 5
 	},
-/obj/machinery/reactor_button/presvalve/fuel{
-	pixel_y = 7;
-	pixel_x = -4
+/obj/item/radio/phone{
+	pixel_x = -8;
+	anchored = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -4461,8 +4472,12 @@
 /turf/simulated/open,
 /area/avalon/shelter/atmos)
 "nS" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/radio/phone,
+/obj/structure/reactor_table{
+	dir = 6;
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "nT" = (
@@ -6066,15 +6081,18 @@
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
 "sB" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/lasnmode{
-	pixel_x = 9;
-	pixel_y = 3
+/obj/structure/reactor_table{
+	pixel_y = 6
 	},
-/obj/machinery/reactor_button/lasomode{
-	pixel_x = 9;
-	pixel_y = -4
+/obj/machinery/reactor_button/scram{
+	pixel_x = 15;
+	pixel_y = -2
 	},
+/obj/machinery/reactor_button/mode_of_operation{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/effect/floor_decal/corner/beige/border,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "sC" = (
@@ -7030,13 +7048,6 @@
 /obj/structure/closet/reactordocuments,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
-"vt" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/mode_of_operation{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
 "vu" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 6
@@ -7743,10 +7754,23 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/breakroom)
 "xF" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/rswitch/lasprime{
-	pixel_x = -16
+/obj/machinery/reactor_display/group{
+	pixel_x = -45;
+	pixel_y = 2;
+	layer = 2.23
 	},
+/obj/structure/reactor_table{
+	pixel_y = 6
+	},
+/obj/machinery/reactor_button/presvalve/fuel{
+	pixel_y = -3;
+	pixel_x = -4
+	},
+/obj/machinery/reactor_button/presvalve/moderator{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/effect/floor_decal/corner/beige/border,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "xH" = (
@@ -8701,35 +8725,38 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "AH" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/pump/fcp1{
-	pixel_x = -3;
-	pixel_y = 2;
-	layer = 3.061
-	},
-/obj/machinery/reactor_button/pump/fcp2{
-	pixel_x = 2;
-	pixel_y = 2;
-	layer = 3.061
+/obj/structure/reactor_table{
+	pixel_y = 6
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump1v1{
-	pixel_x = -3;
-	pixel_y = 7;
+	pixel_x = -10;
+	pixel_y = 12;
 	layer = 3.062
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump2v1{
-	pixel_x = 2;
-	pixel_y = 7;
+	pixel_x = -3;
+	pixel_y = 12;
 	layer = 3.062
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump1v2{
-	pixel_x = -3;
-	pixel_y = -4
+	pixel_x = -10;
+	pixel_y = 7
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump2v2{
-	pixel_x = 2;
-	pixel_y = -4
+	pixel_x = -3;
+	pixel_y = 7
 	},
+/obj/machinery/reactor_button/pump/fcp1{
+	pixel_x = -10;
+	pixel_y = -2;
+	layer = 3.061
+	},
+/obj/machinery/reactor_button/pump/fcp2{
+	pixel_x = -3;
+	pixel_y = -2;
+	layer = 3.061
+	},
+/obj/effect/floor_decal/corner/beige/border,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "AI" = (
@@ -10577,9 +10604,7 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "Gp" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
+/obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "Gq" = (
@@ -14930,10 +14955,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "Tc" = (
-/obj/effect/catwalk_plated/dark,
-/obj/structure/table/steel_reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
+/obj/structure/reactor_table{
+	dir = 4;
+	pixel_x = 8;
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "Td" = (
@@ -15672,12 +15698,6 @@
 /obj/structure/stairs/long/east,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
-"Vs" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
 "Vt" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid,
@@ -212063,7 +212083,7 @@ Np
 pq
 gN
 AH
-Vs
+Gp
 pq
 jp
 tk
@@ -212193,7 +212213,7 @@ eB
 pq
 gN
 sB
-Ck
+Gp
 pq
 jp
 tk
@@ -212323,7 +212343,7 @@ Vq
 pq
 gN
 xF
-Ck
+Gp
 pq
 jp
 tk
@@ -212970,7 +212990,7 @@ Hs
 Uy
 pq
 pq
-vt
+DX
 eJ
 DX
 pS

@@ -175,6 +175,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
+"lJ" = (
+/obj/machinery/atmospherics/binary/regulated_valve{
+	dir = 4;
+	uid = "REACTOR-F-V-OUT"
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/reactor)
 "mz" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride,
@@ -628,7 +636,8 @@
 /area/avalon/shelter/reactor)
 "Vj" = (
 /obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 4
+	dir = 4;
+	uid = "REACTOR-F-V-IN"
 	},
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -680,6 +689,15 @@
 "YG" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior{
 	dir = 9
+	},
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
+"YH" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior{
+	dir = 10
+	},
+/obj/machinery/meter{
+	uid = "REACTOR-M CHAMBER"
 	},
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
@@ -1935,7 +1953,7 @@ am
 am
 PL
 PL
-HO
+YH
 SD
 sX
 sX
@@ -2025,7 +2043,7 @@ mM
 PL
 PL
 PL
-Vj
+lJ
 oM
 wx
 PL

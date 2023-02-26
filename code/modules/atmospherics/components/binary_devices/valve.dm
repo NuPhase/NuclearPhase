@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/binary/regulated_valve
 	name = "valve"
 	desc = "A remote controlled valve."
-	var/manual = TRUE
+	var/manual = FALSE
 	var/open_to = 0 //0-1
 	icon = 'icons/obj/atmospherics/components/binary/regulated_valve.dmi'
 	icon_state = "map_off"

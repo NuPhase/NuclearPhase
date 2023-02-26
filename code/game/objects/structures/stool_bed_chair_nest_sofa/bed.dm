@@ -255,8 +255,8 @@
 /obj/item/roller
 	name = "roller bed"
 	desc = "A collapsed roller bed that can be carried around."
-	icon = 'icons/obj/items/rollerbed.dmi'
-	icon_state = ICON_STATE_WORLD
+	icon = 'icons/obj/structures/rollerbed.dmi'
+	icon_state = "folded"
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_LARGE
 	pickup_sound = 'sound/foley/pickup2.ogg'
