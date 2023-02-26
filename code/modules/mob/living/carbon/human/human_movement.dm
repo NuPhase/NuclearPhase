@@ -126,6 +126,10 @@
 /mob/living/carbon/human/Move()
 	. = ..()
 	if(.) //We moved
+		pixel_x = initial(pixel_x)
+		pixel_y = initial(pixel_y)
+		layer = initial(layer)
+		isLeaning = 0
 
 		var/stamina_cost = 0
 		for(var/obj/item/grab/G as anything in get_active_grabs())
