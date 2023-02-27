@@ -133,6 +133,7 @@
 		current_switch = reactor_buttons["TURB V-BYPASS"]
 		current_switch.state = 0
 		current_switch.do_action()
+		return
 
 	current_valve = reactor_valves["TURB 1V-IN"]
 	if(turbine1.rpm > 3800)
