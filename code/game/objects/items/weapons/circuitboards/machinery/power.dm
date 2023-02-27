@@ -82,7 +82,7 @@
 		/obj/item/stock_parts/matter_bin = 3
 	)
 	additional_spawn_components = list(
-		/obj/item/stock_parts/power/apc/buildable = 1	
+		/obj/item/stock_parts/power/apc/buildable = 1
 	)
 
 /obj/item/stock_parts/circuitboard/big_turbine/center
@@ -110,10 +110,10 @@
 		/obj/item/stock_parts/matter_bin = 3
 	)
 	additional_spawn_components = list(
-		/obj/item/stock_parts/power/apc/buildable = 1		
+		/obj/item/stock_parts/power/apc/buildable = 1
 	)
 
-/obj/item/stock_parts/circuitboard/teg_turbine/motor
+/*/obj/item/stock_parts/circuitboard/teg_turbine/motor
 	name = "circuitboard (thermoelectric generator motor)"
 	build_path = /obj/machinery/generator
 	board_type = "machine"
@@ -127,7 +127,7 @@
 		/obj/item/stock_parts/keyboard = 1,
 		/obj/item/stock_parts/power/apc/buildable = 1
 	)
-
+*/
 /obj/item/stock_parts/circuitboard/breaker
 	name = "circuitboard (breaker box)"
 	build_path = /obj/machinery/power/breakerbox

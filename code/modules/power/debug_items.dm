@@ -16,25 +16,31 @@
 		return
 
 	to_chat(user, "Connected to powernet: [powernet]")
-	to_chat(user, "Available power: [num2text(powernet.avail, 20)] W")
-	to_chat(user, "Load: [num2text(powernet.viewload, 20)] W")
+	to_chat(user, "Available power: [num2text(powernet.lavailable, 20)] W")
+	to_chat(user, "Load: [num2text(powernet.ldemand, 20)] W")
 	to_chat(user, "Has alert: [powernet.problem ? "YES" : "NO"]")
 	to_chat(user, "Cables: [powernet.cables.len]")
 	to_chat(user, "Nodes: [powernet.nodes.len]")
 
 
 // An infinite power generator. Adds energy to connected cable.
-/obj/machinery/power/debug_items/infinite_generator
+/obj/machinery/power/generator/debug_items/infinite_generator
 	name = "Fractal Energy Reactor"
 	desc = "An experimental power generator"
 	var/power_generation_rate = 1000000
+	var/voltage = 1000
 
-/obj/machinery/power/debug_items/infinite_generator/Process()
-	add_avail(power_generation_rate)
+/obj/machinery/power/generator/debug_items/infinite_generator/Process()
+	add_power(power_generation_rate)
 
-/obj/machinery/power/debug_items/infinite_generator/show_info(var/mob/user)
-	..()
-	to_chat(user, "Generator is providing [num2text(power_generation_rate, 20)] W")
+/obj/machinery/power/generator/debug_items/infinite_generator/get_voltage()
+	return voltage
+
+/obj/machinery/power/generator/debug_items/infinite_generator/available_power()
+	return power_generation_rate
+
+/obj/machinery/power/generator/debug_items/infinite_generator/on_power_drain(w)
+	return w
 
 
 // A cable powersink, without the explosion/network alarms normal powersink causes.

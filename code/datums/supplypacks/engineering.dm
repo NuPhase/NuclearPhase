@@ -120,13 +120,13 @@
 	containertype = /obj/structure/closet/crate/secure
 	access = access_tech_storage
 
-/decl/hierarchy/supply_pack/engineering/teg
+/*/decl/hierarchy/supply_pack/engineering/teg
 	name = "Power - Mark I Thermoelectric Generator"
 	contains = list(/obj/machinery/generator)
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "\improper Mk1 TEG crate"
 	access = access_engine_equip
-
+*/
 /decl/hierarchy/supply_pack/engineering/circulator
 	name = "Equipment - Binary atmospheric circulator"
 	contains = list(/obj/machinery/atmospherics/binary/circulator)

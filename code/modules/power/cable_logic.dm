@@ -33,7 +33,7 @@
 	if(!pn_input)
 		return
 
-	if(pn_input.avail >= LOGIC_HIGH)
+	if(pn_input.lavailable >= LOGIC_HIGH)
 		icon_state = "bulb1"
 	else
 		icon_state = "bulb0"
@@ -74,7 +74,7 @@
 	if(!pn_output)
 		return
 
-	pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)
+	pn_output.newavail = max(pn_output.lavailable, LOGIC_HIGH)
 
 
 
@@ -127,8 +127,8 @@
 	if(!pn_output)
 		return
 
-	if( !(pn_input.avail >= LOGIC_HIGH))
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+	if( !(pn_input.lavailable >= LOGIC_HIGH))
+		pn_output.newavail = max(pn_output.lavailable, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -199,8 +199,8 @@
 	if(!pn_output)
 		return
 
-	if( (pn_input1.avail >= LOGIC_HIGH) && (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+	if( (pn_input1.lavailable >= LOGIC_HIGH) && (pn_input2.lavailable >= LOGIC_HIGH) )
+		pn_output.newavail = max(pn_output.lavailable, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -219,8 +219,8 @@
 	if(!pn_output)
 		return
 
-	if( (pn_input1.avail >= LOGIC_HIGH) || (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+	if( (pn_input1.lavailable >= LOGIC_HIGH) || (pn_input2.lavailable >= LOGIC_HIGH) )
+		pn_output.newavail = max(pn_output.lavailable, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -239,8 +239,8 @@
 	if(!pn_output)
 		return
 
-	if( (pn_input1.avail >= LOGIC_HIGH) != (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+	if( (pn_input1.lavailable >= LOGIC_HIGH) != (pn_input2.lavailable >= LOGIC_HIGH) )
+		pn_output.newavail = max(pn_output.lavailable, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -259,8 +259,8 @@
 	if(!pn_output)
 		return
 
-	if( (pn_input1.avail >= LOGIC_HIGH) == (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+	if( (pn_input1.lavailable >= LOGIC_HIGH) == (pn_input2.lavailable >= LOGIC_HIGH) )
+		pn_output.newavail = max(pn_output.lavailable, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -276,14 +276,14 @@
 	if(!pn_input1)
 		return
 
-	if( pn_input1.avail >= LOGIC_HIGH )
+	if( pn_input1.lavailable >= LOGIC_HIGH )
 		var/datum/powernet/pn_input2 = input2.powernet
 		var/datum/powernet/pn_output = output.powernet
 
 		if(!pn_output)
 			return
 
-		if(pn_input2.avail >= RELAY_POWER_TRANSFER)
+		if(pn_input2.lavailable >= RELAY_POWER_TRANSFER)
 			pn_input2.draw_power(RELAY_POWER_TRANSFER)
 			pn_output.newavail += RELAY_POWER_TRANSFER
 

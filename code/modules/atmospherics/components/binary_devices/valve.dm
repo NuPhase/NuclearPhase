@@ -1,13 +1,14 @@
 /obj/machinery/atmospherics/binary/regulated_valve
 	name = "valve"
 	desc = "A remote controlled valve."
-	var/manual = TRUE
+	var/manual = FALSE
 	var/open_to = 0 //0-1
 	icon = 'icons/obj/atmospherics/components/binary/regulated_valve.dmi'
 	icon_state = "map_off"
 	level = 2
 	var/last_mass_flow = 0
 	var/portvolume = 2000
+	var/forced_mass_flow = 0
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 120
 
@@ -44,7 +45,7 @@
 	var/transfer_moles = air1.total_moles * open_to
 	if(!transfer_moles)
 		return
-	var/transfer_mass = air1.net_flow_mass * open_to
+	var/transfer_mass = (air1.net_flow_mass + forced_mass_flow) * open_to
 
 	pump_gas_passive(src, air1, air2, transfer_moles)
 	pump_fluid_passive(src, air1, air2, transfer_mass)

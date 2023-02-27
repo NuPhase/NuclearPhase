@@ -239,7 +239,7 @@
 			if(phases[g] == MAT_PHASE_GAS)
 				gas_moles += gas[g]
 			else if(phases[g] == MAT_PHASE_LIQUID)
-				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density
+				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density * 1000
 	available_volume = volume - liquid_volume
 
 

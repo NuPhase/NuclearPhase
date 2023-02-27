@@ -69,3 +69,11 @@ var/list/global/reactor_ports = list()
 
 /obj/machinery/atmospherics/unary/reactor_connector/outgoing/return_network_air(datum/pipe_network/reference)
 	return linked.air_contents
+
+/obj/structure/reactor_table
+	name = "large table"
+	anchored = 1
+	density = 1
+	opacity = 0
+	layer = BELOW_OBJ_LAYER
+	icon = 'icons/obj/structures/reactor_panel.dmi'

@@ -21,7 +21,7 @@ If d1 = 0 and d2 = dir, it's a O-X cable, getting from the center of the tile to
 If d1 = dir1 and d2 = dir2, it's a full X-X cable, getting from dir1 to dir2
 By design, d1 is the smallest direction and d2 is the highest
 */
-
+#define CABLE_1MM_RESISTANCE 0.002 OHM
 /obj/structure/cable
 	name = "power cable"
 	desc = "A flexible cable for power transfer."
@@ -37,6 +37,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/d2
 	var/datum/powernet/powernet
 	var/obj/machinery/power/breakerbox/breaker_box
+
+	var/resistance = CABLE_1MM_RESISTANCE / 1000 // 10 cm
 
 /obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
 
@@ -71,6 +73,9 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/heavy
 	name = "heavy-duty cable"
+	resistance = CABLE_1MM_RESISTANCE / 5000 // 50 cm
+	icon = 'icons/obj/power_cond_heavy.dmi'
+	color = null
 
 /obj/structure/cable/Initialize(var/ml)
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
@@ -91,7 +96,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(user.client && user.client.inquisitive_ghost)
 		user.examinate(src)
 		// following code taken from attackby (multitool)
-		if(powernet && (powernet.avail > 0))
+		if(powernet && (powernet.lavailable > 0))
 			to_chat(user, SPAN_WARNING("[get_wattage()] in power network."))
 		else
 			to_chat(user, SPAN_WARNING("\The [src] is not powered."))
@@ -102,11 +107,25 @@ By design, d1 is the smallest direction and d2 is the highest
 ///////////////////////////////////
 
 /obj/structure/cable/proc/get_wattage()
-	if(powernet.avail >=  1 GIGAWATTS)
-		return "[round(powernet.avail/(1 MEGAWATTS), 0.01)] MW"
-	if(powernet.avail >= 1 MEGAWATTS)
-		return "[round(powernet.avail/(1 KILOWATTS), 0.01)] kW"
-	return "[round(powernet.avail)] W"
+	if(POWERNET_WATTAGE(powernet) >= (1 MWATT))
+		return "[round(POWERNET_WATTAGE(powernet)/(1 MWATT), 0.01)] MW"
+	if(POWERNET_WATTAGE(powernet) >= (1 KWATT))
+		return "[round(POWERNET_WATTAGE(powernet)/(1 KWATT), 0.01)] kW"
+	return "[round(POWERNET_WATTAGE(powernet))] W"
+
+/obj/structure/cable/proc/get_voltage()
+	if(powernet.voltage >= 1 MVOLT)
+		return "[round(powernet.voltage/(1 MVOLT), 0.01)] MV"
+	if(powernet.voltage >= 1 KVOLT)
+		return "[round(powernet.voltage/(1 KVOLT), 0.01)] kV"
+	return "[round(powernet.voltage)] V"
+
+/obj/structure/cable/proc/get_amperage()
+	if(POWERNET_AMPERAGE(powernet) >= 1 MAMPER)
+		return "[round(POWERNET_AMPERAGE(powernet)/(1 MAMPER), 0.01)] MA"
+	if(POWERNET_AMPERAGE(powernet) >= 1 KAMPER)
+		return "[round(POWERNET_AMPERAGE(powernet)/(1 KAMPER), 0.01)] kA"
+	return "[round(POWERNET_AMPERAGE(powernet))] A"
 
 //If underfloor, hide the cable
 /obj/structure/cable/hide(var/i)
@@ -157,8 +176,10 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	else if(IS_MULTITOOL(W))
 
-		if(powernet && (powernet.avail > 0))		// is it powered?
+		if(powernet && (powernet.voltage > 0))		// is it powered?
 			to_chat(user, SPAN_WARNING("[get_wattage()] in power network."))
+			to_chat(user, SPAN_WARNING("[get_amperage()] in power network."))
+			to_chat(user, SPAN_WARNING("[get_voltage()] in power network."))
 
 		else
 			to_chat(user, SPAN_WARNING("\The [src] is not powered."))

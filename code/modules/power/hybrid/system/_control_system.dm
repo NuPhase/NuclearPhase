@@ -1,7 +1,3 @@
-#define REACTOR_CONTROL_MODE_MANUAL "manual"
-#define REACTOR_CONTROL_MODE_SEMIAUTO "semi-auto"
-#define REACTOR_CONTROL_MODE_AUTO "auto"
-
 #define MAX_REACTOR_VESSEL_PRESSURE 500000 //kPa
 #define ALARM_REACTOR_TUNGSTEN_TEMP 4600
 #define MAX_REACTOR_TUNGSTEN_TEMP 4500
@@ -24,12 +20,14 @@
 	var/list/reactor_valves = list()
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine1 = null
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine2 = null
-	var/obj/machinery/power/turbine_generator/generator1 = null
-	var/obj/machinery/power/turbine_generator/generator2 = null
+	var/obj/machinery/power/generator/turbine_generator/generator1 = null
+	var/obj/machinery/power/generator/turbine_generator/generator2 = null
 
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]
 	turbine2 = reactor_components["turbine2"]
+	generator1 = reactor_components["generator1"]
+	generator2 = reactor_components["generator2"]
 
 /datum/reactor_control_system/proc/switch_mode(newmode) //returns 1 if modes were switched succesfully, 0 if mode is unavailable and 2 if it is the same mode
 	if(newmode == mode)
@@ -74,14 +72,14 @@
 			do_message("GENERATOR #2 FULL LOAD REJECTION", 3)
 
 	switch(turbine1.vibration)
-		if(0 to 25)
+		if(10 to 25)
 			do_message("EXCESSIVE VIBRATION IN TURBINE #1", 1)
 		if(26 to 50)
 			do_message("HIGH VIBRATION IN TURBINE #1", 2)
 		if(51 to INFINITY)
 			do_message("CRITICAL VIBRATION IN TURBINE #1", 3)
 	switch(turbine2.vibration)
-		if(0 to 25)
+		if(10 to 25)
 			do_message("EXCESSIVE VIBRATION IN TURBINE #2", 1)
 		if(26 to 50)
 			do_message("HIGH VIBRATION IN TURBINE #2", 2)
@@ -135,6 +133,7 @@
 		current_switch = reactor_buttons["TURB V-BYPASS"]
 		current_switch.state = 0
 		current_switch.do_action()
+		return
 
 	current_valve = reactor_valves["TURB 1V-IN"]
 	if(turbine1.rpm > 3800)

@@ -16,6 +16,8 @@
 	use_power = POWER_USE_OFF
 	idle_power_usage = 0
 	active_power_usage = 0
+	var/efficiency = 0.95
+	var/should_heat = FALSE //whether we should heat up surrounding air from resistance
 
 /obj/machinery/power/Initialize()
 	. = ..()
@@ -40,18 +42,26 @@
 	if(drain_check)
 		return 1
 
-	if(powernet && powernet.avail)
+	if(powernet && powernet.lavailable)
 		powernet.trigger_warning()
 		return powernet.draw_power(amount)
 
-/obj/machinery/power/proc/draw_power(var/amount)
+/obj/machinery/power/proc/draw_power(var/amount, var/cur_efficiency = 0)
 	if(powernet)
+		if(!should_heat)
+			return powernet.draw_power(amount)
+		if(!cur_efficiency)
+			cur_efficiency = efficiency
+		var/heat_draw = powernet.draw_power(amount * (1 - cur_efficiency))
+		var/turf/T = get_turf(src)
+		var/datum/gas_mixture/environment = T.return_air()
+		environment.add_thermal_energy(POWER2HEAT(heat_draw))
 		return powernet.draw_power(amount)
 	return 0
 
 /obj/machinery/power/proc/surplus()
 	if(powernet)
-		return powernet.avail-powernet.load
+		return powernet.lavailable-powernet.ldemand
 	else
 		return 0
 /obj/machinery/power/proc/add_avail(var/amount)
@@ -60,9 +70,9 @@
 		return 1
 	return 0
 
-/obj/machinery/power/proc/avail()
+/obj/machinery/power/proc/available()
 	if(powernet)
-		return powernet.avail
+		return powernet.lavailable
 	else
 		return 0
 
@@ -260,3 +270,20 @@
 	else if (istype(power_source, /obj/item/cell))
 		cell.use(drained_energy)
 	return drained_energy
+
+/obj/machinery/power/proc/add_power(var/a, var/v = 220)
+	if(powernet)
+		powernet.add_power(a, v)
+		return 1
+	return 0
+
+/obj/machinery/power/generator
+
+/obj/machinery/power/generator/proc/available_power()
+	return 0
+
+/obj/machinery/power/generator/proc/get_voltage()
+	return 0
+
+/obj/machinery/power/generator/proc/on_power_drain(var/w)
+	return

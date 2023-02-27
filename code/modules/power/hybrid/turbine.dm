@@ -26,13 +26,15 @@
 	var/kin_energy = 0
 	var/kin_loss = 0.001
 	var/expansion_ratio = 0.2
-	var/volume_ratio = 0.8
+	var/volume_ratio = 0.6
 	var/steam_velocity = 0
 	var/pressure_difference = 0
 	var/total_mass_flow = 0
 	var/rpm = 0
 	var/braking = FALSE //emergency brakes
 	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
+
+	var/obj/machinery/atmospherics/binary/regulated_valve/ingoing_valve = null
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
 	switch(vibration)
@@ -48,6 +50,7 @@
 	air1.volume = 20000
 	air2.volume = 80000
 	reactor_components[uid] = src
+	ingoing_valve = locate(/obj/machinery/atmospherics/binary/regulated_valve) in get_step(src,SOUTH)
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
@@ -55,13 +58,14 @@
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
-	var/kin_total = 0.05 * (total_mass_flow * steam_velocity**2) * expansion_ratio
+	var/kin_total = 0.15 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
 	pump_passive(air1, air_all, total_mass_flow)
 	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
+	calculate_vibration(air_all)
 	air2.merge(air_all)
 	var/new_rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 	if(braking) //TODO: MAKE DAMAGE FROM THIS
@@ -69,8 +73,30 @@
 		kin_energy = kin_energy * 0.9
 		environment.add_thermal_energy(kin_energy * 0.1)
 	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, 5000)
+	ingoing_valve.forced_mass_flow = total_mass_flow //so we can succ enough steam
 
-/obj/machinery/power/turbine_generator
+	apply_vibration_effects()
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
+	vibration = 0
+	if(turbine_internals.temperature < 109) //condensing inside of the turbine is incredibly dangerous
+		vibration += total_mass_flow * 0.04
+	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
+		vibration += total_mass_flow * 0.06
+	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
+		vibration += 20
+	vibration += total_mass_flow * 0.005
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects() //cosmetic only for now
+	switch(vibration)
+		if(26 to 50)
+			for(var/mob/living/carbon/human/H in range(world.view, loc))
+				to_chat(H, SPAN_WARNING("All your surroundings vibrate like in an earthquake!"))
+		if(51 to INFINITY)
+			for(var/mob/living/carbon/human/H in range(world.view, loc))
+				to_chat(H, SPAN_DANGER("Everything around you shakes and rattles!"))
+
+/obj/machinery/power/generator/turbine_generator
 	name = "motor"
 	desc = "Electrogenerator. Converts rotation into power."
 	icon = 'icons/obj/atmospherics/components/unary/pipeturbine.dmi'
@@ -85,29 +111,37 @@
 	construct_state = /decl/machine_construction/default/panel_closed
 	var/connected = FALSE
 	var/last_load = 0
+	var/voltage = 3960 //220x18
 
-/obj/machinery/power/turbine_generator/Initialize()
+/obj/machinery/power/generator/turbine_generator/Initialize()
 	. = ..()
 	updateConnection()
 	connect_to_network()
 
-/obj/machinery/power/turbine_generator/proc/updateConnection()
+/obj/machinery/power/generator/turbine_generator/proc/updateConnection()
 	turbine = null
 	if(src.loc && anchored)
 		turbine = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_step(src,dir)
 		if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 			turbine = null
 
-/obj/machinery/power/turbine_generator/Process()
-	updateConnection()
-	if(!turbine || !anchored)
-		return
+/obj/machinery/power/generator/turbine_generator/Process()
+	if(!turbine)
+		updateConnection()
 
-	if(connected)
-		var/power_generated = powernet.load + 100000
-		last_load = powernet.load
-		turbine.kin_energy -= power_generated
-		generate_power(power_generated)
+/obj/machinery/power/generator/turbine_generator/available_power()
+	if(turbine)
+		return turbine.kin_energy
+	else
+		return 0
+
+/obj/machinery/power/generator/turbine_generator/get_voltage()
+	return voltage
+
+/obj/machinery/power/generator/turbine_generator/on_power_drain(w)
+	if(turbine)
+		turbine.kin_energy -= w //i trust the power controller to not draw more than what's available
+		last_load = w
 
 /datum/composite_sound/turbine
 	start_sound = 'sound/machines/turbine_start.ogg'
