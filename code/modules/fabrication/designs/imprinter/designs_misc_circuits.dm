@@ -428,8 +428,8 @@
 /datum/fabricator_recipe/imprinter/circuit/turbine_teg
 	path = /obj/item/stock_parts/circuitboard/teg_turbine
 
-/datum/fabricator_recipe/imprinter/circuit/turbine_motor_teg
-	path = /obj/item/stock_parts/circuitboard/teg_turbine/motor
+///datum/fabricator_recipe/imprinter/circuit/turbine_motor_teg
+//	path = /obj/item/stock_parts/circuitboard/teg_turbine/motor
 
 /datum/fabricator_recipe/imprinter/circuit/cryopod
 	path = /obj/item/stock_parts/circuitboard/cryopod

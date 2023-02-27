@@ -45,7 +45,7 @@
 	var/transfer_moles = air1.total_moles * open_to
 	if(!transfer_moles)
 		return
-	var/transfer_mass = air1.net_flow_mass * open_to + forced_mass_flow
+	var/transfer_mass = (air1.net_flow_mass + forced_mass_flow) * open_to
 
 	pump_gas_passive(src, air1, air2, transfer_moles)
 	pump_fluid_passive(src, air1, air2, transfer_mass)

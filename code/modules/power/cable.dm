@@ -74,6 +74,8 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/cable/heavy
 	name = "heavy-duty cable"
 	resistance = CABLE_1MM_RESISTANCE / 5000 // 50 cm
+	icon = 'icons/obj/power_cond_heavy.dmi'
+	color = null
 
 /obj/structure/cable/Initialize(var/ml)
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable

@@ -204,6 +204,10 @@
 	//updates the viewed load (as seen on power computers)
 	viewload = round(load)
 */
+
+	for(var/obj/machinery/power/generator/transformer/transf in nodes)
+		transf.connected.powernet.demand += transf.powernet.ldemand
+
 	//reset the powernet
 	smes_avail = smes_newavail
 	inputting.Cut()

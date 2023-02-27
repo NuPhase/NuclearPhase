@@ -1,16 +1,16 @@
-/obj/machinery/power/transmittor
+/obj/machinery/power/transmitter
 	icon = 'icons/obj/power.dmi'
-	icon_state = "transmittor"
+	icon_state = "transmitter"
 
-	var/obj/machinery/power/transmittor/up
+	var/obj/machinery/power/transmitter/up
 
 	efficiency = 0.75
 
-/obj/machinery/power/transmittor/Process()
+/obj/machinery/power/transmitter/Process()
 	if(up)
 		return
 
-	var/obj/machinery/power/transmittor/dup = locate(/obj/machinery/power/transmittor, get_step(src, UP))
+	var/obj/machinery/power/transmitter/dup = locate(/obj/machinery/power/transmitter, get_step(src, UP))
 	if(dup)
 		up = dup
 	else

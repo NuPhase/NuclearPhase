@@ -26,6 +26,8 @@
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]
 	turbine2 = reactor_components["turbine2"]
+	generator1 = reactor_components["generator1"]
+	generator2 = reactor_components["generator2"]
 
 /datum/reactor_control_system/proc/switch_mode(newmode) //returns 1 if modes were switched succesfully, 0 if mode is unavailable and 2 if it is the same mode
 	if(newmode == mode)
@@ -70,14 +72,14 @@
 			do_message("GENERATOR #2 FULL LOAD REJECTION", 3)
 
 	switch(turbine1.vibration)
-		if(0 to 25)
+		if(10 to 25)
 			do_message("EXCESSIVE VIBRATION IN TURBINE #1", 1)
 		if(26 to 50)
 			do_message("HIGH VIBRATION IN TURBINE #1", 2)
 		if(51 to INFINITY)
 			do_message("CRITICAL VIBRATION IN TURBINE #1", 3)
 	switch(turbine2.vibration)
-		if(0 to 25)
+		if(10 to 25)
 			do_message("EXCESSIVE VIBRATION IN TURBINE #2", 1)
 		if(26 to 50)
 			do_message("HIGH VIBRATION IN TURBINE #2", 2)

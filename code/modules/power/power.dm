@@ -271,7 +271,7 @@
 		cell.use(drained_energy)
 	return drained_energy
 
-/obj/machinery/power/proc/add_power(var/a, var/v = 1 KVOLT)
+/obj/machinery/power/proc/add_power(var/a, var/v = 220)
 	if(powernet)
 		powernet.add_power(a, v)
 		return 1

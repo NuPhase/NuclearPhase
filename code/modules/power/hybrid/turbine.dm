@@ -58,7 +58,7 @@
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
-	var/kin_total = 0.05 * (total_mass_flow * steam_velocity**2) * expansion_ratio
+	var/kin_total = 0.15 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency
 	var/datum/gas_mixture/air_all = new
@@ -79,9 +79,8 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	vibration = 0
-	for(var/phase in turbine_internals.phases) //condensing inside of the turbine is incredibly dangerous
-		if(phase != MAT_PHASE_GAS)
-			vibration += total_mass_flow * 0.07
+	if(turbine_internals.temperature < 109) //condensing inside of the turbine is incredibly dangerous
+		vibration += total_mass_flow * 0.04
 	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
 		vibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
@@ -112,6 +111,7 @@
 	construct_state = /decl/machine_construction/default/panel_closed
 	var/connected = FALSE
 	var/last_load = 0
+	var/voltage = 3960 //220x18
 
 /obj/machinery/power/generator/turbine_generator/Initialize()
 	. = ..()
@@ -126,15 +126,22 @@
 			turbine = null
 
 /obj/machinery/power/generator/turbine_generator/Process()
-	updateConnection()
-	if(!turbine || !anchored)
-		return
+	if(!turbine)
+		updateConnection()
 
-	if(connected)
-		var/power_generated = powernet.ldemand + 100000
-		last_load = powernet.ldemand
-		turbine.kin_energy -= power_generated
-		generate_power(power_generated)
+/obj/machinery/power/generator/turbine_generator/available_power()
+	if(turbine)
+		return turbine.kin_energy
+	else
+		return 0
+
+/obj/machinery/power/generator/turbine_generator/get_voltage()
+	return voltage
+
+/obj/machinery/power/generator/turbine_generator/on_power_drain(w)
+	if(turbine)
+		turbine.kin_energy -= w //i trust the power controller to not draw more than what's available
+		last_load = w
 
 /datum/composite_sound/turbine
 	start_sound = 'sound/machines/turbine_start.ogg'
