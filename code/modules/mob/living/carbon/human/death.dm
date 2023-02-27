@@ -56,7 +56,6 @@
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
-	local_tension += 100
 	spawn(300)
 		if(client)
 			ghostize()

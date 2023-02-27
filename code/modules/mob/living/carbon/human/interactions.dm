@@ -2,6 +2,9 @@
 *******Interactions code by HONKERTRON feat TestUnit with translations and code edits by Matt********
 **Contains a lot ammount of ERP and MEHANOYEBLYA**
 ***********************************/
+#define SPAN_ERP(t) "<span class='erp'>[t]</span>"
+#define SPAN_ERPBOLD(t) "<span class='erpbold'>[t]</span>"
+#define SPAN_CUMZONE(t) "<span class='cumzone'>[t]</span>"
 
 /obj/effect/decal/cleanable/cum
 	name = "cream"
@@ -13,18 +16,30 @@
 	anchored = 1
 	random_icon_states = list("cum1", "cum3", "cum4", "cum5", "cum6", "cum7", "cum8", "cum9", "cum10", "cum11", "cum12")
 
-/decl/material/liquid/semen
-	solid_name = "semen"
-	gas_name = "emen"
-	liquid_name = "semen"
-	exoplanet_rarity = MAT_RARITY_NOWHERE
-	ingest_met = REM
-	taste_description = "Something hot and full of love..."
-	color = "#FFFFFF" // rgb: 255, 255, 255
-
 /obj/effect/decal/cleanable/cum/New()
 	..()
 	icon_state = pick(random_icon_states)
+
+/decl/material/liquid/semen
+	solid_name = "semen"
+	gas_name = "semen"
+	liquid_name = "semen"
+	uid = "liquid_semen"
+	lore_text = "Something hot and full of love."
+	exoplanet_rarity = MAT_RARITY_NOWHERE
+	ingest_met = 1
+	taste_description = "Something hot and full of love..."
+	color = "#FFFFFF" // rgb: 255, 255, 255
+
+/decl/material/liquid/semen/on_mob_life(mob/living/M, metabolism_class, datum/reagents/holder)
+	. = ..()
+	if(prob(5))
+		to_chat(M, SPAN_CUMZONE("You feel something hot and full of love at your face..."))
+
+/mob/living/carbon/human/examine(mob/user, distance)
+	. = ..()
+	if(reagents.has_reagent(/decl/material/liquid/semen, 1) && !_wear_mask)
+		to_chat(user, SPAN_ERP("Her face is covered with a white liquid..."))
 
 /mob/living/carbon/human/receive_mouse_drop(mob/M as mob, mob/user as mob)
 	if(M == src || src == usr || M != usr)		return
@@ -108,7 +123,6 @@
 						dat +=  {"<A href='?src=\ref[usr];interaction=cheer'>Cheer!</A><BR>"}
 						dat +=  {"<A href='?src=\ref[usr];interaction=five'>Highfive.</A><BR>"}
 						if (hashands_p)
-							dat +=  {"<A href='?src=\ref[src];interaction=give'>Give.</A><BR>"}
 							dat +=  {"<A href='?src=\ref[usr];interaction=slap'><font color=red>Slap!</font></A><BR>"}
 						if (isnude_p)
 							if(P.gender == FEMALE)
@@ -144,12 +158,13 @@
 					if (haspenis && hashands)
 						dat += {"<font size=3><B>MISTAKES WILL BE MADE:</B></font><BR>"}
 						if (isnude_p)
-							dat += {"<A href='?src=\ref[usr];interaction=vaginal'><font color=purple>Fuck vagina.</font></A><BR>"}
-							if (hasanus_p)
-								dat += {"<A href='?src=\ref[usr];interaction=anal'><font color=purple>Fuck ass.</font></A><BR>"}
+							if(get_dist(H,P) <= 0)
+								dat += {"<A href='?src=\ref[usr];interaction=vaginal'><font color=purple>Fuck vagina.</font></A><BR>"}
+								if (hasanus_p)
+									dat += {"<A href='?src=\ref[usr];interaction=anal'><font color=purple>Fuck ass.</font></A><BR>"}
 							if (mouthfree_p)
 								dat += {"<A href='?src=\ref[usr];interaction=oral'><font color=purple>Fuck mouth.</font></A><BR>"}
-					if (isnude && usr.loc == H.partner.loc && hashands)
+					if (isnude && usr.loc == H.partner.loc && hashands && get_dist(H,P) <= 0)
 						if (hasvagina && haspenis_p)
 							dat += {"<font size=3><B>Vagina:</B></font><BR>"}
 							dat += {"<A href='?src=\ref[usr];interaction=mount'><font color=purple>Mount!</font></A><BR><HR>"}
@@ -180,7 +195,7 @@
 			playsound(loc, "honk/sound/interactions/final_m[rand(1, 5)].ogg", 90, 0, -5)
 		if(FEMALE)
 			playsound(loc, "honk/sound/interactions/final_f[rand(1, 3)].ogg", 90, 0, -5)
-	to_chat(H, "<span class='malfunction'>[pick("OH FUCK", "HOLY SHIT")]!</span>") //creativity
+	to_chat(H, SPAN_ERPBOLD(pick("OH FUCK", "HOLY SHIT"))) //creativity
 	if (has_penis())
 		if (P)
 			T = get_turf(P)
@@ -194,7 +209,7 @@
 			var/amt = rand(20,30)
 			if (hole == "mouth" || H?.zone_sel?.selecting == "mouth")
 				message = pick("cums right in [P]'s mouth.")
-				P.reagents.add_reagent("semen", amt)
+				P.reagents.add_reagent(/decl/material/liquid/semen, amt)
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SWALLOW/"
 				sound = pick(flist("[sound_path]"))
 			else if (hole == "vagina")
@@ -210,16 +225,16 @@
 		else
 			message = pick("cums!", "orgasms!")
 
-		H.visible_message("<span class='erpbold'>[H]</span> <span class='cumzone'>[message]</span>")
+		H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
 		if (istype(P.loc, /obj/structure/closet))
-			P.visible_message("<span class='erpbold'>[H]</span> <span class='cumzone'>[message]</span>")
+			P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
 		H.lust = 5
 		H.resistenza += 50
 	else
 		message = pick("cums!")
-		H.visible_message("<span class='erpbold'>[H]</span> <span class='cumzone'>[message].</span>")
+		H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
 		if (istype(P.loc, /obj/structure/closet))
-			P.visible_message("<span class='erpbold'>[H]</span> <span class='cumzone'>[message].</span>")
+			P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
 		var/delta = pick(20, 30, 40, 50)
 		switch(lust)
 			if(0 to 150)
@@ -251,12 +266,10 @@
 				H.lfhole = hole
 
 			if (prob(5) && P.stat != DEAD)
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
 				P.lust += 10
-			else
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (istype(P.loc, /obj/structure/closet))
-				P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
 				P.lust += 10
 				if (P.lust >= P.resistenza)
@@ -284,10 +297,8 @@
 				H.lfhole = hole
 
 			if (prob(5) && P.stat != DEAD)
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
 				P.lust += 8
-			else
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
 				P.lust += 8
 				if (P.lust >= P.resistenza)
@@ -310,14 +321,9 @@
 			if (H.lust < 6)
 				H.lust += 6
 
-			if(prob(5))
-				if(P.stat != DEAD)
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
-					P.lust += 10
-				else
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
-			else
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+			if(prob(5) && P.stat != DEAD)
+				P.lust += 10
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if(P.stat != DEAD)
 				P.lust += 10
@@ -343,14 +349,9 @@
 			if (H.lust < 6)
 				H.lust += 6
 
-			if(prob(5))
-				if(P.stat != DEAD)
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
-					P.lust += 10
-				else
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
-			else
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+			if(prob(5) && P.stat != DEAD)
+				P.lust += 10
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if(P.stat != DEAD)
 				P.lust += 10
@@ -365,7 +366,7 @@
 				sound = pick(flist("honk/sound/new/ACTIONS/MOUTH/SALIVA/"))
 				playsound(loc, ("honk/sound/new/ACTIONS/MOUTH/SALIVA/[sound]"), 90, 1, -5)
 			if (prob(P.potenzia))
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>goes in deep on</span> <span class='erpbold'>[P]</span><span class='erp'>.</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("goes in deep on ") + SPAN_ERPBOLD("[P]"))
 
 		if("handjob")
 			message = pick("strokes [P]'s dick.", "masturbate [P]'s penis.")
@@ -374,12 +375,9 @@
 
 			if(prob(5))
 				if(P.stat != DEAD)
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
 					P.lust += 10
-				else
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
-			else
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
 				P.lust += 8
@@ -392,7 +390,7 @@
 				playsound(loc, "honk/sound/new/ACTIONS/PENIS/HANDJOB/[sound]", 90, 1, -5)
 			H.do_fucking_animation(P)
 			if (prob(P.potenzia))
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>strokes <B>[P]'s </span><span class='erp'> [pick("cock","dick","penis")] faster.</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] " + SPAN_ERP("strokes <B>[P]'s</B> [pick("cock","dick","penis")] faster")))
 
 		if("vaginal")
 			message = pick("fucks [P].", "pounds [P]'s pussy.")
@@ -406,14 +404,12 @@
 
 			if(P.virgin)
 				P.virgin = FALSE
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>pop's</span> <span class='erpbold'>[P]'s</span> <span class='erp'>cherry.</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("pop's ") + SPAN_ERPBOLD("[P]'s " + SPAN_ERP("cherry")))
 			if (prob(5) && P.stat != DEAD)
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
 				P.lust += H.get_pleasure_amt("vaginal-2")
-			else
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (istype(P.loc, /obj/structure/closet))
-				P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 				playsound(P.loc.loc, 'sound/effects/clang.ogg', 50, 0, 0)
 			H.lust += 10
 			if (H.lust >= H.resistenza)
@@ -442,14 +438,12 @@
 
 			if(H.virgin)
 				H.virgin = FALSE
-				H.visible_message("<span class='erpbold'>[P]</span> <span class='erp'>pop's</span> <span class='erpbold'>[H]'s</span> <span class='erp'>cherry.</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("pop's ") + SPAN_ERPBOLD("[P]'s " + SPAN_ERP("cherry")))
 
-			if (prob(5))
-				if(P.stat != DEAD)
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message].</span>")
-					P.lust += H.potenzia * 2
-			else
-				H.visible_message("<span class='erpbold'>[H] [message].</span>")
+			if (prob(5) && P.stat != DEAD)
+				P.lust += H.potenzia * 2
+
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			H.lust += P.potenzia
 			if (H.lust >= H.resistenza)
@@ -478,12 +472,11 @@
 				H.lfhole = hole
 
 			if (prob(5) && P.stat != DEAD)
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
 				P.lust += H.get_pleasure_amt("anal-2")
-			else
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
+
 			if (istype(P.loc, /obj/structure/closet))
-				P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message]</span>")
+				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 				playsound(P.loc.loc, 'sound/effects/clang.ogg', 50, 0, 0)
 			H.lust += 12
 			if (H.lust >= H.resistenza)
@@ -511,12 +504,11 @@
 				H.lfhole = hole
 
 			if (prob(5) && H.stat != DEAD)
-				H.visible_message("<span class='erpbold'>[H]</span><span class='erp'>[message]</span>")
 				H.lust += 15
-			else
-				H.visible_message("<span class='erpbold'>[H]</span><span class='erp'>[message]</span>")
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
+
 			if (istype(P.loc, /obj/structure/closet))
-				P.visible_message("<span class='erpbold'>[H]</span><span class='erp'>[message]</span>")
+				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 				playsound(P.loc.loc, 'sound/effects/clang.ogg', 50, 0, 0)
 			H.lust += 15
 			if (H.lust >= H.resistenza)
@@ -524,9 +516,9 @@
 
 			if (prob(H.potenzia))
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SWALLOW/"
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>fucks</span> <span class='erpbold'>[P]'s</span> <span class='erp'>throat.</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("fucks ") + SPAN_ERPBOLD("[P]'s" + SPAN_ERP("throat")))
 				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>fucks</span> <span class='erpbold'>[P]'s</span> <span class='erp'>throat.</span>")
+					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("fucks ") + SPAN_ERPBOLD("[P]'s" + SPAN_ERP("throat")))
 			else
 				sound_path = "honk/sound/new/ACTIONS/BLOWJOB/"
 			sound = pick(flist("[sound_path]"))
@@ -537,8 +529,8 @@
 	var/mob/living/carbon/human/H = src
 	if (species.name == "Human")
 		if (prob(H.lust / H.resistenza * 65))
-			var/message = pick("moans", "moans in pleasure",)
-			H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[message].</span:")
+			var/message = pick("moans", "moans in pleasure")
+			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			var/g = H.gender == FEMALE ? "f" : "m"
 			var/moan = rand(1, 7)
 			if (moan == lastmoan)
@@ -630,13 +622,12 @@
 				message = pick("fucks [M] right in the pussy with the dildo", "jams it right into [M]")
 
 			if (prob(5) && M.stat != DEAD && M.stat != UNCONSCIOUS)
-				user.visible_message("<font color=purple><B>[user] [message].</B></font>")
 				M.lust += pleasure * 2
 
 			else if (M.stat != DEAD && M.stat != UNCONSCIOUS)
-				user.visible_message("<font color=purple>[user] [message].</font>")
 				M.lust += pleasure
 
+			user.visible_message(SPAN_ERPBOLD("[user] ") + SPAN_ERP(message))
 			if (M.lust >= M.resistenza)
 				M.cum(M, user, "floor")
 			else
@@ -652,12 +643,11 @@
 				message = pick("fucks [M]'s asshole")
 
 			if (prob(5) && M.stat != DEAD && M.stat != UNCONSCIOUS)
-				user.visible_message("<font color=purple><B>[user] [message].</B></font>")
 				M.lust += pleasure * 2
-
 			else if (M.stat != DEAD && M.stat != UNCONSCIOUS)
-				user.visible_message("<font color=purple>[user] [message].</font>")
 				M.lust += pleasure
+
+			user.visible_message(SPAN_ERPBOLD("[user] ") + SPAN_ERP(message))
 
 			if (M.lust >= M.resistenza)
 				M.cum(M, user, "floor")
@@ -716,25 +706,17 @@
 		var/isnude_p = P.is_nude()
 
 		if (href_list["interaction"] == "bow")
-			H.visible_message("<span class='examinebold'>[H]</span> <span class='examine'>bows before</span> <span class='examinebold'>[P].</span>")
+			H.visible_message("<span class='name'>[H]</span> <span class='emote'>bows before</span> <span class='name'>[P].</span>")
 			if (istype(P.loc, /obj/structure/closet) && P.loc == H.loc)
-				P.visible_message("<span class='examinebold'>[H]</span> <span class='examine'>bows before</span> <span class='examinebold'>[P].</span>")
-
-		else if (href_list["interaction"] == "give")
-			if(Adjacent(P))
-				if (((!istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
-					H.give(P)
+				P.visible_message("<span class='name'>[H]</span> <span class='emote'>bows before</span> <span class='name'>[P].</span>")
 
 		else if (href_list["interaction"] == "kiss")
 			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && mouthfree_p)
 				if (H.lust == 0)
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>kisses</span> <span class='erpbold'>[P]</span>")
-					if (istype(P.loc, /obj/structure/closet))
-						P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>kisses</span> <span class='erpbold'>[P]</span>")
 					if (H.lust < 5)
 						H.lust = 5
-				else
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>kisses</span> <span class='erpbold'>[P]</span>")
+
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("kisses ") + SPAN_ERPBOLD("[P]"))
 				var/sound_path
 				switch(H.lust)
 					if(0 to 20)
@@ -744,22 +726,9 @@
 				var/sound = pick(flist("[sound_path]"))
 				playsound(loc, "[sound_path][sound]", 50, 1, -1)
 				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>kisses</span> <span class='erpbold'>[P]</span>")
+					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("kisses ") + SPAN_ERPBOLD("[P]"))
 			else if (mouthfree)
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>blows</span> <span class='erpbold'>[P]</span> <span class='erp'>a kiss</span>")
-
-		else if (href_list["interaction"] == "lick")
-			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && mouthfree_p)
-				if (H.lust == 0)
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"]</span> <span class='erpbold'>[P]</span> <span class='erp'>â ùåêó.</span>")
-					if (istype(P.loc, /obj/structure/closet))
-						P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>[H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"]</span> <span class='erpbold'>[P]</span> <span class='erp'>â ùåêó.</span>")
-					if (H.lust < 5)
-						H.lust = 5
-				else
-					H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>îñîáî òùàòåëüíî [H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"]</span> <span class='erpbold'>[P].</span>")
-					if (istype(P.loc, /obj/structure/closet))
-						P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>îñîáî òùàòåëüíî [H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"]</span> <span class='erpbold'>[P].</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("blows ") + SPAN_ERPBOLD("[P]") + SPAN_ERP("a kiss"))
 
 		else if (href_list["interaction"] == "hug")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
@@ -831,18 +800,18 @@
 
 		else if (href_list["interaction"] == "assslap")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hasanus_p && hashands)
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>slaps</span> <span class='erpbold'>[P]</span> <span class='erp'>right on the ass!</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("slaps ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("right on the ass!"))
 				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>slaps</span> <span class='erpbold'>[P]</span> <span class='erp'>right on the ass!</span>")
+					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("slaps ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("right on the ass!"))
 				playsound(loc, 'honk/sound/interactions/slap.ogg', 50, 1, -1)
 				H.lust += rand(0.1,0.5)
 				P.lust += rand(0.1,0.5)
 
 		else if (href_list["interaction"] == "squeezebreast")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
-				H.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>squeezes</span> <span class='erpbold'>[P]</span> <span class='erp'>'s breasts!</span>")
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("squeezes ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("breasts!"))
 				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<span class='erpbold'>[H]</span> <span class='erp'>squeezes</span> <span class='erpbold'>[P]</span> <span class='erp'>'s breasts!</span>")
+					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("squeezes ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("breasts!"))
 				H.lust += rand(0.1,0.5)
 				P.lust += rand(0.1,0.5)
 
@@ -867,7 +836,7 @@
 				H.fuck(H, P, "handjob")
 
 		else if (href_list["interaction"] == "anal")
-			if(get_dist(H,P) <= 1 && isnude_p && isnude && haspenis && hasanus_p)
+			if(get_dist(H,P) <= 0 && isnude_p && isnude && haspenis && hasanus_p)
 				if (H.erpcooldown == 0)
 					if (H.potenzia > 0)
 						H.fuck(H, P, "anal")
@@ -875,7 +844,7 @@
 					var/message = pick("it's not erect...")
 					to_chat(H, message)
 		else if (href_list["interaction"] == "vaginal")
-			if (get_dist(H,P) <= 1 && isnude_p && isnude && haspenis && hasanus_p)
+			if (get_dist(H,P) <= 0 && isnude_p && isnude && haspenis && hasanus_p)
 				if (H.erpcooldown == 0)
 					if (H.potenzia > 0)
 						H.fuck(H, P, "vaginal")
@@ -893,12 +862,12 @@
 					to_chat(H, message)
 
 		else if (href_list["interaction"] == "mount")
-			if (get_dist(H,P) <= 1 && isnude && isnude_p && haspenis_p && hasvagina)
+			if (get_dist(H,P) <= 0 && isnude && isnude_p && haspenis_p && hasvagina)
 				if(P.erpcooldown == 0)
 					H.fuck(H, P, "mount")
 				else
 					var/message = pick("You have no lust now.")
-					to_chat(H, "<span class='erp'>[message]</span>")
+					to_chat(H, SPAN_ERP(message))
 
 	..()
 	return

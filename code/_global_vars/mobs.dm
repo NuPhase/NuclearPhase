@@ -11,4 +11,3 @@ var/global/list/dead_mob_list_ =   list() // List of all dead mobs, including cl
 var/global/list/ghost_mob_list =   list() // List of all ghosts, including clientless. Excludes /mob/new_player
 
 var/global/tension = 0
-var/global/datum/tension_processor/tproc = new

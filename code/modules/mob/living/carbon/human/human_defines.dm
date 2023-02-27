@@ -104,6 +104,8 @@
 
 	var/isLeaning = 0
 
+	var/list/moods = list()
+
 /mob/living/carbon/human/proc/get_age()
 	. = LAZYACCESS(appearance_descriptors, "age") || 30
 

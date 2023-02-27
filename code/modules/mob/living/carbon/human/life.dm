@@ -66,7 +66,6 @@
 
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !InStasis())
-		local_tension -= 1
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
 
