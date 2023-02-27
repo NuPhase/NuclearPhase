@@ -242,6 +242,41 @@ var/global/list/sparring_attack_cache = list()
 	if(attack_string)
 		user.visible_message(SPAN_DANGER("\The [user] [attack_string]!"))
 
+/decl/natural_attack/xenomorph_claws
+	name = "claws"
+	attack_verb = list("clawed", "rended", "slashed")
+	attack_noun = list("claws")
+	attack_sound = 'sound/weapons/slice.ogg'
+	miss_sound = 'sound/weapons/slashmiss.ogg'
+	damage = 30
+	sharp = 1
+	shredding = 1
+	usable_with_limbs = list(BP_L_HAND, BP_R_HAND)
+
+/decl/natural_attack/xenomorph_claws/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
+
+	var/obj/item/organ/external/affecting = istype(target) && zone && GET_EXTERNAL_ORGAN(target, zone)
+	if(!affecting)
+		return ..()
+
+	user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [target]'s [affecting] with its [pick(attack_noun)]!</span>")
+
+/decl/natural_attack/xenomorph_tail
+	name = "tail"
+	attack_verb = list("bashed", "whipped", "slashed")
+	attack_noun = list("tail")
+	attack_sound = "swing_hit"
+	damage = 15
+	edge = 1
+
+/decl/natural_attack/xenomorph_claws/show_attack(mob/living/carbon/human/user, mob/living/carbon/human/target, zone, attack_damage)
+
+	var/obj/item/organ/external/affecting = istype(target) && zone && GET_EXTERNAL_ORGAN(target, zone)
+	if(!affecting)
+		return ..()
+	target.apply_effect(5, WEAKEN)
+	user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [target]'s [affecting] with its [pick(attack_noun)]!</span>")
+
 /decl/natural_attack/kick
 	name = "kick"
 	attack_verb = list("struck")

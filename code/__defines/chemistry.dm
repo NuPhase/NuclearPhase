@@ -1,6 +1,9 @@
 #define DEFAULT_HUNGER_FACTOR 0.03 // Factor of how fast mob nutrition decreases
 #define DEFAULT_THIRST_FACTOR 0.03 // Factor of how fast mob hydration decreases
 
+#define XENOMORPH_HUNGER_FACTOR 0.06 // Larger
+#define XENOMORPH_THIRST_FACTOR 0.01 // Closed cycle body
+
 #define REM 0.2 // Means 'Reagent Effect Multiplier'. This is how many units of reagent are consumed per tick
 
 #define CHEM_TOUCH 1

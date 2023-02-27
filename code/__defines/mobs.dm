@@ -257,6 +257,7 @@
 #define SPECIES_HUMAN            "Human"
 #define SPECIES_MONKEY           "Monkey"
 #define SPECIES_ALIEN            "Humanoid"
+#define SPECIES_XENOMORPH            "Xenomorph"
 
 #define BODY_FLAG_EXCLUDE        BITFLAG(0)
 #define BODY_FLAG_HUMANOID       BITFLAG(1)
@@ -283,6 +284,7 @@
 #define AURA_TYPE_LIFE   "Life"
 
 #define SPECIES_BLOOD_DEFAULT 560
+#define SPECIES_BLOOD_XENOMORPH 850 //larger body
 
 #define SLIME_EVOLUTION_THRESHOLD 15
 

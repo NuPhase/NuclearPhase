@@ -34,3 +34,14 @@
 
 /obj/item/organ/external/tail/monkey
 	tail = "chimptail"
+
+/decl/bodytype/xenomorph
+	name =                "Xenomorph"
+	bodytype_category =   BODYTYPE_HUMANOID
+	icon_base =           'icons/mob/species/xenomorph/praetorian.dmi'
+	blood_overlays =      'icons/mob/species/human/blood_overlays.dmi'
+	bandages_icon =       'icons/mob/species/human/bandage.dmi'
+	limb_icon_intensity = 0.7
+	associated_gender =   FEMALE
+	pixel_offset_x = -28
+	pixel_offset_y = -22
