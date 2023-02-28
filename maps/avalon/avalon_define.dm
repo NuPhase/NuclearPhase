@@ -25,12 +25,14 @@
 	planetary_area = /area/surface
 
 	lobby_screens = list(
-		'maps/avalon/cdllobby.jpg'
+		'maps/avalon/cdllobby.jpg',
+		'maps/avalon/atom.jpg'
 	)
 
 	lobby_tracks = list(
 		/decl/music_track/onewaytolife,
-		/decl/music_track/runningaftermyfate
+		/decl/music_track/runningaftermyfate,
+		/decl/music_track/inthedark
 	)
 
 	allowed_spawns = list(
