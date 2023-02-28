@@ -205,9 +205,6 @@
 	viewload = round(load)
 */
 
-	for(var/obj/machinery/power/generator/transformer/transf in nodes)
-		transf.connected.powernet.demand += transf.powernet.ldemand
-
 	//reset the powernet
 	smes_avail = smes_newavail
 	inputting.Cut()
@@ -219,6 +216,10 @@
 	demand = 0
 	lavailable = available
 	available = 0
+
+	for(var/obj/machinery/power/generator/transformer/transf in nodes)
+		transf.connected.powernet.demand += transf.powernet.ldemand
+		transf.connected.powernet.ldemand += transf.powernet.ldemand
 
 /datum/powernet/proc/get_percent_load(var/smes_only = 0)
 	if(smes_only)
