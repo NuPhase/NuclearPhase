@@ -73,6 +73,16 @@
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = null
 	starting_pressure = list(/decl/material/gas/carbon_dioxide = 2.5*ONE_ATMOSPHERE)
+
+/obj/item/tank/high_temp_waste
+	name = "HT-HE waste tank"
+	desc = "This tank can withstand high pressures and temperatures and is useful for storing generator exhaust gas."
+	icon = 'icons/obj/items/tanks/tank_greyscaled.dmi'
+	color = "#472e17"
+	gauge_icon = null
+	obj_flags = OBJ_FLAG_CONDUCTIBLE
+	slot_flags = null
+
 /*
  * Emergency Oxygen
  */

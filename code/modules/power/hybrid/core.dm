@@ -10,6 +10,7 @@
 	density = 1
 	anchored = 1
 	var/neutron_flux = 1
+	var/meltdown = FALSE
 
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
@@ -56,3 +57,40 @@
 	var/datum/gas_mixture/GM = A.return_air()
 	GM.add_thermal_energy(power * 1000) //?
 	return
+
+/*/obj/machinery/power/hybrid_reactor/proc/meltdown()
+	meltdown = TRUE
+	rcontrol.do_message("MAJOR SENSOR DAMAGE IN REACTOR UNIT", 3)
+	sleep(10 SECONDS)
+	rcontrol.do_message("MAJOR WIRING AND SENSOR DAMAGE IN REACTOR UNIT", 3)
+	spawn(1 SECOND)
+		rcontrol.do_message("DAMAGE CONTROL ACTIVE", 3)
+		radio_announce("TOTAL CONTROL SYSTEMS FAILURE, ASSUME MANUAL CONTROL IMMEDIATELY.", rcontrol.name, ENG_FREQ)
+		rcontrol.mode = REACTOR_CONTROL_MODE_MANUAL
+		rcontrol.autocontrol_available = FALSE
+		rcontrol.semiautocontrol_available = FALSE
+	sleep(10 SECONDS)
+	prime_alarms()
+	radio_announce("REACTOR CONTROL CONTINGENCY MODE: ACTIVE.", rcontrol.name)
+	rcontrol.do_message("REACTOR MAGNETS EXTERNAL POWER LOSS", 3)
+	spawn(1 SECOND)
+		rcontrol.do_message("THERMOELECTRIC GENERATION START", 3)
+	sleep(5 SECONDS)
+	activate_alarms()
+	radio_announce("SITEWIDE RADIATION INTERLOCKS WILL ACTIVATE IN: 90 SECONDS.", rcontrol.name)
+	sleep(10 SECONDS)
+	radio_announce("BLAST DOORS CLOSING IN: 20 SECONDS.", rcontrol.name)
+	start_burning()
+	neutron_flux *= 100
+	rcontrol.do_message("THERMOELECTRIC SYSTEMS OVERHEAT", 3)
+	rcontrol.do_message("MAJOR INTERNAL STRUCTURAL DAMAGE", 3)
+	spawn(2 SECONDS)
+		rcontrol.do_message("REACTOR UNIT SYSTEMS UNRESPONSIVE", 3)
+		rcontrol.scram("CONTROL LOSS") //won't work lol
+	for(var/mob/living/carbon/human/H in human_mob_list)
+		if(H.job == "Engineer")
+			H.playsound_local(H, 'sound/music/howmuchmorecanyoulose.ogg', 50, 0)
+			to_chat(H, SPAN_ERPBOLD("And in times like these, it's up to you to decide: How much more can you lose?"))
+	sleep(20 SECONDS)
+	close_blastdoors()
+	radio_announce("SITEWIDE RADIATION INTERLOCKS WILL ACTIVATE IN: 1 MINUTE.", rcontrol.name)*/

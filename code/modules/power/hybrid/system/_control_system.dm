@@ -8,6 +8,7 @@
 #define OPTIMAL_TURBINE_MASS_FLOW 500
 
 /datum/reactor_control_system
+	var/name = "Reactor Control System"
 	var/mode = REACTOR_CONTROL_MODE_MANUAL
 	var/semiautocontrol_available = TRUE
 	var/autocontrol_available = FALSE

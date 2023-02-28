@@ -116,8 +116,156 @@
 	explosion(src.loc, -1, 3, 5, -1)
 	qdel(src)
 
+/obj/machinery/power/generator/port_gen/proc/gen_shutdown()
+	active = FALSE
+	update_icon()
+
 #define TEMPERATURE_DIVISOR 40
 #define TEMPERATURE_CHANGE_MAX 20
+
+/obj/machinery/power/generator/port_gen/liquid
+	name = "portable liquid generator"
+	desc = "A power generator that runs on liquids."
+	var/tank_volume = 1000 //in ml
+	var/closed_cycle = FALSE //whether this generator runs in closed cycle or not. If not, it will use oxidizer and spew waste into the environment.
+	var/list/decl/material/allowed_fuels = list()
+	var/combustion_chamber_volume = 2 //basically means fuel consumption
+	power_gen = 20000
+	power_level = 3
+	working_sound = 'sound/machines/engine.ogg'
+
+	var/obj/item/tank/oxidizer_tank = null
+	var/obj/item/tank/waste_tank = null
+
+/obj/machinery/power/generator/port_gen/liquid/Initialize()
+	. = ..()
+	reagents = new(tank_volume, src)
+
+/obj/machinery/power/generator/port_gen/liquid/physical_attack_hand(user)
+	. = ..()
+	active = !active
+	update_icon()
+
+/obj/machinery/power/generator/port_gen/liquid/examine(mob/user, distance)
+	. = ..()
+	to_chat(user, SPAN_NOTICE("The fuel gauge is at [reagents.total_volume/reagents.maximum_volume * 100]%."))
+	if(oxidizer_tank)
+		to_chat(user, SPAN_NOTICE("The oxidizer tank pressure is: [oxidizer_tank.air_contents.return_pressure()]kPa."))
+	if(waste_tank)
+		to_chat(user, SPAN_NOTICE("The waste tank pressure is: [waste_tank.air_contents.return_pressure()]kPa."))
+
+/obj/machinery/power/generator/port_gen/liquid/HasFuel()
+	if(reagents.total_volume)
+		return TRUE
+	return FALSE
+
+/obj/machinery/power/generator/port_gen/liquid/UseFuel(power_requirement)
+	var/decl/material/mat = reagents.get_primary_reagent_decl()
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/environment = T.return_air()
+	if(!(mat.type in allowed_fuels))
+		gen_shutdown()
+		audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
+		return
+	if(!closed_cycle)
+		var/has_oxidizer = FALSE
+		for(var/g in environment.gas)
+			var/decl/material/ox_mat = GET_DECL(g)
+			if(ox_mat.gas_flags & XGM_GAS_OXIDIZER)
+				has_oxidizer = TRUE
+				break
+		if(!has_oxidizer)
+			gen_shutdown()
+			audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
+			return
+	else if(!oxidizer_tank || !waste_tank || !oxidizer_tank.air_contents.gas)
+		gen_shutdown()
+		audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
+		return
+
+	var/required_fuel_moles = POWER2HEAT(power_requirement) / mat.combustion_chamber_fuel_value
+	if(closed_cycle)
+		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
+		burn_mixture.adjust_gas(mat.type, required_fuel_moles * REAGENT_UNITS_PER_LIQUID_MOLE)
+		burn_mixture.merge(oxidizer_tank.air_contents.remove(required_fuel_moles * 2))
+		burn_mixture.fire_react(null, TRUE, TRUE)
+		waste_tank.air_contents.merge(burn_mixture)
+	else
+		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
+		burn_mixture.adjust_gas(mat.type, required_fuel_moles)
+		burn_mixture.merge(environment.remove(required_fuel_moles * 10))
+		burn_mixture.fire_react(null, TRUE, TRUE)
+		environment.merge(burn_mixture)
+	reagents.remove_reagent(mat.type, required_fuel_moles * REAGENT_UNITS_PER_GAS_MOLE)
+	environment.add_thermal_energy(POWER2HEAT(power_requirement) * (1 - efficiency))
+	update_sound()
+
+/obj/machinery/power/generator/port_gen/liquid/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/chems))
+		var/obj/item/chems/C = W
+		W.reagents.trans_to_obj(src, C.amount_per_transfer_from_this)
+	if(istype(W, /obj/item/tank))
+		var/needed_tanks = list()
+		if(!oxidizer_tank)
+			needed_tanks += "oxidizer"
+		if(!waste_tank)
+			needed_tanks += "waste"
+		var/choice = input(user, "Which tank to add?", "tank choice") in needed_tanks
+		if(!choice)
+			return
+		switch(choice)
+			if("oxidizer")
+				oxidizer_tank = W
+			if("waste")
+				waste_tank = W
+		user.drop_from_inventory(W, src)
+		W.forceMove(src)
+	if(IS_WRENCH(W) && !active)
+		if(!anchored)
+			to_chat(user, "<span class='notice'>You secure \the [src] to the floor.</span>")
+		else
+			to_chat(user, "<span class='notice'>You unsecure \the [src] from the floor.</span>")
+
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		anchored = !anchored
+	. = ..()
+
+/obj/machinery/power/generator/port_gen/liquid/verb/removeoxtank()
+	set name = "Remove Oxidizer Tank"
+	set category = "Object"
+	set src in usr
+
+	oxidizer_tank.canremove = 1
+	usr.drop_from_inventory(oxidizer_tank, src)
+	usr.put_in_hands(oxidizer_tank)
+	oxidizer_tank = null
+	playsound(loc, 'sound/effects/spray3.ogg', 50)
+
+/obj/machinery/power/generator/port_gen/liquid/verb/removewtank()
+	set name = "Remove Waste Tank"
+	set category = "Object"
+	set src in usr
+
+	waste_tank.canremove = 1
+	usr.drop_from_inventory(waste_tank, src)
+	usr.put_in_hands(waste_tank)
+	waste_tank = null
+	playsound(loc, 'sound/effects/spray3.ogg', 50)
+
+/obj/machinery/power/generator/port_gen/liquid/diesel
+	name = "diesel generator"
+	allowed_fuels = list(/decl/material/liquid/diesel)
+	power_gen = 40000
+
+/obj/machinery/power/generator/port_gen/liquid/diesel/large
+	name = "industrial diesel generator"
+	desc = "You feel more and more deaf even when this beast is turned off."
+	power_gen = 15000000 //1.5MW
+	icon = 'icons/obj/machines/diesel_generator.dmi'
+	icon_state = "large"
+	combustion_chamber_volume = 5
+	anchored = TRUE
+	power_level = 10
 
 //A power generator that runs on solid plasma sheets.
 /obj/machinery/power/generator/port_gen/pacman

@@ -155,3 +155,7 @@ var/global/datum/announcement/minor/minor_announcement = new(new_sound = 'sound/
 	if(dept?.announce_channel)
 		return dept.announce_channel
 	return "Common"
+
+/proc/radio_announce(var/message, var/name, var/frequency = PUB_FREQ)
+	var/obj/item/radio/announcer = get_global_announcer()
+	announcer.autosay(message, name, frequency)

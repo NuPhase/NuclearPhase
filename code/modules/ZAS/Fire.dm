@@ -221,7 +221,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		total_fuel *= group_multiplier
 		total_oxidizers *= group_multiplier
 
-		if(total_fuel <= 0.005)
+		if(total_fuel <= 0.005 && !force_burn)
 			return 0
 
 		//*** Determine how fast the fire burns
@@ -249,7 +249,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		#endif
 
 		//if the reaction is progressing too slow then it isn't self-sustaining anymore and burns out
-		if(zone && (!total_fuel || used_fuel <= FIRE_GAS_MIN_BURNRATE*zone.contents.len))
+		if(zone && (!total_fuel || used_fuel <= FIRE_GAS_MIN_BURNRATE*zone.contents.len) && !force_burn)
 			return 0
 
 		//*** Remove fuel and oxidizer, add carbon dioxide and heat

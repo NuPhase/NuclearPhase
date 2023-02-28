@@ -259,6 +259,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/list/heating_products
 	var/bypass_heating_products_for_root_type
 	var/fuel_value = 0
+	var/combustion_chamber_fuel_value = 0 //thermal joules per mole burned
 	var/burn_product
 	var/list/vapor_products // If splashed, releases these gasses in these proportions. // TODO add to unit test after solvent PR is merged
 
@@ -317,8 +318,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	. = ..()
 	if(!gas_molar_mass)
 		gas_molar_mass = molar_mass
-		liquid_molar_mass = molar_mass * 2
-		solid_molar_mass = molar_mass * 1.5
+		liquid_molar_mass = molar_mass
+		solid_molar_mass = molar_mass
 	if(!liquid_specific_heat)
 		liquid_specific_heat = gas_specific_heat * 2
 		solid_specific_heat = gas_specific_heat * 1.5

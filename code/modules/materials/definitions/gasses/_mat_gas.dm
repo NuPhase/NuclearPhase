@@ -6,7 +6,7 @@
 	shard_type = SHARD_NONE
 	conductive = 0
 	value = 0.15
-	burn_product = /decl/material/gas/carbon_dioxide
+	burn_product = /decl/material/gas/carbon_monoxide
 	molar_mass =    0.032 // kg/mol
 	latent_heat = 213
 	reflectiveness = 0

@@ -29,6 +29,7 @@
 	available_volume = volume
 	temperature = _temperature
 	group_multiplier = _group_multiplier
+	update_values()
 
 /datum/gas_mixture/proc/get_gas(gasid)
 	if(!gas.len)
@@ -554,3 +555,6 @@
 	if(removed)
 		removed.volume = volume_to_return
 	return removed
+
+/datum/gas_mixture/proc/get_taken_volume()
+	return volume - available_volume
