@@ -131,7 +131,7 @@
 	var/list/decl/material/allowed_fuels = list()
 	var/combustion_chamber_volume = 2 //basically means fuel consumption
 	power_gen = 20000
-	power_level = 3
+	power_output = 3
 	working_sound = 'sound/machines/engine.ogg'
 
 	var/obj/item/tank/oxidizer_tank = null
@@ -265,7 +265,10 @@
 	icon_state = "large"
 	combustion_chamber_volume = 5
 	anchored = TRUE
-	power_level = 10
+	density = 0
+	power_output = 10
+	output_voltage = 1000
+
 
 //A power generator that runs on solid plasma sheets.
 /obj/machinery/power/generator/port_gen/pacman
