@@ -54,6 +54,8 @@
 	var/num_terminals = 0    // internal bookkeeping for number of connected terminals
 	var/should_be_mapped = 0 // If this is set to 0 it will send out warning on New()
 
+	var/output_voltage = 4400
+
 /obj/machinery/power/smes/drain_power(var/drain_check, var/surge, var/amount = 0)
 
 	if(drain_check)
@@ -178,7 +180,7 @@
 	if(output_attempt && (!output_pulsed && !output_cut) && powernet && charge)
 		output_used = min( charge/CELLRATE, output_level)		//limit output to that stored
 		remove_charge(output_used)			// reduce the storage (may be recovered in /restore() if excessive)
-		add_power(output_used)				// add output to powernet (smes side)
+		add_power_w(output_used, output_voltage)				// add output to powernet (smes side)
 		outputting = 2
 	else if(!powernet || !charge)
 		outputting = 1

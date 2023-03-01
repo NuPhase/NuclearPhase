@@ -2,11 +2,14 @@
 	name = "power transformer"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "transformer"
+	density = 1
 	var/coef = 2
 	var/obj/machinery/power/generator/transformer/connected = null
-	var/max_cap = 75 AMPER
+	var/max_cap = 75000 //w
+	var/should_transfer_demand = FALSE
 
 	efficiency = 0.9
+	should_heat = TRUE
 
 /obj/machinery/power/generator/transformer/Process()
 	if(connected)

@@ -277,6 +277,12 @@
 		return 1
 	return 0
 
+/obj/machinery/power/proc/add_power_w(var/w, var/v = 220)
+	if(powernet)
+		powernet.add_power_w(w, v)
+		return 1
+	return 0
+
 /obj/machinery/power/generator
 
 /obj/machinery/power/generator/proc/available_power()

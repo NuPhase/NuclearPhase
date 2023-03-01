@@ -111,7 +111,7 @@
 	construct_state = /decl/machine_construction/default/panel_closed
 	var/connected = FALSE
 	var/last_load = 0
-	var/voltage = 3960 //220x18
+	var/voltage = 15200 //4400x8
 
 /obj/machinery/power/generator/turbine_generator/Initialize()
 	. = ..()
