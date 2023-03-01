@@ -177,9 +177,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	else if(IS_MULTITOOL(W))
 
 		if(powernet && (powernet.voltage > 0))		// is it powered?
-			to_chat(user, SPAN_WARNING("[get_wattage()] in power network."))
-			to_chat(user, SPAN_WARNING("[get_amperage()] in power network."))
-			to_chat(user, SPAN_WARNING("[get_voltage()] in power network."))
+			to_chat(user, SPAN_NOTICE("|[get_wattage()]|[get_amperage()]|[get_voltage()]| in power network."))
 
 		else
 			to_chat(user, SPAN_WARNING("\The [src] is not powered."))
