@@ -19,7 +19,7 @@
 	var/capacitor_charge = 0
 	use_power = POWER_USE_OFF
 	idle_power_usage = 10000
-	active_power_usage = 60000
+	active_power_usage = 600000
 	required_interaction_dexterity = DEXTERITY_COMPLEX_TOOLS
 	layer = ABOVE_HUMAN_LAYER
 	var/lasid = ""

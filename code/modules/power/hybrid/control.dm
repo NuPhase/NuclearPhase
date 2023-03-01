@@ -1,9 +1,14 @@
 /obj/machinery/reactor_control_node
 	name = "primary reactor control node"
 	desc = "Reads and interprets signals transferred from the control room to the reactor."
+	icon = 'icons/obj/machines/tcomms/hub.dmi'
+	icon_state = "hub"
 	anchored = 1
 	density = 1
 	var/operable = TRUE
+	use_power = POWER_USE_ACTIVE
+	idle_power_usage = 100
+	active_power_usage = 5000 //powerful computing system
 
 /obj/machinery/reactor_control_node/Destroy()
 	. = ..()
@@ -19,6 +24,17 @@
 	else
 		return FALSE
 
+/obj/machinery/reactor_server //would contribute to how well the control system works in the future
+	name = "large server"
+	desc = "A large mainframe with a logo on it. It reads: 'H.S.S.R. SUPPORT SYSTEMS'."
+	icon = 'icons/obj/machines/tcomms/hub.dmi'
+	icon_state = "hub"
+	anchored = 1
+	density = 1
+	use_power = POWER_USE_IDLE
+	idle_power_usage = 100
+	active_power_usage = 45000 //a huge rack
+
 /obj/machinery/reactor_button
 	name = "button"
 	anchored = 1
@@ -26,7 +42,7 @@
 	icon_state = "light0-flat"
 	layer = ABOVE_WINDOW_LAYER
 	power_channel = ENVIRON
-	idle_power_usage = 10
+	idle_power_usage = 30 //control systems eat a lot
 	required_interaction_dexterity = DEXTERITY_SIMPLE_MACHINES
 	var/cooldown = 10
 	var/used = FALSE

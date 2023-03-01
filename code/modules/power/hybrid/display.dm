@@ -3,6 +3,7 @@
 	icon = 'icons/obj/reactor_display.dmi'
 	icon_state = "display"
 	var/special_description = ""
+	idle_power_usage = 150 //average monitor + low-end pc
 
 /obj/machinery/reactor_display/examine(mob/user)
 	. = ..()
@@ -41,6 +42,7 @@
 	use_power = POWER_USE_IDLE
 	var/program_overlay = ""
 	var/on = FALSE
+	idle_power_usage = 150 //average monitor + low-end pc
 
 /obj/machinery/reactor_monitor/proc/get_display_data()
 	if(emagged)

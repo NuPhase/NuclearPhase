@@ -32,6 +32,11 @@
 
 	var/datum/composite_sound/pump/soundloop
 
+/obj/machinery/atmospherics/binary/pump/adv/turbineloop
+	name = "feedwater pump"
+	flow_capacity = 1500 //kgs
+	power_rating = 600000 //fucking chonker
+
 /obj/machinery/atmospherics/binary/pump/adv/proc/update_mode(new_mode)
 	if(mode == new_mode)
 		return

@@ -13,8 +13,9 @@
 	density = 1
 	anchored = 1
 
-	use_power = POWER_USE_OFF
-	idle_power_usage = 150
+	use_power = POWER_USE_IDLE
+	idle_power_usage = 2000 //we have to keep it warm
+	active_power_usage = 40000 //balancing systems, hydraulics, computing, etc
 	identifier = "TURBINE0"
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
@@ -57,6 +58,8 @@
 	total_mass_flow = air1.net_flow_mass
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
+	if(total_mass_flow < 50)
+		total_mass_flow = 0
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
 	var/kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
@@ -76,6 +79,11 @@
 	ingoing_valve.forced_mass_flow = total_mass_flow //so we can succ enough steam
 
 	apply_vibration_effects()
+
+	if(rpm > 50)
+		use_power = POWER_USE_ACTIVE
+	else
+		use_power = POWER_USE_IDLE
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	vibration = 0
