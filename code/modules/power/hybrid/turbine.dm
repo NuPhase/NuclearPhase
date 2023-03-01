@@ -25,7 +25,7 @@
 	var/efficiency = 0.4
 	var/kin_energy = 0
 	var/kin_loss = 0.001
-	var/expansion_ratio = 0.2
+	var/expansion_ratio = 0.4
 	var/volume_ratio = 0.6
 	var/steam_velocity = 0
 	var/pressure_difference = 0
@@ -58,7 +58,7 @@
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
-	var/kin_total = 0.15 * (total_mass_flow * steam_velocity**2) * expansion_ratio
+	var/kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency
 	var/datum/gas_mixture/air_all = new
