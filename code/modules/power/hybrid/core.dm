@@ -11,6 +11,9 @@
 	anchored = 1
 	var/neutron_flux = 1
 	var/meltdown = FALSE
+	var/was_shut_down = FALSE
+	var/shutdown_failure = FALSE
+	var/obj/structure/reactor_superstructure/superstructure
 
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
@@ -58,14 +61,31 @@
 	GM.add_thermal_energy(power * 1000) //?
 	return
 
-/*/obj/machinery/power/hybrid_reactor/proc/meltdown()
+/obj/machinery/power/hybrid_reactor/proc/prime_alarms()
+
+/obj/machinery/power/hybrid_reactor/proc/activate_alarms()
+
+/obj/machinery/power/hybrid_reactor/proc/start_burning()
+	color = LIGHT_COLOR_FIRE
+
+/obj/machinery/power/hybrid_reactor/proc/close_blastdoors()
+
+/obj/machinery/power/hybrid_reactor/proc/launch_fuel_cells()
+
+/obj/machinery/power/hybrid_reactor/proc/close_radlocks()
+
+/obj/machinery/power/hybrid_reactor/proc/make_plasmaball()
+
+/obj/machinery/power/hybrid_reactor/proc/produce_explosion()
+
+/obj/machinery/power/hybrid_reactor/proc/meltdown()
 	meltdown = TRUE
 	rcontrol.do_message("MAJOR SENSOR DAMAGE IN REACTOR UNIT", 3)
 	sleep(10 SECONDS)
 	rcontrol.do_message("MAJOR WIRING AND SENSOR DAMAGE IN REACTOR UNIT", 3)
 	spawn(1 SECOND)
 		rcontrol.do_message("DAMAGE CONTROL ACTIVE", 3)
-		radio_announce("TOTAL CONTROL SYSTEMS FAILURE, ASSUME MANUAL CONTROL IMMEDIATELY.", rcontrol.name, ENG_FREQ)
+		radio_announce("TOTAL CONTROL SYSTEMS FAILURE, ASSUME MANUAL CONTROL IMMEDIATELY.", rcontrol.name, "Engineering")
 		rcontrol.mode = REACTOR_CONTROL_MODE_MANUAL
 		rcontrol.autocontrol_available = FALSE
 		rcontrol.semiautocontrol_available = FALSE
@@ -88,9 +108,45 @@
 		rcontrol.do_message("REACTOR UNIT SYSTEMS UNRESPONSIVE", 3)
 		rcontrol.scram("CONTROL LOSS") //won't work lol
 	for(var/mob/living/carbon/human/H in human_mob_list)
-		if(H.job == "Engineer")
+		if(H.job == "Engineer" || H.job == "Chief Engineer")
 			H.playsound_local(H, 'sound/music/howmuchmorecanyoulose.ogg', 50, 0)
 			to_chat(H, SPAN_ERPBOLD("And in times like these, it's up to you to decide: How much more can you lose?"))
-	sleep(20 SECONDS)
+	sleep(10 SECONDS)
+	var/ann_name = "[pick(first_names_male)] [pick(last_names)]"
+	radio_announce("ATTENTION ALL REACTOR OPERATIONS PERSONNEL.", ann_name)
+	sleep(3 SECONDS)
+	radio_announce("THIS IS OUR LAST CHANCE TO PREVENT THE UNCONTROLLABLE DETONATION OF THE H.S.S.R.", ann_name)
+	sleep(4 SECONDS)
+	radio_announce("CLIMB UP THE REACTOR UNIT, AND EJECT ALL FUEL CELLS NO LONGER THAN WITHIN 3 SECONDS OF EACH OTHER.", ann_name)
+	sleep(3 SECONDS)
+	radio_announce("TO INVOKE A REACTION STALL AND STOP THE THERMAL RUNAWAY.", ann_name)
+	sleep(5 SECONDS)
 	close_blastdoors()
-	radio_announce("SITEWIDE RADIATION INTERLOCKS WILL ACTIVATE IN: 1 MINUTE.", rcontrol.name)*/
+	radio_announce("SITEWIDE RADIATION INTERLOCKS WILL ACTIVATE IN: 1 MINUTE.", rcontrol.name)
+	sleep(40 SECONDS)
+	if(was_shut_down)
+		launch_fuel_cells()
+		rcontrol.do_message("SUCCESSFUL SHUTDOWN", 3)
+		radio_announce("You did it. You god damn did it!", ann_name)
+		spawn(1 SECOND)
+			radio_announce("ABORTING...", rcontrol.name)
+		return
+	radio_announce("I believe it's too late... We're all gonna die.", ann_name)
+	spawn(2 SECONDS)
+		radio_announce("CONTINGENCY OPERATION FAILURE. SHUTTING DOWN...", rcontrol.name)
+	sleep(12 SECONDS)
+	close_radlocks()
+	sleep(5 SECONDS)
+	if(shutdown_failure)
+		make_plasmaball()
+		for(var/mob/living/carbon/human/H in human_mob_list)
+			H.playsound_local(H, 'sound/music/criticalmass.ogg', 50, 0)
+			to_chat(H, SPAN_ERPBOLD("There's the sun, the destroyer of worlds. Born with technology, the first of its kind."))
+		sleep(49 SECONDS)
+		for(var/mob/living/carbon/human/H in human_mob_list)
+			to_chat(H, SPAN_ERPBOLD("It was meant to save the world from starvation and eternal cold, but it turned against everyone."))
+		sleep(36 SECONDS)
+		for(var/mob/living/carbon/human/H in human_mob_list)
+			to_chat(H, SPAN_ERPBOLD("And now it shall feast upon the ones who tried to harness its power."))
+	else
+		produce_explosion()
