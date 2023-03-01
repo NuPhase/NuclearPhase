@@ -170,23 +170,7 @@
 
 	handle_generators()
 
-	/*if(nodes && nodes.len) // Added to fix a bad list bug -- TLE
-		for(var/obj/machinery/power/terminal/term in nodes)
-			if( istype( term.master_machine(), /obj/machinery/power/apc ) )
-				numapc++
-
-	netexcess = lavailable - load
-
-	if(numapc)
-		//very simple load balancing. If there was a net excess this tick then it must have been that some APCs used less than perapc, since perapc*numapc = lavailable
-		//Therefore we can raise the amount of power rationed out to APCs on the assumption that those APCs that used less than perapc will continue to do so.
-		//If that assumption fails, then some APCs will miss out on power next tick, however it will be rebalanced for the tick after.
-		if (netexcess >= 0)
-			perapc_excess += min(netexcess/numapc, (lavailable - perapc) - perapc_excess)
-		else
-			perapc_excess = 0
-
-		perapc = lavailable/numapc + perapc_excess
+	netexcess = lavailable - load()
 
 	// At this point, all other machines have finished using power. Anything left over may be used up to charge SMESs.
 	if(inputting.len && smes_demand)
@@ -194,16 +178,14 @@
 		for(var/obj/machinery/power/smes/S in inputting)
 			S.input_power(smes_input_percentage)
 
-	netexcess = lavailable - load
-
 	if(netexcess)
 		var/perc = get_percent_load(1)
 		for(var/obj/machinery/power/smes/S in nodes)
 			S.restore(perc)
 
 	//updates the viewed load (as seen on power computers)
-	viewload = round(load)
-*/
+	viewload = round(load())
+
 
 	//reset the powernet
 	smes_avail = smes_newavail
@@ -218,8 +200,8 @@
 	available = 0
 
 	for(var/obj/machinery/power/generator/transformer/transf in nodes)
-		transf.connected.powernet.demand += transf.powernet.ldemand
-		transf.connected.powernet.ldemand += transf.powernet.ldemand
+		if(transf.available() > transf.connected.available())
+			transf.powernet.demand += transf.connected.powernet.ldemand
 
 /datum/powernet/proc/get_percent_load(var/smes_only = 0)
 	if(smes_only)
