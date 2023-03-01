@@ -20,7 +20,9 @@
 		"much taller than you",
 		"towering over you"
 	)
-
+	var/list/scale_effect = list(
+			SPECIES_HUMAN = list(-7, -4, 0, 4, 7)
+		)
 /datum/appearance_descriptor/build
 	name = "build"
 	comparative_value_descriptor_equivalent = "around the same build as you"
@@ -43,3 +45,5 @@
 		"built much larger than you",
 		"dwarfing you"
 	)
+	var/list/scale_effect = list(
+		)

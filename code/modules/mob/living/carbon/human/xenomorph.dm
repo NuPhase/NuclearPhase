@@ -33,6 +33,7 @@
 	update_icon()
 
 /mob/living/carbon/human/xenomorph/on_update_icon()
+	SHOULD_CALL_PARENT(FALSE)
 	pixel_x = -16
 	if(incapacitated(INCAPACITATION_STUNNED))
 		icon = icon(icon, "Normal Praetorian Knocked Down")

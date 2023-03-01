@@ -58,7 +58,13 @@
 	else return 0
 
 /mob/living/carbon/human/proc/is_nude()
-	return (!_w_uniform ? 1 : 0) && length(worn_underwear) <= 0
+	var/have_blocking_underwear = FALSE
+	for(var/piece in worn_underwear)
+		if(!istype(piece, /obj/item/underwear/bottom))
+			continue
+
+		have_blocking_underwear = TRUE
+	return (!_w_uniform ? 1 : 0) && !have_blocking_underwear
 
 /decl/species/human
 	genitals = 1

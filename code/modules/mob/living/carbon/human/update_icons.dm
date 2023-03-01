@@ -217,7 +217,31 @@ Please contact me on #coderbus IRC. ~Carn x
 
 /mob/living/carbon/human/proc/get_icon_scale_mult()
 	// If you want stuff like scaling based on species or something, here is a good spot to mix the numbers together.
-	return list(icon_scale_x, icon_scale_y)
+	var/list/scale = get_scale()
+	return list(scale[1], scale[2])
+
+/mob/living/carbon/human/proc/get_scale()
+	var/height_modifier = 0
+	var/height_descriptor = LAZYACCESS(appearance_descriptors, "height")
+	if (height_descriptor)
+		var/datum/appearance_descriptor/height/H = species.appearance_descriptors["height"]
+		if (H)
+			var/list/scale_effect = H.scale_effect[species.name]
+			if (length(scale_effect))
+				height_modifier = 0.01 * scale_effect[height_descriptor]
+	var/build_modifier = 0
+	var/build_descriptor = LAZYACCESS(appearance_descriptors, "build")
+	if (build_descriptor)
+		var/datum/appearance_descriptor/build/B = species.appearance_descriptors["build"]
+		if (B)
+			var/list/scale_effect = B.scale_effect[species.name]
+			if (length(scale_effect))
+				build_modifier = 0.01 * scale_effect[build_descriptor]
+	return list(
+		(1 + build_modifier),
+		(1 + height_modifier)
+	)
+
 
 /mob/living/carbon/human/update_transform()
 
@@ -225,7 +249,6 @@ Please contact me on #coderbus IRC. ~Carn x
 	var/list/icon_scale_values = get_icon_scale_mult()
 	var/desired_scale_x = icon_scale_values[1]
 	var/desired_scale_y = icon_scale_values[2]
-
 	// Apply KEEP_TOGETHER so all the component overlays move properly when
 	// applying a transform, or remove it if we aren't doing any transforms
 	// (due to cost).
