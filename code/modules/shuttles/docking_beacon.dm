@@ -16,7 +16,7 @@
 	obj_flags = OBJ_FLAG_ROTATABLE
 	var/display_name					 // Display name of the docking beacon, editable on the docking control program.
 	var/list/permitted_shuttles = list() // Shuttles that are always permitted by the docking beacon.
-	
+
 	var/locked = TRUE
 	var/docking_by_codes = FALSE		 // Whether or not docking by code is permitted.
 	var/docking_codes = 0				 // Required code for docking by code.
@@ -54,7 +54,7 @@
 		to_chat(user, SPAN_NOTICE("You [anchored ? "unanchor" : "anchor"] \the [src]."))
 		anchored = !anchored
 		return
-	
+
 	. = ..()
 
 /obj/machinery/docking_beacon/interface_interact(mob/user)
@@ -73,7 +73,7 @@
 	else
 		data["permitted"] = list("ACCESS DENIED")
 		data["codes"] = "*******"
-	
+
 	data["construction_mode"] = construction_mode
 	data["errors"] = errors
 	data["ship_name"] = ship_name
@@ -190,7 +190,7 @@
 			return TOPIC_HANDLED
 		check_ship_validity(get_areas())
 		return TOPIC_REFRESH
-	
+
 	if(href_list["finalize"])
 		if(!construction_mode)
 			return TOPIC_HANDLED
@@ -299,7 +299,7 @@
 	// Double check to ensure the ship is valid.
 	if(!check_ship_validity(shuttle_areas))
 		return FALSE
-	
+
 
 	// Locate the base area by stepping towards the edge of the map in the direction the beacon is facing.
 	var/area/base_area
@@ -311,12 +311,12 @@
 			base_area = A
 			break
 		area_turf = get_step(area_turf, dir)
-	
-	// Otherwise, use the planetary or world area.
+
+	// Otherwise, use the level or world area.
 	if(!base_area)
-		var/obj/effect/overmap/visitable/sector/exoplanet/planet = global.overmap_sectors["[z]"]
-		if(istype(planet))
-			base_area = ispath(planet.planetary_area) ? planet.planetary_area : planet.planetary_area.type
+		var/datum/level_data/LD = SSmapping.levels_by_z[z]
+		if(istype(LD))
+			base_area = LD.get_base_area_instance()
 		else
 			base_area = world.area
 
