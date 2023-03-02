@@ -146,9 +146,11 @@
 		if(hatch_open)
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 2)
 			to_chat(user, "<span class='notice'>You pry open \the [src]'s maintenance hatch.</span>")
+			obj_flags &= ~OBJ_FLAG_NOFALL
 		else
 			playsound(src, 'sound/items/Deconstruct.ogg', 100, 2)
 			to_chat(user, "<span class='notice'>You shut \the [src]'s maintenance hatch.</span>")
+			obj_flags |= OBJ_FLAG_NOFALL
 		update_icon()
 		return TRUE
 	. = ..()

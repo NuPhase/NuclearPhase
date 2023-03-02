@@ -48,7 +48,10 @@
 				return FALSE
 
 	else if(direction == DOWN)
-		if(!is_open() || !HasBelow(z) || (locate(/obj/structure/catwalk) in src))
+		if(!is_open() || !HasBelow(z))
+			return FALSE
+		var/obj/structure/catwalk/cw = locate(/obj/structure/catwalk)
+		if(cw in src && !cw.hatch_open)
 			return FALSE
 		if(check_neighbor_canzpass)
 			var/turf/T = GetBelow(src)
