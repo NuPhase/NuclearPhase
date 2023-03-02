@@ -200,7 +200,7 @@ var/global/list/engine_setup_markers = list()
 
 /obj/effect/engine_setup/smes/activate()
 	..()
-	var/obj/machinery/power/smes/S = locate() in get_turf(src)
+	var/obj/machinery/power/generator/smes/S = locate() in get_turf(src)
 	if(!S)
 		log_and_message_admins("## WARNING: Unable to locate SMES unit at [x] [y] [z]!")
 		return SETUP_WARNING

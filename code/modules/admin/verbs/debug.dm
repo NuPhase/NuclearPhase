@@ -346,7 +346,7 @@
 			if(!Rad.active)
 				Rad.toggle_power()
 
-	for(var/obj/machinery/power/smes/SMES in SSmachines.machinery)
+	for(var/obj/machinery/power/generator/smes/SMES in SSmachines.machinery)
 		if(SMES.anchored)
 			SMES.input_attempt = 1
 

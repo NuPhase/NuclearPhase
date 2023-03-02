@@ -1,6 +1,6 @@
 /obj/item/stock_parts/circuitboard/smes
 	name = "circuitboard (superconductive magnetic energy storage)"
-	build_path = /obj/machinery/power/smes/buildable
+	build_path = /obj/machinery/power/generator/smes/buildable
 	board_type = "machine"
 	origin_tech = "{'powerstorage':6,'engineering':4}"
 	req_components = list(/obj/item/stock_parts/smes_coil = 1, /obj/item/stack/cable_coil = 30)
@@ -12,7 +12,7 @@
 
 /obj/item/stock_parts/circuitboard/batteryrack
 	name = "circuitboard (battery rack PSU)"
-	build_path = /obj/machinery/power/smes/batteryrack
+	build_path = /obj/machinery/power/generator/smes/batteryrack
 	board_type = "machine"
 	origin_tech = "{'powerstorage':3,'engineering':2}"
 	req_components = list(/obj/item/stock_parts/capacitor/ = 3, /obj/item/stock_parts/matter_bin/ = 1)

@@ -33,7 +33,7 @@
 	name = "Liberia"
 	archetype = /decl/submap_archetype/liberia
 
-/obj/machinery/power/smes/buildable/preset/liberia
+/obj/machinery/power/generator/smes/buildable/preset/liberia
 	_input_maxed =   TRUE
 	_output_maxed =  TRUE
 	_input_on =      TRUE

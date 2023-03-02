@@ -7,7 +7,7 @@
 
 #define PSU_MAXCELLS 9 // Capped to 9 cells due to sprite limitation
 
-/obj/machinery/power/smes/batteryrack
+/obj/machinery/power/generator/smes/batteryrack
 	name = "power cell rack PSU"
 	desc = "A rack of power cells working as a PSU."
 	icon = 'icons/obj/cellrack.dmi'
@@ -15,7 +15,7 @@
 	capacity = 0
 	charge = 0
 	should_be_mapped = 1
-	base_type = /obj/machinery/power/smes/batteryrack
+	base_type = /obj/machinery/power/generator/smes/batteryrack
 	maximum_component_parts = list(/obj/item/stock_parts = 15)
 
 	var/max_transfer_rate = 0							// Maximal input/output rate. Determined by used capacitors when building the device.
@@ -27,7 +27,7 @@
 	var/icon_update = 0									// Timer in ticks for icon update.
 	var/ui_tick = 0
 
-/obj/machinery/power/smes/batteryrack/RefreshParts()
+/obj/machinery/power/generator/smes/batteryrack/RefreshParts()
 	var/capacitor_efficiency = Clamp(total_component_rating_of_type(/obj/item/stock_parts/capacitor), 0, 10)
 	var/maxcells = 3 * total_component_rating_of_type(/obj/item/stock_parts/matter_bin)
 
@@ -37,13 +37,13 @@
 	output_level = max_transfer_rate
 	..()
 
-/obj/machinery/power/smes/batteryrack/Destroy()
+/obj/machinery/power/generator/smes/batteryrack/Destroy()
 	for(var/obj/item/cell/C in internal_cells)
 		qdel(C)
 	internal_cells = null
 	return ..()
 
-/obj/machinery/power/smes/batteryrack/on_update_icon()
+/obj/machinery/power/generator/smes/batteryrack/on_update_icon()
 	overlays.Cut()
 	icon_update = 0
 
@@ -62,7 +62,7 @@
 			overlays += "cell[cellcount]e"
 
 // Recalculate maxcharge and similar variables.
-/obj/machinery/power/smes/batteryrack/proc/update_maxcharge()
+/obj/machinery/power/generator/smes/batteryrack/proc/update_maxcharge()
 	var/newmaxcharge = 0
 	for(var/obj/item/cell/C in internal_cells)
 		newmaxcharge += C.maxcharge
@@ -72,7 +72,7 @@
 
 
 // Sets input/output depending on our "mode" var.
-/obj/machinery/power/smes/batteryrack/proc/update_io(var/newmode)
+/obj/machinery/power/generator/smes/batteryrack/proc/update_io(var/newmode)
 	mode = newmode
 	switch(mode)
 		if(PSU_OFFLINE)
@@ -89,7 +89,7 @@
 			output_attempt = 1
 
 // Store charge in the power cells, instead of using the charge var. Amount is in joules.
-/obj/machinery/power/smes/batteryrack/add_charge(var/amount)
+/obj/machinery/power/generator/smes/batteryrack/add_charge(var/amount)
 	amount *= CELLRATE // Convert to CELLRATE first.
 	if(equalise)
 		// Now try to get least charged cell and use the power from it.
@@ -107,7 +107,7 @@
 			return
 
 
-/obj/machinery/power/smes/batteryrack/remove_charge(var/amount)
+/obj/machinery/power/generator/smes/batteryrack/remove_charge(var/amount)
 	amount *= CELLRATE // Convert to CELLRATE first.
 	if(equalise)
 		// Now try to get most charged cell and use the power from it.
@@ -123,7 +123,7 @@
 			return
 
 // Helper procs to get most/least charged cells.
-/obj/machinery/power/smes/batteryrack/proc/get_most_charged_cell()
+/obj/machinery/power/generator/smes/batteryrack/proc/get_most_charged_cell()
 	var/obj/item/cell/CL = null
 	for(var/obj/item/cell/C in internal_cells)
 		if(CL == null)
@@ -131,7 +131,7 @@
 		else if(CL.percent() < C.percent())
 			CL = C
 	return CL
-/obj/machinery/power/smes/batteryrack/proc/get_least_charged_cell()
+/obj/machinery/power/generator/smes/batteryrack/proc/get_least_charged_cell()
 	var/obj/item/cell/CL = null
 	for(var/obj/item/cell/C in internal_cells)
 		if(CL == null)
@@ -140,7 +140,7 @@
 			CL = C
 	return CL
 
-/obj/machinery/power/smes/batteryrack/proc/insert_cell(var/obj/item/cell/C, var/mob/user)
+/obj/machinery/power/generator/smes/batteryrack/proc/insert_cell(var/obj/item/cell/C, var/mob/user)
 	if(!istype(C))
 		return 0
 
@@ -156,7 +156,7 @@
 	return 1
 
 
-/obj/machinery/power/smes/batteryrack/Process()
+/obj/machinery/power/generator/smes/batteryrack/Process()
 	charge = 0
 	for(var/obj/item/cell/C in internal_cells)
 		charge += C.charge
@@ -188,7 +188,7 @@
 		celldiff = min(min(celldiff, most.charge), least.maxcharge - least.charge)
 		least.give(most.use(celldiff))
 
-/obj/machinery/power/smes/batteryrack/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/generator/smes/batteryrack/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 
 	data["mode"] = mode
@@ -223,13 +223,13 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/power/smes/batteryrack/dismantle()
+/obj/machinery/power/generator/smes/batteryrack/dismantle()
 	for(var/obj/item/cell/C in internal_cells)
 		C.dropInto(loc)
 		internal_cells -= C
 	return ..()
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/power/generator/smes/batteryrack/attackby(var/obj/item/W, var/mob/user)
 	if(..())
 		return TRUE
 	if(istype(W, /obj/item/cell)) // ID Card, try to insert it.
@@ -238,17 +238,17 @@
 		else
 			to_chat(user, "\The [src] has no empty slot for \the [W].")
 
-/obj/machinery/power/smes/batteryrack/interface_interact(var/mob/user)
+/obj/machinery/power/generator/smes/batteryrack/interface_interact(var/mob/user)
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/power/smes/batteryrack/inputting()
+/obj/machinery/power/generator/smes/batteryrack/inputting()
 	return
 
-/obj/machinery/power/smes/batteryrack/outputting()
+/obj/machinery/power/generator/smes/batteryrack/outputting()
 	return
 
-/obj/machinery/power/smes/batteryrack/Topic(href, href_list)
+/obj/machinery/power/generator/smes/batteryrack/Topic(href, href_list)
 	// ..() would respond to those topic calls, but we don't want to use them at all.
 	// Calls to these shouldn't occur anyway, due to usage of different nanoUI, but
 	// it's here in case someone decides to try hrefhacking/modified templates.

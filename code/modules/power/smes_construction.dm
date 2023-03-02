@@ -52,12 +52,12 @@
 // DEPRECATED
 // These are used on individual outposts as backup should power line be cut, or engineering outpost lost power.
 // 1M Charge, 150K I/O
-/obj/machinery/power/smes/buildable/outpost_substation
+/obj/machinery/power/generator/smes/buildable/outpost_substation
 	uncreated_component_parts = list(/obj/item/stock_parts/smes_coil/weak = 1)
 
 // This one is pre-installed on engineering shuttle. Allows rapid charging/discharging for easier transport of power to outpost
 // 11M Charge, 2.5M I/O
-/obj/machinery/power/smes/buildable/power_shuttle
+/obj/machinery/power/generator/smes/buildable/power_shuttle
 	uncreated_component_parts = list(
 		/obj/item/stock_parts/smes_coil/super_io = 2,
 		/obj/item/stock_parts/smes_coil = 1)
@@ -65,7 +65,7 @@
 // END SMES SUBTYPES
 
 // SMES itself
-/obj/machinery/power/smes/buildable
+/obj/machinery/power/generator/smes/buildable
 	var/safeties_enabled = 1 	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = 0 			// If 1 critical failure has occured and SMES explosion is imminent.
 	wires = /datum/wires/smes
@@ -76,11 +76,11 @@
 
 	charge = 0
 	should_be_mapped = 1
-	base_type = /obj/machinery/power/smes/buildable
+	base_type = /obj/machinery/power/generator/smes/buildable
 	maximum_component_parts = list(/obj/item/stock_parts/smes_coil = 6, /obj/item/stock_parts = 15)
 	interact_offline = TRUE
 
-/obj/machinery/power/smes/buildable/malf_upgrade(var/mob/living/silicon/ai/user)
+/obj/machinery/power/generator/smes/buildable/malf_upgrade(var/mob/living/silicon/ai/user)
 	..()
 	malf_upgraded = 1
 	emp_proof = 1
@@ -89,7 +89,7 @@
 	return 1
 
 
-/obj/machinery/power/smes/buildable/max_cap_in_out/Initialize()
+/obj/machinery/power/generator/smes/buildable/max_cap_in_out/Initialize()
 	. = ..()
 	charge = capacity
 	input_attempt = TRUE
@@ -101,7 +101,7 @@
 // Parameters: None
 // Description: Uses parent process, but if grounding wire is cut causes sparks to fly around.
 // This also causes the SMES to quickly discharge, and has small chance of damaging output APCs.
-/obj/machinery/power/smes/buildable/Process()
+/obj/machinery/power/generator/smes/buildable/Process()
 	if(!grounding && (Percentage() > 5))
 		spark_at(src, amount=5, cardinal_only = TRUE)
 		charge -= (output_level_max * CELLRATE)
@@ -113,7 +113,7 @@
 // Proc: attack_ai()
 // Parameters: None
 // Description: AI requires the RCON wire to be intact to operate the SMES.
-/obj/machinery/power/smes/buildable/attack_ai(mob/living/silicon/ai/user)
+/obj/machinery/power/generator/smes/buildable/attack_ai(mob/living/silicon/ai/user)
 	if(RCon)
 		..()
 	else // RCON wire cut
@@ -122,7 +122,7 @@
 // Proc: recalc_coils()
 // Parameters: None
 // Description: Updates properties (IO, capacity, etc.) of this SMES by checking internal components.
-/obj/machinery/power/smes/buildable/RefreshParts()
+/obj/machinery/power/generator/smes/buildable/RefreshParts()
 	..()
 	capacity = 0
 	input_level_max = 0
@@ -140,7 +140,7 @@
 // Proc: total_system_failure()
 // Parameters: 2 (intensity - how strong the failure is, user - person which caused the failure)
 // Description: Checks the sensors for alerts. If change (alerts cleared or detected) occurs, calls for icon update.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user)
+/obj/machinery/power/generator/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user)
 	// SMESs store very large amount of power. If someone screws up (ie: Disables safeties and attempts to modify the SMES) very bad things happen.
 	// Bad things are based on charge percentage.
 	// Possible effects:
@@ -244,7 +244,7 @@
 					// Not sure if this is necessary, but just in case the SMES *somehow* survived..
 					qdel(src)
 
-/obj/machinery/power/smes/buildable/proc/check_total_system_failure(var/mob/user)
+/obj/machinery/power/generator/smes/buildable/proc/check_total_system_failure(var/mob/user)
 	// Probability of failure if safety circuit is disabled (in %)
 	var/failure_probability = capacity ? round((charge / capacity) * 100) : 0
 
@@ -259,7 +259,7 @@
 // Proc: apcs_overload()
 // Parameters: 3 (failure_chance - chance to actually break the APC, overload_chance - Chance of breaking lights, reboot_chance - Chance of temporarily disabling the APC)
 // Description: Damages output powernet by power surge. Destroys few APCs and lights, depending on parameters.
-/obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance, var/reboot_chance)
+/obj/machinery/power/generator/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance, var/reboot_chance)
 	if (!src.powernet)
 		return
 
@@ -276,14 +276,14 @@
 // Proc: update_icon()
 // Parameters: None
 // Description: Allows us to use special icon overlay for critical SMESs
-/obj/machinery/power/smes/buildable/on_update_icon()
+/obj/machinery/power/generator/smes/buildable/on_update_icon()
 	if (failing)
 		overlays.Cut()
 		overlays += image('icons/obj/power.dmi', "smes-crit")
 	else
 		..()
 
-/obj/machinery/power/smes/buildable/cannot_transition_to(state_path, mob/user)
+/obj/machinery/power/generator/smes/buildable/cannot_transition_to(state_path, mob/user)
 	if(failing)
 		return SPAN_WARNING("\The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea.")
 
@@ -301,7 +301,7 @@
 				return MCS_BLOCK
 	return ..()
 
-/obj/machinery/power/smes/buildable/can_add_component(obj/item/stock_parts/component, mob/user)
+/obj/machinery/power/generator/smes/buildable/can_add_component(obj/item/stock_parts/component, mob/user)
 	if(charge > (capacity/100) && safeties_enabled)
 		to_chat(user,  SPAN_WARNING("\The [src]'s safety circuit is preventing modifications while it's charged!"))
 		return FALSE
@@ -315,7 +315,7 @@
 		if(!do_after(user, 5 SECONDS, src) || check_total_system_failure(user))
 			return FALSE
 
-/obj/machinery/power/smes/buildable/remove_part_and_give_to_user(path, mob/user)
+/obj/machinery/power/generator/smes/buildable/remove_part_and_give_to_user(path, mob/user)
 	if(charge > (capacity/100) && safeties_enabled)
 		to_chat(user,  SPAN_WARNING("\The [src]'s safety circuit is preventing modifications while it's charged!"))
 		return
@@ -330,7 +330,7 @@
 // Proc: attackby()
 // Parameters: 2 (W - object that was used on this machine, user - person which used the object)
 // Description: Handles tool interaction. Allows deconstruction/upgrading/fixing.
-/obj/machinery/power/smes/buildable/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/power/generator/smes/buildable/attackby(var/obj/item/W, var/mob/user)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
 	if (failing)
 		to_chat(user, "<span class='warning'>\The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea.</span>")
@@ -348,32 +348,32 @@
 // Proc: toggle_input()
 // Parameters: None
 // Description: Switches the input on/off depending on previous setting
-/obj/machinery/power/smes/buildable/proc/toggle_input()
+/obj/machinery/power/generator/smes/buildable/proc/toggle_input()
 	inputting(!input_attempt)
 	update_icon()
 
 // Proc: toggle_output()
 // Parameters: None
 // Description: Switches the output on/off depending on previous setting
-/obj/machinery/power/smes/buildable/proc/toggle_output()
+/obj/machinery/power/generator/smes/buildable/proc/toggle_output()
 	outputting(!output_attempt)
 	update_icon()
 
 // Proc: set_input()
 // Parameters: 1 (new_input - New input value in Watts)
 // Description: Sets input setting on this SMES. Trims it if limits are exceeded.
-/obj/machinery/power/smes/buildable/proc/set_input(var/new_input = 0)
+/obj/machinery/power/generator/smes/buildable/proc/set_input(var/new_input = 0)
 	input_level = between(0, new_input, input_level_max)
 	update_icon()
 
 // Proc: set_output()
 // Parameters: 1 (new_output - New output value in Watts)
 // Description: Sets output setting on this SMES. Trims it if limits are exceeded.
-/obj/machinery/power/smes/buildable/proc/set_output(var/new_output = 0)
+/obj/machinery/power/generator/smes/buildable/proc/set_output(var/new_output = 0)
 	output_level = between(0, new_output, output_level_max)
 	update_icon()
 
-/obj/machinery/power/smes/buildable/emp_act(var/severity)
+/obj/machinery/power/generator/smes/buildable/emp_act(var/severity)
 	if(emp_proof)
 		return
 	..(severity)

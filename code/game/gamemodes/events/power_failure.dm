@@ -3,7 +3,7 @@
 	if(announce)
 		global.using_map.grid_check_announcement()
 
-	for(var/obj/machinery/power/smes/buildable/S in SSmachines.machinery)
+	for(var/obj/machinery/power/generator/smes/buildable/S in SSmachines.machinery)
 		S.energy_fail(rand(15 * severity,30 * severity))
 
 
@@ -19,7 +19,7 @@
 		var/obj/item/cell/cell = C.get_cell()
 		if(cell)
 			cell.charge = cell.maxcharge
-	for(var/obj/machinery/power/smes/S in SSmachines.machinery)
+	for(var/obj/machinery/power/generator/smes/S in SSmachines.machinery)
 		S.failure_timer = 0
 		S.charge = S.capacity
 		S.update_icon()
@@ -29,7 +29,7 @@
 
 	if(announce)
 		command_announcement.Announce("All SMESs on the [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = global.using_map.grid_restored_sound)
-	for(var/obj/machinery/power/smes/S in SSmachines.machinery)
+	for(var/obj/machinery/power/generator/smes/S in SSmachines.machinery)
 		S.failure_timer = 0
 		S.charge = S.capacity
 		S.output_level = S.output_level_max

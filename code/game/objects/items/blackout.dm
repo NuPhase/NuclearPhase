@@ -73,8 +73,8 @@
 		if(istype(terminal_out.master, /obj/machinery/power/apc))
 			var/obj/machinery/power/apc/A = terminal_out.master
 			A.energy_fail(rand(30 * severity, 60 * severity))
-		if(istype(terminal_out.master, /obj/machinery/power/smes/buildable))
-			var/obj/machinery/power/smes/buildable/S = terminal_out.master
+		if(istype(terminal_out.master, /obj/machinery/power/generator/smes/buildable))
+			var/obj/machinery/power/generator/smes/buildable/S = terminal_out.master
 			S.energy_fail(rand(15 * severity, 30 * severity))
 
 	log_and_message_admins("used \the [src] on \the [terminal_in] to cause a blackout.", user)

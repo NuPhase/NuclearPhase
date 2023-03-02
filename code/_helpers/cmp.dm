@@ -100,7 +100,7 @@
 /proc/cmp_mob_sortvalue_des(mob/a, mob/b)
 	. = b.mob_sort_value - a.mob_sort_value
 
-/proc/cmp_rcon_tag_asc(var/obj/machinery/power/smes/buildable/a, var/obj/machinery/power/smes/buildable/b)
+/proc/cmp_rcon_tag_asc(var/obj/machinery/power/generator/smes/buildable/a, var/obj/machinery/power/generator/smes/buildable/b)
 	return sorttext(b.RCon_tag, a.RCon_tag)
 
 /proc/cmp_category_groups(var/datum/category_group/A, var/datum/category_group/B)

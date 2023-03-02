@@ -144,6 +144,11 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "newweldtank"
 
+/obj/structure/reagent_dispensers/fueltank/newtank/diesel
+	name = "diesel tank"
+	desc = "Contains low-quality diesel."
+	initial_reagent_types = list(/decl/material/liquid/diesel = 1)
+
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()
 	if(rig)

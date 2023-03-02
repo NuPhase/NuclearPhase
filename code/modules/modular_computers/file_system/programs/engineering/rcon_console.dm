@@ -29,7 +29,7 @@
 
 	// SMES DATA (simplified view)
 	var/list/smeslist[0]
-	for(var/obj/machinery/power/smes/buildable/SMES in known_SMESs)
+	for(var/obj/machinery/power/generator/smes/buildable/SMES in known_SMESs)
 		smeslist.Add(list(list(
 		"charge" = round(SMES.Percentage()),
 		"input_set" = SMES.input_attempt,
@@ -71,20 +71,20 @@
 		return
 
 	if(href_list["smes_in_toggle"])
-		var/obj/machinery/power/smes/buildable/SMES = GetSMESByTag(href_list["smes_in_toggle"])
+		var/obj/machinery/power/generator/smes/buildable/SMES = GetSMESByTag(href_list["smes_in_toggle"])
 		if(SMES)
 			SMES.toggle_input()
 	if(href_list["smes_out_toggle"])
-		var/obj/machinery/power/smes/buildable/SMES = GetSMESByTag(href_list["smes_out_toggle"])
+		var/obj/machinery/power/generator/smes/buildable/SMES = GetSMESByTag(href_list["smes_out_toggle"])
 		if(SMES)
 			SMES.toggle_output()
 	if(href_list["smes_in_set"])
-		var/obj/machinery/power/smes/buildable/SMES = GetSMESByTag(href_list["smes_in_set"])
+		var/obj/machinery/power/generator/smes/buildable/SMES = GetSMESByTag(href_list["smes_in_set"])
 		if(SMES)
 			var/inputset = (input(usr, "Enter new input level (0-[SMES.input_level_max/1000] kW)", "SMES Input Power Control", SMES.input_level/1000) as num) * 1000
 			SMES.set_input(inputset)
 	if(href_list["smes_out_set"])
-		var/obj/machinery/power/smes/buildable/SMES = GetSMESByTag(href_list["smes_out_set"])
+		var/obj/machinery/power/generator/smes/buildable/SMES = GetSMESByTag(href_list["smes_out_set"])
 		if(SMES)
 			var/outputset = (input(usr, "Enter new output level (0-[SMES.output_level_max/1000] kW)", "SMES Input Power Control", SMES.output_level/1000) as num) * 1000
 			SMES.set_output(outputset)
@@ -114,7 +114,7 @@
 	if(!tag)
 		return
 
-	for(var/obj/machinery/power/smes/buildable/S in known_SMESs)
+	for(var/obj/machinery/power/generator/smes/buildable/S in known_SMESs)
 		if(S.RCon_tag == tag)
 			return S
 
@@ -123,7 +123,7 @@
 // Description: Refreshes local list of known devices.
 /datum/nano_module/program/rcon/proc/FindDevices()
 	known_SMESs = list()
-	for(var/obj/machinery/power/smes/buildable/SMES in SSmachines.machinery)
+	for(var/obj/machinery/power/generator/smes/buildable/SMES in SSmachines.machinery)
 		if(can_connect_to(SMES))
 			known_SMESs.Add(SMES)
 	known_SMESs = sortTim(known_SMESs, /proc/cmp_rcon_tag_asc)
@@ -140,9 +140,9 @@
 
 	if(!ARE_Z_CONNECTED(network.get_router_z(), get_z(M)))
 		return FALSE
-	
-	if(istype(M, /obj/machinery/power/smes))
-		var/obj/machinery/power/smes/buildable/SMES = M
+
+	if(istype(M, /obj/machinery/power/generator/smes))
+		var/obj/machinery/power/generator/smes/buildable/SMES = M
 		return SMES.RCon_tag && SMES.RCon_tag != "NO_TAG" && SMES.RCon
 
 	if(istype(M, /obj/machinery/power/breakerbox))

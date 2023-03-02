@@ -333,7 +333,7 @@ var/global/list/supermatter_delam_accent_sounds = list(
 		else
 			A.energy_fail(round(DETONATION_SHUTDOWN_APC * random_change))
 
-	for(var/obj/machinery/power/smes/buildable/S in SSmachines.machinery)
+	for(var/obj/machinery/power/generator/smes/buildable/S in SSmachines.machinery)
 		if(!(S.z in affected_z))
 			continue
 		// Causes SMESes to shut down for a bit

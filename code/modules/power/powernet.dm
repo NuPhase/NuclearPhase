@@ -172,17 +172,6 @@
 
 	netexcess = lavailable - load()
 
-	// At this point, all other machines have finished using power. Anything left over may be used up to charge SMESs.
-	if(inputting.len && smes_demand)
-		var/smes_input_percentage = between(0, (netexcess / smes_demand) * 100, 100)
-		for(var/obj/machinery/power/smes/S in inputting)
-			S.input_power(smes_input_percentage)
-
-	if(netexcess)
-		var/perc = get_percent_load(1)
-		for(var/obj/machinery/power/smes/S in nodes)
-			S.restore(perc)
-
 	//updates the viewed load (as seen on power computers)
 	viewload = round(load())
 

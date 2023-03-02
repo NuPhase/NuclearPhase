@@ -1,5 +1,5 @@
 /datum/wires/smes
-	holder_type = /obj/machinery/power/smes/buildable
+	holder_type = /obj/machinery/power/generator/smes/buildable
 	wire_count = 5
 	descriptions = list(
 		new /datum/wire_description(SMES_WIRE_RCON, "This wire runs to a remote signaling mechanism."),
@@ -17,7 +17,7 @@ var/global/const/SMES_WIRE_FAILSAFES = 16	// Cut to disable failsafes, mend to r
 
 
 /datum/wires/smes/CanUse(var/mob/living/L)
-	var/obj/machinery/power/smes/buildable/S = holder
+	var/obj/machinery/power/generator/smes/buildable/S = holder
 	if(!S.grounding && S.powernet && S.powernet.lavailable)
 		electrocute_mob(L, S.powernet, S, S.safeties_enabled? 0.1 : 1)
 	if(S.panel_open)
@@ -26,7 +26,7 @@ var/global/const/SMES_WIRE_FAILSAFES = 16	// Cut to disable failsafes, mend to r
 
 
 /datum/wires/smes/GetInteractWindow(mob/user)
-	var/obj/machinery/power/smes/buildable/S = holder
+	var/obj/machinery/power/generator/smes/buildable/S = holder
 	. += ..()
 	. += "The green light is [(S.input_cut || S.input_pulsed || S.output_cut || S.output_pulsed) ? "off" : "on"]<br>"
 	. += "The red light is [(S.safeties_enabled || S.grounding) ? "off" : "blinking"]<br>"
@@ -34,7 +34,7 @@ var/global/const/SMES_WIRE_FAILSAFES = 16	// Cut to disable failsafes, mend to r
 
 
 /datum/wires/smes/UpdateCut(var/index, var/mended)
-	var/obj/machinery/power/smes/buildable/S = holder
+	var/obj/machinery/power/generator/smes/buildable/S = holder
 	switch(index)
 		if(SMES_WIRE_RCON)
 			S.RCon = mended
@@ -48,17 +48,17 @@ var/global/const/SMES_WIRE_FAILSAFES = 16	// Cut to disable failsafes, mend to r
 			S.safeties_enabled = mended
 
 /datum/wires/smes/proc/reset_rcon()
-	var/obj/machinery/power/smes/buildable/S = holder
+	var/obj/machinery/power/generator/smes/buildable/S = holder
 	if(S)
 		S.RCon = TRUE
 
 /datum/wires/smes/proc/reset_safeties()
-	var/obj/machinery/power/smes/buildable/S = holder
+	var/obj/machinery/power/generator/smes/buildable/S = holder
 	if(S)
 		S.safeties_enabled = TRUE
 
 /datum/wires/smes/UpdatePulsed(var/index)
-	var/obj/machinery/power/smes/buildable/S = holder
+	var/obj/machinery/power/generator/smes/buildable/S = holder
 	switch(index)
 		if(SMES_WIRE_RCON)
 			if(S.RCon)

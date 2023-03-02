@@ -30,7 +30,7 @@
 		var/obj/item/cell/C = A.get_cell()
 		if(C)
 			C.give(amount)
-	for (var/obj/machinery/power/smes/S in range(effect_range, T))
+	for (var/obj/machinery/power/generator/smes/S in range(effect_range, T))
 		S.add_charge(amount / CELLRATE)
 	for (var/mob/living/silicon/robot/M in range(effect_range, T))
 		var/obj/item/cell/C = M.get_cell()

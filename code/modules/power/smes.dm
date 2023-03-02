@@ -4,7 +4,7 @@
 #define SMESMAXCHARGELEVEL 250000
 #define SMESMAXOUTPUT 250000
 
-/obj/machinery/power/smes
+/obj/machinery/power/generator/smes
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
@@ -20,7 +20,7 @@
 	reason_broken = MACHINE_BROKEN_GENERIC
 
 	var/capacity = 10e6 // maximum charge
-	var/charge = 1e6 // actual charge
+	var/charge = 10e6 // actual charge
 	var/overlay_icon = 'icons/obj/power.dmi'
 	var/input_attempt = 0 			// 1 = attempting to charge, 0 = not attempting to charge
 	var/inputting = 0 				// 1 = actually inputting, 0 = not inputting
@@ -56,22 +56,13 @@
 
 	var/output_voltage = 4400
 
-/obj/machinery/power/smes/drain_power(var/drain_check, var/surge, var/amount = 0)
-
-	if(drain_check)
-		return 1
-
-	var/smes_amt = min((amount * CELLRATE), charge)
-	charge -= smes_amt
-	return smes_amt / CELLRATE
-
-/obj/machinery/power/smes/Initialize()
+/obj/machinery/power/generator/smes/Initialize()
 	. = ..()
 	if(!should_be_mapped)
 		warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
 	queue_icon_update()
 
-/obj/machinery/power/smes/populate_parts()
+/obj/machinery/power/generator/smes/populate_parts()
 	for(var/d in global.cardinal)
 		var/obj/item/stock_parts/power/terminal/part = install_component(/obj/item/stock_parts/power/terminal, refresh_parts = FALSE)
 		part.terminal_dir = d
@@ -82,13 +73,7 @@
 				term.connect_to_network()
 	..()
 
-/obj/machinery/power/smes/add_avail(var/amount)
-	if(..(amount))
-		powernet.smes_newavail += amount
-		return 1
-	return 0
-
-/obj/machinery/power/smes/on_update_icon()
+/obj/machinery/power/generator/smes/on_update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)	return
 
@@ -112,32 +97,17 @@
 	else
 		overlays += image(overlay_icon, "smes-op0")
 
-/obj/machinery/power/smes/proc/chargedisplay()
+/obj/machinery/power/generator/smes/proc/chargedisplay()
 	return round(5.5*charge/(capacity ? capacity : 5e6))
 
-/obj/machinery/power/smes/proc/input_power(var/percentage)
-	var/to_input = target_load * (percentage/100)
-	to_input = between(0, to_input, target_load)
-	input_available = 0
-	if(percentage == 100)
-		inputting = 2
-	else if(percentage)
-		inputting = 1
-	// else inputting = 0, as set in process()
-
-	for(var/obj/item/stock_parts/power/terminal/term in power_components)
-		var/inputted = term.use_power_oneoff(src, to_input, power_channel)
-		add_charge(inputted)
-		input_available += inputted
-
 // Mostly in place due to child types that may store power in other way (PSUs)
-/obj/machinery/power/smes/proc/add_charge(var/amount)
+/obj/machinery/power/generator/smes/proc/add_charge(var/amount)
 	charge += amount*CELLRATE
 
-/obj/machinery/power/smes/proc/remove_charge(var/amount)
+/obj/machinery/power/generator/smes/proc/remove_charge(var/amount)
 	charge -= amount*CELLRATE
 
-/obj/machinery/power/smes/component_stat_change(var/obj/item/stock_parts/power/terminal/part, old_stat, flag)
+/obj/machinery/power/generator/smes/component_stat_change(var/obj/item/stock_parts/power/terminal/part, old_stat, flag)
 	if(istype(part) && flag == PART_STAT_CONNECTED)
 		if(old_stat & flag)
 			num_terminals--
@@ -145,7 +115,17 @@
 			num_terminals++
 		set_broken(!num_terminals)
 
-/obj/machinery/power/smes/Process()
+/obj/machinery/power/generator/smes/available_power()
+	return min(charge/CELLRATE, output_level)
+
+/obj/machinery/power/generator/smes/on_power_drain(w)
+	remove_charge(w)
+	output_used = w
+
+/obj/machinery/power/generator/smes/get_voltage()
+	return output_voltage
+
+/obj/machinery/power/generator/smes/Process()
 	if(stat & BROKEN)	return
 	if(failure_timer)	// Disabled by gridcheck.
 		failure_timer--
@@ -169,59 +149,29 @@
 			if(!term.terminal || !term.terminal.powernet)
 				continue
 			is_input_available = TRUE
-			term.terminal.powernet.smes_demand += target_load
-			term.terminal.powernet.inputting.Add(src)
+			var/received_charge = term.terminal.powernet.draw_power(target_load)
+			add_charge(max(received_charge, 0))
+			if(received_charge)
+				inputting = 1
+
 		if(!is_input_available)
 			target_load = 0 // We won't input any power without powernet connection.
 		inputting = 0
 
-	output_used = 0
-	//outputting
-	if(output_attempt && (!output_pulsed && !output_cut) && powernet && charge)
-		output_used = min( charge/CELLRATE, output_level)		//limit output to that stored
-		remove_charge(output_used)			// reduce the storage (may be recovered in /restore() if excessive)
-		add_power_w(output_used, output_voltage)				// add output to powernet (smes side)
+	if(output_used)
 		outputting = 2
 	else if(!powernet || !charge)
 		outputting = 1
 	else
 		outputting = 0
 
-// called after all power processes are finished
-// restores charge level to smes if there was excess this ptick
-/obj/machinery/power/smes/proc/restore(var/percent_load)
-	if(stat & BROKEN)
-		return
+	output_used = 0
 
-	if(!outputting)
-		output_used = 0
-		return
-
-	var/total_restore = output_used * (percent_load / 100) // First calculate amount of power used from our output
-	total_restore = between(0, total_restore, output_used) // Now clamp the value between 0 and actual output, just for clarity.
-	total_restore = output_used - total_restore			   // And, at last, subtract used power from outputted power, to get amount of power we will give back to the SMES.
-
-	// now recharge this amount
-
-	var/clev = chargedisplay()
-
-	add_charge(total_restore)				// restore unused power
-	powernet.netexcess -= total_restore		// remove the excess from the powernet, so later SMESes don't try to use it
-
-	output_used -= total_restore
-
-	if(clev != chargedisplay() ) //if needed updates the icons overlay
-		update_icon()
-	return
-
-/obj/machinery/power/smes/draw_power(var/amount)
-	return amount - use_power_oneoff(amount)
-
-/obj/machinery/power/smes/interface_interact(mob/user)
+/obj/machinery/power/generator/smes/interface_interact(mob/user)
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/power/smes/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/power/generator/smes/attackby(var/obj/item/W, var/mob/user)
 	if(component_attackby(W, user))
 		return TRUE
 
@@ -229,7 +179,7 @@
 		to_chat(user, "<span class='warning'>You need to open the access hatch on \the [src] first!</span>")
 		return TRUE
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/generator/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["nameTag"] = name_tag
@@ -262,12 +212,12 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-/obj/machinery/power/smes/proc/Percentage()
+/obj/machinery/power/generator/smes/proc/Percentage()
 	if(!capacity)
 		return 0
 	return round(100.0*charge/capacity, 0.1)
 
-/obj/machinery/power/smes/Topic(href, href_list)
+/obj/machinery/power/generator/smes/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -305,26 +255,26 @@
 		return 1
 
 
-/obj/machinery/power/smes/proc/energy_fail(var/duration)
+/obj/machinery/power/generator/smes/proc/energy_fail(var/duration)
 	failure_timer = max(failure_timer, duration)
 
-/obj/machinery/power/smes/proc/inputting(var/do_input)
+/obj/machinery/power/generator/smes/proc/inputting(var/do_input)
 	input_attempt = do_input
 	if(!input_attempt)
 		inputting = 0
 
-/obj/machinery/power/smes/proc/outputting(var/do_output)
+/obj/machinery/power/generator/smes/proc/outputting(var/do_output)
 	output_attempt = do_output
 	if(!output_attempt)
 		outputting = 0
 
-/obj/machinery/power/smes/on_component_failure(var/obj/item/stock_parts/component)
+/obj/machinery/power/generator/smes/on_component_failure(var/obj/item/stock_parts/component)
 	..()
 	if(istype(component, /obj/item/stock_parts/smes_coil) && Percentage() > 50)
 		visible_message("<span class='danger'>\The [component] explodes in rain of sparks and smoke!</span>")
 		explosion(get_turf(src), 0, 0, 3)
 
-/obj/machinery/power/smes/emp_act(severity)
+/obj/machinery/power/generator/smes/emp_act(severity)
 	if(!num_terminals)
 		inputting(0)
 		outputting(0)
@@ -345,6 +295,6 @@
 	update_icon()
 	..()
 
-/obj/machinery/power/smes/examine(mob/user)
+/obj/machinery/power/generator/smes/examine(mob/user)
 	. = ..()
 	to_chat(user, "The service hatch is [panel_open ? "open" : "closed"].")
