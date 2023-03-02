@@ -12,3 +12,5 @@
 #define MWATT *1000000
 
 #define OHM *1
+
+#define WATTHOUR2WATT(wh) (3600 / SSmachines.wait * wh) //seconds in a hour times watthour
