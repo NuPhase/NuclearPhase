@@ -1,7 +1,9 @@
 /obj/machinery/power/generator/battery
 	name = "battery"
 	desc = "A device capable of storing electrical power."
-	var/capacity = 10000 //in watthour
+	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon_state = "anomaly_container"
+	var/capacity = 0 //in watthour
 	var/max_capacity = 10000
 	var/amperage = 30
 	var/voltage = 220
@@ -43,3 +45,37 @@
 		to_chat(user, SPAN_NOTICE("It has [capacity]Wh of charge left."))
 		to_chat(user, SPAN_NOTICE("It outputs power at [amperage]A and [voltage]V."))
 	. = ..()
+
+//let's assume that all our batteries are 800 liters in volume unless written otherwise
+//https://en.wikipedia.org/wiki/Rechargeable_battery
+/obj/machinery/power/generator/battery/lead //85Wh/l capacity
+	name = "lead acid battery"
+	desc = "Are we in 2000s?.."
+	max_capacity = 68000
+	voltage = 12
+	amperage = 80
+	efficiency = 0.6
+
+/obj/machinery/power/generator/battery/lithium_ion //300Wh/l capacity
+	name = "primitive lithium-ion battery" //these can be manufactured easily
+	desc = "Lithium-Ion batteries are still cheap and practical in our day and age. Even with appearance of new and more dense batteries, lithium-ion ones still reign supreme in cost. This one looks sketchy."
+	max_capacity = 240000
+	voltage = 70
+	amperage = 140
+	efficiency = 0.8
+
+/obj/machinery/power/generator/battery/lithium_ion/normal //710Wh/l capacity
+	name = "lithium-ion battery" //hard to manufacture
+	desc = "Lithium-Ion batteries are still cheap and practical in our day and age. Even with appearance of new and more dense batteries, lithium-ion ones still reign supreme in cost."
+	max_capacity = 568000
+	voltage = 70
+	amperage = 210
+	efficiency = 0.9
+
+/obj/machinery/power/generator/battery/quantum //1270Wh/l capacity, found in a sus document
+	name = "quantum battery" //IMPOSSIBLE to manufacture
+	desc = "Despite the pseudosciencey name, this is real technology, it's just top-level semiconductor exploitation. Not every millionaire was able to afford these, though... Be careful with one."
+	max_capacity = 1016000
+	voltage = 4000 //FEED THE CHONKER REACTOR PUMPS
+	amperage = 450 //WAAAAH
+	efficiency = 0.95
