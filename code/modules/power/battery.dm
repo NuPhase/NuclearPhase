@@ -17,7 +17,7 @@
 	to_chat(user, "It is rated for [max_capacity]Wh.")
 
 /obj/machinery/power/generator/battery/available_power()
-	return min(capacity / CELLRATE, amperage * voltage)
+	return min(capacity / CELLRATE, amperage * voltage) - powernet.battery_demand
 
 /obj/machinery/power/generator/battery/get_voltage()
 	return voltage
@@ -32,6 +32,7 @@
 		return
 	var/requesting_power = amperage * voltage * 1.5
 	capacity += min(max_capacity, powernet.draw_power(requesting_power) * CELLRATE * efficiency)
+	powernet.battery_demand += requesting_power
 
 /obj/machinery/power/generator/battery/attackby(obj/item/W, mob/user)
 	if(IS_WRENCH(W))

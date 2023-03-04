@@ -7,6 +7,7 @@
 	var/viewload = 0			// the load as it appears on the power console (gradually updated)
 	var/number = 0				// Unused //TODEL
 
+	var/battery_demand = 0
 	var/smes_demand = 0			// Amount of power demanded by all SMESs from this network. Needed for load balancing.
 	var/list/inputting = list()	// List of SMESs that are demanding power from this network. Needed for load balancing.
 
@@ -180,7 +181,7 @@
 	smes_avail = smes_newavail
 	inputting.Cut()
 	smes_demand = 0
-	smes_newavail = 0
+	battery_demand = 0
 	voltage = newvoltage
 	newvoltage = 0
 	ldemand = demand
