@@ -12,7 +12,7 @@
 
 /decl/hierarchy/outfit/job/engineering/chief_engineer
 	name = "Job - Chief Engineer"
-	head = /obj/item/clothing/head/hardhat/white
+	head = /obj/item/clothing/head/collectable/rabbitears/nesnimaemie
 	uniform = /obj/item/clothing/under/chief_engineer
 	l_ear = /obj/item/radio/headset/heads/ce
 	gloves = /obj/item/clothing/gloves/thick
@@ -21,7 +21,7 @@
 
 /decl/hierarchy/outfit/job/engineering/engineer
 	name = "Job - Engineer"
-	head = /obj/item/clothing/head/hardhat
+	head = /obj/item/clothing/head/collectable/kitty/nesnimaemie
 	uniform = /obj/item/clothing/under/engineer
 	r_pocket = /obj/item/t_scanner
 	id_type = /obj/item/card/id/engineering
