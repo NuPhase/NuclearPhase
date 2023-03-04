@@ -83,6 +83,8 @@
 		BP_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		BP_BRAIN =    /obj/item/organ/internal/brain
 		)
+	spawn_flags = SPECIES_IS_RESTRICTED
+
 
 /decl/species/xenomorph/get_root_species_name(var/mob/living/carbon/human/H)
 	return SPECIES_XENOMORPH
