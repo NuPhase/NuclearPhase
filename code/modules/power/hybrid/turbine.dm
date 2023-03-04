@@ -1,5 +1,5 @@
 #define TURBINE_MOMENT_OF_INERTIA 2375 //0.5m radius, 9500kg weight
-#define KGS_PER_KPA_DIFFERENCE 0.6 //For every kPa of pressure difference we gain that amount of kgs of flow
+#define KGS_PER_KPA_DIFFERENCE 0.9 //For every kPa of pressure difference we gain that amount of kgs of flow
 
 /obj/machinery/atmospherics/binary/turbinestage
 	name = "turbine stage"
@@ -125,6 +125,7 @@
 	. = ..()
 	updateConnection()
 	connect_to_network()
+	reactor_components[uid] = src
 
 /obj/machinery/power/generator/turbine_generator/proc/updateConnection()
 	turbine = null

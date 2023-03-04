@@ -21,9 +21,11 @@
 
 /obj/item/clipboard/reactor
 	name = "personal reactor operations clipboard"
-	var/list/new_papers = list(/obj/item/paper/reactor/general)
+	var/list/new_papers = list(/obj/item/paper/reactor/general, /obj/item/paper/reactor/coldstart)
 
 /obj/item/clipboard/reactor/Initialize()
 	for(var/P in new_papers)
-		papers += new P
+		var/newpaper = new P
+		LAZYINSERT(papers, P, 1)
 	. = ..()
+	update_icon()

@@ -45,6 +45,7 @@
 	frame_type = /obj/item/pipe
 	construct_state = /decl/machine_construction/default/panel_closed/item_chassis
 	base_type = /obj/machinery/atmospherics/binary/passive_gate
+	var/starting_volume
 
 /obj/machinery/atmospherics/binary/passive_gate/on
 	unlocked = 1
@@ -52,8 +53,14 @@
 
 /obj/machinery/atmospherics/binary/passive_gate/Initialize()
 	. = ..()
-	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
-	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
+	if(starting_volume)
+		air1.volume = starting_volume
+		air2.volume = starting_volume
+	else
+		air1.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
+		air2.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
+	if(uid)
+		rcontrol.reactor_valves[uid] = src
 
 /obj/machinery/atmospherics/binary/passive_gate/on_update_icon()
 	icon_state = (unlocked && flowing)? "on" : "off"

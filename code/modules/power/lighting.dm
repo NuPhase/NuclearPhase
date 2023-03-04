@@ -80,6 +80,10 @@
 	base_type = /obj/machinery/light/spot
 	frame_type = /obj/item/frame/light/spot
 
+/obj/machinery/light/spot/reactor/Initialize(mapload, d, populate_parts)
+	. = ..()
+	reactor_floodlights += src
+
 /obj/machinery/light/neon
 	light_type = /obj/item/light/tube/neon
 

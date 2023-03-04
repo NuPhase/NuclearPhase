@@ -2,8 +2,9 @@
 	name = "LAS-ARM"
 	cooldown = 20
 
-/obj/machinery/reactor_button/rswitch/lasarm/do_action()
+/obj/machinery/reactor_button/rswitch/lasarm/do_action(mob/user)
 	..()
+	visible_message(SPAN_WARNING("[user] switches [src] to [state ? "ARMED" : "DISARMED"]!"))
 	for(var/tag in reactor_components)
 		var/obj/machinery/rlaser/las = reactor_components[tag]
 		if(!istype(las, /obj/machinery/rlaser))
@@ -15,24 +16,28 @@
 	name = "LAS-PRIMER"
 	cooldown = 100
 
-/obj/machinery/reactor_button/rswitch/lasprime/do_action()
+/obj/machinery/reactor_button/rswitch/lasprime/do_action(mob/user)
 	..()
+	visible_message(SPAN_WARNING("[user] switches [src] to [state ? "PRIMED" : "ABORT"]!"))
 	if(state == 1)
+		var/primed = FALSE
 		for(var/tag in reactor_components)
 			var/obj/machinery/rlaser/las = reactor_components[tag]
 			if(!istype(las, /obj/machinery/rlaser))
 				continue
 			if(las.prime())
-				playsound(src, 'sound/machines/switchbuzzer.ogg', 50)
+				primed = TRUE
+		if(primed)
+			playsound(src, 'sound/machines/switchbuzzer.ogg', 50)
+		spawn(5 SECONDS)
+			state = 0
+			icon_state = off_icon_state
 	else
 		for(var/tag in reactor_components)
 			var/obj/machinery/rlaser/las = reactor_components[tag]
 			if(!istype(las, /obj/machinery/rlaser))
 				continue
 			las.primed = FALSE
-	spawn(50)
-		state = 0
-		icon_state = off_icon_state
 
 /obj/machinery/reactor_button/lasomode
 	name = "LAS-OMODE"
@@ -47,6 +52,7 @@
 		if(!istype(las, /obj/machinery/rlaser))
 			continue
 		las.switch_omode(mode)
+	visible_message(SPAN_WARNING("[user] switches [src] to [mode]!"))
 
 /obj/machinery/reactor_button/lasnmode
 	name = "LAS-NMODE"
@@ -61,3 +67,4 @@
 		if(!istype(las, /obj/machinery/rlaser))
 			continue
 		las.nmode = mode
+	visible_message(SPAN_WARNING("[user] switches [src] to [mode]!"))

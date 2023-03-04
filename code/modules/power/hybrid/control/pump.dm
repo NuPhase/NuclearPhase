@@ -26,5 +26,5 @@
 	id = "T-CP 2"
 
 /obj/machinery/reactor_button/pump/feedmakeup
-	name = "T-FEEDWATER CP-MAKEUP"
+	name = "T-FEEDWATER-CP MAKEUP"
 	id = "T-FEEDWATER CP-MAKEUP"

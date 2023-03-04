@@ -1,10 +1,10 @@
-#define LASER_MODE_IGNITION   "ignition"
-#define LASER_MODE_IMPULSE    "impulse"
-#define LASER_MODE_CONTINUOUS "continuous"
+#define LASER_MODE_IGNITION   "IGNITION"
+#define LASER_MODE_IMPULSE    "IMPULSE"
+#define LASER_MODE_CONTINUOUS "CONTINUOUS"
 
-#define NEUTRON_MODE_BOMBARDMENT  "bombardment"
-#define NEUTRON_MODE_MODERATION   "moderation"
-#define NEUTRON_MODE_OFF		  "off"
+#define NEUTRON_MODE_BOMBARDMENT  "BOMBARDMENT"
+#define NEUTRON_MODE_MODERATION   "MODERATION"
+#define NEUTRON_MODE_OFF		  "OFF"
 
 /obj/machinery/rlaser
 	name = "industrial laser"
@@ -80,6 +80,8 @@
 /obj/machinery/rlaser/proc/fire(power)
 	if(omode == LASER_MODE_IGNITION)
 		playsound(src, 'sound/machines/laserignition.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
+		spawn(30)
+			playsound(src, 'sound/machines/power_down2.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
 		capacitor_charge = 0
 		START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]

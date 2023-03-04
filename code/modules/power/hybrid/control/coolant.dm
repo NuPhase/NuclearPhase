@@ -41,3 +41,15 @@
 /obj/machinery/reactor_button/regvalve/reactorfvout
 	name = "REACTOR-F-V-OUT"
 	id = "REACTOR-F-V-OUT"
+
+/obj/machinery/reactor_button/regvalve/heatexchangervin
+	name = "HEATEXCHANGER V-IN"
+	id = "HEATEXCHANGER V-IN"
+
+/obj/machinery/reactor_button/presvalve/tcoolantvin
+	name = "T-COOLANT V-IN"
+	id = "T-COOLANT V-IN"
+
+/obj/machinery/reactor_button/presvalve/tcoolantvout
+	name = "T-COOLANT V-OUT"
+	id = "T-COOLANT V-OUT"

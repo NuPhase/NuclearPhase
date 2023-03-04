@@ -13,6 +13,30 @@
 	name = "pressure valve regulator"
 	icon_state = "light3"
 
+/obj/machinery/reactor_button/presvalve/do_action(mob/user)
+	..()
+	var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
+	if(!current_valve)
+		return
+	var/setting = input(user, "Which setting do you want to change?", "Setting change") in list("Status", "Pressure Setting", "Direction")
+	switch(setting)
+		if("Status")
+			var/newinput = input(user, "Select status", "Status selection") in list("On", "Off")
+			if(newinput == "On")
+				current_valve.unlocked = TRUE
+			else
+				current_valve.unlocked = FALSE
+		if("Pressure Setting")
+			var/newinput = input(user, "Choose Pressure", "Pressure adjustment") as null|num
+			if(newinput)
+				current_valve.target_pressure = clamp(newinput, 0, current_valve.max_pressure_setting)
+		if("Direction")
+			var/newinput = input(user, "Which direction to regulate?", "Regulation selection") in list("Input", "Output")
+			if(newinput == "Input")
+				current_valve.regulate_mode = 1
+			else if(newinput == "Output")
+				current_valve.regulate_mode = 2
+
 /obj/machinery/reactor_button/regvalve
 	name = "adjustable valve regulator"
 	icon_state = "light3"

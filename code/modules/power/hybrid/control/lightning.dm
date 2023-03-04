@@ -1,14 +1,16 @@
-/obj/machinery/reactor_button/lighting
-	icon = 'icons/obj/power.dmi'
-	icon_state = "light0"
+/obj/machinery/reactor_button/rswitch/lighting
+	cooldown = 50
 
-/obj/machinery/reactor_button/lighting/do_action()
+/obj/machinery/reactor_button/rswitch/lighting/do_action()
 	. = ..()
 	for(var/obj/machinery/light/L in reactor_floodlights)
 		if(L.uid == id)
-			L.on = !L.on
+			L.on = state
 			L.update_icon()
+			if(state == 1)
+				playsound(L.loc, 'sound/machines/floodlight.ogg', 50, 1, 30, 10)
+				sleep(5) //for dramatism
 
-/obj/machinery/reactor_button/lighting/superstructure
+/obj/machinery/reactor_button/rswitch/lighting/superstructure
 	name = "FL-MAIN"
 	id = "superstructure"

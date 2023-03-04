@@ -14,21 +14,26 @@
 	var/autocontrol_available = FALSE
 
 	var/list/all_messages = list()
-	var/list/uncleared_messages = list()
+	var/list/cleared_messages = list()
 
 	var/list/reactor_pumps = list()
 	var/list/reactor_meters = list()
 	var/list/reactor_valves = list()
+	var/list/announcement_monitors = list() //list of monitors we should announce warnings on
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine1 = null
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine2 = null
 	var/obj/machinery/power/generator/turbine_generator/generator1 = null
 	var/obj/machinery/power/generator/turbine_generator/generator2 = null
+	var/last_message_clearing = 0
 
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]
 	turbine2 = reactor_components["turbine2"]
 	generator1 = reactor_components["generator1"]
 	generator2 = reactor_components["generator2"]
+	if(!turbine1 || !turbine2)
+		spawn(50)
+			initialize()
 
 /datum/reactor_control_system/proc/switch_mode(newmode) //returns 1 if modes were switched succesfully, 0 if mode is unavailable and 2 if it is the same mode
 	if(newmode == mode)
@@ -55,6 +60,13 @@
 	switch(mode)
 		if(REACTOR_CONTROL_MODE_SEMIAUTO)
 			semi_auto_control()
+	last_message_clearing += 1
+	if(last_message_clearing == 5)
+		for(var/cleared_message in cleared_messages)
+			if(cleared_message in all_messages)
+				all_messages.Remove(cleared_message)
+		cleared_messages.Cut()
+		last_message_clearing = 0
 
 /datum/reactor_control_system/proc/semi_auto_control()
 	moderate_reactor_loop()
@@ -122,11 +134,11 @@
 	var/obj/machinery/reactor_button/rswitch/current_switch
 
 	current_valve = reactor_valves["HEATEXCHANGER V-IN"]
-	if(get_meter_pressure("TURBINE LINE") > 7000)
+	if(get_meter_temperature("T-M-TURB IN") > 600)
 		current_valve.adjust_openage(-1)
 	else
 		current_valve.adjust_openage(1)
-	if(get_meter_temperature("TURBINE LINE") < 450)
+	if(get_meter_temperature("T-M-TURB IN") < 450)
 		current_valve = reactor_valves["TURB 1V-IN"]
 		current_valve.set_openage(0)
 		current_valve = reactor_valves["TURB 2V-IN"]
@@ -174,10 +186,8 @@
 	if(has_message(message))
 		return //we already have that one
 	all_messages[message] = urgency
-	uncleared_messages[message] = urgency
-	spawn(100)
-		all_messages.Remove(message)
-		uncleared_messages.Remove(message)
+	for(var/obj/machinery/reactor_monitor/warnings/mon in announcement_monitors)
+		mon.chat_report(message, urgency)
 
 /datum/reactor_control_system/proc/has_message(message)
 	var/msg = all_messages[message]
@@ -195,12 +205,19 @@
 	var/obj/machinery/meter/rmeter = reactor_meters[meterid]
 	if(rmeter)
 		var/datum/gas_mixture/gm = rmeter.return_air()
-		return gm.return_pressure()
+		return round(gm.return_pressure())
 	return 0
 
 /datum/reactor_control_system/proc/get_meter_temperature(meterid)
 	var/obj/machinery/meter/rmeter = reactor_meters[meterid]
 	if(rmeter)
 		var/datum/gas_mixture/gm = rmeter.return_air()
-		return gm.temperature
+		return round(gm.temperature)
+	return T20C
+
+/datum/reactor_control_system/proc/get_meter_mass(meterid)
+	var/obj/machinery/meter/rmeter = reactor_meters[meterid]
+	if(rmeter)
+		var/datum/gas_mixture/gm = rmeter.return_air()
+		return round(gm.get_mass())
 	return 0

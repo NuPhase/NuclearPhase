@@ -183,6 +183,6 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define  PART_D_SLOT	/obj/item/stock_parts/computer/drive_slot				// Portable drive slot.
 #define  PART_MSTICK	/obj/item/stock_parts/computer/charge_stick_slot		// Charge-slot component for transactions /w charge sticks.
 
-#define REACTOR_CONTROL_MODE_MANUAL "manual"
-#define REACTOR_CONTROL_MODE_SEMIAUTO "semi-auto"
-#define REACTOR_CONTROL_MODE_AUTO "auto"
+#define REACTOR_CONTROL_MODE_MANUAL "MANUAL"
+#define REACTOR_CONTROL_MODE_SEMIAUTO "SEMI-AUTO"
+#define REACTOR_CONTROL_MODE_AUTO "AUTO"

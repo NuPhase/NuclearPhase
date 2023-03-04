@@ -28,6 +28,8 @@
 		set_target(locate(/obj/machinery/atmospherics/pipe) in loc)
 	if(!target)
 		set_target(loc)
+	if(uid)
+		rcontrol.reactor_meters[uid] = src
 
 /obj/machinery/meter/proc/set_target(atom/new_target)
 	clear_target()

@@ -5,6 +5,8 @@
 /obj/machinery/reactor_button/scram/do_action(mob/user)
 	..()
 	rcontrol.scram("OPERATOR REQUEST")
+	visible_message(SPAN_WARNING("[user] SCRAMs the reactor!"))
+	playsound(src, 'sound/machines/switchbuzzer.ogg', 50)
 
 /obj/machinery/reactor_button/mode_of_operation
 	name = "CONTROL MODE"
@@ -20,4 +22,16 @@
 	if(response == 2)
 		to_chat(user, SPAN_NOTICE("The system is already in the same mode."))
 		return
-	to_chat(user, SPAN_NOTICE("Reactor control mode switched to [newmode]."))
+	visible_message(SPAN_WARNING("[user] switches [src] to [newmode]!"))
+
+/obj/machinery/reactor_button/acknowledge_alarms
+	name = "ACKNOWLEDGE ALARMS"
+	cooldown = 5 SECONDS
+
+/obj/machinery/reactor_button/acknowledge_alarms/do_action(mob/user)
+	..()
+	rcontrol.cleared_messages = rcontrol.all_messages.Copy()
+
+/obj/machinery/reactor_button/mute_alarms
+	name = "MUTE ALARMS"
+	cooldown = 5 SECONDS

@@ -3,6 +3,7 @@
 	desc = "A device capable of storing electrical power."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anomaly_container"
+	density = 1
 	var/capacity = 0 //in watthour
 	var/max_capacity = 10000
 	var/amperage = 30
@@ -27,9 +28,9 @@
 /obj/machinery/power/generator/battery/Process()
 	if(!powernet)
 		return
-	var/requesting_power = amperage * voltage
-	if(powernet.lavailable < requesting_power)
+	if(capacity == max_capacity)
 		return
+	var/requesting_power = amperage * voltage * 1.5
 	capacity += min(max_capacity, powernet.draw_power(requesting_power) * CELLRATE * efficiency)
 
 /obj/machinery/power/generator/battery/attackby(obj/item/W, mob/user)

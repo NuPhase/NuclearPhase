@@ -511,6 +511,18 @@ update_flag
 	air_contents.temperature = 2
 	queue_icon_update()
 
+/obj/machinery/portable_atmospherics/canister/liquid_hydrogen
+	name = "\improper Canister \[LH2\]"
+	icon_state = "purple"
+	canister_color = "purple"
+	can_label = 0
+
+/obj/machinery/portable_atmospherics/canister/liquid_hydrogen/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForVolume(/decl/material/gas/hydrogen))
+	air_contents.temperature = 19
+	queue_icon_update()
+
 /obj/machinery/portable_atmospherics/canister/methyl_bromide
 	name = "\improper Canister \[CH3Br\]"
 	icon_state = "black"

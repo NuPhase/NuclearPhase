@@ -47,6 +47,12 @@
 	var/cooldown = 10
 	var/used = FALSE
 	var/id
+	var/action_sounds = list(
+	'sound/machines/button1.ogg',
+	'sound/machines/button2.ogg',
+	'sound/machines/button3.ogg',
+	'sound/machines/button4.ogg'
+)
 
 /obj/machinery/reactor_button/Initialize()
 	. = ..()
@@ -61,6 +67,8 @@
 	var/obj/machinery/reactor_control_node/cnode = reactor_components["control_node"]
 	if(cnode && cnode.check_controllability())
 		do_action(user)
+		if(action_sounds)
+			playsound(loc, pick(action_sounds), 50, 1)
 
 	used = TRUE
 	spawn(cooldown)
@@ -76,6 +84,12 @@
 	var/state = 0 //0-1
 	var/on_icon_state = "light3-on"
 	var/off_icon_state = "light3"
+	action_sounds = list(
+	'sound/machines/switch1.ogg',
+	'sound/machines/switch2.ogg',
+	'sound/machines/switch3.ogg',
+	'sound/machines/switch4.ogg'
+)
 
 /obj/machinery/reactor_button/rswitch/do_action(mob/user)
 	if(state)
