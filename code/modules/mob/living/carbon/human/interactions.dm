@@ -130,11 +130,11 @@
 						dat +=  {"<A href='?src=\ref[usr];interaction=five'>Highfive.</A><BR>"}
 						if (hashands_p)
 							dat +=  {"<A href='?src=\ref[usr];interaction=slap'><font color=red>Slap!</font></A><BR>"}
+						if (hasanus_p)
+							dat += {"<A href='?src=\ref[usr];interaction=assslap'><font color=purple>Slap some ass!</font></A><BR>"}
 						if (isnude_p)
 							if(P.gender == FEMALE)
 								dat += {"<A href='?src=\ref[usr];interaction=squeezebreast'><font color=purple>Squeeze breasts!</font></A><BR>"}
-							if (hasanus_p)
-								dat += {"<A href='?src=\ref[usr];interaction=assslap'><font color=purple>Slap some ass!</font></A><BR>"}
 							if (hasvagina_p)
 								dat += {"<A href='?src=\ref[usr];interaction=fingering'><font color=purple>Put fingers in places...</font></A><BR>"}
 						dat +=  {"<A href='?src=\ref[usr];interaction=knock'><font color=red>Knock upside the head.</font></A><BR>"}
