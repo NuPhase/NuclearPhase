@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(chat)
 	if (!C)
 		return
 	legacy_chat(C, original)
-	if (C?.get_preference_value(/datum/client_preference/goonchat) != PREF_YES)
+	if (!C.prefs || C.get_preference_value(/datum/client_preference/goonchat) != PREF_YES)
 		return
 	if (!C.chatOutput || C.chatOutput.broken)
 		return
