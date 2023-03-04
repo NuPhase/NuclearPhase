@@ -1,6 +1,11 @@
 /obj/machinery/reactor_button/rswitch/lighting
 	cooldown = 50
 
+/obj/machinery/reactor_button/rswitch/lighting/Initialize()
+	. = ..()
+	do_action() //lol
+	do_action()
+
 /obj/machinery/reactor_button/rswitch/lighting/do_action()
 	. = ..()
 	for(var/obj/machinery/light/L in reactor_floodlights)

@@ -70,7 +70,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 5
 	},
-/obj/machinery/meter,
+/obj/machinery/meter{
+	uid = "F-M IN"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
 "eZ" = (
@@ -156,7 +158,9 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	dir = 4
 	},
-/obj/machinery/meter,
+/obj/machinery/meter{
+	uid = "F-M OUT"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
 "lv" = (
@@ -239,6 +243,7 @@
 /obj/structure/cable/heavy{
 	dir = 1
 	},
+/obj/machinery/power/generator/debug_items/infinite_generator,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "oZ" = (
@@ -401,8 +406,11 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "Er" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4
+	},
 /obj/machinery/power/hybrid_reactor,
-/turf/simulated/open,
+/turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/reactor)
 "ES" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
@@ -1114,7 +1122,7 @@ PL
 Lz
 Lz
 Lz
-Lz
+Er
 Lz
 Lz
 Lz
@@ -1898,7 +1906,7 @@ Ze
 gh
 sX
 sX
-Er
+sX
 sX
 sX
 Xj

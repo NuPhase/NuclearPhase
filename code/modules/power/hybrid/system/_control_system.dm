@@ -99,10 +99,6 @@
 		if(51 to INFINITY)
 			do_message("CRITICAL VIBRATION IN TURBINE #2", 3)
 
-	if(get_meter_temperature("REACTOR-M CHAMBER") > ALARM_REACTOR_TUNGSTEN_TEMP)
-		do_message("HIGH TEMPERATURE IN REACTOR VESSEL", 2)
-	if(get_meter_pressure("REACTOR-M CHAMBER") > MAX_REACTOR_VESSEL_PRESSURE)
-		do_message("HIGH PRESSURE IN REACTOR VESSEL", 2)
 	if(get_pump_flow_rate("F-CP 1") < 50)
 		do_message("REACTOR LOOP PUMP #1 MASS FLOW < 25KG/S", 2)
 	if(get_pump_flow_rate("F-CP 2") < 50)
