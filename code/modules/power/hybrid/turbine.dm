@@ -1,4 +1,4 @@
-#define TURBINE_MOMENT_OF_INERTIA 2375 //0.5m radius, 9500kg weight
+#define TURBINE_MOMENT_OF_INERTIA 2075 //0.5m radius, 9500kg weight
 #define KGS_PER_KPA_DIFFERENCE 0.9 //For every kPa of pressure difference we gain that amount of kgs of flow
 
 /obj/machinery/atmospherics/binary/turbinestage
@@ -35,6 +35,9 @@
 	var/braking = FALSE //emergency brakes
 	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
 
+	var/rotor_integrity = 100
+	var/shaft_integrity = 100
+
 	var/obj/machinery/atmospherics/binary/regulated_valve/ingoing_valve = null
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
@@ -58,6 +61,7 @@
 	total_mass_flow = air1.net_flow_mass
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
+	total_mass_flow *= rotor_integrity * 0.01
 	if(total_mass_flow < 50)
 		total_mass_flow = 0
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
@@ -95,14 +99,17 @@
 		vibration += 20
 	vibration += total_mass_flow * 0.005
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects() //cosmetic only for now
+/obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects()
 	switch(vibration)
 		if(26 to 50)
 			for(var/mob/living/carbon/human/H in range(world.view, loc))
 				to_chat(H, SPAN_WARNING("All your surroundings vibrate like in an earthquake!"))
+			rotor_integrity = max(0, rotor_integrity - 0.1)
 		if(51 to INFINITY)
 			for(var/mob/living/carbon/human/H in range(world.view, loc))
 				to_chat(H, SPAN_DANGER("Everything around you shakes and rattles!"))
+			rotor_integrity = max(0, rotor_integrity - 0.5)
+			shaft_integrity = max(0, rotor_integrity - 0.1)
 
 /obj/machinery/power/generator/turbine_generator
 	name = "motor"
@@ -140,7 +147,7 @@
 
 /obj/machinery/power/generator/turbine_generator/available_power()
 	if(turbine)
-		return turbine.kin_energy
+		return turbine.kin_energy * (turbine.shaft_integrity * 0.01)
 	else
 		return 0
 
