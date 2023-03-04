@@ -26,6 +26,6 @@
 /obj/item/clipboard/reactor/Initialize()
 	for(var/P in new_papers)
 		var/newpaper = new P
-		LAZYINSERT(papers, P, 1)
+		LAZYINSERT(papers, newpaper, 1)
 	. = ..()
 	update_icon()
