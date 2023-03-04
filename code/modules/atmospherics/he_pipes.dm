@@ -127,3 +127,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior
 	surface = 0.01 //TODO: CALCULATE THIS
+	maximum_pressure = 700000 //TEMPORARY
+	fatigue_pressure = 600000
+	alert_pressure = 500000
+	volume = 5

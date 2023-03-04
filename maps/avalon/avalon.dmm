@@ -441,6 +441,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/habitationdeck)
+"aEc" = (
+/obj/structure/railing/mapped,
+/obj/machinery/reactor_fuelport{
+	pixel_x = -16
+	},
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "aEx" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/expeditionpreparation)
@@ -6389,6 +6396,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon)
+"icE" = (
+/obj/machinery/reactor_fuelport{
+	pixel_y = -16
+	},
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "iev" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/structure/mattress,
@@ -9823,8 +9836,6 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/comms)
 "myt" = (
-/obj/structure/rack,
-/obj/item/stack/material/puck/mapped/uranium/forty,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/engineering)
 "myU" = (
@@ -10464,7 +10475,16 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "nuD" = (
-/obj/machinery/portable_atmospherics/canister/hydrogen,
+/obj/item/chems/fuel_cell,
+/obj/item/chems/fuel_cell{
+	pixel_y = -9
+	},
+/obj/item/chems/fuel_cell{
+	pixel_y = -18
+	},
+/obj/item/chems/fuel_cell{
+	pixel_y = -26
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/engineering)
 "nvg" = (
@@ -213263,7 +213283,7 @@ gPQ
 oOI
 wyq
 wyq
-wyq
+icE
 wyq
 wyq
 hvj
@@ -213787,7 +213807,7 @@ wyq
 wyq
 wyq
 wyq
-hvj
+aEc
 vKN
 wyq
 wyq
@@ -214173,7 +214193,7 @@ aof
 rnp
 wyq
 wyq
-wyq
+icE
 wyq
 wyq
 hvj
