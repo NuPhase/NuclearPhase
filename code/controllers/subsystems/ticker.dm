@@ -95,6 +95,10 @@ SUBSYSTEM_DEF(ticker)
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup() // Drafts antags who don't override jobs.
 		to_world("<FONT color='blue'><B>Enjoy the game!</B></FONT>")
+		spawn(5 SECONDS)
+			to_world("<h4>Days since the catastrophe: 367...</h4>")
+		spawn(7 SECONDS)
+			to_world(SPAN_ERPBOLD("Your fate is still in your hands, whether you like it or not..."))
 		if(global.current_holiday)
 			to_world("<font color='blue'>and...</font>")
 			to_world("<h4>[global.current_holiday.announcement]</h4>")
@@ -415,8 +419,8 @@ Helpers
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
 
-	if(dronecount)
-		to_world("<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance drone\s at the end of this round.</b>")
+	//if(dronecount)
+	//	to_world("<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance drone\s at the end of this round.</b>")
 
 	if(all_money_accounts.len)
 		var/datum/money_account/max_profit = all_money_accounts[1]

@@ -1,6 +1,6 @@
 /datum/vote/transfer
 	name = "transfer"
-	question = "End the shift?"
+	question = "Do you want to escape?"
 
 /datum/vote/transfer/can_run(mob/creator, automatic)
 	if(!(. = ..()))
@@ -18,9 +18,7 @@
 		return FALSE
 
 /datum/vote/transfer/setup_vote(mob/creator, automatic)
-	choices = list("Initiate Crew Transfer", "Extend the Round ([config.vote_autotransfer_interval / 600] minutes)")
-	if (config.allow_extra_antags && SSvote.is_addantag_allowed(creator, automatic))
-		choices += "Add Antagonist"
+	choices = list("Escape", "We don't want to")
 	..()
 
 /datum/vote/transfer/handle_default_votes()
@@ -38,16 +36,13 @@
 			factor = 1.2
 		else
 			factor = 1.4
-	choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-	to_world("<font color='purple'>Crew Transfer Factor: [factor]</font>")
+	choices["Escape"] = round(choices["Escape"] * factor)
 
 /datum/vote/transfer/report_result()
 	if(..())
 		return 1
-	if(result[1] == "Initiate Crew Transfer")
-		init_autotransfer()
-	else if(result[1] == "Add Antagonist")
-		SSvote.queued_auto_vote = /datum/vote/add_antagonist
+	if(result[1] == "Escape")
+		to_world(SPAN_ERPBOLD("There is no escape from this hell."))
 
 /datum/vote/transfer/mob_not_participating(mob/user)
 	if((. = ..()))
