@@ -12,10 +12,6 @@
 	var/strength = 50
 	var/falloff = 3
 
-/obj/effect/deflagarate/Destroy()
-	set_light(0, 0, null)
-	. = ..()
-
 /obj/effect/deflagarate/New(loc, nstrength = 50, nfalloff = 5)
 	var/turf/simulated/floor/F = get_turf(src)
 	F.deflaged = TRUE
@@ -26,6 +22,7 @@
 	strength -= falloff
 	alpha = strength / MAX_DEFLAGRATION_STRENGTH * 255
 	if(strength < 5)
+		set_light(0, 0, null)
 		qdel(src)
 		return
 
@@ -50,6 +47,7 @@
 				var/turf/simulated/wall/Tw = T
 				Tw.take_damage(strength * 0.1)
 		spawn(1)
+			set_light(0, 0, null)
 			qdel(src)
 
 /obj/effect/deflagarate/update_icon()
