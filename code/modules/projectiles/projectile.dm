@@ -147,7 +147,7 @@
 
 /obj/item/projectile/proc/get_structure_damage()
 	if(damage_type == BRUTE || damage_type == BURN)
-		return damage
+		return damage * 0.1
 	return 0
 
 /obj/item/projectile/proc/check_penetrate(atom/A)
