@@ -102,6 +102,8 @@
 	var/potenzia = 10
 	var/resistenza = 200
 
+	var/adrenaline_cooldown = FALSE
+
 	var/isLeaning = 0
 
 	var/list/moods = list()

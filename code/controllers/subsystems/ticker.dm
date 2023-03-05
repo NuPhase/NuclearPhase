@@ -405,7 +405,7 @@ Helpers
 	for (var/mob/living/silicon/robot/robo in SSmobs.mob_list)
 
 		if(istype(robo,/mob/living/silicon/robot/drone))
-			dronecount++
+			//dronecount++
 			continue
 
 		if (!robo.connected_ai)
