@@ -53,7 +53,7 @@
 			var/message = "\The [AM] lands in \the [src]'s cockpit with a crash. Get in the damn exosuit!"
 			if (TT.thrower == TT.thrownthing)
 				//This is someone jumping
-				chance = M.skill_check_multiple(list(SKILL_MECH = HAS_PERK, SKILL_HAULING = SKILL_ADEPT)) ? 100 : chance
+				chance = M.skill_check_multiple(list(SKILL_MECH = HAS_PERK, SKILL_AGILITY = SKILL_ADEPT)) ? 100 : chance
 				message = "\The [AM] gets in \the [src]'s cockpit in one fluid motion."
 			if (prob(chance))
 				if (enter(AM, silent = TRUE, check_incap = FALSE, instant = TRUE))
@@ -164,7 +164,7 @@
 	if(!hatch_closed || (body.pilot_coverage < 100)) //Open, environment is the source
 		return .
 	var/list/after_armor = modify_damage_by_armor(null, ., IRRADIATE, DAM_DISPERSED, src, 0, TRUE)
-	return after_armor[1]	
+	return after_armor[1]
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0
@@ -200,6 +200,6 @@
 			for(var/thing in pilots)
 				var/mob/pilot = thing
 				pilot.emp_act(severity)
-				
+
 /mob/living/exosuit/get_bullet_impact_effect_type(def_zone)
 	return BULLET_IMPACT_METAL

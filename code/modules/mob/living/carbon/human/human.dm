@@ -1370,9 +1370,9 @@
 	refresh_visible_overlays() //Do this exactly once per setup
 	if(!vessel)
 		reset_blood()
-	max_oxygen_capacity = round(vessel.total_volume / 4.975) + get_skill_value(SKILL_HAULING) * 4 //healthy athlete spleen oxygen stores
+	max_oxygen_capacity = round(vessel.total_volume / 4.975) + get_skill_value(SKILL_FITNESS) * 4 //healthy athlete spleen oxygen stores
 	oxygen_amount = max_oxygen_capacity
-	//metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_HAULING) * 0.05 //healthy athlete lower BPM
+	//metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_FITNESS) * 0.05 //healthy athlete lower BPM
 
 
 /mob/living/carbon/human/handle_flashed(var/obj/item/flash/flash, var/flash_strength)

@@ -82,13 +82,13 @@
 	)
 	min_skill = list(
 		SKILL_FINANCE	= SKILL_BASIC,
-		SKILL_HAULING	= SKILL_ADEPT,
+		SKILL_FITNESS	= SKILL_ADEPT,
 		SKILL_EVA		= SKILL_BASIC,
 		SKILL_COMPUTER	= SKILL_BASIC,
 		SKILL_LITERACY	= SKILL_BASIC
 	)
 	max_skill = list(
-		SKILL_HAULING	= SKILL_MAX,
+		SKILL_FITNESS	= SKILL_MAX,
 		SKILL_EVA		= SKILL_MAX,
 		SKILL_FINANCE	= SKILL_MAX
 	)
@@ -130,7 +130,7 @@
 	)
 	outfit_type = /decl/hierarchy/outfit/job/ministation/janitor
 	min_skill = list(
-		SKILL_HAULING  = SKILL_BASIC
+		SKILL_FITNESS  = SKILL_BASIC
 	)
 	skill_points = 18
 

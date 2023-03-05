@@ -138,7 +138,7 @@
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 	    SKILL_FINANCE  = SKILL_BASIC,
-	    SKILL_HAULING  = SKILL_BASIC,
+	    SKILL_FITNESS  = SKILL_BASIC,
 	    SKILL_EVA      = SKILL_BASIC,
 	    SKILL_PILOT    = SKILL_BASIC
 	)
@@ -177,7 +177,7 @@
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 		SKILL_FINANCE  = SKILL_BASIC,
-		SKILL_HAULING  = SKILL_BASIC
+		SKILL_FITNESS  = SKILL_BASIC
 	)
 	max_skill = list(
 		SKILL_PILOT    = SKILL_MAX
@@ -216,7 +216,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
-		SKILL_HAULING  = SKILL_ADEPT,
+		SKILL_FITNESS  = SKILL_ADEPT,
 	    SKILL_EVA      = SKILL_BASIC
 	)
 	max_skill = list(
@@ -252,7 +252,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
-		SKILL_HAULING  = SKILL_BASIC
+		SKILL_FITNESS  = SKILL_BASIC
 	)
 	event_categories = list(ASSIGNMENT_JANITOR)
 

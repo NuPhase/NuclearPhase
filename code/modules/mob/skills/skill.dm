@@ -197,18 +197,6 @@ var/global/list/skills = list()
 	difficulty = SKILL_AVERAGE
 	default_max = SKILL_ADEPT
 
-/decl/hierarchy/skill/general/hauling
-	name = "DEPRECATED"
-	uid =  "skill_hauling"
-	desc = "Your ability to perform tasks requiring great strength, dexterity, or endurance."
-	levels = list(
-		"Unskilled"   = "You are not used to manual labor, tire easily, and are likely not in great shape. Extended heavy labor may be dangerous for you.<br>- You can pull objects but start to generate Lactate after tiring out. Your strength increases with level.<br>- You can throw objects. Their speed, thrown distance, and force increases with level.<br>- You can sprint, the stamina consumption rate is lowered with each level.<br>- You can leap by holding Ctrl and clicking on a distant target with grab intent, leap range is increased and chances of falling over are decreased with each level.",
-		"Basic"       = "You have some familiarity with manual labor, and are in reasonable physical shape. Tasks requiring great dexterity or strength may still elude you.<br>- You can throw \"huge\" items or normal-sized mobs without getting weakened.",
-		"Trained"     = "You have sufficient strength and dexterity for even very strenuous tasks, and can work for a long time without tiring.",
-		"Experienced" = "You have experience with heavy work in trying physical conditions, and are in excellent shape. You visit the gym frequently.",
-		"Master"      = "In addition to your excellent strength and endurance, you have a lot of experience with the specific physical demands of your job. You may have competitive experience with some form of athletics."
-	)
-
 /decl/hierarchy/skill/general/computer
 	name = "Information Technology"
 	uid =  "skill_computer"

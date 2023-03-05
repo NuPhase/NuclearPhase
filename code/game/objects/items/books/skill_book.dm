@@ -321,7 +321,7 @@ GENERAL
 
 //hauling
 /obj/item/book/skill/general/hauling
-	skill = SKILL_HAULING
+	skill = SKILL_STRENGTH
 	author = "Chiel Brunt"
 	icon_state = "tb_hauling"
 

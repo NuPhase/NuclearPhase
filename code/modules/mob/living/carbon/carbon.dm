@@ -242,14 +242,14 @@
 
 	var/message = "\The [src] has thrown \the [item]!"
 	var/skill_mod = 0.2
-	if(!skill_check(SKILL_HAULING, min(round(itemsize - ITEM_SIZE_HUGE) + 2, SKILL_MAX)))
+	if(!skill_check(SKILL_STRENGTH, min(round(itemsize - ITEM_SIZE_HUGE) + 2, SKILL_MAX)))
 		if(prob(30))
 			SET_STATUS_MAX(src, STAT_WEAK, 2)
 			message = "\The [src] barely manages to throw \the [item], and is knocked off-balance!"
 	else
 		skill_mod += 0.2
 
-	skill_mod += 0.8 * (get_skill_value(SKILL_HAULING) - SKILL_MIN)/(SKILL_MAX - SKILL_MIN)
+	skill_mod += 0.8 * (get_skill_value(SKILL_STRENGTH) - SKILL_MIN)/(SKILL_MAX - SKILL_MIN)
 	throw_range *= skill_mod
 
 	//actually throw it!
@@ -523,7 +523,7 @@
 	var/safety = eyecheck()
 	if(safety >= FLASH_PROTECTION_MODERATE || flash_strength <= 0) // May be modified by human proc.
 		return FALSE
-	
+
 	flash_eyes(FLASH_PROTECTION_MODERATE - safety)
 	SET_STATUS_MAX(src, STAT_STUN, (flash_strength / 2))
 	SET_STATUS_MAX(src, STAT_BLURRY, flash_strength)

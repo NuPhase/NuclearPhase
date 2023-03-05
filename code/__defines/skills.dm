@@ -18,7 +18,6 @@
 #define SKILL_EVA           /decl/hierarchy/skill/general/eva
 #define SKILL_MECH          /decl/hierarchy/skill/general/eva/mech
 #define SKILL_PILOT         /decl/hierarchy/skill/general/pilot
-#define SKILL_HAULING       /decl/hierarchy/skill/general/hauling
 #define SKILL_AGILITY		/decl/hierarchy/skill/health/agility
 #define SKILL_STRENGTH		/decl/hierarchy/skill/health/strength
 #define SKILL_FITNESS		/decl/hierarchy/skill/health/fitness
