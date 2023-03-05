@@ -43,5 +43,4 @@
 	bandages_icon =       'icons/mob/species/human/bandage.dmi'
 	limb_icon_intensity = 0.7
 	associated_gender =   FEMALE
-	pixel_offset_x = -28
-	pixel_offset_y = -22
+	pixel_offset_x = -16
