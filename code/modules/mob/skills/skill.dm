@@ -48,37 +48,44 @@ var/global/list/skills = list()
 	default_max = SKILL_MAX
 	abstract_type = /decl/hierarchy/skill/organizational
 
+/decl/hierarchy/skill/health
+	name = "Health"
+	sort_priority = 2
+	difficulty = SKILL_AVERAGE
+	default_max = SKILL_MAX
+	abstract_type = /decl/hierarchy/skill/health
+
 /decl/hierarchy/skill/general
 	name = "General"
-	sort_priority = 2
+	sort_priority = 3
 	difficulty = SKILL_EASY
 	default_max = SKILL_MAX
 	abstract_type = /decl/hierarchy/skill/general
 
 /decl/hierarchy/skill/security
 	name = "Security"
-	sort_priority = 3
+	sort_priority = 4
 	abstract_type = /decl/hierarchy/skill/security
 
 /decl/hierarchy/skill/engineering
 	name = "Engineering"
-	sort_priority = 4
+	sort_priority = 5
 	abstract_type = /decl/hierarchy/skill/engineering
 
 /decl/hierarchy/skill/research
 	name = "Research"
-	sort_priority = 5
+	sort_priority = 6
 	abstract_type = /decl/hierarchy/skill/research
 
 /decl/hierarchy/skill/medical
 	name = "Medical"
-	sort_priority = 6
+	sort_priority = 7
 	abstract_type = /decl/hierarchy/skill/medical
 	difficulty = SKILL_HARD
 
 /decl/hierarchy/skill/service
 	name = "Service"
-	sort_priority = 7
+	sort_priority = 8
 	difficulty = SKILL_EASY
 	default_max = SKILL_MAX
 	abstract_type = /decl/hierarchy/skill/service
@@ -113,6 +120,43 @@ var/global/list/skills = list()
 	mob.remove_language(/decl/language/legal)
 	if(level >= SKILL_EXPERT)
 		mob.add_language(/decl/language/legal)
+
+//Category: Health
+/decl/hierarchy/skill/health/agility
+	name = "Agility"
+	uid = "skill_agility"
+	desc = "This skill represents your flexibility and agility."
+	levels = list(
+		"Unskilled"   = "You are very immobile and can't even reach down to your feet with your hands.",
+		"Basic"       = "You are not very flexible, but it's possible for you to at least make some basic movements.",
+		"Trained"     = "Staying flexible became a norm for you. You exercise often, it's hard for you to injure yourself.",
+		"Experienced" = "Your flexibility is comparable to that of an athlete.",
+		"Master"      = "You are like a monkey."
+	)
+
+/decl/hierarchy/skill/health/strength
+	name = "Strength"
+	uid = "skill_strength"
+	desc = "This skill represents your physical strength."
+	levels = list(
+		"Unskilled"   = "You are weak, your punches are comparable to these of a little girl.",
+		"Basic"       = "You have normal strength for a human of your age.",
+		"Trained"     = "You exercise sometimes, your strength is a little higher than that of an average human.",
+		"Experienced" = "Your strength is well above the strength of a normal human.",
+		"Master"      = "Your strength is unmatched."
+	)
+
+/decl/hierarchy/skill/health/fitness
+	name = "Fitness"
+	uid = "skill_fitness"
+	desc = "This skill represents your able-bodiness."
+	levels = list(
+		"Unskilled"   = "You are either overweight or underweight and can be exhausted easily. It's easy for you to die.",
+		"Basic"       = "You are a little unhealthy, but that's it. Your weight is probably still out of the normal zone.",
+		"Trained"     = "You have experience in exercising, your weight is completely normal.",
+		"Experienced" = "You are an athlete that is in the lower weight ranges.",
+		"Master"      = "You are the healthiest human in the world."
+	)
 
 // Category: General
 /decl/hierarchy/skill/general/eva
@@ -154,7 +198,7 @@ var/global/list/skills = list()
 	default_max = SKILL_ADEPT
 
 /decl/hierarchy/skill/general/hauling
-	name = "Athletics"
+	name = "DEPRECATED"
 	uid =  "skill_hauling"
 	desc = "Your ability to perform tasks requiring great strength, dexterity, or endurance."
 	levels = list(
