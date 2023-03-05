@@ -22,6 +22,7 @@
 	var/decl/flooring/flooring
 	var/mineral = DEFAULT_WALL_MATERIAL
 	var/lava = 0
+	var/deflaged = FALSE
 
 /turf/simulated/floor/is_plating()
 	return !flooring
