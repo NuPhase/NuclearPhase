@@ -5,7 +5,7 @@
 	name = "Grenades - Special Ops supplies"
 	contains = list(/obj/item/storage/box/emps,
 					/obj/item/grenade/smokebomb = 3,
-					/obj/item/grenade/chem_grenade/incendiary)
+					/obj/item/grenade/incendiary)
 	containername = "special ops crate"
 	hidden = 1
 
