@@ -279,8 +279,9 @@ var/global/const/DEFAULT_SPECIES_HEALTH = 200
 	var/preview_icon_height = 64
 	var/preview_icon_path
 	var/preview_outfit = /decl/hierarchy/outfit/job/generic/assistant
-	var/genitals = 0
-	var/anus = 0
+	var/genitals = FALSE
+	var/anus = FALSE
+	var/virginity = FALSE
 
 /decl/species/Initialize()
 

@@ -16,6 +16,7 @@
 
 	var/icon/bgstate = "000"
 	var/list/bgstate_options = list("000", "midgrey", "FFF", "white", "steel", "techmaint", "dark", "plating", "reinforced")
+	var/virginity
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
@@ -34,6 +35,7 @@
 	pref.h_style =                R.read("hair_style_name")
 	pref.f_style =                R.read("facial_style_name")
 	pref.body_markings =          R.read("body_markings")
+	pref.virginity =              R.read("virginity")
 
 	// Get h_style type.
 	var/list/all_sprite_accessories = decls_repository.get_decls_of_subtype(/decl/sprite_accessory/hair)
@@ -51,7 +53,7 @@
 			pref.f_style = accessory
 			break
 
-	// Get markings type. 
+	// Get markings type.
 	all_sprite_accessories = decls_repository.get_decls_of_subtype(/decl/sprite_accessory/marking)
 	for(var/marking in pref.body_markings)
 		for(var/accessory in all_sprite_accessories)
@@ -70,6 +72,7 @@
 	W.write("b_type",                 pref.b_type)
 	W.write("appearance_descriptors", pref.appearance_descriptors)
 	W.write("bgstate",                pref.bgstate)
+	W.write("virginity",              pref.virginity)
 
 	// Get names of sprite accessories to serialize.
 	var/decl/sprite_accessory/sprite = GET_DECL(pref.h_style)
@@ -88,6 +91,7 @@
 	pref.hair_colour =        pref.hair_colour        || COLOR_BLACK
 	pref.facial_hair_colour = pref.facial_hair_colour || COLOR_BLACK
 	pref.eye_colour  =        pref.eye_colour         || COLOR_BLACK
+	pref.virginity   =        pref.virginity          || FALSE
 
 	pref.b_type = sanitize_text(pref.b_type, initial(pref.b_type))
 
@@ -199,6 +203,7 @@
 		. += "</tr>"
 	. += "<tr><td colspan = 3><a href='?src=\ref[src];marking_style=1'>Add marking</a></td></tr>"
 	. += "</table>"
+	. += "<div id='HiddenDiv'><span id='HiddenText'><b>Is virgin:</b> <a href='?src=\ref[src];virginity=1'><i>[pref.virginity ? "Yes" : "No"]</i></a><br></span></div>"
 
 	. = jointext(.,null)
 
@@ -326,6 +331,10 @@
 		if(mark_color && CanUseTopic(user))
 			pref.body_markings[M.type] = "[mark_color]"
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["virginity"])
+		pref.virginity = !pref.virginity
+		return TOPIC_REFRESH
 
 /datum/category_item/player_setup_item/proc/ResetAllHair()
 	ResetHair()

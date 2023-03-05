@@ -188,8 +188,8 @@ var/global/list/time_prefs_fixed = list()
 	if(!char_render_holders)
 		update_preview_icon()
 	show_character_previews()
-
-	var/dat = list("<center>")
+	var/dat = list()
+	dat += "<center>"
 	if(is_guest)
 		dat += SPAN_WARNING("Please create an account to save your preferences. If you have an account and are seeing this, please adminhelp for assistance.")
 	else if(load_failed)
@@ -220,6 +220,7 @@ var/global/list/time_prefs_fixed = list()
 
 	winshow(user, "preferences_window", TRUE)
 	var/datum/browser/popup = new(user, "preferences_browser", "Character Setup", 800, 800)
+	popup.add_stylesheet("hidden", 'html/browser/hiddentext.css')
 	var/content = {"
 	<script type='text/javascript'>
 		function update_content(data){
@@ -375,6 +376,8 @@ var/global/list/time_prefs_fixed = list()
 
 	character.h_style = h_style
 	character.f_style = f_style
+
+	character.virgin = virginity
 
 	QDEL_NULL_LIST(character.worn_underwear)
 	character.worn_underwear = list()

@@ -44,7 +44,7 @@ var/global/list/gamemode_cache = list()
 	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/allow_holidays = FALSE
-	var/fps = 20
+	var/fps = 60
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
 	var/list/resource_urls = null
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
@@ -251,7 +251,7 @@ var/global/list/gamemode_cache = list()
 	var/max_client_view_x = MAX_VIEW
 	var/max_client_view_y = MAX_VIEW
 
-	var/allow_diagonal_movement = FALSE
+	var/allow_diagonal_movement = TRUE // Долой трусы свободу письке!
 
 	var/no_throttle_localhost
 

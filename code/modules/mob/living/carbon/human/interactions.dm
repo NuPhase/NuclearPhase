@@ -2,9 +2,6 @@
 *******Interactions code by HONKERTRON feat TestUnit with translations and code edits by Matt********
 **Contains a lot ammount of ERP and MEHANOYEBLYA**
 ***********************************/
-#define SPAN_ERP(t) "<span class='erp'>[t]</span>"
-#define SPAN_ERPBOLD(t) "<span class='erpbold'>[t]</span>"
-#define SPAN_CUMZONE(t) "<span class='cumzone'>[t]</span>"
 
 /obj/effect/decal/cleanable/cum
 	name = "cream"
@@ -12,13 +9,18 @@
 	density = 0
 	layer = 2
 	icon = 'honk/icons/effects/cum.dmi'
-	blood_DNA = list()
 	anchored = 1
-	random_icon_states = list("cum1", "cum3", "cum4", "cum5", "cum6", "cum7", "cum8", "cum9", "cum10", "cum11", "cum12")
+	random_icon_states = list("cum1", "cum2", "cum3", "cum4", "cum5", "cum6", "cum7", "cum8", "cum9", "cum10", "cum11", "cum12")
 
 /obj/effect/decal/cleanable/cum/New()
 	..()
 	icon_state = pick(random_icon_states)
+
+/obj/effect/decal/cleanable/cum/fem
+	name = "slippery liquid"
+	desc = "Uhh... Someone had fun..."
+	icon = 'honk/icons/effects/lewd_decals.dmi'
+	random_icon_states = list("femcum_1", "femcum_2", "femcum_3", "femcum_4")
 
 /decl/material/liquid/semen
 	solid_name = "semen"
@@ -33,13 +35,18 @@
 
 /decl/material/liquid/semen/on_mob_life(mob/living/M, metabolism_class, datum/reagents/holder)
 	. = ..()
-	if(prob(5))
+	if(prob(1))
 		to_chat(M, SPAN_CUMZONE("You feel something hot and full of love at your face..."))
 
 /mob/living/carbon/human/examine(mob/user, distance)
 	. = ..()
-	if(reagents.has_reagent(/decl/material/liquid/semen, 1) && !_wear_mask)
-		to_chat(user, SPAN_ERP("Her face is covered with a white liquid..."))
+	var/decl/pronouns/G = get_pronouns()
+
+	if(reagents.has_reagent(/decl/material/liquid/semen, 1) && !_wear_mask && !_head)
+		to_chat(user, SPAN_ERP("[G.His] face [G.is] covered with a white liquid..."))
+
+	if(get_mood(/datum/mood/horny))
+		to_chat(user, SPAN_ERP("[G.He] [G.has] a heavy, languid breath."))
 
 /mob/living/carbon/human/receive_mouse_drop(mob/M as mob, mob/user as mob)
 	if(M == src || src == usr || M != usr)		return
@@ -67,8 +74,8 @@
 	return (!_w_uniform ? 1 : 0) && !have_blocking_underwear
 
 /decl/species/human
-	genitals = 1
-	anus = 1
+	genitals = TRUE
+	anus = TRUE
 
 /mob/living/carbon/human/proc/get_pleasure_amt(hole)
 	switch (hole)
@@ -102,8 +109,8 @@
 	if (!hashands_p)
 		temp = GET_EXTERNAL_ORGAN(P, BP_L_HAND)
 		hashands = (temp && temp.is_usable())
-	var/mouthfree = !(H._wear_mask)
-	var/mouthfree_p = !(P._wear_mask)
+	var/mouthfree = !(H._wear_mask) && (H._head && !(H._head.body_parts_covered & SLOT_FACE))
+	var/mouthfree_p = !(P._wear_mask) && (P._head && !(P._head.body_parts_covered & SLOT_FACE))
 	var/haspenis = H.has_penis()
 	var/haspenis_p = P.has_penis()
 	var/hasvagina = (H.gender == FEMALE && H.species.genitals)
@@ -247,12 +254,16 @@
 				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/SHORT/"
 			if(150 to INFINITY)
 				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/LONG/"
+				if(prob(25))
+					T = get_turf(H)
+					var/obj/effect/decal/cleanable/cum/fem/f = new(T)
+					f.add_fingerprint(H)
 		sound = pick(flist("[sound_path]"))
 		src.lust -= delta
 
 	H.multiorgasms += 1
 	if(sound && sound_path)
-		playsound(loc, "[sound_path][sound]", 90, 1, -5)
+		playsound(loc, "[sound_path][sound]", 100, 1, -5)
 
 	SET_STATUS_MAX(H, STAT_DRUGGY, 60)
 	H.multiorgasms += 1
@@ -263,6 +274,7 @@
 	var/sound
 	var/sound_path
 	var/message = ""
+	SSmoods.mass_mood_give("fuck", list(H, P))
 	switch(hole)
 		if("vaglick")
 			message = pick("licks [P].", "sucks [P]'s pussy.")

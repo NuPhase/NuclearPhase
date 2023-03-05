@@ -76,18 +76,12 @@
 	flags_inv = 0
 	body_parts_covered = 0
 
-/obj/item/clothing/head/collectable/kitty/nesnimaemie
-	canremove = FALSE
-
 /obj/item/clothing/head/collectable/rabbitears
 	name = "collectable rabbit ears"
 	desc = "Not as lucky as the feet!"
 	icon = 'icons/clothing/head/bunny.dmi'
 	flags_inv = 0
 	body_parts_covered = 0
-
-/obj/item/clothing/head/collectable/rabbitears/nesnimaemie
-	canremove = FALSE
 
 /obj/item/clothing/head/collectable/wizard
 	name = "collectable wizard's hat"

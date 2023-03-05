@@ -835,3 +835,9 @@ var/global/list/json_cache = list()
 	if(Li <= L.len)
 		return (result + L.Copy(Li, 0))
 	return (result + R.Copy(Ri, 0))
+
+/proc/check_and_place_if_list_dosnt_have_entry(var/list/l, var/list/key)
+	if(!l.Find(key))
+		l.Add(key)
+		l[key] = list()
+	return l
