@@ -400,7 +400,7 @@ Helpers
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
 			to_world("[robolist]")
 
-	var/dronecount = 0
+	//var/dronecount = 0
 
 	for (var/mob/living/silicon/robot/robo in SSmobs.mob_list)
 
