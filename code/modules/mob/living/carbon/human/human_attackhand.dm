@@ -45,6 +45,8 @@
 		return TRUE
 	. = ..()
 
+var/list/male_strength_skill_damage = list(-3, 0, 1, 3, 5)
+var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 /mob/living/carbon/human/default_hurt_interaction(mob/user)
 	. = ..()
 	if(.)
@@ -60,6 +62,10 @@
 
 	var/mob/living/carbon/human/H = user
 	var/rand_damage = rand(1, 5)
+	if(gender == MALE)
+		rand_damage += male_strength_skill_damage[get_skill_value(SKILL_STRENGTH)]
+	else
+		rand_damage += female_strength_skill_damage[get_skill_value(SKILL_STRENGTH)]
 	var/block = 0
 	var/accurate = 0
 	var/hit_zone = H.zone_sel.selecting
