@@ -95,25 +95,38 @@
 // Movement delay
 /datum/movement_handler/mob/delay
 	var/next_move
+	var/delay = 1
 
 /datum/movement_handler/mob/delay/DoMove(var/direction, var/mover, var/is_external)
 	if(!is_external)
-		var/delay = max(1, mob.get_movement_delay(direction))
-		if(direction & (direction - 1)) //moved diagonally successfully
-			delay *= sqrt(2)
+		delay = max(1, mob.get_movement_delay() + GetGrabSlowdown())
 		next_move = world.time + delay
-		mob.set_glide_size(delay)
+		UpdateGlideSize()
 
 /datum/movement_handler/mob/delay/MayMove(var/mover, var/is_external)
 	if(IS_NOT_SELF(mover) && is_external)
 		return MOVEMENT_PROCEED
 	return ((mover && mover != mob) ||  world.time >= next_move) ? MOVEMENT_PROCEED : MOVEMENT_STOP
 
-/datum/movement_handler/mob/delay/proc/SetDelay(var/delay)
+/datum/movement_handler/mob/delay/proc/SetDelay(var/new_delay)
+	delay = new_delay
 	next_move = max(next_move, world.time + delay)
+	UpdateGlideSize()
 
-/datum/movement_handler/mob/delay/proc/AddDelay(var/delay)
-	next_move += max(0, delay)
+/datum/movement_handler/mob/delay/proc/AddDelay(var/add_delay)
+	delay += add_delay
+	next_move += max(0, add_delay)
+	UpdateGlideSize()
+
+/datum/movement_handler/mob/delay/proc/UpdateGlideSize()
+	host.set_glide_size(DELAY2GLIDESIZE(delay))
+
+/datum/movement_handler/mob/delay/proc/GetGrabSlowdown()
+	. = 0
+	for (var/obj/item/grab/G in mob)
+		if(G.assailant == G.affecting)
+			return
+		. = max(., G.grab_slowdown())
 
 // Stop effect
 /datum/movement_handler/mob/stop_effect/DoMove()

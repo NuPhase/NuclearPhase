@@ -1066,8 +1066,8 @@
 /mob/get_mob()
 	return src
 
-/mob/proc/set_glide_size(var/delay)
-	glide_size = ADJUSTED_GLIDE_SIZE(delay)
+// /mob/proc/set_glide_size(var/delay)
+// 	glide_size = ADJUSTED_GLIDE_SIZE(delay)
 
 /mob/proc/get_weather_protection()
 	for(var/obj/item/brolly in get_held_items())

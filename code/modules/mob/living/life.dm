@@ -86,13 +86,13 @@
 	if(istype(touching_reagents))
 		touching_reagents.metabolize()
 		return touching_reagents
-		
+
 /mob/living/proc/metabolize_injected_reagents()
 	var/datum/reagents/metabolism/injected_reagents = get_injected_reagents()
 	if(istype(injected_reagents))
 		injected_reagents.metabolize()
 		return injected_reagents
-		
+
 /mob/living/proc/metabolize_ingested_reagents()
 	var/datum/reagents/metabolism/ingested_reagents = get_ingested_reagents()
 	if(istype(ingested_reagents))
@@ -116,8 +116,8 @@
 	var/turf/actual_loc = loc
 	// If we're standing in the rain, use the turf weather.
 	. = istype(actual_loc) && actual_loc.weather
-	if(!.) // If we're under or inside shelter, use the z-level rain (for ambience)
-		. = global.weather_by_z["[my_turf.z]"]
+	// if(!.) // If we're under or inside shelter, use the z-level rain (for ambience)
+	// 	. = global.weather_by_z["[my_turf.z]"]
 
 /mob/living/proc/handle_environment(var/datum/gas_mixture/environment)
 
@@ -213,7 +213,7 @@
 	else if(eyeobj)
 		if(eyeobj.owner != src)
 			reset_view(null)
-	else if(z_eye) 
+	else if(z_eye)
 		return
 	else if(client && !client.adminobs)
 		reset_view(null)
