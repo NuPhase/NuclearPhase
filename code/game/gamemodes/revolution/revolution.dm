@@ -13,3 +13,4 @@
 		/decl/special_role/loyalist
 	)
 	require_all_templates = TRUE
+	votable = FALSE

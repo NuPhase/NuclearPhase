@@ -11,3 +11,4 @@
 		/decl/special_role/mercenary
 	)
 	require_all_templates = TRUE
+	votable = FALSE

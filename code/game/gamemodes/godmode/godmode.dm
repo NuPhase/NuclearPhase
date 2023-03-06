@@ -7,6 +7,7 @@
 	required_enemies = 3
 	end_on_antag_death = FALSE
 	associated_antags = list(
-		/decl/special_role/deity, 
+		/decl/special_role/deity,
 		/decl/special_role/godcultist
 	)
+	votable = FALSE

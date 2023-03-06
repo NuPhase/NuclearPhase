@@ -14,3 +14,4 @@
 		/decl/special_role/cultist
 	)
 	require_all_templates = TRUE
+	votable = FALSE

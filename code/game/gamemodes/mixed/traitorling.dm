@@ -11,3 +11,4 @@
 		/decl/special_role/traitor
 	)
 	require_all_templates = TRUE
+	votable = FALSE

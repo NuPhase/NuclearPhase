@@ -8,3 +8,4 @@
 	end_on_antag_death = FALSE
 	antag_scaling_coeff = 10
 	associated_antags = list(/decl/special_role/changeling)
+	votable = FALSE

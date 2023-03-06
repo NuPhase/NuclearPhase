@@ -27,6 +27,7 @@
 
 	event_delay_mod_moderate = 0.5		// As a bonus, more frequent events.
 	event_delay_mod_major = 0.3
+	votable = FALSE
 
 /decl/vv_set_handler/meteor_severity_handler
 	handled_type = /datum/game_mode/meteor
