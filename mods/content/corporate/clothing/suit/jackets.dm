@@ -1,11 +1,11 @@
 /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
-	name = "\improper NanoTrasen leather jacket"
-	desc = "A brown leather coat. The NanoTrasen logo is proudly displayed on the back."
+	name = "\improper Fictional Company leather jacket"
+	desc = "A brown leather coat. The Fictional Company logo is proudly displayed on the back."
 	icon = 'mods/content/corporate/icons/clothing/suit/nt_brown.dmi'
 
 /obj/item/clothing/suit/storage/leather_jacket/nanotrasen
-	name = "\improper NanoTrasen black leather jacket"
-	desc = "A black leather coat. The NanoTrasen logo is proudly displayed on the back."
+	name = "\improper Fictional Company black leather jacket"
+	desc = "A black leather coat. The Fictional Company logo is proudly displayed on the back."
 	icon = 'mods/content/corporate/icons/clothing/suit/nt_black.dmi'
 
 /obj/item/clothing/suit/storage/mbill
@@ -18,7 +18,7 @@
 	icon = 'mods/content/corporate/icons/clothing/suit/dais_coat.dmi'
 	siemens_coefficient = 0.5
 	armor = list(
-		melee = ARMOR_MELEE_SMALL, 
+		melee = ARMOR_MELEE_SMALL,
 		energy = ARMOR_ENERGY_MINOR
 		)
 	desc = "A hooded winter coat colored blue and white and bearing the logo of Deimos Advanced Information Systems."

@@ -5,8 +5,8 @@
 	icon = 'mods/content/corporate/icons/clothing/accessories/tunic/tunic.dmi'
 
 /obj/item/clothing/accessory/tunic/nanotrasen
-	name = "\improper NanoTrasen tunic"
-	desc = "A fashionable tunic that NanoTrasen provides to their lab workers."
+	name = "\improper Fictional Company tunic"
+	desc = "A fashionable tunic that Fictional Company provides to their lab workers."
 	icon = 'mods/content/corporate/icons/clothing/accessories/tunic/tunic_nt.dmi'
 
 /obj/item/clothing/accessory/tunic/heph
@@ -24,8 +24,8 @@
 	icon = 'mods/content/corporate/icons/clothing/accessories/tunic/tunicblack.dmi'
 
 /obj/item/clothing/accessory/tunic/exec/nanotrasen
-	name = "\improper NanoTrasen executive tunic"
-	desc = "A fashionable tunic that NanoTrasen provides to their lab workers."
+	name = "\improper Fictional Company executive tunic"
+	desc = "A fashionable tunic that Fictional Company provides to their lab workers."
 	icon = 'mods/content/corporate/icons/clothing/accessories/tunic/tunicblack_nt.dmi'
 
 /obj/item/clothing/accessory/tunic/exec/heph

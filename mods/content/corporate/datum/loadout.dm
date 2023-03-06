@@ -68,7 +68,7 @@
 	flags = GEAR_HAS_TYPE_SELECTION
 
 /decl/loadout_option/suit/nanotrasen_poncho
-	name = "poncho, NanoTrasen"
+	name = "poncho, Fictional Company"
 	path = /obj/item/clothing/suit/poncho/roles/science/nanotrasen
 
 /decl/loadout_option/suit/corp_jacket
@@ -88,7 +88,7 @@
 	path = /obj/item/clothing/suit/poncho/roles/science
 
 /decl/loadout_option/suit/hoodie_nt
-	name = "hoodie, NanoTrasen"
+	name = "hoodie, Fictional Company"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie/nt
 
 /decl/loadout_option/suit/wintercoat_dais

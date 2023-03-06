@@ -5,8 +5,8 @@
 	icon = 'mods/content/corporate/icons/clothing/accessories/ties/cliptie.dmi'
 
 /obj/item/clothing/accessory/corptie/nanotrasen
-	name = "\improper NanoTrasen tie"
-	desc = "A red neosilk clip-on tie. This one has a clip on it that proudly bears the NanoTrasen logo."
+	name = "\improper Fictional Company tie"
+	desc = "A red neosilk clip-on tie. This one has a clip on it that proudly bears the Fictional Company logo."
 	icon = 'mods/content/corporate/icons/clothing/accessories/ties/cliptie_nt.dmi'
 
 /obj/item/clothing/accessory/corptie/heph

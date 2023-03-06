@@ -74,7 +74,7 @@
 	icon = 'mods/content/corporate/icons/cyberlimbs/xion/xion_main.dmi'
 
 /decl/prosthetics_manufacturer/nanotrasen
-	name = "NanoTrasen"
+	name = "Fictional Company"
 	desc = "This limb is made from a cheap polymer."
 	icon = 'mods/content/corporate/icons/cyberlimbs/nanotrasen/nanotrasen_main.dmi'
 

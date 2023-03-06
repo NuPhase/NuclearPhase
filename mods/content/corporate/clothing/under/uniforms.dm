@@ -3,7 +3,7 @@
 	desc = "A pair of beige coveralls made of a strong, canvas-like fabric."
 	icon = 'mods/content/corporate/icons/clothing/under/work.dmi'
 	armor = list(
-		melee = ARMOR_MELEE_MINOR, 
+		melee = ARMOR_MELEE_MINOR,
 		bio = ARMOR_BIO_MINOR
 		)
 
@@ -39,25 +39,25 @@
 	icon = 'mods/content/corporate/icons/clothing/under/work_nt.dmi'
 
 /obj/item/clothing/under/polo/nanotrasen
-	name = "\improper NanoTrasen polo and pants"
-	desc = "A fashionable polo and pair of trousers belonging to NanoTrasen, a megacorporation primarily concerned with the research of new and dangerous technologies."
+	name = "\improper Fictional Company polo and pants"
+	desc = "A fashionable polo and pair of trousers belonging to Fictional Company, a megacorporation primarily concerned with the research of new and dangerous technologies."
 	icon = 'mods/content/corporate/icons/clothing/under/smock_nt.dmi'
 	starting_accessories = list(/obj/item/clothing/accessory/tunic/nanotrasen)
 
 /obj/item/clothing/under/executive/nanotrasen
-	name = "\improper NanoTrasen polo and pants"
-	desc = "A fashionable polo and pair of trousers made from expensive biohazard-resistant fabrics. The colors denote the wearer as a NanoTrasen higher-up."
+	name = "\improper Fictional Company polo and pants"
+	desc = "A fashionable polo and pair of trousers made from expensive biohazard-resistant fabrics. The colors denote the wearer as a Fictional Company higher-up."
 	icon = 'mods/content/corporate/icons/clothing/under/smock_exec_nt.dmi'
 	starting_accessories = list(/obj/item/clothing/accessory/tunic/exec/nanotrasen)
 
 /obj/item/clothing/under/pilot/nanotrasen
 	name = "red flight suit"
-	desc = "A sleek red NanoTrasen flight suit. It proudly sports three different patches with corporate logos on them, as well as several unnecessary looking flaps and pockets for effect."
+	desc = "A sleek red Fictional Company flight suit. It proudly sports three different patches with corporate logos on them, as well as several unnecessary looking flaps and pockets for effect."
 	icon = 'mods/content/corporate/icons/clothing/under/pilot_nt.dmi'
 
 /obj/item/clothing/under/suit_jacket/corp/nanotrasen
-	name = "\improper NanoTrasen executive suit"
-	desc = "A set of NanoTrasen-issued suit pants and shirt that particularly enthusiastic company executives tend to wear."
+	name = "\improper Fictional Company executive suit"
+	desc = "A set of Fictional Company-issued suit pants and shirt that particularly enthusiastic company executives tend to wear."
 	icon = 'mods/content/corporate/icons/clothing/under/suit_nt.dmi'
 	starting_accessories = list(/obj/item/clothing/accessory/toggleable/corpjacket/nanotrasen, /obj/item/clothing/accessory/corptie/nanotrasen)
 
@@ -155,7 +155,7 @@
 	name = "\improper Skinner Catering uniform"
 	desc = "A uniform belonging to Skinner's Catering, a dining company."
 	icon = 'mods/content/corporate/icons/clothing/under/skinner.dmi'
-	
+
 /obj/item/clothing/under/saare
 	name = "\improper SAARE uniform"
 	desc = "A uniform belonging to Strategic Assault and Asset Retention Enterprises, a minor private military corporation."

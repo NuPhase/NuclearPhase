@@ -23,7 +23,7 @@
 
 /obj/item/clothing/under/guard/nanotrasen
 	name = "red security guard uniform"
-	desc = "A durable uniform worn by subcontracted NanoTrasen security."
+	desc = "A durable uniform worn by subcontracted Fictional Company security."
 	icon = 'mods/content/corporate/icons/clothing/under/guard_nt.dmi'
 
 /obj/item/clothing/under/guard/pcrc

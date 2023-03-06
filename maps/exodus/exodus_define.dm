@@ -8,7 +8,7 @@
 	dock_name     = "NAS Crescent"
 	boss_name     = "Central Command"
 	boss_short    = "Centcomm"
-	company_name  = "NanoTrasen"
+	company_name  = "Fictional Company"
 	company_short = "NT"
 	system_name   = "Nyx"
 
