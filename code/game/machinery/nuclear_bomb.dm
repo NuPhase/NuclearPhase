@@ -367,7 +367,7 @@ var/global/bomb_set
 
 /obj/item/disk/nuclear/Initialize()
 	. = ..()
-	global.nuke_disks |= src
+	//global.nuke_disks |= src
 	// Can never be quite sure that a game mode has been properly initiated or not at this point, so always register
 	events_repository.register(/decl/observ/moved, src, src, /obj/item/disk/nuclear/proc/check_z_level)
 
@@ -381,15 +381,15 @@ var/global/bomb_set
 
 /obj/item/disk/nuclear/Destroy()
 	events_repository.unregister(/decl/observ/moved, src, src, /obj/item/disk/nuclear/proc/check_z_level)
-	global.nuke_disks -= src
-	if(!length(global.nuke_disks))
-		var/turf/T = pick_area_turf_by_flag(AREA_FLAG_MAINTENANCE, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
-		if(T)
-			var/obj/D = new /obj/item/disk/nuclear(T)
-			log_and_message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).", location = T)
-		else
-			log_and_message_admins("[src], the last authentication disk, has been destroyed. Failed to respawn disc!")
-	return ..()
+	//global.nuke_disks -= src
+	//if(!length(global.nuke_disks))
+	//	var/turf/T = pick_area_turf_by_flag(AREA_FLAG_MAINTENANCE, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
+	//	if(T)
+	//		var/obj/D = new /obj/item/disk/nuclear(T)
+	//		log_and_message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).", location = T)
+	//	else
+	//		log_and_message_admins("[src], the last authentication disk, has been destroyed. Failed to respawn disc!")
+	//return ..()
 
 //====the nuclear football (holds the disk and instructions)====
 /obj/item/storage/secure/briefcase/nukedisk

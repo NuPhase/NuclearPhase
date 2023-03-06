@@ -37,7 +37,7 @@
 		dat += "</tr>"
 	dat += "</table>"
 
-	if(flags & ANTAG_HAS_NUKE)
+	/*if(flags & ANTAG_HAS_NUKE)
 		dat += "<br><table><tr><td><B>Nuclear disk(s)</B></td></tr>"
 		for(var/obj/item/disk/nuclear/N in global.nuke_disks)
 			dat += "<tr><td>[N.name], "
@@ -54,7 +54,7 @@
 		dat += "</table>"
 	dat += get_additional_check_antag_output(caller)
 	dat += "<hr>"
-	return dat
+	return dat*/
 
 //Overridden elsewhere.
 /decl/special_role/proc/get_additional_check_antag_output(var/datum/admins/caller)
