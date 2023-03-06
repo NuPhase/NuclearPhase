@@ -4,3 +4,6 @@
 
 #define MOVING_DELIBERATELY(X) (X.move_intent.flags & MOVE_INTENT_DELIBERATE)
 #define MOVING_QUICKLY(X) (X.move_intent.flags & MOVE_INTENT_QUICK)
+
+
+#define DELAY2GLIDESIZE(delay) (WORLD_ICON_SIZE / max(CEILING(delay / world.tick_lag), 1))
