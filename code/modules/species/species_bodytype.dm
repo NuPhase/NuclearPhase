@@ -16,7 +16,9 @@ var/global/list/bodytypes_by_category = list()
 	var/skeletal_icon =   'icons/mob/species/human/skeleton.dmi'
 	var/icon_template =   'icons/mob/species/template.dmi' // Used for mob icon generation for non-32x32 species.
 	var/ignited_icon =    'icons/mob/OnFire.dmi'
+	var/icon_postfix //this is what will be used for clothing after its icon state. Example: radsuit-[icon_postfix]
 	var/associated_gender
+	var/pain_mod = 1 //pain modifier
 	var/icon_cache_uid
 
 	var/uniform_state_modifier

@@ -19,6 +19,9 @@
 	if(!message || stat || !can_feel_pain() || has_chemical_effect(CE_PAINKILLER, power))
 		return
 	power -= GET_CHEMICAL_EFFECT(src, CE_PAINKILLER)/2	//Take the edge off.
+	var/decl/bodytype/bodytype = get_bodytype()
+	if(bodytype)
+		power *= bodytype.pain_mod
 	// Excessive halloss is horrible, just give them enough to make it visible.
 	if(!nohalloss && power)
 		if(affecting)

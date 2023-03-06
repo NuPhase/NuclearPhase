@@ -15,7 +15,7 @@
 	var/contaminant_guard = 0
 	var/eye_colour = COLOR_BLACK
 	var/innate_flash_protection = FLASH_PROTECTION_NONE
-	var/eye_icon = 'icons/mob/species/default_eyes.dmi'
+	var/eye_icon = 'icons/mob/species/eyes.dmi'
 	var/apply_eye_colour = TRUE
 	var/tmp/last_cached_eye_colour
 	var/tmp/last_eye_cache_key
@@ -41,13 +41,14 @@
 
 /obj/item/organ/internal/eyes/proc/get_eye_cache_key()
 	last_cached_eye_colour = eye_colour
-	last_eye_cache_key = "[type]-[eye_icon]-[last_cached_eye_colour]"
+	last_eye_cache_key = "[type]-[eye_icon]-[last_cached_eye_colour][owner ? owner.bodytype.icon_postfix : ""]"
 	return last_eye_cache_key
 
 /obj/item/organ/internal/eyes/proc/get_onhead_icon()
 	var/cache_key = get_eye_cache_key()
+	var/postfix = owner ? owner.bodytype.icon_postfix : ""
 	if(!human_icon_cache[cache_key])
-		var/icon/eyes_icon = icon(icon = eye_icon, icon_state = "")
+		var/icon/eyes_icon = icon(icon = eye_icon, icon_state = "eyes_s[postfix]")
 		if(apply_eye_colour)
 			eyes_icon.Blend(last_cached_eye_colour, eye_blend)
 		human_icon_cache[cache_key] = eyes_icon
@@ -58,7 +59,7 @@
 	if(I)
 		var/cache_key = "[last_eye_cache_key]-glow"
 		if(!human_icon_cache[cache_key])
-			human_icon_cache[cache_key] = emissive_overlay(I, "")
+			human_icon_cache[cache_key] = emissive_overlay(I, "eyes_s[owner ? owner.bodytype.icon_postfix : ""]")
 		return human_icon_cache[cache_key]
 
 /obj/item/organ/internal/eyes/proc/update_colour()

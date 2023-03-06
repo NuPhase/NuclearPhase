@@ -63,7 +63,8 @@
 
 	var/use_alt_layer = FALSE // Use the slot's alternative layer when rendering on a mob
 
-	var/list/sprite_sheets // Assoc list of bodytype to icon for producing onmob overlays when this item is held or worn.
+	var/list/sprite_sheets // Assoc list of bodytype category to icon for producing onmob overlays when this item is held or worn.
+	var/list/gender_specific_icons //assoc list of gender to icon for onmob overlays when worn
 
 	// Material handling for material weapons (not used by default, unless material is supplied or set)
 	var/decl/material/material                      // Reference to material decl. If set to a string corresponding to a material ID, will init the item with that material.

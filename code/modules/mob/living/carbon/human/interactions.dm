@@ -42,7 +42,8 @@
 	. = ..()
 	var/decl/pronouns/G = get_pronouns()
 
-	if(reagents.has_reagent(/decl/material/liquid/semen, 1) && !_wear_mask && !_head)
+	var/mouthfree = !(_wear_mask) && !(_head && (_head.body_parts_covered & SLOT_FACE))
+	if(reagents.has_reagent(/decl/material/liquid/semen, 1) && mouthfree)
 		to_chat(user, SPAN_ERP("[G.His] face [G.is] covered with a white liquid..."))
 
 	if(get_mood(/datum/mood/horny))
@@ -109,8 +110,8 @@
 	if (!hashands_p)
 		temp = GET_EXTERNAL_ORGAN(P, BP_L_HAND)
 		hashands = (temp && temp.is_usable())
-	var/mouthfree = !(H._wear_mask) && (H._head && !(H._head.body_parts_covered & SLOT_FACE))
-	var/mouthfree_p = !(P._wear_mask) && (P._head && !(P._head.body_parts_covered & SLOT_FACE))
+	var/mouthfree = !(H._wear_mask) && !(H._head && (H._head.body_parts_covered & SLOT_FACE))
+	var/mouthfree_p = !(P._wear_mask) && !(P._head && (P._head.body_parts_covered & SLOT_FACE))
 	var/haspenis = H.has_penis()
 	var/haspenis_p = P.has_penis()
 	var/hasvagina = (H.gender == FEMALE && H.species.genitals)
@@ -536,7 +537,7 @@
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SWALLOW/"
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("fucks ") + SPAN_ERPBOLD("[P]'s" + SPAN_ERP("throat")))
 				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("fucks ") + SPAN_ERPBOLD("[P]'s" + SPAN_ERP("throat")))
+					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("fucks ") + SPAN_ERPBOLD("[P]'s") + SPAN_ERP("throat"))
 			else
 				sound_path = "honk/sound/new/ACTIONS/BLOWJOB/"
 			sound = pick(flist("[sound_path]"))

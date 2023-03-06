@@ -11,8 +11,11 @@
 /decl/bodytype/human/female
 	name =                "Female"
 	icon_base =           'icons/mob/species/human/body_female.dmi'
+	icon_postfix = 		  "-female"
+	lip_icon = 			  null
 	associated_gender =   FEMALE
 	uniform_state_modifier = "f"
+	pain_mod = 0.7
 
 /decl/bodytype/monkey
 	name =              "Monkey"

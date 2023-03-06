@@ -144,7 +144,11 @@
 		if(hair_style)
 			if(!hair_style.species_allowed || (species.get_root_species_name(owner) in hair_style.species_allowed))
 				if(!hair_style.subspecies_allowed || (species.name in hair_style.subspecies_allowed))
-					var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+					var/icon/hair_s
+					if(owner.gender == MALE)
+						hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+					else
+						hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]")
 					if(hair_style.do_colouration && hair_colour)
 						hair_s.Blend(hair_colour, hair_style.blend)
 					res.overlays |= hair_s

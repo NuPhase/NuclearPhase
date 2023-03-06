@@ -8,6 +8,7 @@
 
 /decl/sprite_accessory/hair
 	icon = 'icons/mob/species/human/hair.dmi'
+	gender = MALE
 
 /decl/sprite_accessory/hair/bald
 	name = "Bald"
@@ -651,3 +652,62 @@
 	name = "Trimmed Right Sidecut"
 	icon_state = "hair_rightside_trim"
 	flags = HAIR_TIEABLE
+
+
+
+//FEMALE HAIR
+/decl/sprite_accessory/hair/female
+	icon = 'icons/mob/species/human/hair_female.dmi'
+	gender = FEMALE
+
+/decl/sprite_accessory/hair/female/longstraightponytail
+	name = "Long Straight Ponytail"
+	icon_state = "hair_longstraightponytail_slim"
+
+/decl/sprite_accessory/hair/female/sick
+	name = "Sick"
+	icon_state = "hair_sickboy_slim"
+
+/decl/sprite_accessory/hair/female/bowie
+	name = "Bowie"
+	icon_state = "hair_bowie_slim"
+
+/decl/sprite_accessory/hair/female/wolfmane
+	name = "Wolfmane"
+	icon_state = "hair_wolfmane_slim"
+
+/decl/sprite_accessory/hair/female/backswept
+	name = "Backswept"
+	icon_state = "hair_backswept_slim"
+
+/decl/sprite_accessory/hair/female/leon
+	name = "Leon"
+	icon_state = "hair_leon_slim"
+
+/decl/sprite_accessory/hair/female/wong
+	name = "Wong"
+	icon_state = "hair_wong_slim"
+
+/decl/sprite_accessory/hair/female/ladylike
+	name = "Ladylike"
+	icon_state = "hair_ladylike_slim"
+
+/decl/sprite_accessory/hair/female/bluntbangs
+	name = "Bluntbangs"
+	icon_state = "hair_bluntbangs_slim"
+
+/decl/sprite_accessory/hair/female/antenna
+	name = "Antenna"
+	icon_state = "hair_antenna_slim"
+
+/decl/sprite_accessory/hair/female/zone
+	name = "Zone"
+	icon_state = "hair_zone_slim"
+
+/decl/sprite_accessory/hair/female/ziegler
+	name = "Ziegler"
+	icon_state = "hair_ziegler_slim"
+
+/decl/sprite_accessory/hair/female/spikyponytail
+	name = "Ponytail Spiky"
+	icon_state = "hair_spikyponytail_slim"

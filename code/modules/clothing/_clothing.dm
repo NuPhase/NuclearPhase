@@ -91,6 +91,98 @@
 
 	. = ..()
 
+/obj/item/clothing/get_mob_overlay(mob/user_mob, slot, bodypart)
+	if(!use_single_icon)
+		var/mob_state = (item_state || icon_state)
+		var/mob_icon = global.default_onmob_icons[slot]
+		if(ishuman(user_mob))
+			var/mob/living/carbon/human/user_human = user_mob
+			var/use_slot = (bodypart in user_human.bodytype.equip_adjust) ? bodypart : slot
+			return user_human.bodytype.get_offset_overlay_image(FALSE, mob_icon, mob_state, color, use_slot)
+		return overlay_image(mob_icon, mob_state, color, RESET_COLOR)
+
+	var/bodytype = user_mob?.get_bodytype_category() || BODYTYPE_HUMANOID
+	var/decl/bodytype/genderbodytype = user_mob?.get_bodytype()
+	var/useicon =  get_icon_for_bodytype(bodytype)
+	var/use_state = "[bodytype]-[slot][genderbodytype.icon_postfix]"
+	if(!check_state_in_icon(use_state, useicon))
+		if(bodytype != BODYTYPE_HUMANOID)
+			if(!check_state_in_icon("[bodytype]-[slot]", useicon))
+				var/fallback = get_fallback_slot(slot)
+				if(fallback && fallback != slot && check_state_in_icon("[bodytype]-[fallback]", useicon))
+					slot = fallback
+				else
+					bodytype = BODYTYPE_HUMANOID
+					useicon = get_icon_for_bodytype(bodytype)
+			else
+				use_state = "[bodytype]-[slot]"
+		else
+			use_state = "[bodytype]-[slot]"
+
+	if(!check_state_in_icon(use_state, useicon) && global.bodypart_to_slot_lookup_table[slot])
+		use_state = "[bodytype]-[global.bodypart_to_slot_lookup_table[slot]]"
+
+	if(!check_state_in_icon(use_state, useicon))
+		var/fallback = get_fallback_slot(slot)
+		if(!fallback)
+			return new /image
+		slot = fallback
+		use_state = "[bodytype]-[slot]"
+
+	if(!check_state_in_icon(use_state, useicon))
+		return new /image
+
+	var/image/I = image(useicon, use_state)
+	I.color = color
+	I.appearance_flags = RESET_COLOR
+	. = adjust_mob_overlay(user_mob,  bodytype, I, slot, bodypart)
+
+/obj/item/clothing/get_mob_overlay(mob/user_mob, slot, bodypart)
+	if(!use_single_icon)
+		var/mob_state = (item_state || icon_state)
+		var/mob_icon = global.default_onmob_icons[slot]
+		if(ishuman(user_mob))
+			var/mob/living/carbon/human/user_human = user_mob
+			var/use_slot = (bodypart in user_human.bodytype.equip_adjust) ? bodypart : slot
+			return user_human.bodytype.get_offset_overlay_image(FALSE, mob_icon, mob_state, color, use_slot)
+		return overlay_image(mob_icon, mob_state, color, RESET_COLOR)
+
+	var/bodytype = user_mob?.get_bodytype_category() || BODYTYPE_HUMANOID
+	var/decl/bodytype/genderbodytype = user_mob?.get_bodytype()
+	var/useicon =  get_icon_for_bodytype(bodytype)
+	var/use_state = "[bodytype]-[slot][genderbodytype ? genderbodytype.icon_postfix : ""]"
+	if(!check_state_in_icon(use_state, useicon))
+		if(bodytype != BODYTYPE_HUMANOID)
+			if(!check_state_in_icon("[bodytype]-[slot]", useicon))
+				var/fallback = get_fallback_slot(slot)
+				if(fallback && fallback != slot && check_state_in_icon("[bodytype]-[fallback]", useicon))
+					slot = fallback
+				else
+					bodytype = BODYTYPE_HUMANOID
+					useicon = get_icon_for_bodytype(bodytype)
+			else
+				use_state = "[bodytype]-[slot]"
+		else
+			use_state = "[bodytype]-[slot]"
+
+	if(!check_state_in_icon(use_state, useicon) && global.bodypart_to_slot_lookup_table[slot])
+		use_state = "[bodytype]-[global.bodypart_to_slot_lookup_table[slot]]"
+
+	if(!check_state_in_icon(use_state, useicon))
+		var/fallback = get_fallback_slot(slot)
+		if(!fallback)
+			return new /image
+		slot = fallback
+		use_state = "[bodytype]-[slot]"
+
+	if(!check_state_in_icon(use_state, useicon))
+		return new /image
+
+	var/image/I = image(useicon, use_state)
+	I.color = color
+	I.appearance_flags = RESET_COLOR
+	. = adjust_mob_overlay(user_mob,  bodytype, I, slot, bodypart)
+
 /obj/item/clothing/on_update_icon()
 	. = ..()
 	var/base_state = get_world_inventory_state()
