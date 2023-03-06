@@ -55,3 +55,13 @@
 				add_overlay("locked")
 			else
 				add_overlay("open")
+
+/obj/structure/closet/secure_closet/guncabinet/WillContain()
+	return list(
+		/obj/item/gun/projectile/automatic/smg,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/smg,
+	)
