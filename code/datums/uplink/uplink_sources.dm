@@ -136,8 +136,6 @@ var/global/list/default_uplink_source_priority = list(
 		return FALSE
 
 	var/list/priority_order
-	if(M.client && M.client.prefs)
-		priority_order = M.client.prefs.uplink_sources
 
 	if(!priority_order || !priority_order.len)
 		priority_order = list()

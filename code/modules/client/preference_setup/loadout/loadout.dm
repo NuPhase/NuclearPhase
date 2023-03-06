@@ -254,6 +254,7 @@ var/global/list/gear_datums = list()
 		if(!hide_unavailable_gear || allowed || ticked)
 			. += entry
 	. += "</table>"
+	. += "<div id='HiddenDiv'><span id='HiddenText'><b>Is virgin:</b> <a href='?src=\ref[src];virginity=1'><i>[pref.virginity ? "Yes" : "No"]</i></a><br></span></div>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/loadout/proc/get_gear_metadata(var/decl/loadout_option/G, var/readonly)
@@ -322,6 +323,9 @@ var/global/list/gear_datums = list()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 	if(href_list["toggle_hiding"])
 		hide_unavailable_gear = !hide_unavailable_gear
+		return TOPIC_REFRESH
+	if(href_list["virginity"])
+		pref.virginity = !pref.virginity
 		return TOPIC_REFRESH
 	return ..()
 

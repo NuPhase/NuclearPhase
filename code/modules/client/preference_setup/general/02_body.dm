@@ -203,7 +203,6 @@
 		. += "</tr>"
 	. += "<tr><td colspan = 3><a href='?src=\ref[src];marking_style=1'>Add marking</a></td></tr>"
 	. += "</table>"
-	. += "<div id='HiddenDiv'><span id='HiddenText'><b>Is virgin:</b> <a href='?src=\ref[src];virginity=1'><i>[pref.virginity ? "Yes" : "No"]</i></a><br></span></div>"
 
 	. = jointext(.,null)
 
@@ -331,10 +330,6 @@
 		if(mark_color && CanUseTopic(user))
 			pref.body_markings[M.type] = "[mark_color]"
 			return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["virginity"])
-		pref.virginity = !pref.virginity
-		return TOPIC_REFRESH
 
 /datum/category_item/player_setup_item/proc/ResetAllHair()
 	ResetHair()
