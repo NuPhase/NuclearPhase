@@ -168,6 +168,11 @@ default behaviour is:
 	if(swap_density_check(tmob, src))
 		return 0
 
+	for(var/obj/structure/stairs/S in tmob.loc)
+		return 0
+	for(var/obj/structure/ladder/L in tmob.loc)
+		return 0
+
 	return can_move_mob(tmob, 1, 0)
 
 /mob/living/verb/succumb()
@@ -1066,7 +1071,7 @@ default behaviour is:
 /decl/interaction_handler/admin_kill/is_possible(atom/target, mob/user, obj/item/prop)
 	. = ..()
 	if(.)
-		if(!check_rights(R_INVESTIGATE, 0, user)) 
+		if(!check_rights(R_INVESTIGATE, 0, user))
 			return FALSE
 		var/mob/living/M = target
 		if(M.stat == DEAD)
