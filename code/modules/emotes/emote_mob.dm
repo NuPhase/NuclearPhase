@@ -58,6 +58,17 @@
 	else
 		use_emote.do_emote(src, message)
 
+	if(act == "scream" || act == "cry" || act == "agony")
+		for(var/mob/living/carbon/human/potential_psycho in view(world.view))
+			if(potential_psycho.get_mood(/datum/mood/psychopathy) && potential_psycho != src)
+				to_chat(potential_psycho, SPAN_NOTICE(pick(list(
+					"Ah, can they just shut up?",
+					"I don't care, just shut up!",
+					"Why is [src] so damn loud?",
+					"Control your fucking emotions, [src]!",
+					"Stop being so whiney!"
+				))))
+
 	for (var/obj/item/implant/I in src)
 		if (I.implanted)
 			I.trigger(act, src)
