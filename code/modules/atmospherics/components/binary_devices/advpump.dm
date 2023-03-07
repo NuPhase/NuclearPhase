@@ -72,8 +72,8 @@
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
-	air1.volume = initial_flow_capacity * 2
-	air2.volume = initial_flow_capacity * 2
+	air1.volume = initial_flow_capacity * 20
+	air2.volume = initial_flow_capacity * 20
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()
