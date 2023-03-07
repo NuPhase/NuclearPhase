@@ -78,26 +78,39 @@
 	if(current_switch.state)
 		do_message("TURBINES ON BYPASS", 1)
 
-	if(turbine1.rpm > 50 || turbine2.rpm > 50) //you shouldn't accelerate past that without load
-		if(generator1.last_load < 50000)
-			do_message("GENERATOR #1 FULL LOAD REJECTION", 3)
-		if(generator2.last_load < 50000)
-			do_message("GENERATOR #2 FULL LOAD REJECTION", 3)
+	if(turbine1.rpm > 500 || turbine2.rpm > 500) //you shouldn't accelerate past that without load
+		if(generator1.last_load < 50000 || generator2.last_load < 50000)
+			do_message("FULL LOAD REJECTION", 3)
+
+	if(turbine1.braking)
+		do_message("TURBINE #1 BRAKING ACTION", 2)
+	else
+		remove_message("TURBINE #1 BRAKING ACTION")
+	if(turbine2.braking)
+		do_message("TURBINE #2 BRAKING ACTION", 2)
+	else
+		remove_message("TURBINE #2 BRAKING ACTION")
 
 	switch(turbine1.vibration)
 		if(10 to 25)
 			do_message("EXCESSIVE VIBRATION IN TURBINE #1", 1)
 		if(26 to 50)
 			do_message("HIGH VIBRATION IN TURBINE #1", 2)
+			remove_message("EXCESSIVE VIBRATION IN TURBINE #1")
 		if(51 to INFINITY)
 			do_message("CRITICAL VIBRATION IN TURBINE #1", 3)
+			remove_message("EXCESSIVE VIBRATION IN TURBINE #1")
+			remove_message("HIGH VIBRATION IN TURBINE #1")
 	switch(turbine2.vibration)
 		if(10 to 25)
 			do_message("EXCESSIVE VIBRATION IN TURBINE #2", 1)
 		if(26 to 50)
 			do_message("HIGH VIBRATION IN TURBINE #2", 2)
+			remove_message("EXCESSIVE VIBRATION IN TURBINE #2")
 		if(51 to INFINITY)
 			do_message("CRITICAL VIBRATION IN TURBINE #2", 3)
+			remove_message("EXCESSIVE VIBRATION IN TURBINE #2")
+			remove_message("HIGH VIBRATION IN TURBINE #2")
 
 	if(get_pump_flow_rate("F-CP 1") < 50)
 		do_message("REACTOR LOOP PUMP #1 MASS FLOW < 25KG/S", 2)
@@ -107,6 +120,9 @@
 		do_message("TURBINE LOOP PUMP #1 MASS FLOW < 50KG/S", 1)
 	if(get_pump_flow_rate("T-CP 2") < 50)
 		do_message("TURBINE LOOP PUMP #2 MASS FLOW < 50KG/S", 1)
+
+	if(get_meter_temperature("T-M-TURB EX") > 390)
+		do_message("VAPOR IN FEEDWATER LOOP", 2)
 
 /datum/reactor_control_system/proc/moderate_reactor_loop()
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
@@ -127,6 +143,7 @@
 
 /datum/reactor_control_system/proc/moderate_turbine_loop()
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
+	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
 	var/obj/machinery/reactor_button/rswitch/current_switch
 
 	current_valve = reactor_valves["HEATEXCHANGER V-IN"]
@@ -154,6 +171,17 @@
 		current_valve.adjust_openage(-1)
 	else if(turbine2.rpm < 3600)
 		current_valve.adjust_openage(1)
+
+	current_gate = reactor_valves["T-COOLANT V-IN"]
+	if(get_meter_temperature("T-M-TURB EX") > 360)
+		current_gate = min(15000, current_gate.target_pressure += 100)
+	else
+		current_gate = max(1000, current_gate.target_pressure -= 100)
+	current_gate = reactor_valves["T-COOLANT V-OUT"]
+	if(get_meter_temperature("T-M-COOLANT") > 320)
+		current_gate = max(1000, current_gate.target_pressure -= 100)
+	else if(get_meter_temperature("T-M-COOLANT") < 300)
+		current_gate = min(15000, current_gate.target_pressure += 100)
 
 
 /datum/reactor_control_system/proc/scram(cause)
@@ -190,6 +218,10 @@
 	if(msg)
 		return TRUE
 	return FALSE
+
+/datum/reactor_control_system/proc/remove_message(message)
+	all_messages.Remove(message)
+	cleared_messages.Remove(message)
 
 /datum/reactor_control_system/proc/get_pump_flow_rate(pumpid)
 	var/obj/machinery/atmospherics/binary/pump/adv/P = reactor_pumps[pumpid]

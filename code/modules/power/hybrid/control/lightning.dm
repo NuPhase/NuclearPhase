@@ -3,7 +3,7 @@
 
 /obj/machinery/reactor_button/rswitch/lighting/Initialize()
 	. = ..()
-	do_action() //lol
+	state = 1
 	do_action()
 
 /obj/machinery/reactor_button/rswitch/lighting/do_action()

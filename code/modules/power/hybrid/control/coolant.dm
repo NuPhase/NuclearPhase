@@ -53,3 +53,38 @@
 /obj/machinery/reactor_button/presvalve/tcoolantvout
 	name = "T-COOLANT V-OUT"
 	id = "T-COOLANT V-OUT"
+
+/obj/machinery/reactor_button/rswitch/generator_connection/first
+	name = "TURB 1-GRID"
+	id = "generator1"
+
+/obj/machinery/reactor_button/rswitch/generator_connection/second
+	name = "TURB 2-GRID"
+	id = "generator2"
+
+/obj/machinery/reactor_button/rswitch/generator_connection/first/do_action(mob/user)
+	. = ..()
+	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator1
+	if(state == 1)
+		gen.connected = TRUE
+	else
+		gen.connected = FALSE
+
+/obj/machinery/reactor_button/rswitch/generator_connection/second/do_action(mob/user)
+	..()
+	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator2
+	if(state == 1)
+		gen.connected = TRUE
+	else
+		gen.connected = FALSE
+
+/obj/machinery/reactor_button/turbine_braking
+	name = "TURB BRAKES"
+	desc = "Turbine braking system switch. It's impossible to switch them off from here, you'll have to do it manually."
+	cooldown = 30 SECONDS
+
+/obj/machinery/reactor_button/turbine_braking/do_action(mob/user)
+	..()
+	rcontrol.turbine1.braking = TRUE
+	rcontrol.turbine2.braking = TRUE
+	visible_message(SPAN_WARNING("[user] switches on the emergency brakes on the steam turbines!"))

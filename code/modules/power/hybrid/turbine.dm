@@ -169,7 +169,7 @@
 	sfalloff = 3
 
 /obj/structure/turbine_visual
-	name = "turbine"
+	name = "steam turbine"
 	desc = "A gas turbine. Converting pressure into energy since 1884."
 	icon = 'icons/obj/machines/power/turbine.dmi'
 	icon_state = "off"
@@ -181,6 +181,20 @@
 	bound_x = 96
 	bound_y = 192
 	var/datum/composite_sound/turbine/soundloop
+	var/obj/machinery/atmospherics/binary/turbinestage/turbine_stage
+
+/obj/structure/turbine_visual/New(loc, ...)
+	. = ..()
+	turbine_stage = locate(/obj/machinery/atmospherics/binary/turbinestage) in range(2, loc)
+
+/obj/structure/turbine_visual/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/crowbar/brace_jack) && turbine_stage.braking)
+		visible_message(SPAN_NOTICE("[user] starts resetting the emergency brakes on \the [src]."))
+		if(!do_after(user, 5 SECONDS, src))
+			return
+		visible_message(SPAN_NOTICE("[user] resets the emergency brakes on \the [src]."))
+		turbine_stage.braking = FALSE
+	. = ..()
 
 /obj/structure/turbine_visual/proc/spool_up()
 	soundloop = new(list(src, GET_ABOVE(src.loc)), TRUE)

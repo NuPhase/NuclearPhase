@@ -588,17 +588,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
 "aNE" = (
-/obj/structure/table/marble,
-/obj/item/chems/condiment/small/peppermill,
-/obj/item/chems/condiment/small/saltshaker{
-	pixel_x = 5
-	},
-/obj/item/chems/condiment/enzyme{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/avalon/shelter/messhall)
+/obj/structure/table/glass,
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/brig/medbay)
 "aOE" = (
 /obj/structure/table/steel,
 /obj/item/twohanded/pipewrench,
@@ -1296,7 +1288,8 @@
 "bJD" = (
 /obj/machinery/power/generator/transformer{
 	dir = 4;
-	coef = 0.125
+	coef = 0.125;
+	max_cap = 3000000000
 	},
 /obj/structure/cable/heavy{
 	icon_state = "0-8"
@@ -2567,9 +2560,11 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "dmp" = (
-/obj/structure/table/glass,
-/turf/simulated/floor/tiled/white,
-/area/avalon/shelter/brig/medbay)
+/obj/structure/rack,
+/obj/item/clothing/suit/modern/space/combat_specialized/cold,
+/obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/expeditionpreparation)
 "dnn" = (
 /obj/structure/cable{
 	icon_state = "32-8";
@@ -3354,14 +3349,6 @@
 "ejW" = (
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig/prison)
-"ekj" = (
-/obj/structure/table,
-/obj/item/chems/condiment/small/peppermill,
-/obj/item/chems/condiment/small/saltshaker{
-	pixel_x = 5
-	},
-/turf/simulated/floor/tiled,
-/area/avalon/shelter/messhall)
 "ekq" = (
 /obj/random/trash,
 /obj/effect/floor_decal/corner/grey/border{
@@ -3803,8 +3790,6 @@
 /area/avalon/shelter/reactormonitoring)
 "eLu" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/modern/space/combat_specialized/cold,
-/obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "eMe" = (
@@ -4496,9 +4481,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/table,
-/obj/item/classic_baton,
-/obj/item/knife/combat,
+/obj/structure/closet/wardrobe/tactical,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/preparation)
 "fMK" = (
@@ -7249,7 +7232,7 @@
 /obj/structure/cable/yellow,
 /obj/machinery/power/generator/transformer{
 	coef = 0.05;
-	max_cap = 3000000
+	max_cap = 300000000
 	},
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -8039,11 +8022,9 @@
 /turf/exterior/concrete,
 /area/surface)
 "kbY" = (
-/obj/effect/floor_decal/corner/red{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/brig/interrogation)
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled,
+/area/avalon/shelter/expeditionpreparation)
 "kdc" = (
 /obj/effect/floor_decal/corner/pink{
 	dir = 6
@@ -9009,6 +8990,8 @@
 	dir = 9
 	},
 /obj/structure/table/steel_reinforced,
+/obj/item/classic_baton,
+/obj/item/knife/combat,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/preparation)
 "lzV" = (
@@ -9709,12 +9692,11 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "mqR" = (
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_x = 22
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/habitationdeck)
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/interrogation)
 "mrR" = (
 /obj/machinery/vending/cigarette{
 	dir = 8;
@@ -12206,11 +12188,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/engineering)
 "pOu" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/effect/floor_decal/corner/yellow{
+	dir = 8
 	},
+/obj/structure/closet/wardrobe/engineering_yellow,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/brig/interrogation)
+/area/avalon/shelter/engineering)
 "pPb" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 4
@@ -13322,13 +13305,16 @@
 "rqi" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/reactor_button/presvalve/tprescontrol{
-	pixel_y = 9
+	pixel_y = 6;
+	pixel_x = 2
 	},
 /obj/machinery/reactor_button/rswitch/valve/feedmakeup{
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = -2
 	},
 /obj/machinery/reactor_button/pump/feedmakeup{
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -1
 	},
 /obj/machinery/reactor_button/presvalve/tcoolantvin{
 	pixel_x = 15;
@@ -13754,7 +13740,8 @@
 "rZS" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/generator/transformer{
-	coef = 0.2
+	coef = 0.2;
+	max_cap = 300000000
 	},
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -13955,12 +13942,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering)
 "slQ" = (
-/obj/effect/floor_decal/corner/yellow{
-	dir = 8
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 22
 	},
-/obj/structure/closet/wardrobe/engineering_yellow,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/engineering)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/habitationdeck)
 "smB" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -14893,9 +14880,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "twu" = (
-/obj/structure/rack,
-/turf/simulated/floor/tiled/monotile,
-/area/avalon/shelter/expeditionpreparation)
+/obj/structure/table,
+/obj/item/chems/condiment/small/peppermill,
+/obj/item/chems/condiment/small/saltshaker{
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled,
+/area/avalon/shelter/messhall)
 "txa" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/tiled/dark,
@@ -15198,9 +15189,6 @@
 /area/avalon/shelter/engineering)
 "tQj" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_display/feedpumps{
-	pixel_y = 28
-	},
 /obj/machinery/reactor_button/rswitch/valve/turbinebypass,
 /obj/machinery/reactor_button/regvalve/turbine1{
 	pixel_x = -3;
@@ -15213,6 +15201,18 @@
 /obj/machinery/reactor_button/regvalve/heatexchangervin{
 	pixel_x = -15;
 	pixel_y = 5
+	},
+/obj/machinery/reactor_button/turbine_braking{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/machinery/reactor_button/rswitch/generator_connection/first{
+	pixel_x = -18;
+	pixel_y = -4
+	},
+/obj/machinery/reactor_button/rswitch/generator_connection/second{
+	pixel_x = -12;
+	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -15560,9 +15560,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "unp" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/avalon/shelter/expeditionpreparation)
+/obj/effect/floor_decal/corner/red{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/interrogation)
 "unV" = (
 /obj/machinery/atmospherics/binary/turbinestage{
 	uid = "turbine2"
@@ -15935,12 +15937,17 @@
 /turf/exterior/surface,
 /area/surface)
 "uHC" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/structure/table/marble,
+/obj/item/chems/condiment/small/peppermill,
+/obj/item/chems/condiment/small/saltshaker{
+	pixel_x = 5
 	},
-/obj/structure/table,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/brig/preparation)
+/obj/item/chems/condiment/enzyme{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/messhall)
 "uHE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -17039,8 +17046,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "wnL" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 4
+/obj/machinery/atmospherics/binary/pump/on{
+	dir = 4;
+	target_pressure = 15000
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -144412,7 +144420,7 @@ sjE
 ktr
 apb
 wjL
-uHC
+fLY
 bSP
 kEi
 wDv
@@ -161684,7 +161692,7 @@ hBO
 faK
 pik
 mTi
-kbY
+unp
 faK
 con
 con
@@ -161813,7 +161821,7 @@ hBO
 hBO
 faK
 xcL
-pOu
+mqR
 qYZ
 faK
 con
@@ -161951,7 +161959,7 @@ con
 con
 con
 gkq
-dmp
+aNE
 dfe
 dfe
 fAe
@@ -178961,7 +178969,7 @@ nMD
 xfU
 vjs
 xFG
-slQ
+pOu
 vsQ
 aJx
 nMD
@@ -210169,7 +210177,7 @@ bGr
 bGr
 bGr
 bGr
-mqR
+slQ
 luD
 bGr
 pEE
@@ -211478,7 +211486,7 @@ ist
 vAJ
 lIN
 brU
-ekj
+twu
 gjX
 pEE
 gxE
@@ -212256,7 +212264,7 @@ hjr
 ibr
 gLQ
 aEV
-aNE
+uHC
 fqP
 lYs
 qLD
@@ -245651,7 +245659,7 @@ aUO
 aUO
 bdz
 fiK
-unp
+kbY
 cVd
 hCn
 qpN
@@ -246039,11 +246047,11 @@ aUO
 aUO
 aUO
 bdz
-unp
+kbY
 vhk
 pCK
 ubC
-eLu
+dmp
 dxE
 bll
 oZs
@@ -246173,7 +246181,7 @@ bkc
 cVd
 mRr
 lRG
-eLu
+dmp
 dxE
 mpQ
 qYg
@@ -246303,7 +246311,7 @@ jsd
 pCK
 mRr
 lRG
-twu
+eLu
 dxE
 iwU
 lJe
@@ -246563,7 +246571,7 @@ srR
 roz
 mRr
 lRG
-eLu
+dmp
 dxE
 iwU
 wTc
@@ -246693,7 +246701,7 @@ fhh
 cVd
 mRr
 lRG
-twu
+eLu
 dxE
 gkW
 gkW
@@ -246823,7 +246831,7 @@ naI
 cVd
 mRr
 lRG
-twu
+eLu
 dxE
 bll
 bll

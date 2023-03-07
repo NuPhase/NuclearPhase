@@ -67,7 +67,7 @@
 
 	return power_draw
 
-/proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0, var/kgs_rating = 0, var/npower_rating = 0, var/efficiency = 0.4)
+/proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0, var/kgs_rating = 0, var/npower_rating = 0, var/efficiency = 0.7)
 	var/source_mass = source.get_mass()
 	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing
 		return -1

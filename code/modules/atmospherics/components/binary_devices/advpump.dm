@@ -32,6 +32,10 @@
 
 	var/datum/composite_sound/pump/soundloop
 
+/obj/machinery/atmospherics/binary/pump/adv/on/Initialize()
+	. = ..()
+	update_mode(REACTOR_PUMP_MODE_IDLE)
+
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
 	flow_capacity = 1500 //kgs
@@ -68,8 +72,8 @@
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
-	air1.volume = initial_flow_capacity + 100
-	air2.volume = initial_flow_capacity + 100
+	air1.volume = initial_flow_capacity * 2
+	air2.volume = initial_flow_capacity * 2
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()
