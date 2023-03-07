@@ -169,6 +169,7 @@
 
 	var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
 	air_sample.volume = mingle_volume
+	air_sample.phases = air.phases.Copy()
 
 	if(istype(target) && target.zone)
 		//Have to consider preservation of group statuses
@@ -176,6 +177,14 @@
 
 		turf_copy.copy_from(target.zone.air)
 		turf_copy.volume = target.zone.air.volume //Copy a good representation of the turf from parent group
+
+		for(var/g in air_sample.gas)
+			if(air_sample.phases[g] == MAT_PHASE_LIQUID)
+				var/obj/effect/fluid/F = locate() in target
+				if(!F) F = new(target)
+				var/condense_reagent_amt = air_sample.gas[g] * REAGENT_UNITS_PER_GAS_MOLE
+				F.reagents.add_reagent(g, condense_reagent_amt)
+				air_sample.gas.Remove(g)
 
 		equalize_gases(list(air_sample, turf_copy))
 		air.merge(air_sample)

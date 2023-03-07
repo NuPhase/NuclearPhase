@@ -540,6 +540,46 @@
 
 	return 1
 
+/proc/equalize_strictly_gases(list/datum/gas_mixture/gases) //equalizes ONLY gases
+	//Calculate totals from individual components
+	var/total_volume = 0
+	var/total_thermal_energy = 0
+	var/total_heat_capacity = 0
+
+	var/list/total_gas = list()
+	for(var/datum/gas_mixture/gasmix in gases)
+		total_volume += gasmix.available_volume
+		var/temp_heatcap = gasmix.heat_capacity()
+		total_thermal_energy += gasmix.temperature * temp_heatcap
+		total_heat_capacity += temp_heatcap
+		for(var/g in gasmix.gas)
+			if(gasmix.phases[g] == MAT_PHASE_GAS)
+				total_gas[g] += gasmix.gas[g]
+
+	if(total_volume > 0)
+		var/datum/gas_mixture/combined = new(total_volume)
+		combined.gas = total_gas
+
+		//Calculate temperature
+		if(total_heat_capacity > 0)
+			combined.temperature = total_thermal_energy / total_heat_capacity
+		combined.update_values()
+
+		//Allow for reactions
+		combined.fire_react()
+
+		//Average out the gases
+		for(var/g in combined.gas)
+			combined.gas[g] /= total_volume
+
+		//Update individual gas_mixtures
+		for(var/datum/gas_mixture/gasmix in gases)
+			gasmix.gas = combined.gas.Copy()
+			gasmix.temperature = combined.temperature
+			gasmix.multiply(gasmix.volume)
+
+	return 1
+
 /datum/gas_mixture/proc/get_mass()
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
