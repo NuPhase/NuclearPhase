@@ -1,5 +1,5 @@
 /obj/item/paper/reactor/coldstart
-	name = "Cold Start Checklist"
+	name = "Manual Cold Start Checklist"
 	info = "\
 	<center><h3>REACTOR MANUAL COLD START</h3></center><BR>\
 	<center><b>Last revised: (10/01/2206)</b></center><BR>\
@@ -20,7 +20,7 @@
 	-T-FEEDWATER-CP MAKEUP to IDLE<BR>\
 	WAIT 10s<BR>\
 	-T-FEEDWATER V-MAKEUP to OPEN<BR>\
-	WAIT 5s<BR>\
+	WAIT 15s<BR>\
 	-T-FEEDWATER V-MAKEUP to CLOSED<BR>\
 	-T-CP 1 MODE to IDLE<BR>\
 	AFTER T-CP 1 RPM > 300<BR>\
@@ -29,7 +29,7 @@
 	<BR>\
 	-FEED START-<BR>\
 	-F-PREHEAT to START<BR>\
-	AFTER F-CP 1 TEMP > 3700K<BR>\
+	AFTER F-M CHAMBER > 3700K<BR>\
 	-F-CP 1V-IN to OPEN<BR>\
 	-F-CP 1 MODE to IDLE<BR>\
 	AFTER F-CP 1 RPM > 70<BR>\
@@ -37,7 +37,7 @@
 	-REACTOR-F-V-IN to OPEN<BR>\
 	-REACTOR-F-V-OUT to OPEN<BR>\
 	VERIFY REACTOR CHAMBER TEMPERATURE RISING<BR>\
-	VERIFY F-FLOW > 400kgs<BR>\
+	VERIFY F-FLOW > 40kgs<BR>\
 	TURB V-BYPASS to OPEN<BR>\
 	-HEATEXCHANGER V-IN to OPEN 10%<BR>\
 	CONTROL HEAT EXCHANGER GAS PRESSURE<BR>\
