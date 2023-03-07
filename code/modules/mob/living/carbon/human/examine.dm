@@ -165,6 +165,30 @@
 	if(cuffs)
 		msg += "<span class='warning'>[G.He] [G.is] [html_icon(cuffs)] restrained with \the [cuffs]!</span>\n"
 
+	if(is_nude() && has_penis())
+		var/mob/living/carbon/human/H = user
+		switch(potenzia)
+			if(-INFINITY to 11)
+				msg += SPAN_ERP("[G.His] dancer is small...") + "\n"
+			if(12 to 20)
+				msg += SPAN_CUMZONE("[G.His] dancer is medium.") + "\n"
+				if(H && !H.has_penis())
+					msg += SPAN_ERP("very interesting...") + "\n"
+			if(21 to INFINITY)
+				msg += SPAN_CUMZONE("[G.His] dancer is HUGE!") + "\n"
+				if(H && !H.has_penis())
+					msg += SPAN_ERP("I'm afraid to know what will happen if he enters me...") + "\n"
+
+	if(!skipface)
+		if((lip_style && lip_style_name))
+			msg += "[G.His] lips are covered with <font color='[lip_style]'>[lip_style_name]</font> lipstick.\n"
+
+		if(reagents.has_reagent(/decl/material/liquid/semen, 1))
+			msg += SPAN_ERP("[G.His] face [G.is] covered with a white liquid...") + "\n"
+
+	if(get_mood(/datum/mood/horny))
+		msg += SPAN_ERP("[G.He] [G.has] a heavy, languid breath.") + "\n"
+
 	//buckled
 	if(buckled)
 		msg += "<span class='warning'>[G.He] [G.is] [html_icon(buckled)] buckled to [buckled]!</span>\n"

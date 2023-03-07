@@ -379,8 +379,8 @@ var/global/bomb_set
 	if(!T || isNotStationLevel(T.z))
 		qdel(src)
 
-/obj/item/disk/nuclear/Destroy()
-	events_repository.unregister(/decl/observ/moved, src, src, /obj/item/disk/nuclear/proc/check_z_level)
+// /obj/item/disk/nuclear/Destroy()
+// 	events_repository.unregister(/decl/observ/moved, src, src, /obj/item/disk/nuclear/proc/check_z_level)
 	//global.nuke_disks -= src
 	//if(!length(global.nuke_disks))
 	//	var/turf/T = pick_area_turf_by_flag(AREA_FLAG_MAINTENANCE, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))

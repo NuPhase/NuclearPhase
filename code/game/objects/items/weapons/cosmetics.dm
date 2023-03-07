@@ -23,9 +23,9 @@
 		icon_state = "the_stick"
 	else
 		icon_state = ""
-		
+
 	add_overlay(list(
-		overlay_image(icon, "lipstick_[open]", flags=RESET_COLOR), 
+		overlay_image(icon, "lipstick_[open]", flags=RESET_COLOR),
 		overlay_image(icon, "key")
 	))
 
@@ -50,13 +50,14 @@
 		if(user.a_intent == I_HELP && target_zone == BP_HEAD)
 			head.write_on(user, src.name)
 		else if(head.has_lips)
-			if(H.lip_style)	//if they already have lipstick on
+			if(H.lip_style || H.lip_style_name)	//if they already have lipstick on
 				to_chat(user, "<span class='notice'>You need to wipe off the old lipstick first!</span>")
 				return
 			if(H == user)
 				user.visible_message("<span class='notice'>[user] does their lips with \the [src].</span>", \
 									 "<span class='notice'>You take a moment to apply \the [src]. Perfect!</span>")
 				H.lip_style = color
+				H.lip_style_name = color_desc
 				H.update_body()
 			else
 				user.visible_message("<span class='warning'>[user] begins to do [H]'s lips with \the [src].</span>", \
@@ -65,6 +66,7 @@
 					user.visible_message("<span class='notice'>[user] does [H]'s lips with \the [src].</span>", \
 										 "<span class='notice'>You apply \the [src].</span>")
 					H.lip_style = color
+					H.lip_style_name = color_desc
 					H.update_body()
 	else if(istype(A, /obj/item/organ/external/head))
 		var/obj/item/organ/external/head/head = A
@@ -86,7 +88,7 @@
 	color = "#218c17"
 	color_desc = "emerald"
 
-/obj/item/lipstick/turquoise 
+/obj/item/lipstick/turquoise
 	name = "turquoise lipstick"
 	color = "#0098f0"
 	color_desc = "turquoise"

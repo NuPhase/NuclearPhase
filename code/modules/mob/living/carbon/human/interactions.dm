@@ -3,6 +3,8 @@
 **Contains a lot ammount of ERP and MEHANOYEBLYA**
 ***********************************/
 
+#define FUCK_COOLDOWN_DEFAULT 7
+
 /obj/effect/decal/cleanable/cum
 	name = "cream"
 	desc = "It's pie cream from a cream pie. Or not..."
@@ -37,17 +39,6 @@
 	. = ..()
 	if(prob(1))
 		to_chat(M, SPAN_CUMZONE("You feel something hot and full of love at your face..."))
-
-/mob/living/carbon/human/examine(mob/user, distance)
-	. = ..()
-	var/decl/pronouns/G = get_pronouns()
-
-	var/mouthfree = !(_wear_mask) && !(_head && (_head.body_parts_covered & SLOT_FACE))
-	if(reagents.has_reagent(/decl/material/liquid/semen, 1) && mouthfree)
-		to_chat(user, SPAN_ERP("[G.His] face [G.is] covered with a white liquid..."))
-
-	if(get_mood(/datum/mood/horny))
-		to_chat(user, SPAN_ERP("[G.He] [G.has] a heavy, languid breath."))
 
 /mob/living/carbon/human/receive_mouse_drop(mob/M as mob, mob/user as mob)
 	if(M == src || src == usr || M != usr)		return
@@ -197,6 +188,96 @@
 	var/lastmoan
 	var/erpcooldown = 1
 	var/virgin = FALSE //:mistake:
+	var/fuckcooldown = 0
+
+/mob/living/carbon/human/AltClick(mob/user)
+	if(src != user)
+		. = ..()
+		return
+	SHOULD_CALL_PARENT(FALSE)
+	masturbate()
+
+/mob/living/carbon/human/proc/masturbate()
+	if(fuckcooldown > world.time)
+		return
+	fuckcooldown = world.time + FUCK_COOLDOWN_DEFAULT
+	var/message = ""
+	var/sound = ""
+	var/obj/item/organ/external/temp =  GET_EXTERNAL_ORGAN(src, BP_R_HAND)
+	var/hashands = (temp && temp.is_usable())
+	if (!hashands)
+		temp = GET_EXTERNAL_ORGAN(src, BP_L_HAND)
+		hashands = (temp && temp.is_usable())
+	var/mouthfree = !(_wear_mask) && !(_head && (_head.body_parts_covered & SLOT_FACE))
+	var/haspenis = has_penis()
+	var/hasvagina = (gender == FEMALE && species.genitals)
+	var/isnude = is_nude()
+	if(!hashands)
+		return
+
+	if(zone_sel.selecting == BP_GROIN)
+		if(isnude)
+			if(haspenis && erpcooldown == 0)
+				message = pick("strokes his dick.", "masturbate his penis.")
+				if (lust < 6)
+					lust += 6
+				visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
+				lust += 8
+				if (lust >= resistenza)
+					cum(src, src)
+				else
+					moan()
+				if(prob(50))
+					sound = pick(flist("honk/sound/new/ACTIONS/PENIS/HANDJOB/"))
+					playsound(loc, "honk/sound/new/ACTIONS/PENIS/HANDJOB/[sound]", 90, 1, -5)
+				do_fucking_animation(src)
+				if (prob(potenzia))
+					visible_message(SPAN_ERPBOLD("[src] " + SPAN_ERP("strokes <B>his's</B> [pick("cock","dick","penis")] faster")))
+
+			else if(hasvagina)
+				message = pick("fingers herself.", "fingers her pussy.")
+				if (prob(35))
+					message = pick("fingers herself hard.")
+				if (!lfhole)
+					message = "shoves their fingers into pussy."
+					sound = "honk/sound/new/ACTIONS/VAGINA/INSERTION/"
+					playsound(loc, "honk/sound/new/ACTIONS/VAGINA/INSERTION/[sound]", 90, 1, -5)
+					lastfucked = src
+					lfhole = "vagina"
+				if (prob(5) && stat != DEAD)
+					lust += 8
+				visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
+				lust += 8
+				if (lust >= resistenza)
+					cum(src, src)
+				else
+					moan(rand(1, 15))
+				sound = pick(flist("honk/sound/new/ACTIONS/VAGINA/TOUCH/"))
+				playsound(loc, ("honk/sound/new/ACTIONS/VAGINA/TOUCH/[sound]"), 90, 1, -5)
+				do_fucking_animation(src)
+
+		else if(hasvagina)
+			message = pick("gently rubs her pussy.", "pats her pussy.")
+			visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
+			lust += 4
+			if (lust >= resistenza)
+				cum(src, src)
+			else
+				moan()
+			sound = pick(flist("honk/sound/new/ACTIONS/HANDS/RUB/CLOTHES/"))
+			playsound(loc, ("honk/sound/new/ACTIONS/HANDS/RUB/CLOTHES/[sound]"), 40, 1, -5)
+			do_fucking_animation(src)
+
+	if(zone_sel.selecting == BP_MOUTH && mouthfree)
+		var/decl/pronouns/G = get_pronouns()
+		message = pick("licks [G.his] finger.", "sucking [G.his] fingers.")
+		visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
+		if(lust+50 <= resistenza)
+			lust += 2
+		else if(lust+100 >= resistenza)
+			moan()
+		sound = pick(flist("honk/sound/new/ACTIONS/MOUTH/SUCK/"))
+		playsound(loc, ("honk/sound/new/ACTIONS/MOUTH/SUCK/[sound]"), 40, 1, -5)
 
 /mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
 	var/sound
@@ -249,7 +330,7 @@
 		H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
 		if (istype(P.loc, /obj/structure/closet))
 			P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
-		var/delta = pick(20, 30, 40, 50)
+		var/delta = rand(20, 100)
 		switch(lust)
 			if(0 to 150)
 				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/SHORT/"
@@ -272,6 +353,10 @@
 
 
 /mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
+	if(fuckcooldown > world.time)
+		return
+	fuckcooldown = world.time + FUCK_COOLDOWN_DEFAULT - round(resistenza/150)
+	P.fuckcooldown = world.time + FUCK_COOLDOWN_DEFAULT + 3
 	var/sound
 	var/sound_path
 	var/message = ""
@@ -409,6 +494,7 @@
 				playsound(loc, "honk/sound/new/ACTIONS/PENIS/HANDJOB/[sound]", 90, 1, -5)
 			H.do_fucking_animation(P)
 			if (prob(P.potenzia))
+				fuckcooldown -= 2
 				H.visible_message(SPAN_ERPBOLD("[H] " + SPAN_ERP("strokes <B>[P]'s</B> [pick("cock","dick","penis")] faster")))
 
 		if("vaginal")
@@ -445,6 +531,7 @@
 				sound = pick(flist("honk/sound/new/ACTIONS/PENETRATION/"))
 				playsound(loc, "honk/sound/new/ACTIONS/PENETRATION/[sound]", 90, 1, -5)
 			else
+				fuckcooldown -= 2
 				sound = pick(flist("honk/sound/new/ACTIONS/BODY/COLLIDE/NAKED/"))
 				playsound(loc, "honk/sound/new/ACTIONS/BODY/COLLIDE/NAKED/[sound]", 90, 1, -5)
 
@@ -480,6 +567,7 @@
 				sound = pick(flist("honk/sound/new/ACTIONS/PENETRATION/"))
 				playsound(loc, "honk/sound/new/ACTIONS/PENETRATION/[sound]", 90, 1, -5)
 			else
+				fuckcooldown -= 2
 				sound = pick(flist("honk/sound/new/ACTIONS/BODY/COLLIDE/NAKED/"))
 				playsound(loc, "honk/sound/new/ACTIONS/BODY/COLLIDE/NAKED/[sound]", 90, 1, -5)
 		if("anal")
@@ -512,6 +600,7 @@
 			H.do_fucking_animation(P)
 			sound = pick(flist("honk/sound/new/ACTIONS/BODY/COLLIDE/NAKED/"))
 			playsound(loc, "honk/sound/new/ACTIONS/BODY/COLLIDE/NAKED/[sound]", 90, 1, -5)
+			fuckcooldown += 1
 
 		if("oral")
 			message = pick(" fucks [P]'s mouth.")
@@ -559,20 +648,15 @@
 			else if (g == "f")
 				var/sound_path
 				var/sound
-				if(H.job == "Amuser")
-					sound_path = "honk/sound/amuser"
-					sound = pick(flist("[sound_path]"))
-					playsound(loc, "[sound_path][sound]", 90, 0, -5)
-				else
-					switch(size)
-						if(-INFINITY to 11)
-							sound_path = "honk/sound/new/Moans/mild/"
-						if(12 to 20)
-							sound_path = "honk/sound/new/Moans/medium/"
-						if(21 to INFINITY)
-							sound_path = "honk/sound/new/Moans/hot/"
-					sound = pick(flist("[sound_path]"))
-					playsound(loc, "[sound_path][sound]", 90, 0, -5)
+				switch(size)
+					if(-INFINITY to 11)
+						sound_path = "honk/sound/new/Moans/mild/"
+					if(12 to 20)
+						sound_path = "honk/sound/new/Moans/medium/"
+					if(21 to INFINITY)
+						sound_path = "honk/sound/new/Moans/hot/"
+				sound = pick(flist("[sound_path]"))
+				playsound(loc, "[sound_path][sound]", 90, 0, -5)
 			lastmoan = moan
 
 /mob/living/carbon/human/proc/handle_lust()
@@ -592,7 +676,7 @@
 	var/pixel_y_diff = 0
 	var/final_pixel_y = initial(pixel_y)
 
-	var/direction = get_dir(src, P)
+	var/direction = P ? get_dir(src, P) : src.dir
 	if(direction & NORTH)
 		pixel_y_diff = 8
 	else if(direction & SOUTH)

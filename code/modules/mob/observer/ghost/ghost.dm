@@ -139,6 +139,8 @@ Works together with spawning an observer, noted above.
 	for(var/mob/living/silicon/target in target_list)
 		C.images += target.hud_list[SPECIALROLE_HUD]
 	return 1
+/mob
+	var/ghosting_now = FALSE
 
 /mob/proc/ghostize(var/can_reenter_corpse = CORPSE_CAN_REENTER)
 	// Are we the body of an aghosted admin? If so, don't make a ghost.
@@ -146,7 +148,10 @@ Works together with spawning an observer, noted above.
 		var/mob/observer/ghost/G = teleop
 		if(G.admin_ghosted)
 			return
+	if(ghosting_now)
+		return
 	if(key)
+		ghosting_now = TRUE
 		hide_fullscreens()
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
@@ -164,6 +169,9 @@ var/global/decl/spawnpoint/office/spawnpoint_office
 			return
 	if(!client)
 		return
+	if(ghosting_now)
+		return
+	ghosting_now = TRUE
 	var/mob/living/carbon/human/new_character
 	var/turf/spawn_turf
 	spawn_turf = pick(spawnpoint_office.turfs)
