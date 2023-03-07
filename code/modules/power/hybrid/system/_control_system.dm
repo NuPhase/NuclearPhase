@@ -147,7 +147,7 @@
 	var/obj/machinery/reactor_button/rswitch/current_switch
 
 	current_valve = reactor_valves["HEATEXCHANGER V-IN"]
-	if(get_meter_temperature("T-M-TURB IN") > 600)
+	if(get_meter_pressure("T-M-TURB IN") > 10000)
 		current_valve.adjust_openage(-1)
 	else
 		current_valve.adjust_openage(1)
@@ -160,16 +160,19 @@
 		current_switch.state = 0
 		current_switch.do_action()
 		return
+	else
+		current_switch = reactor_buttons["TURB V-BYPASS"]
+		current_switch.state = 0
 
 	current_valve = reactor_valves["TURB 1V-IN"]
-	if(turbine1.rpm > 3800)
+	if(turbine1.rpm > 3700)
 		current_valve.adjust_openage(-1)
-	else if(turbine1.rpm < 3600)
+	else if(turbine1.rpm < 3500)
 		current_valve.adjust_openage(1)
 	current_valve = reactor_valves["TURB 2V-IN"]
-	if(turbine2.rpm > 3800)
+	if(turbine2.rpm > 3700)
 		current_valve.adjust_openage(-1)
-	else if(turbine2.rpm < 3600)
+	else if(turbine2.rpm < 3500)
 		current_valve.adjust_openage(1)
 
 	current_gate = reactor_valves["T-COOLANT V-IN"]
@@ -180,7 +183,7 @@
 	current_gate = reactor_valves["T-COOLANT V-OUT"]
 	if(get_meter_temperature("T-M-COOLANT") > 320)
 		current_gate = max(1000, current_gate.target_pressure -= 100)
-	else if(get_meter_temperature("T-M-COOLANT") < 300)
+	else
 		current_gate = min(15000, current_gate.target_pressure += 100)
 
 
