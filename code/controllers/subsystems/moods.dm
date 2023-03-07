@@ -54,14 +54,14 @@ SUBSYSTEM_DEF(moods)
 		if(prob(50)) // give some anarchy to it
 			mood.affect()
 
-/datum/controller/subsystem/moods/proc/call_mood_event(var/eventname)
+/datum/controller/subsystem/moods/proc/call_mood_event(var/eventname, var/list/args_)
 	if(!initialized)
 		return
 	if(!moods_by_events.Find(eventname))
 		return null
 	for(var/datum/mood/mood in moods)
 		if(mood.type in moods_by_events[eventname])
-			mood.by_event()
+			mood.by_event(args_)
 
 /datum/controller/subsystem/moods/proc/mass_mood_give(var/triggername, var/list/mob/living/carbon/human/mobs)
 	if(!initialized)
@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(moods)
 /datum/mood/proc/on_remove()
 	return !isnull(holder)
 
-/datum/mood/proc/by_event()
+/datum/mood/proc/by_event(var/list/args_)
 	return !isnull(holder)
 
 /datum/mood/proc/affect()
