@@ -177,14 +177,14 @@
 
 	current_gate = reactor_valves["T-COOLANT V-IN"]
 	if(get_meter_temperature("T-M-TURB EX") > 360)
-		current_gate = min(15000, current_gate.target_pressure += 100)
+		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 	else
-		current_gate = max(1000, current_gate.target_pressure -= 100)
+		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
 	current_gate = reactor_valves["T-COOLANT V-OUT"]
 	if(get_meter_temperature("T-M-COOLANT") > 320)
-		current_gate = max(1000, current_gate.target_pressure -= 100)
+		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
 	else
-		current_gate = min(15000, current_gate.target_pressure += 100)
+		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 
 
 /datum/reactor_control_system/proc/scram(cause)
