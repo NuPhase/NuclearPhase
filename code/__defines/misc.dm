@@ -4,7 +4,9 @@
 #define TURF_FLAG_NORUINS             BITFLAG(1) // Used by the ruin generator to skip placing loaded ruins on this turf.
 #define TURF_FLAG_BACKGROUND          BITFLAG(2) // Used by shuttle movement to determine if it should be ignored by turf translation.
 
-#define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
+///Width or height of a transition edge area along the map's borders where transition edge turfs are placed to connect levels together.
+#define TRANSITIONEDGE 7
+///Extra spacing needed between any random ruins and the transition edge of a level.
 #define RUIN_MAP_EDGE_PAD 15
 
 // Invisibility constants.
