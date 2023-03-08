@@ -70,9 +70,12 @@
 	return !cables.len && !nodes.len
 
 /datum/powernet/proc/handle_generators()
-	var/list/sorted = list() // unperfomance shit
+	var/list/sorted = list() // unperformance shit
 	for(var/obj/machinery/power/generator/G in nodes)
 		sorted[G] = G.available_power()
+	for(var/obj/machinery/power/generator/transformer/transf in nodes)
+		if(transf.available() > transf.connected.available())
+			transf.powernet.ldemand += transf.connected.powernet.ldemand
 
 	if(sorted.len > 1)
 		sorted = sortAssoc(sorted)
@@ -175,10 +178,6 @@
 
 	//updates the viewed load (as seen on power computers)
 	viewload = round(load())
-
-	for(var/obj/machinery/power/generator/transformer/transf in nodes)
-		if(transf.available() > transf.connected.available())
-			transf.powernet.demand += transf.connected.powernet.ldemand
 
 	//reset the powernet
 	smes_avail = smes_newavail
