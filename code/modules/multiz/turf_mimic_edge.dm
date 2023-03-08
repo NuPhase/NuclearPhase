@@ -38,7 +38,6 @@
 	permit_ao        = FALSE //would need AO proxy
 	blocks_air       = TRUE  //would need air zone proxy
 	dynamic_lighting = FALSE //Would need lighting proxy
-	abstract_type    = /turf/simulated/mimic_edge
 
 	///Mimicked turf's x position
 	var/mimic_x
