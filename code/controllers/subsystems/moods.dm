@@ -24,9 +24,10 @@ SUBSYSTEM_DEF(moods)
 	for(var/moodtype in gettenmoods)
 		var/datum/mood/mood = new moodtype(null)
 
-		moods_by_initializer = check_and_place_if_list_dosnt_have_entry(moods_by_initializer, mood.initializer)
-		moods_by_initializer[mood.initializer] += mood.type
-		moods_by_initializer[mood.initializer][mood.type] = mood.init_chance
+		if(mood.initializer)
+			moods_by_initializer = check_and_place_if_list_dosnt_have_entry(moods_by_initializer, mood.initializer)
+			moods_by_initializer[mood.initializer] += mood.type
+			moods_by_initializer[mood.initializer][mood.type] = mood.init_chance
 
 		for(var/event in mood.eventnames)
 			moods_by_events = check_and_place_if_list_dosnt_have_entry(moods_by_events, event)
@@ -54,14 +55,17 @@ SUBSYSTEM_DEF(moods)
 		if(prob(50)) // give some anarchy to it
 			mood.affect()
 
-/datum/controller/subsystem/moods/proc/call_mood_event(var/eventname, var/list/args_)
+/datum/controller/subsystem/moods/proc/call_mood_event(var/eventname, var/list/args_, var/list/HM)
 	if(!initialized)
 		return
 	if(!moods_by_events.Find(eventname))
 		return null
 	for(var/datum/mood/mood in moods)
-		if(mood.type in moods_by_events[eventname])
-			mood.by_event(args_)
+		if(!(mood.type in moods_by_events[eventname]))
+			continue
+		if(length(HM) && !(mood.holder in HM))
+			continue
+		mood.by_event(args_)
 
 /datum/controller/subsystem/moods/proc/mass_mood_give(var/triggername, var/list/mob/living/carbon/human/mobs)
 	if(!initialized)
@@ -102,7 +106,7 @@ SUBSYSTEM_DEF(moods)
 			if(prob(5))
 				moods_to_give += pick(random_given_moods[MOOD_DIFFICULTY_UNBELIVEABLE])
 
-	if(!moods_to_give || length(moods_to_give) < 1)
+	if(!moods_to_give)
 		return
 
 	for(var/mood in moods_to_give)
@@ -112,7 +116,7 @@ SUBSYSTEM_DEF(moods)
 	var/name = "Basic mood"
 	var/description = "You must not to see that"
 	var/mob/living/carbon/human/holder = null
-	var/initializer = ""
+	var/initializer = null
 	var/list/eventnames = list()
 	var/init_chance = 0 // percents
 	var/timeout = null // null if not deleted after the time spend, number of second after give if must delete
@@ -121,7 +125,8 @@ SUBSYSTEM_DEF(moods)
 
 /datum/mood/New(var/mob/living/carbon/human/H)
 	holder = H
-	timeout = world.time + timeout
+	if(timeout)
+		timeout = world.time + timeout
 
 /datum/mood/proc/init()
 	return
@@ -147,6 +152,9 @@ SUBSYSTEM_DEF(moods)
 
 /mob/proc/get_mood(var/datum/mood/moodtype)
 	return
+
+/mob/living/carbon/human/proc/debug_roundstart_moods()
+	SSmoods.make_initial_mood(src)
 
 /mob/living/carbon/human/add_mood(var/datum/mood/moodtype)
 	var/datum/mood/mood = get_mood(moodtype)
