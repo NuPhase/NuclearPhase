@@ -327,10 +327,10 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	M.shakecamera = current_time + max(TICKS_PER_RECOIL_ANIM, duration)
 	strength = abs(strength)*PIXELS_PER_STRENGTH_VAL
 	var/steps = min(1, FLOOR(duration/TICKS_PER_RECOIL_ANIM))-1
-	animate(M.client, pixel_x = rand(-(strength), strength), pixel_y = rand(-(strength), strength), time = TICKS_PER_RECOIL_ANIM, easing = JUMP_EASING|EASE_IN)
+	animate(M.client, pixel_x = rand(-(strength), strength), pixel_y = rand(-(strength), strength), time = TICKS_PER_RECOIL_ANIM, easing = SINE_EASING)
 	if(steps)
 		for(var/i = 1 to steps)
-			animate(pixel_x = (M.client?.default_pixel_x || 0) + rand(-(strength), strength), pixel_y = (M.client?.default_pixel_y || 0) + rand(-(strength), strength), time = TICKS_PER_RECOIL_ANIM, easing = JUMP_EASING|EASE_IN)
+			animate(pixel_x = (M.client?.default_pixel_x || 0) + rand(-(strength), strength), pixel_y = (M.client?.default_pixel_y || 0) + rand(-(strength), strength), time = TICKS_PER_RECOIL_ANIM, easing = SINE_EASING)
 	animate(pixel_x = (M.client.default_pixel_x || 0), pixel_y = (M.client.default_pixel_y || 0), time = TICKS_PER_RECOIL_ANIM)
 
 #undef TICKS_PER_RECOIL_ANIM

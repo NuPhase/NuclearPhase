@@ -290,7 +290,7 @@
 			playsound(loc, "honk/sound/interactions/final_m[rand(1, 5)].ogg", 90, 0, -5)
 		if(FEMALE)
 			playsound(loc, "honk/sound/interactions/final_f[rand(1, 3)].ogg", 90, 0, -5)
-	to_chat(H, SPAN_ERPBOLD(pick("OH FUCK", "HOLY SHIT"))) //creativity
+	to_chat(H, SPAN_CUMZONE(pick("OH FUCK", "HOLY SHIT"))) //creativity
 	if (has_penis())
 		if (P)
 			T = get_turf(P)
@@ -336,10 +336,12 @@
 				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/SHORT/"
 			if(150 to INFINITY)
 				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/LONG/"
-				if(prob(25))
+				if(prob(25) && is_nude())
 					T = get_turf(H)
 					var/obj/effect/decal/cleanable/cum/fem/f = new(T)
 					f.add_fingerprint(H)
+				else
+					visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE("cums in her pants..."))
 		sound = pick(flist("[sound_path]"))
 		src.lust -= delta
 
@@ -347,7 +349,7 @@
 	if(sound && sound_path)
 		playsound(loc, "[sound_path][sound]", 100, 1, -5)
 
-	SET_STATUS_MAX(H, STAT_DRUGGY, 60)
+	ADJ_STATUS(H, STAT_DRUGGY, 60)
 	H.multiorgasms += 1
 	H.erpcooldown += 3
 

@@ -3,13 +3,13 @@
 	var/mob/living/carbon/human/npc/owner = null
 
 /datum/npc_controller/proc/trigger()
+	return PROCESS_KILL
 
 /datum/npc_controller/New()
+	START_PROCESSING(SSnpc, src)
 	. = ..()
-	spawn(50)
-		handle_selfprocess()
 
-/datum/npc_controller/proc/handle_selfprocess()
-	trigger()
-	spawn(3)
-		handle_selfprocess()
+/datum/npc_controller/Destroy(force)
+	STOP_PROCESSING(SSnpc, src)
+	. = ..()
+
