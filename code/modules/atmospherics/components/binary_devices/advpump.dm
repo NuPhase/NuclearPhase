@@ -32,9 +32,15 @@
 
 	var/datum/composite_sound/pump/soundloop
 
+/obj/machinery/atmospherics/binary/pump/adv/on
+	icon_state = "on"
+
 /obj/machinery/atmospherics/binary/pump/adv/on/Initialize()
 	. = ..()
-	update_mode(REACTOR_PUMP_MODE_IDLE)
+	mode = REACTOR_PUMP_MODE_IDLE
+	rpm = REACTOR_PUMP_RPM_SAFE
+	use_power = POWER_USE_IDLE
+	soundloop = new(list(src), TRUE)
 
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
