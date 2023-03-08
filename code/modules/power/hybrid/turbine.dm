@@ -77,8 +77,9 @@
 	var/new_rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 	if(braking) //TODO: MAKE DAMAGE FROM THIS
 		var/datum/gas_mixture/environment = loc.return_air()
-		kin_energy = kin_energy * 0.9
-		environment.add_thermal_energy(kin_energy * 0.1)
+		kin_energy = max(0, kin_energy * 0.95 - 10000)
+		if(kin_energy)
+			environment.add_thermal_energy(kin_energy * 0.05 + 10000)
 	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, 5000)
 	ingoing_valve.forced_mass_flow = total_mass_flow //so we can succ enough steam
 
