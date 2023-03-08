@@ -51,7 +51,7 @@ Class Procs:
 	var/list/graphic_add = list()
 	var/list/graphic_remove = list()
 	var/last_air_temperature = TCMB
-	var/condensing = TRUE //temporarily disable that
+	var/condensing = FALSE
 
 /zone/New()
 	SSair.add_zone(src)
@@ -199,12 +199,15 @@ Class Procs:
 	condensing = FALSE*/
 
 	condensing = TRUE
+	var/area/checking = get_area(pick(contents))
+	if(!checking.should_condense)
+		return //this will stop further condensation processing
 
 	for(var/g in air.gas)
 		if(air.phases[g] == MAT_PHASE_LIQUID)
 			var/decl/material/mat = GET_DECL(g)
 			var/turf/flooding = pick(contents)
-			var/condense_amt = min(air.gas[g], rand(10,30))
+			var/condense_amt = min(air.gas[g], rand(10,1000))
 			if(condense_amt < 1)
 				return
 			air.adjust_gas(g, -condense_amt)

@@ -63,6 +63,8 @@ var/global/list/areas = list()
 	var/tmp/is_outside = OUTSIDE_NO
 	var/do_ambience = TRUE
 
+	var/should_condense = TRUE //whether this area should have condensation happening in it
+
 /area/New()
 	icon_state = ""
 	uid = ++global_uid

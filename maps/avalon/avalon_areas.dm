@@ -108,6 +108,7 @@
 	is_outside = TRUE
 	var/phase = 0
 	base_turf = /turf/exterior/surface
+	should_condense = FALSE
 
 /*	var/hot_blurb = ""
 	var/cold_blurb = ""
@@ -151,3 +152,4 @@
 	name = "Skyscraper"
 	requires_power = FALSE
 	forced_ambience = list('sound/music/skyscraper_theme_1.ogg')
+	should_condense = FALSE
