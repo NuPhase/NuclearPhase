@@ -116,6 +116,7 @@
 			atmosphere_filter = W
 			user.drop_from_inventory(W, modules)
 			to_chat(usr, "<span class='notice'>You insert \the [W] into the [src].</span>")
+			return
 		else
 			to_chat(usr, "<span class='warning'>\The [src] already has a CO2 filter installed, so you just put it into the backpack!</span>")
 	if(istype(W, /obj/item/tank))

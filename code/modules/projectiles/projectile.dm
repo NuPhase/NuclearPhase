@@ -466,7 +466,7 @@
 		transform = M
 	trajectory.increment(trajectory_multiplier)
 	var/turf/T = trajectory.return_turf()
-	if(T.z != loc.z)
+	if(T?.z != loc?.z)
 		before_move()
 		before_z_change(loc, T)
 		trajectory_ignore_forcemove = TRUE
