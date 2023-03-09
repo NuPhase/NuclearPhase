@@ -7,8 +7,8 @@
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
 	level = 1
 	density = 1
-	//bound_x = 96
-	//bound_y = 192
+	//bound_width = 96
+	//bound_height = 192
 
 	use_power = POWER_USE_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff

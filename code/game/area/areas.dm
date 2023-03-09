@@ -360,7 +360,7 @@ var/global/list/mob/living/forced_ambiance_list = new
 
 	if(!(L.ckey in blurbed_stated_to))
 		blurbed_stated_to += L.ckey
-		to_chat(L, SPAN_NOTICE(FONT_SMALL("[description]")))
+		to_chat(L, SPAN_SUBTLE("[description]"))
 
 /area/proc/play_ambience(var/mob/living/L)
 	if(!do_ambience)

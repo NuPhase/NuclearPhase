@@ -18,7 +18,7 @@
 		"Why does no one show attention to me?",
 		"I am the most important person here!"
 	))
-	to_chat(holder, SPAN_NOTICE(message))
+	to_chat(holder, SPAN_PHOBIA(message))
 
 /datum/mood/psychopathy/by_event(args_)
 	if(!..())
@@ -32,4 +32,4 @@
 		"Stop being so whiney!"
 	))
 
-	to_chat(holder, SPAN_NOTICE(message))
+	to_chat(holder, SPAN_PHOBIA(message))

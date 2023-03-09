@@ -179,19 +179,24 @@
 	anchored = 1
 	level = 2
 	density = 1
-	bound_x = 96
-	bound_y = 192
+	pixel_x = -32
+	pixel_y = -64
+	bound_x = -32
+	bound_y = -64
+	bound_width = 96
+	bound_height = 192
 	var/datum/composite_sound/turbine/soundloop
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine_stage
 
-/obj/structure/turbine_visual/New(loc, ...)
+/obj/structure/turbine_visual/Initialize()
 	. = ..()
-	turbine_stage = locate(/obj/machinery/atmospherics/binary/turbinestage) in range(2, loc)
+	turbine_stage = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_turf(loc)
 
 /obj/structure/turbine_visual/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/crowbar/brace_jack) && turbine_stage.braking)
 		visible_message(SPAN_NOTICE("[user] starts resetting the emergency brakes on \the [src]."))
 		if(!do_after(user, 5 SECONDS, src))
+			visible_message(SPAN_WARNING("[user] fails to reset the emergency brakes!"))
 			return
 		visible_message(SPAN_NOTICE("[user] resets the emergency brakes on \the [src]."))
 		turbine_stage.braking = FALSE
