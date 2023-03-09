@@ -350,7 +350,7 @@
 		playsound(loc, "[sound_path][sound]", 100, 1, -5)
 
 	ADJ_STATUS(H, STAT_DRUGGY, 30)
-	bloodstr.add_reagent(/decl/material/liquid/dopamine, lust * 0.1)
+	bloodstr.add_reagent(/decl/material/liquid/dopamine, rand(1, 10))
 	H.multiorgasms += 1
 	H.erpcooldown += 3
 
@@ -364,7 +364,7 @@
 	var/sound_path
 	var/message = ""
 	SSmoods.mass_mood_give("fuck", list(H, P))
-	bloodstr.add_reagent(/decl/material/liquid/adrenaline, lust * 0.01)
+	bloodstr.add_reagent(/decl/material/liquid/adrenaline, rand(0.01, 0.1))
 	switch(hole)
 		if("vaglick")
 			message = pick("licks [P].", "sucks [P]'s pussy.")

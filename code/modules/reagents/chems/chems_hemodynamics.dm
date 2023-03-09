@@ -13,7 +13,7 @@
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = volume * 30
+	heart.bpm_modifiers[name] = volume * 10
 	heart.cardiac_output_modifiers[name] = volume + (volume / 10)
 	if(volume < overdose)
 		heart.stability_modifiers[name] = volume * 3
