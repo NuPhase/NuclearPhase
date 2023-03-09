@@ -247,6 +247,14 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
+"aqM" = (
+/obj/structure/table/steel,
+/obj/item/paper{
+	info = "Твою мать! Кто насрал у нас в лобби? Придушите этого мудака, тут всё провоняло!";
+	name = "handwritten note"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/engineering)
 "ara" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
@@ -1495,7 +1503,9 @@
 "cas" = (
 /obj/structure/table,
 /obj/effect/floor_decal/corner/grey/border,
-/obj/item/paper/manifest,
+/obj/item/paper/manifest{
+	info = "Сегодня я слышал громкие мужские стоны из барраков. Не хочу даже думать о том, что там происходило."
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "cbd" = (
@@ -1747,7 +1757,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/item/paper{
+	info = "Добрый напоминание моим Русский друзья. Изоляционные перчатки не делать вас бессмертным";
+	name = "handwritten note"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/breakerroom)
 "cmq" = (
@@ -2243,6 +2256,18 @@
 	pixel_x = 16;
 	pixel_y = 10
 	},
+/obj/item/paper/sticky{
+	pixel_y = 10;
+	pixel_x = -13;
+	name = "INOP note";
+	info = "Guys, I still haven't figured out these shitty neutron mode switching circuits. Please don't use them for the time being."
+	},
+/obj/item/paper/sticky{
+	pixel_y = -6;
+	pixel_x = -8;
+	name = "INOP note";
+	info = "Fuel is regulated manually inside the reactor superstructure, sorry. It haven't worked for some time."
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "cQp" = (
@@ -2675,7 +2700,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+	dir = 4;
+	external_pressure_bound = 202;
+	external_pressure_bound_default = 202
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/breakerroom)
@@ -2769,7 +2796,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on{
-	dir = 4
+	dir = 4;
+	external_pressure_bound = 70;
+	external_pressure_bound_default = 70
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/breakerroom)
@@ -3103,6 +3132,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table,
+/obj/item/paper_bin,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/breakerroom)
 "dWu" = (
@@ -5393,7 +5423,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "gZg" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on{
+	external_pressure_bound = 70;
+	external_pressure_bound_default = 70
+	},
 /obj/machinery/power/generator/battery/lithium_ion,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -5523,6 +5556,12 @@
 /obj/machinery/reactor_button/mute_alarms{
 	dir = 4;
 	pixel_x = 12
+	},
+/obj/item/paper/sticky{
+	pixel_y = 3;
+	pixel_x = 8;
+	name = "INOP note";
+	info = "We haven't got any alarms here..."
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -7908,6 +7947,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"jRX" = (
+/obj/structure/table/marble,
+/obj/effect/floor_decal/corner/grey/border{
+	dir = 8
+	},
+/obj/item/paper{
+	info = "Повар окончательно сторчался. Надеюсь, что нам найдут нового..."
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/messhall)
 "jSl" = (
 /obj/structure/railing/mapped,
 /obj/effect/floor_decal/corner/b_green/border{
@@ -10946,7 +10995,7 @@
 /obj/structure/cable/heavy,
 /obj/machinery/power/generator/transformer/switchable/on{
 	coef = 10;
-	max_cap = 3000000
+	max_cap = 15000000
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -10996,7 +11045,9 @@
 /area/avalon/shelter/reactormonitoring)
 "ocd" = (
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on{
-	dir = 8
+	dir = 8;
+	external_pressure_bound = 70;
+	external_pressure_bound_default = 70
 	},
 /obj/machinery/power/generator/battery/lithium_ion,
 /obj/structure/cable/heavy{
@@ -13198,7 +13249,9 @@
 /area/avalon/shelter/engineering)
 "rij" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+	dir = 1;
+	external_pressure_bound = 202;
+	external_pressure_bound_default = 202
 	},
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -15555,6 +15608,9 @@
 /area/avalon/shelter/expeditionpreparation)
 "unc" = (
 /obj/structure/mattress/dirty,
+/obj/item/paper{
+	info = "Место сна Боба."
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "unh" = (
@@ -16895,7 +16951,9 @@
 /area/avalon/shelter/turbinehall)
 "wax" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+	dir = 1;
+	external_pressure_bound = 202;
+	external_pressure_bound_default = 202
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -17395,7 +17453,7 @@
 /obj/machinery/power/generator/transformer{
 	dir = 1;
 	coef = 0.1;
-	max_cap = 3000000
+	max_cap = 30000000
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -178453,7 +178511,7 @@ hBO
 hBO
 cfb
 ucH
-ucH
+aqM
 bOI
 fwC
 cfb
@@ -211867,7 +211925,7 @@ lpS
 pEE
 cOR
 keO
-keO
+jRX
 tPw
 pEE
 pEE
