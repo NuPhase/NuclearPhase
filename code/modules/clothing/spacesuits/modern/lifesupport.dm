@@ -117,8 +117,7 @@
 			user.drop_from_inventory(W, modules)
 			to_chat(usr, "<span class='notice'>You insert \the [W] into the [src].</span>")
 		else
-			to_chat(usr, "<span class='warning'>\The [src] already has a CO2 filter installed!</span>")
-		return
+			to_chat(usr, "<span class='warning'>\The [src] already has a CO2 filter installed, so you just put it into the backpack!</span>")
 	if(istype(W, /obj/item/tank))
 		var/list/options = list()
 		if(!oxygen_tank)
@@ -141,7 +140,7 @@
 		playsound(loc, 'sound/effects/spray3.ogg', 50)
 		to_chat(usr, "<span class='notice'>You insert \the [W] into the [tank_to_add].</span>")
 		return
-	//. = ..()
+	. = ..()
 
 
 

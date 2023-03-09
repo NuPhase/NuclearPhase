@@ -421,7 +421,7 @@ var/global/list/admin_verbs_mod = list(
 	else
 		//ghostize
 		var/mob/body = mob
-		var/mob/observer/ghost/ghost = body.ghostize(1)
+		var/mob/observer/ghost/ghost = body.ghostize(1, 1)
 		ghost.admin_ghosted = 1
 		if(body)
 			body.teleop = ghost
@@ -926,7 +926,7 @@ var/global/list/admin_verbs_mod = list(
 		if("Upload custom")
 			var/file = input(usr) as icon|null
 
-			if(!file) 
+			if(!file)
 				return
 
 			global.using_map.update_titlescreen(file)

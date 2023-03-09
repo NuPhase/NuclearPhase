@@ -45,7 +45,10 @@
 	QDEL_NULL(brainmob)
 	. = ..()
 
-/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
+/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H, var/is_death = 0)
+	if(is_death)
+		H.ghostize(0)
+		return
 
 	if(!brainmob)
 		brainmob = new(src)
@@ -81,7 +84,7 @@
 
 /obj/item/organ/internal/brain/on_remove_effects()
 	if(istype(owner))
-		transfer_identity(owner)
+		transfer_identity(owner, 1)
 	return ..()
 
 /obj/item/organ/internal/brain/on_add_effects()

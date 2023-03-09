@@ -144,7 +144,7 @@
 /obj/item/organ/internal/Process()
 	..()
 	handle_regeneration()
-	if(!owner.consume_oxygen(oxygen_consumption))
+	if(!owner?.consume_oxygen(oxygen_consumption))
 		oxygen_starve(1)
 		if(oxygen_deprivation > OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD)
 			take_internal_damage(0.2, 1)

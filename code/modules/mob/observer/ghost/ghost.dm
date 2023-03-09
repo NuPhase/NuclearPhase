@@ -142,7 +142,7 @@ Works together with spawning an observer, noted above.
 /mob
 	var/ghosting_now = FALSE
 
-/mob/proc/ghostize(var/can_reenter_corpse = CORPSE_CAN_REENTER)
+/mob/proc/ghostize(var/can_reenter_corpse = CORPSE_CAN_REENTER, var/is_teleop = FALSE)
 	// Are we the body of an aghosted admin? If so, don't make a ghost.
 	if(teleop && istype(teleop, /mob/observer/ghost))
 		var/mob/observer/ghost/G = teleop
@@ -162,7 +162,7 @@ Works together with spawning an observer, noted above.
 		return ghost
 
 var/global/decl/spawnpoint/office/spawnpoint_office
-/mob/living/carbon/human/ghostize(var/can_reenter_corpse = CORPSE_CAN_REENTER)
+/mob/living/carbon/human/ghostize(var/can_reenter_corpse = CORPSE_CAN_REENTER, var/is_teleop = FALSE)
 	if(teleop && istype(teleop, /mob/observer/ghost))
 		var/mob/observer/ghost/G = teleop
 		if(G.admin_ghosted)
@@ -171,6 +171,17 @@ var/global/decl/spawnpoint/office/spawnpoint_office
 		return
 	if(ghosting_now)
 		return
+
+	if(key && is_teleop)
+		hide_fullscreens()
+		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
+		ghost.can_reenter_corpse = can_reenter_corpse
+		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
+		ghost.key = key
+		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
+			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+		return ghost
+
 	ghosting_now = TRUE
 	var/mob/living/carbon/human/new_character
 	var/turf/spawn_turf
@@ -185,20 +196,8 @@ var/global/decl/spawnpoint/office/spawnpoint_office
 	new_character.refresh_visible_overlays()
 	new_character.key = key
 	SSjobs.equip_ghostrank(new_character, "Office Clerk", 0)
-/*	// Are we the body of an aghosted admin? If so, don't make a ghost.
-	if(teleop && istype(teleop, /mob/observer/ghost))
-		var/mob/observer/ghost/G = teleop
-		if(G.admin_ghosted)
-			return
-	if(key)
-		hide_fullscreens()
-		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
-		ghost.can_reenter_corpse = can_reenter_corpse
-		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
-		ghost.key = key
-		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
-			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
-		return ghost*/
+	// Are we the body of an aghosted admin? If so, don't make a ghost.
+
 
 
 /mob/observer/ghostize() // Do not create ghosts of ghosts.
