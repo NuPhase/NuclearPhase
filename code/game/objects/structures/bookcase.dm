@@ -7,9 +7,9 @@ var/global/list/station_bookcases = list()
 	density = 1
 	opacity = 1
 	obj_flags = OBJ_FLAG_ANCHORABLE
-	material = /decl/material/solid/wood
+	material = /decl/material/solid/metal/steel
 	tool_interaction_flags = (TOOL_INTERACTION_ANCHOR | TOOL_INTERACTION_DECONSTRUCT)
-	material_alteration = MAT_FLAG_ALTERATION_NAME | MAT_FLAG_ALTERATION_COLOR
+	material_alteration = MAT_FLAG_ALTERATION_NAME
 
 /obj/structure/bookcase/Initialize()
 	for(var/obj/item/I in loc)
