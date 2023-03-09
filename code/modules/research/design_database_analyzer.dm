@@ -129,9 +129,6 @@
 	var/tech_json = loaded_item.get_origin_tech()
 	if(tech_json)
 		. = cached_json_decode(tech_json)
-		if(length(.) && (locate(/datum/event/brain_expansion) in SSevent.active_events))
-			for(var/tech in .)
-				.[tech] += 1
 	for(var/mat in loaded_item.matter)
 		LAZYSET(cached_materials, mat, cached_materials[mat] + (loaded_item.matter[mat] * material_return_modifier))
 	loaded_item.physically_destroyed(FALSE)

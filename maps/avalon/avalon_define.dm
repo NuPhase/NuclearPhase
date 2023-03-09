@@ -1,11 +1,11 @@
 /datum/map/avalon
-	name = "Solitude"
-	full_name = "'Solitude' Emergency Shelter"
+	name = "Serenity"
+	full_name = "'Serenity' Emergency Shelter"
 	path = "avalon"
 
 	system_name = "Sirius"
-	station_name = "Solitude"
-	station_short = "Solitude"
+	station_name = "Serenity"
+	station_short = "Serenity"
 	game_year = 185
 
 	base_floor_type = /turf/exterior/wall/ice
