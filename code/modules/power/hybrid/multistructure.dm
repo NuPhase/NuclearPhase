@@ -15,6 +15,10 @@
 	pixel_x = -208
 	var/datum/composite_sound/reactor/soundloop
 
+/obj/structure/reactor_superstructure/Initialize(ml, _mat, _reinf_mat)
+	. = ..()
+	reactor_components["superstructure"] = src
+
 /obj/structure/reactor_superstructure/proc/startsound()
 	soundloop = new(list(src), TRUE)
 

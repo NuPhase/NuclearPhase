@@ -19,6 +19,8 @@
 	. = ..()
 	reactor_components["core"] += src
 	rcontrol.initialize()
+	spawn(1 MINUTE)
+		superstructure = reactor_components["superstructure"]
 
 /obj/machinery/power/hybrid_reactor/Destroy()
 	. = ..()
@@ -66,7 +68,7 @@
 /obj/machinery/power/hybrid_reactor/proc/activate_alarms()
 
 /obj/machinery/power/hybrid_reactor/proc/start_burning()
-	color = LIGHT_COLOR_FIRE
+	superstructure.color = LIGHT_COLOR_FIRE
 
 /obj/machinery/power/hybrid_reactor/proc/close_blastdoors()
 
@@ -75,6 +77,15 @@
 /obj/machinery/power/hybrid_reactor/proc/close_radlocks()
 
 /obj/machinery/power/hybrid_reactor/proc/make_plasmaball()
+	superstructure.icon = 'icons/obj/engine/energy_ball.dmi'
+	superstructure.icon_state = "energy_ball_fast"
+	superstructure.color = LIGHT_COLOR_BLUE
+	superstructure.pixel_x = 0
+	superstructure.pixel_y = 0
+	superstructure.name = "self-contained plasma sphere"
+	superstructure.desc = "The heart of all death and destruction..."
+	superstructure.set_light(20, 10, LIGHT_COLOR_BLUE)
+	animate(superstructure, transform = matrix()*10, time = 490, easing = CIRCULAR_EASING)
 
 /obj/machinery/power/hybrid_reactor/proc/produce_explosion()
 
@@ -119,7 +130,7 @@
 	sleep(4 SECONDS)
 	radio_announce("CLIMB UP THE REACTOR UNIT, AND EJECT ALL FUEL CELLS NO LONGER THAN WITHIN 3 SECONDS OF EACH OTHER.", ann_name)
 	sleep(3 SECONDS)
-	radio_announce("TO INVOKE A REACTION STALL AND STOP THE THERMAL RUNAWAY.", ann_name)
+	radio_announce("TO INVOKE A REACTION STALL AND STOP THE THERMAL RUNAWAY. YOU HAVE A MINUTE, GOOD LUCK.", ann_name)
 	sleep(5 SECONDS)
 	close_blastdoors()
 	radio_announce("SITEWIDE RADIATION INTERLOCKS WILL ACTIVATE IN: 1 MINUTE.", rcontrol.name)
@@ -145,8 +156,14 @@
 		sleep(49 SECONDS)
 		for(var/mob/living/carbon/human/H in human_mob_list)
 			to_chat(H, SPAN_ERPBOLD("It was meant to save the world from starvation and eternal cold, but it turned against everyone."))
-		sleep(36 SECONDS)
+		sleep(27 SECONDS)
 		for(var/mob/living/carbon/human/H in human_mob_list)
 			to_chat(H, SPAN_ERPBOLD("And now it shall feast upon the ones who tried to harness its power."))
+		animate(superstructure, transform = matrix()*0.9, time = 310, easing = SINE_EASING | EASE_IN)
+		spawn(310)
+			animate(superstructure, transform = matrix()*0.01, time = 10, easing = QUAD_EASING | EASE_IN)
+		sleep(32 SECONDS)
+		explosion(superstructure, 25, 50, 75, 150)
+		sound_to(world, sound('sound/effects/explosion_huge.ogg', 0, 0, 0, 20))
 	else
 		produce_explosion()
