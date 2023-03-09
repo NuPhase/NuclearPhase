@@ -66,7 +66,7 @@
 				var/datum/gas_mixture/environment = pipe_turf.return_air()
 				environment_temperature = environment.temperature
 			if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
-				parent.temperature_interact(pipe_turf, volume, thermal_conductivity)
+				parent.temperature_interact(pipe_turf, ATMOS_DEFAULT_VOLUME_PIPE * surface, thermal_conductivity)
 		else if(istype(loc, /turf/space))
 			parent.radiate_heat_to_space(surface, 1)
 
@@ -123,11 +123,11 @@
 	initialize_directions_he = dir
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactor
-	surface = 1000 //TODO: CALCULATE THIS
+	surface = 10 //TODO: CALCULATE THIS
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior
-	surface = 0.01 //TODO: CALCULATE THIS
-	maximum_pressure = 700000 //TEMPORARY
-	fatigue_pressure = 600000
-	alert_pressure = 500000
+	surface = 0.1 //TODO: CALCULATE THIS
+	maximum_pressure = 70000 //TEMPORARY
+	fatigue_pressure = 60000
+	alert_pressure = 50000
 	volume = 5
