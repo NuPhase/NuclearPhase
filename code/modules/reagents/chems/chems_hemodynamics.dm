@@ -43,7 +43,7 @@
 /decl/material/liquid/atropine
 	name = "atropine"
 	lore_text = "Atropine is an extremely potent tachycardic."
-	mechanics_text = "Strongly increases BPM."
+	mechanics_text = "Rapidly increases BPM."
 	taste_description = "rush"
 	color = "#ce3f2c"
 	scannable = 1
@@ -56,6 +56,22 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
 	heart.bpm_modifiers[name] = volume * 60
+
+/decl/material/liquid/dopamine
+	name = "dopamine"
+	lore_text = "Dopamine is a naturally occuring nervous system stimulant."
+	mechanics_text = "Increases cardiac output."
+	color = "#cea82c"
+	scannable = 1
+	overdose = 20
+	metabolism = 0.05
+	uid = "chem_dopamine"
+
+/decl/material/liquid/dopamine/affect_blood(var/mob/living/carbon/human/H, removed, datum/reagents/holder)
+	. = ..()
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/volume = REAGENT_VOLUME(holder, type)
+	heart.cardiac_output_modifiers[name] = 1 + volume * 0.05
 
 /decl/material/liquid/nitroglycerin
 	name = "nitroglycerin"
