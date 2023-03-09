@@ -2,7 +2,7 @@
 	name = "barrel"
 	desc = "Can contain liquid, or... Humans?"
 	icon_state = "barrel_open"
-	var/datum/gas_mixture/internal
+	var/datum/gas_mixture/internal = new
 	var/volume = 115 //average barrel
 	var/open = TRUE
 	var/is_acidic = FALSE
@@ -10,7 +10,6 @@
 
 /obj/structure/barrel/Initialize(ml, _mat, _reinf_mat)
 	. = ..()
-	internal = new
 	internal.volume = volume
 
 /obj/structure/barrel/update_icon()
