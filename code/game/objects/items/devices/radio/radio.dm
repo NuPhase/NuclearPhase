@@ -806,7 +806,8 @@
 
 /obj/item/radio/announcer/Initialize()
 	. = ..()
-	forceMove(locate(1,1,global.using_map.contact_levels.len ? global.using_map.contact_levels[1] : 1))
+	global.announcer = src // кастыль но похуй
+	// forceMove(locate(1,1,global.using_map.contact_levels.len ? global.using_map.contact_levels[1] : 1) // рот ебал этого говна
 
 /obj/item/radio/announcer/subspace
 	subspace_transmission = 1
