@@ -36,15 +36,14 @@
 	for(var/language in subtypesof(/decl/language))
 		Q.add_language(language)
 
-	spark_at(Q)
-	Q.phase_in(get_turf(Q))
+	invisimin()
 	log_debug("Quantum Mechanic spawned at X: [Q.x], Y: [Q.y], Z: [Q.z]. User: [src]")
 
 /decl/hierarchy/outfit/quantum
 	name = "Quantum Mechanic"
 	glasses =  /obj/item/clothing/glasses/sunglasses/quantum
-	uniform =  /obj/item/clothing/under/color/quantum
-	shoes =    /obj/item/clothing/shoes/color/black/quantum
+	uniform =  /obj/item/clothing/under/roboticist
+	shoes =    /obj/item/clothing/shoes/workboots
 	l_ear =    /obj/item/radio/headset/ert/quantum
 	back =     /obj/item/storage/backpack/holding/quantum
 	head =     /obj/item/clothing/head/beret
@@ -88,7 +87,7 @@
 	spark_at(src)
 
 	if(key)
-		var/mob/observer/ghost/ghost = ghostize(1)
+		var/mob/observer/ghost/ghost = ghostize(1, 1)
 		ghost.set_dir(dir)
 		ghost.can_reenter_corpse = TRUE
 		ghost.reload_fullscreen()

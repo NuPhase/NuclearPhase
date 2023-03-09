@@ -20,8 +20,8 @@
 		species.create_missing_organs(src) //Syncs DNA when adding organs
 	apply_species_cultural_info()
 	species.handle_post_spawn(src)
-	potenzia = (prob(80) ? rand(9, 14) : pick(rand(5, 13), rand(15, 20)))//funny
-	resistenza = (prob(80) ? rand(150, 300) : pick(rand(10, 100), rand(350,600)))
+	potenzia = rand(40, 60)
+	resistenza = (prob(80) ? rand(400, 600) : pick(rand(200, 400), rand(600,1200)))
 
 /mob/living/carbon/human/xenomorph/refresh_visible_overlays()
 
