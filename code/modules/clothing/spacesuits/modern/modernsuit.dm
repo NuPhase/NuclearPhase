@@ -207,7 +207,7 @@
 /obj/item/clothing/suit/modern/space/dropped(mob/user)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
-	wearer.msuit = null
+	wearer?.msuit = null
 	wearer = null
 	user.drop_from_inventory(lifesupportsystem, src)
 
