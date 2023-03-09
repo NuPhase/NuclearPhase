@@ -49,47 +49,87 @@
 	icon_state = "shuttle"
 
 /area/avalon
+	name = "'Serenity' survival shelter"
 	base_turf = /turf/simulated/floor
+	ambience = list('sound/ambience/ominous1.ogg', 'sound/ambience/ominous2.ogg', 'sound/ambience/ominous3.ogg', 'sound/ambience/rumble1.ogg', 'sound/ambience/rumble2.ogg', 'sound/ambience/rumble3.ogg', 'sound/ambience/rumble4.ogg')
 
 /area/avalon/has_gravity()
 	return TRUE
 
 /area/avalon/shelter/expeditionpreparation
+	name = "Expedition Preparation"
 /area/avalon/shelter/garage
+	name = "Vehicle Garage"
 /area/avalon/shelter/upperhall
+	name = "Upper Hall"
 /area/avalon/shelter/comms
+	name = "Communications"
 /area/avalon/shelter/habitationdeck
+	name = "Habitation Deck"
 /area/avalon/shelter/freezer
+	name = "Food Freezer"
 /area/avalon/shelter/messhall
+	name = "Mess Hall"
 
 /area/avalon/shelter/reactor
 	sound_env = LARGE_ENCLOSED
 	name = "Reactor Chamber"
 	lightswitch = FALSE
 
+/area/avalon/shelter/reactor/power_change()
+	. = ..()
+	if(power_equip)
+		forced_ambience = list('sound/ambience/reactorchamberfans.ogg')
+		description = "You feel a heavy wind current flowing directly underneath you from several huge fans ventilating the vast space that you've entered. The entire chamber perimeter is dimly lit by small red lights, as if they were placed there specifically to be a little more sane in such an inconceivable environment. Everything below is barely visible, looks like it goes really deep..."
+	else
+		forced_ambience = null
+		description = "You feel a strong metal smell in the still air of the vast space that you've entered. The entire chamber perimeter is dimly lit by small red lights, as if they were placed there specifically to be a little more sane in such an inconceivable environment. Everything below is completely dark, looks like it goes really deep..."
+
 /area/avalon/shelter/reactormonitoring
+	name = "Reactor Control Room"
+	area_flags = AREA_FLAG_RAD_SHIELDED
 /area/avalon/shelter/engineering
+	name = "Engineering"
 /area/avalon/shelter/atmos
+	name = "Fluid Management"
 /area/avalon/shelter/climatecontrol
+	name = "Climate Control"
 /area/avalon/shelter/turbinehall
+	name = "Turbine Hall"
 	sound_env = LARGE_ENCLOSED
 /area/avalon/shelter/machinehall
+	name = "Machine Hall"
 	sound_env = LARGE_ENCLOSED
 /area/avalon/shelter/breakerroom
+	name = "Breaker Room"
 
 /area/avalon/shelter/brig
+	name = "Security"
+	area_flags = AREA_FLAG_SECURITY
 /area/avalon/shelter/brig/interrogation
+	name = "Security Interrogation"
 /area/avalon/shelter/brig/medbay
+	name = "Security Medbay"
 /area/avalon/shelter/brig/office
+	name = "Security Office"
 /area/avalon/shelter/brig/reception
+	name = "Security Reception"
 /area/avalon/shelter/brig/breakroom
+	name = "Security Break Room"
 /area/avalon/shelter/brig/armory
+	name = "Armory"
 /area/avalon/shelter/brig/preparation
+	name = "Security Preparations"
 /area/avalon/shelter/brig/prison
+	name = "Security Prison"
+	area_flags = AREA_FLAG_PRISON
 /area/avalon/shelter/brig/sergeantroom
+	name = "Security Sergeant Room"
 /area/avalon/shelter/brig/barracks
+	name = "Security Barracks"
 
 /area/avalon/shelter/science
+	name = "Research Labs"
 
 
 /area/turbolift/e1
@@ -109,6 +149,7 @@
 	var/phase = 0
 	base_turf = /turf/exterior/surface
 	should_condense = FALSE
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_BACKGROUND
 
 /*	var/hot_blurb = ""
 	var/cold_blurb = ""
@@ -126,7 +167,7 @@
 
 /area/surface/Entered(mob/A)
 	. = ..()
-	if(ishuman(A))
+	if(ishuman(A) && phase == 1)
 		surface_mobs += A
 		for(var/obj/item/gun/W in A.contents)
 			if(W.hot_color)
