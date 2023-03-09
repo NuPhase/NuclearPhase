@@ -3,13 +3,11 @@
 	abstract_type = /decl/hierarchy/outfit/job
 
 	uniform = /obj/item/clothing/under/tactical
-	l_ear = /obj/item/radio/headset
 	shoes = /obj/item/clothing/shoes/workboots
 
 	id_slot = slot_wear_id_str
 	id_type = /obj/item/card/id/civilian
 	pda_slot = slot_belt_str
-	pda_type = /obj/item/modular_computer/pda
 
 	flags = OUTFIT_HAS_BACKPACK
 

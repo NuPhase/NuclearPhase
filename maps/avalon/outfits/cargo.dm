@@ -1,5 +1,4 @@
 /decl/hierarchy/outfit/job/cargo
-	l_ear = /obj/item/radio/headset/headset_cargo
 	abstract_type = /decl/hierarchy/outfit/job/cargo
 
 /decl/hierarchy/outfit/job/cargo/qm

@@ -2,7 +2,6 @@
 	abstract_type = /decl/hierarchy/outfit/job/security
 	uniform = /obj/item/clothing/under/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses
-	l_ear = /obj/item/radio/headset/headset_sec
 	gloves = /obj/item/clothing/gloves/thick
 	shoes = /obj/item/clothing/shoes/jackboots
 	backpack_contents = list(/obj/item/handcuffs = 1)
@@ -13,7 +12,6 @@
 
 /decl/hierarchy/outfit/job/security/hos
 	name = "Job - Head of security"
-	l_ear = /obj/item/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/head_of_security
 	id_type = /obj/item/card/id/security/head
 	pda_type = /obj/item/modular_computer/pda/heads

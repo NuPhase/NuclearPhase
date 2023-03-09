@@ -1,7 +1,6 @@
 /decl/hierarchy/outfit/job/engineering
 	abstract_type = /decl/hierarchy/outfit/job/engineering
 	belt = /obj/item/storage/belt/utility/full
-	l_ear = /obj/item/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/workboots
 	pda_slot = slot_l_store_str
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
