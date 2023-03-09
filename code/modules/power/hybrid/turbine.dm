@@ -39,6 +39,7 @@
 	var/shaft_integrity = 100
 
 	var/obj/machinery/atmospherics/binary/regulated_valve/ingoing_valve = null
+	var/obj/structure/turbine_visual/visual = null
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
 	switch(vibration)
@@ -85,14 +86,17 @@
 
 	apply_vibration_effects()
 
-	if(rpm > 50)
+	if(rpm > 250)
 		use_power = POWER_USE_ACTIVE
+		if(!visual.soundloop)
+			visual.spool_up()
 	else
+		visual.spool_down()
 		use_power = POWER_USE_IDLE
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	vibration = 0
-	if(turbine_internals.temperature < 109) //condensing inside of the turbine is incredibly dangerous
+	if(turbine_internals.temperature < 409) //condensing inside of the turbine is incredibly dangerous
 		vibration += total_mass_flow * 0.04
 	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
 		vibration += total_mass_flow * 0.06
@@ -191,6 +195,7 @@
 /obj/structure/turbine_visual/Initialize()
 	. = ..()
 	turbine_stage = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_turf(loc)
+	turbine_stage.visual = src
 
 /obj/structure/turbine_visual/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/crowbar/brace_jack) && turbine_stage.braking)

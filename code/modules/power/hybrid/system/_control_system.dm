@@ -199,8 +199,10 @@
 	current_valve.set_openage(100)
 
 	//shutting down turbines
-	turbine1.braking = TRUE
-	turbine2.braking = TRUE
+	current_valve = reactor_valves["TURB 1V-IN"]
+	current_valve.set_openage(0)
+	current_valve = reactor_valves["TURB 2V-IN"]
+	current_valve.set_openage(0)
 	generator1.connected = FALSE
 	generator2.connected = FALSE
 	current_switch = reactor_buttons["TURB V-BYPASS"]
