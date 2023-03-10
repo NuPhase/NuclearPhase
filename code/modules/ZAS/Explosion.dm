@@ -32,6 +32,7 @@
 			L.apply_damage(strength * 0.5, BRUTE)
 			L.throw_at(get_step_away(L, src), strength * 0.5, L.throw_speed, src)
 			L.adjust_fire_stacks(10)
+			L.IgniteMob()
 		for(var/obj/item/item in loc)
 			item.throw_at(get_step_away(item, src), item.throw_range, item.throw_speed, src)
 		for(var/direction in global.alldirs)
