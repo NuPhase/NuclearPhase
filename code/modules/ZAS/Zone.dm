@@ -216,6 +216,7 @@ Class Procs:
 			var/condense_reagent_amt = condense_amt * REAGENT_UNITS_PER_GAS_MOLE
 			F.reagents.add_reagent(g, condense_reagent_amt)
 			air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
+			F.temperature = air.temperature
 		CHECK_TICK
 	condensing = FALSE
 
