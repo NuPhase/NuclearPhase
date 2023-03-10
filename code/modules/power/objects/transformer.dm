@@ -5,7 +5,7 @@
 	density = 1
 	var/coef = 2
 	var/obj/machinery/power/generator/transformer/connected = null
-	var/max_cap = 75000 //w
+	var/max_cap = 250000 //w
 	var/should_transfer_demand = FALSE
 	var/on = 1
 
