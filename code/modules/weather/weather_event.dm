@@ -20,11 +20,19 @@
 	weather.icon_state = "snowfall_light"
 	for(var/turf/T in surface_turfs)
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE1, 1)
+	var/list/nonsurface_mobs = human_mob_list
 	for(var/mob/living/carbon/human/H in surface_mobs)
+		nonsurface_mobs -= H
 		H.lastarea.do_ambience = FALSE
 		H.lastarea.clear_ambience(H)
 		sound_to(H, sound('sound/music/sunrise.ogg',0,50,sound_channels.lobby_channel))
-		to_chat(H, "<span class=bigdanger>The sky erupts in bright crimson red, like you've never seen before. Slow streams of flame rush away from the approaching, scorching, death-bringing source of light. Clouds of once frozen gas will hold it back for a some time, but not for long. Infernal doom approaches.</span>")
+		to_chat(H, "<span class=bigdanger>The sky erupts in bright crimson red, like you've never seen before. Slow streams of flames rush away from the approaching, scorching, death-bringing source of light. Clouds of once frozen gas will hold it back for a some time, but not for long. Infernal doom approaches.</span>")
+	for(var/mob/living/carbon/human/H in nonsurface_mobs)
+		if(H.job == "Office Clerk")
+			nonsurface_mobs -= H
+			continue
+		to_chat(H, SPAN_ERPBOLD("You feel strong vibrations emanating from the surface, the deathbringer star is rising once again..."))
+	SSmoods.call_mood_event("sunrise", list("sunrise"), nonsurface_mobs)
 	sleep(280)
 	weather.icon_state = "hail"
 	for(var/mob/living/carbon/human/H in surface_mobs)

@@ -28,7 +28,7 @@
 		"Ah, can they just shut up?",
 		"I don't care, just shut up!",
 		"Why is [args_["source"]] so damn loud?",
-		"Control your fucking emotions, [src]!",
+		"Control your fucking emotions, [args_["source"]]!",
 		"Stop being so whiney!"
 	))
 
