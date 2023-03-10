@@ -58,7 +58,9 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "adr" = (
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -307,7 +309,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "auO" = (
-/obj/machinery/door/airlock/science,
+/obj/machinery/door/airlock/science{
+	initial_access = list("ACCESS_MAINT")
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "avA" = (
@@ -359,6 +363,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"azn" = (
+/obj/structure/stairs/long/east,
+/obj/machinery/light,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig)
 "azw" = (
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
@@ -375,7 +384,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
@@ -672,6 +683,7 @@
 /obj/effect/floor_decal/corner/pink{
 	dir = 6
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "aSp" = (
@@ -680,7 +692,8 @@
 /area/avalon/shelter/atmos)
 "aSC" = (
 /obj/machinery/door/airlock/atmos{
-	name = "Ventilation"
+	name = "Ventilation";
+	initial_access = list("ACCESS_ATMOS")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -721,7 +734,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "aUa" = (
-/obj/machinery/door/airlock/glass/engineering,
+/obj/machinery/door/airlock/glass/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
 	},
@@ -783,7 +798,8 @@
 /area/avalon/shelter/science)
 "aWN" = (
 /obj/machinery/door/airlock/atmos{
-	name = "Atmos Storage"
+	name = "Atmos Storage";
+	initial_access = list("ACCESS_ATMOS")
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
@@ -827,7 +843,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "bbp" = (
-/obj/machinery/door/airlock/freezer,
+/obj/machinery/door/airlock/freezer{
+	initial_access = list("ACCESS_KITCHEN")
+	},
 /turf/simulated/floor/tiled/freezer,
 /area/avalon/shelter/messhall)
 "bbq" = (
@@ -1124,7 +1142,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
 "byE" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external{
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
@@ -1237,6 +1257,12 @@
 /obj/effect/floor_decal/corner/mauve/half,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
+"bFG" = (
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/upperhall)
 "bFU" = (
 /obj/machinery/light/spot,
 /turf/simulated/open,
@@ -1497,7 +1523,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig)
 "bZD" = (
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_ARMORY")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "cas" = (
@@ -1622,7 +1650,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "chI" = (
@@ -2352,7 +2382,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
 "cVU" = (
-/obj/machinery/door/airlock/external/bolted_open,
+/obj/machinery/door/airlock/external/bolted_open{
+	initial_access = list("ACCESS_ATMOS")
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
@@ -3103,7 +3135,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "dUA" = (
-/obj/machinery/door/airlock/glass/science,
+/obj/machinery/door/airlock/glass/science{
+	initial_access = list("ACCESS_RESEARCH")
+	},
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "dUX" = (
@@ -3272,7 +3306,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "edU" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "edY" = (
@@ -3323,7 +3359,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/turbinehall)
 "egx" = (
-/obj/machinery/door/airlock/freezer,
+/obj/machinery/door/airlock/freezer{
+	initial_access = list("ACCESS_KITCHEN")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -3370,6 +3408,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"ejB" = (
+/obj/structure/stairs/long/east,
+/obj/machinery/light,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/science)
 "ejH" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 4
@@ -3418,7 +3461,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "emt" = (
@@ -3507,7 +3552,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "eqp" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external{
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
@@ -3742,7 +3789,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/engineering)
 "eFa" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor/plating,
@@ -3914,7 +3963,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "eSx" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
@@ -3990,7 +4041,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "eYu" = (
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_BRIG")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/prison)
 "eZw" = (
@@ -4216,7 +4269,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "fni" = (
-/obj/machinery/door/airlock/double/medical,
+/obj/machinery/door/airlock/double/medical{
+	initial_access = list("ACCESS_MEDICAL")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -4605,7 +4660,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/habitationdeck)
 "fTs" = (
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/airlock/maintenance{
+	initial_access = list("ACCESS_MAINT")
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
 "fTu" = (
@@ -4878,7 +4935,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "gkN" = (
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/airlock/maintenance{
+	initial_access = list("ACCESS_MAINT")
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "gkU" = (
@@ -4916,7 +4975,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "gnN" = (
-/obj/machinery/door/airlock/double/medical,
+/obj/machinery/door/airlock/double/medical{
+	initial_access = list("ACCESS_MEDICAL")
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "gos" = (
@@ -5026,7 +5087,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_MAINT")
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/messhall)
 "gxU" = (
@@ -5056,7 +5119,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/atmos)
 "gzF" = (
-/obj/machinery/door/airlock/atmos,
+/obj/machinery/door/airlock/atmos{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "gAz" = (
@@ -5107,7 +5172,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "gDz" = (
-/obj/machinery/door/airlock/science,
+/obj/machinery/door/airlock/science{
+	initial_access = list("ACCESS_RESEARCH")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -5213,7 +5280,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/reception)
 "gJI" = (
-/obj/machinery/door/airlock/glass/science,
+/obj/machinery/door/airlock/glass/science{
+	initial_access = list("ACCESS_RESEARCH");
+	locked = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "gJR" = (
@@ -5497,7 +5567,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
@@ -5607,7 +5679,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "heA" = (
-/obj/machinery/door/airlock/glass/science,
+/obj/machinery/door/airlock/glass/science{
+	initial_access = list("ACCESS_RESEARCH")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -5696,7 +5770,9 @@
 /turf/simulated/floor/tiled/freezer,
 /area/avalon/shelter/freezer)
 "hjr" = (
-/obj/structure/door/plastic,
+/obj/machinery/door/airlock/freezer{
+	initial_access = list("ACCESS_KITCHEN")
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
 "hjv" = (
@@ -5909,6 +5985,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
+"hwJ" = (
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/turbinehall)
 "hxc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -6052,7 +6134,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "hHC" = (
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/airlock/maintenance{
+	initial_access = list("ACCESS_MAINT")
+	},
 /turf/exterior/wall,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/upperhall)
@@ -6953,7 +7037,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/prison)
 "iRx" = (
-/obj/machinery/door/airlock/double/glass/security,
+/obj/machinery/door/airlock/double/glass/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig)
 "iRy" = (
@@ -7155,7 +7241,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/upperhall)
 "jgx" = (
-/obj/machinery/door/airlock/external/bolted_open,
+/obj/machinery/door/airlock/external/bolted_open{
+	initial_access = list("ACCESS_ATMOS")
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
@@ -7486,7 +7574,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/double/engineering,
+/obj/machinery/door/airlock/double/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/breakerroom)
 "jwy" = (
@@ -7570,7 +7660,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig/medbay)
 "jAQ" = (
-/obj/machinery/door/airlock/atmos,
+/obj/machinery/door/airlock/atmos{
+	initial_access = list("ACCESS_ATMOS")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -8122,7 +8214,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "kgW" = (
-/obj/machinery/door/airlock/double/security,
+/obj/machinery/door/airlock/double/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "khb" = (
@@ -8153,7 +8247,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "khW" = (
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/medical{
+	initial_access = list("ACCESS_MEDICAL")
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon)
 "kiH" = (
@@ -8591,7 +8687,8 @@
 /area/avalon/shelter/reactor)
 "kSW" = (
 /obj/machinery/door/airlock/atmos{
-	name = "Cryogenics"
+	name = "Cryogenics";
+	initial_access = list("ACCESS_ATMOS")
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor/tiled/techfloor,
@@ -8717,7 +8814,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "ldG" = (
-/obj/machinery/door/airlock/glass/security,
+/obj/machinery/door/airlock/glass/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -8853,7 +8952,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon)
 "llW" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -9287,7 +9388,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "lLQ" = (
-/obj/machinery/door/airlock/double/glass/engineering,
+/obj/machinery/door/airlock/double/glass/engineering{
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "lLZ" = (
@@ -9398,7 +9501,8 @@
 /area/avalon/shelter/messhall)
 "lSR" = (
 /obj/machinery/door/airlock/atmos{
-	name = "Ventilation"
+	name = "Ventilation";
+	initial_access = list("ACCESS_ATMOS")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -9521,7 +9625,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "mdw" = (
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/medical{
+	initial_access = list("ACCESS_SURGERY")
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "mdy" = (
@@ -9569,7 +9675,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "mgS" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/simulated/floor/plating,
@@ -9868,7 +9976,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "mCY" = (
-/obj/machinery/door/airlock/science,
+/obj/machinery/door/airlock/science{
+	initial_access = list("ACCESS_MAINT")
+	},
 /obj/effect/floor_decal/corner/purple,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
@@ -10216,7 +10326,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "nbu" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/machinehall)
 "nbN" = (
@@ -10372,7 +10484,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "nms" = (
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_ARMORY")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -10847,7 +10961,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "nPs" = (
-/obj/machinery/door/airlock/double/glass/medical,
+/obj/machinery/door/airlock/double/glass/medical{
+	initial_access = list("ACCESS_MEDICAL")
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "nQm" = (
@@ -10864,6 +10980,12 @@
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
+"nRc" = (
+/obj/structure/bed/chair/office/comfy/red{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/sergeantroom)
 "nRJ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 4
@@ -10888,7 +11010,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "nTx" = (
-/obj/machinery/door/airlock/glass/engineering,
+/obj/machinery/door/airlock/glass/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/effect/floor_decal/corner/yellow/border,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -10985,7 +11109,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "nZa" = (
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/airlock/maintenance{
+	initial_access = list("ACCESS_MEDICAL")
+	},
 /turf/simulated/floor/plating,
 /area/avalon)
 "nZd" = (
@@ -11566,7 +11692,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "oSr" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -11738,7 +11866,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "pfk" = (
-/obj/machinery/door/airlock/external/bolted,
+/obj/machinery/door/airlock/external/bolted{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/engineering)
 "pfz" = (
@@ -11825,7 +11955,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "pnv" = (
-/obj/machinery/door/airlock/glass/science,
+/obj/machinery/door/airlock/glass/science{
+	initial_access = list("ACCESS_RESEARCH")
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "pnS" = (
@@ -11887,7 +12019,8 @@
 "pqm" = (
 /obj/machinery/door/airlock/double/glass/engineering{
 	id_tag = "controlroomdoorbolts";
-	uid = "controlroomdoorbolts"
+	uid = "controlroomdoorbolts";
+	initial_access = list("ACCESS_ENGINE_EQUIP")
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
@@ -12174,7 +12307,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "pIS" = (
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/airlock/maintenance{
+	initial_access = list("ACCESS_MAINT")
+	},
 /obj/machinery/door/firedoor{
 	dir = 4
 	},
@@ -12952,7 +13087,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/turbinehall)
 "qOo" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_ATMOS")
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "qOw" = (
@@ -12971,6 +13108,21 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
+"qPh" = (
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/machinehall)
 "qPA" = (
 /obj/structure/lattice,
 /obj/machinery/light/spot,
@@ -13179,7 +13331,8 @@
 /area/avalon)
 "rdG" = (
 /obj/machinery/door/airlock/atmos{
-	name = "Filtration"
+	name = "Filtration";
+	initial_access = list("ACCESS_ATMOS")
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
@@ -13274,6 +13427,12 @@
 "rjT" = (
 /turf/simulated/wall/titanium,
 /area/avalon/shelter/expeditionpreparation)
+"rjZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig)
 "rkX" = (
 /obj/structure/table/steel,
 /obj/item/book/skill/research/science/adept,
@@ -13281,7 +13440,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "rlQ" = (
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig)
 "rlU" = (
@@ -13551,7 +13712,9 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "rDX" = (
@@ -13643,7 +13806,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
 "rMz" = (
-/obj/machinery/door/airlock/glass/science,
+/obj/machinery/door/airlock/glass/science{
+	initial_access = list("ACCESS_RESEARCH")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -13729,7 +13894,8 @@
 /area/avalon/shelter/habitationdeck)
 "rTp" = (
 /obj/machinery/door/airlock/atmos{
-	name = "Filtration"
+	name = "Filtration";
+	initial_access = list("ACCESS_ATMOS")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /turf/simulated/floor/tiled/techmaint,
@@ -13787,7 +13953,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "rYR" = (
-/obj/machinery/door/airlock/glass/security,
+/obj/machinery/door/airlock/glass/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -13817,7 +13985,8 @@
 /area/avalon/shelter/breakerroom)
 "sab" = (
 /obj/machinery/door/airlock/hatch{
-	locked = 1
+	locked = 1;
+	initial_access = list("ACCESS_MAINT")
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
@@ -13891,7 +14060,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/atmos)
 "sfv" = (
-/obj/machinery/door/airlock/glass/engineering,
+/obj/machinery/door/airlock/glass/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/effect/floor_decal/corner/yellow/border,
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -14079,7 +14250,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/atmos)
 "soN" = (
-/obj/machinery/door/airlock/atmos,
+/obj/machinery/door/airlock/atmos{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -14168,6 +14341,7 @@
 /obj/effect/floor_decal/corner/pink{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/hos,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "suj" = (
@@ -14261,6 +14435,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/airlock/atmos{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
 "sBd" = (
@@ -14316,7 +14493,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig)
 "sEM" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
@@ -14352,7 +14531,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "sGK" = (
-/obj/machinery/door/airlock/double/glass/medical,
+/obj/machinery/door/airlock/double/glass/medical{
+	initial_access = list("ACCESS_MEDICAL")
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "sHT" = (
@@ -14671,7 +14852,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig/medbay)
 "tgj" = (
-/obj/machinery/door/airlock/science,
+/obj/machinery/door/airlock/science{
+	initial_access = list("ACCESS_RESEARCH")
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/garage)
 "tgn" = (
@@ -14960,7 +15143,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "tyC" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "tyD" = (
@@ -15032,7 +15217,9 @@
 /turf/simulated/floor/tiled/freezer,
 /area/avalon/shelter/freezer)
 "tCa" = (
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	initial_access = list("ACCESS_CHIEF_ENGINEER")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "tCm" = (
@@ -15426,7 +15613,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon)
 "uec" = (
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -15555,6 +15744,7 @@
 /obj/effect/floor_decal/corner/pink{
 	dir = 6
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "ujO" = (
@@ -15650,7 +15840,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "uoJ" = (
-/obj/machinery/door/airlock/civilian,
+/obj/machinery/door/airlock/civilian{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig)
 "uqV" = (
@@ -16129,6 +16321,12 @@
 /obj/effect/paint_stripe/paleblue,
 /turf/simulated/wall,
 /area/avalon/shelter/science)
+"uRB" = (
+/obj/machinery/door/airlock/medical{
+	initial_access = list("ACCESS_MEDICAL")
+	},
+/turf/simulated/floor/tiled/white,
+/area/avalon)
 "uTG" = (
 /obj/structure/rack,
 /obj/item/seeds/potatoseed,
@@ -16352,7 +16550,9 @@
 "vkZ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
 "vlI" = (
@@ -16427,7 +16627,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "vsJ" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external{
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
 "vsM" = (
@@ -16444,7 +16646,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "vsU" = (
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_BRIG")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -16464,7 +16668,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "vuD" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -16606,7 +16812,9 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/machinery/door/airlock/security,
+/obj/machinery/door/airlock/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "vEi" = (
@@ -17026,7 +17234,9 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "wgn" = (
-/obj/machinery/door/airlock/double/security,
+/obj/machinery/door/airlock/double/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -17132,6 +17342,12 @@
 /obj/structure/stairs/long/west,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/messhall)
+"wpL" = (
+/obj/machinery/door/airlock/civilian{
+	initial_access = list("ACCESS_SECURITY")
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/habitationdeck)
 "wsK" = (
 /obj/machinery/vending/engivend{
 	dir = 1;
@@ -17171,12 +17387,18 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"wtJ" = (
+/obj/structure/stairs/long/west,
+/turf/simulated/open,
+/area/avalon/shelter/science)
 "wtL" = (
 /obj/effect/floor_decal/techfloor/orange,
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "wtU" = (
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/medical{
+	initial_access = list("ACCESS_MORGUE")
+	},
 /turf/simulated/floor/tiled/freezer,
 /area/avalon)
 "wuj" = (
@@ -17313,7 +17535,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/reception)
 "wzV" = (
-/obj/machinery/door/airlock/atmos,
+/obj/machinery/door/airlock/atmos{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -17426,7 +17650,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_MAINT")
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
 "wHo" = (
@@ -17620,6 +17846,10 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/avalon/shelter/freezer)
+"wXb" = (
+/obj/structure/stairs/long/east,
+/turf/simulated/open,
+/area/avalon/shelter/science)
 "wXj" = (
 /obj/machinery/light{
 	dir = 4
@@ -17947,7 +18177,8 @@
 /area/avalon/shelter/freezer)
 "xtT" = (
 /obj/machinery/door/airlock/atmos{
-	name = "Cryogenics"
+	name = "Cryogenics";
+	initial_access = list("ACCESS_ATMOS")
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/simulated/floor/tiled/techfloor,
@@ -18036,7 +18267,9 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "xxu" = (
-/obj/machinery/door/airlock/glass/medical,
+/obj/machinery/door/airlock/glass/medical{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -18071,7 +18304,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "xAQ" = (
-/obj/machinery/door/airlock/double/glass/security,
+/obj/machinery/door/airlock/double/glass/security{
+	initial_access = list("ACCESS_BRIG")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/prison)
 "xAW" = (
@@ -18141,6 +18376,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
+"xGq" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/science)
 "xGA" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
@@ -18201,7 +18442,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/upperhall)
 "xJS" = (
-/obj/machinery/door/airlock/double/security,
+/obj/machinery/door/airlock/double/security{
+	initial_access = list("ACCESS_SECURITY")
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -27586,8 +27829,8 @@ wSW
 xDZ
 xDZ
 xDZ
-xDZ
-xDZ
+uUX
+uUX
 wSW
 ezm
 ezm
@@ -44094,8 +44337,8 @@ jeU
 jeU
 jeU
 wSW
-jeU
-jeU
+wtJ
+wtJ
 jeU
 jeU
 jeU
@@ -60868,8 +61111,8 @@ wSW
 jeU
 jeU
 jeU
-jeU
-jeU
+wXb
+wXb
 wSW
 ezm
 ezm
@@ -77376,8 +77619,8 @@ jeU
 jeU
 jeU
 wSW
-jeU
-jeU
+wtJ
+wtJ
 jeU
 jeU
 jeU
@@ -94151,7 +94394,7 @@ jeU
 jeU
 kjh
 uUX
-uUX
+ejB
 wSW
 sDF
 sDF
@@ -110788,11 +111031,11 @@ jeU
 jeU
 jeU
 wSW
-xDZ
+xGq
 jNP
 fiZ
-jeU
-jeU
+fiZ
+fiZ
 uRw
 vnq
 hlu
@@ -111057,7 +111300,7 @@ uRw
 krl
 wsQ
 cdZ
-mdw
+uRB
 cdZ
 cdZ
 cdZ
@@ -127433,7 +127676,7 @@ ggB
 ggB
 tpR
 yfl
-yfl
+azn
 akt
 hBO
 hBO
@@ -144070,7 +144313,7 @@ ggB
 ggB
 ggB
 akt
-sEF
+rjZ
 ilr
 yaQ
 ggB
@@ -146156,7 +146399,7 @@ qro
 nJm
 uBV
 uBV
-uBV
+nRc
 uBV
 dRk
 hqm
@@ -160715,7 +160958,7 @@ ggB
 ggB
 tpR
 yfl
-yfl
+azn
 akt
 eqZ
 gky
@@ -162657,7 +162900,7 @@ con
 con
 cYH
 omv
-iXX
+hwJ
 qKs
 qKs
 qKs
@@ -195558,7 +195801,7 @@ nMD
 nMD
 nMD
 dwZ
-sAM
+qPh
 kCy
 kCy
 odk
@@ -210362,7 +210605,7 @@ wTb
 wTb
 rYh
 wTb
-rYh
+wpL
 wTb
 wTb
 gBL
@@ -228048,7 +228291,7 @@ jLF
 jLF
 jLF
 gGw
-cSP
+bFG
 gGw
 jLF
 jLF
@@ -229088,7 +229331,7 @@ hBO
 hBO
 jLF
 gGw
-cSP
+bFG
 gGw
 gGw
 gGw
