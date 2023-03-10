@@ -47,3 +47,8 @@
 	emergency_shuttle_leaving_dock = "The emergency escape shuttle has departed from %dock_name%."
 	emergency_shuttle_called_message = "An emergency escape shuttle has been sent."
 	emergency_shuttle_recall_message = "The emergency shuttle has been recalled"
+
+/datum/map/avalon/get_map_info()
+	return "На аварийную смену отправляют неопытных новичков, совсем недавно получивших возможность работать вне основных жилых блоков.\
+			До рассвета всего полчаса, и с каждой тикающей секундой напряжение растёт всё сильнее. Реактор отключен, автоматика климат-контроля неисправна, а научный отсек и вовсе затоплен.\
+			Почему так?.."
