@@ -144,7 +144,7 @@
 /datum/reactor_control_system/proc/moderate_turbine_loop()
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
 	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
-	var/obj/machinery/reactor_button/rswitch/current_switch
+	//var/obj/machinery/reactor_button/rswitch/current_switch
 
 	current_valve = reactor_valves["HEATEXCHANGER V-IN"]
 	if(get_meter_pressure("T-M-TURB IN") > 15000)
