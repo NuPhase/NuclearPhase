@@ -1,5 +1,7 @@
 #define TURBINE_MOMENT_OF_INERTIA 2075 //0.5m radius, 9500kg weight
 #define KGS_PER_KPA_DIFFERENCE 0.9 //For every kPa of pressure difference we gain that amount of kgs of flow
+#define TURBINE_ABNORMAL_RPM 4000
+#define TURBINE_MAX_RPM 10000
 
 /obj/machinery/atmospherics/binary/turbinestage
 	name = "turbine stage"
@@ -81,7 +83,7 @@
 		kin_energy = max(0, kin_energy * 0.95 - 10000)
 		if(kin_energy)
 			environment.add_thermal_energy(kin_energy * 0.05 + 10000)
-	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, 5000)
+	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, TURBINE_MAX_RPM)
 	ingoing_valve.forced_mass_flow = total_mass_flow //so we can succ enough steam
 
 	apply_vibration_effects()
@@ -102,6 +104,8 @@
 		vibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
 		vibration += 20
+	if(rpm > TURBINE_ABNORMAL_RPM) //я твоя турбина вал шатал
+		vibration += (rpm - TURBINE_ABNORMAL_RPM)*0.1
 	vibration += total_mass_flow * 0.005
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects()

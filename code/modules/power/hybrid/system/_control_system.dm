@@ -147,32 +147,9 @@
 	var/obj/machinery/reactor_button/rswitch/current_switch
 
 	current_valve = reactor_valves["HEATEXCHANGER V-IN"]
-	if(get_meter_pressure("T-M-TURB IN") > 10000)
+	if(get_meter_pressure("T-M-TURB IN") > 15000)
 		current_valve.adjust_openage(-1)
 	else
-		current_valve.adjust_openage(1)
-	if(get_meter_temperature("T-M-TURB IN") < 450)
-		current_valve = reactor_valves["TURB 1V-IN"]
-		current_valve.set_openage(0)
-		current_valve = reactor_valves["TURB 2V-IN"]
-		current_valve.set_openage(0)
-		current_switch = reactor_buttons["TURB V-BYPASS"]
-		current_switch.state = 0
-		current_switch.do_action()
-		return
-	else
-		current_switch = reactor_buttons["TURB V-BYPASS"]
-		current_switch.state = 0
-
-	current_valve = reactor_valves["TURB 1V-IN"]
-	if(turbine1.rpm > 3700)
-		current_valve.adjust_openage(-1)
-	else if(turbine1.rpm < 3500)
-		current_valve.adjust_openage(1)
-	current_valve = reactor_valves["TURB 2V-IN"]
-	if(turbine2.rpm > 3700)
-		current_valve.adjust_openage(-1)
-	else if(turbine2.rpm < 3500)
 		current_valve.adjust_openage(1)
 
 	current_gate = reactor_valves["T-COOLANT V-IN"]
@@ -180,11 +157,36 @@
 		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 	else
 		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
+
 	current_gate = reactor_valves["T-COOLANT V-OUT"]
 	if(get_meter_temperature("T-M-COOLANT") > 320)
 		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
 	else
 		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
+
+	if(get_meter_temperature("T-M-TURB IN") < 530)
+		current_valve = reactor_valves["TURB 1V-IN"]
+		current_valve.set_openage(0)
+		current_valve = reactor_valves["TURB 2V-IN"]
+		current_valve.set_openage(0)
+		return
+
+	if(get_meter_temperature("T-M-TURB IN") < 570)
+		current_valve = reactor_valves["TURB 1V-IN"]
+		current_valve.adjust_openage(-5)
+		current_valve = reactor_valves["TURB 2V-IN"]
+		current_valve.adjust_openage(-5)
+
+	current_valve = reactor_valves["TURB 1V-IN"]
+	if(turbine1.rpm > 3600)
+		current_valve.adjust_openage(-5)
+	else if(turbine1.rpm < 3500)
+		current_valve.adjust_openage(1)
+	current_valve = reactor_valves["TURB 2V-IN"]
+	if(turbine2.rpm > 3600)
+		current_valve.adjust_openage(-5)
+	else if(turbine2.rpm < 3500)
+		current_valve.adjust_openage(1)
 
 
 /datum/reactor_control_system/proc/scram(cause)
