@@ -9,6 +9,9 @@
 	var/datum/map/mapowner = null
 	footstep_type = null
 
+/turf/exterior/surface/explosion_act(severity)
+	return
+
 /turf/exterior/surface/get_air_graphic()
 	return mapowner.exterior_atmosphere?.graphic
 
