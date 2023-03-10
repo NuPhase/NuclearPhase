@@ -50,15 +50,15 @@ var/global/vs_control/vsc = new
 	var/airflow_stun_NAME = "Airflow Impact - Stunning"
 	var/airflow_stun_DESC = "How much a mob is stunned when hit by an object."
 
-	var/airflow_damage = 3
+	var/airflow_damage = 7
 	var/airflow_damage_NAME = "Airflow Impact - Damage"
 	var/airflow_damage_DESC = "Damage from airflow impacts."
 
-	var/airflow_speed_decay = 1.5
+	var/airflow_speed_decay = 1
 	var/airflow_speed_decay_NAME = "Airflow Speed Decay"
 	var/airflow_speed_decay_DESC = "How rapidly the speed gained from airflow decays."
 
-	var/airflow_delay = 30
+	var/airflow_delay = 10
 	var/airflow_delay_NAME = "Airflow Retrigger Delay"
 	var/airflow_delay_DESC = "Time in deciseconds before things can be moved by airflow again."
 
@@ -66,7 +66,7 @@ var/global/vs_control/vsc = new
 	var/airflow_mob_slowdown_NAME = "Airflow Slowdown"
 	var/airflow_mob_slowdown_DESC = "Time in tenths of a second to add as a delay to each movement by a mob if they are fighting the pull of the airflow."
 
-	var/connection_insulation = 1
+	var/connection_insulation = 0
 	var/connection_insulation_NAME = "Connections - Insulation"
 	var/connection_insulation_DESC = "Boolean, should doors forbid heat transfer?"
 

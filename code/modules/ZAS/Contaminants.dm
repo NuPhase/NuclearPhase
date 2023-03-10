@@ -13,11 +13,11 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 	var/STRICT_PROTECTION_NAME = "\"Strict Protection Only\""
 	var/STRICT_PROTECTION_DESC = "If this is on, only biosuits and spacesuits protect against contamination and ill effects."
 
-	var/GENETIC_CORRUPTION = 0
+	var/GENETIC_CORRUPTION = 5
 	var/GENETIC_CORRUPTION_NAME = "Genetic Corruption Chance"
 	var/GENETIC_CORRUPTION_DESC = "Chance of genetic corruption as well as toxic damage, X in 10,000."
 
-	var/SKIN_BURNS = 0
+	var/SKIN_BURNS = 1
 	var/SKIN_BURNS_DESC = "Contaminants have an effect similar to mustard gas on the un-suited."
 	var/SKIN_BURNS_NAME = "Skin Burns"
 
@@ -25,11 +25,11 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 	var/EYE_BURNS_NAME = "Eye Burns"
 	var/EYE_BURNS_DESC = "Contaminants burn the eyes of anyone not wearing eye protection."
 
-	var/CONTAMINATION_LOSS = 0.02
+	var/CONTAMINATION_LOSS = 0.07
 	var/CONTAMINATION_LOSS_NAME = "Contamination Loss"
 	var/CONTAMINATION_LOSS_DESC = "How much toxin damage is dealt from contaminated clothing" //Per tick?  ASK ARYN
 
-	var/CONTAMINANT_HALLUCINATION = 0
+	var/CONTAMINANT_HALLUCINATION = 1
 	var/CONTAMINANT_HALLUCINATION_NAME = "Contaminant Hallucination"
 	var/CONTAMINANT_HALLUCINATION_DESC = "Does being in contaminants cause you to hallucinate?"
 
