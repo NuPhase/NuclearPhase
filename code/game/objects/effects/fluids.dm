@@ -26,6 +26,8 @@
 		T.unwet_floor(FALSE)
 
 /obj/effect/fluid/Crossed(mob/living/carbon/C)
+	if(!iscarbon(C))
+		return
 	reagents.touch_mob(C)
 
 	var/temp_adj = 0
