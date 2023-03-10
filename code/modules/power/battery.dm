@@ -14,7 +14,7 @@
 
 /obj/machinery/power/generator/battery/examine(mob/user)
 	. = ..()
-	to_chat(user, "It is rated for [max_capacity]Wh.")
+	to_chat(user, "It is rated for [initial(max_capacity)]Wh.")
 
 /obj/machinery/power/generator/battery/available_power()
 	return min(capacity / CELLRATE, amperage * voltage) - powernet.battery_demand
@@ -66,6 +66,11 @@
 	amperage = 700
 	efficiency = 0.8
 
+/obj/machinery/power/generator/battery/lithium_ion/prebuilt/Initialize()
+	. = ..()
+	max_capacity = rand(40000, initial(max_capacity)) //they decayed with time
+	capacity = rand(0, max_capacity)
+
 /obj/machinery/power/generator/battery/lithium_ion/normal //710Wh/l capacity
 	name = "lithium-ion battery" //hard to manufacture
 	desc = "Lithium-Ion batteries are still cheap and practical in our day and age. Even with appearance of new and more dense batteries, lithium-ion ones still reign supreme in cost."
@@ -81,3 +86,7 @@
 	voltage = 4000 //FEED THE CHONKER REACTOR PUMPS
 	amperage = 450 //WAAAAH
 	efficiency = 0.95
+
+/obj/machinery/power/generator/battery/quantum/prebuilt/Initialize()
+	. = ..()
+	capacity = max_capacity //full of juice
