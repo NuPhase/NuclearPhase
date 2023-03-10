@@ -5,7 +5,7 @@
 	sfalloff = 25
 
 /obj/structure/reactor_superstructure
-	name = "N.F-F.R-1900"
+	name = "C.C-F.R-1900"
 	desc = "Nuclear Fusion-Fission Reactor hanged on a giant support structure."
 	anchored = TRUE
 	layer = ABOVE_HUMAN_LAYER
