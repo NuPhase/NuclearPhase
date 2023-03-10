@@ -1,29 +1,22 @@
 
 /obj/machinery/vending/snack
-	name = "Getmore Chocolate Corp"
-	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
+	name = "old food vendor"
+	desc = "A typical snack machine."
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
-	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
 	vend_delay = 25
 	base_type = /obj/machinery/vending/snack
 	products = list(
-		/obj/item/clothing/mask/chewable/candy/lolli = 8,
-		/obj/item/storage/chewables/candy/gum = 4,
-		/obj/item/storage/chewables/candy/cookies = 4,
-		/obj/item/chems/food/candy = 6,
-		/obj/item/chems/drinks/dry_ramen = 6,
-		/obj/item/chems/food/chips = 6,
-		/obj/item/chems/food/sosjerky = 6,
-		/obj/item/chems/food/no_raisin = 6,
-		/obj/item/chems/food/spacetwinkie = 6,
-		/obj/item/chems/food/cheesiehonkers = 6,
-		/obj/item/chems/food/tastybread = 6
+		/obj/item/clothing/mask/chewable/candy/lolli = 0,
+		/obj/item/storage/chewables/candy/gum = 0,
+		/obj/item/storage/chewables/candy/cookies = 0,
+		/obj/item/chems/food/candy = 0,
+		/obj/item/chems/food/chips = 0,
 	)
 	contraband = list(
-		/obj/item/chems/food/syndicake = 6
+		/obj/item/chems/food/syndicake = 0
 	)
 
 //a food variant of the boda machine - It carries slavic themed foods.. Mostly beer snacks
@@ -212,22 +205,18 @@
 		overlays += image(icon, "[initial(icon_state)]-screen")
 
 /obj/machinery/vending/cola
-	name = "Robust Softdrinks"
+	name = "softdrink machine"
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	icon_vend = "Cola_Machine-vend"
 	icon_deny = "Cola_Machine-deny"
 	vend_delay = 11
 	base_type = /obj/machinery/vending/cola
-	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(
 		/obj/item/chems/drinks/cans/cola = 10,
 		/obj/item/chems/drinks/cans/space_mountain_wind = 10,
-		/obj/item/chems/drinks/cans/dr_gibb = 10,
 		/obj/item/chems/drinks/cans/starkist = 10,
 		/obj/item/chems/drinks/cans/waterbottle = 10,
-		/obj/item/chems/drinks/cans/space_up = 10,
 		/obj/item/chems/drinks/cans/iced_tea = 10,
 		/obj/item/chems/drinks/cans/grape_juice = 10,
 		/obj/item/chems/drinks/juicebox/apple = 10,

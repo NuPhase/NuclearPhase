@@ -16,10 +16,9 @@
 		/obj/item/scanner/gas = 5,
 		/obj/item/t_scanner = 5,
 		/obj/item/screwdriver = 5,
-		/obj/item/flashlight/flare/glowstick = 3,
-		/obj/item/flashlight/flare/glowstick/red = 3,
+		/obj/item/flashlight/flare = 5,
 		/obj/item/stack/tape_roll/duct_tape = 8,
-		/obj/item/clothing/gloves/insulated/cheap = 2
+		/obj/item/clothing/gloves/insulated = 2
 	)
 	contraband = list(
 		/obj/item/weldingtool/hugetank = 2,
@@ -37,7 +36,6 @@
 	base_type = /obj/machinery/vending/engivend
 	initial_access = list(access_atmospherics, access_engine_equip)
 	products = list(
-		/obj/item/clothing/glasses/meson = 2,
 		/obj/item/multitool = 4,
 		/obj/item/geiger = 4,
 		/obj/item/stock_parts/circuitboard/airlock_electronics = 10,
@@ -60,7 +58,6 @@
 	initial_access = list(access_atmospherics, access_engine_equip)
 	products = list(
 		/obj/item/storage/belt/utility = 4,
-		/obj/item/clothing/glasses/meson = 4,
 		/obj/item/clothing/gloves/insulated = 4,
 		/obj/item/screwdriver = 12,
 		/obj/item/crowbar = 12,
@@ -96,7 +93,6 @@
 		/obj/item/stack/cable_coil = 4,
 		/obj/item/flash/synthetic = 4,
 		/obj/item/cell = 4,
-		/obj/item/scanner/health = 2,
 		/obj/item/scalpel = 1,
 		/obj/item/circular_saw = 1,
 		/obj/item/clothing/mask/breath/medical = 5,

@@ -100,7 +100,8 @@
 	initial_reagents = list(/decl/material/gas/ammonia = 60)
 
 /obj/item/chems/glass/bottle/eznutrient
-	label_text = "EZ NUtrient"
+	label_text = "Fertilizer"
+	desc = "A mix of nitrogen-containing substances."
 	label_color = COLOR_PALE_BTL_GREEN
 	lid_color = COLOR_PALE_BTL_GREEN
 	material = /decl/material/solid/plastic

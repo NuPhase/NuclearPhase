@@ -10,8 +10,8 @@
 //DRINKS
 
 /obj/item/chems/drinks/cans/cola
-	name = "\improper Space Cola"
-	desc = "Cola. in space."
+	name = "\improper Cola"
+	desc = "Cola. Simple."
 	icon_state = "cola"
 	center_of_mass = @"{'x':16,'y':10}"
 
@@ -36,7 +36,7 @@
 	atom_flags |= ATOM_FLAG_OPEN_CONTAINER
 
 /obj/item/chems/drinks/cans/space_mountain_wind
-	name = "\improper Space Mountain Wind"
+	name = "\improper Mountain Wind"
 	desc = "Blows right through you like a space wind."
 	icon_state = "space_mountain_wind"
 	center_of_mass = @"{'x':16,'y':10}"
