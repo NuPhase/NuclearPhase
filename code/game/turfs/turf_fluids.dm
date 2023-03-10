@@ -68,12 +68,13 @@
 	if(flooded)
 		ADD_ACTIVE_FLUID_SOURCE(src)
 
-/turf/proc/add_fluid(var/fluid_type, var/fluid_amount, var/defer_update)
+/turf/proc/add_fluid(var/fluid_type, var/fluid_amount, var/defer_update, var/ntemperature)
 	var/obj/effect/fluid/F = locate() in src
 	if(!F)
 		F = new(src)
 	if(!QDELETED(F))
 		F.reagents.add_reagent(fluid_type, min(fluid_amount, FLUID_MAX_DEPTH - F.reagents.total_volume), defer_update = defer_update)
+		F.temperature = ntemperature
 
 /turf/proc/get_physical_height()
 	return 0

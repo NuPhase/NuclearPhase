@@ -88,6 +88,13 @@
 	animate(superstructure, transform = matrix()*10, time = 490, easing = CIRCULAR_EASING)
 
 /obj/machinery/power/hybrid_reactor/proc/produce_explosion()
+	var/turf/T = superstructure.loc
+	explosion(superstructure, 25, 50, 75, 150)
+	sound_to(world, sound('sound/effects/explosion_huge.ogg', 0, 0, 0, 20))
+	spawn(10 SECONDS)
+		var/obj/effect/fluid/F = new(T)
+		F.reagents.add_reagent(/decl/material/solid/metal/tungsten, 1000000)
+		F.temperature = 3900
 
 /obj/machinery/power/hybrid_reactor/proc/meltdown()
 	meltdown = TRUE
@@ -159,11 +166,8 @@
 		sleep(27 SECONDS)
 		for(var/mob/living/carbon/human/H in human_mob_list)
 			to_chat(H, SPAN_ERPBOLD("And now it shall feast upon the ones who tried to harness its power."))
-		animate(superstructure, transform = matrix()*0.9, time = 310, easing = SINE_EASING | EASE_IN)
-		spawn(310)
+		animate(superstructure, transform = matrix()*0.9, time = 290, easing = SINE_EASING | EASE_IN)
+		spawn(29 SECONDS)
 			animate(superstructure, transform = matrix()*0.01, time = 10, easing = QUAD_EASING | EASE_IN)
-		sleep(32 SECONDS)
-		explosion(superstructure, 25, 50, 75, 150)
-		sound_to(world, sound('sound/effects/explosion_huge.ogg', 0, 0, 0, 20))
-	else
-		produce_explosion()
+		sleep(30 SECONDS)
+	produce_explosion()

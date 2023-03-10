@@ -476,6 +476,7 @@
 	color = "#dcdcdc"
 	value = 0.5
 	liquid_density = 19250
+	melting_point = 3400
 
 /decl/material/solid/metal/tantalumhafniumcarbide
 	name = "tantalum hafnium carbide"

@@ -115,7 +115,7 @@
 
 	return prob_slip
 
-/mob/living/carbon/human/proc/should_slip(var/probability = 20)
+/mob/living/carbon/proc/should_slip(var/probability = 20)
 	if(buckled)
 		return 0
 	if(Check_Shoegrip())

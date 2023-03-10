@@ -25,6 +25,27 @@
 	if(istype(T))
 		T.unwet_floor(FALSE)
 
+/obj/effect/fluid/Crossed(mob/living/carbon/C)
+	reagents.touch_mob(C)
+
+	var/temp_adj = 0
+	if(temperature < C.bodytemperature)			//Place is colder than we are
+		var/thermal_protection = C.get_cold_protection(temperature) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(thermal_protection < 1)
+			temp_adj = (1-thermal_protection) * ((temperature - C.bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
+	else if (temperature > C.bodytemperature)			//Place is hotter than we are
+		var/thermal_protection = C.get_heat_protection(temperature) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(thermal_protection < 1)
+			temp_adj = (1-thermal_protection) * ((temperature - C.bodytemperature) / BODYTEMP_HEAT_DIVISOR)
+	C.bodytemperature += between(-100, temp_adj*reagents.total_volume/FLUID_DEEP, 500)
+
+	if(reagents.total_volume > FLUID_SHALLOW) //do not slip in deep fluid
+		return
+	// skillcheck for slipping
+	if(!C.should_slip(100))
+		return
+	C.slip("the floor", 6)
+
 /obj/effect/fluid/airlock_crush()
 	qdel(src)
 
@@ -71,6 +92,12 @@
 	if(main_reagent) // TODO: weighted alpha from all reagents, not just primary
 		alpha = Clamp(CEILING(255*(reagents.total_volume/FLUID_DEEP)) * main_reagent.opacity, main_reagent.min_fluid_opacity, main_reagent.max_fluid_opacity)
 
+	if(temperature > main_reagent.melting_point && istype(main_reagent, /decl/material/solid/metal))
+		color = MOLTEN_METAL_COLOR
+		if(update_lighting)
+			update_lighting = FALSE
+			set_light(2, 3, color)
+
 	if(reagents.total_volume <= FLUID_PUDDLE)
 		APPLY_FLUID_OVERLAY("puddle")
 	else if(reagents.total_volume <= FLUID_SHALLOW)
@@ -82,19 +109,6 @@
 	else
 		APPLY_FLUID_OVERLAY("ocean")
 	compile_overlays()
-
-	if(update_lighting)
-		update_lighting = FALSE
-		var/glowing
-		for(var/rtype in reagents.reagent_volumes)
-			var/decl/material/reagent = GET_DECL(rtype)
-			if(REAGENT_VOLUME(reagents, rtype) >= 3 && reagent.radioactivity)
-				glowing = TRUE
-				break
-		if(glowing)
-			set_light(1, 0.2, COLOR_GREEN)
-		else
-			set_light(0)
 
 // Map helper.
 /obj/effect/fluid_mapped

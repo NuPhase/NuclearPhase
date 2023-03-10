@@ -102,3 +102,5 @@
 		else
 			M.adjust_fire_stacks(-(amount / 10))
 			holder.remove_reagent(type, amount)
+		if(amount > 200)
+			wash_mob(M)

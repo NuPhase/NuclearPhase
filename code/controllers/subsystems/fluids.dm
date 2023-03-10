@@ -84,7 +84,8 @@ SUBSYSTEM_DEF(fluids)
 				continue
 			checked_targets[neighbor] = TRUE
 			flooded_a_neighbor = TRUE
-			neighbor.add_fluid(/decl/material/liquid/water, FLUID_MAX_DEPTH)
+			current_fluid = current_turf.return_fluid()
+			neighbor.add_fluid(/decl/material/liquid/water, FLUID_MAX_DEPTH, 0, current_fluid.temperature)
 
 		if(!flooded_a_neighbor)
 			REMOVE_ACTIVE_FLUID_SOURCE(current_turf)
@@ -147,6 +148,7 @@ SUBSYSTEM_DEF(fluids)
 						other_fluid = new(below)
 					if(!QDELETED(other_fluid) && other_fluid.reagents.total_volume < FLUID_MAX_DEPTH)
 						current_turf.transfer_fluids_to(below, min(FLOOR(current_depth*0.5), FLUID_MAX_DEPTH - other_fluid.reagents.total_volume), defer_update = TRUE)
+						other_fluid.temperature = current_fluid.temperature
 
 		if(current_depth <= FLUID_PUDDLE)
 			continue
