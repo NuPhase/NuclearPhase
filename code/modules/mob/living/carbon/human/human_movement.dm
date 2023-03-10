@@ -115,6 +115,16 @@
 
 	return prob_slip
 
+/mob/living/carbon/human/proc/should_slip(var/probability = 20)
+	if(buckled)
+		return 0
+	if(Check_Shoegrip())
+		return 0
+	probability = probability / (get_skill_value(SKILL_AGILITY) + get_skill_value(SKILL_STRENGTH))
+	if(prob(probability))
+		return TRUE
+	return FALSE
+
 /mob/living/carbon/human/Check_Shoegrip()
 	if(species.check_no_slip(src))
 		return 1

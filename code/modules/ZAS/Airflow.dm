@@ -50,8 +50,8 @@ Contains helper procs for airflow, called by /connection_group.
 /mob/living/silicon/handle_airflow()
 	return FALSE
 
-/mob/living/carbon/human/handle_airflow_stun()
-	if(!slip_chance())
+/mob/living/carbon/human/handle_airflow_stun(differential)
+	if(!should_slip(differential))
 		to_chat(src, SPAN_NOTICE("Air suddenly rushes past you!"))
 		return FALSE
 	. = ..()
