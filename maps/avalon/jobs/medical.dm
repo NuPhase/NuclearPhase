@@ -76,6 +76,7 @@
 /datum/job/doctor
 	title = "Medical Corpsman"
 	department_types = list(/decl/department/medical)
+	minimal_player_age = 3
 	total_positions = 5
 	spawn_positions = 3
 	supervisors = "the hospital deputee"
@@ -129,6 +130,7 @@
 /datum/job/chemist
 	title = "Pharmacist"
 	department_types = list(/decl/department/medical)
+	minimal_player_age = 7
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the hospital deputee"
@@ -167,6 +169,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	economic_power = 5
+	minimal_player_age = 3
 	supervisors = "the hospital deputee"
 	selection_color = "#013d3b"
 	access = list(
