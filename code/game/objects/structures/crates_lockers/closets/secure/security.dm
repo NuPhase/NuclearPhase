@@ -127,7 +127,8 @@
 		/obj/item/stack/tape_roll/barricade_tape/police,
 		/obj/item/hailer,
 		/obj/item/clothing/accessory/storage/vest/black,
-		/obj/item/gun/projectile/pistol/holdout
+		/obj/item/gun/projectile/pistol/holdout,
+		/obj/item/flashlight/maglight
 	)
 
 /obj/structure/closet/secure_closet/security/cargo/WillContain()
