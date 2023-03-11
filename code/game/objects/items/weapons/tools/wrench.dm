@@ -14,6 +14,7 @@
 	drop_sound = 'sound/foley/bardrop1.ogg'
 	var/handle_color
 	var/static/valid_colours = list(COLOR_RED_GRAY, COLOR_MAROON, COLOR_DARK_BROWN, COLOR_GRAY20)
+	weight = 1.2
 
 /obj/item/wrench/Initialize()
 	. = ..()

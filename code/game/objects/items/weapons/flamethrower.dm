@@ -28,6 +28,7 @@
 	var/obj/item/weldingtool/welding_tool = null
 	var/obj/item/assembly/igniter/igniter = null
 	var/obj/item/tank/tank = null
+	weight = 10
 
 /obj/item/flamethrower/Initialize(ml, material_key, welder)
 	. = ..()

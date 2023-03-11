@@ -15,6 +15,7 @@
 
 	var/static/valid_colours = list(COLOR_RED, COLOR_CYAN_BLUE, COLOR_PURPLE, COLOR_CHESTNUT, COLOR_ASSEMBLY_YELLOW, COLOR_BOTTLE_GREEN)
 	var/handle_color
+	weight = 1
 
 /obj/item/screwdriver/Initialize()
 	if(prob(75))

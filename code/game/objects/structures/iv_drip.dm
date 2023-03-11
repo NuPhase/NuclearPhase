@@ -9,6 +9,7 @@
 	var/obj/item/chems/beaker
 	var/list/transfer_amounts = list(0.05, 0.1, 0.2, 5)
 	var/transfer_amount = 1
+	weight = 7
 
 /obj/structure/iv_drip/Initialize()
 	. = ..()

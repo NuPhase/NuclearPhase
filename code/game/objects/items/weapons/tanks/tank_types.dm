@@ -17,6 +17,7 @@
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	starting_pressure = list(/decl/material/gas/oxygen = 6*ONE_ATMOSPHERE)
 	volume = 180
+	weight = 2.5
 
 /obj/item/tank/oxygen/yellow
 	desc = "A tank of oxygen. This one is yellow."
@@ -25,6 +26,7 @@
 /obj/item/tank/oxygen/modulated //Will use liquid oxygen and heat it up as needed
 	name = "cryogenic oxygen tank"
 	volume = 60
+	weight = 5
 
 /obj/item/tank/oxygen/empty
 	starting_pressure = list()
@@ -51,6 +53,7 @@
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = null
 	starting_pressure = list(/decl/material/gas/hydrogen = 3*ONE_ATMOSPHERE)
+	weight = 4
 
 /obj/item/tank/hydrogen/empty
 	starting_pressure = list()
@@ -64,6 +67,8 @@
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = null
 	starting_pressure = list(/decl/material/gas/hydrogen = 5*ONE_ATMOSPHERE*0.33, /decl/material/gas/oxygen = 5*ONE_ATMOSPHERE*0.67)
+	weight = 4
+
 /obj/item/tank/waste
 	name = "waste tank"
 	desc = "Contains biological waste and scrubbed CO2."
@@ -73,6 +78,7 @@
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = null
 	starting_pressure = list(/decl/material/gas/carbon_dioxide = 2.5*ONE_ATMOSPHERE)
+	weight = 2
 
 /obj/item/tank/high_temp_waste
 	name = "HT-HE waste tank"
@@ -82,6 +88,7 @@
 	gauge_icon = null
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = null
+	weight = 6
 
 /*
  * Emergency Oxygen
@@ -99,6 +106,7 @@
 	melee_accuracy_bonus = -10
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	volume = 40 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
+	weight = 0.5
 
 /obj/item/tank/emergency/oxygen
 	name = "emergency oxygen tank"
@@ -111,6 +119,7 @@
 	name = "extended-capacity emergency oxygen tank"
 	icon = 'icons/obj/items/tanks/tank_emergency_engineer.dmi'
 	volume = 60
+	weight = 0.7
 
 /obj/item/tank/emergency/oxygen/double
 	name = "double emergency oxygen tank"
@@ -118,12 +127,14 @@
 	gauge_icon = "indicator_emergency_double"
 	volume = 90
 	w_class = ITEM_SIZE_NORMAL
+	weight = 1
 
 /obj/item/tank/emergency/oxygen/double/red	//firefighting tank, fits on belt, back or suitslot
 	name = "self contained breathing apparatus"
 	desc = "A self contained breathing apparatus, well known as SCBA. Generally filled with oxygen."
 	icon = 'icons/obj/items/tanks/tank_scuba.dmi'
 	slot_flags = SLOT_LOWER_BODY | SLOT_BACK
+	weight = 4
 
 /*
  * Nitrogen

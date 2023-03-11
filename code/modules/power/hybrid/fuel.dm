@@ -7,6 +7,7 @@
 	volume = 600
 	var/sealed = FALSE
 	var/list/initial_reagents
+	weight = 12
 
 /obj/item/chems/fuel_cell/Initialize()
 	. = ..()

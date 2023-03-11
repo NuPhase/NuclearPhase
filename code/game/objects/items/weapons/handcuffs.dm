@@ -18,6 +18,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
+	weight = 0.4
 
 /obj/item/handcuffs/examine(mob/user)
 	. = ..()

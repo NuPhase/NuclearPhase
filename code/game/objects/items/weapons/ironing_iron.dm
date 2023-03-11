@@ -12,6 +12,7 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 
 	var/enabled = 0
+	weight = 1.5
 
 /obj/item/ironingiron/attack_self(var/mob/user)
 	enabled = !enabled

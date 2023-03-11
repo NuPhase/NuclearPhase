@@ -14,6 +14,7 @@
 	icon_state = ICON_STATE_WORLD
 	slot_flags = SLOT_LOWER_BODY
 	force = 10
+	weight = 2
 
 /obj/item/classic_baton/attack(mob/M, mob/living/user)
 	if ((MUTATION_CLUMSY in user.mutations) && prob(50))
@@ -37,6 +38,7 @@
 	w_class = ITEM_SIZE_SMALL
 	force = 3
 	var/on = 0
+	weight = 1.5
 
 /obj/item/telebaton/attack_self(mob/user)
 	on = !on

@@ -297,8 +297,8 @@
 
 		to_chat(user, SPAN_WARNING("You are not dexterous enough to pick up \the [src]."))
 		return
-	if(weight > (user.get_skill_value() + 1) * 11)
-		to_chat(user, SPAN_WARNING("You can't pick up [src], it's too heavy!"))
+	if(weight > (user.get_skill_value(SKILL_STRENGTH) * 5) + 4)
+		to_chat(user, SPAN_WARNING("You can't pick up [src], it's too heavy for you!"))
 		return
 
 	var/old_loc = loc

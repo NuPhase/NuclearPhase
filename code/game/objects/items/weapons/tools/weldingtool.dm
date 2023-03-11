@@ -26,6 +26,7 @@
 
 	var/activate_sound = 'sound/items/welderactivate.ogg'
 	var/deactivate_sound = 'sound/items/welderdeactivate.ogg'
+	weight = 2.5
 
 /obj/item/weldingtool/Initialize()
 	if(ispath(tank))
@@ -97,7 +98,7 @@
 			return
 
 		status = !status
-		
+
 		if(status)
 			to_chat(user, SPAN_NOTICE("You secure the welder."))
 		else
@@ -122,7 +123,7 @@
 		if(!(src in user.get_held_items()))
 			to_chat(user, SPAN_WARNING("You must hold the welder in your hands to attach a tank."))
 			return
-		
+
 		if(!user.unEquip(W, src))
 			return
 

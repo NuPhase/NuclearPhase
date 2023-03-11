@@ -10,6 +10,7 @@
 	var/voltage = 220
 	should_heat = TRUE
 	anchored = TRUE
+	weight = 400
 	//a reminder that watts are amperage*voltage
 
 /obj/machinery/power/generator/battery/examine(mob/user)

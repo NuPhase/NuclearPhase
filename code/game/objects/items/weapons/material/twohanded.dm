@@ -84,6 +84,7 @@
 	material = /decl/material/solid/metal/steel
 	applies_material_colour = FALSE
 	applies_material_name = TRUE
+	weight = 8
 
 /obj/item/twohanded/fireaxe/Initialize()
 	. = ..()
@@ -130,7 +131,7 @@
 /obj/item/twohanded/spear/on_update_icon()
 	. = ..()
 	add_overlay(list(
-			get_shaft_overlay("shaft"), 
+			get_shaft_overlay("shaft"),
 			mutable_appearance(icon, "cable", cable_color)
 		))
 
@@ -179,6 +180,7 @@
 	material_force_multiplier = 0.4           // 24 when wielded with weight 60 (steel)
 	unwielded_material_force_multiplier = 0.25 // 15 when unwielded based on above.
 	melee_accuracy_bonus = -10
+	weight = 3
 
 //Predefined materials go here.
 /obj/item/twohanded/baseballbat/aluminium
@@ -208,6 +210,7 @@
 	applies_material_colour = FALSE
 	applies_material_name = TRUE
 	w_class = ITEM_SIZE_NO_CONTAINER
+	weight = 5
 
 /obj/item/twohanded/pipewrench/Initialize()
 	. = ..()

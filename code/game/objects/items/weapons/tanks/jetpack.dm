@@ -15,6 +15,7 @@
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/metal/aluminium = MATTER_AMOUNT_REINFORCEMENT)
 	origin_tech = "{'materials':1,'engineering':3}"
+	weight = 15
 
 /obj/item/tank/jetpack/Initialize()
 	. = ..()
@@ -104,4 +105,4 @@
 	name = "integrated manuvering module thrusterpack"
 	desc = "The 'manuvering' part of a manuvering jet module for a hardsuit. You could... probably use this standalone?"
 	var/obj/item/rig/holder
-	
+

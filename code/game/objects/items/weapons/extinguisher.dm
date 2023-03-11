@@ -21,6 +21,7 @@
 	var/last_use = 1.0
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
+	weight = 6
 
 /obj/item/extinguisher/mini
 	name = "mini fire extinguisher"
@@ -40,6 +41,7 @@
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_TRACE,
 		/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT
 	)
+	weight = 4
 
 /obj/item/extinguisher/Initialize()
 	. = ..()

@@ -19,6 +19,7 @@
 
 	power_rating = 7500 //7500 W ~ 10 HP
 	power_losses = 150
+	weight = 15
 
 /obj/machinery/portable_atmospherics/powered/pump/filled
 	start_pressure = 90 * ONE_ATMOSPHERE

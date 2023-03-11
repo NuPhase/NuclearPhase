@@ -258,6 +258,7 @@
 	name = "diesel generator"
 	allowed_fuels = list(/decl/material/liquid/diesel)
 	power_gen = 40000
+	weight = 30
 
 /obj/machinery/power/generator/port_gen/liquid/diesel/large
 	name = "industrial diesel generator"
@@ -270,6 +271,7 @@
 	density = 0
 	power_output = 10
 	output_voltage = 1000
+	weight = 300
 
 
 //A power generator that runs on solid plasma sheets.

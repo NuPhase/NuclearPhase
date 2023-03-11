@@ -16,6 +16,7 @@
 
 	var/obj/item/shockpaddles/linked/paddles
 	var/obj/item/cell/bcell = null
+	weight = 4
 
 /obj/item/defibrillator/Initialize() //starts without a cell for rnd
 	if(ispath(paddles))
@@ -168,6 +169,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_LOWER_BODY
 	origin_tech = "{'biotech':5,'powerstorage':3}"
+	weight = 3
 
 /obj/item/defibrillator/compact/loaded
 	bcell = /obj/item/cell/high

@@ -13,6 +13,7 @@
 	var/atom/target = null
 	var/open_panel = 0
 	var/image_overlay = null
+	weight = 1.5
 
 /obj/item/plastique/Initialize()
 	. = ..()

@@ -19,6 +19,7 @@
 	var/maxrate = 10 * ONE_ATMOSPHERE
 
 	var/list/scrubbing_gas
+	weight = 15
 
 /obj/machinery/portable_atmospherics/powered/scrubber/Initialize()
 	. = ..()

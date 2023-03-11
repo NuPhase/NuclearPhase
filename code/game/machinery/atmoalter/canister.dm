@@ -23,6 +23,7 @@
 	volume = 1000
 	interact_offline = 1 // Allows this to be used when not in powered area.
 	var/update_flag = 0
+	weight = 10
 
 /obj/machinery/portable_atmospherics/canister/Initialize(mapload, material)
 	if(ispath(material))
@@ -195,6 +196,7 @@ update_flag
 	if(check_change()) //Returns 1 if no change needed to icons.
 		return
 
+	weight = initial(weight) + air_contents.get_mass()
 	overlays.Cut()
 
 	if(update_flag & 1)

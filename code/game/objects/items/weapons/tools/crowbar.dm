@@ -25,6 +25,7 @@
 		/mob/living = 15,
 		/obj/machinery = 15
 		)
+	weight = 2
 
 /obj/item/crowbar/Initialize()
 	. = ..()

@@ -7,6 +7,7 @@
 	icon_state = "folded"
 	origin_tech = "{'biotech':2}"
 	var/obj/item/tank/airtank
+	weight = 3
 
 /obj/item/bodybag/rescue/loaded
 	airtank = /obj/item/tank/emergency/oxygen/double

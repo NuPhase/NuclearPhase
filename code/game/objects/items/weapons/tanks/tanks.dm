@@ -54,6 +54,7 @@ var/global/list/global/tank_gauge_cache = list()
 	var/leaking = 0
 	var/wired = 0
 	var/list/starting_pressure //list in format 'xgm gas id' = 'desired pressure at start'
+	weight = 3
 
 /obj/item/tank/Initialize()
 	. = ..()
@@ -407,6 +408,7 @@ var/global/list/global/tank_gauge_cache = list()
 /obj/item/tank/proc/check_status()
 	if(!air_contents)
 		return 0
+	weight = initial(weight) += air_contents.get_mass()
 
 	var/pressure = air_contents.return_pressure()
 

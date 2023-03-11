@@ -145,6 +145,12 @@
 	var/obj/item/chems/beaker
 	var/iv_attached = 0
 	var/iv_stand = TRUE
+	pull_coefficient = 0.4
+	weight = 8
+
+/obj/structure/bed/roller/hydraulic //cannot be rolled, but is easy to pull around
+	pull_coefficient = 0.2
+	item_form_type = null
 
 /obj/structure/bed/roller/on_update_icon()
 	cut_overlays()
@@ -192,11 +198,13 @@
 	if(M == buckled_mob)
 		set_density(1)
 		queue_icon_update()
+		weight += M.weight
 	else
 		set_density(0)
 		if(iv_attached)
 			detach_iv(M, usr)
 		queue_icon_update()
+		weight -= M.weight
 
 /obj/structure/bed/roller/Process()
 	if(!iv_attached || !buckled_mob || !beaker)
@@ -247,7 +255,7 @@
 	if(beaker)
 		remove_beaker(user)
 		return TRUE
-	if(!buckled_mob)
+	if(!buckled_mob && item_form_type)
 		collapse()
 		return TRUE
 	. = ..()
@@ -261,6 +269,7 @@
 	w_class = ITEM_SIZE_LARGE
 	pickup_sound = 'sound/foley/pickup2.ogg'
 	var/structure_form_type = /obj/structure/bed/roller	//The deployed form path.
+	weight = 8
 
 /obj/item/roller/get_single_monetary_worth()
 	. = structure_form_type ? atom_info_repository.get_combined_worth_for(structure_form_type) : ..()
