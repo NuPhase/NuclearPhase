@@ -14,7 +14,7 @@
 	throw_range = 15
 	throw_speed = 3
 
-	origin_tech = "{'programming':1,'engineering':1,'esoteric':3}"
+	origin_tech = @'{"programming":1,"engineering":1,"esoteric":3}'
 
 	var/obj/item/radio/spy/radio
 	var/obj/machinery/camera/spy/camera
@@ -58,8 +58,7 @@
 	color = COLOR_GRAY80
 
 	w_class = ITEM_SIZE_SMALL
-
-	origin_tech = "{'programming':1,'engineering':1,'esoteric':3}"
+	origin_tech = @'{"programming":1,"engineering":1,"esoteric":3}'
 
 	var/obj/item/radio/spy/radio
 	var/obj/item/spy_bug/selected_camera
@@ -114,7 +113,7 @@
 		user.reset_view()
 		user.unset_machine()
 		return
-	
+
 	selected_camera = input("Select camera bug to view.") as null|anything in cameras
 	view_camera(user)
 

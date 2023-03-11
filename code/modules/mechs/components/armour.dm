@@ -12,7 +12,7 @@
 		bio = ARMOR_BIO_SHIELDED,
 		rad = ARMOR_RAD_MINOR
 		)
-	origin_tech = "{'materials':1}"
+	origin_tech = @'{"materials":1}'
 	material = /decl/material/solid/metal/steel
 
 /obj/item/robot_parts/robot_component/armour/exosuit/radproof
@@ -27,7 +27,7 @@
 		bio = ARMOR_BIO_SHIELDED, 
 		rad = ARMOR_RAD_SHIELDED
 		)
-	origin_tech = "{'materials':3}"
+	origin_tech = @'{"materials":3}'
 	material = /decl/material/solid/metal/steel
 
 /obj/item/robot_parts/robot_component/armour/exosuit/em
@@ -42,7 +42,7 @@
 		bio = ARMOR_BIO_SHIELDED, 
 		rad = ARMOR_RAD_SMALL
 		)
-	origin_tech = "{'materials':3}"
+	origin_tech = @'{"materials":3}'
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/metal/silver = MATTER_AMOUNT_REINFORCEMENT)
 
@@ -57,7 +57,7 @@
 		bomb = ARMOR_BOMB_RESISTANT, 
 		bio = ARMOR_BIO_SHIELDED
 		)
-	origin_tech = "{'materials':5}"
+	origin_tech = @'{"materials":5}'
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_REINFORCEMENT)
 

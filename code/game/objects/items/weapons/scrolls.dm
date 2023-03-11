@@ -8,7 +8,7 @@
 	item_state = "paper"
 	throw_speed = 4
 	throw_range = 20
-	origin_tech = "{'wormholes':4}"
+	origin_tech = @'{"wormholes":4}'
 
 /obj/item/teleportation_scroll/attack_self(mob/user)
 	var/decl/special_role/wizard/wizards = GET_DECL(/decl/special_role/wizard)

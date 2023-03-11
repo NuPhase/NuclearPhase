@@ -9,7 +9,7 @@
 	obj_flags =  OBJ_FLAG_CONDUCTIBLE
 	slot_flags = SLOT_BACK
 	caliber = CALIBER_SHOTGUN
-	origin_tech = "{'combat':4,'materials':2}"
+	origin_tech = @'{"combat":4,"materials":2}'
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/riot
 	handle_casings = HOLD_CASINGS
@@ -65,7 +65,7 @@
 	obj_flags =  OBJ_FLAG_CONDUCTIBLE
 	slot_flags = SLOT_BACK
 	caliber = CALIBER_SHOTGUN
-	origin_tech = "{'combat':3,'materials':1}"
+	origin_tech = @'{"combat":3,"materials":1}'
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	one_hand_penalty = 2
 

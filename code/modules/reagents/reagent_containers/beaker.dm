@@ -101,9 +101,7 @@
 	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
 	show_reagent_name = TRUE
 	material = /decl/material/solid/metal/steel
-	applies_material_name = FALSE
-	applies_material_colour = FALSE
-	origin_tech = "{'materials':2}"
+	origin_tech = @'{"materials":2}'
 	lid_color = COLOR_PALE_BLUE_GRAY
 
 /obj/item/chems/glass/beaker/advanced
@@ -122,7 +120,7 @@
 		/decl/material/solid/metal/uranium = MATTER_AMOUNT_TRACE,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_TRACE
 	)
-	origin_tech = "{'exoticmatter':2,'materials':6}"
+	origin_tech = @'{"exoticmatter":2,"materials":6}'
 	lid_color = COLOR_CYAN_BLUE
 
 /obj/item/chems/glass/beaker/vial

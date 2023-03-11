@@ -886,7 +886,7 @@ var/global/list/allCasters = list() //Global list that will contain reference to
 				src.scribble = s
 				src.attack_self(user)
 				return TRUE
-			return 
+			return
 	return ..()
 
 ////////////////////////////////////helper procs

@@ -6,7 +6,7 @@
 	safety_icon = "safety"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = CALIBER_PISTOL_SMALL
-	origin_tech = "{'combat':5,'materials':2}"
+	origin_tech = @'{"combat":5,"materials":2}'
 	slot_flags = SLOT_LOWER_BODY|SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/pistol/small
 	load_method = MAGAZINE
@@ -39,7 +39,7 @@
 	w_class = ITEM_SIZE_HUGE
 	force = 10
 	caliber = CALIBER_RIFLE
-	origin_tech = "{'combat':8,'materials':3}"
+	origin_tech = @'{"combat":7,"materials":3}'
 	ammo_type = /obj/item/ammo_casing/rifle
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE

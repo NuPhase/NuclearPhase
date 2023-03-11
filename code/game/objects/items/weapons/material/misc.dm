@@ -56,7 +56,7 @@
 	w_class = ITEM_SIZE_SMALL
 	sharp = 1
 	edge = 1
-	origin_tech = "{'materials':2,'combat':1}"
+	origin_tech = @'{"materials":2,"combat":1}'
 	attack_verb = list("chopped", "torn", "cut")
 	material = /decl/material/solid/metal/steel
 	applies_material_colour = FALSE
@@ -138,7 +138,7 @@
 	throw_range = 3
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	origin_tech = "{'materials':2,'combat':2}"
+	origin_tech = @'{"materials":2,"combat":2}'
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	material = /decl/material/solid/metal/steel
 	applies_material_colour = TRUE

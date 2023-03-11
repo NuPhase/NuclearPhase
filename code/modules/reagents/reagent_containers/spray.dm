@@ -173,8 +173,8 @@
 	w_class = ITEM_SIZE_LARGE
 	possible_transfer_amounts = null
 	volume = 600
-	origin_tech = "{'combat':3,'materials':3,'engineering':3}"
 	step_delay = 8
+	origin_tech = @'{"combat":3,"materials":3,"engineering":3}'
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
 

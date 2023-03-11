@@ -35,7 +35,7 @@
 	color = COLOR_GOLD
 	hardness = MAT_VALUE_FLEXIBLE + 5
 	integrity = 100
-	stack_origin_tech = "{'materials':4}"
+	stack_origin_tech = @'{"materials":4}'
 	ore_result_amount = 5
 	ore_name = "native gold"
 	ore_spread_chance = 10
@@ -113,7 +113,7 @@
 	color = COLOR_COPPER
 	weight = MAT_VALUE_NORMAL
 	hardness = MAT_VALUE_FLEXIBLE + 10
-	stack_origin_tech = "{'materials':2}"
+	stack_origin_tech = @'{"materials":2}'
 
 /decl/material/solid/metal/silver
 	name = "silver"
@@ -121,7 +121,7 @@
 	lore_text = "A soft, white, lustrous transition metal. Has many and varied industrial uses in electronics, solar panels and mirrors."
 	color = "#d1e6e3"
 	hardness = MAT_VALUE_FLEXIBLE + 10
-	stack_origin_tech = "{'materials':3}"
+	stack_origin_tech = @'{"materials":3}'
 	ore_result_amount = 5
 	ore_spread_chance = 10
 	ore_name = "native silver"
@@ -259,7 +259,7 @@
 	brute_armor = 8
 	burn_armor = 10
 	hardness = MAT_VALUE_VERY_HARD
-	stack_origin_tech = "{'materials':2}"
+	stack_origin_tech = @'{"materials":2}'
 	hitsound = 'sound/weapons/smash.ogg'
 	value = 1.4
 	reflectiveness = MAT_VALUE_MATTE
@@ -292,7 +292,7 @@
 	value = 1.5
 	explosion_resistance = 25
 	hardness = MAT_VALUE_VERY_HARD
-	stack_origin_tech = "{'materials':2}"
+	stack_origin_tech = @'{"materials":2}'
 	hitsound = 'sound/weapons/smash.ogg'
 	reflectiveness = MAT_VALUE_MATTE
 	default_solid_form = /obj/item/stack/material/reinforced
@@ -318,7 +318,7 @@
 	color = "#9bc6f2"
 	brute_armor = 4
 	burn_armor = 20
-	stack_origin_tech = "{'materials':3}"
+	stack_origin_tech = @'{"materials":3}'
 	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
 	value = 1.8
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
@@ -328,7 +328,7 @@
 	uid = "solid_osmium"
 	lore_text = "An extremely hard form of platinum."
 	color = "#9999ff"
-	stack_origin_tech = "{'materials':5}"
+	stack_origin_tech = @'{"materials":5}'
 	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
 	value = 1.3
 
@@ -339,7 +339,7 @@
 	color = "#deddff"
 	weight = MAT_VALUE_VERY_HEAVY
 	wall_support_value = MAT_VALUE_VERY_HEAVY
-	stack_origin_tech = "{'materials':2}"
+	stack_origin_tech = @'{"materials":2}'
 	ore_compresses_to = /decl/material/solid/metal/osmium
 	ore_result_amount = 5
 	ore_spread_chance = 10

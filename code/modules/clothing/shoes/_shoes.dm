@@ -12,8 +12,7 @@
 	permeability_coefficient = 0.50
 	force = 2
 	blood_overlay_type = "shoeblood"
-	material = /decl/material/solid/leather
-	origin_tech = "{'materials':1,'engineering':1}"
+	origin_tech = @'{"materials":1,"engineering":1}'
 
 	var/can_fit_under_magboots = TRUE
 	var/can_add_cuffs = TRUE

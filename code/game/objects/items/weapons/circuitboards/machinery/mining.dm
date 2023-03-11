@@ -2,7 +2,7 @@
 	name = "circuitboard (gas extractor)"
 	build_path = /obj/machinery/atmospherics/unary/material/extractor
 	board_type = "machine"
-	origin_tech = "{'programming':2,'engineering':2}"
+	origin_tech = @'{"programming":2,"engineering":2}'
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/micro_laser = 1,
@@ -17,7 +17,7 @@
 	name = "circuitboard (exosuit storage)"
 	build_path = /obj/machinery/modernsuit_storage
 	board_type = "machine"
-	origin_tech = "{'programming':2,'engineering':2}"
+	origin_tech = @'{"programming":2,"engineering":2}'
 	req_components = list(
 		/obj/item/stock_parts/engine = 6,
 		/obj/item/stock_parts/micro_laser = 1,

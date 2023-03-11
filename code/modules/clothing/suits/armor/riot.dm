@@ -18,7 +18,7 @@
 	matter = list(
 		/decl/material/solid/cloth = MATTER_AMOUNT_SECONDARY
 		)
-	origin_tech = "{'materials':1,'engineering':1,'combat':2}"
+	origin_tech = @'{"materials":1,"engineering":1,"combat":2}'
 
 /obj/item/clothing/suit/armor/riot/prepared
 	starting_accessories = list(/obj/item/clothing/accessory/armguards/riot, /obj/item/clothing/accessory/legguards/riot)
@@ -41,8 +41,8 @@
 	slowdown = 1
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/cloth = MATTER_AMOUNT_SECONDARY)
-	origin_tech = "{'materials':1,'engineering':1,'combat':2}"
-	
+	origin_tech = @'{"materials":1,"engineering":1,"combat":2}'
+
 /obj/item/clothing/accessory/armguards/riot
 	name = "riot arm guards"
 	desc = "A pair of armored arm pads with heavy padding to protect against melee attacks."
@@ -58,5 +58,5 @@
 	siemens_coefficient = 0.5
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/cloth = MATTER_AMOUNT_SECONDARY)
-	origin_tech = "{'materials':1,'engineering':1,'combat':2}"
+	origin_tech = @'{"materials":1,"engineering":1,"combat":2}'
 

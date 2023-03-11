@@ -2,9 +2,9 @@
 	name = "circuit board"
 	icon = 'icons/obj/modules/module_id.dmi'
 	icon_state = ICON_STATE_WORLD
-	origin_tech = "{'programming':2}"
 	density = 0
 	anchored = 0
+	origin_tech = @'{"programming":2}'
 	w_class = ITEM_SIZE_SMALL
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	force = 5.0
@@ -60,6 +60,9 @@
 /obj/item/stock_parts/circuitboard/proc/update_desc()
 	if(!build_path)
 		return
+	if(!ispath(build_path, /obj/machinery))
+		to_world_log("Non-machinery build path for [type]")
+		CRASH("Non-machinery build path for [type]")
 	var/obj/machinery/M = build_path
 	if(!desc)
 		desc = "A circuitboard for \the [initial(M.name)]"
