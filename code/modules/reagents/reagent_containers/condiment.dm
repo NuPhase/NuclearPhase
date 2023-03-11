@@ -12,7 +12,7 @@
 	icon_state = "emptycondiment"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	possible_transfer_amounts = @"[1,5,10]"
-	center_of_mass = @"{'x':16,'y':6}"
+	center_of_mass = @'{"x":16,"y":6}'
 	randpixel = 6
 	volume = 150
 	var/list/starting_reagents
@@ -177,22 +177,45 @@
 	name = "salt shaker"
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
-	center_of_mass = @"{'x':16,'y':9}"
 	starting_reagents = list(/decl/material/solid/sodiumchloride = 120)
+	center_of_mass = @'{"x":16,"y":9}'
 
 /obj/item/chems/condiment/small/peppermill
 	name = "pepper mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
-	center_of_mass = @"{'x':16,'y':8}"
 	starting_reagents = list(/decl/material/solid/blackpepper = 120)
+	center_of_mass = @'{"x":16,"y":8}'
+
+/obj/item/chems/condiment/small/peppermill/populate_reagents()
+	reagents.add_reagent(/decl/material/solid/blackpepper, reagents.maximum_volume)
 
 /obj/item/chems/condiment/small/sugar
 	name = "sugar"
 	desc = "Sweetness in a bottle"
 	icon_state = "sugarsmall"
-	center_of_mass = @"{'x':17,'y':9}"
 	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 120)
+	center_of_mass = @'{"x":17,"y":9}'
+
+/obj/item/chems/condiment/small/sugar/populate_reagents()
+	reagents.add_reagent(/decl/material/liquid/nutriment/sugar, reagents.maximum_volume)
+
+/obj/item/chems/condiment/small/mint
+	name = "mint essential oil"
+	desc = "A small bottle of the essential oil of some kind of mint plant."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "coldsauce"
+
+/obj/item/chems/condiment/small/mint/populate_reagents()
+	reagents.add_reagent(/decl/material/liquid/drink/syrup/mint, reagents.maximum_volume)
+
+/obj/item/chems/condiment/small/soysauce
+	name = "soy sauce"
+	desc = "A dark, salty, savoury flavoring."
+	icon_state = "soysauce"
+
+/obj/item/chems/condiment/small/soysauce/populate_reagents()
+	reagents.add_reagent(/decl/material/liquid/nutriment/soysauce, reagents.maximum_volume)
 
 //MRE condiments and drinks.
 

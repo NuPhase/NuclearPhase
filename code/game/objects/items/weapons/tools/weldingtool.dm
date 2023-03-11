@@ -1,32 +1,30 @@
 /obj/item/weldingtool
-	name = "welding tool"
-	icon = 'icons/obj/items/tool/welders/welder.dmi'
-	icon_state = ICON_STATE_WORLD
-	desc = "A portable welding gun with a port for attaching fuel tanks."
-	obj_flags = OBJ_FLAG_CONDUCTIBLE
-	slot_flags = SLOT_LOWER_BODY
-	center_of_mass = @"{'x':14,'y':15}"
-	force = 5
-	throwforce = 5
-	throw_speed = 1
-	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
-	material = /decl/material/solid/metal/steel
-	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
-	origin_tech = "{'engineering':1}"
-	drop_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
-	z_flags = ZMM_MANGLE_PLANES
-
-	var/lit_colour = COLOR_PALE_ORANGE
-	var/waterproof = FALSE
-	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
-	var/status = 1 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
-	var/welding_resource = "welding fuel"
-	var/obj/item/welder_tank/tank = /obj/item/welder_tank // where the fuel is stored
-
-	var/activate_sound = 'sound/items/welderactivate.ogg'
-	var/deactivate_sound = 'sound/items/welderdeactivate.ogg'
-	weight = 2.5
+	name                                = "welding tool"
+	desc                                = "A portable welding gun with a port for attaching fuel tanks."
+	icon                                = 'icons/obj/items/tool/welders/welder.dmi'
+	icon_state                          = ICON_STATE_WORLD
+	obj_flags                           = OBJ_FLAG_CONDUCTIBLE
+	slot_flags                          = SLOT_LOWER_BODY
+	center_of_mass                      = @'{"x":14,"y":15}'
+	force                               = 5
+	throwforce                          = 5
+	throw_speed                         = 1
+	throw_range                         = 5
+	w_class                             = ITEM_SIZE_SMALL
+	material                            = /decl/material/solid/metal/steel
+	matter                              = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
+	origin_tech                         = "{'engineering':1}"
+	drop_sound                          = 'sound/foley/tooldrop1.ogg'
+	z_flags                             = ZMM_MANGLE_PLANES
+	attack_cooldown                     = DEFAULT_ATTACK_COOLDOWN
+	var/lit_colour                      = COLOR_PALE_ORANGE
+	var/waterproof                      = FALSE
+	var/welding                         = FALSE 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
+	var/status                          = TRUE 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
+	var/tmp/welding_resource            = "welding fuel"
+	var/obj/item/chems/welder_tank/tank = /obj/item/chems/welder_tank // where the fuel is stored
+	var/tmp/activate_sound              = 'sound/items/welderactivate.ogg'
+	var/tmp/deactivate_sound            = 'sound/items/welderdeactivate.ogg'
 
 /obj/item/weldingtool/Initialize()
 	if(ispath(tank))

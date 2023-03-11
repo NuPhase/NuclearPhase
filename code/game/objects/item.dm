@@ -87,7 +87,7 @@
 
 	var/tmp/has_inventory_icon	// do not set manually
 	var/tmp/use_single_icon
-	var/center_of_mass = @"{'x':16,'y':16}" //can be null for no exact placement behaviour
+	var/center_of_mass = @'{"x":16,"y":16}' //can be null for no exact placement behaviour
 
 	var/npc_optimal_distance = 0 //if used as weapon
 

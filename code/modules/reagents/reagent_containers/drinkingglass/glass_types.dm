@@ -7,7 +7,7 @@
 	filling_states = @"[20,40,60,80,100]"
 	volume = 300
 	possible_transfer_amounts = @"[5,10,15,30]"
-	rim_pos = @"{'y':23,'x_left':13,'x_right':20}"
+	rim_pos = @'{"y":23,"x_left":13,"x_right":20}'
 
 /obj/item/chems/drinks/glass2/rocks
 	name = "rocks glass"
@@ -18,7 +18,7 @@
 	filling_states = @"[25,50,75,100]"
 	volume = 200
 	possible_transfer_amounts = @"[5,10,20]"
-	rim_pos = @"{'y':21,'x_left':10,'x_right':23}"
+	rim_pos = @'{"y":21,"x_left":10,"x_right":23}'
 
 /obj/item/chems/drinks/glass2/shake
 	name = "sherry glass"
@@ -29,7 +29,7 @@
 	filling_states = @"[25,50,75,100]"
 	volume = 300
 	possible_transfer_amounts = @"[5,10,15,30]"
-	rim_pos = @"{'y':25,'x_left':13,'x_right':21}"
+	rim_pos = @'{"y":25,"x_left":13,"x_right":21}'
 
 /obj/item/chems/drinks/glass2/cocktail
 	name = "cocktail glass"
@@ -40,7 +40,7 @@
 	filling_states = @"[33,66,100]"
 	volume = 150
 	possible_transfer_amounts = @"[5,10,15]"
-	rim_pos = @"{'y':22,'x_left':13,'x_right':21}"
+	rim_pos = @'{"y":22,"x_left":13,"x_right":21}'
 
 /obj/item/chems/drinks/glass2/shot
 	name = "shot glass"
@@ -52,7 +52,7 @@
 	volume = 50
 	material = /decl/material/solid/glass
 	possible_transfer_amounts = @"[1,2,5]"
-	rim_pos = @"{'y':17,'x_left':13,'x_right':21}"
+	rim_pos = @'{"y":17,"x_left":13,"x_right":21}'
 
 /obj/item/chems/drinks/glass2/pint
 	name = "pint glass"
@@ -63,7 +63,7 @@
 	volume = 600
 	material = /decl/material/solid/glass
 	possible_transfer_amounts = @"[5,10,15,30,60]"
-	rim_pos = @"{'y':25,'x_left':12,'x_right':21}"
+	rim_pos = @'{"y":25,"x_left":12,"x_right":21}'
 
 /obj/item/chems/drinks/glass2/mug
 	name = "glass mug"
@@ -74,7 +74,7 @@
 	filling_states = @"[25,50,75,100]"
 	volume = 400
 	possible_transfer_amounts = @"[5,10,20,40]"
-	rim_pos = @"{'y':22,'x_left':12,'x_right':20}"
+	rim_pos = @'{"y":22,"x_left":12,"x_right":20}'
 
 /obj/item/chems/drinks/glass2/wine
 	name = "wine glass"
@@ -85,7 +85,7 @@
 	filling_states = @"[20,40,60,80,100]"
 	volume = 250
 	possible_transfer_amounts = @"[5,10,15,25]"
-	rim_pos = @"{'y':25,'x_left':12,'x_right':21}"
+	rim_pos = @'{"y":25,"x_left":12,"x_right":21}'
 
 /obj/item/chems/drinks/glass2/flute
 	name = "flute glass"
@@ -96,7 +96,7 @@
 	volume = 250
 	filling_states = @"[20,40,60,80,100]"
 	possible_transfer_amounts = @"[5,10,15,25]"
-	rim_pos = @"{'y':24,'x_left':13,'x_right':19}"
+	rim_pos = @'{"y":24,"x_left":13,"x_right":19}'
 
 /obj/item/chems/drinks/glass2/carafe
 	name = "pitcher"
@@ -108,8 +108,8 @@
 	volume = 1200
 	material = /decl/material/solid/glass
 	possible_transfer_amounts = @"[5,10,15,30,60,120]"
-	rim_pos = @"{'y':26,'x_left':12,'x_right':21}"
-	center_of_mass = @"{'x':16,'y':7}"
+	rim_pos = @'{"y":26,"x_left":12,"x_right":21}'
+	center_of_mass = @'{"x":16,"y":7}'
 
 /obj/item/chems/drinks/glass2/coffeecup
 	name = "coffee cup"
@@ -122,7 +122,7 @@
 	filling_states = @"[40,80,100]"
 	base_name = "cup"
 	base_icon = "coffeecup"
-	rim_pos = @"{'y':22,'x_left':12,'x_right':20}"
+	rim_pos = @'{"y":22,"x_left":12,"x_right":20}'
 	filling_overlayed = TRUE
 
 /obj/item/chems/drinks/glass2/coffeecup/foundation
@@ -204,7 +204,7 @@
 	icon = 'icons/obj/drink_glasses/coffecup_tall.dmi'
 	icon_state = "coffeecup_tall"
 	volume = 600
-	center_of_mass = @"{'x':15,'y':19}"
+	center_of_mass = @'{"x":15,"y":19}'
 	filling_states = @"[50,70,90,100]"
 	base_name = "tall cup"
 	base_icon = "coffeecup_tall"
