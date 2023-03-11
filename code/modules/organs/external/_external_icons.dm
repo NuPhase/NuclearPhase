@@ -83,6 +83,8 @@ var/global/list/limb_icon_cache = list()
 	icon_cache_key = "[icon_state]_[species ? species.name : "unknown"][render_alpha]"
 	if(model)
 		icon_cache_key += "_model_[model]"
+	if(owner?.bodytype)
+		icon_cache_key += "-[owner.bodytype.icon_postfix]"
 
 	update_limb_icon_file()
 	mob_icon = apply_colouration(new/icon(icon, icon_state))

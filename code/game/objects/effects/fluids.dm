@@ -94,11 +94,11 @@
 	if(main_reagent) // TODO: weighted alpha from all reagents, not just primary
 		alpha = Clamp(CEILING(255*(reagents.total_volume/FLUID_DEEP)) * main_reagent.opacity, main_reagent.min_fluid_opacity, main_reagent.max_fluid_opacity)
 
-	if(temperature > main_reagent.melting_point && istype(main_reagent, /decl/material/solid/metal))
-		color = MOLTEN_METAL_COLOR
-		if(update_lighting)
-			update_lighting = FALSE
-			set_light(2, 3, color)
+		if(temperature > main_reagent.melting_point && istype(main_reagent, /decl/material/solid/metal))
+			color = MOLTEN_METAL_COLOR
+			if(update_lighting)
+				update_lighting = FALSE
+				set_light(2, 3, color)
 
 	if(reagents.total_volume <= FLUID_PUDDLE)
 		APPLY_FLUID_OVERLAY("puddle")

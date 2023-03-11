@@ -164,3 +164,10 @@ var/global/const/FALLOFF_SOUNDS = 0.5
 			if ("chop") soundin = pick(global.chop_sound)
 			if ("glasscrack") soundin = pick(global.glasscrack_sound)
 	return soundin
+
+/client/verb/stop_sounds()
+	set name = "Stop All Sounds"
+	set desc = "Stop all sounds that are currently playing on your client."
+	set category = "OOC"
+
+	sound_to(usr, sound(null))

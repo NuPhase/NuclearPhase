@@ -264,7 +264,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				adjust_gas(mat.burn_product, burned_fuel.gas[g])
 
 		//calculate the energy produced by the reaction and then set the new temperature of the mix
-		temperature = (starting_energy + vsc.fire_fuel_energy_release * used_fuel) / heat_capacity()
+		temperature = (starting_energy + vsc.fire_fuel_energy_release * used_fuel) * (heat_capacity()**-1)
 		update_values()
 
 		#ifdef FIREDBG
