@@ -223,8 +223,10 @@
 	if(IS_WRENCH(W) && !active)
 		if(!anchored)
 			to_chat(user, "<span class='notice'>You secure \the [src] to the floor.</span>")
+			connect_to_network()
 		else
 			to_chat(user, "<span class='notice'>You unsecure \the [src] from the floor.</span>")
+			disconnect_from_network()
 
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		anchored = !anchored
