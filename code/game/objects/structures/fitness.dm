@@ -34,7 +34,7 @@
 	desc = "A machine used to lift weights."
 	icon_state = "weightlifter"
 	icon = 'icons/obj/structures/weightlifter.dmi'
-	var/weight = 1
+	var/lift_weight = 1
 	var/max_weight = 5
 	var/list/success_message = list("with great effort", "straining hard", "without any trouble", "with ease")
 	var/list/fail_message = list(", lifting them part of the way and then letting them drop", ", unable to even budge them")
@@ -42,8 +42,8 @@
 /obj/structure/fitness/weightlifter/attackby(obj/item/W, mob/user)
 	if(IS_WRENCH(W))
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 75, 1)
-		weight = (weight % max_weight) + 1
-		to_chat(user, "You set the machine's weight level to [weight].")
+		lift_weight = (lift_weight % max_weight) + 1
+		to_chat(user, "You set the machine's weight level to [lift_weight].")
 
 /obj/structure/fitness/weightlifter/attack_hand(mob/user)
 	if(!ishuman(user))
@@ -63,29 +63,29 @@
 		being_used = 1
 		playsound(src.loc, 'sound/effects/weightlifter.ogg', 50, 1)
 		H.set_dir(SOUTH)
-		flick("[icon_state]_[weight]", src)
-		if(do_after(H, 20 + (weight * 10)))
+		flick("[icon_state]_[lift_weight]", src)
+		if(do_after(H, 20 + (lift_weight * 10)))
 			playsound(src.loc, 'sound/effects/weightdrop.ogg', 25, 1)
 			var/skill = max_weight * H.get_skill_value(SKILL_STRENGTH)/SKILL_MAX
 			var/message
-			if(skill < weight)
-				if(weight - skill > max_weight/2)
+			if(skill < lift_weight)
+				if(lift_weight - skill > max_weight/2)
 					if(prob(50))
 						message = ", getting hurt in the process"
 						H.apply_damage(5)
 					else
 						message = "; this does not look safe"
 				else
-					message = fail_message[min(1 + round(weight - skill), fail_message.len)]
+					message = fail_message[min(1 + round(lift_weight - skill), fail_message.len)]
 				H.visible_message( \
 					SPAN_NOTICE("\The [H] fails to lift the weights[message]."), \
 					SPAN_NOTICE("You fail to lift the weights[message]."))
 			else
 				if(!synth)
-					var/adj_weight = weight * 5
+					var/adj_weight = lift_weight * 5
 					H.adjust_nutrition(-(adj_weight * DEFAULT_HUNGER_FACTOR))
 					H.adjust_hydration(-(adj_weight * DEFAULT_THIRST_FACTOR))
-				message = success_message[min(1 + round(skill - weight), fail_message.len)]
+				message = success_message[min(1 + round(skill - lift_weight), fail_message.len)]
 				H.visible_message( \
 					SPAN_NOTICE("\The [H] lift\s the weights [message]."), \
 					SPAN_NOTICE("You lift the weights [message]."))

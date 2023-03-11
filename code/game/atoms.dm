@@ -15,6 +15,7 @@
 	var/list/climbers
 	var/climb_speed_mult = 1
 	var/explosion_resistance = 0
+	var/weight = DEFAULT_ATOM_WEIGHT //kg
 	var/icon_scale_x = 1 // Holds state of horizontal scaling applied.
 	var/icon_scale_y = 1 // Ditto, for vertical scaling.
 	var/icon_rotation = 0 // And one for rotation as well.

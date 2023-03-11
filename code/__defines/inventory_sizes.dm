@@ -25,6 +25,8 @@
 #define ITEM_SIZE_NO_CONTAINER   10 // Use this to forbid item from being placed in a container.
 #define ITEM_SIZE_STRUCTURE      20
 
+#define DEFAULT_ATOM_WEIGHT 1.1
+
 #define ITEM_SIZE_MIN            ITEM_SIZE_TINY
 #define ITEM_SIZE_MAX            ITEM_SIZE_STRUCTURE
 

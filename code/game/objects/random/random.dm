@@ -1090,11 +1090,11 @@ var/global/list/multi_point_spawns
 	icon_state = "x3"
 	invisibility = INVISIBILITY_MAXIMUM
 	var/id     // Group id
-	var/weight // Probability weight for this spawn point
+	var/rweight // Probability weight for this spawn point
 
 /obj/random_multi/Initialize()
 	. = ..()
-	weight = max(1, round(weight))
+	rweight = max(1, round(rweight))
 
 	if(!multi_point_spawns)
 		multi_point_spawns = list()
@@ -1102,7 +1102,7 @@ var/global/list/multi_point_spawns
 	if(!spawnpoints)
 		spawnpoints = list()
 		multi_point_spawns[id] = spawnpoints
-	spawnpoints[src] = weight
+	spawnpoints[src] = rweight
 
 /obj/random_multi/Destroy()
 	var/list/spawnpoints = multi_point_spawns[id]

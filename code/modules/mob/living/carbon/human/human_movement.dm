@@ -169,7 +169,7 @@
 				E.add_pain(10)
 
 /mob/living/carbon/human/can_sprint()
-	return (stamina > 0)
+	return (get_stamina() > 0)
 
 /mob/living/carbon/human/UpdateLyingBuckledAndVerbStatus()
 	var/old_lying = lying

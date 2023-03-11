@@ -20,6 +20,7 @@
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
+	var/pull_coefficient = 1
 	var/l_move_time = 1
 	var/m_flag = 1
 	var/datum/thrownthing/throwing

@@ -129,6 +129,8 @@
 		pixel_x = rand(-randpixel, randpixel)
 		pixel_y = rand(-randpixel, randpixel)
 	reconsider_single_icon()
+	if(weight == DEFAULT_ATOM_WEIGHT) //did not change
+		weight = w_class * 0.4
 
 /obj/item/Destroy()
 
@@ -294,6 +296,9 @@
 				return
 
 		to_chat(user, SPAN_WARNING("You are not dexterous enough to pick up \the [src]."))
+		return
+	if(weight > (user.get_skill_value() + 1) * 11)
+		to_chat(user, SPAN_WARNING("You can't pick up [src], it's too heavy!"))
 		return
 
 	var/old_loc = loc

@@ -11,6 +11,7 @@
 	var/parts_amount
 	var/footstep_type
 	var/mob_offset
+	weight = 20
 
 /obj/structure/create_matter()
 	..()
@@ -113,7 +114,7 @@
 
 	playsound(loc, hitsound, 75, 1)
 	health = Clamp(health - damage, 0, maxhealth)
-	
+
 	show_damage_message(health/maxhealth)
 
 	if(health == 0)
@@ -175,7 +176,7 @@
 		if(T)
 			T.fluid_update()
 			for(var/atom/movable/AM in T)
-				AM.reset_offsets()	
+				AM.reset_offsets()
 				AM.reset_plane_and_layer()
 
 /obj/structure/grab_attack(var/obj/item/grab/G)

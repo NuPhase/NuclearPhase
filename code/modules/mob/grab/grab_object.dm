@@ -289,8 +289,8 @@
 	return current_grab.force_danger
 
 /obj/item/grab/proc/grab_slowdown()
-	. = CEILING(affecting?.get_object_size() * current_grab.grab_slowdown)
-	. /= (affecting?.movable_flags & MOVABLE_FLAG_WHEELED) ? 2 : 1
+	. = CEILING(affecting?.weight * current_grab.grab_slowdown)
+	. *= affecting?.pull_coefficient
 	. = max(.,1)
 
 /obj/item/grab/proc/assailant_moved()

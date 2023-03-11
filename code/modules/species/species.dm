@@ -896,7 +896,7 @@ var/global/const/DEFAULT_SPECIES_HEALTH = 200
 /decl/species/proc/handle_exertion(mob/living/carbon/human/H)
 	if (!exertion_effect_chance)
 		return
-	var/chance = max((100 - H.stamina), exertion_effect_chance * H.encumbrance())
+	var/chance = max(100 - H.get_stamina(), exertion_effect_chance * H.encumbrance())
 	if (chance && prob(H.skill_fail_chance(SKILL_FITNESS, chance)))
 		var/synthetic = H.isSynthetic()
 		if (synthetic)
