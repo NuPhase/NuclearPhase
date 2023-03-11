@@ -117,7 +117,6 @@
 		access_maint_tunnels,
 		access_external_airlocks
 	)
-	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/warden
 	guestbanned = 1
 	min_skill = list(
@@ -164,7 +163,6 @@
 		access_morgue,
 		access_maint_tunnels
 	)
-	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/detective
 	guestbanned = 1
 	min_skill = list(
@@ -212,7 +210,6 @@
 		access_maint_tunnels,
 		access_external_airlocks
 	)
-	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/officer
 	guestbanned = 1
 	min_skill = list(
