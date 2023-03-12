@@ -297,7 +297,7 @@
 
 		to_chat(user, SPAN_WARNING("You are not dexterous enough to pick up \the [src]."))
 		return
-	if(weight > (user.get_skill_value(SKILL_STRENGTH) * 5) + 4)
+	if(weight > (user.get_skill_value(SKILL_STRENGTH) * 6))
 		to_chat(user, SPAN_WARNING("You can't pick up [src], it's too heavy for you!"))
 		return
 
