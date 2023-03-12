@@ -4,6 +4,7 @@
 #define SUIT_PROPULSION_ATTACK_PERCENT 10
 
 #define STATUS_MESSAGE_COOLDOWN 100
+#define KWH_PER_KG_WEIGHT 15
 
 /obj/item/storage/backpack/lifesupportpack
 	name = "life support unit"
@@ -71,6 +72,7 @@
 /obj/item/storage/backpack/lifesupportpack/proc/do_support()
 	var/power_draw = 0
 	if(!battery.charge)
+		LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 3)
 		return
 
 	if(atmosphere_filter && atmosphere_filter.clean_gasmix(owner.internal_atmosphere))
@@ -90,6 +92,9 @@
 		var/pressure_delta = target_pressure - owner.internal_atmosphere.return_pressure()
 		var/transfer_moles = calculate_transfer_moles(oxygen_tank.air_contents, owner.internal_atmosphere, pressure_delta)
 		power_draw += pump_gas(src, oxygen_tank.air_contents, owner.internal_atmosphere, transfer_moles)
+
+	power_draw += owner.weight * KWH_PER_KG_WEIGHT
+
 	battery.drain_power(0, 0, power_draw)
 
 /obj/item/storage/backpack/lifesupportpack/proc/activate_propulsion(prop_percent)
@@ -233,3 +238,5 @@
 
 /obj/abstract/modules_holder
 	name = "Modules holder unit"
+
+#undef KWH_PER_KG_WEIGHT

@@ -30,7 +30,7 @@
 	var/tinted = null	//Set to non-null for toggleable tint helmets
 	origin_tech = "{'materials':1}"
 	material = /decl/material/solid/metal/steel
-	//weight = 15
+	weight = 15
 
 /obj/item/clothing/head/helmet/modern/space/Destroy()
 	if(camera && !ispath(camera))
@@ -149,7 +149,8 @@
 	var/leakiness = 0 //0-100. Determines how much air leaks out in percent per second
 	var/leak_message_on_cooldown = FALSE
 	var/minimum_leak_damage = 10
-	//weight = 100
+	var/windbreak_coefficient = 1
+	weight = 100
 
 /obj/item/clothing/suit/modern/space/attackby(obj/item/I, mob/user)
 	. = ..()
