@@ -66,6 +66,7 @@
 		/decl/emote/visible/shiver,
 		/decl/emote/visible/collapse,
 		/decl/emote/audible/gasp,
+		/decl/emote/audible/agony,
 		/decl/emote/audible/sneeze,
 		/decl/emote/audible/sniff,
 		/decl/emote/audible/snore,
