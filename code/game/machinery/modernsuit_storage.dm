@@ -230,3 +230,8 @@
 	. = ..()
 	suit = new /obj/item/clothing/suit/modern/space/medical
 	helmet = new /obj/item/clothing/head/helmet/modern/space/medical
+
+/obj/machinery/modernsuit_storage/security_cold/Initialize()
+	. = ..()
+	suit = new /obj/item/clothing/suit/modern/space/combat_specialized/cold
+	helmet = new /obj/item/clothing/head/helmet/modern/space/combat_specialized/cold
