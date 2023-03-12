@@ -1,6 +1,6 @@
 /obj/item/storage/toolbox
 	name = "toolbox"
-	desc = "Bright red toolboxes like these are one of the most common sights in maintenance corridors on virtually every ship in the galaxy."
+	desc = "Bright red toolboxes like these are one of the most common sights on any industrial grounds."
 	icon = 'icons/obj/items/storage/toolbox.dmi'
 	icon_state = "red"
 	item_state = "toolbox_red"
@@ -17,6 +17,8 @@
 	origin_tech = "{'combat':1}"
 	attack_verb = list("robusted")
 	use_sound = 'sound/effects/storage/toolbox.ogg'
+	load_spreading_coefficient = 0.8 //they are SLIGHTLY easier to carry around
+	weight = 2
 
 /obj/item/storage/toolbox/emergency
 	name = "emergency toolbox"
@@ -36,14 +38,14 @@
 
 /obj/item/storage/toolbox/mechanical
 	name = "mechanical toolbox"
-	desc = "Bright blue toolboxes like these are one of the most common sights in maintenance corridors on virtually every ship in the galaxy."
+	desc = "Bright blue toolboxes like these are one of the most common sights in maintenance corridors on on any industrial grounds."
 	icon_state = "blue"
 	item_state = "toolbox_blue"
 	startswith = list(/obj/item/screwdriver, /obj/item/wrench, /obj/item/weldingtool, /obj/item/crowbar, /obj/item/scanner/gas, /obj/item/wirecutters)
 
 /obj/item/storage/toolbox/electrical
 	name = "electrical toolbox"
-	desc = "Bright yellow toolboxes like these are one of the most common sights in maintenance corridors on virtually every ship in the galaxy."
+	desc = "Bright yellow toolboxes like these are one of the most common sights in maintenance corridors on on any industrial grounds."
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
 	startswith = list(/obj/item/screwdriver, /obj/item/wirecutters, /obj/item/t_scanner, /obj/item/crowbar)
@@ -73,9 +75,9 @@
 	item_state = "toolbox_yellow"
 	startswith = list(
 		/obj/item/stack/cable_coil,
-		/obj/item/screwdriver, 
+		/obj/item/screwdriver,
 		/obj/item/wrench,
-		/obj/item/crowbar, 
+		/obj/item/crowbar,
 		/obj/item/wirecutters,
 		/obj/item/storage/box/parts_pack/manipulator,
 		/obj/item/storage/box/parts_pack/laser,

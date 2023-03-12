@@ -135,7 +135,8 @@
  * Roller beds
  */
 /obj/structure/bed/roller
-	name = "roller bed"
+	name = "foldable stretcher"
+	desc = "A light and mobile stretcher designed to be folded easily. It's quite hard to push around, though."
 	icon = 'icons/obj/structures/rollerbed.dmi'
 	icon_state = "down"
 	anchored = 0
@@ -149,8 +150,11 @@
 	weight = 8
 
 /obj/structure/bed/roller/hydraulic //cannot be rolled, but is easy to pull around
+	name = "hydraulic stretcher"
+	desc = "This stretcher is outfitted with hydraulics and braking systems, making it easy to move it. You can't fold it."
 	pull_coefficient = 0.2
 	item_form_type = null
+	weight = 15
 
 /obj/structure/bed/roller/on_update_icon()
 	cut_overlays()

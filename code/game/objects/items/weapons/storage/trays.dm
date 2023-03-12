@@ -19,6 +19,7 @@
 
 	var/cooldown = 0	//Cooldown for banging the tray with a rolling pin. based on world.time. very silly
 	var/no_drop = FALSE
+	load_spreading_coefficient = 0.5 //two hands
 
 	material = /decl/material/solid/cardboard
 	applies_material_colour = TRUE

@@ -1374,7 +1374,6 @@
 	oxygen_amount = max_oxygen_capacity
 	//metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_FITNESS) * 0.05 //healthy athlete lower BPM
 
-
 /mob/living/carbon/human/handle_flashed(var/obj/item/flash/flash, var/flash_strength)
 	var/safety = eyecheck()
 	if(safety < FLASH_PROTECTION_MODERATE)

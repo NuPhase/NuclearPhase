@@ -14,6 +14,8 @@
 	max_storage_space = DEFAULT_BACKPACK_STORAGE
 	open_sound = 'sound/effects/storage/unzip.ogg'
 	material = /decl/material/solid/leather/synth
+	load_spreading_coefficient = 0.4
+	weight = 1.5
 
 /obj/item/storage/backpack/equipped()
 	if(!has_extension(src, /datum/extension/appearance))
@@ -168,6 +170,8 @@
 	icon = 'icons/obj/items/storage/backpack/dufflebag.dmi'
 	w_class = ITEM_SIZE_HUGE
 	max_storage_space = DEFAULT_BACKPACK_STORAGE + 10
+	weight = 2.5
+	load_spreading_coefficient = 0.7 //worse than the backpack for obvious reasons
 
 /obj/item/storage/backpack/dufflebag/Initialize()
 	. = ..()
@@ -234,6 +238,7 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon = 'icons/obj/items/storage/backpack/satchel.dmi'
+	load_spreading_coefficient = 0.6
 
 /obj/item/storage/backpack/satchel/grey
 	name = "grey satchel"
@@ -276,6 +281,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_LARGEBOX_STORAGE
 	color = "#212121"
+	load_spreading_coefficient = 0.6
 
 /obj/item/storage/backpack/satchel/pocketbook/brown
 	name = "brown pocketbook"

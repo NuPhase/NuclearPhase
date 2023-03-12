@@ -12,6 +12,8 @@
 
 	var/item_form_type = /obj/item/wheelchair_kit
 	var/bloodiness
+	pull_coefficient = 0.5
+	weight = 10
 
 /obj/structure/bed/chair/wheelchair/Initialize()
 	. = ..()

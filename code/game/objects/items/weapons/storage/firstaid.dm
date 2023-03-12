@@ -17,6 +17,7 @@
 	max_w_class = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_BOX_STORAGE
 	use_sound = 'sound/effects/storage/box.ogg'
+	load_spreading_coefficient = 0.9
 
 /obj/item/storage/firstaid/empty
 	icon_state = "firstaid"
