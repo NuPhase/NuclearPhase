@@ -56,7 +56,7 @@
 	icon = 'icons/clothing/head/hardhat/firefighter.dmi'
 	item_flags = ITEM_FLAG_THICKMATERIAL | ITEM_FLAG_AIRTIGHT
 	permeability_coefficient = 0
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCK_ALL_HAIR
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCK_HEAD_HAIR
 	body_parts_covered = SLOT_HEAD|SLOT_FACE|SLOT_EYES
 	cold_protection = SLOT_HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE

@@ -693,7 +693,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				for(var/obj/item/organ/external/affecting in H.get_external_organs())
 					if(!screamed && affecting.can_feel_pain())
 						screamed = TRUE
-						H.emote("scream")
+						H.emote("agony")
 					affecting.status |= ORGAN_DISFIGURED
 
 		if(!M.unacidable)

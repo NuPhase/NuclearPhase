@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(supply)
 	var/list/requestlist = list()
 	var/list/donelist = list()
 	var/list/master_supply_list = list()
-	
+
 	//shuttle movement
 	var/movetime = 1200
 	var/datum/shuttle/autodock/ferry/supply/shuttle
@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(supply)
 		"manifest" = "From exported manifests",
 		"crate" = "From exported crates",
 		"data" =  "From uploaded survey data",
-		"total" = "Total" 
+		"total" = "Total"
 	)
 
 /datum/controller/subsystem/supply/Initialize()
@@ -53,7 +53,9 @@ SUBSYSTEM_DEF(supply)
 /datum/controller/subsystem/supply/fire()
 	add_points_from_source(points_per_process, "time")
 
-/datum/controller/subsystem/supply/stat_entry()
+/datum/controller/subsystem/supply/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("Points: [points]")
 
 //Supply-related helper procs.

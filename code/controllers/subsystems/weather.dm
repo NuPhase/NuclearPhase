@@ -8,7 +8,9 @@ SUBSYSTEM_DEF(weather)
 	var/list/weather_systems = list()
 	var/list/processing_systems
 
-/datum/controller/subsystem/weather/stat_entry()
+/datum/controller/subsystem/weather/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("all systems: [length(weather_systems)], processing systems: [length(processing_systems)]")
 
 /datum/controller/subsystem/weather/Initialize(start_timeofday)

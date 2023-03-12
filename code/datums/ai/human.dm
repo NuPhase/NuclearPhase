@@ -18,6 +18,7 @@
 
 	if(!H.restrained() && H.lying && H.shock_stage >= 60 && prob(3))
 		H.custom_emote("thrashes in agony")
+		H.emote("agony")
 
 	if(!H.restrained() && H.shock_stage < 40 && prob(3))
 		var/maxdam = 0

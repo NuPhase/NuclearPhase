@@ -110,6 +110,7 @@
 	var/hasanus_p = P.species.anus
 	var/isnude = H.is_nude()
 	var/isnude_p = P.is_nude()
+	var/noboots = !P._shoes
 
 	H.lastfucked = null
 	H.lfhole = ""
@@ -145,6 +146,8 @@
 			if(H.partner.species.name == "Human")
 				dat += {"<font size=3><B>Mouth:</B></font><BR>"}
 				dat += {"<A href='?src=\ref[usr];interaction=kiss'><font color=purple>Kiss.</font></A><BR>"}
+				if(noboots)
+					dat += {"<A href='?src=\ref[usr];interaction=footlick'><font color=purple>Lick foots</font></A><BR>"}
 				if(get_dist(H,P) <= 1)
 					if (Adjacent(P) && isnude_p)
 						if (haspenis_p)
@@ -336,11 +339,11 @@
 				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/SHORT/"
 			if(150 to INFINITY)
 				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/LONG/"
-				if(prob(25) && is_nude())
+				if(prob(25))
 					T = get_turf(H)
 					var/obj/effect/decal/cleanable/cum/fem/f = new(T)
 					f.add_fingerprint(H)
-				else
+				else if(!is_nude())
 					visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE("cums in her pants..."))
 		sound = pick(flist("[sound_path]"))
 		src.lust -= delta
@@ -738,7 +741,7 @@
 			if (M.lust >= M.resistenza)
 				M.cum(M, user, "floor")
 			else
-				M.moan()
+				M.moan(pleasure)
 
 			user.do_fucking_animation(M)
 			playsound(loc, "honk/sound/interactions/bang[rand(4, 6)].ogg", 70, 1, -1)
@@ -759,7 +762,7 @@
 			if (M.lust >= M.resistenza)
 				M.cum(M, user, "floor")
 			else
-				M.moan()
+				M.moan(pleasure*2)
 
 			user.do_fucking_animation(M)
 			playsound(loc, "honk/sound/interactions/bang[rand(4, 6)].ogg", 70, 1, -1)
@@ -811,6 +814,7 @@
 		var/hasanus_p = P.species.anus
 		var/isnude = H.is_nude()
 		var/isnude_p = P.is_nude()
+		var/noboots = !P._shoes
 
 		if (href_list["interaction"] == "bow")
 			H.visible_message("<span class='name'>[H]</span> <span class='emote'>bows before</span> <span class='name'>[P].</span>")
@@ -836,6 +840,18 @@
 					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("kisses ") + SPAN_ERPBOLD("[P]"))
 			else if (mouthfree)
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("blows ") + SPAN_ERPBOLD("[P]") + SPAN_ERP("a kiss"))
+
+		else if (href_list["interaction"] == "footlick")
+			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && noboots)
+				if (H.lust == 0)
+					if (H.lust < 5)
+						H.lust = 5
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("licks ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("feets..."))
+				var/sound = pick(flist("honk/sound/new/ACTIONS/MOUTH/SUCK/"))
+				playsound(loc, ("honk/sound/new/ACTIONS/MOUTH/SUCK/[sound]"), 40, 1, -1)
+
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("licks ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("feets..."))
 
 		else if (href_list["interaction"] == "hug")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)

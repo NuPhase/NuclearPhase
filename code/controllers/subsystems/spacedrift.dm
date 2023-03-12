@@ -9,7 +9,9 @@ SUBSYSTEM_DEF(spacedrift)
 	var/list/currentrun = list()
 	var/list/processing = list()
 
-/datum/controller/subsystem/spacedrift/stat_entry()
+/datum/controller/subsystem/spacedrift/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("P:[processing.len]")
 
 
@@ -36,7 +38,7 @@ SUBSYSTEM_DEF(spacedrift)
 
 		if (!AM.loc || AM.loc != AM.inertia_last_loc || AM.Process_Spacemove(0))
 			AM.inertia_dir = 0
-		
+
 		AM.inertia_ignore = null
 
 		if (!AM.inertia_dir)

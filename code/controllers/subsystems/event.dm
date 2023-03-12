@@ -60,11 +60,13 @@ SUBSYSTEM_DEF(event)
 	while (pos <= EVENT_LEVEL_MAJOR)
 		event_containers[pos].process()
 		pos++
-		
+
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/event/stat_entry()
+/datum/controller/subsystem/event/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("E:[active_events.len]")
 
 //Actual event handling
@@ -116,7 +118,7 @@ SUBSYSTEM_DEF(event)
 
 		to_world(message)
 
-//Event manager UI 
+//Event manager UI
 /datum/controller/subsystem/event/proc/GetInteractWindow()
 	var/html = "<A align='right' href='?src=\ref[src];refresh=1'>Refresh</A>"
 	html += "<A align='right' href='?src=\ref[src];pause_all=[!config.allow_random_events]'>Pause All - [config.allow_random_events ? "Pause" : "Resume"]</A>"

@@ -1,194 +1,178 @@
 /decl/emote/visible
 	key ="tail"
-	emote_message_3p = "USER waves USER_THEIR tail."
+	emote_message_3p = "USER виляет своим хвостом."
 	message_type = VISIBLE_MESSAGE
 
 /decl/emote/visible/scratch
 	key = "scratch"
 	check_restraints = TRUE
-	emote_message_3p = "USER scratches."
+	emote_message_3p = "USER почёсывается."
 
 /decl/emote/visible/drool
 	key ="drool"
-	emote_message_3p = "USER drools."
+	emote_message_3p = "USER пускает слюни."
 	conscious = 0
 
 /decl/emote/visible/nod
 	key ="nod"
-	emote_message_3p_target = "USER nods USER_THEIR head at TARGET."
-	emote_message_3p = "USER nods USER_THEIR head."
+	emote_message_3p = "USER кивает."
 
 /decl/emote/visible/sway
 	key ="sway"
-	emote_message_3p = "USER sways around dizzily."
+	emote_message_3p = "USER шатается."
 
 /decl/emote/visible/sulk
 	key ="sulk"
-	emote_message_3p = "USER sulks down sadly."
+	emote_message_3p = "USER грустно садится..."
 
 /decl/emote/visible/dance
 	key ="dance"
 	check_restraints = TRUE
-	emote_message_3p = "USER dances around happily."
+	emote_message_3p = "USER танцует!"
 
 /decl/emote/visible/roll
 	key ="roll"
 	check_restraints = TRUE
-	emote_message_3p = "USER rolls."
+	emote_message_3p = "USER катается."
 
 /decl/emote/visible/shake
 	key ="shake"
-	emote_message_3p = "USER shakes USER_THEIR head."
+	emote_message_3p = "USER трясет головой."
 
 /decl/emote/visible/jump
 	key ="jump"
-	emote_message_3p = "USER jumps!"
+	emote_message_3p = "USER прыгает!"
+
+/decl/emote/visible/hiss
+	key ="hiss_"
+	emote_message_3p = "USER мягко шипит..."
+	emote_message_3p_target = "USER мягко шипит на TARGET..."
 
 /decl/emote/visible/shiver
 	key ="shiver"
-	emote_message_3p = "USER shivers."
+	emote_message_3p = "USER дрожит."
 	conscious = 0
 
 /decl/emote/visible/collapse
 	key ="collapse"
-	emote_message_3p = "USER collapses!"
+	emote_message_3p = "USER падает!"
 
 /decl/emote/visible/collapse/do_extra(var/mob/user)
 	if(istype(user))
-		SET_STATUS_MAX(user, STAT_PARA, 2)
-
-/decl/emote/visible/flash
-	key = "flash"
-	emote_message_3p = "The lights on USER flash quickly."
+		ADJ_STATUS(user, STAT_PARA, 2)
 
 /decl/emote/visible/blink
 	key = "blink"
-	emote_message_3p = "USER blinks."
-
-/decl/emote/visible/airguitar
-	key = "airguitar"
-	check_restraints = TRUE
-	emote_message_3p = "USER is strumming the air and headbanging like a safari chimp."
+	emote_message_3p = "USER моргает."
 
 /decl/emote/visible/blink_r
 	key = "blink_r"
-	emote_message_3p = "USER blinks rapidly."
+	emote_message_3p = "USER быстро моргает!"
 
 /decl/emote/visible/bow
 	key = "bow"
-	emote_message_3p_target = "USER bows to TARGET."
-	emote_message_3p = "USER bows."
+	emote_message_3p_target = "USER делает поклон TARGET."
+	emote_message_3p = "USER делает поклон."
 
 /decl/emote/visible/salute
 	key = "salute"
-	emote_message_3p_target = "USER salutes TARGET."
-	emote_message_3p = "USER salutes."
+	emote_message_3p_target = "USER выполняет воинское приветствие TARGET."
+	emote_message_3p = "USER выполняет воинское приветствие."
 	check_restraints = TRUE
-
-/decl/emote/visible/flap
-	key = "flap"
-	check_restraints = TRUE
-	emote_message_3p = "USER flaps USER_THEIR wings."
-
-/decl/emote/visible/aflap
-	key = "aflap"
-	check_restraints = TRUE
-	emote_message_3p = "USER flaps USER_THEIR wings ANGRILY!"
 
 /decl/emote/visible/eyebrow
 	key = "eyebrow"
-	emote_message_3p = "USER raises an eyebrow."
+	emote_message_3p = "USER приподнимает бровь."
 
 /decl/emote/visible/twitch
 	key = "twitch"
-	emote_message_3p = "USER twitches."
+	emote_message_3p = "USER дергается."
 	conscious = 0
 
 /decl/emote/visible/twitch_v
 	key = "twitch_v"
-	emote_message_3p = "USER twitches violently."
+	emote_message_3p = "USER сильно дергается!"
 	conscious = 0
 
 /decl/emote/visible/faint
 	key = "faint"
-	emote_message_3p = "USER faints."
+	emote_message_3p = "USER падает в обморок!"
 
 /decl/emote/visible/faint/do_extra(var/mob/user)
 	if(istype(user) && !HAS_STATUS(user, STAT_ASLEEP))
-		SET_STATUS_MAX(user, STAT_ASLEEP, 10)
+		ADJ_STATUS(user, STAT_ASLEEP, 5)
 
 /decl/emote/visible/frown
 	key = "frown"
-	emote_message_3p = "USER frowns."
+	emote_message_3p = "USER хмурится."
 
 /decl/emote/visible/blush
 	key = "blush"
-	emote_message_3p = "USER blushes."
+	emote_message_3p = "USER краснеет..."
 
 /decl/emote/visible/wave
 	key = "wave"
-	emote_message_3p_target = "USER waves at TARGET."
-	emote_message_3p = "USER waves."
+	emote_message_3p = "USER машет."
+	emote_message_3p_target = "USER машет TARGET."
 	check_restraints = TRUE
 
 /decl/emote/visible/glare
 	key = "glare"
-	emote_message_3p_target = "USER glares at TARGET."
-	emote_message_3p = "USER glares."
+	emote_message_3p = "USER недовольно смотрит на TARGET."
+	emote_message_3p = "USER недовольно смотрит."
 
 /decl/emote/visible/stare
 	key = "stare"
-	emote_message_3p_target = "USER stares at TARGET."
-	emote_message_3p = "USER stares."
+	emote_message_3p = "USER пялится на TARGET."
+	emote_message_3p = "USER пялится."
 
 /decl/emote/visible/look
 	key = "look"
-	emote_message_3p_target = "USER looks at TARGET."
-	emote_message_3p = "USER looks."
+	emote_message_3p = "USER смотрит на TARGET."
+	emote_message_3p = "USER смотрит."
 
 /decl/emote/visible/point
 	key = "point"
 	check_restraints = TRUE
-	emote_message_3p_target = "USER points to TARGET."
-	emote_message_3p = "USER points."
+	emote_message_3p = "USER показывает пальцем."
+	emote_message_3p_target = "USER показывает пальцем на TARGET."
 
 /decl/emote/visible/raise
 	key = "raise"
 	check_restraints = TRUE
-	emote_message_3p = "USER raises a hand."
+	emote_message_3p = "USER поднимает руку."
 
 /decl/emote/visible/grin
 	key = "grin"
-	emote_message_3p_target = "USER grins at TARGET."
-	emote_message_3p = "USER grins."
+	emote_message_3p = "USER скалится в улыбке."
 
 /decl/emote/visible/shrug
 	key = "shrug"
-	emote_message_3p = "USER shrugs."
+	emote_message_3p = "USER пожимает плечами."
 
 /decl/emote/visible/smile
 	key = "smile"
-	emote_message_3p_target = "USER smiles at TARGET."
-	emote_message_3p = "USER smiles."
+	emote_message_3p = "USER улыбается."
+	emote_message_3p_target = "USER улыбается TARGET."
 
 /decl/emote/visible/pale
 	key = "pale"
-	emote_message_3p = "USER goes pale for a second."
+	emote_message_3p = "USER на секунду бледнеет..."
 
 /decl/emote/visible/tremble
 	key = "tremble"
-	emote_message_3p = "USER trembles in fear!"
+	emote_message_3p = "USER трепещет в страхе!"
 
 /decl/emote/visible/wink
 	key = "wink"
-	emote_message_3p_target = "USER winks at TARGET."
-	emote_message_3p = "USER winks."
+	emote_message_3p = "USER подмигивает."
+	emote_message_3p_target = "USER подмигивает TARGET."
 
 /decl/emote/visible/hug
 	key = "hug"
 	check_restraints = TRUE
-	emote_message_3p_target = "USER hugs TARGET."
-	emote_message_3p = "USER hugs USER_SELF."
+	emote_message_3p_target = "USER обнимает TARGET!"
+	emote_message_3p = "USER обнимает USER_SELF!"
 	check_range = 1
 
 /decl/emote/visible/dap
@@ -199,19 +183,15 @@
 
 /decl/emote/visible/bounce
 	key = "bounce"
-	emote_message_3p = "USER bounces in place."
+	emote_message_3p = "USER прыгает на месте!"
 
 /decl/emote/visible/jiggle
 	key = "jiggle"
-	emote_message_3p = "USER jiggles!"
+	emote_message_3p = "USER покачивается..."
 
 /decl/emote/visible/lightup
 	key = "light"
-	emote_message_3p = "USER lights up for a bit, then stops."
-
-/decl/emote/visible/vibrate
-	key = "vibrate"
-	emote_message_3p = "USER vibrates!"
+	emote_message_3p = "USER загорается на некоторое время, затем прекращая светиться."
 
 /decl/emote/visible/deathgasp_robot
 	key = "deathgasp"
@@ -220,30 +200,14 @@
 /decl/emote/visible/handshake
 	key = "handshake"
 	check_restraints = TRUE
-	emote_message_3p_target = "USER shakes hands with TARGET."
-	emote_message_3p = "USER shakes hands with USER_SELF."
+	emote_message_3p_target = "USER пожимает руку с TARGET."
+	emote_message_3p = "USER пожимает руку с USER_SELF."
 	check_range = 1
 
 /decl/emote/visible/handshake/get_emote_message_3p(var/atom/user, var/atom/target, var/extra_params)
 	if(target && !user.Adjacent(target))
 		return "USER holds out USER_THEIR hand out to TARGET."
 	return ..()
-
-/decl/emote/visible/signal
-	key = "signal"
-	emote_message_3p_target = "USER signals at TARGET."
-	emote_message_3p = "USER signals."
-	check_restraints = TRUE
-
-/decl/emote/visible/signal/check_user(atom/user)
-	return ismob(user)
-
-/decl/emote/visible/signal/get_emote_message_3p(var/mob/living/user, var/atom/target, var/extra_params)
-	if(istype(user) && user.get_empty_hand_slot())
-		var/t1 = round(text2num(extra_params))
-		if(isnum(t1) && t1 <= 5)
-			return "USER raises [t1] finger\s."
-	return .. ()
 
 /decl/emote/visible/afold
 	key = "afold"
@@ -252,7 +216,7 @@
 
 /decl/emote/visible/alook
 	key = "alook"
-	emote_message_3p = "USER looks away."
+	emote_message_3p = "USER отводит взгляд."
 
 /decl/emote/visible/hbow
 	key = "hbow"
@@ -270,7 +234,7 @@
 
 /decl/emote/visible/hshrug
 	key = "hshrug"
-	emote_message_3p = "USER gives a half shrug."
+	emote_message_3p = "USER слегка пожимает плечами."
 
 /decl/emote/visible/crub
 	key = "crub"
@@ -314,7 +278,12 @@
 /decl/emote/visible/rsalute
 	key = "rsalute"
 	check_restraints = TRUE
-	emote_message_3p = "USER returns the salute."
+	emote_message_3p = "USER отвечает на воинское приветствие."
+
+/decl/emote/visible/attention
+	key = "attention"
+	check_restraints = TRUE
+	emote_message_3p = "USER встал по стойке смирно."
 
 /decl/emote/visible/rshoulder
 	key = "rshoulder"
@@ -322,8 +291,8 @@
 
 /decl/emote/visible/squint
 	key = "squint"
-	emote_message_3p = "USER squints."
-	emote_message_3p_target = "USER squints at TARGET."
+	emote_message_3p = "USER прищуривается."
+	emote_message_3p_target = "USER прищуривается на TARGET."
 
 /decl/emote/visible/tfist
 	key = "tfist"
@@ -333,36 +302,14 @@
 	key = "tilt"
 	emote_message_3p = "USER tilts USER_THEIR head."
 
-/decl/emote/visible/spin
-	key = "spin"
+/decl/emote/visible/salute
+	// emote_sound = 'sound/effects/salute.ogg'
+
+/decl/emote/visible/rsalute
+	// emote_sound = 'sound/effects/salute.ogg'
+
+/decl/emote/visible/adjust
+	key = "adjust"
 	check_restraints = TRUE
-	emote_message_3p = "USER spins!"
-
-/decl/emote/visible/spin/do_extra(mob/user)
-	if(istype(user))
-		user.spin(20, 1)
-
-/decl/emote/visible/sidestep
-	key = "sidestep"
-	check_restraints = TRUE
-	emote_message_3p = "USER steps rhythmically and moves side to side."
-
-/decl/emote/visible/sidestep/do_extra(mob/user)
-	if(istype(user))
-		animate(user, pixel_x = 5, time = 5)
-		sleep(3)
-		animate(user, pixel_x = -5, time = 5)
-		animate(pixel_x = user.default_pixel_x, pixel_y = user.default_pixel_x, time = 2)
-
-/decl/emote/visible/vomit
-	key = "vomit"
-
-/decl/emote/visible/vomit/check_user(var/mob/living/carbon/human/user)
-	. = ..() && user.check_has_mouth() && !user.isSynthetic()
-
-/decl/emote/visible/vomit/do_emote(var/atom/user, var/extra_params)
-	var/mob/living/carbon/human/H = user
-	if(istype(H))
-		H.vomit(deliberate = TRUE)
-	else
-		to_chat(src, SPAN_WARNING("You are unable to vomit."))
+	emote_message_3p = "USER поправляет одежду."
+	emote_message_3p_target = "USER поправляет одежду TARGET."

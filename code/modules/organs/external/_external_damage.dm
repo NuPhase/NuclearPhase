@@ -10,7 +10,7 @@
 	take_external_damage(amount)
 
 /obj/item/organ/external/proc/take_external_damage(brute, burn, damage_flags, used_weapon, override_droplimb)
-	
+
 	if(!owner)
 		return
 
@@ -68,7 +68,7 @@
 	if((status & ORGAN_BROKEN) && brute)
 		jostle_bone(brute)
 		if(can_feel_pain() && prob(40))
-			owner.emote("scream")	//getting hit on broken hand hurts
+			owner.emote("agony")	//getting hit on broken hand hurts
 
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
 	var/datum/wound/created_wound
@@ -285,7 +285,7 @@
 	if(agony_amount && owner && can_feel_pain())
 		agony_amount -= (GET_CHEMICAL_EFFECT(owner, CE_PAINKILLER)/2)//painkillers does wonders!
 		agony_amount += get_pain()
-		if(agony_amount < 5) 
+		if(agony_amount < 5)
 			return
 
 		if(check_pain_disarm())

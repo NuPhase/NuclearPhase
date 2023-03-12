@@ -230,13 +230,6 @@ Please contact me on #coderbus IRC. ~Carn x
 			if (length(scale_effect))
 				height_modifier = 0.01 * scale_effect[height_descriptor]
 	var/build_modifier = 0
-	var/build_descriptor = LAZYACCESS(appearance_descriptors, "build")
-	if (build_descriptor)
-		var/datum/appearance_descriptor/build/B = species.appearance_descriptors["build"]
-		if (B)
-			var/list/scale_effect = B.scale_effect[species.name]
-			if (length(scale_effect))
-				build_modifier = 0.01 * scale_effect[build_descriptor]
 	return list(
 		(1 + build_modifier),
 		(1 + height_modifier)

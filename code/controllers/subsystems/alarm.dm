@@ -41,5 +41,7 @@ SUBSYSTEM_DEF(alarm)
 /datum/controller/subsystem/alarm/proc/number_of_active_alarms()
 	return active_alarm_cache.len
 
-/datum/controller/subsystem/alarm/stat_entry()
+/datum/controller/subsystem/alarm/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("[number_of_active_alarms()] alarm\s")

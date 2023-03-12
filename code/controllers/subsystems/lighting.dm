@@ -28,7 +28,9 @@ SUBSYSTEM_DEF(lighting)
 	var/force_override = FALSE	// For admins.
 #endif
 
-/datum/controller/subsystem/lighting/stat_entry()
+/datum/controller/subsystem/lighting/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	var/list/out = list(
 #ifdef USE_INTELLIGENT_LIGHTING_UPDATES
 		"IUR: [total_ss_updates ? round(total_instant_updates/(total_instant_updates+total_ss_updates)*100, 0.1) : "NaN"]%\n",

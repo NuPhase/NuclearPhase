@@ -7,5 +7,7 @@ SUBSYSTEM_DEF(sun)
 /datum/controller/subsystem/sun/fire()
 	global.sun.calc_position()
 
-/datum/controller/subsystem/sun/stat_entry()
+/datum/controller/subsystem/sun/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("Angle:[global.sun.angle]")

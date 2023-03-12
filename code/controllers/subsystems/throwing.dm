@@ -11,7 +11,9 @@ SUBSYSTEM_DEF(throwing)
 	var/list/currentrun
 	var/list/processing = list()
 
-/datum/controller/subsystem/throwing/stat_entry()
+/datum/controller/subsystem/throwing/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("P:[processing.len]")
 
 

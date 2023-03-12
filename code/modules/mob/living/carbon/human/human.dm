@@ -1351,7 +1351,7 @@
 	apply_species_appearance()
 	species.handle_post_spawn(src)
 	potenzia = (prob(80) ? rand(9, 14) : pick(rand(5, 13), rand(15, 20)))//funny
-	resistenza = (prob(80) ? rand(150, 300) : pick(rand(10, 100), rand(350,600)))
+	resistenza = (prob(80) ? rand(200, 350) : pick(rand(150, 200), rand(350,600)))
 
 	UpdateAppearance() //Apply dna appearance to mob, causes DNA to change because filler values are regenerated
 	//Prevent attempting to create blood container if its already setup

@@ -117,7 +117,9 @@ SUBSYSTEM_DEF(air)
 	next_fire = world.time + wait
 	can_fire = TRUE
 
-/datum/controller/subsystem/air/stat_entry()
+/datum/controller/subsystem/air/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	var/list/out = list(
 		"TtU:[tiles_to_update.len] ",
 		"ZtU:[zones_to_update.len] ",

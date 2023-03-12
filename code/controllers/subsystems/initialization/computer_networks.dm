@@ -42,7 +42,9 @@ SUBSYSTEM_DEF(networking)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/networking/stat_entry()
+/datum/controller/subsystem/networking/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("[length(networks)] network\s, [length(connection_queue)] connection\s queued")
 
 /datum/controller/subsystem/networking/proc/queue_connection(var/datum/extension/network_device/device)

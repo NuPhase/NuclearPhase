@@ -583,13 +583,17 @@ var/global/datum/controller/master/Master = new
 
 
 
-/datum/controller/master/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
+/datum/controller/master/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 
-	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)")
-	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])"))
-
+	..({"\
+		FPS: [world.fps]  \
+		Ticks: [world.time / world.tick_lag]  \
+		Alive: [Master.processing ? "Y" : "N"]  \
+		Cycle: [Master.iteration]  \
+		Drift: [ROUND(Master.tickdrift)] | [PERCENT(Master.tickdrift, world.time / world.tick_lag, 1)]%
+	"})
 /// Colors cpu number before output.
 /datum/controller/master/proc/format_color_cpu()
 	switch(world.cpu)

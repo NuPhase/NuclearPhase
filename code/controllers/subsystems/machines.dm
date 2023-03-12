@@ -110,7 +110,9 @@ if(current_step == this_step || (check_resumed && !resumed)) {\
 		machine.build_network()
 		CHECK_TICK
 
-/datum/controller/subsystem/machines/stat_entry()
+/datum/controller/subsystem/machines/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	var/msg = list()
 	msg += "C:{"
 	msg += "PI:[round(cost_pipenets,1)]|"

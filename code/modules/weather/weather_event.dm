@@ -69,8 +69,8 @@
 		for(var/turf/T in surface_turfs)
 			T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 			if(prob(5))
-				spawn(rand(1, 50))
-					playsound(T, 'sound/effects/explosionfar.ogg', 200, 1, 50, 1)
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/effects/explosionfar.ogg', 200, 1, 50, 1), rand(1, 50))
+
 	sleep(130)
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>Just moments away from a terrifying demise, the repercussion of the dangerous adventure you've embarked on, comes the final realization: your fate is only slightly better than the one others will experience, vaporized by hypersonic winds and enormous temperatures, most will smile knowing their story has come to an end... And so will you?</span>")

@@ -104,7 +104,9 @@ SUBSYSTEM_DEF(atoms)
 
 	return qdeleted || QDELING(A)
 
-/datum/controller/subsystem/atoms/stat_entry(msg)
+/datum/controller/subsystem/atoms/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("Bad Initialize Calls:[BadInitializeCalls.len]")
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin()

@@ -9,7 +9,9 @@ SUBSYSTEM_DEF(icon_update)
 	var/list/queue_refs = list()	// Atoms
 	var/list/queue_args = list()	// null or args
 
-/datum/controller/subsystem/icon_update/stat_entry()
+/datum/controller/subsystem/icon_update/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("Queue: [queue_refs.len]")
 
 /datum/controller/subsystem/icon_update/Initialize()
@@ -21,7 +23,7 @@ SUBSYSTEM_DEF(icon_update)
 		return
 
 	while (queue_refs.len)
-	
+
 		if(Master.map_loading)
 			return
 
@@ -61,7 +63,7 @@ SUBSYSTEM_DEF(icon_update)
 		var/length = length(SSicon_update.queue_refs)
 		SSicon_update.queue_args.len = length
 		SSicon_update.queue_args[length] = args.len ? args : null
-	
+
 		// SSicon_update sleeps when it runs out of things in its
 		// queue, so wake it up.
 		SSicon_update.wake()

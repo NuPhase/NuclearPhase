@@ -169,5 +169,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(beacon.z in z_levels)
 			. |= beacon
 
-/datum/controller/subsystem/shuttle/stat_entry()
+/datum/controller/subsystem/shuttle/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("Shuttles:[shuttles.len], Ships:[ships.len], L:[registered_shuttle_landmarks.len][overmap_halted ? ", HALT" : ""]")

@@ -1,3 +1,19 @@
+/proc/Uptime(from_zero)
+	var/static/days = 0
+	var/static/result = 0
+	var/static/started = world.timeofday
+	var/static/last_time = started
+	var/time = world.timeofday
+	if (time == last_time)
+		return result
+	if (time < last_time)
+		++days
+	last_time = time
+	result = time + days DAYS
+	if (from_zero)
+		result -= started
+	return result
+
 /proc/minutes_to_readable(minutes)
 	if (!isnum(minutes))
 		minutes = text2num(minutes)
@@ -8,7 +24,7 @@
 	else if (isnull(minutes))
 		PRINT_STACK_TRACE("Null minutes value supplied to minutes_to_readable().")
 		return "BAD INPUT"
-	
+
 	var/hours = 0
 	var/days = 0
 	var/weeks = 0
@@ -134,7 +150,7 @@ var/global/rollovercheck_last_timeofday = 0
 	global.rollovercheck_last_timeofday = world.timeofday
 	return global.midnight_rollovers
 
-/// Increases delay as the server gets more overloaded 
+/// Increases delay as the server gets more overloaded
 /// as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
 #define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)
 

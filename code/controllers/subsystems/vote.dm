@@ -45,7 +45,9 @@ SUBSYSTEM_DEF(vote)
 			for(var/client/C in voting)
 				show_panel(C.mob)
 
-/datum/controller/subsystem/vote/stat_entry()
+/datum/controller/subsystem/vote/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("Vote:[active_vote ? "[active_vote.name], [active_vote.time_remaining]" : "none"]")
 
 /datum/controller/subsystem/vote/Recover()

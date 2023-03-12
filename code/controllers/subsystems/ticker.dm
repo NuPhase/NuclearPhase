@@ -162,7 +162,9 @@ SUBSYSTEM_DEF(ticker)
 			log_error("Ticker arrived at round end in an unexpected endgame state.")
 
 
-/datum/controller/subsystem/ticker/stat_entry()
+/datum/controller/subsystem/ticker/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	switch(GAME_STATE)
 		if(RUNLEVEL_LOBBY)
 			..("[round_progressing ? "START:[round(pregame_timeleft/10)]s" : "(PAUSED)"]")

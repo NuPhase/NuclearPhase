@@ -167,7 +167,7 @@
 
 /area/surface/Entered(mob/A)
 	. = ..()
-	if(ishuman(A) && phase == 1)
+	if(ishuman(A))
 		surface_mobs += A
 		for(var/obj/item/gun/W in A.contents)
 			if(W.hot_color)

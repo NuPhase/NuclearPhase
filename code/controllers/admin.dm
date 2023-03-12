@@ -1,23 +1,19 @@
 // Clickable stat() button.
-/obj/effect/statclick
+/atom/movable/statclick
 	name = "Initializing..."
 	var/target
 
-INITIALIZE_IMMEDIATE(/obj/effect/statclick)
+INITIALIZE_IMMEDIATE(/atom/movable/statclick)
 
-/obj/effect/statclick/Initialize(mapload, text, target) //Don't port this to Initialize it's too critical
+/atom/movable/statclick/Initialize(mapload, text, target) //Don't port this to Initialize it's too critical
 	. = ..()
 	name = text
 	src.target = target
 
-/obj/effect/statclick/proc/update(text)
-	name = text
-	return src
-
-/obj/effect/statclick/debug
+/atom/movable/statclick/debug
 	var/class
 
-/obj/effect/statclick/debug/Click()
+/atom/movable/statclick/debug/Click()
 	if(!check_rights(R_VAREDIT | R_DEBUG) || !target)
 		return
 

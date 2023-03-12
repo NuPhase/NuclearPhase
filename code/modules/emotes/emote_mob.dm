@@ -2,7 +2,7 @@
 	return (stat == CONSCIOUS)
 
 /mob/living/can_emote(var/emote_type)
-	return (..() && !(HAS_STATUS(src, STAT_SILENCE) && emote_type == AUDIBLE_MESSAGE))
+	return (..() && !(HAS_STATUS(src, STAT_SILENCE) && emote_type == AUDIBLE_MESSAGE) && emoteCooldownCheck())
 
 /mob/proc/emote(var/act, var/m_type, var/message)
 	set waitfor = FALSE

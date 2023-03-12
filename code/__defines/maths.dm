@@ -3,6 +3,7 @@
 #define CEILING(x) (-round(-(x)))
 #define NONUNIT_CEILING(x, y) (-round(-(x) / (y)) * (y))
 #define MULT_BY_RANDOM_COEF(VAR,LO,HI) VAR =  round((VAR * rand(LO * 100, HI * 100))/100, 0.1)
+#define PERCENT(value, max, places) round((value) / (max) * 100, !(places) || 10 ** -(places))
 
 #define ROUND(x) (((x) >= 0) ? round((x)) : -round(-(x)))
 #define FLOOR(x) (round(x))

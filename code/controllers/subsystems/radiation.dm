@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(radiation)
 	if (!resumed)
 		current_sources = sources.Copy()
 		current_res_cache = resistance_cache.Copy()
-		listeners = global.living_mob_list_.Copy()		
+		listeners = global.living_mob_list_.Copy()
 
 	while(current_sources.len)
 		var/datum/radiation_source/S = current_sources[current_sources.len]
@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(radiation)
 			S.update_rad_power(S.rad_power - config.radiation_decay_rate)
 		if (MC_TICK_CHECK)
 			return
-	
+
 	while(current_res_cache.len)
 		var/turf/T = current_res_cache[current_res_cache.len]
 		current_res_cache.len--
@@ -57,7 +57,9 @@ SUBSYSTEM_DEF(radiation)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/radiation/stat_entry()
+/datum/controller/subsystem/radiation/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("S:[sources.len], RC:[resistance_cache.len]")
 
 // Ray trace from all active radiation sources to T and return the strongest effect.

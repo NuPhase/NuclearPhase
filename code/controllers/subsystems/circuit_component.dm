@@ -9,7 +9,9 @@ SUBSYSTEM_DEF(circuit_components)
 	var/list/queued_components = list()              // Queue of components for activation
 	var/position = 1                                 // Helper index to order newly activated components properly
 
-/datum/controller/subsystem/circuit_components/stat_entry()
+/datum/controller/subsystem/circuit_components/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("C:[queued_components.len]")
 
 /datum/controller/subsystem/circuit_components/fire(resumed = FALSE)

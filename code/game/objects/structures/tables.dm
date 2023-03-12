@@ -404,9 +404,8 @@
 		if(blend_with(T) && is_flipped == T.is_flipped)
 			connection_dirs |= T_dir
 		if(propagate)
-			spawn(0)
-				T.update_connections(FALSE)
-				T.update_icon()
+			T.update_connections(FALSE)
+			T.update_icon()
 	connections = dirs_to_corner_states(connection_dirs)
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)

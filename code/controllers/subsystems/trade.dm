@@ -24,7 +24,9 @@ SUBSYSTEM_DEF(trade)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/trade/stat_entry()
+/datum/controller/subsystem/trade/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	var/traders = 0
 	for(var/datum/trade_hub/hub in trade_hubs)
 		traders += length(hub.traders)

@@ -90,7 +90,9 @@ SUBSYSTEM_DEF(zcopy)
 
 	enable()
 
-/datum/controller/subsystem/zcopy/stat_entry()
+/datum/controller/subsystem/zcopy/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("Mx:[json_encode(zlev_maximums)]\n\tQ:{T:[queued_turfs.len - (qt_idex - 1)]|O:[queued_overlays.len - (qo_idex - 1)]}\n\tT:{T:[openspace_turfs]|O:[openspace_overlays]}\n\tSk:{T:[multiqueue_skips_turf]|O:[multiqueue_skips_object]}")
 
 /datum/controller/subsystem/zcopy/Initialize(timeofday)

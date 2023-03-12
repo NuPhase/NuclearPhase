@@ -51,7 +51,10 @@ SUBSYSTEM_DEF(garbage)
 		pass_counts[i] = 0
 		fail_counts[i] = 0
 
-/datum/controller/subsystem/garbage/stat_entry(msg)
+/datum/controller/subsystem/garbage/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
+	var/msg = ""
 	var/list/counts = list()
 	for (var/list/L in queues)
 		counts += length(L)

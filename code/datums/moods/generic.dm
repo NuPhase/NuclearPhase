@@ -2,6 +2,7 @@
 	name = "Horny"
 	description = "You woonna something lust..."
 	initializer = "fuck"
+	init_chance = 100
 	timeout = 3 MINUTES
 	difficulty = MOOD_DIFFICULTY_EASY
 

@@ -105,7 +105,9 @@ SUBSYSTEM_DEF(materials)
 /datum/controller/subsystem/materials/proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 	. = fusion_reactions[p_react] && fusion_reactions[p_react][s_react]
 
-/datum/controller/subsystem/materials/stat_entry()
+/datum/controller/subsystem/materials/stat_entry(time)
+	if (PreventUpdateStat(time))
+		return ..()
 	..("AH:[active_holders.len]")
 
 /datum/controller/subsystem/materials/fire(resumed = FALSE)
