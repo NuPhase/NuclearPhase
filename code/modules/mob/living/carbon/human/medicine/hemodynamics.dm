@@ -20,7 +20,7 @@
 	if(stat == DEAD)
 		return 0
 	if(status_flags & GODMODE)
-		return 100
+		return 1
 	. = oxygen_amount / max_oxygen_capacity
 
 /mob/living/carbon/human/proc/get_blood_perfusion()
