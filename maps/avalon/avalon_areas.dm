@@ -150,10 +150,14 @@
 	base_turf = /turf/exterior/surface
 	should_condense = FALSE
 	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_BACKGROUND
+	var/list/cold_descriptions = list(
+		"The most beautiful hellscape you've ever seen, something that only someone truly worthy deserves to witness. There are a ton of slow-moving cloud-like formations, are they made of liquid?",
+		"You step out to the vast and barren wasteland that the world turned into. You can't help but feel sad and amazed at the same time. There is something special and romantic about these undescribable views.",
+		"You witness something from your dreams, back from when you imagined how the surface looked like. It looks surprisingly beautiful and lively, is it really that bad around here?"
+	)
 
-/*	var/hot_blurb = ""
-	var/cold_blurb = ""
-*/
+/area/surface/proc/pick_description(mob/living/carbon/human/user)
+
 
 /area/surface/proc/switch_phases(var/newphase)
 	if(newphase == 1) //hot
