@@ -20,7 +20,10 @@
 	var/min_breath_pressure
 	var/last_int_pressure
 	var/last_ext_pressure
-	var/max_pressure_diff = 60
+	var/max_pressure_diff = 90
+
+	var/ruptured = FALSE
+	var/obj/item/chest_tube/chest_tube = null
 
 	var/safe_exhaled_max = 6
 	var/safe_toxins_max = 0.2
@@ -46,7 +49,7 @@
 /obj/item/organ/internal/lungs/proc/get_oxygen_deprivation()
 	if(status & ORGAN_DEAD)
 		return 100
-	return round((oxygen_deprivation/species.total_health)*100)
+	return oxygen_deprivation
 
 /obj/item/organ/internal/lungs/set_species(species_name)
 	. = ..()
@@ -78,7 +81,7 @@
 		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-	if(is_bruised() && !owner.is_asystole())
+	if(ruptured && !owner.is_asystole())
 		if(prob(2))
 			if(active_breathing)
 				owner.visible_message(
@@ -109,7 +112,7 @@
 	var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
 	if(istype(parent))
 		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 50, affecting = parent)
-	bruise()
+	ruptured = TRUE
 
 //exposure to extreme pressures can rupture lungs
 /obj/item/organ/internal/lungs/proc/check_rupturing(breath_pressure)
@@ -122,8 +125,16 @@
 	var/ext_pressure_diff = abs(last_ext_pressure - ext_pressure) * owner.get_pressure_weakness(ext_pressure)
 	if(int_pressure_diff > max_pressure_diff && ext_pressure_diff > max_pressure_diff)
 		var/lung_rupture_prob = BP_IS_PROSTHETIC(src) ? prob(30) : prob(60) //Robotic lungs are less likely to rupture.
-		if(!is_bruised() && lung_rupture_prob) //only rupture if NOT already ruptured
+		if(!ruptured && lung_rupture_prob) //only rupture if NOT already ruptured
 			rupture()
+
+/obj/item/organ/internal/lungs/take_internal_damage(amount, silent)
+	. = ..()
+	if(ruptured)
+		return
+	var/lung_rupture_prob = BP_IS_PROSTHETIC(src) ? prob(30) : prob(60)
+	if(amount > 5 && lung_rupture_prob)
+		rupture()
 
 /obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced)
 
@@ -149,6 +160,11 @@
 	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 	// Lung damage increases the minimum safe pressure.
 	safe_pressure_min *= 1 + rand(1,4) * damage/max_damage
+	if(ruptured)
+		if(!chest_tube)
+			safe_pressure_min *= 2 //one lung collapsed
+		else
+			safe_pressure_min *= 1.2 //helps a little
 
 	var/breatheffect = GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
 	if(!forced && breatheffect && !GET_CHEMICAL_EFFECT(owner, CE_STABLE)) //opiates are bad mmkay
@@ -245,9 +261,6 @@
 		else
 			owner.emote(pick("shiver","twitch"))
 
-	if(damage || GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS) || world.time > last_successful_breath + 2 MINUTES)
-		owner.adjustOxyLoss(HUMAN_MAX_OXYLOSS*breath_fail_ratio)
-
 	owner.oxygen_alert = max(owner.oxygen_alert, 2)
 	last_int_pressure = 0
 
@@ -314,13 +327,13 @@
 		return "no respiration"
 
 	if(BP_IS_PROSTHETIC(src))
-		if(is_bruised())
+		if(ruptured)
 			return "malfunctioning fans"
 		else
 			return "air flowing"
 
 	. = list()
-	if(is_bruised())
+	if(ruptured)
 		. += "[pick("wheezing", "gurgling")] sounds"
 
 	var/list/breathtype = list()

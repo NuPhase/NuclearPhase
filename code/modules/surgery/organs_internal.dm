@@ -13,7 +13,7 @@
 //////////////////////////////////////////////////////////////////
 //	Organ mending surgery step
 //////////////////////////////////////////////////////////////////
-/decl/surgery_step/internal/fix_organ
+/*/decl/surgery_step/internal/fix_organ
 	name = "Repair internal organ"
 	description = "This procedure is used to repair damage to the internal organs of a patient."
 	allowed_tools = list(
@@ -84,7 +84,7 @@
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		if(I && I.damage > 0 && !BP_IS_PROSTHETIC(I) && (I.surface_accessible || affected.how_open() >= (affected.encased ? SURGERY_ENCASED : SURGERY_RETRACTED)))
 			I.take_internal_damage(dam_amt)
-
+*/
 //////////////////////////////////////////////////////////////////
 //	 Organ detatchment surgery step
 //////////////////////////////////////////////////////////////////
@@ -374,6 +374,68 @@
 		target.add_organ(I, affected, detached = FALSE)
 
 /decl/surgery_step/internal/attach_organ/fail_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
+	user.visible_message("<span class='warning'>[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>", \
+	"<span class='warning'>Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>")
+	affected.take_external_damage(20, used_weapon = tool)
+
+
+
+/decl/surgery_step/internal/pneumothorax
+	name = "Pleurodesis"
+	description = "Pleurodesis is a reattachment of the lung to it's cavity."
+	allowed_tools = list(
+		TOOL_SUTURES = 100,
+		TOOL_CABLECOIL = 75
+	)
+	min_duration = 100
+	max_duration = 120
+	surgery_candidate_flags = SURGERY_NO_CRYSTAL | SURGERY_NO_ROBOTIC
+
+/decl/surgery_step/internal/pneumothorax/assess_bodypart(mob/living/user, mob/living/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = ..()
+	if(affected)
+		var/obj/item/organ/internal/lungs/lungs = GET_INTERNAL_ORGAN(target, BP_LUNGS)
+		if(lungs && lungs.ruptured)
+			if(lungs.surface_accessible || (affected.how_open() >= (affected.encased ? SURGERY_ENCASED : SURGERY_RETRACTED)))
+				return affected
+
+/decl/surgery_step/internal/pneumothorax/get_skill_reqs(mob/living/user, mob/living/target, obj/item/tool)
+	var/target_zone = user.zone_sel.selecting
+	var/obj/item/organ/internal/O = LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)
+	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
+	if(BP_IS_PROSTHETIC(O))
+		if(BP_IS_PROSTHETIC(affected))
+			return SURGERY_SKILLS_ROBOTIC
+		else
+			return SURGERY_SKILLS_ROBOTIC_ON_MEAT
+	else
+		return ..()
+
+/decl/surgery_step/internal/pneumothorax/pre_surgery_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
+	var/obj/item/organ/internal/lungs/lungs = GET_INTERNAL_ORGAN(target, BP_LUNGS)
+	if(!lungs.ruptured)
+		return
+	return lungs
+
+/decl/surgery_step/internal/pneumothorax/begin_step(mob/user, mob/living/target, target_zone, obj/item/tool)
+	user.visible_message("[user] begins reattaching [target]'s inner chest wall to the lungs with \the [tool].", \
+	"You start reattaching [target]'s inner chest wall to the lungs with \the [tool].")
+	target.custom_pain("Someone's digging needles into your lungs!",100)
+	..()
+
+/decl/surgery_step/internal/pneumothorax/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
+	var/obj/item/organ/internal/lungs/lungs = GET_INTERNAL_ORGAN(target, BP_LUNGS)
+	lungs.ruptured = FALSE
+	if(lungs.chest_tube)
+		lungs.chest_tube.forceMove(target.loc)
+		lungs.chest_tube = null
+
+	user.visible_message("<span class='notice'>[user] has reattached [target]'s inner chest wall to the lungs with \the [tool].</span>" , \
+	"<span class='notice'>You have reattached [target]'s inner chest wall to the lungs with \the [tool].</span>")
+
+
+/decl/surgery_step/internal/pneumothorax/fail_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>")
