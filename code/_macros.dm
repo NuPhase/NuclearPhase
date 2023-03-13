@@ -171,6 +171,8 @@
 
 #define SPAN_INFO(X) "<span class='info'>[X]</span>"
 
+#define SPAN_LOGIN(X) "<span class='login'>[X]</span>"
+
 #define SPAN_PHOBIA(X) "<span class='phobia'>[X]</span>"
 
 #define STYLE_SMALLFONTS(X, S, C1) "<span style=\"font-family: 'Small Fonts'; color: [C1]; font-size: [S]px\">[X]</span>"

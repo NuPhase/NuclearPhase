@@ -263,6 +263,18 @@ var/global/savefile/iconCache = new("data/iconCache.sav")
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		send_output(C, url_encode(url_encode(message)), "browseroutput:output")
 
+/proc/to_lobby(message, handle_whitespace = TRUE, trailing_newline = TRUE)
+	set waitfor = FALSE
+	var/target = list()
+	for(var/client/C in global.clients)
+		if(!istype(C.mob, /mob/new_player))
+			continue
+		target += C
+	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
+		to_chat_immediate(target, message, handle_whitespace, trailing_newline)
+		return
+	SSchat.queue(target, message, handle_whitespace, trailing_newline)
+
 
 /proc/to_chat(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
 	set waitfor = FALSE

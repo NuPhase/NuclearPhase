@@ -251,10 +251,13 @@ var/global/list/localhost_addresses = list(
 	if(SSinput.initialized)
 		set_macros()
 
+	to_lobby(SPAN_INFO(SPAN_LOGIN("[src] joined the lobby")))
+
 	//////////////
 	//DISCONNECT//
 	//////////////
 /client/Del()
+	to_lobby(SPAN_INFO(SPAN_LOGIN("[src] leaved the lobby")))
 	ticket_panels -= src
 	if(src && watched_variables_window)
 		STOP_PROCESSING(SSprocessing, watched_variables_window)
