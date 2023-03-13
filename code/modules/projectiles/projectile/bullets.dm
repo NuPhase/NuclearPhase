@@ -72,6 +72,12 @@
 	damage = 45
 	distance_falloff = 3
 
+/obj/item/projectile/bullet/pistol/cryogenic
+	fire_sound = 'sound/weapons/gunshot/sniper.ogg' //we pack POWER
+	damage = 65
+	distance_falloff = 3
+	penetration_modifier = 1.5
+
 /obj/item/projectile/bullet/pistol/holdout
 	damage = 40
 	penetration_modifier = 1.2

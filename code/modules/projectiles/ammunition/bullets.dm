@@ -5,6 +5,11 @@
 	projectile_type = /obj/item/projectile/bullet/pistol
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
+/obj/item/ammo_casing/pistol/cryogenic
+	desc = "A cryogenic pistol bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/cryogenic
+	icon = 'icons/obj/ammo/casings/pistol.dmi'
+
 /obj/item/ammo_casing/pistol/rubber
 	desc = "A rubber pistol bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber

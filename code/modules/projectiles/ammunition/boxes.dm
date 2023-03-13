@@ -136,7 +136,7 @@
 	caliber = CALIBER_PISTOL
 	material = /decl/material/solid/metal/steel
 	ammo_type = /obj/item/ammo_casing/pistol
-	max_ammo = 10
+	max_ammo = 15
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/pistol/empty
@@ -145,6 +145,13 @@
 /obj/item/ammo_magazine/pistol/rubber
 	labels = list("rubber")
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+
+/obj/item/ammo_magazine/pistol/cryogenic
+	name = "cryogenic pistol magazine"
+	desc = "It feels extremely cold."
+	material = /decl/material/solid/metal/titanium
+	ammo_type = /obj/item/ammo_casing/pistol/cryogenic
+	max_ammo = 8
 
 /obj/item/ammo_magazine/pistol/small
 	icon_state = "holdout"

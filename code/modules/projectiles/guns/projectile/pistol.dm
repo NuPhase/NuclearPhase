@@ -70,3 +70,21 @@
 	icon = 'icons/obj/guns/holdout_pistol_silencer.dmi'
 	icon_state = ICON_STATE_WORLD
 	w_class = ITEM_SIZE_SMALL
+
+/obj/item/gun/projectile/pistol/military_service
+	name = "CEF-V1"
+	desc = "Cryogenic Expander Firearm. It's a pistol that can use both conventional and cryogenic ammunition. It has a compact cryogenic unit built into its hand grip, allowing it to cool its magazine down."
+	icon = 'icons/obj/guns/gyropistol.dmi'
+	w_class = ITEM_SIZE_NORMAL
+	weight = 1.5
+	magazine_type = null
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic)
+	ammo_indicator = FALSE
+
+/obj/item/gun/projectile/pistol/military_service/load_ammo(obj/item/A, mob/user)
+	. = ..()
+	if(istype(A, /obj/item/ammo_magazine/pistol))
+		fire_delay = 4
+	else if(istype(A, /obj/item/ammo_magazine/pistol/cryogenic))
+		fire_delay = 10
+		to_chat(user, SPAN_NOTICE("This technology isn't trusted around here, the barrel might overheat... It packs a punch, though."))
