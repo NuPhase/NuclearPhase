@@ -164,7 +164,7 @@
 					bad_message = "\[MIN CHAR AGE: [job.minimum_character_age[species_name]]]"
 				else if(!job.is_species_allowed(S))
 					bad_message = "<b>\[SPECIES RESTRICTED]</b>"
-				else if(!SSjobs.check_job_whitelist(job, ckeyEx(user?.client.key)))
+				else if(!SSjobs.check_job_whitelist(job, user?.client.key))
 					bad_message = "<b>\[WHITELIST RESTRICTED]</b>"
 				else if(!S.check_background(job, user.client.prefs))
 					bad_message = "<b>\[BACKGROUND RESTRICTED]</b>"

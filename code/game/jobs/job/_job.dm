@@ -382,7 +382,7 @@
 		reasons["You are jobbanned."] = TRUE
 	if(is_semi_antagonist && jobban_isbanned(caller, /decl/special_role/provocateur))
 		reasons["You are semi-antagonist banned."] = TRUE
-	if(!SSjobs.check_job_whitelist(src, ckeyEx(caller.key)))
+	if(!SSjobs.check_job_whitelist(src, caller.key))
 		reasons["This role requires whitelist."] = TRUE
 	if(!player_old_enough(caller))
 		reasons["Your player age is too low."] = TRUE
@@ -417,7 +417,7 @@
 		return FALSE
 	if(is_semi_antagonist && jobban_isbanned(caller, /decl/special_role/provocateur))
 		return FALSE
-	if(!SSjobs.check_job_whitelist(src, ckeyEx(caller.key)))
+	if(!SSjobs.check_job_whitelist(src, caller.key))
 		return 0
 	if(!player_old_enough(caller))
 		return FALSE

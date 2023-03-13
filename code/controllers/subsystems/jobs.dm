@@ -16,7 +16,6 @@ SUBSYSTEM_DEF(jobs)
 	var/list/departments_by_name =      list()
 	var/list/job_whitelist =            list()
 	var/job_config_file = "config/jobs.txt"
-	var/whitelist_file = "whitelist/jobs.txt"
 
 /datum/controller/subsystem/jobs/proc/get_department_by_name(var/dept_name)
 	if(!length(departments_by_name))
@@ -79,22 +78,6 @@ SUBSYSTEM_DEF(jobs)
 					if((ASSIGNMENT_ROBOT in J.event_categories) || (ASSIGNMENT_COMPUTER in J.event_categories))
 						J.total_positions = 0
 
-	if(whitelist_file)
-		var/list/jobEntries = file2list(whitelist_file)
-		for(var/job in jobEntries)
-			if(!job)
-				continue
-			job = trim(job)
-			if(!length(job))
-				continue
-			var/list/data = splittext(job, "=")
-			var/jobpath = replacetext(data[1], " ", "")
-			check_and_place_if_list_dosnt_have_entry(job_whitelist, jobpath)
-			if(!data[2])
-				continue
-			var/list/users = splittext(data[2], ";")
-			for(var/user in users)
-				job_whitelist[jobpath] += ckeyEx(user)
 	// Init skills.
 	if(!global.skills.len)
 		GET_DECL(/decl/hierarchy/skill)
@@ -171,15 +154,8 @@ SUBSYSTEM_DEF(jobs)
 		return TRUE
 	if(!ckey)
 		return FALSE
-
-	var/jobtype = "[jb.type]"
-	if(!job_whitelist[jobtype])
-		return TRUE
-
-	if(ckey in job_whitelist[jobtype])
-		return TRUE
-
-	return FALSE
+	var/datum/whitelist/wl = get_global_job_whitelist()
+	return wl.check_entry_assoc("[jb.type]", ckey(ckey))
 
 /datum/controller/subsystem/jobs/proc/get_by_title(var/rank)
 	return titles_to_datums[rank]
@@ -250,7 +226,7 @@ SUBSYSTEM_DEF(jobs)
 			return 0
 		if(job.is_restricted(player.client.prefs))
 			return 0
-		if(!check_job_whitelist(job, ckeyEx(player.key)))
+		if(!check_job_whitelist(job, player.key))
 			return 0
 		if(job.title in mode.disabled_jobs)
 			return 0
