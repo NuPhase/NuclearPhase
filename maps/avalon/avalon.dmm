@@ -1476,14 +1476,11 @@
 /turf/simulated/open,
 /area/avalon/shelter/brig/armory)
 "bWC" = (
-/obj/effect/floor_decal/corner/mauve/half{
-	dir = 1
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 6
 	},
-/obj/machinery/smartfridge/secure/medbay/stocked{
-	pixel_y = 32;
-	density = 0
-	},
-/turf/simulated/floor/tiled/white,
+/obj/structure/iv_drip,
+/turf/simulated/floor/tiled/white/monotile,
 /area/avalon)
 "bWR" = (
 /obj/structure/table,
@@ -2171,7 +2168,6 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "cIF" = (
-/obj/effect/floor_decal/corner/mauve/bordercorner,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2987,6 +2983,14 @@
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
+"dHM" = (
+/obj/structure/table/steel,
+/obj/item/chems/spray/cleaner,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/avalon)
 "dIC" = (
 /obj/structure/stairs/long/west,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -3237,7 +3241,7 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "eat" = (
-/obj/structure/closet/crate/secure/biohazard,
+/obj/structure/closet/crate/secure/biohazard/alt,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "ebz" = (
@@ -8334,8 +8338,8 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "ksa" = (
-/obj/structure/closet/crate/secure/biohazard,
 /obj/effect/floor_decal/corner/purple/full,
+/obj/structure/closet/crate/secure/biohazard/alt,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "ksx" = (
@@ -10501,6 +10505,10 @@
 /obj/item/stack/medical/wound_filler,
 /obj/item/stack/medical/wound_filler,
 /obj/item/stack/medical/wound_filler,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "noq" = (
@@ -10817,12 +10825,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "nKX" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/structure/table/steel,
-/obj/item/chems/spray/cleaner,
-/obj/item/clothing/head/helmet/modern/space/combat_specialized/cold,
+/obj/machinery/smartfridge/secure/medbay/stocked{
+	pixel_y = 32;
+	density = 0
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "nLj" = (
@@ -12349,7 +12356,7 @@
 /obj/structure/curtain/open/medical{
 	pixel_y = 32
 	},
-/obj/structure/closet/crate/secure/biohazard,
+/obj/structure/closet/crate/secure/biohazard/alt,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "pNJ" = (
@@ -14791,6 +14798,7 @@
 "tbK" = (
 /obj/effect/floor_decal/corner/mauve/half,
 /obj/machinery/light,
+/obj/machinery/blood_circulator,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
 "tdU" = (
@@ -15318,7 +15326,6 @@
 /area/avalon/shelter/science)
 "tJk" = (
 /obj/machinery/light,
-/obj/structure/iv_drip,
 /obj/effect/floor_decal/corner/mauve/border,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon)
@@ -16842,6 +16849,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
+"vFz" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner,
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon)
 "vFQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 4
@@ -96606,7 +96620,7 @@ rhz
 hlu
 udA
 ykK
-tXJ
+bWC
 cdZ
 ddU
 ddU
@@ -112851,7 +112865,7 @@ jeU
 uRw
 vSi
 cIF
-ykK
+wPz
 hlu
 hlu
 hlu
@@ -112980,8 +112994,8 @@ jeU
 jeU
 uRw
 vSi
-qvk
-cdZ
+vFz
+tXJ
 cdZ
 nKX
 hlu
@@ -113111,9 +113125,9 @@ jeU
 uRw
 uNL
 qvk
-vIb
-bWC
-hlu
+cdZ
+cdZ
+dHM
 hlu
 dkH
 hlu

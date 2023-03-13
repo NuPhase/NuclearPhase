@@ -8,6 +8,7 @@
 	var/tpvr = 0 //Total Peripherial Vascular Resistance
 	var/max_oxygen_capacity = 100
 	var/oxygen_amount = 100
+	var/add_mcv = 0
 
 /mob/living/carbon/human/proc/get_blood_volume_hemo()
 	. = vessel.total_volume / species.blood_volume
@@ -56,7 +57,7 @@
 
 	meanpressure = (syspressure + dyspressure) / 2
 
-	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff, 0, 12000)
+	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff + add_mcv, 0, 12000)
 	//mcv = meanpressure * 132.32 * 60 / tpvr
 
 /mob/living/carbon/human/proc/consume_oxygen(amount)

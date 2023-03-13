@@ -164,6 +164,9 @@
 	var/obj/item/cuffs = get_equipped_item(slot_handcuffed_str)
 	if(cuffs)
 		msg += "<span class='warning'>[G.He] [G.is] [html_icon(cuffs)] restrained with \the [cuffs]!</span>\n"
+	var/obj/item/organ/internal/lungs/lungs = GET_INTERNAL_ORGAN(src, BP_LUNGS)
+	if(lungs.chest_tube)
+		msg += SPAN_NOTICE("[G.He] [G.has] a [lungs.chest_tube] in their chest.")
 
 	if(is_nude() && has_penis())
 		var/mob/living/carbon/human/H = user
@@ -184,7 +187,7 @@
 			msg += "[G.His] lips are covered with <font color='[lip_style]'>[lip_style_name]</font> lipstick.\n"
 
 		if(reagents.has_reagent(/decl/material/liquid/semen, 1))
-			msg += SPAN_ERP("[G.His] face [G.is] covered with a white liquid...") + "\n"
+			msg += SPAN_ERP("[G.His] face [G.is] covered in a white liquid...") + "\n"
 
 	if(get_mood(/datum/mood/horny))
 		msg += SPAN_ERP("[G.He] [G.has] a heavy, languid breath.") + "\n"
