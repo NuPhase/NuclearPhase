@@ -235,9 +235,6 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 		if(!(ASSIGNMENT_ROBOT in job.event_categories))
 			CreateModularRecord(character)
 			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-			AnnounceArrival(character, job, spawnpoint.msg)
-		else
-			AnnounceCyborg(character, job, spawnpoint.msg)
 	callHook("player_latejoin", list(job, character))
 	log_and_message_admins("has joined the round as [character.mind.assigned_role].", character)
 
