@@ -408,7 +408,7 @@ var/global/list/global/tank_gauge_cache = list()
 /obj/item/tank/proc/check_status()
 	if(!air_contents)
 		return 0
-	weight = initial(weight) += air_contents.get_mass()
+	weight = initial(weight) + air_contents.get_mass()
 
 	var/pressure = air_contents.return_pressure()
 
