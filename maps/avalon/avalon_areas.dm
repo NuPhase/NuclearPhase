@@ -151,7 +151,7 @@
 	name = "Surface"
 	var/list/hot_ambience = list('sound/ambience/magma.ogg')
 	var/list/cold_ambience = list('sound/music/calmnight.ogg', 'sound/music/facilityoutside.ogg', 'sound/music/outside1.ogg', 'sound/music/outside2.ogg', 'sound/music/outside3.ogg')
-	forced_ambience = list()
+	forced_ambience = list('sound/music/calmnight.ogg', 'sound/music/facilityoutside.ogg', 'sound/music/outside1.ogg', 'sound/music/outside2.ogg', 'sound/music/outside3.ogg')
 	has_gravity = TRUE
 	is_outside = TRUE
 	var/phase = 0
@@ -171,6 +171,9 @@
 
 /area/surface/proc/pick_description(mob/living/carbon/human/user)
 
+/area/surface/Initialize()
+	. = ..()
+	surface_areas += src
 
 /area/surface/proc/switch_phases(var/newphase)
 	if(newphase == 1) //hot
@@ -187,7 +190,7 @@
 	if(ishuman(A))
 		surface_mobs += A
 		for(var/obj/item/gun/W in A.contents)
-			if(W.hot_color)
+			if(W.hot_color && phase)
 				W.color = W.hot_color
 
 /area/surface/Exited(mob/A)

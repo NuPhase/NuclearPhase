@@ -21,9 +21,10 @@
 	for(var/turf/T in surface_turfs)
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE1, 1)
 	var/list/nonsurface_mobs = human_mob_list
+	for(var/area/A in surface_areas)
+		A.do_ambience = FALSE
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		nonsurface_mobs -= H
-		H.lastarea.do_ambience = FALSE
 		H.lastarea.clear_ambience(H)
 		sound_to(H, sound('sound/music/sunrise.ogg',0,50,sound_channels.lobby_channel))
 		to_chat(H, "<span class=bigdanger>The sky erupts in bright crimson red, like you've never seen before. Slow streams of flames rush away from the approaching, scorching, death-bringing source of light. Clouds of once frozen gas will hold it back for a some time, but not for long. Infernal doom approaches.</span>")
@@ -82,5 +83,8 @@
 		T.set_ambient_light(COLOR_HOT_SURFACE, 2)
 		using_map.exterior_atmosphere.temperature = 970
 		weather.weather_system.set_state(/decl/state/weather/ash)
+	for(var/area/surface/A in surface_areas)
+		A.do_ambience = TRUE
+		A.switch_phases(1)
 	sleep(600)
 	end()

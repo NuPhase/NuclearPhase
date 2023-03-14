@@ -7,7 +7,7 @@
 	color = "#e4cfed"
 	dirt_color = "#e4cfed"
 	var/datum/map/mapowner = null
-	footstep_type = null
+	footstep_type = /decl/footsteps/snow
 
 /turf/exterior/surface/explosion_act(severity)
 	return
