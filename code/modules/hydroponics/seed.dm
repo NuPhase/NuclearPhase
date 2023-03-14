@@ -193,16 +193,18 @@
 	// For now, only light-dependent reactions are available (no Calvin cycle).
 	// It's active only for those plants which doesn't consume nor exude gasses.
 	if(!get_trait(TRAIT_PHOTOSYNTHESIS))
-		return
+		return FALSE
 	if(!(environment) || !(environment.gas))
-		return
+		return FALSE
 	if(LAZYLEN(exude_gasses) || LAZYLEN(consume_gasses ))
-		return
+		return FALSE
 	if(!(light_supplied) || !(get_trait(TRAIT_REQUIRES_WATER)))
-		return
+		return FALSE
 	if(environment.get_gas(/decl/material/gas/carbon_dioxide) >= req_CO2_moles)
 		environment.adjust_gas(/decl/material/gas/carbon_dioxide, -req_CO2_moles, 1)
 		environment.adjust_gas(/decl/material/gas/oxygen, req_CO2_moles, 1)
+		return TRUE
+	return FALSE
 
 /datum/seed/proc/make_splat(var/turf/T, var/obj/item/thrown)
 	if(!splat_type || (locate(splat_type) in T))
@@ -265,7 +267,7 @@
 			origin_turf.visible_message(SPAN_DANGER("\The [thrown] splatters against [target]!"))
 		splatter(origin_turf,thrown)
 
-/datum/seed/proc/handle_environment(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only)
+/datum/seed/proc/handle_environment(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only, var/obj/machinery/portable_atmospherics/hydroponics/tray)
 
 	var/health_change = 0
 	// Handle gas consumption.
@@ -321,7 +323,8 @@
 	// If any of the previous environment checks has failed
 	// the photosynthesis cannot be triggered.
 	if(health_change == 0)
-		do_photosynthesis(current_turf, environment, light_supplied)
+		if(do_photosynthesis(current_turf, environment, light_supplied) && tray)
+			tray.glucoselevel = min(100, tray.glucoselevel + 2)
 
 	return health_change
 

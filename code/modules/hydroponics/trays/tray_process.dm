@@ -35,13 +35,13 @@
 	// If there is no seed data (and hence nothing planted),
 	// or the plant is dead, process nothing further.
 	if(!seed || dead)
-		if(mechanical) 
+		if(mechanical)
 			update_icon() //Harvesting would fail to set alert icons properly.
 		return
 
 	// Advance plant age.
 	var/cur_stage = get_overlay_stage()
-	if(prob(30)) 
+	if(prob(30))
 		age += 1 * HYDRO_SPEED_MULTIPLIER
 		if(get_overlay_stage() != cur_stage)
 			needs_icon_update |= 1
@@ -62,6 +62,9 @@
 		nutrilevel -= max(0,seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) * HYDRO_SPEED_MULTIPLIER)
 	if(seed.get_trait(TRAIT_REQUIRES_WATER) && seed.get_trait(TRAIT_WATER_CONSUMPTION) > 0 && waterlevel > 0 && prob(25))
 		waterlevel -= max(0,seed.get_trait(TRAIT_WATER_CONSUMPTION) * HYDRO_SPEED_MULTIPLIER)
+	glucoselevel = max(0, glucoselevel - 1)
+	if(!glucoselevel)
+		health -= 1
 
 	// Make sure the plant is not starving or thirsty. Adequate
 	// water and nutrients will cause a plant to become healthier.
@@ -84,9 +87,9 @@
 
 	// Seed datum handles gasses, light and pressure.
 	if(mechanical && closed_system)
-		health -= seed.handle_environment(T,environment,tray_light)
+		health -= seed.handle_environment(T,environment,tray_light, tray = src)
 	else
-		health -= seed.handle_environment(T,environment)
+		health -= seed.handle_environment(T,environment, tray = src)
 
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
 	if (closed_system && connected_port)

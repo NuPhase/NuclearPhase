@@ -66,3 +66,31 @@
 		set_light(round(seed.get_trait(TRAIT_POTENCY)/10), l_color = seed.get_trait(TRAIT_BIOLUM_COLOUR))
 	else
 		set_light(0)
+
+/obj/machinery/portable_atmospherics/hydroponics/large/harvest(var/mob/user)
+
+	//Harvest the product of the plant,
+	if(!seed || !harvest)
+		return
+
+	if(closed_system)
+		if(user) to_chat(user, "You can't harvest from the plant while the lid is shut.")
+		return
+
+	if(user)
+		. = seed.harvest(user,yield_mod + 3)
+	else
+		. = seed.harvest(get_turf(src),yield_mod + 3)
+	// Reset values.
+	harvest = 0
+	lastproduce = age
+
+	if(!seed.get_trait(TRAIT_HARVEST_REPEAT))
+		yield_mod = 0
+		clear_seed()
+		dead = 0
+		age = 0
+		sampled = 0
+		mutation_mod = 0
+
+	check_health()
