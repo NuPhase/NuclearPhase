@@ -103,6 +103,14 @@
 /area/avalon/shelter/breakerroom
 	name = "Breaker Room"
 
+/area/avalon/shelter/service_tunnels
+	name = "Reactor Service Tunnels"
+	ambience = list('sound/ambience/maint1.ogg', 'sound/ambience/maint2.ogg')
+
+/area/avalon/shelter/maintenance
+	name = "Maintenance"
+	ambience = list('sound/ambience/maint1.ogg', 'sound/ambience/maint2.ogg')
+
 /area/avalon/shelter/brig
 	name = "Security"
 	area_flags = AREA_FLAG_SECURITY
@@ -141,8 +149,8 @@
 
 /area/surface
 	name = "Surface"
-	var/list/hot_ambience = list()
-	var/list/cold_ambience = list()
+	var/list/hot_ambience = list('sound/ambience/magma.ogg')
+	var/list/cold_ambience = list('sound/music/calmnight.ogg', 'sound/music/facilityoutside.ogg', 'sound/music/outside1.ogg', 'sound/music/outside2.ogg', 'sound/music/outside3.ogg')
 	forced_ambience = list()
 	has_gravity = TRUE
 	is_outside = TRUE
@@ -155,6 +163,11 @@
 		"You step out to the vast and barren wasteland that the world turned into. You can't help but feel sad and amazed at the same time. There is something special and romantic about these undescribable views.",
 		"You witness something from your dreams, back from when you imagined how the surface looked like. It looks surprisingly beautiful and lively, is it really that bad around here?"
 	)
+
+/area/surface/location //more intense
+	cold_ambience = list('sound/music/lurk.ogg')
+
+/area/surface/location/skyscraper
 
 /area/surface/proc/pick_description(mob/living/carbon/human/user)
 

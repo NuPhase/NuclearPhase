@@ -88,7 +88,7 @@
 
 /decl/state/weather/sunriseone
 	name = "Sunrise"
-	descriptor = "Something big approaches."
+	descriptor = "The end is near."
 	transitions = list()
 
 /decl/state/weather/snow
@@ -124,7 +124,7 @@
 	transitions =       list(/decl/state_transition/weather/snow_medium)
 	cosmetic_messages = list(
 		"Gusting snow obscures your vision.",
-		"Thick flurries of snow swirl around you."
+		"Thick flurries of frozen gas particles swirl around you."
 	)
 	cosmetic_span_class = "warning"
 
