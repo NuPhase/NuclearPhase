@@ -163,17 +163,30 @@
 		"You step out to the vast and barren wasteland that the world turned into. You can't help but feel sad and amazed at the same time. There is something special and romantic about these undescribable views.",
 		"You witness something from your dreams, back from when you imagined how the surface looked like. It looks surprisingly beautiful and lively, is it really that bad around here?"
 	)
+	var/list/hot_descriptions = list()
 
 /area/surface/location //more intense
 	cold_ambience = list('sound/music/lurk.ogg')
 
 /area/surface/location/skyscraper
 
-/area/surface/proc/pick_description(mob/living/carbon/human/user)
-
 /area/surface/Initialize()
 	. = ..()
 	surface_areas += src
+
+/area/surface/do_area_blurb(mob/living/L)
+	if(isnull(description))
+		return
+
+	if(L?.get_preference_value(/datum/client_preference/area_info_blurb) != PREF_YES)
+		return
+
+	if(!(L.ckey in blurbed_stated_to))
+		blurbed_stated_to += L.ckey
+		if(phase == 1) //hot
+			to_chat(L, SPAN_SUBTLE("[pick(hot_descriptions)]"))
+		else
+			to_chat(L, SPAN_SUBTLE("[pick(cold_descriptions)]"))
 
 /area/surface/proc/switch_phases(var/newphase)
 	if(newphase == 1) //hot
