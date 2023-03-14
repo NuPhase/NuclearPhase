@@ -236,6 +236,15 @@
 	if(current_grab.icon_state)
 		icon_state = current_grab.icon_state
 
+/obj/item/grab/proc/draw_affecting_over()
+	affecting.plane = assailant.plane
+	affecting.layer = assailant.layer + 0.01
+
+/obj/item/grab/proc/draw_affecting_under()
+	affecting.plane = assailant.plane
+	affecting.layer = assailant.layer - 0.01
+
+
 /obj/item/grab/proc/throw_held()
 	return current_grab.throw_held(src)
 
@@ -251,14 +260,7 @@
 		qdel(src)
 		return 0
 
-	var/adir = get_dir(assailant, affecting)
-	if(assailant)
-		assailant.set_dir(adir)
-	if(current_grab.same_tile)
-		affecting.forceMove(get_turf(assailant))
-		affecting.set_dir(assailant.dir)
-	affecting.reset_offsets(5)
-	affecting.reset_plane_and_layer()
+	current_grab.adjust_position(src)
 
 /*
 	This section is for the simple procs used to return things from current_grab.

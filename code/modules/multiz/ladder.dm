@@ -161,6 +161,9 @@
 		to_chat(M, SPAN_NOTICE("You fail to reach \the [src]."))
 		return
 
+	for (var/obj/item/grab/G in M)
+		G.adjust_position()
+
 	add_fingerprint(M)
 
 	var/direction = target_ladder == target_up ? "up" : "down"
@@ -168,7 +171,8 @@
 	target_ladder.audible_message(SPAN_NOTICE("You hear something coming [direction] \the [src]."))
 	if(do_after(M, climb_time, src))
 		climbLadder(M, target_ladder, I)
-
+		for (var/obj/item/grab/G in M)
+			G.adjust_position(force = 1)
 /obj/structure/ladder/attack_ghost(var/mob/M)
 	instant_climb(M)
 

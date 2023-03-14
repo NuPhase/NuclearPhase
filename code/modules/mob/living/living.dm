@@ -78,9 +78,10 @@ default behaviour is:
 					return
 
 			if(can_swap_with(tmob)) // mutual brohugs all around!
-				var/turf/oldloc = loc
 				forceMove(tmob.loc)
-				tmob.forceMove(oldloc)
+				var/olddir = tmob.dir
+				step_glide(tmob, reverse_dir[dir], glide_size)
+				tmob.dir = olddir
 				now_pushing = 0
 				return
 
@@ -125,8 +126,8 @@ default behaviour is:
 					for(var/obj/structure/window/win in get_step(AM,t))
 						now_pushing = 0
 						return
-				AM.glide_size = glide_size
-				step(AM, t)
+				SetMoveCooldown(get_movement_delay(dir) + AM.push_slowdown())
+				step_glide(AM, t, glide_size)
 				if (istype(AM, /mob/living))
 					var/mob/living/tmob = AM
 					if(istype(tmob.buckled, /obj/structure/bed))
@@ -139,6 +140,7 @@ default behaviour is:
 						G.adjust_position()
 				if(saved_dir)
 					AM.set_dir(saved_dir)
+				step(src, dir)
 				now_pushing = 0
 
 /proc/swap_density_check(var/mob/swapper, var/mob/swapee)
@@ -150,6 +152,11 @@ default behaviour is:
 			continue
 		if(!A.CanPass(swapee, T, 1))
 			return 1
+
+/atom/movable/proc/push_slowdown()
+	. = 0
+	. += pull_coefficient * 2
+	. = max(.,0)
 
 /mob/living/proc/can_swap_with(var/mob/living/tmob)
 	if(!tmob)

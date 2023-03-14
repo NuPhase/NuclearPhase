@@ -143,6 +143,7 @@
 
 		var/stamina_cost = 0
 		for(var/obj/item/grab/G as anything in get_active_grabs())
+			G.affecting.set_glide_size(glide_size)
 			stamina_cost -= G.grab_slowdown() / get_skill_value(SKILL_FITNESS)
 		stamina_cost = round(stamina_cost)
 		if(stamina_cost < 0)

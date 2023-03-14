@@ -138,7 +138,6 @@
 
 	if(inertia_dir)
 		inertia_dir = 0
-
 	if (A && yes)
 		A.last_bumped = world.time
 		INVOKE_ASYNC(A, /atom/proc/Bumped, src) // Avoids bad actors sleeping or unexpected side effects, as the legacy behavior was to spawn here

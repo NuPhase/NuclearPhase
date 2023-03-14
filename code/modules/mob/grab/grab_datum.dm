@@ -101,7 +101,7 @@
 		to_chat(G.assailant, SPAN_WARNING("You must wait before you can do that."))
 		return FALSE
 
-	G.is_currently_resolving_hit = TRUE 
+	G.is_currently_resolving_hit = TRUE
 	switch(G.assailant.a_intent)
 		if(I_HELP)
 			if(on_hit_help(G, A, P))
@@ -127,9 +127,35 @@
 			if(downgrade_on_action)
 				G.downgrade()
 
+/decl/grab/proc/adjust_position(obj/item/grab/G)
+	var/mob/living/carbon/human/affecting = G.affecting
+	var/mob/living/carbon/human/assailant = G.assailant
+	var/adir = get_dir(assailant, affecting)
+
+	if(same_tile)
+		affecting.forceMove(assailant.loc)
+		adir = assailant.dir
+		affecting.set_dir(assailant.dir)
+
+	switch(adir)
+		if(NORTH)
+			animate(affecting, pixel_x = 0, pixel_y =-shift, 5, 1, LINEAR_EASING)
+			G.draw_affecting_under()
+		if(SOUTH)
+			animate(affecting, pixel_x = 0, pixel_y = shift, 5, 1, LINEAR_EASING)
+			G.draw_affecting_over()
+		if(WEST)
+			animate(affecting, pixel_x = shift, pixel_y = 0, 5, 1, LINEAR_EASING)
+			G.draw_affecting_under()
+		if(EAST)
+			animate(affecting, pixel_x =-shift, pixel_y = 0, 5, 1, LINEAR_EASING)
+			G.draw_affecting_under()
+
+	affecting.reset_plane_and_layer()
+
 // This is called whenever the assailant moves.
 /decl/grab/proc/assailant_moved(var/obj/item/grab/G)
-	G.adjust_position()
+	adjust_position(G)
 	moved_effect(G)
 	if(downgrade_on_move)
 		G.downgrade()

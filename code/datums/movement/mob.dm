@@ -197,6 +197,9 @@
 
 	if(!mob)
 		return // If the mob gets deleted on move (e.g. Entered, whatever), it wipes this reference on us in Destroy (and we should be aborting all action anyway).
+
+	HandleGrabs(direction, old_turf)
+
 	if(mob.loc == old_turf) // Did not move for whatever reason.
 		mob.moving = FALSE
 		return
@@ -216,6 +219,35 @@
 
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
+
+/datum/movement_handler/mob/movement/proc/HandleGrabs(direction, old_turf)
+	. = 0
+	// TODO: Look into making grabs use movement events instead, this is a mess.
+	for (var/obj/item/grab/G in mob)
+		if(G.assailant == G.affecting)
+			return
+		var/list/L = mob.ret_grab()
+		if(istype(L, /list))
+			if(length(L) == 2)
+				L -= mob
+				var/mob/M = L[1]
+				if(M)
+					if (get_dist(old_turf, M) <= 1)
+						if (isturf(M.loc) && isturf(mob.loc))
+							if (mob.loc != old_turf && M.loc != mob.loc)
+								step_glide(M, get_dir(M.loc, old_turf), host.glide_size)
+			else
+				for(var/mob/M in L)
+					if(mob != M)
+						M.animate_movement = 3
+				for(var/mob/M in L)
+					spawn( 0 )
+						step(M, direction)
+						return
+					spawn( 1 )
+						M.animate_movement = 2
+						return
+			G.adjust_position()
 
 /mob/proc/get_stamina_used_per_step()
 	return 1
