@@ -175,9 +175,6 @@
 	surface_areas += src
 
 /area/surface/do_area_blurb(mob/living/L)
-	if(isnull(description))
-		return
-
 	if(L?.get_preference_value(/datum/client_preference/area_info_blurb) != PREF_YES)
 		return
 
