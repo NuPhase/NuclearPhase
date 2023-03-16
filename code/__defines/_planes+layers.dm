@@ -152,11 +152,12 @@ What is the naming convention for planes or layers?
 	#define FIRE_LAYER                  4.16
 	#define PROJECTILE_LAYER            4.17
 	#define ABOVE_PROJECTILE_LAYER      4.18
-	#define SINGULARITY_LAYER           4.19
-	#define SINGULARITY_EFFECT_LAYER    4.20
-	#define POINTER_LAYER               4.21
+	#define SPINNING_LIGHT_LAYER		4.19
+	#define SINGULARITY_LAYER           4.20
+	#define SINGULARITY_EFFECT_LAYER    4.21
+	#define POINTER_LAYER               4.22
 	// Z-Mimic-managed lighting
-	#define MIMICED_LIGHTING_LAYER      4.22
+	#define MIMICED_LIGHTING_LAYER      4.23
 
 	//FLY_LAYER                          5
 	//OBSERVER
