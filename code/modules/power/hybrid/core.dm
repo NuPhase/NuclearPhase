@@ -82,6 +82,7 @@
 	superstructure.color = LIGHT_COLOR_BLUE
 	superstructure.pixel_x = 0
 	superstructure.pixel_y = 0
+	superstructure.update_above()
 	superstructure.name = "self-contained plasma sphere"
 	superstructure.desc = "The heart of all death and destruction..."
 	superstructure.set_light(20, 10, LIGHT_COLOR_BLUE)
@@ -157,17 +158,19 @@
 	sleep(5 SECONDS)
 	if(shutdown_failure)
 		make_plasmaball()
+		visible_message("<span class=bigdanger>The reactor implodes on itself, creating something that cannot be described with any language!</span>", range = 20)
 		for(var/mob/living/carbon/human/H in human_mob_list)
 			H.playsound_local(H, 'sound/music/criticalmass.ogg', 50, 0)
-			to_chat(H, SPAN_ERPBOLD("There's the sun, the destroyer of worlds. Born with technology, the first of its kind."))
+			to_chat(H, SPAN_ERPBOLD("Here comes true fusion, the kind that destroys whole worlds. Born with technology, the first of its kind."))
 		sleep(49 SECONDS)
 		for(var/mob/living/carbon/human/H in human_mob_list)
-			to_chat(H, SPAN_ERPBOLD("It was meant to save the world from starvation and eternal cold, but it turned against everyone."))
+			to_chat(H, SPAN_ERPBOLD("Destined to starve and die, far from being controlled nor sustained."))
 		sleep(27 SECONDS)
 		for(var/mob/living/carbon/human/H in human_mob_list)
-			to_chat(H, SPAN_ERPBOLD("And now it shall feast upon the ones who tried to harness its power."))
+			to_chat(H, SPAN_ERPBOLD("Everything comes to an end, including your own existence."))
 		animate(superstructure, transform = matrix()*0.9, time = 290, easing = SINE_EASING | EASE_IN)
 		spawn(29 SECONDS)
 			animate(superstructure, transform = matrix()*0.01, time = 10, easing = QUAD_EASING | EASE_IN)
 		sleep(30 SECONDS)
 	produce_explosion()
+	radio_announce("MULTIPLE SEISMIC VIBRATIONS OF MAGNITUDE 9 DETECTED.", rcontrol.name)
