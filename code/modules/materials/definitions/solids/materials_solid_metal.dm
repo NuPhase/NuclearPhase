@@ -14,6 +14,8 @@
 	default_solid_form = /obj/item/stack/material/ingot
 	table_icon_base = "metal"
 	abstract_type = /decl/material/solid/metal
+	min_fluid_opacity = 200
+	max_fluid_opacity = 255
 
 /decl/material/solid/metal/uranium
 	name = "uranium"

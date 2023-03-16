@@ -31,6 +31,12 @@
 	var/alert_pressure = 170 * ONE_ATMOSPHERE
 	var/datum/sound_token/sound_token
 
+/obj/machinery/atmospherics/pipe/bullet_act(obj/item/projectile/P)
+	. = ..()
+	if(P.damage > 10 && P.damage_type == BRUTE)
+		visible_message(SPAN_DANGER("[src] sprungs a leak! It seals itself almost instantly, though."))
+		parent.mingle_with_turf(get_turf(src), volume * 2)
+
 /obj/machinery/atmospherics/pipe/drain_power()
 	return -1
 

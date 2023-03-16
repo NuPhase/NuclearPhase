@@ -9,6 +9,7 @@
 	layer = FLY_LAYER
 	alpha = 0
 	color = COLOR_LIQUID_WATER
+	temperature = T20C
 
 	var/last_flow_strength = 0
 	var/last_flow_dir = 0
@@ -156,14 +157,18 @@ var/global/obj/abstract/flood/flood_object = new
 		return
 	var/update_air = FALSE
 	for(var/rtype in reagents.reagent_volumes)
-		var/decl/material/mat = GET_DECL(rtype)
-		if(mat.gas_flags & XGM_GAS_FUEL)
-			var/moles = round(reagents.reagent_volumes[rtype] / REAGENT_UNITS_PER_GAS_MOLE)
-			if(moles > 0)
-				air.adjust_gas(rtype, moles, FALSE)
-				reagents.remove_reagent(round(moles * REAGENT_UNITS_PER_GAS_MOLE))
-				update_air = TRUE
+		var/moles = round(reagents.reagent_volumes[rtype] / REAGENT_UNITS_PER_GAS_MOLE)
+		if(moles > 0)
+			air.adjust_gas_temp(rtype, moles, air.temperature, FALSE)
+			reagents.remove_reagent(round(moles * REAGENT_UNITS_PER_GAS_MOLE))
+			update_air = TRUE
 	if(update_air)
 		air.update_values()
+		return TRUE
+	return FALSE
+
+/obj/effect/fluid/proc/is_combustible()
+	var/decl/material/main_reagent = reagents.get_primary_reagent_decl()
+	if(main_reagent.gas_flags & XGM_GAS_FUEL)
 		return TRUE
 	return FALSE

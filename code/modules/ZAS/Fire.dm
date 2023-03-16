@@ -33,13 +33,16 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	if(!air_contents || exposed_temperature < FLAMMABLE_GAS_MINIMUM_BURN_TEMPERATURE)
 		return 0
 
-	var/obj/effect/fluid/F = locate() in src
+	var/igniting = 0
+	var/obj/effect/fluid/F = return_fluid()
 	if(F)
 		F.vaporize_fuel(air_contents)
+		igniting = 1
 
-	var/igniting = 0
 	if(air_contents.check_combustibility())
 		igniting = 1
+
+	if(igniting)
 		create_fire(exposed_temperature)
 	return igniting
 
@@ -147,7 +150,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 				//if(!enemy_tile.zone.fire_tiles.len) TODO - optimize
 				var/datum/gas_mixture/acs = enemy_tile.return_air()
-				if(!acs || !acs.check_combustibility(enemy_tile.return_fluid()))
+				var/obj/effect/fluid/fluid_on_tile = enemy_tile.return_fluid()
+				if(!acs || !fluid_on_tile?.is_combustible())
 					continue
 
 				//If extinguisher mist passed over the turf it's trying to spread to, don't spread and
