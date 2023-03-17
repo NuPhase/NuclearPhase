@@ -66,6 +66,8 @@
 /obj/machinery/power/hybrid_reactor/proc/prime_alarms()
 
 /obj/machinery/power/hybrid_reactor/proc/activate_alarms()
+	for(var/obj/machinery/rotating_alarm/SL in rcontrol.spinning_lights)
+		addtimer(CALLBACK(SL, /obj/machinery/rotating_alarm/proc/set_on), rand(1,20))
 
 /obj/machinery/power/hybrid_reactor/proc/start_burning()
 	superstructure.color = LIGHT_COLOR_FIRE

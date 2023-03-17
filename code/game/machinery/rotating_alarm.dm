@@ -72,12 +72,11 @@
 	if(dir == NORTH)
 		pixel_y = -13
 	if(dir == SOUTH)
-		pixel_y = 28
+		pixel_y = 30
 	if(dir == WEST)
 		pixel_x = 20
 	if(dir == EAST)
 		pixel_x = -20
-
 
 /obj/machinery/rotating_alarm/set_color(color)
 	if (on)
@@ -106,3 +105,11 @@
 	set_light(0)
 	on = FALSE
 	low_alarm = FALSE
+
+/obj/machinery/rotating_alarm/reactor
+	name = "industrial alarm light"
+	desc = "Something tells you it will go off someday..."
+
+/obj/machinery/rotating_alarm/reactor/Initialize()
+	. = ..()
+	rcontrol.spinning_lights += src

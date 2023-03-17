@@ -16,6 +16,8 @@
 	var/list/all_messages = list()
 	var/list/cleared_messages = list()
 
+	var/list/spinning_lights = list()
+
 	var/list/reactor_pumps = list()
 	var/list/reactor_meters = list()
 	var/list/reactor_valves = list()
