@@ -9,6 +9,7 @@
 
 	var/obj/machinery/atmospherics/unary/heat_exchanger/partner = null
 	var/update_cycle
+	var/initial_volume = 200
 
 	connect_types = CONNECT_TYPE_REGULAR | CONNECT_TYPE_FUEL
 	build_icon_state = "heunary"
