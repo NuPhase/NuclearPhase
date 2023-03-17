@@ -1,6 +1,6 @@
 /datum/map
-	var/default_currency = /decl/currency/credits
-	var/default_starting_cash_choice = /decl/starting_cash_choice/credstick/half
+	var/default_currency = /decl/currency/credits/dollars
+	var/default_starting_cash_choice = /decl/starting_cash_choice/cash
 
 /decl/starting_cash_choice
 	var/name = "all in bank account"
@@ -32,7 +32,7 @@
 	cash.set_currency(owner_account.currency)
 	cash.adjust_worth(FLOOR(owner_account.money * transfer_mult))
 	owner_account.money -= cash.absolute_worth
-	return list(cash)	
+	return list(cash)
 
 /decl/starting_cash_choice/cash/half
 	name = "split between bank account and cash"
@@ -47,7 +47,7 @@
 	var/obj/item/cash/cash = new
 	cash.set_currency(owner_account.currency)
 	cash.adjust_worth(FLOOR(owner_account.money * transfer_mult))
-	. += cash	
+	. += cash
 	var/obj/item/charge_stick/credstick = new
 	credstick.creator = owner.real_name
 	credstick.currency = owner_account.currency

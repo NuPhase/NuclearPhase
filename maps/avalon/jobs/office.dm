@@ -9,3 +9,7 @@
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
 	is_ghost_role = TRUE
+
+/datum/job/officeman/do_spawn_special(mob/living/character, mob/new_player/new_player_mob, latejoin)
+	. = ..()
+	to_chat(character, SPAN_ERPBOLD(description))

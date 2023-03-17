@@ -77,6 +77,7 @@
 		to_chat(H, "<span class=bigdanger>Just moments away from a terrifying demise, the repercussion of the dangerous adventure you've embarked on, comes the final realization: your fate is only slightly better than the one others will experience, vaporized by hypersonic winds and enormous temperatures, most will smile knowing their story has come to an end... And so will you?</span>")
 	sleep(320)
 	for(var/mob/living/carbon/human/H in surface_mobs)
+		to_chat(H, "<span class=bigdanger>In a nick of a second, your body gets torn into a billion pieces by immense pressure waves generated in one large flash of ignited gas. No one will remember you.</span>")
 		H.flash_eyes(99)
 		spawn(10)
 			H.dust()

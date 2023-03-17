@@ -85,6 +85,11 @@
 	)
 	..()
 
+/decl/currency/credits/dollars
+	name =          "international dollars"
+	name_singular = "international dollar"
+	name_suffix =   "ind"
+
 /datum/denomination/coin/mid
 	state = "coin_medium"
 
