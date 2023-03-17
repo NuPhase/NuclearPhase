@@ -9,6 +9,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/map_templates_by_type =     list()
 	var/list/banned_maps =               list()
 
+	var/turf/interior_zlevel = null
+
 	// Listing .dmm filenames in the file at this location will blacklist any templates that include them from being used.
 	// Maps must be the full file path to be properly included. ex. "maps/random_ruins/away_sites/example.dmm"
 	var/banned_dmm_location = "config/banned_map_paths.json"
@@ -65,7 +67,7 @@ SUBSYSTEM_DEF(mapping)
 		PRINT_STACK_TRACE("Duplicate map name '[map_template.name]' on type [map_template.type]!")
 		return FALSE
 	return TRUE
-	
+
 /datum/controller/subsystem/mapping/proc/get_all_template_instances()
 	. = list()
 	for(var/template_type in subtypesof(/datum/map_template))

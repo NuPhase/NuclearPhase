@@ -1,4 +1,5 @@
 var/global/list/vehicle_entrypoints = list()
+var/global/list/vehicles = list()
 
 /obj/multitile_vehicle
 	name = "vehicle"
@@ -14,6 +15,7 @@ var/global/list/vehicle_entrypoints = list()
 	var/acceleration = 1 //pixels per input
 	var/uid
 	var/obj/effect/vehicle_entrypoint/entrypoint = null
+	var/interior_template = null
 	var/mob/living/carbon/human/controlling = null
 	var/active = 0
 
@@ -25,11 +27,19 @@ var/global/list/vehicle_entrypoints = list()
 
 /obj/multitile_vehicle/Initialize()
 	. = ..()
+	var/datum/map_template/templ = SSmapping.get_template(interior_template)
+	var/turf/place = templ.load_interior_level()
+
 	STOP_PROCESSING(SSobj, src)
-	entrypoint = vehicle_entrypoints[uid]
+	global.vehicles += src
+	entrypoint = vehicle_entrypoints[uid][global.vehicles.Find(src)]
 	entrypoint.vehicle = src
-	for(var/obj/structure/bed/chair/comfy/vehicle/pilotseat)
-		pilotseat.vehicle = src
+	if(!templ.pilot_seat_offset)
+		return
+
+	for(var/obj/structure/bed/chair/comfy/vehicle/pilotseat in view(2, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
+		if(pilotseat)
+			pilotseat.vehicle = src
 
 /obj/multitile_vehicle/attack_hand(mob/user)
 	. = ..()
@@ -98,11 +108,12 @@ var/global/list/vehicle_entrypoints = list()
 /obj/effect/vehicle_entrypoint/New(loc, ...)
 	. = ..()
 	if(uid)
-		vehicle_entrypoints[uid] = src
+		check_and_place_if_list_dosnt_have_entry(vehicle_entrypoints, uid)
+		vehicle_entrypoints[uid] += src
 
 /obj/effect/vehicle_entrypoint/Destroy()
 	if(uid)
-		vehicle_entrypoints[uid] = null
+		vehicle_entrypoints[uid].Remove(src)
 	. = ..()
 
 
