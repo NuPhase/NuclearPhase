@@ -49,6 +49,7 @@
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 		T.footstep_type = /decl/footsteps/water
 	sleep(250)
+	using_map.exterior_atmosphere.temperature = 500
 	weather.icon_state = "ashfall_light"
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>You turn back to look at the source of the light, only to be dazzled and distracted. You open your eyes at the startling sight: a few rays of light breaking through the clouds and melting the stone that was beneath several layers of now non-existent ice...</span>")
