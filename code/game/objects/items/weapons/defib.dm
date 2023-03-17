@@ -337,9 +337,9 @@
 		make_announcement("buzzes, \"Warning - Patient is in hypovolemic shock and may require a blood transfusion.\"", "warning") //also includes heart damage
 
 	//People may need more direct instruction
-	var/obj/item/organ/internal/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	if(heart?.is_bruised())
-		make_announcement("buzzes, \"Danger! The patient has sustained a cardiac contusion and will require surgical treatment for full recovery!\"", "danger")
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	//if(heart?.is_bruised())
+	//	make_announcement("buzzes, \"Danger! The patient has sustained a cardiac contusion and will require surgical treatment for full recovery!\"", "danger")
 
 	//placed on chest and short delay to shock for dramatic effect, revive time is 5sec total
 	if(!do_after(user, chargetime, H))
@@ -365,17 +365,15 @@
 		return
 	H.apply_damage(burn_damage_amt, BURN, BP_CHEST)
 
-	//set oxyloss so that the patient is just barely in crit, if possible
-	make_announcement("pings, \"Resuscitation successful.\"", "notice")
+	make_announcement("pings, \"Shock delivered successfully.\"", "notice")
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
-	H.resuscitate()
+	heart.pulse = 0
 	var/obj/item/organ/internal/cell/potato = H.get_organ(BP_CELL, /obj/item/organ/internal/cell)
 	if(potato && potato.cell)
 		var/obj/item/cell/C = potato.cell
 		C.give(chargecost)
 
-	ADJ_STATUS(H, STAT_ASLEEP, -60)
-	log_and_message_admins("used \a [src] to revive [key_name(H)].")
+	log_and_message_admins("used \a [src] to shock [key_name(H)].")
 
 /obj/item/shockpaddles/proc/lowskill_revive(mob/living/carbon/human/H, mob/living/user)
 	if(prob(60))
