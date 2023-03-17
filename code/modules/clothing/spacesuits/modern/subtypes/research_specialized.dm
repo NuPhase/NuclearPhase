@@ -21,7 +21,7 @@
 		bio = ARMOR_BIO_SHIELDED,
 		rad = ARMOR_RAD_RESISTANT
 	)
-	windbreak_coefficient = 0.6
+	windbreak_coefficient = 0.4
 
 /obj/item/clothing/head/helmet/modern/space/research/cold
 	name = "CROCS-0.8V helmet"
@@ -39,14 +39,14 @@
 
 /obj/item/clothing/head/helmet/modern/space/research/hot
 	name = "HROCS-0.8V helmet"
-	desc = "Cold Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely cold environments and shield its occupant from powerful winds."
+	desc = "Cold Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely hot environments and shield its occupant from powerful winds."
 	min_cold_protection_temperature = HOT_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HOT_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	weight = 20
 
 /obj/item/clothing/suit/modern/space/research/hot
 	name = "HROCS-0.8V suit"
-	desc = "Cold Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely cold environments and shield its occupant from powerful winds."
+	desc = "Cold Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely hotwindbreak_coefficient = 1.3 environments and shield its occupant from powerful winds."
 	min_cold_protection_temperature = HOT_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HOT_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	weight = 70

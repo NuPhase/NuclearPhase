@@ -72,7 +72,7 @@
 /obj/item/storage/backpack/lifesupportpack/proc/do_support()
 	var/power_draw = 0
 	if(!battery.charge)
-		LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 3)
+		LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 5)
 		return
 
 	if(atmosphere_filter && atmosphere_filter.clean_gasmix(owner.internal_atmosphere))
@@ -123,7 +123,15 @@
 			to_chat(usr, "<span class='notice'>You insert \the [W] into the [src].</span>")
 			return
 		else
-			to_chat(usr, "<span class='warning'>\The [src] already has a CO2 filter installed, so you just put it into the backpack!</span>")
+			to_chat(usr, "<span class='notice'>\The [src] already has a CO2 filter installed, so you just put it into the backpack!</span>")
+	if(istype(W, /obj/item/cell))
+		if(!battery)
+			battery = W
+			user.drop_from_inventory(W, modules)
+			to_chat(usr, "<span class='notice'>You insert \the [W] into the [src].</span>")
+			return
+		else
+			to_chat(usr, "<span class='notice'>\The [src] already has a power source installed, so you just put it into the backpack!</span>")
 	if(istype(W, /obj/item/tank))
 		var/list/options = list()
 		if(!oxygen_tank)
@@ -222,6 +230,19 @@
 		usr.put_in_hands(atmosphere_filter)
 		to_chat(usr, "<span class='notice'>You eject \the [atmosphere_filter].</span>")
 		atmosphere_filter = null
+
+/obj/item/storage/backpack/lifesupportpack/verb/remove_cell()
+	set name = "Remove Power Source"
+	set category = "Life Support"
+	set src in usr
+
+	if(!istype(src.loc,/mob/living)) return
+
+	if(battery)
+		usr.drop_from_inventory(battery, src)
+		usr.put_in_hands(battery)
+		to_chat(usr, "<span class='notice'>You eject \the [battery].</span>")
+		battery = null
 
 /obj/item/storage/backpack/lifesupportpack/verb/purge()
 	set name = "Purge Internal Atmosphere"

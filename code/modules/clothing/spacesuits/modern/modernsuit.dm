@@ -149,7 +149,7 @@
 	var/leakiness = 0 //0-100. Determines how much air leaks out in percent per second
 	var/leak_message_on_cooldown = FALSE
 	var/minimum_leak_damage = 10
-	var/windbreak_coefficient = 1
+	var/windbreak_coefficient = 1 //basically suit aerodynamics and shockwave creation. A coefficient of 0.3 would mean that the suit receives x1.7 of convective heat and x0.3 of the wind
 	weight = 100
 
 /obj/item/clothing/suit/modern/space/attackby(obj/item/I, mob/user)
@@ -183,6 +183,23 @@
 /obj/item/clothing/suit/modern/space/examine(mob/user)
 	. = ..()
 	to_chat(user, "The pressure in your suit is [internal_atmosphere.return_pressure()]")
+	switch(leakiness)
+		if(0)
+			to_chat(user, SPAN_NOTICE("[src] is intact."))
+		if(0.1 to 25)
+			to_chat(user, SPAN_WARNING("[src] has several minor leaks. You probably should patch them up."))
+		if(26 to INFINITY)
+			to_chat(user, SPAN_DANGER("[src] has several tears and flaps of material all over it!"))
+
+	switch(windbreak_coefficient)
+		if(1.1 to 2)
+			to_chat(user, SPAN_NOTICE("It looks insanely blunt, like a nose of a reentry vehicle. It will worsen the wind's effect on you and improve your temperature conservation."))
+		if(0.71 to 1)
+			to_chat(user, SPAN_NOTICE("This piece of high-tech clothing doesn't have anything special about its aerodynamics."))
+		if(0.51 to 0.7)
+			to_chat(user, SPAN_NOTICE("It has good aerodynamics, which will help you against the wind. Mind the temperature, though."))
+		if(0.1 to 0.5)
+			to_chat(user, SPAN_NOTICE("This suit is so streamlined that you can cut yourself on it."))
 
 /obj/item/clothing/suit/modern/space/Initialize()
 	. = ..()

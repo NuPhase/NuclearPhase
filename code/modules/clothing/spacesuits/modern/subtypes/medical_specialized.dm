@@ -31,4 +31,4 @@
 		rad = ARMOR_RAD_RESISTANT
 	)
 	weight = 70
-	windbreak_coefficient = 0.7
+	windbreak_coefficient = 0.6

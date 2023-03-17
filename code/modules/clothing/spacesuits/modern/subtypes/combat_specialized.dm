@@ -38,4 +38,4 @@
 	min_cold_protection_temperature = COLD_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = COLD_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	weight = 170
-	windbreak_coefficient = 0.6
+	windbreak_coefficient = 1.3
