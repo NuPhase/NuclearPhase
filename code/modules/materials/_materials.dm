@@ -120,13 +120,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	/// K, point at which the material catches on fire.
 	var/ignition_point
 	/// K, walls will take damage if they're next to a fire hotter than this
-	var/melting_point = 1800
+	var/melting_point = 700
 	/// K, point that material will become a gas.
 	var/boiling_point = 3000
 	/// kJ/kg, enthalpy of vaporization
 	var/latent_heat = 7000
 	/// kg/mol,
-	var/molar_mass = 0.06 //OBSOLETE
+	var/molar_mass = 0.06
 
 	var/gas_molar_mass
 	var/liquid_molar_mass
@@ -137,8 +137,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/solid_specific_heat = 30
 
 	//kg/m3
-	var/liquid_density = 1
-	var/solid_density = 1
+	var/liquid_density = 1000
+	var/solid_density = 1000
 
 	/// Brute damage to a wall is divided by this value if the wall is reinforced by this material.
 	var/brute_armor = 2
