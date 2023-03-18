@@ -194,6 +194,9 @@
 
 	return ..()
 
+/turf/Cross(O)
+	return TRUE
+
 /turf/Enter(atom/movable/mover, atom/forget)
 
 	..()

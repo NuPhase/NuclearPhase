@@ -1,4 +1,5 @@
 /obj/structure/railing
+	appearance_flags = TILE_MOVER | LONG_GLIDE
 	name = "railing"
 	desc = "A simple bar railing designed to protect against careless trespass."
 	icon = 'icons/obj/structures/railing.dmi'

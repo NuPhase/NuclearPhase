@@ -2,7 +2,7 @@
 	name = "Lander enterior"
 	width = 10
 	height = 7
-	mappaths = list("maps/interiors/lander_interior.dmm")
+	mappaths = list("maps/_interiors/lander_interior.dmm")
 	template_categories = list(MAP_TEMPLATE_CATEGORY_INTERIORS)
 	pilot_seat_offset = list("x"=7, "y"=2)
 

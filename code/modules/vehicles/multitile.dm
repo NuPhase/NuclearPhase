@@ -26,20 +26,21 @@ var/global/list/vehicles = list()
 		density = 1
 
 /obj/multitile_vehicle/Initialize()
-	. = ..()
-	var/datum/map_template/templ = SSmapping.get_template(interior_template)
-	var/turf/place = templ.load_interior_level()
+	spawn(0)
+		. = ..()
+		var/datum/map_template/templ = SSmapping.get_template(interior_template)
+		var/turf/place = templ.load_interior_level()
 
-	STOP_PROCESSING(SSobj, src)
-	global.vehicles += src
-	entrypoint = vehicle_entrypoints[uid][global.vehicles.Find(src)]
-	entrypoint.vehicle = src
-	if(!templ.pilot_seat_offset)
-		return
+		STOP_PROCESSING(SSobj, src)
+		global.vehicles += src
+		entrypoint = vehicle_entrypoints[uid][global.vehicles.Find(src)]
+		entrypoint.vehicle = src
+		if(!templ.pilot_seat_offset)
+			return
 
-	for(var/obj/structure/bed/chair/comfy/vehicle/pilotseat in view(2, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
-		if(pilotseat)
-			pilotseat.vehicle = src
+		for(var/obj/structure/bed/chair/comfy/vehicle/pilotseat in view(2, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
+			if(pilotseat)
+				pilotseat.vehicle = src
 
 /obj/multitile_vehicle/attack_hand(mob/user)
 	. = ..()
@@ -113,7 +114,7 @@ var/global/list/vehicles = list()
 
 /obj/effect/vehicle_entrypoint/Destroy()
 	if(uid)
-		vehicle_entrypoints[uid].Remove(src)
+		vehicle_entrypoints[uid] -= src
 	. = ..()
 
 
@@ -189,3 +190,6 @@ var/global/list/vehicles = list()
 		if(NORTHEAST)
 			vehicle.speed_x += vehicle.acceleration
 			vehicle.speed_y += vehicle.acceleration
+
+/obj/Cross(O) // fuck that shit im out
+	return TRUE
