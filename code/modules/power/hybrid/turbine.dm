@@ -27,6 +27,7 @@
 
 	var/efficiency = 0.4
 	var/kin_energy = 0
+	var/kin_total = 0 //last kin energy generation
 	var/kin_loss = 0.001
 	var/expansion_ratio = 0.4
 	var/volume_ratio = 0.6
@@ -68,7 +69,7 @@
 	if(total_mass_flow < 50)
 		total_mass_flow = 0
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
-	var/kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
+	kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency
 	var/datum/gas_mixture/air_all = new

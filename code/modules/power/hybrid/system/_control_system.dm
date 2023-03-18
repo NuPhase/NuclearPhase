@@ -161,7 +161,7 @@
 		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
 
 	current_gate = reactor_valves["T-COOLANT V-OUT"]
-	if(get_meter_temperature("T-M-COOLANT") > 320)
+	if(get_meter_temperature("T-M-COOLANT") > 320 || get_meter_pressure("T-M-COOLANT") > 9000 || get_meter_temperature("T-M-TURB EX") > 360)
 		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
 	else
 		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
@@ -175,9 +175,9 @@
 
 	if(get_meter_temperature("T-M-TURB IN") < 570)
 		current_valve = reactor_valves["TURB 1V-IN"]
-		current_valve.adjust_openage(-5)
+		current_valve.adjust_openage(-10)
 		current_valve = reactor_valves["TURB 2V-IN"]
-		current_valve.adjust_openage(-5)
+		current_valve.adjust_openage(-10)
 
 	current_valve = reactor_valves["TURB 1V-IN"]
 	if(turbine1.rpm > 3600)
@@ -213,7 +213,7 @@
 	current_switch.state = 0
 	current_switch.do_action()
 
-
+	mode = REACTOR_CONTROL_MODE_MANUAL
 
 /datum/reactor_control_system/proc/do_message(message, urgency = 1) //urgency 1-3
 	if(has_message(message))

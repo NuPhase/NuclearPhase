@@ -13,6 +13,7 @@
 	var/meltdown = FALSE
 	var/was_shut_down = FALSE
 	var/shutdown_failure = FALSE
+	var/last_radiation = 0
 	var/obj/structure/reactor_superstructure/superstructure
 
 /obj/machinery/power/hybrid_reactor/Initialize()
@@ -33,6 +34,7 @@
 	var/total_radiation = 0
 	total_radiation += process_fission(GM)
 	total_radiation += process_fusion(GM)
+	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fission(datum/gas_mixture/GM)
@@ -49,7 +51,7 @@
 					GM.adjust_gas(fp, react_amount)
 		total_neutron_amount -= neutrons_absorbed
 		GM.add_thermal_energy(mat.fission_energy * neutrons_absorbed * 10)
-	neutron_flux = Interpolate(neutron_flux, Clamp(total_neutron_amount * NEUTRON_FLUX_RATE, 10, 1000000000), 0.2)
+	neutron_flux = Interpolate(neutron_flux, Clamp(total_neutron_amount * NEUTRON_FLUX_RATE, 0, 1000000000), 0.2)
 	return neutron_flux / NEUTRONS_PER_RAD
 
 

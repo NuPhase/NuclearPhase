@@ -79,5 +79,5 @@ var/list/global/reactor_ports = list()
 	anchored = 1
 	density = 1
 	opacity = 0
-	layer = BELOW_OBJ_LAYER
+	layer = STRUCTURE_LAYER
 	icon = 'icons/obj/structures/reactor_panel.dmi'
