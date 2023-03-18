@@ -480,10 +480,24 @@
 	liquid_density = 19250
 	melting_point = 3400
 
+/decl/material/solid/metal/hafniumcarbide
+	name = "hafnium carbide"
+	uid = "hafmium_carbide"
+	weight = MAT_VALUE_VERY_HEAVY
+	color = "#303030"
+	value = 1.5
+
 /decl/material/solid/metal/tantalumhafniumcarbide
 	name = "tantalum hafnium carbide"
 	uid = "tantalum_hafnium_carbide"
 	weight = MAT_VALUE_VERY_HEAVY
 	taste_mult = 0 //no taste
 	color = "#a3358b"
-	value = 0.5
+	value = 2
+
+/decl/material/solid/metal/inconel
+	name = "inconel"
+	uid = "inconel"
+	weight = MAT_VALUE_HEAVY
+	color = "#506680"
+	value = 1.2

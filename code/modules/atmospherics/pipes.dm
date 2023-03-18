@@ -324,6 +324,31 @@
 	alert_pressure = 350*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_FUEL
 
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide
+	name = "hafnium carbide pipe"
+	desc = "This pipe is made of hafnium-carbide alloy. It will corrode quickly under high pressures."
+	volume = 160
+	color = PIPE_COLOR_BLACK
+	maximum_pressure = 90*ONE_ATMOSPHERE
+	fatigue_pressure = 80*ONE_ATMOSPHERE
+	alert_pressure = 70*ONE_ATMOSPHERE
+	matter = list(
+		/decl/material/solid/metal/hafniumcarbide = 10200 //calculated for a 2m 160 liter pipe
+	)
+
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated //inconel prevents corrosion at high pressures and temperatures
+	name = "heat-resistant pipe"
+	desc = "This pipe is made of hafnium-carbide alloy coated with inconel protective blankets. Something tells you that having it rupture would bring an end to everything."
+	volume = 150
+	color = PIPE_COLOR_GREY
+	maximum_pressure = 420*ONE_ATMOSPHERE
+	fatigue_pressure = 350*ONE_ATMOSPHERE
+	alert_pressure = 350*ONE_ATMOSPHERE
+	matter = list(
+		/decl/material/solid/metal/hafniumcarbide = 10200, //calculated for a 2m 160 liter pipe
+		/decl/material/solid/metal/inconel = 2500 //some wrapping
+	)
+
 /obj/machinery/atmospherics/pipe/simple/visible/steam
 	name = "steam pipe"
 	color = PIPE_COLOR_ORANGE
@@ -453,6 +478,31 @@
 	name = "fuel pipe manifold"
 	color = PIPE_COLOR_ORANGE
 	connect_types = CONNECT_TYPE_FUEL
+
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide
+	name = "hafnium carbide manifold"
+	desc = "This manifold is made of hafnium-carbide alloy. It will corrode quickly under high pressures."
+	volume = 200
+	color = PIPE_COLOR_BLACK
+	maximum_pressure = 90*ONE_ATMOSPHERE
+	fatigue_pressure = 80*ONE_ATMOSPHERE
+	alert_pressure = 70*ONE_ATMOSPHERE
+	matter = list(
+		/decl/material/solid/metal/hafniumcarbide = 12200
+	)
+
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated
+	name = "heat-resistant manifold"
+	desc = "This manifold is made of hafnium-carbide alloy coated with inconel protective blankets. Something tells you that having it rupture would bring an end to everything."
+	volume = 190
+	color = PIPE_COLOR_GREY
+	maximum_pressure = 420*ONE_ATMOSPHERE
+	fatigue_pressure = 350*ONE_ATMOSPHERE
+	alert_pressure = 350*ONE_ATMOSPHERE
+	matter = list(
+		/decl/material/solid/metal/hafniumcarbide = 12200,
+		/decl/material/solid/metal/inconel = 3000
+	)
 
 /obj/machinery/atmospherics/pipe/manifold/visible/steam
 	name = "steam pipe manifold"
