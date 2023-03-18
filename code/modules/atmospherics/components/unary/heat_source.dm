@@ -1,5 +1,5 @@
 //TODO: Put this under a common parent type with freezers to cut down on the copypasta
-#define HEATER_PERF_MULT 2.5
+#define HEATER_PERF_MULT 1 //no thermodynamics abuse
 
 /obj/machinery/atmospherics/unary/heater
 	name = "gas heating system"
@@ -19,7 +19,7 @@
 	var/max_temperature = T20C + 680
 	var/internal_volume = 600	//L
 
-	var/max_power_rating = 20000	//power rating when the usage is turned up to 100
+	var/max_power_rating = 50000	//power rating when the usage is turned up to 100
 	var/power_setting = 100
 
 	var/set_temperature = T20C	//thermostat
@@ -43,7 +43,7 @@
 		return
 
 	if(LAZYLEN(nodes_to_networks) && air_contents.total_moles && air_contents.temperature < set_temperature)
-		air_contents.add_thermal_energy(power_rating * HEATER_PERF_MULT)
+		air_contents.add_thermal_energy(power_rating)
 		use_power_oneoff(power_rating)
 
 		heating = 1

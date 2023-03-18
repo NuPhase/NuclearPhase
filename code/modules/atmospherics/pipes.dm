@@ -327,6 +327,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide
 	name = "hafnium carbide pipe"
 	desc = "This pipe is made of hafnium-carbide alloy. It will corrode quickly under high pressures."
+	icon = 'icons/obj/atmospherics/pipes/inconelpipe.dmi'
 	volume = 160
 	color = PIPE_COLOR_BLACK
 	maximum_pressure = 90*ONE_ATMOSPHERE
@@ -482,6 +483,8 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide
 	name = "hafnium carbide manifold"
 	desc = "This manifold is made of hafnium-carbide alloy. It will corrode quickly under high pressures."
+	icon = 'icons/obj/atmospherics/pipes/inconelpipe.dmi'
+	icon_state = "manifold"
 	volume = 200
 	color = PIPE_COLOR_BLACK
 	maximum_pressure = 90*ONE_ATMOSPHERE

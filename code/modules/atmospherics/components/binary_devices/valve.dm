@@ -12,6 +12,13 @@
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 120
 
+/obj/machinery/atmospherics/binary/regulated_valve/on
+	icon_state = "map_on"
+
+/obj/machinery/atmospherics/binary/regulated_valve/on/Initialize()
+	. = ..()
+	set_openage(100)
+
 /obj/machinery/atmospherics/binary/regulated_valve/examine(mob/user)
 	. = ..()
 	to_chat(user, SPAN_NOTICE("The valve is open to [open_to * 100]%."))
@@ -52,3 +59,12 @@
 	update_networks()
 	update_icon()
 	last_mass_flow = transfer_mass
+
+/obj/machinery/atmospherics/binary/regulated_valve/inconel
+	icon_state = "reactor_off"
+
+/obj/machinery/atmospherics/binary/regulated_valve/inconel/on_update_icon()
+	if(stat & NOPOWER)
+		icon_state = "reactor_off"
+	else
+		icon_state = "reactor_on"

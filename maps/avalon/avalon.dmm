@@ -1638,7 +1638,7 @@
 /area/surface)
 "cfU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "cgn" = (
 /obj/structure/bed/padded,
@@ -2580,9 +2580,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "dhk" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
+/obj/machinery/atmospherics/binary/regulated_valve/inconel{
 	dir = 1;
-	uid = "REACTOR-F-V-OUT"
+	open_to = 1
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/turbinehall)
@@ -3099,7 +3099,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "dMs" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -3184,6 +3184,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
+"dRl" = (
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/turbinehall)
 "dRx" = (
 /obj/structure/closet/secure_closet/security,
 /obj/machinery/light,
@@ -3420,7 +3426,7 @@
 /area/avalon/shelter/engineering)
 "egu" = (
 /obj/machinery/atmospherics/binary/pump/on{
-	target_pressure = 4400
+	target_pressure = 500
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -4587,9 +4593,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
 "fGG" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
+/obj/machinery/atmospherics/binary/regulated_valve/inconel{
 	dir = 8;
-	uid = "REACTOR-F-V-OUT";
 	open_to = 1
 	},
 /turf/simulated/floor/plating,
@@ -5161,7 +5166,7 @@
 /obj/machinery/atmospherics/valve/digital{
 	uid = "F-CP 2V-EX"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "gsN" = (
 /obj/machinery/light{
@@ -5594,7 +5599,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "gXG" = (
 /obj/effect/floor_decal/corner/green/half{
@@ -6084,7 +6089,7 @@
 /obj/machinery/atmospherics/valve/digital{
 	uid = "F-CP 2V-IN"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "huU" = (
 /turf/exterior/wall,
@@ -6426,7 +6431,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "hQM" = (
 /obj/structure/railing/mapped{
@@ -8335,7 +8340,7 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "keo" = (
-/obj/machinery/atmospherics/binary/passive_gate/on{
+/obj/machinery/atmospherics/binary/passive_gate{
 	uid = "T-PRES-CONTROL"
 	},
 /turf/simulated/floor/plating,
@@ -8883,6 +8888,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
+"kVz" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/mapped,
+/turf/simulated/open,
+/area/avalon/shelter/turbinehall)
 "kVQ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -10061,6 +10074,12 @@
 /obj/machinery/cardiac_monitor,
 /turf/simulated/floor/tiled/white,
 /area/avalon)
+"muD" = (
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/turbinehall)
 "mwa" = (
 /obj/machinery/door/airlock/external/bolted,
 /turf/simulated/floor/tiled/techfloor,
@@ -11812,11 +11831,6 @@
 /obj/effect/floor_decal/corner/grey/border{
 	dir = 4
 	},
-/obj/machinery/vending/weeb{
-	dir = 4;
-	pixel_x = -10;
-	pixel_y = -1
-	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "oKt" = (
@@ -12122,7 +12136,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "pif" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -13353,7 +13367,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "qOJ" = (
 /obj/structure/cable{
@@ -13422,12 +13436,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "qTW" = (
-/obj/machinery/atmospherics/binary/pump/adv{
-	uid = "F-CP 1";
-	name = "F-CP 1";
+/obj/machinery/atmospherics/binary/pump/adv/reactorloop{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "qUd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
@@ -14446,9 +14458,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering)
 "slQ" = (
-/obj/machinery/light_switch{
+/obj/machinery/light_switch/on{
 	dir = 8;
-	pixel_x = 22
+	pixel_x = 20
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/habitationdeck)
@@ -14536,7 +14548,7 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig)
 "spw" = (
-/obj/machinery/atmospherics/binary/passive_gate/on,
+/obj/machinery/atmospherics/binary/passive_gate,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/turbinehall)
 "spD" = (
@@ -14708,7 +14720,7 @@
 /obj/machinery/atmospherics/valve/digital{
 	uid = "F-CP 1V-IN"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "sBG" = (
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -15656,14 +15668,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
-"tNb" = (
-/obj/machinery/atmospherics/binary/pump/adv{
-	uid = "F-CP 2";
-	name = "F-CP 2";
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/turbinehall)
 "tNw" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/exterior/concrete,
@@ -15965,7 +15969,7 @@
 /obj/machinery/atmospherics/valve/digital{
 	uid = "F-CP 1V-EX"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "ugV" = (
 /obj/machinery/light/spot{
@@ -16928,7 +16932,13 @@
 /turf/exterior/surface,
 /area/surface)
 "vsh" = (
-/obj/machinery/atmospherics/unary/heater,
+/obj/machinery/atmospherics/unary/heater{
+	set_temperature = 700;
+	heating = 1;
+	use_power = 2;
+	power_rating = 50000;
+	max_power_rating = 50000
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "vsJ" = (
@@ -163496,10 +163506,10 @@ sja
 rtv
 eFE
 cMK
-pfz
-pfz
-pfz
-pfz
+qjD
+qjD
+qjD
+qjD
 aPO
 qKs
 pct
@@ -163626,8 +163636,8 @@ rwb
 rXU
 nMS
 cMK
-qKs
-omW
+qjD
+dRl
 ugQ
 dMm
 aPO
@@ -163756,9 +163766,9 @@ tsZ
 cYH
 hdc
 cMK
-qKs
+qjD
 qTW
-qKs
+pfz
 qOw
 aPO
 qKs
@@ -163886,8 +163896,8 @@ nmh
 rtv
 eFE
 cMK
-qKs
-uhS
+qjD
+muD
 sBv
 gXn
 jMy
@@ -164016,9 +164026,9 @@ con
 wQd
 vuO
 cMK
-pfz
-pfz
-pfz
+qjD
+qjD
+qjD
 phM
 vZv
 iGd
@@ -164146,8 +164156,8 @@ con
 qNj
 vNa
 cMK
-qKs
-omW
+qjD
+dRl
 gsw
 hQG
 aPO
@@ -164276,10 +164286,10 @@ nMD
 cMK
 cMK
 cMK
-qKs
-tNb
-qKs
+qjD
+qTW
 pfz
+qjD
 aPO
 qKs
 pct
@@ -164405,9 +164415,9 @@ hBO
 hBO
 cMK
 qKs
-pfz
 qKs
-uhS
+qjD
+muD
 huh
 cfU
 vUH
@@ -164535,11 +164545,11 @@ hBO
 hBO
 cMK
 qKs
-pfz
-pfz
-pfz
-pfz
-pfz
+qKs
+qjD
+qjD
+qjD
+qjD
 qKs
 qKs
 wUn
@@ -180402,7 +180412,7 @@ lkH
 lkH
 gqs
 nco
-nco
+kVz
 qPA
 csv
 qFJ

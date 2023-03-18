@@ -47,6 +47,28 @@
 	flow_capacity = 1500 //kgs
 	power_rating = 600000 //fucking chonker
 
+/obj/machinery/atmospherics/binary/pump/adv/reactorloop
+	name = "molten metal pump"
+	desc = "Pumping high density and temperature fluids is hard and tricky, not mentioning the power cost. This pump is a monster."
+	icon = 'icons/obj/atmospherics/components/binary/moltenpump.dmi'
+	level = 2
+	layer = STRUCTURE_LAYER
+	icon_state = "off"
+	flow_capacity = 300 //kgs
+	power_rating = 210000 //molten metals take a lot of energy to move
+	pixel_x = -32
+	pixel_y = -32
+	bound_x = -32
+	bound_y = -32
+	bound_width = 96
+	bound_height = 64
+
+/obj/machinery/atmospherics/binary/pump/adv/on_update_icon()
+	if(stat & NOPOWER)
+		icon_state = "off"
+	else
+		icon_state = "[use_power ? "on" : "off"]"
+
 /obj/machinery/atmospherics/binary/pump/adv/proc/update_mode(new_mode)
 	if(mode == new_mode)
 		return
