@@ -4253,6 +4253,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig)
+"fio" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/recharger{
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "fiD" = (
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/freezer,
@@ -6239,8 +6246,8 @@
 /area/avalon/shelter/brig)
 "hEL" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_monitor{
-	pixel_y = 16
+/obj/machinery/reactor_monitor/general{
+	pixel_y = 14
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -11921,12 +11928,6 @@
 	pixel_x = -8
 	},
 /obj/machinery/disposal,
-/obj/machinery/button/alternate/door/bolts{
-	pixel_x = 5;
-	pixel_y = 32;
-	id_tag = "controlroomdoorbolts";
-	uid = "controlroomdoorbolts"
-	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "oSr" = (
@@ -13814,6 +13815,12 @@
 /obj/machinery/reactor_button/presvalve/tcoolantvout{
 	pixel_x = 15;
 	pixel_y = -1
+	},
+/obj/machinery/button/alternate/door/bolts{
+	pixel_x = 5;
+	pixel_y = 32;
+	id_tag = "controlroomdoorbolts";
+	uid = "controlroomdoorbolts"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -16217,8 +16224,8 @@
 	pixel_x = 6
 	},
 /obj/structure/table/steel_reinforced,
-/obj/machinery/recharger{
-	pixel_y = 2
+/obj/machinery/reactor_monitor/general{
+	pixel_y = 11
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -214870,7 +214877,7 @@ bxA
 vUB
 dHi
 dHi
-oOk
+fio
 nKF
 oOk
 iBD
