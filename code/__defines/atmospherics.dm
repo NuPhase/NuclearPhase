@@ -24,3 +24,7 @@
 #define PIPE_CLASS_OMNI             5
 
 #define ADIABATIC_EXPONENT          0.667 //Actually adiabatic exponent - 1.
+
+#define KILOKELVIN *1000
+#define MEGAKELVIN *1000000
+#define GIGAKELVIN *1000000000
