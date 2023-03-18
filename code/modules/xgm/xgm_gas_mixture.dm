@@ -150,7 +150,7 @@
 		var/decl/material/mat = GET_DECL(g)
 		if(!mat)
 			return
-		switch(mat.phase_at_temperature(temperature, return_pressure()))
+		switch(phases[g])
 			if(MAT_PHASE_GAS)
 				. += mat.gas_specific_heat * gas[g]
 			if(MAT_PHASE_LIQUID)
