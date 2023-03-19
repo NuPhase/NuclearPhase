@@ -495,6 +495,11 @@
 /obj/item/knife,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
+"aFl" = (
+/obj/structure/table/steel,
+/obj/item/chems/drinks/cans/waterbottle,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/engineering)
 "aGc" = (
 /obj/structure/rlaser_receiver{
 	resid = "laser_charlie"
@@ -1103,11 +1108,6 @@
 "buc" = (
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/engineering)
-"bum" = (
-/obj/structure/table/gamblingtable,
-/obj/item/chems/drinks/cans/waterbottle,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/brig/breakroom)
 "buT" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-4"
@@ -2126,13 +2126,6 @@
 /obj/machinery/door/airlock/glass/civilian,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
-"cyr" = (
-/obj/effect/floor_decal/corner/lightgrey/border,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/avalon/shelter/messhall)
 "cyx" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 10
@@ -6975,11 +6968,6 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
-"inb" = (
-/obj/structure/table/steel,
-/obj/item/chems/drinks/cans/waterbottle,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/engineering)
 "inN" = (
 /obj/structure/table/marble,
 /obj/item/chemical_vessel/sealable/beaker,
@@ -17714,6 +17702,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
+"vHE" = (
+/obj/structure/table/gamblingtable,
+/obj/item/chems/drinks/cans/waterbottle,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/breakroom)
 "vHU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -19499,9 +19492,6 @@
 /obj/item/grenade/frag,
 /obj/item/grenade/frag,
 /obj/item/grenade/frag,
-/obj/machinery/door/airlock/freezer{
-	initial_access = list(list("ACCESS_KITCHEN","ACCESS_BAR"))
-	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/armory)
 "xSy" = (
@@ -19702,6 +19692,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/comms)
+"yhL" = (
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/messhall)
 "ykK" = (
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
@@ -145119,7 +145116,7 @@ uqV
 jpZ
 iOh
 txa
-bum
+vHE
 eit
 tJs
 hKa
@@ -179814,7 +179811,7 @@ hBO
 hBO
 hBO
 cfb
-inb
+aFl
 rxg
 kWC
 pIa
@@ -213618,7 +213615,7 @@ uHE
 lpS
 pEE
 hDr
-cyr
+yhL
 aEV
 uHC
 fqP

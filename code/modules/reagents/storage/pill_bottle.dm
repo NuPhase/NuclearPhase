@@ -23,6 +23,7 @@
 	var/pop_sound = 'sound/effects/peelz.ogg'
 	var/wrapper_color
 	var/label
+	weight = 0.1
 
 /obj/item/storage/pill_bottle/remove_from_storage(obj/item/W, atom/new_location, NoUpdate)
 	. = ..()

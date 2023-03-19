@@ -14,6 +14,7 @@
 	slot_flags = SLOT_EARS
 	volume = 30
 	var/static/list/colorizable_icon_states = list("pill1", "pill2", "pill3", "pill4", "pill5") // if using an icon state from here, color will be derived from reagents
+	weight = 0.01
 
 /obj/item/chems/pill/Initialize()
 	. = ..()

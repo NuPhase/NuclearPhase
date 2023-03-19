@@ -76,6 +76,7 @@
 	animal_heal = 5
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	amount = 10
+	weight = 0.05
 
 /obj/item/stack/medical/bruise_pack/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
@@ -139,6 +140,7 @@
 	var/packing_speed = 0.5
 	var/should_disinfect = FALSE
 	var/sterile = FALSE
+	weight = 0.1
 
 /obj/item/stack/medical/wound_filler/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
@@ -334,6 +336,7 @@
 	max_amount = 5
 	animal_heal = 0
 	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)	//List of organs you can splint, natch.
+	weight = 0.3
 
 /obj/item/stack/medical/splint/check_limb_state(var/mob/user, var/obj/item/organ/external/limb)
 	if(BP_IS_PROSTHETIC(limb))

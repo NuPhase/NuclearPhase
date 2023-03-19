@@ -173,6 +173,8 @@
 		for(var/mob/living/carbon/human/H in human_mob_list)
 			to_chat(H, SPAN_ERPBOLD("Everything comes to an end, including your own existence."))
 		animate(superstructure, transform = matrix()*0.9, time = 290, easing = SINE_EASING | EASE_IN)
+		for(var/obj/machinery/rotating_alarm/SL in rcontrol.spinning_lights)
+			SL.set_color(COLOR_RED_LIGHT)
 		spawn(29 SECONDS)
 			animate(superstructure, transform = matrix()*0.01, time = 10, easing = QUAD_EASING | EASE_IN)
 		sleep(30 SECONDS)
