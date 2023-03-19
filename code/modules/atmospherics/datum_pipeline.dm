@@ -184,6 +184,7 @@
 				if(!F) F = new(target)
 				var/condense_reagent_amt = air_sample.gas[g] * REAGENT_UNITS_PER_GAS_MOLE
 				F.reagents.add_reagent(g, condense_reagent_amt)
+				F.temperature = air_sample.temperature
 				air_sample.gas.Remove(g)
 
 		equalize_gases(list(air_sample, turf_copy))

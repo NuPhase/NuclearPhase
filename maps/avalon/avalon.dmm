@@ -1838,10 +1838,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
-"cmE" = (
-/obj/machinery/atmospherics/binary/regulated_valve,
-/turf/simulated/floor/plating,
-/area/space)
 "cny" = (
 /obj/structure/flora/bush/sparsegrass,
 /obj/structure/flora/bush/stalkybush,
@@ -13438,7 +13434,8 @@
 /area/avalon/shelter/breakerroom)
 "qTW" = (
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop{
-	dir = 8
+	dir = 8;
+	uid = "F-CP 1"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
@@ -17672,7 +17669,8 @@
 "wnL" = (
 /obj/machinery/atmospherics/binary/pump/on{
 	dir = 4;
-	target_pressure = 15000
+	target_pressure = 15000;
+	power_rating = 60000
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -18295,12 +18293,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/engineering)
 "xeH" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 1;
-	uid = "REACTOR-F-V-OUT"
+/obj/machinery/atmospherics/binary/pump/adv/reactorloop{
+	dir = 8;
+	uid = "F-CP 2"
 	},
-/turf/simulated/floor/plating,
-/area/space)
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/turbinehall)
 "xeV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -147917,7 +147915,7 @@ jfJ
 jfJ
 jfJ
 xTT
-xeH
+qRa
 rFt
 mkA
 eSI
@@ -148047,7 +148045,7 @@ jfJ
 jfJ
 jfJ
 xTT
-cmE
+qRa
 rFt
 rFt
 mkA
@@ -164294,7 +164292,7 @@ cMK
 cMK
 cMK
 qjD
-qTW
+xeH
 pfz
 qjD
 aPO

@@ -61,18 +61,21 @@ var/list/global/reactor_ports = list()
 
 /obj/machinery/atmospherics/unary/reactor_connector/ingoing/Initialize()
 	. = ..()
+	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	reactor_ports["[uid]-in"] = src
 	spawn(100)
 		linked = reactor_ports["[uid]-out"]
 
 /obj/machinery/atmospherics/unary/reactor_connector/outgoing/Initialize()
 	. = ..()
+	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	reactor_ports["[uid]-out"] = src
 	spawn(100)
 		linked = reactor_ports["[uid]-in"]
+		START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 
-/obj/machinery/atmospherics/unary/reactor_connector/outgoing/return_network_air(datum/pipe_network/reference)
-	return linked.air_contents
+/obj/machinery/atmospherics/unary/reactor_connector/outgoing/Process()
+	air_contents.merge(linked.air_contents)
 
 /obj/structure/reactor_table
 	name = "large table"

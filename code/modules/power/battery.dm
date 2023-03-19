@@ -32,8 +32,10 @@
 	if(capacity == max_capacity)
 		return
 	var/requesting_power = amperage * voltage * 1.5
-	capacity += min(max_capacity, powernet.draw_power(requesting_power) * CELLRATE * efficiency)
 	powernet.battery_demand += requesting_power
+	if((powernet.ldemand - powernet.battery_demand) > 0)
+		return
+	capacity = min(max_capacity, max_capacity + powernet.draw_power(requesting_power) * CELLRATE * efficiency)
 
 /obj/machinery/power/generator/battery/attackby(obj/item/W, mob/user)
 	if(IS_WRENCH(W))
@@ -66,6 +68,19 @@
 	voltage = 400
 	amperage = 700
 	efficiency = 0.8
+	var/punctured = FALSE
+
+/obj/machinery/power/generator/battery/lithium_ion/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(W.sharp && !punctured)
+		visible_message(SPAN_DANGER("[user] punctures the [src] with [W]!"))
+		punctured = TRUE
+		spawn(5 SECONDS)
+			new /obj/effect/deflagarate(loc, 60, 20)
+			var/obj/effect/fluid/F = new(loc)
+			F.reagents.add_reagent(/decl/material/solid/lithium, 120)
+			F.temperature = 800 CELSIUS
+			qdel(src)
 
 /obj/machinery/power/generator/battery/lithium_ion/prebuilt/Initialize()
 	. = ..()

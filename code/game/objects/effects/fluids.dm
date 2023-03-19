@@ -159,7 +159,7 @@ var/global/obj/abstract/flood/flood_object = new
 	for(var/rtype in reagents.reagent_volumes)
 		var/moles = round(reagents.reagent_volumes[rtype] / REAGENT_UNITS_PER_GAS_MOLE)
 		if(moles > 0)
-			air.adjust_gas_temp(rtype, moles, air.temperature, FALSE)
+			air.adjust_gas_temp(rtype, moles, temperature, FALSE)
 			reagents.remove_reagent(round(moles * REAGENT_UNITS_PER_GAS_MOLE))
 			update_air = TRUE
 	if(update_air)
@@ -169,6 +169,6 @@ var/global/obj/abstract/flood/flood_object = new
 
 /obj/effect/fluid/proc/is_combustible()
 	var/decl/material/main_reagent = reagents.get_primary_reagent_decl()
-	if(main_reagent.gas_flags & XGM_GAS_FUEL)
+	if(main_reagent?.gas_flags & XGM_GAS_FUEL)
 		return TRUE
 	return FALSE

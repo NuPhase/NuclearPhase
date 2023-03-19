@@ -37,7 +37,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	var/obj/effect/fluid/F = return_fluid()
 	if(F)
 		F.vaporize_fuel(air_contents)
-		igniting = 1
+		if(F.is_combustible())
+			igniting = 1
 
 	if(air_contents.check_combustibility())
 		igniting = 1
