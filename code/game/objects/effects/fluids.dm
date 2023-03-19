@@ -45,7 +45,7 @@
 	if(reagents.total_volume > FLUID_SHALLOW) //do not slip in deep fluid
 		return
 	// skillcheck for slipping
-	if(!C.should_slip(100))
+	if(!C.should_slip(100) || C.move_intent == /decl/move_intent/walk)
 		return
 	C.slip("the floor", 6)
 

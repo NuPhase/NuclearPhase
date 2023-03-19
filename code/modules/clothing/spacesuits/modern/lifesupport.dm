@@ -45,6 +45,9 @@
 	oxygen_tank.forceMove(modules)
 	propulsion_tank.forceMove(modules)
 	waste_tank.forceMove(modules)
+	var/obj/item/co2filter/newfilter = new /obj/item/co2filter
+	newfilter.forceMove(src)
+	newfilter.on_enter_storage(src)
 
 /obj/item/storage/backpack/lifesupportpack/mob_can_equip(M, slot, disable_warning, force)
 	return FALSE

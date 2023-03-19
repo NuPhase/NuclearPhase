@@ -148,10 +148,10 @@
 		H.equip_to_slot_if_possible(helmet, slot_head_str, 0, 0, 1)
 		suit = null
 		helmet = null
-		update_icon()
 		H.update_inv_wear_suit()
 		active = FALSE
 		visible_message(SPAN_NOTICE("[src] powers down, ejecting its cooling gas from its top."))
+		update_icon()
 
 /obj/machinery/modernsuit_storage/verb/take_off()
 	set name = "Take Suit Off"

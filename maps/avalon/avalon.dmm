@@ -879,7 +879,7 @@
 /area/avalon/shelter/upperhall)
 "bbp" = (
 /obj/machinery/door/airlock/freezer{
-	initial_access = list("ACCESS_KITCHEN")
+	initial_access = list(list("ACCESS_KITCHEN","ACCESS_BAR"))
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/avalon/shelter/messhall)
@@ -1103,6 +1103,11 @@
 "buc" = (
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/engineering)
+"bum" = (
+/obj/structure/table/gamblingtable,
+/obj/item/chems/drinks/cans/waterbottle,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/breakroom)
 "buT" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-4"
@@ -1879,8 +1884,13 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
 "cmE" = (
-/turf/exterior/open,
-/area/avalon/shelter/factory)
+/obj/structure/table/gamblingtable,
+/obj/effect/floor_decal/corner/red{
+	dir = 9
+	},
+/obj/item/chems/drinks/cans/waterbottle,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/breakroom)
 "cny" = (
 /obj/structure/flora/bush/sparsegrass,
 /obj/structure/flora/bush/stalkybush,
@@ -2116,6 +2126,13 @@
 /obj/machinery/door/airlock/glass/civilian,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
+"cyr" = (
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/messhall)
 "cyx" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 10
@@ -2272,7 +2289,7 @@
 /obj/structure/railing/mapped{
 	dir = 4
 	},
-/turf/exterior/open,
+/turf/simulated/open,
 /area/avalon/shelter/factory)
 "cKQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6958,6 +6975,11 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
+"inb" = (
+/obj/structure/table/steel,
+/obj/item/chems/drinks/cans/waterbottle,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/engineering)
 "inN" = (
 /obj/structure/table/marble,
 /obj/item/chemical_vessel/sealable/beaker,
@@ -13163,11 +13185,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "qdm" = (
-/obj/machinery/cooker/fryer{
-	pixel_y = 9
-	},
 /obj/effect/floor_decal/corner/grey/border{
 	dir = 1
+	},
+/obj/structure/hygiene/sink/kitchen{
+	pixel_y = 23
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
@@ -13689,6 +13711,9 @@
 "qLD" = (
 /obj/structure/table/marble,
 /obj/machinery/cooker/cereal,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
 "qMe" = (
@@ -15826,6 +15851,7 @@
 /obj/effect/floor_decal/corner/green/full,
 /obj/structure/table/gamblingtable,
 /obj/item/deck/cards,
+/obj/item/chems/drinks/cans/waterbottle,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "tsQ" = (
@@ -16185,6 +16211,7 @@
 /obj/effect/floor_decal/corner/grey/border{
 	dir = 10
 	},
+/obj/item/chems/drinks/cans/waterbottle,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
 "tQd" = (
@@ -17066,7 +17093,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/exterior/open,
+/turf/simulated/open,
 /area/avalon/shelter/factory)
 "uNZ" = (
 /obj/effect/floor_decal/corner/b_green{
@@ -18619,7 +18646,7 @@
 /area/avalon/shelter/engineering)
 "wOa" = (
 /obj/structure/catwalk,
-/turf/exterior/open,
+/turf/simulated/open,
 /area/avalon/shelter/factory)
 "wPz" = (
 /obj/effect/floor_decal/corner/mauve/bordercorner,
@@ -46159,9 +46186,9 @@ syc
 syc
 pWS
 uNV
-cmE
-cmE
-cmE
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -46278,20 +46305,20 @@ pWS
 hhd
 hhd
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -46408,20 +46435,20 @@ pWS
 hhd
 hhd
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -46538,20 +46565,20 @@ pWS
 reS
 hhd
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -46668,15 +46695,15 @@ pWS
 hhd
 hhd
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 pWS
 pWS
@@ -46798,15 +46825,15 @@ xHt
 hhd
 hhd
 pWS
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -46928,15 +46955,15 @@ pWS
 lpk
 lpk
 pWS
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -47058,15 +47085,15 @@ msk
 msk
 msk
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -47188,15 +47215,15 @@ nUw
 msk
 msk
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -47318,15 +47345,15 @@ tQB
 msk
 msk
 qeu
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -47448,15 +47475,15 @@ msk
 msk
 msk
 pWS
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -47578,15 +47605,15 @@ tQB
 msk
 msk
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -47708,15 +47735,15 @@ oOx
 msk
 msk
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -47838,15 +47865,15 @@ msk
 msk
 msk
 syc
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -48094,10 +48121,10 @@ ezm
 ezm
 ezm
 pWS
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -48224,10 +48251,10 @@ ezm
 ezm
 ezm
 pWS
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -48354,10 +48381,10 @@ ezm
 ezm
 ezm
 pWS
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -48484,10 +48511,10 @@ ezm
 ezm
 ezm
 pWS
-cmE
-cmE
-cmE
-cmE
+dao
+dao
+dao
+dao
 pWS
 ezm
 ezm
@@ -144961,7 +144988,7 @@ akt
 brw
 onW
 iYG
-qBj
+cmE
 qBj
 ltp
 tJs
@@ -145092,7 +145119,7 @@ uqV
 jpZ
 iOh
 txa
-txa
+bum
 eit
 tJs
 hKa
@@ -179787,7 +179814,7 @@ hBO
 hBO
 hBO
 cfb
-ucH
+inb
 rxg
 kWC
 pIa
@@ -213078,7 +213105,7 @@ tPw
 pEE
 pEE
 pEE
-lbZ
+pEE
 lbZ
 lbZ
 lbZ
@@ -213208,7 +213235,7 @@ nXH
 iIT
 rWP
 jFg
-lbZ
+pEE
 jjv
 aCW
 vMt
@@ -213338,7 +213365,7 @@ tpS
 ecc
 ecc
 tXx
-lbZ
+pEE
 qnF
 aCW
 vMt
@@ -213468,7 +213495,7 @@ xtr
 xtr
 jnG
 lSq
-lbZ
+pEE
 teo
 aCW
 ngd
@@ -213591,7 +213618,7 @@ uHE
 lpS
 pEE
 hDr
-gLQ
+cyr
 aEV
 uHC
 fqP
@@ -213720,15 +213747,15 @@ mpJ
 ecb
 xkN
 pEE
-lbZ
-lbZ
-lbZ
-lbZ
-lbZ
-lbZ
-lbZ
-lbZ
-lbZ
+pEE
+pEE
+pEE
+pEE
+pEE
+pEE
+pEE
+pEE
+pEE
 lbZ
 lbZ
 lbZ
