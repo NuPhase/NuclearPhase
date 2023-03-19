@@ -2,6 +2,7 @@
 	var/list/lobby_options = list(
 		/datum/lobby_option/setup,
 		/datum/lobby_option/view_manifest,
+		/datum/lobby_option/observe,
 		/datum/lobby_option/character_setup
 	)
 
@@ -32,6 +33,15 @@
 
 /datum/lobby_option/setup/get_lobby_menu_string(var/mob/new_player/viewer)
 	return "<a href='byond://?src=\ref[viewer];lobby_setup=1'>Setup Character</A> "
+
+/datum/lobby_option/observe
+	sort_priority = 3
+
+/datum/lobby_option/observe/visible(mob/new_player/viewer)
+	return check_rights(R_ADMIN, FALSE, viewer.client)
+
+/datum/lobby_option/observe/get_lobby_menu_string(mob/new_player/viewer)
+	return "<a href='byond://?src=\ref[viewer];lobby_observe=1'>Observe</a>"
 
 /datum/lobby_option/view_manifest
 	sort_priority = 2
