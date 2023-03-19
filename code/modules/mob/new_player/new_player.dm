@@ -110,7 +110,7 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 			to_chat(src, SPAN_WARNING("Please wait for server initialization to complete..."))
 			return
 
-		if(!config.respawn_delay || client.holder || alert(src,"Are you sure you wish to observe? You will have to wait [config.respawn_delay] minute\s before being able to respawn!","Player Setup","Yes","No") == "Yes")
+		if(client?.holder)
 			if(!client)	return 1
 			var/mob/observer/ghost/observer = new()
 
