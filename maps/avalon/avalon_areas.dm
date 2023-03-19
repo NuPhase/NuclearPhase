@@ -136,6 +136,12 @@
 /area/avalon/shelter/brig/barracks
 	name = "Security Barracks"
 
+/area/avalon/shelter/medbay
+	name = "Medbay"
+
+/area/avalon/shelter/factory
+	name = "Factory"
+
 /area/avalon/shelter/science
 	name = "Research Labs"
 

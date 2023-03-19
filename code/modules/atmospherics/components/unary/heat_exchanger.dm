@@ -19,6 +19,10 @@
 	construct_state = /decl/machine_construction/pipe
 	interact_offline = TRUE
 
+/obj/machinery/atmospherics/unary/heat_exchanger/Initialize()
+	. = ..()
+	air_contents.volume = initial_volume
+
 /obj/machinery/atmospherics/unary/heat_exchanger/Destroy()
 	if(partner)
 		partner.partner = null
@@ -55,8 +59,8 @@
 	update_cycle = SSair.times_fired
 	partner.update_cycle = SSair.times_fired
 
-	var/air_heat_capacity = air_contents.heat_capacity() * air_contents.net_flow_mass * 0.01
-	var/other_air_heat_capacity = partner.air_contents.heat_capacity() * partner.air_contents.net_flow_mass * 0.01
+	var/air_heat_capacity = air_contents.heat_capacity()
+	var/other_air_heat_capacity = partner.air_contents.heat_capacity()
 	var/combined_heat_capacity = other_air_heat_capacity + air_heat_capacity
 
 	var/old_temperature = air_contents.temperature
