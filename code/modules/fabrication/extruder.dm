@@ -58,7 +58,7 @@
 		return
 	fabrication_progress += current_recipe.progress_step
 	temperature += current_recipe.temperature_step
-	if(fabrication_progress > 100)
+	if(fabrication_progress >= 100)
 		var/result = new current_recipe.output_item(get_turf(src))
 		current_recipe.on_fabricate(result)
 		stop_fabricating()

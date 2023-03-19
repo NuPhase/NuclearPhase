@@ -517,6 +517,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stack_merge_type = /obj/item/stack/cable_coil
 	matter_multiplier = 0.15
+	var/place_type = /obj/structure/cable
 
 /obj/item/stack/cable_coil/Initialize()
 	. = ..()
@@ -784,7 +785,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 		if (C.shock(user, 50))
 			if (prob(50)) //fail
-				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
+				new src.type(C.loc, 2, C.color)
 				qdel(C)
 				return
 
@@ -801,7 +802,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(!istype(F))
 		return FALSE
 
-	var/obj/structure/cable/C = new(F)
+	var/obj/structure/cable/C = new place_type(F)
 	C.cableColor(color)
 	C.d1 = d1
 	C.d2 = d2
@@ -825,7 +826,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	. = use(1)
 	if (C.shock(user, 50))
 		if (prob(50)) //fail
-			new/obj/item/stack/cable_coil(C.loc, 1, C.color)
+			new src.type(C.loc, 1, C.color)
 			qdel(C)
 			return FALSE
 
@@ -841,6 +842,11 @@ By design, d1 is the smallest direction and d2 is the highest
 	src.amount = rand(1,2)
 	update_icon()
 	update_wclass()
+
+/obj/item/stack/cable_coil/heavy
+	name = "heavy cable coil"
+	desc = "A coil of 50cm thick cable."
+	place_type = /obj/structure/cable/heavy
 
 /obj/item/stack/cable_coil/yellow
 	color = COLOR_AMBER

@@ -24,6 +24,9 @@
 	. = ..()
 	. += "narrow"
 
+/obj/item/stack/material/rods/two
+	amount = 2
+
 /obj/item/stack/material/rods/ten
 	amount = 10
 
