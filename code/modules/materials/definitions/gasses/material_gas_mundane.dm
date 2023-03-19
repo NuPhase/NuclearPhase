@@ -13,6 +13,7 @@
 	gas_flags = XGM_GAS_OXIDIZER
 	gas_metabolically_inert = TRUE
 	value = 0.25
+	color = "#0091a1f8"
 
 /decl/material/gas/helium
 	name = "helium"
@@ -29,6 +30,7 @@
 	taste_description = "nothing"
 	metabolism = 0.05
 	value = 0.3
+	color = "#fff9e8"
 
 /decl/material/gas/helium/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
@@ -45,6 +47,7 @@
 	latent_heat = 380
 	boiling_point = -78 CELSIUS
 	liquid_density = 1190
+	color = "#272727"
 
 /decl/material/gas/carbon_monoxide
 	name = "carbon monoxide"
@@ -59,6 +62,7 @@
 	liquid_density = 790
 	taste_description = "stale air"
 	metabolism = 0.05 // As with helium.
+	color = "#111111"
 
 /decl/material/gas/carbon_monoxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(!istype(M))
@@ -163,6 +167,7 @@
 	boiling_point = -195 CELSIUS
 	liquid_density = 804.3
 	gas_metabolically_inert = TRUE
+	color = "#ffe7e7"
 
 /decl/material/gas/nitrodioxide
 	name = "nitrogen dioxide"
@@ -336,6 +341,7 @@
 		/decl/material/liquid/fuel/hydrazine = 1
 	)
 	value = 0.4
+	color = "#cb82fc"
 
 /decl/material/gas/hydrogen/tritium
 	name = "tritium"
