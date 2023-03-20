@@ -1,6 +1,6 @@
 #define FISSION_RATE 0.15
 #define NEUTRON_FLUX_RATE 0.05
-#define NEUTRONS_PER_RAD 17
+#define NEUTRONS_PER_RAD 0.3
 #define REACTOR_POWER_MODIFIER 10
 
 /obj/machinery/power/hybrid_reactor
@@ -9,7 +9,8 @@
 	icon_state = "fission_core"
 	density = 1
 	anchored = 1
-	var/neutron_flux = 1
+	var/neutron_flux = 1 //a flux of 1 will mean that neutron amount does not change
+	var/neutron_moles = 0 //how many moles can we split
 	var/meltdown = FALSE
 	var/was_shut_down = FALSE
 	var/shutdown_failure = FALSE
@@ -31,9 +32,9 @@
 	rcontrol.control()
 	var/turf/A = get_turf(src)
 	var/datum/gas_mixture/GM = A.return_air()
-	var/total_radiation = 0
-	total_radiation += process_fission(GM)
-	total_radiation += process_fusion(GM)
+	process_fission(GM)
+	process_fusion(GM)
+	var/total_radiation = neutron_moles / NEUTRONS_PER_RAD
 	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)
 
@@ -52,17 +53,29 @@
 		total_neutron_amount -= neutrons_absorbed
 		GM.add_thermal_energy(mat.fission_energy * neutrons_absorbed * 10)
 	neutron_flux = Interpolate(neutron_flux, Clamp(total_neutron_amount * NEUTRON_FLUX_RATE, 0, 1000000000), 0.2)
-	return neutron_flux / NEUTRONS_PER_RAD
-
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/GM)
-	//GM.add_thermal_energy(1000000)
-	return 100
+	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
+		var/decl/thermonuclear_reaction/cur_reaction = GET_DECL(cur_reaction_type)
+
+		if(!(cur_reaction.first_reactant in GM.gas))
+			continue
+		if(!(cur_reaction.second_reactant in GM.gas))
+			continue
+		if(cur_reaction.minimum_temperature > GM.temperature)
+			continue
+
+		var/uptake_moles = min(GM.gas[cur_reaction.first_reactant], GM.gas[cur_reaction.second_reactant])
+		GM.adjust_gas(cur_reaction.first_reactant, !uptake_moles*0.5)
+		GM.adjust_gas(cur_reaction.second_reactant, !uptake_moles*0.5)
+		GM.adjust_gas(cur_reaction.product, uptake_moles)
+		GM.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
+		neutron_moles += cur_reaction.free_neutron_moles * uptake_moles
 
 /obj/machinery/power/hybrid_reactor/proc/receive_power(power) //in watts
 	var/turf/A = get_turf(src)
 	var/datum/gas_mixture/GM = A.return_air()
-	GM.add_thermal_energy(power * 1000) //?
+	GM.add_thermal_energy(power)
 	return
 
 /obj/machinery/power/hybrid_reactor/proc/prime_alarms()
@@ -95,7 +108,10 @@
 /obj/machinery/power/hybrid_reactor/proc/produce_explosion()
 	var/turf/T = superstructure.loc
 	explosion(superstructure, 25, 50, 75, 150)
-	sound_to(world, sound('sound/effects/explosion_huge.ogg', 0, 0, 0, 20))
+	var/list/our_mobs = mobs_on_main_map()
+	for(var/mob/living/carbon/human/H in our_mobs)
+		H.playsound_local(H.loc, 'sound/effects/explosion_huge.ogg', 20, 0)
+		shake_camera(H, 20, 1)
 	spawn(10 SECONDS)
 		var/obj/effect/fluid/F = new(T)
 		F.reagents.add_reagent(/decl/material/solid/metal/tungsten, 1000000)

@@ -22,6 +22,7 @@
 	use_power = POWER_USE_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 30000
+	power_channel = EQUIP
 	identifier = "AFP"
 
 	var/flow_capacity = 600 //kg/s

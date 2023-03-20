@@ -7,6 +7,13 @@
 		if(M)
 			LAZYDISTINCTADD(., M)
 
+/proc/mobs_on_main_map()
+	var/list/cur_mobs = human_mob_list
+	for(var/mob/living/carbon/human/H in cur_mobs)
+		if(H.job == "Office Clerk")
+			cur_mobs -= H
+	return cur_mobs
+
 /proc/random_hair_style(gender, species)
 	var/decl/species/mob_species = get_species_by_key(species || global.using_map.default_species)
 	var/list/valid_styles = mob_species?.get_hair_style_types(gender)
@@ -20,7 +27,7 @@
 /proc/random_name(gender, species)
 	if(species)
 		var/decl/species/current_species = get_species_by_key(species)
-		if(current_species) 
+		if(current_species)
 			var/decl/cultural_info/current_culture = GET_DECL(current_species.default_cultural_info[TAG_CULTURE])
 			if(current_culture)
 				return current_culture.get_random_name(null, gender)

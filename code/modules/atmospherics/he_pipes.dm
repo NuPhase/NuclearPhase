@@ -123,7 +123,7 @@
 	initialize_directions_he = dir
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactor
-	surface = 180 //taken from engineering papers average
+	surface = 4000 //taken from engineering papers average
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior
 	surface = 0.1 //TODO: CALCULATE THIS

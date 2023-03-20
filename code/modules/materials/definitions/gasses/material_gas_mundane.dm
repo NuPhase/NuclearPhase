@@ -21,7 +21,6 @@
 	gas_symbol = "He"
 	gas_symbol_html = "He"
 	lore_text = "A noble gas. It makes your voice squeaky."
-	flags = MAT_FLAG_FUSION_FUEL
 	gas_specific_heat = 80
 	molar_mass = 0.004
 	latent_heat = 21
@@ -35,6 +34,13 @@
 /decl/material/gas/helium/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
 	M.add_chemical_effect(CE_SQUEAKY, 1)
+
+/decl/material/gas/helium/isotopethree
+	name = "Helium-3"
+	uid = "gas_helium3"
+	gas_symbol = "He3"
+	gas_symbol_html = "<sub>3</sub>He"
+	flags = MAT_FLAG_FUSION_FUEL
 
 /decl/material/gas/carbon_dioxide
 	name = "carbon dioxide"
