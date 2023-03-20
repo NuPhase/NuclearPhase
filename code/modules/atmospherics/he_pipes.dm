@@ -126,7 +126,7 @@
 	surface = 4000 //taken from engineering papers average
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior
-	surface = 0.1 //TODO: CALCULATE THIS
+	surface = 0.001 //TODO: CALCULATE THIS
 	maximum_pressure = 70000 //TEMPORARY
 	fatigue_pressure = 60000
 	alert_pressure = 50000

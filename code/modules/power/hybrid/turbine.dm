@@ -44,6 +44,8 @@
 	var/obj/machinery/atmospherics/binary/regulated_valve/ingoing_valve = null
 	var/obj/structure/turbine_visual/visual = null
 
+	var/valve_id = ""
+
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
 	switch(vibration)
 		if(0 to 25)
@@ -58,7 +60,8 @@
 	air1.volume = 20000
 	air2.volume = 80000
 	reactor_components[uid] = src
-	ingoing_valve = locate(/obj/machinery/atmospherics/binary/regulated_valve) in get_step(src,SOUTH)
+	spawn(100)
+		ingoing_valve = rcontrol.reactor_valves[valve_id]
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()

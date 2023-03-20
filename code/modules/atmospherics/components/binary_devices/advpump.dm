@@ -34,7 +34,7 @@
 	var/datum/composite_sound/pump/soundloop
 
 /obj/machinery/atmospherics/binary/pump/adv/on
-	icon_state = "on"
+	icon_state = "map_on"
 
 /obj/machinery/atmospherics/binary/pump/adv/on/Initialize()
 	. = ..()

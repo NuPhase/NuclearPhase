@@ -31,6 +31,10 @@
 	name = "T-FEEDWATER V-MAKEUP"
 	id = "T-FEEDWATER V-MAKEUP"
 
+/obj/machinery/reactor_button/regvalve/feeddrain
+	name = "T-FEEDWATER V-DRAIN"
+	id = "T-FEEDWATER V-DRAIN"
+
 /obj/machinery/reactor_button/rswitch/preheat
 	name = "F-PREHEAT"
 
