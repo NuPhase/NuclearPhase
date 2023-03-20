@@ -122,6 +122,7 @@
 
 	var/can_pull_size = ITEM_SIZE_STRUCTURE // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_SAME       // Whether or not the mob can pull other mobs.
+	var/lying_pull_coefficient = 1
 
 	var/datum/dna/dna = null//Carbon
 	var/list/active_genes

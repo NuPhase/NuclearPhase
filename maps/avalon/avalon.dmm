@@ -1193,14 +1193,6 @@
 "bAb" = (
 /turf/simulated/floor/grass,
 /area/avalon/shelter/atmos)
-"bAD" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactor{
-	dir = 4;
-	volume = 700;
-	clickvol = 40
-	},
-/turf/simulated/floor/reinforced/hydrogen,
-/area/avalon/shelter/turbinehall)
 "bAM" = (
 /obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 1
@@ -1808,6 +1800,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
+/obj/structure/turbine_visual,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "ckB" = (
@@ -15872,6 +15865,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
+/obj/structure/turbine_visual,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "thf" = (
@@ -18477,13 +18471,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
-"wnL" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactor{
-	dir = 4;
-	volume = 700
-	},
-/turf/simulated/floor/reinforced/hydrogen,
-/area/avalon/shelter/turbinehall)
 "wol" = (
 /obj/effect/floor_decal/borderfloorblack/corner{
 	dir = 8
@@ -18916,11 +18903,6 @@
 /obj/structure/catwalk,
 /turf/simulated/open,
 /area/avalon/shelter/factory)
-"wON" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/red,
-/obj/structure/turbine_visual,
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/turbinehall)
 "wPz" = (
 /obj/effect/floor_decal/corner/mauve/bordercorner,
 /turf/simulated/floor/tiled/white/monotile,
@@ -148501,8 +148483,8 @@ cMK
 fZL
 egw
 xmV
-wnL
-wnL
+lrd
+lrd
 cMK
 bhJ
 lBn
@@ -148631,8 +148613,8 @@ cMK
 qjD
 qZJ
 cMK
-bAD
-wnL
+lrd
+lrd
 cMK
 opj
 vbr
@@ -167352,7 +167334,7 @@ epg
 udU
 udU
 udU
-wON
+udU
 udU
 udU
 udU

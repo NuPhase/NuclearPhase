@@ -66,7 +66,8 @@
 	mob_push_flags = ~HEAVY
 	mob_swap_flags = ~HEAVY
 	weight = 70 //placeholder value for now
-	pull_coefficient = 0.8
+	pull_coefficient = 0.1
+	lying_pull_coefficient = 0.8
 
 	var/flash_protection = 0				// Total level of flash protection
 	var/equipment_tint_total = 0			// Total level of visualy impairing items

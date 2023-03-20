@@ -618,8 +618,10 @@
 	if(lying)
 		set_density(0)
 		drop_held_items()
+		pull_coefficient = lying_pull_coefficient
 	else
 		set_density(initial(density))
+		pull_coefficient = initial(pull_coefficient)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.isLeaning)

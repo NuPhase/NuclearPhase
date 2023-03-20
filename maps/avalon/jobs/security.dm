@@ -76,7 +76,7 @@
 		SKILL_WEAPONS   = SKILL_MAX,
 		SKILL_FORENSICS = SKILL_MAX
 	)
-	skill_points = 28
+	skill_points = 30
 	software_on_spawn = list(
 		/datum/computer_file/program/comm,
 		/datum/computer_file/program/digitalwarrant,
@@ -132,7 +132,7 @@
 		SKILL_WEAPONS   = SKILL_MAX,
 		SKILL_FORENSICS = SKILL_MAX
 	)
-	skill_points = 20
+	skill_points = 24
 	software_on_spawn = list(
 		/datum/computer_file/program/digitalwarrant,
 		/datum/computer_file/program/camera_monitor
@@ -180,7 +180,7 @@
 	    SKILL_WEAPONS   = SKILL_MAX,
 	    SKILL_FORENSICS = SKILL_MAX
 	)
-	skill_points = 20
+	skill_points = 24
 	software_on_spawn = list(
 		/datum/computer_file/program/digitalwarrant,
 		/datum/computer_file/program/camera_monitor
@@ -195,6 +195,7 @@
 	selection_color = "#166320"
 	alt_titles = list("Recruit")
 	economic_power = 4
+	skill_points = 22
 	access = list(
 		access_security,
 		access_eva,
