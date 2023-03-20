@@ -225,7 +225,7 @@
 	stack_merge_type = /obj/item/stack/material/pane
 
 /obj/item/stack/material/pane/update_state_from_amount()
-	if(reinf_material) 
+	if(reinf_material)
 		icon_state = "sheet-glass-reinf"
 		base_state = icon_state
 		plural_icon_state = "sheet-glass-reinf-mult"
@@ -350,3 +350,22 @@
 
 /obj/item/stack/material/strut/get_recipes()
 	return material.get_strut_recipes(reinf_material && reinf_material.type)
+
+/obj/item/stack/material/filament
+	name = "filament"
+	desc = "A roll of 3D printing filament."
+	singular_name = "filament"
+	plural_name = "filament"
+	icon_state = "sheet-strut"
+	plural_icon_state = "sheet-strut-mult"
+	max_icon_state = "sheet-strut-max"
+	stack_merge_type = /obj/item/stack/material/filament
+
+/obj/item/stack/material/filament/steel/ten
+	material = /decl/material/solid/metal/steel
+
+/obj/item/stack/material/filament/plastic/ten
+	material = /decl/material/solid/plastic
+
+/obj/item/stack/material/filament/aluminium/ten
+	material = /decl/material/solid/metal/aluminium

@@ -99,6 +99,11 @@ STACK_SUBTYPES(red,            "red cloth",                     solid/cloth/red,
 STACK_SUBTYPES(steel,          "steel",                         solid/metal/steel,          strut,      null)
 STACK_SUBTYPES(plastic,        "plastic",                       solid/plastic,              strut,      null)
 STACK_SUBTYPES(aluminium,      "aluminium",                     solid/metal/aluminium,      strut,      null)
+
+STACK_SUBTYPES(steel,          "steel",                         solid/metal/steel,          filament,      null)
+STACK_SUBTYPES(plastic,        "plastic",                       solid/plastic,              filament,      null)
+STACK_SUBTYPES(aluminium,      "aluminium",                     solid/metal/aluminium,      filament,      null)
+
 STACK_SUBTYPES(titanium,       "titanium",                      solid/metal/titanium,       strut,      null)
 
 #undef STACK_SUBTYPES
