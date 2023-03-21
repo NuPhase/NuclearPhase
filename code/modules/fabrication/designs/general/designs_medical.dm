@@ -23,11 +23,11 @@
 /datum/fabricator_recipe/medical/beaker_large
 	path = /obj/item/chems/glass/beaker/large
 
-/datum/fabricator_recipe/medical/beaker_insul
-	path = /obj/item/chems/glass/beaker/insulated
+///datum/fabricator_recipe/medical/beaker_insul
+//	path = /obj/item/chems/glass/beaker/insulated
 
-/datum/fabricator_recipe/medical/beaker_insul_large
-	path = /obj/item/chems/glass/beaker/insulated/large
+///datum/fabricator_recipe/medical/beaker_insul_large
+//	path = /obj/item/chems/glass/beaker/insulated/large
 
 /datum/fabricator_recipe/medical/vial
 	path = /obj/item/chems/glass/beaker/vial

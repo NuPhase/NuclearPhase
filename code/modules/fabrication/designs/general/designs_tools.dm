@@ -1,6 +1,7 @@
 /datum/fabricator_recipe/tool
 	path = /obj/item/crowbar
 	category = "Tools"
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/tool/int_wirer
 	path = /obj/item/integrated_electronics/wirer

@@ -1,5 +1,6 @@
 /datum/fabricator_recipe/bucket
 	path = /obj/item/chems/glass/bucket
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/flashlight
 	path = /obj/item/flashlight
@@ -9,12 +10,15 @@
 
 /datum/fabricator_recipe/extinguisher
 	path = /obj/item/extinguisher/empty
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/extinguisher/mini
 	path = /obj/item/extinguisher/mini/empty
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/jar
 	path = /obj/item/glass_jar
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/radio_headset
 	path = /obj/item/radio/headset
@@ -22,14 +26,15 @@
 /datum/fabricator_recipe/radio_bounced
 	path = /obj/item/radio/off
 
-/datum/fabricator_recipe/suit_cooler
-	path = /obj/item/suit_cooling_unit
+///datum/fabricator_recipe/suit_cooler
+//	path = /obj/item/suit_cooling_unit
 
 /datum/fabricator_recipe/weldermask
 	path = /obj/item/clothing/head/welding
 
 /datum/fabricator_recipe/knife
 	path = /obj/item/knife/kitchen
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/taperecorder
 	path = /obj/item/taperecorder/empty
@@ -39,12 +44,15 @@
 
 /datum/fabricator_recipe/tube/large
 	path = /obj/item/light/tube/large
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/tube
 	path = /obj/item/light/tube
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/bulb
 	path = /obj/item/light/bulb
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/ashtray_glass
 	path = /obj/item/ashtray/glass
@@ -80,8 +88,8 @@
 	name = "clipboard, plastic"
 	path = /obj/item/clipboard/plastic
 
-/datum/fabricator_recipe/destTagger
-	path = /obj/item/destTagger
+///datum/fabricator_recipe/destTagger
+//	path = /obj/item/destTagger
 
 /datum/fabricator_recipe/labeler
 	path = /obj/item/hand_labeler
@@ -89,6 +97,7 @@
 /datum/fabricator_recipe/handcuffs
 	path = /obj/item/handcuffs
 	hidden = TRUE
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/plunger
 	path = /obj/item/plunger
@@ -156,3 +165,4 @@
 
 /datum/fabricator_recipe/emergency_tank
 	path = /obj/item/tank/emergency
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)

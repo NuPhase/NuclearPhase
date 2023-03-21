@@ -1,6 +1,7 @@
 /datum/fabricator_recipe/device_component
 	path = /obj/item/stock_parts/console_screen
 	category = "Devices and Components"
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/device_component/keyboard
 	path = /obj/item/stock_parts/keyboard

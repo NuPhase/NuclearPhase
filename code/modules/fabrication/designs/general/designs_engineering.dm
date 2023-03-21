@@ -1,6 +1,7 @@
 /datum/fabricator_recipe/engineering
 	path = /obj/item/stock_parts/circuitboard/airlock_electronics
 	category = "Engineering"
+	fabricator_types = list(FABRICATOR_CLASS_PRINTER)
 
 /datum/fabricator_recipe/engineering/windoor
 	path = /obj/item/stock_parts/circuitboard/airlock_electronics/windoor
@@ -68,32 +69,32 @@
 /datum/fabricator_recipe/engineering/requests_console_kit
 	path = /obj/item/frame/stock_offset/request_console/kit
 
-/datum/fabricator_recipe/engineering/atm_board
-	path = /obj/item/stock_parts/circuitboard/requests_console/atm
+///datum/fabricator_recipe/engineering/atm_board
+//	path = /obj/item/stock_parts/circuitboard/requests_console/atm
 
-/datum/fabricator_recipe/engineering/atm_frame
-	path = /obj/item/frame/stock_offset/atm
+///datum/fabricator_recipe/engineering/atm_frame
+//	path = /obj/item/frame/stock_offset/atm
 
-/datum/fabricator_recipe/engineering/atm_kit
-	path = /obj/item/frame/stock_offset/atm/kit
+///datum/fabricator_recipe/engineering/atm_kit
+//	path = /obj/item/frame/stock_offset/atm/kit
 
-/datum/fabricator_recipe/engineering/newscaster_board
-	path = /obj/item/stock_parts/circuitboard/requests_console/newscaster
+///datum/fabricator_recipe/engineering/newscaster_board
+//	path = /obj/item/stock_parts/circuitboard/requests_console/newscaster
 
-/datum/fabricator_recipe/engineering/newscaster_frame
+///datum/fabricator_recipe/engineering/newscaster_frame
 	path = /obj/item/frame/stock_offset/newscaster
 
-/datum/fabricator_recipe/engineering/newscaster_kit
+///datum/fabricator_recipe/engineering/newscaster_kit
 	path = /obj/item/frame/stock_offset/newscaster/kit
 
 /datum/fabricator_recipe/engineering/sparker
 	path = /obj/item/frame/button/sparker
 
-/datum/fabricator_recipe/engineering/rcd_ammo
-	path = /obj/item/rcd_ammo
+///datum/fabricator_recipe/engineering/rcd_ammo
+//	path = /obj/item/rcd_ammo
 
-/datum/fabricator_recipe/engineering/rcd_ammo_large
-	path = /obj/item/rcd_ammo/large
+///datum/fabricator_recipe/engineering/rcd_ammo_large
+//	path = /obj/item/rcd_ammo/large
 
 /datum/fabricator_recipe/engineering/camera_frame
 	path = /obj/item/frame/camera
@@ -101,15 +102,15 @@
 /datum/fabricator_recipe/engineering/camera_frame/kit
 	path = /obj/item/frame/camera/kit
 
-/datum/fabricator_recipe/engineering/rcd
-	path = /obj/item/rcd
-	hidden = TRUE
+//datum/fabricator_recipe/engineering/rcd
+//	path = /obj/item/rcd
+//	hidden = TRUE
 
-/datum/fabricator_recipe/engineering/solars
-	path = /obj/item/solar_assembly
+///datum/fabricator_recipe/engineering/solars
+//	path = /obj/item/solar_assembly
 
-/datum/fabricator_recipe/engineering/tracker_electronics
-	path = /obj/item/tracker_electronics
+///datum/fabricator_recipe/engineering/tracker_electronics
+//	path = /obj/item/tracker_electronics
 
 /datum/fabricator_recipe/engineering/power_sensor
 	path = /obj/item/machine_chassis/power_sensor
