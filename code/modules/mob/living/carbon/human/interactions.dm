@@ -782,7 +782,7 @@
 /datum/stack_recipe/dildo
 	title = "Horse"
 	result_type = /obj/item/weapon/dildo
-	difficulty = 2
+	difficulty = 4
 
 /mob/living/carbon/human/Topic(href, href_list)
 	if(href_list["interaction"])

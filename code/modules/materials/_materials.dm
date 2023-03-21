@@ -396,7 +396,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	//#TODO: implement plasma temperature and do pressure checks
 	if(temperature >= get_boiling_temp(pressure))
 		return MAT_PHASE_GAS
-	else if(temperature >= gas_condensation_point)
+	else if(temperature >= melting_point)
 		return MAT_PHASE_LIQUID
 	return MAT_PHASE_SOLID
 

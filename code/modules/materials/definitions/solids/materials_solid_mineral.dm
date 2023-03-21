@@ -75,7 +75,7 @@
 	)
 
 /decl/material/solid/pyrite
-	name = "fool's gold"
+	name = "gold"
 	uid = "solid_pyrite"
 	ore_name = "pyrite"
 	ore_result_amount = 10
@@ -591,3 +591,8 @@
 	heating_point = GENERIC_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
+
+/decl/material/solid/copper_sulfide
+	name = "copper sulfide"
+	uid = "copper_sulfide"
+	color = "#bb954f"
