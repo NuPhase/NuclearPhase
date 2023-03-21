@@ -2,7 +2,7 @@
 	name = "passive hold"
 	fancy_desc = "holding"
 	upgrab = /decl/grab/normal/struggle
-	shift = 8
+	shift = 0
 	stop_move = 0
 	reverse_facing = 0
 	can_absorb = 0
