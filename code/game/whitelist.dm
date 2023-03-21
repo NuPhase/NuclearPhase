@@ -17,6 +17,8 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 	get_from_file()
 
 /datum/whitelist/proc/get_from_file()
+	datalist = list()
+	assoclist = list()
 	if(!filename)
 		return
 	switch(stat)
