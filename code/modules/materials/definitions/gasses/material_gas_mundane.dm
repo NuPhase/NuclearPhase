@@ -211,6 +211,8 @@
 	boiling_point = -162 CELSIUS
 	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
+	fire_color = "#0044ff"
+	fire_alpha = 140
 
 /decl/material/gas/argon
 	name = "argon"
@@ -348,6 +350,8 @@
 	)
 	value = 0.4
 	color = "#cb82fc"
+	fire_color = "#0077ff"
+	fire_alpha = 30
 
 /decl/material/gas/hydrogen/tritium
 	name = "tritium"

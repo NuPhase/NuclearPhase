@@ -225,6 +225,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/scannable = 0 // Shows up on health analyzers.
 	var/color = COLOR_BEIGE
 	var/color_weight = 1
+	var/fire_color = FIRE_COLOR_DEFAULT
+	var/fire_alpha = 255 //how visible is the fire
 	var/cocktail_ingredient
 	var/defoliant
 	var/fruit_descriptor // String added to fruit desc if this chemical is present.
@@ -394,7 +396,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	//#TODO: implement plasma temperature and do pressure checks
 	if(temperature >= get_boiling_temp(pressure))
 		return MAT_PHASE_GAS
-	else if(temperature >= heating_point)
+	else if(temperature >= gas_condensation_point)
 		return MAT_PHASE_LIQUID
 	return MAT_PHASE_SOLID
 

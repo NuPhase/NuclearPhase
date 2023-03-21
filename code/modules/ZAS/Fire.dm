@@ -44,7 +44,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		igniting = 1
 
 	if(igniting)
-		create_fire(exposed_temperature)
+		create_fire(exposed_temperature, F)
 	return igniting
 
 /zone/proc/process_fire()
@@ -62,7 +62,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				fire_tiles -= T
 	else
 		for(var/turf/simulated/T in fire_tiles)
-			if(istype(T.fire))
+			if(istype(T.fire) && !T.fire.burning_fluid)
 				qdel(T.fire)
 		fire_tiles.Cut()
 
@@ -72,13 +72,14 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /turf/proc/create_fire(fl)
 	return 0
 
-/turf/simulated/create_fire(fl)
+/turf/simulated/create_fire(fl, newburnfluid)
 
 	if(submerged())
 		return 1
 
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
+		fire.burning_fluid = newburnfluid
 		return 1
 
 	if(!zone)
@@ -86,6 +87,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	fire = new(src, fl)
 	SSair.active_fire_zones |= zone
+
+	fire.burning_fluid = newburnfluid
 
 	zone.fire_tiles |= src
 	return 0
@@ -104,6 +107,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	layer = FIRE_LAYER
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
+	var/obj/effect/fluid/burning_fluid = null //if we have one
 
 /obj/fire/Process()
 	. = 1
@@ -116,6 +120,13 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		return PROCESS_KILL
 
 	var/datum/gas_mixture/air_contents = my_tile.return_air()
+
+	if(burning_fluid)
+		var/datum/gas_mixture/fluid_mixture = air_contents.remove_ratio(vsc.fire_consuption_rate)
+		burning_fluid.vaporize_fuel(fluid_mixture)
+		firelevel = fluid_mixture.fire_react(null, 1, 1)
+		burning_fluid.temperature = fluid_mixture.temperature
+		air_contents.merge(fluid_mixture)
 
 	if(firelevel > 6)
 		icon_state = "3"
@@ -163,7 +174,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 				//Spread the fire.
 				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile.CanPass(null, my_tile, 0,0))
-					enemy_tile.create_fire(firelevel)
+					enemy_tile.create_fire(firelevel, fluid_on_tile)
 
 			else
 				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
@@ -187,7 +198,13 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	SSair.active_hotspots.Add(src)
 
 /obj/fire/proc/fire_color(var/env_temperature)
+	if(burning_fluid)
+		var/decl/material/main_reagent = burning_fluid.reagents.get_primary_reagent_decl()
+		if(main_reagent)
+			alpha = main_reagent.fire_alpha
+			return main_reagent.fire_color
 	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
+	alpha = 255
 	return heat2color(temperature)
 
 /obj/fire/Destroy()

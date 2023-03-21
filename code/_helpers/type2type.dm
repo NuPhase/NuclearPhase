@@ -145,14 +145,14 @@
 	if(temp <= 66)
 		. = 255
 	else
-		. = max(0, min(255, 329.698727446 * (temp - 60) ** -0.1332047592))
+		. = max(0, min(255, 329.6 * (temp - 60) ** -0.1))
 
 /proc/heat2color_g(temp)
 	temp /= 100
 	if(temp <= 66)
-		. = max(0, min(255, 99.4708025861 * log(temp) - 161.1195681661))
+		. = max(0, min(255, 99.4 * log(temp) - 161.1))
 	else
-		. = max(0, min(255, 288.1221695283 * ((temp - 60) ** -0.0755148492)))
+		. = max(0, min(255, 288.1 * ((temp - 60) ** -0.07)))
 
 /proc/heat2color_b(temp)
 	temp /= 100
@@ -162,7 +162,7 @@
 		if(temp <= 16)
 			. = 0
 		else
-			. = max(0, min(255, 138.5177312231 * log(temp - 10) - 305.0447927307))
+			. = max(0, min(255, 138.5 * log(temp - 10) - 305.04))
 
 // Very ugly, BYOND doesn't support unix time and rounding errors make it really hard to convert it to BYOND time.
 // returns "YYYY-MM-DD" by default

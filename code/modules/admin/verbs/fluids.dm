@@ -3,7 +3,7 @@
 	set desc = "Flood the turf you are standing on."
 	set category = "Debug"
 
-	if(!check_rights(R_SPAWN)) 
+	if(!check_rights(R_SPAWN))
 		return
 
 	var/mob/user = usr
@@ -11,6 +11,7 @@
 		return
 	var/spawn_range = input("How wide a radius?", "Spawn Fluid", 0) as num|null
 	var/reagent_amount = input("How deep?", "Spawn Fluid", 1000) as num|null
+	var/fluid_temperature = input("At what temperature?", "Spawn Fluid", T20C) as num|null
 	if(!reagent_amount)
 		return
 	var/reagent_type = input("What kind of reagent?", "Spawn Fluid", /decl/material/liquid/water) as null|anything in subtypesof(/decl/material)
@@ -18,7 +19,7 @@
 		return
 	var/turf/flooding = get_turf(user)
 	for(var/turf/T as anything in RANGE_TURFS(flooding, spawn_range))
-		T.add_fluid(reagent_type, reagent_amount)
+		T.add_fluid(reagent_type, reagent_amount, ntemperature = fluid_temperature)
 
 /datum/admins/proc/jump_to_fluid_source()
 

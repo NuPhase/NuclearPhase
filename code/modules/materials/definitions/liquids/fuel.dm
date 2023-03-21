@@ -22,7 +22,7 @@
 	dirtiness = DIRTINESS_NEUTRAL
 	turf_touch_threshold = 0.1
 	liquid_density = 875
-	combustion_chamber_fuel_value = 2400 MJ
+	combustion_chamber_fuel_value = 240 MJ
 	fuel_value = 2
 	gas_flags = XGM_GAS_FUEL
 	burn_product = /decl/material/gas/carbon_monoxide
