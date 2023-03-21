@@ -9,6 +9,7 @@
 /obj/machinery/atmospherics/unary/furnace/Initialize()
 	. = ..()
 	air_contents.volume = internal_volume
+	build_network()
 
 /obj/machinery/atmospherics/unary/furnace/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/ore))
