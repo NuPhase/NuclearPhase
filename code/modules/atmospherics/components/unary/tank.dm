@@ -13,7 +13,7 @@
 	dir = SOUTH
 	initialize_directions = 2
 	density = 1
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 	pipe_class = PIPE_CLASS_UNARY
 
 	build_icon = 'icons/obj/atmospherics/stationary_canisters.dmi'

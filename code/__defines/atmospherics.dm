@@ -9,6 +9,7 @@
 #define CONNECT_TYPE_SCRUBBER       4
 #define CONNECT_TYPE_HE				8
 #define CONNECT_TYPE_FUEL           16
+#define CONNECT_TYPE_WATER			32
 
 #define DISPOSAL_FLIP_NONE          0
 #define DISPOSAL_FLIP_FLIP          1

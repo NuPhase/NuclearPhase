@@ -24,6 +24,7 @@
 	power_rating = 30000
 	power_channel = EQUIP
 	identifier = "AFP"
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 
 	var/flow_capacity = 600 //kg/s
 	var/initial_flow_capacity = 0

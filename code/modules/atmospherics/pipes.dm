@@ -316,6 +316,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible/blue
 	color = PIPE_COLOR_BLUE
 
+/obj/machinery/atmospherics/pipe/simple/visible/water
+	name = "water pipe"
+	color = PIPE_COLOR_BLUE
+	maximum_pressure = 25*ONE_ATMOSPHERE
+	fatigue_pressure = 20*ONE_ATMOSPHERE
+	alert_pressure = 15*ONE_ATMOSPHERE
+	connect_types = CONNECT_TYPE_WATER
+
 /obj/machinery/atmospherics/pipe/simple/visible/fuel
 	name = "fuel pipe"
 	color = PIPE_COLOR_ORANGE
@@ -392,6 +400,13 @@
 
 /obj/machinery/atmospherics/pipe/simple/hidden/blue
 	color = PIPE_COLOR_BLUE
+/obj/machinery/atmospherics/pipe/simple/hidden/water
+	name = "water pipe"
+	color = PIPE_COLOR_BLUE
+	maximum_pressure = 25*ONE_ATMOSPHERE
+	fatigue_pressure = 20*ONE_ATMOSPHERE
+	alert_pressure = 15*ONE_ATMOSPHERE
+	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel
 	name = "fuel pipe"
@@ -475,6 +490,14 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/blue
 	color = PIPE_COLOR_BLUE
 
+/obj/machinery/atmospherics/pipe/manifold/visible/water
+	name = "water pipe manifold"
+	color = PIPE_COLOR_BLUE
+	maximum_pressure = 25*ONE_ATMOSPHERE
+	fatigue_pressure = 20*ONE_ATMOSPHERE
+	alert_pressure = 15*ONE_ATMOSPHERE
+	connect_types = CONNECT_TYPE_WATER
+
 /obj/machinery/atmospherics/pipe/manifold/visible/fuel
 	name = "fuel pipe manifold"
 	color = PIPE_COLOR_ORANGE
@@ -550,6 +573,14 @@
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/blue
 	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/manifold/hidden/water
+	name = "water pipe manifold"
+	color = PIPE_COLOR_BLUE
+	maximum_pressure = 25*ONE_ATMOSPHERE
+	fatigue_pressure = 20*ONE_ATMOSPHERE
+	alert_pressure = 15*ONE_ATMOSPHERE
+	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel
 	name = "fuel pipe manifold"
@@ -631,6 +662,14 @@
 /obj/machinery/atmospherics/pipe/manifold4w/visible/blue
 	color = PIPE_COLOR_BLUE
 
+/obj/machinery/atmospherics/pipe/manifold4w/visible/water
+	name = "water pipe manifold"
+	color = PIPE_COLOR_BLUE
+	maximum_pressure = 25*ONE_ATMOSPHERE
+	fatigue_pressure = 20*ONE_ATMOSPHERE
+	alert_pressure = 15*ONE_ATMOSPHERE
+	connect_types = CONNECT_TYPE_WATER
+
 /obj/machinery/atmospherics/pipe/manifold4w/visible/fuel
 	name = "4-way fuel pipe manifold"
 	color = PIPE_COLOR_ORANGE
@@ -674,6 +713,14 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/blue
 	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/water
+	name = "water pipe manifold"
+	color = PIPE_COLOR_BLUE
+	maximum_pressure = 25*ONE_ATMOSPHERE
+	fatigue_pressure = 20*ONE_ATMOSPHERE
+	alert_pressure = 15*ONE_ATMOSPHERE
+	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel
 	name = "4-way fuel pipe manifold"
@@ -753,7 +800,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal
 	name="Universal pipe adapter"
 	desc = "An adapter for regular, supply, scrubbers, and fuel pipes."
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_HE
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_HE|CONNECT_TYPE_WATER
 	icon_state = "map_universal"
 	build_icon_state = "universal"
 
@@ -771,7 +818,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal
 	name="Universal pipe adapter"
 	desc = "An adapter for regular, supply and scrubbers pipes."
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_HE
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_HE|CONNECT_TYPE_WATER
 	icon_state = "map_universal"
 	build_icon_state = "universal"
 

@@ -113,7 +113,7 @@
 	icon = 'icons/obj/atmospherics/pipes/junction.dmi'
 	icon_state = "11"
 	level = 2
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE|CONNECT_TYPE_FUEL
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 	build_icon_state = "junction"
 	rotate_class = PIPE_ROTATE_STANDARD
 

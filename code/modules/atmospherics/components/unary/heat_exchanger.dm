@@ -11,7 +11,7 @@
 	var/update_cycle
 	var/initial_volume = 200
 
-	connect_types = CONNECT_TYPE_REGULAR | CONNECT_TYPE_FUEL
+	connect_types = CONNECT_TYPE_REGULAR | CONNECT_TYPE_FUEL | CONNECT_TYPE_WATER
 	build_icon_state = "heunary"
 
 	frame_type = /obj/item/pipe

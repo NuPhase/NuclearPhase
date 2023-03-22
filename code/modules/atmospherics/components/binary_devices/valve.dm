@@ -11,6 +11,7 @@
 	var/forced_mass_flow = 0
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 120
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/binary/regulated_valve/on
 	icon_state = "map_on"
