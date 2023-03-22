@@ -255,6 +255,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/list/chilling_products
 	var/bypass_cooling_products_for_root_type
 
+	var/list/electrolysis_products
+	var/electrolysis_difficulty = 1
+
 	var/heating_point
 	var/heating_message = "begins to boil!"
 	var/heating_sound = 'sound/effects/bubbles.ogg'
