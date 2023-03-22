@@ -94,3 +94,66 @@
 		if (level==1 && isturf(T) && !T.is_plating())
 			return SPAN_WARNING("You must remove the plating first.")
 	return ..()
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive
+	var/wanted_temperature = T20C
+	var/heating = TRUE //whether this side should be cooled or heated
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/Process()
+	build_network()
+	if(!partner)
+		return 0
+
+	if(SSair.times_fired <= update_cycle)
+		return 0
+
+	update_cycle = SSair.times_fired
+	partner.update_cycle = SSair.times_fired
+
+	var/temperature_delta = wanted_temperature - air_contents.temperature
+	if(!heating)
+		if(temperature_delta > 0)
+			return
+	else
+		if(temperature_delta < 0)
+			return
+
+	var/air_heat_capacity = air_contents.heat_capacity()
+	var/other_air_heat_capacity = partner.air_contents.heat_capacity()
+	var/combined_heat_capacity = other_air_heat_capacity + air_heat_capacity
+
+	var/old_temperature = air_contents.temperature
+	var/other_old_temperature = partner.air_contents.temperature
+
+	if(combined_heat_capacity > 0)
+		var/combined_energy = partner.air_contents.temperature*other_air_heat_capacity + air_heat_capacity*air_contents.temperature
+
+		var/new_temperature = combined_energy/combined_heat_capacity
+		air_contents.temperature = new_temperature
+		partner.air_contents.temperature = new_temperature
+
+
+	if(abs(old_temperature-air_contents.temperature) > 1)
+		update_networks()
+
+	if(abs(other_old_temperature-partner.air_contents.temperature) > 1)
+		partner.update_networks()
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_tungsten
+	heating = FALSE
+	wanted_temperature = 3550 //we won't cool down further
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam
+	heating = TRUE
+	wanted_temperature = 590
+	initial_volume = 400
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_steam
+	heating = FALSE
+	wanted_temperature = 350
+	initial_volume = 400
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_cryo
+	heating = TRUE
+	wanted_temperature = 350
+	initial_volume = 400

@@ -307,10 +307,8 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "atC" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced/hydrogen,
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan,
+/turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "aul" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
@@ -964,7 +962,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "bhI" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/obj/machinery/atmospherics/pipe/manifold/visible/steam{
+	dir = 8
+	},
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "bhJ" = (
@@ -1087,11 +1087,14 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/reactor)
 "btn" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on{
-	dir = 1
+/obj/machinery/atmospherics/unary/outlet_injector{
+	icon_state = "map_injector";
+	dir = 1;
+	use_power = 1;
+	injecting = 1
 	},
 /turf/exterior/concrete,
-/area/surface)
+/area/avalon/shelter/atmos)
 "bty" = (
 /obj/effect/floor_decal/corner/beige/bordercorner{
 	dir = 4
@@ -2613,7 +2616,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "ddo" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
+	},
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "ddG" = (
@@ -2949,10 +2954,10 @@
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/expeditionpreparation)
 "dxZ" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 4
 	},
-/turf/simulated/floor/reinforced/hydrogen,
+/turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "dyJ" = (
 /obj/effect/floor_decal/corner/purple{
@@ -2986,10 +2991,11 @@
 /turf/simulated/open,
 /area/avalon/shelter/upperhall)
 "dzC" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/obj/machinery/meter{
+	uid = "F-M HEATEXCHANGER"
 	},
-/turf/simulated/floor/reinforced/hydrogen,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "dAb" = (
 /obj/structure/table/steel,
@@ -4561,10 +4567,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/science)
 "fly" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/visible/steam{
+	dir = 1
 	},
-/turf/simulated/floor/reinforced/hydrogen,
+/turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "flD" = (
 /obj/machinery/door/blast/regular{
@@ -6401,10 +6407,10 @@
 /turf/simulated/open,
 /area/avalon/shelter/engineering)
 "hrg" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 5
 	},
-/turf/simulated/floor/reinforced/hydrogen,
+/turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "hrD" = (
 /obj/machinery/light{
@@ -7499,8 +7505,10 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
 "iJb" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 8
+/obj/machinery/atmospherics/binary/pump/on{
+	dir = 4;
+	power_rating = 90000;
+	target_pressure = 15000
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
@@ -7847,10 +7855,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "jfJ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 10
-	},
-/turf/simulated/floor/reinforced/hydrogen,
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "jfO" = (
 /obj/machinery/atmospherics/pipe/zpipe/up,
@@ -9838,10 +9844,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "lrd" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactor{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 8
 	},
-/turf/simulated/floor/reinforced/hydrogen,
+/turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "lre" = (
 /obj/effect/fluid_mapped,
@@ -10076,9 +10082,7 @@
 /turf/simulated/open,
 /area/avalon/shelter/upperhall)
 "lHB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 6
-	},
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_cryo,
 /turf/simulated/floor/reinforced/hydrogen,
 /area/avalon/shelter/turbinehall)
 "lHW" = (
@@ -10366,9 +10370,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "lVG" = (
-/obj/machinery/atmospherics/pipe/cap/visible{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "lVJ" = (
@@ -11061,8 +11063,8 @@
 /turf/simulated/open,
 /area/avalon)
 "mSV" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 1
 	},
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
@@ -12432,7 +12434,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "ouz" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 4
+	},
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "ovh" = (
@@ -13174,7 +13178,7 @@
 /area/avalon/shelter/breakerroom)
 "puT" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 4
+	dir = 10
 	},
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
@@ -13309,10 +13313,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "pDq" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 5
+/obj/machinery/atmospherics/pipe/manifold/visible/steam{
+	dir = 4
 	},
-/turf/simulated/floor/reinforced/hydrogen,
+/turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "pDF" = (
 /obj/structure/cable{
@@ -14254,8 +14258,8 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "qHO" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 9
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_steam{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced/hydrogen,
 /area/avalon/shelter/turbinehall)
@@ -17351,7 +17355,8 @@
 "unV" = (
 /obj/machinery/atmospherics/binary/pump/on{
 	dir = 8;
-	power_rating = 90000
+	power_rating = 90000;
+	target_pressure = 15000
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -17550,12 +17555,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/breakerroom)
 "uzP" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 10
-	},
-/obj/machinery/meter{
-	uid = "F-M HEATEXCHANGER"
-	},
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_tungsten,
 /turf/simulated/floor/reinforced/hydrogen,
 /area/avalon/shelter/turbinehall)
 "uzS" = (
@@ -18053,9 +18053,6 @@
 /area/avalon/shelter/atmos)
 "vhY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "vis" = (
@@ -19605,8 +19602,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "xba" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 9
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced/hydrogen,
 /area/avalon/shelter/turbinehall)
@@ -19773,9 +19770,7 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
 "xmV" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow,
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
 "xof" = (
@@ -20380,13 +20375,11 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "xXR" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	external_pressure_bound = 15000;
-	external_pressure_bound_default = 15000
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on{
+	dir = 1
 	},
 /turf/exterior/concrete,
-/area/surface)
+/area/avalon/shelter/atmos)
 "xYa" = (
 /obj/structure/table/steel,
 /obj/machinery/button/windowtint{
@@ -148790,9 +148783,9 @@ wfB
 jMy
 qwZ
 oqw
-pDq
+qHO
 lHB
-ddo
+lrd
 lBn
 cMK
 cMK
@@ -148920,9 +148913,9 @@ dvY
 aIV
 qZJ
 mSV
-dzC
-dzC
-cMK
+qHO
+lHB
+atC
 jGr
 qjD
 qjD
@@ -149050,9 +149043,9 @@ cMK
 fZL
 egw
 xmV
-lrd
-lrd
-cMK
+qHO
+lHB
+atC
 bhJ
 lBn
 qjD
@@ -149179,10 +149172,10 @@ hBO
 cMK
 qjD
 qZJ
-cMK
-lrd
-lrd
-cMK
+mSV
+qHO
+lHB
+atC
 opj
 vbr
 lBn
@@ -149309,10 +149302,10 @@ hBO
 cMK
 qjD
 qZJ
-cMK
-dxZ
-dxZ
-cMK
+mSV
+qHO
+lHB
+atC
 xTT
 sKI
 rFt
@@ -149441,7 +149434,7 @@ vZv
 egw
 ouz
 qHO
-jfJ
+lHB
 ddo
 nvC
 unV
@@ -165571,7 +165564,7 @@ uxC
 cMK
 cMK
 puT
-cMK
+hrg
 moQ
 qjD
 cMK
@@ -165699,9 +165692,9 @@ aHw
 pct
 fIV
 bhI
-hrg
-fly
-cMK
+xba
+uzP
+jfJ
 moQ
 qjD
 cMK
@@ -165828,12 +165821,12 @@ vUH
 qjD
 qjD
 qdY
-cMK
-dzC
-dzC
-cMK
+fly
+xba
+uzP
+jfJ
 uhS
-cfU
+dzC
 uDI
 lSU
 lSU
@@ -165958,10 +165951,10 @@ xgd
 qjD
 qjD
 qjD
-cMK
-lrd
-atC
-cMK
+fly
+xba
+uzP
+jfJ
 lkd
 qjD
 cMK
@@ -166088,10 +166081,10 @@ pfz
 yal
 rtv
 qjD
-cMK
-dxZ
-dxZ
-cMK
+fly
+xba
+uzP
+jfJ
 aXt
 qjD
 cMK
@@ -166218,10 +166211,10 @@ pfz
 sVr
 hdz
 fIV
-bhI
+pDq
 xba
 uzP
-uDI
+dxZ
 lCH
 qjD
 cMK
@@ -200385,7 +200378,7 @@ iQv
 xYk
 xYk
 fCU
-elr
+xYk
 hMT
 aLF
 elr
@@ -200515,7 +200508,7 @@ thq
 iOH
 fvR
 utN
-utN
+fvR
 ukB
 wxT
 dZi
@@ -200645,7 +200638,7 @@ fvR
 utN
 nBJ
 euw
-utN
+fvR
 iSL
 chw
 dbJ
@@ -200775,7 +200768,7 @@ fvR
 utN
 nBJ
 oCz
-utN
+fvR
 cyQ
 xIK
 xIK
@@ -201032,10 +201025,10 @@ hBO
 nBJ
 fvR
 fvR
-lVG
-fvR
-fvR
 xGQ
+lVG
+lVG
+lVG
 iII
 fvR
 cbd
