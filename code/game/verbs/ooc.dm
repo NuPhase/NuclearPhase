@@ -1,8 +1,15 @@
+#define OOC_TIMEOUT_LIMIT 2 MINUTES
+/client/var/last_ooc = 0
+
 /client/verb/ooc(message = "" as text)
 	set name = "OOC"
 	set category = "OOC"
 
 	if(!message)
+		if(!isnewplayer(mob) && last_ooc < world.time)
+			if(alert("Are you sure you want to send an OOC message?", ,"Yes", "No") == "No")
+				return
+		last_ooc = world.time + OOC_TIMEOUT_LIMIT
 		message = input(mob, "", "ooc \"text\"") as text|null
 
 	sanitize_and_communicate(/decl/communication_channel/ooc, src, message)
