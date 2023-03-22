@@ -473,3 +473,13 @@ This function restores all organs.
 			EMP += limb.implants
 	for(var/atom/E in EMP)
 		E.emp_act(severity)
+
+/mob/living/carbon/human/handle_collision(atom/movable/collided_with, speed, target_bodypart = BP_CHEST)
+	if(collided_with.weight > weight)
+		apply_effect(3, WEAKEN) //we're falling regardless
+	else if(collided_with.weight > 20)
+		if(get_skill_value(SKILL_STRENGTH) < SKILL_BASIC) //you're a femboy, Jack!
+			apply_effect(3, WEAKEN)
+
+	var/blunt_damage = weight * speed * COLLISION_SEVERITY_MULTIPLIER
+	apply_damage(blunt_damage, BRUTE, target_bodypart)

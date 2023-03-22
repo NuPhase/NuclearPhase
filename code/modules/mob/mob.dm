@@ -598,6 +598,9 @@
 /mob/proc/can_stand_overridden()
 	return 0
 
+/mob/proc/handle_collision(atom/movable/collided_with, speed)
+	return
+
 //Updates lying and icons
 /mob/proc/UpdateLyingBuckledAndVerbStatus()
 	var/last_lying = lying

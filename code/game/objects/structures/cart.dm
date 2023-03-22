@@ -90,6 +90,13 @@
 	. = ..()
 	turn_wheels()
 
+/obj/structure/cart/Bump(atom/A)
+	. = ..()
+	if(istype(A, /mob/living/carbon/human))
+		visible_message(SPAN_DANGER("[src] collides with [A]!"))
+		var/mob/living/carbon/human/H = A
+		H.handle_collision(src, 1) //one meter per second for now
+
 /obj/structure/cart/proc/load(var/atom/movable/cargo)
 	if(ismob(cargo))
 		return FALSE
