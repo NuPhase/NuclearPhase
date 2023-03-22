@@ -1,4 +1,4 @@
-var/global/list/vehicle_entrypoints = list()
+var/global/list/interior_entrypoints = list()
 var/global/list/vehicles = list()
 
 /obj/multitile_vehicle
@@ -14,7 +14,7 @@ var/global/list/vehicles = list()
 	var/speed_y = 0
 	var/acceleration = 1 //pixels per input
 	var/uid
-	var/obj/effect/vehicle_entrypoint/entrypoint = null
+	var/obj/effect/interior_entrypoint/vehicle/entrypoint = null
 	var/interior_template = null
 	var/mob/living/carbon/human/controlling = null
 	var/active = 0
@@ -26,14 +26,14 @@ var/global/list/vehicles = list()
 		density = 1
 
 /obj/multitile_vehicle/Initialize()
+	. = ..()
 	spawn(0)
-		. = ..()
 		var/datum/map_template/templ = SSmapping.get_template(interior_template)
 		var/turf/place = templ.load_interior_level()
 
 		STOP_PROCESSING(SSobj, src)
 		global.vehicles += src
-		entrypoint = vehicle_entrypoints[uid][global.vehicles.Find(src)]
+		entrypoint = interior_entrypoints[uid][global.vehicles.Find(src)]
 		entrypoint.vehicle = src
 		if(!templ.pilot_seat_offset)
 			return
@@ -46,6 +46,14 @@ var/global/list/vehicles = list()
 	. = ..()
 	if(entrypoint)
 		user.forceMove(entrypoint.loc)
+
+/obj/multitile_vehicle/grab_attack(var/obj/item/grab/G)
+	var/mob/user = G.assailant
+	user.visible_message(SPAN_WARNING("[user] is trying to put [G.affecting] into [src]"))
+	if(!do_after(user, 5 SECONDS))
+		return
+	G.affecting.forceMove(entrypoint.loc)
+	G.current_grab.let_go(G)
 
 /obj/multitile_vehicle/aerial
 	dir = NORTH
@@ -97,27 +105,38 @@ var/global/list/vehicles = list()
 	speed_x *= drag_multiplier
 	speed_y *= drag_multiplier
 
-/obj/effect/vehicle_entrypoint
+/obj/effect/interior_entrypoint
 	var/uid
+
+/obj/effect/interior_entrypoint/New(loc, ...)
+	. = ..()
+	if(uid)
+		check_and_place_if_list_dosnt_have_entry(interior_entrypoints, uid)
+		interior_entrypoints[uid] += src
+
+/obj/effect/interior_entrypoint/Destroy()
+	if(uid)
+		interior_entrypoints[uid] -= src
+	. = ..()
+
+/obj/effect/interior_entrypoint/vehicle
 	var/obj/multitile_vehicle/vehicle = null
 
-/obj/effect/vehicle_entrypoint/attack_hand(mob/user)
+/obj/effect/interior_entrypoint/vehicle/attack_hand(mob/user)
 	. = ..()
 	if(vehicle)
 		user.forceMove(vehicle.loc)
 
-/obj/effect/vehicle_entrypoint/New(loc, ...)
-	. = ..()
-	if(uid)
-		check_and_place_if_list_dosnt_have_entry(vehicle_entrypoints, uid)
-		vehicle_entrypoints[uid] += src
+/obj/effect/interior_entrypoint/vehicle/grab_attack(var/obj/item/grab/G)
+	if(!vehicle)
+		return
 
-/obj/effect/vehicle_entrypoint/Destroy()
-	if(uid)
-		vehicle_entrypoints[uid] -= src
-	. = ..()
-
-
+	var/mob/user = G.assailant
+	user.visible_message(SPAN_WARNING("[user] is trying to eject [G.affecting] from [src]"))
+	if(!do_after(user, 5 SECONDS))
+		return
+	G.affecting.forceMove(vehicle.loc)
+	G.current_grab.let_go(G)
 
 /obj/structure/bed/chair/comfy/vehicle
 	name = "pilot seat"

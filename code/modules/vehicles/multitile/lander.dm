@@ -14,5 +14,8 @@
 	drag_multiplier = 0.95
 	interior_template = "Lander enterior"
 
-/obj/effect/vehicle_entrypoint/lander
+/obj/effect/interior_entrypoint/vehicle/lander
 	uid = "CTS"
+	icon = 'icons/obj/doors/doorint.dmi'
+	icon_state = "pdoor1"
+	pixel_y = -32

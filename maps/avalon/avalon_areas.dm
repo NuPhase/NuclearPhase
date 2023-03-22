@@ -225,6 +225,8 @@
 		blurb = "<span class='boldannounce'>[cold_blurb]</span>"
 	to_chat(L, blurb)*/
 
+/area/surface/tent
+
 /area/skyscraper
 	name = "Skyscraper"
 	requires_power = FALSE
