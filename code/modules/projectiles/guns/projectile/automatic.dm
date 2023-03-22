@@ -32,10 +32,9 @@
 		list(mode_name="full auto",      burst=1, fire_delay=0,    burst_delay=1,      one_hand_penalty=5,                 burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4), autofire_enabled=1)
 	)
 
-/obj/item/gun/projectile/automatic/smg/on_update_icon()
-	..()
+/obj/item/gun/projectile/automatic/smg/update_base_icon()
 	if(ammo_magazine)
-		overlays += image(icon, "[get_world_inventory_state()]mag-[round(ammo_magazine.stored_ammo.len,5)]")
+		add_overlay(image(icon, "[get_world_inventory_state()]mag-[round(ammo_magazine.stored_ammo.len,5)]"))
 
 /obj/item/gun/projectile/automatic/assault_rifle
 	name = "assault rifle"
