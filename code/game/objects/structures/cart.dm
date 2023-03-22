@@ -1,12 +1,13 @@
 /obj/structure/cart
-	name = "Cargo cart"
-	desc = "Brand-new cart for heavy things. you can see little logo of NT on the back side."
+	name = "cargo cart"
+	desc = "A simple cart for moving heavy stuff."
 	icon = 'icons/obj/cart.dmi'
 	icon_state = "cart"
 	layer = STRUCTURE_LAYER
 	density = FALSE
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_GARGANTUAN
 	pull_coefficient = 1
+	weight = 10
 	var/haswheels = FALSE
 	var/atom/movable/load = null
 
@@ -83,7 +84,7 @@
 	desc = initial(desc)
 	desc += "\nNow the wheels are [wheelstat]."
 	haswheels = !haswheels
-	pull_coefficient = get_pull_coef()
+	set_pull_coef()
 
 /obj/structure/cart/CtrlAltClick(mob/user)
 	. = ..()
@@ -92,8 +93,8 @@
 /obj/structure/cart/proc/load(var/atom/movable/cargo)
 	if(ismob(cargo))
 		return FALSE
-	if(!(istype(cargo,/obj/machinery) || istype(cargo,/obj/structure/closet) || istype(cargo,/obj/structure/largecrate) || istype(cargo,/obj/structure/ore_box)))
-		return FALSE
+	//if(!(istype(cargo,/obj/machinery) || istype(cargo,/obj/structure/closet) || istype(cargo,/obj/structure/largecrate) || istype(cargo,/obj/structure/ore_box)))
+	//	return FALSE
 
 	//if there are any items you don't want to be able to interact with, add them to this check
 	// ~no more shielded, emitter armed death trains
@@ -125,7 +126,7 @@
 			cargo.set_dir(turn(dir, 90))
 
 	if(load)
-		pull_coefficient = get_pull_coef()
+		weight = initial(weight) + load.weight
 		return TRUE
 	return FALSE
 
@@ -148,13 +149,8 @@
 	cargo.pixel_y = initial(cargo.pixel_y)
 	cargo.reset_plane_and_layer()
 
-/obj/structure/cart/proc/get_pull_coef()
-	var/obj/object_on_cart = load
-	if(istype(load, /datum/vehicle_dummy_load))
-		var/datum/vehicle_dummy_load/dummy = load
-		object_on_cart = dummy.actual_load
-
-	return (haswheels ? 0.3 : 1) + (object_on_cart ? (between(0, object_on_cart.w_class, ITEM_SIZE_GARGANTUAN)*0.1) : 0)
+/obj/structure/cart/proc/set_pull_coef()
+	pull_coefficient = (haswheels ? 0.2 : 1)
 
 /obj/structure/cart/proc/unload(var/mob/user, var/direction)
 	if(istype(load, /datum/vehicle_dummy_load))
@@ -200,8 +196,8 @@
 	load.pixel_y = initial(load.pixel_y)
 	load.reset_plane_and_layer()
 
-	pull_coefficient = get_pull_coef()
 	load = null
+	weight = initial(weight)
 
 	density = FALSE
 
@@ -211,4 +207,4 @@
 
 /datum/codex_entry/cargo_cart
 	associated_paths = list(/obj/structure/cart)
-	mechanics_text = "To change wheel state you need to press Alt+Ctrl+LMB."
+	mechanics_text = "Press Alt+Ctrl+LMB to deploy or fold its wheels."
