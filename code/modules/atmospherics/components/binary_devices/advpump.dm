@@ -78,15 +78,25 @@
 		if(REACTOR_PUMP_MODE_OFF)
 			spool_down()
 		if(REACTOR_PUMP_MODE_IDLE)
-			spool_up()
+			if(rpm == 0)
+				spool_up()
+		if(REACTOR_PUMP_MODE_MAX)
+			if(rpm > 5000)
+				ramp_power()
 	mode = new_mode
+
+/obj/machinery/atmospherics/binary/pump/adv/proc/ramp_power()
+	while(rpm < REACTOR_PUMP_RPM_SAFE)
+		rpm += rand(50, 100)
+		sleep(5)
 
 /obj/machinery/atmospherics/binary/pump/adv/proc/spool_up()
 	icon_state = "on"
 	use_power = POWER_USE_IDLE
 	soundloop = new(list(src), TRUE)
-	while(rpm < REACTOR_PUMP_RPM_SAFE)
-		rpm += rand(50, 100)
+	var/target_rpm = REACTOR_PUMP_RPM_SAFE * 0.5
+	while(rpm < target_rpm)
+		rpm += rand(25, 50)
 		sleep(5)
 
 /obj/machinery/atmospherics/binary/pump/adv/proc/spool_down()
