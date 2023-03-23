@@ -70,7 +70,8 @@
 		/obj/item/clothing/suit/armor/vest/heavy/hos,
 		/obj/item/clothing/under/head_of_security/jensen,
 		/obj/item/clothing/suit/armor/hos/jensen,
-		/obj/item/clothing/suit/armor/hos,
+		/obj/item/clothing/suit/armor/pcarrier/tactical,
+		/obj/item/clothing/head/helmet/tactical,
 		/obj/item/radio/off,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/stack/tape_roll/barricade_tape/police,
@@ -81,7 +82,7 @@
 		/obj/item/baton/loaded,
 		/obj/item/gun/projectile/pistol/military_service,
 		/obj/item/clothing/accessory/storage/holster/waist,
-		/obj/item/telebaton
+		/obj/item/flashlight/maglight
 	)
 
 /obj/structure/closet/secure_closet/warden
@@ -93,9 +94,9 @@
 	return list(
 		new/datum/atom_creator/weighted(list(/obj/item/storage/backpack/security, /obj/item/storage/backpack/satchel/sec)),
 		new/datum/atom_creator/simple(/obj/item/storage/backpack/dufflebag/sec, 50),
-		/obj/item/clothing/suit/armor/vest/heavy/warden,
+		/obj/item/clothing/suit/armor/pcarrier/tactical,
+		/obj/item/clothing/head/helmet/tactical,
 		/obj/item/clothing/under/warden,
-		/obj/item/clothing/suit/armor/warden,
 		/obj/item/clothing/head/warden,
 		/obj/item/radio/off,
 		/obj/item/clothing/glasses/sunglasses,
@@ -105,7 +106,8 @@
 		/obj/item/storage/belt/holster/security,
 		/obj/item/chems/spray/pepper,
 		/obj/item/baton/loaded,
-		/obj/item/gun/projectile/pistol/military_service
+		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/flashlight/maglight
 	)
 
 /obj/structure/closet/secure_closet/security
