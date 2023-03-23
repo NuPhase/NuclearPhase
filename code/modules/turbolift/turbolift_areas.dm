@@ -12,8 +12,6 @@
 
 /area/turbolift/avalon/main
 	name = "Main Shelter Elevator"
-	lift_floor_label = "Maintenance"
-	lift_floor_name = ""
 
 /area/turbolift/avalon/main/a1
 /area/turbolift/avalon/main/a2
