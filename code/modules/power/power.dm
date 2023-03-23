@@ -18,6 +18,7 @@
 	active_power_usage = 0
 	var/efficiency = 0.95
 	var/should_heat = FALSE //whether we should heat up surrounding air from resistance
+	var/list/mob/living/electrocuting = list()
 
 /obj/machinery/power/Initialize()
 	. = ..()
@@ -194,6 +195,26 @@
 			Node.disconnect_from_network() //if somehow we can't connect the machine to the new powernet, disconnect it from the old nonetheless
 
 	return net1
+
+/obj/machinery/power/proc/start_electrocution(mob/living/M)
+	if(M in electrocuting)
+		return
+	electrocuting += M
+	M.electrocuted_by = src
+	process_electrocution()
+
+/obj/machinery/power/proc/stop_electrocution(mob/living/M)
+	M.electrocuted_by = null
+	electrocuting -= M
+
+/obj/machinery/power/proc/process_electrocution()
+	if(!length(electrocuting))
+		return
+	for(var/mob/living/carbon/C in electrocuting)
+		if(Adjacent(C))
+			electrocute_mob(C, powernet, src)
+		else
+			stop_electrocution(C)
 
 //Determines how strong could be shock, deals damage to mob, uses power.
 //M is a mob who touched wire/whatever

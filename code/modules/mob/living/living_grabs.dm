@@ -44,6 +44,10 @@
 	if(ispath(grab_tag, /decl/grab) && can_grab(target, zone_sel?.selecting, defer_hand = defer_hand) && target.can_be_grabbed(src, zone_sel?.selecting, defer_hand))
 		grab = new /obj/item/grab(src, target, grab_tag, defer_hand)
 
+	var/mob/living/electrocution_victim = (isliving(target) && target)
+	if(electrocution_victim.electrocuted_by)
+		electrocute_mob(src, electrocution_victim.electrocuted_by.powernet, electrocution_victim.electrocuted_by, 0.5)
+
 	if(QDELETED(grab))
 		if(original_target != src && ismob(original_target))
 			to_chat(original_target, SPAN_WARNING("\The [src] tries to grab you, but fails!"))

@@ -41,6 +41,10 @@
 	var/busy = 0
 	on = 0
 
+/obj/machinery/power/generator/transformer/switchable/Process()
+	process_electrocution()
+	. = ..()
+
 /obj/machinery/power/generator/transformer/switchable/Initialize()
 	. = ..()
 	if(on)
@@ -75,6 +79,12 @@
 			update_locked = 0
 		if(on)
 			START_PROCESSING_MACHINE(src, null)
+			var/electrocution_chance = 10
+			//if(user.fire_stacks < 0)
+			//	electrocution_chance += 10
+			electrocution_chance = user.skill_fail_chance(SKILL_ELECTRICAL, electrocution_chance, SKILL_BASIC)
+			if(prob(electrocution_chance))
+				start_electrocution(user)
 		else
 			STOP_PROCESSING_MACHINE(src, null)
 	busy = 0

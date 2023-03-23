@@ -42,7 +42,7 @@
 		to_chat(H, "<span class=bigdanger>Everything around you suddenly lights up, like a million lights in a dark living room. It starts to grow hot, you see flashes in your eyes, it can't be good...</span>")
 	adjust_solar_output(5)
 	for(var/z in using_map.station_levels)
-		SSradiation.z_radiate(locate(1, 1, z), 480, FALSE)
+		SSradiation.z_radiate(locate(1, 1, z), 480, TRUE)
 
 
 /datum/event/solar_storm/tick()

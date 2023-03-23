@@ -52,6 +52,7 @@
 	name = "'Serenity' survival shelter"
 	base_turf = /turf/simulated/floor
 	ambience = list('sound/ambience/ominous1.ogg', 'sound/ambience/ominous2.ogg', 'sound/ambience/ominous3.ogg', 'sound/ambience/rumble1.ogg', 'sound/ambience/rumble2.ogg', 'sound/ambience/rumble3.ogg', 'sound/ambience/rumble4.ogg')
+	area_flags = AREA_FLAG_RAD_SHIELDED
 
 /area/avalon/has_gravity()
 	return TRUE

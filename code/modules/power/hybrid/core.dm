@@ -1,6 +1,6 @@
 #define FISSION_RATE 0.15
 #define NEUTRON_FLUX_RATE 0.05
-#define NEUTRONS_PER_RAD 0.3
+#define RADS_PER_NEUTRON 3
 #define REACTOR_POWER_MODIFIER 10
 
 /obj/machinery/power/hybrid_reactor
@@ -34,7 +34,7 @@
 	var/datum/gas_mixture/GM = A.return_air()
 	process_fission(GM)
 	process_fusion(GM)
-	var/total_radiation = neutron_moles / NEUTRONS_PER_RAD
+	var/total_radiation = neutron_moles * RADS_PER_NEUTRON
 	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)
 
