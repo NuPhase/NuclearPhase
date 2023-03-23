@@ -132,6 +132,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/liquid_molar_mass
 	var/solid_molar_mass
 
+	//j/mol*k
 	var/gas_specific_heat = 20
 	var/liquid_specific_heat = 40
 	var/solid_specific_heat = 30

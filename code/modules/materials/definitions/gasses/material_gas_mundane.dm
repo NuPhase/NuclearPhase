@@ -205,10 +205,12 @@
 	uid = "gas_methane"
 	gas_symbol = "CH4"
 	gas_symbol_html = "CH<sub>4</sub>"
-	gas_specific_heat = 30
+	gas_specific_heat = 35.8
+	liquid_specific_heat = 52.9
 	molar_mass = 0.016
 	latent_heat = 510
-	boiling_point = -162 CELSIUS
+	boiling_point = 111
+	melting_point = 90
 	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
 	fire_color = "#0044ff"
@@ -341,7 +343,8 @@
 	gas_specific_heat = 100
 	molar_mass = 0.002
 	latent_heat = 454
-	boiling_point = -252 CELSIUS
+	boiling_point = 20.2
+	melting_point = 13.9
 	liquid_density = 70.516
 	gas_flags = XGM_GAS_FUEL
 	burn_product = /decl/material/liquid/water

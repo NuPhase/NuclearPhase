@@ -98,6 +98,12 @@
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive
 	var/wanted_temperature = T20C
 	var/heating = TRUE //whether this side should be cooled or heated
+	var/engaged = TRUE //whether it should be active at all
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/Initialize()
+	. = ..()
+	if(!engaged)
+		STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/Process()
 	build_network()
@@ -157,3 +163,10 @@
 	heating = TRUE
 	wanted_temperature = 350
 	initial_volume = 400
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_atmos
+	heating = FALSE
+	wanted_temperature = T20C
+
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_cryo
+	engaged = FALSE

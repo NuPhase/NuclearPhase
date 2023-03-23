@@ -526,6 +526,22 @@ update_flag
 	air_contents.temperature = 15
 	queue_icon_update()
 
+/obj/machinery/portable_atmospherics/canister/liquid_methane
+	name = "\improper Canister \[LCH\]"
+	icon_state = "purple"
+	canister_color = "purple"
+	can_label = 0
+
+/obj/machinery/portable_atmospherics/canister/liquid_methane/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/methane, MolesForVolume(/decl/material/gas/methane))
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(4*ONE_ATMOSPHERE))
+	air_contents.temperature = 95
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/liquid_methane/central
+	volume = 40000
+
 /obj/machinery/portable_atmospherics/canister/methyl_bromide
 	name = "\improper Canister \[CH3Br\]"
 	icon_state = "black"
