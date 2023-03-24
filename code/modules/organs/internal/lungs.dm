@@ -20,7 +20,7 @@
 	var/min_breath_pressure
 	var/last_int_pressure
 	var/last_ext_pressure
-	var/max_pressure_diff = 90
+	var/max_pressure_diff = 240 //temporary, over a span of 1s
 
 	var/ruptured = FALSE
 	var/obj/item/chest_tube/chest_tube = null
@@ -133,7 +133,7 @@
 	if(ruptured)
 		return
 	var/lung_rupture_prob = BP_IS_PROSTHETIC(src) ? prob(30) : prob(60)
-	if(amount > 5 && lung_rupture_prob)
+	if(amount > 10 && lung_rupture_prob)
 		rupture()
 
 /obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced)
