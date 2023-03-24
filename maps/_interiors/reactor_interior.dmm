@@ -185,7 +185,8 @@
 "lJ" = (
 /obj/machinery/atmospherics/binary/regulated_valve{
 	dir = 4;
-	uid = "REACTOR-F-V-OUT"
+	uid = "REACTOR-F-V-OUT";
+	forced_mass_flow = 500
 	},
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -518,7 +519,9 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/reactor,
+/obj/machinery/portable_atmospherics/canister/reactor{
+	volume = 4000
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
 "Mb" = (

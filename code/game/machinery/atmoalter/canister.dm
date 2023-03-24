@@ -540,7 +540,7 @@ update_flag
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane/central
-	volume = 40000
+	volume = 240000 //10x6x4m
 
 /obj/machinery/portable_atmospherics/canister/methyl_bromide
 	name = "\improper Canister \[CH3Br\]"

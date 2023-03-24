@@ -1,7 +1,7 @@
 #define MAX_REACTOR_VESSEL_PRESSURE 500000 //kPa
-#define ALARM_REACTOR_TUNGSTEN_TEMP 4600
-#define MAX_REACTOR_TUNGSTEN_TEMP 4500
-#define OPERATIONAL_REACTOR_TUNGSTEN_TEMP 4100
+#define ALARM_REACTOR_TUNGSTEN_TEMP 3700
+#define MAX_REACTOR_TUNGSTEN_TEMP 3800
+#define OPERATIONAL_REACTOR_TUNGSTEN_TEMP 3550
 
 #define OPTIMAL_REACTOR_STEAM_TEMP 700
 #define MAX_REACTOR_STEAM_TEMP 800
@@ -166,7 +166,7 @@
 	else
 		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 
-	if(get_meter_temperature("T-M-TURB IN") < 530)
+	if(get_meter_temperature("T-M-TURB IN") < 550)
 		current_valve = reactor_valves["TURB 1V-IN"]
 		current_valve.set_openage(0)
 		current_valve = reactor_valves["TURB 2V-IN"]
