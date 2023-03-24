@@ -38,6 +38,16 @@
 /obj/machinery/reactor_button/rswitch/preheat
 	name = "F-PREHEAT"
 
+/obj/machinery/reactor_button/rswitch/preheat/do_action(mob/user)
+	. = ..()
+	var/obj/machinery/atmospherics/unary/heater/reactor/heater = reactor_components["heater"]
+	if(state == 1)
+		heater.use_power = POWER_USE_IDLE
+		heater.power_rating = heater.max_power_rating
+	else
+		heater.use_power = POWER_USE_OFF
+		heater.power_rating = 0
+
 /obj/machinery/reactor_button/regvalve/reactorfvin
 	name = "REACTOR-F-V-IN"
 	id = "REACTOR-F-V-IN"

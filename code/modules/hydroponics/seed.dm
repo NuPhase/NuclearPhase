@@ -267,7 +267,15 @@
 			origin_turf.visible_message(SPAN_DANGER("\The [thrown] splatters against [target]!"))
 		splatter(origin_turf,thrown)
 
-/datum/seed/proc/handle_environment(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only, var/obj/machinery/portable_atmospherics/hydroponics/tray)
+/datum/seed/proc/handle_environment
+
+
+
+
+
+
+
+(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only, var/obj/machinery/portable_atmospherics/hydroponics/tray)
 
 	var/health_change = 0
 	// Handle gas consumption.

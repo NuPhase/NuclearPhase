@@ -123,3 +123,13 @@
 	. = ..()
 	if(panel_open)
 		to_chat(user, "The maintenance hatch is open.")
+
+/obj/machinery/atmospherics/unary/heater/reactor
+	max_power_rating = 500000
+	set_temperature = 3600
+
+/obj/machinery/atmospherics/unary/heater/reactor/Initialize()
+	. = ..()
+	reactor_components[uid] = src
+	//power_rating = max_power_rating
+	//use_power = POWER_USE_IDLE

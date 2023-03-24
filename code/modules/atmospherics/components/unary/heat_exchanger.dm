@@ -157,12 +157,12 @@
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_steam
 	heating = FALSE
 	wanted_temperature = 350
-	initial_volume = 400
+	initial_volume = 600
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_cryo
 	heating = TRUE
 	wanted_temperature = 350
-	initial_volume = 400
+	initial_volume = 600
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_atmos
 	heating = FALSE

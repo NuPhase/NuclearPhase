@@ -126,8 +126,20 @@
 	surface = 4000 //taken from engineering papers average
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior
-	surface = 0.001 //TODO: CALCULATE THIS
 	maximum_pressure = 70000 //TEMPORARY
 	fatigue_pressure = 60000
 	alert_pressure = 50000
-	volume = 5
+	volume = 50
+	var/target_temperature = 3600
+
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior/Process() //we imitate the behaviour of extremely complex heat exchanger systems
+	if(!parent)
+		..()
+	else
+		var/datum/gas_mixture/pipe_air = return_air()
+		var/datum/gas_mixture/environment = loc.return_air()
+		if(environment.temperature > target_temperature) //we consoom
+			var/temperature_delta = target_temperature - pipe_air.temperature
+			var/required_energy = pipe_air.heat_capacity() * temperature_delta
+			environment.add_thermal_energy(!required_energy)
+			pipe_air.add_thermal_energy(required_energy)

@@ -100,7 +100,7 @@
 	canister_type = /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride
 
 /obj/machinery/portable_atmospherics/canister/reactor
-	name = "\improper Canister \[W2\]"
+	name = "\improper Canister \[W\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
@@ -436,8 +436,8 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/reactor/Initialize()
 	. = ..()
 	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForVolume(/decl/material/solid/metal/tungsten))
-	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE))
-	air_contents.temperature = 4150
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE*5))
+	air_contents.temperature = 3600
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()

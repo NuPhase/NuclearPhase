@@ -37,7 +37,9 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "ca" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/red,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 5
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "cA" = (
@@ -334,7 +336,8 @@
 /area/avalon/shelter/reactor)
 "xh" = (
 /obj/machinery/atmospherics/binary/pump/adv/on{
-	flow_capacity = 50
+	flow_capacity = 500;
+	power_rating = 70000
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
@@ -500,12 +503,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
-"Lh" = (
-/obj/machinery/atmospherics/unary/heater{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/reactor)
 "Lz" = (
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/reactor)
@@ -654,8 +651,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
 "VZ" = (
-/obj/machinery/atmospherics/unary/heater{
-	dir = 4
+/obj/machinery/atmospherics/unary/heater/reactor{
+	dir = 4;
+	uid = "heater"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
@@ -1669,8 +1667,8 @@ aT
 aT
 PL
 VZ
-Lh
-Lh
+sw
+sw
 PL
 PL
 ZE
@@ -1698,7 +1696,7 @@ PL
 PL
 PL
 Vk
-NG
+hu
 ca
 qI
 sw
