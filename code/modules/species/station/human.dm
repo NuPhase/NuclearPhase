@@ -19,6 +19,7 @@
 		/decl/pronouns/male
 	)
 
+	max_pressure_diff = 240
 	exertion_effect_chance = 10
 	exertion_hydration_scale = 1
 	exertion_charge_scale = 1
