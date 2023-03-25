@@ -153,7 +153,7 @@
 	origin_tech = "{'materials':2,'biotech':2}"
 	slot_flags = SLOT_LOWER_BODY | SLOT_EARS
 	w_class = ITEM_SIZE_TINY
-	var/list/starts_with = list(/decl/material/liquid/adrenaline = 5)
+	var/list/starts_with = list(/decl/material/liquid/adrenaline = 4, /decl/material/liquid/oxygenated_saline = 1)
 	var/band_color = COLOR_CYAN
 
 /obj/item/chems/hypospray/autoinjector/Initialize()
@@ -181,12 +181,12 @@
 /obj/item/chems/hypospray/autoinjector/detox
 	name = "autoinjector (antitox)"
 	band_color = COLOR_GREEN
-	starts_with = list(/decl/material/liquid/antitoxins = 5)
+	starts_with = list(/decl/material/liquid/antitoxins/charcoal = 5)
 
 /obj/item/chems/hypospray/autoinjector/pain
 	name = "autoinjector (painkiller)"
 	band_color = COLOR_PURPLE
-	starts_with = list(/decl/material/liquid/painkillers = 5)
+	starts_with = list(/decl/material/liquid/opium/morphine = 2)
 
 /obj/item/chems/hypospray/autoinjector/adminordrazine
 	name = "autoinjector (panacea)"
@@ -196,7 +196,7 @@
 /obj/item/chems/hypospray/autoinjector/antirad
 	name = "autoinjector (anti-rad)"
 	band_color = COLOR_AMBER
-	starts_with = list(/decl/material/liquid/antirads = 5)
+	starts_with = list(/decl/material/liquid/potassium_iodide = 3, /decl/material/liquid/pentenate_calcium_trisodium = 2)
 
 /obj/item/chems/hypospray/autoinjector/hallucinogenics
 	name = "autoinjector"

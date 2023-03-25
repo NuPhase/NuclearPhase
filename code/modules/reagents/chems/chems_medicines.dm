@@ -256,3 +256,12 @@
 /decl/material/liquid/oxy_meds/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	M.add_chemical_effect(CE_OXYGENATED, 1)
 	holder.remove_reagent(/decl/material/gas/carbon_monoxide, 2 * removed)
+
+/decl/material/liquid/oxygenated_saline //poor simulation of direct oxygen injection. Sorry.
+	name = "oxygenated saline"
+	lore_text = "An unstable compound with a lot of stray oxygen in it."
+	uid = "chem_oxygenated_saline"
+	metabolism = 0.1
+
+/decl/material/liquid/oxygenated_saline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
+	H.oxygen_amount += 10

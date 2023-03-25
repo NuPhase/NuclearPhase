@@ -109,7 +109,9 @@
 		/obj/item/chems/glass/bottle/nitroglycerin,
 		/obj/item/chems/glass/bottle/potassium_iodide,
 		/obj/item/chems/glass/bottle/potassium_iodide,
-		/obj/item/chems/glass/bottle/pentenate_calcium_trisodium
+		/obj/item/chems/glass/bottle/pentenate_calcium_trisodium,
+		/obj/item/chems/glass/bottle/ampoule/propofol,
+		/obj/item/chems/glass/bottle/ampoule/propofol
 	)
 
 /obj/machinery/smartfridge/secure/medbay/stocked/Initialize()

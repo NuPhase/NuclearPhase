@@ -31,7 +31,7 @@ var/global/list/event_last_fired = list()
 	possibleEvents[/datum/event/brand_intelligence] = 10 + 10 * active_with_role[ASSIGNMENT_JANITOR]
 
 	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role[ASSIGNMENT_ENGINEER] + 25 * active_with_role[ASSIGNMENT_SECURITY]
-	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role[ASSIGNMENT_JANITOR]
+	//possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role[ASSIGNMENT_JANITOR]
 
 	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role[ASSIGNMENT_COMPUTER] + active_with_role[ASSIGNMENT_SCIENTIST] * 25
 	possibleEvents[/datum/event/ionstorm] = active_with_role[ASSIGNMENT_COMPUTER] * 25 + active_with_role[ASSIGNMENT_ROBOT] * 25 + active_with_role[ASSIGNMENT_ENGINEER] * 10 + active_with_role[ASSIGNMENT_SCIENTIST] * 5

@@ -173,6 +173,12 @@
 	desc = "A small ampoule."
 	volume = 15
 	autolabel = FALSE
+	icon = 'icons/obj/items/chem/vial.dmi'
+	center_of_mass = @"{'x':15,'y':8}"
+	w_class = ITEM_SIZE_TINY
+	amount_per_transfer_from_this = 5
+	possible_transfer_amounts = @"[5,10,15,30]"
+	material_force_multiplier = 0.1
 
 /obj/item/chems/glass/bottle/ampoule/Initialize()
 	. = ..()
@@ -207,3 +213,7 @@
 
 /obj/item/chems/glass/bottle/ampoule/heroin/dirty
 	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine/dirty = 5)
+
+/obj/item/chems/glass/bottle/ampoule/propofol
+	name = "propofol ampoule"
+	initial_reagents = list(/decl/material/liquid/propofol = 15)

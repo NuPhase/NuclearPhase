@@ -132,9 +132,18 @@
 		. = "damaged "
 	if(status & ORGAN_DEAD)
 		if(can_recover())
-			. = "decaying [.]"
+			. = "failing [.]"
 		else
-			. = "necrotic [.]"
+			. = "irreversibly damaged "
+	switch(germ_level)
+		if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO)
+			. = "inflamed [.]"
+		if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE)
+			. = "infected [.]"
+		if(INFECTION_LEVEL_THREE to INFECTION_LEVEL_FOUR)
+			. = "badly infected [.]"
+		if(INFECTION_LEVEL_FOUR to INFINITY)
+			. = "decaying [.]"
 	if(BP_IS_CRYSTAL(src))
 		. = "crystalline "
 	else if(BP_IS_PROSTHETIC(src))

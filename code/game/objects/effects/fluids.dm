@@ -42,12 +42,12 @@
 			temp_adj = (1-thermal_protection) * ((temperature - C.bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 	C.bodytemperature += between(-100, temp_adj*reagents.total_volume/FLUID_DEEP, 500)
 
-	if(reagents.total_volume > FLUID_SHALLOW) //do not slip in deep fluid
-		return
+	//if(reagents.total_volume > FLUID_SHALLOW) //do not slip in deep fluid
+	//	return
 	// skillcheck for slipping
-	if(!C.should_slip(100) || C.move_intent == /decl/move_intent/walk)
-		return
-	C.slip("the floor", 6)
+	//if(!C.should_slip(100) || C.move_intent == /decl/move_intent/walk)
+	//	return
+	//C.slip("the floor", 6)
 
 /obj/effect/fluid/airlock_crush()
 	qdel(src)

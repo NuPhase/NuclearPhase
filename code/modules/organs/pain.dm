@@ -18,7 +18,7 @@
 	set waitfor = FALSE
 	if(!message || stat || !can_feel_pain() || has_chemical_effect(CE_PAINKILLER, power))
 		return
-	power -= GET_CHEMICAL_EFFECT(src, CE_PAINKILLER)/2	//Take the edge off.
+	power -= GET_CHEMICAL_EFFECT(src, CE_PAINKILLER)	//Take the edge off.
 	var/decl/bodytype/bodytype = get_bodytype()
 	if(bodytype)
 		power *= bodytype.pain_mod
