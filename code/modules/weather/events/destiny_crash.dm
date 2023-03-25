@@ -24,7 +24,7 @@
 	//INSERT SUBTLE ATMOSPHERE GLOW
 	spawn(9 SECONDS)
 	for(var/mob/living/carbon/human/H in surface_mobs)
-		to_chat(H, "<span class=bigdanger>The sky roars as a gigantic ship with glowing-red hull falls through the clouds above you, you can notice large colored 'UN' logos and heat damage all over it. The engines on its underside blaze fire, it's heading for landing!</span>")
+		to_chat(H, "<span class=bigdanger>The sky roars as a gigantic ship with glowing-red hull falls through the clouds right above you, you can notice large colored 'UN' logos and heat damage all over it. The engines on its underside blaze fire, it's heading for landing!</span>")
 	//INSERT ENGINE SOUNDS HERE
 	//INSERT PARTICLE EFFECTS HERE
 	spawn(9 SECONDS)
