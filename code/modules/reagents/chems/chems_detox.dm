@@ -55,3 +55,21 @@
 	uid = "chem_charcoal"
 	metabolism = 0.5
 	overdose = 60
+
+/decl/material/liquid/potassium_iodide
+	name = "potassium iodide"
+	taste_description = "metal"
+	color = "#322235"
+	uid = "chem_potassium_iodide"
+	metabolism = 0.05
+
+/decl/material/liquid/pentenate_calcium_trisodium
+	name = "pentenate calcium trisodium"
+	taste_description = "acid"
+	color = "#cecece"
+	uid = "chem_pentenate_calcium_trisodium"
+	metabolism = 0.1
+
+/decl/material/liquid/pentenate_calcium_trisodium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	. = ..()
+	H.bloodstr.remove_reagent(/decl/material/solid/metal/plutonium, 1)

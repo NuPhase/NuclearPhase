@@ -107,6 +107,9 @@
 		/obj/item/chems/glass/bottle/ethanol,
 		/obj/item/chems/glass/bottle/nitroglycerin,
 		/obj/item/chems/glass/bottle/nitroglycerin,
+		/obj/item/chems/glass/bottle/potassium_iodide,
+		/obj/item/chems/glass/bottle/potassium_iodide,
+		/obj/item/chems/glass/bottle/pentenate_calcium_trisodium
 	)
 
 /obj/machinery/smartfridge/secure/medbay/stocked/Initialize()

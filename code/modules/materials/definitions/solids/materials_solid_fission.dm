@@ -60,7 +60,7 @@
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
-	color = "#b5c5a2"
+	color = "#c9beb2"
 	value = 3
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 
@@ -75,6 +75,11 @@
 	fission_heat = 60000
 	fission_energy = 5000
 
+/decl/material/solid/metal/plutonium/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
+	. = ..()
+	var/volume = REAGENT_VOLUME(holder, type)
+	M.apply_damage(2 * volume, IRRADIATE)
+
 // Catch-all for the nasty byproducts of fission reactions.
 /decl/material/solid/metal/fission_byproduct
 	name = "nuclear waste"
@@ -86,7 +91,7 @@
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
-	color = "#98be30"
+	color = "#c5ba1c"
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_NOWHERE // Don't spawn this in plants.
 
@@ -95,3 +100,11 @@
 		/decl/material/solid/lithium = 0.5
 	)
 	neutron_absorption = 4
+
+/decl/material/solid/metal/fission_byproduct/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
+	. = ..()
+	var/volume = REAGENT_VOLUME(holder, type)
+	if(!M.bloodstr.has_reagent(/decl/material/liquid/potassium_iodide, 0.1))
+		M.apply_damage(1.5 * volume, IRRADIATE)
+	else
+		M.apply_damage(0.1 * volume, IRRADIATE)

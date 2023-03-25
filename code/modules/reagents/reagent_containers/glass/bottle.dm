@@ -161,6 +161,13 @@
 /obj/item/chems/glass/bottle/dronedarone
 	initial_reagents = list(/decl/material/liquid/dronedarone = 60)
 
+/obj/item/chems/glass/bottle/potassium_iodide
+	initial_reagents = list(/decl/material/liquid/potassium_iodide = 60)
+
+/obj/item/chems/glass/bottle/pentenate_calcium_trisodium
+	initial_reagents = list(/decl/material/liquid/pentenate_calcium_trisodium = 30)
+	volume = 30
+
 /obj/item/chems/glass/bottle/ampoule
 	name = "ampoule"
 	desc = "A small ampoule."
