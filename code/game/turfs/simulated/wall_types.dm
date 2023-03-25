@@ -40,6 +40,19 @@
 			paint_color = adjust_brightness(paint_color, bleach_factor)
 	update_icon()
 
+/turf/simulated/wall/r_wall/glowinghull
+	name = "glowing hull"
+	desc = "Groaning chunks of hot metal dislodged from the hull of an unlucky ship. What a terrible disaster..."
+	color = MOLTEN_METAL_COLOR
+	material = /decl/material/solid/metal/stainlesssteel
+	reinf_material = /decl/material/solid/metal/stainlesssteel
+
+/turf/simulated/wall/r_wall/glowinghull/Initialize(ml, materialtype, rmaterialtype)
+	. = ..()
+	color = MOLTEN_METAL_COLOR
+	animate_filter("glow", list(color = MOLTEN_METAL_COLOR, time = 2 SECONDS, easing = LINEAR_EASING))
+	set_light(3, MOLTEN_METAL_COLOR)
+
 /turf/simulated/wall/titanium
 	color = COLOR_SILVER
 	material = /decl/material/solid/metal/titanium
