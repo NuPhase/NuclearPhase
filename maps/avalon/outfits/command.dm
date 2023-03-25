@@ -6,6 +6,7 @@
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/modular_computer/pda/heads/captain
 	backpack_contents = list(/obj/item/storage/box/ids = 1)
+	l_pocket = /obj/item/radio
 
 /decl/hierarchy/outfit/job/captain/Initialize()
 	. = ..()
@@ -33,3 +34,4 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/pda/heads/hop
 	backpack_contents = list(/obj/item/storage/box/ids = 1)
+	l_pocket = /obj/item/radio

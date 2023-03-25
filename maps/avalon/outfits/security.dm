@@ -5,6 +5,7 @@
 	gloves = /obj/item/clothing/gloves/thick
 	shoes = /obj/item/clothing/shoes/jackboots
 	backpack_contents = list(/obj/item/handcuffs = 1)
+	l_pocket = /obj/item/radio
 
 /decl/hierarchy/outfit/job/security/Initialize()
 	. = ..()
@@ -20,7 +21,7 @@
 /decl/hierarchy/outfit/job/security/warden
 	name = "Job - Warden"
 	uniform = /obj/item/clothing/under/tactical
-	l_pocket = /obj/item/flash
+	r_pocket = /obj/item/flash
 	id_type = /obj/item/card/id/security
 	pda_type = /obj/item/modular_computer/pda
 
@@ -29,7 +30,7 @@
 	head = /obj/item/clothing/head/det
 	uniform = /obj/item/clothing/under/det
 	suit = /obj/item/clothing/suit/storage/det_trench
-	l_pocket = /obj/item/flame/lighter/zippo
+	r_pocket = /obj/item/flame/lighter/zippo
 	shoes = /obj/item/clothing/shoes/dress
 	hands = list(/obj/item/storage/briefcase/crimekit)
 	id_type = /obj/item/card/id/security
@@ -52,7 +53,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots/tactical
 	head = /obj/item/clothing/head/helmet/tactical
 	suit = /obj/item/clothing/suit/armor/pcarrier/tactical
-	l_pocket = /obj/item/flash
+	backpack_contents = list(/obj/item/flash=1)
 	r_pocket = /obj/item/handcuffs
 	id_type = /obj/item/card/id/security
 	pda_type = /obj/item/modular_computer/pda
