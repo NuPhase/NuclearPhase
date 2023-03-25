@@ -30,7 +30,7 @@
 	wall_flags = 0
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
-	color = "#007a00"
+	color = "#dae90d"
 	weight = MAT_VALUE_VERY_HEAVY
 	stack_origin_tech = "{'materials':5}"
 	reflectiveness = MAT_VALUE_MATTE
@@ -64,7 +64,7 @@
 	lore_text = "Radium is an alkaline earth metal. It is extremely radioactive."
 	mechanics_text = "Radium can be used as a neutron source in fission reactors."
 	taste_description = "the color blue, and regret"
-	color = "#c7c7c7"
+	color = "#dbabd9"
 	value = 0.5
 	radioactivity = 18
 
