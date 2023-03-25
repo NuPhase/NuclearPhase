@@ -32,3 +32,4 @@
 	)
 	weight = 70
 	windbreak_coefficient = 0.6
+	minimum_leak_damage = 10

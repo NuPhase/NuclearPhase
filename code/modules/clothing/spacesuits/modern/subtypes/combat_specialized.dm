@@ -39,3 +39,4 @@
 	max_heat_protection_temperature = COLD_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	weight = 170
 	windbreak_coefficient = 1.3
+	minimum_leak_damage = 25
