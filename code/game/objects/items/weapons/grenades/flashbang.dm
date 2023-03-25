@@ -10,7 +10,7 @@
 	var/list/victims = list()
 	var/list/objs = list()
 	var/turf/T = get_turf(src)
-	get_mobs_and_objs_in_view_fast(T, 7, victims, objs)
+	get_mobs_and_objs_in_view_fast(T, 5, victims, objs)
 	for(var/mob/living/carbon/M in victims)
 		bang(T, M)
 
