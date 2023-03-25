@@ -15,9 +15,9 @@
 
 /area/turbolift/avalon/main/a1
 /area/turbolift/avalon/main/a2
-/area/turbolift/avalon/main/a3
 	lift_floor_label = "Sector F"
 	lift_floor_name = "Factory, Mining"
+/area/turbolift/avalon/main/a3
 /area/turbolift/avalon/main/a4
 /area/turbolift/avalon/main/a5
 /area/turbolift/avalon/main/a6
