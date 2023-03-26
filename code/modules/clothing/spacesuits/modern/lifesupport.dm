@@ -74,9 +74,18 @@
 
 /obj/item/storage/backpack/lifesupportpack/proc/do_support()
 	var/power_draw = 0
+	if(atmosphere_uptake)
+		var/turf/simulated/T = get_turf(src)
+		owner.internal_atmosphere.equalize(T.return_air())
 	if(!battery.charge)
 		LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 5)
+		if(status_warning_cooldown == FALSE && prob(5))
+			status_warning_cooldown = TRUE
+			to_chat(owner.wearer, "<span class='danger'>\The [src] dictates: 'SUIT POWER SOURCE FAILURE.'.</span>")
+			spawn(STATUS_MESSAGE_COOLDOWN)
+				status_warning_cooldown = FALSE
 		return
+	LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 1)
 
 	if(atmosphere_filter && atmosphere_filter.clean_gasmix(owner.internal_atmosphere))
 		power_draw += atmosphere_filter.power_consumption
@@ -88,10 +97,7 @@
 			spawn(STATUS_MESSAGE_COOLDOWN)
 				status_warning_cooldown = FALSE
 
-	if(atmosphere_uptake)
-		var/turf/simulated/T = get_turf(src)
-		owner.internal_atmosphere.equalize(T.return_air())
-	else
+	if(!atmosphere_uptake)
 		var/pressure_delta = target_pressure - owner.internal_atmosphere.return_pressure()
 		var/transfer_moles = calculate_transfer_moles(oxygen_tank.air_contents, owner.internal_atmosphere, pressure_delta)
 		power_draw += pump_gas(src, oxygen_tank.air_contents, owner.internal_atmosphere, transfer_moles)

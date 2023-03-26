@@ -23,7 +23,6 @@ var/global/obj/abstract/landmark/heighttag/HHH
 
 /datum/weather_event/destiny_crash/start()
 	..()
-	var/obj/abstract/weather_system/weather = using_map.weather_system
 	for(var/area/A in surface_areas)
 		A.do_ambience = FALSE
 	for(var/mob/living/carbon/human/H in surface_mobs)
