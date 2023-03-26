@@ -152,14 +152,18 @@
 /obj/structure/grille/proc/cut_grille()
 	playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 	if(destroyed)
+		parts_drop(1)
 		qdel(src)
 	else
 		set_density(0)
-		if(material)
-			material.create_object(get_turf(src), 1, parts_type)
+		parts_drop(1)
 		destroyed = TRUE
-		parts_amount = 1
 		update_icon()
+
+/obj/structure/grille/proc/parts_drop(var/parts_to_drop)
+	if(material)
+		material.create_object(get_turf(src), parts_to_drop, parts_type)
+	parts_amount -= parts_to_drop
 
 /obj/structure/grille/attackby(obj/item/W, mob/user)
 	if(IS_WIRECUTTER(W))
