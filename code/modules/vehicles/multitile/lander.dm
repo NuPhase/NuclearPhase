@@ -13,6 +13,7 @@
 	acceleration = 0.3
 	drag_multiplier = 0.95
 	interior_template = "Lander enterior"
+	ignition_switch_offset = list("x"=8, "y"=1)
 
 /obj/effect/interior_entrypoint/vehicle/lander
 	uid = "CTS"

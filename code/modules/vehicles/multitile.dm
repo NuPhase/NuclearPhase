@@ -1,6 +1,89 @@
 var/global/list/interior_entrypoints = list()
 var/global/list/vehicles = list()
 
+/obj/item/ignition_key
+	name = "key"
+	desc = "key from something..."
+	icon = 'icons/obj/items/key.dmi'
+	icon_state = "keys"
+	w_class = ITEM_SIZE_TINY
+	var/parent
+	var/insert_sound = 'sound/items/key.ogg'
+
+/obj/ignition_switch
+	name = "ignition"
+	anchored = 1
+	icon = 'icons/obj/power.dmi'
+	icon_state = "light0-flat"
+	layer = ABOVE_WINDOW_LAYER
+	var/obj/multitile_vehicle/aerial/vehicle
+	var/delay = 2 SECONDS
+	var/state = FALSE
+	var/action_sounds = list(
+	'sound/machines/button1.ogg',
+	'sound/machines/button2.ogg',
+	'sound/machines/button3.ogg',
+	'sound/machines/button4.ogg'
+	)
+	var/ignition_sound = 'sound/items/ignition.ogg'
+	var/obj/item/ignition_key/key
+
+/obj/ignition_switch/New(loc, ...)
+	. = ..()
+	key = new(null)
+	key.parent = src
+
+/obj/ignition_switch/verb/eject_key()
+	set name = "Eject ignition key"
+	set category = "Object"
+	set src in range(1)
+
+	if(!key)
+		to_chat(usr, SPAN_WARNING("There is no key!"))
+		return
+
+	if(vehicle.active)
+		to_chat(usr, SPAN_WARNING("You must turn off the vehicle before eject a key!"))
+		return
+
+	if(isliving(usr))
+		var/mob/living/M = usr
+		M.put_in_hands(key)
+		key = null
+
+/obj/ignition_switch/attackby(obj/item/O, mob/user)
+	. = ..()
+	if(istype(O, /obj/item/ignition_key))
+		var/obj/item/ignition_key/K = O
+		var/mob/living/M = user
+		if(K.parent != src)
+			to_chat(user, SPAN_WARNING("This key doesnt fit..."))
+			return
+		if(do_after(user, 5))
+			playsound(loc, K.insert_sound, 100, 1)
+			M.drop_from_inventory(K)
+			K.forceMove(null)
+			key = K
+
+/obj/ignition_switch/attack_hand(user)
+	. = ..()
+	if(!key)
+		to_chat(user, SPAN_WARNING("You need a key to inginte the motor!"))
+		return
+	if(!state)
+		playsound(loc, ignition_sound, 50, 3)
+	if(do_after(user, delay))
+		state = !state
+		do_action(user)
+		if(action_sounds)
+			playsound(loc, pick(action_sounds), 50, 1)
+
+/obj/ignition_switch/proc/do_action(mob/user)
+	if(state)
+		vehicle.liftoff()
+	else
+		vehicle.land()
+
 /obj/multitile_vehicle
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
@@ -17,7 +100,10 @@ var/global/list/vehicles = list()
 	var/obj/effect/interior_entrypoint/vehicle/entrypoint = null
 	var/interior_template = null
 	var/mob/living/carbon/human/controlling = null
-	var/active = 0
+	var/active = FALSE
+	var/movingZ = FALSE
+	var/obj/ignition_switch/ignition
+	var/ignition_switch_offset
 
 /obj/multitile_vehicle/proc/set_bound_box()
 	if(active)
@@ -42,6 +128,9 @@ var/global/list/vehicles = list()
 			if(pilotseat)
 				pilotseat.vehicle = src
 
+		if(ignition_switch_offset)
+			ignition = new(locate(place.x-templ.width+ignition_switch_offset["x"], place.y-templ.height+ignition_switch_offset["y"], place.z))
+			ignition.vehicle = src
 /obj/multitile_vehicle/attack_hand(mob/user)
 	. = ..()
 	if(entrypoint)
@@ -209,6 +298,34 @@ var/global/list/vehicles = list()
 		if(NORTHEAST)
 			vehicle.speed_x += vehicle.acceleration
 			vehicle.speed_y += vehicle.acceleration
+		if(UP)
+			if(vehicle.movingZ)
+				to_chat(mob, SPAN_WARNING("You cant move that fast!"))
+				return
+			vehicle.movingZ = TRUE
+			vehicle.visible_message(SPAN_WARNING("[vehicle] prepares to move upwards!"))
+			src.visible_message(SPAN_WARNING("[vehicle] prepares to move upwards!"))
+			var/time = rand(1 SECOND, 5 SECONDS)
+			spawn(time)
+				var/turf/T = get_turf(vehicle.loc)
+				var/turf/target = get_step(GetAbove(T), dir)
+				if(T.CanZPass(vehicle, UP) && target.Enter(vehicle))
+					vehicle.forceMove(target)
+				vehicle.movingZ = FALSE
+		if(DOWN)
+			if(vehicle.movingZ)
+				to_chat(mob, SPAN_WARNING("You cant move that fast!"))
+				return
+			vehicle.movingZ = TRUE
+			vehicle.visible_message(SPAN_WARNING("[vehicle] prepares to move downwards!"))
+			src.visible_message(SPAN_WARNING("[vehicle] prepares to move downwards!"))
+			var/time = rand(1 SECOND, 5 SECONDS)
+			spawn(time)
+				var/turf/T = get_turf(vehicle.loc)
+				var/turf/target = get_step(GetBelow(T), dir)
+				if(T.CanZPass(vehicle, DOWN) && target.Enter(vehicle))
+					vehicle.forceMove(target)
+				vehicle.movingZ = FALSE
 
 /obj/Cross(O) // fuck that shit im out
 	return TRUE
