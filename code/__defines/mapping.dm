@@ -35,4 +35,4 @@ if(other_init) { \
 #define MAP_TEMPLATE_CATEGORY_SPACE     "space_template"
 #define MAP_TEMPLATE_CATEGORY_AWAYSITE  "awaysite_template"
 #define MAP_TEMPLATE_CATEGORY_INTERIORS  "interior_template"
-
+#define MAP_TEMPLATE_CATEGORY_SURFACE   "surface_things"

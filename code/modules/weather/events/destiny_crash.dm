@@ -1,3 +1,22 @@
+var/global/obj/abstract/landmark/heighttag/HHH
+
+/obj/abstract/landmark/heighttag
+	name = "height_tag"
+
+/obj/abstract/landmark/heighttag/Initialize()
+	. = ..()
+	HHH = src
+
+/datum/map_template/destiny
+	name = "Destiny surface"
+	width = 127
+	height = 50
+	mappaths = list("maps/overmap_locs/crashed_destiny.dmm")
+	template_categories = list(MAP_TEMPLATE_CATEGORY_SURFACE)
+
+/datum/map_template/destiny/preload()
+	return TRUE
+
 /datum/weather_event/destiny_crash
 	auto_trigger = TRUE
 	override_all = TRUE
@@ -40,5 +59,8 @@
 		H.playsound_local(H.loc, 'sound/effects/explosionfar.ogg', 50, 0)
 	for(var/area/surface/A in surface_areas)
 		A.do_ambience = TRUE
-	//INSERT DEBRIS GENERATION HERE
+
+	var/datum/map_template/templ = SSmapping.get_template("Destiny surface")
+	templ.load(locate(1, 1, HHH.z))
+
 	end()
