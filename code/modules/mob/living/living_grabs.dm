@@ -45,7 +45,7 @@
 		grab = new /obj/item/grab(src, target, grab_tag, defer_hand)
 
 	var/mob/living/electrocution_victim = (isliving(target) && target)
-	if(electrocution_victim.electrocuted_by)
+	if(electrocution_victim && electrocution_victim.electrocuted_by)
 		electrocute_mob(src, electrocution_victim.electrocuted_by.powernet, electrocution_victim.electrocuted_by, 0.5)
 
 	if(QDELETED(grab))

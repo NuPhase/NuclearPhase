@@ -39,10 +39,17 @@
 	var/RCon_tag = "NO_TAG"
 	var/update_locked = 0
 	var/busy = 0
+	var/max_temperature = 368
 	on = 0
 
 /obj/machinery/power/generator/transformer/switchable/Process()
 	process_electrocution()
+
+	if(on)
+		var/datum/gas_mixture/environment = loc.return_air()
+		if(environment.temperature > max_temperature)
+			trip()
+
 	. = ..()
 
 /obj/machinery/power/generator/transformer/switchable/Initialize()
@@ -71,6 +78,7 @@
 	user.visible_message(SPAN_NOTICE("\The [user] starts switching \the [src]!"))
 	if(do_after(user, 50,src))
 		on = !on
+		playsound(loc, 'sound/machines/transformerswitch.ogg', 50, 1)
 		user.visible_message(
 			SPAN_NOTICE("\The [user] [on ? "enabled" : "disabled"] \the [src]!"),\
 			SPAN_NOTICE("You [on ? "enabled" : "disabled"] \the [src]!"))
@@ -80,15 +88,26 @@
 		if(on)
 			START_PROCESSING_MACHINE(src, null)
 			var/electrocution_chance = 10
-			//if(user.fire_stacks < 0)
-			//	electrocution_chance += 10
-			electrocution_chance = user.skill_fail_chance(SKILL_ELECTRICAL, electrocution_chance, SKILL_BASIC)
+			var/mob/living/carbon/human/H = user
+			if(H.fire_stacks < 0)
+				electrocution_chance += 20
+			electrocution_chance = user.skill_fail_chance(SKILL_ELECTRICAL, electrocution_chance, SKILL_EXPERT, 5)
 			if(prob(electrocution_chance))
 				start_electrocution(user)
 		else
 			STOP_PROCESSING_MACHINE(src, null)
 	busy = 0
 	return TRUE
+
+/obj/machinery/power/generator/transformer/switchable/proc/trip()
+	on = FALSE
+	update_locked = 1
+	spawn(50)
+		update_locked = 0
+	STOP_PROCESSING_MACHINE(src, null)
+	spawn(rand(1, 50))
+		playsound(loc, 'sound/machines/power_down2.ogg', 50, 1)
+		spark_at(src, amount = 7, cardinal_only = FALSE)
 
 /obj/machinery/power/generator/transformer/switchable/on
 	on = 1
