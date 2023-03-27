@@ -57,6 +57,7 @@
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/environment = T.return_air()
 		environment.add_thermal_energy(POWER2HEAT(heat_draw))
+		powernet.losses += heat_draw
 		return powernet.draw_power(amount)
 	return 0
 

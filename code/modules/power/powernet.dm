@@ -23,6 +23,8 @@
 	var/voltage = 0
 	var/newvoltage = 0
 
+	var/losses = 0
+	var/last_losses = 0
 	var/ldemand = 0
 	var/demand = 0 // W
 	var/lavailable = 0 //...the current available power in the powernet
@@ -76,6 +78,7 @@
 	for(var/obj/machinery/power/generator/transformer/transf in nodes)
 		if(transf.available() > transf.connected.available())
 			transf.powernet.ldemand += transf.connected.powernet.ldemand
+			transf.powernet.ldemand += transf.connected.powernet.last_losses
 
 	if(sorted.len > 1)
 		sorted = sortAssoc(sorted)
@@ -171,6 +174,7 @@
 		var/datum/gas_mixture/environment = T.return_air()
 		var/used = draw_power(POWERNET_HEAT(src, C.resistance) / coef) * cables.len
 		environment.add_thermal_energy(POWER2HEAT(used))
+		losses += used
 
 	handle_generators()
 
@@ -190,6 +194,8 @@
 	demand = 0
 	lavailable = available
 	available = 0
+	last_losses = losses
+	losses = 0
 
 /datum/powernet/proc/get_percent_load(var/smes_only = 0)
 	if(smes_only)
@@ -203,17 +209,14 @@
 		return between(0, (lavailable / load()) * 100, 100)
 
 /datum/powernet/proc/get_electrocute_damage()
-	switch(POWERNET_AMPERAGE(src))
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000)
-			return min(rand(10,20),rand(10,20))
+	var/amperage = POWERNET_AMPERAGE(src)
+	switch(amperage)
+		if(10000 to INFINITY)
+			return amperage * 0.001
+		if(1000 to 10000)
+			return amperage * 0.005
+		if(1 to 1000)
+			return amperage * 0.01
 		else
 			return 0
 
