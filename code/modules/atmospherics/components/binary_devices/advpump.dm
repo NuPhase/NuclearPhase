@@ -58,12 +58,6 @@
 	icon_state = "off"
 	flow_capacity = 300 //kgs
 	power_rating = 210000 //molten metals take a lot of energy to move
-	pixel_x = -32
-	pixel_y = -32
-	//bound_x = -32
-	//bound_y = -32
-	//bound_width = 96
-	//bound_height = 64
 
 /obj/machinery/atmospherics/binary/pump/adv/on_update_icon()
 	if(stat & NOPOWER)

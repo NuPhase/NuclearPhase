@@ -124,6 +124,16 @@
 		if(temperature_delta < 0)
 			return
 
+	var/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/adaptive_partner = partner
+	if(adaptive_partner.engaged)
+		temperature_delta = adaptive_partner.wanted_temperature - adaptive_partner.air_contents.temperature
+		if(!adaptive_partner.heating)
+			if(temperature_delta > 0)
+				return
+		else
+			if(temperature_delta < 0)
+				return
+
 	var/air_heat_capacity = air_contents.heat_capacity()
 	var/other_air_heat_capacity = partner.air_contents.heat_capacity()
 	var/combined_heat_capacity = other_air_heat_capacity + air_heat_capacity
