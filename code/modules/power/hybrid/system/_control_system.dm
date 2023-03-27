@@ -8,7 +8,7 @@
 #define OPTIMAL_TURBINE_MASS_FLOW 500
 
 /datum/reactor_control_system
-	var/name = "Reactor Control System"
+	var/name = "'Velocity' Control System"
 	var/mode = REACTOR_CONTROL_MODE_MANUAL
 	var/semiautocontrol_available = TRUE
 	var/autocontrol_available = FALSE
@@ -127,21 +127,7 @@
 		do_message("VAPOR IN FEEDWATER LOOP", 2)
 
 /datum/reactor_control_system/proc/moderate_reactor_loop()
-	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
-
-	current_valve = reactor_valves["REACTOR-F-V-IN"]
-	if(!current_valve.manual)
-		if(get_meter_temperature("REACTOR-M CHAMBER") > MAX_REACTOR_TUNGSTEN_TEMP)
-			current_valve.adjust_openage(-1)
-		else
-			current_valve.adjust_openage(1)
-
-	current_valve = reactor_valves["REACTOR-F-V-OUT"]
-	if(!current_valve.manual)
-		if(get_meter_temperature("REACTOR-M CHAMBER") > OPERATIONAL_REACTOR_TUNGSTEN_TEMP)
-			current_valve.adjust_openage(1)
-		else
-			current_valve.adjust_openage(-1)
+	return
 
 /datum/reactor_control_system/proc/moderate_turbine_loop()
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve

@@ -130,7 +130,7 @@
 	fatigue_pressure = 60000
 	alert_pressure = 50000
 	volume = 50
-	var/target_temperature = 3600
+	var/target_temperature = 3900
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/reactorinterior/Process() //we imitate the behaviour of extremely complex heat exchanger systems
 	if(!parent)

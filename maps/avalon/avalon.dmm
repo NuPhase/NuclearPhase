@@ -147,14 +147,15 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "akf" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 5
+/obj/machinery/door/blast/regular/open{
+	name = "Observation Shutters";
+	gl_uid = 1532;
+	id_tag = "reactormonitoringblastshield";
+	uid = "reactormonitoringblastshield"
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/reactormonitoring)
+/obj/structure/window/reinforced/full,
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "ako" = (
 /obj/structure/bed,
 /obj/structure/curtain/bed,
@@ -308,25 +309,14 @@
 /turf/exterior/wall,
 /area/surface)
 "atf" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 5
-	},
-/turf/simulated/open,
+/turf/simulated/floor/glass,
 /area/avalon/shelter/reactor)
 "atj" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 6
 	},
-/obj/machinery/button/blast_door{
-	pixel_y = 32;
-	gl_uid = 1532;
-	id_tag = "reactormonitoringblastshield";
-	uid = "reactormonitoringblastshield";
-	name = "emergency lockdown";
-	pixel_x = -4
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
+/turf/simulated/floor/plating,
+/area/space)
 "aty" = (
 /obj/effect/floor_decal/corner/white/border,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -504,13 +494,8 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/factory)
 "aDH" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 6
-	},
-/obj/structure/bed/chair/office/comfy/yellow{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
+/obj/machinery/door/airlock/security,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "aDV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam,
@@ -1169,9 +1154,13 @@
 /turf/simulated/floor/grass,
 /area/avalon/shelter/science)
 "bta" = (
-/obj/structure/railing/mapped,
-/turf/simulated/floor/plating,
-/area/avalon/shelter/reactor)
+/obj/machinery/door/airlock/double/glass/engineering{
+	id_tag = "controlroomdoorbolts";
+	uid = "controlroomdoorbolts";
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "btn" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	icon_state = "map_injector";
@@ -1345,11 +1334,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "bBY" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
+/obj/structure/bed/sofa/l/black{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/machinery/rotating_alarm/reactor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/reactormonitoring)
 "bCg" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -1696,9 +1688,46 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "bWZ" = (
-/obj/structure/closet/radiation,
-/obj/machinery/light/small{
-	dir = 4
+/obj/structure/reactor_table{
+	pixel_y = 6
+	},
+/obj/machinery/reactor_button/rswitch/valve/pump1v1{
+	pixel_x = -10;
+	pixel_y = 12;
+	layer = 3.062
+	},
+/obj/machinery/reactor_button/rswitch/valve/pump2v1{
+	pixel_x = -3;
+	pixel_y = 12;
+	layer = 3.062
+	},
+/obj/machinery/reactor_button/rswitch/valve/pump1v2{
+	pixel_x = -10;
+	pixel_y = 7
+	},
+/obj/machinery/reactor_button/rswitch/valve/pump2v2{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/machinery/reactor_button/pump/fcp1{
+	pixel_x = -10;
+	pixel_y = -2;
+	layer = 3.061
+	},
+/obj/machinery/reactor_button/pump/fcp2{
+	pixel_x = -3;
+	pixel_y = -2;
+	layer = 3.061
+	},
+/obj/effect/floor_decal/corner/beige/border,
+/obj/machinery/reactor_display/group/reactorloop{
+	pixel_x = 18;
+	pixel_y = 2;
+	layer = 2.23
+	},
+/obj/machinery/reactor_button/regvalve/reactorfvin{
+	pixel_x = 11;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -2540,34 +2569,12 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "cQd" = (
-/obj/structure/reactor_table{
-	pixel_y = 6
+/obj/structure/closet/firecloset,
+/obj/structure/sign/warning/radioactive{
+	pixel_y = 32
 	},
-/obj/machinery/reactor_button/presvalve/fuel{
-	pixel_y = -3;
-	pixel_x = -4
-	},
-/obj/machinery/reactor_button/presvalve/moderator{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/effect/floor_decal/corner/beige/border,
-/obj/item/paper/sticky{
-	pixel_y = 10;
-	pixel_x = -13;
-	name = "INOP note";
-	info = "Guys, I still haven't figured out these shitty neutron mode switching circuits. Please don't use them for the time being."
-	},
-/obj/machinery/reactor_monitor/warnings{
-	pixel_x = 16;
-	pixel_y = 10;
-	layer = 2.221
-	},
-/obj/item/paper/sticky{
-	pixel_y = -6;
-	pixel_x = -8;
-	name = "INOP note";
-	info = "Fuel is regulated manually inside the reactor superstructure, sorry. It haven't worked for some time."
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -2686,9 +2693,11 @@
 /area/avalon/shelter/atmos)
 "cVY" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/dark/monotile,
+/obj/structure/cable,
+/obj/machinery/power/breakerbox/activated,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactormonitoring)
 "cWa" = (
 /obj/structure/cable{
@@ -3004,13 +3013,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "dqE" = (
-/obj/effect/floor_decal/corner/beige/three_quarters{
-	dir = 8
+/obj/structure/railing/mapped{
+	dir = 4
 	},
-/obj/machinery/papershredder{
-	pixel_y = 14
-	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/open,
 /area/avalon/shelter/reactormonitoring)
 "dqU" = (
 /obj/effect/floor_decal/corner/yellow{
@@ -3036,12 +3042,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "dtC" = (
-/obj/structure/lattice,
-/obj/structure/cable/heavy{
-	icon_state = "4-8"
+/obj/structure/cable{
+	icon_state = "0-2"
 	},
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
+/obj/machinery/power/generator/port_gen/liquid/diesel,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/reactormonitoring)
 "dul" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3222,15 +3228,26 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "dDr" = (
-/obj/effect/floor_decal/steeldecal/steel_decals_central2{
-	dir = 4
+/obj/structure/table/steel_reinforced,
+/obj/machinery/reactor_button/presvalve/fuel{
+	pixel_y = -3;
+	pixel_x = -4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
+/obj/machinery/reactor_button/presvalve/moderator{
+	pixel_x = 3;
+	pixel_y = -3
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/item/paper/sticky{
+	pixel_y = -6;
+	pixel_x = -8;
+	name = "INOP note";
+	info = "Fuel is regulated manually inside the reactor superstructure, sorry. It haven't worked for some time."
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "dDB" = (
 /obj/structure/table/woodentable/walnut,
 /obj/effect/floor_decal/corner/lightgrey/mono,
@@ -3291,8 +3308,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/breakerroom)
 "dEH" = (
-/obj/machinery/reactor_server,
-/turf/simulated/floor/tiled/techfloor/grid,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
 /area/avalon/shelter/comms)
 "dEI" = (
 /turf/simulated/floor/tiled/dark,
@@ -3776,7 +3795,8 @@
 /area/avalon/shelter/engineering)
 "egu" = (
 /obj/machinery/atmospherics/binary/regulated_valve{
-	uid = "T-FEEDWATER V-DRAIN"
+	uid = "T-FEEDWATER V-DRAIN";
+	portvolume = 50
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -3909,14 +3929,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "emv" = (
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 6
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "emN" = (
 /obj/structure/railing/mapped,
 /turf/simulated/open,
@@ -4041,9 +4058,14 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "erC" = (
-/obj/machinery/atmospherics/pipe/zpipe/up,
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
+/obj/machinery/reactor_control_node,
+/obj/item/radio/announcer,
+/obj/machinery/door/window/brigdoor/southright,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/reactormonitoring)
 "erN" = (
 /obj/machinery/light/small/red{
 	dir = 1
@@ -4304,11 +4326,29 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
 "eIt" = (
-/obj/machinery/portable_atmospherics/powered/pump/filled,
-/obj/machinery/rotating_alarm/reactor{
-	dir = 4
+/obj/structure/table/steel_reinforced,
+/obj/machinery/reactor_button/pump/feedmakeup{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 3
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/machinery/reactor_button/regvalve/feeddrain{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/machinery/reactor_button/rswitch/valve/feedmakeup{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/machinery/reactor_button/regvalve/heatexchangervin{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/machinery/reactor_button/presvalve/tprescontrol{
+	pixel_x = 1;
+	pixel_y = 18
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "eIY" = (
 /obj/effect/floor_decal/borderfloorblack/corner{
@@ -4423,7 +4463,11 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "ePP" = (
-/obj/machinery/light/small{
+/obj/machinery/rotating_alarm/reactor{
+	dir = 4
+	},
+/obj/structure/closet/reactordocuments,
+/obj/effect/floor_decal/corner/yellow/border{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -4675,13 +4719,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "fgN" = (
-/obj/machinery/reactor_server,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.21
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/comms)
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/wall,
+/area/avalon/shelter/messhall)
 "fhh" = (
 /obj/structure/table/steel,
 /obj/random/trash,
@@ -4712,9 +4752,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "fio" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/recharger{
-	pixel_y = 2
+/obj/machinery/papershredder{
+	pixel_y = 14;
+	density = 0
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -4757,10 +4797,22 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "fkh" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 8
+/obj/structure/reactor_table{
+	pixel_y = 6
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/effect/floor_decal/corner/beige/border,
+/obj/item/paper/sticky{
+	pixel_y = 10;
+	pixel_x = -13;
+	name = "INOP note";
+	info = "Guys, I still haven't figured out these shitty neutron mode switching circuits. Please don't use them for the time being."
+	},
+/obj/machinery/reactor_monitor/warnings{
+	pixel_x = 16;
+	pixel_y = 10;
+	layer = 2.221
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "fko" = (
 /obj/structure/sign/warning/high_voltage{
@@ -5042,12 +5094,15 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig/medbay)
 "fAA" = (
-/obj/machinery/power/generator/smes/buildable/max_cap_in_out,
-/obj/structure/cable/heavy{
-	icon_state = "0-8"
+/obj/structure/table/steel_reinforced,
+/obj/machinery/reactor_monitor/general{
+	pixel_y = 11
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "fAG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
@@ -6510,17 +6565,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "hhp" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
-	},
-/obj/structure/cable/heavy{
-	icon_state = "0-2"
-	},
-/obj/structure/cable/heavy{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/breakerbox/activated,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/simple/visible/red,
+/turf/simulated/floor/plating,
 /area/avalon/shelter/comms)
 "hhx" = (
 /obj/machinery/door/airlock/external/glass/bolted,
@@ -6571,11 +6617,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "hjw" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_monitor{
-	dir = 1;
-	pixel_y = 10
-	},
+/obj/effect/floor_decal/corner/yellow/bordercorner,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "hjA" = (
@@ -6585,19 +6627,50 @@
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/reactor)
 "hln" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/paper_bin{
-	pixel_x = -11;
-	pixel_y = 3
+/obj/structure/bed/sofa/l/black,
+/obj/machinery/button/blast_door{
+	pixel_y = 32;
+	gl_uid = 1532;
+	id_tag = "reactormonitoringblastshield";
+	uid = "reactormonitoringblastshield";
+	name = "emergency lockdown";
+	pixel_x = -5
 	},
-/obj/machinery/reactor_button/rswitch/lighting/superstructure,
-/obj/machinery/rotating_alarm/reactor,
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "hlp" = (
-/obj/structure/window/reinforced,
-/obj/structure/closet/reactordocuments,
-/turf/simulated/floor/tiled/dark,
+/obj/structure/table/steel_reinforced,
+/obj/machinery/reactor_button/rswitch/valve/pump4v1{
+	pixel_y = 6;
+	pixel_x = -4;
+	layer = 3.062
+	},
+/obj/machinery/reactor_button/rswitch/valve/pump3v1{
+	pixel_x = -4;
+	pixel_y = -1;
+	layer = 3.062
+	},
+/obj/machinery/reactor_button/pump/tcp1{
+	dir = 4;
+	pixel_x = 2
+	},
+/obj/machinery/reactor_button/pump/tcp2{
+	dir = 4;
+	pixel_y = 7;
+	pixel_x = 2
+	},
+/obj/machinery/reactor_button/rswitch/valve/pump4v2{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/machinery/reactor_button/rswitch/valve/pump3v2{
+	pixel_x = 7;
+	pixel_y = -1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "hlu" = (
 /turf/simulated/floor/tiled/white,
@@ -6650,14 +6723,10 @@
 /area/avalon/shelter/factory)
 "hnR" = (
 /obj/structure/cable{
-	icon_state = "0-4"
+	icon_state = "4-8"
 	},
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/table/steel_reinforced,
-/obj/item/storage/toolbox/electrical,
-/turf/simulated/floor/tiled/dark/monotile,
+/obj/machinery/door/airlock/hatch,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactormonitoring)
 "hoa" = (
 /obj/machinery/door/airlock/hatch,
@@ -6915,9 +6984,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/factory)
 "hEL" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_monitor/general{
-	pixel_y = 14
+/obj/machinery/camera/network/engineering{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -7598,13 +7666,9 @@
 /area/avalon/shelter/atmos)
 "iuM" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
+	dir = 9
 	},
-/obj/structure/cable/heavy{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/generator/port_gen/liquid/diesel,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/avalon/shelter/comms)
 "ivi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
@@ -7626,11 +7690,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/medbay)
 "ivV" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 5
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
+/obj/structure/flora/pottedplant/fern,
+/obj/effect/floor_decal/corner/beige/three_quarters{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
@@ -7678,7 +7740,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "izL" = (
-/obj/structure/bed/chair/office/comfy/yellow,
+/obj/machinery/light/spot{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "iAb" = (
@@ -7709,9 +7773,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/upperhall)
 "iBD" = (
-/obj/machinery/floodlight,
-/obj/machinery/rotating_alarm/reactor{
-	dir = 8
+/obj/machinery/space_heater,
+/obj/effect/floor_decal/corner/beige{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
@@ -7801,7 +7865,15 @@
 /area/avalon/shelter/breakerroom)
 "iGT" = (
 /obj/structure/cable{
-	icon_state = "2-8"
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/hyper{
+	dir = 1;
+	pixel_y = 21
+	},
+/obj/machinery/disposal/buildable,
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -7924,9 +7996,12 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "iLD" = (
-/obj/effect/floor_decal/steeldecal/steel_decals6,
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "iMd" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -8026,10 +8101,43 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig)
 "iRy" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 10
+/obj/structure/reactor_table{
+	pixel_y = 6
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/machinery/reactor_button/scram{
+	pixel_x = 15;
+	pixel_y = -2
+	},
+/obj/machinery/reactor_button/mode_of_operation{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/effect/floor_decal/corner/beige/border,
+/obj/machinery/reactor_button/regvalve/reactorfvout{
+	pixel_x = -14;
+	pixel_y = -3
+	},
+/obj/machinery/reactor_button/lasomode{
+	pixel_x = 5;
+	pixel_y = 12
+	},
+/obj/machinery/reactor_button/rswitch/lasarm{
+	pixel_y = 12;
+	pixel_x = 10
+	},
+/obj/machinery/reactor_button/lasnmode{
+	pixel_x = 15;
+	pixel_y = 12
+	},
+/obj/machinery/reactor_button/rswitch/lasprime{
+	pixel_y = 7;
+	pixel_x = 10
+	},
+/obj/machinery/reactor_button/rswitch/preheat{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "iSL" = (
 /obj/machinery/atmospherics/omni/filter{
@@ -8108,6 +8216,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/effect/paint_stripe/white,
 /turf/simulated/wall/titanium,
 /area/avalon/shelter/reactormonitoring)
 "iVC" = (
@@ -8297,8 +8406,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/breakerroom)
 "jhH" = (
-/obj/structure/cable,
-/obj/machinery/power/generator/smes/buildable/max_cap_in_out,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "jhQ" = (
@@ -8699,11 +8812,8 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "jzJ" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 2
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/reactormonitoring)
+/turf/simulated/wall/r_titanium,
+/area/avalon/shelter/comms)
 "jzM" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -9069,10 +9179,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "jNM" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/obj/effect/paint_stripe/white,
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/wall/titanium,
 /area/avalon/shelter/atmos)
 "jNP" = (
 /obj/structure/railing/mapped,
@@ -9242,7 +9353,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/titanium,
 /area/avalon/shelter/comms)
 "jWJ" = (
 /obj/effect/paint_stripe/yellow,
@@ -9281,13 +9392,10 @@
 /area/avalon/shelter/brig/armory)
 "jYw" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 10
-	},
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
+	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/avalon/shelter/engineering)
+/area/space)
 "kaE" = (
 /obj/structure/table/glass,
 /obj/item/storage/backpack/dufflebag/med,
@@ -9434,14 +9542,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
 "kkv" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 9
-	},
-/obj/structure/cable/heavy{
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/engineering)
+/obj/structure/bed/chair/office/comfy/black,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "kkS" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -9544,11 +9647,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
 "kvr" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_monitor/turbine{
-	pixel_y = 11
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 1
 	},
-/obj/machinery/rotating_alarm/reactor,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "kvy" = (
@@ -10133,14 +10234,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/office)
 "ljh" = (
-/obj/machinery/door/blast/regular/open{
-	name = "Observation Shutters";
-	gl_uid = 1532;
-	id_tag = "reactormonitoringblastshield";
-	uid = "reactormonitoringblastshield"
+/obj/structure/bed/sofa/r/black{
+	dir = 8
 	},
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
+/obj/effect/floor_decal/corner/beige{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/reactormonitoring)
 "ljk" = (
 /obj/structure/cable{
 	icon_state = "32-8";
@@ -10160,11 +10261,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "ljD" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/reactormonitoring)
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/atmos)
 "ljG" = (
 /obj/effect/floor_decal/corner/black/mono,
 /obj/effect/floor_decal/corner/lightgrey/border{
@@ -10173,10 +10271,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "ljJ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/dark,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "ljK" = (
 /obj/machinery/light/spot,
@@ -10633,48 +10729,13 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "lIX" = (
-/obj/structure/reactor_table{
-	pixel_y = 6
+/obj/structure/bed/sofa/r/black{
+	dir = 4
 	},
-/obj/machinery/reactor_button/rswitch/valve/pump1v1{
-	pixel_x = -10;
-	pixel_y = 12;
-	layer = 3.062
+/obj/effect/floor_decal/corner/beige{
+	dir = 9
 	},
-/obj/machinery/reactor_button/rswitch/valve/pump2v1{
-	pixel_x = -3;
-	pixel_y = 12;
-	layer = 3.062
-	},
-/obj/machinery/reactor_button/rswitch/valve/pump1v2{
-	pixel_x = -10;
-	pixel_y = 7
-	},
-/obj/machinery/reactor_button/rswitch/valve/pump2v2{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/machinery/reactor_button/pump/fcp1{
-	pixel_x = -10;
-	pixel_y = -2;
-	layer = 3.061
-	},
-/obj/machinery/reactor_button/pump/fcp2{
-	pixel_x = -3;
-	pixel_y = -2;
-	layer = 3.061
-	},
-/obj/effect/floor_decal/corner/beige/border,
-/obj/machinery/reactor_button/regvalve/reactorfvin{
-	pixel_x = 11;
-	pixel_y = -3
-	},
-/obj/machinery/reactor_display/group/steamloop{
-	pixel_x = 19;
-	pixel_y = 2;
-	layer = 2.221
-	},
-/turf/simulated/floor/tiled/dark/monotile,
+/turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "lJe" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
@@ -10703,13 +10764,12 @@
 /area/avalon/shelter/expeditionpreparation)
 "lLB" = (
 /obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/generator/port_gen/pacman,
-/obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/dark/monotile,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactormonitoring)
 "lLJ" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
@@ -10724,11 +10784,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "lLQ" = (
-/obj/machinery/door/airlock/double/glass/engineering{
-	initial_access = list("ACCESS_ENGINE_EQUIP")
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
+/obj/effect/paint_stripe/white,
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/atmos)
 "lMd" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -10904,11 +10962,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "lVJ" = (
-/obj/effect/floor_decal/steeldecal/steel_decals_central2{
-	dir = 4
+/obj/machinery/rotating_alarm/reactor{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "lWb" = (
 /obj/item/radio/intercom/department/security{
 	pixel_y = 26
@@ -11017,10 +11075,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/office)
 "meh" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 1
+/obj/structure/table/steel_reinforced,
+/obj/machinery/reactor_monitor/turbine{
+	pixel_y = 11
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "mfl" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
@@ -11040,10 +11102,13 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "mfR" = (
-/obj/machinery/reactor_server,
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/comms)
+/obj/structure/table/steel_reinforced,
+/obj/item/pen,
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "mfU" = (
 /obj/effect/floor_decal/plaque,
 /turf/simulated/floor/tiled/techmaint,
@@ -11169,41 +11234,8 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/engineering)
 "moe" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 21
-	},
-/obj/structure/table/steel_reinforced,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/reactor_button/pump/tcp2{
-	pixel_x = 2;
-	layer = 3.061;
-	pixel_y = 2
-	},
-/obj/machinery/reactor_button/pump/tcp1{
-	pixel_x = -3;
-	layer = 3.061;
-	pixel_y = 2
-	},
-/obj/machinery/reactor_button/rswitch/valve/pump3v1{
-	pixel_x = -3;
-	pixel_y = 7;
-	layer = 3.062
-	},
-/obj/machinery/reactor_button/rswitch/valve/pump3v2{
-	pixel_x = -3;
-	pixel_y = -4
-	},
-/obj/machinery/reactor_button/rswitch/valve/pump4v1{
-	pixel_x = 2;
-	pixel_y = 7;
-	layer = 3.062
-	},
-/obj/machinery/reactor_button/rswitch/valve/pump4v2{
-	pixel_x = 2;
-	pixel_y = -4
+/obj/effect/floor_decal/corner/yellow/bordercorner{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -11320,9 +11352,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "mwa" = (
-/obj/machinery/door/airlock/external/bolted,
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/structure/railing/mapped,
+/obj/effect/floor_decal/corner/yellow/border,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "mwz" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -11358,11 +11391,11 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "myn" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/obj/effect/paint_stripe/white,
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
 	},
-/obj/machinery/door/airlock/engineering,
-/turf/simulated/floor/plating,
+/turf/simulated/wall/titanium,
 /area/avalon/shelter/comms)
 "myt" = (
 /turf/simulated/floor/tiled/techmaint,
@@ -11886,13 +11919,19 @@
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/factory)
 "ncU" = (
-/obj/machinery/camera/network/engineering{
+/obj/structure/table/steel_reinforced,
+/obj/machinery/rotating_alarm/reactor{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/beige{
-	dir = 5
+/obj/machinery/reactor_display/group/steamloop{
+	layer = 2.221;
+	pixel_y = -5;
+	pixel_x = 5
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "ncX" = (
 /obj/machinery/light/ultraviolet{
@@ -12018,11 +12057,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "nko" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4
+/obj/effect/floor_decal/corner/yellow/bordercorner{
+	dir = 1
 	},
-/turf/simulated/wall/r_wall,
-/area/avalon/shelter/engineering)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "nkr" = (
 /obj/effect/floor_decal/corner/b_green/bordercorner,
 /turf/simulated/floor/tiled/white/monotile,
@@ -12097,17 +12136,13 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "noq" = (
-/obj/structure/reactor_table{
-	pixel_y = 6
-	},
-/obj/effect/floor_decal/corner/beige/border,
-/obj/machinery/reactor_display/group/reactorloop{
-	pixel_x = 12;
-	pixel_y = 2
-	},
-/obj/machinery/reactor_button/rswitch/preheat{
-	pixel_x = 10;
-	pixel_y = -3
+/obj/structure/wall_frame/titanium,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/blast/regular/open{
+	name = "Observation Shutters";
+	gl_uid = 1532;
+	id_tag = "reactormonitoringblastshield";
+	uid = "reactormonitoringblastshield"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -12361,10 +12396,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/science)
-"nCn" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10,
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
 "nCv" = (
 /obj/effect/floor_decal/corner/b_green/border,
 /turf/simulated/floor/tiled/techmaint,
@@ -12471,11 +12502,13 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/avalon/shelter/factory)
 "nKF" = (
-/obj/machinery/camera/network/engineering{
-	dir = 8
-	},
 /obj/structure/table/steel_reinforced,
-/obj/item/book/skill/engineering/engines/prof,
+/obj/machinery/recharger{
+	pixel_y = 2
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "nKX" = (
@@ -12658,11 +12691,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/messhall)
 "nRJ" = (
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 4
-	},
+/obj/machinery/reactor_server,
 /turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/area/avalon/shelter/reactormonitoring)
 "nRL" = (
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 8
@@ -12865,9 +12896,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "oba" = (
-/obj/structure/wall_frame/standard,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
+/obj/structure/bed/chair/office/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "obt" = (
 /obj/effect/floor_decal/corner/beige/border{
@@ -13084,13 +13116,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/breakroom)
 "ooi" = (
-/obj/machinery/door/blast/regular/open{
-	name = "Observation Shutters";
-	gl_uid = 1532;
-	id_tag = "reactormonitoringblastshield";
-	uid = "reactormonitoringblastshield"
+/obj/structure/bed/sofa/l/black{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/monotile,
+/obj/effect/floor_decal/corner/beige{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "oop" = (
 /obj/structure/filingcabinet/filingcabinet,
@@ -13331,11 +13363,11 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/messhall)
 "oES" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 4
+/obj/structure/bed/sofa/r/black{
+	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/light/spot{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
@@ -13423,6 +13455,9 @@
 /area/avalon/shelter/turbinehall)
 "oOk" = (
 /obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "oOx" = (
@@ -13449,10 +13484,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
 	},
-/obj/structure/cable/heavy{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/avalon/shelter/comms)
 "oPx" = (
 /obj/structure/railing/mapped{
@@ -13496,18 +13528,11 @@
 /turf/simulated/open,
 /area/avalon/shelter/science)
 "oRL" = (
-/obj/machinery/light/spot{
+/obj/structure/bed/sofa/r/black,
+/obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/beige{
-	dir = 9
-	},
-/obj/structure/sign/warning/radioactive{
-	pixel_y = 32;
-	pixel_x = -8
-	},
-/obj/machinery/disposal,
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "oSr" = (
 /obj/machinery/door/airlock/engineering{
@@ -13688,11 +13713,16 @@
 /turf/simulated/wall/titanium,
 /area/avalon/shelter/reactormonitoring)
 "pcr" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 1
+/obj/structure/window/reinforced/full,
+/obj/structure/wall_frame/titanium,
+/obj/machinery/door/blast/regular/open{
+	name = "Observation Shutters";
+	gl_uid = 1532;
+	id_tag = "reactormonitoringblastshield";
+	uid = "reactormonitoringblastshield"
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "pct" = (
 /obj/machinery/atmospherics/binary/regulated_valve{
 	dir = 2;
@@ -13790,7 +13820,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "pih" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactormonitoring)
 "pik" = (
 /obj/effect/floor_decal/corner/red{
@@ -13919,12 +13949,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/turbinehall)
 "pqm" = (
-/obj/machinery/door/airlock/double/glass/engineering{
-	id_tag = "controlroomdoorbolts";
-	uid = "controlroomdoorbolts";
-	initial_access = list("ACCESS_ENGINE_EQUIP")
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary,
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "pqx" = (
 /obj/machinery/atmospherics/pipe/zpipe/down/red,
@@ -14026,9 +14056,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/preparation)
 "pwN" = (
-/obj/structure/window/reinforced/full,
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
+/obj/machinery/floodlight,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/reactormonitoring)
 "pwZ" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction,
 /turf/simulated/floor/tiled/white/monotile,
@@ -14446,11 +14476,10 @@
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "pUd" = (
-/obj/machinery/power/terminal{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 9
 	},
-/obj/structure/cable/heavy,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/avalon/shelter/comms)
 "pUo" = (
 /obj/machinery/atmospherics/binary/pump/adv/on{
@@ -15759,37 +15788,10 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/habitationdeck)
 "rqi" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/presvalve/tprescontrol{
-	pixel_y = 6;
-	pixel_x = 2
+/obj/machinery/light/spot{
+	dir = 4
 	},
-/obj/machinery/reactor_button/rswitch/valve/feedmakeup{
-	pixel_x = -6;
-	pixel_y = -2
-	},
-/obj/machinery/reactor_button/pump/feedmakeup{
-	pixel_x = 2;
-	pixel_y = -1
-	},
-/obj/machinery/reactor_button/presvalve/tcoolantvin{
-	pixel_x = 15;
-	pixel_y = 6
-	},
-/obj/machinery/reactor_button/presvalve/tcoolantvout{
-	pixel_x = 15;
-	pixel_y = -1
-	},
-/obj/machinery/button/alternate/door/bolts{
-	pixel_x = 5;
-	pixel_y = 32;
-	id_tag = "controlroomdoorbolts";
-	uid = "controlroomdoorbolts"
-	},
-/obj/machinery/reactor_button/regvalve/feeddrain{
-	pixel_x = -13;
-	pixel_y = -2
-	},
+/obj/effect/floor_decal/corner/beige/border,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "rqv" = (
@@ -15847,8 +15849,16 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "rtn" = (
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/structure/lattice,
+/obj/structure/cable/heavy{
+	icon_state = "2-8"
+	},
+/obj/machinery/light/spot/reactor{
+	uid = "superstructure";
+	dir = 1
+	},
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "rtv" = (
 /obj/structure/railing/mapped{
 	dir = 8
@@ -16134,11 +16144,15 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "rOH" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 4
+/obj/structure/reactor_table{
+	pixel_y = 6
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/effect/floor_decal/corner/beige/border,
+/obj/machinery/reactor_button/rswitch/lighting/superstructure{
+	pixel_y = -3
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "rPx" = (
 /turf/simulated/open,
 /area/surface)
@@ -16232,10 +16246,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
 "rXy" = (
-/obj/machinery/reactor_server,
-/obj/item/radio/announcer,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/comms)
+/obj/effect/paint_stripe/white,
+/turf/simulated/wall/titanium,
+/area/space)
 "rXC" = (
 /obj/machinery/atmospherics/pipe/zpipe/down/cyan,
 /turf/simulated/floor/concrete/surface,
@@ -17301,13 +17314,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "tfu" = (
-/obj/machinery/power/apc/hyper{
-	dir = 4;
-	pixel_x = 22
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
 	},
-/obj/structure/cable/heavy,
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter/reactor)
 "tfU" = (
 /obj/structure/table/glass,
 /obj/item/book/skill/service/botany/basic,
@@ -17555,12 +17566,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "tqH" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
+/obj/structure/table/steel_reinforced,
+/obj/item/paper_bin,
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/engineering)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "trD" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 6
@@ -17642,7 +17654,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "tun" = (
-/obj/machinery/space_heater,
+/obj/structure/flora/pottedplant/minitree,
+/obj/effect/floor_decal/corner/beige/three_quarters{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "twu" = (
@@ -17693,13 +17708,6 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
-"tzO" = (
-/obj/machinery/reactor_server,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/comms)
 "tzS" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
@@ -17822,17 +17830,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
 "tGJ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4
-	},
-/obj/structure/cable/heavy{
-	icon_state = "2-8"
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/reactormonitoring)
 "tHx" = (
 /obj/effect/floor_decal/corner/b_green{
 	dir = 5
@@ -17840,11 +17840,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "tHG" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
+/obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/comms)
 "tJc" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -17911,10 +17909,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "tMh" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled/dark,
+/obj/structure/wall_frame/titanium,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "tMX" = (
 /obj/structure/cable{
@@ -17983,31 +17980,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "tQj" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/rswitch/valve/turbinebypass,
-/obj/machinery/reactor_button/regvalve/turbine1{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/machinery/reactor_button/regvalve/turbine2{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/machinery/reactor_button/regvalve/heatexchangervin{
-	pixel_x = -15;
-	pixel_y = 5
-	},
-/obj/machinery/reactor_button/turbine_braking{
-	pixel_x = 8;
-	pixel_y = -4
-	},
-/obj/machinery/reactor_button/rswitch/generator_connection/first{
-	pixel_x = -18;
-	pixel_y = -4
-	},
-/obj/machinery/reactor_button/rswitch/generator_connection/second{
-	pixel_x = -12;
-	pixel_y = -4
+/obj/structure/bed/chair/office/comfy/black,
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -18029,18 +18004,20 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "tRD" = (
-/obj/machinery/door/airlock/external/bolted,
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/turf/simulated/floor/plating,
+/area/avalon/shelter/reactor)
 "tRZ" = (
-/obj/structure/cable/heavy{
-	icon_state = "2-4"
+/obj/structure/bed/sofa/l/black{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/obj/effect/floor_decal/corner/beige{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/reactormonitoring)
 "tTc" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/simulated/floor/tiled/techfloor,
@@ -18379,14 +18356,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
-"ulI" = (
-/obj/machinery/door/blast/regular{
-	gl_uid = 7562;
-	id_tag = 7562;
-	uid = 7562
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/reactor)
 "uml" = (
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 4
@@ -18512,24 +18481,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "usI" = (
-/obj/machinery/button/blast_door{
-	pixel_y = 32;
-	gl_uid = 1532;
-	id_tag = "reactormonitoringblastshield";
-	uid = "reactormonitoringblastshield";
-	name = "emergency lockdown";
-	pixel_x = -4
-	},
-/obj/machinery/light_switch/on{
-	pixel_y = 32;
-	pixel_x = 6
-	},
-/obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_monitor/general{
-	pixel_y = 11
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
+/turf/simulated/wall/r_wall,
+/area/avalon/shelter/reactor)
 "utN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
@@ -18654,39 +18607,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering)
 "uzX" = (
-/obj/structure/reactor_table{
-	pixel_y = 6
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
-/obj/machinery/reactor_button/scram{
-	pixel_x = 15;
-	pixel_y = -2
-	},
-/obj/machinery/reactor_button/mode_of_operation{
-	pixel_x = 6;
-	pixel_y = -2
-	},
-/obj/effect/floor_decal/corner/beige/border,
-/obj/machinery/reactor_button/regvalve/reactorfvout{
-	pixel_x = -14;
-	pixel_y = -3
-	},
-/obj/machinery/reactor_button/lasomode{
-	pixel_x = 5;
-	pixel_y = 12
-	},
-/obj/machinery/reactor_button/rswitch/lasarm{
-	pixel_y = 12;
-	pixel_x = 10
-	},
-/obj/machinery/reactor_button/lasnmode{
-	pixel_x = 15;
-	pixel_y = 12
-	},
-/obj/machinery/reactor_button/rswitch/lasprime{
-	pixel_y = 7;
-	pixel_x = 10
-	},
-/turf/simulated/floor/tiled/dark/monotile,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactormonitoring)
 "uAJ" = (
 /obj/effect/floor_decal/techfloor/orange,
@@ -18802,9 +18726,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
 "uGD" = (
-/obj/structure/window/reinforced/full,
-/obj/structure/wall_frame/titanium,
-/turf/simulated/floor/tiled/dark/monotile,
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/turf/simulated/open,
 /area/avalon/shelter/reactormonitoring)
 "uHa" = (
 /obj/machinery/dehumidifier,
@@ -19013,15 +18938,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "uYt" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
-	},
-/obj/machinery/door/airlock/engineering,
-/obj/structure/cable/heavy{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/avalon/shelter/engineering)
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/reactor)
 "uYV" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -19114,8 +19033,35 @@
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/factory)
 "vdD" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary,
-/turf/simulated/floor/tiled/dark,
+/obj/structure/table/steel_reinforced,
+/obj/machinery/reactor_button/rswitch/generator_connection/first{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/obj/machinery/reactor_button/rswitch/generator_connection/second{
+	pixel_y = 14;
+	pixel_x = 5
+	},
+/obj/machinery/reactor_button/regvalve/turbine1{
+	pixel_y = 7;
+	pixel_x = -2
+	},
+/obj/machinery/reactor_button/regvalve/turbine2{
+	pixel_x = -2;
+	pixel_y = 14
+	},
+/obj/machinery/reactor_button/presvalve/tcoolantvin{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/machinery/reactor_button/presvalve/tcoolantvout{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "vdH" = (
 /obj/structure/stairs/long/west,
@@ -19355,11 +19301,15 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "vuD" = (
-/obj/machinery/door/airlock/engineering{
-	initial_access = list("ACCESS_ENGINE_EQUIP")
+/obj/machinery/button/alternate/door/bolts{
+	pixel_x = 5;
+	pixel_y = 32;
+	id_tag = "controlroomdoorbolts";
+	uid = "controlroomdoorbolts"
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/portable_atmospherics/powered/pump/filled,
+/obj/machinery/light/spot{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -20043,12 +19993,8 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig/breakroom)
 "whg" = (
-/obj/structure/lattice,
-/obj/structure/cable/heavy{
-	icon_state = "2-8"
-	},
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
+/turf/simulated/wall/r_titanium,
+/area/space)
 "whX" = (
 /obj/structure/table,
 /obj/structure/flora/pottedplant/dead{
@@ -20090,11 +20036,10 @@
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/factory)
 "wkp" = (
-/obj/machinery/light/spot{
+/obj/machinery/reactor_server,
+/obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
 	},
-/obj/structure/table/steel_reinforced,
-/obj/item/paper/reactor/general,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "wkZ" = (
@@ -20111,8 +20056,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "wmR" = (
-/obj/machinery/atmospherics/pipe/zpipe/down,
-/turf/simulated/open,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
 /area/avalon/shelter/reactor)
 "wnH" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -20699,9 +20646,6 @@
 	uid = 7562
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "wUn" = (
@@ -21031,9 +20975,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "xrn" = (
-/obj/machinery/reactor_control_node,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/comms)
+/obj/structure/bed/sofa/r/black{
+	dir = 4
+	},
+/obj/machinery/rotating_alarm/reactor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/reactormonitoring)
 "xrs" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 4
@@ -21503,11 +21452,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "xQs" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/obj/effect/paint_stripe/white,
+/obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 5
 	},
-/obj/structure/reagent_dispensers/fueltank/newtank,
-/turf/simulated/floor/plating,
+/turf/simulated/wall/titanium,
 /area/avalon/shelter/atmos)
 "xQA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -21769,14 +21718,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "ygQ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/obj/structure/bed/sofa/l/black{
 	dir = 4
 	},
-/obj/structure/cable/heavy{
-	icon_state = "4-8"
+/obj/machinery/light/spot{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/comms)
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/reactormonitoring)
 "yhx" = (
 /obj/abstract/landmark/start{
 	name = "Gardener"
@@ -183087,12 +183036,12 @@ bTw
 gPb
 csv
 lFl
-xdt
-xdt
-xdt
-xdt
-xdt
-xdt
+wmR
+uYt
+uYt
+uYt
+uYt
+tRD
 xdt
 xdt
 dJN
@@ -183217,7 +183166,7 @@ bTw
 gPb
 csv
 lFl
-dJN
+tfu
 dJN
 dJN
 dJN
@@ -183347,7 +183296,7 @@ bTw
 iLx
 csv
 lFl
-erC
+kzu
 dQK
 wyq
 wyq
@@ -185167,7 +185116,7 @@ qjD
 moQ
 csv
 cMK
-bta
+xdt
 xdt
 xdt
 xdt
@@ -199728,12 +199677,12 @@ tEg
 jPI
 rso
 lFl
-wyq
-wyq
-wyq
-wyq
-wyq
-wyq
+lFl
+lFl
+lFl
+lFl
+emv
+dQK
 wyq
 wyq
 wiQ
@@ -199858,11 +199807,11 @@ xgO
 lNv
 nhl
 lFl
-wyq
-wyq
-wyq
-wyq
-wyq
+atf
+atf
+atf
+lFl
+bVj
 wyq
 wyq
 wyq
@@ -199988,11 +199937,11 @@ tEg
 tEg
 jKP
 lFl
-wmR
 atf
-wyq
-wyq
-wyq
+atf
+atf
+lFl
+bVj
 wyq
 wyq
 wyq
@@ -200118,11 +200067,11 @@ cMK
 cMK
 cMK
 lFl
-wyq
+atf
+atf
+atf
+lFl
 bVj
-wyq
-wyq
-wyq
 wyq
 wyq
 wyq
@@ -200248,11 +200197,11 @@ eTI
 eTI
 eTI
 lFl
-wyq
+atf
+atf
+atf
+lFl
 kzu
-eiK
-eiK
-eiK
 eiK
 eiK
 eiK
@@ -200378,10 +200327,10 @@ eTI
 eTI
 eTI
 lFl
-wyq
-wyq
-wyq
-wyq
+atf
+atf
+atf
+lFl
 wyq
 wyq
 wyq
@@ -200508,10 +200457,10 @@ eTI
 eTI
 eTI
 lFl
-wyq
-wyq
-wyq
-wyq
+atf
+atf
+atf
+lFl
 wyq
 wyq
 wyq
@@ -200638,10 +200587,10 @@ eTI
 eTI
 eTI
 lFl
-wyq
-wyq
-wyq
-wyq
+atf
+atf
+atf
+lFl
 wyq
 wyq
 wyq
@@ -200768,10 +200717,10 @@ eTI
 eTI
 eTI
 lFl
-wyq
-wyq
-wyq
-wyq
+atf
+atf
+atf
+lFl
 wyq
 wyq
 wyq
@@ -200898,10 +200847,10 @@ eTI
 eTI
 eTI
 lFl
-wyq
-wyq
-wyq
-wyq
+lFl
+lFl
+lFl
+lFl
 wyq
 wyq
 wyq
@@ -201160,7 +201109,7 @@ eTI
 lFl
 wyq
 wyq
-lFl
+wyq
 wyq
 wyq
 wyq
@@ -214152,7 +214101,7 @@ kXp
 kXp
 kXp
 kXp
-lbZ
+fgN
 hBO
 hBO
 hBO
@@ -215320,11 +215269,11 @@ xNr
 xNr
 xNr
 xNr
-xNr
-xNr
-xNr
-xNr
-xDj
+vUB
+vUB
+vUB
+vUB
+vUB
 xDj
 xDj
 xDj
@@ -215450,11 +215399,11 @@ xNr
 xNr
 xNr
 xNr
-xNr
-xNr
-xNr
-xNr
-xDj
+vUB
+pwN
+dHi
+dHi
+vUB
 iHs
 iHs
 xDj
@@ -215580,11 +215529,11 @@ xNr
 xNr
 xNr
 xNr
-xNr
-xNr
-xNr
-xNr
-xDj
+vUB
+dHi
+dHi
+dHi
+vUB
 iVj
 khx
 xDj
@@ -215710,11 +215659,11 @@ xNr
 xNr
 xNr
 xNr
-xNr
-xNr
-xNr
-xNr
-xDj
+vUB
+dHi
+dHi
+dHi
+vUB
 haV
 khx
 xDj
@@ -215840,11 +215789,11 @@ xNr
 xNr
 xNr
 xNr
-xNr
-xNr
-xNr
-xNr
-xDj
+vUB
+dHi
+dHi
+dHi
+vUB
 fko
 qwj
 xDj
@@ -215852,7 +215801,7 @@ ijt
 ijt
 ijt
 ijt
-wyq
+lFl
 wyq
 wyq
 wyq
@@ -215972,17 +215921,17 @@ vUB
 vUB
 vUB
 vUB
-vUB
-vUB
-vUB
-vUB
-vUB
-vUB
-vUB
-vUB
-vUB
-ijt
-wyq
+nPa
+aDH
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
 wyq
 wyq
 wyq
@@ -216101,18 +216050,18 @@ imC
 dpn
 jwW
 vUB
-bxA
-vUB
-hEL
+tGJ
+nPa
+kvr
 izL
 ncU
 hlp
 vdD
 eIt
-dHi
-vUB
-ijt
-wyq
+iBD
+xrn
+ygQ
+nPa
 wyq
 wyq
 wyq
@@ -216231,18 +216180,18 @@ cpo
 dpn
 jwW
 vUB
-bxA
-vUB
+tGJ
+nPa
 hln
-dqE
+dpn
 meh
+tQj
+wth
+wth
+eoi
 dHi
 dHi
-dHi
-dHi
-vUB
-ijt
-wyq
+noq
 wyq
 wyq
 wyq
@@ -216359,20 +216308,20 @@ vUB
 vUB
 edU
 vUB
-vUB
-vUB
-vUB
-vUB
+nPa
+nPa
+nPa
+nPa
 oRL
-meh
-dHi
-jzJ
-sxX
-xuW
-dHi
+dpn
+dpn
+dpn
+dpn
+hjw
+ivV
 ooi
-ijt
-wyq
+ljh
+noq
 wyq
 wyq
 wyq
@@ -216489,20 +216438,20 @@ mEV
 mQR
 jHo
 rgL
-lLQ
-dpn
+nPa
+cQd
 ePP
 pqm
-dHi
-dHi
-dHi
-iRy
-prY
-hct
-dHi
-ooi
+nko
+dpn
+dpn
+dpn
+dpn
+mwa
 uGD
-wyq
+uGD
+uGD
+noq
 wyq
 wyq
 wyq
@@ -216619,20 +216568,20 @@ dyO
 dyO
 dpn
 nlE
+bta
 dpn
-qJF
-cVY
+dpn
 ljJ
-ljJ
-tMh
-dHi
-iRy
-lIX
-osS
-dHi
-ooi
-uGD
-wyq
+dpn
+dpn
+dpn
+prY
+hct
+mwa
+ojX
+ojX
+ojX
+pcr
 wyq
 wyq
 wyq
@@ -216749,20 +216698,20 @@ ojX
 hOW
 dpn
 hgE
-vUB
-atj
+dpn
+dpn
+dpn
+ljJ
+dpn
+dpn
+dpn
 bWZ
-vUB
-usI
-oES
-dHi
-iRy
-uzX
 osS
-dHi
-ooi
-uGD
-wyq
+mwa
+ojX
+ojX
+ojX
+pcr
 wyq
 wyq
 wyq
@@ -216879,20 +216828,20 @@ ojX
 hOW
 dpn
 iZb
-vUB
+nPa
 vuD
-vUB
-vUB
-rqi
-akf
-dHi
+dpn
+ljJ
+dpn
+dpn
+dpn
 iRy
-cQd
 osS
-dHi
-ooi
-uGD
-wyq
+mwa
+ojX
+ojX
+ojX
+pcr
 wyq
 wyq
 wyq
@@ -217009,20 +216958,20 @@ ojX
 hOW
 qJF
 dld
-vUB
+nPa
 iGT
 jhH
-vUB
+iLD
 moe
-ivV
-dHi
-iRy
-noq
+dpn
+dpn
+fkh
 osS
-dHi
-ooi
-uGD
-wyq
+mwa
+ojX
+ojX
+ojX
+pcr
 wyq
 wyq
 wyq
@@ -217139,20 +217088,20 @@ dpn
 dpn
 eEh
 qct
-vUB
-tHG
+nPa
+nPa
 hnR
-vUB
-tQj
-eoi
-dHi
-iRy
-blu
-pKE
-dHi
-ooi
-uGD
-wyq
+nPa
+wkp
+dpn
+dpn
+rOH
+osS
+mwa
+ojX
+ojX
+ojX
+pcr
 wyq
 wyq
 wyq
@@ -217272,17 +217221,17 @@ gIx
 iVo
 cVY
 lLB
-vUB
+tMh
 wkp
-eoi
-dHi
-fkh
-ljD
-meh
-dHi
-ooi
-ijt
-wyq
+dpn
+dpn
+blu
+pKE
+mwa
+ojX
+ojX
+ojX
+noq
 wyq
 wyq
 wyq
@@ -217398,21 +217347,21 @@ vUB
 vUB
 vUB
 vUB
-vUB
-vUB
-vUB
-vUB
-vUB
+nPa
+nPa
+dtC
+uzX
+tMh
 kvr
-meh
-jzJ
-aDH
-hjw
-dHi
-dHi
-vUB
-ijt
-wyq
+dpn
+dpn
+dpn
+dpn
+mwa
+dqE
+dqE
+dqE
+noq
 wyq
 wyq
 wyq
@@ -217525,24 +217474,24 @@ hBO
 hBO
 hBO
 hBO
-nBJ
-nBJ
-nBJ
-nBJ
+ljD
+ljD
+ljD
+lLQ
+erC
 pih
-bxA
-bxA
-vUB
-dHi
-dHi
+pih
+tMh
+tqH
+mfR
 fio
 nKF
 oOk
-iBD
+jHo
 tun
-vUB
-ijt
-wyq
+lIX
+tRZ
+noq
 wyq
 wyq
 wyq
@@ -217655,24 +217604,24 @@ hBO
 hBO
 hBO
 hBO
-nBJ
+ljD
 egH
 jFm
 xQs
 pih
-bxA
-bxA
-vUB
-vUB
-vUB
+pih
+pih
+tMh
+kkv
+qct
+dpn
+fAA
 oba
-oba
-oba
-vUB
-vUB
-vUB
-ijt
-wyq
+dpn
+eoi
+dHi
+dHi
+noq
 wyq
 wyq
 wyq
@@ -217785,24 +217734,24 @@ hBO
 hBO
 hBO
 hBO
-nBJ
+ljD
 jOj
 hJf
 jNM
-uvp
-nge
-nge
-otu
-otu
-otu
+nRJ
+nRJ
+nRJ
+tMh
+dpn
+rqi
 lVJ
 dDr
-lVJ
-otu
-otu
-otu
-ijt
-wyq
+hEL
+dpn
+eoi
+bBY
+oES
+nPa
 wyq
 wyq
 wyq
@@ -217914,25 +217863,25 @@ uvp
 hBO
 hBO
 hBO
-hBO
-nBJ
-otu
+hdx
+ljD
+xKV
 jWp
 myn
-otu
-otu
-otu
-otu
-rXy
-mfR
-nRJ
-xrn
-iLD
-fgN
-dEH
-otu
-lFl
-wyq
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
+nPa
 wyq
 wyq
 wyq
@@ -218044,25 +217993,25 @@ uvp
 hBO
 hBO
 hBO
-hBO
-hBO
-otu
+hdx
+atj
+tHG
 iuM
 oOX
-tRZ
-tRD
-tfu
-mwa
-rtn
-bBY
-nCn
-emv
-rOH
-pcr
-rtn
 otu
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+jzJ
 lFl
-wyq
+lFl
 wyq
 wyq
 wyq
@@ -218174,24 +218123,24 @@ uvp
 hBO
 hBO
 hBO
-hBO
-hBO
-otu
+hdx
+jYw
+dEH
 hhp
-oOX
-fAA
+pUd
 otu
-otu
-otu
-dEH
-tzO
-mfR
-rtn
-fgN
-tzO
-dEH
-otu
-lFl
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+jzJ
+wyq
 wyq
 wyq
 wyq
@@ -218304,24 +218253,24 @@ uvp
 uvp
 uvp
 uvp
-hBO
-hBO
-otu
-ygQ
-tGJ
-pUd
-otu
-tWo
+hdx
+jYw
+oOX
 otu
 otu
 otu
-otu
-otu
-otu
-otu
-otu
-otu
-lFl
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+nge
+jzJ
+wyq
 wyq
 wyq
 wyq
@@ -218435,23 +218384,23 @@ efj
 mAq
 uvp
 uvp
+fPp
+jke
 uvp
-uvp
-uYt
-nko
-uvp
-uvp
-uvp
-uvp
-uvp
-uvp
-uvp
-uvp
-uvp
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+qaa
+qaa
 lFl
-lFl
-lFl
-lFl
+wyq
 wyq
 wyq
 wyq
@@ -218562,25 +218511,25 @@ gqC
 gqC
 gqC
 lBS
-jYw
+jgG
 wTp
-tqH
-tqH
-tqH
-kkv
+efj
+onJ
 jke
-con
-con
-con
-con
-con
-con
-con
-con
-con
-ulI
-wyq
-wyq
+uvp
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+qaa
+qaa
+lFl
 wyq
 wyq
 wyq
@@ -218696,21 +218645,21 @@ gqC
 shN
 gqC
 gqC
-gqC
-gqC
 teV
-con
-con
-con
-con
-con
-con
-con
-con
-con
-ulI
-wyq
-wyq
+uvp
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+qaa
+qaa
+lFl
 wyq
 wyq
 wyq
@@ -218821,8 +218770,6 @@ hBO
 hBO
 uvp
 uvp
-con
-con
 uvp
 uvp
 uvp
@@ -218830,17 +218777,19 @@ uvp
 uvp
 uvp
 uvp
-uvp
-uvp
-uvp
-uvp
-uvp
-uvp
-aUx
-aUx
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+huU
+qaa
+qaa
 lFl
-wyq
-wyq
 wyq
 wyq
 wyq
@@ -218965,12 +218914,12 @@ hBO
 hBO
 hBO
 hBO
-uvp
-uvp
-uvp
+huU
+huU
+huU
+qaa
+qaa
 lFl
-wyq
-wyq
 wyq
 wyq
 wyq
@@ -219098,9 +219047,9 @@ hBO
 hBO
 hBO
 hBO
-lFl
-wyq
-wyq
+qaa
+qaa
+usI
 wyq
 wyq
 wyq
@@ -219228,9 +219177,9 @@ hBO
 hBO
 hBO
 hBO
-lFl
-wyq
-wyq
+qaa
+qaa
+usI
 wyq
 wyq
 wyq
@@ -219358,9 +219307,9 @@ hBO
 hBO
 hBO
 hBO
-lFl
-wyq
-wyq
+qaa
+qaa
+usI
 wyq
 wyq
 wyq
@@ -219488,9 +219437,9 @@ hBO
 hBO
 hBO
 hBO
-lFl
-wyq
-wyq
+qaa
+qaa
+usI
 wyq
 wyq
 wyq
@@ -219618,9 +219567,9 @@ hBO
 hBO
 hBO
 hBO
-lFl
-lFl
-lFl
+qaa
+qaa
+usI
 lFl
 lFl
 lFl
@@ -219750,7 +219699,7 @@ hBO
 hBO
 hBO
 hBO
-hBO
+whg
 hBO
 hBO
 hBO
@@ -232233,8 +232182,8 @@ byE
 gHG
 pcv
 ezM
+pcv
 jjs
-arj
 arj
 kIe
 arj
@@ -232363,8 +232312,8 @@ odk
 jCk
 iuc
 dex
-saB
 wnH
+saB
 wnH
 dex
 wnH
@@ -232493,8 +232442,8 @@ odk
 odk
 odk
 odk
+odk
 oFo
-vYQ
 vYQ
 odk
 vYQ
@@ -232623,8 +232572,8 @@ lUN
 lUN
 lUN
 lFl
-dtC
-wyq
+lFl
+fwB
 wyq
 wyq
 wyq
@@ -232751,10 +232700,10 @@ ojX
 ojX
 wyq
 wyq
-lUN
+wyq
+wyq
 lFl
-whg
-qmx
+rtn
 qmx
 qmx
 qmx
@@ -232881,9 +232830,9 @@ ojX
 ojX
 wyq
 wyq
-lUN
-lFl
-nLj
+wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233011,9 +232960,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-lFl
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233141,9 +233090,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-pwN
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233271,9 +233220,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-pwN
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233401,9 +233350,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-pwN
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233531,9 +233480,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-pwN
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233661,9 +233610,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-pwN
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233791,9 +233740,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-pwN
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -233921,9 +233870,9 @@ ojX
 ojX
 wyq
 wyq
-ljh
-lFl
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -234051,9 +234000,9 @@ ojX
 ojX
 wyq
 wyq
-lUN
-lFl
-nLj
+wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -234181,9 +234130,9 @@ ojX
 ojX
 wyq
 wyq
-lUN
-lFl
 wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -234304,16 +234253,16 @@ bxA
 bxA
 bxA
 nPa
-nPa
-nPa
-nPa
-nPa
-nPa
-lUN
-lUN
-lUN
-lFl
+ojX
+ojX
+ojX
+ojX
+ojX
 wyq
+wyq
+wyq
+wyq
+akf
 wyq
 wyq
 wyq
@@ -234433,18 +234382,18 @@ nBJ
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-lFl
-lFl
-lFl
-lFl
-mNE
+rXy
+eKZ
+eKZ
+eKZ
+eKZ
+eKZ
 wyq
+wyq
+wyq
+wyq
+lFl
+nLj
 wyq
 wyq
 wyq
@@ -234563,17 +234512,17 @@ nBJ
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+rXy
+rXy
+rXy
+rXy
+rXy
+rXy
+lUN
+lUN
+lUN
 lFl
-wyq
-wyq
-wyq
-wyq
+lFl
 wyq
 wyq
 wyq
@@ -234699,11 +234648,11 @@ hBO
 hBO
 hBO
 hBO
+qaa
+qaa
 lFl
-wyq
-wyq
-wyq
-wyq
+lFl
+lFl
 wyq
 wyq
 wyq
@@ -234829,9 +234778,9 @@ hBO
 hBO
 hBO
 hBO
+qaa
+qaa
 lFl
-wyq
-wyq
 wyq
 wyq
 wyq
@@ -234959,9 +234908,9 @@ hBO
 hBO
 hBO
 hBO
+qaa
+qaa
 lFl
-wyq
-wyq
 wyq
 wyq
 wyq
@@ -235089,9 +235038,9 @@ hBO
 hBO
 hBO
 hBO
+qaa
+qaa
 lFl
-wyq
-wyq
 wyq
 wyq
 wyq
@@ -235219,9 +235168,9 @@ hBO
 hBO
 hBO
 hBO
+qaa
+qaa
 lFl
-wyq
-wyq
 wyq
 wyq
 wyq
@@ -235350,8 +235299,8 @@ lFl
 lFl
 lFl
 lFl
-wyq
-wyq
+qaa
+lFl
 wyq
 wyq
 wyq
@@ -235480,8 +235429,8 @@ lFl
 lgZ
 lgZ
 lFl
-wyq
-wyq
+qaa
+lFl
 wyq
 wyq
 wyq

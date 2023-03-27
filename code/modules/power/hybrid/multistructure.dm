@@ -53,6 +53,10 @@ var/list/global/reactor_ports = list()
 	icon_state = "connector"
 	build_device_underlays(FALSE)
 
+/obj/machinery/atmospherics/unary/reactor_connector/Initialize()
+	. = ..()
+	air_contents.volume = 2000
+
 /obj/machinery/atmospherics/unary/reactor_connector/hide(var/i)
 	update_icon()
 

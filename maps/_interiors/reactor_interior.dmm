@@ -183,12 +183,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
 "lJ" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 4;
-	uid = "REACTOR-F-V-OUT";
-	forced_mass_flow = 500
-	},
 /obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
 "mz" = (
@@ -222,6 +220,14 @@
 /area/avalon/shelter/reactor)
 "nC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/turf/simulated/wall/r_wall/hull,
+/area/avalon/shelter/reactor)
+"nF" = (
+/obj/machinery/atmospherics/binary/regulated_valve{
+	dir = 4;
+	uid = "REACTOR-F-V-OUT";
+	forced_mass_flow = 500
+	},
 /turf/simulated/wall/r_wall/hull,
 /area/avalon/shelter/reactor)
 "oy" = (
@@ -337,7 +343,7 @@
 /area/avalon/shelter/reactor)
 "xh" = (
 /obj/machinery/atmospherics/binary/pump/adv/on{
-	flow_capacity = 500;
+	flow_capacity = 5000;
 	power_rating = 70000
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -642,7 +648,8 @@
 "Vj" = (
 /obj/machinery/atmospherics/binary/regulated_valve{
 	dir = 4;
-	uid = "REACTOR-F-V-IN"
+	uid = "REACTOR-F-V-IN";
+	forced_mass_flow = 2000
 	},
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -2048,7 +2055,7 @@ mM
 mM
 PL
 PL
-PL
+nF
 lJ
 oM
 wx

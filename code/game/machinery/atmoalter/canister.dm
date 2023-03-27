@@ -437,7 +437,7 @@ update_flag
 	. = ..()
 	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForVolume(/decl/material/solid/metal/tungsten))
 	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE*5))
-	air_contents.temperature = 3600
+	air_contents.temperature = 3900
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()
