@@ -5,6 +5,32 @@
 	icon_state = "plating"
 	layer = PLATING_LAYER
 
+/turf/simulated/floor/concrete
+	name = "concrete"
+	icon = 'icons/turf/exterior/concrete.dmi'
+	icon_state = "0"
+	var/exterior_turf = FALSE
+
+/turf/simulated/floor/concrete/Initialize(ml, floortype)
+	if(exterior_turf)
+		initial_gas = using_map.exterior_atmos_composition
+		setup_environmental_lighting()
+	. = ..()
+
+/turf/simulated/floor/concrete/proc/setup_environmental_lighting()
+	surface_turfs += src
+	set_ambient_light(COLOR_COLD_SURFACE, using_map.lightlevel)
+
+/turf/simulated/floor/concrete/surface
+	exterior_turf = TRUE
+
+/turf/simulated/floor/concrete/road
+	name = "road"
+	color = COLOR_GRAY40
+
+/turf/simulated/floor/concrete/road/surface
+	exterior_turf = TRUE
+
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
