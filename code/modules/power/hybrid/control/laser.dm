@@ -10,6 +10,12 @@
 		if(!istype(las, /obj/machinery/rlaser))
 			continue
 		las.armed = state
+		if(state)
+			las.operating = TRUE
+			START_PROCESSING_MACHINE(las, MACHINERY_PROCESS_SELF)
+		else
+			las.operating = FALSE
+			STOP_PROCESSING_MACHINE(las, MACHINERY_PROCESS_SELF)
 
 
 /obj/machinery/reactor_button/rswitch/lasprime

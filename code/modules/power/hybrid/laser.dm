@@ -48,21 +48,20 @@
 	switch(nomode)
 		if(LASER_MODE_IGNITION)
 			use_power = POWER_USE_ACTIVE
-			START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 		if(LASER_MODE_IMPULSE)
 			use_power = POWER_USE_IDLE
-			STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_ALL)
 		if(LASER_MODE_CONTINUOUS)
-			START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 			use_power = POWER_USE_IDLE
 	omode = nomode
 
 /obj/machinery/rlaser/Process()
+	if(nmode == NEUTRON_MODE_BOMBARDMENT)
+		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
+		R.neutron_moles += rand(1, 5) //neutron generators are extremely unpredictable and inaccurate
+		use_power_oneoff(70000, EQUIP)
 	if(omode == LASER_MODE_IGNITION)
 		capacitor_charge += 1
 		capacitor_charge = Clamp(capacitor_charge, 1, 100)
-		if(capacitor_charge == 100)
-			STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_ALL)
 
 /obj/machinery/rlaser/proc/prime()
 	if(!armed)
@@ -84,9 +83,9 @@
 		spawn(30)
 			playsound(src, 'sound/machines/power_down2.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
 		capacitor_charge = 0
-		START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.receive_power(power * 1000)
+		R.neutron_moles += 50
 		var/obj/item/projectile/beam/sniper/reactor/A = new /obj/item/projectile/beam/sniper/reactor(get_turf(src))
 		A.launch(laser_receivers[lasid])
 	return
