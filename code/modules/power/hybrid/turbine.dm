@@ -1,5 +1,6 @@
 #define TURBINE_MOMENT_OF_INERTIA 2075 //0.5m radius, 9500kg weight
 #define KGS_PER_KPA_DIFFERENCE 0.9 //For every kPa of pressure difference we gain that amount of kgs of flow
+#define TURBINE_PERFECT_RPM 3600
 #define TURBINE_ABNORMAL_RPM 4000
 #define TURBINE_MAX_RPM 10000
 
@@ -25,7 +26,7 @@
 	uncreated_component_parts = null
 	construct_state = /decl/machine_construction/noninteractive
 
-	var/efficiency = 0.4
+	var/efficiency = 0.85
 	var/kin_energy = 0
 	var/kin_total = 0 //last kin energy generation
 	var/kin_loss = 0.001
@@ -68,13 +69,12 @@
 	total_mass_flow = air1.net_flow_mass
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
-	total_mass_flow *= rotor_integrity * 0.01
 	if(total_mass_flow < 50)
 		total_mass_flow = 0
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
 	kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
-	kin_energy += kin_total * efficiency
+	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
 	pump_passive(air1, air_all, total_mass_flow)
@@ -91,6 +91,7 @@
 	ingoing_valve.forced_mass_flow = total_mass_flow //so we can succ enough steam
 
 	apply_vibration_effects()
+	calculate_efficiency()
 
 	if(rpm > 250)
 		use_power = POWER_USE_ACTIVE
@@ -99,6 +100,13 @@
 	else
 		visual.spool_down()
 		use_power = POWER_USE_IDLE
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/calculate_efficiency()
+	efficiency = initial(efficiency)
+	efficiency -= vibration * 0.005
+	if(rpm < TURBINE_PERFECT_RPM)
+		efficiency -= (TURBINE_PERFECT_RPM - rpm) * 0.003
+	efficiency = max(0.13, efficiency)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	vibration = 0

@@ -13,12 +13,14 @@
 	var/data = ""
 	data = "Turbine #1:<br>\
 			RPM: [round(rcontrol.turbine1.rpm)].<br>\
+			Isentropic Efficiency: [round(rcontrol.turbine1.efficiency * 100)]%.<br>\
 			Vibration: [rcontrol.turbine1.get_vibration_flavor()].<br>\
 			Mass flow: [round(rcontrol.turbine1.total_mass_flow)]kg/s.<br>\
 			Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s<br>\
 			[breaks_engaged1]<br>\
 			Turbine #2:<br>\
 			RPM: [round(rcontrol.turbine2.rpm)].<br>\
+			Isentropic Efficiency: [round(rcontrol.turbine2.efficiency * 100)]%.<br>\
 			Vibration: [rcontrol.turbine2.get_vibration_flavor()].<br>\
 			Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s.<br>\
 			Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s<br>\
