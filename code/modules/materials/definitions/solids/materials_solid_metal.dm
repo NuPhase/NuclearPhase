@@ -240,6 +240,7 @@
 	reflectiveness = MAT_VALUE_MIRRORED
 	value = 1.3
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
+	melting_point = 1800
 
 /decl/material/solid/metal/aluminium
 	name = "aluminium"
@@ -311,7 +312,7 @@
 	brute_armor = 10
 	burn_armor = 8
 	integrity = 200
-	melting_point = 3000
+	melting_point = 1940
 	weight = MAT_VALUE_LIGHT
 	icon_base = 'icons/turf/walls/metal.dmi'
 	wall_flags = PAINT_PAINTABLE
@@ -479,6 +480,10 @@
 	value = 0.5
 	liquid_density = 19250
 	melting_point = 3400
+	boiling_point = 5828
+	molar_mass = 0.183
+	solid_specific_heat = 24.8
+	liquid_specific_heat = 47.3
 
 /decl/material/solid/metal/hafniumcarbide
 	name = "hafnium carbide"

@@ -7,8 +7,8 @@
 
 /turf/simulated/wall/r_wall
 	icon_state = "reinforced_solid"
-	material = /decl/material/solid/metal/plasteel
-	reinf_material = /decl/material/solid/metal/plasteel
+	material = /decl/material/solid/metal/stainlesssteel
+	reinf_material = /decl/material/solid/metal/stainlesssteel
 	shielding = 120
 
 /turf/simulated/wall/r_wall/hull
