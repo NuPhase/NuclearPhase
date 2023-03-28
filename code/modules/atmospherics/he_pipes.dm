@@ -143,3 +143,26 @@
 			var/required_energy = pipe_air.heat_capacity() * temperature_delta
 			environment.add_thermal_energy(!required_energy)
 			pipe_air.add_thermal_energy(required_energy)
+
+		if(pipe_air.temperature && (icon_temperature > 500 || pipe_air.temperature > 500)) //start glowing at 500K
+			if(abs(pipe_air.temperature - icon_temperature) > 10)
+				icon_temperature = pipe_air.temperature
+				var/scale = max((icon_temperature - 500) / 1500, 0)
+
+				var/h_r = heat2color_r(icon_temperature)
+				var/h_g = heat2color_g(icon_temperature)
+				var/h_b = heat2color_b(icon_temperature)
+
+				if(icon_temperature < 2000) //scale up overlay until 2000K
+					h_r = 64 + (h_r - 64)*scale
+					h_g = 64 + (h_g - 64)*scale
+					h_b = 64 + (h_b - 64)*scale
+				var/scale_color = rgb(h_r, h_g, h_b)
+				var/list/animate_targets = get_above_oo() + src
+				for (var/thing in animate_targets)
+					var/atom/movable/AM = thing
+					animate(AM, color = scale_color, time = 2 SECONDS, easing = SINE_EASING)
+				animate_filter("glow", list(color = scale_color, time = 2 SECONDS, easing = LINEAR_EASING))
+				set_light(min(3, scale*2.5), min(3, scale*2.5), scale_color)
+		else
+			set_light(0, 0)

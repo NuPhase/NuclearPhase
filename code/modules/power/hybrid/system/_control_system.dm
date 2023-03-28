@@ -78,7 +78,8 @@
 /datum/reactor_control_system/proc/make_reports()
 	var/obj/machinery/reactor_button/rswitch/current_switch
 	current_switch = reactor_buttons["TURB V-BYPASS"]
-	if(current_switch.state)
+
+	if(current_switch && current_switch.state)
 		do_message("TURBINES ON BYPASS", 1)
 
 	if(turbine1.rpm > 500 || turbine2.rpm > 500) //you shouldn't accelerate past that without load

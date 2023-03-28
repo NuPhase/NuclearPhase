@@ -80,8 +80,9 @@ var/list/global/reactor_ports = list()
 
 /obj/machinery/atmospherics/unary/reactor_connector/outgoing/Process()
 	. = ..()
-	air_contents.merge(linked.air_contents)
-	linked.air_contents.remove_ratio(1)
+	if(linked)
+		air_contents.merge(linked.air_contents)
+		linked.air_contents.remove_ratio(1)
 
 /obj/structure/reactor_table
 	name = "large table"

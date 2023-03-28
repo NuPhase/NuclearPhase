@@ -46,25 +46,13 @@
 	color = MOLTEN_METAL_COLOR
 	material = /decl/material/solid/metal/stainlesssteel
 	reinf_material = /decl/material/solid/metal/stainlesssteel
-	var/list/filter_data
 
 /turf/simulated/wall/r_wall/glowinghull/Initialize(ml, materialtype, rmaterialtype)
 	. = ..()
 	color = MOLTEN_METAL_COLOR
-	animate_filter("glow", list(color = MOLTEN_METAL_COLOR, time = 2 SECONDS, easing = LINEAR_EASING))
-	set_light(3, MOLTEN_METAL_COLOR)
-
-/turf/simulated/wall/r_wall/glowinghull/proc/animate_filter(filter_name, list/params)
-	if (!filter_data || !filter_data[filter_name])
-		return
-
-	var/list/monkeypatched_params = params.Copy()
-	monkeypatched_params.Insert(1, null)
-	var/index = filter_data.Find(filter_name)
-
-	// First, animate ourselves.
-	monkeypatched_params[1] = filters[index]
-	animate(arglist(monkeypatched_params))
+	add_filter("glow",1, list(type="drop_shadow", x = 0, y = 0, offset = 0, size = 4, color = LIGHT_COLOR_EMERGENCY))
+	// animate_filter("glow", list(color = MOLTEN_METAL_COLOR, time = 2 SECONDS, easing = LINEAR_EASING))
+	set_light(3, 1, MOLTEN_METAL_COLOR)
 
 /turf/simulated/wall/titanium
 	color = COLOR_SILVER
