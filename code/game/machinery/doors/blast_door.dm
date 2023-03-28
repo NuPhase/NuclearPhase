@@ -324,7 +324,63 @@
 	. = ..()
 
 /obj/machinery/door/blast/regular/open
+	icon_state = "pdoor0"
 	begins_closed = FALSE
+
+/obj/machinery/door/blast/regular/radlock //extremely heavy airtight self-welding blast doors
+	name = "Radiation Seal"
+	desc = "A hefty airtight seal, designed to withstand high temperatures and chemical warfare. You can only hope this monstrous thing will never be needed..."
+	icon_state = "pdoor0"
+	begins_closed = FALSE
+	pry_mod = 3
+	var/sealed = FALSE
+	rad_resistance_modifier = 2.7
+
+/obj/machinery/door/blast/regular/radlock/Initialize()
+	. = ..()
+	rcontrol.radlocks += src
+
+/obj/machinery/door/blast/regular/radlock/examine(mob/user)
+	. = ..()
+	if(sealed)
+		to_chat(user, SPAN_WARNING("Its explosive bolts have detonated, welding it shut. You'd have to cut it open."))
+
+/obj/machinery/door/blast/regular/radlock/force_close()
+	set waitfor = FALSE
+	playsound(loc, 'sound/machines/airalarm.ogg', 50, 1)
+	sleep(25)
+	. = ..()
+	sleep(20)
+	playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+	sealed = TRUE
+	visible_message(SPAN_DANGER("The [src] emits a loud hissing sound!"))
+	desc = "A hefty airtight seal, designed to withstand high temperatures and chemical warfare. It was useful after all."
+
+/obj/machinery/door/blast/regular/radlock/attackby(obj/item/C, mob/user)
+	add_fingerprint(user, 0, C)
+	if(IS_CROWBAR(C) || (istype(C, /obj/item/twohanded/fireaxe) && C:wielded == 1))
+		to_chat(user, "<span class='notice'>You begin trying to force \the [src] open...</span>")
+		if(do_after(user, 5 SECONDS, src))
+			if(!sealed)
+				force_toggle()
+			else
+				to_chat(user, "<span class='warning'>The [src]'s explosive bolts have detonated, it's welded securely shut!</span>")
+		else
+			to_chat(user, "<span class='warning'>You must remain still while working on \the [src].</span>")
+		return
+	if(IS_WELDER(C) && sealed)
+		var/obj/item/weldingtool/WT = C
+		if(!WT.isOn())
+			to_chat(user, "<span class='notice'>The welding tool needs to be of any use here.</span>")
+			return
+		visible_message(SPAN_DANGER("[user] starts unwelding [src]'s melted locking systems with the [C]!"))
+		playsound(src, 'sound/items/Welder.ogg', 50, 1)
+		if(!do_after(user, 5 SECONDS, src))
+			return
+		visible_message(SPAN_DANGER("[user] unwelds [src] with the [C]!"))
+		sealed = FALSE
+		playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+	return ..()
 
 // SUBTYPE: Shutters
 // Nicer looking, and also weaker, shutters. Found in kitchen and similar areas.

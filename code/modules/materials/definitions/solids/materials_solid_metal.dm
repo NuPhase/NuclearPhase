@@ -18,7 +18,7 @@
 	max_fluid_opacity = 255
 
 /decl/material/solid/metal/uranium
-	name = "uranium"
+	name = "uranium 235"
 	codex_name = "elemental uranium"
 	uid = "solid_uranium"
 	lore_text = "A silvery-white metallic chemical element in the actinide series, weakly radioactive. Commonly used as fuel in fission reactors."

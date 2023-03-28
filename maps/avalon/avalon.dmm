@@ -701,6 +701,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
 "aOW" = (
@@ -1159,6 +1160,7 @@
 	uid = "controlroomdoorbolts";
 	initial_access = list("ACCESS_ENGINE_EQUIP")
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "btn" = (
@@ -2249,6 +2251,7 @@
 /obj/effect/floor_decal/corner/black/border{
 	dir = 8
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "cwE" = (
@@ -4719,9 +4722,15 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "fgN" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/wall,
-/area/avalon/shelter/messhall)
+/obj/machinery/door/airlock/external{
+	initial_access = list("ACCESS_ENGINE_EQUIP")
+	},
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/blast/regular/radlock,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/machinehall)
 "fhh" = (
 /obj/structure/table/steel,
 /obj/random/trash,
@@ -5831,6 +5840,9 @@
 /obj/machinery/door/airlock/engineering{
 	initial_access = list("ACCESS_MAINT")
 	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/messhall)
 "gxU" = (
@@ -6053,6 +6065,9 @@
 /obj/machinery/door/airlock/glass/science{
 	initial_access = list("ACCESS_RESEARCH");
 	locked = 1
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
@@ -6570,6 +6585,7 @@
 /area/avalon/shelter/comms)
 "hhx" = (
 /obj/machinery/door/airlock/external/glass/bolted,
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "hhz" = (
@@ -8098,6 +8114,7 @@
 /obj/machinery/door/airlock/double/glass/security{
 	initial_access = list("ACCESS_SECURITY")
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig)
 "iRy" = (
@@ -9465,6 +9482,7 @@
 /obj/machinery/door/airlock/double/security{
 	initial_access = list("ACCESS_SECURITY")
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "khb" = (
@@ -9693,6 +9711,10 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
+"kzT" = (
+/obj/machinery/door/blast/regular/radlock,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig)
 "kAe" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -10332,6 +10354,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/office)
@@ -11074,6 +11099,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/office)
+"mee" = (
+/obj/machinery/door/blast/regular/radlock,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "meh" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/reactor_monitor/turbine{
@@ -12186,6 +12215,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
+"nqV" = (
+/obj/machinery/door/blast/regular/radlock,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/brig)
 "nrG" = (
 /obj/structure/table/steel,
 /obj/effect/floor_decal/corner/grey/full,
@@ -12660,6 +12693,7 @@
 	initial_access = list("ACCESS_MEDICAL");
 	id_tag = "medbay"
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "nQm" = (
@@ -12850,6 +12884,9 @@
 "nZa" = (
 /obj/machinery/door/airlock/maintenance{
 	initial_access = list("ACCESS_MEDICAL")
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/medbay)
@@ -14322,6 +14359,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/messhall)
 "pIW" = (
@@ -14774,6 +14814,7 @@
 /area/avalon/shelter/turbinehall)
 "qjM" = (
 /obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "qkp" = (
@@ -15051,6 +15092,7 @@
 /obj/effect/floor_decal/corner/black/border{
 	dir = 4
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "qCp" = (
@@ -16416,6 +16458,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering)
 "sfA" = (
@@ -16814,6 +16859,9 @@
 	},
 /obj/machinery/door/airlock/atmos{
 	initial_access = list("ACCESS_ENGINEERING")
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
@@ -19068,6 +19116,15 @@
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
+"veM" = (
+/obj/machinery/door/airlock/maintenance{
+	initial_access = list("ACCESS_MAINT")
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/factory)
 "vfq" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped,
@@ -19769,6 +19826,21 @@
 /obj/machinery/reactor_control_node,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
+"vTo" = (
+/obj/machinery/door/airlock/glass/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/engineering)
 "vUu" = (
 /obj/structure/closet/l3closet,
 /turf/simulated/floor/tiled/dark,
@@ -20409,6 +20481,7 @@
 /obj/machinery/door/airlock/engineering{
 	initial_access = list("ACCESS_MAINT")
 	},
+/obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
 "wHk" = (
@@ -21006,6 +21079,9 @@
 	id_tag = "secshutters";
 	identifier = "secshutters";
 	uid = "secshutters"
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig/reception)
@@ -47816,7 +47892,7 @@ hhd
 hhd
 pWS
 pWS
-rau
+veM
 pWS
 pWS
 pWS
@@ -148181,7 +148257,7 @@ gky
 gky
 gky
 brt
-gky
+nqV
 hKa
 wtr
 dHo
@@ -163658,7 +163734,7 @@ eyz
 eyz
 eyz
 eyz
-sEF
+kzT
 qgf
 eIY
 tYj
@@ -182243,7 +182319,7 @@ cfb
 jWJ
 jWJ
 jWJ
-aUa
+vTo
 sfv
 ffr
 oqB
@@ -214101,7 +214177,7 @@ kXp
 kXp
 kXp
 kXp
-fgN
+lbZ
 hBO
 hBO
 hBO
@@ -216698,7 +216774,7 @@ ojX
 hOW
 dpn
 hgE
-dpn
+mee
 dpn
 dpn
 ljJ
@@ -232178,7 +232254,7 @@ ybz
 khx
 vzf
 dlw
-byE
+fgN
 gHG
 pcv
 ezM

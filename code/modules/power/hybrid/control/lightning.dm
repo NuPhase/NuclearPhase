@@ -2,6 +2,7 @@
 	cooldown = 50
 
 /obj/machinery/reactor_button/rswitch/lighting/do_action()
+	set waitfor = FALSE
 	. = ..()
 	for(var/obj/machinery/light/L in reactor_floodlights)
 		if(L.uid == id)

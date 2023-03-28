@@ -1,5 +1,5 @@
 /decl/material/solid/metal/depleted_uranium
-	name = "depleted uranium"
+	name = "uranium 238"
 	uid = "solid_depleted_uranium"
 	lore_text = "Uranium that does not posess a significant amount of radioactive isotopes. Extremely dense, and can be enriched to produce more fission fuel."
 	mechanics_text = "Depleted uranium can be enriched in fission reactors for use as fuel."

@@ -2,6 +2,7 @@
 #define NEUTRON_FLUX_RATE 0.05
 #define RADS_PER_NEUTRON 3
 #define REACTOR_POWER_MODIFIER 10
+#define WATTS_PER_KPA 0.1
 
 /obj/machinery/power/hybrid_reactor
 	name = "reactor superstructure"
@@ -15,6 +16,10 @@
 	var/was_shut_down = FALSE
 	var/shutdown_failure = FALSE
 	var/last_radiation = 0
+
+	var/containment = FALSE
+	var/field_power_consumption = 0
+
 	var/obj/structure/reactor_superstructure/superstructure
 
 /obj/machinery/power/hybrid_reactor/Initialize()
@@ -37,6 +42,11 @@
 	var/total_radiation = neutron_moles * RADS_PER_NEUTRON
 	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)
+
+	if(temperature > 5000)
+		if(containment)
+			field_power_consumption = GM.return_pressure() * WATTS_PER_KPA
+			use_power_oneoff(field_power_consumption, EQUIP)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fission(datum/gas_mixture/GM)
 	var/total_neutron_amount = 20
@@ -85,13 +95,21 @@
 		addtimer(CALLBACK(SL, /obj/machinery/rotating_alarm/proc/set_on), rand(1,20))
 
 /obj/machinery/power/hybrid_reactor/proc/start_burning()
-	superstructure.color = LIGHT_COLOR_FIRE
+	var/list/animate_targets = superstructure.get_above_oo() + superstructure
+	for(var/thing in animate_targets)
+		var/atom/movable/AM = thing
+		animate(AM, color = "#ff0000", time = 60 SECONDS, easing = CUBIC_EASING)
+		animate_filter("drop_shadow", list(color = "#ff0000", size = 10, time = 60 SECONDS, easing = CUBIC_EASING))
+	superstructure.set_light(15, 3, "#ff0000")
 
 /obj/machinery/power/hybrid_reactor/proc/close_blastdoors()
 
 /obj/machinery/power/hybrid_reactor/proc/launch_fuel_cells()
 
 /obj/machinery/power/hybrid_reactor/proc/close_radlocks()
+	for(var/obj/machinery/door/blast/regular/radlock/cur_radlock in rcontrol.radlocks)
+		cur_radlock.force_close() //they have their own reduntant power supply systems
+	radio_announce("RADIATION LOCKS: CLOSED.", rcontrol.name)
 
 /obj/machinery/power/hybrid_reactor/proc/make_plasmaball()
 	superstructure.icon = 'icons/obj/engine/energy_ball.dmi'
@@ -103,7 +121,10 @@
 	superstructure.name = "self-contained plasma sphere"
 	superstructure.desc = "The heart of all death and destruction..."
 	superstructure.set_light(20, 10, LIGHT_COLOR_BLUE)
-	animate(superstructure, transform = matrix()*10, time = 490, easing = CIRCULAR_EASING)
+	var/list/animate_targets = superstructure.get_above_oo() + superstructure
+	for(var/thing in animate_targets)
+		var/atom/movable/AM = thing
+		animate(AM, transform = matrix()*10, time = 490, easing = CIRCULAR_EASING)
 
 /obj/machinery/power/hybrid_reactor/proc/produce_explosion()
 	var/turf/T = superstructure.loc
@@ -188,11 +209,16 @@
 		sleep(27 SECONDS)
 		for(var/mob/living/carbon/human/H in human_mob_list)
 			to_chat(H, SPAN_ERPBOLD("Everything comes to an end, including your own existence."))
-		animate(superstructure, transform = matrix()*0.9, time = 290, easing = SINE_EASING | EASE_IN)
+		var/list/animate_targets = superstructure.get_above_oo() + superstructure
+		for(var/thing in animate_targets)
+			var/atom/movable/AM = thing
+			animate(AM, transform = matrix()*0.9, time = 290, easing = SINE_EASING | EASE_IN)
 		for(var/obj/machinery/rotating_alarm/SL in rcontrol.spinning_lights)
 			SL.set_color(COLOR_RED_LIGHT)
 		spawn(29 SECONDS)
-			animate(superstructure, transform = matrix()*0.01, time = 10, easing = QUAD_EASING | EASE_IN)
+			for(var/thing in animate_targets)
+				var/atom/movable/AM = thing
+				animate(AM, transform = matrix()*0.01, time = 10, easing = QUAD_EASING | EASE_IN)
 		sleep(30 SECONDS)
 	produce_explosion()
 	radio_announce("MULTIPLE SEISMIC VIBRATIONS OF MAGNITUDE 9 DETECTED.", rcontrol.name)
