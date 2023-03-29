@@ -12,6 +12,7 @@
 	var/mode = REACTOR_CONTROL_MODE_MANUAL
 	var/semiautocontrol_available = TRUE
 	var/autocontrol_available = FALSE
+	var/scram_control = FALSE //should we autoscram?
 
 	var/list/all_messages = list()
 	var/list/cleared_messages = list()
@@ -63,6 +64,8 @@
 	switch(mode)
 		if(REACTOR_CONTROL_MODE_SEMIAUTO)
 			semi_auto_control()
+	if(scram_control)
+		check_autoscram()
 	last_message_clearing += 1
 	if(last_message_clearing == 5)
 		for(var/cleared_message in cleared_messages)
@@ -74,6 +77,12 @@
 /datum/reactor_control_system/proc/semi_auto_control()
 	moderate_reactor_loop()
 	moderate_turbine_loop()
+
+/datum/reactor_control_system/proc/check_autoscram()
+	if(turbine1.vibration > 50)
+		scram("TURBINE #1 VIBRATION TRIP")
+	if(turbine2.vibration > 50)
+		scram("TURBINE #2 VIBRATION TRIP")
 
 /datum/reactor_control_system/proc/make_reports()
 	var/obj/machinery/reactor_button/rswitch/current_switch
@@ -202,6 +211,7 @@
 	current_switch.do_action()
 
 	mode = REACTOR_CONTROL_MODE_MANUAL
+	scram_control = FALSE
 
 /datum/reactor_control_system/proc/do_message(message, urgency = 1) //urgency 1-3
 	if(has_message(message))
