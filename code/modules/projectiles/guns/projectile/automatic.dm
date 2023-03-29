@@ -10,7 +10,7 @@
 	slot_flags = SLOT_LOWER_BODY|SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/pistol/small
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/smg/rubber
+	magazine_type = null
 	allowed_magazines = /obj/item/ammo_magazine/smg
 	accuracy_power = 7
 	one_hand_penalty = 3
