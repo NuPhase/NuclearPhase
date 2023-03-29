@@ -26,7 +26,7 @@
 	uncreated_component_parts = null
 	construct_state = /decl/machine_construction/noninteractive
 
-	var/efficiency = 0.85
+	var/efficiency = 0.91
 	var/kin_energy = 0
 	var/kin_total = 0 //last kin energy generation
 	var/kin_loss = 0.001
@@ -105,8 +105,8 @@
 	efficiency = initial(efficiency)
 	efficiency -= vibration * 0.005
 	if(rpm < TURBINE_PERFECT_RPM)
-		efficiency -= (TURBINE_PERFECT_RPM - rpm) * 0.003
-	efficiency = max(0.13, efficiency)
+		efficiency -= (TURBINE_PERFECT_RPM - rpm) * 0.0003
+	efficiency = max(0.23, efficiency)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	vibration = 0
