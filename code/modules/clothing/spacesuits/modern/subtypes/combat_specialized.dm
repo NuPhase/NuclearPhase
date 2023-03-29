@@ -22,7 +22,17 @@
 		rad = ARMOR_RAD_RESISTANT
 	)
 
+/obj/item/clothing/suit/modern/space/combat_specialized/verb/emergency_ejection()
+	set name = "!Emergency Ejection!"
+	set category = "Life Support"
+	set src in usr
 
+	if(!istype(src.loc,/mob/living)) return
+
+	leakiness = 100
+	usr.drop_from_inventory(src, usr.loc)
+	var/turf/T = get_ranged_target_turf(usr, wearer.dir, 15)
+	usr.throw_at(T, 15, 3, src)
 
 /obj/item/clothing/head/helmet/modern/space/combat_specialized/cold
 	name = "CRICS-0.4V helmet"

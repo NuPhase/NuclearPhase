@@ -262,7 +262,7 @@
 
 	owner.internal_atmosphere.remove(owner.internal_atmosphere.total_moles)
 	do_support() //fill it up immediately
-	to_chat(owner, SPAN_DANGER("INTERNAL ATMOSPHERE PURGED!"))
+	to_chat(owner.wearer, SPAN_DANGER("INTERNAL ATMOSPHERE PURGED!"))
 	playsound(owner.wearer, 'sound/effects/undock.ogg', 100, 1)
 
 
