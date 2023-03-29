@@ -1,12 +1,12 @@
 /obj/machinery/reactor_button/scram
-	name = "SCRAM"
+	name = "EP-SCRAM"
+	id = "EP-SCRAM"
 	cooldown = 60 SECONDS
 
 /obj/machinery/reactor_button/scram/do_action(mob/user)
 	..()
 	rcontrol.scram("OPERATOR REQUEST")
 	visible_message(SPAN_WARNING("[user] SCRAMs the reactor!"))
-	playsound(src, 'sound/machines/switchbuzzer.ogg', 50)
 
 /obj/machinery/reactor_button/mode_of_operation
 	name = "CONTROL MODE"
@@ -23,6 +23,19 @@
 		to_chat(user, SPAN_NOTICE("The system is already in the same mode."))
 		return
 	visible_message(SPAN_WARNING("[user] switches [src] to [newmode]!"))
+
+/obj/machinery/reactor_button/rswitch/autoscram
+	name = "AUTOSCRAM"
+	id = "AUTOSCRAM"
+	cooldown = 5 SECONDS
+
+/obj/machinery/reactor_button/rswitch/autoscram/do_action(mob/user)
+	..()
+	rcontrol.scram_control = state
+	if(state)
+		visible_message(SPAN_NOTICE("[user] turns on automatic SCRAM control."))
+	else
+		visible_message(SPAN_WARNING("[user] shuts down automatic SCRAM control."))
 
 /obj/machinery/reactor_button/acknowledge_alarms
 	name = "ACKNOWLEDGE ALARMS"

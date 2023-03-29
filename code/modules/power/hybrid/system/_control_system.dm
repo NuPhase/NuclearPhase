@@ -193,6 +193,12 @@
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
 	var/obj/machinery/reactor_button/rswitch/current_switch
 
+	current_switch = reactor_buttons["EP-SCRAM"]
+	playsound(current_switch.loc, 'sound/machines/switchbuzzer.ogg', 50)
+	current_switch = reactor_buttons["AUTOSCRAM"]
+	current_switch.state = 0
+	current_switch.icon_state = current_switch.off_icon_state
+
 	//shutting down reactor
 	current_valve = reactor_valves["REACTOR-F-V-IN"]
 	current_valve.set_openage(0)

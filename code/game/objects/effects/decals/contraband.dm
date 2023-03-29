@@ -82,14 +82,70 @@
 	desc = "A large piece of space-resistant printed paper."
 	icon = 'icons/obj/contraband.dmi'
 	anchored = 1
+	var/custom_desc = ""
+	var/should_display_desc = TRUE
 	var/poster_type
 	var/ruined = 0
+	var/placement_dir = null
+
+/obj/structure/sign/poster/examine(mob/user, distance)
+	..()
+	if(should_display_desc)
+		to_chat(user, custom_desc)
 
 /obj/structure/sign/poster/bay_9
 	poster_type = /decl/poster/bay_9
 
 /obj/structure/sign/poster/bay_50
 	poster_type = /decl/poster/bay_50
+
+/obj/structure/sign/poster/shelter_rules
+	poster_type = /decl/poster/shelter_rules
+	should_display_desc = FALSE
+
+/obj/structure/sign/poster/shelter_rules/examine(mob/user, distance)
+	. = ..()
+	show_browser(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[custom_desc]</BODY></HTML>", "window=[name]")
+
+/obj/structure/sign/poster/shelter_rules/north
+	placement_dir = NORTH
+	pixel_y = 32
+
+/obj/structure/sign/poster/shelter_rules/south
+	placement_dir = SOUTH
+	pixel_y = -32
+
+/obj/structure/sign/poster/shelter_rules/west
+	placement_dir = WEST
+	pixel_x = -32
+
+/obj/structure/sign/poster/shelter_rules/east
+	placement_dir = EAST
+	pixel_x = 32
+
+/obj/structure/sign/poster/military_rules
+	poster_type = /decl/poster/military_rules
+	should_display_desc = FALSE
+
+/obj/structure/sign/poster/military_rules/examine(mob/user, distance)
+	. = ..()
+	show_browser(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[custom_desc]</BODY></HTML>", "window=[name]")
+
+/obj/structure/sign/poster/military_rules/north
+	placement_dir = NORTH
+	pixel_y = 32
+
+/obj/structure/sign/poster/military_rules/south
+	placement_dir = SOUTH
+	pixel_y = -32
+
+/obj/structure/sign/poster/military_rules/west
+	placement_dir = WEST
+	pixel_x = -32
+
+/obj/structure/sign/poster/military_rules/east
+	placement_dir = EAST
+	pixel_x = 32
 
 /obj/structure/sign/poster/Initialize(mapload, var/placement_dir = null, var/give_poster_type = null)
 	. = ..(mapload)
@@ -116,7 +172,7 @@
 /obj/structure/sign/poster/proc/set_poster(var/poster_type)
 	var/decl/poster/design = GET_DECL(poster_type)
 	SetName("[initial(name)] - [design.name]")
-	desc = "[initial(desc)] [design.desc]"
+	custom_desc = "[initial(desc)] [design.desc]"
 	icon_state = design.icon_state
 
 /obj/structure/sign/poster/attackby(obj/item/W, mob/user)

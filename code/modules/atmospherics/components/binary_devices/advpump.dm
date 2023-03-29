@@ -14,7 +14,7 @@
 /obj/machinery/atmospherics/binary/pump/adv
 	icon = 'icons/obj/atmospherics/components/binary/pump.dmi'
 	icon_state = "map_off"
-	level = 1
+	level = 2
 
 	name = "advanced rotary pump"
 	desc = "A special pump designed to pump fluids. Works poorly with gases."
@@ -52,10 +52,10 @@
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
 	name = "molten metal pump"
 	desc = "Pumping high density and temperature fluids is hard and tricky, not mentioning the power cost. This pump is a monster."
-	icon = 'icons/obj/atmospherics/components/binary/moltenpump.dmi'
+	//icon = 'icons/obj/atmospherics/components/binary/moltenpump.dmi'
 	level = 2
-	layer = STRUCTURE_LAYER
-	icon_state = "off"
+	//layer = STRUCTURE_LAYER
+	//icon_state = "off"
 	flow_capacity = 300 //kgs
 	power_rating = 210000 //molten metals take a lot of energy to move
 
