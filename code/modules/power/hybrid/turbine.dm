@@ -131,7 +131,7 @@
 			for(var/mob/living/carbon/human/H in range(world.view, loc))
 				to_chat(H, SPAN_DANGER("Everything around you shakes and rattles!"))
 			rotor_integrity = max(0, rotor_integrity - 0.5)
-			shaft_integrity = max(0, rotor_integrity - 0.1)
+			shaft_integrity = max(0, shaft_integrity - 0.1)
 
 /obj/machinery/power/generator/turbine_generator
 	name = "motor"
