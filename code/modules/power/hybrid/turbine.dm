@@ -1,6 +1,6 @@
 #define TURBINE_MOMENT_OF_INERTIA 2075 //0.5m radius, 9500kg weight
-#define MS_PER_KPA_DIFFERENCE 0.12 //For every kPa of pressure difference we gain so much m/s of steam speed
-#define TURBINE_PERFECT_RPM 3600
+#define MS_PER_KPA_DIFFERENCE 0.14 //For every kPa of pressure difference we gain so much m/s of steam speed
+#define TURBINE_PERFECT_RPM 3550
 #define TURBINE_ABNORMAL_RPM 4000
 #define TURBINE_MAX_RPM 10000
 
@@ -83,7 +83,7 @@
 	calculate_vibration(air_all)
 	air2.merge(air_all)
 	var/new_rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
-	if(braking) //TODO: MAKE DAMAGE FROM THIS
+	if(braking)
 		var/datum/gas_mixture/environment = loc.return_air()
 		kin_energy = max(0, kin_energy * 0.95 - 10000)
 		if(kin_energy)
