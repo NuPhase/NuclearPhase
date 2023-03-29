@@ -1,5 +1,5 @@
 #define TURBINE_MOMENT_OF_INERTIA 2075 //0.5m radius, 9500kg weight
-#define KGS_PER_KPA_DIFFERENCE 0.9 //For every kPa of pressure difference we gain that amount of kgs of flow
+#define MS_PER_KPA_DIFFERENCE 0.12 //For every kPa of pressure difference we gain so much m/s of steam speed
 #define TURBINE_PERFECT_RPM 3600
 #define TURBINE_ABNORMAL_RPM 4000
 #define TURBINE_MAX_RPM 10000
@@ -68,10 +68,11 @@
 	. = ..()
 	total_mass_flow = air1.net_flow_mass
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
-	total_mass_flow += pressure_difference * KGS_PER_KPA_DIFFERENCE
+	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
+	steam_velocity += pressure_difference * MS_PER_KPA_DIFFERENCE
 	if(total_mass_flow < 50)
 		total_mass_flow = 0
-	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
+		steam_velocity = 0
 	kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
