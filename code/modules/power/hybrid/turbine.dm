@@ -110,16 +110,17 @@
 	efficiency = max(0.23, efficiency)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
-	vibration = 0
+	var/tvibration = 0
 	if(turbine_internals.temperature < 409) //condensing inside of the turbine is incredibly dangerous
-		vibration += total_mass_flow * 0.04
+		tvibration += total_mass_flow * 0.04
 	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
-		vibration += total_mass_flow * 0.06
+		tvibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
-		vibration += 20
+		tvibration += 20
 	if(rpm > TURBINE_ABNORMAL_RPM) //я твоя турбина вал шатал
-		vibration += (rpm - TURBINE_ABNORMAL_RPM)*0.1
-	vibration += total_mass_flow * 0.005
+		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.1
+	tvibration += total_mass_flow * 0.005
+	vibration = Interpolate(vibration, tvibration, 0.1)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects()
 	switch(vibration)
