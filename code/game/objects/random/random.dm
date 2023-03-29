@@ -108,8 +108,7 @@
 	return list(/obj/item/storage/toolbox/mechanical = 30,
 				/obj/item/storage/toolbox/electrical = 20,
 				/obj/item/storage/toolbox/emergency = 20,
-				/obj/item/storage/toolbox/repairs = 20,
-				/obj/item/storage/toolbox/syndicate = 1)
+				/obj/item/storage/toolbox/repairs = 20)
 
 /obj/random/tech_supply
 	name = "random tech supply"
@@ -142,19 +141,10 @@
 /obj/random/medical/spawn_choices()
 	return list(/obj/random/medical/lite = 21,
 				/obj/item/bodybag = 2,
-				/obj/item/chems/glass/bottle/stabilizer = 2,
+				/obj/item/storage/pill_bottle/betapace = 2,
 				/obj/item/chems/glass/bottle/charcoal = 2,
 				/obj/item/storage/pill_bottle = 2,
-				/obj/item/storage/pill_bottle/painkillers = 1,
-				/obj/item/storage/pill_bottle/antidepressants = 2,
-				/obj/item/storage/pill_bottle/oxygen = 1,
-				/obj/item/storage/pill_bottle/burn_meds = 1,
-				/obj/item/storage/pill_bottle/brute_meds = 1,
-				/obj/item/chems/syringe/antitoxin = 2,
-				/obj/item/chems/syringe/antibiotic = 1,
-				/obj/item/chems/syringe/stabilizer = 2,
-				/obj/item/storage/box/freezer = 1,
-				/obj/item/stack/nanopaste = 1)
+				/obj/item/storage/box/freezer = 1)
 
 /obj/random/medical/lite
 	name = "Random Medicine"
@@ -166,19 +156,10 @@
 /obj/random/medical/lite/spawn_choices()
 	return list(/obj/item/stack/medical/bruise_pack = 4,
 				/obj/item/stack/medical/ointment = 4,
-				/obj/item/storage/pill_bottle/antibiotics = 2,
-				/obj/item/storage/pill_bottle/painkillers = 2,
-				/obj/item/stack/medical/advanced/bruise_pack = 2,
-				/obj/item/stack/medical/advanced/ointment = 2,
+				/obj/item/stack/medical/bruise_pack = 2,
+				/obj/item/stack/medical/ointment = 2,
 				/obj/item/stack/medical/splint = 1,
-				/obj/item/chems/hypospray/autoinjector = 3,
-				/obj/item/storage/pill_bottle/burn_meds = 2,
-				/obj/item/storage/pill_bottle/antitox = 2,
-				/obj/item/storage/med_pouch/trauma = 2,
-				/obj/item/storage/med_pouch/burn = 2,
-				/obj/item/storage/med_pouch/toxin = 2,
-				/obj/item/storage/med_pouch/radiation = 2,
-				/obj/item/storage/med_pouch/oxyloss = 2)
+				/obj/item/chems/hypospray/autoinjector = 3)
 
 /obj/random/firstaid
 	name = "Random First Aid Kit"
@@ -190,7 +171,6 @@
 	return list(/obj/item/storage/firstaid/regular = 4,
 				/obj/item/storage/firstaid/trauma = 3,
 				/obj/item/storage/firstaid/toxin = 3,
-				/obj/item/storage/firstaid/o2 = 3,
 				/obj/item/storage/firstaid/stab = 2,
 				/obj/item/storage/firstaid/adv = 2,
 				/obj/item/storage/firstaid/combat = 1,
@@ -206,9 +186,6 @@
 
 /obj/random/contraband/spawn_choices()
 	return list(/obj/item/haircomb = 4,
-				/obj/item/storage/pill_bottle/painkillers = 3,
-				/obj/item/storage/pill_bottle/happy = 2,
-				/obj/item/storage/pill_bottle/zoom = 2,
 				/obj/item/chems/glass/beaker/vial/random/toxin = 1,
 				/obj/item/chems/glass/beaker/sulphuric = 1,
 				/obj/item/contraband/poster = 5,
@@ -222,12 +199,10 @@
 				/obj/item/knife/folding/combat/switchblade = 1,
 				/obj/item/storage/secure/briefcase/money = 1,
 				/obj/item/storage/box/syndie_kit/cigarette = 1,
-				/obj/item/stack/telecrystal = 1,
 				/obj/item/clothing/under/syndicate = 2,
 				/obj/item/chems/syringe = 3,
 				/obj/item/chems/syringe/steroid = 2,
-				/obj/item/chems/syringe/drugs = 1,
-				/obj/item/chems/food/egg/lizard = 3)
+				/obj/item/chems/syringe/drugs = 1)
 
 /obj/random/drinkingglass
 	name = "random drinking glass"
@@ -273,16 +248,7 @@
 	icon_state = "energykill100"
 
 /obj/random/energy/spawn_choices()
-	return list(/obj/item/gun/energy/laser = 4,
-				/obj/item/gun/energy/gun = 3,
-				/obj/item/gun/energy/lasercannon = 2,
-				/obj/item/gun/energy/xray = 3,
-				/obj/item/gun/energy/sniperrifle = 1,
-				/obj/item/gun/energy/gun/nuclear = 1,
-				/obj/item/gun/energy/ionrifle = 2,
-				/obj/item/gun/energy/toxgun = 3,
-				/obj/item/gun/energy/taser = 4,
-				/obj/item/gun/energy/crossbow/largecrossbow = 2)
+	return list()
 
 /obj/random/projectile
 	name = "Random Projectile Weapon"
@@ -327,8 +293,7 @@
 				/obj/item/storage/box/ammo/shotgunshells = 4,
 				/obj/item/storage/box/ammo/stunshells = 1,
 				/obj/item/ammo_magazine/pistol = 2,
-				/obj/item/ammo_magazine/smg = 2,
-				/obj/item/ammo_magazine/smg/rubber = 6
+				/obj/item/ammo_magazine/smg = 2
 				)
 
 /obj/random/action_figure
@@ -628,7 +593,6 @@
 				/obj/item/handcuffs,
 				/obj/item/camera,
 				/obj/item/modular_computer/pda,
-				/obj/item/card/emag_broken,
 				/obj/item/radio/headset,
 				/obj/item/flashlight/flare/glowstick/yellow,
 				/obj/item/flashlight/flare/glowstick/orange,
@@ -685,13 +649,6 @@
 				/obj/item/chems/food/candy,
 				/obj/item/chems/drinks/dry_ramen,
 				/obj/item/chems/food/chips,
-				/obj/item/chems/food/sosjerky,
-				/obj/item/chems/food/no_raisin,
-				/obj/item/chems/food/spacetwinkie,
-				/obj/item/chems/food/cheesiehonkers,
-				/obj/item/chems/food/tastybread,
-				/obj/item/chems/food/candy/proteinbar,
-				/obj/item/chems/food/syndicake,
 				/obj/item/chems/food/donut,
 				/obj/item/chems/food/donut/jelly,
 				/obj/item/pizzabox/meat,
@@ -792,19 +749,7 @@
 /obj/random/glasses/spawn_choices()
 	return list(/obj/item/clothing/glasses/sunglasses = 3,
 				/obj/item/clothing/glasses/prescription = 7,
-				/obj/item/clothing/glasses/meson = 5,
-				/obj/item/clothing/glasses/meson/prescription = 4,
-				/obj/item/clothing/glasses/science = 6,
-				/obj/item/clothing/glasses/material = 5,
-				/obj/item/clothing/glasses/welding = 3,
-				/obj/item/clothing/glasses/hud/health = 4,
-				/obj/item/clothing/glasses/hud/health/prescription = 3,
-				/obj/item/clothing/glasses/hud/security = 4,
-				/obj/item/clothing/glasses/hud/security/prescription = 3,
-				/obj/item/clothing/glasses/sunglasses/sechud = 2,
-				/obj/item/clothing/glasses/sunglasses/sechud/toggle = 3,
-				/obj/item/clothing/glasses/sunglasses/sechud/goggles = 1,
-				/obj/item/clothing/glasses/tacgoggles = 1)
+				/obj/item/clothing/glasses/welding = 3)
 
 /obj/random/hat
 	name = "random headgear"
@@ -815,13 +760,11 @@
 /obj/random/hat/spawn_choices()
 	return list(/obj/item/clothing/head/helmet = 2,
 				/obj/item/clothing/head/helmet/tactical = 1,
-				/obj/item/clothing/head/helmet/space/emergency = 1,
 				/obj/item/clothing/head/bio_hood/general = 1,
 				/obj/item/clothing/head/hardhat = 4,
 				/obj/item/clothing/head/hardhat/orange = 4,
 				/obj/item/clothing/head/hardhat/red = 4,
 				/obj/item/clothing/head/hardhat/dblue = 4,
-				/obj/item/clothing/head/ushanka = 3,
 				/obj/item/clothing/head/welding = 2)
 
 /obj/random/suit
@@ -833,7 +776,6 @@
 /obj/random/suit/spawn_choices()
 	return list(/obj/item/clothing/suit/storage/hazardvest = 4,
 				/obj/item/clothing/suit/storage/toggle/labcoat = 4,
-				/obj/item/clothing/suit/space/emergency = 1,
 				/obj/item/clothing/suit/armor/vest = 4,
 				/obj/item/clothing/suit/armor/pcarrier/tactical = 1,
 				/obj/item/clothing/suit/armor/vest/heavy = 3,
@@ -971,7 +913,7 @@ something, make sure it's not in one of the other lists.*/
 				/obj/random/projectile = 10,
 				/obj/item/clothing/mask/muzzle = 7,
 				/obj/item/clothing/mask/gas/syndicate = 10,
-				/obj/item/clothing/glasses/welding/superior = 7,
+				/obj/item/clothing/glasses/welding = 7,
 				/obj/item/clothing/head/collectable/petehat = 4,
 				/obj/item/clothing/suit/armor/pcarrier/merc = 3,
 				/obj/item/clothing/suit/straight_jacket = 6,
@@ -983,10 +925,7 @@ something, make sure it's not in one of the other lists.*/
 				/obj/item/stack/material/ingot/mapped/osmium/ten = 7,
 				/obj/item/stack/material/ingot/mapped/platinum/ten = 8,
 				/obj/item/stack/material/aerogel/mapped/tritium/ten = 7,
-				/obj/item/stack/material/segment/mapped/mhydrogen/ten = 6,
-				/obj/item/stack/material/reinforced/mapped/plasteel/ten = 9,
 				/obj/item/stack/material/ingot/mapped/copper/ten = 8,
-				/obj/item/storage/box/monkeycubes = 5,
 				/obj/item/storage/firstaid/surgery = 4,
 				/obj/item/archaeological_find = 2,
 				/obj/structure/artifact = 1,
@@ -1009,19 +948,7 @@ something, make sure it's not in one of the other lists.*/
 	icon_state = ICON_STATE_WORLD
 
 /obj/random/voidhelmet/spawn_choices()
-	return list(/obj/item/clothing/head/helmet/space/void,
-				/obj/item/clothing/head/helmet/space/void/engineering,
-				/obj/item/clothing/head/helmet/space/void/engineering/alt,
-				/obj/item/clothing/head/helmet/space/void/engineering/salvage,
-				/obj/item/clothing/head/helmet/space/void/mining,
-				/obj/item/clothing/head/helmet/space/void/mining/alt,
-				/obj/item/clothing/head/helmet/space/void/security,
-				/obj/item/clothing/head/helmet/space/void/security/alt,
-				/obj/item/clothing/head/helmet/space/void/atmos,
-				/obj/item/clothing/head/helmet/space/void/atmos/alt,
-				/obj/item/clothing/head/helmet/space/void/merc,
-				/obj/item/clothing/head/helmet/space/void/medical,
-				/obj/item/clothing/head/helmet/space/void/medical/alt)
+	return list()
 
 /obj/random/voidsuit
 	name = "Random Voidsuit"
@@ -1030,19 +957,7 @@ something, make sure it's not in one of the other lists.*/
 	icon_state = ICON_STATE_WORLD
 
 /obj/random/voidsuit/spawn_choices()
-	return list(/obj/item/clothing/suit/space/void,
-				/obj/item/clothing/suit/space/void/engineering,
-				/obj/item/clothing/suit/space/void/engineering/alt,
-				/obj/item/clothing/suit/space/void/engineering/salvage,
-				/obj/item/clothing/suit/space/void/mining,
-				/obj/item/clothing/suit/space/void/mining/alt,
-				/obj/item/clothing/suit/space/void/security,
-				/obj/item/clothing/suit/space/void/security/alt,
-				/obj/item/clothing/suit/space/void/atmos,
-				/obj/item/clothing/suit/space/void/atmos/alt,
-				/obj/item/clothing/suit/space/void/merc,
-				/obj/item/clothing/suit/space/void/medical,
-				/obj/item/clothing/suit/space/void/medical/alt)
+	return list()
 
 /obj/random/hardsuit
 	name = "Random Hardsuit"
@@ -1051,11 +966,7 @@ something, make sure it's not in one of the other lists.*/
 	icon_state = "generic"
 
 /obj/random/hardsuit/spawn_choices()
-	return list(/obj/item/rig/industrial,
-				/obj/item/rig/eva,
-				/obj/item/rig/light/hacker,
-				/obj/item/rig/light/stealth,
-				/obj/item/rig/light)
+	return list()
 
 /obj/random/hostile
 	name = "Random Hostile Mob"
