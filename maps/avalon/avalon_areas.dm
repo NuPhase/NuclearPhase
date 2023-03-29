@@ -137,6 +137,12 @@
 /area/avalon/shelter/brig/barracks
 	name = "Security Barracks"
 
+/area/avalon/shelter/cargo/warehouse
+	name = "Main Warehouse"
+
+/area/avalon/shelter/cargo/rest_area
+	name = "Supply Operations Break Room"
+
 /area/avalon/shelter/medbay
 	name = "Medbay"
 
