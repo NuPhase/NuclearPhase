@@ -2,7 +2,7 @@
 	name = "cryogenic cooling unit"
 	desc = "A piece of heavy machinery that practically abuses thermodynamical states to move heat from one end into another."
 	var/target_temperature = T20C
-	var/efficiency = 0.74
+	var/efficiency = 0.86
 	use_power = POWER_USE_OFF
 	idle_power_usage = 1500
 	power_rating = 30000
@@ -26,7 +26,7 @@
 		return
 	var/temperature_delta = target_temperature - air1.temperature
 	var/required_energy_transfer = temperature_delta * air1.heat_capacity()
-	var/actual_energy_transfer = required_energy_transfer * efficiency
-	use_power_oneoff(required_energy_transfer * (1 - efficiency))
+	var/actual_energy_transfer = min(required_energy_transfer * efficiency, power_rating)
+	use_power_oneoff(min(required_energy_transfer * (1 - efficiency), power_rating))
 	air2.add_thermal_energy(actual_energy_transfer)
 	air1.add_thermal_energy(actual_energy_transfer * -1)
