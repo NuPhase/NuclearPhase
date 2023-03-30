@@ -141,7 +141,7 @@
 		if(environment.temperature > target_temperature) //we consoom
 			var/temperature_delta = target_temperature - pipe_air.temperature
 			var/required_energy = pipe_air.heat_capacity() * temperature_delta
-			environment.add_thermal_energy(!required_energy)
+			environment.add_thermal_energy(required_energy * -1)
 			pipe_air.add_thermal_energy(required_energy)
 
 		if(pipe_air.temperature && (icon_temperature > 500 || pipe_air.temperature > 500)) //start glowing at 500K

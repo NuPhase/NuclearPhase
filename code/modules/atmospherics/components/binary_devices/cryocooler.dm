@@ -29,4 +29,4 @@
 	var/actual_energy_transfer = required_energy_transfer * efficiency
 	use_power_oneoff(required_energy_transfer * (1 - efficiency))
 	air2.add_thermal_energy(actual_energy_transfer)
-	air1.add_thermal_energy(!actual_energy_transfer)
+	air1.add_thermal_energy(actual_energy_transfer * -1)
