@@ -28,5 +28,5 @@
 	var/required_energy_transfer = temperature_delta * air1.heat_capacity()
 	var/actual_energy_transfer = min(required_energy_transfer * efficiency, power_rating)
 	use_power_oneoff(min(required_energy_transfer * (1 - efficiency), power_rating))
-	air2.add_thermal_energy(actual_energy_transfer)
-	air1.add_thermal_energy(actual_energy_transfer * -1)
+	air2.add_thermal_energy(abs(actual_energy_transfer))
+	air1.add_thermal_energy(actual_energy_transfer)

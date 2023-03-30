@@ -961,7 +961,8 @@
 "aXt" = (
 /obj/machinery/atmospherics/binary/regulated_valve/inconel{
 	dir = 4;
-	forced_mass_flow = 5000
+	forced_mass_flow = 5000;
+	open_to = 1
 	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -1156,6 +1157,10 @@
 	},
 /obj/effect/floor_decal/corner/beige/bordercorner{
 	dir = 8
+	},
+/obj/machinery/reactor_button/rswitch/autoscram{
+	pixel_x = -10;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -1434,7 +1439,7 @@
 /obj/structure/bed/sofa/l/black{
 	dir = 8
 	},
-/obj/machinery/rotating_alarm/reactor{
+/obj/machinery/rotating_alarm/reactor/control_room{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3739,8 +3744,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "dRl" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
@@ -4772,6 +4777,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"eSQ" = (
+/obj/machinery/atmospherics/pipe/cap/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/cap/visible{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/turbinehall)
 "eTI" = (
 /obj/structure/grille,
 /turf/simulated/floor/plating,
@@ -5066,7 +5080,7 @@
 	info = "Guys, I still haven't figured out these shitty neutron mode switching circuits. Please don't use them for the time being."
 	},
 /obj/machinery/reactor_monitor/warnings{
-	pixel_x = 16;
+	pixel_x = 2;
 	pixel_y = 10;
 	layer = 2.221
 	},
@@ -5184,7 +5198,7 @@
 	},
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_cryo{
 	dir = 4;
-	initial_volume = 500
+	initial_volume = 1700
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/breakerroom)
@@ -6723,7 +6737,7 @@
 "haF" = (
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_atmos{
 	dir = 8;
-	initial_volume = 500
+	initial_volume = 1700
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/breakerroom)
@@ -6817,12 +6831,6 @@
 /obj/machinery/reactor_button/mute_alarms{
 	dir = 4;
 	pixel_x = 12
-	},
-/obj/item/paper/sticky{
-	pixel_y = 3;
-	pixel_x = 8;
-	name = "INOP note";
-	info = "We haven't got any alarms here..."
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -8463,7 +8471,7 @@
 	dir = 1
 	},
 /obj/structure/bookcase/manuals/engineering,
-/obj/machinery/rotating_alarm/reactor,
+/obj/machinery/rotating_alarm/reactor/control_room,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "iLC" = (
@@ -8586,14 +8594,6 @@
 "iRy" = (
 /obj/structure/reactor_table{
 	pixel_y = 6
-	},
-/obj/machinery/reactor_button/scram{
-	pixel_x = 15;
-	pixel_y = -2
-	},
-/obj/machinery/reactor_button/mode_of_operation{
-	pixel_x = 6;
-	pixel_y = -2
 	},
 /obj/effect/floor_decal/corner/beige/border,
 /obj/machinery/reactor_button/regvalve/reactorfvout{
@@ -8781,7 +8781,7 @@
 /area/surface)
 "iZb" = (
 /obj/effect/floor_decal/corner/beige/border,
-/obj/machinery/rotating_alarm/reactor{
+/obj/machinery/rotating_alarm/reactor/control_room{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -11099,7 +11099,7 @@
 	dir = 8;
 	target_temperature = 92;
 	use_power = 1;
-	power_rating = 240000
+	power_rating = 1300000
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/atmos)
@@ -11657,7 +11657,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "lVJ" = (
-/obj/machinery/rotating_alarm/reactor{
+/obj/machinery/rotating_alarm/reactor/control_room{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -12653,9 +12653,6 @@
 /area/avalon/shelter/factory)
 "ncU" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/rotating_alarm/reactor{
-	dir = 4
-	},
 /obj/machinery/reactor_display/group/steamloop{
 	layer = 2.221;
 	pixel_y = -5;
@@ -12663,6 +12660,9 @@
 	},
 /obj/effect/floor_decal/corner/beige/border{
 	dir = 1
+	},
+/obj/machinery/rotating_alarm/reactor/control_room{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -17180,7 +17180,15 @@
 	},
 /obj/effect/floor_decal/corner/beige/border,
 /obj/machinery/reactor_button/rswitch/lighting/superstructure{
-	pixel_y = -3
+	pixel_y = 12
+	},
+/obj/machinery/reactor_button/mode_of_operation{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/machinery/reactor_button/scram{
+	pixel_x = -6;
+	pixel_y = -2
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -22340,7 +22348,7 @@
 /obj/structure/bed/sofa/r/black{
 	dir = 4
 	},
-/obj/machinery/rotating_alarm/reactor{
+/obj/machinery/rotating_alarm/reactor/control_room{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -167437,7 +167445,7 @@ eTI
 eTI
 cMK
 moQ
-muD
+dRl
 sBv
 dMm
 qOw
@@ -167567,7 +167575,7 @@ eTI
 eTI
 cMK
 moQ
-qjD
+eSQ
 qjD
 qOw
 phM
