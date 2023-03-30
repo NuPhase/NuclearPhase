@@ -7,8 +7,10 @@
 #define REACTOR_PUMP_RPM_MAX  3100
 
 /datum/composite_sound/pump
+	start_sound = list('sound/machines/pumpstart.ogg')
+	start_length = 470
 	mid_sounds = list('sound/machines/pumploop.ogg'=1)
-	mid_length = 40
+	mid_length = 80
 	volume = 15
 
 /obj/machinery/atmospherics/binary/pump/adv
