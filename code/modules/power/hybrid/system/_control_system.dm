@@ -18,6 +18,7 @@
 	var/list/cleared_messages = list()
 
 	var/list/spinning_lights = list()
+	var/list/control_spinning_lights = list() //these are specifically inside the control room and similiar areas
 	var/list/radlocks = list()
 
 	var/list/reactor_pumps = list()
@@ -29,6 +30,9 @@
 	var/obj/machinery/power/generator/turbine_generator/generator1 = null
 	var/obj/machinery/power/generator/turbine_generator/generator2 = null
 	var/last_message_clearing = 0
+
+	var/should_alarm = TRUE
+	var/pressure_temperature_should_alarm = FALSE
 
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]
@@ -61,6 +65,7 @@
 
 /datum/reactor_control_system/proc/control()
 	make_reports()
+	do_alarms()
 	switch(mode)
 		if(REACTOR_CONTROL_MODE_SEMIAUTO)
 			semi_auto_control()
@@ -84,7 +89,29 @@
 	if(turbine2.vibration > 50)
 		scram("TURBINE #2 VIBRATION TRIP")
 
+/datum/reactor_control_system/proc/do_alarms()
+	if(!should_alarm)
+		return
+
+	if(pressure_temperature_should_alarm)
+		for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
+			if(!SL.oo_alarm)
+				SL.oo_alarm = new(list(SL), TRUE)
+	else
+		for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
+			QDEL_NULL(SL.oo_alarm)
+
+	var/obj/machinery/rlaser/las = reactor_components["laser_charlie"]
+	if(las.armed && las.omode == "IGNITION")
+		for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
+			if(!SL.arm_alarm)
+				SL.arm_alarm = new(list(SL), TRUE)
+	else
+		for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
+			QDEL_NULL(SL.arm_alarm)
+
 /datum/reactor_control_system/proc/make_reports()
+	pressure_temperature_should_alarm = FALSE
 	var/obj/machinery/reactor_button/rswitch/current_switch
 	current_switch = reactor_buttons["TURB V-BYPASS"]
 
@@ -125,10 +152,30 @@
 			remove_message("EXCESSIVE VIBRATION IN TURBINE #2")
 			remove_message("HIGH VIBRATION IN TURBINE #2")
 
+	if(get_meter_temperature("REACTOR-M CHAMBER") > 3950)
+		do_message("REACTOR HEATEXCHANGER OVERHEAT", 2)
+		pressure_temperature_should_alarm = TRUE
+	if(get_meter_temperature("REACTOR-M CHAMBER") < 3500 && get_meter_mass("REACTOR-M CHAMBER") > 10)
+		do_message("REACTOR HEATEXCHANGER TEMPERATURE LOW", 2)
+		pressure_temperature_should_alarm = TRUE
+	if(get_meter_temperature("T-M-TURB IN") > 630)
+		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
+		pressure_temperature_should_alarm = TRUE
+	if(get_meter_temperature("T-M-TURB EX") > 380)
+		do_message("TURBINE CONDENSER TEMPERATURE HIGH", 2)
+		pressure_temperature_should_alarm = TRUE
+
+	if(get_meter_pressure("T-M-TURB IN") > 12000)
+		do_message("TURBINE INLET OVERPRESSURE", 2)
+		pressure_temperature_should_alarm = TRUE
+	if(get_meter_pressure("T-M-TURB EX") > 3000)
+		do_message("TURBINE CONDENSER OVERPRESSURE", 2)
+		pressure_temperature_should_alarm = TRUE
+
 	if(get_pump_flow_rate("F-CP 1") < 50)
-		do_message("REACTOR LOOP PUMP #1 MASS FLOW < 25KG/S", 2)
+		do_message("REACTOR LOOP PUMP #1 MASS FLOW < 25KG/S", 1)
 	if(get_pump_flow_rate("F-CP 2") < 50)
-		do_message("REACTOR LOOP PUMP #2 MASS FLOW < 25KG/S", 2)
+		do_message("REACTOR LOOP PUMP #2 MASS FLOW < 25KG/S", 1)
 	if(get_pump_flow_rate("T-CP 1") < 50)
 		do_message("TURBINE LOOP PUMP #1 MASS FLOW < 50KG/S", 1)
 	if(get_pump_flow_rate("T-CP 2") < 50)

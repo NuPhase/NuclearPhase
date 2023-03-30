@@ -47,4 +47,14 @@
 
 /obj/machinery/reactor_button/mute_alarms
 	name = "MUTE ALARMS"
-	cooldown = 5 SECONDS
+	cooldown = 1 MINUTE
+
+/obj/machinery/reactor_button/mute_alarms/do_action(mob/user)
+	..()
+	visible_message(SPAN_WARNING("[user] temporarily disables the control system alarms."))
+	rcontrol.should_alarm = FALSE
+	spawn(2 MINUTE)
+		rcontrol.should_alarm = TRUE
+	for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
+		QDEL_NULL(SL.oo_alarm)
+		QDEL_NULL(SL.arm_alarm)
