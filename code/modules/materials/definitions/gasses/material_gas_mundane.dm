@@ -55,6 +55,33 @@
 	liquid_density = 1190
 	color = "#272727"
 
+/decl/material/gas/carbon_dioxide/touch_mob(var/mob/living/M, var/amount, var/datum/reagents/holder)
+	..()
+	if(istype(M))
+		var/needed = M.fire_stacks * 5
+		if(amount > needed)
+			M.fire_stacks = 0
+			M.ExtinguishMob()
+			holder.remove_reagent(type, needed)
+		else
+			M.adjust_fire_stacks(-(amount / 10))
+			holder.remove_reagent(type, amount)
+
+/decl/material/gas/carbon_dioxide/touch_turf(var/turf/T, var/amount, var/datum/reagents/holder)
+
+	..()
+
+	if(!istype(T))
+		return
+
+	var/hotspot = (locate(/obj/fire) in T)
+	if(hotspot && !isspaceturf(T))
+		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+		lowertemp.fire_react()
+		T.assume_air(lowertemp)
+		qdel(hotspot)
+
 /decl/material/gas/carbon_monoxide
 	name = "carbon monoxide"
 	uid = "gas_carbon_monoxide"

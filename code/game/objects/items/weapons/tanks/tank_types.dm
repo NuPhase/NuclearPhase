@@ -80,6 +80,23 @@
 	starting_pressure = list(/decl/material/gas/carbon_dioxide = 2.5*ONE_ATMOSPHERE)
 	weight = 2
 
+/obj/item/tank/firefighting
+	name = "LCO2 tank"
+	desc = "Contains liquid carbon dioxide for firefighting."
+	icon = 'icons/obj/items/tanks/tank_greyscaled.dmi'
+	color = "#1d1d1d"
+	gauge_icon = null
+	obj_flags = OBJ_FLAG_CONDUCTIBLE
+	slot_flags = null
+	starting_pressure = list(/decl/material/gas/hydrogen = ONE_ATMOSPHERE)
+	weight = 3
+	volume = 15
+
+/obj/item/tank/firefighting/Initialize()
+	. = ..()
+	var/decl/material/mat = GET_DECL(/decl/material/gas/carbon_dioxide)
+	air_contents.adjust_gas_temp(/decl/material/gas/carbon_dioxide, air_contents.volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass, mat.boiling_point - 5)
+
 /obj/item/tank/high_temp_waste
 	name = "HT-HE waste tank"
 	desc = "This tank can withstand high pressures and temperatures and is useful for storing generator exhaust gas."
