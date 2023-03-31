@@ -70,9 +70,9 @@
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
 	steam_velocity += pressure_difference * MS_PER_KPA_DIFFERENCE
-	if(total_mass_flow < 50)
+	/*if(total_mass_flow < 50)
 		total_mass_flow = 0
-		steam_velocity = 0
+		steam_velocity = 0*/
 	kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
 	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
