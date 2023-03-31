@@ -169,7 +169,7 @@
 		updateConnection()
 
 /obj/machinery/power/generator/turbine_generator/available_power()
-	if(turbine)
+	if(turbine && connected)
 		return turbine.kin_energy * (turbine.shaft_integrity * 0.01)
 	else
 		return 0
