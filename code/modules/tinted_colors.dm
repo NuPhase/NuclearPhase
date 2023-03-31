@@ -10,7 +10,7 @@
 
 /turf/simulated/wall/Initialize(ml, materialtype, rmaterialtype)
 	. = ..()
-	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
+	color = initial(color) //we don't make use of the fancy overlay system for colours, use this to set the default.
 	add_filter("glow",1, list(type="drop_shadow", x = 0, y = 0, offset = 0, size = 0))
 
 /turf/simulated/wall/ProcessAtomTemperature()
