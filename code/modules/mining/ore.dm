@@ -1,7 +1,7 @@
 /obj/item/stack/ore
 	name = "ore chunk"
 	desc = "Unpurified chunks of rock with minerals in it. This isn't some game from 2011, right?"
-	icon_state = "lump"
+	icon_state = "shiny"
 	icon = 'icons/obj/ore.dmi'
 	singular_name = "ore chunk"
 	plural_name = "ore chunks"
@@ -19,8 +19,10 @@
 		var/decl/material/somepiss = 0.7
 	)
 */
+	var/crushed = FALSE
 
 /obj/item/stack/ore/hematite //straightforward smelting to release oxygen
+	color = "#a52e10"
 	true_mineral_name = "hematite"
 	composition = list(
 		/decl/material/solid/metal/iron = 0.7,
@@ -28,6 +30,7 @@
 	)
 
 /obj/item/stack/ore/chalcopyrite // smelting = copper sulfide and iron, copper sulfide must be electrolyzed
+	color = "#bdc018"
 	true_mineral_name = "chalcopyrite"
 	composition = list(
 		/decl/material/solid/metal/iron = 0.35,

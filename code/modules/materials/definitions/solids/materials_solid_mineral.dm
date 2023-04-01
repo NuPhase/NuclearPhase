@@ -596,3 +596,8 @@
 	name = "copper sulfide"
 	uid = "copper_sulfide"
 	color = "#bb954f"
+	electrolysis_difficulty = 1
+	electrolysis_products = list(
+		/decl/material/solid/metal/copper = 0.5,
+		/decl/material/solid/sulfur = 0.5
+	)
