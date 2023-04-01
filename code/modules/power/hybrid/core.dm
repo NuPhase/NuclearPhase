@@ -151,6 +151,8 @@
 
 /obj/machinery/power/hybrid_reactor/proc/meltdown()
 	meltdown = TRUE
+	var/obj/effect/scripted_detonation/scr_detonation
+	var/obj/effect/scripted_deflagration/scr_deflagration
 	rcontrol.do_message("MAJOR SENSOR DAMAGE IN REACTOR UNIT", 3)
 	sleep(10 SECONDS)
 	rcontrol.do_message("MAJOR WIRING AND SENSOR DAMAGE IN REACTOR UNIT", 3)
@@ -175,9 +177,13 @@
 	neutron_flux *= 100
 	rcontrol.do_message("THERMOELECTRIC SYSTEMS OVERHEAT", 3)
 	rcontrol.do_message("MAJOR INTERNAL STRUCTURAL DAMAGE", 3)
+	scr_detonation = scripted_explosions["reactor1"]
+	scr_detonation.trigger()
 	spawn(2 SECONDS)
 		rcontrol.do_message("REACTOR UNIT SYSTEMS UNRESPONSIVE", 3)
 		rcontrol.scram("CONTROL LOSS") //won't work lol
+		scr_detonation = scripted_explosions["reactor2"]
+		scr_detonation.trigger()
 	for(var/mob/living/carbon/human/H in human_mob_list)
 		if(H.job == "Engineer" || H.job == "Chief Engineer")
 			H.playsound_local(H, 'sound/music/howmuchmorecanyoulose.ogg', 50, 0)
@@ -186,12 +192,20 @@
 	var/ann_name = "[pick(first_names_male)] [pick(last_names)]"
 	radio_announce("ATTENTION ALL REACTOR OPERATIONS PERSONNEL.", ann_name)
 	sleep(3 SECONDS)
+	scr_detonation = scripted_explosions["reactor3"]
+	scr_detonation.trigger()
 	radio_announce("THIS IS OUR LAST CHANCE TO PREVENT THE UNCONTROLLABLE DETONATION OF THE H.S.S.R.", ann_name)
 	sleep(4 SECONDS)
+	scr_detonation = scripted_explosions["reactor4"]
+	scr_detonation.trigger()
 	radio_announce("CLIMB UP THE REACTOR UNIT, AND EJECT ALL FUEL CELLS NO LONGER THAN WITHIN 3 SECONDS OF EACH OTHER.", ann_name)
 	sleep(3 SECONDS)
 	radio_announce("TO INVOKE A REACTION STALL AND STOP THE THERMAL RUNAWAY. YOU HAVE A MINUTE, GOOD LUCK.", ann_name)
 	sleep(5 SECONDS)
+	scr_detonation = scripted_explosions["reactor5"]
+	scr_detonation.trigger()
+	scr_detonation = scripted_explosions["reactor8"]
+	scr_detonation.trigger()
 	close_blastdoors()
 	radio_announce("SITEWIDE RADIATION INTERLOCKS WILL ACTIVATE IN: 1 MINUTE.", rcontrol.name)
 	sleep(40 SECONDS)
@@ -203,8 +217,12 @@
 			radio_announce("ABORTING...", rcontrol.name)
 		return
 	radio_announce("I believe it's too late... We're all gonna die.", ann_name)
+	scr_deflagration = scripted_explosions["dreactor1"]
+	scr_deflagration.trigger()
 	spawn(2 SECONDS)
 		radio_announce("CONTINGENCY OPERATION FAILURE. SHUTTING DOWN...", rcontrol.name)
+		scr_deflagration = scripted_explosions["machinehall"]
+		scr_deflagration.trigger()
 	sleep(12 SECONDS)
 	close_radlocks()
 	sleep(5 SECONDS)

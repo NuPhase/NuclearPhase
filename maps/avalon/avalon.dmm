@@ -3891,6 +3891,14 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/avalon/shelter/factory)
+"dYF" = (
+/obj/effect/scripted_detonation{
+	id = "reactor1";
+	heavy_radius = 2;
+	light_radius = 5
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/reactor)
 "dZi" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 1
@@ -6135,6 +6143,14 @@
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
+"gsW" = (
+/obj/effect/scripted_detonation{
+	id = "reactor4";
+	heavy_radius = 2;
+	light_radius = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/reactor)
 "gtj" = (
 /obj/machinery/atmospherics/omni/filter{
 	tag_north = 1;
@@ -7677,6 +7693,14 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
+"hRg" = (
+/obj/effect/scripted_detonation{
+	id = "reactor8";
+	heavy_radius = 3;
+	light_radius = 5
+	},
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter/engineering)
 "hRo" = (
 /obj/effect/floor_decal/corner/white/border{
 	dir = 10
@@ -10148,6 +10172,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/space)
+"knR" = (
+/obj/effect/scripted_detonation{
+	id = "reactor3";
+	heavy_radius = 2;
+	light_radius = 5
+	},
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter/reactor)
 "kpf" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/exterior/surface,
@@ -11985,9 +12017,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "mnL" = (
-/obj/structure/ladder,
+/obj/effect/scripted_deflagration{
+	id = "dreactor1";
+	strength = 80
+	},
 /turf/simulated/floor/reinforced,
-/area/avalon/shelter/engineering)
+/area/avalon/shelter/reactor)
 "moe" = (
 /obj/effect/floor_decal/corner/yellow/bordercorner{
 	dir = 4
@@ -14076,6 +14111,14 @@
 "otu" = (
 /turf/simulated/wall/r_wall,
 /area/avalon/shelter/comms)
+"otB" = (
+/obj/effect/scripted_detonation{
+	id = "reactor2";
+	heavy_radius = 2;
+	light_radius = 5
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/reactor)
 "ouo" = (
 /obj/structure/lattice,
 /turf/simulated/open,
@@ -17441,6 +17484,18 @@
 	},
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/breakerroom)
+"rZJ" = (
+/obj/effect/catwalk_plated,
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/effect/scripted_detonation{
+	id = "reactor6";
+	heavy_radius = 2;
+	light_radius = 5
+	},
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "rZS" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/generator/transformer{
@@ -17555,6 +17610,14 @@
 /obj/structure/wall_frame/titanium,
 /turf/simulated/open,
 /area/avalon/shelter/atmos)
+"seY" = (
+/obj/effect/scripted_detonation{
+	id = "reactor5";
+	heavy_radius = 2;
+	light_radius = 5
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/reactor)
 "sfv" = (
 /obj/machinery/door/airlock/glass/engineering{
 	initial_access = list("ACCESS_ENGINEERING")
@@ -20502,6 +20565,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
+"vjH" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/obj/effect/scripted_detonation{
+	id = "reactor7";
+	heavy_radius = 2;
+	light_radius = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/machinehall)
 "vjP" = (
 /obj/structure/closet/radiation,
 /turf/simulated/floor/tiled/techfloor,
@@ -20710,6 +20784,10 @@
 /obj/machinery/atmospherics/pipe/zpipe/down/cyan,
 /obj/structure/railing/mapped{
 	dir = 4
+	},
+/obj/effect/scripted_deflagration{
+	strength = 70;
+	id = "machinehall"
 	},
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
@@ -166693,7 +166771,7 @@ xZK
 uvp
 uvp
 uvp
-kNl
+hRg
 kNl
 kNl
 uvp
@@ -166824,7 +166902,7 @@ pfk
 kNl
 pfk
 kNl
-mnL
+kNl
 kNl
 uvp
 qaa
@@ -167483,7 +167561,7 @@ qaa
 qaa
 lFl
 lFl
-dJN
+knR
 dJN
 dJN
 dJN
@@ -168015,7 +168093,7 @@ mNE
 pmP
 lFl
 mNE
-mNE
+otB
 lFl
 dJN
 dJN
@@ -168290,7 +168368,7 @@ dJN
 dJN
 dJN
 dJN
-dJN
+mnL
 lFl
 hBO
 hBO
@@ -169176,7 +169254,7 @@ dJN
 dJN
 dJN
 lFl
-mNE
+dYF
 mNE
 lFl
 pmP
@@ -185695,7 +185773,7 @@ oxh
 oxh
 oxh
 gRD
-pmP
+gsW
 pmP
 yfE
 nvg
@@ -185802,7 +185880,7 @@ bTw
 kuo
 ukK
 csv
-xdt
+seY
 xdt
 xdt
 xdt
@@ -218836,7 +218914,7 @@ wyq
 wyq
 wyq
 aof
-aof
+rZJ
 vKN
 wyq
 wyq
@@ -233913,7 +233991,7 @@ saB
 wnH
 dex
 wnH
-wnH
+vjH
 wnH
 dex
 wnH
