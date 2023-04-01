@@ -550,14 +550,13 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/habitationdeck)
 "aEc" = (
-/obj/structure/cable{
-	icon_state = "32-8";
-	dir = 8;
-	d1 = 32;
-	d2 = 1
-	},
 /obj/effect/catwalk_plated,
-/obj/structure/railing/mapped,
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/railing/mapped{
+	dir = 4
+	},
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "aEj" = (
@@ -10190,14 +10189,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
-"kqT" = (
-/obj/structure/railing/mapped,
-/obj/machinery/reactor_fuelport{
-	pixel_x = -16;
-	uid = "fuel2"
-	},
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
 "krl" = (
 /obj/structure/table,
 /obj/machinery/door/window/eastleft,
@@ -12872,16 +12863,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/cargo/warehouse)
-"nkd" = (
-/obj/effect/catwalk_plated,
-/obj/structure/cable/heavy{
-	icon_state = "4-8"
-	},
-/obj/structure/railing/mapped{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
 "nko" = (
 /obj/effect/floor_decal/corner/yellow/bordercorner{
 	dir = 1
@@ -17342,6 +17323,13 @@
 /obj/item/chems/syringe,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig/medbay)
+"rSx" = (
+/obj/machinery/reactor_fuelport{
+	pixel_y = -16;
+	uid = "fuel3"
+	},
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "rSK" = (
 /obj/effect/floor_decal/corner/paleblue,
 /turf/simulated/floor/tiled/white,
@@ -18908,6 +18896,17 @@
 /obj/machinery/door/airlock/lift,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
+"ttK" = (
+/obj/structure/cable{
+	icon_state = "32-8";
+	dir = 8;
+	d1 = 32;
+	d2 = 1
+	},
+/obj/effect/catwalk_plated,
+/obj/structure/railing/mapped,
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "ttZ" = (
 /obj/effect/floor_decal/corner/black/border{
 	dir = 6
@@ -20559,6 +20558,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/atmos)
+"vmy" = (
+/obj/structure/railing/mapped,
+/obj/machinery/reactor_fuelport{
+	pixel_x = -16;
+	uid = "fuel2"
+	},
+/turf/simulated/open,
+/area/avalon/shelter/reactor)
 "vnq" = (
 /obj/structure/filingcabinet{
 	pixel_y = 16;
@@ -20776,13 +20783,6 @@
 /obj/effect/paint_stripe/white,
 /turf/simulated/wall/titanium,
 /area/avalon/shelter/machinehall)
-"vzq" = (
-/obj/machinery/reactor_fuelport{
-	pixel_y = -16;
-	uid = "fuel3"
-	},
-/turf/simulated/open,
-/area/avalon/shelter/reactor)
 "vzx" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -218326,7 +218326,7 @@ wyq
 wyq
 wyq
 hvj
-nkd
+aEc
 rnp
 wyq
 wyq
@@ -218457,7 +218457,7 @@ wyq
 wyq
 wyq
 iiS
-aEc
+ttK
 wyq
 wyq
 wyq
@@ -218586,7 +218586,7 @@ wyq
 wyq
 wyq
 wyq
-kqT
+vmy
 vKN
 wyq
 wyq
@@ -218971,7 +218971,7 @@ aof
 rnp
 wyq
 wyq
-vzq
+rSx
 wyq
 wyq
 hvj

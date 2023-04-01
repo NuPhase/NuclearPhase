@@ -1,4 +1,4 @@
-#define FISSION_RATE 0.001
+#define FISSION_RATE 0.01
 #define NEUTRON_FLUX_RATE 0.05
 #define RADS_PER_NEUTRON 0.3
 #define REACTOR_POWER_MODIFIER 10
@@ -12,6 +12,7 @@
 	density = 1
 	anchored = 1
 	var/neutron_flux = 1 //a flux of 1 will mean that neutron amount does not change
+	var/neutron_rate = 0
 	var/neutron_moles = 0 //how many moles can we split
 	var/meltdown = FALSE
 	var/was_shut_down = FALSE
@@ -38,8 +39,17 @@
 	rcontrol.control()
 	var/turf/A = get_turf(src)
 	var/datum/gas_mixture/GM = A.return_air()
+
+	var/last_neutron_moles = neutron_moles
+
 	process_fission(GM)
 	process_fusion(GM)
+
+	if(last_neutron_moles)
+		neutron_rate = neutron_moles / last_neutron_moles
+	else
+		neutron_rate = 0
+
 	var/total_radiation = neutron_moles * RADS_PER_NEUTRON
 	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)

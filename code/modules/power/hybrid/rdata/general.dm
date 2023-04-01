@@ -38,7 +38,7 @@
 	data = "GENERAL STATISTICS: <br>\
 			Total Power Generation: [tload] <br>\
 			Total Thermal Flow: [mload] <br>\
-			Neutron Rate: [rcore.neutron_flux * 100 - 100]% <br>\
-			Radiation Emission: [rcore.last_radiation] Roentgen <br>\
+			Neutron Rate: [round(rcore.neutron_rate*100-100)]% <br>\
+			Radiation Emission: [round(rcore.last_radiation)] Roentgen <br>\
 			Chamber Temperature: [temp_readout]"
 	return data
