@@ -14,7 +14,7 @@
 	cold_protection = SLOT_HEAD
 	min_cold_protection_temperature = UNIVERSAL_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0
-	max_pressure_protection = RIG_MAX_PRESSURE
+	max_pressure_protection = PRESSURE_SUIT_MAX_PRESSURE
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
@@ -151,6 +151,11 @@
 	var/minimum_leak_damage = 10
 	var/windbreak_coefficient = 1 //basically suit aerodynamics and shockwave creation. A coefficient of 0.3 would mean that the suit receives x1.7 of convective heat and x0.3 of the wind
 	weight = 100
+
+/obj/item/clothing/suit/modern/space/get_pressure_weakness(pressure, zone)
+	. = ..()
+	. -= leakiness * 0.01
+	return .
 
 /obj/item/clothing/suit/modern/space/attackby(obj/item/I, mob/user)
 	. = ..()
