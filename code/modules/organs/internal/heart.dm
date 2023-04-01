@@ -143,13 +143,7 @@
 					else
 						owner.vessel.remove_any(bleed_amount)
 
-		switch(pulse)
-			if(PULSE_SLOW)
-				blood_max *= 0.8
-			if(PULSE_FAST)
-				blood_max *= 1.25
-			if(PULSE_2FAST, PULSE_THREADY)
-				blood_max *= 1.5
+		blood_max *= pulse / 60
 
 		if(GET_CHEMICAL_EFFECT(owner, CE_STABLE))
 			blood_max *= 0.8
