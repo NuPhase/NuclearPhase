@@ -16,7 +16,7 @@
 	var/volume = REAGENT_VOLUME(holder, type)
 	H.custom_pain("You feel your veins burning!", 30)
 	H.add_chemical_effect(CE_PAINKILLER, 400)
-	H.add_chemical_effect(CE_PRESSURE, !(volume * 5))
+	H.add_chemical_effect(CE_PRESSURE, (volume * -10))
 	ADJ_STATUS(H, STAT_ASLEEP, volume * 5)
 
 /decl/material/liquid/propofol/affect_overdose(mob/living/M, datum/reagents/holder)
