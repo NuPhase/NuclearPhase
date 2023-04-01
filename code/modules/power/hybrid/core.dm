@@ -1,8 +1,9 @@
-#define FISSION_RATE 0.15
+#define FISSION_RATE 0.001
 #define NEUTRON_FLUX_RATE 0.05
-#define RADS_PER_NEUTRON 3
+#define RADS_PER_NEUTRON 0.3
 #define REACTOR_POWER_MODIFIER 10
 #define WATTS_PER_KPA 0.1
+#define REACTOR_SHIELDING_COEFFICIENT 0.05
 
 /obj/machinery/power/hybrid_reactor
 	name = "reactor superstructure"
@@ -42,6 +43,7 @@
 	var/total_radiation = neutron_moles * RADS_PER_NEUTRON
 	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)
+	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
 
 	if(temperature > 5000)
 		if(containment)
@@ -49,20 +51,19 @@
 			use_power_oneoff(field_power_consumption, EQUIP)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fission(datum/gas_mixture/GM)
-	var/total_neutron_amount = 20
 	for(var/g in GM.gas)
 		var/decl/material/mat = GET_DECL(g)
-		var/react_amount = GM.gas[g] * FISSION_RATE
+		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux
 		var/neutrons_absorbed = mat.neutron_absorption * react_amount
 		if(mat.neutron_production)
-			total_neutron_amount += mat.neutron_production * react_amount * neutron_flux
-			GM.adjust_gas(mat.uid, !react_amount)
+			neutron_moles += mat.neutron_production * react_amount
+			GM.adjust_gas(mat.uid, react_amount * -1)
 			if(mat.fission_products)
 				for(var/fp in mat.fission_products)
 					GM.adjust_gas(fp, react_amount)
-		total_neutron_amount -= neutrons_absorbed
-		GM.add_thermal_energy(mat.fission_energy * neutrons_absorbed * 10)
-	neutron_flux = Interpolate(neutron_flux, Clamp(total_neutron_amount * NEUTRON_FLUX_RATE, 0, 1000000000), 0.2)
+		neutron_moles -= neutrons_absorbed
+		GM.add_thermal_energy(max(0, mat.fission_energy * neutrons_absorbed))
+	neutron_flux = Interpolate(neutron_flux, Clamp(neutron_moles * NEUTRON_FLUX_RATE, 0, 1000), 0.2)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/GM)
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))

@@ -1,6 +1,6 @@
 /obj/item/chems/fuel_cell
 	name = "fuel cell"
-	desc = "Is it drinkable?"
+	desc = "An unique container for fuel with built-in divertors for filtering."
 	icon = 'icons/obj/fuel_rods.dmi'
 	icon_state = "cell"
 	w_class = ITEM_SIZE_LARGE
@@ -63,6 +63,42 @@
 	var/obj/item/chems/fuel_cell/inserted = null
 	var/sealed = FALSE
 	var/melted = FALSE
+	var/injection_ratio = 0 //0-0.001
+
+/obj/machinery/reactor_fuelport/examine(mob/user)
+	. = ..()
+	if(inserted)
+		if(sealed)
+			to_chat(user, SPAN_NOTICE("It is soundly locked with a fuel cell in it."))
+		else
+			to_chat(user, SPAN_WARNING("It is unlocked and has a fuel cell in it."))
+		to_chat(user, SPAN_NOTICE("Its volume gauge is at [inserted.reagents.total_volume / inserted.reagents.maximum_volume * 100]%."))
+
+/obj/machinery/reactor_fuelport/Process()
+	if(!inserted || !sealed)
+		return
+
+	var/obj/machinery/power/hybrid_reactor/reactor = reactor_components["core"]
+	var/datum/gas_mixture/core_environment = reactor.loc.return_air()
+
+	if(inserted.reagents.total_volume != inserted.reagents.maximum_volume) //we're not full of sticky white liquid some engineer left in us
+		for(var/g in core_environment.gas)
+			if(g in rcontrol.unwanted_materials)
+				var/removed = core_environment.gas[g] * 0.1
+				core_environment.adjust_gas(g, removed * -1)
+				inserted.reagents.add_reagent(g, removed * REAGENT_UNITS_PER_GAS_MOLE)
+
+	if(!injection_ratio)
+		return
+	var/removing = inserted.reagents.total_volume * injection_ratio
+	var/adding_gas = removing / REAGENT_UNITS_PER_GAS_MOLE
+	for(var/moving in inserted.reagents.reagent_volumes)
+		core_environment.adjust_gas(moving, adding_gas)
+		inserted.reagents.remove_reagent(moving, removing)
+
+/obj/machinery/reactor_fuelport/Initialize()
+	. = ..()
+	reactor_components[uid] = src
 
 /obj/machinery/reactor_fuelport/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/chems/fuel_cell))

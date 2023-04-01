@@ -34,6 +34,14 @@
 	var/should_alarm = TRUE
 	var/pressure_temperature_should_alarm = FALSE
 
+	var/list/unwanted_materials = list(
+		/decl/material/solid/metal/fission_byproduct,
+		/decl/material/gas/oxygen,
+		/decl/material/gas/nitrogen,
+		/decl/material/gas/helium,
+		/decl/material/gas/xenon
+	)
+
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]
 	turbine2 = reactor_components["turbine2"]

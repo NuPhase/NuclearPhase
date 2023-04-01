@@ -52,11 +52,11 @@
 	absorption_products = list(
 		/decl/material/solid/metal/neptunium = 1
 	)
-	neutron_production = 10
-	neutron_absorption = 6
+	neutron_production = 1000
+	neutron_absorption = 600
 	moderation_target = 3000
 	fission_heat = 35000
-	fission_energy = 4000
+	fission_energy = 700000
 
 /decl/material/solid/metal/radium
 	name = "radium"
