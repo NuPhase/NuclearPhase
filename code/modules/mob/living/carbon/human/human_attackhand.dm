@@ -249,7 +249,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		if(heart)
 			heart.external_pump = 4 * pumping_skill
 
-		var/resuscitation_chance = (5 + pumping_skill - (heart.oxygen_deprivation * 0.05)) * (heart.damage / heart.max_damage)
+		var/resuscitation_chance = 5 + pumping_skill - (heart.oxygen_deprivation * 0.05)
 		if(stat != DEAD && prob(resuscitation_chance))
 			resuscitate()
 
