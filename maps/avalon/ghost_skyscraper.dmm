@@ -43,9 +43,8 @@
 /turf/simulated/floor/plating,
 /area/skyscraper)
 "ce" = (
-/obj/machinery/door/airlock/double/civilian{
-	locked = 1
-	},
+/obj/structure/table/woodentable/walnut,
+/obj/item/deck/cards,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/skyscraper)
 "cm" = (
@@ -54,11 +53,11 @@
 /area/skyscraper)
 "cB" = (
 /obj/structure/flora/seaweed/mid,
-/obj/structure/window/basic{
+/obj/effect/fluid_mapped,
+/obj/structure/window/reinforced/crescent{
 	dir = 4
 	},
-/obj/structure/window/basic,
-/obj/effect/fluid_mapped,
+/obj/structure/window/reinforced/crescent,
 /turf/simulated/floor/asteroid,
 /area/skyscraper)
 "cW" = (
@@ -350,7 +349,9 @@
 /turf/simulated/open/skyscraper,
 /area/skyscraper)
 "ur" = (
-/obj/effect/skybox/cityfromabove,
+/obj/effect/skybox/cityfromabove{
+	pixel_y = -32
+	},
 /turf/simulated/wall/titanium,
 /area/skyscraper)
 "vI" = (
@@ -426,14 +427,13 @@
 /area/skyscraper)
 "zm" = (
 /obj/structure/flora/seaweed/large,
-/obj/structure/window/basic{
-	dir = 1;
-	layer = 2.21
-	},
-/obj/structure/window/basic{
+/obj/effect/fluid_mapped,
+/obj/structure/window/reinforced/crescent{
 	dir = 4
 	},
-/obj/effect/fluid_mapped,
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
 /turf/simulated/floor/asteroid,
 /area/skyscraper)
 "zv" = (
@@ -593,6 +593,11 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/skyscraper)
+"Hz" = (
+/obj/structure/table/woodentable/walnut,
+/obj/item/chems/drinks/glass2/coffeecup/metal,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/skyscraper)
 "Ik" = (
 /obj/structure/bed/sofa/r{
 	dir = 8
@@ -672,7 +677,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/skyscraper)
 "Mt" = (
-/obj/effect/skybox/cityfromabove,
+/obj/effect/skybox/cityfromabove{
+	pixel_y = -32
+	},
 /turf/simulated/floor/plating,
 /area/skyscraper)
 "MD" = (
@@ -3256,7 +3263,7 @@ Cv
 Cv
 Cv
 Cv
-Cv
+Mt
 Cv
 Cv
 Cv
@@ -4356,7 +4363,7 @@ Cv
 Cv
 Cv
 Cv
-Mt
+Cv
 Cv
 Cv
 Cv
@@ -6672,7 +6679,7 @@ Cv
 Cv
 Cv
 Cv
-jW
+ur
 Cv
 Cv
 Cv
@@ -7040,7 +7047,7 @@ Cv
 Cv
 jW
 Cv
-Mt
+Cv
 Cv
 Cv
 Cv
@@ -9724,7 +9731,7 @@ Cv
 Cv
 Cv
 Cv
-ur
+jW
 NQ
 NQ
 NQ
@@ -10088,7 +10095,7 @@ Cv
 Cv
 Cv
 Cv
-Cv
+Mt
 Cv
 jW
 NQ
@@ -22415,9 +22422,9 @@ IY
 DV
 yc
 wz
+Hz
 FG
-FG
-FG
+ce
 jW
 rq
 jW
@@ -23513,7 +23520,7 @@ IY
 DV
 yc
 DT
-FG
+ce
 ZA
 FG
 jW
@@ -23893,7 +23900,7 @@ mS
 FN
 yc
 yc
-ce
+jW
 DV
 DV
 DV
@@ -24015,7 +24022,7 @@ mS
 jW
 yc
 yc
-DV
+jW
 DV
 DV
 JO

@@ -124,7 +124,8 @@
 
 /turf/simulated/open/skyscraper/Initialize(ml)
 	. = ..()
-	overlays += image('icons/effects/weather.dmi', "rain")
+	set_ambient_light(COLOR_WHITE, 1)
+	overlays += image('icons/effects/weather.dmi', icon_state = "rain")
 
 ////////////////////////////////
 // Open EXTERIOR
