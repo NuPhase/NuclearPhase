@@ -237,7 +237,7 @@
 	overdose = 6
 	uid = "chem_opium"
 	var/addictiveness = 10 //addiction gained per unit consumed
-	var/painkill_magnitude = 40
+	var/painkill_magnitude = 70
 	var/effective_dose = 3
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
@@ -247,7 +247,7 @@
 	if(dose > effective_dose)
 		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
 		SET_STATUS_MAX(H, STAT_DRUGGY, 15)
-	heart.bpm_modifiers[name] = !volume * 3
+	heart.bpm_modifiers[name] = volume * -3
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
@@ -281,14 +281,14 @@
 	name = "tramadol"
 	lore_text = "A linear painkiller."
 	addictiveness = 5
-	painkill_magnitude = 70
+	painkill_magnitude = 140
 	uid = "chem_tramadol"
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
 	var/dose = LAZYACCESS(H.chem_doses, type)
-	heart.bpm_modifiers[name] = !volume * 2
+	heart.bpm_modifiers[name] = volume * -2
 	if(dose > effective_dose)
 		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
 	var/boozed = isboozed(H)
@@ -307,7 +307,7 @@
 	name = "desomorphine"
 	lore_text = "An addictive painkiller with a very short window of action."
 	effective_dose = 0.5
-	painkill_magnitude =  80
+	painkill_magnitude = 180
 	uid = "chem_desomorphine"
 
 /decl/material/liquid/tianeptine
@@ -325,7 +325,7 @@
 
 /decl/material/liquid/opium/morphine
 	name = "morphine"
-	painkill_magnitude = 60
+	painkill_magnitude = 190
 	uid = "chem_morphine"
 	effective_dose = 1
 
@@ -333,7 +333,7 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
 	var/dose = LAZYACCESS(H.chem_doses, type)
-	heart.bpm_modifiers[name] = !volume * 2
+	heart.bpm_modifiers[name] = volume * -2
 	if(dose > effective_dose)
 		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
 		SET_STATUS_MAX(H, STAT_DRUGGY, 15)
@@ -350,7 +350,7 @@
 /decl/material/liquid/opium/morphine/diamorphine
 	name = "diamorphine"
 	lore_text = "A synthetic morphine-derived drug."
-	painkill_magnitude = 110
+	painkill_magnitude = 210
 	uid = "chem_diamorphine"
 
 /decl/material/liquid/opium/morphine/diamorphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
@@ -359,7 +359,7 @@
 /decl/material/liquid/opium/morphine/diamorphine/dirty
 	name = "murky diamorphine"
 	lore_text = "A synthetic morphine-derived drug. Looks unpure."
-	painkill_magnitude = 90
+	painkill_magnitude = 150
 	uid = "chem_diamorphinedirty"
 
 /decl/material/liquid/opium/morphine/diamorphine/dirty/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
