@@ -18,7 +18,7 @@
 	if(volume < overdose)
 		heart.stability_modifiers[name] = volume * 3
 	else
-		heart.stability_modifiers[name] = !(volume * 3)
+		heart.stability_modifiers[name] = volume * -3
 	if(volume > 5)
 		ADJ_STATUS(H, STAT_JITTER, 5)
 
@@ -38,7 +38,7 @@
 	var/volume = REAGENT_VOLUME(holder, type)
 	H.add_chemical_effect(CE_PRESSURE, volume * 10)
 	if(volume > 2)
-		ADJ_STATUS(H, STAT_ASLEEP, !(volume * 10))
+		ADJ_STATUS(H, STAT_ASLEEP, volume * -10)
 
 /decl/material/liquid/atropine
 	name = "atropine"
@@ -87,7 +87,7 @@
 /decl/material/liquid/nitroglycerin/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
-	heart.cardiac_output_modifiers[name] = 1 - volume * 0.01
+	heart.cardiac_output_modifiers[name] = 1 - volume * 0.03
 	heart.oxygen_deprivation = max(0, heart.oxygen_deprivation - volume * 0.2)
 
 /decl/material/solid/betapace
@@ -104,7 +104,7 @@
 /decl/material/solid/betapace/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = !(volume * 2)
+	heart.bpm_modifiers[name] = volume * -2
 	heart.stability_modifiers[name] = volume * 7
 
 /decl/material/liquid/dronedarone
