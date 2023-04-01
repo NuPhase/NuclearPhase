@@ -334,10 +334,10 @@
 
 	. = list()
 	if(ruptured)
-		. += "[pick("wheezing", "gurgling")] sounds"
+		. += "weak [pick("wheezing", "gurgling")] without any signs of respiration on one side."
 
 	var/list/breathtype = list()
-	if(get_oxygen_deprivation() > 50)
+	if(get_oxygen_deprivation() > 10)
 		breathtype += pick("straining","labored")
 	if(owner.shock_stage > 50)
 		breathtype += pick("shallow and rapid")
