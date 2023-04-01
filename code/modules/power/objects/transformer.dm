@@ -91,7 +91,7 @@
 			var/mob/living/carbon/human/H = user
 			if(H.fire_stacks < 0)
 				electrocution_chance += 20
-			electrocution_chance = user.skill_fail_chance(SKILL_ELECTRICAL, electrocution_chance, SKILL_EXPERT, 5)
+			electrocution_chance = user.skill_fail_chance(SKILL_ELECTRICAL, electrocution_chance, SKILL_EXPERT, 1.5)
 			if(prob(electrocution_chance))
 				start_electrocution(user)
 		else
