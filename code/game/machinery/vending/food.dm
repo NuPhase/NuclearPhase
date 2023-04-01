@@ -8,13 +8,7 @@
 	icon_deny = "snack-deny"
 	vend_delay = 25
 	base_type = /obj/machinery/vending/snack
-	products = list(
-		/obj/item/clothing/mask/chewable/candy/lolli = 0,
-		/obj/item/storage/chewables/candy/gum = 0,
-		/obj/item/storage/chewables/candy/cookies = 0,
-		/obj/item/chems/food/candy = 0,
-		/obj/item/chems/food/chips = 0,
-	)
+	products = list()
 	contraband = list(
 		/obj/item/chems/food/syndicake = 0
 	)
@@ -75,13 +69,7 @@
 	icon_state = "weeb"
 	icon_vend = "weeb-vend"
 	icon_deny = "weeb-deny"
-	products = list(
-		/obj/item/chems/food/weebonuts = 8,
-		/obj/item/chems/food/ricecake = 8,
-		/obj/item/chems/food/dango = 8,
-		/obj/item/chems/food/pokey = 8,
-		/obj/item/chems/food/chocobanana = 8
-	)
+	products = list()
 
 /obj/machinery/vending/weeb/on_update_icon()
 	..()
@@ -212,17 +200,7 @@
 	icon_deny = "Cola_Machine-deny"
 	vend_delay = 11
 	base_type = /obj/machinery/vending/cola
-	products = list(
-		/obj/item/chems/drinks/cans/cola = 10,
-		/obj/item/chems/drinks/cans/space_mountain_wind = 10,
-		/obj/item/chems/drinks/cans/starkist = 10,
-		/obj/item/chems/drinks/cans/waterbottle = 10,
-		/obj/item/chems/drinks/cans/iced_tea = 10,
-		/obj/item/chems/drinks/cans/grape_juice = 10,
-		/obj/item/chems/drinks/juicebox/apple = 10,
-		/obj/item/chems/drinks/juicebox/orange = 10,
-		/obj/item/chems/drinks/juicebox/grape = 10
-	)
+	products = list()
 	contraband = list(
 		/obj/item/chems/drinks/cans/thirteenloko = 5,
 		/obj/item/chems/food/liquidfood = 6
