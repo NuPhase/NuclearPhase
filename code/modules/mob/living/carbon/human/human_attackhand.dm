@@ -247,9 +247,10 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 
 		var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 		if(heart)
-			heart.external_pump = list(world.time, 0.4 + 0.1*pumping_skill + rand(-0.1,0.1))
+			heart.external_pump = 4 * pumping_skill
 
-		if(stat != DEAD && prob(10 + 5 * pumping_skill))
+		var/resuscitation_chance = (5 + pumping_skill - (heart.oxygen_deprivation * 0.05)) * (heart.damage / heart.max_damage)
+		if(stat != DEAD && prob(resuscitation_chance))
 			resuscitate()
 
 	if(!do_after(H, 6, FALSE)) //Chest compresssions are fast, need to wait for the loading bar to do mouth to mouth
