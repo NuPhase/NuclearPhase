@@ -226,8 +226,7 @@
 					SET_STATUS_MAX(src, STAT_WEAK, 3)
 					if(!lying)
 						emote("collapse")
-				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
-					lose_hair()
+			SSradiation.radiate(src, radiation * 0.01)
 
 		if (radiation > 75)
 			damage = 3
@@ -242,6 +241,8 @@
 		if(radiation > 150)
 			damage = 8
 			radiation -= 4 * RADIATION_SPEED_COEFFICIENT
+			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
+				lose_hair()
 
 		if(radiation > 500)
 			add_chemical_effect(CE_GLOWINGEYES, 1)
