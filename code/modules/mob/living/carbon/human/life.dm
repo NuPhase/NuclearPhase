@@ -593,6 +593,9 @@
 			if(!embedded_needs_process())
 				embedded_flag = 0
 
+		if(syspressure > 150)
+			custom_pain("Your head throbs in a pulsating headache.", syspressure * 0.1, affecting = BP_HEAD)
+
 		//Resting
 		if(resting)
 			if(HAS_STATUS(src, STAT_DIZZY))
@@ -911,21 +914,21 @@
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 3)
 		H.bpm_modifiers["shock"] += 20
-		H.stability_modifiers["shock"] += 20
+		H.stability_modifiers["shock"] -= 20
 
 	if(shock_stage >= 80)
 		if (prob(5))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 5)
 		H.bpm_modifiers["shock"] += 40
-		H.stability_modifiers["shock"] += 20
+		H.stability_modifiers["shock"] -= 20
 
 	if(shock_stage >= 120)
 		if(!HAS_STATUS(src, STAT_PARA) && prob(2))
 			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_PARA, 5)
 		H.bpm_modifiers["shock"] += 40
-		H.stability_modifiers["shock"] += 30
+		H.stability_modifiers["shock"] -= 30
 
 	if(shock_stage == 150)
 		visible_message("<b>[src]</b> can no longer stand, collapsing!")
