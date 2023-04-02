@@ -167,16 +167,29 @@
 /obj/item/cell/crap/empty
 	charge = 0
 
-/obj/item/cell/standard
-	name = "standard power cell"
+/obj/item/cell/standard //500wh/kg
+	name = "lithium-ion power cell"
 	desc = "A standard and relatively cheap power cell, commonly used."
 	origin_tech = "{'powerstorage':1}"
-	maxcharge = 250
+	maxcharge = 1000
 	material = /decl/material/solid/metal/steel
 	matter = list(
 		/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/plastic = MATTER_AMOUNT_TRACE
 	)
+	weight = 2
+
+/obj/item/cell/doublecapacity
+	name = "lithium-ion coupled power cell"
+	w_class = ITEM_SIZE_LARGE
+	maxcharge = 2000
+	weight = 4
+
+/obj/item/cell/quadruplecapacity
+	name = "lithium-ion power cell array"
+	w_class = ITEM_SIZE_LARGE
+	maxcharge = 4000
+	weight = 8
 
 /obj/item/cell/apc
 	name = "APC power cell"
