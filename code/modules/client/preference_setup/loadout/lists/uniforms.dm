@@ -1,6 +1,6 @@
 /decl/loadout_category/uniform
 	name = "Uniform"
-	
+
 /decl/loadout_option/uniform
 	slot = slot_w_uniform_str
 	category = /decl/loadout_category/uniform
@@ -134,4 +134,8 @@
 
 /decl/loadout_option/uniform/frontier
 	name = "frontier clothes"
-	path = /obj/item/clothing/under/frontier 
+	path = /obj/item/clothing/under/frontier
+
+/decl/loadout_option/uniform/hazard
+	name = "hazard jumpsuit"
+	path = /obj/item/clothing/under/hazard
