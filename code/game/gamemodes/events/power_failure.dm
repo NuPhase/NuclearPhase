@@ -4,7 +4,7 @@
 		global.using_map.grid_check_announcement()
 
 	for(var/obj/machinery/power/generator/transformer/switchable/T in SSmachines.machinery)
-		if(T.on && !T.critical && (!affected_z_levels || (C.z in affected_z_levels)))
+		if(T.on && !T.critical && (!affected_z_levels || (T.z in affected_z_levels)))
 			if(prob(10))
 				T.trip()
 
