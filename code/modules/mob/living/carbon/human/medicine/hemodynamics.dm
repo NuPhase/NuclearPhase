@@ -45,14 +45,14 @@
 		ccp = 60/bpm
 
 	tpvr = metabolic_coefficient * 218.50746
-	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE)
 	tpvr += syspressure * (0.0008 * syspressure - 0.8833) + 94
+	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE)
 
 	var/bpmd = ccp * 0.109 + 0.159
 	var/coeff = get_blood_volume_hemo() * get_cardiac_output() * (bpmd * 3.73134328)
 	var/bpm53 = bpm * coeff * 53.0
 	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)), 0.5))
-	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure - (7646.0 * metabolic_coefficient)/54.0, 0.5), 0, 780)
+	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure - (7646.0 * metabolic_coefficient)/54.0, 0.3), 0, 780)
 	dyspressure = min(dyspressure, syspressure-10)
 
 	meanpressure = (syspressure + dyspressure) / 2
