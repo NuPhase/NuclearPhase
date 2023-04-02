@@ -1069,7 +1069,8 @@
 /obj/machinery/power/generator/transformer/switchable/on{
 	dir = 1;
 	coef = 20;
-	name = "BUS to CLIMATE CONTROL"
+	name = "BUS to CLIMATE CONTROL";
+	critical = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -1186,8 +1187,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "boP" = (
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/obj/machinery/atmospherics/binary/passive_gate/on{
+	regulate_mode = 1;
+	target_pressure = 2000;
+	dir = 1;
+	starting_volume = 1500
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/turbinehall)
 "bpJ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/reinforced/airless,
@@ -2078,7 +2085,7 @@
 /area/avalon/shelter/turbinehall)
 "cix" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
-/obj/machinery/atmospherics/valve/digital/open{
+/obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -3146,7 +3153,7 @@
 /obj/machinery/disposal/buildable,
 /obj/effect/floor_decal/corner/red/full,
 /turf/simulated/floor/tiled/dark,
-/area/space)
+/area/avalon/shelter/brig/prison)
 "dlS" = (
 /obj/machinery/light{
 	dir = 8
@@ -7638,7 +7645,8 @@
 /obj/machinery/power/generator/transformer/switchable/on{
 	dir = 1;
 	coef = 20;
-	name = "BUS to REACTOR"
+	name = "BUS to REACTOR";
+	critical = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -8409,7 +8417,8 @@
 "iGS" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = 21;
+	is_critical = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -9920,11 +9929,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
-"jVG" = (
-/obj/structure/closet/secure_closet/personal/empty,
-/obj/effect/floor_decal/corner/red/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
 "jVK" = (
 /obj/structure/closet/secure_closet/paramedic,
 /obj/effect/floor_decal/corner/purple/border,
@@ -15148,7 +15152,8 @@
 	dir = 4;
 	name = "TURBINES to BUS";
 	coef = 8;
-	max_cap = 250000000
+	max_cap = 250000000;
+	critical = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
@@ -17178,7 +17183,8 @@
 "rGa" = (
 /obj/machinery/power/apc/hyper{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = 21;
+	is_critical = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -19280,7 +19286,8 @@
 "tOm" = (
 /obj/machinery/power/apc/hyper{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = 21;
+	is_critical = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -21103,7 +21110,8 @@
 "vNa" = (
 /obj/machinery/power/apc/hyper{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = 21;
+	is_critical = 1
 	},
 /obj/structure/cable/heavy{
 	icon_state = "0-8"
@@ -22556,7 +22564,8 @@
 	target_pressure = 5000;
 	uid = "T-COOLANT V-IN";
 	name = "T-COOLANT V-IN";
-	set_flow_rate = 15000
+	set_flow_rate = 15000;
+	starting_volume = 400
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -151556,11 +151565,11 @@ hBO
 hBO
 hBO
 hBO
-jLF
-jVG
-boP
-jVG
-jLF
+cbj
+lNN
+vvq
+lNN
+cbj
 hBO
 hBO
 hBO
@@ -151686,11 +151695,11 @@ hBO
 hBO
 hBO
 hBO
-jLF
+cbj
 dlM
-boP
-jVG
-jLF
+vvq
+lNN
+cbj
 hBO
 hBO
 hBO
@@ -151816,11 +151825,11 @@ hBO
 hBO
 hBO
 hBO
-jLF
-jLF
-jLF
-jLF
-jLF
+cbj
+cbj
+cbj
+cbj
+cbj
 hBO
 hBO
 hBO
@@ -153364,7 +153373,7 @@ cMK
 pEx
 kId
 aDV
-aDV
+boP
 gnf
 aDV
 aDV
