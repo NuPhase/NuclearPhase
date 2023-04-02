@@ -20,7 +20,7 @@
 		/decl/material/solid/metal/plutonium = 0.8
 	)
 	fission_products = list(
-		/decl/material/solid/metal/fission_byproduct = 0.8
+		/decl/material/solid/metal/fission_byproduct = 1
 	)
 	fission_heat = 35000
 	fission_energy = 400000
@@ -48,7 +48,7 @@
 		INTERACTION_FISSION = 3000
 	)
 	fission_products = list(
-		/decl/material/solid/metal/fission_byproduct = 0.2
+		/decl/material/solid/metal/fission_byproduct = 1
 	)
 
 /decl/material/solid/metal/plutonium
@@ -70,7 +70,7 @@
 		INTERACTION_FISSION = 1000
 	)
 	fission_products = list(
-		/decl/material/solid/metal/fission_byproduct = 0.5
+		/decl/material/solid/metal/fission_byproduct = 1
 	)
 	neutron_production = 1200
 	neutron_absorption = 300

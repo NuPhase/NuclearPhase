@@ -67,11 +67,12 @@
 		var/neutrons_absorbed = mat.neutron_absorption * react_amount
 		if(mat.neutron_production)
 			neutron_moles += mat.neutron_production * react_amount
-			GM.adjust_gas(mat.uid, react_amount * -1)
+			GM.adjust_gas(mat.type, react_amount * -1)
 			if(mat.fission_products)
 				for(var/fp in mat.fission_products)
 					GM.adjust_gas(fp, react_amount)
-		neutron_moles -= neutrons_absorbed
+		var/actually_absorbed = min(neutrons_absorbed, neutron_moles)
+		neutron_moles -= actually_absorbed
 		GM.add_thermal_energy(max(0, mat.fission_energy * neutrons_absorbed))
 	neutron_flux = Interpolate(neutron_flux, Clamp(neutron_moles * NEUTRON_FLUX_RATE, 0, 1000), 0.2)
 
