@@ -56,7 +56,7 @@
 /obj/machinery/atmospherics/unary/outlet_injector/Initialize()
 	. = ..()
 	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than vent pumps, to differentiate injectors a bit more.
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500
+	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + volume_rate
 
 /obj/machinery/atmospherics/unary/outlet_injector/on_update_icon()
 	if(stat & NOPOWER)
