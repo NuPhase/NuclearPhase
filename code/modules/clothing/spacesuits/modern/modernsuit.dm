@@ -112,7 +112,7 @@
 	name = "pressure suit"
 	desc = "A pinnacle of past-laden engineering, this suit is capable of surviving a wide variety of temperatures and pressures. Doesn't look like it, though."
 	icon = 'icons/clothing/spacesuit/generic/suit.dmi'
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_GARGANTUAN
 	gas_transfer_coefficient = 0
 	permeability_coefficient = 0
 	item_flags = ITEM_FLAG_THICKMATERIAL
@@ -144,7 +144,8 @@
 	var/list/components = list()
 	var/datum/gas_mixture/internal_atmosphere = new
 	var/mob/living/carbon/human/wearer = null
-	var/obj/item/storage/backpack/lifesupportpack/lifesupportsystem = new
+	var/obj/item/storage/backpack/lifesupportpack/lifesupportsystem = null
+	var/lifesupport_type = /obj/item/storage/backpack/lifesupportpack
 
 	var/leakiness = 0 //0-100. Determines how much air leaks out in percent per second
 	var/leak_message_on_cooldown = FALSE
@@ -210,6 +211,7 @@
 	. = ..()
 	LAZYSET(slowdown_per_slot, slot_wear_suit_str, 1)
 	internal_atmosphere.volume = 20
+	lifesupportsystem = new lifesupport_type
 	lifesupportsystem.owner = src
 
 ///obj/item/clothing/suit/modern/space/mob_can_equip(mob/living/M, slot, disable_warning, force)

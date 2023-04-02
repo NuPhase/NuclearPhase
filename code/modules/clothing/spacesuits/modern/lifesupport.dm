@@ -32,7 +32,8 @@
 
 	var/obj/item/clothing/suit/modern/space/owner = null
 
-	var/obj/item/cell/battery = new
+	var/obj/item/cell/battery = null
+	var/battery_type = /obj/item/cell
 
 	canremove = FALSE
 
@@ -41,10 +42,12 @@
 	oxygen_tank = new /obj/item/tank/oxygen/modulated
 	propulsion_tank = new /obj/item/tank/propfuel
 	waste_tank = new /obj/item/tank/waste
+	battery = new battery_type
 	modules = new /obj/abstract/modules_holder
 	oxygen_tank.forceMove(modules)
 	propulsion_tank.forceMove(modules)
 	waste_tank.forceMove(modules)
+	battery.forceMove(modules)
 	var/obj/item/co2filter/newfilter = new /obj/item/co2filter
 	newfilter.forceMove(src)
 	newfilter.on_enter_storage(src)
