@@ -39,6 +39,6 @@
 			Total Power Generation: [tload] <br>\
 			Total Thermal Flow: [mload] <br>\
 			Neutron Rate: [round(rcore.neutron_rate*100-100)]% <br>\
-			Radiation Emission: [round(rcore.last_radiation)] Roentgen <br>\
+			Radiation Emission: [round(rcore.last_radiation)] Roentgen/Hour<br>\
 			Chamber Temperature: [temp_readout]"
 	return data
