@@ -8,6 +8,7 @@
 	var/max_cap = 250000 //w
 	var/should_transfer_demand = FALSE
 	var/on = 1
+	var/critical = FALSE
 
 	efficiency = 0.9
 	should_heat = TRUE
