@@ -146,6 +146,8 @@
 	spawn(5 SECONDS)
 		H.equip_to_slot_if_possible(suit, slot_wear_suit_str, 0, 0, 1)
 		H.equip_to_slot_if_possible(helmet, slot_head_str, 0, 0, 1)
+		suit.canremove = FALSE
+		helmet.canremove = FALSE
 		suit = null
 		helmet = null
 		H.update_inv_wear_suit()
@@ -188,6 +190,8 @@
 		var/obj/item/nhelmet = H.get_equipped_item(slot_head_str)
 		suit = nsuit
 		helmet = nhelmet
+		suit.canremove = TRUE
+		helmet.canremove = TRUE
 		H.drop_from_inventory(nsuit)
 		H.drop_from_inventory(nhelmet)
 		nsuit.forceMove(src)
