@@ -66,7 +66,7 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
-	total_mass_flow = air1.net_flow_mass
+	total_mass_flow = air1.net_flow_mass + air1.get_mass()*0.01 //barely enough to start it
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
 	steam_velocity += pressure_difference * MS_PER_KPA_DIFFERENCE
