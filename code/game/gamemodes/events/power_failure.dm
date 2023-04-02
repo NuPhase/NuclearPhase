@@ -3,9 +3,10 @@
 	if(announce)
 		global.using_map.grid_check_announcement()
 
-	for(var/obj/machinery/power/generator/smes/buildable/S in SSmachines.machinery)
-		S.energy_fail(rand(15 * severity,30 * severity))
-
+	for(var/obj/machinery/power/generator/transformer/switchable/T in SSmachines.machinery)
+		if(T.on && !T.critical && (!affected_z_levels || (C.z in affected_z_levels)))
+			if(prob(10))
+				T.trip()
 
 	for(var/obj/machinery/power/apc/C in SSmachines.machinery)
 		if(!C.is_critical && (!affected_z_levels || (C.z in affected_z_levels)))
