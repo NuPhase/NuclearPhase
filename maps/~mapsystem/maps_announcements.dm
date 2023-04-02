@@ -7,7 +7,7 @@
 	var/electrical_storm_moderate_sound
 	var/electrical_storm_major_sound
 
-	var/grid_check_message = "Abnormal activity detected in the %STATION_NAME%'s power system. As a precaution, the %STATION_NAME%'s power must be shut down for an indefinite duration."
+	var/grid_check_message = "Abnormal activity detected in the %STATION_NAME%'s power system."
 	var/grid_check_sound
 
 	var/grid_restored_message = "Station power to the %STATION_NAME% will be restored at this time. We apologize for the inconvenience."
@@ -33,7 +33,7 @@
 		SSevac.evacuation_controller.evac_called.Announce(replacetext(emergency_shuttle_called_message, "%ETA%", "[round(SSevac.evacuation_controller.get_eta()/60)] minute\s."), new_sound = emergency_shuttle_called_sound)
 
 /datum/map/proc/grid_check_announcement()
-	command_announcement.Announce(replacetext(grid_check_message, "%STATION_NAME%", station_name()), "Automated Grid Check", new_sound = grid_check_sound)
+	command_announcement.Announce(replacetext(grid_check_message, "%STATION_NAME%", station_name()), "Power Systems Failure", new_sound = grid_check_sound)
 
 /datum/map/proc/grid_restored_announcement()
 	command_announcement.Announce(replacetext(grid_restored_message, "%STATION_NAME%", station_name()), "Power Systems Nominal", new_sound = grid_restored_sound)
