@@ -141,7 +141,7 @@ var/global/list/adminhelp_ignored_words = list("unknown","the","a","an","of","mo
 
 	SSstatistics.add_field_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Ticket ([ticket.id]) (Game ID: [game_id]) Ticket Opened", "body" = "[ticket.owner.key_name(0)] has opened a ticket. Subject: [original_msg]"))
+	SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Тикет ([ticket.id]) (ID игры: [game_id]) Тикет Открыт", "body" = "[ticket.owner.key_name(0)] открыл тикет. Содержание: [original_msg]"))
 
 	return
 

@@ -48,13 +48,13 @@ var/global/list/ticket_panels = list()
 			var/DBQuery/ticket_timeout = dbcon.NewQuery("UPDATE `erro_admin_tickets` SET `status` = 'TIMED_OUT' WHERE `round` = '[game_id]' AND `inround_id` = '[src.id]';")
 			ticket_timeout.Execute()
 		to_chat(client_by_ckey(src.owner.ckey), "<span class='notice'><b>Your ticket has timed out. Please adminhelp again if your issue is not resolved.</b></span>")
-		SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Ticket ([id]) (Game ID: [game_id]) Ticket Timed Out", "body" = "[src.owner.key_name(0)] 's ticket (ID [id]) has timed out."))
+		SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Тикет ([id]) (ID игры: [game_id]) Тикет Просрочился", "body" = "Тикет [src.owner.key_name(0)] (ID [id]) был просрочен."))
 	else
 		src.closed_by = closed_by
 		to_chat(client_by_ckey(src.owner.ckey), "<span class='notice'><b>Your ticket has been closed by [closed_by.key].</b></span>")
 		message_staff("<span class='notice'><b>[src.owner.key_name(0)]</b>'s ticket has been closed by <b>[closed_by.key]</b>.</span>")
 		send2adminirc("[src.owner.key_name(0)]'s ticket has been closed by [closed_by.key].")
-		SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Ticket ([id]) (Game ID: [game_id]) Ticket Closed", "body" = "[src.owner.key_name(0)] 's ticket (ID [id]) has been closed by [closed_by.key]."))
+		SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Тикет ([id]) (ID игры: [game_id]) Тикет Закрыт", "body" = "Тикет [src.owner.key_name(0)] (ID [id]) был закрыт [closed_by.key]."))
 
 	var/closed_by_not_assigned = TRUE
 	if(!closed_by)
@@ -104,7 +104,7 @@ var/global/list/ticket_panels = list()
 	message_staff("<span class='notice'><b>[assigned_admin.key]</b> has assigned themself to <b>[src.owner.key_name(0)]'s</b> ticket.</span>")
 	send2adminirc("[assigned_admin.key] has assigned themself to [src.owner.key_name(0)]'s ticket.")
 	to_chat(client_by_ckey(src.owner.ckey), "<span class='notice'><b>[assigned_admin.key] has added themself to your ticket and should respond shortly. Thanks for your patience!</b></span>")
-	SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Ticket ([id]) (Game ID: [game_id]) Ticked Assigned", "body" = "[assigned_admin.key] has added themself to ticket ID [id]."))
+	SSwebhooks.send(WEBHOOK_AHELP_SENT, list("name" = "Тикет ([id]) (ID игры: [game_id]) Тикет Назначен", "body" = "[assigned_admin.key] назначил на себя тикет с ID [id]."))
 
 	update_ticket_panels()
 

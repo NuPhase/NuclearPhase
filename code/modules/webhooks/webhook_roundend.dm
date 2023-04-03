@@ -4,19 +4,17 @@
 // Data expects three numerical fields: "survivors", "escaped", "ghosts", "clients"
 /decl/webhook/roundend/get_message(var/list/data)
 	. = ..()
-	var/desc = "A round of **[SSticker.mode ? SSticker.mode.name : "Unknown"]** ([game_id]) has ended.\n\n"
+	var/desc = "Раунд с режимом **[SSticker.mode ? SSticker.mode.name : "НЕ ОПРЕДЕЛЁН"]** ([game_id]) закончился.\n\n"
 	if(data)
-		var/s_escaped =  "Escaped"
-		if(SSevac.evacuation_controller && !SSevac.evacuation_controller.emergency_evacuation)
-			s_escaped = "Transferred"
+		desc += "Концовка: Вымирание."
 		if(data["survivors"] > 0)
-			desc += "Survivors: **[data["survivors"]]**\n"
-			desc += "[s_escaped]: **[data["escaped"]]**\n"
+			desc += "Выжившие: **[data["survivors"]](из них в убежище: [data["shelter_survivors"]])**\n"
+			desc += "Сбежало с планеты: **[data["escaped"]]**\n"
 		else
-			desc += "There were **no survivors**.\n\n"
-		desc += "Ghosts: **[data["ghosts"]]**\n"
-		desc += "Players: **[data["clients"]]**\n"
-		desc += "Round duration: **[roundduration2text()]**"
+			desc += "**Никто** не выжил.\n\n"
+		desc += "Умершие: **[data["ghosts"]]**\n"
+		desc += "Игроки: **[data["clients"]]**\n"
+		desc += "Длительность раунда: **[roundduration2text()]**"
 
 	.["embeds"] = list(list(
 		"title" = global.end_credits_title,

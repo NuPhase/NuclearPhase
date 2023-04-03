@@ -366,6 +366,7 @@ var/global/list/additional_antag_types = list()
 	var/clients = 0
 	var/surviving_humans = 0
 	var/surviving_total = 0
+	var/shelter_survivors = 0
 	var/ghosts = 0
 	var/escaped_humans = 0
 	var/escaped_total = 0
@@ -382,6 +383,8 @@ var/global/list/additional_antag_types = list()
 					escaped_total++
 					if(ishuman(M))
 						escaped_humans++
+				if(istype(A, /area/avalon))
+					shelter_survivors++
 			else if(isghost(M))
 				ghosts++
 
@@ -414,7 +417,7 @@ var/global/list/additional_antag_types = list()
 		SSstatistics.set_field("escaped_total",escaped_total)
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivor\s, [ghosts] ghost\s.")
-	SSwebhooks.send(WEBHOOK_ROUNDEND, list("survivors" = surviving_total, "escaped" = escaped_total, "ghosts" = ghosts, "clients" = clients))
+	SSwebhooks.send(WEBHOOK_ROUNDEND, list("survivors" = surviving_total, "shelter_survivors" = shelter_survivors, "escaped" = escaped_total, "ghosts" = ghosts, "clients" = clients))
 
 	return 0
 
