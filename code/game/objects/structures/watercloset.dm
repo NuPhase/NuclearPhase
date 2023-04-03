@@ -79,7 +79,7 @@ var/global/list/hygiene_props = list()
 			var/adding = min(flood_amt-F?.reagents.total_volume, rand(30,50)*clogged)
 			if(adding > 0)
 				if(!F) F = new(T)
-				F.reagents.add_reagent(/decl/material/liquid/water, adding)
+				F.reagents.add_reagent(/decl/material/liquid/water/dirty4, adding)
 
 /obj/structure/hygiene/proc/drain()
 	if(!can_drain) return
@@ -316,7 +316,7 @@ var/global/list/hygiene_props = list()
 			reagents.splash(get_turf(src), reagents.total_volume, max_spill = 0)
 
 /obj/structure/hygiene/shower/proc/process_heat(mob/living/M)
-	if(!on || !istype(M)) 
+	if(!on || !istype(M))
 		return
 	var/water_temperature = temperature_settings[watertemp]
 	var/temp_adj = between(BODYTEMP_COOLING_MAX, water_temperature - M.bodytemperature, BODYTEMP_HEATING_MAX)
@@ -579,7 +579,7 @@ var/global/list/hygiene_props = list()
 
 /obj/structure/hygiene/faucet/Process()
 	..()
-	if(open) 
+	if(open)
 		water_flow()
 
 /obj/structure/hygiene/faucet/examine(mob/user)

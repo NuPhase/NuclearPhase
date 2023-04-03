@@ -28,6 +28,7 @@
 		/decl/material/solid/ice = 1
 	)
 	liquid_density = 997
+	var/dirty_stage = 0 //0-5
 
 /decl/material/liquid/water/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
@@ -52,6 +53,31 @@
 
 /decl/material/liquid/water/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
+	switch(dirty_stage)
+		if(1)
+			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
+			S.germ_level += removed
+		if(2)
+			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
+			S.germ_level += removed * 2
+			M.custom_pain("Something is not right with this liquid...", 10)
+		if(3)
+			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
+			S.germ_level += removed * 2
+			M.add_chemical_effect(CE_TOXIN, removed * 0.5)
+			M.custom_pain("Drinking this is extremely unpleasant...", 10)
+		if(4)
+			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
+			S.germ_level += removed * 10
+			M.add_chemical_effect(CE_TOXIN, removed)
+			M.custom_pain("This liquid tastes disgusting!", 15)
+		if(5)
+			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
+			S.germ_level += removed * 10
+			M.add_chemical_effect(CE_TOXIN, removed*2)
+			M.add_chemical_effect(CE_ALCOHOL, removed*5)
+			M.custom_pain("You feel the walls of your esophagus eroding and burning!", 35)
+
 	M.adjust_hydration(removed * 10)
 	affect_blood(M, removed, holder)
 
@@ -103,5 +129,44 @@
 		else
 			M.adjust_fire_stacks(-(amount / 10))
 			holder.remove_reagent(type, amount)
-		if(amount > 200)
+		if(amount > 200 && !dirty_stage)
 			wash_mob(M)
+
+/decl/material/liquid/water/dirty1
+	dirty_stage = 1
+	dirtiness = DIRTINESS_NEUTRAL
+	taste_description = "raw water"
+	uid = "liquid_water_dirty1"
+	color = "#83d7e0"
+
+/decl/material/liquid/water/dirty2
+	dirty_stage = 2
+	dirtiness = 1
+	taste_description = "water with a weird aftertaste"
+	taste_mult = 1.5
+	uid = "liquid_water_dirty2"
+	color = "#65a3aa"
+
+/decl/material/liquid/water/dirty3
+	dirty_stage = 3
+	dirtiness = 1.5
+	taste_description = "water from a dirty lake"
+	taste_mult = 1.5
+	uid = "liquid_water_dirty3"
+	color = "#507579"
+
+/decl/material/liquid/water/dirty4
+	dirty_stage = 4
+	dirtiness = 2
+	taste_description = "swamp water"
+	taste_mult = 2
+	uid = "liquid_water_dirty4"
+	color = "#9b7d63"
+
+/decl/material/liquid/water/dirty5
+	dirty_stage = 5
+	dirtiness = 3
+	taste_description = "heavily contaminated water"
+	taste_mult = 3
+	uid = "liquid_water_dirty5"
+	color = "#74441d"

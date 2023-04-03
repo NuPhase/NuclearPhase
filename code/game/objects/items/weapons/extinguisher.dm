@@ -47,7 +47,7 @@
 	. = ..()
 	create_reagents(max_water)
 	if(starting_water > 0)
-		reagents.add_reagent(/decl/material/liquid/water, starting_water)
+		reagents.add_reagent(/decl/material/liquid/water/dirty1, starting_water)
 
 /obj/item/extinguisher/empty
 	starting_water = 0
