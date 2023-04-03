@@ -64,7 +64,7 @@
 		SKILL_ANATOMY   = SKILL_MAX,
 		SKILL_CHEMISTRY = SKILL_MAX
 	)
-	skill_points = 26
+	skill_points = 29
 	software_on_spawn = list(
 		/datum/computer_file/program/comm,
 		/datum/computer_file/program/suit_sensors,
@@ -123,7 +123,7 @@
 		/datum/computer_file/program/suit_sensors,
 		/datum/computer_file/program/camera_monitor
 	)
-	skill_points = 22
+	skill_points = 25
 	title = "Paramedic"
 	event_categories = list(ASSIGNMENT_MEDICAL)
 
