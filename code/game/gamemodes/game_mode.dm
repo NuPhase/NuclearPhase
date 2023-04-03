@@ -375,10 +375,13 @@ var/global/list/additional_antag_types = list()
 		if(M.client)
 			clients++
 			if(M.stat != DEAD)
+				var/area/A = get_area(M)
+				if(istype(A, /area/skyscraper))
+					ghosts++
+					continue
 				surviving_total++
 				if(ishuman(M))
 					surviving_humans++
-				var/area/A = get_area(M)
 				if(A && is_type_in_list(A, global.using_map.post_round_safe_areas))
 					escaped_total++
 					if(ishuman(M))
