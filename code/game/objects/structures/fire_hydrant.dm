@@ -46,6 +46,8 @@
 	return ..()
 
 /obj/item/fire_hose/afterattack(var/atom/target, var/mob/user, var/flag)
+	if(istype(target,/obj/structure/fire_hydrant_manual))
+		return
 	if (!use_gas())
 		to_chat(usr, SPAN_NOTICE("\The [hydrant] is empty."))
 		return
