@@ -191,7 +191,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/avalon/shelter/machinehall)
 "amd" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
@@ -697,12 +697,12 @@
 /area/avalon/shelter/atmos)
 "aMt" = (
 /obj/structure/table/steel,
-/obj/item/cell,
-/obj/item/cell,
-/obj/item/cell,
-/obj/item/cell,
-/obj/item/cell,
-/obj/item/cell,
+/obj/item/cell/doublecapacity,
+/obj/item/cell/doublecapacity,
+/obj/item/cell/doublecapacity,
+/obj/item/cell/doublecapacity,
+/obj/item/cell/doublecapacity,
+/obj/item/cell/doublecapacity,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "aML" = (
@@ -1114,6 +1114,12 @@
 /area/avalon/shelter/upperhall)
 "bkc" = (
 /obj/structure/table/steel,
+/obj/item/co2filter/large,
+/obj/item/co2filter/large,
+/obj/item/co2filter/large,
+/obj/item/co2filter/large,
+/obj/item/co2filter/large,
+/obj/item/co2filter/large,
 /obj/item/co2filter/large,
 /obj/item/co2filter/large,
 /obj/item/co2filter/large,
@@ -6649,12 +6655,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
-"gXS" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating,
-/area/space)
 "gYa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -10117,12 +10117,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/office)
-"kmG" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/plating,
-/area/space)
 "knR" = (
 /obj/effect/scripted_detonation{
 	id = "reactor3";
@@ -12898,7 +12892,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/open,
-/area/space)
+/area/avalon/shelter/machinehall)
 "nno" = (
 /obj/machinery/light,
 /obj/machinery/disposal,
@@ -14036,6 +14030,7 @@
 /obj/item/paper{
 	info = "Пожалуйста, не забывайте свои фильтры. Джек чуть не умер в прошлой экспедиции, нам пришлось откачивать его прямо перед этим столом."
 	},
+/obj/item/co2filter/regenerative,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "osw" = (
@@ -16402,9 +16397,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
-"qRa" = (
-/turf/simulated/floor/plating,
-/area/space)
 "qRe" = (
 /obj/machinery/rotating_alarm/reactor{
 	dir = 4
@@ -16551,9 +16543,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "rau" = (
-/obj/machinery/door/airlock/maintenance{
-	initial_access = list("ACCESS_MAINT")
-	},
+/obj/machinery/door/airlock/maintenance,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "rax" = (
@@ -17149,7 +17139,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/avalon/shelter/machinehall)
 "rIf" = (
 /obj/structure/table/steel,
 /obj/random/powercell,
@@ -20626,7 +20616,7 @@
 	d2 = 1
 	},
 /turf/simulated/open,
-/area/space)
+/area/avalon/shelter/machinehall)
 "vpZ" = (
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 8
@@ -164763,8 +164753,8 @@ akt
 akt
 akt
 akt
-jLF
-jLF
+akt
+akt
 hBO
 hBO
 hBO
@@ -164893,8 +164883,8 @@ vXh
 ggB
 ggB
 ggB
-eKZ
-jLF
+ggB
+akt
 hBO
 hBO
 hBO
@@ -165023,8 +165013,8 @@ aja
 ggB
 ggB
 ggB
-eKZ
-jLF
+ggB
+akt
 hBO
 hBO
 hBO
@@ -199208,8 +199198,8 @@ nMD
 nMD
 nMD
 nMD
-jLF
-jLF
+kCy
+kCy
 hBO
 hBO
 hBO
@@ -199339,10 +199329,10 @@ nMD
 rHH
 nmZ
 voK
-jLF
-jLF
-jLF
-jLF
+kCy
+kCy
+kCy
+kCy
 lFl
 xdt
 xdt
@@ -199467,12 +199457,12 @@ cRp
 cGW
 nMD
 alR
-kmG
-gXS
-gXS
-gXS
-gXS
-gXS
+qDf
+tMX
+tMX
+tMX
+tMX
+tMX
 lQF
 pxS
 apO
@@ -199600,9 +199590,9 @@ qDf
 tMX
 tMX
 tMX
-gXS
-gXS
-gXS
+tMX
+tMX
+tMX
 lQF
 wKA
 qml
@@ -199730,9 +199720,9 @@ eyo
 mlo
 wAI
 kCy
-jLF
-jLF
-jLF
+kCy
+kCy
+kCy
 lFl
 frI
 xpM
@@ -233912,9 +233902,9 @@ gGw
 gGw
 gGw
 gGw
-jLF
-jLF
-jLF
+gGw
+gGw
+gGw
 hBO
 hBO
 hBO
@@ -234042,9 +234032,9 @@ cSP
 nIV
 nIV
 nIV
-qRa
-qRa
-jLF
+nIV
+nIV
+gGw
 hBO
 hBO
 hBO
