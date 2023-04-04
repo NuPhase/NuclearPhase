@@ -374,7 +374,7 @@ var/global/list/DIR2DEGREES = list(
 	var/turf/target = get_step(vehicle.loc, direction)
 	vehicle.movingZ = TRUE
 	vehicle.visible_message(SPAN_WARNING("[vehicle] prepares to maneuver!"))
-	src.visible_message(SPAN_WARNING("[vehicle] prepares to maneuver!"))
+	visible_message(SPAN_WARNING("[vehicle] prepares to maneuver!"))
 	var/time = rand(1 SECOND, 3 SECONDS)
 	spawn(time)
 		if(target.Enter(vehicle))
