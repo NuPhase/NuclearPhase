@@ -311,6 +311,8 @@
 	liquid_density = 3520
 	value = 0.25
 	neutron_absorption = 15
+	neutron_production = 1
+	fission_products = list(/decl/material/solid/caesium = 1)
 
 /decl/material/gas/xenon/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/dosage = LAZYACCESS(M.chem_doses, type)

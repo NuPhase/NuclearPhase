@@ -39,7 +39,7 @@
 		/decl/material/gas/oxygen,
 		/decl/material/gas/nitrogen,
 		/decl/material/gas/helium,
-		/decl/material/gas/xenon
+		/decl/material/solid/caesium
 	)
 
 /datum/reactor_control_system/proc/initialize()

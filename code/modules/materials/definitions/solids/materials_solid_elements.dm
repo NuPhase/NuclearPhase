@@ -66,6 +66,14 @@
 	color = "#808080"
 	value = 0.5
 
+/decl/material/solid/caesium
+	name = "caesium"
+	uid = "caesium"
+	lore_text = "A radioactive element commonly found in reactors."
+	taste_description = "nothing"
+	color = "#585858"
+	value = 1
+
 /decl/material/solid/sulfur
 	name = "sulfur"
 	uid = "solid_sulfur"
