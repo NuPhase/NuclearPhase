@@ -100,6 +100,17 @@
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
 
+/obj/structure/closet/modernsuit_basic
+	name = "utility undersuits"
+	desc = "It's a storage unit for undersuits.."
+	closet_appearance = /decl/closet_appearance/wardrobe/white
+
+
+/obj/structure/closet/modernsuit_basic/WillContain()
+	return list(
+		/obj/item/clothing/under/undersuit = 3,
+		/obj/item/clothing/shoes/jackboots/space_suit = 3
+		)
 
 /*
  * Radiation Closet
@@ -158,7 +169,7 @@
 	wall_mounted = 1
 	storage_types = CLOSET_STORAGE_ITEMS
 	setup = 0
-	
+
 /obj/structure/closet/hydrant/Initialize()
 	. = ..()
 	tool_interaction_flags &= ~TOOL_INTERACTION_ANCHOR
