@@ -158,8 +158,6 @@ var/global/list/DIR2DEGREES = list(
 	light_range = 3
 	animate_movement = 1
 
-	var/debug_msgs = FALSE
-
 	var/last_acceleration_time_x = 0
 	var/last_acceleration_time_y = 0
 	var/datum/vector2/lerpdelayed/move_vector
