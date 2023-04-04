@@ -122,3 +122,45 @@
 
 /matrix/proc/get_angle()
 	return Atan2(b,a)
+
+/datum/vector2
+	var/x
+	var/y
+
+/datum/vector2/New(var/_x=0, var/_y=0)
+	x = _x
+	y = _y
+
+/datum/vector2/proc/get_angle()
+	return Atan2(x, y)
+
+/datum/vector2/proc/summ(var/datum/vector2/v, var/min = -INFINITY, var/max = INFINITY)
+	x = between(min, x + v.x, max)
+	y = between(min, y + v.y, max)
+
+/datum/vector2/proc/sub(var/datum/vector2/v, var/min = -INFINITY, var/max = INFINITY)
+	x = between(min, x - v.x, max)
+	y = between(min, y - v.y, max)
+
+/datum/vector2/proc/mult(var/datum/vector2/v, var/min = -INFINITY, var/max = INFINITY)
+	x = between(min, x * v.x, max)
+	y = between(min, y * v.y, max)
+
+/datum/vector2/proc/lerp(var/target, var/weight)
+	x = Interpolate(x, target, weight)
+	y = Interpolate(y, target, weight)
+
+/datum/vector2/proc/get_hipotynuse()
+	return sqrt(x**2 + y**2)
+
+/datum/vector2/proc/normalise()
+	var/hip = get_hipotynuse()
+	x = x / hip
+	y = y / hip
+
+/datum/vector2/proc/from_angle(var/degrees)
+	x = round(cos(degrees), 0.001)
+	y = round(sin(degrees), 0.001)
+
+/datum/vector2/proc/copy()
+	return new /datum/vector2(x, y)
