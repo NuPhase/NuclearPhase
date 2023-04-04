@@ -425,7 +425,7 @@ Helpers
 	//if(dronecount)
 	//	to_world("<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance drone\s at the end of this round.</b>")
 
-	if(all_money_accounts.len)
+	/*if(all_money_accounts.len)
 		var/datum/money_account/max_profit = all_money_accounts[1]
 		var/datum/money_account/max_loss = all_money_accounts[1]
 		for(var/datum/money_account/D in all_money_accounts)
@@ -437,7 +437,7 @@ Helpers
 			if(saldo <= max_loss.get_balance())
 				max_loss = D
 		to_world("<b>[max_profit.owner_name]</b> received most <font color='green'><B>PROFIT</B></font> today, with net profit of <b>[max_profit.format_value_by_currency(max_profit.get_balance())]</b>.")
-		to_world("On the other hand, <b>[max_loss.owner_name]</b> had most <font color='red'><B>LOSS</B></font>, with total loss of <b>[max_loss.format_value_by_currency(max_loss.get_balance())]</b>.")
+		to_world("On the other hand, <b>[max_loss.owner_name]</b> had most <font color='red'><B>LOSS</B></font>, with total loss of <b>[max_loss.format_value_by_currency(max_loss.get_balance())]</b>.")*/
 
 	mode.declare_completion()//To declare normal completion.
 

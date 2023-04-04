@@ -60,15 +60,9 @@ SUBSYSTEM_DEF(lore)
 	if(!global.end_credits_title || force)
 		var/list/possible_titles = list()
 		refresh_credits_from_departments()
-		possible_titles += "THE [pick("DOWNFALL OF", "RISE OF", "TROUBLE WITH", "FINAL STAND OF", "DARK SIDE OF", "DESOLATION OF", "DESTRUCTION OF", "CRISIS OF")] [pick(credits_nouns)]"
-		possible_titles += "[pick(credits_crew_names)] GETS SERIOUS ABOUT [pick(credits_topics)]"
-		possible_titles += "[pick(credits_crew_names)] GETS [pick(credits_crew_outcomes)]"
-		possible_titles += "[pick(credits_crew_names)] LEARNS ABOUT [pick(credits_topics)]"
-		possible_titles += "A VERY [pick(credits_adjectives)] [pick(credits_holidays)]"
-		possible_titles += "[pick(credits_adjectives)] [pick(credits_adventure_names)]"
-		possible_titles += "[pick(credits_topics)] [pick(credits_adventure_names)]"
-		possible_titles += "THE DAY [uppertext(global.using_map.station_short)] STOOD STILL"
-		possible_titles |= credits_other
+		possible_titles += "EPILOGUE OF YOUR STORY"
+		possible_titles += "THE DAY YOUR DESTINY STOOD STILL"
+		possible_titles += "HELL BROUGHT UPON THIS SINFUL WORLD"
 		global.end_credits_title = pick(possible_titles)
 	. = global.end_credits_title
 

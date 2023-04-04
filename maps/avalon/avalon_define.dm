@@ -28,6 +28,8 @@
 		'maps/avalon/cdllobby.jpg',
 		'maps/avalon/atom.jpg'
 	)
+	credit_sound = list('sound/music/aftermath.ogg')
+	reboot_sound = list()
 
 	lobby_tracks = list(
 		/decl/music_track/onewaytolife,

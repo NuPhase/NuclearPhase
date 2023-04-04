@@ -97,7 +97,7 @@ var/global/list/end_titles
 	var/list/cast = list()
 	var/list/chunk = list()
 	var/chunksize = 0
-	titles += "<center><h1>EPISODE [rand(1,1000)]<br>[SSlore.get_end_credits_title()]<h1></h1></h1></center>"
+	titles += "<center><h1>NUCLEAR PHASE<br>[SSlore.get_end_credits_title()]<h1></h1></h1></center>"
 
 	for(var/mob/living/carbon/human/H in global.living_mob_list_|global.dead_mob_list_)
 		if(findtext(H.real_name,"(mannequin)"))
@@ -107,31 +107,13 @@ var/global/list/end_titles
 		if(H.timeofdeath && H.timeofdeath < 5 MINUTES) //don't mention these losers (prespawned corpses mostly)
 			continue
 		if(!cast.len && !chunksize)
-			chunk += "CAST:"
-		var/job = ""
-		if(GetAssignment(H) != "Unassigned")
-			job = ", [uppertext(GetAssignment(H))]"
+			chunk += "CHARACTERS:"
 		var/used_name = H.real_name
 		var/datum/computer_file/report/crew_record/R = get_crewmember_record(H.real_name)
 		if(R && R.get_rank())
 			var/datum/mil_rank/rank = mil_branches.get_rank(R.get_branch(), R.get_rank())
 			if(rank.name_short)
 				used_name = "[rank.name_short] [used_name]"
-		var/showckey = 0
-		if(H.ckey && H.client)
-			if(H.client.get_preference_value(/datum/client_preference/show_ckey_credits) == PREF_SHOW)
-				showckey = 1
-		var/decl/cultural_info/actor_culture = GET_DECL(H.get_cultural_value(TAG_CULTURE))
-		if(!actor_culture || !(H.species.spawn_flags & SPECIES_CAN_JOIN) || prob(10))
-			actor_culture = GET_DECL(/decl/cultural_info/culture/human)
-		if(!showckey)
-			if(prob(90))
-				chunk += "[actor_culture.get_random_name(H, H.gender)]\t \t \t \t[uppertext(used_name)][job]"
-			else
-				var/decl/pronouns/G = H.get_pronouns()
-				chunk += "[used_name]\t \t \t \t[uppertext(G.him)]SELF"
-		else
-			chunk += "[uppertext(actor_culture.get_random_name(H, H.gender))] a.k.a. '[uppertext(H.ckey)]'\t \t \t \t[uppertext(used_name)][job]"
 		chunksize++
 		if(chunksize > 2)
 			cast += "<center>[jointext(chunk,"<br>")]</center>"
@@ -155,10 +137,10 @@ var/global/list/end_titles
 		var/decl/species/S = get_species_by_key(spec)
 		corpses += "[monkies[spec]] [lowertext(monkies[spec] > 1 ? S.name_plural : S.name)]"
 	if(corpses.len)
-		titles += "<center>BASED ON REAL EVENTS<br>In memory of [english_list(corpses)].</center>"
+		titles += "<center>THE REST IS HISTORY<br>In memory of [english_list(corpses)].</center>"
 
-	var/list/staff = list("PRODUCTION STAFF:")
-	var/list/staffjobs = list("Coffe Fetcher", "Cameraman", "Angry Yeller", "Chair Operator", "Choreographer", "Historical Consultant", "Costume Designer", "Chief Editor", "Executive Assistant")
+	var/list/staff = list("THE HIGHER POWER:")
+	var/list/staffjobs = list("Doombringer", "One with many faces", "Deity of Eroge", "Ruler of the land")
 	var/list/goodboys = list()
 	for(var/client/C)
 		if(!C.holder)
@@ -173,23 +155,12 @@ var/global/list/end_titles
 	if(goodboys.len)
 		titles += "<center>STAFF'S GOOD BOYS:<br>[english_list(goodboys)]</center><br>"
 
-	var/disclaimer = "<br>Sponsored by [global.using_map.company_name].<br>All rights reserved.<br>\
-					 This motion picture is protected under the copyright laws of the Sol Central Government<br> and other nations throughout the galaxy.<br>\
-					 Colony of First Publication: [pick("Mars", "Luna", "Earth", "Venus", "Phobos", "Ceres", "Tiamat", "Ceti Epsilon", "Eos", "Pluto", "Ouere",\
-					 "Lordania", "Kingston", "Cinu", "Yuklid V", "Lorriman", "Tersten", "Gaia")].<br>"
-	disclaimer += pick("Use for parody prohibited. PROHIBITED.",
-					   "All stunts were performed by underpaid interns. Do NOT try at home.",
-					   "[global.using_map.company_name] does not endorse behaviour depicted. Attempt at your own risk.",
-					   "Any unauthorized exhibition, distribution, or copying of this film or any part thereof (including soundtrack)<br>\
-						may result in an ERT being called to storm your home and take it back by force.",
-						"The story, all names, characters, and incidents portrayed in this production are fictitious. No identification with actual<br>\
-						persons (living or deceased), places, buildings, and products is intended or should be inferred.<br>\
-						This film is based on a true story and all individuals depicted are based on real people, despite what we just said.",
-						"No person or entity associated	with this film received payment or anything of value, or entered into any agreement, in connection<br>\
-						with the depiction of tobacco products, despite the copious amounts	of smoking depicted within.<br>\
-						(This disclaimer sponsored by Carcinoma - Carcinogens are our Business!(TM)).",
-						"No animals were harmed in the making of this motion picture except for those listed previously as dead. Do not try this at home.")
+	var/poem = "<br>On a plane where no one stands,<br>\
+				Where only ash remains of what has been,<br>\
+				Comes forth the weight of your actions,<br>\
+				The ones that brought your Destiny to finish.<br>"
+
 	titles += "<hr>"
-	titles += "<center><span style='font-size:6pt;'>[JOINTEXT(disclaimer)]</span></center>"
+	titles += "<center><span style='font-size:9pt;'>[JOINTEXT(poem)]</span></center>"
 
 	return titles
