@@ -134,17 +134,17 @@
 /datum/vector2/proc/get_angle()
 	return Atan2(x, y)
 
-/datum/vector2/proc/summ(var/datum/vector2/v, var/min = -INFINITY, var/max = INFINITY)
-	x = between(min, x + v.x, max)
-	y = between(min, y + v.y, max)
+/datum/vector2/proc/summ(var/datum/vector2/v)
+	x = x + v.x
+	y = y + v.y
 
-/datum/vector2/proc/sub(var/datum/vector2/v, var/min = -INFINITY, var/max = INFINITY)
-	x = between(min, x - v.x, max)
-	y = between(min, y - v.y, max)
+/datum/vector2/proc/sub(var/datum/vector2/v)
+	x = x - v.x
+	y = y - v.y
 
-/datum/vector2/proc/mult(var/datum/vector2/v, var/min = -INFINITY, var/max = INFINITY)
-	x = between(min, x * v.x, max)
-	y = between(min, y * v.y, max)
+/datum/vector2/proc/mult(var/datum/vector2/v)
+	x = x * v.x
+	y = y * v.y
 
 /datum/vector2/proc/lerp(var/target, var/weight)
 	x = Interpolate(x, target, weight)

@@ -16,6 +16,11 @@
 	var/anchor_fall = FALSE
 	var/holographic = 0 //if the obj is a holographic object spawned by the holodeck
 
+/obj/Cross(O, var/mustcheck=FALSE) // fuck that shit im out
+	if(mustcheck)
+		return ..()
+	return TRUE
+
 /obj/hitby(atom/movable/AM, var/datum/thrownthing/TT)
 	..()
 	if(!anchored)
@@ -187,7 +192,7 @@
 		return
 
 	set_dir(turn(dir, 90))
-	update_icon() 
+	update_icon()
 
 //For things to apply special effects after damaging an organ, called by organ's take_damage
 /obj/proc/after_wounding(obj/item/organ/external/organ, datum/wound)

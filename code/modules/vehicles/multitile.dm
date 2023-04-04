@@ -238,19 +238,20 @@ var/global/list/DIR2DEGREES = list(
 	set_bound_box()
 
 /obj/multitile_vehicle/aerial/Process()
-	process_inertia()
+	spawn()
+		process_inertia()
 
-	var/xvel = move_vector.x
-	var/yvel = move_vector.y
-	var/new_step_x = round(step_x + xvel, 1)
-	var/new_step_y = round(step_y + yvel, 1)
+		var/xvel = move_vector.x
+		var/yvel = move_vector.y
+		var/new_step_x = round(step_x + xvel, 1)
+		var/new_step_y = round(step_y + yvel, 1)
 
-	if(!Move(get_turf(src), 0, new_step_x, new_step_y))
-		move_vector.x = 0
-		move_vector.y = 0
+		if(!Move(get_turf(src), 0, new_step_x, new_step_y))
+			move_vector.x = 0
+			move_vector.y = 0
 
-	if(controlling)
-		animate(controlling.client, pixel_x = round(xvel), pixel_y = round(yvel), time = 1, easing = SINE_EASING)
+		if(controlling)
+			animate(controlling.client, pixel_x = round(xvel), pixel_y = round(yvel), time = 1, easing = SINE_EASING)
 
 
 /obj/multitile_vehicle/aerial/proc/process_inertia()
@@ -357,11 +358,17 @@ var/global/list/DIR2DEGREES = list(
 
 	var/datum/vector2/force_vector = new()
 	force_vector.from_angle(DIR2DEGREES["[direction]"])
-	force_vector.x *= vehicle.acceleration
-	force_vector.y *= vehicle.acceleration
 	vehicle.last_acceleration_time_x = round(force_vector.x, 1) ? world.time : vehicle.last_acceleration_time_x
 	vehicle.last_acceleration_time_y = round(force_vector.y, 1) ? world.time : vehicle.last_acceleration_time_y
-	vehicle.move_vector.summ(force_vector, -vehicle.maxspeed, vehicle.maxspeed)
+	force_vector.x *= vehicle.acceleration
+	force_vector.y *= vehicle.acceleration
+	force_vector.summ(vehicle.move_vector)
+	var/hip = force_vector.get_hipotynuse()
+	var/max_hip = between(-vehicle.maxspeed, hip, vehicle.maxspeed)
+	if(hip)
+		vehicle.move_vector.x = force_vector.x / hip * max_hip
+		vehicle.move_vector.y = force_vector.y / hip * max_hip
+
 
 /obj/structure/bed/chair/comfy/vehicle/proc/do_z_move(var/mob/mob, var/direction)
 	if(vehicle.movingZ)
@@ -380,6 +387,3 @@ var/global/list/DIR2DEGREES = list(
 		if(target.Enter(vehicle))
 			vehicle.forceMove(target)
 		vehicle.movingZ = FALSE
-
-/obj/Cross(O) // fuck that shit im out
-	return TRUE

@@ -75,6 +75,9 @@
 		return !density
 	return TRUE
 
+/obj/structure/railing/Cross(atom/movable/O)
+	. = ..(O, istype(O, /obj/multitile_vehicle))
+
 /obj/structure/railing/examine(mob/user)
 	. = ..()
 	if(health < maxhealth)
