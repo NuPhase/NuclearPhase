@@ -25,6 +25,11 @@
 	uncreated_component_parts = null
 	base_type = /obj/machinery/modernsuit_storage
 
+/obj/machinery/modernsuit_storage/physical_attack_hand(mob/user)
+	if(suit)
+		suit.lifesupportsystem.open(user)
+	return TRUE
+
 /obj/machinery/modernsuit_storage/on_update_icon()
 
 	var/new_overlays
@@ -58,6 +63,18 @@
 
 /obj/machinery/modernsuit_storage/receive_mouse_drop(var/atom/dropping, var/mob/user)
 	. = ..()
+
+	if(istype(dropping, /obj/item/clothing/suit/modern/space) && !suit)
+		user.drop_from_inventory(dropping, src)
+		suit = dropping
+		update_icon()
+		return TRUE
+	if(istype(dropping, /obj/item/clothing/head/helmet/modern/space) && !helmet)
+		user.drop_from_inventory(dropping, src)
+		helmet = dropping
+		update_icon()
+		return TRUE
+
 	if(!. && ismob(dropping) && try_move_inside(dropping, user))
 		return TRUE
 

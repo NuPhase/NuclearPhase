@@ -27,9 +27,8 @@
 	set category = "Life Support"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
-
 	leakiness = 100
+	visible_message(SPAN_DANGER("[usr] ejects from the [src], tearing it apart!"))
 	usr.drop_from_inventory(src, usr.loc)
 	var/turf/T = get_ranged_target_turf(usr, wearer.dir, 15)
 	usr.throw_at(T, 15, 3, src)
