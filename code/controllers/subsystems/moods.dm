@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(moods)
 
 /datum/controller/subsystem/moods/proc/process_moods()
 	for(var/datum/mood/mood in moods)
-		if(prob(50)) // give some anarchy to it
+		if(prob(5)) // give some anarchy to it
 			mood.affect()
 
 /datum/controller/subsystem/moods/proc/call_mood_event(var/eventname, var/list/args_, var/list/HM)

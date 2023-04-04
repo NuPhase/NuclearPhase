@@ -1353,6 +1353,9 @@
 	potenzia = (prob(80) ? rand(9, 14) : pick(rand(5, 13), rand(15, 20)))//funny
 	resistenza = (prob(80) ? rand(200, 350) : pick(rand(150, 200), rand(350,600)))
 
+	if(get_preference_value(/datum/client_preference/automood) == PREF_YES)
+		SSmoods.make_initial_mood(src)
+
 	UpdateAppearance() //Apply dna appearance to mob, causes DNA to change because filler values are regenerated
 	//Prevent attempting to create blood container if its already setup
 

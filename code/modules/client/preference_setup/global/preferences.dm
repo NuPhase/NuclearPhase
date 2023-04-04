@@ -210,6 +210,11 @@ var/global/list/_client_preferences_by_type
 	if(preference_mob.client)
 		preference_mob.client.toggle_fullscreen(new_value)
 
+/datum/client_preference/automood
+	description = "Random Psychological Issues"
+	key = "AUTOMOOD"
+	options = list(PREF_NO, PREF_YES)
+
 /datum/client_preference/autohiss
 	description = "Autohiss"
 	key = "AUTOHISS"
