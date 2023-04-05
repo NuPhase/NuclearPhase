@@ -17,6 +17,7 @@
 #define ACCESSORY_SLOT_ARMOR_M  "Misc armor"
 #define ACCESSORY_SLOT_HELM_C	"Helmet cover"
 #define ACCESSORY_SLOT_OVER     "Over"
+#define ACCESSORY_SLOT_MODULES  "Modules"
 
 // Bitmasks for the flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
 // WARNING: The following flags apply only to the external suit!
