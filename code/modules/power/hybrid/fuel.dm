@@ -83,7 +83,7 @@
 	if(inserted.reagents.total_volume != inserted.reagents.maximum_volume) //we're not full of sticky white liquid some engineer left in us
 		for(var/g in core_environment.gas)
 			if(g in rcontrol.unwanted_materials)
-				var/removed = core_environment.gas[g] * 0.1
+				var/removed = core_environment.gas[g] * 0.1 + 0.1
 				core_environment.adjust_gas(g, removed * -1)
 				inserted.reagents.add_reagent(g, removed * REAGENT_UNITS_PER_GAS_MOLE)
 

@@ -63,7 +63,7 @@
 /obj/machinery/power/hybrid_reactor/proc/process_fission(datum/gas_mixture/GM)
 	for(var/g in GM.gas)
 		var/decl/material/mat = GET_DECL(g)
-		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux
+		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux + 0.0001
 		var/neutrons_absorbed = mat.neutron_absorption * react_amount
 		if(mat.neutron_production)
 			neutron_moles += mat.neutron_production * react_amount
