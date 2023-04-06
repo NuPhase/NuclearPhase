@@ -21,6 +21,7 @@
 	desc = "A neural-network powered device that allows humans to interface with complex devices like exosuits. Attaches to undersuits."
 	var/mob/living/carbon/human/bound_to = null
 	slot = ACCESSORY_SLOT_MODULES
+	icon = 'icons/clothing/accessories/modules/neural_interface.dmi'
 
 /obj/item/clothing/accessory/spinal_interface/proc/activate(mob/living/carbon/human/user)
 	if(!bound_to)
@@ -38,3 +39,4 @@
 	name = "spinal connector"
 	desc = "This device allows its user to connect their implanted spinal interface with any complex device. Attaches to undersuits."
 	slot = ACCESSORY_SLOT_MODULES
+	icon = 'icons/clothing/accessories/modules/neural_connector.dmi'
