@@ -12,6 +12,7 @@
 		breaks_engaged2 = "EMERGENCY BRAKING IN EFFECT.<br>"
 	var/data = ""
 	data = "Turbine #1:<br>\
+			Feeders openage: [rcontrol.turbine1.feeder_valve_openage * 100]%.<br>\
 			RPM: [round(rcontrol.turbine1.rpm)].<br>\
 			Isentropic Efficiency: [round(rcontrol.turbine1.efficiency * 100)]%.<br>\
 			Vibration: [rcontrol.turbine1.get_vibration_flavor()].<br>\
@@ -19,6 +20,7 @@
 			Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s<br>\
 			[breaks_engaged1]<br>\
 			Turbine #2:<br>\
+			Feeders openage: [rcontrol.turbine2.feeder_valve_openage * 100]%.<br>\
 			RPM: [round(rcontrol.turbine2.rpm)].<br>\
 			Isentropic Efficiency: [round(rcontrol.turbine2.efficiency * 100)]%.<br>\
 			Vibration: [rcontrol.turbine2.get_vibration_flavor()].<br>\

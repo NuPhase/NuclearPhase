@@ -26,6 +26,7 @@
 	uncreated_component_parts = null
 	construct_state = /decl/machine_construction/noninteractive
 
+	var/feeder_valve_openage = 0
 	var/efficiency = 0.91
 	var/kin_energy = 0
 	var/kin_total = 0 //last kin energy generation
@@ -42,7 +43,6 @@
 	var/rotor_integrity = 100
 	var/shaft_integrity = 100
 
-	var/obj/machinery/atmospherics/binary/regulated_valve/ingoing_valve = null
 	var/obj/structure/turbine_visual/visual = null
 
 	var/valve_id = ""
@@ -61,27 +61,28 @@
 	air1.volume = 20000
 	air2.volume = 80000
 	reactor_components[uid] = src
-	spawn(100)
-		ingoing_valve = rcontrol.reactor_valves[valve_id]
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
-	total_mass_flow = air1.net_flow_mass + air1.get_mass()*0.01 //barely enough to start it
-	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
+	total_mass_flow = (air1.net_flow_mass + air1.get_mass()*0.01) * feeder_valve_openage //barely enough to start it
+
+	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0) * feeder_valve_openage
+
 	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
 	steam_velocity += pressure_difference * MS_PER_KPA_DIFFERENCE
-	/*if(total_mass_flow < 50)
-		total_mass_flow = 0
-		steam_velocity = 0*/
+
 	kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
-	air1.add_thermal_energy(!kin_total)
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
+
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
 	pump_passive(air1, air_all, total_mass_flow)
+	air_all.add_thermal_energy(kin_total * -1)
 	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
+
 	calculate_vibration(air_all)
 	air2.merge(air_all)
+
 	var/new_rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 	if(braking)
 		var/datum/gas_mixture/environment = loc.return_air()
@@ -89,7 +90,6 @@
 		if(kin_energy)
 			environment.add_thermal_energy(kin_energy * 0.05 + 10000)
 	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, TURBINE_MAX_RPM)
-	ingoing_valve.forced_mass_flow = total_mass_flow //so we can succ enough steam
 
 	apply_vibration_effects()
 	calculate_efficiency()

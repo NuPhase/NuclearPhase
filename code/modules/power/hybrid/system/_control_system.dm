@@ -219,28 +219,23 @@
 		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 
 	if(get_meter_temperature("T-M-TURB IN") < 550)
-		current_valve = reactor_valves["TURB 1V-IN"]
-		current_valve.set_openage(0)
-		current_valve = reactor_valves["TURB 2V-IN"]
-		current_valve.set_openage(0)
+		turbine1.feeder_valve_openage = 0
+		turbine2.feeder_valve_openage = 0
 		return
 
 	if(get_meter_temperature("T-M-TURB IN") < 570)
-		current_valve = reactor_valves["TURB 1V-IN"]
-		current_valve.adjust_openage(-10)
-		current_valve = reactor_valves["TURB 2V-IN"]
-		current_valve.adjust_openage(-10)
+		turbine1.feeder_valve_openage = max(0, turbine1.feeder_valve_openage - 0.1)
+		turbine2.feeder_valve_openage = max(0, turbine2.feeder_valve_openage - 0.1)
 
-	current_valve = reactor_valves["TURB 1V-IN"]
 	if(turbine1.rpm > 3600)
-		current_valve.adjust_openage(-5)
+		turbine1.feeder_valve_openage = max(0, turbine1.feeder_valve_openage - 0.05)
 	else if(turbine1.rpm < 3500)
-		current_valve.adjust_openage(1)
-	current_valve = reactor_valves["TURB 2V-IN"]
+		turbine1.feeder_valve_openage = min(1, turbine1.feeder_valve_openage + 0.01)
+
 	if(turbine2.rpm > 3600)
-		current_valve.adjust_openage(-5)
+		turbine2.feeder_valve_openage = max(0, turbine2.feeder_valve_openage - 0.05)
 	else if(turbine2.rpm < 3500)
-		current_valve.adjust_openage(1)
+		turbine2.feeder_valve_openage = min(1, turbine2.feeder_valve_openage + 0.01)
 
 
 /datum/reactor_control_system/proc/scram(cause)
@@ -261,10 +256,8 @@
 	current_valve.set_openage(100)
 
 	//shutting down turbines
-	current_valve = reactor_valves["TURB 1V-IN"]
-	current_valve.set_openage(0)
-	current_valve = reactor_valves["TURB 2V-IN"]
-	current_valve.set_openage(0)
+	turbine1.feeder_valve_openage = 0
+	turbine2.feeder_valve_openage = 0
 	generator1.connected = FALSE
 	generator2.connected = FALSE
 	current_switch = reactor_buttons["TURB V-BYPASS"]

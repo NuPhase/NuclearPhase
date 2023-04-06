@@ -49,13 +49,21 @@
 	var/openage = input(user, "Select a new openage percentage for this valve.", "Valve regulation") as null|num
 	current_valve.set_openage(Clamp(openage, 0, 100))
 
-/obj/machinery/reactor_button/regvalve/turbine1
-	name = "TURB 1V-IN"
-	id = "TURB 1V-IN"
+/obj/machinery/reactor_button/turbine_valve/do_action(mob/user)
+	..()
+	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
+	var/openage = input(user, "Select a new openage percentage for this turbine.", "Turbine intake regulation") as null|num
+	tst.feeder_valve_openage = Clamp(openage * 0.01, 0, 1)
 
-/obj/machinery/reactor_button/regvalve/turbine2
+/obj/machinery/reactor_button/turbine_valve/first
+	name = "TURB 1V-IN"
+	id = "turbine1"
+	icon_state = "light3"
+
+/obj/machinery/reactor_button/turbine_valve/second
 	name = "TURB 2V-IN"
-	id = "TURB 2V-IN"
+	id = "turbine2"
+	icon_state = "light3"
 
 /obj/machinery/reactor_button/rswitch/valve/turbinebypass
 	name = "TURB V-BYPASS"

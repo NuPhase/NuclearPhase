@@ -1690,14 +1690,6 @@
 /obj/machinery/door/airlock/lift,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/medbay)
-"bSt" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 1;
-	uid = "TURB 2V-IN";
-	portvolume = 20000
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/turbinehall)
 "bSN" = (
 /obj/machinery/atmospherics/omni/filter{
 	tag_west = 1;
@@ -11608,14 +11600,6 @@
 /obj/effect/floor_decal/corner/purple/border,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
-"lRO" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 1;
-	uid = "TURB 1V-IN";
-	portvolume = 20000
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/turbinehall)
 "lRW" = (
 /obj/structure/rack{
 	pixel_x = -5
@@ -20426,14 +20410,6 @@
 	pixel_y = 14;
 	pixel_x = 5
 	},
-/obj/machinery/reactor_button/regvalve/turbine1{
-	pixel_y = 7;
-	pixel_x = -2
-	},
-/obj/machinery/reactor_button/regvalve/turbine2{
-	pixel_x = -2;
-	pixel_y = 14
-	},
 /obj/machinery/reactor_button/presvalve/tcoolantvin{
 	pixel_x = 5;
 	pixel_y = -4
@@ -20444,6 +20420,12 @@
 	},
 /obj/machinery/camera/network/engineering{
 	dir = 4
+	},
+/obj/machinery/reactor_button/turbine_valve/first{
+	pixel_y = 7
+	},
+/obj/machinery/reactor_button/turbine_valve/second{
+	pixel_y = 14
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -153080,7 +153062,7 @@ rTR
 ryk
 cMK
 msd
-lRO
+fIV
 fIV
 fIV
 wDk
@@ -153730,7 +153712,7 @@ rTR
 ryk
 cMK
 msd
-bSt
+fIV
 fIV
 fIV
 wDk

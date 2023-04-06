@@ -73,6 +73,9 @@
 	z_flags = ZM_MIMIC_DEFAULTS | ZM_MIMIC_OVERWRITE | ZM_MIMIC_NO_AO | ZM_ALLOW_ATMOS
 	turf_flags = TURF_FLAG_BACKGROUND
 
+/turf/simulated/open/airless
+	initial_gas = null
+
 /turf/simulated/open/flooded
 	name = "open water"
 	flooded = TRUE
