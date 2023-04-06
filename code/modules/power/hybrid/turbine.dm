@@ -29,7 +29,7 @@
 	var/efficiency = 0.91
 	var/kin_energy = 0
 	var/kin_total = 0 //last kin energy generation
-	var/kin_loss = 0.001
+	var/kin_loss = 0.0001
 	var/expansion_ratio = 0.4
 	var/volume_ratio = 0.6
 	var/steam_velocity = 0
