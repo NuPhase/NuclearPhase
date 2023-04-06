@@ -2948,6 +2948,11 @@
 /obj/structure/ore_box,
 /turf/simulated/floor/concrete/surface,
 /area/surface)
+"dbr" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/factory)
 "dbu" = (
 /turf/exterior/wall,
 /area/avalon/shelter/science)
@@ -6276,6 +6281,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
+"gEd" = (
+/obj/machinery/atmospherics/unary/heater{
+	max_power_rating = 1000000;
+	power_rating = 1000000;
+	use_power = 1;
+	set_temperature = 1400;
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/factory)
 "gEl" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -10148,10 +10163,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "kqn" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "kqS" = (
@@ -11470,6 +11484,16 @@
 /obj/structure/sign/poster/shelter_rules/north,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
+"lMb" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/open,
+/area/avalon)
 "lMd" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -11900,7 +11924,9 @@
 /area/avalon/shelter/turbinehall)
 "mkI" = (
 /obj/structure/railing/mapped,
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "mkX" = (
@@ -12368,12 +12394,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/atmos)
 "mOR" = (
-/obj/machinery/atmospherics/unary/heater{
-	max_power_rating = 1000000;
-	power_rating = 1000000;
-	use_power = 1;
-	set_temperature = 1400
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
 	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "mPc" = (
@@ -14072,6 +14096,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/turbinehall)
+"ovD" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/factory)
 "ovO" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -15575,13 +15606,13 @@
 /turf/simulated/floor/reinforced,
 /area/surface)
 "pZs" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 9
-	},
 /obj/structure/railing/mapped{
 	dir = 4
 	},
 /obj/structure/railing/mapped,
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "pZM" = (
@@ -19303,6 +19334,7 @@
 /area/avalon/shelter/cargo/rest_area)
 "tTc" = (
 /obj/machinery/door/airlock/maintenance,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "tTe" = (
@@ -21167,10 +21199,10 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
 "vSj" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+/obj/structure/railing/mapped,
+/obj/machinery/atmospherics/valve{
 	dir = 4
 	},
-/obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "vSK" = (
@@ -21239,6 +21271,12 @@
 /obj/machinery/door/window/brigdoor/southleft,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
+"vVK" = (
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/factory)
 "vVZ" = (
 /obj/structure/railing/mapped,
 /obj/structure/railing/mapped{
@@ -21359,6 +21397,16 @@
 	dir = 4
 	},
 /turf/simulated/open,
+/area/avalon/shelter/factory)
+"wal" = (
+/obj/machinery/atmospherics/omni/filter{
+	tag_east = 1;
+	tag_south = 2;
+	tag_north = null;
+	tag_west = 8;
+	tag_filter_gas_west = "gas_oxygen"
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "wax" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -35249,9 +35297,9 @@ oEX
 oEX
 pWS
 nmn
+pWS
+pWS
 nmn
-pWS
-pWS
 nmn
 nmn
 nmn
@@ -35644,7 +35692,7 @@ haS
 oCd
 rlw
 hZl
-dMO
+hZl
 dDR
 nmn
 nmn
@@ -35773,7 +35821,7 @@ wHk
 wHk
 wHk
 wDr
-kqn
+mOR
 mOR
 mkI
 nmn
@@ -35912,8 +35960,8 @@ iIt
 siD
 epM
 pWS
-nmn
-nmn
+ovD
+gEd
 pWS
 ezm
 ezm
@@ -36042,8 +36090,8 @@ aZI
 hxp
 eQw
 pWS
-nmn
-nmn
+wal
+dbr
 pWS
 ezm
 ezm
@@ -36168,12 +36216,12 @@ wWZ
 cTO
 xyJ
 pZs
-nmn
-nmn
-nmn
+dMO
+dMO
+dMO
 tTc
-nmn
-nmn
+kqn
+vVK
 pWS
 ezm
 ezm
@@ -51890,9 +51938,9 @@ dao
 dao
 pWS
 mBQ
-mBQ
 dMu
 dMu
+lMb
 mBQ
 mBQ
 mBQ
