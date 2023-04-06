@@ -5,6 +5,11 @@
 #define O2STANDARD 0.21 // Percentage.
 #define N2STANDARD 0.79
 
+#define O2MINE	   0.04
+#define N2MINE	   0.90
+
+#define MOLES_O2MINE     	 (MOLES_CELLSTANDARD * O2MINE) // O2 underground value (4%)
+#define MOLES_N2MINE     	 (MOLES_CELLSTANDARD * N2MINE) // N2 underground value (90%)
 #define MOLES_O2STANDARD     (MOLES_CELLSTANDARD * O2STANDARD) // O2 standard value (21%)
 #define MOLES_N2STANDARD     (MOLES_CELLSTANDARD * N2STANDARD) // N2 standard value (79%)
 #define MOLES_O2ATMOS (MOLES_O2STANDARD*50)
