@@ -132,6 +132,11 @@
 	gauge_icon = "indicator_emergency"
 	starting_pressure = list(/decl/material/gas/oxygen = 10*ONE_ATMOSPHERE)
 
+/obj/item/tank/emergency/oxygen/medical
+	name = "medical oxygen tank"
+	volume = 5
+	distribute_pressure = ONE_ATMOSPHERE
+
 /obj/item/tank/emergency/oxygen/engi
 	name = "extended-capacity emergency oxygen tank"
 	icon = 'icons/obj/items/tanks/tank_emergency_engineer.dmi'
