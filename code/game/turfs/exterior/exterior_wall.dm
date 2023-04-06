@@ -18,7 +18,7 @@ var/global/list/natural_walls = list()
 	var/image/ore_overlay
 	var/decl/material/material
 	var/decl/material/reinf_material
-	var/floor_type = /turf/exterior/barren
+	var/floor_type = /turf/simulated/floor/asteroid
 
 /turf/exterior/wall/examine(mob/user, distance, infix, suffix)
 	. = ..()
