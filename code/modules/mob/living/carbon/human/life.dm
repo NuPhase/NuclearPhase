@@ -594,7 +594,7 @@
 				embedded_flag = 0
 
 		if(syspressure > 150)
-			var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(M, BP_HEAD)
+			var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(src, BP_HEAD)
 			custom_pain("Your head throbs in a pulsating headache.", syspressure * 0.1, affecting = affected)
 
 		//Resting
