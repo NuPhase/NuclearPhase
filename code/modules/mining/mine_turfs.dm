@@ -19,8 +19,8 @@ var/global/list/mining_floors = list()
 	base_icon = 'icons/turf/flooring/asteroid.dmi'
 	base_icon_state = "asteroid"
 	footstep_type = /decl/footsteps/asteroid
-	initial_flooring = null
-	initial_gas = null
+	initial_flooring = /decl/flooring/asteroid
+	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2MINE, /decl/material/gas/nitrogen = MOLES_N2MINE, /decl/material/gas/carbon_dioxide = 2, /decl/material/gas/sulfur_dioxide = 1)
 	temperature = TCMB
 	turf_flags = TURF_FLAG_BACKGROUND
 

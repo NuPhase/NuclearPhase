@@ -35,7 +35,7 @@
 
 /turf/exterior/wall/ice
 	strata = /decl/strata/permafrost
-	floor_type = /turf/exterior/ice
+	floor_type = /turf/exterior/surface
 
 /turf/exterior/wall/random/ice
 	strata = /decl/strata/permafrost
