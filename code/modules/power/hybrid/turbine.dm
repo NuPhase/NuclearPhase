@@ -77,7 +77,7 @@
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
 	pump_passive(air1, air_all, total_mass_flow)
-	air_all.add_thermal_energy(kin_total * -1)
+	//air_all.add_thermal_energy(kin_total * -1)
 	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
 
 	calculate_vibration(air_all)
