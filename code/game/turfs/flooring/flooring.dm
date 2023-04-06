@@ -301,6 +301,9 @@
 	can_paint = 1
 	footstep_type = /decl/footsteps/plating
 
+/decl/flooring/reinforced/void
+	icon_base = "void"
+
 /decl/flooring/reinforced/circuit
 	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit.dmi'

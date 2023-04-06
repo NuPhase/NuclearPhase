@@ -2,7 +2,9 @@ var/global/list/scripted_explosions = list()
 
 /obj/effect/scripted_detonation
 	anchored = 1
+	mouse_opacity = 0
 	mouse_opacity = FALSE
+	simulated = FALSE
 	var/devastation_radius = 0
 	var/heavy_radius = 0
 	var/light_radius = 0

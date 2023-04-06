@@ -153,6 +153,13 @@
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
 
+/turf/simulated/floor/reinforced/void
+	icon_state = "void"
+	initial_flooring = /decl/flooring/reinforced/void
+
+/turf/simulated/floor/reinforced/void/nopass
+	blocks_air = 1
+
 /turf/simulated/floor/reinforced/airless
 	initial_gas = null
 

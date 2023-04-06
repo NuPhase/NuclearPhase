@@ -91,7 +91,11 @@
 	item_state = "firstaid-o2"
 
 	startswith = list(
-		/obj/item/storage/med_pouch/oxyloss = 4
+		/obj/item/stack/medical/bruise_pack = 1,
+		/obj/item/storage/pill_bottle/painkillers,
+		/obj/item/chest_tube,
+		/obj/item/clothing/mask/breath/medical,
+		/obj/item/tank/emergency/oxygen
 		)
 
 /obj/item/storage/firstaid/adv

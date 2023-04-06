@@ -52,7 +52,6 @@ var/global/list/end_titles
 	QDEL_NULL_LIST(credits)
 	mob.clear_fullscreen("fishbed")
 	mob.clear_fullscreen("fadeout")
-	sound_to(mob, sound(null, channel = sound_channels.lobby_channel))
 
 /obj/screen/credit
 	icon_state = "blank"

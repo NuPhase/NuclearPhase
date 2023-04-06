@@ -17,7 +17,14 @@
 	density = 1
 	anchored = 1
 	opacity = 0
-	icon_state = "empty"
+	mouse_opacity = 0
+	simulated = FALSE
+	icon = 'icons/obj/overmap.dmi'
+	icon_state = "globe"
+	color = "#9c2020"
+
+/obj/effect/invisible_barrier/opaque
+	opacity = 1
 
 /obj/effect/invisible_barrier/Initialize()
 	. = ..()

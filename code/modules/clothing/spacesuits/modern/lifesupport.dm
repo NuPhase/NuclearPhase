@@ -272,4 +272,10 @@
 /obj/abstract/modules_holder
 	name = "Modules holder unit"
 
+
+
+/obj/item/storage/backpack/lifesupportpack/adaptive_cooling/Initialize()
+	. = ..()
+	create_reagents(120)
+
 #undef KWH_PER_KG_WEIGHT
