@@ -216,7 +216,7 @@
 	for(var/i = q, i>0, i--)
 		dirt_state = "[icon_state]_dirt[rand(1,q)]"
 		if(dirt_state in icon_states(icon))
-			src.overlays += dirt_state
+			add_overlay(icon(icon, dirt_state))
 			return
 
 /decl/interaction_handler/rotate
