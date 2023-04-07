@@ -15,6 +15,8 @@
 	var/armor_penetration = 0
 	var/anchor_fall = FALSE
 	var/holographic = 0 //if the obj is a holographic object spawned by the holodeck
+	var/start_dirty = FALSE	// Shall we add dirt to the object at initialization
+	var/max_quanity_of_dirt_sprites = 4
 
 /obj/hitby(atom/movable/AM, var/datum/thrownthing/TT)
 	..()
@@ -187,7 +189,7 @@
 		return
 
 	set_dir(turn(dir, 90))
-	update_icon() 
+	update_icon()
 
 //For things to apply special effects after damaging an organ, called by organ's take_damage
 /obj/proc/after_wounding(obj/item/organ/external/organ, datum/wound)
@@ -208,6 +210,14 @@
 /obj/get_alt_interactions(var/mob/user)
 	. = ..()
 	LAZYADD(., /decl/interaction_handler/rotate)
+
+/obj/proc/append_some_dirt(var/q = max_quanity_of_dirt_sprites)
+	var/dirt_state
+	for(var/i = q, i>0, i--)
+		dirt_state = "[icon_state]_dirt[rand(1,q)]"
+		if(dirt_state in icon_states(icon))
+			add_overlay(icon(icon, dirt_state))
+			return
 
 /decl/interaction_handler/rotate
 	name = "Rotate"

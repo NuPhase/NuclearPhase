@@ -22,6 +22,8 @@
 	. = ..()
 	temperature_coefficient = isnull(temperature_coefficient) ? Clamp(MAX_TEMPERATURE_COEFFICIENT - w_class, MIN_TEMPERATURE_COEFFICIENT, MAX_TEMPERATURE_COEFFICIENT) : temperature_coefficient
 	create_matter()
+	if(start_dirty)
+		append_some_dirt()
 
 /obj/proc/HandleObjectHeating(var/obj/item/heated_by, var/mob/user, var/adjust_temp)
 	if(ATOM_SHOULD_TEMPERATURE_ENQUEUE(src))
