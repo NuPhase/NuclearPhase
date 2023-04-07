@@ -1,4 +1,4 @@
-#define TURBINE_MOMENT_OF_INERTIA 2075 //0.5m radius, 9500kg weight
+#define TURBINE_MOMENT_OF_INERTIA 15625 //2.5m radius, 5t weight
 #define MS_PER_KPA_DIFFERENCE 0.14 //For every kPa of pressure difference we gain so much m/s of steam speed
 #define TURBINE_PERFECT_RPM 3550
 #define TURBINE_ABNORMAL_RPM 4000
@@ -27,12 +27,11 @@
 	construct_state = /decl/machine_construction/noninteractive
 
 	var/feeder_valve_openage = 0
-	var/efficiency = 0.91
+	var/efficiency = 0.93
 	var/kin_energy = 0
 	var/kin_total = 0 //last kin energy generation
-	var/kin_loss = 0.00001
-	var/expansion_ratio = 0.4
-	var/volume_ratio = 0.6
+	var/expansion_ratio = 0.87
+	var/volume_ratio = 0.2
 	var/steam_velocity = 0
 	var/pressure_difference = 0
 	var/total_mass_flow = 0
@@ -58,7 +57,7 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()
-	air1.volume = 20000
+	air1.volume = 80000
 	air2.volume = 80000
 	reactor_components[uid] = src
 
@@ -67,29 +66,27 @@
 	total_mass_flow = (air1.net_flow_mass + air1.get_mass()*0.01) * feeder_valve_openage //barely enough to start it
 
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0) * feeder_valve_openage
+	var/pressure_fall_factor = pressure_difference / (20 * GRAVITY_CONSTANT)
+	steam_velocity = sqrt(2 * pressure_fall_factor * GRAVITY_CONSTANT)
 
-	steam_velocity = (total_mass_flow * 3600 * 1.694) / 11304
-	steam_velocity += pressure_difference * MS_PER_KPA_DIFFERENCE
-
-	kin_total = 0.5 * (total_mass_flow * steam_velocity**2) * expansion_ratio
+	kin_total = (total_mass_flow * steam_velocity**2) * 0.5 * expansion_ratio
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
+	rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
-	pump_passive(air1, air_all, total_mass_flow)
+	air_all.merge(air1.remove_ratio(feeder_valve_openage))
 	//air_all.add_thermal_energy(kin_total * -1)
 	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
 
 	calculate_vibration(air_all)
 	air2.merge(air_all)
 
-	var/new_rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 	if(braking)
 		var/datum/gas_mixture/environment = loc.return_air()
 		kin_energy = max(0, kin_energy * 0.95 - 10000)
 		if(kin_energy)
 			environment.add_thermal_energy(kin_energy * 0.05 + 10000)
-	rpm = Clamp(Interpolate(rpm, new_rpm, 0.1), 0, TURBINE_MAX_RPM)
 
 	apply_vibration_effects()
 	calculate_efficiency()
