@@ -19,7 +19,7 @@
 	var/obj/item/tank/propulsion_tank = null
 	var/obj/item/tank/waste_tank = null
 
-	var/obj/item/co2filter/atmosphere_filter = new
+	var/obj/item/co2filter/atmosphere_filter = null
 
 	var/target_pressure = 45 //kPa
 	var/atmosphere_uptake = FALSE
@@ -44,6 +44,7 @@
 	waste_tank = new /obj/item/tank/waste
 	battery = new battery_type
 	modules = new /obj/abstract/modules_holder
+	atmosphere_filter = new /obj/item/co2filter/large
 	oxygen_tank.forceMove(modules)
 	propulsion_tank.forceMove(modules)
 	waste_tank.forceMove(modules)
