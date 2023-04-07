@@ -3,7 +3,7 @@
 #endif
 
 #ifndef UNIX_EXTATM_LOCATION
-#define UNIX_EXTATM_LOCATION "lib/extatmos.so"
+#define UNIX_EXTATM_LOCATION "lib/libextatmos.so"
 #endif
 
 #ifndef EXTATM_LOCATION
