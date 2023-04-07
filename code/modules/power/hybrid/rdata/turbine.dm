@@ -2,55 +2,56 @@
 	name = "turbine monitoring computer"
 	program_overlay = "turbine"
 
-/obj/machinery/reactor_monitor/turbine/get_display_data()
-	. = ..()
+/obj/machinery/reactor_monitor/turbine/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/breaks_engaged1 = ""
 	var/breaks_engaged2 = ""
 	if(rcontrol.turbine1.braking)
 		breaks_engaged1 = "EMERGENCY BRAKING IN EFFECT.<br>"
 	if(rcontrol.turbine2.braking)
 		breaks_engaged2 = "EMERGENCY BRAKING IN EFFECT.<br>"
-	var/data = ""
-	data = "Turbine #1:<br>\
-			Feeders openage: [rcontrol.turbine1.feeder_valve_openage * 100]%.<br>\
-			RPM: [round(rcontrol.turbine1.rpm)].<br>\
-			Isentropic Efficiency: [round(rcontrol.turbine1.efficiency * 100)]%.<br>\
-			Vibration: [rcontrol.turbine1.get_vibration_flavor()].<br>\
-			Mass flow: [round(rcontrol.turbine1.total_mass_flow)]kg/s.<br>\
-			Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s<br>\
-			[breaks_engaged1]<br>\
-			Turbine #2:<br>\
-			Feeders openage: [rcontrol.turbine2.feeder_valve_openage * 100]%.<br>\
-			RPM: [round(rcontrol.turbine2.rpm)].<br>\
-			Isentropic Efficiency: [round(rcontrol.turbine2.efficiency * 100)]%.<br>\
-			Vibration: [rcontrol.turbine2.get_vibration_flavor()].<br>\
-			Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s.<br>\
-			Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s<br>\
-			[breaks_engaged2]"
-	return data
+	data["var1"] = "Turbine #1:"
+	data["var2"] = "RPM: [round(rcontrol.turbine1.rpm)]."
+	data["var3"] = "Vibration: [rcontrol.turbine1.get_vibration_flavor()]."
+	data["var4"] = "Mass flow: [round(rcontrol.turbine1.total_mass_flow)]kg/s."
+	data["var1"] = "Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s."
+	data["var1"] = "[breaks_engaged1]"
+	data["var1"] = "Turbine #2:"
+	data["var1"] = "RPM: [round(rcontrol.turbine2.rpm)]."
+	data["var1"] = "Vibration: [rcontrol.turbine2.get_vibration_flavor()]."
+	data["var1"] = "Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s."
+	data["var1"] = "Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s."
+	data["var1"] = "[breaks_engaged2]"
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(TRUE)
 
 /obj/machinery/reactor_display/group/turbine
 	name = "turbine monitoring displays"
 
-/obj/machinery/reactor_display/group/turbine/get_display_data()
-	. = ..()
+/obj/machinery/reactor_display/group/turbine/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/breaks_engaged1 = ""
 	var/breaks_engaged2 = ""
 	if(rcontrol.turbine1.braking)
 		breaks_engaged1 = "EMERGENCY BRAKING IN EFFECT.<br>"
 	if(rcontrol.turbine2.braking)
 		breaks_engaged2 = "EMERGENCY BRAKING IN EFFECT.<br>"
-	var/data = ""
-	data = "Turbine #1:<br>\
-			RPM: [round(rcontrol.turbine1.rpm)].<br>\
-			Vibration: [rcontrol.turbine1.get_vibration_flavor()].<br>\
-			Mass flow: [round(rcontrol.turbine1.total_mass_flow)]kg/s.<br>\
-			Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s<br>\
-			[breaks_engaged1]<br>\
-			Turbine #2:<br>\
-			RPM: [round(rcontrol.turbine2.rpm)].<br>\
-			Vibration: [rcontrol.turbine2.get_vibration_flavor()].<br>\
-			Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s.<br>\
-			Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s<br>\
-			[breaks_engaged2]"
-	return data
+	data["var1"] = "Turbine #1:"
+	data["var2"] = "RPM: [round(rcontrol.turbine1.rpm)]."
+	data["var3"] = "Vibration: [rcontrol.turbine1.get_vibration_flavor()]."
+	data["var4"] = "Mass flow: [round(rcontrol.turbine1.total_mass_flow)]kg/s."
+	data["var1"] = "Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s."
+	data["var1"] = "[breaks_engaged1]"
+	data["var1"] = "Turbine #2:"
+	data["var1"] = "RPM: [round(rcontrol.turbine2.rpm)]."
+	data["var1"] = "Vibration: [rcontrol.turbine2.get_vibration_flavor()]."
+	data["var1"] = "Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s."
+	data["var1"] = "Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s."
+	data["var1"] = "[breaks_engaged2]"
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
+		ui.set_initial_data(data)
+		ui.open()

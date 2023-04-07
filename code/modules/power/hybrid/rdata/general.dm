@@ -2,8 +2,7 @@
 	name = "general stats monitor"
 	program_overlay = "warnings"
 
-/obj/machinery/reactor_monitor/general/get_display_data()
-	. = ..()
+/obj/machinery/reactor_monitor/general/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/tload = rcontrol.generator1.last_load + rcontrol.generator2.last_load
 	switch(tload)
 		if(0 to 1 MEGAWATTS)
@@ -34,11 +33,15 @@
 		if(1.1 GIGAKELVIN to INFINITY)
 			temp_readout = "[round(temp_readout / 1000000000, 0.1)]gK"
 
-	var/data = ""
-	data = "GENERAL STATISTICS: <br>\
-			Total Power Generation: [tload] <br>\
-			Total Thermal Flow: [mload] <br>\
-			Neutron Rate: [round(rcore.neutron_rate*100-100)]% <br>\
-			Radiation Emission: [round(rcore.last_radiation)] Roentgen/Hour<br>\
-			Chamber Temperature: [temp_readout]"
-	return data
+	data["var1"] = "GENERAL STATISTICS:"
+	data["var2"] = "Total Power Generation: [tload]"
+	data["var3"] = "Total Thermal Flow: [mload]"
+	data["var4"] = "Neutron Rate: [round(rcore.neutron_rate*100-100)]%"
+	data["var5"] = "Radiation Emission: [round(rcore.last_radiation)] Roentgen/Hour"
+	data["var6"] = "Chamber Temperature: [temp_readout]"
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(TRUE)

@@ -3,19 +3,28 @@
 	icon = 'icons/obj/reactor_display.dmi'
 	icon_state = "display"
 	var/special_description = ""
+	var/list/data = list()
 	idle_power_usage = 150 //average monitor + low-end pc
-
-/obj/machinery/reactor_display/examine(mob/user)
-	. = ..()
-	if(special_description)
-		to_chat(user, special_description)
-	to_chat(user, "<span class='notice'>[get_display_data()]</span>")
 
 /obj/machinery/reactor_display/proc/get_display_data()
 	if(!powered())
 		return "<span class='warning'>The [name] is blank.</span>"
 	if(emagged)
 		return "<span class='warning'>The [name] reads: 'NIGGER ALARM'.</span>"
+
+/obj/machinery/reactor_display/examine(mob/user)
+	. = ..()
+	if(special_description)
+		to_chat(user, special_description)
+	ui_interact(user)
+	to_chat(user, "<span class='notice'>[get_display_data()]</span>")
+
+/obj/machinery/reactor_display/interface_interact(mob/user)
+	ui_interact(user)
+	return TRUE
+
+/obj/machinery/reactor_display/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
+	return
 
 /obj/machinery/reactor_display/group
 	name = "group of displays"
@@ -42,16 +51,19 @@
 	use_power = POWER_USE_IDLE
 	var/program_overlay = ""
 	var/on = FALSE
+	var/list/data = list()
 	idle_power_usage = 150 //average monitor + low-end pc
 
 /obj/machinery/reactor_monitor/proc/get_display_data()
+	if(!powered())
+		return "<span class='warning'>The [name] is blank.</span>"
 	if(emagged)
 		return "<span class='warning'>The [name] reads: 'NIGGER ALARM'.</span>"
 
 /obj/machinery/reactor_monitor/examine(mob/user)
 	. = ..()
-	if(on)
-		to_chat(user, "<span class='notice'>[get_display_data()]</span>")
+	ui_interact(user)
+	to_chat(user, "<span class='notice'>[get_display_data()]</span>")
 
 /obj/machinery/reactor_monitor/Initialize()
 	. = ..()
@@ -64,6 +76,13 @@
 		turn_off()
 	else
 		turn_on()
+
+/obj/machinery/reactor_monitor/interface_interact(mob/user)
+	ui_interact(user)
+	return TRUE
+
+/obj/machinery/reactor_monitor/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
+	return
 
 /obj/machinery/reactor_monitor/on_update_icon()
 	overlays.Cut()
