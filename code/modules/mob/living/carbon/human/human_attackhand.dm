@@ -149,7 +149,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		var/datum/gas_mixture/gm = H.msuit.lifesupportsystem.activate_propulsion(SUIT_PROPULSION_ATTACK_PERCENT)
 		if(gm.temperature > 400)
 			attack_message = "[H] activates their suit propulsion system right before [src]'s [affecting.name] and burns it severely!"
-			rand_damage += gm.temperature / 50 //TODO: CALCULATE THIS
+			rand_damage += gm.temperature * 0.01 //TODO: CALCULATE THIS
 		else
 			attack_message = "[H] activates their suit propulsion system right before [src]'s [affecting.name]!"
 		if(hit_zone == BP_L_LEG || hit_zone == BP_R_LEG)
