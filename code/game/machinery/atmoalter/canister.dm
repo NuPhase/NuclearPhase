@@ -75,9 +75,10 @@
 	name = "\improper Industrial Tank: \[Water\]"
 	volume = 95000 //2m radius, 8m height
 	icon = 'icons/obj/atmospherics/96x192.dmi'
-	icon_state = "colorless"
-	canister_color = "colorless"
+	icon_state = "water"
+	canister_color = "water"
 	layer = ABOVE_HUMAN_LAYER
+	start_dirty = TRUE
 
 /obj/machinery/portable_atmospherics/canister/empty/water
 	icon_state = "purple"
