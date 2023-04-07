@@ -398,7 +398,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 // Returns the phase of the matterial at the given temperature and pressure
 /decl/material/proc/phase_at_temperature(var/temperature, var/pressure = ONE_ATMOSPHERE)
 	//#TODO: implement plasma temperature and do pressure checks
-	if(temperature >= get_boiling_temp(pressure))
+	var/boiling_temp = get_boiling_temp(pressure)
+	if(temperature >= boiling_temp)
 		return MAT_PHASE_GAS
 	else if(temperature >= melting_point)
 		return MAT_PHASE_LIQUID
