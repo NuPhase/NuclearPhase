@@ -16,31 +16,32 @@
 
 #define CHEM_SYNTH_ENERGY 500 // How much energy does it take to synthesize 1 unit of chemical, in Joules.
 
-#define CE_STABLE        "stable"       // Stabilizing brain, pulse and breathing
-#define CE_ANTIBIOTIC    "antibiotic"   // Spaceacilin
-#define CE_BLOODRESTORE  "bloodrestore" // Iron/nutriment
-#define CE_PAINKILLER    "painkiller"   // Reduces the impact of shock/pain
-#define CE_ALCOHOL       "alcohol"      // Liver filtering
-#define CE_ALCOHOL_TOXIC "alcotoxic"    // Liver damage
-#define CE_SPEEDBOOST    "gofast"       // Stimulants
-#define CE_SLOWDOWN      "goslow"       // Slowdown
-#define CE_PULSE         "xcardic"      // increases or decreases heart rate
-#define CE_NOPULSE       "heartstop"    // stops heartbeat
-#define CE_ANTITOX       "antitox"      // Removes toxins
-#define CE_OXYGENATED    "oxygen"       // Helps oxygenate the brain.
-#define CE_BRAIN_REGEN   "brainfix"     // Allows the brain to recover after injury
-#define CE_TOXIN         "toxins"       // Generic toxins, stops autoheal.
-#define CE_BREATHLOSS    "breathloss"   // Breathing depression, makes you need more air
-#define CE_MIND    		 "mindbending"  // Stabilizes or wrecks mind. Used for hallucinations
-#define CE_CRYO 	     "cryogenic"    // Prevents damage from being frozen
-#define CE_BLOCKAGE	     "blockage"     // Gets in the way of blood circulation, higher the worse
-#define CE_SQUEAKY		 "squeaky"      // Helium voice. Squeak squeak.
-#define CE_THIRDEYE      "thirdeye"     // Gives xray vision.
-#define CE_SEDATE        "sedate"       // Applies sedation effects, i.e. paralysis, inability to use items, etc.
-#define CE_ENERGETIC     "energetic"    // Speeds up stamina recovery.
-#define	CE_VOICELOSS     "whispers"     // Lowers the subject's voice to a whisper
-#define CE_GLOWINGEYES   "eyeglow"      // Causes eyes to glow.
-#define CE_PRESSURE		 "pressure"
+#define CE_STABLE         "stable"       // Stabilizing brain, pulse and breathing
+#define CE_ANTIBIOTIC     "antibiotic"   // Spaceacilin
+#define CE_BLOODRESTORE   "bloodrestore" // Iron/nutriment
+#define CE_PAINKILLER     "painkiller"   // Reduces the impact of shock/pain
+#define CE_ALCOHOL        "alcohol"      // Liver filtering
+#define CE_ALCOHOL_TOXIC  "alcotoxic"    // Liver damage
+#define CE_SPEEDBOOST     "gofast"       // Stimulants
+#define CE_SLOWDOWN       "goslow"       // Slowdown
+#define CE_PULSE          "xcardic"      // increases or decreases heart rate
+#define CE_NOPULSE        "heartstop"    // stops heartbeat
+#define CE_ANTITOX        "antitox"      // Removes toxins
+#define CE_OXYGENATED     "oxygen"       // Helps oxygenate the brain.
+#define CE_BRAIN_REGEN    "brainfix"     // Allows the brain to recover after injury
+#define CE_TOXIN          "toxins"       // Generic toxins, stops autoheal.
+#define CE_BREATHLOSS     "breathloss"   // Breathing depression, makes you need more air
+#define CE_MIND    		  "mindbending"  // Stabilizes or wrecks mind. Used for hallucinations
+#define CE_CRYO 	      "cryogenic"    // Prevents damage from being frozen
+#define CE_BLOCKAGE	      "blockage"     // Gets in the way of blood circulation, higher the worse
+#define CE_SQUEAKY		  "squeaky"      // Helium voice. Squeak squeak.
+#define CE_THIRDEYE       "thirdeye"     // Gives xray vision.
+#define CE_SEDATE         "sedate"       // Applies sedation effects, i.e. paralysis, inability to use items, etc.
+#define CE_ENERGETIC      "energetic"    // Speeds up stamina recovery.
+#define	CE_VOICELOSS      "whispers"     // Lowers the subject's voice to a whisper
+#define CE_GLOWINGEYES    "eyeglow"      // Causes eyes to glow.
+#define CE_PRESSURE		  "pressure"
+#define CE_BLOOD_THINNING "thinning"
 
 #define CE_REGEN_BRUTE   "bruteheal"    // Causes brute damage to regenerate.
 #define CE_REGEN_BURN    "burnheal"     // Causes burn damage to regenerate.

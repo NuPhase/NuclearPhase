@@ -122,3 +122,17 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
 	heart.stability_modifiers[name] = volume * 10
+
+/decl/material/liquid/heparin
+	name = "heparin"
+	mechanics_text = "Prevents blood clots"
+	color = "#d6d6d6"
+	scannable = 1
+	overdose = 10
+	metabolism = 0.01
+	value = 1.5
+	uid = "chem_heparin"
+
+/decl/material/liquid/heparin/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
+	var/volume = REAGENT_VOLUME(holder, type)
+	H.add_chemical_effect(CE_BLOOD_THINNING, volume)

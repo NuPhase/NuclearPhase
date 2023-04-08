@@ -217,3 +217,7 @@
 /obj/item/chems/glass/bottle/ampoule/propofol
 	name = "propofol ampoule"
 	initial_reagents = list(/decl/material/liquid/propofol = 15)
+
+/obj/item/chems/glass/bottle/ampoule/heparin
+	name = "heparin ampoule"
+	initial_reagents = list(/decl/material/liquid/heparin = 15)
