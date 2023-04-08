@@ -147,6 +147,8 @@
 
 		blood_max *= pulse / 60
 
+		blood_max += GET_CHEMICAL_EFFECT(owner, CE_BLOOD_THINNING) * 0.5
+
 		if(GET_CHEMICAL_EFFECT(owner, CE_STABLE))
 			blood_max *= 0.8
 
