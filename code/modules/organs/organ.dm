@@ -233,25 +233,23 @@
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(germ_immunity*0.3))
 		germ_level--
 
-	if (germ_level >= INFECTION_LEVEL_ONE/2)
+	if(germ_level >= INFECTION_LEVEL_ONE * 0.5 && antibiotics < 5)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes, when immunity is full.
-		if(antibiotics < 1 && prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
+		if(prob(round(germ_level/6 * owner.immunity_weakness() * 0.01)))
 			if(germ_immunity > 0)
 				germ_level += Clamp(round(1/germ_immunity), 1, 10) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
 			else // Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
 				germ_level += 10
-
-	if(germ_level >= INFECTION_LEVEL_ONE)
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
-	if (germ_level >= INFECTION_LEVEL_TWO)
+	if(germ_level >= INFECTION_LEVEL_TWO && antibiotics < 10)
 		var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
 		//spread germs
-		if (antibiotics < 2 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(owner.immunity_weakness() * 0.3) ))
+		if(parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(owner.immunity_weakness() * 0.3) ))
 			parent.germ_level++
 	if(germ_level > INFECTION_LEVEL_FOUR)
-		if (prob(3))	//about once every 30 seconds
+		if(prob(3))	//about once every 30 seconds
 			take_general_damage(1,silent=prob(30))
 		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.3)
 
@@ -303,21 +301,12 @@
 
 //Germs
 /obj/item/organ/proc/handle_antibiotics()
-	if(!owner || !germ_level)
+	if(!owner || !germ_level || !(CE_ANTIBIOTIC in owner.chem_effects))
 		return
 
 	var/antibiotics = GET_CHEMICAL_EFFECT(owner, CE_ANTIBIOTIC)
-	if (!antibiotics)
-		return
 
-	if (germ_level < INFECTION_LEVEL_ONE)
-		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 5	//at germ_level == 500, this should cure the infection in 5 minutes
-	else
-		germ_level -= 3 //at germ_level == 1000, this will cure the infection in 10 minutes
-	if(owner && owner.lying)
-		germ_level -= 2
+	germ_level -= antibiotics / 3.5
 	germ_level = max(0, germ_level)
 
 /obj/item/organ/proc/take_general_damage(var/amount, var/silent = FALSE)

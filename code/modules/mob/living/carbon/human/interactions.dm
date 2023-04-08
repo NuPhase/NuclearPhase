@@ -147,7 +147,7 @@
 				dat += {"<font size=3><B>Mouth:</B></font><BR>"}
 				dat += {"<A href='?src=\ref[usr];interaction=kiss'><font color=purple>Kiss.</font></A><BR>"}
 				if(noboots)
-					dat += {"<A href='?src=\ref[usr];interaction=footlick'><font color=purple>Lick foots</font></A><BR>"}
+					dat += {"<A href='?src=\ref[usr];interaction=footlick'><font color=purple>Lick feet</font></A><BR>"}
 				if(get_dist(H,P) <= 1)
 					if (Adjacent(P) && isnude_p)
 						if (haspenis_p)
@@ -221,7 +221,7 @@
 	if(zone_sel.selecting == BP_GROIN)
 		if(isnude)
 			if(haspenis && erpcooldown == 0)
-				message = pick("strokes his dick.", "masturbate his penis.")
+				message = pick("strokes his dick.", "masturbates his penis.")
 				if (lust < 6)
 					lust += 6
 				visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
@@ -328,6 +328,8 @@
 			P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
 		H.lust = 5
 		H.resistenza += 50
+		H.hydration -= 5
+		H.nutrition -= 5
 	else
 		message = pick("cums!")
 		H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
@@ -342,6 +344,10 @@
 				if(prob(25))
 					T = get_turf(H)
 					var/obj/effect/decal/cleanable/cum/fem/f = new(T)
+					var/obj/item/organ/external/groin/dam_groin = GET_EXTERNAL_ORGAN(H, BP_GROIN)
+					if(dam_groin.damage > 10)
+						H.blood_squirt(15, T)
+					H.hydration -= 15
 					f.add_fingerprint(H)
 				else if(!is_nude())
 					visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE("cums in her pants..."))
@@ -777,7 +783,7 @@
 		hole = "anus"
 	else
 		hole = "vagina"
-	to_chat(user, "<span class='warning'>Hmmm. Maybe we should put it in [hole]?!</span>")
+	to_chat(user, "<span class='warning'>Hmmm. Maybe we should put it in \the [hole]?!</span>")
 
 /datum/stack_recipe/dildo
 	title = "Horse"
@@ -846,12 +852,12 @@
 				if (H.lust == 0)
 					if (H.lust < 5)
 						H.lust = 5
-				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("licks ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("feets..."))
+				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("licks ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("feet..."))
 				var/sound = pick(flist("honk/sound/new/ACTIONS/MOUTH/SUCK/"))
 				playsound(loc, ("honk/sound/new/ACTIONS/MOUTH/SUCK/[sound]"), 40, 1, -1)
 
 				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("licks ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("feets..."))
+					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("licks ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("feet..."))
 
 		else if (href_list["interaction"] == "hug")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)

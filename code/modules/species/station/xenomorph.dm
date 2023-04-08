@@ -1,10 +1,10 @@
 /decl/species/xenomorph
 	name = SPECIES_XENOMORPH
 	name_plural = "Xenomorphs"
-	unarmed_attacks = list(/decl/natural_attack/xenomorph_claws, /decl/natural_attack/xenomorph_tail, /decl/natural_attack/bite)
+	unarmed_attacks = list(/decl/natural_attack/xenomorph_claws, /decl/natural_attack/xenomorph_tail, /decl/natural_attack/bite/sharp)
 	description = "NO DATA."
 	hidden_from_codex = TRUE
-	spawn_flags = SPECIES_CAN_JOIN
+	spawn_flags = SPECIES_IS_RESTRICTED
 	flesh_color = "#322936"
 
 	available_bodytypes = list(
@@ -62,17 +62,17 @@
 	genitals = 1
 
 	has_limbs = list(
-		BP_CHEST =  list("path" = /obj/item/organ/external/chest),
-		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head),
-		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
-		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
-		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
-		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
-		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		BP_CHEST =  list("path" = /obj/item/organ/external/chest/xenomorph),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/xenomorph),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/xenomorph),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm/xenomorph),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right/xenomorph),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg/xenomorph),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right/xenomorph),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/xenomorph),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/xenomorph),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/xenomorph),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/xenomorph)
 	)
 
 	has_organ = list(    // which required-organ checks are conducted.

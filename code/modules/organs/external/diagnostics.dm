@@ -208,15 +208,16 @@
 /decl/diagnostic_sign/liver
 	name = "Jaundice"
 	descriptor = "jaundiced"
-	explanation = "Patient has internal organ damage."
+	explanation = "Patient has liver damage."
 
 /decl/diagnostic_sign/liver/manifested_in(obj/item/organ/external/victim)
-	return victim.owner && victim.owner.getToxLoss() >= 25
+	var/obj/item/organ/internal/liver/liver = GET_INTERNAL_ORGAN(victim.owner, BP_LIVER)
+	return liver && liver.damage > 25
 
 /decl/diagnostic_sign/oxygenation
 	name = "Cyanosis"
 	descriptor = "turning blue"
-	explanation = "Patient has low blood oxygenation."
+	explanation = "Patient has low blood oxygen content."
 
 /decl/diagnostic_sign/oxygenation/manifested_in(obj/item/organ/external/victim)
 	return victim.owner && victim.owner.get_blood_saturation() < 0.7
@@ -228,6 +229,15 @@
 
 /decl/diagnostic_sign/circulation/manifested_in(obj/item/organ/external/victim)
 	return victim.owner && victim.owner.get_blood_perfusion() < 0.6
+
+/decl/diagnostic_sign/inflamation
+	name = "Inflamation"
+	descriptor = "inflamed"
+	explanation = "This limb is inflamed because of shock or infection."
+	hint_min_skill = SKILL_ADEPT
+
+/decl/diagnostic_sign/inflamation/manifested_in(obj/item/organ/external/victim)
+	return victim.germ_level > INFECTION_LEVEL_ONE
 
 /decl/diagnostic_sign/gangrene
 	name = "Rot"

@@ -33,7 +33,7 @@
 	var/last_successful_breath
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
 	oxygen_consumption = 1
-	var/oxygen_generation = 14.5 // default
+	var/oxygen_generation = 18.5 // default
 	var/max_oxygen_generation = 22 //weak lungs
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)

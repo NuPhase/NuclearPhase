@@ -121,6 +121,14 @@
 					degree = " a bit"
 				owner.custom_pain("Something inside your [parent.name] hurts[degree].", amount, affecting = parent)
 
+/obj/item/organ/internal/handle_germ_effects()
+	. = ..()
+	if(germ_level > INFECTION_LEVEL_TWO) //spread
+		var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
+		var/obj/item/organ/internal/target = pick(parent.internal_organs)
+		if(target != src && target.germ_level < germ_level)
+			target.germ_level += germ_level * 0.1
+
 /obj/item/organ/internal/proc/get_visible_state()
 	if(damage > max_damage)
 		. = "bits and pieces of a destroyed "

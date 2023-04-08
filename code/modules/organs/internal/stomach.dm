@@ -100,7 +100,7 @@
 
 	if(owner)
 		var/functioning = is_usable()
-		if(damage >= min_bruised_damage && prob((damage / max_damage) * 100))
+		if(germ_level > INFECTION_LEVEL_ONE || damage >= min_bruised_damage && prob((damage / max_damage) * 100))
 			functioning = FALSE
 
 		if(functioning)

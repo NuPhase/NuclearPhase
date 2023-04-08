@@ -12,6 +12,7 @@
 	damage_reduction = 0.7
 	relative_size = 5
 	max_damage = 45
+	oxygen_consumption = 0.2
 	var/open
 	var/external_pump = 0 //simulated beats per minute
 	var/cardiac_output = 1
@@ -66,6 +67,7 @@
 	if(pulse)
 		var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
 		pulse = Interpolate(pulse, target_pulse, 0.2)
+		external_pump = 0
 
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers)
 

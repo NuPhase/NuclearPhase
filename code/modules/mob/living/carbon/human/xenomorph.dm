@@ -2,6 +2,20 @@
 	name = "xenomorph"
 	icon = 'icons/mob/species/xenomorph/praetorian.dmi'
 	icon_state = "Normal Praetorian Walking"
+	default_pixel_x = -16
+
+/mob/living/carbon/human/xenomorph/process_hemodynamics()
+	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
+	bpm = heart.pulse + heart.external_pump
+	tpvr = rand(345, 370)
+	if(bpm)
+		syspressure = rand(190, 240)
+		dyspressure = rand(180, 190)
+		mcv = rand(7600, 7900)
+	else
+		syspressure = 0
+		dyspressure = 0
+		mcv = 0
 
 /mob/living/carbon/human/xenomorph/setup(var/species_name = SPECIES_XENOMORPH, var/datum/dna/new_dna = null)
 	if(new_dna)
@@ -31,6 +45,17 @@
 	update_fire(FALSE)
 	UpdateDamageIcon(FALSE)
 	update_icon()
+
+/mob/living/carbon/human/xenomorph/UpdateLyingBuckledAndVerbStatus()
+	. = ..()
+	pixel_x = -16
+	if(incapacitated(INCAPACITATION_STUNNED))
+		icon = icon(icon, "Normal Praetorian Knocked Down")
+		return
+	if(lying)
+		icon = icon(icon, "Normal Praetorian Sleeping")
+		return
+	icon_state = "Normal Praetorian Walking"
 
 /mob/living/carbon/human/xenomorph/on_update_icon()
 	SHOULD_CALL_PARENT(FALSE)
