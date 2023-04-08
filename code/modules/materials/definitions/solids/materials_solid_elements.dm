@@ -74,6 +74,14 @@
 	color = "#585858"
 	value = 1
 
+/decl/material/solid/iodine
+	name = "iodine"
+	uid = "iodine"
+	lore_text = "A very common element in chemistry."
+	taste_description = "fish"
+	color = "#663a66"
+	value = 1
+
 /decl/material/solid/sulfur
 	name = "sulfur"
 	uid = "solid_sulfur"
