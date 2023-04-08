@@ -282,6 +282,7 @@
 	lore_text = "A linear painkiller."
 	addictiveness = 5
 	painkill_magnitude = 140
+	overdose = 7
 	uid = "chem_tramadol"
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
@@ -308,6 +309,7 @@
 	lore_text = "An addictive painkiller with a very short window of action."
 	effective_dose = 0.5
 	painkill_magnitude = 180
+	overdose = 4
 	uid = "chem_desomorphine"
 
 /decl/material/liquid/tianeptine
@@ -328,6 +330,7 @@
 	painkill_magnitude = 190
 	uid = "chem_morphine"
 	effective_dose = 1
+	overdose = 8
 
 /decl/material/liquid/opium/morphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)

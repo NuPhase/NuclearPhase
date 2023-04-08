@@ -5,7 +5,7 @@
 	taste_description = "rush"
 	color = "#76319e"
 	scannable = 1
-	overdose = 20
+	overdose = 16
 	metabolism = 0.1
 	value = 1.5
 	uid = "chem_adrenaline"
@@ -29,7 +29,7 @@
 	taste_description = "sobriety"
 	color = "#1e3c7e"
 	scannable = 1
-	overdose = 20
+	overdose = 12
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_noradrenaline"
@@ -63,7 +63,7 @@
 	mechanics_text = "Increases cardiac output."
 	color = "#cea82c"
 	scannable = 1
-	overdose = 20
+	overdose = 8
 	metabolism = 0.05
 	uid = "chem_dopamine"
 
@@ -79,7 +79,7 @@
 	taste_description = "oil"
 	color = "#ceb02c"
 	scannable = 1
-	overdose = 20
+	overdose = 15
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_nitroglycerin"
