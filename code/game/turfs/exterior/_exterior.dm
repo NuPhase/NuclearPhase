@@ -14,45 +14,12 @@
 	var/icon_has_corners = FALSE
 	var/list/affecting_heat_sources
 	var/obj/effect/overmap/visitable/sector/exoplanet/owner
+	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2STANDARD, /decl/material/gas/nitrogen = MOLES_N2STANDARD)
 
-// Bit faster than return_air() for exoplanet exterior turfs
-/turf/exterior/get_air_graphic()
-	if(owner)
-		return owner.atmosphere?.graphic
-	return global.using_map.exterior_atmosphere?.graphic
-
-/turf/exterior/Initialize(mapload, no_update_icon = FALSE)
-
-	if(possible_states > 0)
-		icon_state = "[rand(0, possible_states)]"
-	owner = LAZYACCESS(global.overmap_sectors, "[z]")
-	if(!istype(owner))
-		owner = null
-	else
-		//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
-		if(owner.planetary_area && istype(loc, world.area))
-			ChangeArea(src, owner.planetary_area)
-
-	. = ..(mapload)	// second param is our own, don't pass to children
-	setup_environmental_lighting()
-
-	var/air_graphic = get_air_graphic()
-	if(length(air_graphic))
-		add_vis_contents(src, air_graphic)
-
-	if (no_update_icon)
-		return
-
-	if (mapload)	// If this is a mapload, then our neighbors will be updating their own icons too -- doing it for them is rude.
-		update_icon()
-	else
-		for (var/turf/T in RANGE_TURFS(src, 1))
-			if (T == src)
-				continue
-			if (TICK_CHECK)	// not CHECK_TICK -- only queue if the server is overloaded
-				T.queue_icon_update()
-			else
-				T.update_icon()
+/turf/exterior/Initialize(mapload, no_update_icon = FALSE, should_override = FALSE)
+	. = ..()
+	if(!should_override)
+		set_ambient_light(COLOR_WHITE, 2)
 
 /turf/exterior/is_floor()
 	return !density && !is_open()
@@ -92,24 +59,6 @@
 		LAZYREMOVE(heat_source.affected_exterior_turfs, src)
 	affecting_heat_sources = null
 	. = ..()
-
-/turf/exterior/return_air()
-	var/datum/gas_mixture/gas
-	if(owner)
-		gas = new
-		gas.copy_from(owner.atmosphere)
-	else
-		gas = global.using_map.get_exterior_atmosphere()
-
-	var/initial_temperature = gas.temperature
-	if(weather)
-		initial_temperature = weather.adjust_temperature(initial_temperature)
-	for(var/thing in affecting_heat_sources)
-		if((gas.temperature - initial_temperature) >= 100)
-			break
-		var/obj/structure/fire_source/heat_source = thing
-		gas.temperature = gas.temperature + heat_source.exterior_temperature / max(1, get_dist(src, get_turf(heat_source)))
-	return gas
 
 /turf/exterior/levelupdate()
 	for(var/obj/O in src)

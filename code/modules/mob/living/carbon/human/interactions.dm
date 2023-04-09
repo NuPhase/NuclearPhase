@@ -834,6 +834,7 @@
 						H.lust = 5
 
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("kisses ") + SPAN_ERPBOLD("[P]"))
+				P.retrieve_from_limb()
 				var/sound_path
 				switch(H.lust)
 					if(0 to 20)
@@ -862,6 +863,7 @@
 		else if (href_list["interaction"] == "hug")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
 				H.visible_message("<span class='passivebold'>[H]</span> <span class='passive'>hugs</span> <span class='passivebold'>[P]</span><span class='passive'>.</span>")
+				P.retrieve_from_limb()
 				if (istype(P.loc, /obj/structure/closet))
 					P.visible_message("<span class='passivebold'>[H]</span> <span class='passive'>hugs</span> <span class='passivebold'>[P]</span><span class='passive'>.</span>")
 				playsound(loc, 'honk/sound/interactions/hug.ogg', 50, 1, -1)

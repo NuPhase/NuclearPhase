@@ -30,6 +30,12 @@
 /obj/item/organ/internal/brain/getToxLoss()
 	return 0
 
+/obj/item/organ/internal/brain/oxygen_starve(amount)
+	oxygen_deprivation = Clamp(oxygen_deprivation + amount, 0, 100)
+	if(oxygen_deprivation)
+		var/mob/living/carbon/human/H = owner
+		H.send_to_limb()
+
 /obj/item/organ/internal/brain/set_species(species_name)
 	. = ..()
 	if(species)

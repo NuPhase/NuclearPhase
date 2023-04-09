@@ -609,23 +609,6 @@ SUBSYSTEM_DEF(jobs)
 			H.buckled.forceMove(H.loc)
 			H.buckled.set_dir(H.dir)
 
-	if(!(ASSIGNMENT_ROBOT in job.event_categories) && !(ASSIGNMENT_COMPUTER in job.event_categories)) //These guys get their emails later.
-		var/datum/computer_network/network = get_local_network_at(get_turf(H))
-		if(network)
-			network.create_account(H, H.real_name, null, H.real_name, null, TRUE)
-
-	// If they're head, give them the account info for their department
-	if(H.mind && job.head_position)
-		var/remembered_info = ""
-		var/datum/money_account/department_account = department_accounts[job.primary_department]
-
-		if(department_account)
-			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
-			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-			remembered_info += "<b>Your department's account funds are:</b> [department_account.format_value_by_currency(department_account.money)]<br>"
-
-		H.StoreMemory(remembered_info, /decl/memory_options/system)
-
 	var/alt_title = null
 	if(!H.mind)
 		H.mind_initialize()

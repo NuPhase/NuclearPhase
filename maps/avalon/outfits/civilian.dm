@@ -48,3 +48,8 @@
 	hands = list(/obj/item/storage/bible)
 	id_type = /obj/item/card/id/civilian
 	l_pocket = /obj/item/radio
+
+/decl/hierarchy/outfit/job/explorer
+	name = "Job - Explorer"
+	uniform = /obj/item/clothing/under/familiargarb
+	shoes = /obj/item/clothing/shoes/color/brown

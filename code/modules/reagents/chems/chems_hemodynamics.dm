@@ -39,6 +39,7 @@
 	H.add_chemical_effect(CE_PRESSURE, volume * 10)
 	if(volume > 2)
 		ADJ_STATUS(H, STAT_ASLEEP, volume * -10)
+		H.retrieve_from_limb()
 
 /decl/material/liquid/atropine
 	name = "atropine"

@@ -239,3 +239,11 @@
 	requires_power = FALSE
 	forced_ambience = list('sound/music/skyscraper_theme_1.ogg')
 	should_condense = FALSE
+
+/area/limb
+	name = "Limb"
+	requires_power = FALSE
+	should_condense = FALSE
+	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_BACKGROUND
+	has_gravity = TRUE
+	forced_ambience = list('sound/music/sunset.ogg')
