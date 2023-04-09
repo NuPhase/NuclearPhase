@@ -6,7 +6,7 @@
 	economic_power = 1
 	access = list()
 	minimal_access = list()
-	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant","Visitor")
+	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant")
 	outfit_type = /decl/hierarchy/outfit/job/generic/assistant
 	department_types = list(/decl/department/civilian)
 

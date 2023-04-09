@@ -23,5 +23,6 @@
 		/datum/job/hos,
 		/datum/job/warden,
 		/datum/job/officer,
-		/datum/job/officeman
+		/datum/job/officeman,
+		/datum/job/explorer
 	)

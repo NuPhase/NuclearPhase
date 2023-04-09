@@ -601,14 +601,6 @@ SUBSYSTEM_DEF(jobs)
 
 	H.job = rank
 
-	if(!joined_late || job.latejoin_at_spawnpoints)
-		H.forceMove(pick(spawnpoint_office.turfs))
-		spawnpoint_office.after_join(H)
-		// Moving wheelchair if they have one
-		if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-			H.buckled.forceMove(H.loc)
-			H.buckled.set_dir(H.dir)
-
 	var/alt_title = null
 	if(!H.mind)
 		H.mind_initialize()

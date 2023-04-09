@@ -1395,6 +1395,7 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	var/turf/spawn_turf
 	spawn_turf = pick(spawnpoint_limb.turfs)
 	new_character = new(spawn_turf)
+	new_character.forceMove(spawn_turf)
 	new_character.lastarea = get_area(spawn_turf)
 	client.prefs.copy_to(new_character)
 	new_character.dna.ready_dna(new_character)
