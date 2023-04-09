@@ -1755,15 +1755,15 @@
 /area/avalon/shelter/medbay)
 "bSs" = (
 /obj/turbolift_map_holder{
-	dir = 1;
+	dir = 8;
 	lift_size_x = 3;
 	lift_size_y = 3;
-	areas_to_use = list(/area/turbolift/avalon/medbay/a1, /area/turbolift/avalon/medbay/a2);
+	areas_to_use = list(/area/turbolift/avalon/factory/a1, /area/turbolift/avalon/factory/a2);
 	depth = 2;
 	wall_type = /turf/simulated/wall
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/avalon/shelter/medbay)
+/turf/simulated/floor/plating,
+/area/avalon/shelter/factory)
 "bSN" = (
 /obj/machinery/atmospherics/omni/filter{
 	tag_west = 1;
@@ -10393,6 +10393,9 @@
 "ksa" = (
 /obj/effect/floor_decal/corner/purple/full,
 /obj/structure/closet/crate/secure/biohazard/alt,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "ksx" = (
@@ -11369,6 +11372,17 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
+"lsd" = (
+/obj/turbolift_map_holder{
+	dir = 1;
+	lift_size_x = 3;
+	lift_size_y = 3;
+	areas_to_use = list(/area/turbolift/avalon/medbay/a1, /area/turbolift/avalon/medbay/a2);
+	depth = 2;
+	wall_type = /turf/simulated/wall
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/avalon/shelter/medbay)
 "lst" = (
 /obj/effect/floor_decal/borderfloorblack/corner{
 	dir = 8
@@ -11379,6 +11393,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"ltb" = (
+/obj/turbolift_map_holder{
+	dir = 1;
+	lift_size_x = 3;
+	lift_size_y = 3;
+	areas_to_use = list(/area/turbolift/avalon/medbay/a1, /area/turbolift/avalon/medbay/a2);
+	depth = 2;
+	wall_type = /turf/simulated/wall
+	},
+/turf/exterior/wall,
+/area/space)
 "ltl" = (
 /obj/machinery/atmospherics/binary/cryocooler{
 	dir = 8;
@@ -14993,17 +15018,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
-"paK" = (
-/obj/turbolift_map_holder{
-	dir = 8;
-	lift_size_x = 3;
-	lift_size_y = 3;
-	areas_to_use = list(/area/turbolift/avalon/factory/a1, /area/turbolift/avalon/factory/a2);
-	depth = 2;
-	wall_type = /turf/simulated/wall
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/factory)
 "pbn" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -15244,9 +15258,6 @@
 /area/avalon/shelter/reactor)
 "pnX" = (
 /obj/structure/table/glass,
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/effect/floor_decal/corner/purple/full,
 /obj/item/storage/backpack/dufflebag/med,
 /obj/item/chems/spray/cleaner,
@@ -19188,17 +19199,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/grass,
 /area/avalon/shelter/engineering)
-"tmt" = (
-/obj/turbolift_map_holder{
-	dir = 1;
-	lift_size_x = 3;
-	lift_size_y = 3;
-	areas_to_use = list(/area/turbolift/avalon/medbay/a1, /area/turbolift/avalon/medbay/a2);
-	depth = 2;
-	wall_type = /turf/simulated/wall
-	},
-/turf/exterior/wall,
-/area/space)
 "tmx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10
@@ -21784,6 +21784,10 @@
 	},
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
+	},
+/obj/structure/fire_hydrant_manual{
+	pixel_y = 32;
+	pixel_x = -8
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
@@ -35801,7 +35805,7 @@ pWS
 oEX
 oEX
 oEX
-paK
+bSs
 pWS
 nmn
 nmn
@@ -100428,7 +100432,7 @@ cdZ
 jDm
 jDm
 jDm
-bSs
+lsd
 cdZ
 uNL
 vdh
@@ -119020,7 +119024,7 @@ chR
 chR
 chR
 hBO
-tmt
+ltb
 hBO
 hBO
 hBO

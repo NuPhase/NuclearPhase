@@ -113,7 +113,14 @@
 		/obj/item/chems/glass/bottle/ampoule/propofol,
 		/obj/item/chems/glass/bottle/ampoule/propofol,
 		/obj/item/chems/glass/bottle/ampoule/heparin,
-		/obj/item/chems/glass/bottle/ampoule/heparin
+		/obj/item/chems/glass/bottle/ampoule/heparin,
+		/obj/item/chems/glass/bottle/saline,
+		/obj/item/chems/glass/bottle/saline,
+		/obj/item/chems/glass/bottle/saline,
+		/obj/item/chems/glass/bottle/saline,
+		/obj/item/chems/glass/bottle/saline,
+		/obj/item/chems/glass/bottle/saline,
+		/obj/item/chems/glass/bottle/saline
 	)
 
 /obj/machinery/smartfridge/secure/medbay/stocked/Initialize()

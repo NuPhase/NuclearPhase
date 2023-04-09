@@ -3,6 +3,7 @@
 	desc = "A chest tube (also chest drain, thoracic catheter, tube thoracostomy or intercostal drain) is a surgical drain that is inserted through the chest wall and into the pleural space or the mediastinum in order to remove clinically undesired substances such as air."
 	icon = 'icons/obj/medical_kits.dmi'
 	icon_state = "chest-tube"
+	w_class = ITEM_SIZE_SMALL
 
 /obj/item/chest_tube/proc/should_succeed(var/mob/living/carbon/human/installer)
 	if(prob(installer.skill_fail_chance(SKILL_ANATOMY, 80, SKILL_EXPERT, 2)))

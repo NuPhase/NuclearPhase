@@ -142,6 +142,24 @@
 	var/sterile = FALSE
 	weight = 0.1
 
+/obj/item/stack/medical/wound_filler/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/chems))
+		var/obj/item/chems/C = W
+		if(C.reagents.has_reagent(/decl/material/liquid/ethanol, 5))
+			if(!do_after(user, 10, src))
+				return
+			visible_message(SPAN_NOTICE("[user] drenches \the [src] in the contents of [C]."))
+			should_disinfect = TRUE
+			sterile = TRUE
+			return
+		if(C.reagents.has_reagent(/decl/material/liquid/nanoblood/saline, 5))
+			if(!do_after(user, 10, src))
+				return
+			visible_message(SPAN_NOTICE("[user] washes \the [src] with the contents of [C]."))
+			sterile = TRUE
+			return
+	. = ..()
+
 /obj/item/stack/medical/wound_filler/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
 		return 1

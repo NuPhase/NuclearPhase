@@ -168,6 +168,9 @@
 	initial_reagents = list(/decl/material/liquid/pentenate_calcium_trisodium = 30)
 	volume = 30
 
+/obj/item/chems/glass/bottle/saline
+	initial_reagents = list(/decl/material/liquid/nanoblood/saline = 60)
+
 /obj/item/chems/glass/bottle/ampoule
 	name = "ampoule"
 	desc = "A small ampoule."

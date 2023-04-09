@@ -89,6 +89,7 @@
 	// Minor cuts have max_bleeding_stage set to the stage that bears the wound type's name.
 	// The major cut types have the max_bleeding_stage set to the clot stage (which is accordingly given the "blood soaked" descriptor).
 	max_bleeding_stage = 3
+	germ_attaining_speed = 0.9
 	stages = list(
 		"ugly ripped cut" = 20,
 		"ripped cut" = 10,
@@ -100,6 +101,7 @@
 
 /datum/wound/cut/deep
 	max_bleeding_stage = 3
+	germ_attaining_speed = 1.5
 	stages = list(
 		"ugly deep ripped cut" = 25,
 		"deep ripped cut" = 20,
@@ -112,6 +114,7 @@
 
 /datum/wound/cut/flesh
 	max_bleeding_stage = 4
+	germ_attaining_speed = 2
 	stages = list(
 		"ugly ripped flesh wound" = 35,
 		"ugly flesh wound" = 30,
@@ -124,6 +127,7 @@
 
 /datum/wound/cut/gaping
 	max_bleeding_stage = 3
+	germ_attaining_speed = 2.5
 	stages = list(
 		"gaping wound" = 50,
 		"large blood soaked clot" = 25,
@@ -135,6 +139,7 @@
 
 /datum/wound/cut/gaping_big
 	max_bleeding_stage = 3
+	germ_attaining_speed = 3
 	stages = list(
 		"big gaping wound" = 60,
 		"healing gaping wound" = 40,
@@ -146,6 +151,7 @@
 
 /datum/wound/cut/massive
 	max_bleeding_stage = 3
+	germ_attaining_speed = 4
 	stages = list(
 		"massive wound" = 70,
 		"massive healing wound" = 50,
@@ -166,6 +172,7 @@
 
 /datum/wound/puncture/small
 	max_bleeding_stage = 2
+	germ_attaining_speed = 0.9
 	stages = list(
 		"puncture" = 5,
 		"healing puncture" = 2,
@@ -174,6 +181,7 @@
 
 /datum/wound/puncture/flesh
 	max_bleeding_stage = 2
+	germ_attaining_speed = 1.5
 	stages = list(
 		"puncture wound" = 15,
 		"blood soaked clot" = 5,
@@ -183,6 +191,7 @@
 
 /datum/wound/puncture/gaping
 	max_bleeding_stage = 3
+	germ_attaining_speed = 2
 	stages = list(
 		"gaping hole" = 30,
 		"large blood soaked clot" = 15,
@@ -193,6 +202,7 @@
 
 /datum/wound/puncture/gaping_big
 	max_bleeding_stage = 3
+	germ_attaining_speed = 2.5
 	stages = list(
 		"big gaping hole" = 50,
 		"healing gaping hole" = 20,
@@ -203,6 +213,7 @@
 
 /datum/wound/puncture/massive
 	max_bleeding_stage = 3
+	germ_attaining_speed = 4
 	stages = list(
 		"massive wound" = 60,
 		"massive healing wound" = 30,
@@ -224,6 +235,7 @@
 
 	bleed_threshold = 20
 	max_bleeding_stage = 3 //only large bruise and above can bleed.
+	germ_attaining_speed = 0.5
 	autoheal_cutoff = 30
 	damage_type = BRUISE
 	wound_type = WOUND_TYPE_BANDAGEABLE
@@ -232,6 +244,7 @@
 /datum/wound/burn
 	damage_type = BURN
 	max_bleeding_stage = 0
+	germ_attaining_speed = 1.5
 	wound_type = WOUND_TYPE_BANDAGEABLE
 
 /datum/wound/burn/bleeding()
@@ -244,6 +257,7 @@
 		"healing moderate burn" = 2,
 		"fresh patch of skin" = 0
 		)
+	germ_attaining_speed = 2
 
 /datum/wound/burn/large
 	stages = list(
@@ -252,6 +266,7 @@
 		"healing large burn" = 5,
 		"fresh patch of skin" = 0
 		)
+	germ_attaining_speed = 2.5
 
 /datum/wound/burn/severe
 	stages = list(
@@ -260,6 +275,7 @@
 		"healing severe burn" = 10,
 		"burn scar" = 0
 		)
+	germ_attaining_speed = 3
 
 /datum/wound/burn/deep
 	stages = list(
@@ -268,6 +284,7 @@
 		"healing deep burn" = 15,
 		"large burn scar" = 0
 		)
+	germ_attaining_speed = 3.5
 
 /datum/wound/burn/carbonised
 	stages = list(
@@ -275,11 +292,13 @@
 		"healing carbonised area" = 20,
 		"massive burn scar" = 0
 		)
+	germ_attaining_speed = 4
 
 /** EXTERNAL ORGAN LOSS **/
 /datum/wound/lost_limb
 	var/limb_tag
 	wound_type = WOUND_TYPE_STITCHABLE
+	germ_attaining_speed = 10
 
 /datum/wound/lost_limb/New(var/obj/item/organ/external/lost_limb, var/losstype, var/clean)
 	var/damage_amt = lost_limb.max_damage
