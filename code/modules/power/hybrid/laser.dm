@@ -54,11 +54,19 @@
 			use_power = POWER_USE_IDLE
 	omode = nomode
 
+/obj/machinery/rlaser/proc/switch_nmode(nnmode)
+	set_light(0, 0, null)
+	switch(nmode)
+		if(NEUTRON_MODE_BOMBARDMENT)
+			set_light(20, 1, "#1ebefd", 15)
+	nmode = nnmode
+
 /obj/machinery/rlaser/Process()
 	if(nmode == NEUTRON_MODE_BOMBARDMENT)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-		R.neutron_moles += rand(1, 5) //neutron generators are extremely unpredictable and inaccurate
+		R.neutron_moles += rand(2, 8) //neutron generators are extremely unpredictable and inaccurate
 		use_power_oneoff(70000, EQUIP)
+		SSradiation.radiate(src, 90)
 	if(omode == LASER_MODE_IGNITION)
 		capacitor_charge += 1
 		capacitor_charge = Clamp(capacitor_charge, 1, 100)
