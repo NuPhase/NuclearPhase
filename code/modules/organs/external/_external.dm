@@ -1552,7 +1552,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/get_movement_delay(max_delay)
 	. = 0
 	if(splinted)
-		. += max_delay/8
+		. += max_delay/15
 	else if(status & ORGAN_BROKEN)
 		. += max_delay * 3/8
 	else if(BP_IS_PROSTHETIC(src))
