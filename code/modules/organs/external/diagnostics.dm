@@ -203,7 +203,7 @@
 	explanation = "Patient is in shock from severe pain."
 
 /decl/diagnostic_sign/shock/manifested_in(obj/item/organ/external/victim)
-	return victim.owner && victim.owner.shock_stage >= 30
+	return victim.owner && victim.owner.shock_stage >= 60
 
 /decl/diagnostic_sign/liver
 	name = "Jaundice"
