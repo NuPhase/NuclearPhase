@@ -18,6 +18,11 @@
 	var/start_dirty = FALSE	// Shall we add dirt to the object at initialization
 	var/max_quanity_of_dirt_sprites = 4
 
+/obj/Cross(O, var/mustcheck=FALSE) // fuck that shit im out
+	if(mustcheck)
+		return ..()
+	return TRUE
+
 /obj/hitby(atom/movable/AM, var/datum/thrownthing/TT)
 	..()
 	if(!anchored)
