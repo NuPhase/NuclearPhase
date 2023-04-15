@@ -8,3 +8,4 @@
 	parent_organ = BP_CHEST
 	organ_properties = ORGAN_PROP_PROSTHETIC
 	max_damage = 30
+	weight = 8

@@ -6,6 +6,7 @@
 	prosthetic_dead_icon = "cell_bork"
 	relative_size = 5
 	organ_properties = ORGAN_PROP_PROSTHETIC
+	weight = 0.3
 
 /obj/item/organ/internal/heart/synthetic/handle_pulse()
 	if(damage != max_damage)

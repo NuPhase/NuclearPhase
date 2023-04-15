@@ -155,7 +155,7 @@
 	if(BP_IS_CRYSTAL(src))
 		. = "crystalline "
 	else if(BP_IS_PROSTHETIC(src))
-		. = "mechanical "
+		. = "synthetic "
 	. = "[.][name]"
 
 /obj/item/organ/internal/Process()

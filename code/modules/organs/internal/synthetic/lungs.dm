@@ -5,6 +5,7 @@
 	prosthetic_icon = "liver-prosthetic"
 	relative_size = 15
 	organ_properties = ORGAN_PROP_PROSTHETIC
+	weight = 0.5
 
 /obj/item/organ/internal/lungs/synthetic/rupture()
 	return

@@ -10,6 +10,7 @@
 	relative_size = 40
 	organ_properties = ORGAN_PROP_PROSTHETIC
 	parent_organ = BP_CHEST
+	weight = 14
 
 /obj/item/organ/internal/brain/synthetic/do_install(mob/living/carbon/target, affected, in_place, update_icon, detached)
 	. = ..()

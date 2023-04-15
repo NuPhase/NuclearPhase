@@ -89,5 +89,6 @@
 		BP_LUNGS =    /obj/item/organ/internal/lungs/synthetic,
 		BP_BRAIN =    /obj/item/organ/internal/brain/synthetic,
 		BP_EYES =     /obj/item/organ/internal/eyes/synthetic,
-		BP_VOICE =    /obj/item/organ/internal/voicebox/synthetic
+		BP_VOICE =    /obj/item/organ/internal/voicebox/synthetic,
+		BP_REACTOR =  /obj/item/organ/internal/reactor
 		)

@@ -181,6 +181,7 @@
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
 #define BP_ACETONE  "acetone reactor"
+#define BP_REACTOR  "rtg"
 
 // Robo Organs.
 #define BP_POSIBRAIN         "posibrain"
