@@ -8,7 +8,7 @@ Variables:
 	zblockage - how much quality we take away per unit of zdistance
 */
 
-/proc/get_local_signal_quality(atom/sender, atom/receiver, sender_penetration, penetration_modifier, receiver_amplification) //Across a Z-level
+/proc/get_local_signal_quality(atom/sender, atom/receiver, sender_penetration = 2, penetration_modifier = 1, receiver_amplification = 0) //Across a Z-level
 	var/quality = 100
 	var/x = receiver.x - sender.x
 	var/y = receiver.y - sender.y
@@ -21,11 +21,11 @@ Variables:
 		norm_vec.mult(new /datum/vector2(block, block))
 		var/turf/blocking = locate(sender.x + round(norm_vec.x), sender.y + round(norm_vec.y), sender.z)
 		if(blocking)
-			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef)
+			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef) * penetration_modifier
 	return quality
 
 
-/proc/get_global_signal_quality(atom/sender, atom/receiver, sender_penetration, penetration_modifier, receiver_amplification, zdistance, zblockage) //Across Z-levels
+/proc/get_global_signal_quality(atom/sender, atom/receiver, sender_penetration = 2, penetration_modifier = 1, receiver_amplification = 0, zdistance, zblockage) //Across Z-levels
 	var/quality = 100
 	var/x = abs(receiver.x - sender.x)
 	var/y = abs(receiver.y - sender.y)
@@ -39,6 +39,5 @@ Variables:
 		norm_vec.mult(new /datum/vector3(block, block, block))
 		var/turf/blocking = locate(sender.x + round(norm_vec.x), sender.y + round(norm_vec.y), sender.z + round(norm_vec.z))
 		if (blocking)
-			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef)
-
+			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef) * penetration_modifier
 	return quality
