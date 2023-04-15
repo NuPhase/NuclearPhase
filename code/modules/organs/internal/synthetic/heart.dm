@@ -1,6 +1,9 @@
 /obj/item/organ/internal/heart/synthetic
 	name = "pulse imitation device"
 	desc = "It looks like a simple vibration mechanism attached to a power source."
+	icon_state = "cell"
+	prosthetic_icon = "cell"
+	prosthetic_dead_icon = "cell_bork"
 	relative_size = 5
 	organ_properties = ORGAN_PROP_PROSTHETIC
 
