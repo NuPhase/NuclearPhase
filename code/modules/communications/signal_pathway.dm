@@ -10,17 +10,18 @@ Variables:
 
 /proc/get_local_signal_quality(atom/sender, atom/receiver, sender_penetration, penetration_modifier, receiver_amplification) //Across a Z-level
 	var/quality = 100
-	var/x = abs(receiver.x - sender.x)
-	var/y = abs(receiver.y - sender.y)
+	var/x = receiver.x - sender.x
+	var/y = receiver.y - sender.y
 	quality += receiver_amplification
 	var/datum/vector2/vec = new(x, y)
 	var/hip = round(vec.get_hipotynuse())
-	var/datum/vector2/norm_vec = new()
-	for (var/block in range(hip))
+	var/datum/vector2/norm_vec = vec.copy()
+	for (var/block in 1 to round(hip, 1))
 		norm_vec.normalise()
-		norm_vec.mult(block)
-		var/turf/blocking = locate(round(norm_vec.x), round(norm_vec.y), receiver.z)
-		quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef)
+		norm_vec.mult(new /datum/vector2(block, block))
+		var/turf/blocking = locate(sender.x + round(norm_vec.x), sender.y + round(norm_vec.y), sender.z)
+		if(blocking)
+			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef)
 	return quality
 
 
@@ -32,11 +33,12 @@ Variables:
 	quality += receiver_amplification
 	var/datum/vector3/vec = new(x, y, z)
 	var/hip = round(vec.get_hipotynuse())
-	var/datum/vector3/norm_vec = new()
-	for (var/block in range(hip))
+	var/datum/vector3/norm_vec = vec.copy()
+	for (var/block in 1 to round(hip, 1))
 		norm_vec.normalise()
-		norm_vec.mult(block)
-		var/turf/blocking = locate(round(norm_vec.x), round(norm_vec.y), round(norm_vec.z))
-		quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef)
+		norm_vec.mult(new /datum/vector3(block, block, block))
+		var/turf/blocking = locate(sender.x + round(norm_vec.x), sender.y + round(norm_vec.y), sender.z + round(norm_vec.z))
+		if (blocking)
+			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef)
 
 	return quality
