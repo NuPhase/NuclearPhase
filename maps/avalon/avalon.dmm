@@ -1758,7 +1758,7 @@
 	dir = 8;
 	lift_size_x = 3;
 	lift_size_y = 3;
-	areas_to_use = list(/area/turbolift/avalon/factory/a1, /area/turbolift/avalon/factory/a2);
+	areas_to_use = list(/area/turbolift/avalon/factory/a1,/area/turbolift/avalon/factory/a2);
 	depth = 2;
 	wall_type = /turf/simulated/wall
 	},
@@ -2434,7 +2434,7 @@
 /obj/structure/bed/padded,
 /obj/effect/floor_decal/corner/mauve/full,
 /turf/simulated/floor/tiled/white,
-/area/avalon)
+/area/avalon/shelter/medbay)
 "cve" = (
 /obj/effect/floor_decal/corner/pink{
 	dir = 4
@@ -2887,7 +2887,7 @@
 "cSX" = (
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled/white,
-/area/avalon)
+/area/avalon/shelter/medbay)
 "cTk" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -6541,12 +6541,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/reception)
 "gJI" = (
-/obj/machinery/door/airlock/glass/science{
-	initial_access = list("ACCESS_RESEARCH");
-	locked = 1
-	},
 /obj/machinery/door/blast/regular/radlock{
 	dir = 4
+	},
+/obj/machinery/door/airlock/glass/science{
+	initial_access = list("ACCESS_RESEARCH")
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
@@ -11257,7 +11256,7 @@
 	dir = 8
 	},
 /obj/structure/table/steel,
-/obj/item/storage/box/freezer,
+/obj/item/storage/box/freezer/prefilled,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "loa" = (
@@ -11377,7 +11376,7 @@
 	dir = 1;
 	lift_size_x = 3;
 	lift_size_y = 3;
-	areas_to_use = list(/area/turbolift/avalon/medbay/a1, /area/turbolift/avalon/medbay/a2);
+	areas_to_use = list(/area/turbolift/avalon/medbay/a1,/area/turbolift/avalon/medbay/a2);
 	depth = 2;
 	wall_type = /turf/simulated/wall
 	},
@@ -11398,7 +11397,7 @@
 	dir = 1;
 	lift_size_x = 3;
 	lift_size_y = 3;
-	areas_to_use = list(/area/turbolift/avalon/medbay/a1, /area/turbolift/avalon/medbay/a2);
+	areas_to_use = list(/area/turbolift/avalon/medbay/a1,/area/turbolift/avalon/medbay/a2);
 	depth = 2;
 	wall_type = /turf/simulated/wall
 	},
@@ -11497,9 +11496,17 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/preparation)
 "lzj" = (
-/obj/effect/paint_stripe/paleblue,
-/turf/simulated/wall,
-/area/avalon)
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/hygiene/sink{
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/medbay)
 "lzV" = (
 /obj/effect/floor_decal/corner/grey/border{
 	dir = 4
@@ -13539,7 +13546,7 @@
 /turf/simulated/wall/prepainted,
 /area/avalon/shelter/cargo)
 "nBH" = (
-/obj/machinery/blood_oxygenator,
+/obj/machinery/lung_ventilator,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "nBJ" = (
@@ -15199,9 +15206,14 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "pjj" = (
-/obj/structure/table,
-/turf/simulated/floor/tiled/white,
-/area/avalon)
+/obj/machinery/door/airlock/glass/science{
+	initial_access = list("ACCESS_RESEARCH")
+	},
+/obj/machinery/door/blast/regular/radlock{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/avalon/shelter/science)
 "pjJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -17180,8 +17192,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
 "rhz" = (
-/obj/item/radio/intercom/department/medbay{
-	pixel_y = 26
+/obj/structure/hygiene/sink{
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
@@ -19355,7 +19367,7 @@
 	info = "Зачем существовать в среде, которую невозможно понять, осознать? Зачем страдать, пытаясь выжить хотя-бы ещё один день?"
 	},
 /turf/simulated/floor/tiled/white,
-/area/avalon)
+/area/avalon/shelter/medbay)
 "trQ" = (
 /obj/structure/ore_box,
 /obj/effect/floor_decal/corner/brown/border{
@@ -24054,7 +24066,7 @@
 /area/avalon/shelter/messhall)
 "ylz" = (
 /obj/effect/floor_decal/corner/mauve/border,
-/obj/machinery/blood_circulator,
+/obj/machinery/lung_ventilator,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
 "ylW" = (
@@ -99919,7 +99931,7 @@ cdZ
 cdZ
 cdZ
 cdZ
-lzj
+cdZ
 cdZ
 hBO
 hBO
@@ -100179,7 +100191,7 @@ wPz
 vOp
 vOp
 vOp
-pjj
+eyw
 cdZ
 hBO
 hBO
@@ -100439,7 +100451,7 @@ vdh
 cdZ
 rDX
 vPo
-pjj
+eyw
 cdZ
 hBO
 hBO
@@ -100829,7 +100841,7 @@ xcV
 sGK
 vOp
 vOp
-pjj
+eyw
 cdZ
 hBO
 hBO
@@ -101089,7 +101101,7 @@ lFb
 cdZ
 cdZ
 cdZ
-lzj
+cdZ
 cdZ
 hBO
 hBO
@@ -117188,7 +117200,7 @@ rmj
 fyQ
 wSW
 gJI
-gJI
+pjj
 gJI
 wSW
 fyQ
@@ -118363,7 +118375,7 @@ jeU
 jeU
 jeU
 cdZ
-uNL
+lzj
 aYq
 ciI
 qCv

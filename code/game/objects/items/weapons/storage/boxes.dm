@@ -435,6 +435,14 @@
 /obj/item/storage/box/freezer/ProcessAtomTemperature()
 	return PROCESS_KILL
 
+/obj/item/storage/box/freezer/prefilled
+	startswith = list(
+		/obj/item/organ/internal/heart = 1,
+		/obj/item/organ/internal/kidneys = 2,
+		/obj/item/organ/internal/liver = 1,
+		/obj/item/organ/internal/lungs = 1
+	)
+
 /obj/item/storage/box/checkers
 	name = "checkers box"
 	desc = "This box holds a nifty portion of checkers. Foam-shaped on the inside so that only checkers may fit."
