@@ -77,6 +77,8 @@
 	else
 		return PROCESS_KILL
 
+	connect_time += 1
+
 	if(oxygenating)
 		connected.add_oxygen(100 * oxygen_coef)
 
