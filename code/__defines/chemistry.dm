@@ -1,5 +1,5 @@
-#define DEFAULT_HUNGER_FACTOR 0.03 // Factor of how fast mob nutrition decreases
-#define DEFAULT_THIRST_FACTOR 0.03 // Factor of how fast mob hydration decreases
+#define DEFAULT_HUNGER_FACTOR 0.3 // Factor of how fast mob nutrition decreases
+#define DEFAULT_THIRST_FACTOR 0.3 // Factor of how fast mob hydration decreases
 
 #define XENOMORPH_HUNGER_FACTOR 0.06 // Larger
 #define XENOMORPH_THIRST_FACTOR 0.01 // Closed cycle body
