@@ -183,6 +183,8 @@
 
 /area/surface/location/skyscraper
 
+/area/surface/location/space_center
+
 /area/surface/Initialize()
 	. = ..()
 	surface_areas += src
