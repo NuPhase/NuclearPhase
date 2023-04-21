@@ -1,11 +1,11 @@
 #define DEFAULT_HUNGER_FACTOR 0.3 // Factor of how fast mob nutrition decreases
-#define DEFAULT_THIRST_FACTOR 0.3 // Factor of how fast mob hydration decreases
+#define DEFAULT_THIRST_FACTOR 0.6 // Factor of how fast mob hydration decreases
 
-#define XENOMORPH_HUNGER_FACTOR 0.06 // Larger
-#define XENOMORPH_THIRST_FACTOR 0.01 // Closed cycle body
+#define XENOMORPH_HUNGER_FACTOR 0.9 // Larger
+#define XENOMORPH_THIRST_FACTOR 0.9 // Closed cycle body
 
-#define SYNTHETIC_HUNGER_FACTOR 0.02 // We're more energy efficient than humans
-#define SYNTHETIC_THIRST_FACTOR 0.09 // Gotta cool down fast
+#define SYNTHETIC_HUNGER_FACTOR 0.1 // We're more energy efficient than humans
+#define SYNTHETIC_THIRST_FACTOR 0.9 // Gotta cool down fast
 
 #define REM 0.2 // Means 'Reagent Effect Multiplier'. This is how many units of reagent are consumed per tick
 

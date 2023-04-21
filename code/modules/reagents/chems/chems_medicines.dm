@@ -265,3 +265,9 @@
 
 /decl/material/liquid/oxygenated_saline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	H.oxygen_amount += 10
+
+/decl/material/liquid/electrolytes
+	name = "electrolytes"
+	lore_text = "A mixture of vital electrolytes used to counter starvation and hyponatremia."
+	uid = "electrolytes"
+	metabolism = 0.1

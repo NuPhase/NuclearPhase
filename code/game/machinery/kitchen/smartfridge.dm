@@ -133,6 +133,9 @@
 /obj/machinery/smartfridge/secure/medbay/stocked/blood
 	name = "\improper Smart Transfusion Storage"
 	stocked = list(
+		/obj/item/chems/ivbag/electrolytes,
+		/obj/item/chems/ivbag/electrolytes,
+		/obj/item/chems/ivbag/electrolytes,
 		/obj/item/chems/ivbag/saline,
 		/obj/item/chems/ivbag/saline,
 		/obj/item/chems/ivbag/saline,

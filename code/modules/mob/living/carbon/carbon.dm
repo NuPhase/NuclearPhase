@@ -26,7 +26,7 @@
 	return ..()
 
 /mob/living/carbon/rejuvenate()
-	set_nutrition(400)
+	set_nutrition(250)
 	set_hydration(400)
 	..()
 

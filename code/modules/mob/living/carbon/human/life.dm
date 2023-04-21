@@ -66,6 +66,7 @@
 		handle_changeling()
 
 		//Organs and blood
+		handle_nutrition()
 		process_hemodynamics()
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
