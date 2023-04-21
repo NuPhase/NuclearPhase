@@ -116,6 +116,7 @@
 	QDEL_NULL(soundloop)
 
 /obj/machinery/atmospherics/binary/pump/adv/Process()
+	build_network()
 	last_power_draw = 0
 
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
@@ -130,8 +131,7 @@
 	power_draw = pump_fluid(src, air1, air2, mass_transfer, flow_capacity, power_rating)
 	last_mass_flow = min(air1_mass, flow_capacity)
 
-	if(mass_transfer > 0)
-		update_networks()
+	update_networks()
 
 	if(power_draw >= 0)
 		last_power_draw = power_draw

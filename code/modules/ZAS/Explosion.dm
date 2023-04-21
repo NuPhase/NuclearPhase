@@ -31,7 +31,7 @@
 			L.apply_damage(strength * 2, BURN)
 			L.apply_damage(strength * 0.5, BRUTE)
 			var/turf/T = get_ranged_target_turf(L, get_dir(L, get_step_away(L, src)), nstrength)
-			L.throw_at(T, strength * 0.5, L.throw_speed, src)
+			L.throw_at(T, strength * 0.5, L.throw_speed)
 			L.adjust_fire_stacks(10)
 			L.IgniteMob()
 		for(var/obj/item/item in loc)

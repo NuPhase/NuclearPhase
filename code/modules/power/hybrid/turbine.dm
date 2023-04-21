@@ -63,6 +63,7 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
+	update_networks()
 	total_mass_flow = (air1.net_flow_mass + air1.get_mass()*0.01) * feeder_valve_openage //barely enough to start it
 
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0) * feeder_valve_openage

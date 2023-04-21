@@ -65,7 +65,6 @@ var/list/global/reactor_ports = list()
 
 /obj/machinery/atmospherics/unary/reactor_connector/ingoing/Initialize()
 	. = ..()
-	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	reactor_ports["[uid]-in"] = src
 	spawn(100)
 		linked = reactor_ports["[uid]-out"]
