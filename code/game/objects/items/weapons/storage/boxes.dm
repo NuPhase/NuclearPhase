@@ -75,10 +75,7 @@
 	startswith = list(/obj/item/clothing/mask/breath = 1,
 					/obj/item/tank/emergency/oxygen = 1,
 					/obj/item/chems/hypospray/autoinjector = 1,
-					/obj/item/stack/medical/bruise_pack = 1,
 					/obj/item/flashlight/flare/glowstick = 1,
-					/obj/item/chems/food/candy/proteinbar = 1,
-					/obj/item/oxycandle = 1,
 					/obj/item/crowbar/cheap = 1)
 
 /obj/item/storage/box/engineer

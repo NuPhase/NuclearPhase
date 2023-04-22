@@ -1063,14 +1063,14 @@
 			if(L)
 				active_breaths = L.active_breathing
 		if(!nervous_system_failure() && active_breaths)
-			visible_message(SPAN_NOTICE("\The [src] jerks and gasps for breath!"))
+			visible_message(SPAN_NOTICE("\The [src] jerks a bit!"))
 		else
 			var/decl/pronouns/G = get_pronouns()
 			visible_message(SPAN_NOTICE("\The [src] twitches a bit as [G.his] [heart.name] restarts!"))
 
-		shock_stage = min(shock_stage, 100) // 120 is the point at which the heart stops.
-		heart.pulse = PULSE_NORM
-		heart.current_pattern = HEART_PATTERN_NORMAL
+		shock_stage = min(shock_stage, 40)
+		heart.pulse = rand(10, 15)
+		heart.arrythmias.Remove(GET_DECL(/decl/arrythmia/asystole))
 		heart.handle_pulse()
 		return TRUE
 

@@ -89,3 +89,7 @@
 
 	startswith = list(/obj/item/chems/pill/betapace = 21)
 	wrapper_color = COLOR_GRAY
+
+/obj/item/storage/pill_bottle/handmade
+	name = "pill bottle (handmade)"
+	startswith = list(/obj/item/chems/pill/betapace = 2, /obj/item/chems/pill/charcoal = 5)

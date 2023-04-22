@@ -137,3 +137,21 @@
 /decl/material/liquid/heparin/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/volume = REAGENT_VOLUME(holder, type)
 	H.add_chemical_effect(CE_BLOOD_THINNING, volume)
+
+/decl/material/liquid/adenosine
+	name = "adenosine"
+	color = "#d6d6d6"
+	scannable = 1
+	overdose = 10
+	metabolism = 2
+	value = 1.5
+	uid = "adenosine"
+
+/decl/material/liquid/adenosine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/volume = REAGENT_VOLUME(holder, type)
+	if(volume > 2)
+		var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+		heart.bpm_modifiers[name] = -140
+		for(var/decl/arrythmia/A in heart.arrythmias)
+			if(!A.can_be_shocked && prob(90))
+				heart.arrythmias.Remove(A)

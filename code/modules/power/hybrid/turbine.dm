@@ -57,8 +57,8 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()
-	air1.volume = 80000
-	air2.volume = 80000
+	air1.volume = 5000
+	air2.volume = 5000
 	reactor_components[uid] = src
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()

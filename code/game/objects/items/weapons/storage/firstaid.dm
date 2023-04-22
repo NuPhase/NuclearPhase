@@ -36,6 +36,18 @@
 		/obj/item/stack/medical/splint
 		)
 
+/obj/item/storage/firstaid/handmade
+	name = "sketchy first-aid kit"
+	icon_state = "firstaid"
+
+	startswith = list(
+		/obj/item/stack/medical/bruise_pack = 1,
+		/obj/item/stack/medical/wound_filler = 1,
+		/obj/item/stack/medical/ointment = 1,
+		/obj/item/storage/pill_bottle/handmade
+		/obj/item/stack/medical/splint/ghetto
+		)
+
 /obj/item/storage/firstaid/trauma
 	name = "trauma first-aid kit"
 	desc = "It's an emergency medical kit for when people brought ballistic weapons to a laser fight."

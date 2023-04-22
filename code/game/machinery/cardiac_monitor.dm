@@ -46,11 +46,10 @@
 		icon_state = "mon-Asystole"
 		return
 
-	var/owa = H.current_pattern
-	if(owa)
-		icon_state = "mon-[owa]"
+	if(H.pulse)
+		icon_state = "mon-Sinus rhythm"
 	else
-		icon_state = "mon-normal"
+		icon_state = "mon-Asystole"
 
 	if(attached.meanpressure < BLOOD_PRESSURE_L2BAD || attached.meanpressure > BLOOD_PRESSURE_H2BAD)
 		overlays += image(icon, "mon-y")
@@ -78,7 +77,7 @@
 	var/list/data = list()
 	data["name"] = "[attached]"
 	data["hr"] = round(H.pulse)
-	data["rythme"] = H.current_pattern
+	data["rythme"] = H.get_rhythm_fluffy()
 	data["bp"] = attached.get_blood_pressure_fluffy()
 	switch(attached.meanpressure)
 		if(-INFINITY to BLOOD_PRESSURE_L2BAD)
@@ -101,13 +100,13 @@
 	data["status"] = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE"
 
 	data["ecg"] = list()
-
+/*
 	var/obj/item/organ/internal/brain/brain = attached.get_organ(BP_BRAIN, /obj/item/organ/internal/brain)
 	if(attached.stat == DEAD || !brain)
 		data["ecg"] += list("Neurological activity not present")
 	else
 		data["ecg"] += list("Neurological system activity: [100 - round(100 * CLAMP01(brain.damage / brain.max_damage))]% of normal.")
-
+*/
 	if(H.oxygen_deprivation)
 		data["ecg"] += list("Ischemia: [H.oxygen_deprivation]%")
 	data["ecg"] += list("TPVR: [round(attached.tpvr)] N·s·m<sup><small>-5</small></sup>")

@@ -114,6 +114,8 @@
 		/obj/item/chems/glass/bottle/ampoule/propofol,
 		/obj/item/chems/glass/bottle/ampoule/heparin,
 		/obj/item/chems/glass/bottle/ampoule/heparin,
+		/obj/item/chems/glass/bottle/ampoule/adenosine,
+		/obj/item/chems/glass/bottle/ampoule/adenosine,
 		/obj/item/chems/glass/bottle/saline,
 		/obj/item/chems/glass/bottle/saline,
 		/obj/item/chems/glass/bottle/saline,

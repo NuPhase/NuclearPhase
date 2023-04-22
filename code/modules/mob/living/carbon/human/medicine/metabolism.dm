@@ -31,7 +31,7 @@ var/list/adrenaline_messages = list(
 //<50 - organ failure
 
 /mob/living/carbon/human/proc/handle_nutrition()
-	var/message = ""
+	var/message
 	var/cooldown = 50
 
 	switch(nutrition)
@@ -57,6 +57,6 @@ var/list/adrenaline_messages = list(
 				cur_heart.bpm_modifiers["Refeeding Syndrome"] = -60
 				add_chemical_effect(CE_PRESSURE, -50)
 
-	hunger_mes_cooldown = world.time + cooldown
-	if(world.time > hunger_mes_cooldown)
+	if(message && world.time > hunger_mes_cooldown)
 		to_chat(src, SPAN_WARNING(message))
+		hunger_mes_cooldown = world.time + cooldown
