@@ -4,13 +4,13 @@
 // All of these are null-safe, you can use them without knowing if the list var is initialized yet
 
 //Picks from the list, with some safeties, and returns the "default" arg if it fails
-#define DEFAULTPICK(L, default) ((istype(L, /list) && L:len) ? pick(L) : default)
+#define DEFAULTPICK(L, default) ((istype(L, /list) && length(L)) ? pick(L) : default)
 //Supplies null as the default to DEFAULTPICK
 #define SAFEPICK(L) DEFAULTPICK(L, null)
 // Ensures L is initailized after this point
 #define LAZYINITLIST(L) if (!L) L = list()
 // Sets a L back to null iff it is empty
-#define UNSETEMPTY(L) if (L && !L.len) L = null
+#define UNSETEMPTY(L) if (L && !length(L)) L = null
 // Removes I from list L, and sets I to null if it is now empty
 #define LAZYREMOVE(L, I) if(L) { L -= I; if(!length(L)) { L = null; } }
 // Adds I to L, initalizing L if necessary
@@ -23,7 +23,7 @@
 #define LAZYSET(L, A, I) if(!L) { L = list(); } L[A] = I;
 // Reads I from L safely - Works with both associative and traditional lists.
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
-#define LAZYACCESS0(L, I) (L ? (isnum(I) ? (I > 0 && I <= L.len ? L[I] : 0) : L[I]) : 0)
+#define LAZYACCESS0(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : 0) : L[I]) : 0)
 // Reads the length of L, returning 0 if null
 #define LAZYLEN(L) length(L)
 // Safely checks if I is in L
