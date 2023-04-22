@@ -392,7 +392,7 @@ var/global/list/hygiene_props = list()
 
 	var/obj/item/chems/RG = O
 	if (istype(RG) && ATOM_IS_OPEN_CONTAINER(RG) && RG.reagents)
-		RG.reagents.add_reagent(/decl/material/liquid/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		RG.reagents.add_reagent(/decl/material/liquid/water/dirty1, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message(
 			SPAN_NOTICE("\The [user] fills \the [RG] using \the [src]."),
 			SPAN_NOTICE("You fill \the [RG] using \the [src]."))
@@ -419,7 +419,7 @@ var/global/list/hygiene_props = list()
 				return 1
 	else if(istype(O, /obj/item/mop))
 		if(REAGENTS_FREE_SPACE(O.reagents) >= 5)
-			O.reagents.add_reagent(/decl/material/liquid/water, 5)
+			O.reagents.add_reagent(/decl/material/liquid/water/dirty1, 5)
 			to_chat(user, SPAN_NOTICE("You wet \the [O] in \the [src]."))
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		else
@@ -575,7 +575,7 @@ var/global/list/hygiene_props = list()
 		next_gurgle = world.time + 80
 		playsound(T, pick(SSfluids.gurgles), 50, 1)
 
-	T.add_fluid(/decl/material/liquid/water, min(75, fill_level - T.get_fluid_depth()))
+	T.add_fluid(/decl/material/liquid/water/dirty1, min(75, fill_level - T.get_fluid_depth()))
 
 /obj/structure/hygiene/faucet/Process()
 	..()
