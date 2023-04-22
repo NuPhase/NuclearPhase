@@ -361,6 +361,14 @@
 
 	startswith = list(/obj/item/chems/hypospray/autoinjector = 7)
 
+/obj/item/storage/box/military_medkit
+	name = "personal medical support kit"
+	desc = "Contains emergency medical support items."
+	icon_state = "syringe"
+	w_class = ITEM_SIZE_SMALL
+
+	startswith = list(/obj/item/stack/medical/bruise_pack = 1, /obj/item/stack/medical/wound_filler = 1, /obj/item/stack/medical/splint = 1, /obj/item/chems/pill/painkillers = 1)
+
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
 	icon_state = "light"

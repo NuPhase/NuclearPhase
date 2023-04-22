@@ -439,3 +439,10 @@
 		M.adjustBruteLoss(rand(3,6))
 		if(prob(10))
 			new /obj/item/shard(get_turf(M), result_mat)
+
+/decl/material/solid/water_purifier_first
+	name = "water purifying compound"
+	lore_text = "A weak but easy to use mix of cleaning agents."
+	taste_description = "chlorine"
+	color = "#86ffbd"
+	uid = "water_purifier_first"

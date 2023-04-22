@@ -139,6 +139,9 @@
 	max_ammo = 15
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/pistol/oneround
+	initial_ammo = 1
+
 /obj/item/ammo_magazine/pistol/empty
 	initial_ammo = 0
 

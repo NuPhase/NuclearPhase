@@ -43,8 +43,7 @@
 	startswith = list(
 		/obj/item/stack/medical/bruise_pack = 1,
 		/obj/item/stack/medical/wound_filler = 1,
-		/obj/item/stack/medical/ointment = 1,
-		/obj/item/storage/pill_bottle/handmade
+		/obj/item/storage/pill_bottle/handmade,
 		/obj/item/stack/medical/splint/ghetto
 		)
 

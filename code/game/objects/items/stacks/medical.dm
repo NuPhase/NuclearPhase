@@ -129,7 +129,7 @@
 
 /obj/item/stack/medical/wound_filler
 	name = "absorbent cotton"
-	singular_name = "gauze length"
+	singular_name = "cotton ball"
 	desc = "A pack of surgical cotton balls. Can be used to pack wounds."
 	icon = 'icons/obj/medicine.dmi'
 	icon_state = "cottonballs"

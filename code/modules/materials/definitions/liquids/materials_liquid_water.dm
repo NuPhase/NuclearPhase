@@ -17,7 +17,7 @@
 	gas_symbol = "H2O"
 	scannable = 1
 	metabolism = REM * 10
-	taste_description = "water"
+	taste_description = "clean water"
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
 	slipperiness = 8

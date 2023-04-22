@@ -208,6 +208,12 @@
 	icon_state = "packet_small_white"
 	starting_reagents = list(/decl/material/solid/sodiumchloride = 5)
 
+/obj/item/chems/condiment/small/packet/waterpurifier
+	name = "water disinfection packet"
+	desc = "Contains a premade water cleaning mix. Can clean up to a liter of liquid."
+	icon_state = "packet_small_white"
+	starting_reagents = list(/decl/material/solid/water_purifier_first = 10)
+
 /obj/item/chems/condiment/small/packet/pepper
 	name = "pepper packet"
 	desc = "Contains 5u of black pepper."
