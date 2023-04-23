@@ -360,6 +360,10 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
+"auS" = (
+/obj/item/chems/fuel_cell,
+/turf/simulated/floor/tiled/freezer,
+/area/avalon/shelter/messhall)
 "ave" = (
 /obj/structure/bed/chair,
 /obj/machinery/rotating_alarm/reactor{
@@ -1787,6 +1791,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/preparation)
+"bSU" = (
+/obj/structure/table/marble,
+/obj/effect/floor_decal/corner/lightgrey/full,
+/obj/machinery/reagent_temperature,
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/messhall)
 "bSZ" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 4
@@ -7983,6 +7993,11 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
+"hYJ" = (
+/obj/effect/floor_decal/corner/lightgrey/mono,
+/obj/machinery/vending/dinnerware,
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/messhall)
 "hZl" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
 	dir = 8
@@ -8373,6 +8388,7 @@
 /obj/item/clothing/accessory/stethoscope,
 /obj/item/clothing/accessory/stethoscope,
 /obj/item/clothing/accessory/stethoscope,
+/obj/item/wrench,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/medbay)
 "ivV" = (
@@ -9602,6 +9618,7 @@
 	dir = 4
 	},
 /obj/structure/table/steel,
+/obj/machinery/reagent_temperature,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "jBp" = (
@@ -10567,6 +10584,7 @@
 /area/avalon/shelter/reactormonitoring)
 "kCK" = (
 /obj/structure/table/marble,
+/obj/item/chems/glass/bucket,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
 "kCS" = (
@@ -13713,14 +13731,6 @@
 	pixel_y = 32;
 	density = 0
 	},
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/tank/emergency/oxygen/medical,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "nLj" = (
@@ -17896,7 +17906,9 @@
 /area/avalon/shelter/engineering)
 "rWP" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
-/obj/structure/reagent_dispensers/watertank/newtank,
+/obj/structure/reagent_dispensers/watertank/newtank{
+	name = "purified water tank"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
 "rXv" = (
@@ -19592,6 +19604,12 @@
 /obj/item/chems/drinks/cans/waterbottle,
 /obj/item/chems/drinks/cans/waterbottle,
 /obj/item/chems/drinks/cans/waterbottle,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
 /turf/simulated/floor/tiled/freezer,
 /area/avalon/shelter/messhall)
 "tCa" = (
@@ -20604,7 +20622,7 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "uCM" = (
-/obj/structure/closet/firecloset,
+/obj/machinery/power/generator/port_gen/liquid/diesel,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/medbay)
 "uCW" = (
@@ -217200,7 +217218,7 @@ rpz
 uuZ
 hhH
 wTb
-ecb
+aLr
 nXF
 nXF
 gsN
@@ -217460,7 +217478,7 @@ rpz
 rSK
 sNf
 wTb
-aLr
+hYJ
 nXF
 nXF
 pRI
@@ -217723,7 +217741,7 @@ gsN
 hDr
 nRf
 xkN
-jnG
+bSU
 bGo
 tXx
 pEE
@@ -218500,7 +218518,7 @@ rbV
 vtX
 mpJ
 pEE
-aCW
+auS
 aCW
 aCW
 mpJ
