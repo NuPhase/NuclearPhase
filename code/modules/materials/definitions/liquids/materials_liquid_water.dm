@@ -9,7 +9,7 @@
 	gas_specific_heat = 36.5
 	liquid_specific_heat = 75.6
 	molar_mass = 0.018
-	boiling_point = 100 CELSIUS
+	boiling_point = 103 CELSIUS
 	melting_point = 0 CELSIUS
 	latent_heat = 2258
 	gas_condensation_point = 308.15 // 35C. Dew point is ~20C but this is better for gameplay considerations.
@@ -146,6 +146,9 @@
 	taste_mult = 1.5
 	uid = "liquid_water_dirty2"
 	color = "#65a3aa"
+	heating_point = 100 CELSIUS
+	heating_temperature_product = -2
+	heating_products = list(/decl/material/liquid/water = 1)
 
 /decl/material/liquid/water/dirty3
 	dirty_stage = 3
