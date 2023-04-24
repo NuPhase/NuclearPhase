@@ -57,28 +57,33 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()
-	air1.volume = 5000
+	air1.volume = 20000
 	air2.volume = 5000
 	reactor_components[uid] = src
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
 	update_networks()
-	total_mass_flow = (air1.net_flow_mass + air1.get_mass()*0.01) * feeder_valve_openage //barely enough to start it
+	total_mass_flow = (air1.net_flow_mass + air1.get_mass()) * feeder_valve_openage //barely enough to start it
 
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0) * feeder_valve_openage
 	var/pressure_fall_factor = pressure_difference / (20 * GRAVITY_CONSTANT)
 	steam_velocity = sqrt(2 * pressure_fall_factor * GRAVITY_CONSTANT)
 
-	kin_total = (total_mass_flow * steam_velocity**2) * 0.5 * expansion_ratio
-	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
-	rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
-
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
-	air_all.merge(air1.remove_ratio(feeder_valve_openage))
-	//air_all.add_thermal_energy(kin_total * -1)
+	pump_passive(air1, air_all, total_mass_flow)
+	var/old_temperature = air_all.temperature
 	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
+	var/temperature_delta = old_temperature - air_all.temperature
+
+
+	kin_total = (total_mass_flow * steam_velocity**2) * 0.5
+	kin_total += air_all.total_moles * air_all.heat_capacity() * temperature_delta * volume_ratio
+	kin_total *= expansion_ratio
+
+	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
+	rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
 
 	calculate_vibration(air_all)
 	air2.merge(air_all)

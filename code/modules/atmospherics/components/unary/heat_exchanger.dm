@@ -161,7 +161,7 @@
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam
 	heating = TRUE
-	wanted_temperature = 590
+	wanted_temperature = 741
 	initial_volume = 400
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_steam

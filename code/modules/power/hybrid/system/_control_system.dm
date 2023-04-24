@@ -3,9 +3,9 @@
 #define MAX_REACTOR_TUNGSTEN_TEMP 3800
 #define OPERATIONAL_REACTOR_TUNGSTEN_TEMP 3550
 
-#define OPTIMAL_REACTOR_STEAM_TEMP 700
+#define OPTIMAL_REACTOR_STEAM_TEMP 738
 #define MAX_REACTOR_STEAM_TEMP 800
-#define OPTIMAL_TURBINE_MASS_FLOW 500
+#define OPTIMAL_TURBINE_MASS_FLOW 2500
 
 /datum/reactor_control_system
 	var/name = "'Velocity' Control System"
@@ -166,7 +166,7 @@
 	if(get_meter_temperature("REACTOR-M CHAMBER") < 3500 && get_meter_mass("REACTOR-M CHAMBER") > 10)
 		do_message("REACTOR HEATEXCHANGER TEMPERATURE LOW", 2)
 		pressure_temperature_should_alarm = TRUE
-	if(get_meter_temperature("T-M-TURB IN") > 630)
+	if(get_meter_temperature("T-M-TURB IN") > 780)
 		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
 	if(get_meter_temperature("T-M-TURB EX") > 380)
@@ -218,12 +218,12 @@
 	else
 		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 
-	if(get_meter_temperature("T-M-TURB IN") < 550)
+	if(get_meter_temperature("T-M-TURB IN") < 690)
 		turbine1.feeder_valve_openage = 0
 		turbine2.feeder_valve_openage = 0
 		return
 
-	if(get_meter_temperature("T-M-TURB IN") < 570)
+	if(get_meter_temperature("T-M-TURB IN") < 710)
 		turbine1.feeder_valve_openage = max(0, turbine1.feeder_valve_openage - 0.1)
 		turbine2.feeder_valve_openage = max(0, turbine2.feeder_valve_openage - 0.1)
 
