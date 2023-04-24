@@ -18,7 +18,7 @@
 	var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
 	if(!current_valve)
 		return
-	var/setting = input(user, "Which setting do you want to change?", "Setting change") in list("Status", "Pressure Setting", "Direction")
+	var/setting = input(user, "Which setting do you want to change?", "Setting change") in list("Status", "Pressure Setting", "Direction", "Cancel")
 	switch(setting)
 		if("Status")
 			var/newinput = input(user, "Select status", "Status selection") in list("On", "Off")

@@ -7,8 +7,8 @@
 
 /obj/machinery/reactor_button/pump/do_action(mob/user)
 	. = ..()
-	var/mode = input(user, "Select a new pump operation mode", "pump mode") in list(REACTOR_PUMP_MODE_OFF, REACTOR_PUMP_MODE_IDLE, REACTOR_PUMP_MODE_THROTTLE, REACTOR_PUMP_MODE_MAX)
-	if(!mode)
+	var/mode = input(user, "Select a new pump operation mode", "pump mode") in list(REACTOR_PUMP_MODE_OFF, REACTOR_PUMP_MODE_IDLE, REACTOR_PUMP_MODE_THROTTLE, REACTOR_PUMP_MODE_MAX, "Cancel")
+	if(!mode || mode == "Cancel")
 		return
 	var/obj/machinery/atmospherics/binary/pump/adv/P = rcontrol.reactor_pumps[id]
 	P.update_mode(mode)
