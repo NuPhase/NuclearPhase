@@ -656,6 +656,7 @@ var/global/const/MAX_VIEW = 41
 	var/list/communication_hotkeys = list()
 	for(var/key in D.key_bindings)
 		for(var/kb_name in D.key_bindings[key])
+			key = sanitize_keybinding_for_skin(key)
 			switch(kb_name)
 				if("north")
 					movement_keys[key] = NORTH
@@ -676,6 +677,9 @@ var/global/const/MAX_VIEW = 41
 					communication_hotkeys += key
 				if("say")
 					winset(src, "default-\ref[key]", "parent=default;name=[key];command=.say")
+					communication_hotkeys += key
+				if("whisper")
+					winset(src, "default-\ref[key]", "parent=default;name=[key];command=.whisper")
 					communication_hotkeys += key
 				if("me")
 					winset(src, "default-\ref[key]", "parent=default;name=[key];command=.me")
