@@ -2,9 +2,6 @@
 	name = "pump switch"
 	icon_state = "switch3-off"
 
-/obj/machinery/reactor_button/pump/handle_icon()
-	return
-
 /obj/machinery/reactor_button/pump/Initialize()
 	. = ..()
 	name = "[id] MODE"
