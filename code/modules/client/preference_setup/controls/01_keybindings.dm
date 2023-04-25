@@ -258,7 +258,7 @@
 	var/ctrl = findtext(keybinding, "Ctrl")
 	var/shift = findtext(keybinding, "Shift")
 	var/len = alt ? length("alt") : (ctrl ? length("ctrl") : (shift ? length("shift") : 0))
-	if(!len || length(keybinding))
+	if(!len || length(keybinding) == len)
 		return keybinding
 	var/parsed_text = "[copytext(keybinding, 1, 1 + len)]+[copytext(keybinding, len + 1)]"
 	return parsed_text
