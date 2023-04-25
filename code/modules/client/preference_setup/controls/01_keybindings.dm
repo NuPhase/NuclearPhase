@@ -251,3 +251,14 @@
 		if(!length(base_bindings[key]))
 			base_bindings -= key
 	return base_bindings
+
+/// BYOND skin does not recognize binds in format "ShiftT", so i reformat it to "Shift+T", so BYOND can use it.
+/proc/sanitize_keybinding_for_skin(keybinding)
+	var/alt = findtext(keybinding, "Alt")
+	var/ctrl = findtext(keybinding, "Ctrl")
+	var/shift = findtext(keybinding, "Shift")
+	var/len = alt ? length("alt") : (ctrl ? length("ctrl") : (shift ? length("shift") : 0))
+	if(!len || length(keybinding) == len)
+		return keybinding
+	var/parsed_text = "[copytext(keybinding, 1, 1 + len)]+[copytext(keybinding, len + 1)]"
+	return parsed_text
