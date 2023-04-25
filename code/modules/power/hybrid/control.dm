@@ -39,7 +39,7 @@
 	name = "button"
 	anchored = 1
 	icon = 'icons/obj/power.dmi'
-	icon_state = "light0-flat"
+	icon_state = "button1"
 	layer = ABOVE_WINDOW_LAYER
 	power_channel = ENVIRON
 	idle_power_usage = 30 //control systems eat a lot
@@ -53,6 +53,13 @@
 	'sound/machines/button3.ogg',
 	'sound/machines/button4.ogg'
 )
+
+/obj/machinery/reactor_button/protected
+	desc = "This button has a protective cover on."
+	icon_state = "button1-cover_closed"
+	var/cover_status = FALSE //is open
+	var/covered_state = "button1-cover_closed"
+	var/uncovered_state = "button1-cover_open"
 
 /obj/machinery/reactor_button/Initialize()
 	. = ..()
@@ -80,10 +87,10 @@
 
 /obj/machinery/reactor_button/rswitch
 	name = "switch"
-	icon_state = "light3"
+	icon_state = "switch1-off"
 	var/state = 0 //0-1
-	var/on_icon_state = "light3-on"
-	var/off_icon_state = "light3"
+	var/on_icon_state = "switch1-on"
+	var/off_icon_state = "switch1-off"
 	action_sounds = list(
 	'sound/machines/switch1.ogg',
 	'sound/machines/switch2.ogg',
@@ -91,10 +98,13 @@
 	'sound/machines/switch4.ogg'
 )
 
-/obj/machinery/reactor_button/rswitch/do_action(mob/user)
+/obj/machinery/reactor_button/rswitch/proc/handle_icon()
 	if(state)
 		state = 0
 		icon_state = off_icon_state
 	else
 		state = 1
 		icon_state = on_icon_state
+
+/obj/machinery/reactor_button/rswitch/do_action(mob/user)
+	handle_icon()

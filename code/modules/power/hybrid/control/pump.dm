@@ -1,5 +1,9 @@
 /obj/machinery/reactor_button/pump
 	name = "pump switch"
+	icon_state = "switch3-off"
+
+/obj/machinery/reactor_button/pump/handle_icon()
+	return
 
 /obj/machinery/reactor_button/pump/Initialize()
 	. = ..()
@@ -10,6 +14,13 @@
 	var/mode = input(user, "Select a new pump operation mode", "pump mode") in list(REACTOR_PUMP_MODE_OFF, REACTOR_PUMP_MODE_IDLE, REACTOR_PUMP_MODE_THROTTLE, REACTOR_PUMP_MODE_MAX, "Cancel")
 	if(!mode || mode == "Cancel")
 		return
+	switch(mode)
+		if(REACTOR_PUMP_MODE_OFF)
+			icon_state = "switch3-off"
+		if(REACTOR_PUMP_MODE_IDLE)
+			icon_state = "switch3-on"
+		if(REACTOR_PUMP_MODE_MAX)
+			icon_state = "switch3-max"
 	var/obj/machinery/atmospherics/binary/pump/adv/P = rcontrol.reactor_pumps[id]
 	P.update_mode(mode)
 

@@ -1,15 +1,27 @@
 /obj/machinery/reactor_button/rswitch/valve/pump1v1
 	name = "F-CP 1V-IN"
 	id = "F-CP 1V-IN"
+	icon_state = "switch2-off"
+	off_icon_state = "switch2-off"
+	on_icon_state = "switch2-on"
 /obj/machinery/reactor_button/rswitch/valve/pump1v2
 	name = "F-CP 1V-EX"
 	id = "F-CP 1V-EX"
+	icon_state = "switch2-off"
+	off_icon_state = "switch2-off"
+	on_icon_state = "switch2-on"
 /obj/machinery/reactor_button/rswitch/valve/pump2v1
 	name = "F-CP 2V-IN"
 	id = "F-CP 2V-IN"
+	icon_state = "switch2-off"
+	off_icon_state = "switch2-off"
+	on_icon_state = "switch2-on"
 /obj/machinery/reactor_button/rswitch/valve/pump2v2
 	name = "F-CP 2V-EX"
 	id = "F-CP 2V-EX"
+	icon_state = "switch2-off"
+	off_icon_state = "switch2-off"
+	on_icon_state = "switch2-on"
 
 /obj/machinery/reactor_button/rswitch/valve/pump3v1
 	name = "T-CP 1V-IN"
@@ -92,12 +104,12 @@
 	else
 		gen.connected = FALSE
 
-/obj/machinery/reactor_button/turbine_braking
+/obj/machinery/reactor_button/protected/turbine_braking
 	name = "TURB BRAKES"
 	desc = "Turbine braking system switch. It's impossible to switch them off from here, you'll have to do it manually."
 	cooldown = 30 SECONDS
 
-/obj/machinery/reactor_button/turbine_braking/do_action(mob/user)
+/obj/machinery/reactor_button/protected/turbine_braking/do_action(mob/user)
 	..()
 	rcontrol.turbine1.braking = TRUE
 	rcontrol.turbine2.braking = TRUE

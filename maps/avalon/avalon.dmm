@@ -4747,7 +4747,7 @@
 /obj/structure/table/steel_reinforced,
 /obj/machinery/reactor_button/pump/feedmakeup{
 	dir = 4;
-	pixel_x = 9;
+	pixel_x = 8;
 	pixel_y = 3
 	},
 /obj/machinery/reactor_button/regvalve/feeddrain{
@@ -4756,18 +4756,18 @@
 	},
 /obj/machinery/reactor_button/rswitch/valve/feedmakeup{
 	pixel_x = 8;
-	pixel_y = -6
+	pixel_y = -3
 	},
 /obj/machinery/reactor_button/regvalve/heatexchangervin{
 	pixel_x = 1;
-	pixel_y = 2
+	pixel_y = 3
 	},
 /obj/machinery/reactor_button/presvalve/tprescontrol{
 	pixel_x = 1;
 	pixel_y = 18
 	},
 /obj/machinery/reactor_button/rswitch/valve/turbinebypass{
-	pixel_y = -6;
+	pixel_y = -3;
 	pixel_x = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -5926,7 +5926,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/spiderling_remains,
 /obj/structure/reagent_dispensers/watertank/newtank{
-	initial_reagent_types = list(/decl/material/liquid/water/dirty1 = 1)
+	initial_reagent_types = list(/decl/material/liquid/water/dirty1=1)
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
@@ -7151,11 +7151,11 @@
 /obj/machinery/reactor_button/acknowledge_alarms{
 	dir = 4;
 	pixel_y = 13;
-	pixel_x = 12
+	pixel_x = 9
 	},
 /obj/machinery/reactor_button/mute_alarms{
 	dir = 4;
-	pixel_x = 12
+	pixel_x = 9
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -7350,19 +7350,20 @@
 	},
 /obj/machinery/reactor_button/pump/tcp1{
 	dir = 4;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -1
 	},
 /obj/machinery/reactor_button/pump/tcp2{
 	dir = 4;
-	pixel_y = 7;
+	pixel_y = 6;
 	pixel_x = 2
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump4v2{
-	pixel_x = 7;
+	pixel_x = 8;
 	pixel_y = 6
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump3v2{
-	pixel_x = 7;
+	pixel_x = 8;
 	pixel_y = -1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -8992,15 +8993,16 @@
 	},
 /obj/machinery/reactor_button/lasomode{
 	pixel_x = 5;
-	pixel_y = 12
+	pixel_y = 13
 	},
 /obj/machinery/reactor_button/rswitch/lasarm{
-	pixel_y = 12;
-	pixel_x = 10
+	pixel_y = 11;
+	pixel_x = 10;
+	layer = 3.061
 	},
 /obj/machinery/reactor_button/lasnmode{
-	pixel_x = 15;
-	pixel_y = 12
+	pixel_x = 14;
+	pixel_y = 13
 	},
 /obj/machinery/reactor_button/rswitch/lasprime{
 	pixel_y = 7;
@@ -9008,6 +9010,10 @@
 	},
 /obj/machinery/reactor_button/rswitch/preheat{
 	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/machinery/reactor_button/protected/turbine_braking{
+	pixel_x = 3;
 	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -9848,7 +9854,7 @@
 "jDf" = (
 /obj/effect/floor_decal/asteroid,
 /obj/structure/reagent_dispensers/watertank/newtank{
-	initial_reagent_types = list(/decl/material/liquid/water/dirty1 = 1)
+	initial_reagent_types = list(/decl/material/liquid/water/dirty1=1)
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
@@ -10344,7 +10350,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/chems/glass/bottle/ampoule/morphine{
-	initial_reagents = list(/decl/material/liquid/opium/morphine = 3)
+	initial_reagents = list(/decl/material/liquid/opium/morphine=3)
 	},
 /turf/simulated/floor/plating,
 /area/space)
@@ -18076,13 +18082,13 @@
 /obj/machinery/reactor_button/rswitch/lighting/superstructure{
 	pixel_y = 12
 	},
-/obj/machinery/reactor_button/mode_of_operation{
-	pixel_x = 6;
-	pixel_y = -2
+/obj/machinery/reactor_button/protected/scram{
+	pixel_x = -10;
+	pixel_y = -3
 	},
-/obj/machinery/reactor_button/scram{
-	pixel_x = -6;
-	pixel_y = -2
+/obj/machinery/reactor_button/protected/mode_of_operation{
+	pixel_x = 8;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -22776,7 +22782,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/chems/glass/bottle/ampoule/heroin/dirty{
-	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine/dirty = 2)
+	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine/dirty=2)
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/comms)

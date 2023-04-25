@@ -1,6 +1,8 @@
 /obj/machinery/reactor_button/rswitch/valve
 	name = "valve switch"
-	icon_state = "light3"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"
 
 /obj/machinery/reactor_button/rswitch/valve/do_action()
 	. = ..()
@@ -11,7 +13,9 @@
 		V.open()
 /obj/machinery/reactor_button/presvalve
 	name = "pressure valve regulator"
-	icon_state = "light3"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"
 
 /obj/machinery/reactor_button/presvalve/do_action(mob/user)
 	..()
@@ -39,7 +43,9 @@
 
 /obj/machinery/reactor_button/regvalve
 	name = "adjustable valve regulator"
-	icon_state = "light3"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"
 
 /obj/machinery/reactor_button/regvalve/do_action(mob/user)
 	..()
@@ -59,12 +65,21 @@
 	name = "TURB 1V-IN"
 	id = "turbine1"
 	icon_state = "light3"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"
 
 /obj/machinery/reactor_button/turbine_valve/second
 	name = "TURB 2V-IN"
 	id = "turbine2"
 	icon_state = "light3"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"
 
 /obj/machinery/reactor_button/rswitch/valve/turbinebypass
 	name = "TURB V-BYPASS"
 	id = "TURB V-BYPASS"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"
