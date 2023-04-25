@@ -656,7 +656,7 @@ var/global/const/MAX_VIEW = 41
 	var/list/communication_hotkeys = list()
 	for(var/key in D.key_bindings)
 		for(var/kb_name in D.key_bindings[key])
-			key = sanitize_keybinding_for_skin(key)
+			var/skin_key = sanitize_keybinding_for_skin(key)
 			switch(kb_name)
 				if("north")
 					movement_keys[key] = NORTH
@@ -667,22 +667,22 @@ var/global/const/MAX_VIEW = 41
 				if("south")
 					movement_keys[key] = SOUTH
 				if("admin_help")
-					winset(src, "default-\ref[key]", "parent=default;name=[key];command=adminhelp")
+					winset(src, "default-\ref[key]", "parent=default;name=[skin_key];command=adminhelp")
 					communication_hotkeys += key
 				if("ooc")
-					winset(src, "default-\ref[key]", "parent=default;name=[key];command=ooc")
+					winset(src, "default-\ref[key]", "parent=default;name=[skin_key];command=ooc")
 					communication_hotkeys += key
 				if("looc")
-					winset(src, "default-\ref[key]", "parent=default;name=[key];command=looc")
+					winset(src, "default-\ref[key]", "parent=default;name=[skin_key];command=looc")
 					communication_hotkeys += key
 				if("say")
-					winset(src, "default-\ref[key]", "parent=default;name=[key];command=.say")
+					winset(src, "default-\ref[key]", "parent=default;name=[skin_key];command=.say")
 					communication_hotkeys += key
 				if("whisper")
-					winset(src, "default-\ref[key]", "parent=default;name=[key];command=.whisper")
+					winset(src, "default-\ref[key]", "parent=default;name=[skin_key];command=.whisper")
 					communication_hotkeys += key
 				if("me")
-					winset(src, "default-\ref[key]", "parent=default;name=[key];command=.me")
+					winset(src, "default-\ref[key]", "parent=default;name=[skin_key];command=.me")
 					communication_hotkeys += key
 
 	// winget() does not work for F1 and F2
