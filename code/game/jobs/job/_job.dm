@@ -59,6 +59,8 @@
 	var/required_language
 	var/is_ghost_role = FALSE
 
+	var/only_for_whitelisted = TRUE
+
 /datum/job/New()
 
 	if(type == /datum/job && global.using_map.default_job_type == type)
@@ -382,7 +384,7 @@
 		reasons["You are jobbanned."] = TRUE
 	if(is_semi_antagonist && jobban_isbanned(caller, /decl/special_role/provocateur))
 		reasons["You are semi-antagonist banned."] = TRUE
-	if(!SSjobs.check_job_whitelist(src, caller.key))
+	if(!SSjobs.check_job_whitelist(src, caller))
 		reasons["This role requires whitelist."] = TRUE
 	if(!player_old_enough(caller))
 		reasons["Your player age is too low."] = TRUE
@@ -417,7 +419,7 @@
 		return FALSE
 	if(is_semi_antagonist && jobban_isbanned(caller, /decl/special_role/provocateur))
 		return FALSE
-	if(!SSjobs.check_job_whitelist(src, caller.key))
+	if(!SSjobs.check_job_whitelist(src, caller))
 		return 0
 	if(!player_old_enough(caller))
 		return FALSE

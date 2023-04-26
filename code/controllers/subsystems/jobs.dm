@@ -149,13 +149,13 @@ SUBSYSTEM_DEF(jobs)
 	unassigned_roundstart = list()
 
 
-/datum/controller/subsystem/jobs/proc/check_job_whitelist(var/datum/job/jb, var/ckey)
+/datum/controller/subsystem/jobs/proc/check_job_whitelist(var/datum/job/jb, var/client/C)
 	if(!jb)
 		return TRUE
-	if(!ckey)
+	if(!C)
 		return FALSE
 	var/datum/whitelist/wl = get_global_job_whitelist()
-	return wl.check_entry_assoc("[jb.type]", ckey(ckey))
+	return wl.check_entry_assoc("[jb.type]", ckey(C.ckey)) && (jb.only_for_whitelisted ? C.is_wl : TRUE)
 
 /datum/controller/subsystem/jobs/proc/get_by_title(var/rank)
 	return titles_to_datums[rank]
@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(jobs)
 			return 0
 		if(job.is_restricted(player.client.prefs))
 			return 0
-		if(!check_job_whitelist(job, player.key))
+		if(!check_job_whitelist(job, player.client))
 			return 0
 		if(job.title in mode.disabled_jobs)
 			return 0
