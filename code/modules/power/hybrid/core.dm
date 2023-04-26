@@ -111,7 +111,8 @@
 	for(var/thing in animate_targets)
 		var/atom/movable/AM = thing
 		animate(AM, color = "#ff0000", time = 60 SECONDS, easing = CUBIC_EASING)
-		animate_filter("drop_shadow", list(color = "#ff0000", size = 10, time = 60 SECONDS, easing = CUBIC_EASING))
+
+	superstructure.animate_filter("glow", list(color = "#ff0000", offset=2, size=10, time = 60 SECONDS, easing = CUBIC_EASING))
 	superstructure.set_light(5, 3, "#ff0000")
 
 /obj/machinery/power/hybrid_reactor/proc/close_blastdoors()

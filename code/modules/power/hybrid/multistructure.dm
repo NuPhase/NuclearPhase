@@ -17,6 +17,7 @@
 
 /obj/structure/reactor_superstructure/Initialize(ml, _mat, _reinf_mat)
 	. = ..()
+	add_filter("glow", 1, list(type="drop_shadow", x = 0, y = 0, offset = 0, size = 0))
 	reactor_components["superstructure"] = src
 
 /obj/structure/reactor_superstructure/proc/startsound()
