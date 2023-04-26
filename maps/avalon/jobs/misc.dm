@@ -22,6 +22,7 @@
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/explorer
+	only_for_whitelisted = FALSE
 
 /datum/job/hobo/do_spawn_special(mob/living/character, mob/new_player/new_player_mob, latejoin)
 	. = ..()
