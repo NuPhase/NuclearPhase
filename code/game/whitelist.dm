@@ -232,8 +232,8 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 	var/datum/whitelist/wl = get_global_connect_whitelist()
 	if(!wl.check_entry(ckey(key)))
 		src << link("https://discord.gg/mgV35Qw7t4")
-		message_admins(SPAN_CUMZONE("ВНИМАНИЕ, [src] не имеет вайт листа!"))
-		show_browser(src, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "window=whitelisted;size=900x480")
+		message_admins(SPAN_CUMZONE("[src] joined without a whitelist."))
+		show_browser(src, "У вас отсутствует вайтлист. Вам будет доступна только одна роль, почти не покрывающая широкий геймплей нашего сервера. Для получения доступа к остальным ролям зайдите в наш дискорд сервер(https://discord.gg/mgV35Qw7t4) и пройдите верификацию. Приятной смерти.", "window=whitelisted;size=900x480")
 	else
 		is_wl = TRUE
 	. = ..()
