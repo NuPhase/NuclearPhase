@@ -174,6 +174,7 @@ var/global/list/DIR2DEGREES = list(
 	var/obj/ignition_switch/ignition
 	var/ignition_switch_offset
 	var/obj/screen/compass/comp
+	var/turf/old_turf = null
 
 /obj/multitile_vehicle/proc/set_bound_box()
 	density = !active
@@ -244,10 +245,15 @@ var/global/list/DIR2DEGREES = list(
 		var/yvel = move_vector.y
 		var/new_step_x = round(step_x + xvel, 1)
 		var/new_step_y = round(step_y + yvel, 1)
+		old_turf = get_turf(src)
 
 		if(!Move(get_turf(src), 0, new_step_x, new_step_y))
 			move_vector.x = 0
 			move_vector.y = 0
+
+		var/turf/cur_turf = get_turf(src)
+		if(old_turf != cur_turf)
+			dir = get_cardinal_dir(old_turf, cur_turf)
 
 		if(controlling)
 			animate(controlling.client, pixel_x = round(xvel), pixel_y = round(yvel), time = 1, easing = SINE_EASING)

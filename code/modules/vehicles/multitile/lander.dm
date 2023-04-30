@@ -46,12 +46,21 @@
 	var/datum/composite_sound/cts/soundloop
 	var/datum/composite_sound/cts_interior/soundloop_interior
 
-	pixel_x = -80
-	pixel_y = -80
+	pixel_x = -100
+	pixel_y = -100
 	bound_x = -60
 	bound_y = -60
 	bound_width = 156
 	bound_height = 156
+
+	maxspeed = 48
+
+/obj/multitile_vehicle/aerial/lander/Bump(atom/A)
+	. = ..()
+	if(istype(A, /mob/living/carbon/human))
+		visible_message(SPAN_DANGER("[src] collides with [A]!"))
+		var/mob/living/carbon/human/H = A
+		H.handle_collision(src, move_vector.get_hipotynuse() / WORLD_ICON_SIZE)
 
 /obj/multitile_vehicle/aerial/lander/liftoff()
 	. = ..()
@@ -66,5 +75,32 @@
 	QDEL_NULL(soundloop_interior)
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/liftoff()
+	set name = "Takeoff"
+	set category = "CTS Control"
+	set src in oview(1)
+	if(!vehicle.active)
+		var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
+		cur_vehicle.liftoff()
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/land()
+	set name = "Land"
+	set category = "CTS Control"
+	set src in oview(1)
+	if(vehicle.active)
+		var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
+		cur_vehicle.land()
+
+/obj/structure/bed/chair/comfy/vehicle/cts/verb/methane_injection()
+	set name = "Toggle Methane Injection"
+	set category = "CTS Control"
+	set src in oview(1)
+
+/obj/structure/bed/chair/comfy/vehicle/cts/verb/sonar()
+	set name = "Toggle Sonar"
+	set category = "CTS Control"
+	set src in oview(1)
+
+/obj/structure/bed/chair/comfy/vehicle/cts/verb/window_tint()
+	set name = "Tint Windows"
+	set category = "CTS Control"
+	set src in oview(1)

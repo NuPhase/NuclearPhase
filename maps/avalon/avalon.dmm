@@ -1681,7 +1681,8 @@
 /obj/effect/decal/cleanable/ash,
 /obj/machinery/airlock_sensor{
 	pixel_y = 32;
-	id_tag = "vehicleairlockexts"
+	id_tag = "vehicleairlockexts";
+	tag = "vehicleairlockexts"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -2486,7 +2487,8 @@
 /obj/effect/overmap_edge{
 	dir = 8;
 	edge_id = "avc1";
-	teleport_to_id = "sc1"
+	teleport_to_id = "sc1";
+	vehicle_only = 1
 	},
 /turf/simulated/floor/concrete/road/surface,
 /area/surface)
@@ -2816,15 +2818,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
-"cGX" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/structure/railing/mapped{
-	dir = 8
-	},
-/turf/simulated/floor/reinforced/airless,
-/area/avalon/shelter/expeditionpreparation)
 "cIz" = (
 /obj/machinery/light{
 	dir = 4
@@ -3815,12 +3808,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	uid = "vehicleairlockext";
-	identifier = "vehicleairlockext";
-	id_tag = "vehicleairlockext";
-	gl_uid = "blastshelter"
+/obj/machinery/door/airlock/external/bolted{
+	tag = "vehicleairlockext";
+	id_tag = "vehicleairlockext"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
@@ -7383,12 +7373,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "hcS" = (
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	uid = "vehicleairlockint";
-	identifier = "vehicleairlockint";
+/obj/machinery/door/airlock/external/bolted_open{
 	id_tag = "vehicleairlockint";
-	gl_uid = "blastshelter"
+	tag = "vehicleairlockint"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
@@ -9729,7 +9716,8 @@
 /obj/machinery/airlock_sensor{
 	pixel_y = 32;
 	pixel_x = -7;
-	id_tag = "mainairlockexts"
+	id_tag = "mainairlockexts";
+	tag = "mainairlockexts"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -9742,7 +9730,8 @@
 /obj/effect/overmap_edge{
 	dir = 8;
 	edge_id = "avc2";
-	teleport_to_id = "sc2"
+	teleport_to_id = "sc2";
+	vehicle_only = 1
 	},
 /turf/simulated/floor/concrete/road/surface,
 /area/surface)
@@ -12208,7 +12197,8 @@
 /obj/effect/overmap_edge{
 	dir = 8;
 	edge_id = "avc3";
-	teleport_to_id = "sc3"
+	teleport_to_id = "sc3";
+	vehicle_only = 1
 	},
 /turf/simulated/floor/concrete/road/surface,
 /area/surface)
@@ -12605,12 +12595,9 @@
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/factory)
 "lXx" = (
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	uid = "vehicleairlockext";
-	identifier = "vehicleairlockext";
-	id_tag = "vehicleairlockext";
-	gl_uid = "blastshelter"
+/obj/machinery/door/airlock/external/bolted{
+	tag = "vehicleairlockext";
+	id_tag = "vehicleairlockext"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
@@ -253527,11 +253514,11 @@ dxE
 dNS
 gkW
 pGH
-cGX
+wyw
 ejk
 wyw
 ejk
-cGX
+wyw
 vRD
 oAh
 dNS
