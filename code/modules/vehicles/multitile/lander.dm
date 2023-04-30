@@ -34,11 +34,11 @@
 	icon = 'icons/obj/vehicle/cts.dmi'
 	icon_state = "undamaged"
 	uid = "CTS"
-	weight = 31000 //dry mass //recalculated
+	weight = 21200 //dry mass //recalculated //gotta make optimisations
 	drag_multiplier = 0.95
 	interior_template = "Lander enterior"
 
-	var/fuel_tank_volume = 7 //m3
+	var/fuel_tank_volume = 9 //m3
 	var/has_updated_navigation = FALSE
 	var/has_thrust_vanes = FALSE
 	var/has_shielding = TRUE
