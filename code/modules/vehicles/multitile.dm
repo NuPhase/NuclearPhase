@@ -40,8 +40,7 @@ var/global/list/DIR2DEGREES = list(
 	arrow.screen_loc = src.screen_loc
 
 /obj/screen/compass/proc/draw_speed_num(var/speed)
-	speed = speed*3 // must be speed/WORLD_ICON_SIZE*3,6*2*20
-	// 2 - tile is a 2x2 meters, 20 is ticks, 3,6 - convert m/s to km/h
+	speed = round(speed/WORLD_ICON_SIZE*0.5, 0.1)
 	lastspeed = speed
 	overlays.Cut()
 	if(speed > 99)
@@ -229,11 +228,13 @@ var/global/list/DIR2DEGREES = list(
 	START_PROCESSING(SSvehicles, src)
 	active = TRUE
 	set_bound_box()
+	animate(src, pixel_y = pixel_y + 8, time = 20, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/proc/land()
 	STOP_PROCESSING(SSvehicles, src)
 	active = FALSE
 	set_bound_box()
+	animate(src, pixel_y = pixel_y - 8, time = 20, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/Process()
 	spawn()
@@ -250,7 +251,6 @@ var/global/list/DIR2DEGREES = list(
 
 		if(controlling)
 			animate(controlling.client, pixel_x = round(xvel), pixel_y = round(yvel), time = 1, easing = SINE_EASING)
-
 
 /obj/multitile_vehicle/aerial/proc/process_inertia()
 	if(last_acceleration_time_x + INERTIA_DELAY <= world.time)
@@ -289,6 +289,10 @@ var/global/list/DIR2DEGREES = list(
 	. = ..()
 	if(vehicle)
 		user.forceMove(vehicle.loc)
+		if(ishuman(user) && vehicle.active)
+			var/mob/living/carbon/human/H = user
+			H.apply_fall_damage(vehicle.loc)
+			to_chat(H, SPAN_DANGER("You fall out of the [vehicle]!"))
 
 /obj/effect/interior_entrypoint/vehicle/grab_attack(var/obj/item/grab/G)
 	if(!vehicle)

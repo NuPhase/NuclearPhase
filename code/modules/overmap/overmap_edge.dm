@@ -14,6 +14,7 @@ var/global/list/overmap_edges = list()
 	var/edge_id = ""
 	var/teleport_to_id = ""
 	var/lastmove = 0
+	var/vehicle_only = FALSE
 
 /obj/effect/overmap_edge/Initialize()
 	. = ..()
@@ -34,6 +35,10 @@ var/global/list/overmap_edges = list()
 
 /obj/effect/overmap_edge/Cross(var/atom/movable/A)
 	. = ..()
+	if(vehicle_only && !istype(A, /obj/multitile_vehicle))
+		if(ismob(A))
+			to_chat(A, SPAN_NOTICE("It's too far, you'll need a vehicle to travel there."))
+		return
 	if(!teleport_to_id)
 		return
 	if(A.overmap_lastmove + OVERMAP_MOVE_DELAY > world.time)

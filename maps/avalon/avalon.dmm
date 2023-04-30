@@ -72,6 +72,7 @@
 	},
 /obj/structure/table/steel,
 /obj/random/toolbox,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
 "aea" = (
@@ -105,6 +106,13 @@
 /obj/effect/decal/cleanable/mucus,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"air" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "aiG" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
@@ -467,6 +475,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
 "aAu" = (
@@ -1668,6 +1679,10 @@
 "bGS" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/effect/decal/cleanable/ash,
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	id_tag = "vehicleairlockexts"
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "bGT" = (
@@ -2297,6 +2312,9 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "ckR" = (
@@ -2406,6 +2424,7 @@
 /obj/random/trash,
 /obj/random/trash,
 /obj/effect/floor_decal/corner/purple/border,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
 "cpo" = (
@@ -2463,6 +2482,14 @@
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
+"csU" = (
+/obj/effect/overmap_edge{
+	dir = 8;
+	edge_id = "avc1";
+	teleport_to_id = "sc1"
+	},
+/turf/simulated/floor/concrete/road/surface,
+/area/surface)
 "cti" = (
 /obj/effect/floor_decal/corner/b_green/border{
 	dir = 8
@@ -2542,6 +2569,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/breakroom)
+"cvl" = (
+/obj/structure/wall_frame/titanium,
+/obj/structure/window/reinforced/full,
+/obj/machinery/atmospherics/pipe/simple/visible,
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/garage)
 "cvP" = (
 /obj/effect/catwalk_plated,
 /obj/structure/railing/mapped{
@@ -2640,7 +2673,10 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "cyv" = (
-/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8;
+	volume = 1000
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "cyx" = (
@@ -3775,6 +3811,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/cargo/warehouse)
+"dGJ" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	dir = 8;
+	uid = "vehicleairlockext";
+	identifier = "vehicleairlockext";
+	id_tag = "vehicleairlockext";
+	gl_uid = "blastshelter"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "dHi" = (
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
@@ -4325,6 +4374,17 @@
 "eji" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/garage)
+"ejk" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "vehicleairlock_pump_out_external";
+	tag = "vehicleairlock_pump_out_external";
+	dir = 4
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/expeditionpreparation)
 "ejB" = (
 /obj/structure/stairs/long/east,
 /obj/machinery/light,
@@ -4692,6 +4752,9 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "eAE" = (
@@ -4796,6 +4859,16 @@
 /obj/random/trash,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
+"eGR" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/expeditionpreparation)
 "eGU" = (
 /obj/effect/catwalk_plated,
 /turf/simulated/open,
@@ -5273,6 +5346,14 @@
 /obj/machinery/door/blast/regular/radlock,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
+"fhi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "fig" = (
 /obj/structure/hygiene/toilet{
 	dir = 4;
@@ -5509,6 +5590,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/factory)
+"fpH" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	pixel_x = -7;
+	id_tag = "vehicleairlockints"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/garage)
 "fqn" = (
 /obj/structure/bed/chair/pew/left,
 /obj/random/clothing,
@@ -6929,6 +7021,9 @@
 /obj/effect/floor_decal/corner/brown/bordercorner{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "gQg" = (
@@ -7208,9 +7303,8 @@
 	interact_offline = 1;
 	stat_immune = 2
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
-	id_tag = "mainairlock_pump_out_internal";
-	tag = "mainairlock_pump_out_internal"
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -7288,6 +7382,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"hcS" = (
+/obj/machinery/door/blast/regular{
+	dir = 8;
+	uid = "vehicleairlockint";
+	identifier = "vehicleairlockint";
+	id_tag = "vehicleairlockint";
+	gl_uid = "blastshelter"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "hdc" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
@@ -7721,6 +7825,15 @@
 "hya" = (
 /turf/simulated/wall,
 /area/avalon/shelter/medbay)
+"hyh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "vehicleairlock_pump_out_internal";
+	tag = "vehicleairlock_pump_out_internal";
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "hyY" = (
 /obj/effect/floor_decal/exologo,
 /turf/simulated/floor/concrete/surface,
@@ -7750,6 +7863,13 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"hzE" = (
+/obj/effect/decal/cleanable/ash,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/expeditionpreparation)
 "hzJ" = (
 /obj/machinery/light/small/red{
 	dir = 8
@@ -8046,6 +8166,13 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/medbay)
+"hQy" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/expeditionpreparation)
 "hQG" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 9
@@ -9531,6 +9658,7 @@
 "jnv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/garage)
 "jnG" = (
@@ -9610,9 +9738,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "jph" = (
-/obj/structure/largecrate,
-/obj/effect/decal/cleanable/dirt,
-/turf/exterior/surface,
+/obj/effect/floor_decal/industrial/traffic/fulltile,
+/obj/effect/overmap_edge{
+	dir = 8;
+	edge_id = "avc2";
+	teleport_to_id = "sc2"
+	},
+/turf/simulated/floor/concrete/road/surface,
 /area/surface)
 "jpU" = (
 /obj/structure/inflatable/wall,
@@ -10676,6 +10808,13 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
+"kkT" = (
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/garage)
 "kkW" = (
 /turf/simulated/wall/prepainted,
 /area/avalon/shelter/brig)
@@ -11009,6 +11148,11 @@
 /obj/item/paper_bundle,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
+"kHk" = (
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/garage)
 "kHm" = (
 /obj/effect/floor_decal/corner/green/half{
 	dir = 1
@@ -11136,6 +11280,12 @@
 /obj/structure/railing/mapped,
 /turf/simulated/open,
 /area/avalon)
+"kNk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/garage)
 "kNl" = (
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/engineering)
@@ -12054,6 +12204,14 @@
 "lFN" = (
 /turf/simulated/open,
 /area/avalon/shelter/habitationdeck)
+"lFV" = (
+/obj/effect/overmap_edge{
+	dir = 8;
+	edge_id = "avc3";
+	teleport_to_id = "sc3"
+	},
+/turf/simulated/floor/concrete/road/surface,
+/area/surface)
 "lGe" = (
 /obj/structure/rack{
 	pixel_x = -20
@@ -12156,6 +12314,9 @@
 "lLa" = (
 /obj/structure/cable{
 	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
@@ -12316,6 +12477,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/corner/purple/border,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "lRW" = (
@@ -12443,9 +12607,9 @@
 "lXx" = (
 /obj/machinery/door/blast/regular{
 	dir = 8;
-	uid = "blastshelter";
-	identifier = "blastshelter";
-	id_tag = "blastshelter";
+	uid = "vehicleairlockext";
+	identifier = "vehicleairlockext";
+	id_tag = "vehicleairlockext";
 	gl_uid = "blastshelter"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -12760,7 +12924,10 @@
 	pixel_y = 32;
 	id_tag = "mainairlockchambers"
 	},
-/obj/structure/hygiene/drain,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "mainairlockp";
+	tag = "mainairlockp"
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "mqB" = (
@@ -12999,6 +13166,14 @@
 	},
 /turf/simulated/floor/concrete/surface,
 /area/surface)
+"mGs" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "mainairlock_pump_out_internal";
+	tag = "mainairlock_pump_out_internal";
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/expeditionpreparation)
 "mHg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -13293,6 +13468,9 @@
 	initial_access = list("ACCESS_RESEARCH")
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "mXa" = (
@@ -13607,6 +13785,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/cargo/warehouse)
+"njJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/navigation/delay3,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "nko" = (
 /obj/effect/floor_decal/corner/yellow/bordercorner{
 	dir = 1
@@ -14066,6 +14252,27 @@
 "nIV" = (
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
+"nJa" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/light/navigation/delay5,
+/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller{
+	pixel_y = 24;
+	cycle_to_external_air = 1;
+	id_tag = "vehicleairlock";
+	tag_interior_door = "vehicleairlockint";
+	tag_exterior_door = "vehicleairlockext";
+	tag_interior_sensor = "vehicleairlockints";
+	tag_exterior_sensor = "vehicleairlockexts";
+	tag_chamber_sensor = "vehicleairlockchambers";
+	tag_airpump = "vehicleairlockp";
+	tag = "vehicleairlock";
+	interact_offline = 1;
+	stat_immune = 2
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "nJm" = (
 /turf/simulated/wall,
 /area/avalon/shelter/brig/sergeantroom)
@@ -14532,7 +14739,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/binary/pump/on{
-	target_pressure = 2500
+	target_pressure = 500
 	},
 /obj/effect/floor_decal/corner/purple/bordercorner{
 	dir = 4
@@ -14654,6 +14861,9 @@
 /obj/effect/floor_decal/corner/purple/border,
 /obj/abstract/landmark/start{
 	name = "Scientist"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
@@ -14881,6 +15091,11 @@
 "oud" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "vehicleairlock_pump_out_internal";
+	tag = "vehicleairlock_pump_out_internal";
+	dir = 1
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "ouo" = (
@@ -15784,6 +15999,10 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
+"ppZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/garage)
 "pqh" = (
 /obj/structure/bed/roller,
 /obj/machinery/power/apc{
@@ -15928,11 +16147,11 @@
 /obj/effect/floor_decal/corner/purple/bordercorner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 4
-	},
 /obj/machinery/door/firedoor/border{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
@@ -16279,6 +16498,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
+"pMZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "vehicleairlockp";
+	tag = "vehicleairlockp";
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "pNJ" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/cyan,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -16863,10 +17091,17 @@
 /obj/structure/railing/mapped,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/factory)
+"qpC" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "qpN" = (
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "qqo" = (
@@ -16955,6 +17190,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/turbinehall)
+"qud" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/light/navigation/delay2,
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	id_tag = "vehicleairlockchambers"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "quj" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/effect/floor_decal/corner/black/border{
@@ -17015,6 +17261,9 @@
 /area/avalon/shelter/factory)
 "qyX" = (
 /obj/machinery/light/navigation/delay4,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "qza" = (
@@ -17557,9 +17806,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "qYg" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/visible,
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "qYZ" = (
@@ -17575,6 +17822,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
+"qZG" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "vehicleairlock_pump_out_internal";
+	tag = "vehicleairlock_pump_out_internal";
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "qZJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
@@ -19114,6 +19369,13 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
+"sDB" = (
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/expeditionpreparation)
 "sDF" = (
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/science)
@@ -19426,6 +19688,11 @@
 /obj/machinery/door/firedoor/border{
 	dir = 8
 	},
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	pixel_x = -7;
+	id_tag = "mainairlockints"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "sQN" = (
@@ -19639,6 +19906,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "tdU" = (
@@ -20662,6 +20932,9 @@
 	},
 /obj/effect/floor_decal/corner/purple/border,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "ubN" = (
@@ -20861,6 +21134,9 @@
 /obj/effect/floor_decal/corner/purple/border,
 /obj/abstract/landmark/start{
 	name = "Scientist"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
@@ -21176,6 +21452,14 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"uyT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8;
+	volume = 1000
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/avalon/shelter/garage)
 "uzn" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/effect/floor_decal/corner/black/border{
@@ -21571,6 +21855,15 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
+"uXr" = (
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/expeditionpreparation)
 "uYt" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/plating,
@@ -22132,6 +22425,9 @@
 /area/avalon/shelter/medbay)
 "vzB" = (
 /obj/item/wrench,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10
+	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/garage)
 "vzN" = (
@@ -23863,6 +24159,9 @@
 /area/avalon/shelter/turbinehall)
 "xgq" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "xgO" = (
@@ -24867,9 +25166,7 @@
 	icon_state = "1-8"
 	},
 /obj/effect/floor_decal/corner/purple/bordercorner,
-/obj/machinery/atmospherics/pipe/manifold/visible{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "ylm" = (
@@ -252051,8 +252348,8 @@ aUO
 bdz
 fiK
 kbY
-cVd
-hCn
+uXr
+sDB
 qpN
 qpN
 ckB
@@ -252964,8 +253261,8 @@ mRr
 ohk
 eLu
 dxE
-gkW
-gkW
+mGs
+mGs
 kPQ
 xMG
 oAh
@@ -253231,9 +253528,9 @@ dNS
 gkW
 pGH
 cGX
+ejk
 wyw
-wyw
-wyw
+ejk
 cGX
 vRD
 oAh
@@ -253361,9 +253658,9 @@ dxE
 gkW
 xsx
 gkW
-bpJ
-gkW
-suJ
+hQy
+cyv
+hzE
 oAh
 xsx
 gkW
@@ -253492,7 +253789,7 @@ xHv
 bGS
 pif
 pif
-abA
+eGR
 pif
 pif
 ade
@@ -253622,7 +253919,7 @@ xHv
 xHv
 lXx
 lXx
-lXx
+dGJ
 lXx
 lXx
 xHv
@@ -253741,7 +254038,7 @@ aUO
 cgB
 cgB
 nzy
-rcj
+kNk
 peW
 uus
 kEv
@@ -253750,7 +254047,7 @@ xQr
 hwk
 gSj
 xHv
-hvt
+qud
 fIK
 eAj
 efa
@@ -253873,16 +254170,16 @@ cgB
 rcj
 vzB
 jnv
-xQr
-kEv
+kkT
+kHk
 adU
-xQr
-too
+kkT
+ppZ
 cpe
-tyJ
-xgq
-xgq
-oud
+cvl
+uyT
+pMZ
+fhi
 oud
 wfO
 xHv
@@ -254010,10 +254307,10 @@ pry
 too
 ddn
 tyJ
-mSl
-xgq
+njJ
+pMZ
 tdd
-wfO
+qZG
 mSl
 xHv
 aUO
@@ -254141,9 +254438,9 @@ too
 rkX
 tyJ
 qyX
+pMZ
 xgq
-xgq
-wfO
+qZG
 fEU
 xHv
 aUO
@@ -254270,10 +254567,10 @@ too
 uml
 myU
 tyJ
-xgq
-xgq
-wfO
-xgq
+air
+pMZ
+qpC
+hyh
 aKS
 xHv
 aUO
@@ -254400,7 +254697,7 @@ tgj
 vJm
 xHv
 xHv
-bqf
+nJa
 npg
 xwZ
 npg
@@ -254530,11 +254827,11 @@ uEd
 uEd
 dvj
 fpe
-lXx
-lXx
-lXx
-lXx
-lXx
+hcS
+hcS
+hcS
+hcS
+hcS
 xHv
 dvj
 dvj
@@ -254919,7 +255216,7 @@ dvj
 dvj
 dvj
 dvj
-ifc
+fpH
 ifc
 pdW
 pdW
@@ -270010,7 +270307,7 @@ qGm
 kFM
 hyY
 tNw
-jph
+kpf
 hWN
 hWN
 hWN
@@ -273485,7 +273782,7 @@ svj
 svj
 svj
 svj
-svj
+csU
 "}
 (121,1,15) = {"
 aaG
@@ -273615,7 +273912,7 @@ iQU
 iQU
 iQU
 iQU
-iQU
+jph
 "}
 (122,1,15) = {"
 aaG
@@ -273745,7 +274042,7 @@ svj
 svj
 svj
 svj
-svj
+lFV
 "}
 (123,1,15) = {"
 aaG
