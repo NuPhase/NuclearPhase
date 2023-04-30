@@ -14,6 +14,12 @@
 	anchored = 1
 	random_icon_states = list("cum1", "cum2", "cum3", "cum4", "cum5", "cum6", "cum7", "cum8", "cum9", "cum10", "cum11", "cum12")
 
+/obj/effect/decal/cleanable/cum/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	visible_message(SPAN_CUMZONE("[user] licks [src] from the floor."))
+	user.nutrition += 5
+	qdel(src)
+
 /obj/effect/decal/cleanable/cum/New()
 	..()
 	icon_state = pick(random_icon_states)
