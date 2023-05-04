@@ -3158,8 +3158,10 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "dbr" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
 /obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 5
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "dbu" = (
@@ -6730,15 +6732,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "gEd" = (
-/obj/machinery/atmospherics/unary/heater{
-	max_power_rating = 1000000;
-	power_rating = 1000000;
-	use_power = 1;
-	set_temperature = 1400;
-	dir = 4
+/obj/structure/railing/mapped{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/factory)
+/area/avalon)
 "gEl" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -7249,10 +7247,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
-"haS" = (
-/obj/machinery/atmospherics/unary/furnace,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/factory)
 "haV" = (
 /obj/structure/stairs/long/east,
 /obj/structure/railing/mapped,
@@ -10526,6 +10520,12 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
+"jUa" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/factory)
 "jUR" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/simulated/wall/r_titanium,
@@ -13294,7 +13294,7 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/factory)
 "mPc" = (
@@ -15212,7 +15212,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/atmos)
 "oCd" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/obj/machinery/atmospherics/unary/furnace/arc,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "oCt" = (
@@ -16807,7 +16807,9 @@
 /area/avalon/shelter/factory)
 "qbd" = (
 /obj/effect/floor_decal/industrial/warning/dust,
-/obj/structure/railing/mapped,
+/obj/structure/railing/mapped{
+	layer = 4.09
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "qbe" = (
@@ -18095,7 +18097,9 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
 	dir = 8
 	},
-/obj/structure/railing/mapped,
+/obj/structure/railing/mapped{
+	layer = 4.09
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "rlQ" = (
@@ -21524,7 +21528,9 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},
-/obj/structure/railing/mapped,
+/obj/structure/railing/mapped{
+	layer = 4.09
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "uCH" = (
@@ -22865,13 +22871,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
-"vSj" = (
-/obj/structure/railing/mapped,
-/obj/machinery/atmospherics/valve{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/factory)
 "vSK" = (
 /obj/machinery/reactor_control_node,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -37086,8 +37085,8 @@ oEX
 oEX
 pWS
 nmn
-pWS
-pWS
+nmn
+nmn
 nmn
 nmn
 nmn
@@ -37215,10 +37214,10 @@ oEX
 oEX
 oEX
 pWS
-idw
+wHk
 ruI
 ruI
-ruI
+jUa
 uCu
 nmn
 wWZ
@@ -37345,7 +37344,7 @@ oEX
 oEX
 oEX
 pWS
-jLU
+wHk
 wHk
 wHk
 wHk
@@ -37475,9 +37474,9 @@ pWS
 pWS
 pWS
 pWS
-jLU
 wHk
-haS
+wHk
+wHk
 oCd
 rlw
 hZl
@@ -37605,7 +37604,7 @@ ezm
 ezm
 ezm
 pWS
-jLU
+wHk
 wHk
 wHk
 wHk
@@ -37735,7 +37734,7 @@ ezm
 ezm
 ezm
 pWS
-aZI
+wHk
 hxp
 hxp
 hxp
@@ -37750,7 +37749,7 @@ siD
 epM
 pWS
 ovD
-gEd
+nmn
 pWS
 ezm
 ezm
@@ -37874,7 +37873,7 @@ nmn
 wWZ
 bVA
 pWS
-vSj
+mkI
 aZI
 hxp
 eQw
@@ -53728,7 +53727,7 @@ dao
 pWS
 mBQ
 dMu
-dMu
+gEd
 lMb
 mBQ
 mBQ
@@ -53857,8 +53856,8 @@ dao
 dao
 pWS
 rVa
-aHL
-aHL
+jHh
+jCb
 aHL
 aHL
 aHL
@@ -53987,8 +53986,8 @@ dao
 dao
 pWS
 aHL
-aHL
-aHL
+jHh
+jCb
 aHL
 aHL
 aHL
@@ -54117,8 +54116,8 @@ pWS
 pWS
 pWS
 aHL
-aHL
-aHL
+jHh
+jCb
 aHL
 jHh
 giV
@@ -54247,8 +54246,8 @@ ezm
 ezm
 vIb
 aHL
-aHL
-aHL
+jHh
+jCb
 aHL
 jHh
 giV
@@ -54377,8 +54376,8 @@ ezm
 ezm
 vIb
 aHL
-aHL
-aHL
+jHh
+jCb
 aHL
 aHL
 aHL

@@ -171,3 +171,7 @@ var/global/const/FALLOFF_SOUNDS = 0.5
 	set category = "OOC"
 
 	sound_to(usr, sound(null))
+
+/proc/stop_client_sounds_on_channel(asked_channel) //FORGIVE ME LORD
+	for(var/client/cur_client in clients)
+		sound_to(cur_client, sound(null, channel = asked_channel))

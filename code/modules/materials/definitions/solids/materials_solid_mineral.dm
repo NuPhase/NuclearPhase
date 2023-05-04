@@ -52,9 +52,7 @@
 	)
 	moderation_target = 1500
 	dissolves_into = list(
-		/decl/material/solid/carbon = 0.6,
-		/decl/material/liquid/plasticide = 0.2,
-		/decl/material/liquid/acetone = 0.2
+		/decl/material/solid/carbon = 1
 	)
 
 /decl/material/solid/quartz
