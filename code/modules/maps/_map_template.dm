@@ -244,7 +244,7 @@
 
 /datum/map_template/proc/discover_offset(displacer)
 	var/offset = list(0, 0)
-	for(var/path as anything in mappaths)
+	for(var/path in mappaths)
 		var/datum/map_load_metadata/M = maploader.load_map(file(path), 1, 1, 1, cropMap = FALSE, measureOnly = FALSE, no_changeturf = TRUE, clear_contents = template_flags & TEMPLATE_FLAG_CLEAR_CONTENTS)
 		for(var/atom/A as anything in M.atoms_to_initialise)
 			if(istype(A, displacer))
