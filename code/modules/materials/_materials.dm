@@ -259,8 +259,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/list/electrolysis_products
 	var/electrolysis_difficulty = 1
 
+	var/reactivity_coefficient = 0.33 //explosions, chemical reactions, etc
+
 	var/heating_point
-	var/heating_message = "begins to boil!"
+	var/heating_temperature_product = 0
+	var/heating_message = "boils!"
 	var/heating_sound = 'sound/effects/bubbles.ogg'
 	var/list/heating_products
 	var/bypass_heating_products_for_root_type

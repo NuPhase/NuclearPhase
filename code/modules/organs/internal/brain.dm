@@ -30,6 +30,12 @@
 /obj/item/organ/internal/brain/getToxLoss()
 	return 0
 
+/obj/item/organ/internal/brain/oxygen_starve(amount)
+	oxygen_deprivation = Clamp(oxygen_deprivation + amount, 0, 100)
+	if(oxygen_deprivation)
+		var/mob/living/carbon/human/H = owner
+		H.send_to_limb()
+
 /obj/item/organ/internal/brain/set_species(species_name)
 	. = ..()
 	if(species)
@@ -69,18 +75,6 @@
 		to_chat(user, "You can feel the small spark of life still left in this one.")
 	else
 		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
-
-/obj/item/organ/internal/brain/do_install(mob/living/carbon/target, affected, in_place, update_icon, detached)
-	if(!(. = ..()))
-		return
-	if(istype(owner))
-		SetName(initial(name)) //Reset the organ's name to stay coherent if we're putting it back into someone's skull
-
-/obj/item/organ/internal/brain/do_uninstall(in_place, detach, ignore_children, update_icon)
-	if(!in_place && istype(owner) && name == initial(name))
-		SetName("\the [owner.real_name]'s [initial(name)]")
-	if(!(. = ..()))
-		return
 
 /obj/item/organ/internal/brain/on_remove_effects()
 	if(istype(owner))

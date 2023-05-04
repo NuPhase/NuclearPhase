@@ -46,3 +46,49 @@
 	value = 1.2
 	fuel_value = 1.2
 	uid = "chem_hydrazine"
+
+
+
+/decl/material/liquid/pentaborane
+	name = "pentaborane"
+	lore_text = "Pentaborane is an extremely toxic, extremely flammable, corrosive substance. Its second name is 'Green Dragon' because of its flame color."
+	taste_description = "sour milk"
+	color = "#ffffff"
+	touch_met = 5
+	fuel_value = 4
+	fire_color = "#1ef002"
+	fire_alpha = 220
+	toxicity = 8
+	burn_product = /decl/material/liquid/acid/boric
+	gas_flags = XGM_GAS_FUEL
+	exoplanet_rarity = MAT_RARITY_UNCOMMON
+	uid = "pentaborane"
+	glass_name = "fiery death"
+	glass_desc = "If you see this, you are probably already engulfed in green flames."
+	value = 1.5
+	ignition_point = 305
+
+/decl/material/liquid/pentaborane/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder) //stomach temperature is enough, WE COMBUST
+	. = ..()
+	H.adjust_fire_stacks(removed * 10)
+	H.IgniteMob()
+	H.visible_message(SPAN_DANGER("Green flames rush out of [H]'s mouth!"))
+
+/decl/material/gas/diborane
+	name = "diborane"
+	lore_text = "Diborane, is the chemical compound with the formula B2H6. It is a toxic, colorless, and pyrophoric gas with a repulsively sweet odor."
+	taste_description = "repulsive sweetness"
+	color = "#ffffff"
+	touch_met = 5
+	fuel_value = 2
+	fire_color = "#cbee8a"
+	fire_alpha = 140
+	toxicity = 4
+	burn_product = /decl/material/liquid/acid/boric
+	heating_products = list(/decl/material/liquid/pentaborane = 0.7, /decl/material/solid/boron = 0.3)
+	heating_point = 470
+	gas_flags = XGM_GAS_FUEL
+	exoplanet_rarity = MAT_RARITY_UNCOMMON
+	uid = "diborane"
+	value = 1.3
+	ignition_point = 346

@@ -149,13 +149,13 @@ SUBSYSTEM_DEF(jobs)
 	unassigned_roundstart = list()
 
 
-/datum/controller/subsystem/jobs/proc/check_job_whitelist(var/datum/job/jb, var/ckey)
+/datum/controller/subsystem/jobs/proc/check_job_whitelist(var/datum/job/jb, var/client/C)
 	if(!jb)
 		return TRUE
-	if(!ckey)
+	if(!C)
 		return FALSE
 	var/datum/whitelist/wl = get_global_job_whitelist()
-	return wl.check_entry_assoc("[jb.type]", ckey(ckey))
+	return wl.check_entry_assoc("[jb.type]", ckey(C.ckey)) && (jb.only_for_whitelisted ? C.is_wl : TRUE)
 
 /datum/controller/subsystem/jobs/proc/get_by_title(var/rank)
 	return titles_to_datums[rank]
@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(jobs)
 			return 0
 		if(job.is_restricted(player.client.prefs))
 			return 0
-		if(!check_job_whitelist(job, player.key))
+		if(!check_job_whitelist(job, player.client))
 			return 0
 		if(job.title in mode.disabled_jobs)
 			return 0
@@ -600,31 +600,6 @@ SUBSYSTEM_DEF(jobs)
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	H.job = rank
-
-	if(!joined_late || job.latejoin_at_spawnpoints)
-		H.forceMove(pick(spawnpoint_office.turfs))
-		spawnpoint_office.after_join(H)
-		// Moving wheelchair if they have one
-		if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-			H.buckled.forceMove(H.loc)
-			H.buckled.set_dir(H.dir)
-
-	if(!(ASSIGNMENT_ROBOT in job.event_categories) && !(ASSIGNMENT_COMPUTER in job.event_categories)) //These guys get their emails later.
-		var/datum/computer_network/network = get_local_network_at(get_turf(H))
-		if(network)
-			network.create_account(H, H.real_name, null, H.real_name, null, TRUE)
-
-	// If they're head, give them the account info for their department
-	if(H.mind && job.head_position)
-		var/remembered_info = ""
-		var/datum/money_account/department_account = department_accounts[job.primary_department]
-
-		if(department_account)
-			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
-			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-			remembered_info += "<b>Your department's account funds are:</b> [department_account.format_value_by_currency(department_account.money)]<br>"
-
-		H.StoreMemory(remembered_info, /decl/memory_options/system)
 
 	var/alt_title = null
 	if(!H.mind)

@@ -8,14 +8,10 @@ var/global/list/survival_box_choices = list()
 	. = ..()
 	global.survival_box_choices[name] = src
 
-/decl/survival_box_option/lunchbox
-	name = "lunchbox"
-	box_type = /obj/item/storage/lunchbox/filled
+/decl/survival_box_option/medkit
+	name = "handmade medkit"
+	box_type = /obj/item/storage/firstaid/handmade
 
-/decl/survival_box_option/lunchbox/heart
-	name = "heart lunchbox"
-	box_type = /obj/item/storage/lunchbox/heart/filled
-
-/decl/survival_box_option/lunchbox/cat
-	name = "cat lunchbox"
-	box_type = /obj/item/storage/lunchbox/cat/filled
+/decl/survival_box_option/mre
+	name = "old MRE"
+	box_type = /obj/item/storage/mrebag/menu9

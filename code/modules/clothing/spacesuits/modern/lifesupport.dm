@@ -176,7 +176,9 @@
 	set category = "Life Support"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
 
 	atmosphere_uptake = !atmosphere_uptake
 	if(atmosphere_uptake)
@@ -189,7 +191,9 @@
 	set category = "Life Support"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
 
 	var/new_targ_pressure = input(usr, "Set the target pressure for \the [src].", "Pressurization target setting", target_pressure) as null|num
 	target_pressure = Clamp(new_targ_pressure, 0, 15000)
@@ -200,7 +204,9 @@
 	set category = "Life Support"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
 
 	var/list/options = list()
 	if(oxygen_tank)
@@ -236,7 +242,9 @@
 	set category = "Life Support"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
 
 	if(atmosphere_filter)
 		usr.drop_from_inventory(atmosphere_filter, src)
@@ -249,7 +257,9 @@
 	set category = "Life Support"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
 
 	if(battery)
 		usr.drop_from_inventory(battery, src)
@@ -262,7 +272,9 @@
 	set category = "Life Support"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
 
 	owner.internal_atmosphere.remove(owner.internal_atmosphere.total_moles)
 	do_support() //fill it up immediately

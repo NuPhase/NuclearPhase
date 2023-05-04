@@ -5,7 +5,7 @@
 	taste_description = "rush"
 	color = "#76319e"
 	scannable = 1
-	overdose = 20
+	overdose = 16
 	metabolism = 0.1
 	value = 1.5
 	uid = "chem_adrenaline"
@@ -29,7 +29,7 @@
 	taste_description = "sobriety"
 	color = "#1e3c7e"
 	scannable = 1
-	overdose = 20
+	overdose = 12
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_noradrenaline"
@@ -39,6 +39,7 @@
 	H.add_chemical_effect(CE_PRESSURE, volume * 10)
 	if(volume > 2)
 		ADJ_STATUS(H, STAT_ASLEEP, volume * -10)
+		H.retrieve_from_limb()
 
 /decl/material/liquid/atropine
 	name = "atropine"
@@ -63,7 +64,7 @@
 	mechanics_text = "Increases cardiac output."
 	color = "#cea82c"
 	scannable = 1
-	overdose = 20
+	overdose = 8
 	metabolism = 0.05
 	uid = "chem_dopamine"
 
@@ -79,7 +80,7 @@
 	taste_description = "oil"
 	color = "#ceb02c"
 	scannable = 1
-	overdose = 20
+	overdose = 15
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_nitroglycerin"
@@ -122,3 +123,35 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
 	heart.stability_modifiers[name] = volume * 10
+
+/decl/material/liquid/heparin
+	name = "heparin"
+	mechanics_text = "Prevents blood clots"
+	color = "#d6d6d6"
+	scannable = 1
+	overdose = 10
+	metabolism = 0.01
+	value = 1.5
+	uid = "chem_heparin"
+
+/decl/material/liquid/heparin/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
+	var/volume = REAGENT_VOLUME(holder, type)
+	H.add_chemical_effect(CE_BLOOD_THINNING, volume)
+
+/decl/material/liquid/adenosine
+	name = "adenosine"
+	color = "#d6d6d6"
+	scannable = 1
+	overdose = 10
+	metabolism = 2
+	value = 1.5
+	uid = "adenosine"
+
+/decl/material/liquid/adenosine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/volume = REAGENT_VOLUME(holder, type)
+	if(volume > 2)
+		var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+		heart.bpm_modifiers[name] = -140
+		for(var/decl/arrythmia/A in heart.arrythmias)
+			if(!A.can_be_shocked && prob(90))
+				heart.arrythmias.Remove(A)

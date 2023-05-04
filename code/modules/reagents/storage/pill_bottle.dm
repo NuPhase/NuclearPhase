@@ -19,6 +19,7 @@
 	use_to_pickup = 1
 	use_sound = 'sound/effects/storage/pillbottle.ogg'
 	material = /decl/material/solid/plastic
+	unbreakable = TRUE
 
 	var/pop_sound = 'sound/effects/peelz.ogg'
 	var/wrapper_color

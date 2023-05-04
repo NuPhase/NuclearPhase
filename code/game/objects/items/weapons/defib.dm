@@ -204,7 +204,7 @@
 	var/cooldowntime = (6 SECONDS) // How long in deciseconds until the defib is ready again after use.
 	var/chargetime = (2 SECONDS)
 	var/chargecost = 100 //units of charge
-	var/burn_damage_amt = 5
+	var/burn_damage_amt = 10
 
 	var/wielded = 0
 	var/cooldown = 0
@@ -253,15 +253,8 @@
 
 //Checks for various conditions to see if the mob is revivable
 /obj/item/shockpaddles/proc/can_defib(mob/living/carbon/human/H) //This is checked before doing the defib operation
-	if((H.species.species_flags & SPECIES_FLAG_NO_SCAN) || H.isSynthetic())
-		return "buzzes, \"Unrecogized physiology. Operation aborted.\""
-
 	if(!check_contact(H))
 		return "buzzes, \"Patient's chest is obstructed. Operation aborted.\""
-
-/obj/item/shockpaddles/proc/can_revive(mob/living/carbon/human/H) //This is checked right before attempting to revive
-	if(H.stat == DEAD)
-		return "buzzes, \"Resuscitation failed - Severe neurological decay makes recovery of patient impossible. Further attempts futile.\""
 
 /obj/item/shockpaddles/proc/check_contact(mob/living/carbon/human/H)
 	if(!combat)
@@ -333,8 +326,8 @@
 		playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
-	if(check_blood_level(H))
-		make_announcement("buzzes, \"Warning - Patient is in hypovolemic shock and may require a blood transfusion.\"", "warning") //also includes heart damage
+	//if(check_blood_level(H))
+	//	make_announcement("buzzes, \"Warning - Patient is in hypovolemic shock and may require a blood transfusion.\"", "warning") //also includes heart damage
 
 	//People may need more direct instruction
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -351,23 +344,25 @@
 		playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
-	H.visible_message("<span class='warning'>\The [H]'s body convulses a bit.</span>")
+	H.visible_message("<span class='warning'>\The [H]'s body convulses slightly.</span>")
 	playsound(get_turf(src), "bodyfall", 50, 1)
 	playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 50, 1, -1)
 	set_cooldown(cooldowntime)
 
-	error = can_revive(H)
+	error = can_defib(H)
 	if(error)
 		make_announcement(error, "warning")
 		playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
 		return
-	if(!user.skill_check(SKILL_MEDICAL, SKILL_BASIC) && !lowskill_revive(H, user))
+	if(!user.skill_check(SKILL_MEDICAL, SKILL_BASIC) && !lowskill_revive(H, user, heart))
 		return
 	H.apply_damage(burn_damage_amt, BURN, BP_CHEST)
 
 	make_announcement("pings, \"Shock delivered successfully.\"", "notice")
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
-	heart.pulse = 0
+	for(var/decl/arrythmia/A in heart.arrythmias)
+		if(A.can_be_shocked && prob(75))
+			heart.arrythmias.Remove(A)
 	var/obj/item/organ/internal/cell/potato = H.get_organ(BP_CELL, /obj/item/organ/internal/cell)
 	if(potato && potato.cell)
 		var/obj/item/cell/C = potato.cell
@@ -375,11 +370,12 @@
 
 	log_and_message_admins("used \a [src] to shock [key_name(H)].")
 
-/obj/item/shockpaddles/proc/lowskill_revive(mob/living/carbon/human/H, mob/living/user)
+/obj/item/shockpaddles/proc/lowskill_revive(mob/living/carbon/human/H, mob/living/user, obj/item/organ/internal/heart/heart)
 	if(prob(60))
 		playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 100, 1, -1)
 		H.electrocute_act(burn_damage_amt*4, src, def_zone = BP_CHEST)
 		user.visible_message("<span class='warning'><i>The paddles were misaligned! \The [user] shocks [H] with \the [src]!</i></span>", "<span class='warning'>The paddles were misaligned! You shock [H] with \the [src]!</span>")
+		heart.pulse = 0
 		return 0
 	if(prob(50))
 		playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 100, 1, -1)

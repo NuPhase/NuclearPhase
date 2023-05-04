@@ -125,14 +125,14 @@ var/global/list/sparring_attack_cache = list()
 		C.leave_evidence(user)
 
 /decl/natural_attack/proc/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
-	var/msg = "\The [user] [pick(attack_verb)] \the [target]"
+	var/msg = "<span class='combatbold'>\The [user]</span> <span class='combat'>[pick(attack_verb)]</span> <span class='combatbold'>\the [target]</span>"
 	var/obj/item/organ/external/affecting = istype(target) && zone && GET_EXTERNAL_ORGAN(target, zone)
 	if(affecting)
-		msg = "[msg] in the [affecting.name]"
+		msg = "<span class='combat'>[msg] in the [affecting.name]</span>"
 	if(islist(attack_noun) && length(attack_noun))
-		msg = "[msg] with their [pick(attack_noun)]"
+		msg = "<span class='combat'>[msg] with their [pick(attack_noun)]</span>"
 	if(msg)
-		user.visible_message(SPAN_DANGER("[msg]!"))
+		user.visible_message(msg)
 		playsound(user.loc, attack_sound, 25, 1, -1)
 
 /decl/natural_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)

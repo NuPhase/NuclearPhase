@@ -109,3 +109,11 @@
 /obj/item/chems/ivbag/saline/Initialize()
 	. = ..()
 	reagents.add_reagent(/decl/material/liquid/nanoblood/saline, volume)
+
+/obj/item/chems/ivbag/electrolytes
+	name = "electrolytes infusion pack"
+	volume = 120
+
+/obj/item/chems/ivbag/electrolytes/Initialize()
+	. = ..()
+	reagents.add_reagent(/decl/material/liquid/electrolytes, volume)

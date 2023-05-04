@@ -88,3 +88,6 @@
 	else if(istype(A, /obj/item/ammo_magazine/pistol/cryogenic))
 		fire_delay = 10
 		to_chat(user, SPAN_NOTICE("This technology isn't trusted around here, the barrel might overheat... It packs a punch, though."))
+
+/obj/item/gun/projectile/pistol/military_service/loadout
+	magazine_type = /obj/item/ammo_magazine/pistol/oneround

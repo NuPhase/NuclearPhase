@@ -53,10 +53,6 @@
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
-	// This is not an ideal place for this but it will do for now.
-	if(wearing_rig && wearing_rig.offline)
-		wearing_rig = null
-
 	..()
 
 	if(life_tick%30==15)
@@ -70,6 +66,7 @@
 		handle_changeling()
 
 		//Organs and blood
+		handle_nutrition()
 		process_hemodynamics()
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)

@@ -18,6 +18,7 @@
 	var/created = 0
 	var/amount = 1             // number of wounds of this type
 	var/germ_level = 0         // amount of germs in the wound
+	var/germ_attaining_speed = 1 //amount of germs created per tick
 	var/obj/item/organ/external/parent_organ	// the organ the wound is on, if on an organ
 
 	/*  These are defined by the wound type and should not be changed */
@@ -220,3 +221,9 @@
 
 /datum/wound/proc/is_surgical()
 	return 0
+
+/datum/wound/proc/germ_attaining_speed()
+	.  = germ_attaining_speed
+	. *= is_treated() ? 0.6 : 1
+	. *= salved		  ? 0.6 : 1
+	. *= disinfected  ? 0.4 : 1

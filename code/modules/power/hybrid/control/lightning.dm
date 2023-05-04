@@ -1,5 +1,8 @@
 /obj/machinery/reactor_button/rswitch/lighting
 	cooldown = 50
+	icon_state = "switch2-off"
+	off_icon_state = "switch2-off"
+	on_icon_state = "switch2-on"
 
 /obj/machinery/reactor_button/rswitch/lighting/do_action()
 	. = ..()

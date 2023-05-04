@@ -19,7 +19,7 @@
 	/// Whether the mob is performing cpr or not.
 	var/performing_cpr = FALSE
 	var/lastpuke = 0
-	var/nutrition = 400
+	var/nutrition = 250
 	var/hydration = 400
 
 	var/obj/item/tank/internal = null//Human/Monkey

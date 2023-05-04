@@ -246,6 +246,8 @@ var/global/list/additional_antag_types = list()
 
 	spawnpoint_office = new
 	spawnpoint_office.Initialize()
+	spawnpoint_limb = new
+	spawnpoint_limb.Initialize()
 
 	refresh_event_modifiers()
 
@@ -377,6 +379,9 @@ var/global/list/additional_antag_types = list()
 			if(M.stat != DEAD)
 				var/area/A = get_area(M)
 				if(istype(A, /area/skyscraper))
+					ghosts++
+					continue
+				if(istype(A, /area/limb))
 					ghosts++
 					continue
 				surviving_total++

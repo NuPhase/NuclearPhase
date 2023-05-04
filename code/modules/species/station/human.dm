@@ -35,6 +35,8 @@
 		/decl/emote/exertion/synthetic/creak
 	)
 
+	gluttonous = MOB_SIZE_TINY
+
 /decl/species/human/get_root_species_name(var/mob/living/carbon/human/H)
 	return SPECIES_HUMAN
 

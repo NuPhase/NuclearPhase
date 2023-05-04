@@ -16,6 +16,11 @@
 	name = "say"
 	full_name = "IC Say"
 
+/datum/keybinding/client/communication/whisper
+	hotkey_keys = list("ShiftT")
+	name = "whisper"
+	full_name = "IC Whisper"
+
 /datum/keybinding/client/communication/me
 	hotkey_keys = list("M", "F4")
 	name = "me"

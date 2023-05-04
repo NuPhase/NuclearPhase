@@ -73,11 +73,21 @@ h1.alert, h2.alert		{color: #000000;}
 .moderate				{color: #cc0000;}
 .disarm					{color: #990000;}
 .passive				{color: #660000;}
+.combat {
+    color: #fd5b5b;
+}
+
+.combatbold {
+    color: #fd5b5b;
+    font-weight: bold;
+	font-size: 102%;
+    text-shadow: 0px 0px 2px rgba(255, 0, 0, 0.4);
+}
 
 .italic				{font-style: italic;}
 .bold					{font-weight: bold;}
 .danger					{color: #ff0000; font-weight: bold;}
-.bigdanger					{color: #ff0000; font-weight: bold; font-size: 115%;}
+.bigdanger				{color: #ff0000; font-weight: bold; font-size: 115%;}
 .warning				{color: #ff0000; font-style: italic;}
 .bigwarning				{color: #ff0000; font-style: italic; font-size: 115%;}
 .boldannounce			{color: #ff0000; font-weight: bold;}

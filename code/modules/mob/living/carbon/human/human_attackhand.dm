@@ -25,7 +25,7 @@
 			. |= limb.unarmed_attacks
 
 /mob/living/carbon/human/default_help_interaction(mob/user)
-	if(user != src && ishuman(user) && (is_asystole() || (status_flags & FAKEDEATH) || failed_last_breath) && !on_fire && !(user.zone_sel.selecting == BP_R_ARM || user.zone_sel.selecting == BP_L_ARM))
+	if(user != src && ishuman(user) && incapacitated() || failed_last_breath && !on_fire && !(user.zone_sel.selecting == BP_R_ARM || user.zone_sel.selecting == BP_L_ARM))
 		if (performing_cpr)
 			performing_cpr = FALSE
 		else
@@ -133,40 +133,40 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 			hit_zone = ran_zone(hit_zone, target = src)
 		if(prob(15) && hit_zone != BP_CHEST) // Missed!
 			if(!src.lying)
-				attack_message = "\The [H] attempted to strike \the [src], but missed!"
+				attack_message = "<span class='combat'>\The [H] attempted to strike \the [src], but missed!</span>"
 			else
 				var/decl/pronouns/G = get_pronouns()
-				attack_message = "\The [H] attempted to strike \the [src], but [G.he] rolled out of the way!"
+				attack_message = "<span class='combat'>\The [H] attempted to strike \the [src], but [G.he] rolled out of the way!</span>"
 				src.set_dir(pick(global.cardinal))
 			miss_type = 1
 
 	if(!miss_type && block)
-		attack_message = "[H] went for [src]'s [affecting.name] but was blocked!"
+		attack_message = "<span class='combat'>[H] went for [src]'s [affecting.name] but was blocked!</span>"
 		miss_type = 2
 
 	H.do_attack_animation(src)
-	if(H.msuit && H.msuit.lifesupportsystem.propulsion_status == SUIT_PROPULSION_READY)
+	if(H.msuit && H.msuit.lifesupportsystem.propulsion_status == SUIT_PROPULSION_READY && incapacitated())
 		var/datum/gas_mixture/gm = H.msuit.lifesupportsystem.activate_propulsion(SUIT_PROPULSION_ATTACK_PERCENT)
 		if(gm.temperature > 400)
-			attack_message = "[H] activates their suit propulsion system right before [src]'s [affecting.name] and burns it severely!"
+			attack_message = "<span class='combatbold'>[H]</span> <span class='combat'>activates their suit propulsion system right before [src]'s [affecting.name] and burns it severely!</span>"
 			rand_damage += gm.temperature * 0.01 //TODO: CALCULATE THIS
 		else
-			attack_message = "[H] activates their suit propulsion system right before [src]'s [affecting.name]!"
+			attack_message = "<span class='combatbold'>[H]</span> <span class='combat'>activates their suit propulsion system right before [src]'s [affecting.name]!</span>"
 		if(hit_zone == BP_L_LEG || hit_zone == BP_R_LEG)
 			H.apply_effect(3, WEAKEN)
-			visible_message("<span class='danger'>[H] loses balance and [pick("falls", "drops")] down to the ground!</span>")
+			visible_message("<span class='combat'>[H] loses balance and [pick("falls", "drops")] down to the ground!</span>")
 		else
 			var/turf/T = get_step(get_turf(H), get_dir(get_turf(src), get_turf(H)))
 			if(!T.density)
 				step(H, T)
-				H.visible_message("<span class='danger'>[pick("[H] was sent flying backward!", "[H] staggers back from the flow!")]</span>")
+				H.visible_message("<span class='combat'>[pick("[H] was sent flying backward!", "[H] staggers back from the flow!")]</span>")
 			if(prob(50))
 				H.set_dir(global.reverse_dir[H.dir])
 			apply_effect(rand_damage * 0.4, WEAKEN)
 	if(!attack_message)
 		attack.show_attack(H, src, hit_zone, rand_damage)
 	else
-		H.visible_message(SPAN_DANGER("[attack_message]"))
+		H.visible_message(attack_message)
 
 	playsound(loc, ((miss_type) ? (miss_type == 1 ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), 25, 1, -1)
 	admin_attack_log(H, src, "[miss_type ? (miss_type == 1 ? "Has missed" : "Was blocked by") : "Has [pick(attack.attack_verb)]"] their victim.", "[miss_type ? (miss_type == 1 ? "Missed" : "Blocked") : "[pick(attack.attack_verb)]"] their attacker", "[miss_type ? (miss_type == 1 ? "has missed" : "was blocked by") : "has [pick(attack.attack_verb)]"]")
@@ -208,7 +208,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		return
 
 	//Keeps doing CPR unless cancelled, or the target recovers
-	if(!(performing_cpr && H.Adjacent(src) && (is_asystole() || (status_flags & FAKEDEATH) || failed_last_breath)))
+	if(!(performing_cpr && H.Adjacent(src) || failed_last_breath))
 		performing_cpr = FALSE
 		to_chat(H, SPAN_NOTICE("You stop performing CPR on \the [src]."))
 		return
@@ -239,16 +239,15 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 	animate(src, pixel_y = starting_pixel_y + 4, time = 2)
 	animate(src, pixel_y = starting_pixel_y, time = 2)
 
+	if(prob(5 + 5 * (SKILL_EXPERT - pumping_skill)))
+		var/obj/item/organ/external/chest = GET_EXTERNAL_ORGAN(src, BP_CHEST)
+		if(chest)
+			chest.fracture()
+	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
+	if(heart)
+		heart.external_pump = 4 * pumping_skill
+
 	if(is_asystole())
-		if(prob(5 + 5 * (SKILL_EXPERT - pumping_skill)))
-			var/obj/item/organ/external/chest = GET_EXTERNAL_ORGAN(src, BP_CHEST)
-			if(chest)
-				chest.fracture()
-
-		var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-		if(heart)
-			heart.external_pump = 4 * pumping_skill
-
 		var/resuscitation_chance = 5 + pumping_skill - (heart.oxygen_deprivation * 0.05)
 		if(stat != DEAD && prob(resuscitation_chance))
 			resuscitate()
@@ -290,12 +289,12 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		if(!L)
 			return
 
-		var/datum/gas_mixture/breath = H.get_breath_from_environment()
-		var/fail = L.handle_breath(breath, 1)
-		if(!fail)
-			if(!L.is_bruised())
-				losebreath = 0
-			to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
+			var/datum/gas_mixture/breath = H.get_breath_from_environment()
+			var/fail = L.handle_breath(breath, 1)
+			if(!fail)
+				if(!L.is_bruised())
+					losebreath = 0
+				to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
 
 	// Again.
 	start_compressions(H, FALSE, cpr_mode)

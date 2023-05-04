@@ -25,7 +25,3 @@
 #define WOUND_TYPE_DEEP "deep" //Won't stop bleeding if bandaged.
 #define WOUND_TYPE_BANDAGEABLE "bandageable" //Can be bandaged
 #define WOUND_TYPE_STITCHABLE "sticheable" //Should be stitched
-
-#define HEART_PATTERN_NORMAL "Sinus rhythm"
-#define HEART_PATTERN_ASYSTOLE "Asystole"
-#define HEART_PATTERN_XENOMORPH "Chaotic rhythm"

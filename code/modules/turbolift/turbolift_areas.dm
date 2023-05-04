@@ -39,3 +39,22 @@
 /area/turbolift/avalon/main/a14
 	lift_floor_label = "Sector A"
 	lift_floor_name = "Surface, Communications"
+
+/area/turbolift/avalon/medbay
+	name = "Medbay Elevator"
+
+/area/turbolift/avalon/medbay/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Surgery, Morgue, Patient Ward"
+/area/turbolift/avalon/medbay/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Intensive Care, Storage, Break Room"
+
+/area/turbolift/avalon/factory
+	name = "Manufacturing Elevator"
+/area/turbolift/avalon/factory/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Production Halls"
+/area/turbolift/avalon/factory/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Break Room, Changing Room"

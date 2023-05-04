@@ -55,6 +55,15 @@
 		return PROCESS_KILL
 	connected.add_mcv = Interpolate(connected.add_mcv, set_mcv, 0.2)
 
+	if(!connected.has_chemical_effect(CE_BLOOD_THINNING)) //blood clotting
+		var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(connected, BP_HEART)
+		if(H)
+			H.stability_modifiers["ABCS clotting"] = set_mcv * 0.005 * -1
+	connected.adjustToxLoss(0.01)
+	connected.adjust_immunity(-1)
+	if(prob(0.1)) //spontaneus blood vessel damage
+		connected.take_overall_damage(15)
+
 /obj/machinery/blood_circulator/handle_mouse_drop(atom/over, mob/user)
 	if(connected)
 		disconnect(FALSE)

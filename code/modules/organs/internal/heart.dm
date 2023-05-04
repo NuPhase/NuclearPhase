@@ -21,43 +21,66 @@
 	var/list/cardiac_output_modifiers = list()
 	var/list/bpm_modifiers = list()
 	var/list/stability_modifiers = list()
-	var/current_pattern = HEART_PATTERN_NORMAL
+	var/last_arrythmia_appearance //world time
 
 /obj/item/organ/internal/heart/open
 	open = 1
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
-		cardiac_output_modifiers.Cut()
-		stability_modifiers.Cut()
 		calculate_instability()
+		apply_instability()
 		get_modifiers()
 		handle_pulse()
 		bpm_modifiers.Cut()
+		cardiac_output_modifiers.Cut()
+		stability_modifiers.Cut()
 		if(pulse)
 			handle_heartbeat()
-			if(pulse > 120 && prob(1))
+			if(pulse > 160 && prob(1))
 				take_internal_damage(0.5)
-			if(pulse > 160 && prob(5))
+			if(pulse > 220 && prob(5))
 				take_internal_damage(0.5)
 		handle_blood()
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
 	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 100
-	bpm_modifiers["shock"] = owner.shock_stage
+	bpm_modifiers["shock"] = owner.shock_stage * 0.3
+	for(var/decl/arrythmia/A in arrythmias)
+		bpm_modifiers[A.name] = A.get_pulse_mod()
+		cardiac_output_modifiers[A.name] = A.cardiac_output_mod
 
 /obj/item/organ/internal/heart/proc/calculate_instability()
 	var/ninstability = 0
+
 	if(owner.get_blood_perfusion() < 0.5)
 		ninstability += 20
-	if(pulse > 200)
+	if(pulse > 250)
 		ninstability += 20
 	if(cardiac_output < 0.5)
 		ninstability += 20
+	if(owner.tpvr > 280)
+		ninstability += 20
+
+	ninstability += damage * 0.3
 	ninstability += oxygen_deprivation * 0.1
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
 	instability = max(Interpolate(instability, ninstability, 0.1), 0)
+
+/obj/item/organ/internal/heart/proc/apply_instability()
+	if(instability > 10)
+		for(var/req_A in subtypesof(/decl/arrythmia))
+			var/decl/arrythmia/A = GET_DECL(req_A)
+			if(A.can_appear(src) && A.required_instability < instability && prob(5))
+				A.on_spawn(owner)
+				LAZYDISTINCTADD(arrythmias, A)
+				last_arrythmia_appearance = world.time
+				break
+		for(var/decl/arrythmia/A in arrythmias)
+			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) > world.time && prob(10))
+				LAZYDISTINCTADD(arrythmias, GET_DECL(A.evolves_into))
+				arrythmias -= A
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
 	if(BP_IS_PROSTHETIC(src))
@@ -71,7 +94,7 @@
 
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers)
 
-	//If heart is stopped, it isn't going to restart itself randomly.
+/*	//If heart is stopped, it isn't going to restart itself randomly.
 	if(pulse == 0)
 		return
 	else //and if it's beating, let's see if it should
@@ -82,7 +105,7 @@
 			pulse = PULSE_NONE
 			current_pattern = HEART_PATTERN_ASYSTOLE
 			return
-
+*/
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= BPM_AUDIBLE_HEARTRATE || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
@@ -147,6 +170,8 @@
 
 		blood_max *= pulse / 60
 
+		blood_max += GET_CHEMICAL_EFFECT(owner, CE_BLOOD_THINNING) * 0.5
+
 		if(GET_CHEMICAL_EFFECT(owner, CE_STABLE))
 			blood_max *= 0.8
 
@@ -187,7 +212,7 @@
 		return "no pulse"
 
 	var/pulsesound = "normal"
-	if(is_bruised())
+	if(arrythmias.len)
 		pulsesound = "irregular"
 
 	switch(pulse)
@@ -209,6 +234,15 @@
 	. = ..()
 	if(!BP_IS_PROSTHETIC(src))
 		pulse = PULSE_NORM
-		current_pattern = HEART_PATTERN_NORMAL
+		arrythmias.Cut()
 	else
 		pulse = PULSE_NONE
+
+/obj/item/organ/internal/heart/proc/get_rhythm_fluffy()
+	var/list/rhythmes = list()
+	for(var/decl/arrythmia/A in arrythmias)
+		rhythmes += A.name
+	if(rhythmes.len)
+		return english_list(rhythmes)
+	else
+		return "Normal Rhythm"

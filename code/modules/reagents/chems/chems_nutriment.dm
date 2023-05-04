@@ -50,7 +50,7 @@
 	if(M.HasTrait(/decl/trait/metabolically_inert))
 		return
 
-	M.heal_organ_damage(0.5 * removed, 0) //what
+	M.heal_organ_damage(0.1 * removed, 0) //what
 	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 
 /decl/material/liquid/nutriment/proc/adjust_nutrition(var/mob/living/carbon/M, var/removed)
@@ -116,7 +116,7 @@
 	name = "honey"
 	lore_text = "A golden yellow syrup, loaded with sugary sweetness."
 	taste_description = "sweetness"
-	nutriment_factor = 10
+	nutriment_factor = 20
 	color = "#ffff00"
 	fruit_descriptor = "rich"
 	uid = "chem_nutriment_honey"
@@ -125,7 +125,7 @@
 	name = "flour"
 	lore_text = "This is what you rub all over yourself to pretend to be a ghost."
 	taste_description = "chalky wheat"
-	nutriment_factor = 1
+	nutriment_factor = 5
 	color = "#ffffff"
 	slipperiness = -1
 	uid = "chem_nutriment_flour"
@@ -138,7 +138,7 @@
 	name = "batter"
 	lore_text = "A gooey mixture of eggs and flour, a base for turning wheat into food."
 	taste_description = "blandness"
-	nutriment_factor = 3
+	nutriment_factor = 8
 	color = "#ffd592"
 	slipperiness = -1
 	exoplanet_rarity = MAT_RARITY_NOWHERE
@@ -160,7 +160,7 @@
 	lore_text = "A bitter powder made by grinding coffee beans."
 	taste_description = "bitterness"
 	taste_mult = 1.3
-	nutriment_factor = 1
+	nutriment_factor = 2
 	color = "#482000"
 	fruit_descriptor = "bitter"
 	uid = "chem_nutriment_coffeepowder"
@@ -180,7 +180,7 @@
 	lore_text = "A dark, tart powder made from black tea leaves."
 	taste_description = "tartness"
 	taste_mult = 1.3
-	nutriment_factor = 1
+	nutriment_factor = 2
 	color = "#101000"
 	uid = "chem_nutriment_teapowder"
 
@@ -193,7 +193,7 @@
 	lore_text = "A fatty, bitter paste made from coco beans."
 	taste_description = "bitterness"
 	taste_mult = 1.3
-	nutriment_factor = 5
+	nutriment_factor = 15
 	color = "#302000"
 	fruit_descriptor = "bitter"
 	uid = "chem_nutriment_cocoa"
@@ -202,7 +202,7 @@
 	name = "juice concentrate"
 	lore_text = "Dehydrated, powdered juice of some kind."
 	taste_mult = 1.3
-	nutriment_factor = 1
+	nutriment_factor = 5
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nutriment_juice"
 
@@ -243,7 +243,7 @@
 	lore_text = "A salty sauce made from the soy plant."
 	taste_description = "umami"
 	taste_mult = 1.1
-	nutriment_factor = 2
+	nutriment_factor = 5
 	color = "#792300"
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nutriment_soysauce"
@@ -252,7 +252,7 @@
 	name = "ketchup"
 	lore_text = "Ketchup, catsup, whatever. It's tomato paste."
 	taste_description = "ketchup"
-	nutriment_factor = 5
+	nutriment_factor = 10
 	color = "#731008"
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nutriment_ketchup"
@@ -278,7 +278,7 @@
 	name = "garlic sauce"
 	lore_text = "Garlic sauce, perfect for spicing up a plate of garlic."
 	taste_description = "garlic"
-	nutriment_factor = 4
+	nutriment_factor = 8
 	color = "#d8c045"
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nutriment_garlicsauce"
@@ -288,7 +288,7 @@
 	lore_text = "Enjoy the great taste of nothing."
 	taste_description = "rice"
 	taste_mult = 0.4
-	nutriment_factor = 1
+	nutriment_factor = 5
 	color = "#ffffff"
 	uid = "chem_nutriment_rice"
 
@@ -297,7 +297,7 @@
 	lore_text = "Green tea over rice. How rustic!"
 	taste_description = "green tea and rice"
 	taste_mult = 0.4
-	nutriment_factor = 1
+	nutriment_factor = 6
 	color = "#f1ffdb"
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nutriment_chazuke"
@@ -307,7 +307,7 @@
 	lore_text = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
 	taste_description = "cherry"
 	taste_mult = 1.3
-	nutriment_factor = 1
+	nutriment_factor = 8
 	color = "#801e28"
 	fruit_descriptor = "sweet"
 	uid = "chem_nutriment_cherryjelly"
@@ -317,7 +317,7 @@
 	lore_text = "An oil derived from various types of corn."
 	taste_description = "slime"
 	taste_mult = 0.1
-	nutriment_factor = 20
+	nutriment_factor = 30
 	color = "#302000"
 	slipperiness = 8
 	uid = "chem_nutriment_cornoil"
@@ -326,7 +326,7 @@
 	name = "sprinkles"
 	lore_text = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
 	taste_description = "childhood whimsy"
-	nutriment_factor = 1
+	nutriment_factor = 2
 	color = "#ff00ff"
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nutriment_sprinkles"
@@ -359,6 +359,6 @@
 	lore_text = "A mixture of egg yolk with lemon juice or vinegar. Usually put on bland food to make it more edible."
 	taste_description = "mayo"
 	color = "#efede8"
-	taste_mult = 2
+	taste_mult = 8
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_nutriment_mayonnaise"

@@ -162,7 +162,7 @@
 	safe_pressure_min *= 1 + rand(1,4) * damage/max_damage
 	if(ruptured)
 		if(!chest_tube)
-			safe_pressure_min *= 2 //one lung collapsed
+			safe_pressure_min *= 1.6 //one lung collapsed
 		else
 			safe_pressure_min *= 1.2 //helps a little
 

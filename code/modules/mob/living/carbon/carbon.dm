@@ -26,7 +26,7 @@
 	return ..()
 
 /mob/living/carbon/rejuvenate()
-	set_nutrition(400)
+	set_nutrition(250)
 	set_hydration(400)
 	..()
 
@@ -189,6 +189,9 @@
 				ADJ_STATUS(src, STAT_PARA, -3)
 				ADJ_STATUS(src, STAT_STUN, -3)
 				ADJ_STATUS(src, STAT_WEAK, -3)
+				if(ishuman(src))
+					var/mob/living/carbon/human/NH = src
+					NH.retrieve_from_limb()
 
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 

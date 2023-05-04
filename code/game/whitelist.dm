@@ -81,12 +81,12 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 
 			datalist += ckey(text)
 
-			log_admin(SPAN_INFO("[usr] added new entry to [src]!"))
+			message_admins(SPAN_INFO("[usr] added new entry to [src]!"))
 
 		else if(href_list["data"])
 			if(alert(usr, "Are you sure you want to delete it?", href_list["data"], "Yes, remove that already", "No, thanks...") == "Yes, remove that already")
 				datalist -= href_list["data"]
-				log_admin(SPAN_INFO("[usr] removed key from [src]!"))
+				message_admins(SPAN_INFO("[usr] removed key from [src]!"))
 
 	else if(href_list["assoclist"])
 		if(href_list["addnewkey"])
@@ -96,7 +96,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 
 			check_and_place_if_list_dosnt_have_entry(assoclist, text)
 
-			log_admin(SPAN_INFO("[usr] added new key to [src]!"))
+			message_admins(SPAN_INFO("[usr] added new key to [src]!"))
 
 		else if(href_list["addnewval"])
 			var/key = href_list["key"]
@@ -110,7 +110,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 			check_and_place_if_list_dosnt_have_entry(assoclist, key)
 			assoclist[key] += ckey(text)
 
-			log_admin(SPAN_INFO("[usr] added new value to [src]!"))
+			message_admins(SPAN_INFO("[usr] added new value to [src]!"))
 		else if(href_list["value"])
 			var/key = href_list["key"]
 			if(!key)
@@ -118,7 +118,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 
 			if(alert(usr, "Are you sure you want to delete it?", href_list["data"], "Yes, remove that already", "No, thanks...") == "Yes, remove that already")
 				assoclist[key] -= href_list["data"]
-				log_admin(SPAN_INFO("[usr] removed value from [src]!"))
+				message_admins(SPAN_INFO("[usr] removed value from [src]!"))
 
 		else if(href_list["key"])
 			var/key = href_list["data"]
@@ -127,7 +127,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 					if(alert(usr, "Are you sure about to delete a key and all values?", key, "Yes", "No...") == "No")
 						return
 					assoclist -= key
-					log_admin(SPAN_INFO("[usr] deleted key from [src]!"))
+					message_admins(SPAN_INFO("[usr] deleted key from [src]!"))
 				if("Rename key")
 					var/text = input(usr, "Enter new name of key...", "Whitelist") as text|null
 					if(!text)
@@ -136,7 +136,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 					assoclist -= key
 					check_and_place_if_list_dosnt_have_entry(assoclist, text)
 					assoclist[text] = old_values
-					log_admin(SPAN_INFO("[usr] renamed key in [src]!"))
+					message_admins(SPAN_INFO("[usr] renamed key in [src]!"))
 
 				if("Close")
 					return
@@ -219,6 +219,9 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 			choosen.panels["\ref[src]"] = popup
 			popup.open()
 
+/client
+	var/is_wl = FALSE
+
 /client/Topic(href, href_list, hsrc)
 	. = ..()
 	if(href_list["close"] && istype(hsrc, /datum/whitelist))
@@ -229,7 +232,9 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 	var/datum/whitelist/wl = get_global_connect_whitelist()
 	if(!wl.check_entry(ckey(key)))
 		src << link("https://discord.gg/mgV35Qw7t4")
-		qdel(src)
-
+		message_admins(SPAN_CUMZONE("[src] joined without a whitelist."))
+		show_browser(src, "У вас отсутствует вайтлист. Вам будет доступна только одна роль, почти не покрывающая широкий геймплей нашего сервера. Для получения доступа к остальным ролям зайдите в наш дискорд сервер(https://discord.gg/mgV35Qw7t4) и пройдите верификацию. Приятной смерти.", "window=whitelisted;size=900x480")
+	else
+		is_wl = TRUE
 	. = ..()
 

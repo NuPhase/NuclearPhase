@@ -24,11 +24,13 @@
 	var/atom/holder = null //for chemistry
 	var/net_flow_mass = 0 //kg/s, updated from networks
 
-/datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = 0, _group_multiplier = 1)
+/datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = 0, _group_multiplier = 1, initial_gas = null)
 	volume = _volume
 	available_volume = volume
 	temperature = _temperature
 	group_multiplier = _group_multiplier
+	if(initial_gas)
+		gas = initial_gas
 	update_values()
 
 /datum/gas_mixture/proc/get_gas(gasid)

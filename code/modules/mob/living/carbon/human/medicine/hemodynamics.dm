@@ -6,8 +6,8 @@
 	var/meanpressure = 100
 	var/mcv = 3900 //Minute Circulation Volume
 	var/tpvr = 0 //Total Peripherial Vascular Resistance
-	var/max_oxygen_capacity = 100
-	var/oxygen_amount = 100
+	var/max_oxygen_capacity = 120
+	var/oxygen_amount = 120
 	var/add_mcv = 0
 
 /mob/living/carbon/human/proc/get_blood_volume_hemo()

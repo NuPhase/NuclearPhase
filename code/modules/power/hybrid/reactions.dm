@@ -10,7 +10,7 @@
 	first_reactant = /decl/material/gas/hydrogen
 	second_reactant = /decl/material/gas/hydrogen
 	product = /decl/material/gas/helium
-	mean_energy = 360000000000
+	mean_energy = 3600000000
 	minimum_temperature = 110 MEGAKELVIN
 	free_neutron_moles = 200
 

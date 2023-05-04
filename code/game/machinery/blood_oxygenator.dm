@@ -66,3 +66,7 @@
 		return PROCESS_KILL
 	connected.add_mcv = Interpolate(connected.add_mcv, set_mcv, 0.2)
 	connected.oxygen_amount = Interpolate(connected.oxygen_amount, connected.max_oxygen_capacity, 0.2)
+	var/obj/item/organ/internal/brain/B = GET_INTERNAL_ORGAN(connected, BP_BRAIN)
+	B.take_internal_damage(0.01)
+	var/obj/item/organ/external/head/head = GET_EXTERNAL_ORGAN(connected, BP_HEAD)
+	head.germ_level += 1

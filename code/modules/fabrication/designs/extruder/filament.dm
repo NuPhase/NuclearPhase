@@ -17,3 +17,13 @@
 	name = "Aluminium Filament"
 	input_material = /decl/material/solid/metal/aluminium
 	output_item = /obj/item/stack/material/filament/aluminium/ten
+
+/decl/extruder_recipe/filament/fiberglass
+	name = "Fiberglass Filament"
+	input_material = /decl/material/solid/fiberglass
+	output_item = /obj/item/stack/material/filament/fiberglass/ten
+
+/decl/extruder_recipe/filament/inconel
+	name = "Inconel Filament"
+	input_material = /decl/material/solid/metal/inconel
+	output_item = /obj/item/stack/material/filament/inconel/ten

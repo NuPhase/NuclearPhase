@@ -53,6 +53,9 @@
 	var/tmp/obj/abstract/weather_system/weather
 	var/tmp/is_outside = OUTSIDE_AREA
 
+	var/signal_block_coef = 0
+
+
 /turf/Initialize(mapload, ...)
 	. = null && ..()	// This weird construct is to shut up the 'parent proc not called' warning without disabling the lint for child types. We explicitly return an init hint so this won't change behavior.
 

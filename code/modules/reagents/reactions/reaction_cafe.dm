@@ -17,6 +17,15 @@
 	minimum_temperature = 0
 	mix_message = "The solution darkens to nearly black."
 
+/decl/chemical_reaction/recipe/cafe/water_purification_one
+	name = "Water Purification"
+	required_reagents = list(/decl/material/liquid/water/dirty1 = 10, /decl/material/solid/water_purifier_first = 1)
+	result = /decl/material/liquid/water
+	result_amount = 10
+	maximum_temperature = INFINITY
+	minimum_temperature = 0
+	mix_message = "The water violently hisses and suddenly turns crystal clear."
+
 /decl/chemical_reaction/recipe/cafe/tea
 	name = "Steeped Black tea"
 	result = /decl/material/liquid/drink/tea/black

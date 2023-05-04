@@ -21,14 +21,18 @@
 
 /obj/item/chems/drinks/cans/waterbottle
 	name = "bottled water"
-	desc = "Pure drinking water, imported from the Martian poles."
+	desc = "Pure drinking water, purified in a factory. Extremely safe to drink."
 	icon_state = "waterbottle"
 	center_of_mass = @"{'x':15,'y':8}"
 	material = /decl/material/solid/plastic
+	var/initial_reagent = /decl/material/liquid/water
+
+/obj/item/chems/drinks/cans/waterbottle/dirty
+	initial_reagent = /decl/material/liquid/water/dirty1
 
 /obj/item/chems/drinks/cans/waterbottle/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/water, 30)
+	reagents.add_reagent(initial_reagent, 30)
 
 /obj/item/chems/drinks/cans/waterbottle/open(mob/user)
 	playsound(loc,'sound/effects/bonebreak1.ogg', rand(10,50), 1)

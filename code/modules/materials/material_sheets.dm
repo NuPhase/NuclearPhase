@@ -353,7 +353,7 @@
 
 /obj/item/stack/material/filament
 	name = "filament"
-	desc = "A roll of 3D printing filament."
+	desc = "A roll of metal filament."
 	singular_name = "filament"
 	plural_name = "filament"
 	icon_state = "sheet-strut"
@@ -369,3 +369,9 @@
 
 /obj/item/stack/material/filament/aluminium/ten
 	material = /decl/material/solid/metal/aluminium
+
+/obj/item/stack/material/filament/fiberglass/ten
+	material = /decl/material/solid/fiberglass
+
+/obj/item/stack/material/filament/inconel/ten
+	material = /decl/material/solid/metal/inconel

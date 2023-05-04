@@ -96,3 +96,11 @@
 /decl/spawnpoint/office/Initialize()
 	. = ..()
 	turfs = global.officejoin_locations
+
+/decl/spawnpoint/limb
+	name = "Limb"
+	always_visible = FALSE
+
+/decl/spawnpoint/limb/Initialize()
+	. = ..()
+	turfs = global.limbjoin_locations

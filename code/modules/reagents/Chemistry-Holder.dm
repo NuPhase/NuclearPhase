@@ -52,6 +52,10 @@ var/global/obj/temp_reagents_holder = new
 	if(total_volume > maximum_volume)
 		remove_any(maximum_volume - total_volume)
 
+/datum/reagents/proc/get_reaction_speed_coef(var/decl/material/R)
+	. = R.reactivity_coefficient
+	return .
+
 /datum/reagents/proc/process_reactions()
 
 	var/atom/location = get_reaction_loc()
@@ -98,13 +102,14 @@ var/global/obj/temp_reagents_holder = new
 
 		// If it is, handle replacing it with the decay product.
 		if(replace_self_with)
-			var/replace_amount = REAGENT_VOLUME(src, R.type)
-			clear_reagent(R.type)
+			var/replace_amount = REAGENT_VOLUME(src, R.type) * get_reaction_speed_coef(R) + 0.1
+			remove_reagent(R.type, replace_amount)
 			for(var/product in replace_self_with)
 				add_reagent(product, replace_self_with[product] * replace_amount)
 			reaction_occured = TRUE
 
 			if(location)
+				location.temperature += R.heating_temperature_product
 				if(replace_message)
 					location.visible_message("<span class='notice'>[html_icon(location)] [replace_message]</span>")
 				if(replace_sound)

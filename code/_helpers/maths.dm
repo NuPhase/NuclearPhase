@@ -122,3 +122,94 @@
 
 /matrix/proc/get_angle()
 	return Atan2(b,a)
+
+/datum/vector2
+	var/x
+	var/y
+
+/datum/vector2/New(var/_x=0, var/_y=0)
+	x = _x
+	y = _y
+
+/datum/vector2/proc/get_angle()
+	return Atan2(x, y)
+
+/datum/vector2/proc/summ(var/datum/vector2/v)
+	x = x + v.x
+	y = y + v.y
+
+/datum/vector2/proc/sub(var/datum/vector2/v)
+	x = x - v.x
+	y = y - v.y
+
+/datum/vector2/proc/mult(var/datum/vector2/v)
+	x = x * v.x
+	y = y * v.y
+
+/datum/vector2/proc/lerp(var/target, var/weight)
+	x = Interpolate(x, target, weight)
+	y = Interpolate(y, target, weight)
+
+/datum/vector2/proc/get_hipotynuse()
+	return sqrt(x*x + y*y)
+
+/datum/vector2/proc/normalise()
+	var/hip = get_hipotynuse()
+	x = x / hip
+	y = y / hip
+
+/datum/vector2/proc/from_angle(var/degrees)
+	x = round(cos(degrees), 0.001)
+	y = round(sin(degrees), 0.001)
+
+/datum/vector2/proc/copy()
+	return new /datum/vector2(x, y)
+
+/datum/vector3
+	var/x
+	var/y
+	var/z
+
+/datum/vector3/New(var/_x=0, var/_y=0, var/_z=0)
+	x = _x
+	y = _y
+	z = _z
+
+/datum/vector3/proc/get_angle()
+	return Atan2(x, y) // я хуй знает
+
+/datum/vector3/proc/summ(var/datum/vector3/v)
+	x = x + v.x
+	y = y + v.y
+	z = z + v.z
+
+/datum/vector3/proc/sub(var/datum/vector3/v)
+	x = x - v.x
+	y = y - v.y
+	z = z - v.z
+
+/datum/vector3/proc/mult(var/datum/vector3/v)
+	x = x * v.x
+	y = y * v.y
+	z = z * v.z
+
+/datum/vector3/proc/lerp(var/target, var/weight)
+	x = Interpolate(x, target, weight)
+	y = Interpolate(y, target, weight)
+	z = Interpolate(z, target, weight)
+
+/datum/vector3/proc/get_hipotynuse()
+	return sqrt(x*x + y*y + z*z)
+
+/datum/vector3/proc/normalise()
+	var/hip = get_hipotynuse()
+	x = x / hip
+	y = y / hip
+	z = z / hip
+
+/datum/vector3/proc/from_angle(var/degrees)
+	x = round(cos(degrees), 0.001)
+	y = round(sin(degrees), 0.001)	// тоже хуй знает
+
+/datum/vector3/proc/copy()
+	return new /datum/vector3(x, y, z)

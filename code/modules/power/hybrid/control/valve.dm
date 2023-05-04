@@ -1,6 +1,8 @@
 /obj/machinery/reactor_button/rswitch/valve
 	name = "valve switch"
-	icon_state = "light3"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"
 
 /obj/machinery/reactor_button/rswitch/valve/do_action()
 	. = ..()
@@ -11,14 +13,14 @@
 		V.open()
 /obj/machinery/reactor_button/presvalve
 	name = "pressure valve regulator"
-	icon_state = "light3"
+	icon_state = "switch1-off"
 
 /obj/machinery/reactor_button/presvalve/do_action(mob/user)
 	..()
 	var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
 	if(!current_valve)
 		return
-	var/setting = input(user, "Which setting do you want to change?", "Setting change") in list("Status", "Pressure Setting", "Direction")
+	var/setting = input(user, "Which setting do you want to change?", "Setting change") in list("Status", "Pressure Setting", "Direction", "Cancel")
 	switch(setting)
 		if("Status")
 			var/newinput = input(user, "Select status", "Status selection") in list("On", "Off")
@@ -39,7 +41,7 @@
 
 /obj/machinery/reactor_button/regvalve
 	name = "adjustable valve regulator"
-	icon_state = "light3"
+	icon_state = "switch1-off"
 
 /obj/machinery/reactor_button/regvalve/do_action(mob/user)
 	..()
@@ -58,13 +60,16 @@
 /obj/machinery/reactor_button/turbine_valve/first
 	name = "TURB 1V-IN"
 	id = "turbine1"
-	icon_state = "light3"
+	icon_state = "switch1-off"
 
 /obj/machinery/reactor_button/turbine_valve/second
 	name = "TURB 2V-IN"
 	id = "turbine2"
-	icon_state = "light3"
+	icon_state = "switch1-off"
 
 /obj/machinery/reactor_button/rswitch/valve/turbinebypass
 	name = "TURB V-BYPASS"
 	id = "TURB V-BYPASS"
+	icon_state = "switch1-off"
+	off_icon_state = "switch1-off"
+	on_icon_state = "switch1-on"

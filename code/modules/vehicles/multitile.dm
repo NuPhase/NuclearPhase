@@ -1,5 +1,68 @@
+#define ui_compass "RIGHT-1:28,CENTER:100"
+#define INERTIA_DELAY 2
+
 var/global/list/interior_entrypoints = list()
 var/global/list/vehicles = list()
+
+var/global/list/DIR2DEGREES = list(
+	"[NORTH]" = 90,
+	"[SOUTH]" = -90,
+	"[EAST]" = 0,
+	"[WEST]" = 180,
+	"[NORTHEAST]" = 45,
+	"[NORTHWEST]" = 135,
+	"[SOUTHEAST]" = -45,
+	"[SOUTHWEST]" = -135,
+)
+
+/datum/vector2/lerpdelayed/proc/lerpx(target, weight)
+	x = Interpolate(x, target, weight)
+
+/datum/vector2/lerpdelayed/proc/lerpy(target, weight)
+	y = Interpolate(y, target, weight)
+
+/obj/screen/compass_arrow
+	icon = 'icons/hud/compass.dmi'
+	icon_state = "arrow"
+
+/obj/screen/compass
+	name = "compass"
+	icon = 'icons/hud/compass.dmi'
+	icon_state = "plate"
+	screen_loc = ui_compass
+	var/obj/screen/compass_arrow/arrow
+	var/lastspeed = 0
+	var/numoffset = 6
+
+/obj/screen/compass/New(loc, ...)
+	. = ..()
+	arrow = new()
+	arrow.screen_loc = src.screen_loc
+
+/obj/screen/compass/proc/draw_speed_num(var/speed)
+	speed = round(speed/WORLD_ICON_SIZE*0.5, 0.1)
+	lastspeed = speed
+	overlays.Cut()
+	if(speed > 99)
+		overlays += icon(icon, "max")
+		return
+	var/ones = speed % 10
+	var/tens = ((speed % 100) - (speed % 10)) / 10
+	var/icon/onesimg = icon(icon, "[ones]")
+	overlays += onesimg
+	var/icon/tensimg
+	if(tens)
+		tensimg = icon(icon, "[tens]")
+		tensimg.Shift(WEST, numoffset)
+		overlays += tensimg
+
+/obj/screen/compass/proc/update(var/degrees, var/maxspeed, var/speed = 0)
+	degrees = -degrees
+	var/matrix/M = matrix(between(0.4, speed/maxspeed, 1), 0, 0, 0, 1, 0)
+	M.Turn(degrees)
+	animate(arrow, transform = M, time = 1, easing = LINEAR_EASING)
+	if(speed != lastspeed)
+		draw_speed_num(speed)
 
 /obj/item/ignition_key
 	name = "key"
@@ -93,23 +156,28 @@ var/global/list/vehicles = list()
 	anchored = 1
 	light_range = 3
 	animate_movement = 1
-	var/speed_x = 0
-	var/speed_y = 0
-	var/acceleration = 1 //pixels per input
+
+	var/last_acceleration_time_x = 0
+	var/last_acceleration_time_y = 0
+	var/datum/vector2/lerpdelayed/move_vector
+
+	var/maxspeed = 24 // max vector length
+	var/acceleration = 0.3 // ppi - pixel per input
+	var/movingZ = FALSE
+
+	var/active = FALSE
+
 	var/uid
 	var/obj/effect/interior_entrypoint/vehicle/entrypoint = null
 	var/interior_template = null
 	var/mob/living/carbon/human/controlling = null
-	var/active = FALSE
-	var/movingZ = FALSE
 	var/obj/ignition_switch/ignition
 	var/ignition_switch_offset
+	var/obj/screen/compass/comp
+	var/turf/old_turf = null
 
 /obj/multitile_vehicle/proc/set_bound_box()
-	if(active)
-		density = 0
-	else
-		density = 1
+	density = !active
 
 /obj/multitile_vehicle/Initialize()
 	. = ..()
@@ -131,6 +199,13 @@ var/global/list/vehicles = list()
 		if(ignition_switch_offset)
 			ignition = new(locate(place.x-templ.width+ignition_switch_offset["x"], place.y-templ.height+ignition_switch_offset["y"], place.z))
 			ignition.vehicle = src
+			ignition.icon_rotation = 270 // насрал и мне даже не стыдно
+			ignition.pixel_x = -6
+			ignition.pixel_y = -4
+
+		comp = new(null)
+		move_vector = new()
+
 /obj/multitile_vehicle/attack_hand(mob/user)
 	. = ..()
 	if(entrypoint)
@@ -154,45 +229,50 @@ var/global/list/vehicles = list()
 	START_PROCESSING(SSvehicles, src)
 	active = TRUE
 	set_bound_box()
+	animate(src, pixel_y = pixel_y + 8, time = 20, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/proc/land()
 	STOP_PROCESSING(SSvehicles, src)
 	active = FALSE
-	speed_x = 0
-	speed_y = 0
 	set_bound_box()
+	animate(src, pixel_y = pixel_y - 8, time = 20, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/Process()
-	if(speed_x < 3 && speed_x > -3)
-		speed_x = 0
-		Move(loc, 0, 0, round(speed_y))
-	if(speed_y < 3 && speed_y > -3)
-		speed_y = 0
-		Move(loc, 0, round(speed_x), 0)
-	process_inertia()
-	var/new_step_x = step_x + round(speed_x)
-	var/new_step_y = step_y + round(speed_y)
-	var/turf/newloc
+	spawn()
+		process_inertia()
 
-	if(new_step_x > 32)
-		newloc = get_step(loc, EAST)
-	else if(new_step_x < -32)
-		newloc = get_step(loc, WEST)
-	if(new_step_y > 32)
-		newloc = get_step(loc, NORTH)
-	else if(new_step_y < -32)
-		newloc = get_step(loc, SOUTH)
-	if(!newloc)
-		newloc = get_turf(src)
-		Move(newloc, 0, new_step_x, new_step_y)
-		return
-	Move(newloc, 0, 0, 0)
-	if(controlling)
-		animate(controlling.client, pixel_x = round(speed_x), pixel_y = round(speed_y), time = 1, easing = LINEAR_EASING)
+		var/xvel = move_vector.x
+		var/yvel = move_vector.y
+		var/new_step_x = round(step_x + xvel, 1)
+		var/new_step_y = round(step_y + yvel, 1)
+		old_turf = get_turf(src)
+
+		if(!Move(get_turf(src), 0, new_step_x, new_step_y))
+			move_vector.x = 0
+			move_vector.y = 0
+
+		var/turf/cur_turf = get_turf(src)
+		if(old_turf != cur_turf)
+			dir = get_cardinal_dir(old_turf, cur_turf)
+
+		if(controlling)
+			animate(controlling.client, pixel_x = round(xvel), pixel_y = round(yvel), time = 1, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/proc/process_inertia()
-	speed_x *= drag_multiplier
-	speed_y *= drag_multiplier
+	if(last_acceleration_time_x + INERTIA_DELAY <= world.time)
+		if(abs(move_vector.x)/maxspeed < 1-drag_multiplier)
+			move_vector.x = 0
+		else
+			move_vector.lerpx(0, 1 - drag_multiplier)
+
+	if(last_acceleration_time_y + INERTIA_DELAY <= world.time)
+		if(abs(move_vector.y)/maxspeed < 1-drag_multiplier)
+			move_vector.y = 0
+		else
+			move_vector.lerpy(0, 1 - drag_multiplier)
+
+	if(controlling)
+		comp.update(move_vector.get_angle(), maxspeed, move_vector.get_hipotynuse())
 
 /obj/effect/interior_entrypoint
 	var/uid
@@ -215,6 +295,10 @@ var/global/list/vehicles = list()
 	. = ..()
 	if(vehicle)
 		user.forceMove(vehicle.loc)
+		if(ishuman(user) && vehicle.active)
+			var/mob/living/carbon/human/H = user
+			H.apply_fall_damage(vehicle.loc)
+			to_chat(H, SPAN_DANGER("You fall out of the [vehicle]!"))
 
 /obj/effect/interior_entrypoint/vehicle/grab_attack(var/obj/item/grab/G)
 	if(!vehicle)
@@ -251,6 +335,8 @@ var/global/list/vehicles = list()
 		if(vehicle.controlling.client)
 			vehicle.controlling.client.pixel_x = 0
 			vehicle.controlling.client.pixel_y = 0
+			vehicle.controlling.client.screen -= vehicle.comp
+			vehicle.controlling.client.screen -= vehicle.comp.arrow
 			vehicle.controlling.reset_view(null)
 		vehicle.controlling = null
 	else
@@ -260,6 +346,8 @@ var/global/list/vehicles = list()
 		vehicle.controlling = buckled_mob
 		if(buckled_mob && buckled_mob.client)
 			vehicle.controlling.reset_view(vehicle)
+			vehicle.controlling.client.screen += vehicle.comp
+			vehicle.controlling.client.screen += vehicle.comp.arrow
 
 /obj/structure/bed/chair/comfy/vehicle/handle_buckled_relaymove(var/datum/movement_handler/mh, var/mob/mob, var/direction, var/mover)
 	. = MOVEMENT_HANDLED
@@ -267,65 +355,43 @@ var/global/list/vehicles = list()
 		return
 	if(!mob.has_held_item_slot())
 		return // No hands to drive your vehicle? Tough luck!
+
 	//drunk driving
 	direction = mob.AdjustMovementDirection(direction, mover)
 	switch(direction)
-		if(NORTH)
-			if(vehicle.speed_y < 4)
-				vehicle.speed_y += 3
-			vehicle.speed_y += vehicle.acceleration
-		if(SOUTH)
-			if(vehicle.speed_y > -4)
-				vehicle.speed_y -= 3
-			vehicle.speed_y -= vehicle.acceleration
-		if(EAST)
-			if(vehicle.speed_x < 4)
-				vehicle.speed_x += 3
-			vehicle.speed_x += vehicle.acceleration
-		if(WEST)
-			if(vehicle.speed_x > -4)
-				vehicle.speed_x -= 3
-			vehicle.speed_x -= vehicle.acceleration
-		if(SOUTHWEST)
-			vehicle.speed_x -= vehicle.acceleration
-			vehicle.speed_y -= vehicle.acceleration
-		if(SOUTHEAST)
-			vehicle.speed_x += vehicle.acceleration
-			vehicle.speed_y -= vehicle.acceleration
-		if(NORTHWEST)
-			vehicle.speed_x -= vehicle.acceleration
-			vehicle.speed_y += vehicle.acceleration
-		if(NORTHEAST)
-			vehicle.speed_x += vehicle.acceleration
-			vehicle.speed_y += vehicle.acceleration
 		if(UP)
-			if(vehicle.movingZ)
-				to_chat(mob, SPAN_WARNING("You cant move that fast!"))
-				return
-			vehicle.movingZ = TRUE
-			vehicle.visible_message(SPAN_WARNING("[vehicle] prepares to move upwards!"))
-			src.visible_message(SPAN_WARNING("[vehicle] prepares to move upwards!"))
-			var/time = rand(1 SECOND, 5 SECONDS)
-			spawn(time)
-				var/turf/T = get_turf(vehicle.loc)
-				var/turf/target = get_step(GetAbove(T), dir)
-				if(T.CanZPass(vehicle, UP) && target.Enter(vehicle))
-					vehicle.forceMove(target)
-				vehicle.movingZ = FALSE
+			do_z_move(mob, UP)
 		if(DOWN)
-			if(vehicle.movingZ)
-				to_chat(mob, SPAN_WARNING("You cant move that fast!"))
-				return
-			vehicle.movingZ = TRUE
-			vehicle.visible_message(SPAN_WARNING("[vehicle] prepares to move downwards!"))
-			src.visible_message(SPAN_WARNING("[vehicle] prepares to move downwards!"))
-			var/time = rand(1 SECOND, 5 SECONDS)
-			spawn(time)
-				var/turf/T = get_turf(vehicle.loc)
-				var/turf/target = get_step(GetBelow(T), dir)
-				if(T.CanZPass(vehicle, DOWN) && target.Enter(vehicle))
-					vehicle.forceMove(target)
-				vehicle.movingZ = FALSE
+			do_z_move(mob, DOWN)
 
-/obj/Cross(O) // fuck that shit im out
-	return TRUE
+	var/datum/vector2/force_vector = new()
+	force_vector.from_angle(DIR2DEGREES["[direction]"])
+	vehicle.last_acceleration_time_x = round(force_vector.x, 1) ? world.time : vehicle.last_acceleration_time_x
+	vehicle.last_acceleration_time_y = round(force_vector.y, 1) ? world.time : vehicle.last_acceleration_time_y
+	force_vector.x *= vehicle.acceleration
+	force_vector.y *= vehicle.acceleration
+	force_vector.summ(vehicle.move_vector)
+	var/hip = force_vector.get_hipotynuse()
+	var/max_hip = between(-vehicle.maxspeed, hip, vehicle.maxspeed)
+	if(hip)
+		vehicle.move_vector.x = force_vector.x / hip * max_hip
+		vehicle.move_vector.y = force_vector.y / hip * max_hip
+
+
+/obj/structure/bed/chair/comfy/vehicle/proc/do_z_move(var/mob/mob, var/direction)
+	if(vehicle.movingZ)
+		to_chat(mob, SPAN_WARNING("You cant move that fast!"))
+		return
+	var/turf/T = get_turf(vehicle.loc)
+	if(!T.CanZPass(vehicle, direction))
+		to_chat(mob, SPAN_WARNING("You cant move in that direction!"))
+		return
+	var/turf/target = get_step(vehicle.loc, direction)
+	vehicle.movingZ = TRUE
+	vehicle.visible_message(SPAN_WARNING("[vehicle] prepares to maneuver!"))
+	visible_message(SPAN_WARNING("[vehicle] prepares to maneuver!"))
+	var/time = rand(1 SECOND, 3 SECONDS)
+	spawn(time)
+		if(target.Enter(vehicle))
+			vehicle.forceMove(target)
+		vehicle.movingZ = FALSE

@@ -75,10 +75,7 @@
 	startswith = list(/obj/item/clothing/mask/breath = 1,
 					/obj/item/tank/emergency/oxygen = 1,
 					/obj/item/chems/hypospray/autoinjector = 1,
-					/obj/item/stack/medical/bruise_pack = 1,
 					/obj/item/flashlight/flare/glowstick = 1,
-					/obj/item/chems/food/candy/proteinbar = 1,
-					/obj/item/oxycandle = 1,
 					/obj/item/crowbar/cheap = 1)
 
 /obj/item/storage/box/engineer
@@ -364,6 +361,14 @@
 
 	startswith = list(/obj/item/chems/hypospray/autoinjector = 7)
 
+/obj/item/storage/box/military_medkit
+	name = "personal medical support kit"
+	desc = "Contains emergency medical support items."
+	icon_state = "syringe"
+	w_class = ITEM_SIZE_SMALL
+
+	startswith = list(/obj/item/stack/medical/bruise_pack = 1, /obj/item/stack/medical/wound_filler = 1, /obj/item/stack/medical/splint = 1, /obj/item/chems/pill/painkillers = 1)
+
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
 	icon_state = "light"
@@ -434,6 +439,14 @@
 
 /obj/item/storage/box/freezer/ProcessAtomTemperature()
 	return PROCESS_KILL
+
+/obj/item/storage/box/freezer/prefilled
+	startswith = list(
+		/obj/item/organ/internal/heart = 1,
+		/obj/item/organ/internal/kidneys = 2,
+		/obj/item/organ/internal/liver = 1,
+		/obj/item/organ/internal/lungs = 1
+	)
 
 /obj/item/storage/box/checkers
 	name = "checkers box"

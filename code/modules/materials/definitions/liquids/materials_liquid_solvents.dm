@@ -28,6 +28,16 @@
 	melting_point = -30 CELSIUS
 	molar_mass = 0.036
 
+/decl/material/liquid/acid/boric
+	name = "boric acid"
+	uid = "boric_acid"
+	lore_text = "A weak acid."
+	color = "#808080"
+	solvent_power = MAT_SOLVENT_MILD
+	solvent_melt_dose = 15
+	solvent_max_damage = 5
+	value = 1.5
+
 /decl/material/liquid/acid/polyacid
 	name = "polytrinic acid"
 	uid = "liquid_polytrinic_acid"

@@ -181,6 +181,7 @@
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
 #define BP_ACETONE  "acetone reactor"
+#define BP_REACTOR  "rtg"
 
 // Robo Organs.
 #define BP_POSIBRAIN         "posibrain"
@@ -255,6 +256,7 @@
 #define CORPSE_CAN_REENTER_AND_RESPAWN 2
 
 #define SPECIES_HUMAN            "Human"
+#define SPECIES_SYNTH            " Human"
 #define SPECIES_MONKEY           "Monkey"
 #define SPECIES_ALIEN            "Humanoid"
 #define SPECIES_XENOMORPH            "Xenomorph"
@@ -284,6 +286,7 @@
 #define AURA_TYPE_LIFE   "Life"
 
 #define SPECIES_BLOOD_DEFAULT 560
+#define SPECIES_BLOOD_SYNTHETIC 120 //only an imitation of bleeding
 #define SPECIES_BLOOD_XENOMORPH 850 //larger body
 
 #define SLIME_EVOLUTION_THRESHOLD 15

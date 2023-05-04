@@ -1063,14 +1063,14 @@
 			if(L)
 				active_breaths = L.active_breathing
 		if(!nervous_system_failure() && active_breaths)
-			visible_message(SPAN_NOTICE("\The [src] jerks and gasps for breath!"))
+			visible_message(SPAN_NOTICE("\The [src] jerks a bit!"))
 		else
 			var/decl/pronouns/G = get_pronouns()
 			visible_message(SPAN_NOTICE("\The [src] twitches a bit as [G.his] [heart.name] restarts!"))
 
-		shock_stage = min(shock_stage, 100) // 120 is the point at which the heart stops.
-		heart.pulse = PULSE_NORM
-		heart.current_pattern = HEART_PATTERN_NORMAL
+		shock_stage = min(shock_stage, 40)
+		heart.pulse = rand(10, 15)
+		heart.arrythmias.Remove(GET_DECL(/decl/arrythmia/asystole))
 		heart.handle_pulse()
 		return TRUE
 
@@ -1384,3 +1384,35 @@
 		if(safety > FLASH_PROTECTION_NONE)
 			flash_strength = (flash_strength / 2)
 	. = ..()
+
+var/global/decl/spawnpoint/limb/spawnpoint_limb
+/mob/living/carbon/human/proc/send_to_limb()
+	if(limb_mob || stat == DEAD)
+		return
+	if(!client)
+		return
+	var/mob/living/carbon/human/limb/new_character
+	var/turf/spawn_turf
+	spawn_turf = pick(spawnpoint_limb.turfs)
+	new_character = new(spawn_turf)
+	new_character.forceMove(spawn_turf)
+	new_character.lastarea = get_area(spawn_turf)
+	client.prefs.copy_to(new_character)
+	new_character.dna.ready_dna(new_character)
+	new_character.sync_organ_dna()
+	new_character.force_update_limbs()
+	new_character.update_eyes()
+	new_character.refresh_visible_overlays()
+	new_character.key = key
+	new_character.limb_mob = src
+	limb_mob = new_character
+	SSjobs.equip_ghostrank(new_character, "Explorer", 0)
+
+/mob/living/carbon/human/proc/retrieve_from_limb()
+	if(!limb_mob)
+		return 0
+	if(get_blood_perfusion() < 0.5)
+		return 0
+	key = limb_mob.key
+	qdel(limb_mob)
+	limb_mob = null
