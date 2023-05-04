@@ -160,6 +160,7 @@ What is the naming convention for planes or layers?
 	// Z-Mimic-managed lighting
 	#define MIMICED_LIGHTING_LAYER      4.23
 
+	#define LANDMARK_LAYER              5
 	//FLY_LAYER                          5
 	//OBSERVER
 	#define BASE_AREA_LAYER             999
