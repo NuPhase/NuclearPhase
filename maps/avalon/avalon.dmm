@@ -1437,14 +1437,6 @@
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/engineering)
-"bvw" = (
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/visible/supply{
-	dir = 8
-	},
-/obj/effect/catwalk_plated,
-/turf/simulated/open,
-/area/avalon/shelter/upperhall)
 "bvy" = (
 /obj/effect/floor_decal/corner/black/mono,
 /obj/effect/decal/cleanable/dirt,
@@ -1610,12 +1602,6 @@
 /obj/structure/hygiene/drain,
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
-"bDN" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "bEt" = (
 /obj/machinery/door/airlock/engineering,
 /obj/structure/cable/heavy{
@@ -3010,10 +2996,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/atmos)
-"cSP" = (
-/obj/machinery/door/airlock/hatch,
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "cSX" = (
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled/white,
@@ -3842,12 +3824,6 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
-"dJb" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "dJd" = (
 /obj/effect/floor_decal/corner/red,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -4815,14 +4791,6 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/cargo)
-"eFa" = (
-/obj/machinery/door/airlock/hatch{
-	initial_access = list("ACCESS_MAINT")
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "eFE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 6
@@ -7713,13 +7681,6 @@
 "huU" = (
 /turf/exterior/wall,
 /area/avalon/shelter/engineering)
-"huV" = (
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "hve" = (
 /obj/machinery/power/apc/hyper{
 	dir = 1;
@@ -9337,15 +9298,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon)
-"iWe" = (
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "iWJ" = (
 /obj/effect/floor_decal/exologo{
 	dir = 1
@@ -12016,15 +11968,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
-"lyL" = (
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "lyP" = (
 /obj/effect/floor_decal/corner/pink{
 	dir = 9
@@ -12728,11 +12671,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "mgS" = (
-/obj/machinery/door/airlock/hatch{
-	initial_access = list("ACCESS_MAINT")
+/obj/modular_map_anchor/avalon{
+	name = "upperhall";
+	key = "upperhall"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
 "mhA" = (
@@ -13472,12 +13414,6 @@
 /obj/structure/door/plastic,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/habitationdeck)
-"mXb" = (
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "mXq" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/light/spot{
@@ -14021,13 +13957,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
-"nvY" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "nwb" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 5
@@ -17737,14 +17666,6 @@
 /obj/structure/closet/crate/large,
 /turf/simulated/floor/concrete/surface,
 /area/surface)
-"qUN" = (
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	dir = 8
-	},
-/obj/effect/catwalk_plated,
-/turf/simulated/open,
-/area/avalon/shelter/upperhall)
 "qVz" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
@@ -18382,11 +18303,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
-"rCy" = (
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "rCR" = (
 /obj/machinery/atmospherics/binary/pump/adv{
 	dir = 1;
@@ -18773,13 +18689,6 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
-"sab" = (
-/obj/machinery/door/airlock/hatch{
-	locked = 1;
-	initial_access = list("ACCESS_MAINT")
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "saB" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
@@ -20077,12 +19986,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
-"tlF" = (
-/obj/machinery/atmospherics/pipe/zpipe/up/supply{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "tlT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -21595,15 +21498,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/brig)
-"uFe" = (
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/supply{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "uFU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -22148,14 +22042,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
-"vkZ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/door/airlock/hatch{
-	initial_access = list("ACCESS_MAINT")
-	},
-/turf/simulated/floor/plating,
-/area/avalon/shelter/upperhall)
 "vlI" = (
 /obj/machinery/portable_atmospherics/canister/air{
 	volume = 16000
@@ -234285,18 +234171,18 @@ hBO
 hBO
 hBO
 hBO
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
 gGw
 gGw
 nIV
@@ -234306,7 +234192,7 @@ gGw
 gGw
 gGw
 gGw
-gGw
+bFG
 gGw
 gGw
 gGw
@@ -234415,26 +234301,26 @@ hBO
 hBO
 hBO
 hBO
-gGw
-iWe
-rCy
-rCy
-rCy
-rCy
-fTa
-qUN
-vkZ
-bvw
-huV
-eFa
-rCy
-nvY
-huV
-kjZ
-kjZ
-kjZ
-kjZ
-kjZ
+hBO
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
 mgS
 fWX
 gGw
@@ -234545,26 +234431,26 @@ hBO
 hBO
 hBO
 hBO
-gGw
-eSx
-gGw
-gGw
-gGw
-gGw
-xub
-jBp
-gGw
-xub
-jBp
-gGw
+hBO
 nIV
-xub
-jBp
-gGw
-gGw
-gGw
-gGw
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
 gGw
 eSx
 gGw
@@ -234675,22 +234561,22 @@ hBO
 hBO
 hBO
 hBO
-gGw
-uFe
-dJb
-jLF
 hBO
-jLF
-jLF
-jLF
-jLF
-jLF
-jLF
-gGw
-bFG
-gGw
-jLF
-jLF
+nIV
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
+hBO
+hBO
 hBO
 hBO
 hBO
@@ -234805,20 +234691,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-lyL
-bDN
-jLF
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-gGw
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
 hBO
 hBO
 hBO
@@ -234935,20 +234821,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
-jLF
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-gGw
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
 hBO
 hBO
 hBO
@@ -235065,20 +234951,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-gGw
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
 hBO
 hBO
 hBO
@@ -235195,20 +235081,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-gGw
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
 hBO
 hBO
 hBO
@@ -235325,20 +235211,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-gGw
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
 hBO
 hBO
 hBO
@@ -235455,20 +235341,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-gGw
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
 hBO
 hBO
 hBO
@@ -235585,20 +235471,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-gGw
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+nIV
+hBO
 hBO
 hBO
 hBO
@@ -235715,9 +235601,8 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
+hBO
+nIV
 hBO
 hBO
 hBO
@@ -235725,16 +235610,17 @@ hBO
 hBO
 hBO
 hBO
-jLF
-gGw
-bFG
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
-gGw
+hBO
+hBO
+hBO
+nIV
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
 hBO
 hBO
 hBO
@@ -235845,9 +235731,8 @@ hBO
 hBO
 hBO
 hBO
-gGw
-mXb
-gGw
+hBO
+nIV
 hBO
 hBO
 hBO
@@ -235855,16 +235740,17 @@ hBO
 hBO
 hBO
 hBO
-jLF
+hBO
+hBO
+hBO
 nIV
-nIV
-cSP
-nIV
-nIV
-nIV
-nIV
-nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
 hBO
 hBO
 hBO
@@ -235975,20 +235861,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-tlF
-gGw
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-jLF
 nIV
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
 nIV
-gGw
+hBO
 nPa
 nPa
 nPa
@@ -236105,20 +235991,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
-hBO
-jLF
 nIV
 nIV
-gGw
+nIV
+nIV
+nIV
+hBO
 nPa
 ako
 goW
@@ -236235,20 +236121,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
-sab
-gGw
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-jLF
 nIV
+hBO
+hBO
+hBO
+hBO
+hBO
+hBO
 nIV
-gGw
+hBO
+hBO
+hBO
+hBO
+hBO
 nPa
 dHi
 dHi
@@ -236365,20 +236251,20 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
+nIV
 hBO
-jLF
-jLF
-jLF
-jLF
+hBO
+hBO
+hBO
+hBO
 nPa
 taM
 dHi
@@ -236495,15 +236381,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
+hBO
+nIV
 hBO
 hBO
 hBO
@@ -236625,15 +236511,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-eVf
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
+hBO
+nIV
 hBO
 hBO
 hBO
@@ -236755,15 +236641,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
+hBO
+nIV
 hBO
 hBO
 hBO
@@ -236885,15 +236771,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
+nIV
 hBO
 hBO
 hBO
@@ -237015,15 +236901,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
+nIV
 hBO
 hBO
 hBO
@@ -237145,15 +237031,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
+nIV
 hBO
 hBO
 hBO
@@ -237275,15 +237161,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
+nIV
 hBO
 hBO
 hBO
@@ -237405,15 +237291,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
+nIV
 hBO
 hBO
 hBO
@@ -237535,15 +237421,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
 hBO
 hBO
 hBO
 hBO
 hBO
 hBO
+nIV
 hBO
 hBO
 hBO
@@ -237665,15 +237551,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 nIV
-gGw
-gGw
-gGw
-gGw
-gGw
 hBO
 hBO
+hBO
+hBO
+hBO
+hBO
+nIV
 hBO
 hBO
 hBO
@@ -237795,15 +237681,15 @@ hBO
 hBO
 hBO
 hBO
-gGw
-nIV
-nIV
-nIV
-nIV
-nIV
-gGw
 hBO
-hBO
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
+nIV
 hBO
 hBO
 hBO
@@ -237925,7 +237811,7 @@ hBO
 hBO
 hBO
 hBO
-gGw
+hBO
 uvp
 uvp
 uvp
