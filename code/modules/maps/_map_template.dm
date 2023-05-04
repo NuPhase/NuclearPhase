@@ -248,8 +248,8 @@
 		var/datum/map_load_metadata/M = maploader.load_map(file(path), 1, 1, 1, cropMap = FALSE, measureOnly = FALSE, no_changeturf = TRUE, clear_contents = template_flags & TEMPLATE_FLAG_CLEAR_CONTENTS)
 		for(var/atom/A as anything in M.atoms_to_initialise)
 			if(istype(A, displacer))
-				offset[1] += A.loc.x
-				offset[2] += A.loc.y
+				offset[1] = A.loc.x
+				offset[2] = A.loc.y
 				break
 
 	return offset
