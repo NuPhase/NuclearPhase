@@ -8,3 +8,6 @@
 #include "limb.dmm"
 
 #define USING_MAP_DATUM /datum/map/avalon
+
+/obj/modular_map_anchor/avalon
+	config_file = "strings/modular_maps/avalon.json"

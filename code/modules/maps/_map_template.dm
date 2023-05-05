@@ -148,7 +148,7 @@
 	var/initialized_areas_by_type = list()
 	for (var/mappath in mappaths)
 		var/datum/map_load_metadata/M = maploader.load_map(file(mappath), x, y, no_changeturf = no_changeturf, initialized_areas_by_type = initialized_areas_by_type)
-		if (M)
+		if(M)
 			bounds = extend_bounds_if_needed(bounds, M.bounds)
 			atoms_to_initialise += M.atoms_to_initialise
 		else
@@ -179,14 +179,14 @@
 
 	return locate(x+width, x+height, initial_z)
 
-/datum/map_template/proc/load(turf/T, centered=FALSE)
+/datum/map_template/proc/load(turf/T, centered = FALSE, clear_contents = FALSE)
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 	if(!T)
 		return
-	if(T.x+width > world.maxx)
+	if(T.x + width > world.maxx)
 		return
-	if(T.y+height > world.maxy)
+	if(T.y + height > world.maxy)
 		return
 
 	var/list/atoms_to_initialise = list()
@@ -197,9 +197,9 @@
 	global._preloader.current_map_hash = map_hash
 
 	var/initialized_areas_by_type = list()
-	for (var/mappath in mappaths)
-		var/datum/map_load_metadata/M = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, clear_contents=(template_flags & TEMPLATE_FLAG_CLEAR_CONTENTS), initialized_areas_by_type = initialized_areas_by_type)
-		if (M)
+	for(var/mappath in mappaths)
+		var/datum/map_load_metadata/M = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap = TRUE, clear_contents = clear_contents || template_flags & TEMPLATE_FLAG_CLEAR_CONTENTS, initialized_areas_by_type = initialized_areas_by_type)
+		if(M)
 			atoms_to_initialise += M.atoms_to_initialise
 		else
 			return FALSE
@@ -210,13 +210,13 @@
 	init_atoms(atoms_to_initialise)
 	init_shuttles(shuttle_state, map_hash, initialized_areas_by_type)
 	after_load(T.z)
-	if (SSlighting.initialized)
+	if(SSlighting.initialized)
 		SSlighting.InitializeTurfs(atoms_to_initialise)	// Hopefully no turfs get placed on new coords by SSatoms.
 
-	log_game("[name] loaded at at [T.x],[T.y],[T.z]")
+	log_game("[name] loaded at at [T.x], [T.y], [T.z]")
 	loaded++
 
-	return locate(T.x+width, T.y+height, T.z)
+	return locate(T.x + width, T.y + height, T.z)
 
 /datum/map_template/proc/after_load(z)
 	for(var/obj/abstract/landmark/map_load_mark/mark as anything in subtemplates_to_spawn)
@@ -241,6 +241,18 @@
 		if(corner)
 			placement = corner
 	return block(placement, locate(placement.x+width-1, placement.y+height-1, placement.z))
+
+/datum/map_template/proc/discover_offset(displacer)
+	var/offset = list(0, 0)
+	for(var/path in mappaths)
+		var/datum/map_load_metadata/M = maploader.load_map(file(path), 1, 1, 1, cropMap = FALSE, measureOnly = FALSE, no_changeturf = TRUE, clear_contents = template_flags & TEMPLATE_FLAG_CLEAR_CONTENTS)
+		for(var/atom/A as anything in M.atoms_to_initialise)
+			if(istype(A, displacer))
+				offset[1] = A.loc.x
+				offset[2] = A.loc.y
+				break
+
+	return offset
 
 //for your ever biggening badminnery kevinz000
 //? - Cyberboss
