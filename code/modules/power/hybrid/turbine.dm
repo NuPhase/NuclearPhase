@@ -79,7 +79,7 @@
 
 
 	kin_total = (total_mass_flow * steam_velocity**2) * 0.5
-	kin_total += air_all.total_moles * air_all.heat_capacity() * temperature_delta * volume_ratio
+	kin_total += air_all.heat_capacity() * temperature_delta * volume_ratio
 	kin_total *= expansion_ratio
 
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
