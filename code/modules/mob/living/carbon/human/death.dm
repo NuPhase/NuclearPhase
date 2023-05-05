@@ -45,9 +45,6 @@
 	if(SSticker.mode)
 		SSticker.mode.check_win()
 
-	if(wearing_rig)
-		wearing_rig.notify_ai("<span class='danger'>Warning: user death event. Mobility control passed to integrated intelligence system.</span>")
-
 	if(config.show_human_death_message)
 		deathmessage = species.get_death_message(src) || "seizes up and falls limp..."
 	else

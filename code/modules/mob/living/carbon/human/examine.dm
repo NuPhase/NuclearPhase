@@ -169,18 +169,13 @@
 		msg += SPAN_NOTICE("[G.He] [G.has] a [lungs.chest_tube] in their chest.")
 
 	if(is_nude() && has_penis())
-		var/mob/living/carbon/human/H = user
 		switch(potenzia)
 			if(-INFINITY to 11)
 				msg += SPAN_ERP("[G.His] dancer is small...") + "\n"
 			if(12 to 20)
 				msg += SPAN_CUMZONE("[G.His] dancer is medium.") + "\n"
-				if(H && !H.has_penis())
-					msg += SPAN_ERP("very interesting...") + "\n"
 			if(21 to INFINITY)
-				msg += SPAN_CUMZONE("[G.His] dancer is HUGE!") + "\n"
-				if(H && !H.has_penis())
-					msg += SPAN_ERP("I'm afraid to know what will happen if he enters me...") + "\n"
+				msg += SPAN_CUMZONE("[G.His] dancer is large.") + "\n"
 
 	if(!skipface)
 		if((lip_style && lip_style_name))
@@ -189,7 +184,7 @@
 		if(reagents.has_reagent(/decl/material/liquid/semen, 1))
 			msg += SPAN_ERP("[G.His] face [G.is] covered in a white liquid...") + "\n"
 
-	if(get_mood(/datum/mood/horny))
+	if(get_mood(/datum/mood/horny) && distance < 1)
 		msg += SPAN_ERP("[G.He] [G.has] a heavy, languid breath.") + "\n"
 
 	//buckled
@@ -234,12 +229,12 @@
 						to_chat(user, "<span class='deadsay'>[G.He] [G.has] a pulse!</span>")
 
 	if(fire_stacks > 0)
-		msg += "[G.He] is covered in flammable liquid!\n"
+		if(on_fire)
+			msg += "<span class='warning'>[G.He] [G.is] on fire!.</span>\n"
+		else
+			msg += "[G.He] is covered in flammable liquid!\n"
 	else if(fire_stacks < 0)
 		msg += "[G.He] [G.is] soaking wet.\n"
-
-	if(on_fire)
-		msg += "<span class='warning'>[G.He] [G.is] on fire!.</span>\n"
 
 	var/ssd_msg = species.get_ssd(src)
 	if(ssd_msg && (!should_have_organ(BP_BRAIN) || has_brain()) && stat != DEAD)
@@ -304,12 +299,9 @@
 			if(((E.status & ORGAN_BROKEN) && E.brute_dam > E.min_broken_damage) || (E.status & ORGAN_MUTATED))
 				wound_flavor_text[E.name] += "[G.His] [E.name] is dented and swollen!<br>"
 			if(E.status & ORGAN_DEAD)
-				if(BP_IS_PROSTHETIC(E) || BP_IS_CRYSTAL(E))
-					wound_flavor_text[E.name] += "[G.His] [E.name] is irrecoverably damaged!<br>"
-				else
-					wound_flavor_text[E.name] += "[G.His] [E.name] is grey and necrotic!<br>"
+				wound_flavor_text[E.name] += "[G.His] [E.name] is irrecoverably damaged!<br>"
 			else if(E.damage >= E.max_damage && E.germ_level >= INFECTION_LEVEL_TWO)
-				wound_flavor_text[E.name] += "[G.His] [E.name] is likely beyond saving, and has begun to decay!<br>"
+				wound_flavor_text[E.name] += "[G.His] [E.name] is likely beyond saving!<br>"
 
 		for(var/datum/wound/wound in E.wounds)
 			var/list/embedlist = wound.embedded_objects
