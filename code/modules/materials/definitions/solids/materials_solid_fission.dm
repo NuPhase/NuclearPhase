@@ -23,8 +23,8 @@
 		/decl/material/solid/metal/fission_byproduct = 1
 	)
 	fission_heat = 35000
-	fission_energy = 400000
-	neutron_absorption = 500
+	fission_energy = 81080107417
+	neutron_absorption = 50
 	neutron_production = 200
 
 
@@ -73,9 +73,9 @@
 		/decl/material/solid/metal/fission_byproduct = 1
 	)
 	neutron_production = 1200
-	neutron_absorption = 300
+	neutron_absorption = 30
 	fission_heat = 60000
-	fission_energy = 1200000
+	fission_energy = 83917911177
 
 /decl/material/solid/metal/plutonium/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
 	. = ..()
@@ -101,9 +101,9 @@
 		/decl/material/solid/metal/radium = 0.5,
 		/decl/material/solid/lithium = 0.5
 	)
-	neutron_absorption = 800
+	neutron_absorption = 120
 	neutron_production = 100
-	fission_energy = 400000
+	fission_energy = 4000000000
 
 /decl/material/solid/metal/fission_byproduct/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
 	. = ..()

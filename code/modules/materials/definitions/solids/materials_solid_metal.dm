@@ -53,7 +53,7 @@
 		/decl/material/solid/metal/neptunium = 1
 	)
 	neutron_production = 1000
-	neutron_absorption = 600
+	neutron_absorption = 60
 	moderation_target = 3000
 	fission_heat = 35000
 	fission_energy = 700000

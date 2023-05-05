@@ -310,7 +310,7 @@
 	boiling_point = -108 CELSIUS
 	liquid_density = 3520
 	value = 0.25
-	neutron_absorption = 15
+	neutron_absorption = 150
 	neutron_production = 1
 	fission_products = list(/decl/material/solid/caesium = 1)
 
@@ -422,7 +422,7 @@
 	absorption_products = list(
 		/decl/material/gas/hydrogen/tritium = 1
 	)
-	neutron_absorption = 5
+	neutron_absorption = 50
 	neutron_cross_section = 3
 
 /decl/material/gas/tungstenhexafluoride
@@ -434,5 +434,5 @@
 	gas_specific_heat = 100
 	melting_point = 275
 	boiling_point = 290
-	neutron_absorption = 20
+	neutron_absorption = 600
 	toxicity = 15

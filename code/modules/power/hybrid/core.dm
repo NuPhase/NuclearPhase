@@ -1,5 +1,6 @@
-#define FISSION_RATE 0.01
+#define FISSION_RATE 0.001
 #define NEUTRON_FLUX_RATE 0.05
+#define NEUTRON_MOLE_ENERGY 100000
 #define RADS_PER_NEUTRON 0.3
 #define REACTOR_POWER_MODIFIER 10
 #define WATTS_PER_KPA 0.1
@@ -65,15 +66,15 @@
 		var/decl/material/mat = GET_DECL(g)
 		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux + 0.0001
 		var/neutrons_absorbed = mat.neutron_absorption * react_amount
-		if(mat.neutron_production)
-			neutron_moles += mat.neutron_production * react_amount
+		if(mat.fission_energy)
+			neutron_moles += mat.fission_energy * react_amount / NEUTRON_MOLE_ENERGY
 			GM.adjust_gas(mat.type, react_amount * -1)
 			if(mat.fission_products)
 				for(var/fp in mat.fission_products)
-					GM.adjust_gas(fp, react_amount)
+					GM.adjust_gas(fp, react_amount*mat.fission_products[fp])
 		var/actually_absorbed = min(neutrons_absorbed, neutron_moles)
 		neutron_moles -= actually_absorbed
-		GM.add_thermal_energy(max(0, mat.fission_energy * neutrons_absorbed))
+		GM.add_thermal_energy(max(0, NEUTRON_MOLE_ENERGY * actually_absorbed))
 	neutron_flux = Interpolate(neutron_flux, Clamp(neutron_moles * NEUTRON_FLUX_RATE, 0, 1000), 0.2)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/GM)

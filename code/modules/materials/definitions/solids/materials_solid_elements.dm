@@ -12,7 +12,7 @@
 		/decl/material/solid/lithium = 0.5,
 		/decl/material/gas/helium = 0.5
 	)
-	neutron_absorption = 20
+	neutron_absorption = 200
 
 /decl/material/solid/lithium
 	name = "lithium"
