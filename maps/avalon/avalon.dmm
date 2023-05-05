@@ -628,14 +628,11 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "aHw" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
 	},
-/obj/machinery/meter{
-	uid = "HEATEXCHANGER-M IN"
-	},
 /turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/turbinehall)
+/area/avalon/shelter/reactor)
 "aHL" = (
 /turf/simulated/open,
 /area/avalon)
@@ -1030,13 +1027,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/breakroom)
 "aXt" = (
-/obj/machinery/atmospherics/binary/regulated_valve/inconel{
-	dir = 4;
-	forced_mass_flow = 5000;
-	open_to = 1
-	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -4853,10 +4848,6 @@
 	pixel_x = 8;
 	pixel_y = -3
 	},
-/obj/machinery/reactor_button/regvalve/heatexchangervin{
-	pixel_x = 1;
-	pixel_y = 3
-	},
 /obj/machinery/reactor_button/presvalve/tprescontrol{
 	pixel_x = 1;
 	pixel_y = 18
@@ -5074,9 +5065,6 @@
 "eSQ" = (
 /obj/machinery/atmospherics/pipe/cap/visible{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/cap/visible{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -6502,12 +6490,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
-"gsw" = (
-/obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 2V-EX"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/turbinehall)
 "gsN" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/lightgrey/mono,
@@ -11695,7 +11677,8 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "llV" = (
 /obj/machinery/modernsuit_storage/medical,
@@ -13859,8 +13842,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
@@ -15603,7 +15586,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 5
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "oYV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
@@ -15666,10 +15649,8 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "pct" = (
-/obj/machinery/atmospherics/binary/regulated_valve{
-	dir = 2;
-	uid = "HEATEXCHANGER V-IN";
-	name = "HEATEXCHANGER V-IN"
+/obj/machinery/atmospherics/valve/digital{
+	uid = "F-CP 1V-EX"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -20068,6 +20049,7 @@
 	d1 = 16;
 	d2 = 0
 	},
+/obj/machinery/atmospherics/pipe/cap/visible,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "toV" = (
@@ -20946,9 +20928,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/office)
 "ugQ" = (
-/obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 1V-EX"
-	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "ugV" = (
@@ -24884,9 +24864,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/factory)
 "xZY" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
+	},
+/obj/machinery/atmospherics/valve/digital{
+	uid = "F-CP 2V-EX"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -169071,7 +169053,7 @@ cMK
 toP
 nqC
 ugQ
-cfU
+pct
 dMm
 cMK
 hBO
@@ -169329,7 +169311,7 @@ eTI
 eTI
 cMK
 moQ
-dRl
+muD
 sBv
 dMm
 qOw
@@ -169463,7 +169445,7 @@ eSQ
 qjD
 qOw
 phM
-uDI
+cfU
 oYv
 lFl
 dlX
@@ -169590,10 +169572,10 @@ cMK
 cMK
 moQ
 dRl
-gsw
+ugQ
 xZY
 hQG
-cMK
+qjD
 llA
 lFl
 dlX
@@ -169722,9 +169704,9 @@ moQ
 hOA
 pfz
 qOw
-eSI
-cMK
-llA
+qjD
+qjD
+aHw
 lFl
 lFl
 lFl
@@ -170234,8 +170216,8 @@ pEx
 hzb
 dtr
 iIp
-aHw
-pct
+hzb
+dtr
 fwG
 bhI
 xba
