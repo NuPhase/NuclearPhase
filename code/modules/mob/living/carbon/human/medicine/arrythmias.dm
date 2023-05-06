@@ -10,6 +10,7 @@
 
 	var/can_be_shocked = FALSE //can it be cured with a defib
 	var/can_appear = TRUE
+	var/severity = 1
 
 	var/required_instability = 100
 
@@ -30,6 +31,7 @@
 	cardiac_output_mod = 0.95
 	required_instability = 20
 	evolves_into = /decl/arrythmia/atrial_fibrillation
+	severity = 1
 
 /decl/arrythmia/atrial_flaunt/get_pulse_mod()
 	return rand(-20, 20)
@@ -40,6 +42,7 @@
 	required_instability = 30
 	degrades_into = /decl/arrythmia/atrial_flaunt
 	can_appear = FALSE
+	severity = 2
 
 /decl/arrythmia/atrial_fibrillation/get_pulse_mod()
 	return rand(20, 70)
@@ -50,6 +53,7 @@
 	cardiac_output_mod = 0.9
 	required_instability = 15
 	evolves_into = /decl/arrythmia/paroxysmal_tachycardia
+	severity = 1
 
 /decl/arrythmia/tachycardia/get_pulse_mod()
 	return rand(40, 90)
@@ -60,6 +64,7 @@
 	required_instability = 30
 	degrades_into = /decl/arrythmia/tachycardia
 	can_appear = FALSE
+	severity = 3
 
 /decl/arrythmia/paroxysmal_tachycardia/get_pulse_mod()
 	return rand(90, 140)
@@ -72,6 +77,7 @@
 	evolves_into = /decl/arrythmia/ventricular_fibrillation
 	evolve_time = 30 SECONDS
 	can_be_shocked = TRUE
+	severity = 4
 
 /decl/arrythmia/ventricular_flaunt/get_pulse_mod()
 	return rand(100, 200)
@@ -90,6 +96,7 @@
 	evolve_time = 1 MINUTE
 	can_be_shocked = TRUE
 	can_appear = FALSE
+	severity = 5
 
 /decl/arrythmia/ventricular_fibrillation/get_pulse_mod()
 	return rand(200, 300)
@@ -100,9 +107,7 @@
 	cardiac_output_mod = 0.01
 	required_instability = 80
 	can_appear = FALSE
+	severity = 10
 
 /decl/arrythmia/asystole/get_pulse_mod()
 	return -1000 //live no more
-
-/decl/arrythmia/asystole/on_spawn(var/mob/living/carbon/human/M, var/obj/item/organ/internal/heart/H)
-	H.arrythmias.Cut()

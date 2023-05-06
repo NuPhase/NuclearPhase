@@ -8,8 +8,7 @@
 
 /mob/living/carbon/human
 	var/hunger_mes_cooldown = 0
-
-var/list/adrenaline_messages = list(
+	var/list/adrenaline_messages = list(
 	"YOU'VE GOTTA RUN!",
 	"DO SOMETHING!",
 	"SAVE YOUR LIFE!",

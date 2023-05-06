@@ -73,14 +73,25 @@
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
 			if(A.can_appear(src) && A.required_instability < instability && prob(5))
-				A.on_spawn(owner)
-				LAZYDISTINCTADD(arrythmias, A)
-				last_arrythmia_appearance = world.time
+				add_arrythmia(A)
 				break
 		for(var/decl/arrythmia/A in arrythmias)
 			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) > world.time && prob(10))
-				LAZYDISTINCTADD(arrythmias, GET_DECL(A.evolves_into))
-				arrythmias -= A
+				add_arrythmia(GET_DECL(A.evolves_into))
+				remove_arrythmia(A)
+
+/obj/item/organ/internal/heart/proc/add_arrythmia(var/decl/arrythmia/A)
+	for(var/decl/arrythmia/existing_A in arrythmias)
+		if(existing_A.severity > A.severity)
+			return
+		else
+			arrythmias -= existing_A
+	A.on_spawn(owner)
+	last_arrythmia_appearance = world.time
+	LAZYDISTINCTADD(arrythmias, A)
+
+/obj/item/organ/internal/heart/proc/remove_arrythmia(var/decl/arrythmia/A)
+	arrythmias -= A
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
 	if(BP_IS_PROSTHETIC(src))
@@ -89,7 +100,7 @@
 
 	if(pulse)
 		var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
-		pulse = Interpolate(pulse, target_pulse, 0.2)
+		pulse = max(Interpolate(pulse, target_pulse, 0.2), 0)
 		external_pump = 0
 
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers)
@@ -168,9 +179,9 @@
 					else
 						owner.vessel.remove_any(bleed_amount)
 
-		blood_max *= pulse / 60
+		blood_max *= owner.mcv / NORMAL_MCV
 
-		blood_max += GET_CHEMICAL_EFFECT(owner, CE_BLOOD_THINNING) * 0.5
+		blood_max *= 1 + GET_CHEMICAL_EFFECT(owner, CE_BLOOD_THINNING) * 0.5
 
 		if(GET_CHEMICAL_EFFECT(owner, CE_STABLE))
 			blood_max *= 0.8
@@ -212,7 +223,7 @@
 		return "no pulse"
 
 	var/pulsesound = "normal"
-	if(arrythmias.len)
+	if(length(arrythmias))
 		pulsesound = "irregular"
 
 	switch(pulse)
