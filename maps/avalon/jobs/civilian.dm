@@ -9,6 +9,7 @@
 	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant")
 	outfit_type = /decl/hierarchy/outfit/job/generic/assistant
 	department_types = list(/decl/department/civilian)
+	skill_points = 20
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
