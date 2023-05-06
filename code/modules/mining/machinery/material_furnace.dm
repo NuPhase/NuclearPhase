@@ -95,6 +95,8 @@
 	layer = ABOVE_HUMAN_LAYER
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/get_conductivity_coefficient()
+	if(!inserted_electrodes)
+		return 0
 	var/coef_sum = 0
 	for(var/obj/item/arc_electrode/cur_electrode in inserted_electrodes)
 		if(cur_electrode.integrity == 0) //dead electrode
