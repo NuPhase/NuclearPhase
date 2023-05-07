@@ -120,10 +120,10 @@
 	spawn(50)
 		update_locked = 0
 	STOP_PROCESSING_MACHINE(src, null)
-	icon_state = off_icon_state
 	spawn(rand(1, 50))
 		playsound(loc, 'sound/machines/power_down2.ogg', 50, 1)
 		spark_at(src, amount = 7, cardinal_only = FALSE)
+		icon_state = off_icon_state
 
 /obj/machinery/power/generator/transformer/switchable/on
 	on = 1
