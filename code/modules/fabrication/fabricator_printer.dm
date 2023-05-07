@@ -6,8 +6,6 @@
 	base_icon_state = "off"
 	idle_power_usage = 200
 	active_power_usage = 50000
-	uncreated_component_parts = null
-	stat_immune = NOSCREEN | BROKEN
 	base_type = /obj/machinery/fabricator/printer
 	fabricator_class = FABRICATOR_CLASS_PRINTER
 	base_storage_capacity_mult = 20

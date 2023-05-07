@@ -9,7 +9,7 @@
 	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant")
 	outfit_type = /decl/hierarchy/outfit/job/generic/assistant
 	department_types = list(/decl/department/civilian)
-	skill_points = 20
+	skill_points = 24
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
@@ -64,6 +64,7 @@
 	    SKILL_BOTANY    = SKILL_BASIC,
 	    SKILL_CHEMISTRY = SKILL_BASIC
 	)
+	skill_points = 24
 
 /datum/job/chef
 	title = "Chef"
@@ -85,6 +86,7 @@
 	    SKILL_BOTANY    = SKILL_BASIC,
 	    SKILL_CHEMISTRY = SKILL_BASIC
 	)
+	skill_points = 24
 
 /datum/job/hydro
 	title = "Gardener"
@@ -106,6 +108,7 @@
 	    SKILL_CHEMISTRY = SKILL_BASIC
 	)
 	event_categories = list(ASSIGNMENT_GARDENER)
+	skill_points = 20
 
 //Cargo
 /datum/job/qm
@@ -153,6 +156,7 @@
 		/datum/computer_file/program/deck_management,
 		/datum/computer_file/program/reports
 	)
+	skill_points = 26
 
 /datum/job/cargo_tech
 	title = "Supply Technician"
@@ -189,6 +193,7 @@
 		/datum/computer_file/program/deck_management,
 		/datum/computer_file/program/reports
 	)
+	skill_points = 24
 
 /datum/job/mining
 	title = "Mining Operations Specialist"
@@ -224,6 +229,7 @@
 	max_skill = list(
 		SKILL_PILOT    = SKILL_MAX
 	)
+	skill_points = 24
 
 /datum/job/janitor
 	title = "Sanitation Specialist"
@@ -258,6 +264,7 @@
 		SKILL_FITNESS  = SKILL_BASIC
 	)
 	event_categories = list(ASSIGNMENT_JANITOR)
+	skill_points = 20
 
 /obj/item/card/id/cargo
 	name = "identification card"

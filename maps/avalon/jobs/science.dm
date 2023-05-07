@@ -119,7 +119,7 @@
 	    SKILL_DEVICES  = SKILL_MAX,
 	    SKILL_SCIENCE  = SKILL_MAX
 	)
-	skill_points = 20
+	skill_points = 24
 	event_categories = list(ASSIGNMENT_SCIENTIST)
 
 /datum/job/roboticist

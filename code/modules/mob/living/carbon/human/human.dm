@@ -1416,3 +1416,4 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	key = limb_mob.key
 	qdel(limb_mob)
 	limb_mob = null
+	sound_to(src, sound(null))
