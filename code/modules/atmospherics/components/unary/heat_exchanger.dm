@@ -158,11 +158,12 @@
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_tungsten
 	heating = FALSE
 	wanted_temperature = 3550 //we won't cool down further
+	initial_volume = 4000
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam
 	heating = TRUE
 	wanted_temperature = 741
-	initial_volume = 400
+	initial_volume = 4000
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_steam
 	heating = FALSE

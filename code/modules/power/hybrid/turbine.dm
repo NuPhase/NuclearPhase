@@ -1,4 +1,4 @@
-#define TURBINE_MOMENT_OF_INERTIA 15625 //2.5m radius, 5t weight
+#define TURBINE_MOMENT_OF_INERTIA 5625 //1.5m radius, 5t weight
 #define MS_PER_KPA_DIFFERENCE 0.14 //For every kPa of pressure difference we gain so much m/s of steam speed
 #define TURBINE_PERFECT_RPM 3550
 #define TURBINE_ABNORMAL_RPM 4000
