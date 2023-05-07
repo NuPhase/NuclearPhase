@@ -13,6 +13,13 @@
 	efficiency = 0.9
 	should_heat = TRUE
 
+	var/off_icon_state
+	var/on_icon_state
+	var/open_icon_state
+
+/obj/machinery/power/generator/transformer/large
+	icon_state = "transformer_back"
+
 /obj/machinery/power/generator/transformer/Process()
 	if(connected)
 		return
@@ -55,8 +62,13 @@
 
 /obj/machinery/power/generator/transformer/switchable/Initialize()
 	. = ..()
+	if(!off_icon_state)
+		off_icon_state = initial(icon_state)
+		on_icon_state = initial(icon_state)
+		open_icon_state = initial(icon_state)
 	if(on)
 		START_PROCESSING_MACHINE(src, null)
+		icon_state = on_icon_state
 
 /obj/machinery/power/generator/transformer/switchable/examine(mob/user)
 	. = ..()
@@ -88,6 +100,7 @@
 			update_locked = 0
 		if(on)
 			START_PROCESSING_MACHINE(src, null)
+			icon_state = on_icon_state
 			var/electrocution_chance = 10
 			var/mob/living/carbon/human/H = user
 			if(H.fire_stacks < 0)
@@ -97,6 +110,7 @@
 				start_electrocution(user)
 		else
 			STOP_PROCESSING_MACHINE(src, null)
+			icon_state = off_icon_state
 	busy = 0
 	return TRUE
 
@@ -106,9 +120,16 @@
 	spawn(50)
 		update_locked = 0
 	STOP_PROCESSING_MACHINE(src, null)
+	icon_state = off_icon_state
 	spawn(rand(1, 50))
 		playsound(loc, 'sound/machines/power_down2.ogg', 50, 1)
 		spark_at(src, amount = 7, cardinal_only = FALSE)
 
 /obj/machinery/power/generator/transformer/switchable/on
 	on = 1
+
+/obj/machinery/power/generator/transformer/switchable/on/large
+	icon_state = "transformer_front_on"
+	off_icon_state = "transformer_front_off"
+	on_icon_state = "transformer_front_on"
+	open_icon_state = "transformer_front_open"

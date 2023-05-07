@@ -1159,12 +1159,11 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
 	},
-/obj/machinery/door/window/brigdoor/southleft,
-/obj/machinery/power/generator/transformer/switchable/on{
+/obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
-	name = "BUS to CLIMATE CONTROL";
-	critical = 1
+	critical = 1;
+	name = "BUS to CLIMATE CONTROL"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -1708,7 +1707,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/generator/transformer/switchable/on{
+/obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
 	name = "BUS to SECTOR A"
@@ -2712,7 +2711,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/generator/transformer/switchable/on{
+/obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
 	name = "BUS to SECTOR C"
@@ -5631,7 +5630,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/generator/transformer/switchable/on{
+/obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
 	name = "BUS to SECTOR B"
@@ -6870,13 +6869,10 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "gMd" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/generator/transformer/switchable/on{
+/obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
 	name = "BUS to SECTOR E"
@@ -8046,19 +8042,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "hNN" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	layer = 3.01
-	},
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
 	},
-/obj/machinery/door/window/brigdoor/southright,
-/obj/machinery/power/generator/transformer/switchable/on{
+/obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
-	name = "BUS to REACTOR";
-	critical = 1
+	critical = 1;
+	name = "BUS to REACTOR"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -8115,17 +8106,6 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/engineering)
-"hRe" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/generator/transformer{
-	coef = 0.05
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.21
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/breakerroom)
 "hRg" = (
 /obj/effect/scripted_detonation{
 	id = "reactor8";
@@ -9536,13 +9516,9 @@
 /area/avalon/shelter/science)
 "jky" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/generator/transformer{
+/obj/machinery/power/generator/transformer/large{
 	coef = 0.05;
 	max_cap = 300000000
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.21
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -11764,17 +11740,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
-"low" = (
-/obj/machinery/power/generator/transformer{
-	coef = 0.05
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.21
-	},
-/obj/structure/cable/yellow,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/breakerroom)
 "lpk" = (
 /obj/machinery/door/airlock/mining{
 	name = "Checkpoint"
@@ -11793,17 +11758,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "lpy" = (
-/obj/machinery/power/generator/transformer{
+/obj/structure/cable/yellow,
+/obj/machinery/power/generator/transformer/large{
 	coef = 0.05
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.21
-	},
-/obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "lpS" = (
@@ -17882,13 +17840,9 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "rfN" = (
-/obj/machinery/power/generator/transformer{
-	coef = 0.05
-	},
 /obj/structure/cable,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.21
+/obj/machinery/power/generator/transformer/large{
+	coef = 0.05
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -18670,17 +18624,9 @@
 /area/avalon/shelter/reactor)
 "rZS" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/generator/transformer{
+/obj/machinery/power/generator/transformer/large{
 	coef = 0.2;
 	max_cap = 300000000
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.21
-	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	layer = 3.03
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
@@ -19503,7 +19449,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/generator/transformer/switchable/on{
+/obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
 	name = "BUS to SECTOR D"
@@ -184667,7 +184613,7 @@ bbq
 iBp
 ibS
 hKI
-low
+lpy
 sOh
 chh
 gZg
@@ -184797,7 +184743,7 @@ thl
 cmf
 dWk
 qlJ
-hRe
+lpy
 bJD
 chh
 vQx
@@ -184927,7 +184873,7 @@ oWz
 oWz
 oWz
 uhL
-hRe
+lpy
 fwo
 uft
 qVO
