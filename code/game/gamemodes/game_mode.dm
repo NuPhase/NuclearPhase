@@ -248,6 +248,8 @@ var/global/list/additional_antag_types = list()
 	spawnpoint_office.Initialize()
 	spawnpoint_limb = new
 	spawnpoint_limb.Initialize()
+	spawnpoint_service = new
+	spawnpoint_service.Initialize()
 
 	refresh_event_modifiers()
 

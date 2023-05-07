@@ -104,3 +104,11 @@
 /decl/spawnpoint/limb/Initialize()
 	. = ..()
 	turfs = global.limbjoin_locations
+
+/decl/spawnpoint/service
+	name = "Service Tunnels"
+	always_visible = TRUE
+
+/decl/spawnpoint/limb/Initialize()
+	. = ..()
+	turfs = global.limbjoin_locations

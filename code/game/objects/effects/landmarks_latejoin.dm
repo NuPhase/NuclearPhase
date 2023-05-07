@@ -4,6 +4,7 @@ var/global/list/latejoin_cyborg_locations =  list()
 var/global/list/latejoin_gateway_locations = list()
 var/global/list/officejoin_locations = list()
 var/global/list/limbjoin_locations = list()
+var/global/list/servicejoin_locations = list()
 
 /obj/abstract/landmark/latejoin
 	delete_me = TRUE
@@ -29,3 +30,7 @@ var/global/list/limbjoin_locations = list()
 
 /obj/abstract/landmark/latejoin/limb/add_loc()
 	global.limbjoin_locations |= get_turf(src)
+
+var/global/decl/spawnpoint/service/spawnpoint_service
+/obj/abstract/landmark/latejoin/service/add_loc()
+	global.servicejoin_locations |= get_turf(src)
