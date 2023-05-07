@@ -88,10 +88,6 @@
 	active_power_usage = 78 MWATT
 	pixel_x = -64
 	pixel_y = -32
-	bound_x = -64
-	bound_y = -32
-	bound_width = 160
-	bound_height = 128
 	layer = ABOVE_HUMAN_LAYER
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/get_conductivity_coefficient()
