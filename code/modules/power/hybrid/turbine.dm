@@ -1,5 +1,5 @@
 #define TURBINE_MOMENT_OF_INERTIA 5625 //1.5m radius, 5t weight
-#define MS_PER_KPA_DIFFERENCE 0.14 //For every kPa of pressure difference we gain so much m/s of steam speed
+#define STEAM_SPEED_MODIFIER 2.1
 #define TURBINE_PERFECT_RPM 3550
 #define TURBINE_ABNORMAL_RPM 4000
 #define TURBINE_MAX_RPM 10000
@@ -67,8 +67,8 @@
 	total_mass_flow = (air1.net_flow_mass + air1.get_mass()) * feeder_valve_openage //barely enough to start it
 
 	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0) * feeder_valve_openage
-	var/pressure_fall_factor = pressure_difference / (20 * GRAVITY_CONSTANT)
-	steam_velocity = sqrt(2 * pressure_fall_factor * GRAVITY_CONSTANT)
+	var/pressure_fall_factor = pressure_difference / 20
+	steam_velocity = sqrt(2 * pressure_fall_factor * GRAVITY_CONSTANT) * STEAM_SPEED_MODIFIER
 
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
@@ -92,7 +92,7 @@
 		var/datum/gas_mixture/environment = loc.return_air()
 		kin_energy = max(0, kin_energy * 0.95 - 10000)
 		if(kin_energy)
-			environment.add_thermal_energy(kin_energy * 0.05 + 10000)
+			environment.add_thermal_energy(kin_energy * 0.005 + 10000)
 
 	apply_vibration_effects()
 	calculate_efficiency()
