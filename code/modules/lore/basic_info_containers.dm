@@ -7,6 +7,7 @@
 	var/max_temperature = 600
 	var/min_temperature = 200
 	var/ruined = FALSE
+	var/can_open = TRUE
 
 /obj/item/info_container/equipped(mob/user, slot)
 	. = ..()
@@ -22,7 +23,7 @@
 
 /obj/item/info_container/attack_self(mob/user)
 	. = ..()
-	if(!ruined)
+	if(!ruined && can_open)
 		show_information(user)
 	else
 		show_ruined_information(user)

@@ -33,3 +33,13 @@
 		"It seems to be the phone of a worker in 'WEHS' secret underground labs. You can even find a blurred image of an elevator halfway descended to the first floor. There seems to be something under it..."
 	))
 	to_chat(user, SPAN_NOTICE(message))
+
+
+//these flash drives are necessary to finish a clone
+/obj/item/info_container/encrypted/flash_drive/cloning
+	desc = "A typical flash drive. A small inscription on its side says 'TOP SECRET: WEHS GENETIC DEPARTMENT.'"
+	contained_info = "An incomprehensible heap of byte code."
+	var/unique_id
+
+/obj/item/info_container/encrypted/flash_drive/cloning/subject_cattie
+	unique_id = "cattie"

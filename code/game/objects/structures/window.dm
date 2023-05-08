@@ -508,6 +508,11 @@
 	set_color = TRUE
 	force_north_dir = FALSE
 
+/obj/structure/window/reinforced/full/frosted
+	name = "frosted window"
+	color = GLASS_COLOR_FROSTED
+	opacity = 1
+
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
 	opacity = 1
