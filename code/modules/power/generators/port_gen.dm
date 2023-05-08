@@ -256,7 +256,7 @@
 
 /obj/machinery/power/generator/port_gen/liquid/diesel
 	name = "diesel generator"
-	allowed_fuels = list(/decl/material/liquid/diesel)
+	allowed_fuels = list(/decl/material/liquid/diesel, /decl/material/liquid/biodiesel)
 	power_gen = 40000
 	weight = 30
 
