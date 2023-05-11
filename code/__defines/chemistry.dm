@@ -1,8 +1,8 @@
-#define DEFAULT_HUNGER_FACTOR 0.1 // Factor of how fast mob nutrition decreases
-#define DEFAULT_THIRST_FACTOR 0.3 // Factor of how fast mob hydration decreases
+#define DEFAULT_HUNGER_FACTOR 0.05 // Factor of how fast mob nutrition decreases
+#define DEFAULT_THIRST_FACTOR 0.03 // Factor of how fast mob hydration decreases
 
-#define XENOMORPH_HUNGER_FACTOR 0.9 // Larger
-#define XENOMORPH_THIRST_FACTOR 0.9 // Closed cycle body
+#define XENOMORPH_HUNGER_FACTOR 0.09 // Larger
+#define XENOMORPH_THIRST_FACTOR 0.09 // Closed cycle body
 
 #define SYNTHETIC_HUNGER_FACTOR 0.05 // We're more energy efficient than humans
 #define SYNTHETIC_THIRST_FACTOR 0.4 // Gotta cool down fast

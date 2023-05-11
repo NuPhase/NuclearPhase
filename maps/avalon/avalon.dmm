@@ -19,11 +19,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "abA" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
+/obj/effect/floor_decal/floordetail/edgedrain{
+	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "abI" = (
 /obj/structure/cable{
@@ -41,7 +40,10 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/airless,
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "adr" = (
 /obj/machinery/door/airlock/security{
@@ -381,6 +383,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
+"auB" = (
+/obj/effect/paint_stripe/green,
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/road,
+/area/surface)
 "auO" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/simulated/floor/tiled/techmaint,
@@ -399,6 +408,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
+"avk" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/railing/mapped,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "avA" = (
 /turf/exterior/wall,
 /area/avalon/shelter/turbinehall)
@@ -610,7 +625,7 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "aEx" = (
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "aEV" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
@@ -974,9 +989,6 @@
 /obj/machinery/light/small/red{
 	dir = 4
 	},
-/obj/effect/floor_decal/exologo{
-	dir = 1
-	},
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "aUO" = (
@@ -1184,6 +1196,14 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
+"bfr" = (
+/obj/effect/floor_decal/industrial/hatch/orange,
+/obj/structure/ladder,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/expeditionpreparation)
 "bfR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/ash,
@@ -1310,7 +1330,10 @@
 /area/avalon/shelter/turbinehall)
 "bpJ" = (
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/reinforced/airless,
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "bqf" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -1479,11 +1502,8 @@
 /area/avalon/shelter/brig/armory)
 "bxT" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/exologo{
-	dir = 4
-	},
 /obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "byk" = (
 /obj/item/stack/tile/floor_dark,
@@ -1592,9 +1612,15 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
 "bCY" = (
-/obj/effect/floor_decal/industrial/warning/corner,
-/obj/structure/hygiene/drain,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/item/drain,
+/obj/structure/railing/mapped,
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "bEt" = (
 /obj/machinery/door/airlock/engineering,
@@ -1634,6 +1660,12 @@
 /obj/machinery/light/spot,
 /turf/simulated/open,
 /area/avalon/shelter/science)
+"bFZ" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "bGo" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/lightgrey/full,
@@ -1654,7 +1686,9 @@
 	tag = "mainairlock_pump_out_external";
 	dir = 1
 	},
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/railing/mapped,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "bGS" = (
 /obj/effect/floor_decal/industrial/warning/corner,
@@ -1664,7 +1698,10 @@
 	id_tag = "vehicleairlockexts";
 	tag = "vehicleairlockexts"
 	},
-/turf/simulated/floor/reinforced/airless,
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "bGT" = (
 /obj/structure/table,
@@ -1685,9 +1722,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
 "bIJ" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/railing/mapped,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/floordetail/edgedrain{
+	dir = 5
+	},
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "bIQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
@@ -2114,11 +2152,8 @@
 /turf/simulated/open,
 /area/avalon/shelter/atmos)
 "ceM" = (
-/obj/effect/floor_decal/exologo{
-	dir = 1
-	},
-/obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/obj/structure/closet/crate,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "ceT" = (
 /obj/machinery/camera/autoname{
@@ -2303,11 +2338,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "ckR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/exologo{
+/obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "clm" = (
 /obj/effect/floor_decal/corner/green{
@@ -3620,9 +3654,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "dBp" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/railing/mapped,
-/turf/simulated/floor/concrete/surface,
+/obj/effect/floor_decal/steeldecal/steel_decals_central1,
+/turf/simulated/floor/reinforced/airless,
 /area/surface)
 "dBN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -3693,11 +3726,8 @@
 "dEg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/exologo{
-	dir = 8
-	},
 /obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "dEo" = (
 /obj/structure/cable/heavy{
@@ -3915,7 +3945,7 @@
 /area/avalon/shelter/medbay)
 "dNS" = (
 /obj/machinery/floodlight,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "dOB" = (
 /obj/structure/stairs/long,
@@ -4227,7 +4257,13 @@
 "edz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "edO" = (
 /obj/machinery/light{
@@ -4345,16 +4381,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/garage)
 "ejk" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
-	id_tag = "vehicleairlock_pump_out_external";
-	tag = "vehicleairlock_pump_out_external";
-	dir = 4
-	},
-/turf/simulated/floor/reinforced/airless,
-/area/avalon/shelter/expeditionpreparation)
+/obj/effect/paint_stripe/green,
+/obj/effect/floor_decal/industrial/warning/dust/corner,
+/turf/simulated/floor/concrete/road,
+/area/surface)
 "ejB" = (
 /obj/structure/stairs/long/east,
 /obj/machinery/light,
@@ -4452,6 +4482,12 @@
 /obj/random/documents,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
+"enz" = (
+/obj/effect/floor_decal/floordetail/edgedrain{
+	dir = 9
+	},
+/turf/simulated/floor/concrete/road,
+/area/avalon/shelter/expeditionpreparation)
 "enY" = (
 /obj/machinery/light{
 	dir = 4
@@ -4474,13 +4510,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "eoI" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/obj/structure/railing/mapped{
-	dir = 4
-	},
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/reinforced/airless,
 /area/surface)
 "epg" = (
 /obj/machinery/door/airlock/maintenance,
@@ -4833,7 +4863,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "eGU" = (
 /obj/effect/catwalk_plated,
@@ -6273,9 +6303,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "gdZ" = (
-/obj/effect/floor_decal/exologo,
-/obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "geq" = (
 /obj/effect/floor_decal/borderfloorblack,
@@ -6379,7 +6408,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "gkW" = (
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/railing/mapped,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "glc" = (
 /obj/item/paper{
@@ -6751,13 +6782,10 @@
 /turf/simulated/wall,
 /area/avalon/shelter/upperhall)
 "gGD" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
+/obj/effect/floor_decal/floordetail/edgedrain{
+	dir = 10
 	},
-/obj/structure/railing/mapped{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "gHc" = (
 /obj/machinery/light{
@@ -7079,8 +7107,11 @@
 /turf/simulated/floor/grass,
 /area/avalon/shelter/science)
 "gVt" = (
-/obj/effect/floor_decal/industrial/warning/corner,
-/turf/simulated/floor/concrete/surface,
+/obj/effect/floor_decal/plaque,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "gWq" = (
 /obj/structure/bed/padded,
@@ -7412,12 +7443,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/factory)
 "hhz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/exologo{
+/obj/effect/paint_stripe/green,
+/obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
-/obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "hhF" = (
 /obj/structure/railing/mapped{
@@ -7692,11 +7722,10 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "hvu" = (
-/obj/effect/floor_decal/exologo{
-	dir = 4
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
 	},
-/obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "hwh" = (
 /obj/structure/flora/bush/fullgrass,
@@ -7773,8 +7802,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "hyY" = (
-/obj/effect/floor_decal/exologo,
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "hza" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -7803,19 +7831,21 @@
 /area/avalon/shelter/brig)
 "hzE" = (
 /obj/effect/decal/cleanable/ash,
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 9
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
-/turf/simulated/floor/reinforced/airless,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "vehicleairlock_pump_out_external";
+	tag = "vehicleairlock_pump_out_external";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "hzJ" = (
 /obj/machinery/light/small/red{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/exologo{
-	dir = 8
-	},
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "hBw" = (
@@ -7916,10 +7946,11 @@
 /turf/simulated/floor/grass,
 /area/avalon/shelter/science)
 "hGX" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 4
+/obj/effect/floor_decal/plaque,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
 	},
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "hHw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8101,10 +8132,15 @@
 /area/avalon/shelter/medbay)
 "hQy" = (
 /obj/effect/decal/cleanable/blood,
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 10
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
-/turf/simulated/floor/reinforced/airless,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
+	id_tag = "vehicleairlock_pump_out_external";
+	tag = "vehicleairlock_pump_out_external";
+	dir = 2
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "hQG" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
@@ -8144,16 +8180,15 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/cargo/warehouse)
 "hSy" = (
-/obj/effect/floor_decal/exologo{
-	dir = 1
-	},
-/turf/simulated/floor/concrete/surface,
-/area/surface)
-"hSE" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
+"hSE" = (
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/surface)
 "hSP" = (
 /turf/simulated/floor/beach/water/ocean,
 /area/avalon/shelter/science)
@@ -8710,6 +8745,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
 	id_tag = "mainairlockp";
 	tag = "mainairlockp"
+	},
+/obj/machinery/light/small/red{
+	dir = 1
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
@@ -9665,7 +9703,7 @@
 	id_tag = "mainairlockexts";
 	tag = "mainairlockexts"
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "joY" = (
 /obj/machinery/computer/drone_control,
@@ -10575,7 +10613,7 @@
 /area/avalon/shelter/messhall)
 "kbH" = (
 /obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "kbY" = (
 /obj/structure/table/steel,
@@ -10762,15 +10800,29 @@
 /turf/simulated/wall/prepainted,
 /area/avalon/shelter/brig)
 "klk" = (
-/obj/effect/floor_decal/exologo{
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/concrete/surface,
-/area/surface)
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "kln" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/office)
+"knc" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8;
+	volume = 1000
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "knR" = (
 /obj/effect/scripted_detonation{
 	id = "reactor3";
@@ -11072,12 +11124,14 @@
 /turf/simulated/wall/r_wall,
 /area/avalon/shelter/factory)
 "kFM" = (
-/obj/effect/floor_decal/exologo{
-	dir = 8
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
 	},
-/obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
-/area/surface)
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "kGr" = (
 /obj/effect/floor_decal/corner/beige/border{
 	dir = 9
@@ -11660,6 +11714,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
+"lkr" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "lkH" = (
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
@@ -12042,6 +12102,12 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
+"lCn" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "lCB" = (
 /obj/machinery/vending/engineering{
 	dir = 1
@@ -12743,7 +12809,7 @@
 	pixel_y = 32;
 	id_tag = "mainairlock"
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "mlo" = (
 /obj/structure/lattice,
@@ -12936,11 +13002,17 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "myh" = (
-/obj/effect/floor_decal/industrial/warning/corner{
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/item/drain,
+/obj/structure/railing/mapped{
+	pixel_y = 32
+	},
+/obj/structure/railing/mapped{
 	dir = 4
 	},
-/obj/structure/hygiene/drain,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "myn" = (
 /obj/effect/paint_stripe/white,
@@ -13080,13 +13152,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "mGa" = (
-/obj/effect/floor_decal/industrial/warning{
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 8
 	},
-/obj/structure/railing/mapped{
-	dir = 8
-	},
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/reinforced/airless,
 /area/surface)
 "mGs" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/external_air{
@@ -13616,8 +13685,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "nfk" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/floordetail/edgedrain{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "nfB" = (
 /obj/machinery/camera/autoname{
@@ -13832,6 +13903,14 @@
 /obj/structure/bed/chair/pew/left,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/factory)
+"npE" = (
+/obj/effect/floor_decal/industrial/hatch/orange,
+/obj/structure/ladder,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/expeditionpreparation)
 "npO" = (
 /obj/structure/table/steel,
 /obj/machinery/door/window/westright{
@@ -14140,10 +14219,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "nHw" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 8
+/obj/effect/floor_decal/plaque,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 10
 	},
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "nIo" = (
 /obj/effect/floor_decal/corner/purple/border{
@@ -14480,6 +14560,16 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
+"nTK" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "nUw" = (
 /obj/structure/closet,
 /obj/structure/window/reinforced/tinted{
@@ -15075,8 +15165,9 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "oxK" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/concrete/surface,
+/obj/effect/paint_stripe/green,
+/obj/effect/floor_decal/industrial/warning/dust,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "oxX" = (
 /obj/machinery/atmospherics/binary/pump/adv/on{
@@ -15116,7 +15207,9 @@
 /area/avalon/shelter/breakerroom)
 "oAh" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/railing/mapped,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "oAM" = (
 /obj/machinery/atmospherics/omni/mixer{
@@ -15225,6 +15318,13 @@
 "oEX" = (
 /turf/simulated/floor/plating,
 /area/avalon/shelter/factory)
+"oFe" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "oFo" = (
 /obj/structure/window/reinforced/full,
 /obj/structure/cable/heavy{
@@ -15714,7 +15814,10 @@
 "peK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "peW" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -15775,7 +15878,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "pih" = (
 /turf/simulated/floor/tiled/techfloor,
@@ -16274,11 +16377,15 @@
 /turf/simulated/open/exterior,
 /area/surface)
 "pGH" = (
-/obj/effect/floor_decal/industrial/warning/corner{
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/item/drain,
+/obj/structure/railing/mapped,
+/obj/structure/railing/mapped{
 	dir = 8
 	},
-/obj/structure/hygiene/drain,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "pGR" = (
 /obj/structure/cart{
@@ -16587,6 +16694,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"pVc" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/railing/mapped{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "pVd" = (
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 6
@@ -17184,13 +17300,10 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
 "qza" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/effect/floor_decal/floordetail/edgedrain{
+	dir = 6
 	},
-/obj/structure/railing/mapped{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "qzf" = (
 /obj/effect/floor_decal/exologo{
@@ -17624,11 +17737,29 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
+"qSr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "qSC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"qSY" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
+"qTw" = (
+/obj/machinery/floodlight,
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "qTO" = (
 /obj/structure/rack{
 	pixel_x = -10
@@ -17878,10 +18009,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "rfK" = (
-/obj/effect/floor_decal/industrial/warning{
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 1
 	},
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/reinforced/airless,
 /area/surface)
 "rfN" = (
 /obj/structure/cable,
@@ -18654,6 +18785,13 @@
 	},
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/breakerroom)
+"rZk" = (
+/obj/effect/paint_stripe/green,
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/road,
+/area/surface)
 "rZJ" = (
 /obj/effect/catwalk_plated,
 /obj/structure/railing/mapped{
@@ -19115,7 +19253,13 @@
 /area/avalon/shelter/engineering)
 "suJ" = (
 /obj/effect/decal/cleanable/ash,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/railing/mapped{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "svj" = (
 /turf/simulated/floor/concrete/road/surface,
@@ -19549,7 +19693,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "sPZ" = (
 /obj/effect/floor_decal/corner/b_green{
@@ -20800,12 +20944,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "uba" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/exologo{
+/obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/simulated/floor/concrete/surface,
-/area/surface)
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "ubj" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -22225,6 +22368,10 @@
 /obj/item/pen,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
+"vvA" = (
+/obj/effect/floor_decal/floordetail/pryhole,
+/turf/simulated/floor/reinforced/airless,
+/area/surface)
 "vvP" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -22411,11 +22558,21 @@
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
+"vEo" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "vEq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/railing/mapped{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "vEM" = (
 /obj/structure/cable/heavy{
@@ -22732,11 +22889,17 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/avalon/shelter/factory)
 "vRD" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
 	},
-/obj/structure/hygiene/drain,
-/turf/simulated/floor/reinforced/airless,
+/obj/item/drain,
+/obj/structure/railing/mapped{
+	pixel_y = 32
+	},
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "vRL" = (
 /obj/effect/floor_decal/corner/paleblue,
@@ -22894,6 +23057,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
+"vXP" = (
+/obj/effect/floor_decal/steeldecal/steel_decals_central6,
+/turf/simulated/floor/reinforced/airless,
+/area/surface)
 "vYw" = (
 /obj/structure/table/steel,
 /obj/machinery/rotating_alarm/reactor{
@@ -23353,10 +23520,10 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "wyw" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
+/obj/effect/floor_decal/floordetail/edgedrain{
+	dir = 4
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "wyE" = (
 /obj/effect/floor_decal/corner/grey/full,
@@ -23397,7 +23564,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "wzV" = (
 /obj/machinery/door/airlock/atmos{
@@ -23408,11 +23575,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/atmos)
 "wAo" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/exologo,
-/obj/effect/paint_stripe/green,
-/turf/simulated/floor/concrete/surface,
-/area/surface)
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/expeditionpreparation)
 "wAI" = (
 /obj/structure/ladder,
 /obj/machinery/atmospherics/pipe/zpipe/up/supply{
@@ -23629,6 +23796,13 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/open,
 /area/avalon/shelter/upperhall)
+"wJY" = (
+/obj/effect/paint_stripe/green,
+/obj/effect/floor_decal/industrial/warning/dust/corner{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/road,
+/area/surface)
 "wKA" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -23791,6 +23965,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
+"wSq" = (
+/obj/effect/floor_decal/industrial/hatch/orange,
+/obj/structure/ladder,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/expeditionpreparation)
 "wSt" = (
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
@@ -24252,7 +24434,8 @@
 "xsx" = (
 /obj/effect/floor_decal/industrial/hatch/orange,
 /obj/structure/ladder,
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/expeditionpreparation)
 "xsC" = (
 /obj/structure/cable{
@@ -24609,10 +24792,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/preparation)
 "xKw" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
+/obj/effect/floor_decal/plaque,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
 	},
-/turf/simulated/floor/concrete/surface,
+/turf/simulated/floor/concrete/road,
 /area/surface)
 "xKV" = (
 /turf/simulated/wall/titanium,
@@ -24644,10 +24828,8 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig)
 "xMG" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced/airless,
+/obj/effect/floor_decal/floordetail/edgedrain,
+/turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "xNd" = (
 /obj/structure/cable{
@@ -24675,7 +24857,6 @@
 /obj/machinery/light/small/red{
 	dir = 8
 	},
-/obj/effect/floor_decal/exologo,
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "xOx" = (
@@ -252388,13 +252569,13 @@ ylf
 cii
 dxE
 dxE
-gkW
+sBG
 bpJ
-gkW
+sBG
 sPD
-gkW
-gkW
-gkW
+sBG
+lCn
+sBG
 dxE
 dxE
 aUO
@@ -252517,15 +252698,15 @@ sQl
 pvC
 lhl
 dxE
-gkW
+sBG
 xsx
-oAh
+klk
 edz
-suJ
-oAh
-gkW
-xsx
-gkW
+nTK
+klk
+kFM
+wSq
+sBG
 dxE
 dxE
 aUO
@@ -252646,16 +252827,16 @@ dxE
 bll
 oZs
 dxE
-dNS
-gkW
+qTw
+vEo
 bCY
-gGD
-pif
+enz
 abA
-pif
+abA
+abA
 gGD
 myh
-gkW
+wAo
 dNS
 dxE
 aUO
@@ -252777,16 +252958,16 @@ mpQ
 qYg
 dxE
 joX
+avk
+enz
+aEx
+aEx
+aEx
+aEx
+aEx
+gGD
 suJ
-bIJ
-aEx
-sBG
-aEx
-aEx
-aEx
-qza
-suJ
-gkW
+bFZ
 dxE
 aUO
 aUO
@@ -252906,17 +253087,17 @@ dxE
 iwU
 wTc
 kPQ
-xMG
+lkr
 oAh
-hSE
+nfk
 aEx
-sBG
-sBG
-sBG
-sBG
+aEx
+aEx
+aEx
+aEx
 xMG
-gkW
-oAh
+pVc
+hSy
 dxE
 aUO
 aUO
@@ -253040,13 +253221,13 @@ wzS
 bGM
 nfk
 aEx
-sBG
 aEx
-sBG
+aEx
+aEx
 aEx
 xMG
 vEq
-oAh
+hSy
 dxE
 aUO
 aUO
@@ -253166,17 +253347,17 @@ dxE
 mGs
 mGs
 kPQ
-xMG
+lkr
 oAh
 nfk
-sBG
-sBG
-sBG
-sBG
+aEx
+aEx
+aEx
+aEx
 aEx
 xMG
-gkW
-gkW
+pVc
+sBG
 dxE
 aUO
 aUO
@@ -253302,11 +253483,11 @@ bIJ
 aEx
 aEx
 aEx
-sBG
+aEx
 aEx
 qza
-gkW
-gkW
+pVc
+bFZ
 dxE
 aUO
 aUO
@@ -253426,16 +253607,16 @@ dxE
 nih
 nih
 dxE
-dNS
-gkW
+qTw
+uba
 pGH
+bIJ
 wyw
-ejk
 wyw
-ejk
 wyw
+qza
 vRD
-oAh
+qSr
 dNS
 dxE
 aUO
@@ -253557,15 +253738,15 @@ dxE
 dxE
 lhl
 dxE
-gkW
-xsx
-gkW
+sBG
+npE
+qSY
 hQy
-cyv
+knc
 hzE
-oAh
-xsx
-gkW
+oFe
+bfr
+sBG
 dxE
 dxE
 aUO
@@ -268645,7 +268826,7 @@ hWN
 hWN
 hWN
 vsg
-oxK
+ajH
 ajH
 daC
 ajH
@@ -269025,21 +269206,21 @@ hWN
 hWN
 hWN
 vsg
-oxK
+ajH
 tNw
 hzJ
-gdZ
 kbH
-peK
-peK
 kbH
-peK
+bxT
+bxT
+kbH
+bxT
 kbH
 kbH
 dEg
 xOf
 tNw
-oxK
+ajH
 qFT
 hWN
 hWN
@@ -269155,19 +269336,19 @@ mhD
 hWN
 hWN
 vsg
-oxK
 ajH
-hSy
-hvu
+ajH
+ajH
+kbH
 qGm
-ajH
-ajH
-ajH
-ajH
-ajH
+ckR
+ckR
+ckR
+ckR
+ckR
 qGm
-ceM
-klk
+kbH
+ajH
 ajH
 daC
 qFT
@@ -269287,17 +269468,17 @@ hWN
 hWN
 iYZ
 tNw
-ajH
-kbH
+hyY
+ejk
 gVt
 eoI
-eoI
-eoI
-eoI
+hSE
+hSE
+hSE
 eoI
 hGX
-kbH
-ajH
+wJY
+hyY
 tNw
 iYZ
 hWN
@@ -269417,17 +269598,17 @@ hWN
 hWN
 hWN
 tNw
-ePy
-kbH
-dBp
-jVg
-jVg
-jVg
-jVg
-jVg
-rfK
-kbH
-ajH
+ceM
+oxK
+eoI
+eoI
+eoI
+vvA
+eoI
+eoI
+eoI
+hhz
+hyY
 tNw
 kpf
 hWN
@@ -269547,17 +269728,17 @@ hWN
 hWN
 hWN
 tNw
-tNw
-kbH
+gdZ
+oxK
 dBp
-jVg
-jVg
-jVg
-jVg
-jVg
+eoI
+eoI
+eoI
+eoI
+eoI
 rfK
-kbH
-ajH
+hhz
+hyY
 ajH
 kpf
 hWN
@@ -269677,17 +269858,17 @@ hWN
 hWN
 hWN
 ajH
-tNw
-kbH
+gdZ
+oxK
 dBp
-jVg
-jVg
-jVg
-jVg
-jVg
+vvA
+eoI
+eoI
+vXP
+vvA
 rfK
 peK
-ajH
+hyY
 ajH
 hWN
 hWN
@@ -269807,17 +269988,17 @@ hWN
 hWN
 hWN
 tNw
-ajH
-kbH
+hyY
+oxK
 dBp
-jVg
-jVg
-jVg
-jVg
-jVg
+eoI
+eoI
+eoI
+eoI
+eoI
 rfK
 peK
-ajH
+hyY
 ajH
 hWN
 hWN
@@ -269937,17 +270118,17 @@ hWN
 hWN
 hWN
 ajH
-ajH
-kbH
-dBp
-jVg
-jVg
-jVg
-jVg
-jVg
-rfK
-kbH
-ajH
+hyY
+oxK
+eoI
+eoI
+eoI
+vvA
+eoI
+eoI
+eoI
+hhz
+hyY
 ajH
 hWN
 hWN
@@ -270067,17 +270248,17 @@ hWN
 hWN
 aCr
 ajH
-tNw
-kbH
+gdZ
+rZk
 nHw
+eoI
 mGa
 mGa
 mGa
-mGa
-mGa
+eoI
 xKw
-kbH
-ajH
+auB
+hyY
 ajH
 hWN
 hWN
@@ -270197,17 +270378,17 @@ hWN
 vsg
 cPT
 ajH
-uba
-wAo
+tNw
+bxT
 qGm
-ajH
-ajH
-ajH
-ajH
-ajH
+hvu
+hvu
+hvu
+hvu
+hvu
 qGm
-kFM
-hyY
+kbH
+ajH
 tNw
 kpf
 hWN
@@ -270335,9 +270516,9 @@ kbH
 kbH
 kbH
 kbH
-peK
-hhz
-ckR
+bxT
+bxT
+tNw
 tNw
 ajH
 hWN
@@ -270455,7 +270636,7 @@ hWN
 hWN
 hWN
 vsg
-oxK
+ajH
 ajH
 jbd
 fyT

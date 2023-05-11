@@ -39,9 +39,10 @@
 	interior_template = "Lander enterior"
 
 	var/fuel_tank_volume = 9 //m3
+	var/filled_tank_volume = 0 //m3
 	var/has_updated_navigation = FALSE
 	var/has_thrust_vanes = FALSE
-	var/has_shielding = TRUE
+	var/has_shielding = FALSE
 
 	var/datum/composite_sound/cts/soundloop
 	var/datum/composite_sound/cts_interior/soundloop_interior
