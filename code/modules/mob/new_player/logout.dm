@@ -1,6 +1,8 @@
 /mob/new_player/Logout()
 	ready = 0
 
+	send_output(client, ready, "lobbybrowser:setReady")
+
 	// see login.dm
 	if(my_client)
 		global.using_map.hide_titlescreen(my_client)

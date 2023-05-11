@@ -36,8 +36,6 @@
 	if(client.prefs?.preference_values && client.get_preference_value(/datum/client_preference/goonchat) == PREF_YES)
 		client.chatOutput.start()
 
-	show_lobby_menu(TRUE)
-
 	var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)
 	var/decl/security_level/SL = security_state.current_security_level
 	var/alert_desc = ""

@@ -361,6 +361,9 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 	winset(C, "lobbybrowser", "is-disabled=false;is-visible=true")
 
+	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/lobby)
+	assets.send(C)
+
 	show_browser(C, current_lobby_screen, "file=titlescreen.gif;display=0")
 
 	if(isnewplayer(C.mob))
@@ -379,7 +382,6 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 /datum/map/proc/refresh_lobby_browsers()
 	for(var/mob/new_player/player in global.player_list)
 		show_titlescreen(player.client)
-		player.show_lobby_menu()
 
 /datum/map/proc/create_trade_hubs()
 	new /datum/trade_hub/singleton

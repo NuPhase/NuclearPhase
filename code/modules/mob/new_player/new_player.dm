@@ -28,34 +28,7 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 	verbs += /mob/proc/toggle_antag_pool
 
 /mob/new_player/Destroy()
-	QDEL_NULL(panel)
 	. = ..()
-
-/mob/new_player/proc/show_lobby_menu(force = FALSE)
-	if(!SScharacter_setup.initialized && !force)
-		return // Not ready yet.
-
-	var/output = list("<div align='center'>")
-
-	var/decl/lobby_handler/lobby_handler = GET_DECL(global.using_map.lobby_handler)
-	var/lobby_header = lobby_handler.get_lobby_header(src)
-	if(lobby_header)
-		output += lobby_header
-	for(var/datum/lobby_option/option in lobby_handler.lobby_options)
-		if(!option.visible(src))
-			continue
-		var/option_string = option.get_lobby_menu_string(src)
-		if(option_string)
-			output += option_string
-	var/lobby_footer = lobby_handler.get_lobby_footer(src)
-	if(lobby_footer)
-		output += lobby_footer
-	output += "</div>"
-
-	panel = new(src, "Welcome","Welcome to [global.using_map.full_name]", 560, 280, src)
-	panel.set_window_options("can_close=0")
-	panel.set_content(JOINTEXT(output))
-	panel.open()
 
 /mob/new_player/Stat()
 	. = ..()
@@ -94,20 +67,24 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 		return
 
 	if(href_list["lobby_setup"])
+		if(GAME_STATE < RUNLEVEL_LOBBY)
+			to_chat(src, SPAN_WARNING("Please wait for server initialization to complete..."))
+			return
+
 		client.prefs.open_setup_window(src)
 		return 1
 
 	if(href_list["lobby_ready"])
 		if(GAME_STATE <= RUNLEVEL_LOBBY)
+			send_output(client, null, "lobbybrowser:setReady")
 			ready = !ready
-
-	if(href_list["refresh"])
-		panel.close()
-		show_lobby_menu()
 
 	if(href_list["lobby_observe"])
 		if(GAME_STATE < RUNLEVEL_LOBBY)
 			to_chat(src, SPAN_WARNING("Please wait for server initialization to complete..."))
+			return
+
+		if(!is_admin(src))
 			return
 
 		if(client?.holder)
@@ -172,8 +149,6 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 	if(!ready && href_list["preference"])
 		if(client)
 			client.prefs.process_link(src, href_list)
-	else if(!href_list["late_join"])
-		show_lobby_menu()
 
 	if(href_list["invalid_jobs"])
 		show_invalid_jobs = !show_invalid_jobs

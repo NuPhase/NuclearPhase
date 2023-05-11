@@ -306,6 +306,8 @@ var/global/template_file_name = "all_templates.json"
 		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
 
+/datum/asset/simple/lobby
+	assets = list("FixedsysExcelsior3.01Regular.ttf" = 'html/browser/font/FixedsysExcelsior3.01Regular.ttf')
 
 /*
 	Asset cache
