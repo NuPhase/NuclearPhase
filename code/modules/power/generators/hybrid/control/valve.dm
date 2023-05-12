@@ -73,3 +73,17 @@
 	icon_state = "switch1-off"
 	off_icon_state = "switch1-off"
 	on_icon_state = "switch1-on"
+
+/obj/machinery/reactor_button/rswitch/turbine_expansion/first
+	name = "TURB 1-EXPANSION"
+	id = "turbine1"
+
+/obj/machinery/reactor_button/rswitch/turbine_expansion/second
+	name = "TURB 2-EXPANSION"
+	id = "turbine2"
+
+/obj/machinery/reactor_button/rswitch/turbine_expansion/do_action(mob/user)
+	..()
+	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
+	var/expansion = input(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation") as null|num
+	tst.volume_ratio = 1 - Clamp(expansion * 0.01, 0.01, 0.85)

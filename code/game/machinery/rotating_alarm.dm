@@ -111,6 +111,7 @@
 	desc = "Something tells you it will go off someday..."
 	var/datum/composite_sound/overheat_overpressure_alarm/oo_alarm
 	var/datum/composite_sound/arm_alarm/arm_alarm
+	var/datum/composite_sound/purge_alarm/purge_alarm
 
 /obj/machinery/rotating_alarm/reactor/Initialize()
 	. = ..()

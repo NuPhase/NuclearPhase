@@ -680,3 +680,14 @@ var/global/list/fullstop_alternatives = list(".", "!", "?")
 			return "Northwest"
 		if(337)
 			return "North-Northwest"
+
+/proc/watts_to_text(var/watts)
+	var/load_text = ""
+	switch(watts)
+		if(0 to 1 MEGAWATTS)
+			load_text = "[round(watts / 1000, 0.1)]kW"
+		if(1 MEGAWATTS to 1 GIGAWATTS)
+			load_text = "[round(watts / 1000000, 0.1)]mW"
+		if(1 GIGAWATTS to INFINITY)
+			load_text = "[round(watts / 1000000000, 0.1)]gW"
+	return load_text

@@ -7,7 +7,7 @@
 	data["var3"] = "T-M-COOLANT|Pressure:[rcontrol.get_meter_pressure("T-M-COOLANT")]kPa|Temperature:[rcontrol.get_meter_temperature("T-M-COOLANT")]K|Mass:[rcontrol.get_meter_mass("T-M-COOLANT")]KG."
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
+		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 500, 270)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)

@@ -89,7 +89,7 @@
 
 	if(!injection_ratio)
 		return
-	var/removing = inserted.reagents.total_volume * injection_ratio
+	var/removing = inserted.reagents.total_volume * injection_ratio + 0.1
 	var/adding_gas = removing / REAGENT_UNITS_PER_GAS_MOLE
 	for(var/moving in inserted.reagents.reagent_volumes)
 		core_environment.adjust_gas(moving, adding_gas)

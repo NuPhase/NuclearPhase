@@ -4,7 +4,7 @@
 #define RADS_PER_NEUTRON 0.3
 #define REACTOR_POWER_MODIFIER 10
 #define WATTS_PER_KPA 0.1
-#define REACTOR_SHIELDING_COEFFICIENT 0.05
+#define REACTOR_SHIELDING_COEFFICIENT 0.0005
 
 /obj/machinery/power/hybrid_reactor
 	name = "reactor superstructure"
@@ -22,6 +22,7 @@
 
 	var/containment = FALSE
 	var/field_power_consumption = 0
+	var/shield_temperature = 36
 
 	var/obj/structure/reactor_superstructure/superstructure
 

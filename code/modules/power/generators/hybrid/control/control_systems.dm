@@ -24,6 +24,19 @@
 		return
 	visible_message(SPAN_WARNING("[user] switches [src] to [newmode]!"))
 
+/obj/machinery/reactor_button/protected/containment
+	name = "CONTAINMENT PRIMER"
+	desc = "Turns on the reactor's shields. Has a very large cooldown."
+	id = "CONTAINMENT PRIMER"
+	cooldown = 5 MINUTES
+
+/obj/machinery/reactor_button/protected/containment/do_action(mob/user)
+	..()
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	if(rcore.containment)
+		return
+	rcore.containment = TRUE
+
 /obj/machinery/reactor_button/rswitch/autoscram
 	name = "AUTOSCRAM"
 	id = "AUTOSCRAM"
@@ -58,3 +71,24 @@
 	for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
 		QDEL_NULL(SL.oo_alarm)
 		QDEL_NULL(SL.arm_alarm)
+
+/obj/machinery/reactor_button/protected/purge
+	name = "PURGE"
+	id = "PURGE"
+	cooldown = 5 MINUTES
+
+/obj/machinery/reactor_button/protected/purge/do_action(mob/user)
+	..()
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
+		SL.purge_alarm = new
+		spawn(31 SECONDS)
+			playsound(rcore.superstructure, 'sound/effects/purge.ogg', 300, falloff = 3)
+			var/turf/T = get_turf(rcore)
+			var/datum/gas_mixture/coreenvironment = T.return_air()
+			var/datum/gas_mixture/total_mixture = coreenvironment.remove_ratio(0.8)
+			var/turf/sT = get_turf(rcore.superstructure)
+			var/datum/gas_mixture/senvironment = sT.return_air()
+			senvironment.merge(total_mixture.remove_ratio(0.05))
+		spawn(50 SECONDS)
+			QDEL_NULL(SL.purge_alarm)

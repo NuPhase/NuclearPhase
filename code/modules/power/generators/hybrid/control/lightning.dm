@@ -19,3 +19,23 @@
 /obj/machinery/reactor_button/rswitch/lighting/superstructure
 	name = "FL-MAIN"
 	id = "superstructure"
+
+/obj/machinery/reactor_button/rswitch/lighting/auxillary
+	name = "FL-AUX"
+	id = "auxillary"
+
+/obj/machinery/reactor_button/rswitch/lighting/perimeter
+	name = "FL-PERIMETER"
+	id = "perimeter"
+
+/obj/machinery/reactor_button/rswitch/lighting/purge_tunnel
+	name = "FL-PURGE"
+	id = "purge"
+
+/obj/machinery/reactor_button/rswitch/lighting/access
+	name = "FL-ACCESS"
+	id = "access"
+
+/obj/machinery/reactor_button/rswitch/lighting/interior
+	name = "FL-INTERIOR"
+	id = "interior"

@@ -1303,8 +1303,16 @@
 	dir = 8
 	},
 /obj/machinery/reactor_button/rswitch/autoscram{
-	pixel_x = -10;
+	pixel_x = -24;
 	pixel_y = -3
+	},
+/obj/machinery/reactor_button/rswitch/lighting/purge_tunnel{
+	pixel_x = -14;
+	pixel_y = 12
+	},
+/obj/machinery/reactor_button/rswitch/lighting/interior{
+	pixel_x = -20;
+	pixel_y = 12
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -2021,41 +2029,41 @@
 	pixel_y = 6
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump1v1{
-	pixel_x = -10;
+	pixel_x = -23;
 	pixel_y = 12;
 	layer = 3.062
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump2v1{
-	pixel_x = -3;
+	pixel_x = -17;
 	pixel_y = 12;
 	layer = 3.062
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump1v2{
-	pixel_x = -10;
+	pixel_x = -23;
 	pixel_y = 7
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump2v2{
-	pixel_x = -3;
+	pixel_x = -17;
 	pixel_y = 7
 	},
 /obj/machinery/reactor_button/pump/fcp1{
-	pixel_x = -10;
-	pixel_y = -2;
+	pixel_x = -23;
+	pixel_y = -3;
 	layer = 3.061
 	},
 /obj/machinery/reactor_button/pump/fcp2{
-	pixel_x = -3;
-	pixel_y = -2;
+	pixel_x = -17;
+	pixel_y = -3;
 	layer = 3.061
 	},
 /obj/effect/floor_decal/corner/beige/border,
 /obj/machinery/reactor_display/group/reactorloop{
-	pixel_x = 18;
+	pixel_x = 1;
 	pixel_y = 2;
 	layer = 2.23
 	},
 /obj/machinery/reactor_button/regvalve/reactorfvin{
-	pixel_x = 11;
+	pixel_x = -7;
 	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -3666,14 +3674,6 @@
 /area/avalon/shelter/turbinehall)
 "dDr" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/reactor_button/presvalve/fuel{
-	pixel_y = -3;
-	pixel_x = -4
-	},
-/obj/machinery/reactor_button/presvalve/moderator{
-	pixel_x = 3;
-	pixel_y = -3
-	},
 /obj/item/paper/sticky{
 	pixel_y = -6;
 	pixel_x = -8;
@@ -3682,6 +3682,9 @@
 	},
 /obj/effect/floor_decal/corner/beige/border{
 	dir = 1
+	},
+/obj/machinery/reactor_button/rswitch/intake_valves{
+	pixel_x = 6
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -4897,6 +4900,10 @@
 	pixel_y = -3;
 	pixel_x = 1
 	},
+/obj/machinery/reactor_button/protected/turbine_braking{
+	pixel_y = 3;
+	pixel_x = 1
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "eIY" = (
@@ -5426,9 +5433,13 @@
 	},
 /obj/effect/floor_decal/corner/beige/border,
 /obj/machinery/reactor_monitor/warnings{
-	pixel_x = 2;
+	pixel_x = 5;
 	pixel_y = 10;
 	layer = 2.221
+	},
+/obj/machinery/reactor_button/protected/containment{
+	pixel_x = -11;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -9194,32 +9205,36 @@
 	},
 /obj/effect/floor_decal/corner/beige/border,
 /obj/machinery/reactor_button/regvalve/reactorfvout{
-	pixel_x = -14;
+	pixel_x = -33;
 	pixel_y = -3
 	},
 /obj/machinery/reactor_button/lasomode{
-	pixel_x = 5;
-	pixel_y = 13
+	pixel_x = 12;
+	pixel_y = 14
 	},
 /obj/machinery/reactor_button/rswitch/lasarm{
-	pixel_y = 11;
-	pixel_x = 10;
+	pixel_y = 12;
+	pixel_x = 17;
 	layer = 3.061
 	},
 /obj/machinery/reactor_button/lasnmode{
-	pixel_x = 14;
-	pixel_y = 13
+	pixel_x = 21;
+	pixel_y = 14
 	},
 /obj/machinery/reactor_button/rswitch/lasprime{
 	pixel_y = 7;
-	pixel_x = 10
+	pixel_x = 17
 	},
 /obj/machinery/reactor_button/rswitch/preheat{
-	pixel_x = -5;
+	pixel_x = -26;
 	pixel_y = -3
 	},
-/obj/machinery/reactor_button/protected/turbine_braking{
-	pixel_x = 3;
+/obj/machinery/reactor_monitor/containment{
+	pixel_y = 10;
+	pixel_x = -4
+	},
+/obj/machinery/reactor_button/protected/purge{
+	pixel_x = 12;
 	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -15461,6 +15476,17 @@
 /obj/effect/floor_decal/corner/beige/border{
 	dir = 8
 	},
+/obj/machinery/reactor_button/regvalve/moderator{
+	pixel_x = 3
+	},
+/obj/machinery/reactor_button/fuel{
+	pixel_y = 6;
+	icon_state = "switch1-off"
+	},
+/obj/machinery/reactor_button/moderator{
+	icon_state = "switch1-off";
+	pixel_x = -3
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "oOx" = (
@@ -18615,16 +18641,28 @@
 	pixel_y = 6
 	},
 /obj/effect/floor_decal/corner/beige/border,
-/obj/machinery/reactor_button/rswitch/lighting/superstructure{
-	pixel_y = 12
-	},
 /obj/machinery/reactor_button/protected/scram{
 	pixel_x = -10;
 	pixel_y = -3
 	},
 /obj/machinery/reactor_button/protected/mode_of_operation{
-	pixel_x = 8;
+	pixel_x = 14;
 	pixel_y = -3
+	},
+/obj/machinery/reactor_button/rswitch/lighting/superstructure{
+	pixel_y = 12
+	},
+/obj/machinery/reactor_button/rswitch/lighting/auxillary{
+	pixel_y = 12;
+	pixel_x = 6
+	},
+/obj/machinery/reactor_button/rswitch/lighting/perimeter{
+	pixel_y = 12;
+	pixel_x = -6
+	},
+/obj/machinery/reactor_button/rswitch/lighting/access{
+	pixel_y = 12;
+	pixel_x = -12
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -22047,6 +22085,14 @@
 	pixel_y = 7
 	},
 /obj/machinery/reactor_button/turbine_valve/second{
+	pixel_y = 14
+	},
+/obj/machinery/reactor_button/rswitch/turbine_expansion/first{
+	pixel_y = 7;
+	pixel_x = -6
+	},
+/obj/machinery/reactor_button/rswitch/turbine_expansion/second{
+	pixel_x = -6;
 	pixel_y = 14
 	},
 /turf/simulated/floor/tiled/dark/monotile,
