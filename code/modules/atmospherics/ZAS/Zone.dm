@@ -192,7 +192,7 @@ Class Procs:
 				air.adjust_gas(g, -condense_amt)
 				var/obj/effect/fluid/F = locate() in flooding
 				if(!F) F = new(flooding)
-				var/condense_reagent_amt = condense_amt * REAGENT_UNITS_PER_GAS_MOLE
+				var/condense_reagent_amt = condense_amt * mat.molar_volume
 				F.reagents.add_reagent(g, condense_reagent_amt)
 				air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
 		CHECK_TICK
@@ -213,7 +213,7 @@ Class Procs:
 			air.adjust_gas(g, -condense_amt)
 			var/obj/effect/fluid/F = locate() in flooding
 			if(!F) F = new(flooding)
-			var/condense_reagent_amt = condense_amt * REAGENT_UNITS_PER_GAS_MOLE
+			var/condense_reagent_amt = condense_amt * mat.molar_volume
 			F.reagents.add_reagent(g, condense_reagent_amt)
 			air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
 			F.temperature = air.temperature

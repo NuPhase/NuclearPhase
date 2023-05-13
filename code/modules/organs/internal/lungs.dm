@@ -217,7 +217,7 @@
 		if(gas.gas_metabolically_inert)
 			continue
 		// Little bit of sanity so we aren't trying to add 0.0000000001 units of CO2, and so we don't end up with 99999 units of CO2.
-		var/reagent_amount = breath.gas[gasname] * REAGENT_UNITS_PER_GAS_MOLE * ratio
+		var/reagent_amount = breath.gas[gasname] * gas.molar_volume * ratio
 		//if(reagent_amount < 0.05)
 		//	continue
 		owner.reagents.add_reagent(gasname, reagent_amount)

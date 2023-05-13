@@ -43,16 +43,16 @@
 /turf/simulated/wall/r_wall/glowinghull
 	name = "glowing hull"
 	desc = "Groaning chunks of hot metal dislodged from the hull of an unlucky ship. What a terrible disaster..."
-	color = MOLTEN_METAL_COLOR
+	color = "#ff8000"
 	material = /decl/material/solid/metal/stainlesssteel
 	reinf_material = /decl/material/solid/metal/stainlesssteel
 
 /turf/simulated/wall/r_wall/glowinghull/Initialize(ml, materialtype, rmaterialtype)
 	. = ..()
-	color = MOLTEN_METAL_COLOR
-	add_filter("glow",1, list(type="drop_shadow", x = 0, y = 0, offset = 0, size = 4, color = LIGHT_COLOR_EMERGENCY))
+	color = "#ff8000"
+	add_filter("glow",1, list(type="drop_shadow", x = 0, y = 0, offset = 0, size = 4, color = "#ff8000"))
 	// animate_filter("glow", list(color = MOLTEN_METAL_COLOR, time = 2 SECONDS, easing = LINEAR_EASING))
-	set_light(3, 1, MOLTEN_METAL_COLOR)
+	set_light(3, 1, "#ff8000")
 
 /turf/simulated/wall/titanium
 	color = COLOR_SILVER

@@ -92,7 +92,8 @@
 
 	var/reaction_volume = holder.volume
 	for(var/reactant in required_reagents)
-		var/A = holder.gas[reactant] * REAGENT_UNITS_PER_GAS_MOLE / required_reagents[reactant] / limit // How much of this reagent we are allowed to use
+		var/decl/material/mat = GET_DECL(reactant)
+		var/A = holder.gas[reactant] * mat.molar_volume / required_reagents[reactant] / limit // How much of this reagent we are allowed to use
 		if(reaction_volume > A)
 			reaction_volume = A
 
@@ -102,7 +103,8 @@
 	//add the product
 	var/amt_produced = result_amount * reaction_volume
 	if(result)
-		holder.adjust_gas(result, amt_produced / REAGENT_UNITS_PER_GAS_MOLE)
+		var/decl/material/smat = GET_DECL(result)
+		holder.adjust_gas(result, amt_produced / smat.molar_volume)
 
 	//on_reaction(holder, amt_produced, reaction_flags)
 

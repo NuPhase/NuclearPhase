@@ -181,8 +181,9 @@
 		for(var/g in air_sample.gas)
 			if(air_sample.phases[g] == MAT_PHASE_LIQUID)
 				var/obj/effect/fluid/F = locate() in target
+				var/decl/material/mat = GET_DECL(g)
 				if(!F) F = new(target)
-				var/condense_reagent_amt = air_sample.gas[g] * REAGENT_UNITS_PER_GAS_MOLE
+				var/condense_reagent_amt = air_sample.gas[g] * mat.molar_volume
 				F.reagents.add_reagent(g, condense_reagent_amt)
 				F.temperature = air_sample.temperature
 				air_sample.gas.Remove(g)

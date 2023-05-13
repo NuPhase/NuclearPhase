@@ -23,8 +23,8 @@
 	lore_text = "A noble gas. It makes your voice squeaky."
 	gas_specific_heat = 80
 	molar_mass = 0.004
-	latent_heat = 21
-	boiling_point = -269 CELSIUS
+	latent_heat = 21.1
+	boiling_point = 4.21
 	liquid_density = 113.9
 	taste_description = "nothing"
 	metabolism = 0.05

@@ -23,7 +23,7 @@
 	var/sfalloff = 1
 	var/distance = 1
 	var/max_loops
-	var/direct
+	var/direct = FALSE
 
 	var/timerid
 
@@ -70,8 +70,12 @@
 
 /datum/composite_sound/proc/play(soundfile)
 	var/sound/S = sound(soundfile)
-	for(var/atom/thing as anything in output_atoms)
-		playsound(thing, S, volume, 0, 0, sfalloff)
+	if(!direct)
+		for(var/atom/thing as anything in output_atoms)
+			playsound(thing, S, volume, 0, distance, falloff = sfalloff)
+	else
+		for(var/mob/living/carbon/human/H in output_atoms)
+			H.playsound_local(H.loc, S, volume, falloff = sfalloff)
 
 /datum/composite_sound/proc/get_sound(starttime, _mid_sounds)
 	. = _mid_sounds || mid_sounds

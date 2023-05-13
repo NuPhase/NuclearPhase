@@ -182,7 +182,7 @@
 		var/obj/effect/fluid/F = locate() in loc
 		if(F)
 			var/decl/material/mat = F.reagents.get_primary_reagent_decl()
-			air_contents.adjust_gas_temp(mat.type, F.reagents.total_volume / REAGENT_UNITS_PER_GAS_MOLE, F.temperature)
+			air_contents.adjust_gas_temp(mat.type, F.reagents.total_volume / mat.molar_volume, F.temperature)
 			F.Destroy()
 			update_networks()
 

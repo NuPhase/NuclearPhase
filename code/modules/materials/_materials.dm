@@ -137,6 +137,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/liquid_specific_heat = 40
 	var/solid_specific_heat = 30
 
+	//ml/mol
+	//multiply moles by this to get mL. Divide mL by this to get moles.
+	var/molar_volume
+
 	//kg/m3
 	var/liquid_density = 1000
 	var/solid_density = 1000
@@ -329,6 +333,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 		gas_molar_mass = molar_mass
 		liquid_molar_mass = molar_mass
 		solid_molar_mass = molar_mass
+	molar_volume = molar_mass / liquid_density * 1000000
 	if(!liquid_specific_heat)
 		liquid_specific_heat = gas_specific_heat * 2
 		solid_specific_heat = gas_specific_heat * 1.5
@@ -395,8 +400,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 //Clausius–Clapeyron relation
 /decl/material/proc/get_boiling_temp(var/pressure = ONE_ATMOSPHERE)
 	if(!pressure)
-		pressure = 0.01
-	return (1 / (1/boiling_point) - ((R_IDEAL_GAS_EQUATION * log(pressure / ONE_ATMOSPHERE)) / (latent_heat * molar_mass)))
+		return 0.1
+	return boiling_point * (pressure / ONE_ATMOSPHERE)**(-1 * (latent_heat / (R_IDEAL_GAS_EQUATION * boiling_point)))
 
 // Returns the phase of the matterial at the given temperature and pressure
 /decl/material/proc/phase_at_temperature(var/temperature, var/pressure = ONE_ATMOSPHERE)

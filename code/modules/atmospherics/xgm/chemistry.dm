@@ -11,13 +11,13 @@
 /datum/gas_mixture/proc/touch_mob(var/mob/living/carbon/touching)
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		mat.touch_mob(touching, gas[g] * REAGENT_UNITS_PER_GAS_MOLE)
-		mat.affect_touch(touching, gas[g] * REAGENT_UNITS_PER_GAS_MOLE)
+		mat.touch_mob(touching, gas[g] * mat.molar_volume)
+		mat.affect_touch(touching, gas[g] * mat.molar_volume)
 
 /datum/gas_mixture/proc/touch_turf(var/turf/simulated/touching)
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		mat.touch_turf(touching, gas[g] * REAGENT_UNITS_PER_GAS_MOLE)
+		mat.touch_turf(touching, gas[g] * mat.molar_volume)
 
 /datum/gas_mixture/proc/is_acidic() //whether the mixture is acidic
 	for(var/g in gas)
@@ -34,7 +34,7 @@
 	var/reaction_speed = get_reaction_speed()
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		reactants[mat] += gas[g] * REAGENT_UNITS_PER_GAS_MOLE
+		reactants[mat] += gas[g] * mat.molar_volume
 	if(!reactants)
 		return
 

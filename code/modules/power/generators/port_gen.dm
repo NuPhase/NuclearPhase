@@ -186,7 +186,7 @@
 	var/required_fuel_moles = POWER2HEAT(power_requirement) / mat.combustion_chamber_fuel_value
 	if(closed_cycle)
 		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
-		burn_mixture.adjust_gas(mat.type, required_fuel_moles * REAGENT_UNITS_PER_LIQUID_MOLE)
+		burn_mixture.adjust_gas(mat.type, required_fuel_moles * mat.molar_volume)
 		burn_mixture.merge(oxidizer_tank.air_contents.remove(required_fuel_moles * 2))
 		burn_mixture.fire_react(null, TRUE, TRUE)
 		waste_tank.air_contents.merge(burn_mixture)
@@ -196,7 +196,7 @@
 		burn_mixture.merge(environment.remove(required_fuel_moles * 10))
 		burn_mixture.fire_react(null, TRUE, TRUE)
 		environment.merge(burn_mixture)
-	reagents.remove_reagent(mat.type, required_fuel_moles * REAGENT_UNITS_PER_GAS_MOLE)
+	reagents.remove_reagent(mat.type, required_fuel_moles * mat.molar_volume)
 	environment.add_thermal_energy(POWER2HEAT(power_requirement) * (1 - efficiency))
 	update_sound()
 

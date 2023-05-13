@@ -83,16 +83,17 @@
 	if(inserted.reagents.total_volume != inserted.reagents.maximum_volume) //we're not full of sticky white liquid some engineer left in us
 		for(var/g in core_environment.gas)
 			if(g in rcontrol.unwanted_materials)
+				var/decl/material/mat = GET_DECL(g)
 				var/removed = core_environment.gas[g] * 0.1 + 0.1
 				core_environment.adjust_gas(g, removed * -1)
-				inserted.reagents.add_reagent(g, removed * REAGENT_UNITS_PER_GAS_MOLE)
+				inserted.reagents.add_reagent(g, removed * mat.molar_volume)
 
 	if(!injection_ratio)
 		return
 	var/removing = inserted.reagents.total_volume * injection_ratio + 0.1
-	var/adding_gas = removing / REAGENT_UNITS_PER_GAS_MOLE
 	for(var/moving in inserted.reagents.reagent_volumes)
-		core_environment.adjust_gas(moving, adding_gas)
+		var/decl/material/smat = GET_DECL(moving)
+		core_environment.adjust_gas(moving, removing / smat.molar_volume)
 		inserted.reagents.remove_reagent(moving, removing)
 
 /obj/machinery/reactor_fuelport/Initialize()

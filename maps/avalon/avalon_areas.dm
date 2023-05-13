@@ -213,6 +213,8 @@
 /area/surface/Entered(mob/A)
 	. = ..()
 	if(ishuman(A))
+		var/obj/abstract/weather_system/weather = using_map.weather_system
+		weather.windloop_play_atoms += A
 		surface_mobs += A
 		for(var/obj/item/gun/W in A.contents)
 			if(W.hot_color && phase)
@@ -221,6 +223,8 @@
 /area/surface/Exited(mob/A)
 	. = ..()
 	if(ishuman(A))
+		var/obj/abstract/weather_system/weather = using_map.weather_system
+		weather.windloop_play_atoms -= A
 		surface_mobs -= A
 		for(var/obj/item/gun/W in A.contents)
 			if(W.hot_color)
