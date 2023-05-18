@@ -49,7 +49,7 @@
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
 	flow_capacity = 1500 //kgs
-	power_rating = 600000 //fucking chonker
+	power_rating = 140000 //fucking chonker
 
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
 	name = "molten metal pump"

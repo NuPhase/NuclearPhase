@@ -1,5 +1,5 @@
 #define TURBINE_MOMENT_OF_INERTIA 5625 //1.5m radius, 5t weight
-#define STEAM_SPEED_MODIFIER 2.1
+#define STEAM_SPEED_MODIFIER 1.3
 #define TURBINE_PERFECT_RPM 3550
 #define TURBINE_ABNORMAL_RPM 4000
 #define TURBINE_MAX_RPM 10000
@@ -106,20 +106,19 @@
 		use_power = POWER_USE_IDLE
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_efficiency()
-	efficiency = initial(efficiency)
+	efficiency = 0.23
 	efficiency -= vibration * 0.005
-	if(rpm < TURBINE_PERFECT_RPM)
-		efficiency -= (TURBINE_PERFECT_RPM - rpm) * 0.0003
-	efficiency = max(0.23, efficiency)
+	efficiency += rpm * 0.00025
+	efficiency = Clamp(efficiency, 0.33, initial(efficiency))
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	var/tvibration = 0
-	if(turbine_internals.temperature < 409) //condensing inside of the turbine is incredibly dangerous
-		tvibration += total_mass_flow * 0.04
+	//if(turbine_internals.temperature < 409) //condensing inside of the turbine is incredibly dangerous
+	//	tvibration += total_mass_flow * 0.04
 	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
 		tvibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
-		tvibration += 20
+		tvibration += 35
 	if(rpm > TURBINE_ABNORMAL_RPM) //я твоя турбина вал шатал
 		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.1
 	tvibration += total_mass_flow * 0.005

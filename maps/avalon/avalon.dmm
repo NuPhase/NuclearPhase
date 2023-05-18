@@ -2362,9 +2362,6 @@
 /area/avalon/shelter/science)
 "clu" = (
 /obj/structure/catwalk,
-/obj/structure/railing/mapped{
-	dir = 8
-	},
 /obj/structure/fire_hydrant_manual{
 	pixel_y = 32
 	},
@@ -6345,6 +6342,13 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
+"ggl" = (
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam{
+	dir = 1;
+	wanted_temperature = 771
+	},
+/turf/simulated/floor/reinforced/hydrogen,
+/area/avalon/shelter/turbinehall)
 "ggB" = (
 /turf/simulated/open,
 /area/avalon/shelter/brig)
@@ -7389,8 +7393,10 @@
 /turf/simulated/wall/r_wall,
 /area/space)
 "hdz" = (
-/obj/machinery/atmospherics/pipe/zpipe/down,
-/obj/structure/railing/mapped,
+/obj/structure/ladder,
+/obj/structure/railing/mapped{
+	dir = 8
+	},
 /turf/simulated/open,
 /area/avalon/shelter/turbinehall)
 "hdH" = (
@@ -9036,7 +9042,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/space,
 /area/avalon/shelter/turbinehall)
 "iJM" = (
 /obj/abstract/landmark/start{
@@ -16860,6 +16866,13 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
+"qaQ" = (
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam{
+	dir = 1;
+	wanted_temperature = 751
+	},
+/turf/simulated/floor/reinforced/hydrogen,
+/area/avalon/shelter/turbinehall)
 "qaZ" = (
 /obj/structure/rack,
 /obj/item/stack/material/ingot/mapped/blackbronze/ten,
@@ -16955,7 +16968,13 @@
 /area/avalon/shelter/science)
 "qdY" = (
 /obj/machinery/light/spot,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/empty{
+	volume = 226000
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "qej" = (
 /obj/structure/closet/l3closet/scientist,
@@ -18338,11 +18357,10 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "rtv" = (
-/obj/structure/railing/mapped{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 4
 	},
-/obj/structure/railing/mapped,
-/turf/simulated/open,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "rtF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
@@ -18458,7 +18476,8 @@
 "rCR" = (
 /obj/machinery/atmospherics/binary/pump/adv{
 	dir = 1;
-	uid = "T-FEEDWATER CP-MAKEUP"
+	uid = "T-FEEDWATER CP-MAKEUP";
+	flow_capacity = 100
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -19700,8 +19719,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "sOV" = (
-/obj/structure/ladder,
-/turf/simulated/open,
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam{
+	dir = 1;
+	wanted_temperature = 781
+	},
+/turf/simulated/floor/reinforced/hydrogen,
 /area/avalon/shelter/turbinehall)
 "sPi" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
@@ -19854,9 +19876,18 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/cargo/warehouse)
 "sVr" = (
-/obj/structure/ladder,
+/obj/machinery/atmospherics/pipe/manifold/visible/steam{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/turbinehall)
+"sVu" = (
 /obj/structure/railing/mapped,
-/turf/simulated/floor/tiled/techfloor,
+/obj/structure/catwalk,
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/turf/simulated/open,
 /area/avalon/shelter/turbinehall)
 "sWM" = (
 /obj/structure/cable{
@@ -20732,6 +20763,13 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
+"tMf" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
+/obj/structure/ladder,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/turbinehall)
 "tMh" = (
 /obj/structure/wall_frame/titanium,
 /obj/structure/window/reinforced/full,
@@ -24097,6 +24135,13 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/avalon/shelter/factory)
+"wWW" = (
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam{
+	dir = 1;
+	wanted_temperature = 761
+	},
+/turf/simulated/floor/reinforced/hydrogen,
+/area/avalon/shelter/turbinehall)
 "wWZ" = (
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/techfloor,
@@ -170463,7 +170508,7 @@ hBO
 huU
 cMK
 cMK
-tQJ
+tMf
 qjD
 qjD
 pEx
@@ -170600,11 +170645,11 @@ kVz
 pfz
 pfz
 vUH
-qjD
-qjD
+pfz
+pfz
 qdY
 fly
-xba
+qaQ
 uzP
 jfJ
 uhS
@@ -170730,11 +170775,11 @@ xgd
 abt
 oxY
 xgd
-qjD
-qjD
-qjD
+pfz
+pfz
+rtv
 fly
-xba
+wWW
 uzP
 jfJ
 lkd
@@ -170860,11 +170905,11 @@ vbm
 lGi
 pfz
 pfz
-yal
+pfz
+pfz
 rtv
-qjD
 fly
-xba
+ggl
 uzP
 jfJ
 aXt
@@ -170990,11 +171035,11 @@ pfz
 pfz
 pfz
 pfz
+pfz
+fzF
 sVr
-hdz
-fIV
 pDq
-xba
+sOV
 uzP
 dxZ
 lCH
@@ -187104,14 +187149,14 @@ gcv
 vFQ
 jWJ
 csv
-lkH
-gqs
+hdz
+sVu
 gBm
 lkH
 lkH
 lkH
 lkH
-qKs
+lkH
 lkH
 lkH
 csv
@@ -187235,7 +187280,7 @@ tqw
 rtF
 csv
 clu
-kCl
+uvu
 uvu
 kCl
 kCl
@@ -187500,9 +187545,9 @@ mYm
 gBm
 oVe
 mYm
-uvu
-kCl
-dIV
+gBm
+lkH
+lkH
 lkH
 csv
 bch
@@ -187631,8 +187676,8 @@ uvu
 uvu
 evi
 ioh
-sOV
-gBm
+lkH
+lkH
 lkH
 csv
 xTS

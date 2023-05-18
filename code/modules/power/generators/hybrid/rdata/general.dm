@@ -51,6 +51,7 @@
 	data["var1"] = "CONTAINMENT MONITORING:"
 	data["var2"] = "Power Consumption: [watts_to_text(rcore.field_power_consumption)]."
 	data["var3"] = "Shield Temperature: [round(rcore.shield_temperature)]K."
+	data["var4"] = "Shield Battery Charge: 100%"
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
