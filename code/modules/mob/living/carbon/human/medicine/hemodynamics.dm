@@ -58,6 +58,7 @@
 	meanpressure = (syspressure + dyspressure) / 2
 
 	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff + add_mcv, 0, 12000)
+	add_mcv = 0
 	//mcv = meanpressure * 132.32 * 60 / tpvr
 
 /mob/living/carbon/human/proc/consume_oxygen(amount)

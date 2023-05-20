@@ -244,8 +244,11 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		if(chest)
 			chest.fracture()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	if(heart)
-		heart.external_pump = 4 * pumping_skill
+
+	if(pumping_skill > 1)
+		add_mcv += 1400 * get_blood_volume_hemo()
+	else
+		add_mcv += 600 * get_blood_volume_hemo()
 
 	if(is_asystole())
 		var/resuscitation_chance = 5 + pumping_skill - (heart.oxygen_deprivation * 0.05)
@@ -288,13 +291,12 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		var/obj/item/organ/internal/lungs/L = get_organ(species.breathing_organ, /obj/item/organ/internal/lungs)
 		if(!L)
 			return
-
-			var/datum/gas_mixture/breath = H.get_breath_from_environment()
-			var/fail = L.handle_breath(breath, 1)
-			if(!fail)
-				if(!L.is_bruised())
-					losebreath = 0
-				to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
+		var/datum/gas_mixture/breath = H.get_breath_from_environment()
+		var/fail = L.handle_breath(breath, 1)
+		if(!fail)
+			if(!L.is_bruised())
+				losebreath = 0
+			to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
 
 	// Again.
 	start_compressions(H, FALSE, cpr_mode)

@@ -254,7 +254,7 @@
 	return failed_breath
 
 /obj/item/organ/internal/lungs/proc/handle_failed_breath()
-	if(prob(15) && !owner.nervous_system_failure())
+	if(prob(15) && oxygen_deprivation < 100)
 		if(!owner.is_asystole())
 			if(active_breathing)
 				owner.emote("gasp")
