@@ -1,10 +1,16 @@
 /obj/machinery/reactor_display
 	name = "digital display"
-	icon = 'icons/obj/reactor_display.dmi'
-	icon_state = "display"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "comp_screen"
+	var/overlaying = ""
 	var/special_description = ""
 	var/list/data = list()
 	idle_power_usage = 150 //average monitor + low-end pc
+
+/obj/machinery/reactor_display/on_update_icon()
+	overlays.Cut()
+	if(powered(EQUIP))
+		overlays += image(icon, overlaying)
 
 /obj/machinery/reactor_display/proc/get_display_data()
 	if(!powered())
@@ -28,7 +34,6 @@
 
 /obj/machinery/reactor_display/group
 	name = "group of displays"
-	icon_state = "displaygroup"
 
 /obj/machinery/reactor_display/feedpumps
 	name = "feed pumps display"
@@ -88,7 +93,7 @@
 
 /obj/machinery/reactor_monitor/on_update_icon()
 	overlays.Cut()
-	if(on)
+	if(powered(EQUIP) && on)
 		overlays += image(icon, "overlay-[program_overlay]")
 
 /obj/machinery/reactor_monitor/proc/turn_on()

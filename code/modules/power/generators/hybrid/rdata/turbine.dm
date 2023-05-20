@@ -32,6 +32,7 @@
 
 /obj/machinery/reactor_display/group/turbine
 	name = "turbine monitoring displays"
+	overlaying = "turbinecomp"
 
 /obj/machinery/reactor_display/group/turbine/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/breaks_engaged1 = ""

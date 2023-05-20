@@ -1,5 +1,6 @@
 /obj/machinery/reactor_display/group/steamloop
-	name = "turbine loop displays"
+	name = "turbine loop display"
+	overlaying = "tank"
 
 /obj/machinery/reactor_display/group/steamloop/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	data["var1"] = "T-M-TURB IN|Pressure:[rcontrol.get_meter_pressure("T-M-TURB IN")]kPa|Temperature:[rcontrol.get_meter_temperature("T-M-TURB IN")]K|Mass:[rcontrol.get_meter_mass("T-M-TURB IN")]KG."

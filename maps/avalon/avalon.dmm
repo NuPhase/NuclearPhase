@@ -2059,7 +2059,7 @@
 /obj/effect/floor_decal/corner/beige/border,
 /obj/machinery/reactor_display/group/reactorloop{
 	pixel_x = 1;
-	pixel_y = 2;
+	pixel_y = 6;
 	layer = 2.23
 	},
 /obj/machinery/reactor_button/regvalve/reactorfvin{
@@ -13638,8 +13638,8 @@
 /obj/structure/table/steel_reinforced,
 /obj/machinery/reactor_display/group/steamloop{
 	layer = 2.221;
-	pixel_y = -5;
-	pixel_x = 5
+	pixel_y = 3;
+	pixel_x = 8
 	},
 /obj/effect/floor_decal/corner/beige/border{
 	dir = 1
@@ -16263,6 +16263,12 @@
 /obj/structure/boulder,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/upperhall)
+"pzM" = (
+/obj/machinery/reactor_display/group/pumps{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/turbinehall)
 "pAk" = (
 /obj/effect/floor_decal/corner/pink{
 	dir = 1
@@ -16898,7 +16904,7 @@
 /area/avalon/shelter/engineering)
 "qbf" = (
 /obj/machinery/reactor_display/group/turbine{
-	pixel_y = 24
+	pixel_y = 26
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
@@ -19440,6 +19446,16 @@
 /obj/machinery/atmospherics/binary/pump/adv/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/factory)
+"sCa" = (
+/obj/effect/catwalk_plated/dark,
+/obj/machinery/reactor_display/group/pumps{
+	dir = 8;
+	layer = 2.23;
+	pixel_x = 30;
+	pixel_y = 17
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "sDg" = (
 /obj/machinery/door/blast/regular,
 /turf/simulated/floor/plating,
@@ -186631,7 +186647,7 @@ iVn
 kOw
 iVn
 jWJ
-ipa
+pzM
 ipa
 qqo
 cMK
@@ -220706,7 +220722,7 @@ wkp
 dpn
 dpn
 rOH
-osS
+sCa
 mwa
 ojX
 ojX

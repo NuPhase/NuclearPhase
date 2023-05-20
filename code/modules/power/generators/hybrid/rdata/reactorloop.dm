@@ -1,5 +1,6 @@
 /obj/machinery/reactor_display/group/reactorloop
-	name = "reactor loop displays"
+	name = "reactor loop display"
+	overlaying = "tank"
 
 /obj/machinery/reactor_display/group/reactorloop/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	data["var1"] = "F-M HEATEXCHANGER|Pressure:[rcontrol.get_meter_pressure("F-M HEATEXCHANGER")]kPa|Temperature:[rcontrol.get_meter_temperature("F-M HEATEXCHANGER")]K|Mass:[rcontrol.get_meter_mass("F-M HEATEXCHANGER")]KG."
