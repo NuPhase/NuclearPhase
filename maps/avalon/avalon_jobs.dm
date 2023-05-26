@@ -13,6 +13,7 @@
 		/datum/job/janitor,
 		/datum/job/chief_engineer,
 		/datum/job/engineer,
+		/datum/job/engineer_trainee,
 		/datum/job/cmo,
 		/datum/job/doctor,
 		/datum/job/chemist,

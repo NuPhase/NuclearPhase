@@ -87,7 +87,7 @@
 		. += {"<a class="container-item" href='?src=\ref[src];lobby_join=1'>JOIN</a>"}
 
 	if(is_admin(src))
-		. += {"<a class="container-item" href='?src=\ref[src];lobby_join=1'>OBSERVE</a>"}
+		. += {"<a class="container-item" href='?src=\ref[src];lobby_observe=1'>OBSERVE</a>"}
 
 	. += "</div>"
 
@@ -97,7 +97,7 @@
 		<script>
 			var state = 0
 			var mark = document.getElementById("ready")
-			var marks = \["READY", "NOT READY"\]
+			var marks = \["NOT READY", "READY"\]
 			function setReady(new_state) {
 				if(new_state) {
 					state = new_state
