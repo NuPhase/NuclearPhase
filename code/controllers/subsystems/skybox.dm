@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(skybox)
 	flags = SS_NO_FIRE
 	var/background_color
 	var/skybox_icon = 'icons/skybox/skybox.dmi' //Path to our background. Lets us use anything we damn well please. Skyboxes need to be 736x736
-	var/background_icon = "dyable"
+	var/background_icon = "cascade"
 	var/use_stars = TRUE
 	var/use_overmap_details = TRUE
 	var/star_path = 'icons/skybox/skybox.dmi'
@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(skybox)
 		im.plane = DUST_PLANE
 		im.alpha = 128
 		im.blend_mode = BLEND_ADD
-		
+
 		MA.overlays = list(im)
 
 		dust_cache["[i]"] = MA
@@ -64,19 +64,19 @@ SUBSYSTEM_DEF(skybox)
 		im.blend_mode = BLEND_ADD
 
 		MA.overlays = list(im)
-	
+
 		speedspace_cache["NS_[i]"] = MA
-	
+
 		// EAST/WEST
 		MA = new(normal_space)
 		im = image('icons/turf/space_dust_transit.dmi', "speedspace_ew_[i]")
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
-		
+
 		MA.overlays = list(im)
-		
+
 		speedspace_cache["EW_[i]"] = MA
-	
+
 		//Over-the-edge images
 	for (var/dir in global.alldirs)
 		var/mutable_appearance/MA = new(normal_space)

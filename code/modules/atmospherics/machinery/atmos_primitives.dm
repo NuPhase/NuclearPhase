@@ -67,7 +67,7 @@
 
 	return power_draw
 
-/proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0, var/kgs_rating = 0, var/npower_rating = 0, var/efficiency = 0.7)
+/proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0, var/kgs_rating = 0, var/npower_rating = 0, var/efficiency = 0.79)
 	var/source_mass = source.get_mass()
 	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing
 		return -1
@@ -87,7 +87,9 @@
 	if (!removed) //Just in case
 		return -1
 
-	var/power_draw = transfer_mass / kgs_rating * npower_rating
+	//P = q * h * ρ / (6.116 * μ)
+	//var/power_draw = 10000
+	var/power_draw = ((transfer_mass/mat.liquid_density*1000) * mat.liquid_density / (6.116 * efficiency))
 
 	sink.merge(removed)
 

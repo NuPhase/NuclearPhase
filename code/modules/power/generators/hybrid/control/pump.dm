@@ -8,7 +8,7 @@
 
 /obj/machinery/reactor_button/pump/do_action(mob/user)
 	. = ..()
-	var/mode = input(user, "Select a new pump operation mode", "pump mode") in list(REACTOR_PUMP_MODE_OFF, REACTOR_PUMP_MODE_IDLE, REACTOR_PUMP_MODE_THROTTLE, REACTOR_PUMP_MODE_MAX, "Cancel")
+	var/mode = input(user, "Select a new pump operation mode", "pump mode") in list(REACTOR_PUMP_MODE_OFF, REACTOR_PUMP_MODE_IDLE, REACTOR_PUMP_MODE_MAX, "Cancel")
 	if(!mode || mode == "Cancel")
 		return
 	switch(mode)

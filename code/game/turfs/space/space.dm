@@ -264,3 +264,7 @@
 /turf/space/infinity
 	name = "\proper infinity"
 	icon_state = "bluespace"
+
+/turf/space/typhos_surroundings/Initialize()
+	. = ..()
+	toggle_transit(NORTH)

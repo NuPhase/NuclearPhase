@@ -77,8 +77,9 @@
 	switch(mode)
 		if(REACTOR_CONTROL_MODE_SEMIAUTO)
 			semi_auto_control()
-	if(scram_control)
-		check_autoscram()
+		if(REACTOR_CONTROL_MODE_AUTO)
+			semi_auto_control()
+			auto_control()
 	last_message_clearing += 1
 	if(last_message_clearing == 5)
 		for(var/cleared_message in cleared_messages)
@@ -92,10 +93,7 @@
 	moderate_turbine_loop()
 
 /datum/reactor_control_system/proc/check_autoscram()
-	if(turbine1.vibration > 50)
-		scram("TURBINE #1 VIBRATION TRIP")
-	if(turbine2.vibration > 50)
-		scram("TURBINE #2 VIBRATION TRIP")
+	return
 
 /datum/reactor_control_system/proc/do_alarms()
 	if(!should_alarm)
@@ -126,7 +124,7 @@
 	if(current_switch && current_switch.state)
 		do_message("TURBINES ON BYPASS", 1)
 
-	if(turbine1.rpm > 500 || turbine2.rpm > 500) //you shouldn't accelerate past that without load
+	if(turbine1.rpm > 3400 || turbine2.rpm > 3400) //you shouldn't accelerate past that without load
 		if(generator1.last_load < 50000 || generator2.last_load < 50000)
 			do_message("FULL LOAD REJECTION", 3)
 
@@ -173,11 +171,11 @@
 		do_message("TURBINE CONDENSER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
 
-	if(get_meter_pressure("T-M-TURB IN") > 12000)
-		do_message("TURBINE INLET OVERPRESSURE", 2)
+	if(get_meter_pressure("T-M-TURB IN") > 8500)
+		do_message("STEAM DRUM OVERPRESSURE", 2)
 		pressure_temperature_should_alarm = TRUE
-	if(get_meter_pressure("T-M-TURB EX") > 3000)
-		do_message("TURBINE CONDENSER OVERPRESSURE", 2)
+	if(get_meter_pressure("T-M-TURB EX") > 1000)
+		do_message("HOTWELL OVERPRESSURE", 2)
 		pressure_temperature_should_alarm = TRUE
 
 	if(get_pump_flow_rate("F-CP 1") < 50)
@@ -191,6 +189,13 @@
 
 	if(get_meter_temperature("T-M-TURB EX") > 390)
 		do_message("VAPOR IN FEEDWATER LOOP", 2)
+
+/datum/reactor_control_system/proc/auto_control()
+	if((generator1.connected || generator2.connected) && (get_meter_pressure("T-M-TURB IN") > 10000 || get_meter_pressure("T-M-TURB EX") > 3000 || get_meter_temperature("T-M-TURB IN") < 700 || turbine1.vibration > 50 || turbine2.vibration > 50))
+		turbine_trip()
+		do_message("TURBINE TRIP", 3)
+	if(scram_control)
+		check_autoscram()
 
 /datum/reactor_control_system/proc/moderate_reactor_loop()
 	return
@@ -212,24 +217,41 @@
 		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 
 	if(get_meter_temperature("T-M-TURB IN") < 690)
-		turbine1.feeder_valve_openage = 0
-		turbine2.feeder_valve_openage = 0
+		if(scram_control && (generator1.connected || generator2.connected))
+			turbine_trip()
+			do_message("TURBINE TRIP", 3)
+		else
+			turbine1.feeder_valve_openage = 0
+			turbine2.feeder_valve_openage = 0
 		return
+
+	var/feeder_governor_speed = 0.01
+	var/governor_difference = 0
 
 	if(get_meter_temperature("T-M-TURB IN") < 710)
 		turbine1.feeder_valve_openage = max(0, turbine1.feeder_valve_openage - 0.1)
 		turbine2.feeder_valve_openage = max(0, turbine2.feeder_valve_openage - 0.1)
 
-	if(turbine1.rpm > 3600)
+	if(turbine1.rpm > 3590)
 		turbine1.feeder_valve_openage = max(0, turbine1.feeder_valve_openage - 0.05)
-	else if(turbine1.rpm < 3500)
+	else if(turbine1.rpm < 3540)
 		turbine1.feeder_valve_openage = min(1, turbine1.feeder_valve_openage + 0.01)
 
-	if(turbine2.rpm > 3600)
+	if(turbine2.rpm > 3590)
 		turbine2.feeder_valve_openage = max(0, turbine2.feeder_valve_openage - 0.05)
-	else if(turbine2.rpm < 3500)
+	else if(turbine2.rpm < 3540)
 		turbine2.feeder_valve_openage = min(1, turbine2.feeder_valve_openage + 0.01)
 
+/datum/reactor_control_system/proc/turbine_trip()
+	var/obj/machinery/reactor_button/rswitch/current_switch
+	turbine1.feeder_valve_openage = 0
+	turbine2.feeder_valve_openage = 0
+	generator1.connected = FALSE
+	generator2.connected = FALSE
+	current_switch = reactor_buttons["TURB V-BYPASS"]
+	current_switch.state = 0
+	current_switch.do_action()
+	playsound(current_switch.loc, 'sound/machines/switchbuzzer.ogg', 50)
 
 /datum/reactor_control_system/proc/scram(cause)
 	do_message("SCRAM. CAUSE: [capitalize(cause)]", 3)
@@ -248,14 +270,7 @@
 	current_valve = reactor_valves["REACTOR-F-V-OUT"]
 	current_valve.set_openage(100)
 
-	//shutting down turbines
-	turbine1.feeder_valve_openage = 0
-	turbine2.feeder_valve_openage = 0
-	generator1.connected = FALSE
-	generator2.connected = FALSE
-	current_switch = reactor_buttons["TURB V-BYPASS"]
-	current_switch.state = 0
-	current_switch.do_action()
+	turbine_trip()
 
 	mode = REACTOR_CONTROL_MODE_MANUAL
 	scram_control = FALSE

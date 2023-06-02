@@ -87,3 +87,21 @@
 	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
 	var/expansion = input(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation") as null|num
 	tst.volume_ratio = 1 - Clamp(expansion * 0.01, 0.01, 0.85)
+
+/obj/machinery/reactor_button/relief_valve
+	name = "relief valve"
+	var/working = FALSE
+	icon_state = "switch1-off"
+
+/obj/machinery/reactor_button/relief_valve/do_action(mob/user)
+	..()
+	if(!working)
+		working = TRUE
+		icon_state = "switch1-on"
+		var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
+		var/memorized_pressure_setting = current_valve.target_pressure
+		current_valve.target_pressure = 0
+		spawn(5 SECONDS)
+			current_valve.target_pressure = memorized_pressure_setting
+			working = FALSE
+			icon_state = "switch1-off"

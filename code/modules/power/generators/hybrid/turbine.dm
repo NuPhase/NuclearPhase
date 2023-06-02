@@ -1,4 +1,4 @@
-#define TURBINE_MOMENT_OF_INERTIA 5625 //1.5m radius, 5t weight
+#define TURBINE_MOMENT_OF_INERTIA 1327000
 #define STEAM_SPEED_MODIFIER 1.3
 #define TURBINE_PERFECT_RPM 3550
 #define TURBINE_ABNORMAL_RPM 4000
@@ -57,9 +57,15 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()
-	air1.volume = 20000
-	air2.volume = 5000
+	air1.volume = 30000
+	air2.volume = 7500
 	reactor_components[uid] = src
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(ntemp, npres)
+	if(ntemp > 750)
+		return 3758119 //PLEASE make an approximation using specific steam tables.
+	else
+		return 5000
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
@@ -74,16 +80,13 @@
 	air_all.volume = air1.volume + air2.volume
 	pump_passive(air1, air_all, total_mass_flow)
 	var/old_temperature = air_all.temperature
-	air_all.temperature *= volume_ratio ** ADIABATIC_EXPONENT
-	var/temperature_delta = old_temperature - air_all.temperature
+	air_all.temperature = max(air_all.temperature * volume_ratio ** ADIABATIC_EXPONENT, 360)
 
-
-	kin_total = (total_mass_flow * steam_velocity**2) * 0.5
-	kin_total += air_all.heat_capacity() * temperature_delta * volume_ratio
+	kin_total = get_specific_enthalpy(old_temperature, air1.return_pressure()) * total_mass_flow
 	kin_total *= expansion_ratio
 
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
-	rpm = round(sqrt(kin_energy / (0.5 * TURBINE_MOMENT_OF_INERTIA)))
+	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
 
 	calculate_vibration(air_all)
 	air2.merge(air_all)
@@ -129,10 +132,16 @@
 		if(26 to 50)
 			for(var/mob/living/carbon/human/H in range(world.view, loc))
 				to_chat(H, SPAN_WARNING("All your surroundings vibrate like in an earthquake!"))
+				shake_camera(H, 10, 2)
 			rotor_integrity = max(0, rotor_integrity - 0.1)
 		if(51 to INFINITY)
-			for(var/mob/living/carbon/human/H in range(world.view, loc))
-				to_chat(H, SPAN_DANGER("Everything around you shakes and rattles!"))
+			for(var/mob/living/carbon/human/H in human_mob_list)
+				if(get_dist(H.loc, loc) < 10)
+					to_chat(H, SPAN_DANGER("Everything around you shakes and rattles like in a powerful earthquake!"))
+					shake_camera(H, 10, 6)
+				else if(get_dist(H.loc, loc) < 50)
+					to_chat(H, SPAN_WARNING("Everything around you vibrates and resonates throughout your body, almost like something is tearing itself apart..."))
+					shake_camera(H, 10, 2)
 			rotor_integrity = max(0, rotor_integrity - 0.5)
 			shaft_integrity = max(0, shaft_integrity - 0.1)
 

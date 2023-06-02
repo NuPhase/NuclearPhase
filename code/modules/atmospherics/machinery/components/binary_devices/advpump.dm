@@ -1,6 +1,5 @@
 #define REACTOR_PUMP_MODE_OFF 		"OFF"
 #define REACTOR_PUMP_MODE_IDLE 		"IDLE"
-#define REACTOR_PUMP_MODE_THROTTLE  "THROTTLE" //the pump throttles to conserve energy
 #define REACTOR_PUMP_MODE_MAX 		"MAX"
 
 #define REACTOR_PUMP_RPM_SAFE 2600

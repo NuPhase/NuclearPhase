@@ -94,10 +94,12 @@ SUBSYSTEM_DEF(ticker)
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup() // Drafts antags who don't override jobs.
-		to_world("<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 		spawn(5 SECONDS)
 			to_world("<h4>Days since the catastrophe: 509...</h4>")
-			to_world(SPAN_ERPBOLD("Your fate is still in your hands, whether you like it or not..."))
+			to_world(SPAN_ERPBOLD("On the edge of nonexistence"))
+			to_world(SPAN_ERPBOLD("In a storm of unseen strength"))
+			to_world(SPAN_ERPBOLD("We rise united in one vision"))
+			to_world(SPAN_ERPBOLD("Pursuing the endeavor of survival."))
 		spawn(7 SECONDS)
 			radio_announce("Hey, don't forget to load the fuel cells! We left the reactor shut down for refueling before clocking out.", "[pick(first_names_male)] [pick(last_names)]")
 		if(global.current_holiday)
