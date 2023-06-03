@@ -310,10 +310,9 @@
 			C.add_fingerprint(H)
 
 		if (H.species.genitals)
-			var/amt = rand(20,30)
 			if (hole == "mouth" || H?.zone_sel?.selecting == "mouth")
 				message = pick("cums right in [P]'s mouth.")
-				P.reagents.add_reagent(/decl/material/liquid/semen, amt)
+				P.add_examine_descriptor(SPAN_ERP("[P.pronouns.His] face [P.pronouns.is] covered in a white liquid..."), DESCRIPTOR_DIRTINESS)
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SWALLOW/"
 				sound = pick(flist("[sound_path]"))
 			else if (hole == "vagina")

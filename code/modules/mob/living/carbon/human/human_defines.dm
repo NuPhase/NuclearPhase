@@ -93,6 +93,7 @@
 	var/became_younger
 
 	var/list/appearance_descriptors
+	var/list/examine_descriptors = list() //assoc list of descriptors to types. See mobs.dm in defines
 
 	var/list/smell_cooldown
 

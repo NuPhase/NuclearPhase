@@ -229,7 +229,7 @@ var/global/list/hygiene_props = list()
 	var/next_mist = 0
 	var/next_wash = 0
 	var/watertemp = "normal"	//freezing, normal, or boiling
-	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
+	var/list/temperature_settings = list("normal" = T20C+6, "boiling" = T0C+94, "freezing" = T0C+3)
 
 	var/sound_id = /obj/structure/hygiene/shower
 	var/datum/sound_token/sound_token

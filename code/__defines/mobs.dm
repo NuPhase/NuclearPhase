@@ -14,6 +14,11 @@
 #define NO_ANTAG     BITFLAG(7) // Players are restricted from gaining antag roles when occupying this mob
 #define ENABLE_AI    BITFLAG(8) // Regardless of player control, the mob is using AI.
 
+#define DESCRIPTOR_DIRTINESS 1
+#define DESCRIPTOR_CLEAN 2
+#define DESCRIPTOR_SMELL 3
+#define DESCRIPTOR_HAIR 4
+
 #define BORGMESON    BITFLAG(0)
 #define BORGTHERM    BITFLAG(1)
 #define BORGXRAY     BITFLAG(2)

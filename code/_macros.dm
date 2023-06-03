@@ -167,6 +167,8 @@
 
 #define SPAN_MFAUNA(X) "<span class='mfauna'>[X]</span>"
 
+#define SPAN_DESCRIPTION(X) "<span class='subtle'>[X]</span>"
+
 #define SPAN_SUBTLE(X) "<span class='subtle'>[X]</span>"
 
 #define SPAN_INFO(X) "<span class='info'>[X]</span>"

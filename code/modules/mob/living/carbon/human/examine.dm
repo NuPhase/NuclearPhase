@@ -166,7 +166,21 @@
 		msg += "<span class='warning'>[G.He] [G.is] [html_icon(cuffs)] restrained with \the [cuffs]!</span>\n"
 	var/obj/item/organ/internal/lungs/lungs = GET_INTERNAL_ORGAN(src, BP_LUNGS)
 	if(lungs.chest_tube)
-		msg += SPAN_NOTICE("[G.He] [G.has] a [lungs.chest_tube] in their chest.")
+		msg += SPAN_NOTICE("[G.He] [G.has] a [lungs.chest_tube] in their chest.\n")
+
+	for(var/cmsg in examine_descriptors)
+		var/req_distance = 1
+		switch(examine_descriptors[cmsg])
+			if(DESCRIPTOR_DIRTINESS)
+				req_distance = 10
+			if(DESCRIPTOR_CLEAN)
+				req_distance = 4
+			if(DESCRIPTOR_SMELL)
+				req_distance = 3
+			if(DESCRIPTOR_HAIR)
+				req_distance = 2
+		if(distance < req_distance)
+			msg += cmsg
 
 	if(is_nude() && has_penis())
 		switch(potenzia)
@@ -180,9 +194,6 @@
 	if(!skipface)
 		if((lip_style && lip_style_name))
 			msg += "[G.His] lips are covered with <font color='[lip_style]'>[lip_style_name]</font> lipstick.\n"
-
-		if(reagents.has_reagent(/decl/material/liquid/semen, 1))
-			msg += SPAN_ERP("[G.His] face [G.is] covered in a white liquid...") + "\n"
 
 	if(get_mood(/datum/mood/horny) && distance < 1)
 		msg += SPAN_ERP("[G.He] [G.has] a heavy, languid breath.") + "\n"

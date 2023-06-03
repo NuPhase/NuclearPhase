@@ -151,3 +151,9 @@
 	for(var/obj/item/organ/external/O in get_external_organs())
 		O.sync_colour_to_human(src)
 	update_body(0)
+
+/mob/living/carbon/human/proc/add_examine_descriptor(addthing, addtype)
+	examine_descriptors[addthing] = addtype
+
+/mob/living/carbon/human/proc/remove_examine_descriptor(removething)
+	examine_descriptors -= removething
