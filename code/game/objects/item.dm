@@ -81,7 +81,7 @@
 	///Sound uses when picking the item up (into your hands)
 	var/pickup_sound = 'sound/foley/paperpickup2.ogg'
 	///Sound uses when dropping the item, or when its thrown.
-	var/drop_sound = 'sound/foley/drop1.ogg'
+	var/drop_sound = list('sound/foley/drop1.ogg', 'sound/foley/drop2.ogg', 'sound/foley/drop3.ogg', 'sound/foley/drop4.ogg')
 
 	var/datum/reagents/coating // reagent container for coating things like blood/oil, used for overlays and tracks
 
@@ -94,15 +94,15 @@
 // Foley sound callbacks
 /obj/item/proc/equipped_sound_callback()
 	if(ismob(loc) && equip_sound)
-		playsound(src, equip_sound, 25, 0)
+		playsound(src, pick(equip_sound), 25, 0)
 
 /obj/item/proc/pickup_sound_callback()
 	if(ismob(loc) && pickup_sound)
-		playsound(src, pickup_sound, 25, 0)
+		playsound(src, pick(pickup_sound), 25, 0)
 
 /obj/item/proc/dropped_sound_callback()
 	if(!ismob(loc) && drop_sound)
-		playsound(src, drop_sound, 25, 0)
+		playsound(src, pick(drop_sound), 25, 0)
 
 /obj/item/proc/get_origin_tech()
 	return origin_tech

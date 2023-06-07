@@ -23,10 +23,9 @@
 	key = "agony"
 	emote_message_3p = "USER кричит в агонии!"
 	emote_sound = list(
-		FEMALE = list('sound/voice/firescream_female1.ogg', 'sound/voice/firescream_female2.ogg'),
-		MALE = list('sound/voice/firescream1.ogg', 'sound/voice/firescream2.ogg', 'sound/voice/firescream3.ogg')
+		FEMALE = list('sound/voice/firescream_female1.ogg', 'sound/voice/firescream_female2.ogg', 'sound/voice/emotes/agony_female_1.ogg', 'sound/voice/emotes/agony_female_2.ogg', 'sound/voice/emotes/agony_female_3.ogg', 'sound/voice/emotes/agony_female_4.ogg', 'sound/voice/emotes/agony_female_5.ogg'),
+		MALE = list('sound/voice/firescream1.ogg', 'sound/voice/firescream2.ogg', 'sound/voice/firescream3.ogg', 'sound/voice/emotes/agony_male_1.ogg')
 	)
-
 
 /decl/emote/audible/scretch
 	key ="scretch"
@@ -226,7 +225,9 @@
 			'sound/voice/emotes/cough/cough01_man.ogg',
 			'sound/voice/emotes/cough/cough02_man.ogg',
 			'sound/voice/emotes/cough/cough03_man.ogg',
-			'sound/voice/emotes/cough/cough04_man.ogg'
+			'sound/voice/emotes/cough/cough04_man.ogg',
+			'sound/voice/emotes/cough_male_1.ogg',
+			'sound/voice/emotes/cough_male_2.ogg'
 			),
 		FEMALE = list(
 			'sound/voice/emotes/cough/cough01_woman.ogg',

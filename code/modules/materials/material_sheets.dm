@@ -10,8 +10,8 @@
 	randpixel = 3
 	icon = 'icons/obj/materials.dmi'
 	matter = null
-	pickup_sound = 'sound/foley/tooldrop3.ogg'
-	drop_sound = 'sound/foley/tooldrop2.ogg'
+	pickup_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
+	drop_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
 	singular_name = "sheet"
 	plural_name = "sheets"
 	var/decl/material/reinf_material

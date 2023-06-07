@@ -22,7 +22,7 @@
 	icon_state = ICON_STATE_WORLD
 
 	pickup_sound = 'sound/foley/scrape1.ogg'
-	drop_sound = 'sound/foley/tooldrop1.ogg'
+	drop_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
 
 	var/wielded = 0
 	var/force_wielded = 0

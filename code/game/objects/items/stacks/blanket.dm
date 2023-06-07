@@ -17,8 +17,8 @@
 	matter_multiplier = 0.3
 	material = /decl/material/solid/metal/steel
 
-	pickup_sound = 'sound/foley/tooldrop3.ogg'
-	drop_sound = 'sound/foley/tooldrop2.ogg'
+	pickup_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
+	drop_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
 
 /obj/item/stack/material/blankets/fiberglass
 	desc = "Fiberglass blankets are often used as broken bone casts."

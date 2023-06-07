@@ -271,7 +271,7 @@
 	icon_state = "folded"
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_LARGE
-	pickup_sound = 'sound/foley/pickup2.ogg'
+	pickup_sound = list('sound/foley/pickup2.ogg', 'sound/foley/pickup3.ogg')
 	var/structure_form_type = /obj/structure/bed/roller	//The deployed form path.
 	weight = 8
 

@@ -174,7 +174,7 @@
 		/decl/material/solid/metal/gold = MATTER_AMOUNT_TRACE,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_TRACE
 	)
-	pickup_sound = 'sound/foley/pickup2.ogg'
+	pickup_sound = list('sound/foley/pickup1.ogg', 'sound/foley/pickup2.ogg')
 	origin_tech = "{'biotech':4,'materials':7,'magnets':5,'programming':4}"
 
 /obj/item/incision_manager/Initialize()
@@ -207,7 +207,7 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
 	edge = 1
-	pickup_sound = 'sound/foley/pickup2.ogg'
+	pickup_sound = list('sound/foley/pickup1.ogg', 'sound/foley/pickup2.ogg')
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 
 /obj/item/circular_saw/Initialize()
@@ -284,7 +284,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "hit", "bludgeoned")
-	pickup_sound = 'sound/foley/pickup2.ogg'
+	pickup_sound = list('sound/foley/pickup1.ogg', 'sound/foley/pickup2.ogg')
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)

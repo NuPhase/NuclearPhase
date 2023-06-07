@@ -45,8 +45,8 @@
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 
-	drop_sound = 'sound/foley/drop1.ogg'
-	pickup_sound = 'sound/foley/pickup2.ogg'
+	drop_sound = list('sound/foley/drop1.ogg', 'sound/foley/drop2.ogg', 'sound/foley/drop3.ogg', 'sound/foley/drop4.ogg')
+	pickup_sound = list('sound/foley/pickup2.ogg', 'sound/foley/pickup3.ogg')
 
 	var/waterproof = FALSE
 	var/burst = 1

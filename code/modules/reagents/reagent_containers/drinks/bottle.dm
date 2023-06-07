@@ -529,7 +529,7 @@
 	item_state = "carton"
 	center_of_mass = @"{'x':16,'y':7}"
 	isGlass = 0
-	drop_sound = 'sound/foley/drop1.ogg'
+	drop_sound = list('sound/foley/drop1.ogg', 'sound/foley/drop2.ogg', 'sound/foley/drop3.ogg', 'sound/foley/drop4.ogg')
 	pickup_sound = 'sound/foley/paperpickup2.ogg'
 
 /obj/item/chems/drinks/bottle/orangejuice/Initialize()
@@ -543,7 +543,7 @@
 	item_state = "carton"
 	center_of_mass = @"{'x':16,'y':8}"
 	isGlass = 0
-	drop_sound = 'sound/foley/drop1.ogg'
+	drop_sound = list('sound/foley/drop1.ogg', 'sound/foley/drop2.ogg', 'sound/foley/drop3.ogg', 'sound/foley/drop4.ogg')
 	pickup_sound = 'sound/foley/paperpickup2.ogg'
 
 /obj/item/chems/drinks/bottle/cream/Initialize()
@@ -557,7 +557,7 @@
 	item_state = "carton"
 	center_of_mass = @"{'x':16,'y':8}"
 	isGlass = 0
-	drop_sound = 'sound/foley/drop1.ogg'
+	drop_sound = list('sound/foley/drop1.ogg', 'sound/foley/drop2.ogg', 'sound/foley/drop3.ogg', 'sound/foley/drop4.ogg')
 	pickup_sound = 'sound/foley/paperpickup2.ogg'
 
 /obj/item/chems/drinks/bottle/tomatojuice/Initialize()
@@ -571,7 +571,7 @@
 	item_state = "carton"
 	center_of_mass = @"{'x':16,'y':8}"
 	isGlass = 0
-	drop_sound = 'sound/foley/drop1.ogg'
+	drop_sound = list('sound/foley/drop1.ogg', 'sound/foley/drop2.ogg', 'sound/foley/drop3.ogg', 'sound/foley/drop4.ogg')
 	pickup_sound = 'sound/foley/paperpickup2.ogg'
 
 /obj/item/chems/drinks/bottle/limejuice/Initialize()

@@ -10,8 +10,8 @@
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	material = /decl/material/solid/metal/aluminium
 	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
-	drop_sound = 'sound/foley/drop1.ogg'
-	pickup_sound = 'sound/foley/pickup2.ogg'
+	drop_sound = list('sound/foley/drop1.ogg', 'sound/foley/drop2.ogg', 'sound/foley/drop3.ogg', 'sound/foley/drop4.ogg')
+	pickup_sound = list('sound/foley/pickup2.ogg', 'sound/foley/pickup3.ogg')
 
 	var/scan_title
 	var/scan_data

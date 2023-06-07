@@ -14,7 +14,7 @@
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
 	origin_tech = "{'engineering':1}"
-	drop_sound = 'sound/foley/tooldrop1.ogg'
+	drop_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
 	z_flags = ZMM_MANGLE_PLANES
 
 	var/lit_colour = COLOR_PALE_ORANGE

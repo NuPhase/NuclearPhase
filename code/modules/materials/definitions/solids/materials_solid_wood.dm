@@ -39,7 +39,7 @@
 	fuel_value = 0.8
 	default_solid_form = /obj/item/stack/material/plank
 	sound_manipulate = 'sound/foley/woodpickup1.ogg'
-	sound_dropped = 'sound/foley/wooddrop1.ogg'
+	sound_dropped = list('sound/foley/wooddrop1.ogg', 'sound/foley/wooddrop2.ogg')
 
 /decl/material/solid/wood/generate_recipes(var/reinforce_material)
 	. = ..()

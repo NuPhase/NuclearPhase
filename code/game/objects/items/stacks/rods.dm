@@ -18,7 +18,7 @@
 	material = /decl/material/solid/metal/steel
 
 	pickup_sound = 'sound/foley/tooldrop3.ogg'
-	drop_sound = 'sound/foley/tooldrop2.ogg'
+	drop_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
 
 /obj/item/stack/material/rods/get_autopsy_descriptors()
 	. = ..()

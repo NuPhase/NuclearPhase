@@ -57,7 +57,7 @@
 
 	on = !on
 	if(on && activation_sound)
-		playsound(get_turf(src), activation_sound, 75, 1)
+		playsound(get_turf(src), pick(activation_sound), 75, 1)
 	set_flashlight()
 	update_icon()
 	user.update_action_buttons()
@@ -270,6 +270,11 @@
 
 // FLARES
 
+/datum/composite_sound/flare
+	mid_sounds = list('sound/items/flare/burning1.ogg'=1)
+	mid_length = 27
+	volume = 100
+
 /obj/item/flashlight/flare
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
@@ -278,7 +283,8 @@
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
-	activation_sound = 'sound/effects/flare.ogg'
+	activation_sound = list('sound/items/flare/ignite1.ogg', 'sound/items/flare/ignite2.ogg', 'sound/items/flare/ignite3.ogg')
+	var/list/burnout_sound = list('sound/items/flare/burnout1.ogg', 'sound/items/flare/burnout2.ogg')
 	flashlight_flags = FLASHLIGHT_SINGLE_USE
 
 	flashlight_range = 5
@@ -288,6 +294,7 @@
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
+	var/datum/composite_sound/flare/soundloop
 
 /obj/item/flashlight/flare/Initialize()
 	. = ..()
@@ -297,6 +304,7 @@
 /obj/item/flashlight/flare/Destroy()
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
+	qdel(soundloop)
 
 /obj/item/flashlight/flare/Process()
 	if(produce_heat)
@@ -311,6 +319,7 @@
 		set_flashlight()
 		update_icon()
 		STOP_PROCESSING(SSobj, src)
+		qdel(soundloop)
 
 /obj/item/flashlight/flare/attack_self(var/mob/user)
 	if(fuel <= 0)
@@ -325,6 +334,7 @@
 		set_flashlight()
 		update_icon()
 		START_PROCESSING(SSobj, src)
+		soundloop = new
 
 /obj/item/flashlight/flare/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(proximity && istype(O) && on)

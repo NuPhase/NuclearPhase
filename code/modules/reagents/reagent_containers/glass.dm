@@ -123,7 +123,7 @@
 	material_force_multiplier = 0.2
 	slot_flags = SLOT_HEAD
 	drop_sound = 'sound/foley/donk1.ogg'
-	pickup_sound = 'sound/foley/pickup2.ogg'
+	pickup_sound = list('sound/foley/pickup2.ogg', 'sound/foley/pickup3.ogg')
 
 /obj/item/chems/glass/bucket/wood
 	desc = "It's a wooden bucket. How rustic."
