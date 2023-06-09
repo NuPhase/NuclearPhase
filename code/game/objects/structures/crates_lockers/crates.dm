@@ -251,8 +251,6 @@
 /obj/structure/closet/crate/secure/biohazard
 	name = "biohazard cart"
 	desc = "A heavy cart with extensive sealing. You shouldn't eat things you find in it."
-	open_sound = 'sound/items/Deconstruct.ogg'
-	close_sound = 'sound/items/Deconstruct.ogg'
 	req_access = list(access_xenobiology)
 	closet_appearance = /decl/closet_appearance/cart/biohazard
 	storage_capacity = 2 * MOB_SIZE_LARGE

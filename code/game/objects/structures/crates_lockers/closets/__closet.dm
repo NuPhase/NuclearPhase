@@ -16,8 +16,10 @@ var/global/list/closets = list()
 	var/breakout = 0 //if someone is currently breaking out. mutex
 	var/storage_capacity = 2 * MOB_SIZE_MEDIUM //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
-	var/open_sound = 'sound/effects/closet_open.ogg'
-	var/close_sound = 'sound/effects/closet_close.ogg'
+	var/open_sound = list('sound/structures/closet/open1.wav', 'sound/structures/closet/open2.wav', 'sound/structures/closet/open3.wav')
+	var/softclose_sound = list('sound/structures/closet/closesoft1.wav', 'sound/structures/closet/closesoft2.wav', 'sound/structures/closet/closesoft3.wav')
+	var/hardclose_sound = list('sound/structures/closet/closehard1.wav', 'sound/structures/closet/closehard2.wav', 'sound/structures/closet/closehard3.wav')
+	var/creak_sounds = list('sound/structures/closet/creak1.wav', 'sound/structures/closet/creak2.wav', 'sound/structures/closet/creak3.wav', 'sound/structures/closet/creak4.wav', 'sound/structures/closet/creak5.wav', )
 
 	var/storage_types = CLOSET_STORAGE_ALL
 	var/setup = CLOSET_CAN_BE_WELDED
@@ -107,6 +109,9 @@ var/global/list/closets = list()
 	if(storage_types & CLOSET_STORAGE_STRUCTURES)
 		stored_units += store_structures(stored_units)
 
+/obj/structure/closet/proc/creak()
+	playsound(src.loc, pick(creak_sounds), 50, 1, -3)
+
 /obj/structure/closet/proc/open()
 	if(src.opened)
 		return 0
@@ -117,12 +122,12 @@ var/global/list/closets = list()
 	dump_contents()
 
 	src.opened = 1
-	playsound(src.loc, open_sound, 50, 1, -3)
+	playsound(src.loc, pick(open_sound), 50, 1, -3)
 	density = 0
 	update_icon()
 	return 1
 
-/obj/structure/closet/proc/close()
+/obj/structure/closet/proc/close(mob/user)
 	if(!src.opened)
 		return 0
 	if(!src.can_close())
@@ -131,7 +136,14 @@ var/global/list/closets = list()
 	store_contents()
 	src.opened = 0
 
-	playsound(src.loc, close_sound, 50, 0, -3)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.a_intent == I_HURT)
+			playsound(src.loc, pick(hardclose_sound), 50, 0, -3)
+		else
+			playsound(src.loc, pick(softclose_sound), 50, 0, -3)
+	else
+		playsound(src.loc, pick(hardclose_sound), 50, 0, -3)
 	if(!wall_mounted)
 		density = 1
 
@@ -215,7 +227,7 @@ var/global/list/closets = list()
 /obj/structure/closet/proc/toggle(mob/user)
 	if(locked)
 		togglelock(user)
-	else if(!(src.opened ? src.close() : src.open()))
+	else if(!(src.opened ? src.close(user) : src.open(user)))
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		update_icon()
 
