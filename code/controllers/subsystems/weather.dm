@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(weather)
 	name =       "Weather"
-	wait =       15 SECONDS
+	wait =       2 SECONDS
 	init_order = SS_INIT_WEATHER
 	priority =   SS_PRIORITY_WEATHER
 	flags =      SS_BACKGROUND

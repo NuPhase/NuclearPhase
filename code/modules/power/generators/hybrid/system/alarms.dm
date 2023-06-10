@@ -11,5 +11,5 @@
 /datum/composite_sound/purge_alarm
 	mid_sounds = list('sound/effects/alarms/prepurgealarm.ogg'=1)
 	mid_length = 500
-	volume = 100
+	volume = 10
 	sfalloff = 3

@@ -75,7 +75,7 @@
 			playsound(thing, S, volume, 0, distance, falloff = sfalloff)
 	else
 		for(var/mob/living/carbon/human/H in output_atoms)
-			H.playsound_local(H.loc, S, volume, falloff = sfalloff)
+			H.playsound_local(H, S, volume, falloff = sfalloff)
 
 /datum/composite_sound/proc/get_sound(starttime, _mid_sounds)
 	. = _mid_sounds || mid_sounds

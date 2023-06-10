@@ -1,7 +1,7 @@
 /datum/composite_sound/wind_light
 	mid_sounds = list('sound/ambience/weather/storm_outside.wav')
 	mid_length = 100
-	volume = 50
+	volume = 30
 	direct = TRUE
 
 /datum/composite_sound/wind_severe
@@ -9,19 +9,19 @@
 	start_length = 3
 	mid_sounds = list('sound/ambience/weather/storm_outside2.wav')
 	mid_length = 100
-	volume = 50
+	volume = 7
 	direct = TRUE
 
 /obj/abstract/weather_system
 	var/tmp/wind_direction =    0                        // Bitflag; current wind direction.
 	var/tmp/wind_strength =     1                        // How string is the wind currently?
-	var/tmp/wind_speed =		10						 // Wind speed in m/s
+	var/tmp/wind_speed =		50						 // Wind speed in m/s
 	var/tmp/weather_stability = 66						 // Used in handle_wind()
 	var/const/base_wind_delay = 1                        // What is the base movement delay or increase applied by wind strength?
 	var/datum/composite_sound/wind_light/windloop_light
 	var/datum/composite_sound/wind_severe/windloop_severe
 	var/list/windloop_play_atoms = list()
-	var/favorable_wind_speed = 370
+	var/favorable_wind_speed = 50
 
 // Randomizes wind speed and direction sometimes.
 /obj/abstract/weather_system/proc/handle_wind()
@@ -39,7 +39,7 @@
 			if(windloop_severe)
 				QDEL_NULL(windloop_severe)
 			if(!windloop_light)
-				windloop_light = new(windloop_play_atoms)
+				windloop_light = new(windloop_play_atoms, TRUE, TRUE)
 			else
 				windloop_light.output_atoms = windloop_play_atoms
 			windloop_light.mid_sounds = list('sound/ambience/weather/wind_light.wav')
@@ -47,7 +47,7 @@
 			if(windloop_severe)
 				QDEL_NULL(windloop_severe)
 			if(!windloop_light)
-				windloop_light = new(windloop_play_atoms)
+				windloop_light = new(windloop_play_atoms, TRUE, TRUE)
 			else
 				windloop_light.output_atoms = windloop_play_atoms
 			windloop_light.mid_sounds = list('sound/ambience/weather/wind_heavy.wav')
@@ -55,7 +55,7 @@
 			if(windloop_severe)
 				QDEL_NULL(windloop_severe)
 			if(!windloop_light)
-				windloop_light = new(windloop_play_atoms)
+				windloop_light = new(windloop_play_atoms, TRUE, TRUE)
 			else
 				windloop_light.output_atoms = windloop_play_atoms
 			windloop_light.mid_sounds = list('sound/ambience/weather/wind_transonic.wav')
@@ -63,7 +63,7 @@
 			if(windloop_light)
 				QDEL_NULL(windloop_light)
 			if(!windloop_severe)
-				windloop_severe = new(windloop_play_atoms)
+				windloop_severe = new(windloop_play_atoms, TRUE, TRUE)
 			else
 				windloop_severe.output_atoms = windloop_play_atoms
 
