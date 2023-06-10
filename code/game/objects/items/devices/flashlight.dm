@@ -320,6 +320,7 @@
 		update_icon()
 		STOP_PROCESSING(SSobj, src)
 		qdel(soundloop)
+		playsound(loc, pick(burnout_sound), 50)
 
 /obj/item/flashlight/flare/attack_self(var/mob/user)
 	if(fuel <= 0)
@@ -334,7 +335,7 @@
 		set_flashlight()
 		update_icon()
 		START_PROCESSING(SSobj, src)
-		soundloop = new
+		soundloop = new(list(src), TRUE)
 
 /obj/item/flashlight/flare/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(proximity && istype(O) && on)

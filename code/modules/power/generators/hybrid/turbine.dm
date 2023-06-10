@@ -237,7 +237,7 @@
 	. = ..()
 
 /obj/structure/turbine_visual/proc/spool_up()
-	soundloop = new(list(src, GET_ABOVE(src.loc)), TRUE)
+	soundloop = new(list(src), TRUE)
 
 /obj/structure/turbine_visual/proc/spool_down()
 	QDEL_NULL(soundloop)

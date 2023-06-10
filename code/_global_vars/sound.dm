@@ -52,7 +52,10 @@ var/global/list/hiss_sound = list(
 var/global/list/page_sound = list(
 	'sound/effects/pageturn1.ogg',
 	'sound/effects/pageturn2.ogg',
-	'sound/effects/pageturn3.ogg'
+	'sound/effects/pageturn3.ogg',
+	'sound/items/paper/turn1.wav',
+	'sound/items/paper/turn2.wav',
+	'sound/items/paper/turn3.wav'
 )
 
 var/global/list/fracture_sound = list(
@@ -113,7 +116,7 @@ var/global/list/light_strike_sound = list(
 	'sound/effects/hit_kick.ogg',
 	'sound/effects/hit_punch.ogg'
 )
-	
+
 var/global/list/tray_hit_sound = list(
 	'sound/items/trayhit1.ogg',
 	'sound/items/trayhit2.ogg'

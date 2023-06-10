@@ -81,7 +81,7 @@
 	..()
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
-		SL.purge_alarm = new
+		SL.purge_alarm = new(list(SL.loc), TRUE)
 		spawn(31 SECONDS)
 			playsound(rcore.superstructure, 'sound/effects/purge.ogg', 300, falloff = 3)
 			var/turf/T = get_turf(rcore)

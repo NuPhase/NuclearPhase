@@ -110,7 +110,19 @@
 
 /area/avalon/shelter/maintenance
 	name = "Maintenance"
-	ambience = list('sound/ambience/maint1.ogg', 'sound/ambience/maint2.ogg')
+	ambience = list()
+	var/powered_ambience
+
+/area/avalon/shelter/maintenance/power_change()
+	. = ..()
+	if(power_equip)
+		forced_ambience = powered_ambience
+	else
+		forced_ambience = null
+
+/area/avalon/shelter/maintenance/Initialize()
+	. = ..()
+	powered_ambience = list(pick('sound/machines/vent/running1.wav', 'sound/machines/vent/running2.wav', 'sound/machines/vent/running3.wav')) //has to be a list, sorry
 
 /area/avalon/shelter/brig
 	name = "Security"

@@ -154,6 +154,7 @@
 	. = ..()
 	if(!.)
 		flick("[icon_state]-vend", src)
+		playsound(src.loc, pick('sound/structures/watercooler/use1.wav', 'sound/structures/watercooler/use2.wav', 'sound/structures/watercooler/use3.wav', 'sound/structures/watercooler/use4.wav'), 50)
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

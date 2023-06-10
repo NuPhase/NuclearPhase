@@ -124,6 +124,7 @@
 		//crumple dat paper
 		info = stars(info,85)
 		user.visible_message("\The [user] crumples \the [src] into a ball!")
+		playsound(user.loc, 'sound/items/paper/crumble.wav', 30)
 		icon_state = "scrap"
 		return
 	user.examinate(src)
