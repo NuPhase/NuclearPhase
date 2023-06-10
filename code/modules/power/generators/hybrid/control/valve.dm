@@ -86,7 +86,7 @@
 	..()
 	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
 	var/expansion = input(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation") as null|num
-	tst.volume_ratio = 1 - Clamp(expansion * 0.01, 0.01, 0.85)
+	tst.volume_ratio = 1 - Clamp(expansion * 0.01, 0.65, 0.87)
 
 /obj/machinery/reactor_button/relief_valve
 	name = "relief valve"

@@ -164,7 +164,7 @@
 	if(get_meter_temperature("REACTOR-M CHAMBER") < 3500 && get_meter_mass("REACTOR-M CHAMBER") > 10)
 		do_message("REACTOR HEATEXCHANGER TEMPERATURE LOW", 2)
 		pressure_temperature_should_alarm = TRUE
-	if(get_meter_temperature("T-M-TURB IN") > 900)
+	if(get_meter_temperature("T-M-TURB IN") > 980)
 		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
 	if(get_meter_temperature("T-M-TURB EX") > 380)
