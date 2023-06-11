@@ -7,6 +7,10 @@
 	var/list/data = list()
 	idle_power_usage = 150 //average monitor + low-end pc
 
+/obj/machinery/reactor_display/Initialize()
+	. = ..()
+	overlays += image(icon, overlaying)
+
 /obj/machinery/reactor_display/on_update_icon()
 	overlays.Cut()
 	if(powered(EQUIP))
