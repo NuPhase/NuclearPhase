@@ -60,6 +60,9 @@ var/global/list/areas = list()
 	var/list/air_scrub_info = list()
 	var/list/blurbed_stated_to = list() //This list of names is here to make sure we don't state our descriptive blurb to a person more than once.
 
+	var/list/ambient_objects = list() //a list of objects that make ambience
+	var/object_ambience = FALSE
+
 	var/tmp/is_outside = OUTSIDE_NO
 	var/do_ambience = TRUE
 
@@ -349,6 +352,16 @@ var/global/list/mob/living/forced_ambiance_list = new
 /area/Exited(A)
 	if(isliving(A))
 		clear_ambience(A)
+		var/found_area = FALSE
+		spawn(5)
+			for(var/mob/living/carbon/human/H in human_mob_list) //TODO: Make a better workaround. If no more humans are left in our area, shut down the ambience.
+				if(H.lastarea == src)
+					found_area = TRUE
+					break
+			if(!found_area)
+				for(var/obj/O in ambient_objects)
+					O.stop_ambience()
+
 	return ..()
 
 /area/proc/do_area_blurb(var/mob/living/L)

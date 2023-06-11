@@ -18,6 +18,11 @@
 	var/start_dirty = FALSE	// Shall we add dirt to the object at initialization
 	var/max_quanity_of_dirt_sprites = 4
 
+/obj/proc/start_ambience()
+	return
+/obj/proc/stop_ambience()
+	return
+
 /obj/Cross(O, var/mustcheck=FALSE) // fuck that shit im out
 	if(mustcheck)
 		return ..()

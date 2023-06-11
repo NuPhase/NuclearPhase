@@ -11,3 +11,12 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 
 /datum/controller/subsystem/processing/mobs/PreInit()
 	mob_list = processing // Simply setups a more recognizable var name than "processing"
+
+/datum/controller/subsystem/processing/mobs/fire(resumed)
+	. = ..()
+	for(var/mob/living/carbon/human/H in human_mob_list)
+		var/area/A = H.lastarea
+		if(!A.object_ambience)
+			A.object_ambience = TRUE
+			for(var/obj/O in A.ambient_objects)
+				O.start_ambience()

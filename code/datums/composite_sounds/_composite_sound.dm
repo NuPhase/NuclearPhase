@@ -28,7 +28,7 @@
 	var/timerid
 
 /datum/composite_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
-	if(!mid_sounds)
+	if(!mid_sounds && start_immediately)
 		WARNING("A composite sound datum was created without sounds to play.")
 		return
 

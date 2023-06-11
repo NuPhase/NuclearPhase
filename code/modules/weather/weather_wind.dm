@@ -1,7 +1,7 @@
 /datum/composite_sound/wind_light
 	mid_sounds = list('sound/ambience/weather/storm_outside.wav')
 	mid_length = 100
-	volume = 30
+	volume = 40
 	direct = TRUE
 
 /datum/composite_sound/wind_severe
@@ -9,7 +9,7 @@
 	start_length = 3
 	mid_sounds = list('sound/ambience/weather/storm_outside2.wav')
 	mid_length = 100
-	volume = 7
+	volume = 4
 	direct = TRUE
 
 /obj/abstract/weather_system
