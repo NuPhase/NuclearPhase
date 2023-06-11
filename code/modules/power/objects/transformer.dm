@@ -1,3 +1,8 @@
+/datum/composite_sound/transformer
+	mid_sounds = list('sound/machines/transformer/loop1.wav', 'sound/machines/transformer/loop2.wav', 'sound/machines/transformer/loop3.wav', 'sound/machines/transformer/loop4.wav')
+	mid_length = 49
+	volume = 40
+
 /obj/machinery/power/generator/transformer
 	name = "power transformer"
 	icon = 'icons/obj/power.dmi'
@@ -16,6 +21,15 @@
 	var/off_icon_state
 	var/on_icon_state
 	var/open_icon_state
+
+	var/datum/composite_sound/transformer/soundloop = null
+
+/obj/machinery/power/generator/transformer/start_ambience()
+	if(!soundloop && on)
+		soundloop = new(list(src), TRUE)
+
+/obj/machinery/power/generator/transformer/stop_ambience()
+	QDEL_NULL(soundloop)
 
 /obj/machinery/power/generator/transformer/large
 	icon_state = "transformer_back"
@@ -69,6 +83,8 @@
 	if(on)
 		START_PROCESSING_MACHINE(src, null)
 		icon_state = on_icon_state
+	var/area/A = get_area(loc)
+	A.ambient_objects += src
 
 /obj/machinery/power/generator/transformer/switchable/examine(mob/user)
 	. = ..()
@@ -99,6 +115,7 @@
 		spawn(50)
 			update_locked = 0
 		if(on)
+			start_ambience()
 			START_PROCESSING_MACHINE(src, null)
 			icon_state = on_icon_state
 			var/electrocution_chance = 10
@@ -111,6 +128,7 @@
 		else
 			STOP_PROCESSING_MACHINE(src, null)
 			icon_state = off_icon_state
+			stop_ambience()
 	busy = 0
 	return TRUE
 

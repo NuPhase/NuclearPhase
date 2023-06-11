@@ -20,7 +20,7 @@ var/global/datum/composite_sound/light/light_soundloop = new
 /datum/composite_sound/light
 	mid_sounds = list('sound/machines/lights/buzz1.wav', 'sound/machines/lights/buzz2.wav', 'sound/machines/lights/buzz3.wav', 'sound/machines/lights/buzz4.wav')
 	mid_length = 49
-	volume = 30
+	volume = 25
 	distance = -5
 
 // the standard tube light fixture
@@ -55,7 +55,8 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	var/current_mode = null
 
 /obj/machinery/light/start_ambience()
-	light_soundloop.start(src) //adds us and starts playing if necessary
+	if(on)
+		light_soundloop.start(src) //adds us and starts playing if necessary
 
 /obj/machinery/light/stop_ambience()
 	light_soundloop.output_atoms -= src
@@ -197,9 +198,13 @@ var/global/datum/composite_sound/light/light_soundloop = new
 
 		if(trigger && changed && get_status() == LIGHT_OK)
 			switch_check()
+			var/area/A = get_area(loc)
+			if(A.object_ambience)
+				start_ambience()
 	else
 		update_use_power(POWER_USE_OFF)
 		set_light(0)
+		stop_ambience()
 	change_power_consumption((light_range * light_power) * LIGHTING_POWER_FACTOR, POWER_USE_ACTIVE)
 
 /obj/machinery/light/proc/get_status()

@@ -103,6 +103,14 @@
 	sound_env = LARGE_ENCLOSED
 /area/avalon/shelter/breakerroom
 	name = "Breaker Room"
+	var/powered_ambience = list('sound/ambience/breaker_room.wav')
+	forced_ambience = list('sound/ambience/breaker_room.wav')
+/area/avalon/shelter/breakerroom/power_change()
+	. = ..()
+	if(power_equip)
+		forced_ambience = powered_ambience
+	else
+		forced_ambience = null
 
 /area/avalon/shelter/service_tunnels
 	name = "Reactor Service Tunnels"
@@ -123,6 +131,7 @@
 /area/avalon/shelter/maintenance/Initialize()
 	. = ..()
 	powered_ambience = list(pick('sound/machines/vent/running1.wav', 'sound/machines/vent/running2.wav', 'sound/machines/vent/running3.wav')) //has to be a list, sorry
+	forced_ambience = powered_ambience
 
 /area/avalon/shelter/brig
 	name = "Security"
