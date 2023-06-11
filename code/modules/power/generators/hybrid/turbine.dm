@@ -123,7 +123,7 @@
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
 		tvibration += 35
 	if(rpm > TURBINE_ABNORMAL_RPM) //я твоя турбина вал шатал
-		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.1
+		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.12
 	tvibration += total_mass_flow * 0.005
 	vibration = Interpolate(vibration, tvibration, 0.1)
 

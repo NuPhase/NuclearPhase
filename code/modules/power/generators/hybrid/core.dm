@@ -57,7 +57,7 @@
 	SSradiation.radiate(src, total_radiation)
 	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
 
-	if(temperature > 5000)
+	if(GM.temperature > 5000)
 		if(containment)
 			field_power_consumption = GM.return_pressure() * WATTS_PER_KPA
 			use_power_oneoff(field_power_consumption, EQUIP)
@@ -146,7 +146,7 @@
 	var/list/our_mobs = mobs_on_main_map()
 	for(var/mob/living/carbon/human/H in our_mobs)
 		H.playsound_local(H.loc, 'sound/effects/explosion_huge.ogg', 20, 0)
-		shake_camera(H, 20, 1)
+		shake_camera(H, 20, 5)
 	spawn(10 SECONDS)
 		var/obj/effect/fluid/F = new(T)
 		F.reagents.add_reagent(/decl/material/solid/metal/tungsten, 1000000)
