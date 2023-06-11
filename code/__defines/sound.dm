@@ -60,4 +60,4 @@
 
 //Defines for controlling how zsound sounds.
 #define ZSOUND_DRYLOSS_PER_Z -2000 //Affects what happens to the dry channel as the sound travels through z-levels
-#define ZSOUND_DISTANCE_PER_Z 2 //Affects the distance added to the sound per z-level travelled
+#define ZSOUND_DISTANCE_PER_Z 7 //Affects the distance added to the sound per z-level travelled
