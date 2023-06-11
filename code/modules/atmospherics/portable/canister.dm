@@ -260,6 +260,16 @@ update_flag
 			environment = holding.air_contents
 		else
 			environment = loc.return_air()
+		for(var/g in air_contents.gas)
+			if(air_contents.phases[g] == MAT_PHASE_LIQUID)
+				var/turf/target = get_turf(src)
+				var/obj/effect/fluid/F = locate() in target
+				var/decl/material/mat = GET_DECL(g)
+				if(!F) F = new(target)
+				var/condense_reagent_amt = air_contents.gas[g] * mat.molar_volume * 0.3 + 0.1
+				F.reagents.add_reagent(g, condense_reagent_amt)
+				F.temperature = air_contents.temperature
+				air_contents.gas.Remove(g)
 
 		var/env_pressure = environment.return_pressure()
 		var/pressure_delta = release_pressure - env_pressure
