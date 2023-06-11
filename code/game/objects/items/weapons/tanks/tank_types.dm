@@ -122,7 +122,7 @@
 	attack_cooldown = DEFAULT_WEAPON_COOLDOWN
 	melee_accuracy_bonus = -10
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-	volume = 0.5 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
+	volume = 0.4 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
 	weight = 0.5
 
 /obj/item/tank/emergency/oxygen

@@ -15,11 +15,11 @@
 	var/pressuremin = 0
 	var/pressuremax = 10 * ONE_ATMOSPHERE
 
-	volume = 1000
+	volume = 320
 
 	power_rating = 7500 //7500 W ~ 10 HP
 	power_losses = 150
-	weight = 15
+	weight = 30
 
 /obj/machinery/portable_atmospherics/powered/pump/filled
 	start_pressure = 90 * ONE_ATMOSPHERE

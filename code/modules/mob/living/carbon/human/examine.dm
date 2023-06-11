@@ -180,7 +180,7 @@
 			if(DESCRIPTOR_HAIR)
 				req_distance = 2
 		if(distance < req_distance)
-			msg += cmsg
+			msg += "[cmsg]\n"
 
 	if(is_nude() && has_penis())
 		switch(potenzia)

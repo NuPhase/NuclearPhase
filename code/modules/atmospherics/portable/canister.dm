@@ -20,7 +20,7 @@
 	var/can_label = 1
 	start_pressure = 45 * ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
-	volume = 1000
+	volume = 700
 	interact_offline = 1 // Allows this to be used when not in powered area.
 	var/update_flag = 0
 	weight = 10

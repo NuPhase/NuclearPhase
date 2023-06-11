@@ -10,7 +10,7 @@
 	movable_flags = MOVABLE_FLAG_WHEELED
 	var/volume_rate = 800
 
-	volume = 750
+	volume = 320
 
 	power_rating = 7500 //7500 W ~ 10 HP
 	power_losses = 150
@@ -19,7 +19,7 @@
 	var/maxrate = 10 * ONE_ATMOSPHERE
 
 	var/list/scrubbing_gas
-	weight = 15
+	weight = 25
 
 /obj/machinery/portable_atmospherics/powered/scrubber/Initialize()
 	. = ..()

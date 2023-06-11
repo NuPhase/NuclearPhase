@@ -9,7 +9,6 @@
 	layer = FLY_LAYER
 	alpha = 0
 	color = COLOR_LIQUID_WATER
-	temperature = T20C
 
 	var/last_flow_strength = 0
 	var/last_flow_dir = 0
