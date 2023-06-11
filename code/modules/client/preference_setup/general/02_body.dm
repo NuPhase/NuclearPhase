@@ -247,10 +247,11 @@
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style"])
-
 		var/decl/bodytype/B = mob_species.get_bodytype_by_name(pref.bodytype)
 		mob_species = get_species_by_key(pref.species)
-		var/decl/sprite_accessory/new_h_style = input(user, "Choose your character's hair style:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.h_style)  as null|anything in mob_species.get_hair_styles(B?.associated_gender)
+		var/list/hair_to_display = mob_species.get_hair_styles(B?.associated_gender)
+		sortTim(hair_to_display, cmp=/proc/cmp_text_asc)
+		var/decl/sprite_accessory/new_h_style = input(user, "Choose your character's hair style:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.h_style)  as null|anything in hair_to_display
 		mob_species = get_species_by_key(pref.species)
 		if(new_h_style && CanUseTopic(user) && (new_h_style in mob_species.get_hair_styles(B?.associated_gender)))
 			pref.h_style = new_h_style.type
