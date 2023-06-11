@@ -159,8 +159,9 @@
 			H.gib()
 		return
 	active = TRUE
-	visible_message(SPAN_NOTICE("[src] hums as it starts to dress [H] up."))
-	spawn(5 SECONDS)
+	update_icon()
+	playsound(src, 'sound/machines/suit_storage.wav', 40, 1, -3)
+	spawn(12 SECONDS)
 		H.equip_to_slot_if_possible(suit, slot_wear_suit_str, 0, 0, 1)
 		H.equip_to_slot_if_possible(helmet, slot_head_str, 0, 0, 1)
 		suit.canremove = FALSE
@@ -201,8 +202,9 @@
 			update_icon()
 		return
 	active = TRUE
-	visible_message(SPAN_NOTICE("[src] hums as it starts to undress [H]."))
-	spawn(5 SECONDS)
+	update_icon()
+	playsound(src, 'sound/machines/suit_storage.wav', 40, 1, -3)
+	spawn(12 SECONDS)
 		var/obj/item/nsuit = H.get_equipped_item(slot_wear_suit_str)
 		var/obj/item/nhelmet = H.get_equipped_item(slot_head_str)
 		suit = nsuit
