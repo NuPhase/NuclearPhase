@@ -23,6 +23,10 @@
 	color = "#808080"
 	value = 0.5
 	narcosis = 5
+	absorption_products = list(
+		/decl/material/gas/hydrogen/tritium = 0.3,
+		/decl/material/gas/helium = 0.7
+	)
 
 /decl/material/solid/carbon
 	name = "carbon"

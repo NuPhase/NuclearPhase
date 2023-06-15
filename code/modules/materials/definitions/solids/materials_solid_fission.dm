@@ -20,11 +20,13 @@
 		/decl/material/solid/metal/plutonium = 0.8
 	)
 	fission_products = list(
-		/decl/material/solid/metal/fission_byproduct = 1
+		/decl/material/solid/metal/fission_byproduct = 0.8,
+		/decl/material/solid/metal/radium = 0.1,
+		/decl/material/gas/xenon = 0.1
 	)
 	fission_heat = 35000
 	fission_energy = 81080100000
-	neutron_absorption = 50
+	neutron_absorption = 250
 	neutron_production = 200
 
 
@@ -86,10 +88,10 @@
 /decl/material/solid/metal/fission_byproduct
 	name = "nuclear waste"
 	uid = "solid_nuclear_waste"
-	lore_text = "An unfortunate byproduct of nuclear fission. Extremely radioactive, can be recycled into various useful materials."
+	lore_text = "A crazy mix of hundreds of isotopes of unreactive nuclear fuel. Extremely radioactive, yet almost useless in reactors."
 	mechanics_text = "Nuclear waste can be processed into various exotic chemicals."
-	taste_description = "paprika"
-	radioactivity = 30
+	taste_description = "heavy metal"
+	radioactivity = 60
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
@@ -101,7 +103,7 @@
 		/decl/material/solid/metal/radium = 0.5,
 		/decl/material/solid/lithium = 0.5
 	)
-	neutron_absorption = 120
+	neutron_absorption = 300
 	neutron_production = 100
 	fission_energy = 4000000000
 

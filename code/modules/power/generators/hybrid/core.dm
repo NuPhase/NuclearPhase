@@ -66,9 +66,10 @@
 	for(var/g in GM.gas)
 		var/decl/material/mat = GET_DECL(g)
 		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux + 0.0001
-		var/neutrons_absorbed = mat.neutron_absorption * react_amount
+		var/neutrons_absorbed = mat.neutron_absorption * GM.gas[g] * max(1, neutron_flux)
 		if(mat.fission_energy)
-			neutron_moles += mat.fission_energy * react_amount / NEUTRON_MOLE_ENERGY
+			neutron_moles += mat.neutron_production * react_amount
+			GM.add_thermal_energy(mat.fission_energy * react_amount)
 			GM.adjust_gas(mat.type, react_amount * -1)
 			if(mat.fission_products)
 				for(var/fp in mat.fission_products)
@@ -76,7 +77,7 @@
 		var/actually_absorbed = min(neutrons_absorbed, neutron_moles)
 		neutron_moles -= actually_absorbed
 		GM.add_thermal_energy(max(0, NEUTRON_MOLE_ENERGY * actually_absorbed))
-	neutron_flux = Interpolate(neutron_flux, Clamp(neutron_moles * NEUTRON_FLUX_RATE, 0, 1000), 0.2)
+	neutron_flux = Interpolate(neutron_flux, Clamp(neutron_moles * NEUTRON_FLUX_RATE, 0.01, 1000), 0.2)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/GM)
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))

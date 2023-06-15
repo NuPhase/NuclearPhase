@@ -132,6 +132,22 @@
 		if(amount > 200 && !dirty_stage)
 			wash_mob(M)
 
+/decl/material/liquid/water/heavy
+	name = "heavy water"
+	lore_text = "A ubiquitous chemical substance composed of deuterium and oxygen."
+	taste_description = "plain water"
+	uid = "liquid_water_heavy"
+	liquid_density = 1107
+	gas_symbol_html = "D<sub>2</sub>O"
+	gas_symbol = "D2O"
+	glass_desc = "The father of all refreshments with a hint of nuclear power."
+	absorption_products = list(
+		/decl/material/gas/hydrogen/tritium = 0.3,
+		/decl/material/gas/hydrogen/deuterium = 0.2,
+		/decl/material/gas/oxygen = 0.1,
+		/decl/material/gas/hydrogen = 0.4
+	)
+
 /decl/material/liquid/water/dirty1
 	dirty_stage = 1
 	dirtiness = DIRTINESS_NEUTRAL
