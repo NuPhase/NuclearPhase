@@ -40,7 +40,27 @@
 		ui.open()
 		ui.set_auto_update(TRUE)
 
+/obj/machinery/reactor_monitor/general/get_display_data(var/atom/target)
+	. = list()
+	. += "Results of the analysis of the chamber interior:"
+	var/datum/gas_mixture/mixture = target.return_air()
 
+	if(mixture)
+		var/total_moles = mixture.total_moles
+
+		if (total_moles>0)
+			var/perGas_add_string = ""
+			for(var/mix in mixture.gas)
+				var/percentage = round(mixture.gas[mix]/total_moles * 100, 0.01)
+				if(!percentage)
+					continue
+				var/decl/material/mat = GET_DECL(mix)
+				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string]"
+			var/totalGas_add_string = ", Total weight: [round(mixture.get_mass(), 0.01)]kg"
+			. += "[totalGas_add_string]"
+			. = jointext(., "<br>")
+			return
+	return "<span class='warning'>\The chamber has no gases!</span>"
 
 /obj/machinery/reactor_monitor/containment
 	name = "containment monitoring computer"
