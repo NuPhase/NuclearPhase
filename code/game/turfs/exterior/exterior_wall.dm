@@ -25,6 +25,12 @@ var/global/list/natural_walls = list()
 	if(paint_color)
 		to_chat(user, SPAN_NOTICE("It has been <font color = '[paint_color]'>noticeably discoloured</font> by the elements."))
 
+/turf/exterior/wall/setup_environmental_lighting()
+	return
+
+/turf/exterior/wall/set_ambient_light()
+	return
+
 /turf/exterior/wall/Initialize(var/ml, var/materialtype, var/rmaterialtype, should_override = TRUE)
 	..(ml, TRUE)	// We update our own icon, no point doing it twice.
 
