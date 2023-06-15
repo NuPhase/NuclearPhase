@@ -271,8 +271,13 @@
 	density = 0
 	power_output = 10
 	output_voltage = 1000
-	weight = 300
+	weight = 370
 
+/obj/machinery/power/generator/port_gen/liquid/diesel/large/roundstart/Initialize()
+	. = ..()
+	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(100, 400))
+	active = TRUE
+	update_icon()
 
 //A power generator that runs on solid plasma sheets.
 /obj/machinery/power/generator/port_gen/pacman
