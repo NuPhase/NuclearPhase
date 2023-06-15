@@ -49,3 +49,46 @@
 	weight = 170
 	windbreak_coefficient = 1.3
 	minimum_leak_damage = 25
+
+
+
+/obj/item/clothing/head/helmet/modern/space/military_prototype //weak on helmets
+	name = "CERES-2.5V helmet"
+	desc = "A strange suit with several 'Combat Engineered Resistive Combat System' signs on it. It doesn't have any manufacturer logos, though..."
+	icon = 'icons/clothing/spacesuit/void/military/helmet.dmi'
+	armor = list(
+		melee = ARMOR_MELEE_KNIVES,
+		bullet = ARMOR_BALLISTIC_PISTOL,
+		laser = ARMOR_LASER_MINOR,
+		energy = ARMOR_ENERGY_SHIELDED,
+		bomb = ARMOR_BOMB_MINOR,
+		bio = ARMOR_BIO_SHIELDED,
+		rad = ARMOR_RAD_RESISTANT
+	)
+	min_cold_protection_temperature = COLD_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = HOT_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	weight = 23
+
+/obj/item/clothing/suit/modern/space/military_prototype
+	name = "CERES-2.5V suit"
+	desc = "A strange suit with several 'Combat Engineered Resistive Combat System' signs on it. It doesn't have any manufacturer logos, though..."
+	icon = 'icons/clothing/spacesuit/void/military/suit.dmi'
+	armor = list(
+		melee = ARMOR_MELEE_MAJOR,
+		bullet = ARMOR_BALLISTIC_RIFLE,
+		laser = ARMOR_LASER_SMALL,
+		energy = ARMOR_ENERGY_SHIELDED,
+		bomb = ARMOR_BOMB_RESISTANT,
+		bio = ARMOR_BIO_SHIELDED,
+		rad = ARMOR_RAD_RESISTANT
+	)
+	min_cold_protection_temperature = COLD_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = HOT_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	weight = 147
+	windbreak_coefficient = 0.6
+	minimum_leak_damage = 50 //dynamic protection
+	lifesupport_type = /obj/item/storage/backpack/lifesupportpack/military_prototype
+
+/obj/item/storage/backpack/lifesupportpack/military_prototype
+	target_pressure = 75
+	battery_type = /obj/item/cell/quantum/quadruplecapacity

@@ -14,8 +14,8 @@
 	w_class = ITEM_SIZE_LARGE
 	sharp = 1
 	edge = 1
-	max_force = 60
-	force = 60
+	max_force = 35
+	force = 35
 	throwforce = 75
 	throw_speed = 2
 	throw_range = 10
@@ -41,3 +41,4 @@
 	. = ..()
 	set_extension(src, /datum/extension/tool, list(TOOL_SAW = TOOL_QUALITY_GOOD))
 	set_light(2, 0.8, COLOR_PINK)
+	force = max_force

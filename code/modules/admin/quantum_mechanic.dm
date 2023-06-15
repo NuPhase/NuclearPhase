@@ -41,13 +41,15 @@
 
 /decl/hierarchy/outfit/quantum
 	name = "Quantum Mechanic"
-	glasses =  /obj/item/clothing/glasses/sunglasses/quantum
-	uniform =  /obj/item/clothing/under/roboticist
-	shoes =    /obj/item/clothing/shoes/workboots
-	l_ear =    /obj/item/radio/headset/ert/quantum
-	back =     /obj/item/storage/backpack/holding/quantum
-	head =     /obj/item/clothing/head/beret
-	belt =     /obj/item/storage/belt/utility/full/quantum
+	glasses =    /obj/item/clothing/glasses/sunglasses/quantum
+	uniform =    /obj/item/clothing/under/undersuit
+	shoes =      /obj/item/clothing/shoes/jackboots/space_suit
+	l_ear =      /obj/item/clothing/ears/kitty
+	back =       null
+	head =       /obj/item/clothing/head/helmet/modern/space/military_prototype
+	suit = 	     /obj/item/clothing/suit/modern/space/military_prototype
+	belt =       /obj/item/storage/belt/utility/full/quantum
+	suit_store = /obj/item/plasma_sword
 	id_slot =  slot_wear_id_str
 
 /mob/living/carbon/human/quantum
@@ -82,9 +84,7 @@
 	if(QDELETED(src))
 		return
 
-	custom_emote(VISIBLE_MESSAGE, "presses a button on their suit, followed by a polite bow.")
 	phase_out(get_turf(src))
-	spark_at(src)
 
 	if(key)
 		var/mob/observer/ghost/ghost = ghostize(1, 1)

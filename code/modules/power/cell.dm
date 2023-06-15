@@ -191,6 +191,17 @@
 	maxcharge = 4000
 	weight = 8
 
+/obj/item/cell/quantum //1570wh/kg
+	name = "quantum power cell"
+	desc = "Despite the name, this is real technology."
+	icon_state = "hcell"
+	maxcharge = 3140
+	weight = 2
+
+/obj/item/cell/quantum/quadruplecapacity
+	maxcharge = 12560
+	weight = 8
+
 /obj/item/cell/apc
 	name = "APC power cell"
 	desc = "A special power cell designed for heavy-duty use in area power controllers."

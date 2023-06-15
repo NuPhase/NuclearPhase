@@ -158,6 +158,16 @@
 	flags_inv = 0
 	armor = null
 
+/obj/item/clothing/ears/kitty
+	name = "kitty ears"
+	desc = "A pair of kitty ears. Meow!"
+	icon_state = ICON_STATE_WORLD
+	icon = 'icons/clothing/head/cat.dmi'
+	body_parts_covered = 0
+	siemens_coefficient = 1.5
+	flags_inv = 0
+	armor = null
+
 /obj/item/clothing/head/richard
 	name = "chicken mask"
 	desc = "You can hear the distant sounds of rhythmic electronica."
