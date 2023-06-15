@@ -369,8 +369,10 @@
 
 /obj/machinery/atmospherics/pipe/simple/visible/steam
 	name = "steam pipe"
-	color = PIPE_COLOR_ORANGE
+	icon = 'icons/obj/atmospherics/pipes/steampipe.dmi'
+	color = null
 	volume = 6500 //2m diameter
+	density = 1
 
 /obj/machinery/atmospherics/pipe/simple/hidden
 	level = 1
@@ -541,7 +543,9 @@
 
 /obj/machinery/atmospherics/pipe/manifold/visible/steam
 	name = "steam pipe manifold"
-	color = PIPE_COLOR_ORANGE
+	icon = 'icons/obj/atmospherics/pipes/steampipe.dmi'
+	icon_state = "manifold"
+	color = null
 	volume = 9000 //2m diameter
 
 /obj/machinery/atmospherics/pipe/manifold/hidden
@@ -683,6 +687,14 @@
 	name = "4-way fuel pipe manifold"
 	color = PIPE_COLOR_ORANGE
 	connect_types = CONNECT_TYPE_FUEL
+
+/obj/machinery/atmospherics/pipe/manifold4w/visible/steam
+	name = "4-way steam pipe manifold"
+	icon = 'icons/obj/atmospherics/pipes/steampipe.dmi'
+	icon_state = "4manifold"
+	color = null
+	volume = 6500 //2m diameter
+	density = 1
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden
 	icon_state = "map_4way"
