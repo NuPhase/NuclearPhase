@@ -49,7 +49,7 @@
 	head =       /obj/item/clothing/head/helmet/modern/space/military_prototype
 	suit = 	     /obj/item/clothing/suit/modern/space/military_prototype
 	belt =       /obj/item/storage/belt/utility/full/quantum
-	suit_store = /obj/item/plasma_sword
+	backpack_contents = list(/obj/item/plasma_sword=1)
 	id_slot =  slot_wear_id_str
 
 /mob/living/carbon/human/quantum
