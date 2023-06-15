@@ -90,5 +90,5 @@
 			var/turf/sT = get_turf(rcore.superstructure)
 			var/datum/gas_mixture/senvironment = sT.return_air()
 			senvironment.merge(total_mixture.remove_ratio(0.05))
-		spawn(50 SECONDS)
+		spawn(49 SECONDS)
 			QDEL_NULL(SL.purge_alarm)
