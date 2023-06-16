@@ -70,6 +70,10 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	lightbulb.set_color(color)
 	queue_icon_update()
 
+/obj/machinery/light/reactor/Initialize(mapload, d, populate_parts)
+	. = ..()
+	reactor_floodlights += src
+
 // the smaller bulb light fixture
 /obj/machinery/light/small
 	icon_state = "bulb_map"
@@ -85,6 +89,10 @@ var/global/datum/composite_sound/light/light_soundloop = new
 
 /obj/machinery/light/small/red
 	light_type = /obj/item/light/bulb/red
+
+/obj/machinery/light/small/red/reactor/Initialize(mapload, d, populate_parts)
+	. = ..()
+	reactor_floodlights += src
 
 /obj/machinery/light/spot
 	name = "spotlight"

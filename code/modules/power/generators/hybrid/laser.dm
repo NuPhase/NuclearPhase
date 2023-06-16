@@ -101,6 +101,7 @@
 /obj/structure/rlaser_receiver
 	var/resid = ""
 	anchored = TRUE
+	alpha = 0
 
 /obj/structure/rlaser_receiver/Initialize()
 	. = ..()
