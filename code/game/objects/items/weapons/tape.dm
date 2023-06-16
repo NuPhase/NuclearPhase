@@ -11,6 +11,7 @@
 	max_amount       = 32
 	w_class          = ITEM_SIZE_SMALL
 	material         = /decl/material/solid/plastic
+	weight = 0.2
 
 /obj/item/stack/tape_roll/can_split()
 	return FALSE

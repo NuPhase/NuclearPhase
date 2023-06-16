@@ -8,6 +8,7 @@
 	desc = "This is rubbish."
 	material = /decl/material/solid/plastic
 	var/age = 0
+	weight = 0.1
 
 /obj/item/trash/Initialize(mapload, var/_age)
 	. = ..(mapload)

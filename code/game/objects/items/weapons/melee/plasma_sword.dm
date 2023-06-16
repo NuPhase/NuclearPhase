@@ -1,6 +1,6 @@
 /obj/item/plasma_sword
 	name = "plasma sword prototype"
-	desc = "Sustainable fusion is impossible, right?.." //It should have HEAVY power consumption
+	desc = "An extremely light sword with a blinding shining edge. Sustainable fusion is impossible, right?.." //It should have HEAVY power consumption
 	icon = 'icons/obj/items/weapon/plasma_sword.dmi'
 	origin_tech = "{'magnets':3,'esoteric':4}"
 	base_parry_chance = 75
@@ -21,6 +21,7 @@
 	throw_range = 10
 	armor_penetration = 100
 	attack_verb = list("slashed", "sliced", "torn", "ripped", "diced", "cut")
+	weight = 3
 
 /obj/item/plasma_sword/handle_shield(mob/user, damage, atom/damage_source, mob/attacker, def_zone, attack_text)
 	. = ..()

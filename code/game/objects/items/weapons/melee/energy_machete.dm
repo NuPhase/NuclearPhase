@@ -8,3 +8,4 @@
 	lighting_color = "#6600cc"
 	origin_tech = "{'magnets':3}"
 	active_attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	weight = 5

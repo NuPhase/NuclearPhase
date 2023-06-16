@@ -17,6 +17,7 @@
 		/obj/effect/rune,
 		/obj/structure/catwalk
 		)
+	weight = 1.5
 
 /obj/item/mop/Initialize()
 	. = ..()
