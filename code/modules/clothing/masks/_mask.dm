@@ -3,6 +3,8 @@
 	icon = 'icons/clothing/mask/breath.dmi'
 	icon_state = ICON_STATE_WORLD
 	slot_flags = SLOT_FACE
+	max_heat_protection_temperature = 300.15
+	min_cold_protection_temperature = 289.15
 	body_parts_covered = SLOT_FACE|SLOT_EYES
 	blood_overlay_type = "maskblood"
 	material = /decl/material/solid/fiberglass
@@ -38,7 +40,7 @@
 	if(overlay && hanging && slot == slot_wear_mask_str && check_state_in_icon("[overlay.icon_state]-down", overlay.icon))
 		overlay.icon_state = "[overlay.icon_state]-down"
 	. = ..()
- 
+
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
 

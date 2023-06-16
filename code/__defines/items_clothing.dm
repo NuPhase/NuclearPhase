@@ -126,8 +126,8 @@
 #define   SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE 2.0 // What min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
 #define       HELMET_MIN_COLD_PROTECTION_TEMPERATURE 220 // For normal helmets.
 #define        ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 220 // For armor.
-#define       GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 2.0 // For some gloves.
-#define         SHOE_MIN_COLD_PROTECTION_TEMPERATURE 2.0 // For shoes.
+#define       GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 160 // For some gloves.
+#define         SHOE_MIN_COLD_PROTECTION_TEMPERATURE 160 // For shoes.
 
 #define  UNIVERSAL_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE   25
 #define  	  COLD_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE   6

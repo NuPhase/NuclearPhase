@@ -10,6 +10,7 @@
 	start_length = 470
 	mid_sounds = list('sound/machines/pumprunning.ogg'=1)
 	mid_length = 80
+	distance = -5
 	volume = 15
 
 /obj/machinery/atmospherics/binary/pump/adv

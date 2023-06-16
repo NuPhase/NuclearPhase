@@ -3,6 +3,8 @@
 	icon = 'icons/clothing/under/jumpsuits/jumpsuit.dmi'
 	icon_state = ICON_STATE_WORLD
 	body_parts_covered = SLOT_UPPER_BODY|SLOT_LOWER_BODY|SLOT_LEGS|SLOT_ARMS
+	max_heat_protection_temperature = 300.15
+	min_cold_protection_temperature = 289.15
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_UPPER_BODY
 	w_class = ITEM_SIZE_NORMAL

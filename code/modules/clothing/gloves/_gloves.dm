@@ -7,6 +7,8 @@
 	icon_state = ICON_STATE_WORLD
 	icon = 'icons/clothing/hands/gloves_generic.dmi'
 	siemens_coefficient = 0.75
+	max_heat_protection_temperature = 318
+	min_cold_protection_temperature = T0C
 	body_parts_covered = SLOT_HANDS
 	slot_flags = SLOT_HANDS
 	attack_verb = list("challenged")
