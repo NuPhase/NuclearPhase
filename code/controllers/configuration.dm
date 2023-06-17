@@ -56,7 +56,7 @@ var/global/list/gamemode_cache = list()
 	var/secret_hide_possibilities = FALSE // Whether or not secret modes show list of possible round types
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
-	var/allow_ai = 1					// allow ai job
+	var/allow_ai = 0					// allow ai job
 	var/hostedby = null
 	var/respawn_delay = 30
 	var/guest_jobban = 1
@@ -107,7 +107,7 @@ var/global/list/gamemode_cache = list()
 	var/health_threshold_dead = -100
 
 	var/organ_health_multiplier = 0.9
-	var/organ_regeneration_multiplier = 0.25
+	var/organ_regeneration_multiplier = 0.15
 	var/organs_decay
 
 	//Paincrit knocks someone down once they hit 60 shock_stage, so by default make it so that close to 100 additional damage needs to be dealt,
@@ -117,8 +117,8 @@ var/global/list/gamemode_cache = list()
 	var/bones_can_break = 1
 	var/limbs_can_break = 1
 
-	var/revival_pod_plants = 1
-	var/revival_cloning = 1
+	var/revival_pod_plants = 0
+	var/revival_cloning = 0
 	var/revival_brain_life = -1
 
 	var/use_loyalty_implants = 0
@@ -220,10 +220,10 @@ var/global/list/gamemode_cache = list()
 	var/auto_map_vote = 0 // Automatically call a map vote at end of round and switch to the selected map
 	var/wait_for_sigusr1_reboot = 0 // Don't allow reboot unless it was caused by SIGUSR1
 
-	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
-	var/radiation_resistance_multiplier = 1.25
+	var/radiation_decay_rate = 3.5 //How much radiation is reduced by each tick
+	var/radiation_resistance_multiplier = 0.5
 	var/radiation_material_resistance_divisor = 2 //A turf's possible radiation resistance is divided by this number, to get the real value.
-	var/radiation_lower_limit = 0.15 //If the radiation level for a turf would be below this, ignore it.
+	var/radiation_lower_limit = 0.1 //If the radiation level for a turf would be below this, ignore it.
 
 	var/auto_local_admin = TRUE // If true, connections from 127.0.0.1 get automatic admin.
 	var/autostealth = 0 // Staff get automatic stealth after this many minutes
