@@ -4,7 +4,7 @@
 	icon = 'icons/obj/fuel_rods.dmi'
 	icon_state = "cell"
 	w_class = ITEM_SIZE_LARGE
-	volume = 2000
+	volume = 35000
 	var/sealed = FALSE
 	var/list/initial_reagents
 	weight = 12
@@ -19,37 +19,37 @@
 	name = "D-T fuel cell"
 	desc = "This fuel cell contains a simple D-T fuel mixture. You are boring."
 	initial_reagents = list(
-		/decl/material/gas/hydrogen/deuterium = 1600,
-		/decl/material/gas/hydrogen/tritium = 400
+		/decl/material/gas/hydrogen/deuterium = 24000,
+		/decl/material/gas/hydrogen/tritium = 11000
 	)
 
 /obj/item/chems/fuel_cell/hydrogen
 	name = "H2 fuel cell"
 	desc = "This fuel cell contains purely hydrogen, like in the cores of juvenile stars."
 	initial_reagents = list(
-		/decl/material/gas/hydrogen = 2000
+		/decl/material/gas/hydrogen = 35000
 	)
 
 /obj/item/chems/fuel_cell/helium3
 	name = "3He2 fuel cell"
 	desc = "This fuel cell contains an isotope of helium, an extremely potent fusion fuel. Good luck igniting it, though."
 	initial_reagents = list(
-		/decl/material/gas/helium/isotopethree = 2000
+		/decl/material/gas/helium/isotopethree = 35000
 	)
 
 /obj/item/chems/fuel_cell/fissionclassic
 	name = "U_235-Pu fuel cell"
 	desc = "This fuel cell contains fissilable uranium and highly fissile plutonium mixed with xenon for safety."
 	initial_reagents = list(
-		/decl/material/solid/metal/uranium = 1000,
-		/decl/material/solid/metal/plutonium = 1000
+		/decl/material/solid/metal/uranium = 20000,
+		/decl/material/solid/metal/plutonium = 14000
 	)
 
 /obj/item/chems/fuel_cell/fissionbreeder
 	name = "U_238 fuel cell"
 	desc = "This fuel cell contains an almost useless isotope of uranium. Best used in tandem with fusion."
 	initial_reagents = list(
-		/decl/material/solid/metal/depleted_uranium = 2000
+		/decl/material/solid/metal/depleted_uranium = 35000
 	)
 
 /obj/machinery/reactor_fuelport
