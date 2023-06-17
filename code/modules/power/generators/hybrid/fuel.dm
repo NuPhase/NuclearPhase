@@ -41,8 +41,8 @@
 	name = "U_235-Pu fuel cell"
 	desc = "This fuel cell contains fissilable uranium and highly fissile plutonium mixed with xenon for safety."
 	initial_reagents = list(
-		/decl/material/solid/metal/uranium = 1500,
-		/decl/material/solid/metal/plutonium = 500
+		/decl/material/solid/metal/uranium = 1000,
+		/decl/material/solid/metal/plutonium = 1000
 	)
 
 /obj/item/chems/fuel_cell/fissionbreeder

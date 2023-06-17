@@ -1,10 +1,10 @@
-#define FISSION_RATE 0.001
-#define NEUTRON_FLUX_RATE 0.05
-#define NEUTRON_MOLE_ENERGY 100000
+#define FISSION_RATE 0.001 //General modifier of fission speed
+#define NEUTRON_FLUX_RATE 0.09 //Neutron flux per neutron mole
+#define NEUTRON_MOLE_ENERGY 100000 //J per neutron mole
 #define RADS_PER_NEUTRON 0.3
-#define REACTOR_POWER_MODIFIER 10
-#define WATTS_PER_KPA 0.1
-#define REACTOR_SHIELDING_COEFFICIENT 0.0005
+#define REACTOR_POWER_MODIFIER 10 //Currently unused
+#define WATTS_PER_KPA 0.5
+#define REACTOR_SHIELDING_COEFFICIENT 0.05
 
 /obj/machinery/power/hybrid_reactor
 	name = "reactor superstructure"
@@ -12,9 +12,12 @@
 	icon_state = "fission_core"
 	density = 1
 	anchored = 1
+
 	var/neutron_flux = 1 //a flux of 1 will mean that neutron amount does not change
 	var/neutron_rate = 0
 	var/neutron_moles = 0 //how many moles can we split
+	var/neutrons_absorbed = 0
+
 	var/meltdown = FALSE
 	var/was_shut_down = FALSE
 	var/shutdown_failure = FALSE
@@ -65,8 +68,8 @@
 /obj/machinery/power/hybrid_reactor/proc/process_fission(datum/gas_mixture/GM)
 	for(var/g in GM.gas)
 		var/decl/material/mat = GET_DECL(g)
-		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux + 0.0001
-		var/neutrons_absorbed = mat.neutron_absorption * GM.gas[g] * max(1, neutron_flux)
+		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux + 0.00001
+		neutrons_absorbed = mat.neutron_absorption * GM.gas[g] * max(0.1, neutron_flux)
 		if(mat.fission_energy)
 			neutron_moles += mat.neutron_production * react_amount
 			GM.add_thermal_energy(mat.fission_energy * react_amount)
@@ -91,8 +94,9 @@
 			continue
 
 		var/uptake_moles = min(GM.gas[cur_reaction.first_reactant], GM.gas[cur_reaction.second_reactant])
-		GM.adjust_gas(cur_reaction.first_reactant, !uptake_moles*0.5)
-		GM.adjust_gas(cur_reaction.second_reactant, !uptake_moles*0.5)
+		uptake_moles *= neutron_flux*FISSION_RATE
+		GM.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5)
+		GM.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5)
 		GM.adjust_gas(cur_reaction.product, uptake_moles)
 		GM.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
 		neutron_moles += cur_reaction.free_neutron_moles * uptake_moles

@@ -311,7 +311,7 @@
 	liquid_density = 3520
 	value = 0.25
 	neutron_absorption = 150
-	neutron_production = 1
+	neutron_production = 10
 	fission_products = list(/decl/material/solid/caesium = 1)
 
 /decl/material/gas/xenon/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)

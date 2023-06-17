@@ -93,7 +93,8 @@
 		capacitor_charge = 0
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.receive_power(power * 1000)
-		R.neutron_moles += 50
+		R.neutron_moles += 500
+		R.neutron_flux = 5
 		var/obj/item/projectile/beam/sniper/reactor/A = new /obj/item/projectile/beam/sniper/reactor(get_turf(src))
 		A.launch(laser_receivers[lasid])
 	return
