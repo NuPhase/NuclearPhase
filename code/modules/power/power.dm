@@ -261,9 +261,13 @@
 		if(istype(G) && G.siemens_coefficient == 0)
 			return 0 //to avoid spamming with insulated glvoes on
 
-	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
+	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning. Trip the transformator too.
 	//Since this one is longer it will override the original one.
 	if(PN)
+		for(var/obj/machinery/power/generator/transformer/cur_trans in PN.nodes)
+			if(cur_trans.type == /obj/machinery/power/generator/transformer)
+				var/obj/machinery/power/generator/transformer/switchable/scur_trans = cur_trans.connected
+				scur_trans.trip()
 		PN.trigger_warning()
 
 	if (!cell && !PN)

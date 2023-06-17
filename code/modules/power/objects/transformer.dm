@@ -133,6 +133,8 @@
 	return TRUE
 
 /obj/machinery/power/generator/transformer/switchable/proc/trip()
+	if(!on)
+		return
 	on = FALSE
 	update_locked = 1
 	spawn(50)
