@@ -201,7 +201,7 @@
 #define COLOR_DARKMODE_TEXT "#a4bad6"
 
 // Used by fluid system.
-#define COLOR_LIQUID_WATER "#99f5ff"
+#define COLOR_LIQUID_WATER "#8c97dd"
 #define COLOR_ICE          "#eef5ff"
 // Used to easily change research colour in case of ???
 #define COLOR_RESEARCH COLOR_PURPLE_GRAY
