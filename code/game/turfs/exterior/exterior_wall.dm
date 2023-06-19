@@ -10,7 +10,6 @@ var/global/list/natural_walls = list()
 	icon_state = "natural"
 	density =    TRUE
 	opacity =    TRUE
-	density =    TRUE
 	blocks_air = TRUE
 
 	var/strata
@@ -18,7 +17,7 @@ var/global/list/natural_walls = list()
 	var/image/ore_overlay
 	var/decl/material/material
 	var/decl/material/reinf_material
-	var/floor_type = /turf/simulated/floor/asteroid
+	var/floor_type = /turf/exterior/open_ocean
 
 /turf/exterior/wall/examine(mob/user, distance, infix, suffix)
 	. = ..()
