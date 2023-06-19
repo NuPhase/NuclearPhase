@@ -1116,7 +1116,7 @@
 
 /mob/living/carbon/human/can_drown()
 	var/obj/item/clothing/mask/mask = get_equipped_item(slot_wear_mask_str)
-	if(!internal && (!istype(mask) || !mask.filters_water() || !msuit))
+	if(!internal && !msuit && (!istype(mask) || !mask.filters_water()))
 		var/obj/item/organ/internal/lungs/L = get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
 		return (!L || L.can_drown())
 	return FALSE
