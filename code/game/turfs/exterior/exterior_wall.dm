@@ -210,12 +210,13 @@ var/global/list/natural_walls = list()
 
 /turf/exterior/wall/proc/dismantle_wall()
 	if(reinf_material?.ore_result_amount)
-		for(var/i = 1 to reinf_material.ore_result_amount)
-			pass_geodata_to(new /obj/item/ore(src, reinf_material.type))
+		if(prob(80))
+			var/obj/structure/boulder/nboulder = new /obj/structure/boulder
+			nboulder.ore_type = reinf_material
+			nboulder.color = reinf_material.color
 	if(prob(MAT_DROP_CHANCE))
 		pass_geodata_to(new /obj/item/ore(src, material.type))
 	destroy_artifacts(null, INFINITY)
-	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	. = ChangeTurf(floor_type || get_base_turf_by_area(src))
 	if(istype(., /turf/simulated/floor/asteroid))
 		var/turf/simulated/floor/asteroid/debris = .
