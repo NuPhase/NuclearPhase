@@ -45,7 +45,7 @@
 	for(var/turf/T in surface_turfs)
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 		T.footstep_type = /decl/footsteps/water
-	sleep(260)
+	sleep(240)
 	using_map.exterior_atmosphere.temperature = 500
 	weather.icon_state = "ashfall_light"
 	weather.favorable_wind_speed = 380
@@ -64,7 +64,7 @@
 		T.update_icon()
 		T.footstep_type = /decl/footsteps/asteroid
 		T.switch_cracks(TRUE)
-	sleep(440)
+	sleep(460)
 	weather.favorable_wind_speed = 320
 	weather.wind_speed = 320
 	weather.handle_wind()
