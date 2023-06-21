@@ -37,6 +37,7 @@
 		if(!length(cur_ore.composition))
 			qdel(cur_ore)
 	air_contents.update_values()
+	update_networks()
 
 /obj/machinery/atmospherics/unary/furnace/proc/heat_up(joules)
 	air_contents.add_thermal_energy(joules)
@@ -59,20 +60,55 @@
 /obj/item/arc_electrode
 	name = "arc electrode"
 	desc = "A heavy graphite rod with a bolt on its end. It's designed for use in electric blast furnaces."
-	var/integrity = 1 //0.01 - 1
-	var/integrity_loss_per_cycle = 1 //how much integrity do we lose per one EBF cycle?
+	icon = 'icons/obj/items/arc_electrode.dmi'
+	icon_state = ICON_STATE_WORLD
+	var/integrity = 100 //0-100
+	var/integrity_loss_per_cycle = 0.2 //how much integrity do we lose per one EBF cycle?
 	var/coke_content = 0 //0-100
 	matter = list(/decl/material/solid/graphite = 20000)
+	weight = 20
 
 /obj/item/arc_electrode/high_quality
 	name = "HQ arc electrode"
 	desc = "A purified heavy graphite rod with a bolt on its end. It's designed for use in electric blast furnaces."
-	integrity_loss_per_cycle = 0.75
+	integrity_loss_per_cycle = 0.1
+	weight = 18
 
 /obj/item/arc_electrode/ultrahigh_quality
 	name = "UHQ arc electrode"
-	desc = "A heavily purified heavy graphite rod with a bolt on its end. It's designed for use in electric blast furnaces."
-	integrity_loss_per_cycle = 0.5
+	desc = "A heavily purified heavy graphite rod with a bolt on its end. It's designed for use in electric blast furnaces. This one is considerably lighter because of its purity."
+	integrity_loss_per_cycle = 0.05
+	weight = 15
+
+/obj/item/arc_electrode/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	var/electrode_integrity_message
+	switch(integrity)
+		if(0 to 25)
+			electrode_integrity_message = "It's already well-eaten, it won't last any longer."
+		if(25 to 75)
+			electrode_integrity_message = "It's quite beaten-up, but it's still holding."
+		if(75 to 100)
+			electrode_integrity_message = "It's in excellent condition."
+	to_chat(user, SPAN_NOTICE(electrode_integrity_message))
+	if(coke_content > 25)
+		to_chat(user, SPAN_NOTICE("It has considerable amounts of gray dust accumulated on it. It can probably be burned off."))
+
+/obj/item/arc_electrode/attackby(obj/item/I, mob/user)
+	if(IS_WELDER(I))
+		if(coke_content)
+			var/obj/item/weldingtool/WT = I
+			if(!WT.isOn())
+				to_chat(user, "<span class='notice'>The welding tool needs to be on to be of any use here.</span>")
+				return
+			visible_message(SPAN_NOTICE("[user] starts burning off excess coke on the [src] with the [I]."))
+			playsound(src, 'sound/items/Welder.ogg', 50, 1)
+			if(!do_after(user, 5 SECONDS, src))
+				return
+			visible_message(SPAN_NOTICE("[user] burns off excess coke on the [src]."))
+			coke_content = 0
+			playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+	. = ..()
 
 
 #define MINIMUM_ARCING_CONDUCTIVITY 0.3
@@ -90,6 +126,13 @@
 	pixel_y = -32
 	layer = ABOVE_HUMAN_LAYER
 
+/obj/machinery/atmospherics/unary/furnace/arc/examine(mob/user)
+	. = ..()
+	if(length(inserted_electrodes))
+		to_chat(user, SPAN_NOTICE("It has [length(inserted_electrodes)] electrodes installed."))
+	else
+		to_chat(user, SPAN_WARNING("It doesn't have any electrodes installed."))
+
 /obj/machinery/atmospherics/unary/furnace/arc/proc/get_conductivity_coefficient()
 	if(!length(inserted_electrodes))
 		return 0
@@ -106,30 +149,37 @@
 /obj/machinery/atmospherics/unary/furnace/arc/proc/lose_electrode_integrity(conduction_coefficient)
 	for(var/obj/item/arc_electrode/cur_electrode in inserted_electrodes)
 		cur_electrode.integrity = max(0, cur_electrode.integrity - cur_electrode.integrity_loss_per_cycle * conduction_coefficient)
+		cur_electrode.coke_content = min(100, cur_electrode.coke_content + 0.5)
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/process_stability(stability)
 	return
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/start_arcing()
-	if(!powered(EQUIP))
+	if(!powered(EQUIP) || get_conductivity_coefficient() < MINIMUM_ARCING_CONDUCTIVITY)
 		return
 	update_use_power(POWER_USE_ACTIVE)
 	playsound(src, sound('sound/machines/arcing_start.ogg', channel = sound_channels.long_channel))
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/stop_arcing()
 	stop_client_sounds_on_channel(sound_channels.long_channel) //this is really dumb and stupid and expensive
+	update_use_power(POWER_USE_IDLE)
 
 /obj/machinery/atmospherics/unary/furnace/arc/Process()
+	if(use_power == POWER_USE_IDLE)
+		return
 	. = ..()
 	var/conductivity_coefficient = get_conductivity_coefficient()
 	var/arcing_stability = get_stability()
 
-	if(powered(EQUIP) && conductivity_coefficient > MINIMUM_ARCING_CONDUCTIVITY && use_power == POWER_USE_ACTIVE)
-		var/actually_used_power = nominal_power_usage * conductivity_coefficient
-		heat_up(actually_used_power * CELLRATE)
-		change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
-		lose_electrode_integrity(conductivity_coefficient)
-		process_stability(arcing_stability)
+	if(!powered(EQUIP) || get_conductivity_coefficient() < MINIMUM_ARCING_CONDUCTIVITY)
+		stop_arcing()
+
+	var/actually_used_power = nominal_power_usage * conductivity_coefficient
+	heat_up(actually_used_power * CELLRATE)
+	change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
+	lose_electrode_integrity(conductivity_coefficient)
+	process_stability(arcing_stability)
+
 
 
 #undef MINIMUM_ARCING_CONDUCTIVITY
