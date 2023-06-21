@@ -53,8 +53,8 @@
 
 
 /obj/item/clothing/head/helmet/modern/space/military_prototype //weak on helmets
-	name = "CERES-2.5V helmet"
-	desc = "A strange suit with several 'Combat Engineered Resistive Combat System' signs on it. It doesn't have any manufacturer logos, though..."
+	name = "CERS-2.5V helmet"
+	desc = "A strange suit with several 'Combat Engineered Resistive System' signs on it. It doesn't have any manufacturer logos, though..."
 	icon = 'icons/clothing/spacesuit/void/military/helmet.dmi'
 	armor = list(
 		melee = ARMOR_MELEE_KNIVES,
@@ -70,8 +70,8 @@
 	weight = 23
 
 /obj/item/clothing/suit/modern/space/military_prototype
-	name = "CERES-2.5V suit"
-	desc = "A strange suit with several 'Combat Engineered Resistive Combat System' signs on it. It doesn't have any manufacturer logos, though..."
+	name = "CERS-2.5V suit"
+	desc = "A strange suit with several 'Combat Engineered Resistive System' signs on it. It doesn't have any manufacturer logos, though..."
 	icon = 'icons/clothing/spacesuit/void/military/suit.dmi'
 	armor = list(
 		melee = ARMOR_MELEE_MAJOR,

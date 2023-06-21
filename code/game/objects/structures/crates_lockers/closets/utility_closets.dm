@@ -130,6 +130,23 @@
 		/obj/item/geiger = 2)
 
 /*
+ * HevACS Closet
+ */
+/obj/structure/closet/hevacs
+	name = "HevACS suit closet"
+	desc = "It's a storage unit for a HevACS suit."
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering
+
+/obj/structure/closet/hevacs/WillContain()
+	return list(
+		/obj/item/clothing/under/hevacs,
+		/obj/item/clothing/mask/breath/hevacs,
+		/obj/item/clothing/gloves/hevacs,
+		/obj/item/clothing/shoes/hevacs,
+		/obj/item/tank/oxygen/yellow)
+
+
+/*
  * Bombsuit closet
  */
 /obj/structure/closet/bombcloset
