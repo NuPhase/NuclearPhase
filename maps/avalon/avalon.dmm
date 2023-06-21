@@ -3333,8 +3333,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "dhk" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel{
+	alert_pressure = 170225.3;
+	fatigue_pressure = 170225.3;
+	maximum_pressure = 210278.3;
+	name = "HP duct"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
@@ -12967,7 +12970,9 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/helium,
+/obj/machinery/portable_atmospherics/canister/liquid_methane{
+	volume = 1400
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/turbinehall)
 "moq" = (
@@ -18626,10 +18631,11 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/avalon/shelter/factory)
 "rFt" = (
+/obj/machinery/atmospherics/pipe/zpipe/up,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/turbinehall)
 "rGa" = (
 /obj/structure/window/reinforced{
@@ -22276,11 +22282,10 @@
 	pixel_x = 5
 	},
 /obj/machinery/reactor_button/presvalve/tcoolantvin{
-	pixel_x = 5;
+	pixel_x = 6;
 	pixel_y = -4
 	},
 /obj/machinery/reactor_button/presvalve/tcoolantvout{
-	pixel_x = -2;
 	pixel_y = -4
 	},
 /obj/machinery/camera/network/engineering{
@@ -22299,6 +22304,10 @@
 /obj/machinery/reactor_button/rswitch/turbine_expansion/second{
 	pixel_x = -6;
 	pixel_y = 14
+	},
+/obj/machinery/reactor_button/rswitch/preheat/coolant{
+	pixel_x = -7;
+	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -24175,6 +24184,14 @@
 	},
 /turf/simulated/floor/concrete/surface,
 /area/surface)
+"wRx" = (
+/obj/machinery/atmospherics/unary/heater/reactor{
+	max_power_rating = 85000;
+	set_temperature = 140;
+	uid = "T-COOLANT PREHEAT"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/turbinehall)
 "wRC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/generic,
@@ -154306,8 +154323,8 @@ lHB
 atC
 xTT
 qjD
-qjD
-unV
+wRx
+dhk
 cMK
 hBO
 hBO
@@ -154436,8 +154453,8 @@ lHB
 ddo
 nvC
 lBn
-opj
-rFt
+qjD
+unV
 cMK
 whg
 whg
@@ -154566,8 +154583,8 @@ cMK
 cMK
 qjD
 wUn
-dhk
-dvY
+opj
+rFt
 cFv
 qjD
 qjD
