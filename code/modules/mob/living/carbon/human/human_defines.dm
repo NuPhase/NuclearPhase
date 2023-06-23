@@ -113,6 +113,9 @@
 
 	var/list/moods = list()
 
+	var/list/symptoms = list()
+	var/next_symptom_message = 0
+
 	var/mob/living/carbon/human/limb_mob = null
 
 /mob/living/carbon/human/proc/get_age()

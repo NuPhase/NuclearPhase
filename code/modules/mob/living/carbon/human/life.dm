@@ -71,6 +71,7 @@
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
+		handle_symptoms()
 		handle_shock()
 		handle_lust()
 		handle_pain()
@@ -86,6 +87,22 @@
 
 /mob/living/carbon/human/adjust_stamina(var/amt)
 	add_oxygen(amt)
+
+/mob/living/carbon/human/proc/handle_symptoms()
+	if(!length(symptoms))
+		return
+	var/all_alert_messages = list()
+	for(var/symptom in symptoms)
+		var/decl/medical_symptom/sympt = GET_DECL(symptom)
+		if(sympt.can_go_away(src))
+			sympt.go_away(src)
+			continue
+		if(sympt.periodical_message)
+			all_alert_messages += sympt.periodical_message
+		sympt.apply_pain(src)
+	if(next_symptom_message < world.time)
+		next_symptom_message = world.time + 300
+		to_chat(src, SPAN_WARNING(pick(all_alert_messages)))
 
 /mob/living/carbon/human/proc/handle_stamina()
 	return
@@ -591,9 +608,8 @@
 			if(!embedded_needs_process())
 				embedded_flag = 0
 
-		if(syspressure > 150)
-			var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(src, BP_HEAD)
-			custom_pain("Your head throbs in a pulsating headache.", syspressure * 0.1, affecting = affected)
+		if(syspressure > 140)
+			add_symptom(/decl/medical_symptom/headache)
 
 		//Resting
 		if(resting)
@@ -875,8 +891,6 @@
 		shock_stage = 0
 		return
 
-	if(is_asystole())
-		shock_stage = max(shock_stage + 1, 61)
 	var/traumatic_shock = get_shock()
 	if(traumatic_shock >= max(30, 0.8*shock_stage))
 		shock_stage += 1
