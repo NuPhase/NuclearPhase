@@ -29,7 +29,7 @@
 
 	data["var1"] = "GENERAL STATISTICS:"
 	data["var2"] = "Total Power Generation: [tload]"
-	data["var3"] = "Total Thermal Flow: [mload]"
+	data["var3"] = "Total Energy Flow: [mload]"
 	data["var4"] = "Neutron Rate: [round(rcore.neutron_rate*100-100)]%"
 	data["var5"] = "Radiation Emission: [round(rcore.last_radiation)] Roentgen/Hour"
 	data["var6"] = "Chamber Temperature: [temp_readout]"
