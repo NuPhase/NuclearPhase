@@ -102,7 +102,7 @@
 			if(!WT.isOn())
 				to_chat(user, "<span class='notice'>The welding tool needs to be on to be of any use here.</span>")
 				return
-			visible_message(SPAN_NOTICE("[user] starts burning off excess coke on the [src] with the [I]."))
+			visible_message(SPAN_NOTICE("[user] starts burning off excess coke on the [src] with \the [I]."))
 			playsound(src, 'sound/items/Welder.ogg', 50, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return
