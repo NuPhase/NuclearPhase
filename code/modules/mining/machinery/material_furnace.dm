@@ -15,6 +15,7 @@
 	if(istype(I, /obj/item/stack/ore))
 		user.drop_from_inventory(I, src)
 		add_ore(I)
+		visible_message(SPAN_NOTICE("[user] loads some ore into \the [src]."))
 	. = ..()
 
 
@@ -105,13 +106,14 @@
 			playsound(src, 'sound/items/Welder.ogg', 50, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return
-			visible_message(SPAN_NOTICE("[user] burns off excess coke on the [src]."))
+			visible_message(SPAN_NOTICE("[user] burns off excess coke dust on the [src]."))
 			coke_content = 0
 			playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 	. = ..()
 
 
 #define MINIMUM_ARCING_CONDUCTIVITY 0.3
+#define HEAT_LEAK_COEF 0.0001
 /obj/machinery/atmospherics/unary/furnace/arc
 	name = "arc furnace"
 	desc = "A giant electric furnace."
@@ -125,6 +127,28 @@
 	pixel_x = -64
 	pixel_y = -32
 	layer = ABOVE_HUMAN_LAYER
+
+/obj/machinery/atmospherics/unary/furnace/arc/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(use_power == POWER_USE_ACTIVE)
+		electrocute_mob(user, get_area(src), src)
+		return
+	if(IS_WRENCH(I))
+		if(!length(inserted_electrodes))
+			to_chat(user, SPAN_NOTICE("\The [src] doesn't have any electrodes installed."))
+			return
+		var/obj/item/electrode = pick(inserted_electrodes)
+		user.put_in_hands(electrode)
+		inserted_electrodes -= electrode
+		visible_message(SPAN_NOTICE("[user] removes an electrode from \the [src]."))
+		return
+	if(istype(I, /obj/item/arc_electrode))
+		if(length(inserted_electrodes) >= 3)
+			to_chat(user, SPAN_NOTICE("\The [src] already has 3 electrodes installed."))
+			return
+		user.drop_from_inventory(I)
+		I.forceMove(src)
+		inserted_electrodes += I
 
 /obj/machinery/atmospherics/unary/furnace/arc/examine(mob/user)
 	. = ..()
@@ -180,6 +204,12 @@
 	lose_electrode_integrity(conductivity_coefficient)
 	process_stability(arcing_stability)
 
+/obj/machinery/atmospherics/unary/furnace/arc/heat_up(joules)
+	. = ..()
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/environment = T.return_air()
+	environment.add_thermal_energy(joules * HEAT_LEAK_COEF)
 
 
 #undef MINIMUM_ARCING_CONDUCTIVITY
+#undef HEAT_LEAK_COEF
