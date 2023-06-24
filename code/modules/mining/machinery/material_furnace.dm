@@ -146,8 +146,7 @@
 		if(length(inserted_electrodes) >= 3)
 			to_chat(user, SPAN_NOTICE("\The [src] already has 3 electrodes installed."))
 			return
-		user.drop_from_inventory(I)
-		I.forceMove(src)
+		user.drop_from_inventory(I, src)
 		inserted_electrodes += I
 
 /obj/machinery/atmospherics/unary/furnace/arc/examine(mob/user)

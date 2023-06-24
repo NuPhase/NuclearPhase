@@ -7,6 +7,8 @@
 	var/output_item = null
 	var/is_material = FALSE
 	var/weight_cost = 1 //kg
+	var/filled = FALSE
+	var/filled_icon_state = ""
 
 /obj/item/casting_shape/ingot
 	name = "ingot casting mold"
