@@ -69,13 +69,13 @@
 	matter = list(/decl/material/solid/graphite = 20000)
 	weight = 20
 
-/obj/item/arc_electrode/high_quality
+/obj/item/arc_electrode/high_quality //a previous electrode tempered in an inert atmosphere furnace. TODO.
 	name = "HQ arc electrode"
 	desc = "A purified heavy graphite rod with a bolt on its end. It's designed for use in electric blast furnaces."
 	integrity_loss_per_cycle = 0.1
 	weight = 18
 
-/obj/item/arc_electrode/ultrahigh_quality
+/obj/item/arc_electrode/ultrahigh_quality //treatment in a chemical reactor. TODO.
 	name = "UHQ arc electrode"
 	desc = "A heavily purified heavy graphite rod with a bolt on its end. It's designed for use in electric blast furnaces. This one is considerably lighter because of its purity."
 	integrity_loss_per_cycle = 0.05
