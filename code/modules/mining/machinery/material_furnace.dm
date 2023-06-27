@@ -124,6 +124,7 @@
 	var/nominal_power_usage = 78 MWATT
 	idle_power_usage = 50 KWATT
 	active_power_usage = 78 MWATT
+	power_channel = EQUIP
 	pixel_x = -64
 	pixel_y = -32
 	layer = ABOVE_HUMAN_LAYER
