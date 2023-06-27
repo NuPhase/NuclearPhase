@@ -211,7 +211,7 @@ var/global/list/natural_walls = list()
 /turf/exterior/wall/proc/dismantle_wall()
 	if(reinf_material?.ore_result_amount)
 		if(prob(80))
-			var/obj/structure/boulder/nboulder = new /obj/structure/boulder
+			var/obj/structure/boulder/nboulder = new /obj/structure/boulder(loc)
 			nboulder.ore_type = reinf_material
 			nboulder.color = reinf_material.color
 	if(prob(MAT_DROP_CHANCE))
