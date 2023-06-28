@@ -42,7 +42,7 @@
 				omessage = "It emits a constant, low-power buzz."
 		to_chat(user, omessage)
 	if(operating && nmode == NEUTRON_MODE_BOMBARDMENT)
-		to_chat(user, "A faint blue glow can be seen on its nozzle...")
+		to_chat(user, "A faint blue glow can be seen erupting from its nozzle...")
 
 /obj/machinery/rlaser/proc/switch_omode(nomode)
 	switch(nomode)
@@ -56,9 +56,11 @@
 
 /obj/machinery/rlaser/proc/switch_nmode(nnmode)
 	set_light(0, 0, null)
-	switch(nmode)
+	rcontrol.neutron_marker.alpha = 0
+	switch(nnmode)
 		if(NEUTRON_MODE_BOMBARDMENT)
 			set_light(20, 1, "#1ebefd", 15)
+			rcontrol.neutron_marker.alpha = 255
 	nmode = nnmode
 
 /obj/machinery/rlaser/Process()
@@ -80,6 +82,7 @@
 			playsound(src, 'sound/machines/constantlowbuzzer.ogg', 50, FALSE, 50, 1)
 		spawn(50)
 			if(primed) //in case of abort
+				rcontrol.perform_laser_ignition()
 				fire(capacitor_charge * active_power_usage)
 			primed = FALSE
 		return TRUE
@@ -95,8 +98,6 @@
 		R.receive_power(power * 1000)
 		R.neutron_moles += 500
 		R.neutron_flux = 5
-		var/obj/item/projectile/beam/sniper/reactor/A = new /obj/item/projectile/beam/sniper/reactor(get_turf(src))
-		A.launch(laser_receivers[lasid])
 	return
 
 /obj/structure/rlaser_receiver
@@ -107,3 +108,25 @@
 /obj/structure/rlaser_receiver/Initialize()
 	. = ..()
 	laser_receivers[resid] += src
+
+/obj/structure/laser_marker
+	icon = 'icons/obj/machines/fusion_lasers.dmi'
+	icon_state = "ignition"
+	anchored = 1
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+/obj/structure/laser_marker/Initialize(ml, _mat, _reinf_mat)
+	. = ..()
+	alpha = 0
+	rcontrol.laser_marker = src
+
+/obj/structure/neutron_marker
+	icon = 'icons/obj/machines/fusion_lasers.dmi'
+	icon_state = "neutron_bombardment"
+	anchored = 1
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+/obj/structure/neutron_marker/Initialize(ml, _mat, _reinf_mat)
+	. = ..()
+	alpha = 0
+	rcontrol.neutron_marker = src

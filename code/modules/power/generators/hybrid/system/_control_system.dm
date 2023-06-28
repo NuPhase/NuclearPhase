@@ -42,6 +42,10 @@
 		/decl/material/solid/caesium
 	)
 
+	var/laser_marker
+	var/laser_animating = FALSE
+	var/obj/neutron_marker
+
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]
 	turbine2 = reactor_components["turbine2"]
@@ -332,3 +336,13 @@
 		var/datum/gas_mixture/gm = rmeter.return_air()
 		return round(gm.get_mass())
 	return 0
+
+/datum/reactor_control_system/proc/perform_laser_ignition()
+	if(laser_animating)
+		return
+	laser_animating = TRUE
+	spawn(30)
+		laser_animating = FALSE
+	animate(laser_marker, alpha = 255, 15, easing = CUBIC_EASING|EASE_OUT)
+	spawn(15)
+		animate(laser_marker, alpha = 0, 10, easing = BOUNCE_EASING|EASE_IN)

@@ -23,7 +23,7 @@
 
 /obj/machinery/reactor_button/rswitch/lasprime
 	name = "LAS-PRIMER"
-	cooldown = 100
+	cooldown = 30
 	icon_state = "switch2-off"
 	off_icon_state = "switch2-off"
 	on_icon_state = "switch2-on"
