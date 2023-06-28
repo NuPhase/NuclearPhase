@@ -121,9 +121,9 @@
 	icon_state = "unloaded-offline"
 	internal_volume = 3000
 	var/list/inserted_electrodes = list()
-	var/nominal_power_usage = 78 MWATT
+	var/nominal_power_usage = 178 MWATT
 	idle_power_usage = 50 KWATT
-	active_power_usage = 78 MWATT
+	active_power_usage = 178 MWATT
 	power_channel = EQUIP
 	pixel_x = -64
 	pixel_y = -32

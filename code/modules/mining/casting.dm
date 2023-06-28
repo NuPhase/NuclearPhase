@@ -35,7 +35,7 @@
 			return
 		visible_message("[user] empties \the [src].")
 		if(is_material)
-			new output_item(get_turf(src), amount = 1, _material = filled)
+			SSmaterials.create_object(filled, get_turf(src), 1, output_item)
 		else
 			new output_item(get_turf(src))
 		filled = null
