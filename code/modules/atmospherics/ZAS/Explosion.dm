@@ -1,4 +1,5 @@
-
+/proc/deflagration(_loc, _strength, _falloff, _color)
+	new /obj/effect/deflagarate(_loc, _strength, _falloff, _color)
 
 #define MAX_DEFLAGRATION_STRENGTH 100
 
@@ -12,13 +13,14 @@
 	var/strength = 50
 	var/falloff = 3
 
-/obj/effect/deflagarate/New(loc, nstrength = 50, nfalloff = 5)
+/obj/effect/deflagarate/New(loc, nstrength = 50, nfalloff = 5, ncolor = FIRE_COLOR_DEFAULT)
 	var/turf/simulated/floor/F = get_turf(src)
 	F.deflaged = TRUE
 	spawn(10)
 		F.deflaged = FALSE
 	strength = nstrength
 	falloff = nfalloff
+	color = ncolor
 	strength -= falloff
 	alpha = strength / MAX_DEFLAGRATION_STRENGTH * 255
 	if(strength < 5)
@@ -41,7 +43,7 @@
 			if(istype(T, /turf/simulated/floor) && T.CanPass(null,F,0,0))
 				var/turf/simulated/floor/Tf = T
 				if(!Tf.deflaged)
-					var/obj/effect/deflagarate/D = new(T, strength, falloff)
+					var/obj/effect/deflagarate/D = new(T, strength, falloff, color)
 					D.dir = direction
 					D.update_icon()
 					Tf.create_fire(strength / 10)
