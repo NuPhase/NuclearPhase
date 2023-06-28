@@ -13,6 +13,7 @@
 	var/semiautocontrol_available = TRUE
 	var/autocontrol_available = FALSE
 	var/scram_control = FALSE //should we autoscram?
+	var/closed_governor_cycle = FALSE
 
 	var/list/all_messages = list()
 	var/list/cleared_messages = list()
@@ -224,22 +225,36 @@
 			turbine2.feeder_valve_openage = 0
 		return
 
-	var/feeder_governor_speed = 0.01
-	var/governor_difference = 0
+	if(closed_governor_cycle) //open cycle achieves RPM, closed cycle adapts to generator load
+		var/governor_adjustment = 0.01
+		var/load_difference = 0
+		//predefining vars for performance
+		load_difference = generator1.last_load - (turbine1.kin_total * turbine1.efficiency)
+		governor_adjustment = sqrt(load_difference) * 0.00001
+		if(turbine1.rpm > 3600)
+			governor_adjustment -= 0.02
+		else
+			governor_adjustment += 0.005
+		turbine1.feeder_valve_openage = CLAMP01(turbine1.feeder_valve_openage + governor_adjustment)
 
-	if(get_meter_temperature("T-M-TURB IN") < 710)
-		turbine1.feeder_valve_openage = max(0, turbine1.feeder_valve_openage - 0.1)
-		turbine2.feeder_valve_openage = max(0, turbine2.feeder_valve_openage - 0.1)
-
-	if(turbine1.rpm > 3590)
-		turbine1.feeder_valve_openage = max(0, turbine1.feeder_valve_openage - 0.05)
-	else if(turbine1.rpm < 3540)
-		turbine1.feeder_valve_openage = min(1, turbine1.feeder_valve_openage + 0.01)
-
-	if(turbine2.rpm > 3590)
-		turbine2.feeder_valve_openage = max(0, turbine2.feeder_valve_openage - 0.05)
-	else if(turbine2.rpm < 3540)
-		turbine2.feeder_valve_openage = min(1, turbine2.feeder_valve_openage + 0.01)
+		load_difference = generator2.last_load - (turbine2.kin_total * turbine2.efficiency)
+		governor_adjustment = sqrt(load_difference) * 0.00001
+		if(turbine2.rpm > 3600)
+			governor_adjustment -= 0.005
+		else
+			governor_adjustment += 0.005
+		turbine2.feeder_valve_openage = CLAMP01(turbine2.feeder_valve_openage + governor_adjustment)
+	else
+		var/rpm_difference = 0
+		var/target_valve_openage = 0
+		if(turbine1.rpm > 100) //don't start turbines from a complete standstill
+			rpm_difference = 3600 - turbine1.rpm
+			target_valve_openage = rpm_difference * 0.073
+			turbine1.feeder_valve_openage = Interpolate(turbine1.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
+		if(turbine2.rpm > 100) //don't start turbines from a complete standstill
+			rpm_difference = 3600 - turbine2.rpm
+			target_valve_openage = rpm_difference * 0.073
+			turbine2.feeder_valve_openage = Interpolate(turbine2.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
 
 /datum/reactor_control_system/proc/turbine_trip()
 	var/obj/machinery/reactor_button/rswitch/current_switch
