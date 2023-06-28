@@ -1,3 +1,7 @@
+/obj/structure/closet/secure_closet/freezer
+	should_process_insides = TRUE
+	temperature = T0C+4
+
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
 	req_access = list(access_kitchen)
@@ -16,6 +20,7 @@
 	name = "meat fridge"
 	icon = 'icons/obj/storage/fridge.dmi'
 	closet_appearance = null
+	temperature = T0C-5
 
 /obj/structure/closet/secure_closet/freezer/meat/WillContain()
 	return list(
@@ -27,6 +32,7 @@
 	name = "refrigerator"
 	icon = 'icons/obj/storage/fridge.dmi'
 	closet_appearance = null
+	temperature = T0C-5
 
 /obj/structure/closet/secure_closet/freezer/fridge/WillContain()
 	return list(

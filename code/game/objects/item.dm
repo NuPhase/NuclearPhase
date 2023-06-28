@@ -91,6 +91,8 @@
 
 	var/npc_optimal_distance = 0 //if used as weapon
 
+	var/needs_closet_processing = FALSE //for stuff like cooling casting shapes and freezing blood
+
 // Foley sound callbacks
 /obj/item/proc/equipped_sound_callback()
 	if(ismob(loc) && equip_sound)

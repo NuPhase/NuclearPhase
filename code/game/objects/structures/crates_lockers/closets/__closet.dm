@@ -30,6 +30,8 @@ var/global/list/closets = list()
 	var/opened = FALSE
 	var/locked = FALSE
 
+	var/should_process_insides = FALSE //this is for stuff like freezers and ovens.
+
 /obj/structure/closet/Destroy()
 	global.closets -= src
 	. = ..()
@@ -119,6 +121,10 @@ var/global/list/closets = list()
 	if(!src.can_open())
 		return 0
 
+	if(should_process_insides)
+		for(var/obj/item/I in contents)
+			if(I.needs_closet_processing)
+				STOP_PROCESSING(SSobj, I)
 	dump_contents()
 
 	src.opened = 1
@@ -172,6 +178,8 @@ var/global/list/closets = list()
 		I.pixel_x = 0
 		I.pixel_y = 0
 		I.pixel_z = 0
+		if(should_process_insides && I.needs_closet_processing)
+			START_PROCESSING(SSobj, I)
 
 /obj/structure/closet/proc/store_mobs(var/stored_units)
 	. = 0
