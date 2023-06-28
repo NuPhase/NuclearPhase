@@ -147,8 +147,11 @@
 		if(length(inserted_electrodes) >= 3)
 			to_chat(user, SPAN_NOTICE("\The [src] already has 3 electrodes installed."))
 			return
+		if(!user.do_skilled(100, SKILL_DEVICES, src))
+			return
 		user.drop_from_inventory(I, src)
 		inserted_electrodes += I
+		visible_message(SPAN_NOTICE("[user] inserts an electrode into \the [src]."))
 
 /obj/machinery/atmospherics/unary/furnace/arc/examine(mob/user)
 	. = ..()
