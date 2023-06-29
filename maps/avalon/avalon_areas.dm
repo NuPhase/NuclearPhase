@@ -158,6 +158,12 @@
 /area/avalon/shelter/brig/barracks
 	name = "Security Barracks"
 
+/area/avalon/shelter/command
+	name = "Command"
+/area/avalon/shelter/command/commcenter
+	name = "Comm Center"
+
+
 /area/avalon/shelter/cargo/warehouse
 	name = "Main Warehouse"
 

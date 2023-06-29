@@ -34,6 +34,7 @@
 	var/trash = null
 	var/list/attack_products //Items you can craft together. Like bomb making, but with food and less screwdrivers.
 	// Uses format list(ingredient = result_type). The ingredient can be a typepath or a kitchen_tag string (used for mobs or plants)
+	weight = 0.05
 
 /obj/item/chems/food/standard_pour_into(mob/user, atom/target)
 	return FALSE
