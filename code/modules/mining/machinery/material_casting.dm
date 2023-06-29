@@ -46,12 +46,15 @@
 		if(loaded_shape)
 			if(loaded_shape.filled)
 				return
+			var/used_mat
 			for(var/mat in air_contents.gas)
 				if(air_contents.phases[mat] == MAT_PHASE_GAS)
 					continue
 				if(!(mat in loaded_shape.accepted_materials))
 					return
-			var/used_mat = pick(air_contents.gas)
+				used_mat = mat
+			if(!used_mat)
+				return
 			var/decl/material/mat_datum = GET_DECL(used_mat)
 			var/total_available_mass = air_contents.get_mass()
 			if(loaded_shape.weight_cost > total_available_mass)
