@@ -180,28 +180,6 @@
 			dismantle_sound = "sparks"
 			dismantle_verb = "slicing"
 			cut_delay *= 0.5
-		else if(istype(W,/obj/item/pickaxe))
-			var/obj/item/pickaxe/P = W
-			dismantle_verb = P.drill_verb
-			dismantle_sound = P.drill_sound
-			cut_delay -= P.digspeed
-
-		if(dismantle_verb)
-			. = TRUE
-			to_chat(user, "<span class='notice'>You begin [dismantle_verb] through the outer plating.</span>")
-			if(dismantle_sound)
-				playsound(src, dismantle_sound, 100, 1)
-
-			if(cut_delay<0)
-				cut_delay = 0
-
-			if(!do_after(user,cut_delay,src))
-				return
-
-			to_chat(user, "<span class='notice'>You remove the outer plating.</span>")
-			dismantle_wall()
-			user.visible_message("<span class='warning'>\The [src] was torn open by [user]!</span>")
-			return
 
 	//Reinforced dismantling.
 	else
