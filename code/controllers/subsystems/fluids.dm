@@ -87,7 +87,10 @@ SUBSYSTEM_DEF(fluids)
 			checked_targets[neighbor] = TRUE
 			flooded_a_neighbor = TRUE
 			current_fluid = current_turf.return_fluid()
-			neighbor.add_fluid(/decl/material/liquid/water, FLUID_MAX_DEPTH, 0, current_fluid.temperature)
+			var/checking_temp = T20C
+			if(current_fluid)
+				checking_temp = current_fluid.temperature
+			neighbor.add_fluid(/decl/material/liquid/water, FLUID_MAX_DEPTH, 0, checking_temp)
 
 		if(!flooded_a_neighbor)
 			REMOVE_ACTIVE_FLUID_SOURCE(current_turf)
