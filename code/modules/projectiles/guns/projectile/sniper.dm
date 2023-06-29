@@ -42,7 +42,7 @@
 /obj/item/gun/projectile/sniper/ngdmr/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex, set_click_cooldown)
 	. = ..()
 	var/turf/T = get_turf(src)
-	for(var/mob/living/carbon/human/M in view(7, user))
+	for(var/mob/living/carbon/human/M in view(3, user))
 		var/eye_safety = 0
 		var/ear_safety = 0
 		if(istype(M))
