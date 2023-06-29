@@ -21,6 +21,7 @@ MRE Stuff
 	/obj/random/mre/sauce,
 	/obj/item/kitchen/utensil/spork/plastic
 	)
+	weight = 0.4
 
 /obj/item/storage/mre/Initialize()
 	create_objects_in_loc(src, main_meal)
@@ -128,6 +129,7 @@ MRE Stuff
 	opened = FALSE
 	open_sound = 'sound/effects/bubbles.ogg'
 	startswith = list(/obj/item/chems/food/slice/meatpizza/filled)
+	weight = 0.05
 
 /obj/item/storage/mrebag/on_update_icon()
 	. = ..()
