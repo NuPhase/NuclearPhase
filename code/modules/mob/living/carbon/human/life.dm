@@ -1107,6 +1107,7 @@
 	meanpressure = initial(meanpressure)
 	mcv = initial(mcv)
 	oxygen_amount = max_oxygen_capacity
+	symptoms.Cut()
 
 /mob/living/carbon/human/reset_view(atom/A)
 	..()

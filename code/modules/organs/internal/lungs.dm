@@ -36,6 +36,11 @@
 	var/oxygen_generation = 18.5 // default
 	var/max_oxygen_generation = 22 //weak lungs
 
+/obj/item/organ/internal/lungs/rejuvenate(ignore_prosthetic_prefs)
+	. = ..()
+	ruptured = FALSE
+	oxygen_generation = max_oxygen_generation
+
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
 	if(ishuman(owner))

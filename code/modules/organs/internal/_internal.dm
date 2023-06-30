@@ -75,6 +75,10 @@
 	do_uninstall()
 	..()
 
+/obj/item/organ/internal/rejuvenate(ignore_prosthetic_prefs)
+	. = ..()
+	oxygen_deprivation = 0
+
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken() && oxygen_deprivation < OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD
 
