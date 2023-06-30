@@ -23,9 +23,10 @@
 	var/healed_threshold = 1
 	var/oxygen_reserve = 6
 	oxygen_consumption = 2.5
-	max_damage = 180
+	max_damage = 160
 	min_broken_damage = 90
 	min_bruised_damage = 30
+	oxygen_deprivation_tick = 1
 
 /obj/item/organ/internal/brain/getToxLoss()
 	return 0

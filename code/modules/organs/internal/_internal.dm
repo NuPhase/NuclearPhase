@@ -1,4 +1,4 @@
-#define OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD 40
+#define OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD 80
 
 /****************************************************
 				INTERNAL ORGANS DEFINES
@@ -15,6 +15,7 @@
 	var/damage_reduction = 0.5     //modifier for internal organ injury
 	var/oxygen_consumption = 0 //per 2 seconds. 12.7 is available every 2 seconds in a body
 	var/oxygen_deprivation = 0
+	var/oxygen_deprivation_tick = 0.1
 
 /obj/item/organ/internal/proc/oxygen_starve(amount)
 	oxygen_deprivation = Clamp(oxygen_deprivation + amount, 0, 100)
@@ -75,7 +76,7 @@
 	..()
 
 /obj/item/organ/internal/is_usable()
-	return ..() && !is_broken()
+	return ..() && !is_broken() && oxygen_deprivation < OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD
 
 /obj/item/organ/internal/robotize(var/company, var/skip_prosthetics = 0, var/keep_organs = 0, var/apply_material = /decl/material/solid/metal/steel, var/check_bodytype, var/check_species)
 	. = ..()
@@ -162,7 +163,7 @@
 	..()
 	handle_regeneration()
 	if(!owner?.consume_oxygen(oxygen_consumption))
-		oxygen_starve(1)
+		oxygen_starve(oxygen_deprivation_tick)
 		if(oxygen_deprivation > OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD)
 			take_internal_damage(0.2, 1)
 		return

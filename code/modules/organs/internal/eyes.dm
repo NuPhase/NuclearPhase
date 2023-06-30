@@ -80,7 +80,7 @@
 	..()
 	if(!owner)
 		return
-	if(is_bruised() || germ_level > INFECTION_LEVEL_ONE)
+	if(is_bruised() || oxygen_deprivation > OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD || germ_level > INFECTION_LEVEL_ONE)
 		owner.set_status(STAT_BLURRY, 20)
 	if(is_broken())
 		owner.set_status(STAT_BLIND, 20)
