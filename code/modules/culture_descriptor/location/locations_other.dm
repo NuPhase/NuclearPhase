@@ -1,26 +1,21 @@
-/decl/cultural_info/location/stateless
-	name = "Stateless"
-	description = "Sometimes people fall through the cracks... You have nobody to speak on your behalf."
-	economic_power = 0
-	ruling_body = "None"
+/decl/cultural_info/location/sol
+	name = "Solar System"
+	description = "The cradle of humanity. It held 3 colonies at its peak population, but once the entire Earth population was obliterated, it entered a state of downfall and cut all contact in 2169. \
+	The first crewed interstellar spacecraft was sent in 2124, with the last arriving in 2170s. You were a crew member of one of these ships."
+	capital = "Mars(Formerly Earth)"
+	ruling_body = "Unknown"
+	economic_power = 2
 
-/decl/cultural_info/location/other
-	name = "Other System"
-	description = "The last time someone tried to do a comprehensive encyclopaedia of the known galaxy, their \
-	positronic processor deleted itself rather than face up to the task. You are from nowhere in particular - a \
-	backwater world, or somewhere off the starmaps."
-	distance = "Various"
-	capital = "Various"
-	economic_power = 1
-	ruling_body = "Various"
+/decl/cultural_info/location/alpha_centauri
+	name = "Alpha Centauri"
+	description = "The first star system that was colonized by humanity. It is the most prosperous system of all, having sent multiple colonization ships towards Sirius. All contact was lost in 2171. You were either born there, or transported from Sol."
+	capital = "Proxima B"
+	ruling_body = "United Nations"
+	economic_power = 5
 
-/decl/cultural_info/location/deep_space
-	name = "Deep Space"
-	description = "You came from the void between the stars."
-	language =         null
-	secondary_langs =  null
-	additional_langs = null
-	distance =         null
-	capital =          null
-	economic_power =   null
-	ruling_body =      null
+/decl/cultural_info/location/sirius
+	name = "Sirius"
+	description = "The youngest single-planet colony out of all three, the first people born here haven't reached their 50s yet."
+	capital = "New Tokyo"
+	ruling_body = "United Nations"
+	economic_power = 3

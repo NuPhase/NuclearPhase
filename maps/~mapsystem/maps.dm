@@ -134,14 +134,14 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/default_bodytype = BODYTYPE_HUMANOID
 
 	var/list/available_cultural_info = list(
-		TAG_HOMEWORLD = list(/decl/cultural_info/location/other),
+		TAG_HOMEWORLD = list(/decl/cultural_info/location/sol, /decl/cultural_info/location/alpha_centauri, /decl/cultural_info/location/sirius),
 		TAG_FACTION =   list(/decl/cultural_info/faction/other),
 		TAG_CULTURE =   list(/decl/cultural_info/culture/other),
 		TAG_RELIGION =  list(/decl/cultural_info/religion/other)
 	)
 
 	var/list/default_cultural_info = list(
-		TAG_HOMEWORLD = /decl/cultural_info/location/other,
+		TAG_HOMEWORLD = /decl/cultural_info/location/sirius,
 		TAG_FACTION =   /decl/cultural_info/faction/other,
 		TAG_CULTURE =   /decl/cultural_info/culture/other,
 		TAG_RELIGION =  /decl/cultural_info/religion/other
