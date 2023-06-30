@@ -12,7 +12,6 @@
 	uncreated_component_parts = null
 	stat_immune = 0
 
-	var/suppressing = FALSE
 	var/mob/living/victim
 	var/strapped = 0.0
 	var/obj/machinery/computer/operating/computer = null
@@ -27,7 +26,6 @@
 
 /obj/machinery/optable/examine(mob/user)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("The neural suppressors are switched [suppressing ? "on" : "off"]."))
 
 /obj/machinery/optable/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/grab))
@@ -43,28 +41,6 @@
 	if(istype(new_state))
 		updateUsrDialog()
 
-/obj/machinery/optable/physical_attack_hand(var/mob/user)
-
-	if(!victim)
-		to_chat(user, "<span class='warning'>There is nobody on \the [src]. It would be pointless to turn the suppressor on.</span>")
-		return TRUE
-
-	if(stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>You try to switch on the suppressor, yet nothing happens.</span>")
-		return
-
-	if(user != victim && !suppressing) // Skip checks if you're doing it to yourself or turning it off, this is an anti-griefing mechanic more than anything.
-		user.visible_message("<span class='warning'>\The [user] begins switching on \the [src]'s neural suppressor.</span>")
-		if(!do_after(user, 30, src) || !user || !src || user.incapacitated() || !user.Adjacent(src))
-			return TRUE
-		if(!victim)
-			to_chat(user, "<span class='warning'>There is nobody on \the [src]. It would be pointless to turn the suppressor on.</span>")
-			return TRUE
-
-	suppressing = !suppressing
-	user.visible_message("<span class='notice'>\The [user] switches [suppressing ? "on" : "off"] \the [src]'s neural suppressor.</span>")
-	return TRUE
-
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	. = (air_group || height == 0 || (istype(mover) && mover.checkpass(PASS_FLAG_TABLE)))
 
@@ -79,15 +55,11 @@
 
 /obj/machinery/optable/proc/check_victim()
 	if(!victim || !victim.lying || victim.loc != loc)
-		suppressing = FALSE
 		victim = null
 		for(var/mob/living/carbon/human/H in loc)
 			if(H.lying)
 				victim = H
 				break
-	if(victim)
-		if(suppressing && GET_STATUS(victim, STAT_ASLEEP) < 3)
-			SET_STATUS_MAX(victim, STAT_ASLEEP, 3)
 	. = !!victim
 	update_icon()
 
@@ -129,8 +101,3 @@
 	if(patient.anchored)
 		return FALSE
 	return TRUE
-
-/obj/machinery/optable/power_change()
-	. = ..()
-	if(stat & (NOPOWER|BROKEN))
-		suppressing = FALSE
