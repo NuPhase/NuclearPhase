@@ -1,3 +1,5 @@
+#define ARRYTHMIAS_GRACE_PERIOD 70 SECONDS
+
 /obj/item/organ/internal/heart
 	name = "heart"
 	organ_tag = "heart"
@@ -72,7 +74,7 @@
 	if(instability > 10)
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
-			if(A.can_appear(src) && A.required_instability < instability && prob(5))
+			if(last_arrythmia_appearance > world.time + ARRYTHMIAS_GRACE_PERIOD && A.can_appear(src) && A.required_instability < instability && prob(5))
 				add_arrythmia(A)
 				break
 		for(var/decl/arrythmia/A in arrythmias)
