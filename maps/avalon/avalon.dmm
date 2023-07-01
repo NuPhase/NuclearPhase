@@ -458,6 +458,11 @@
 /obj/machinery/light,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig)
+"azt" = (
+/obj/effect/floor_decal/corner/black/full,
+/obj/machinery/door/airlock/command,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "azw" = (
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
@@ -1863,6 +1868,9 @@
 /obj/structure/bed/padded,
 /obj/structure/curtain/black,
 /obj/effect/decal/cleanable/dirt,
+/obj/abstract/landmark/start{
+	name = "Private"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "bQt" = (
@@ -3114,6 +3122,15 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
+"cRy" = (
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 9
+	},
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/medbay)
 "cSh" = (
 /obj/machinery/light/small/red{
 	dir = 4
@@ -3235,12 +3252,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "cXQ" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 10
 	},
-/obj/effect/floor_decal/corner/black/diagonal,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command)
+/obj/structure/table,
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/medbay)
 "cYs" = (
 /obj/machinery/power/generator/transformer{
 	dir = 8;
@@ -3774,6 +3791,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"dBk" = (
+/obj/effect/paint_stripe/paleblue,
+/turf/simulated/wall,
+/area/avalon)
 "dBp" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
 /turf/simulated/floor/reinforced/airless,
@@ -3819,6 +3840,9 @@
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/black,
 /obj/item/bedsheet/green,
+/obj/abstract/landmark/start{
+	name = "Private"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "dDM" = (
@@ -4153,6 +4177,7 @@
 "dRY" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/flashlight/flare,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "dSX" = (
@@ -5218,6 +5243,7 @@
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/pink,
+/obj/structure/dogbed,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "eRB" = (
@@ -5734,6 +5760,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
+"foI" = (
+/obj/structure/table/steel,
+/obj/structure/flora/pottedplant/dead{
+	pixel_y = 12
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/sergeantroom)
 "foV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
@@ -7325,6 +7358,9 @@
 "gWq" = (
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/black,
+/obj/abstract/landmark/start{
+	name = "Private"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "gWM" = (
@@ -9165,6 +9201,9 @@
 /obj/effect/floor_decal/corner/pink{
 	dir = 9
 	},
+/obj/structure/filingcabinet/chestdrawer{
+	pixel_x = -11
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "iGo" = (
@@ -10365,9 +10404,7 @@
 /area/avalon/shelter/atmos)
 "jDf" = (
 /obj/effect/floor_decal/asteroid,
-/obj/structure/reagent_dispensers/watertank/newtank{
-	initial_reagent_types = list(/decl/material/liquid/water/dirty1=1)
-	},
+/obj/structure/reagent_dispensers/fueltank/newtank/diesel,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "jDm" = (
@@ -10545,6 +10582,9 @@
 "jLm" = (
 /obj/structure/bed/padded,
 /obj/structure/curtain/black,
+/obj/abstract/landmark/start{
+	name = "Private"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "jLp" = (
@@ -11967,6 +12007,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/armory)
+"leE" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10;
+	density = 0
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/black/full,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "leN" = (
 /obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 4
@@ -12309,16 +12361,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "ltb" = (
-/obj/turbolift_map_holder{
-	dir = 1;
-	lift_size_x = 3;
-	lift_size_y = 3;
-	areas_to_use = list(/area/turbolift/avalon/medbay/a1,/area/turbolift/avalon/medbay/a2);
-	depth = 2;
-	wall_type = /turf/simulated/wall
-	},
-/turf/exterior/wall,
-/area/space)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/obj/item/flashlight/flare,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "ltl" = (
 /obj/machinery/atmospherics/binary/cryocooler{
 	dir = 8;
@@ -12337,6 +12384,9 @@
 /obj/structure/curtain/open/black,
 /obj/item/bedsheet/green,
 /obj/effect/decal/cleanable/dirt,
+/obj/abstract/landmark/start{
+	name = "Private"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "luu" = (
@@ -14364,6 +14414,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/expeditionpreparation)
+"npK" = (
+/obj/effect/floor_decal/asteroid,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chems/drinks/cans/waterbottle/dirty,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "npO" = (
 /obj/structure/table/steel,
 /obj/machinery/door/window/westright{
@@ -14557,6 +14613,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/science)
+"nzm" = (
+/obj/effect/floor_decal/corner/black/full,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "nzy" = (
 /obj/machinery/alarm{
 	pixel_y = 22;
@@ -15123,10 +15184,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "nXN" = (
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 9
-	},
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
@@ -18294,14 +18355,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "qQi" = (
-/obj/effect/floor_decal/corner/white/bordercorner{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/white/bordercorner{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
@@ -19081,6 +19139,15 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"rET" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -10;
+	density = 0
+	},
+/obj/effect/floor_decal/corner/black/full,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "rFn" = (
 /obj/structure/table/steel_reinforced,
 /obj/random/toolbox,
@@ -19814,6 +19881,12 @@
 /obj/effect/floor_decal/corner/paleblue,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
+"sqV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/obj/item/chems/drinks/cans/waterbottle/dirty,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "srq" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 4
@@ -20031,6 +20104,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
@@ -23500,6 +23576,15 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
+"vKv" = (
+/obj/effect/floor_decal/corner/black/full,
+/obj/structure/filingcabinet{
+	pixel_x = 10;
+	density = 0
+	},
+/obj/structure/filingcabinet,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "vKN" = (
 /obj/effect/catwalk_plated,
 /obj/structure/railing/mapped,
@@ -23970,6 +24055,12 @@
 /area/avalon/shelter/comms)
 "wdu" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/abstract/landmark/start{
+	name = "Private"
+	},
+/obj/abstract/landmark/start{
+	name = "Private"
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/brig)
 "weV" = (
@@ -24055,6 +24146,15 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"wji" = (
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/obj/structure/table/steel,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/brig/sergeantroom)
 "wjq" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light,
@@ -25479,6 +25579,11 @@
 /obj/structure/catwalk,
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
+"xBz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/chems/drinks/bottle/small/beer,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "xCs" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/techmaint,
@@ -102389,9 +102494,9 @@ fxj
 fxj
 fxj
 fxj
-fxj
-vqR
-vqR
+dBk
+cdZ
+cdZ
 cdZ
 cdZ
 cdZ
@@ -102520,8 +102625,8 @@ fxj
 hya
 hya
 cdZ
-cdZ
-cdZ
+cRy
+cXQ
 cdZ
 jDm
 jDm
@@ -102651,7 +102756,7 @@ hya
 chR
 cdZ
 nXN
-kAu
+xcV
 jDm
 jDm
 jDm
@@ -121118,7 +121223,7 @@ chR
 chR
 chR
 hBO
-ltb
+hBO
 hBO
 hBO
 hBO
@@ -152945,8 +153050,8 @@ okA
 iGq
 okA
 okA
-mIS
-cXQ
+azt
+hpv
 ftP
 fkq
 kuB
@@ -153070,11 +153175,11 @@ hBO
 hBO
 hBO
 mIS
-ekw
+leE
 okA
 iGq
 okA
-okA
+nzm
 mIS
 oTM
 hpv
@@ -153202,7 +153307,7 @@ hBO
 mIS
 iGq
 okA
-iGq
+okA
 oeh
 mIS
 mIS
@@ -153330,7 +153435,7 @@ hBO
 hBO
 hBO
 mIS
-iGq
+rET
 okA
 iGq
 okA
@@ -153464,7 +153569,7 @@ ekw
 okA
 iGq
 okA
-mwg
+mIS
 qQi
 okW
 jlI
@@ -153484,7 +153589,7 @@ eQE
 qsX
 vvr
 kCd
-kCd
+foI
 nJm
 qgS
 pAk
@@ -153592,7 +153697,7 @@ hBO
 mIS
 iGq
 okA
-okA
+vKv
 oeh
 mIS
 kuB
@@ -153872,7 +153977,7 @@ nJm
 jJJ
 uiW
 aSi
-uiW
+wji
 stz
 dRk
 bZD
@@ -207153,7 +207258,7 @@ gOQ
 gOQ
 con
 gOQ
-fBw
+ltb
 gOQ
 nBJ
 pqx
@@ -207420,7 +207525,7 @@ fUP
 gOQ
 con
 con
-gOQ
+xBz
 fbr
 fBw
 gOQ
@@ -208591,7 +208696,7 @@ fBw
 jbo
 tqb
 kdV
-fBw
+sqV
 gOQ
 con
 uvp
@@ -208718,7 +208823,7 @@ hBO
 uvp
 uvp
 ePF
-fbr
+npK
 dRY
 biB
 aiq
