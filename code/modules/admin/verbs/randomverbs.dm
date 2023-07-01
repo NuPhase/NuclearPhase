@@ -553,6 +553,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		alert("Admin revive disabled")
 	SSstatistics.add_field_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_debug(mob/living/carbon/human/H as mob in human_mob_list)
+	set category = "Special Verbs"
+	set name = "Debug Hemodynamics"
+	if(!holder)
+		to_chat(src, "Only administrators may use this command.")
+		return
+	if(!mob)
+		return
+	H.debug_medicine(src)
+	SSstatistics.add_field_details("admin_verb","DBGM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Special Verbs"
 	set name = "Create Command Report"

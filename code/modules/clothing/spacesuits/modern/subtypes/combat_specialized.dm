@@ -23,7 +23,7 @@
 	)
 
 /obj/item/clothing/suit/modern/space/combat_specialized/verb/emergency_ejection()
-	set name = "!Emergency Ejection!"
+	set name = "Emergency Ejection"
 	set category = "Life Support"
 	set src in usr
 

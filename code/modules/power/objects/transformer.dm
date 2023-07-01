@@ -1,7 +1,7 @@
 /datum/composite_sound/transformer
 	mid_sounds = list('sound/machines/transformer/loop1.wav', 'sound/machines/transformer/loop2.wav', 'sound/machines/transformer/loop3.wav', 'sound/machines/transformer/loop4.wav')
 	mid_length = 49
-	volume = 40
+	volume = 10
 
 /obj/machinery/power/generator/transformer
 	name = "power transformer"

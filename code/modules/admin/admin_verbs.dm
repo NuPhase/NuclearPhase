@@ -68,6 +68,7 @@ var/global/list/admin_verbs_admin = list(
 	/client/proc/free_slot_crew,			//frees slot for chosen job,
 	/client/proc/cmd_admin_change_custom_event,
 	/client/proc/cmd_admin_rejuvenate,
+	/client/proc/cmd_admin_debug,
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
 	/datum/admins/proc/show_skills,
