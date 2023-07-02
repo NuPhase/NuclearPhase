@@ -70,7 +70,7 @@
 
 /mob/living/carbon/human/proc/add_oxygen(amount)
 	oxygen_amount = Clamp(oxygen_amount + amount, 0, max_oxygen_capacity)
-	if(oxygen_amount < 600)
+	if(oxygen_amount < max_oxygen_capacity - 10)
 		return 0
 	return 1
 

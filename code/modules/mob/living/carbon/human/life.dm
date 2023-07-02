@@ -692,13 +692,13 @@
 			if(blood_perfusion < 0.8)
 				var/severity = 0
 				switch(blood_perfusion)
-					if(0.71 to 0.8)			severity = 1
-					if(0.61 to 0.7)			severity = 2
-					if(0.51 to 0.6)			severity = 3
-					if(0.41 to 0.5)			severity = 4
-					if(0.31 to 0.4)			severity = 5
-					if(0.21 to 0.3)			severity = 6
-					if(-INFINITY to 0.2)	severity = 7
+					if(0.76 to 0.8)			severity = 1
+					if(0.71 to 0.75)		severity = 2
+					if(0.65 to 0.7)			severity = 3
+					if(0.61 to 0.64)		severity = 4
+					if(0.57 to 0.6)			severity = 5
+					if(0.41 to 0.56)		severity = 6
+					if(0 to 0.4)			severity = 7
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 5) //we are JACKED on adrenaline
 					if(blood_perfusion < 0.5) //fancy flickering when low on oxygen

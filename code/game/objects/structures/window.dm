@@ -418,9 +418,9 @@
 
 	if (paint_color)
 		color = paint_color
-	else if (material)
-		var/decl/material/window = GET_DECL(get_material())
-		color = window.color
+	else if(material)
+		var/decl/material/mat = GET_DECL(material)
+		color = mat?.color
 	else
 		color = GLASS_COLOR
 

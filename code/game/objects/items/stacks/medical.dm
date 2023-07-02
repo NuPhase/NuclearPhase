@@ -67,6 +67,7 @@
 		use(1)
 
 	M.updatehealth()
+
 /obj/item/stack/medical/bruise_pack
 	name = "roll of bandages"
 	singular_name = "bandage length"
@@ -128,7 +129,7 @@
 			H.update_bandages(1)
 
 /obj/item/stack/medical/wound_filler
-	name = "absorbent cotton"
+	name = "expansive cotton"
 	singular_name = "cotton ball"
 	desc = "A pack of surgical cotton balls. Can be used to pack wounds."
 	icon = 'icons/obj/medicine.dmi'
@@ -207,6 +208,7 @@
 	icon_state = "puck"
 	desc = "An elastic substance that can easily fill tricky spaces. Difficult to apply."
 	packing_speed = 0.4
+	sterile = TRUE
 
 /obj/item/stack/medical/wound_filler/hydrofiber
 	name = "roll of hydrofiber dressing"

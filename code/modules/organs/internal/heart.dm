@@ -58,8 +58,10 @@
 
 	if(owner.get_blood_perfusion() < 0.5)
 		ninstability += 20
-	if(pulse > 250)
+	if(pulse > 100)
 		ninstability += 20
+	if(pulse > 250)
+		ninstability += 25
 	if(cardiac_output < 0.5)
 		ninstability += 20
 	if(owner.tpvr > 280)
@@ -74,11 +76,11 @@
 	if(instability > 10)
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
-			if(last_arrythmia_appearance > world.time + ARRYTHMIAS_GRACE_PERIOD && A.can_appear(src) && A.required_instability < instability && prob(5))
+			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(5))
 				add_arrythmia(A)
 				break
 		for(var/decl/arrythmia/A in arrythmias)
-			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) > world.time && prob(10))
+			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) < world.time && prob(10))
 				add_arrythmia(GET_DECL(A.evolves_into))
 				remove_arrythmia(A)
 
