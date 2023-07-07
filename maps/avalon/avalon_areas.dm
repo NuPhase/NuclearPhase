@@ -59,8 +59,10 @@
 
 /area/avalon/shelter/expeditionpreparation
 	name = "Expedition Preparation"
+	icon_state = "research_dock"
 /area/avalon/shelter/garage
 	name = "Vehicle Garage"
+	icon_state = "mechbay"
 /area/avalon/shelter/upperhall
 	name = "Upper Hall"
 /area/avalon/shelter/comms
@@ -76,6 +78,7 @@
 	sound_env = LARGE_ENCLOSED
 	name = "Reactor Chamber"
 	lightswitch = FALSE
+	icon_state = "engine"
 
 /area/avalon/shelter/reactor/power_change()
 	. = ..()
@@ -90,9 +93,14 @@
 	name = "Reactor Control Room"
 	area_flags = AREA_FLAG_RAD_SHIELDED
 /area/avalon/shelter/engineering
-	name = "Engineering"
+	name = "Engineering 2nd Floor"
+	icon_state = "engineering"
+/area/avalon/shelter/engineering_first
+	name = "Engineering 1st Floor"
+	icon_state = "engineering_foyer"
 /area/avalon/shelter/atmos
 	name = "Fluid Management"
+	icon_state = "atmos"
 /area/avalon/shelter/climatecontrol
 	name = "Climate Control"
 /area/avalon/shelter/turbinehall
@@ -166,18 +174,22 @@
 
 /area/avalon/shelter/cargo/warehouse
 	name = "Main Warehouse"
+	name = "storage"
 
 /area/avalon/shelter/cargo/rest_area
 	name = "Supply Operations Break Room"
+	icon_state = "auxstorage"
 
 /area/avalon/shelter/medbay
 	name = "Medbay"
+	icon_state = "medbay3"
 
 /area/avalon/shelter/factory
 	name = "Factory"
 
 /area/avalon/shelter/science
 	name = "Research Labs"
+	icon_state = "research"
 
 
 /area/turbolift/e1
