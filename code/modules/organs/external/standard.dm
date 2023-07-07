@@ -21,6 +21,7 @@
 	artery_name = "aorta"
 	cavity_name = "thoracic"
 	limb_flags = ORGAN_FLAG_HEALS_OVERKILL | ORGAN_FLAG_CAN_BREAK
+	arterial_bleed_severity = 0.0025
 
 /obj/item/organ/external/chest/proc/get_current_skin()
 	return
@@ -31,8 +32,8 @@
 	if( L && L.is_bruised())
 		. += "Lung ruptured"
 
-/obj/item/organ/external/chest/die() 
-	//Special handling for synthetics 
+/obj/item/organ/external/chest/die()
+	//Special handling for synthetics
 	if(BP_IS_PROSTHETIC(src) || BP_IS_CRYSTAL(src))
 		return
 	. = ..()
@@ -53,8 +54,8 @@
 	cavity_name = "abdominal"
 	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_BREAK
 
-/obj/item/organ/external/groin/die() 
-	//Special handling for synthetics 
+/obj/item/organ/external/groin/die()
+	//Special handling for synthetics
 	if(BP_IS_PROSTHETIC(src) || BP_IS_CRYSTAL(src))
 		return
 	. = ..()
@@ -72,7 +73,6 @@
 	amputation_point = "left shoulder"
 	tendon_name = "palmaris longus tendon"
 	artery_name = "basilic vein"
-	arterial_bleed_severity = 0.75
 	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_HAS_TENDON | ORGAN_FLAG_CAN_BREAK | ORGAN_FLAG_CAN_DISLOCATE
 
 /obj/item/organ/external/arm/right
@@ -97,7 +97,6 @@
 	amputation_point = "left hip"
 	tendon_name = "cruciate ligament"
 	artery_name = "femoral artery"
-	arterial_bleed_severity = 0.75
 	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_HAS_TENDON | ORGAN_FLAG_CAN_BREAK | ORGAN_FLAG_CAN_DISLOCATE
 
 /obj/item/organ/external/leg/right
@@ -122,7 +121,6 @@
 	joint = "left ankle"
 	amputation_point = "left ankle"
 	tendon_name = "Achilles tendon"
-	arterial_bleed_severity = 0.5
 	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_CAN_STAND | ORGAN_FLAG_HAS_TENDON | ORGAN_FLAG_CAN_BREAK | ORGAN_FLAG_CAN_DISLOCATE
 
 /obj/item/organ/external/foot/right
@@ -148,7 +146,6 @@
 	joint = "left wrist"
 	amputation_point = "left wrist"
 	tendon_name = "carpal ligament"
-	arterial_bleed_severity = 0.5
 	limb_flags = ORGAN_FLAG_CAN_AMPUTATE | ORGAN_FLAG_FINGERPRINT | ORGAN_FLAG_HAS_TENDON | ORGAN_FLAG_CAN_BREAK | ORGAN_FLAG_CAN_DISLOCATE
 	var/gripper_ui_label = "L"
 	var/gripper_ui_loc = ui_lhand

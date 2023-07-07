@@ -57,12 +57,12 @@
 	var/list/autopsy_data              // Trauma data for forensics.
 
 	// Joint/state stuff.
-	var/joint = "joint"                // Descriptive string used in dislocation.
-	var/amputation_point               // Descriptive string used in amputation.
-	var/encased                        // Needs to be opened with a saw to access the organs.
-	var/artery_name = "artery"         // Flavour text for cartoid artery, aorta, etc.
-	var/arterial_bleed_severity = 1    // Multiplier for bleeding in a limb.
-	var/tendon_name = "tendon"         // Flavour text for Achilles tendon, etc.
+	var/joint = "joint"                  // Descriptive string used in dislocation.
+	var/amputation_point                 // Descriptive string used in amputation.
+	var/encased                          // Needs to be opened with a saw to access the organs.
+	var/artery_name = "artery"           // Flavour text for cartoid artery, aorta, etc.
+	var/arterial_bleed_severity = 0.0008 // Milliliters bled per MCV. bleed_amount = arterial_bleed_severity * mcv
+	var/tendon_name = "tendon"           // Flavour text for Achilles tendon, etc.
 	var/cavity_name = "cavity"
 
 	// Surgery vars.

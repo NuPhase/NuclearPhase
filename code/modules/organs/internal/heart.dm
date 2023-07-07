@@ -10,7 +10,6 @@
 	var/pulse = 60
 	var/heartbeat = 0
 	var/beat_sound = 'sound/effects/singlebeat.ogg'
-	var/tmp/next_blood_squirt = 0
 	damage_reduction = 0.7
 	relative_size = 5
 	max_damage = 45
@@ -43,7 +42,6 @@
 				take_internal_damage(0.5)
 			if(pulse > 220 && prob(5))
 				take_internal_damage(0.5)
-		handle_blood()
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
@@ -135,80 +133,6 @@
 			sound_to(owner, sound(beat_sound,0,0,0,50))
 		else
 			heartbeat++
-
-/obj/item/organ/internal/heart/proc/handle_blood()
-
-	if(!owner)
-		return
-
-	//Dead or cryosleep people do not pump the blood.
-	if(!owner || owner.InStasis() || owner.stat == DEAD || owner.bodytemperature < 170)
-		return
-
-	if(pulse != PULSE_NONE || BP_IS_PROSTHETIC(src))
-		//Bleeding out
-		var/blood_max = 0
-		var/list/do_spray = list()
-		for(var/obj/item/organ/external/temp in owner.get_external_organs())
-
-			if(BP_IS_PROSTHETIC(temp))
-				continue
-
-			var/open_wound
-			if(temp.status & ORGAN_BLEEDING)
-
-				for(var/datum/wound/W in temp.wounds)
-
-					if(!open_wound && (W.damage_type == CUT || W.damage_type == PIERCE) && W.damage && !W.is_treated())
-						open_wound = TRUE
-
-					if(W.bleeding())
-						if(temp.applied_pressure)
-							if(ishuman(temp.applied_pressure))
-								var/mob/living/carbon/human/H = temp.applied_pressure
-								H.bloody_hands(src, 0)
-							//somehow you can apply pressure to every wound on the organ at the same time
-							//you're basically forced to do nothing at all, so let's make it pretty effective
-							var/min_eff_damage = max(0, W.damage - 10) / 6 //still want a little bit to drip out, for effect
-							blood_max += max(min_eff_damage, W.damage - 30) / 40
-						else
-							blood_max += W.damage / 40
-
-			if(temp.status & ORGAN_ARTERY_CUT)
-				var/bleed_amount = FLOOR((owner.vessel.total_volume / (temp.applied_pressure || !open_wound ? 400 : 250))*temp.arterial_bleed_severity)
-				if(bleed_amount)
-					if(open_wound)
-						blood_max += bleed_amount
-						do_spray += "[temp.name]"
-					else
-						owner.vessel.remove_any(bleed_amount)
-
-		blood_max *= owner.mcv / NORMAL_MCV
-
-		blood_max *= 1 + GET_CHEMICAL_EFFECT(owner, CE_BLOOD_THINNING) * 0.5
-
-		if(GET_CHEMICAL_EFFECT(owner, CE_STABLE))
-			blood_max *= 0.8
-
-		if(world.time >= next_blood_squirt && isturf(owner.loc) && do_spray.len)
-			var/spray_organ = pick(do_spray)
-			owner.visible_message(
-				SPAN_DANGER("Blood sprays out from \the [owner]'s [spray_organ]!"),
-				FONT_HUGE(SPAN_DANGER("Blood sprays out from your [spray_organ]!"))
-			)
-			SET_STATUS_MAX(owner, STAT_STUN, 1)
-			owner.set_status(STAT_BLURRY, 2)
-
-			//AB occurs every heartbeat, this only throttles the visible effect
-			next_blood_squirt = world.time + 80
-			var/turf/sprayloc = get_turf(owner)
-			blood_max -= owner.drip(CEILING(blood_max/3), sprayloc)
-			if(blood_max > 0)
-				blood_max -= owner.blood_squirt(blood_max, sprayloc)
-				if(blood_max > 0)
-					owner.drip(blood_max, get_turf(owner))
-		else
-			owner.drip(blood_max)
 
 /obj/item/organ/internal/heart/proc/is_working()
 	if(!is_usable())
