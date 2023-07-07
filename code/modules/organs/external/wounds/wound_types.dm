@@ -98,7 +98,7 @@
 		"small scab" = 0
 		)
 	wound_type = WOUND_TYPE_BANDAGEABLE
-	bleed_amount = 10
+	bleed_amount = 0.33
 
 /datum/wound/cut/deep
 	max_bleeding_stage = 3
@@ -112,7 +112,7 @@
 		"fresh patch of skin" = 0
 		)
 	wound_type = WOUND_TYPE_STITCHABLE
-	bleed_amount = 20
+	bleed_amount = 0.66
 
 /datum/wound/cut/flesh
 	max_bleeding_stage = 4
@@ -126,7 +126,7 @@
 		"fresh patch of skin" = 0
 		)
 	wound_type = WOUND_TYPE_STITCHABLE
-	bleed_amount = 35
+	bleed_amount = 1.16
 
 /datum/wound/cut/gaping
 	max_bleeding_stage = 3
@@ -139,7 +139,7 @@
 		"small straight scar" = 0
 		)
 	wound_type = WOUND_TYPE_DEEP
-	bleed_amount = 60
+	bleed_amount = 2
 
 /datum/wound/cut/gaping_big
 	max_bleeding_stage = 3
@@ -152,7 +152,7 @@
 		"large straight scar" = 0
 		)
 	wound_type = WOUND_TYPE_DEEP
-	bleed_amount = 75
+	bleed_amount = 2.5
 
 /datum/wound/cut/massive
 	max_bleeding_stage = 3
@@ -165,7 +165,7 @@
 		"massive jagged scar" = 0
 		)
 	wound_type = WOUND_TYPE_BANDAGEABLE
-	bleed_amount = 90
+	bleed_amount = 3
 
 /** PUNCTURES **/
 /datum/wound/puncture
@@ -184,7 +184,7 @@
 		"healing puncture" = 2,
 		"small scab" = 0
 		)
-	bleed_amount = 10
+	bleed_amount = 0.33
 
 /datum/wound/puncture/flesh
 	max_bleeding_stage = 2
@@ -195,7 +195,7 @@
 		"large scab" = 2,
 		"small round scar" = 0
 		)
-	bleed_amount = 15
+	bleed_amount = 0.5
 
 /datum/wound/puncture/gaping
 	max_bleeding_stage = 3
@@ -207,7 +207,7 @@
 		"small angry scar" = 5,
 		"small round scar" = 0
 		)
-	bleed_amount = 25
+	bleed_amount = 0.83
 
 /datum/wound/puncture/gaping_big
 	max_bleeding_stage = 3
@@ -219,7 +219,7 @@
 		"large angry scar" = 10,
 		"large round scar" = 0
 		)
-	bleed_amount = 50
+	bleed_amount = 1.66
 
 /datum/wound/puncture/massive
 	max_bleeding_stage = 3
@@ -231,7 +231,7 @@
 		"massive angry scar" = 10,
 		"massive jagged scar" = 0
 		)
-	bleed_amount = 60
+	bleed_amount = 2
 
 /** BRUISES **/
 /datum/wound/bruise
@@ -250,7 +250,7 @@
 	autoheal_cutoff = 30
 	damage_type = BRUISE
 	wound_type = WOUND_TYPE_BANDAGEABLE
-	bleed_amount = 20
+	bleed_amount = 0.66
 
 /** BURNS **/
 /datum/wound/burn
@@ -311,7 +311,7 @@
 	var/limb_tag
 	wound_type = WOUND_TYPE_STITCHABLE
 	germ_attaining_speed = 10
-	bleed_amount = 90
+	bleed_amount = 2.5
 
 /datum/wound/lost_limb/New(var/obj/item/organ/external/lost_limb, var/losstype, var/clean)
 	var/damage_amt = lost_limb.max_damage
