@@ -235,7 +235,7 @@
 
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
-	if(!failed_breath)
+	if(!failed_breath || forced)
 		if(!owner.add_oxygen(oxygen_generation))
 			oxygen_generation = Interpolate(oxygen_generation, max_oxygen_generation, 0.2)
 		else
