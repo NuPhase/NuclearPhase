@@ -3087,9 +3087,6 @@
 /area/avalon/shelter/breakerroom)
 "cwS" = (
 /obj/structure/bed/chair/office/comfy,
-/obj/abstract/landmark/start{
-	name = "Chief Engineer"
-	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
 "cwU" = (
@@ -3890,15 +3887,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "dld" = (
-/obj/effect/floor_decal/corner/beige/border,
 /obj/structure/cable{
-	icon_state = "32-8";
-	dir = 8;
-	d1 = 32;
-	d2 = 1
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/engineering)
 "dlw" = (
 /obj/structure/cable/heavy{
 	icon_state = "2-4"
@@ -4140,11 +4133,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "dyO" = (
-/obj/structure/railing/mapped{
-	dir = 4
-	},
+/obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/reactormonitoring)
+/area/avalon/shelter/atmos)
 "dzo" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
@@ -8255,6 +8246,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
+"haC" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/reactormonitoring)
 "haF" = (
 /obj/machinery/disposal,
 /obj/effect/floor_decal/corner/yellow{
@@ -8392,6 +8389,12 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/garage)
+"hdh" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/engineering)
 "hdx" = (
 /turf/simulated/wall/r_wall,
 /area/space)
@@ -9236,8 +9239,13 @@
 /turf/simulated/floor/grass,
 /area/avalon/shelter/science)
 "hOW" = (
-/obj/structure/railing/mapped,
-/turf/simulated/open,
+/obj/abstract/landmark/start{
+	name = "Chief Engineer"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "hOY" = (
 /obj/effect/floor_decal/corner/b_green/bordercorner{
@@ -9458,6 +9466,12 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor/tiled/techfloor,
 /area/space)
+"hYA" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/reactormonitoring)
 "hYJ" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/machinery/vending/dinnerware,
@@ -14373,6 +14387,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/armory)
+"mbw" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/reactormonitoring)
 "mbM" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped{
@@ -16324,7 +16344,7 @@
 	d1 = 32;
 	d2 = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/wall/titanium,
 /area/avalon/shelter/reactormonitoring)
 "nJq" = (
 /obj/structure/emergency_dispenser/north,
@@ -18605,6 +18625,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/intubation_bag,
+/obj/item/intubation_bag,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/medbay)
 "pEx" = (
@@ -19983,7 +20005,7 @@
 /area/space)
 "qJF" = (
 /obj/structure/cable{
-	icon_state = "2-4"
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -23264,11 +23286,11 @@
 /turf/simulated/floor/tiled/freezer,
 /area/avalon/shelter/messhall)
 "tCa" = (
-/obj/machinery/door/airlock/command{
-	initial_access = list("ACCESS_CHIEF_ENGINEER")
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/reactormonitoring)
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/engineering)
 "tCm" = (
 /obj/structure/railing/mapped{
 	dir = 8
@@ -26132,10 +26154,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering_first)
 "vZp" = (
-/obj/structure/window/reinforced/full,
-/obj/structure/wall_frame/titanium,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/reactormonitoring)
+/obj/machinery/portable_atmospherics/powered/scrubber,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/atmos)
 "vZB" = (
 /obj/effect/floor_decal/corner/mauve/bordercorner,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -205522,10 +205543,10 @@ jFW
 wJz
 fJG
 wJz
-wJz
-wJz
-wJz
-wJz
+dyO
+dyO
+vZp
+vZp
 fJG
 wJz
 tJZ
@@ -208388,7 +208409,7 @@ lhX
 nvB
 nvB
 nvB
-lhX
+rei
 ybC
 ozD
 cLy
@@ -222823,8 +222844,8 @@ pEE
 pEE
 pEE
 con
-con
-con
+hdh
+dld
 nJo
 vUB
 ibN
@@ -222953,9 +222974,9 @@ con
 con
 xZK
 con
-con
-con
-rrW
+tCa
+iVn
+ojX
 vUB
 poY
 cpo
@@ -223083,9 +223104,9 @@ con
 vUB
 vUB
 vUB
-vUB
-vUB
-vUB
+haC
+ojX
+ojX
 vUB
 vUB
 edU
@@ -223213,9 +223234,9 @@ tpS
 vUB
 enx
 bip
-dHi
-dHi
-vZp
+haC
+dpn
+dpn
 mEV
 mQR
 jHo
@@ -223343,11 +223364,11 @@ con
 vUB
 cwS
 enx
-dHi
-dHi
-tCa
-dyO
-dyO
+haC
+dpn
+dpn
+dpn
+dpn
 dpn
 nlE
 mee
@@ -223473,11 +223494,11 @@ uvp
 vUB
 dHi
 bip
-dHi
-dHi
-vUB
-ojX
-hOW
+haC
+dpn
+dpn
+dpn
+dpn
 dpn
 hgE
 vUB
@@ -223603,11 +223624,11 @@ uvp
 vUB
 dHi
 dHi
-dHi
-dHi
-vUB
-ojX
-hOW
+haC
+dpn
+dpn
+dpn
+dpn
 dpn
 iZb
 nPa
@@ -223733,13 +223754,13 @@ uvp
 vUB
 kTe
 dHi
-dHi
-dHi
-vUB
-ojX
+mbw
+hYA
+hYA
+hYA
 hOW
 qJF
-dld
+qct
 nPa
 iGT
 jhH
