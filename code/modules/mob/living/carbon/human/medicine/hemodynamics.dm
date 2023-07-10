@@ -38,6 +38,7 @@
 		dyspressure = 0
 		syspressure = 0
 		mcv = 0
+		tpvr = metabolic_coefficient * 218.50746
 		return
 
 	var/ccp = 0 //cardiac cycle period
@@ -51,9 +52,9 @@
 	var/bpmd = ccp * 0.109 + 0.159
 	var/coeff = get_blood_volume_hemo() * get_cardiac_output() * (bpmd * 3.73134328)
 	var/bpm53 = bpm * coeff * 53.0
-	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)), 0.5))
-	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure - (7646.0 * metabolic_coefficient)/54.0, 0.3), 0, 413)
-	dyspressure = min(dyspressure, syspressure-10)
+	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)), HEMODYNAMICS_INTERPOLATE_FACTOR))
+	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure - (7646.0 * metabolic_coefficient)/54.0, HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
+	dyspressure = min(dyspressure, max(10, syspressure)-10)
 
 	meanpressure = (syspressure + dyspressure) / 2
 

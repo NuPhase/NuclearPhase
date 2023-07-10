@@ -102,7 +102,7 @@
 
 	if(pulse)
 		var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
-		pulse = max(Interpolate(pulse, target_pulse, 0.2), 0)
+		pulse = max(Interpolate(pulse, target_pulse, HEMODYNAMICS_INTERPOLATE_FACTOR), 0)
 		external_pump = 0
 
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers)
