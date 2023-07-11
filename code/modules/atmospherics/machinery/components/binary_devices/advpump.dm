@@ -33,6 +33,7 @@
 	var/last_mass_flow = 0
 	var/mode = REACTOR_PUMP_MODE_OFF
 	var/rpm = 0
+	var/target_rpm = 0
 
 	var/datum/composite_sound/pump/soundloop
 
@@ -72,36 +73,12 @@
 		return
 	switch(new_mode)
 		if(REACTOR_PUMP_MODE_OFF)
-			spool_down()
+			target_rpm = 0
 		if(REACTOR_PUMP_MODE_IDLE)
-			if(rpm == 0)
-				spool_up()
+			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.5
 		if(REACTOR_PUMP_MODE_MAX)
-			if(rpm > 5000)
-				ramp_power()
+			target_rpm = REACTOR_PUMP_RPM_SAFE
 	mode = new_mode
-
-/obj/machinery/atmospherics/binary/pump/adv/proc/ramp_power()
-	while(rpm < REACTOR_PUMP_RPM_SAFE)
-		rpm += rand(50, 100)
-		sleep(5)
-
-/obj/machinery/atmospherics/binary/pump/adv/proc/spool_up()
-	icon_state = "on"
-	use_power = POWER_USE_IDLE
-	soundloop = new(list(src), TRUE)
-	var/target_rpm = REACTOR_PUMP_RPM_SAFE * 0.5
-	while(rpm < target_rpm)
-		rpm += rand(25, 50)
-		sleep(5)
-
-/obj/machinery/atmospherics/binary/pump/adv/proc/spool_down()
-	while(rpm)
-		rpm = max(rpm - rand(10, 50), 0)
-		sleep(5)
-	QDEL_NULL(soundloop)
-	icon_state = "map_off"
-	use_power = POWER_USE_OFF
 
 /obj/machinery/atmospherics/binary/pump/adv/Initialize()
 	. = ..()
@@ -119,8 +96,18 @@
 	build_network()
 	last_power_draw = 0
 
-	if((stat & (NOPOWER|BROKEN)) || !use_power)
+	if(powered(EQUIP))
+		rpm = round(Interpolate(rpm, target_rpm, 0.1))
+	else
+		rpm = round(Interpolate(rpm, 0, 0.15))
+
+	if(!rpm)
+		QDEL_NULL(soundloop)
+		icon_state = "map_off"
 		return
+	else if(!soundloop)
+		soundloop = new(list(src), TRUE)
+		icon_state = "on"
 
 	flow_capacity = initial_flow_capacity * (rpm / REACTOR_PUMP_RPM_SAFE)
 
@@ -135,7 +122,9 @@
 
 	if(power_draw >= 0)
 		last_power_draw = power_draw
-		use_power_oneoff(power_draw)
+		change_power_consumption(power_draw, POWER_USE_IDLE)
+	else
+		change_power_consumption(0, POWER_USE_OFF)
 
 	return 1
 
