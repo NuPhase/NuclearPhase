@@ -2,7 +2,7 @@
 	name = "intubation bag"
 	desc = "A pumping bag used in medical environments."
 	icon = 'icons/obj/items/ambu_bag.dmi'
-	icon_state = "default"
+	icon_state = ICON_STATE_WORLD
 	var/pumping = FALSE
 
 /obj/item/intubation_bag/attack(mob/living/M, mob/living/user, target_zone, animate)
