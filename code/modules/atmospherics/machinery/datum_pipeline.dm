@@ -156,6 +156,7 @@
 	if(!network)
 		var/datum/pipe_network/new_network = new
 		new_network.build_network(src, null)
+		network = new_network
 			//technically passing these parameters should not be allowed
 			//however pipe_network.build_network(..) and pipeline.network_extend(...)
 			//		were setup to properly handle this case

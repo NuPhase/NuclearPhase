@@ -4,7 +4,7 @@
 #define OPERATIONAL_REACTOR_TUNGSTEN_TEMP 3550
 
 #define OPTIMAL_REACTOR_STEAM_TEMP 738
-#define MAX_REACTOR_STEAM_TEMP 800
+#define MAX_REACTOR_STEAM_TEMP 1250
 #define OPTIMAL_TURBINE_MASS_FLOW 2500
 
 /datum/reactor_control_system
@@ -168,7 +168,7 @@
 	if(get_meter_temperature("REACTOR-M CHAMBER") < 3500 && get_meter_mass("REACTOR-M CHAMBER") > 10)
 		do_message("REACTOR HEATEXCHANGER TEMPERATURE LOW", 2)
 		pressure_temperature_should_alarm = TRUE
-	if(get_meter_temperature("T-M-TURB IN") > 980)
+	if(get_meter_temperature("T-M-TURB IN") > MAX_REACTOR_STEAM_TEMP)
 		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
 	if(get_meter_temperature("T-M-TURB EX") > 380)

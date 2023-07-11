@@ -97,7 +97,8 @@
 	var/total_volume = 0
 	var/gotten_temperature = 5
 	var/list/total_gas = list()
-	for(var/datum/gas_mixture/gasmix in parent.network.gases)
+	var/datum/pipe_network/network_to_check = parent.return_network(src)
+	for(var/datum/gas_mixture/gasmix in network_to_check.gases)
 		gotten_temperature = gasmix.temperature
 		total_volume += gasmix.volume
 		for(var/g in gasmix.gas)
