@@ -20,7 +20,7 @@ var/global/datum/composite_sound/light/light_soundloop = new
 /datum/composite_sound/light
 	mid_sounds = list('sound/machines/lights/buzz1.wav', 'sound/machines/lights/buzz2.wav', 'sound/machines/lights/buzz3.wav', 'sound/machines/lights/buzz4.wav')
 	mid_length = 49
-	volume = 25
+	volume = 15
 	distance = -5
 
 // the standard tube light fixture
@@ -561,7 +561,7 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	b_power = 0.8
 	b_color = LIGHT_COLOR_HALOGEN
 	lighting_modes = list(
-		LIGHTMODE_EMERGENCY = list(l_range = 4, l_power = 1, l_color = LIGHT_COLOR_EMERGENCY),
+		LIGHTMODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = LIGHT_COLOR_EMERGENCY),
 	)
 	sound_on = 'sound/machines/lightson.ogg'
 
@@ -598,7 +598,7 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	material = /decl/material/solid/glass
 	b_color = LIGHT_COLOR_TUNGSTEN
 	lighting_modes = list(
-		LIGHTMODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = LIGHT_COLOR_EMERGENCY),
+		LIGHTMODE_EMERGENCY = list(l_range = 2, l_power = 1, l_color = LIGHT_COLOR_EMERGENCY),
 	)
 
 /obj/item/light/bulb/red
