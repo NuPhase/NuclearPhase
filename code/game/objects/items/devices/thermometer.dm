@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/device/thermometer.dmi'
 	icon_state = "white"
 
-/obj/item/thermometer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/thermometer/attack(atom/target, mob/user, proximity_flag, click_parameters)
 	var/message = ""
 
 	if(istype(target, /mob/living/carbon/human))
@@ -19,3 +19,5 @@
 	if(message)
 		user.visible_message(SPAN_NOTICE("[user] scans \the [target] with \the [src]."))
 		to_chat(user, SPAN_NOTICE(message))
+		return 1
+	. = ..()
