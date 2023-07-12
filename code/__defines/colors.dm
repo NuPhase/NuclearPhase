@@ -140,7 +140,7 @@
 #define GLASS_COLOR_TINTED     "#222222"
 #define GLASS_COLOR_FROSTED    "#eeeeee"
 
-#define COLOR_BLOOD_HUMAN      "#a10808"
+#define COLOR_BLOOD_HUMAN     "#a80000"
 
 //Color defines used by the assembly detailer.
 #define COLOR_ASSEMBLY_BLACK   "#545454"

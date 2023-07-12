@@ -4,7 +4,7 @@
 	uid = "chem_blood"
 	lore_text = "A red (or blue) liquid commonly found inside animals, most of whom are pretty insistent about it being left where you found it."
 	metabolism = REM * 5
-	color = "#c80000"
+	color = "#a80000"
 	scannable = 1
 	taste_description = "iron"
 	taste_mult = 1.3
@@ -85,7 +85,7 @@
 
 /decl/material/liquid/coagulated_blood
 	name = "coagulated blood"
-	color = "#aa0000"
+	color = "#880101"
 	uid = "chem_blood_coagulated"
 	taste_description = "chewy iron"
 	taste_mult = 1.5
@@ -95,3 +95,18 @@
 	hidden_from_codex = TRUE
 	toxicity = 4
 	value = 0
+
+/decl/material/liquid/separated_blood
+	name = "separated blood"
+	codex_name = "separated blood"
+	uid = "chem_separated_blood"
+	lore_text = "A liquid consisting of separated plasma and erythrocytes."
+	color = "#cf6868"
+	taste_description = "disgusting slime"
+	taste_mult = 1.5
+	glass_name = "human juice"
+	glass_desc = "Are you sure this is human?"
+	value = 2.5
+	opacity = 1
+	min_fluid_opacity = FLUID_MAX_ALPHA
+	max_fluid_opacity = 240

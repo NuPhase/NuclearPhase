@@ -55,3 +55,17 @@
 		var/obj/machinery/chemical_dispenser/chem_dispenser = path
 		if(initial(chem_dispenser.buildable))
 			. |= path
+
+/obj/item/stock_parts/circuitboard/centrifuge
+	name = "circuitboard (centrifuge)"
+	build_path = /obj/machinery/centrifuge
+	board_type = "machine"
+	req_components = list(
+		/obj/item/stock_parts/engine/medium = 1,
+		/obj/item/stock_parts/micro_laser = 1
+	)
+	additional_spawn_components = list(
+		/obj/item/stock_parts/console_screen = 1,
+		/obj/item/stock_parts/keyboard = 1,
+		/obj/item/stock_parts/power/apc/buildable = 1
+	)
