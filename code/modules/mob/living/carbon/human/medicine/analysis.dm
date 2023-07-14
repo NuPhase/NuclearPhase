@@ -7,25 +7,25 @@
 	return ""
 
 /decl/blood_analysis/potassium
-	name = "Potassium|Proteins"
+	name = "Biochemical Analysis"
 
 /decl/blood_analysis/potassium/return_analysis(var/mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
 	var/list/chem_data = blood_data["trace_chem"]
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
-	text += "<center><i>Potassium|Proteins</i></center><br>"
+	text += "<center><i>Biochemical Analysis</i></center><br>"
 	text += "Potassium: [round(0 + chem_data[/decl/material/solid/potassium])] (1-3)<br>"
 	text += "Proteins: [round(rand(9, 11), 0.1)] (5-17)<br>"
 	return jointext(text, "<br>")
 
 /decl/blood_analysis/blood
-	name = "Blood Parameters"
+	name = "General Blood Analysis"
 
 /decl/blood_analysis/blood/return_analysis(var/mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
 	var/list/chem_data = blood_data["trace_chem"]
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
-	text += "<center><i>Blood Parameters</i></center><br>"
+	text += "<center><i>General Blood Analysis</i></center><br>"
 	text += "Blood Type: [blood_data["blood_type"]]<br>"
 	text += "DNA String: [blood_data["blood_DNA"]]<br>"
 	return jointext(text, "<br>")
@@ -35,6 +35,8 @@
 /obj/machinery/blood_analysis
 	name = "blood analyser"
 	desc = "Analyzes centrifuged blood. Needs a vial in it to work."
+	icon = 'icons/obj/machines/blood_analyzer.dmi'
+	icon_state = "idle"
 	idle_power_usage = 50
 	active_power_usage = 2100
 	core_skill = SKILL_MEDICAL
@@ -59,12 +61,14 @@
 
 /obj/machinery/blood_analysis/proc/start(decl/blood_analysis/chosen_analysis)
 	running = TRUE
+	update_icon()
 	spawn((40 - REAGENT_VOLUME(inserted_vial.reagents, /decl/material/liquid/separated_blood)) SECONDS)
 		visible_message(SPAN_NOTICE("The blood analyzer finishes running."))
 		running = FALSE
 		var/list/blood_data = inserted_vial.reagents.reagent_data[/decl/material/liquid/separated_blood]
 		new /obj/item/paper(get_turf(src), chosen_analysis.return_analysis(blood_data["donor"], blood_data), "Analysis Results for [blood_data["donor"]]")
 		inserted_vial.reagents.remove_any(inserted_vial.reagents.maximum_volume)
+		update_icon()
 
 /obj/machinery/blood_analysis/physical_attack_hand(user)
 	. = ..()
