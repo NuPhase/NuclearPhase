@@ -78,7 +78,7 @@
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/liftoff()
 	set name = "Takeoff"
 	set category = "CTS Control"
-	set src in oview(1)
+	set src in view(0)
 	if(!vehicle.active)
 		var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
 		cur_vehicle.liftoff()
@@ -86,7 +86,7 @@
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/land()
 	set name = "Land"
 	set category = "CTS Control"
-	set src in oview(1)
+	set src in view(0)
 	if(vehicle.active)
 		var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
 		cur_vehicle.land()
@@ -94,14 +94,14 @@
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/methane_injection()
 	set name = "Toggle Methane Injection"
 	set category = "CTS Control"
-	set src in oview(1)
+	set src in view(0)
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/sonar()
 	set name = "Toggle Sonar"
 	set category = "CTS Control"
-	set src in oview(1)
+	set src in view(0)
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/window_tint()
 	set name = "Tint Windows"
 	set category = "CTS Control"
-	set src in oview(1)
+	set src in view(0)
