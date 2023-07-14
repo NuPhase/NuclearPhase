@@ -3,17 +3,31 @@
 	var/description
 	var/time = 5 SECONDS
 
-/decl/blood_analysis/proc/return_analysis(var/mob/living/carbon/human/H)
+/decl/blood_analysis/proc/return_analysis(var/mob/living/carbon/human/H, blood_data)
 	return ""
 
 /decl/blood_analysis/potassium
 	name = "Potassium|Proteins"
 
-/decl/blood_analysis/potassium/return_analysis(var/mob/living/carbon/human/H)
+/decl/blood_analysis/potassium/return_analysis(var/mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
-	text += "Analysis #[rand(1, 999)] for [name]<br>"
-	text += "Potassium: [round(H.bloodstr.has_reagent(/decl/material/solid/potassium), 0.1)] (1-3)<br>"
-	text += "Proteins: [round(rand(9, 11) + H.getToxLoss(), 0.1)] (5-17)<br>"
+	var/list/chem_data = blood_data["trace_chem"]
+	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
+	text += "<center><i>Potassium|Proteins</i></center><br>"
+	text += "Potassium: [round(0 + chem_data[/decl/material/solid/potassium])] (1-3)<br>"
+	text += "Proteins: [round(rand(9, 11), 0.1)] (5-17)<br>"
+	return jointext(text, "<br>")
+
+/decl/blood_analysis/blood
+	name = "Blood Parameters"
+
+/decl/blood_analysis/blood/return_analysis(var/mob/living/carbon/human/H, blood_data)
+	var/list/text = ""
+	var/list/chem_data = blood_data["trace_chem"]
+	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
+	text += "<center><i>Blood Parameters</i></center><br>"
+	text += "Blood Type: [blood_data["blood_type"]]<br>"
+	text += "DNA String: [blood_data["blood_DNA"]]<br>"
 	return jointext(text, "<br>")
 
 
@@ -24,3 +38,75 @@
 	idle_power_usage = 50
 	active_power_usage = 2100
 	core_skill = SKILL_MEDICAL
+	var/obj/item/chems/glass/beaker/vial/inserted_vial
+	var/running = FALSE
+
+/obj/machinery/blood_analysis/on_update_icon()
+	if(running)
+		icon_state = "running"
+		return
+	else
+		icon_state = "idle"
+
+/obj/machinery/blood_analysis/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/chems/glass/beaker/vial))
+		if(inserted_vial)
+			return
+		inserted_vial = I
+		user.drop_from_inventory(I, src)
+		visible_message(SPAN_NOTICE("[user] inserts a vial into the blood analyzer."))
+	. = ..()
+
+/obj/machinery/blood_analysis/proc/start(decl/blood_analysis/chosen_analysis)
+	running = TRUE
+	spawn((40 - REAGENT_VOLUME(inserted_vial.reagents, /decl/material/liquid/separated_blood)) SECONDS)
+		visible_message(SPAN_NOTICE("The blood analyzer finishes running."))
+		running = FALSE
+		var/list/blood_data = inserted_vial.reagents.reagent_data[/decl/material/liquid/separated_blood]
+		new /obj/item/paper(get_turf(src), chosen_analysis.return_analysis(blood_data["donor"], blood_data), "Analysis Results for [blood_data["donor"]]")
+		inserted_vial.reagents.remove_any(inserted_vial.reagents.maximum_volume)
+
+/obj/machinery/blood_analysis/physical_attack_hand(user)
+	. = ..()
+	try_handle_interactions(user, get_alt_interactions(user))
+
+/obj/machinery/blood_analysis/get_alt_interactions(mob/user)
+	. = ..()
+	LAZYADD(., /decl/interaction_handler/blood_analysis_remove_vial)
+	if(!running)
+		LAZYADD(., /decl/interaction_handler/blood_analysis_start)
+
+/decl/interaction_handler/blood_analysis_start
+	name = "Start"
+	expected_target_type = /obj/machinery/blood_analysis
+
+/decl/interaction_handler/blood_analysis_start/invoked(obj/machinery/blood_analysis/target, mob/user)
+	if(!do_after(user, 5, target))
+		return
+	if(!target.powered(EQUIP))
+		return
+	var/list/possible_analysis_decls = list()
+	for(var/cur_analysis in subtypesof(/decl/blood_analysis))
+		var/decl/blood_analysis/actual_decl = GET_DECL(cur_analysis)
+		possible_analysis_decls["[actual_decl.name]"] = actual_decl
+	var/choice = input(user, "Choose an analysis to perform.", "Analysis choice") as null|anything in possible_analysis_decls
+	var/chosen_one = possible_analysis_decls[choice]
+	if(!chosen_one)
+		return
+	target.start(chosen_one)
+	target.visible_message(SPAN_NOTICE("[user] turns on the blood analyzer."))
+
+/decl/interaction_handler/blood_analysis_remove_vial
+	name = "Remove a Vial"
+	expected_target_type = /obj/machinery/blood_analysis
+
+/decl/interaction_handler/blood_analysis_remove_vial/invoked(obj/machinery/blood_analysis/target, mob/user)
+	if(!target.inserted_vial)
+		to_chat(user, SPAN_NOTICE("There are no vial in the blood analyzer."))
+		return
+	if(target.running)
+		return
+	var/obj/item/chems/glass/beaker/vial/cur_vial = target.inserted_vial
+	user.put_in_hands(cur_vial)
+	target.inserted_vial = null
+	target.visible_message(SPAN_NOTICE("[user] removes a vial from the blood analyzer."))
