@@ -920,29 +920,33 @@
 		if(prob(30))
 			SET_STATUS_MAX(src, STAT_BLURRY, 2)
 			SET_STATUS_MAX(src, STAT_STUTTER, 5)
-		H.bpm_modifiers["shock"] += 20
+		H.bpm_modifiers["shock"] += 10
+		add_chemical_effect(CE_PRESSURE, 10)
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 3)
-		H.bpm_modifiers["shock"] += 20
+		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 20
+		add_chemical_effect(CE_PRESSURE, 10)
 
 	if(shock_stage >= 80)
 		if (prob(5))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 5)
-		H.bpm_modifiers["shock"] += 40
+		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 20
+		add_chemical_effect(CE_PRESSURE, 10)
 
 	if(shock_stage >= 120)
 		if(!HAS_STATUS(src, STAT_PARA) && prob(2))
 			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_PARA, 5)
-		H.bpm_modifiers["shock"] += 40
+		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 30
+		add_chemical_effect(CE_PRESSURE, 10)
 
 	if(shock_stage == 150)
 		visible_message("<b>[src]</b> can no longer stand, collapsing!")

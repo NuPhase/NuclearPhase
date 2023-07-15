@@ -13,8 +13,8 @@
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = volume * 10
-	heart.cardiac_output_modifiers[name] = volume + (volume / 10)
+	heart.bpm_modifiers[name] = volume * 5
+	heart.cardiac_output_modifiers[name] = 1 + volume * 0.05
 	if(volume < overdose)
 		heart.stability_modifiers[name] = volume * 3
 	else
@@ -36,7 +36,9 @@
 
 /decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/volume = REAGENT_VOLUME(holder, type)
-	H.add_chemical_effect(CE_PRESSURE, volume * 10)
+	H.add_chemical_effect(CE_PRESSURE, 1 + volume * 1.2)
+	heart.cardiac_output_modifiers[name] = 1 + volume * -0.01
+	heart.bpm_modifiers[name] = volume * 2
 	if(volume > 2)
 		ADJ_STATUS(H, STAT_ASLEEP, volume * -10)
 		H.retrieve_from_limb()

@@ -46,7 +46,7 @@
 		ccp = 60/bpm
 
 	tpvr = metabolic_coefficient * 218.50746
-	tpvr += syspressure * (0.0008 * syspressure - 0.8833) + 94
+	tpvr += syspressure * (0.0008 * syspressure - 0.8833) + 94 //this simulates vascular elasticity. More pressure - less TPVR, and side versa
 	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE)
 
 	var/bpmd = ccp * 0.109 + 0.159
@@ -58,7 +58,7 @@
 
 	meanpressure = (syspressure + dyspressure) / 2
 
-	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff + add_mcv, 0, 12000)
+	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr + add_mcv) * coeff, 0, 12000)
 	add_mcv = 0
 	//mcv = meanpressure * 132.32 * 60 / tpvr
 

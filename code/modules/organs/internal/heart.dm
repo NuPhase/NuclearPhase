@@ -46,7 +46,7 @@
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
 	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 100
-	bpm_modifiers["shock"] = owner.shock_stage * 0.3
+	bpm_modifiers["shock"] = owner.shock_stage * 0.1
 	for(var/decl/arrythmia/A in arrythmias)
 		bpm_modifiers[A.name] = A.get_pulse_mod()
 		cardiac_output_modifiers[A.name] = A.cardiac_output_mod
