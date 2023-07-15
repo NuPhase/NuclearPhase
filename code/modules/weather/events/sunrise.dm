@@ -89,8 +89,8 @@
 			H.dust()
 	for(var/turf/T in surface_turfs)
 		T.set_ambient_light(COLOR_HOT_SURFACE, 2)
-		using_map.exterior_atmosphere.temperature = 970
-		weather.weather_system.set_state(/decl/state/weather/ash)
+	using_map.exterior_atmosphere.temperature = 970
+	weather.weather_system.set_state(/decl/state/weather/ash)
 	for(var/area/surface/A in surface_areas)
 		A.do_ambience = TRUE
 		A.switch_phases(1)
