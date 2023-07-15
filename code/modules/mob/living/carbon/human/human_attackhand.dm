@@ -25,7 +25,7 @@
 			. |= limb.unarmed_attacks
 
 /mob/living/carbon/human/default_help_interaction(mob/user)
-	if(user != src && ishuman(user) && incapacitated() || failed_last_breath && !on_fire && !(user.zone_sel.selecting == BP_R_ARM || user.zone_sel.selecting == BP_L_ARM))
+	if(user != src && ishuman(user) && incapacitated(INCAPACITATION_UNRESISTING) || failed_last_breath && !on_fire && !(user.zone_sel.selecting == BP_R_ARM || user.zone_sel.selecting == BP_L_ARM))
 		if (performing_cpr)
 			performing_cpr = FALSE
 		else
@@ -63,9 +63,9 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 	var/mob/living/carbon/human/H = user
 	var/rand_damage = rand(1, 5)
 	if(gender == MALE)
-		rand_damage += male_strength_skill_damage[get_skill_value(SKILL_STRENGTH)]
+		rand_damage += male_strength_skill_damage[user.get_skill_value(SKILL_STRENGTH)]
 	else
-		rand_damage += female_strength_skill_damage[get_skill_value(SKILL_STRENGTH)]
+		rand_damage += female_strength_skill_damage[user.get_skill_value(SKILL_STRENGTH)]
 	var/block = 0
 	var/accurate = 0
 	var/hit_zone = H.zone_sel.selecting
@@ -245,10 +245,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 			chest.fracture()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 
-	if(pumping_skill > 1)
-		add_mcv += 1400 * get_blood_volume_hemo()
-	else
-		add_mcv += 600 * get_blood_volume_hemo()
+	add_mcv = rand(150, 200) * pumping_skill
 
 	if(is_asystole())
 		var/resuscitation_chance = 5 + pumping_skill - (heart.oxygen_deprivation * 0.05)
