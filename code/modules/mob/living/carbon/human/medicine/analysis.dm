@@ -23,7 +23,7 @@
 
 /decl/blood_analysis/blood/return_analysis(var/mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
-	var/list/chem_data = blood_data["trace_chem"]
+	//var/list/chem_data = blood_data["trace_chem"]
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
 	text += "<center><i>General Blood Analysis</i></center><br>"
 	text += "Blood Type: [blood_data["blood_type"]]<br>"
