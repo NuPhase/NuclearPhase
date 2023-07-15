@@ -29,7 +29,7 @@
 
 	if(stat == DEAD) return
 
-	retrieve_from_limb()
+	retrieve_from_limb(TRUE)
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)

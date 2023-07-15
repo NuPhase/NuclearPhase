@@ -1408,10 +1408,10 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	limb_mob = new_character
 	SSjobs.equip_ghostrank(new_character, "Explorer", 0)
 
-/mob/living/carbon/human/proc/retrieve_from_limb()
+/mob/living/carbon/human/proc/retrieve_from_limb(var/forced = FALSE)
 	if(!limb_mob)
 		return 0
-	if(get_blood_perfusion() < 0.5)
+	if(!forced && get_blood_perfusion() < 0.5)
 		return 0
 	key = limb_mob.key
 	qdel(limb_mob)
