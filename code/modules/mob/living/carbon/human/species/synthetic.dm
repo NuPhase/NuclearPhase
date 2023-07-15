@@ -17,7 +17,7 @@ We have a very powerful computer system that allows our neural network to fully 
 	if(bpm)
 		syspressure = rand(115, 120)
 		dyspressure = rand(75, 80)
-		mcv = NORMAL_MCV + rand(-100, 100)
+		mcv = NORMAL_MCV + rand(-10, 10)
 	else
 		syspressure = 0
 		dyspressure = 0
