@@ -5,7 +5,7 @@
 	var/dyspressure = 80
 	var/meanpressure = 100
 	var/mcv = 3900 //Minute Circulation Volume
-	var/tpvr = 0 //Total Peripherial Vascular Resistance
+	var/tpvr = 279 //Total Peripherial Vascular Resistance
 	var/max_oxygen_capacity = 120
 	var/oxygen_amount = 120
 	var/add_mcv = 0
