@@ -122,7 +122,8 @@
 		/obj/item/chems/glass/bottle/saline,
 		/obj/item/chems/glass/bottle/saline,
 		/obj/item/chems/glass/bottle/saline,
-		/obj/item/chems/glass/bottle/saline
+		/obj/item/chems/glass/bottle/saline,
+		/obj/item/chems/glass/bottle/dronedarone
 	)
 
 /obj/machinery/smartfridge/secure/medbay/stocked/Initialize()
