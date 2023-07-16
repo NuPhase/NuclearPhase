@@ -46,7 +46,7 @@
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
 	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 100
-	bpm_modifiers["shock"] = owner.shock_stage * 0.1
+	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.55, 0, 110)
 	for(var/decl/arrythmia/A in arrythmias)
 		bpm_modifiers[A.name] = A.get_pulse_mod()
 		cardiac_output_modifiers[A.name] = A.cardiac_output_mod
@@ -54,6 +54,10 @@
 /obj/item/organ/internal/heart/proc/calculate_instability()
 	var/ninstability = 0
 
+	if(owner.mcv > 10000)
+		ninstability += 20
+	if(owner.mcv < 500)
+		ninstability += 40
 	if(owner.get_blood_perfusion() < 0.5)
 		ninstability += 20
 	if(pulse > 100)
@@ -81,6 +85,11 @@
 			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) < world.time && prob(10))
 				add_arrythmia(GET_DECL(A.evolves_into))
 				remove_arrythmia(A)
+	else if(instability == 0)
+		if(prob(10))
+			for(var/decl/arrythmia/A in arrythmias)
+				if(!A.can_be_shocked)
+					remove_arrythmia(A)
 
 /obj/item/organ/internal/heart/proc/add_arrythmia(var/decl/arrythmia/A)
 	for(var/decl/arrythmia/existing_A in arrythmias)
