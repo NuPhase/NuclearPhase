@@ -35,6 +35,7 @@
 	uid = "chem_noradrenaline"
 
 /decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
 	H.add_chemical_effect(CE_PRESSURE, 1 + volume * 1.2)
 	heart.cardiac_output_modifiers[name] = 1 + volume * -0.01
