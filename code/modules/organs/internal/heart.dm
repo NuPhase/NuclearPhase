@@ -159,21 +159,25 @@
 	if(!pulse || (owner.status_flags & FAKEDEATH))
 		return "no pulse"
 
-	var/pulsesound = "normal"
-	if(length(arrythmias))
-		pulsesound = "irregular"
+	var/speed = "normal"
 
 	switch(pulse)
-		if(PULSE_SLOW)
-			pulsesound = "slow"
-		if(PULSE_FAST)
-			pulsesound = "fast"
-		if(PULSE_2FAST)
-			pulsesound = "very fast"
-		if(PULSE_THREADY)
-			pulsesound = "extremely fast and faint"
+		if(0 to 40)
+			speed = "slow"
+		if(90 to 140)
+			speed = "fast"
+		if(140 to 170)
+			speed = "very fast"
+		if(170 to 220)
+			speed = "extremely fast"
+		if(220 to INFINITY)
+			speed = "thready"
 
-	. = "[pulsesound] pulse"
+	var/regularity = "steady"
+	if(length(arrythmias))
+		regularity = "irregular"
+
+	. = "[speed] and [regularity] pulse"
 
 /obj/item/organ/internal/heart/get_mechanical_assisted_descriptor()
 	return "pacemaker-assisted [name]"
