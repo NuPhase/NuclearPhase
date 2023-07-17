@@ -290,9 +290,9 @@
 #define AURA_TYPE_THROWN "Thrown"
 #define AURA_TYPE_LIFE   "Life"
 
-#define SPECIES_BLOOD_DEFAULT 560
-#define SPECIES_BLOOD_SYNTHETIC 120 //only an imitation of bleeding
-#define SPECIES_BLOOD_XENOMORPH 850 //larger body
+#define SPECIES_BLOOD_DEFAULT 5200
+#define SPECIES_BLOOD_SYNTHETIC 1200 //only an imitation of bleeding
+#define SPECIES_BLOOD_XENOMORPH 8500 //larger body
 
 #define SLIME_EVOLUTION_THRESHOLD 15
 
