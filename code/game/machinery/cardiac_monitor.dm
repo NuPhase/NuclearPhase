@@ -78,7 +78,7 @@
 	data["name"] = "[attached]"
 	data["hr"] = round(H.pulse)
 	data["rythme"] = H.get_rhythm_fluffy()
-	data["bp"] = attached.get_blood_pressure_fluffy()
+	data["bp"] = "[round(attached.syspressure)]/[round(attached.dyspressure)]"
 	switch(attached.meanpressure)
 		if(-INFINITY to BLOOD_PRESSURE_L2BAD)
 			data["bp_s"] = "bad"
