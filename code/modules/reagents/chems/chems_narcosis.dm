@@ -2,7 +2,7 @@
 	name = "propofol"
 	lore_text = "A powerful sedative."
 	taste_description = "metallic"
-	color = "#ff337d"
+	color = "#fdf0f5"
 	metabolism = 0.05
 	overdose = 5
 	value = 1.5
