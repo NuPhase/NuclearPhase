@@ -88,6 +88,18 @@
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
 	impact_type = /obj/effect/projectile/impact/heavy_laser
 
+/obj/item/projectile/beam/highenergy
+	name = "plasma trail"
+	icon_state = "omnilaser"
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+	damage = 60
+	armor_penetration = 100
+	distance_falloff = 0.5
+
+	muzzle_type = /obj/effect/projectile/muzzle/disabler
+	tracer_type = /obj/effect/projectile/tracer/disabler
+	impact_type = /obj/effect/projectile/impact/disabler
+
 /obj/item/projectile/beam/xray
 	name = "x-ray beam"
 	icon_state = "xray"
