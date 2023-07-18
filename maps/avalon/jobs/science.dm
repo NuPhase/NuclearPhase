@@ -99,13 +99,6 @@
 		access_xenobiology,
 		access_hydroponics
 	)
-	alt_titles = list(
-		"Xenobiologist",
-		"Xenobotanist",
-		"Xenoarcheologist",
-		"Anomalist",
-		"Phoron Researcher"
-	)
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 	min_skill = list(
