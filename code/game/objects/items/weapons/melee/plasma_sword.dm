@@ -14,8 +14,8 @@
 	w_class = ITEM_SIZE_LARGE
 	sharp = 1
 	edge = 1
-	max_force = 35
-	force = 35
+	max_force = 40
+	force = 40
 	throwforce = 75
 	throw_speed = 2
 	throw_range = 10
@@ -27,6 +27,16 @@
 	. = ..()
 	if(.)
 		spark_at(src, amount = 5, holder = src)
+
+/obj/item/plasma_sword/attack(mob/living/M, mob/living/user, target_zone, animate)
+	. = ..()
+	if(isliving(M))
+		playsound(M, 'sound/ambience/weather/sonic_boom.wav', 75, 1)
+		var/mob/living/H = M
+		H.adjust_fire_stacks(5)
+		H.IgniteMob()
+		var/turf/T = get_ranged_target_turf(H, get_dir(H, get_step_away(H, user)), 4)
+		H.throw_at(T, 3, 5)
 
 /obj/item/plasma_sword/get_heat()
 	return 47000
