@@ -9,3 +9,6 @@
 
 /obj/abstract/map_data/example
 	height = 3
+
+/obj/modular_map_anchor/avalon
+	config_file = "strings/modular_maps/avalon.json"
