@@ -32,6 +32,8 @@
 	var/obj/machinery/power/generator/turbine_generator/generator2 = null
 	var/last_message_clearing = 0
 
+	var/current_running_program //reference to decl
+
 	var/should_alarm = TRUE
 	var/pressure_temperature_should_alarm = FALSE
 
@@ -74,6 +76,15 @@
 				do_message("FULL-AUTO CONTROL ENGAGED", 1)
 			else
 				return 0
+
+/datum/reactor_control_system/proc/run_program(var/decl/control_program/program)
+	if(current_running_program)
+		stop_running_program()
+	program = GET_DECL(program)
+	current_running_program = program
+	program.initiated()
+
+/datum/reactor_control_system/proc/stop_running_program()
 
 /datum/reactor_control_system/proc/control()
 	make_reports()
