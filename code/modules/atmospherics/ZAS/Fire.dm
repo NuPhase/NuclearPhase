@@ -99,7 +99,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	alpha = 0
 	anchored = 1
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 
 	blend_mode = BLEND_ADD
 

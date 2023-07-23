@@ -283,6 +283,9 @@
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
+//Damage stuff
+#define ITEM_HEALTH_NO_DAMAGE -1
+
 /// Causes the atom to ignore clicks, hovers, etc.
 #define MOUSE_OPACITY_UNCLICKABLE 0
 /// Causes the atom to catch clicks, hovers, etc.
