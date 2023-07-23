@@ -10,7 +10,7 @@
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "empty"
 	w_class = ITEM_SIZE_TINY
-	volume = 120
+	volume = 800
 	possible_transfer_amounts = @"[0.2,1,2]"
 	amount_per_transfer_from_this = REM
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
@@ -112,7 +112,7 @@
 
 /obj/item/chems/ivbag/electrolytes
 	name = "electrolytes infusion pack"
-	volume = 120
+	volume = 800
 
 /obj/item/chems/ivbag/electrolytes/Initialize()
 	. = ..()
