@@ -68,3 +68,24 @@
 	dir = WEST
 	bound_width = 64
 	bound_height = 32
+
+/obj/structure/stairs/very_long
+	icon = 'icons/obj/stairs_96.dmi'
+	bound_height = 96
+
+/obj/structure/stairs/very_long/north
+	dir = NORTH
+	bound_y = -64
+	pixel_y = -64
+
+/obj/structure/stairs/very_long/east
+	dir = EAST
+	bound_width = 96
+	bound_height = 32
+	bound_x = -64
+	pixel_x = -64
+
+/obj/structure/stairs/very_long/west
+	dir = WEST
+	bound_width = 96
+	bound_height = 32
