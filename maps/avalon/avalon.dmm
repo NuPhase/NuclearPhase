@@ -1903,9 +1903,7 @@
 /turf/simulated/wall,
 /area/avalon/shelter/brig/prison)
 "cbE" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs/very_long/north,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/staircase)
 "ccK" = (
@@ -2583,6 +2581,12 @@
 "cMl" = (
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
+"cMA" = (
+/obj/effect/floor_decal/sector_markup{
+	icon_state = "e"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/staircase)
 "cMK" = (
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/turbinehall)
@@ -3277,6 +3281,12 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
+"dFz" = (
+/obj/effect/floor_decal/sector_markup{
+	icon_state = "b"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/staircase)
 "dFG" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -4128,7 +4138,6 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "eyz" = (
-/obj/structure/stairs,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/staircase)
 "eyA" = (
@@ -4367,6 +4376,13 @@
 /obj/random/medical,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
+"eLt" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/structure/stairs/very_long,
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/staircase)
 "eLu" = (
 /obj/machinery/modernsuit_storage/security_cold,
 /turf/simulated/floor/tiled/monotile,
@@ -4377,6 +4393,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
+"eMr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/sector_markup{
+	icon_state = "c"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/staircase)
 "eMX" = (
 /obj/machinery/light/ultraviolet{
 	dir = 1;
@@ -6392,7 +6415,6 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "hae" = (
-/obj/structure/stairs,
 /obj/structure/railing/mapped{
 	dir = 8
 	},
@@ -8193,6 +8215,10 @@
 /obj/effect/floor_decal/corner/lightgrey/full,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering_first)
+"iTV" = (
+/obj/structure/stairs/very_long,
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/staircase)
 "iUg" = (
 /obj/machinery/light/spot,
 /obj/structure/closet/wardrobe,
@@ -12276,6 +12302,10 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering_first)
+"nsR" = (
+/obj/effect/floor_decal/sector_markup,
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/staircase)
 "nte" = (
 /obj/effect/floor_decal/corner/black/full,
 /obj/structure/closet/firecloset,
@@ -13471,9 +13501,6 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "oIz" = (
-/obj/structure/stairs{
-	dir = 1
-	},
 /obj/structure/railing/mapped{
 	dir = 4
 	},
@@ -14313,6 +14340,13 @@
 /obj/effect/paint_stripe/green,
 /turf/simulated/wall,
 /area/avalon/shelter/messhall)
+"pFd" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/structure/stairs/very_long/north,
+/turf/simulated/floor/tiled/monotile,
+/area/avalon/shelter/staircase)
 "pFf" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/light{
@@ -19957,6 +19991,12 @@
 /obj/item/mop,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig)
+"wcl" = (
+/obj/effect/floor_decal/sector_markup{
+	icon_state = "d"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/staircase)
 "wds" = (
 /obj/machinery/door/airlock/highsecurity/bolted{
 	name = "Communications"
@@ -47572,7 +47612,7 @@ cjy
 oEq
 hae
 hae
-hae
+eLt
 bCg
 aJS
 aJS
@@ -47702,7 +47742,7 @@ cYd
 akF
 eyz
 eyz
-eyz
+iTV
 bCg
 aJS
 aJS
@@ -63822,8 +63862,8 @@ wSW
 dbu
 bCg
 cbE
-cbE
-cbE
+eyz
+eyz
 oEq
 feG
 bCg
@@ -63951,7 +63991,7 @@ xDZ
 wSW
 dbu
 bCg
-oIz
+pFd
 oIz
 oIz
 oEq
@@ -80854,7 +80894,7 @@ oEq
 akF
 hae
 hae
-hae
+eLt
 bCg
 dbu
 tfU
@@ -80984,7 +81024,7 @@ akF
 oEq
 eyz
 eyz
-eyz
+iTV
 bCg
 dbu
 lkX
@@ -97104,8 +97144,8 @@ wSW
 dbu
 bCg
 cbE
-cbE
-cbE
+eyz
+eyz
 oEq
 oEq
 bCg
@@ -97233,7 +97273,7 @@ xDZ
 wSW
 dbu
 bCg
-oIz
+pFd
 oIz
 oIz
 oEq
@@ -113872,7 +113912,7 @@ kbb
 oEq
 oEq
 oEq
-oEq
+cMA
 oEq
 kbb
 kbb
@@ -114136,7 +114176,7 @@ oEq
 oEq
 hae
 hae
-hae
+eLt
 dGZ
 sZq
 hUM
@@ -114266,7 +114306,7 @@ akF
 xGA
 eyz
 eyz
-eyz
+iTV
 dGZ
 krl
 wsQ
@@ -130386,8 +130426,8 @@ akt
 cCQ
 aUh
 cbE
-cbE
-cbE
+eyz
+eyz
 oEq
 oEq
 aUh
@@ -130515,7 +130555,7 @@ sEF
 akt
 cCQ
 aUh
-oIz
+pFd
 oIz
 oIz
 oEq
@@ -147154,7 +147194,7 @@ kbb
 oEq
 oEq
 akF
-oEq
+wcl
 oEq
 kbb
 kbb
@@ -147284,7 +147324,7 @@ kbb
 oEq
 oEq
 akF
-akF
+oEq
 aUh
 kbb
 kbb
@@ -147418,7 +147458,7 @@ akF
 akF
 hae
 hae
-hae
+eLt
 aUh
 kdc
 tPl
@@ -147548,7 +147588,7 @@ oEq
 vEl
 eyz
 eyz
-eyz
+iTV
 aUh
 cTk
 tfY
@@ -163668,8 +163708,8 @@ akt
 cCQ
 aUh
 cbE
-cbE
-cbE
+eyz
+eyz
 oEq
 oEq
 aUh
@@ -163797,7 +163837,7 @@ sEF
 akt
 cCQ
 aUh
-oIz
+pFd
 oIz
 oIz
 akF
@@ -180436,7 +180476,7 @@ kbb
 oEq
 oEq
 oEq
-akF
+eMr
 oEq
 kbb
 kbb
@@ -180700,7 +180740,7 @@ oEq
 oEq
 hae
 hae
-hae
+eLt
 gxB
 uzo
 uzo
@@ -180830,7 +180870,7 @@ akF
 xGA
 eyz
 eyz
-eyz
+iTV
 gxB
 uzo
 uzo
@@ -196950,8 +196990,8 @@ gYr
 uzo
 aUh
 cbE
-cbE
-cbE
+eyz
+eyz
 oEq
 oEq
 aUh
@@ -197079,7 +197119,7 @@ egH
 gYr
 gYr
 aUh
-oIz
+pFd
 oIz
 oIz
 akF
@@ -213718,7 +213758,7 @@ kbb
 oEq
 oEq
 oEq
-oEq
+dFz
 akF
 kbb
 kbb
@@ -213982,7 +214022,7 @@ oEq
 oEq
 hae
 hae
-hae
+eLt
 dYr
 hBO
 hBO
@@ -214112,7 +214152,7 @@ oEq
 xGA
 eyz
 eyz
-eyz
+iTV
 dYr
 hBO
 hBO
@@ -230232,8 +230272,8 @@ gGw
 kvy
 aUh
 cbE
-cbE
-cbE
+eyz
+eyz
 oEq
 oEq
 aUh
@@ -230361,7 +230401,7 @@ nIV
 gGw
 gGw
 aUh
-oIz
+pFd
 oIz
 oIz
 akF
@@ -247000,7 +247040,7 @@ kbb
 oEq
 oEq
 jgf
-oEq
+nsR
 akF
 kbb
 kbb
