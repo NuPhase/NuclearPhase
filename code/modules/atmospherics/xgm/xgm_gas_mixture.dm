@@ -2,6 +2,8 @@
 	//Associative list of gas moles.
 	//Gases with 0 moles are not tracked and are pruned by update_values()
 	var/list/gas = list()
+	var/list/liquids = list()
+	var/list/solids = list()
 
 	var/list/phases = list()
 	//Temperature in Kelvin of this gas mix.
@@ -163,7 +165,7 @@
 
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
-/datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
+/datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy, var/calculate_phase_change = TRUE)
 
 	if (total_moles == 0)
 		return 0
