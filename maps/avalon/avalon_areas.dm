@@ -65,6 +65,9 @@
 	icon_state = "mechbay"
 /area/avalon/shelter/upperhall
 	name = "Upper Hall"
+/area/avalon/shelter/staircase
+	name = "Staircase"
+	icon_state = "shuttle"
 /area/avalon/shelter/comms
 	name = "Communications"
 /area/avalon/shelter/habitationdeck
