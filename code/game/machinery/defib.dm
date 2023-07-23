@@ -48,7 +48,7 @@
 		to_chat(user,"<span class='warning'>You don't know what to do with it!</span>")
 		return
 
-	visible_message("<span class='danger'>The [src] weeps: STAND BACK FROM THE PATIENT!</span>")
+	visible_message("<span class='danger'>\The [src] weeps: STAND BACK FROM THE PATIENT!</span>")
 	sleep(20)
 	pads.attached.visible_message("<span class='warning'>\The [pads.attached]'s body convulses violently!</span>")
 	playsound(get_turf(src), "bodyfall", 50, 1)
@@ -83,7 +83,7 @@
 		shock_charged = FALSE
 		return
 
-	visible_message("<span class='warning'>The [src] weeps: STAND BACK FROM THE PATIENT!</span>")
+	visible_message("<span class='warning'>\The [src] weeps: STAND BACK FROM THE PATIENT!</span>")
 	sleep(20)
 	pads.attached.visible_message("<span class='notice'>\The [pads.attached]'s body convulses slightly.</span>")
 	playsound(get_turf(src), "bodyfall", 50, 1)
