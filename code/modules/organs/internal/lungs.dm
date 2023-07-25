@@ -164,12 +164,12 @@
 
 	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 	// Lung damage increases the minimum safe pressure.
-	safe_pressure_min *= 1 + rand(1,4) * damage/max_damage
+	safe_pressure_min *= 1 + rand(1,2) * damage/max_damage
 	if(ruptured)
 		if(!chest_tube)
-			safe_pressure_min *= 1.6 //one lung collapsed
+			safe_pressure_min *= 1.4 //one lung collapsed
 		else
-			safe_pressure_min *= 1.2 //helps a little
+			safe_pressure_min *= 1.1 //helps a little
 
 	var/breatheffect = GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
 	if(!forced && breatheffect && !GET_CHEMICAL_EFFECT(owner, CE_STABLE)) //opiates are bad mmkay
