@@ -396,16 +396,16 @@ meteor_act
 		gear.add_blood(source)
 		update_inv_w_uniform(0)
 
-/mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage, var/def_zone)
+/mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage, var/damage_flags)
 
-	if(damtype != BRUTE) return
+	if(damtype != BRUTE || !(damage_flags & DAM_SHARP)) return
 
 	// We may also be taking a suit breach.
 	var/obj/item/clothing/suit/modern/space/suit = get_equipped_item(slot_wear_suit_str)
 	if(istype(suit))
 		if(damage < suit.minimum_leak_damage)
 			return
-		suit.leakiness = min(suit.leakiness + damage, 100)
+		suit.leakiness = min(suit.leakiness + damage - minimum_leak_damage, 100)
 
 /mob/living/carbon/human/reagent_permeability()
 	var/perm = 0
