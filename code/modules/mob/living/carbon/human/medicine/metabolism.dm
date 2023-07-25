@@ -12,17 +12,16 @@
 	"YOU'VE GOTTA RUN!",
 	"DO SOMETHING!",
 	"SAVE YOUR LIFE!",
-	"ESCAPE!",
-	"YOU HAVE NO TIME, RUN!"
+	"ESCAPE!"
 )
 /mob/living/carbon/human/proc/release_adrenaline(amount = 1, make_message = FALSE)
 	if(adrenaline_cooldown)
 		return
 	bloodstr.add_reagent(/decl/material/liquid/adrenaline, amount)
-	if(make_message && amount > 5)
+	if(make_message && amount > 2)
 		to_chat(src, SPAN_DANGER(pick(adrenaline_messages)))
 	adrenaline_cooldown = TRUE
-	spawn(amount * 10)
+	spawn(amount * 20)
 		adrenaline_cooldown = FALSE
 
 //<150 - general hunger
