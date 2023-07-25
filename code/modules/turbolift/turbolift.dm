@@ -176,6 +176,7 @@
 	queued_floors |= floor
 	busy_state = LIFT_MOVING
 	START_PROCESSING(SSprocessing, src)
+	Process()
 
 // TODO: dummy machine ('lift mechanism') in powered area for functionality/blackout checks.
 /datum/turbolift/proc/is_functional()
