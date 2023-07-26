@@ -27,9 +27,7 @@
 
 /decl/medical_symptom/headache/apply_pain(mob/living/carbon/human/victim)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(victim, BP_HEAD)
-	affected.add_pain(min(victim.syspressure * 0.1, 10))
-
-
+	affected.add_pain(min((victim.syspressure - 120) * 0.1, 10))
 
 /mob/living/carbon/human/proc/add_symptom(decl/medical_symptom/symptom)
 	symptoms |= symptom
