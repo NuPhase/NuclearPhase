@@ -1216,7 +1216,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/brig)
+/area/avalon/shelter/command)
 "bqm" = (
 /obj/structure/closet/secure_closet/personal/empty,
 /obj/effect/floor_decal/corner/purple{
@@ -1225,8 +1225,10 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "bqX" = (
-/obj/effect/floor_decal/corner/blue/full,
-/turf/simulated/floor/tiled/dark,
+/obj/structure/bed/sofa/m/black{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "brD" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -2009,10 +2011,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "cis" = (
-/obj/structure/table/steel,
-/obj/machinery/door/window/northright,
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/plating,
 /area/space)
 "ciw" = (
 /obj/structure/stairs/long/north,
@@ -2103,9 +2102,9 @@
 /turf/simulated/floor/concrete/road,
 /area/surface)
 "clm" = (
-/obj/effect/paint_stripe/yellow,
-/turf/simulated/wall,
-/area/space)
+/obj/structure/ladder,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig/reception)
 "clU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 5
@@ -2183,10 +2182,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "cqx" = (
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 5
-	},
-/obj/structure/closet,
+/obj/structure/table/steel_reinforced,
+/obj/item/pen,
+/obj/effect/floor_decal/corner/white/full,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "crt" = (
@@ -2449,20 +2447,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
-"czY" = (
-/obj/structure/bed/chair/office/comfy/blue,
-/obj/effect/floor_decal/corner/blue{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
 "cAy" = (
 /obj/structure/bookcase/skill_books/random,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/habitationdeck)
 "cBf" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/dark/monotile,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/open,
 /area/avalon/shelter/habitationdeck)
 "cBF" = (
 /obj/effect/decal/cleanable/molten_item,
@@ -2636,9 +2628,6 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -2654,9 +2643,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "cQp" = (
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig/interrogation)
 "cQv" = (
 /obj/structure/table/steel,
 /obj/structure/fireaxecabinet{
@@ -3029,14 +3020,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "dqA" = (
-/obj/structure/telemetry/server_rack{
-	pixel_x = -20
+/obj/machinery/light/small{
+	dir = 4
 	},
-/obj/structure/telemetry/server_rack/destroyed{
-	pixel_x = 2
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "dqE" = (
 /obj/structure/railing/mapped{
 	dir = 4
@@ -3680,12 +3668,10 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "edp" = (
-/obj/structure/wall_frame/standard,
-/obj/structure/window/reinforced/polarized/full{
-	id = "commcenter"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/structure/bed,
+/obj/item/bedsheet/purple,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "edy" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -3894,37 +3880,18 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "eml" = (
-/obj/structure/table/steel,
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 21
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
-"emt" = (
-/obj/structure/filingcabinet{
-	pixel_y = 16;
-	density = 0
-	},
-/obj/structure/filingcabinet{
-	pixel_x = 10;
-	pixel_y = 16;
-	density = 0
-	},
-/obj/structure/filingcabinet{
-	pixel_x = -10;
-	density = 0;
-	pixel_y = 16
-	},
-/obj/effect/floor_decal/corner/black/full,
-/obj/machinery/light/small{
+/obj/effect/floor_decal/corner/white/bordercorner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/obj/effect/floor_decal/corner/white/bordercorner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
+"emt" = (
+/obj/effect/catwalk_plated,
+/turf/simulated/open,
+/area/avalon/shelter/brig/medbay)
 "emv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -3978,13 +3945,10 @@
 /turf/simulated/floor/reinforced/airless,
 /area/surface)
 "eps" = (
-/obj/effect/floor_decal/corner/white/bordercorner{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/dark/monotile,
+/obj/structure/table/steel_reinforced,
+/obj/item/paper_bin,
+/obj/effect/floor_decal/corner/white/full,
+/turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "epB" = (
 /obj/structure/cable{
@@ -4440,9 +4404,10 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
 "eOM" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/space_heater,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "eOZ" = (
 /obj/structure/ladder,
 /obj/structure/railing/mapped{
@@ -4970,8 +4935,8 @@
 /obj/structure/railing/mapped{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/green/full,
-/turf/simulated/floor/tiled/dark,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/open,
 /area/avalon/shelter/habitationdeck)
 "fmN" = (
 /obj/structure/table,
@@ -4988,14 +4953,8 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "fnj" = (
-/obj/machinery/papershredder{
-	pixel_x = -11
-	},
-/obj/effect/floor_decal/corner/blue{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/wall,
+/area/avalon/shelter/command)
 "fnq" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
@@ -5507,12 +5466,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/factory)
 "fWe" = (
-/obj/structure/bed/chair/office{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/obj/effect/catwalk_plated,
+/turf/simulated/open,
+/area/avalon/shelter/brig/interrogation)
 "fWx" = (
 /obj/structure/closet/reactordocuments,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -5588,12 +5544,11 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "fXZ" = (
-/obj/structure/table/steel,
-/obj/machinery/light{
-	dir = 1
+/obj/effect/floor_decal/corner/white/border{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "fYc" = (
 /obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 8
@@ -5627,15 +5582,12 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter)
 "fZP" = (
-/obj/machinery/telecomms/server,
+/obj/structure/table/steel_reinforced,
 /obj/machinery/light{
-	dir = 4
+	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "gaa" = (
 /obj/structure/flora/bush/fernybush,
 /turf/simulated/floor/grass,
@@ -5829,6 +5781,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
+"gof" = (
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/breakerroom)
 "gos" = (
 /obj/structure/sign/warning/radioactive,
 /obj/effect/decal/cleanable/dirt,
@@ -5920,9 +5878,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/reactor)
 "guf" = (
-/obj/machinery/space_heater,
+/obj/machinery/telecomms/processor,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "gur" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -6141,11 +6100,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "gIU" = (
-/obj/structure/bed/chair/office/comfy/blue{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/effect/floor_decal/corner/white/border,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "gIW" = (
 /obj/machinery/light/spot,
 /turf/simulated/open,
@@ -6247,10 +6205,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "gOU" = (
-/obj/structure/table/steel,
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/turf/simulated/wall,
+/area/avalon/shelter/brig/medbay)
 "gPb" = (
 /obj/machinery/light/small/red{
 	dir = 4
@@ -6605,12 +6561,13 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "hgq" = (
-/obj/structure/table/steel,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/corner/white/full,
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "hgE" = (
 /obj/machinery/camera/network/engineering{
 	dir = 1
@@ -6926,11 +6883,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "hxE" = (
-/obj/effect/floor_decal/corner/blue{
-	dir = 10
-	},
+/obj/machinery/telecomms/server,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "hya" = (
 /turf/simulated/wall,
 /area/avalon/shelter/medbay)
@@ -6953,7 +6909,7 @@
 	d1 = 32;
 	d2 = 1
 	},
-/obj/structure/lattice,
+/obj/structure/ladder,
 /turf/simulated/open,
 /area/avalon/shelter)
 "hzC" = (
@@ -6982,12 +6938,9 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "hBj" = (
-/obj/structure/table/steel_reinforced,
-/obj/effect/floor_decal/corner/blue{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "hBO" = (
 /turf/exterior/wall,
 /area/space)
@@ -7213,13 +7166,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "hRg" = (
-/obj/effect/scripted_detonation{
-	id = "reactor8";
-	heavy_radius = 3;
-	light_radius = 5
-	},
-/turf/simulated/floor/reinforced,
-/area/avalon/shelter/engineering)
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig/medbay)
 "hRo" = (
 /obj/effect/fluid_mapped/helium,
 /turf/simulated/wall/titanium,
@@ -7507,6 +7455,9 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/cargo/rest_area)
+"ihJ" = (
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig/reception)
 "ihS" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7529,6 +7480,12 @@
 "ijt" = (
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/reactormonitoring)
+"ikh" = (
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig)
 "ikk" = (
 /obj/item/paper/crumpled,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -7547,7 +7504,7 @@
 /area/avalon/shelter/medbay)
 "ilr" = (
 /turf/simulated/wall/r_titanium,
-/area/avalon/shelter/brig/armory)
+/area/avalon/shelter/brig/breakroom)
 "ilV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/visible/red,
@@ -7938,9 +7895,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "iGK" = (
-/obj/structure/table/steel_reinforced,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/command)
 "iGO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/water{
 	dir = 4
@@ -8059,12 +8015,8 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "iLi" = (
-/obj/structure/filingcabinet/chestdrawer{
-	pixel_y = 11
-	},
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig/breakroom)
 "iLA" = (
 /obj/effect/floor_decal/corner/beige/border{
 	dir = 1
@@ -8140,11 +8092,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/prison)
 "iRx" = (
-/obj/structure/table/steel,
-/obj/machinery/door/window/northleft,
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/breakerroom)
 "iRy" = (
 /obj/structure/reactor_table{
 	pixel_y = 6
@@ -8333,12 +8288,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "iYy" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/telemetry/server_rack{
+	pixel_x = -12
 	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 10
+/obj/structure/telemetry/server_rack/destroyed{
+	pixel_x = 10
 	},
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "iYD" = (
@@ -8579,13 +8535,16 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
+"jlH" = (
+/obj/effect/scripted_detonation{
+	id = "reactor8";
+	heavy_radius = 3;
+	light_radius = 5
+	},
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter/reactor)
 "jlI" = (
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/effect/floor_decal/corner/white/bordercorner,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "jmo" = (
@@ -8708,14 +8667,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "jrU" = (
-/obj/structure/bed/chair/office/comfy/blue{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/blue{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/structure/bed/sofa/l/black,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "jsd" = (
 /obj/machinery/vending/robotics{
 	pixel_x = 9
@@ -8865,6 +8819,10 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
+"jzH" = (
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/open,
+/area/avalon/shelter/habitationdeck)
 "jzJ" = (
 /turf/simulated/wall/r_titanium,
 /area/avalon/shelter/comms)
@@ -9179,6 +9137,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
+"jPU" = (
+/obj/effect/fluid_mapped,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "jQb" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -9441,6 +9403,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/science)
+"kfZ" = (
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_SECURITY")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig)
 "kgj" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/techfloor,
@@ -9634,12 +9602,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
-"ksf" = (
-/obj/effect/floor_decal/corner/blue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
 "ksx" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/effect/floor_decal/corner/purple{
@@ -9663,9 +9625,6 @@
 "kuB" = (
 /obj/effect/floor_decal/corner/white/border{
 	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
@@ -9720,11 +9679,8 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "kzl" = (
-/obj/effect/floor_decal/corner/white/border{
-	dir = 5
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
+/obj/structure/bed/sofa/r/black{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
@@ -9941,9 +9897,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "kIp" = (
-/obj/machinery/door/airlock/double/command,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/effect/floor_decal/corner/white/bordercorner,
+/obj/effect/floor_decal/corner/white/bordercorner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "kIE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 4
@@ -10011,7 +9970,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/garage)
 "kNl" = (
-/turf/simulated/floor/reinforced,
+/obj/effect/catwalk_plated,
+/turf/simulated/open,
 /area/avalon/shelter/engineering)
 "kNq" = (
 /obj/machinery/atmospherics/valve/digital{
@@ -10129,6 +10089,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/turbinehall)
+"kUL" = (
+/obj/structure/ladder,
+/turf/simulated/open,
+/area/avalon/shelter/brig/reception)
 "kVQ" = (
 /obj/effect/floor_decal/corner/black/mono,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -10472,9 +10436,13 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter)
 "lrn" = (
-/obj/machinery/telecomms/processor,
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/corner/white/full,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "lrC" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
@@ -10554,9 +10522,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "lyJ" = (
-/obj/effect/floor_decal/corner/white/bordercorner,
-/turf/exterior/wall,
-/area/space)
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/open,
+/area/avalon/shelter/command)
 "lyP" = (
 /obj/effect/floor_decal/corner/pink{
 	dir = 9
@@ -10652,12 +10620,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/expeditionpreparation)
 "lCs" = (
-/obj/structure/bed/chair/office/comfy/blue,
-/obj/effect/floor_decal/corner/blue{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/command)
 "lCA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/industrial/warning/dust/corner{
@@ -10864,6 +10828,9 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
+"lMj" = (
+/turf/simulated/floor/plating,
+/area/avalon/shelter/maintenance)
 "lMB" = (
 /obj/effect/floor_decal/corner/lightgrey/full,
 /obj/abstract/landmark/start{
@@ -11139,11 +11106,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "mfb" = (
-/obj/effect/floor_decal/corner/blue{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "mfs" = (
 /obj/item/stack/tile/floor_dark,
 /obj/effect/decal/cleanable/dirt,
@@ -11282,13 +11247,8 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "moj" = (
-/obj/machinery/disposal,
-/obj/effect/floor_decal/corner/black/full,
-/obj/effect/floor_decal/corner/yellow{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/turf/simulated/wall/r_wall,
+/area/avalon/shelter/brig/breakroom)
 "moq" = (
 /obj/structure/cable/heavy{
 	icon_state = "2-4"
@@ -11351,7 +11311,8 @@
 /turf/simulated/floor/reinforced/airless,
 /area/avalon/shelter/expeditionpreparation)
 "mqR" = (
-/turf/exterior/wall,
+/obj/structure/ladder,
+/turf/simulated/open,
 /area/avalon/shelter/brig/breakroom)
 "mrR" = (
 /obj/machinery/vending/cigarette{
@@ -11391,12 +11352,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "mvj" = (
-/obj/structure/bed/padded,
-/obj/structure/curtain/black,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
+/obj/structure/hygiene/shower{
+	dir = 4;
+	pixel_x = -5
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/white,
 /area/avalon/shelter/command)
 "mvm" = (
 /obj/structure/table/gamblingtable,
@@ -11468,13 +11429,10 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering_first)
 "mAa" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/pen,
-/obj/effect/floor_decal/corner/blue{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/structure/table,
+/obj/structure/bedsheetbin/mapped,
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/command)
 "mAq" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 5
@@ -11620,9 +11578,7 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "mIt" = (
-/obj/effect/floor_decal/corner/white/border{
-	dir = 9
-	},
+/obj/machinery/door/airlock/double/glass/command,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "mIS" = (
@@ -12233,11 +12189,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "nne" = (
-/obj/structure/bed/padded,
-/obj/structure/curtain/black,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 8
-	},
+/obj/structure/bed/chair/office/comfy/blue,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "nnu" = (
@@ -12302,13 +12255,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "nqV" = (
-/obj/structure/table/steel,
-/obj/structure/window/basic{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/turf/simulated/wall,
+/area/avalon/shelter/maintenance)
 "nrG" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
@@ -12462,9 +12410,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/science)
 "nzm" = (
-/obj/effect/floor_decal/corner/black/full,
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/dark,
+/obj/structure/bed/sofa/m/black{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "nzy" = (
 /obj/machinery/alarm{
@@ -12490,8 +12439,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "nBd" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/floor_decal/corner/white/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "nBi" = (
 /obj/effect/floor_decal/corner/black/full,
 /obj/structure/filingcabinet/chestdrawer,
@@ -12507,8 +12460,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "nBD" = (
-/turf/simulated/wall/prepainted,
-/area/avalon/shelter/cargo)
+/obj/machinery/papershredder{
+	pixel_x = -11
+	},
+/obj/effect/floor_decal/corner/black/full,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "nBJ" = (
 /turf/simulated/wall/r_wall,
 /area/avalon/shelter/atmos)
@@ -12523,11 +12480,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
 "nCE" = (
-/obj/effect/floor_decal/corner/blue{
-	dir = 5
+/obj/structure/fire_hydrant_manual{
+	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/open,
+/area/avalon/shelter/command)
 "nCF" = (
 /obj/machinery/power/generator/transformer/large{
 	coef = 0.2;
@@ -12586,11 +12544,8 @@
 /turf/simulated/floor/concrete/road,
 /area/surface)
 "nHW" = (
-/obj/structure/bed/padded,
-/obj/structure/curtain/black,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "nIo" = (
@@ -12779,9 +12734,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
 "nQF" = (
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "nQR" = (
@@ -13148,9 +13100,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "okW" = (
-/obj/effect/floor_decal/corner/white/bordercorner,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/effect/floor_decal/corner/white/bordercorner{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
@@ -13369,10 +13320,8 @@
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
 "oxq" = (
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
+/obj/structure/closet/cabinet,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "oxK" = (
 /obj/effect/paint_stripe/green,
@@ -13426,8 +13375,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "oDj" = (
-/obj/structure/cable{
-	icon_state = "1-8"
+/obj/effect/floor_decal/corner/white/border{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
@@ -13798,11 +13750,12 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/avalon/shelter/factory)
 "oXs" = (
-/obj/structure/telemetry/server_rack{
-	pixel_x = -8
+/obj/structure/bed/chair/office/comfy/blue{
+	dir = 8
 	},
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "oXE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/steam,
 /turf/simulated/floor/tiled/techfloor,
@@ -13853,6 +13806,9 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/reactor)
+"paq" = (
+/turf/simulated/wall/titanium,
+/area/avalon/shelter/brig/breakroom)
 "pbn" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -13930,11 +13886,8 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/garage)
 "pfk" = (
-/obj/machinery/door/airlock/external/bolted{
-	initial_access = list("ACCESS_ENGINEERING")
-	},
-/turf/simulated/floor/reinforced,
-/area/avalon/shelter/engineering)
+/turf/simulated/wall,
+/area/avalon/shelter/brig/interrogation)
 "pfy" = (
 /obj/machinery/reactor_server{
 	pixel_x = 13
@@ -14128,19 +14081,6 @@
 /obj/structure/stairs/long/north,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
-"prT" = (
-/obj/machinery/light_switch{
-	pixel_x = -9;
-	pixel_y = 32
-	},
-/obj/machinery/button/windowtint{
-	pixel_y = 32;
-	id_tag = "commcenter";
-	uid = "commcenter";
-	identifier = "commcenter"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
 "prY" = (
 /obj/structure/reactor_table{
 	dir = 6;
@@ -15095,23 +15035,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "qsW" = (
-/obj/structure/filingcabinet{
-	pixel_y = 16;
-	density = 0
-	},
-/obj/structure/filingcabinet{
-	pixel_x = 10;
-	pixel_y = 16;
-	density = 0
-	},
-/obj/structure/filingcabinet{
-	pixel_x = -10;
-	density = 0;
-	pixel_y = 16
-	},
-/obj/effect/floor_decal/corner/black/full,
-/turf/simulated/floor/tiled/dark,
-/area/space)
+/obj/structure/ladder,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig/breakroom)
 "qsX" = (
 /obj/machinery/disposal/buildable,
 /turf/simulated/floor/tiled/dark,
@@ -15478,12 +15404,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "qQi" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "qQq" = (
@@ -15512,9 +15432,8 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "qRQ" = (
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
+/obj/structure/telemetry/server_rack,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "qSr" = (
@@ -15997,6 +15916,10 @@
 "rrW" = (
 /turf/simulated/floor/plating,
 /area/avalon/shelter/reactormonitoring)
+"rsF" = (
+/obj/structure/ladder,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/maintenance)
 "rtb" = (
 /obj/structure/table/steel,
 /obj/item/thermometer{
@@ -16011,6 +15934,10 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
+"rtD" = (
+/obj/structure/ladder,
+/turf/simulated/open,
+/area/avalon/shelter/brig)
 "rua" = (
 /obj/machinery/disposal/buildable,
 /turf/simulated/floor/tiled/dark,
@@ -16368,6 +16295,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"rWH" = (
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
+/turf/simulated/floor/plating,
+/area/space)
 "rWP" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/structure/reagent_dispensers/watertank/newtank{
@@ -16421,8 +16354,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "saA" = (
-/turf/simulated/wall/prepainted,
-/area/avalon/shelter/command/commcenter)
+/obj/structure/bed/chair/office/comfy/blue{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/black/full,
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "saB" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
@@ -16674,13 +16611,14 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering_first)
 "soU" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/pen,
-/obj/effect/floor_decal/corner/blue{
+/obj/effect/floor_decal/corner/white/border{
+	dir = 5
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/command)
 "spn" = (
 /turf/simulated/wall/r_wall,
 /area/avalon/shelter/turbinehall)
@@ -16702,10 +16640,13 @@
 /turf/exterior/open_ocean,
 /area/avalon)
 "spV" = (
-/obj/structure/bed/padded,
-/obj/structure/curtain/black,
-/obj/effect/floor_decal/corner/paleblue,
-/turf/simulated/floor/tiled/dark,
+/obj/item/storage/mirror{
+	pixel_y = 33
+	},
+/obj/structure/hygiene/sink{
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/white,
 /area/avalon/shelter/command)
 "srq" = (
 /obj/structure/cable{
@@ -17140,12 +17081,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/messhall)
 "sOP" = (
-/obj/machinery/light/small,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 5
-	},
-/obj/structure/closet,
-/turf/simulated/floor/tiled/dark,
+/obj/structure/stairs/long/north,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "sPs" = (
 /obj/structure/rack{
@@ -17624,9 +17561,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "trl" = (
-/obj/structure/telemetry/server_rack/destroyed,
+/obj/effect/floor_decal/corner/black/full,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "trE" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 9
@@ -17743,11 +17683,10 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
 "txS" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
+/obj/machinery/photocopier,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "tye" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /obj/structure/railing/mapped,
@@ -17925,15 +17864,12 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
 "tJa" = (
-/obj/structure/wall_frame/standard,
-/obj/structure/window/reinforced/polarized/full{
-	id = "commcenter"
+/obj/structure/hygiene/toilet{
+	dir = 8;
+	pixel_x = 6
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/command)
 "tJc" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -18008,12 +17944,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "tNg" = (
-/obj/machinery/telecomms/bus,
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/corner/white/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "tNq" = (
 /obj/structure/flora/seaweed,
 /turf/exterior/open_ocean,
@@ -18146,10 +18080,7 @@
 /turf/simulated/floor/reinforced,
 /area/surface)
 "tUL" = (
-/obj/structure/fire_hydrant_manual{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/dark,
+/turf/exterior/wall,
 /area/avalon/shelter/command/commcenter)
 "tUR" = (
 /obj/structure/rack{
@@ -18575,12 +18506,7 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/habitationdeck)
 "uva" = (
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 4
-	},
-/obj/structure/table/steel,
-/obj/structure/bedsheetbin/mapped,
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/open,
 /area/avalon/shelter/command)
 "uvp" = (
 /turf/simulated/wall/r_wall,
@@ -19201,11 +19127,7 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "via" = (
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 1
-	},
-/obj/structure/closet,
-/turf/simulated/floor/tiled/dark,
+/turf/exterior/wall,
 /area/avalon/shelter/command)
 "vis" = (
 /obj/effect/floor_decal/corner/purple{
@@ -19214,6 +19136,12 @@
 /obj/structure/table,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
+"vjc" = (
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_MAINT")
+	},
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "vjf" = (
 /obj/structure/hygiene/shower{
 	dir = 4
@@ -19517,7 +19445,7 @@
 /obj/machinery/door/airlock/glass/command,
 /obj/effect/floor_decal/corner/white/bordercorner,
 /turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/brig)
+/area/avalon/shelter/command)
 "vDI" = (
 /obj/machinery/light{
 	dir = 1
@@ -19599,13 +19527,13 @@
 "vIb" = (
 /turf/simulated/wall,
 /area/avalon)
-"vIl" = (
-/obj/effect/floor_decal/corner/black/full,
-/obj/effect/floor_decal/corner/yellow{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
+"vIg" = (
+/obj/structure/ladder,
+/turf/simulated/open,
 /area/space)
+"vIl" = (
+/turf/simulated/floor/plating,
+/area/avalon/shelter/brig/interrogation)
 "vIs" = (
 /obj/structure/cable{
 	icon_state = "16-0";
@@ -19855,9 +19783,6 @@
 "vSz" = (
 /obj/effect/floor_decal/corner/white/bordercorner{
 	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
@@ -20191,10 +20116,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/habitationdeck)
 "wqA" = (
-/obj/structure/table/steel_reinforced,
-/obj/effect/floor_decal/corner/blue,
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/obj/machinery/door/airlock/civilian,
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/command)
 "wrD" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	initial_volume = 2000
@@ -20355,12 +20279,8 @@
 /turf/simulated/floor/concrete/road,
 /area/avalon/shelter/expeditionpreparation)
 "wyE" = (
-/obj/effect/floor_decal/corner/black/full,
-/obj/effect/floor_decal/corner/yellow,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
+/obj/effect/catwalk_plated,
+/turf/simulated/open,
 /area/space)
 "wzi" = (
 /obj/structure/table/glass,
@@ -20865,14 +20785,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "wYN" = (
-/obj/structure/bed/chair/office/comfy/blue{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/blue{
-	dir = 5
+/obj/machinery/door/airlock/command{
+	name = "Chief Engineer"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "wYO" = (
 /obj/structure/table/steel,
 /obj/item/stock_parts/radio/transmitter/basic,
@@ -21497,15 +21414,6 @@
 "xNr" = (
 /turf/exterior/wall,
 /area/avalon/shelter/messhall)
-"xNy" = (
-/obj/structure/telemetry/server_rack{
-	pixel_x = -10
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
 "xNS" = (
 /obj/structure/stairs/long/east,
 /turf/simulated/floor/reinforced,
@@ -21730,9 +21638,9 @@
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/obj/machinery/photocopier,
+/obj/effect/floor_decal/corner/black/full,
 /turf/simulated/floor/tiled/dark,
-/area/avalon/shelter/command/commcenter)
+/area/avalon/shelter/command)
 "ydS" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/science)
@@ -131243,11 +131151,11 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+tJs
+iLi
+qsW
+iLi
+tJs
 hBO
 hBO
 hBO
@@ -131374,9 +131282,9 @@ nMD
 nMD
 nMD
 nMD
-nMD
-nMD
-nMD
+con
+con
+con
 nMD
 nMD
 nMD
@@ -132262,12 +132170,12 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+cis
+cis
+cis
+cis
+cis
+cis
 hBO
 hBO
 hBO
@@ -132392,12 +132300,12 @@ hBO
 hBO
 hBO
 hBO
+cis
 hBO
 hBO
 hBO
 hBO
-hBO
-hBO
+cis
 hBO
 hBO
 hBO
@@ -132522,27 +132430,27 @@ hBO
 hBO
 hBO
 hBO
+cis
 hBO
 hBO
 hBO
 hBO
+cis
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
 hBO
 hBO
 hBO
@@ -132652,27 +132560,27 @@ hBO
 hBO
 hBO
 hBO
+cis
+cis
+cis
+cis
+cis
+cis
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -132790,19 +132698,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -132920,19 +132828,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -133050,19 +132958,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -133180,19 +133088,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+iGK
+iGK
+iGK
+iGK
+mwg
+iGK
+mwg
+iGK
+iGK
+iGK
+iGK
+iGK
 hBO
 hBO
 hBO
@@ -133310,19 +133218,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+via
+iGK
+sOP
+qQi
+qQi
+qQi
+qQi
+qQi
+qQi
+iGK
+via
+via
+via
 hBO
 hBO
 hBO
@@ -133440,19 +133348,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+via
+iGK
+sOP
+qQi
+dqA
+qQi
+qQi
+qQi
+dqA
+iGK
+via
+via
+via
 hBO
 hBO
 hBO
@@ -133570,19 +133478,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+iGK
+iGK
+iGK
+iGK
+wYN
+iGK
+mwg
+iGK
+iGK
+iGK
+iGK
+iGK
 hBO
 hBO
 hBO
@@ -133700,19 +133608,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+oxq
+qQi
+fZP
+mfb
+qQi
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -133830,19 +133738,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+oxq
+qQi
+qQi
+qQi
+qQi
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -133960,19 +133868,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+qQi
+qQi
+jrU
+hBj
+hBj
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -134090,19 +133998,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+edp
+hBj
+bqX
+nzm
+kzl
+iGK
+nQF
+nQF
+nQF
+nQF
+nQF
+iGK
 hBO
 hBO
 hBO
@@ -134220,19 +134128,19 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
+iGK
 hBO
 hBO
 hBO
@@ -146714,9 +146622,9 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
+tJs
+tJs
+tJs
 akt
 akt
 akt
@@ -146844,15 +146752,15 @@ cCQ
 cCQ
 cCQ
 cCQ
-cCQ
-cCQ
-hBO
-akt
+tJs
+qsW
+iLi
 sEF
 sEF
 sEF
 sEF
-akt
+sEF
+kfZ
 hKa
 sbE
 akt
@@ -147882,10 +147790,10 @@ jyp
 tzS
 kiM
 kiM
-tzS
-hBO
-hBO
-hBO
+paq
+qsW
+iLi
+iLi
 mqR
 tJs
 tJs
@@ -148013,9 +147921,9 @@ tzS
 nEJ
 nEJ
 ilr
-dHo
-dHo
-dHo
+moj
+moj
+moj
 dHo
 dHo
 dHo
@@ -148391,12 +148299,12 @@ idh
 tSM
 xUM
 yfD
-nBD
-nBD
-kkW
+mIS
+mIS
+mIS
 bqg
 vDl
-akt
+fnj
 akt
 akt
 akt
@@ -148512,7 +148420,7 @@ hBO
 hBO
 hBO
 hBO
-hBO
+mIS
 yfD
 yfD
 yfD
@@ -148526,7 +148434,7 @@ bLa
 bLa
 cPp
 xiA
-akt
+fnj
 bKT
 fig
 akt
@@ -148642,21 +148550,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
 mIS
-iGq
+tNg
+lrn
+nBd
+txS
+guf
 okA
-iGq
-okA
-okA
-azt
+lrn
+mIS
 hpv
 ftP
 fkq
 kuB
 oSh
-akt
+fnj
 eTU
 wdu
 akt
@@ -148772,21 +148680,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
 mIS
-leE
+nHW
+nne
 okA
-iGq
 okA
-nzm
+okA
+okA
+tNg
 mIS
 oTM
 hpv
 tEh
 kuB
 xiA
-akt
+fnj
 vIK
 xME
 uoJ
@@ -148902,21 +148810,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
 mIS
-iGq
+nCE
 okA
-okA
-oeh
-mIS
+saA
+saA
+saA
+lyJ
+nBD
 mIS
 mIS
 mwg
 mIS
 bZd
 kBc
-sxn
+fnj
 sxn
 sxn
 sxn
@@ -149032,21 +148940,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
 mIS
-rET
 okA
-iGq
+tNg
+cqx
+tNg
+tNg
 okA
-mIS
+okA
 mIt
 kMt
 kaD
 kMt
 vSz
 xiA
-sxn
+fnj
 ufW
 lrb
 sxn
@@ -149162,21 +149070,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
 mIS
-ekw
+ycO
+tNg
+tNg
+eps
+cqx
 okA
-iGq
 okA
-mIS
 qQi
 okW
 jlI
-jlI
+fXZ
 oDj
 oVZ
-sxn
+fnj
 lMd
 nPi
 yfc
@@ -149292,21 +149200,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
 mIS
-iGq
+lyJ
+oXs
+oXs
 okA
-vKv
-oeh
+oXs
+lyJ
+hxE
 mIS
 kuB
 xiA
 mIS
 mIS
 mIS
-mIS
-sxn
+fnj
 dDJ
 qro
 bPW
@@ -149422,21 +149330,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-saA
-saA
-saA
-saA
-saA
-saA
-saA
-kuB
-xiA
 mIS
-hBO
-hBO
-hBO
-sxn
+iYy
+okA
+okA
+okA
+okA
+saA
+tNg
+mIS
+kuB
+kIp
+wqA
+lCs
+mvj
+fnj
 ltS
 qro
 jLm
@@ -149552,21 +149460,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-saA
+mIS
+qRQ
 trl
 eOM
-guf
-lrn
 tNg
-saA
-kuB
-oSh
+tNg
+tNg
+hgq
 mIS
-hBO
-hBO
-hBO
-sxn
+kuB
+gIU
+mIS
+spV
+lCs
+fnj
 jLm
 qro
 dDJ
@@ -149682,21 +149590,21 @@ hBO
 hBO
 hBO
 hBO
-hBO
-saA
-xNy
-nBd
-ksf
-ksf
-nBd
-kIp
-vSz
+mIS
+mIS
+mIS
+mIS
+mIS
+mIS
+mIS
+mIS
+mIS
+kuB
 xiA
 mIS
-hBO
-hBO
-hBO
-sxn
+mAa
+tJa
+fnj
 sxn
 sxn
 sxn
@@ -149813,20 +149721,20 @@ hBO
 hBO
 hBO
 hBO
-saA
-dqA
-lCs
-mAa
-hBj
-nCE
-nBd
-eps
+tUL
+tUL
+mIS
+iGq
+okA
+iGq
+okA
+azt
+eml
 xiA
 mIS
-hBO
-hBO
-hBO
-hBO
+mIS
+mIS
+mIS
 hBO
 hBO
 hBO
@@ -149943,20 +149851,20 @@ hBO
 hBO
 hBO
 hBO
-saA
-oXs
-lCs
-iGK
-iGK
-czY
-saA
-kuB
-xiA
+tUL
+tUL
 mIS
-avA
-avA
-avA
-avA
+leE
+okA
+iGq
+okA
+mIS
+kuB
+qQi
+uva
+uva
+uva
+mIS
 avA
 avA
 avA
@@ -150073,20 +149981,20 @@ hBO
 hBO
 hBO
 hBO
-saA
 tUL
-jrU
-iGK
-txS
-nCE
-edp
-kuB
-xiA
+tUL
 mIS
-avA
-avA
-avA
-avA
+iGq
+okA
+okA
+oeh
+mIS
+soU
+fXZ
+uva
+uva
+uva
+mIS
 avA
 avA
 avA
@@ -150203,20 +150111,20 @@ hBO
 hBO
 hBO
 hBO
-saA
-prT
-hxE
-soU
-wqA
-wYN
-edp
-kuB
-xiA
+tUL
+tUL
 mIS
-avA
-avA
-avA
-avA
+rET
+okA
+iGq
+okA
+mIS
+mIS
+mIS
+mIS
+mIS
+mIS
+mIS
 avA
 avA
 avA
@@ -150333,16 +150241,16 @@ hBO
 hBO
 hBO
 hBO
-saA
-ycO
-nBd
-mfb
-fnj
-nBd
-edp
-kuB
-oSh
+tUL
+tUL
 mIS
+ekw
+okA
+iGq
+okA
+mIS
+via
+via
 avA
 avA
 avA
@@ -150463,16 +150371,16 @@ hBO
 hBO
 hBO
 hBO
-saA
-fXZ
-gIU
-gIU
-nBd
-nBd
-edp
-kuB
-xiA
+tUL
+tUL
 mIS
+iGq
+okA
+vKv
+oeh
+mIS
+via
+via
 hBO
 avA
 avA
@@ -150593,16 +150501,16 @@ hBO
 hBO
 hBO
 hBO
-saA
-eml
-hgq
-hgq
-hgq
-fZP
-tJa
-kzl
-oVZ
+tUL
+tUL
 mIS
+mIS
+mIS
+mIS
+mIS
+mIS
+via
+via
 hBO
 avA
 avA
@@ -150723,16 +150631,16 @@ hBO
 hBO
 hBO
 hBO
-saA
-saA
-saA
-saA
-saA
-saA
-saA
-mwg
-mIS
-mIS
+tUL
+tUL
+tUL
+tUL
+tUL
+tUL
+tUL
+via
+via
+via
 hBO
 avA
 avA
@@ -150856,13 +150764,13 @@ hBO
 hBO
 hBO
 hBO
-mIS
-spV
-mvj
-mvj
-nQF
-uva
-mIS
+via
+via
+via
+via
+via
+via
+via
 hBO
 avA
 avA
@@ -150986,13 +150894,13 @@ hBO
 hBO
 hBO
 hBO
-mIS
-oxq
-bqX
-bqX
-bqX
-cqx
-mIS
+via
+via
+via
+via
+via
+via
+via
 hBO
 avA
 avA
@@ -151116,13 +151024,13 @@ hBO
 hBO
 hBO
 hBO
-mIS
-iYy
-bqX
-bqX
-bqX
-sOP
-mIS
+via
+via
+via
+via
+via
+via
+via
 hBO
 avA
 avA
@@ -151240,19 +151148,19 @@ hBO
 hBO
 hBO
 hBO
-lyJ
 hBO
 hBO
 hBO
 hBO
 hBO
-mIS
-nne
-nHW
-nHW
-qRQ
+hBO
 via
-mIS
+via
+via
+via
+via
+via
+via
 hBO
 avA
 avA
@@ -151376,13 +151284,13 @@ hBO
 hBO
 hBO
 hBO
-mIS
-mIS
-mIS
-mIS
-mIS
-mIS
-mIS
+via
+via
+via
+via
+via
+via
+via
 hBO
 avA
 avA
@@ -162706,7 +162614,7 @@ wIW
 wIW
 wIW
 akt
-gky
+kyC
 gky
 gky
 xRQ
@@ -163226,7 +163134,7 @@ akt
 akt
 akt
 akt
-kyC
+gky
 ldG
 gky
 gky
@@ -163352,9 +163260,9 @@ hBO
 hBO
 qCQ
 qCQ
-qCQ
-qCQ
-qCQ
+iAR
+ihJ
+clm
 iAR
 iAR
 tzS
@@ -163482,11 +163390,11 @@ hBO
 hBO
 qCQ
 qCQ
-qCQ
-qCQ
-qCQ
-qCQ
-qCQ
+iAR
+ihJ
+ihJ
+ihJ
+kUL
 tzS
 kiM
 kiM
@@ -163612,8 +163520,8 @@ akt
 akt
 akt
 cCQ
-cCQ
-cCQ
+akt
+ikh
 aUh
 aUh
 aUh
@@ -163743,7 +163651,7 @@ ggB
 akt
 akt
 akt
-cCQ
+sEF
 aUh
 cbE
 eyz
@@ -163873,7 +163781,7 @@ ggB
 sEF
 sEF
 akt
-cCQ
+sEF
 aUh
 pFd
 oIz
@@ -164003,7 +163911,7 @@ ggB
 sEF
 sEF
 akt
-cCQ
+sEF
 aUh
 kbb
 kbb
@@ -164133,7 +164041,7 @@ ggB
 sEF
 sEF
 akt
-cCQ
+sEF
 aUh
 kbb
 kbb
@@ -164263,7 +164171,7 @@ ggB
 akt
 akt
 akt
-cCQ
+sEF
 aUh
 kbb
 kbb
@@ -164382,8 +164290,8 @@ lkd
 lkd
 lkd
 lkd
-lkd
-lkd
+nqV
+nqV
 akt
 akt
 akt
@@ -164391,9 +164299,9 @@ akt
 akt
 akt
 akt
-cCQ
-cCQ
-cCQ
+sEF
+sEF
+sEF
 aUh
 aUh
 aUh
@@ -164512,23 +164420,23 @@ lkd
 lkd
 lkd
 lkd
-lkd
-lkd
-cCQ
-cCQ
-dUX
-dUX
-dUX
-dUX
-dUX
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
+nqV
+lMj
+sEF
+sEF
+cQp
+vIl
+vIl
+fWe
+vIl
+sEF
+akt
+sEF
+rtD
+ggB
+ggB
+ggB
+akt
 cCQ
 czL
 czL
@@ -164642,23 +164550,23 @@ lkd
 lkd
 lkd
 lkd
-lkd
-lkd
-lkd
-lkd
-dUX
-dUX
-dUX
-dUX
-dUX
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
-cCQ
+nqV
+lMj
+rsF
+nqV
+pfk
+pfk
+pfk
+pfk
+pfk
+akt
+akt
+sEF
+akt
+akt
+akt
+akt
+akt
 cCQ
 czL
 czL
@@ -164772,19 +164680,19 @@ lkd
 lkd
 lkd
 lkd
-lkd
-lkd
-lkd
-lkd
+nqV
+nqV
+nqV
+nqV
 dUX
 dUX
 dUX
 dUX
 dUX
 cCQ
-cCQ
-cCQ
-cCQ
+akt
+sEF
+akt
 gkq
 gkq
 gkq
@@ -164912,9 +164820,9 @@ dUX
 dUX
 dUX
 huU
-huU
-huU
-huU
+nMD
+jPU
+nMD
 gkq
 gkq
 gkq
@@ -165042,9 +164950,9 @@ dUX
 dUX
 dUX
 huU
-huU
-huU
-huU
+nMD
+con
+nMD
 gkq
 gkq
 gkq
@@ -165054,11 +164962,11 @@ gkq
 cCQ
 cCQ
 cCQ
-uvp
-uvp
-uvp
-uvp
-uvp
+huU
+huU
+huU
+huU
+huU
 qaa
 qaa
 lFl
@@ -165172,9 +165080,9 @@ dUX
 dUX
 dUX
 huU
-huU
-huU
-huU
+nMD
+con
+nMD
 gkq
 gkq
 gkq
@@ -165184,11 +165092,11 @@ gkq
 huU
 huU
 huU
-uvp
-hRg
-kNl
-kNl
-uvp
+huU
+huU
+huU
+huU
+huU
 qaa
 qaa
 lFl
@@ -165302,23 +165210,23 @@ dUX
 dUX
 huU
 huU
+nMD
+vjc
+nMD
+gOU
+gOU
+gOU
+gOU
+gOU
+gOU
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
 huU
-huU
-huU
-gkq
-gkq
-gkq
-gkq
-gkq
-gkq
-huU
-huU
-huU
-pfk
-kNl
-kNl
-kNl
-uvp
 qaa
 qaa
 lFl
@@ -165432,23 +165340,23 @@ lkd
 lkd
 huU
 huU
-huU
-huU
-huU
-gkq
-gkq
-gkq
-gkq
-gkq
-gkq
-huU
-huU
-huU
-uvp
+nMD
 kNl
+con
+hRg
+hRg
+hRg
+hRg
+hRg
+emt
+con
+con
+vjc
+con
+con
 kNl
-kNl
-uvp
+nMD
+huU
 qaa
 qaa
 lFl
@@ -165562,23 +165470,23 @@ lkd
 lkd
 huU
 huU
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
+nMD
+jLF
+nMD
+nMD
+nMD
+nMD
 huU
-huU
-huU
-huU
-huU
-huU
-huU
-huU
-huU
-huU
-huU
-hBO
-uvp
-uvp
-uvp
-uvp
-uvp
 qaa
 qaa
 qaa
@@ -167008,7 +166916,7 @@ dJN
 dJN
 dJN
 dJN
-dJN
+jlH
 dJN
 dJN
 dJN
@@ -178827,9 +178735,9 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
+jLF
+jLF
+jLF
 hBO
 hBO
 hBO
@@ -178957,9 +178865,9 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
+jLF
+wyE
+jLF
 hBO
 hBO
 hBO
@@ -179087,9 +178995,9 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
+jLF
+cis
+jLF
 hBO
 hBO
 hBO
@@ -179214,14 +179122,14 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
-hBO
+jLF
+jLF
+jLF
+jLF
+cis
+jLF
+jLF
+jLF
 hBO
 hBO
 hBO
@@ -179344,14 +179252,14 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-cis
-gOU
-cQp
+jLF
 wyE
-clm
+cis
+cis
+cis
+cis
+wyE
+jLF
 hBO
 hBO
 hBO
@@ -179474,14 +179382,14 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
-iRx
-fWe
-cQp
-vIl
-clm
+jLF
+rWH
+jLF
+jLF
+jLF
+jLF
+jLF
+jLF
 hBO
 hBO
 hBO
@@ -179604,14 +179512,14 @@ hBO
 hBO
 hBO
 hBO
+jLF
+cis
+jLF
 hBO
 hBO
 hBO
-nqV
-iLi
-cQp
-vIl
-clm
+hBO
+hBO
 hBO
 hBO
 hBO
@@ -179734,14 +179642,14 @@ hBO
 hBO
 hBO
 hBO
+jLF
+cis
+jLF
 hBO
 hBO
 hBO
-clm
-qsW
-cQp
-vIl
-clm
+hBO
+hBO
 hBO
 hBO
 hBO
@@ -179864,14 +179772,14 @@ hBO
 hBO
 hBO
 hBO
+jLF
+cis
+jLF
 hBO
 hBO
 hBO
-clm
-emt
-cQp
-moj
-clm
+hBO
+hBO
 hBO
 hBO
 hBO
@@ -179994,9 +179902,9 @@ hBO
 hBO
 hBO
 hBO
-hBO
-hBO
-hBO
+jLF
+vIg
+jLF
 hBO
 hBO
 hBO
@@ -180124,9 +180032,9 @@ uzo
 fkD
 fkD
 fkD
-fkD
-fkD
-fkD
+hIV
+mzO
+hIV
 fkD
 uzo
 uzo
@@ -196356,16 +196264,16 @@ uzo
 uzo
 uzo
 uzo
-uzo
-uzo
-uzo
-uzo
-uzo
-uzo
-uzo
-uzo
-uzo
-uzo
+egH
+egH
+egH
+egH
+egH
+egH
+egH
+egH
+xGq
+egH
 uzo
 uzo
 uzo
@@ -196495,7 +196403,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 uzo
 uzo
 uzo
@@ -196625,7 +196533,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 uzo
 uzo
 uzo
@@ -196755,7 +196663,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 uzo
 uzo
 uzo
@@ -196885,7 +196793,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 gYr
 gYr
 gYr
@@ -197015,7 +196923,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 gYr
 oQJ
 oQJ
@@ -197145,7 +197053,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 gYr
 oQJ
 oQJ
@@ -197275,7 +197183,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 gYr
 oQJ
 oQJ
@@ -197405,7 +197313,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 gYr
 oQJ
 oQJ
@@ -197535,7 +197443,7 @@ uzo
 uzo
 uzo
 uzo
-uzo
+egH
 gYr
 oQJ
 oQJ
@@ -197665,7 +197573,7 @@ uzo
 uzo
 uzo
 rov
-rov
+gof
 rov
 rov
 rov
@@ -197802,12 +197710,12 @@ eNN
 eNN
 eNN
 hWg
+iRx
 bQr
 bQr
 bQr
 bQr
-bQr
-bQr
+iRx
 fwr
 rov
 uzo
@@ -213396,7 +213304,7 @@ bGr
 hUK
 bGr
 luD
-bGr
+jzH
 efH
 vYA
 kgs
