@@ -4,13 +4,7 @@
 
 /obj/machinery/reactor_monitor/general/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/tload = rcontrol.generator1.last_load + rcontrol.generator2.last_load
-	switch(tload)
-		if(0 to 1 MEGAWATTS)
-			tload = "[round(tload / 1000, 0.1)]kW"
-		if(1.1 MEGAWATTS to 1 GIGAWATTS)
-			tload = "[round(tload / 1000000, 0.1)]mW"
-		if(1.1 GIGAWATTS to INFINITY)
-			tload = "[round(tload / 1000000000, 0.1)]gW"
+	tload = watts_to_text(tload)
 
 	var/mload = rcontrol.turbine1.kin_total + rcontrol.turbine2.kin_total
 	mload = watts_to_text(mload)
