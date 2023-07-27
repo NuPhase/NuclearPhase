@@ -78,4 +78,4 @@
 		if(CC.override)
 			break
 
-	animate(client, color = c)
+	animate(client, color = c, 5)
