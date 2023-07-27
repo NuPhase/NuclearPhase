@@ -87,10 +87,10 @@ SUBSYSTEM_DEF(fluids)
 			checked_targets[neighbor] = TRUE
 			flooded_a_neighbor = TRUE
 			current_fluid = current_turf.return_fluid()
-			var/checking_temp = T20C
 			if(current_fluid)
-				checking_temp = current_fluid.temperature
-			neighbor.add_fluid(/decl/material/liquid/water, FLUID_MAX_DEPTH, 0, checking_temp)
+				neighbor.add_fluid(/decl/material/liquid/water, FLUID_MAX_DEPTH, 0, current_fluid.temperature)
+			else
+				neighbor.add_fluid(/decl/material/liquid/water, FLUID_MAX_DEPTH, 0, T20C)
 
 		if(!flooded_a_neighbor)
 			REMOVE_ACTIVE_FLUID_SOURCE(current_turf)
@@ -190,6 +190,7 @@ SUBSYSTEM_DEF(fluids)
 		if(length(candidates))
 			lowest_neighbor = pick(candidates)
 			current_turf.transfer_fluids_to(lowest_neighbor, lowest_neighbor_flow, defer_update = TRUE)
+			lowest_neighbor.temperature = current_fluid.temperature
 			pending_flows[current_fluid] = TRUE
 
 		if(lowest_neighbor_flow >= FLUID_PUSH_THRESHOLD)

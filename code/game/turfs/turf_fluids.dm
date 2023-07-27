@@ -15,7 +15,7 @@
 		F.reagents.remove_any(amount)
 
 /turf/return_fluid()
-	return (locate(/obj/effect/fluid) in contents)
+	return (locate(/obj/effect/fluid) in src)
 
 /turf/proc/make_unflooded(var/force)
 	if(force || flooded)
