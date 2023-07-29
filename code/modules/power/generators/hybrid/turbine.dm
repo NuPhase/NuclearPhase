@@ -39,6 +39,9 @@
 	var/braking = FALSE //emergency brakes
 	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
 
+	var/water_level = 0 //0-1. Condensation inside turbine increases water level
+	var/water_grates_open = FALSE
+
 	var/rotor_integrity = 100
 	var/shaft_integrity = 100
 
@@ -88,6 +91,15 @@
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
 	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
 
+	if(air_all.temperature > 320 && air_all.temperature < 400)
+		if(water_grates_open)
+			water_level += 0.01
+		else
+			water_level += 0.06
+	else if(water_grates_open)
+		water_level -= 0.05
+	water_level = CLAMP01(water_level)
+
 	calculate_vibration(air_all)
 	air2.merge(air_all)
 
@@ -110,9 +122,11 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_efficiency()
 	efficiency = 0.23
+	if(water_grates_open)
+		efficiency -= 0.25
 	efficiency -= vibration * 0.005
 	efficiency += rpm * 0.00025
-	efficiency = Clamp(efficiency, 0.33, initial(efficiency))
+	efficiency = Clamp(efficiency, 0.23, initial(efficiency))
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	var/tvibration = 0
@@ -124,16 +138,19 @@
 		tvibration += 35
 	if(rpm > TURBINE_ABNORMAL_RPM) //я твоя турбина вал шатал
 		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.12
+	tvibration += water_level * 0.7
 	tvibration += total_mass_flow * 0.005
 	vibration = Interpolate(vibration, tvibration, 0.1)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects()
 	switch(vibration)
-		if(26 to 50)
+		if(26 to 51)
 			for(var/mob/living/carbon/human/H in range(world.view, loc))
 				to_chat(H, SPAN_WARNING("All your surroundings vibrate like in an earthquake!"))
 				shake_camera(H, 10, 2)
 			rotor_integrity = max(0, rotor_integrity - 0.1)
+			if(prob(5))
+				playsound(src, 'sound/machines/vibrations.wav', 100, 0)
 		if(51 to INFINITY)
 			for(var/mob/living/carbon/human/H in human_mob_list)
 				if(get_dist(H.loc, loc) < 10)
@@ -144,6 +161,13 @@
 					shake_camera(H, 10, 2)
 			rotor_integrity = max(0, rotor_integrity - 0.5)
 			shaft_integrity = max(0, shaft_integrity - 0.1)
+			if(prob(5))
+				playsound(src, 'sound/machines/vibrations_heavy.wav', 150, 0, 20, zrange = 3)
+			if(prob(3))
+				var/datum/effect/effect/system/smoke_spread/bad/smoke = new /datum/effect/effect/system/smoke_spread/bad()
+				smoke.attach(src)
+				smoke.set_up(10, 0, loc)
+				smoke.start()
 
 /obj/machinery/power/generator/turbine_generator
 	name = "motor"
