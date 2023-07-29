@@ -283,6 +283,16 @@ var/global/savefile/iconCache = new("data/iconCache.sav")
 		return
 	SSchat.queue(target, message, handle_whitespace, trailing_newline)
 
+/client
+	var/list/message_cooldown = list()
+
+/proc/to_chat_cooldown(client/target, message, id, time, var/forced = FALSE)
+	if(!target.message_cooldown.Find(id))
+		forced = TRUE
+
+	if(forced || (target.message_cooldown[id] < world.time) )
+		to_chat(target, message)
+		target.message_cooldown[id] = world.time + time
 
 /datum/chatOutput/proc/swaptolightmode() //Dark mode light mode stuff. Yell at KMC if this breaks! (See darkmode.dm for documentation)
 	owner.force_white_theme()
