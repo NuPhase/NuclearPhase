@@ -51,6 +51,13 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
+"adK" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/reactor)
 "adM" = (
 /obj/structure/mattress/dirty,
 /obj/effect/floor_decal/corner/red{
@@ -1960,6 +1967,10 @@
 /obj/item/crowbar,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/surface)
+"cfN" = (
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter)
 "cgn" = (
 /obj/structure/bed/padded,
 /obj/effect/floor_decal/corner/purple{
@@ -3630,6 +3641,11 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
+"ebu" = (
+/obj/structure/table/steel,
+/obj/item/storage/toolbox/mechanical,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/machinehall)
 "ebz" = (
 /obj/machinery/light{
 	dir = 1
@@ -4631,6 +4647,7 @@
 /area/avalon/shelter/medbay)
 "fbA" = (
 /obj/structure/table/steel,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
 "fbI" = (
@@ -4979,6 +4996,13 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
+"fon" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/reactor)
 "foG" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 5
@@ -8333,13 +8357,6 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
-"iZg" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 4
-	},
-/obj/machinery/drainage_pump,
-/turf/simulated/floor/reinforced,
-/area/avalon/shelter)
 "iZr" = (
 /obj/machinery/door/blast/regular{
 	dir = 8;
@@ -8383,6 +8400,13 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
+"jcN" = (
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter)
 "jeU" = (
 /turf/simulated/open,
 /area/avalon/shelter/science)
@@ -10070,13 +10094,6 @@
 /obj/structure/closet/secure_closet/engineering_chief,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
-"kTg" = (
-/obj/structure/railing/mapped{
-	dir = 8
-	},
-/obj/machinery/drainage_pump,
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/reactor)
 "kTs" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/techfloor,
@@ -13688,6 +13705,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
 "oTM" = (
@@ -14669,6 +14688,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/prison)
+"pYs" = (
+/obj/structure/table/steel,
+/obj/item/scanner/gas,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/machinehall)
 "pYv" = (
 /obj/item/weldingtool/largetank,
 /turf/simulated/floor/plating,
@@ -16800,10 +16824,6 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
-"sAr" = (
-/obj/machinery/drainage_pump,
-/turf/simulated/floor/reinforced,
-/area/avalon/shelter)
 "sAB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop{
@@ -19271,13 +19291,6 @@
 "vqR" = (
 /turf/simulated/floor/plating,
 /area/avalon/shelter/medbay)
-"vrR" = (
-/obj/structure/railing/mapped{
-	dir = 4
-	},
-/obj/machinery/drainage_pump,
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/reactor)
 "vsc" = (
 /obj/effect/floor_decal/corner/grey/mono,
 /obj/structure/cable{
@@ -183191,7 +183204,7 @@ uzo
 uzo
 uzo
 phm
-sAr
+cfN
 rMq
 dJN
 dJN
@@ -183332,7 +183345,7 @@ wyq
 wyq
 kMv
 gwy
-vrR
+fon
 kDg
 pmP
 pmP
@@ -183982,7 +183995,7 @@ wyq
 wyq
 tNN
 ieD
-kTg
+adK
 vbU
 pmP
 pmP
@@ -184101,7 +184114,7 @@ odk
 odk
 odk
 odk
-iZg
+jcN
 rMq
 dJN
 dJN
@@ -201638,9 +201651,9 @@ cLy
 ybC
 rbg
 nUB
+ebu
 adx
-adx
-adx
+pYs
 oTG
 nLI
 uzo
