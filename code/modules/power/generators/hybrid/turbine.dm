@@ -83,14 +83,7 @@
 	air_all.volume = air1.volume + air2.volume
 	pump_passive(air1, air_all, total_mass_flow)
 	var/old_temperature = air_all.temperature
-	air_all.temperature = max(air_all.temperature * volume_ratio ** ADIABATIC_EXPONENT, 360)
-
-	kin_total = get_specific_enthalpy(old_temperature, air1.return_pressure()) * total_mass_flow
-	kin_total *= expansion_ratio
-
-	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
-	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
-
+	air_all.temperature = air_all.temperature * volume_ratio ** ADIABATIC_EXPONENT
 	if(air_all.temperature > 320 && air_all.temperature < 400)
 		if(water_grates_open)
 			water_level += 0.01
@@ -99,6 +92,13 @@
 	else if(water_grates_open)
 		water_level -= 0.05
 	water_level = CLAMP01(water_level)
+	air_all.temperature = max(air_all.temperature, 360)
+
+	kin_total = get_specific_enthalpy(old_temperature, air1.return_pressure()) * total_mass_flow
+	kin_total *= expansion_ratio
+
+	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
+	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
 
 	calculate_vibration(air_all)
 	air2.merge(air_all)
