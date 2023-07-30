@@ -130,6 +130,7 @@
 		/obj/item/hailer,
 		/obj/item/clothing/accessory/storage/vest/black,
 		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/ammo_magazine/pistol,
 		/obj/item/flashlight/maglight
 	)
 
