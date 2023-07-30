@@ -1,6 +1,6 @@
-#define FISSION_RATE 0.001 //General modifier of fission speed
-#define NEUTRON_FLUX_RATE 0.09 //Neutron flux per neutron mole
-#define NEUTRON_MOLE_ENERGY 100000 //J per neutron mole
+#define FISSION_RATE 0.01 //General modifier of fission speed
+#define NEUTRON_FLUX_RATE 0.001 //Neutron flux per neutron mole
+#define NEUTRON_MOLE_ENERGY 1000 //J per neutron mole
 #define RADS_PER_NEUTRON 0.3
 #define REACTOR_POWER_MODIFIER 10 //Currently unused
 #define WATTS_PER_KPA 0.5
@@ -66,20 +66,21 @@
 			use_power_oneoff(field_power_consumption, EQUIP)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fission(datum/gas_mixture/GM)
+	neutrons_absorbed = 0
 	for(var/g in GM.gas)
 		var/decl/material/mat = GET_DECL(g)
-		var/react_amount = GM.gas[g] * FISSION_RATE * neutron_flux + 0.00001
-		neutrons_absorbed = mat.neutron_absorption * GM.gas[g] * max(0.1, neutron_flux)
+		var/react_amount = GM.gas[g] * FISSION_RATE * sqrt(neutron_flux) + 0.00001
+		neutrons_absorbed += mat.neutron_absorption * react_amount
 		if(mat.fission_energy)
-			neutron_moles += mat.neutron_production * react_amount
+			neutron_moles += mat.neutron_production * react_amount * max(0.5, sqrt(neutron_flux))
 			GM.add_thermal_energy(mat.fission_energy * react_amount)
 			GM.adjust_gas(mat.type, react_amount * -1)
 			if(mat.fission_products)
 				for(var/fp in mat.fission_products)
 					GM.adjust_gas(fp, react_amount*mat.fission_products[fp])
-		var/actually_absorbed = min(neutrons_absorbed, neutron_moles)
-		neutron_moles -= actually_absorbed
-		GM.add_thermal_energy(max(0, NEUTRON_MOLE_ENERGY * actually_absorbed))
+	neutrons_absorbed = min(neutrons_absorbed, neutron_moles)
+	neutron_moles -= neutrons_absorbed
+	GM.add_thermal_energy(max(0, NEUTRON_MOLE_ENERGY * neutrons_absorbed))
 	neutron_flux = Interpolate(neutron_flux, Clamp(neutron_moles * NEUTRON_FLUX_RATE, 0.01, 1000), 0.2)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/GM)

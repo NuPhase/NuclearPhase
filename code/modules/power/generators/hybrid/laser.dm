@@ -66,7 +66,7 @@
 /obj/machinery/rlaser/Process()
 	if(nmode == NEUTRON_MODE_BOMBARDMENT)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-		R.neutron_moles += rand(2, 8) //neutron generators are extremely unpredictable and inaccurate
+		R.neutron_moles += rand(50, 200) //neutron generators are extremely unpredictable and inaccurate
 		use_power_oneoff(70000, EQUIP)
 		SSradiation.radiate(src, 90)
 	if(omode == LASER_MODE_IGNITION)

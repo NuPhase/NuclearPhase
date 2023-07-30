@@ -26,8 +26,8 @@
 	)
 	fission_heat = 35000
 	fission_energy = 81080100000
-	neutron_absorption = 250
-	neutron_production = 200
+	neutron_absorption = 950
+	neutron_production = 900
 
 
 /decl/material/solid/metal/neptunium // Np-237.
@@ -103,7 +103,7 @@
 		/decl/material/solid/metal/radium = 0.5,
 		/decl/material/solid/lithium = 0.5
 	)
-	neutron_absorption = 300
+	neutron_absorption = 200
 	neutron_production = 100
 	fission_energy = 4000000000
 
