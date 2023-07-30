@@ -4270,11 +4270,7 @@
 	},
 /obj/machinery/reactor_button/presvalve/tprescontrol{
 	pixel_x = 1;
-	pixel_y = 18
-	},
-/obj/machinery/reactor_button/rswitch/valve/turbinebypass{
-	pixel_y = -3;
-	pixel_x = 1
+	pixel_y = -3
 	},
 /obj/machinery/reactor_button/protected/turbine_braking{
 	pixel_y = 3;
@@ -6685,6 +6681,10 @@
 	pixel_x = 8;
 	pixel_y = -1
 	},
+/obj/machinery/reactor_button/rswitch/turbine_grates{
+	pixel_y = -12;
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "hlu" = (
@@ -8333,6 +8333,13 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
+"iZg" = (
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter)
 "iZr" = (
 /obj/machinery/door/blast/regular{
 	dir = 8;
@@ -10063,6 +10070,13 @@
 /obj/structure/closet/secure_closet/engineering_chief,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/reactormonitoring)
+"kTg" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/reactor)
 "kTs" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/techfloor,
@@ -16786,6 +16800,10 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
+"sAr" = (
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/reinforced,
+/area/avalon/shelter)
 "sAB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop{
@@ -19046,6 +19064,10 @@
 	pixel_x = -7;
 	pixel_y = -4
 	},
+/obj/machinery/reactor_button/rswitch/valve/turbinebypass{
+	pixel_y = 20;
+	pixel_x = 5
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
 "vdH" = (
@@ -19249,6 +19271,13 @@
 "vqR" = (
 /turf/simulated/floor/plating,
 /area/avalon/shelter/medbay)
+"vrR" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/reactor)
 "vsc" = (
 /obj/effect/floor_decal/corner/grey/mono,
 /obj/structure/cable{
@@ -164705,7 +164734,7 @@ cCQ
 cCQ
 cCQ
 cCQ
-cCQ
+sEF
 cCQ
 qaa
 qaa
@@ -164835,7 +164864,7 @@ cCQ
 cCQ
 cCQ
 cCQ
-cCQ
+sEF
 cCQ
 qaa
 qaa
@@ -183162,7 +183191,7 @@ uzo
 uzo
 uzo
 phm
-rMq
+sAr
 rMq
 dJN
 dJN
@@ -183303,7 +183332,7 @@ wyq
 wyq
 kMv
 gwy
-kDg
+vrR
 kDg
 pmP
 pmP
@@ -183953,7 +183982,7 @@ wyq
 wyq
 tNN
 ieD
-vbU
+kTg
 vbU
 pmP
 pmP
@@ -184072,7 +184101,7 @@ odk
 odk
 odk
 odk
-uTH
+iZg
 rMq
 dJN
 dJN
