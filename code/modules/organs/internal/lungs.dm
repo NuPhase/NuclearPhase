@@ -273,16 +273,16 @@
 	// Hot air hurts :(
 
 	if(breath.temperature > species.heat_level_1)
-		var/damage = breath.temperature - species.heat_level_1  * 0.02
-		if(damage > 2)
-			owner.apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+		var/damage = (breath.temperature - species.heat_level_1)  * 0.02
+		if(damage > 5)
+			owner.apply_damage(damage*0.1, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 		take_internal_damage(damage, TRUE)
 		owner.fire_alert = 1
 
 	if(breath.temperature < species.cold_level_1)
-		var/damage = species.heat_level_1 - breath.temperature  * 0.01
-		if(damage > 2)
-			owner.apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+		var/damage = (species.heat_level_1 - breath.temperature)  * 0.01
+		if(damage > 5)
+			owner.apply_damage(damage*0.1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 		take_internal_damage(damage, TRUE)
 		owner.fire_alert = 2
 
