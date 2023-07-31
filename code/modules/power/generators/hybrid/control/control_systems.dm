@@ -90,5 +90,10 @@
 			var/turf/sT = get_turf(rcore.superstructure)
 			var/datum/gas_mixture/senvironment = sT.return_air()
 			senvironment.merge(total_mixture.remove_ratio(0.05))
-		spawn(49 SECONDS)
+		spawn(20 SECONDS)
 			QDEL_NULL(SL.purge_alarm)
+
+/obj/machinery/reactor_button/protected/efss_discharge
+	name = "EFSS DISCHARGE"
+	id = "EFSS"
+	cooldown = 5 MINUTES
