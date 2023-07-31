@@ -22,6 +22,7 @@
 	gas_specific_heat = 100
 	molar_mass = 0.002
 	gas_flags = XGM_GAS_FUEL
+	combustion_energy = 1980000
 	burn_product = /decl/material/liquid/water
 	ore_type_value = ORE_EXOTIC
 	ore_data_value = 4
@@ -53,6 +54,7 @@
 	molar_mass = 0.405	// kg/mol
 	gas_overlay_limit = 0.7
 	gas_flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT
+	combustion_energy = 250000
 	gas_symbol_html = "Ex<sub>*</sub>"
 	gas_symbol = "Ex*"
 	taste_mult = 1.5

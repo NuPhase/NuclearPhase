@@ -240,6 +240,7 @@
 	melting_point = 90
 	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
+	combustion_energy = 890000
 	fire_color = "#0044ff"
 	fire_alpha = 140
 
@@ -376,6 +377,7 @@
 	melting_point = 13.9
 	liquid_density = 70.516
 	gas_flags = XGM_GAS_FUEL
+	combustion_energy = 285800
 	burn_product = /decl/material/liquid/water
 	dissolves_into = list(
 		/decl/material/liquid/fuel/hydrazine = 1

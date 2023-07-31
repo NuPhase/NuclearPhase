@@ -19,6 +19,7 @@
 	uid = "solid_lithium"
 	lore_text = "A chemical element, used as antidepressant."
 	flags = MAT_FLAG_FUSION_FUEL | XGM_GAS_FUEL
+	combustion_energy = 2380
 	taste_description = "metal"
 	color = "#808080"
 	value = 0.5
@@ -51,6 +52,7 @@
 	uid = "solid_phosphorus"
 	lore_text = "A chemical element, the backbone of biological energy carriers."
 	flags = XGM_GAS_FUEL
+	combustion_energy = 9910
 	taste_description = "vinegar"
 	color = "#832828"
 	value = 0.5

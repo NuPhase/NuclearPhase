@@ -25,6 +25,7 @@
 	combustion_chamber_fuel_value = 240 MJ
 	fuel_value = 2
 	gas_flags = XGM_GAS_FUEL
+	combustion_energy = 48500
 	burn_product = /decl/material/gas/carbon_monoxide
 
 /decl/material/liquid/biodiesel
@@ -54,4 +55,5 @@
 	combustion_chamber_fuel_value = 210 MJ
 	fuel_value = 1.8
 	gas_flags = XGM_GAS_FUEL
+	combustion_energy = 58600
 	burn_product = /decl/material/gas/carbon_dioxide

@@ -141,6 +141,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	//multiply moles by this to get mL. Divide mL by this to get moles.
 	var/molar_volume
 
+	//J/mol
+	var/combustion_energy = 0
+
 	//kg/m3
 	var/liquid_density = 1000
 	var/solid_density = 1000
