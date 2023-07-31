@@ -49,6 +49,7 @@
 /area/avalon/shelter/engineering_first)
 "adx" = (
 /obj/structure/table/steel,
+/obj/item/crowbar/brace_jack,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "adK" = (
@@ -295,7 +296,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "aro" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/effect/floor_decal/corner/black/mono,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering_first)
@@ -356,7 +359,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/science)
 "auP" = (
-/obj/machinery/door/airlock/double/engineering,
+/obj/machinery/door/airlock/double/engineering{
+	initial_access = list("ACCESS_ENGINE_EQUIP)
+	},
 /obj/effect/floor_decal/corner/black/full,
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -456,7 +461,9 @@
 /area/avalon/shelter/machinehall)
 "azt" = (
 /obj/effect/floor_decal/corner/black/full,
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	initial_access = list("ACCESS_BRIDGE")
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
 "azw" = (
@@ -483,8 +490,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
 "aAu" = (
-/obj/machinery/door/airlock/double/glass/engineering,
+/obj/machinery/door/airlock/double/glass/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/effect/floor_decal/corner/lightgrey/full,
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering_first)
 "aAA" = (
@@ -1745,6 +1755,7 @@
 /area/avalon/shelter/messhall)
 "bTw" = (
 /obj/machinery/door/airlock/external,
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/reinforced,
 /area/avalon/shelter/machinehall)
 "bUT" = (
@@ -1885,7 +1896,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig)
 "bZd" = (
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	initial_access = list("ACCESS_BRIDGE")
+	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 1
 	},
@@ -5332,7 +5345,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/preparation)
 "fMU" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/engineering_first)
 "fOB" = (
@@ -6801,10 +6816,13 @@
 /turf/simulated/wall/titanium,
 /area/avalon/shelter/messhall)
 "hsa" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINE_EQUIP)
+	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/machinehall)
 "hsj" = (
@@ -7299,10 +7317,13 @@
 /turf/exterior/surface,
 /area/surface)
 "hWU" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/engineering)
 "hXK" = (
@@ -8944,7 +8965,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "jDe" = (
-/obj/machinery/door/airlock/double/engineering,
+/obj/machinery/door/airlock/double/engineering{
+	initial_access = list("ACCESS_ENGINE_EQUIP)
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "jDm" = (
@@ -9787,7 +9810,9 @@
 /turf/simulated/open,
 /area/avalon/shelter/engineering)
 "kBc" = (
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	initial_access = list("ACCESS_BRIDGE")
+	},
 /obj/effect/floor_decal/corner/white/border,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
@@ -11332,6 +11357,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
+"mpq" = (
+/obj/effect/floor_decal/corner/black/mono,
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/engineering)
 "mpz" = (
 /obj/machinery/door/airlock/engineering,
 /obj/machinery/atmospherics/pipe/simple/hidden/blue{
@@ -11622,7 +11655,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "mIt" = (
-/obj/machinery/door/airlock/double/glass/command,
+/obj/machinery/door/airlock/double/glass/command{
+	initial_access = list("ACCESS_BRIDGE")
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
 "mIS" = (
@@ -14348,6 +14383,12 @@
 /obj/item/intubation_bag,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/medbay)
+"pEC" = (
+/obj/machinery/door/airlock/command{
+	initial_access = list("ACCESS_BRIDGE")
+	},
+/turf/simulated/floor/tiled/dark,
+/area/avalon/shelter/command)
 "pEE" = (
 /obj/effect/paint_stripe/green,
 /turf/simulated/wall,
@@ -16026,7 +16067,9 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "rxg" = (
-/obj/machinery/door/airlock/double/glass/engineering,
+/obj/machinery/door/airlock/double/glass/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/effect/floor_decal/corner/lightgrey/full,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering_first)
@@ -16381,6 +16424,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering_first)
 "rZk" = (
@@ -17455,7 +17499,10 @@
 /turf/simulated/floor/concrete/road,
 /area/surface)
 "tiI" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/engineering{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/breakerroom)
 "tiS" = (
@@ -20841,7 +20888,8 @@
 /area/avalon/shelter/reactormonitoring)
 "wYN" = (
 /obj/machinery/door/airlock/command{
-	name = "Chief Engineer"
+	name = "Chief Engineer";
+	initial_access = list("ACCESS_BRIDGE")
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/command)
@@ -21218,8 +21266,11 @@
 /turf/simulated/floor/concrete/surface,
 /area/surface)
 "xyE" = (
-/obj/machinery/door/airlock/double/glass/atmos,
+/obj/machinery/door/airlock/double/glass/atmos{
+	initial_access = list("ACCESS_ENGINEERING")
+	},
 /obj/effect/floor_decal/corner/black/mono,
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/engineering)
 "xyJ" = (
@@ -148875,7 +148926,7 @@ lyJ
 nBD
 mIS
 mIS
-mwg
+pEC
 mIS
 bZd
 kBc
@@ -198931,7 +198982,7 @@ oQA
 dba
 fVu
 oVB
-oVB
+mpq
 agb
 agb
 iuK
