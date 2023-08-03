@@ -1310,3 +1310,35 @@ var/global/list/random_useful_
 /obj/random/pottedplant/spawn_choices()
 	return subtypesof(/obj/structure/flora/pottedplant) - blacklisted_plants
 
+/obj/random/maint_plant
+	name = "random maintenance plant"
+	icon = 'icons/obj/structures/plants.dmi'
+	icon_state = "seaweed"
+	spawn_nothing_percentage = 15
+
+/obj/random/maint_plant/spawn_item()
+	if(prob(spawn_nothing_percentage))
+		return
+
+	if(isnull(loc))
+		return
+
+	var/build_path = pickweight(spawn_choices())
+
+	var/start_mature = FALSE
+	if(prob(70))
+		start_mature = TRUE
+	var/newseed = new build_path
+	new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(loc, newseed, start_mature)
+
+/obj/random/maint_plant/spawn_choices()
+	return list(
+		/datum/seed/grass = 3,
+		/datum/seed/weeds = 3,
+		/datum/seed/mushroom/caverncandle = 2,
+		/datum/seed/mushroom/weepingmoon = 2,
+		/datum/seed/mushroom/glowbell = 2,
+		/datum/seed/mushroom/mold = 2,
+		/datum/seed/mushroom = 1,
+		/datum/seed/deterria = 1
+	)

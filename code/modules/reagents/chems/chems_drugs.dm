@@ -238,7 +238,7 @@
 	uid = "chem_opium"
 	var/addictiveness = 10 //addiction gained per unit consumed
 	var/painkill_magnitude = 70
-	var/effective_dose = 3
+	var/effective_dose = 1
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
