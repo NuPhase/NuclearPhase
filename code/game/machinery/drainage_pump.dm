@@ -4,6 +4,8 @@
 	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "siphon:0"
 	use_power = POWER_USE_IDLE
+	density = 1
+	anchored = 1
 	idle_power_usage = 130
 	active_power_usage = 3700
 	var/last_gurgle = 0
@@ -17,9 +19,11 @@
 	if(use_power == POWER_USE_IDLE)
 		use_power = POWER_USE_ACTIVE
 		visible_message("[user] switches on \the [src].")
+		START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	else
 		use_power = POWER_USE_IDLE
 		visible_message("[user] switches off \the [src].")
+		STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 
 /obj/machinery/drainage_pump/Process()
 	if(use_power != POWER_USE_ACTIVE)
