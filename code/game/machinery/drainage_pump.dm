@@ -8,6 +8,19 @@
 	active_power_usage = 3700
 	var/last_gurgle = 0
 
+/obj/machinery/drainage_pump/Initialize()
+	. = ..()
+	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_ALL)
+
+/obj/machinery/drainage_pump/physical_attack_hand(user)
+	. = ..()
+	if(use_power == POWER_USE_IDLE)
+		use_power = POWER_USE_ACTIVE
+		visible_message("[user] switches on \the [src].")
+	else
+		use_power = POWER_USE_IDLE
+		visible_message("[user] switches off \the [src].")
+
 /obj/machinery/drainage_pump/Process()
 	if(use_power != POWER_USE_ACTIVE)
 		return
