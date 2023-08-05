@@ -23,12 +23,12 @@
 			return TRUE
 	return FALSE
 
-/mob/proc/add_client_color(color_type)
+/mob/proc/add_client_color(color_type, var/animate_time = 5, var/animate_easing = SINE_EASING)
 	if(!has_client_color(color_type))
 		var/datum/client_color/CC = new color_type()
 		client_colors |= CC
 		sortTim(client_colors, /proc/cmp_clientcolor_priority)
-		update_client_color()
+		update_client_color(animate_time, animate_easing)
 
 
 /*
@@ -36,7 +36,7 @@
 	color_type - a typepath (subtyped from /datum/client_color)
 	returns true if instance was found, false otherwise
 */
-/mob/proc/remove_client_color(color_type)
+/mob/proc/remove_client_color(color_type, var/animate_time = 5, var/animate_easing = SINE_EASING)
 	if(!ispath(/datum/client_color))
 		return FALSE
 
@@ -48,7 +48,7 @@
 			client_colors -= CC
 			qdel(CC)
 			break
-	update_client_color()
+	update_client_color(animate_time, animate_easing)
 	return result
 
 
@@ -56,11 +56,11 @@
 	Resets the mob's client.color to null, and then sets it to the highest priority
 	client_color datum, if one exists
 */
-/mob/proc/update_client_color()
+/mob/proc/update_client_color(var/animate_time = 5, var/animate_easing = SINE_EASING)
 	if(!client)
 		return
-	client.color = null
 	if(!client_colors.len)
+		client.color = null
 		return
 	var/list/c = list(1,0,0, 0,1,0, 0,0,1) //Star at normal
 	for(var/datum/client_color/CC in client_colors)
@@ -78,4 +78,4 @@
 		if(CC.override)
 			break
 
-	animate(client, color = c, 5, SINE_EASING)
+	animate(client, color = c, animate_time, animate_easing)

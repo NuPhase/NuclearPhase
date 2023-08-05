@@ -116,3 +116,20 @@
 
 /datum/client_color/oversaturated/New()
 	client_color = color_saturation(40)
+
+
+/datum/client_color/sunrise1
+	client_color = list(1.4,0,0, 0,0.7,0, 0,0,0.7)
+	priority = 300
+
+/datum/client_color/sunrise2
+	client_color = list(1.3,0,0, 0,0.3,0, 0,0,0.1)
+	priority = 310
+
+/datum/client_color/sunrise3
+	client_color = list(1.3,0,0, 0,0.5,0, 0,0,0.1)
+	priority = 320
+
+/datum/client_color/sunrise4
+	client_color = list(1.3,0,0, 0,0.6,0, 0,0,0)
+	priority = 330
