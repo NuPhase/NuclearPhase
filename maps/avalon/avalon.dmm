@@ -1725,10 +1725,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/radio/intercom/department/medbay{
-	pixel_y = 26
-	},
 /obj/item/storage/lockbox/vials,
+/obj/machinery/alarm{
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "bSd" = (
@@ -5367,9 +5367,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "fLT" = (
-/obj/abstract/landmark/latejoin/service,
-/turf/simulated/floor/plating,
-/area/avalon)
+/obj/machinery/portable_atmospherics/powered/scrubber,
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/staircase)
 "fLY" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6267,6 +6267,15 @@
 /obj/item/clothing/head/earmuffs,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
+"gOn" = (
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/machinery/alarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/medbay)
 "gOQ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
@@ -7577,6 +7586,9 @@
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/corner/purple{
 	dir = 1
+	},
+/obj/machinery/alarm{
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
@@ -10380,6 +10392,12 @@
 "lhX" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
+"lip" = (
+/obj/machinery/alarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/medbay)
 "ljh" = (
 /obj/structure/bed/sofa/r/black{
 	dir = 8
@@ -14130,7 +14148,9 @@
 /obj/effect/floor_decal/corner/purple/full,
 /obj/item/storage/backpack/dufflebag/med,
 /obj/item/chems/spray/cleaner,
-/obj/structure/sign/poster/shelter_rules/north,
+/obj/machinery/alarm{
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "poY" = (
@@ -17282,6 +17302,13 @@
 /obj/effect/decal/cleanable/ash,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/brig/prison)
+"sQP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/atmos)
 "sQS" = (
 /obj/effect/floor_decal/corner/purple/bordercorner{
 	dir = 4
@@ -21120,6 +21147,9 @@
 /obj/structure/table/steel,
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 9
+	},
+/obj/machinery/alarm{
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
@@ -98166,7 +98196,7 @@ hBO
 hBO
 hBO
 fxj
-fLT
+fxj
 fxj
 fxj
 fxj
@@ -98699,7 +98729,7 @@ jDm
 jDm
 jDm
 cdZ
-vSi
+gOn
 xcV
 sGK
 vOp
@@ -116888,7 +116918,7 @@ dkH
 xNj
 mOE
 cdZ
-jiP
+lip
 uWz
 hLq
 fwW
@@ -147176,7 +147206,7 @@ kbb
 kbb
 kbb
 bCg
-oEq
+fLT
 oEq
 oEq
 ljp
@@ -198908,7 +198938,7 @@ dyO
 dyO
 vZp
 vZp
-fJG
+sQP
 wJz
 tJZ
 gCv
