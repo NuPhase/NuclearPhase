@@ -93,7 +93,7 @@
 /obj/item/projectile/bullet/pistol/rubber //"rubber" bullets
 	name = "rubber bullet"
 	damage_flags = 0
-	damage = 5
+	damage = 10
 	agony = 30
 	embed = 0
 

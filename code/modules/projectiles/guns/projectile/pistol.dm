@@ -78,7 +78,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	weight = 1.5
 	magazine_type = null
-	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic)
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber)
 	ammo_indicator = FALSE
 
 /obj/item/gun/projectile/pistol/military_service/load_ammo(obj/item/A, mob/user)
