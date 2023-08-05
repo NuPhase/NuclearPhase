@@ -109,6 +109,6 @@
 	name = "Service Tunnels"
 	always_visible = TRUE
 
-/decl/spawnpoint/limb/Initialize()
+/decl/spawnpoint/service/Initialize()
 	. = ..()
-	turfs = global.limbjoin_locations
+	turfs = global.servicejoin_locations
