@@ -381,13 +381,7 @@
 		//Body temperature is too hot.
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)	return 1	//godmode
-		var/burn_dam = 0
-		if(bodytemperature < getSpeciesOrSynthTemp(HEAT_LEVEL_2))
-			burn_dam = HEAT_DAMAGE_LEVEL_1
-		else if(bodytemperature < getSpeciesOrSynthTemp(HEAT_LEVEL_3))
-			burn_dam = HEAT_DAMAGE_LEVEL_2
-		else
-			burn_dam = HEAT_DAMAGE_LEVEL_3
+		var/burn_dam = (bodytemperature - species.heat_level_1) * 0.03
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 		fire_alert = max(fire_alert, 2)
 
@@ -395,15 +389,7 @@
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)	return 1	//godmode
 
-		var/burn_dam = 0
-
-		if(bodytemperature > getSpeciesOrSynthTemp(COLD_LEVEL_2))
-			burn_dam = COLD_DAMAGE_LEVEL_1
-		else if(bodytemperature > getSpeciesOrSynthTemp(COLD_LEVEL_3))
-			burn_dam = COLD_DAMAGE_LEVEL_2
-		else
-			burn_dam = COLD_DAMAGE_LEVEL_3
-		//SetStasis(getCryogenicFactor(bodytemperature), STASIS_COLD) //Pseudoscience
+		var/burn_dam = (species.heat_level_1 - bodytemperature) * 0.02
 		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
 		var/obj/item/organ/external/victim = pick(internal_organs)
 		victim.germ_level += burn_dam
@@ -430,8 +416,6 @@
 				continue
 			if(O.damage + (LOW_PRESSURE_DAMAGE) < O.min_broken_damage) //vacuum does not break bones
 				O.take_external_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-		if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-			adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
 		pressure_alert = -2
 		overlay_fullscreen("brute", /obj/screen/fullscreen/brute, 6)
 	vacuum_message_spam_cooldown -= 1
