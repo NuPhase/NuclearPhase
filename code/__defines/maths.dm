@@ -1,6 +1,7 @@
 // Macro functions.
 #define RAND_F(LOW, HIGH) (rand() * (HIGH - LOW) + LOW)
 #define CEILING(x) (-round(-(x)))
+#define NONUNIT_FLOOR(x, y)    (round( (x) / (y)) * (y))
 #define NONUNIT_CEILING(x, y) (-round(-(x) / (y)) * (y))
 #define MULT_BY_RANDOM_COEF(VAR,LO,HI) VAR =  round((VAR * rand(LO * 100, HI * 100))/100, 0.1)
 #define PERCENT(value, max, places) round((value) / (max) * 100, !(places) || 10 ** -(places))
@@ -14,4 +15,3 @@
 // Will filter out extra rotations and negative rotations
 // E.g: 540 becomes 180. -180 becomes 180.
 #define SIMPLIFY_DEGREES(degrees) (MODULUS_FLOAT((degrees), 360))
-
