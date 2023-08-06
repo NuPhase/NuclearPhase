@@ -135,7 +135,7 @@
 	set name = "Start Dressup"
 	set category = "Object"
 	set src in oview(1)
-	if (usr.incapacitated())
+	if(usr.incapacitated() || !occupant)
 		return
 	if(active)
 		return
@@ -177,7 +177,7 @@
 	set name = "Take Suit Off"
 	set category = "Object"
 	set src in oview(1)
-	if (usr.incapacitated())
+	if(usr.incapacitated() || !occupant)
 		return
 	if(active)
 		return
