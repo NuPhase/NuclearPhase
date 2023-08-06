@@ -81,6 +81,9 @@
 	if(atmosphere_uptake)
 		var/turf/simulated/T = get_turf(src)
 		owner.internal_atmosphere.equalize(T.return_air())
+	if(!battery)
+		LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 5)
+		return
 	if(!battery.charge)
 		LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 5)
 		if(status_warning_cooldown == FALSE && prob(5))
@@ -101,7 +104,7 @@
 			spawn(STATUS_MESSAGE_COOLDOWN)
 				status_warning_cooldown = FALSE
 
-	if(!atmosphere_uptake)
+	if(!atmosphere_uptake && oxygen_tank)
 		var/pressure_delta = target_pressure - owner.internal_atmosphere.return_pressure()
 		var/transfer_moles = calculate_transfer_moles(oxygen_tank.air_contents, owner.internal_atmosphere, pressure_delta)
 		power_draw += pump_gas(src, oxygen_tank.air_contents, owner.internal_atmosphere, transfer_moles)
