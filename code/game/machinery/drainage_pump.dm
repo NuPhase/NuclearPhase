@@ -35,7 +35,7 @@
 		icon_state = "siphon:T"
 		return
 	icon_state = "siphon:1"
-	T.remove_fluid(CEILING(fluid_here*0.5))
+	T.remove_fluid(CEILING(fluid_here*0.5 + 5))
 	T.show_bubbles()
 	if(world.time > last_gurgle + 80)
 		last_gurgle = world.time
