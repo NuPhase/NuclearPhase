@@ -1,11 +1,19 @@
 /datum/weather_event/sunrise
 	override_all = TRUE
 
+/datum/weather_event/sunrise/proc/interpolate_temperature(rand_min, rand_max, sleep_time, target)
+	set waitfor = 0
+	while(using_map.exterior_atmosphere.temperature < target)
+		using_map.exterior_atmosphere.temperature += rand(rand_min, rand_max)
+		sleep(sleep_time)
+
 /datum/weather_event/sunrise/start()
 	..()
 	var/obj/abstract/weather_system/weather = using_map.weather_system
 	weather.weather_system.set_state(/decl/state/weather/sunriseone)
 	weather.icon_state = "snowfall_light"
+	using_map.exterior_atmosphere.temperature = 26 //initial flash
+	interpolate_temperature(1, 1.5, 10, 48) //hydrogen melting
 	var/list/nonsurface_mobs = human_mob_list
 	for(var/turf/T in surface_turfs)
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE1, 1)
@@ -28,7 +36,9 @@
 			continue
 		to_chat(H, SPAN_ERPBOLD("You feel strong vibrations emanating from the surface, the deathbringer star is rising once again..."))
 	SSmoods.call_mood_event("sunrise", list("sunrise"), nonsurface_mobs)
+
 	sleep(300)
+	interpolate_temperature(3, 5, 10, 107) //methane melting
 	weather.icon_state = "hail"
 	weather.favorable_wind_speed = 185
 	weather.wind_speed = 185
@@ -40,7 +50,9 @@
 	for(var/turf/exterior/surface/T in surface_turfs)
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE2, 2)
 		T.switch_cracks(FALSE)
+
 	sleep(290)
+	interpolate_temperature(13, 17, 10, 402) //water melting
 	weather.icon_state = "storm"
 	weather.favorable_wind_speed = 330
 	weather.wind_speed = 330
@@ -53,7 +65,7 @@
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 		T.footstep_type = /decl/footsteps/water
 	sleep(240)
-	using_map.exterior_atmosphere.temperature = 500
+	interpolate_temperature(20, 30, 10, 574) //flash
 	weather.icon_state = "ashfall_light"
 	weather.favorable_wind_speed = 380
 	weather.wind_speed = 380
@@ -73,7 +85,9 @@
 		T.update_icon()
 		T.footstep_type = /decl/footsteps/asteroid
 		T.switch_cracks(TRUE)
+
 	sleep(460)
+	interpolate_temperature(2, 5, 10, 613)
 	weather.favorable_wind_speed = 320
 	weather.wind_speed = 320
 	weather.handle_wind()
@@ -85,10 +99,13 @@
 			T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 			if(prob(1))
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/effects/explosionfar.ogg', 200, 1, 50, 1), rand(1, 50))
+
 	sleep(260)
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>Just moments away from a terrifying demise, the repercussion of the dangerous adventure you've embarked on, comes the final realization; your fate is only marginally better from what others shall experience, most will smile right before their instantaneous death in a violent flashover, knowing that their story of suffering has finally come to an end. And so will you?</span>")
-	sleep(220)
+
+	sleep(200)
+	using_map.exterior_atmosphere.temperature = 970
 	weather.favorable_wind_speed = 750
 	weather.wind_speed = 750
 	weather.handle_wind()
@@ -99,11 +116,11 @@
 			H.dust()
 	for(var/turf/T in surface_turfs)
 		T.set_ambient_light(COLOR_HOT_SURFACE, 2)
-	using_map.exterior_atmosphere.temperature = 970
 	weather.weather_system.set_state(/decl/state/weather/ash)
 	for(var/area/surface/A in surface_areas)
 		A.do_ambience = TRUE
 		A.switch_phases(1)
+
 	sleep(100)
 	weather.favorable_wind_speed = 210
 	weather.wind_speed = 210
