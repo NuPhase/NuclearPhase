@@ -382,7 +382,7 @@
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)	return 1	//godmode
 		var/burn_dam = (bodytemperature - species.heat_level_1) * 0.03
-		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
+		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature", armor_pen = 200)
 		fire_alert = max(fire_alert, 2)
 
 	else if(bodytemperature <= getSpeciesOrSynthTemp(COLD_LEVEL_1))
@@ -390,7 +390,7 @@
 		if(status_flags & GODMODE)	return 1	//godmode
 
 		var/burn_dam = (species.heat_level_1 - bodytemperature) * 0.02
-		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
+		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature", armor_pen = 200)
 		var/obj/item/organ/external/victim = pick(internal_organs)
 		victim.germ_level += burn_dam
 		fire_alert = max(fire_alert, 1)
@@ -401,7 +401,7 @@
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
-		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
+		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure", armor_pen = 15)
 		pressure_alert = 2
 	else if(adjusted_pressure >= species.warning_high_pressure)
 		pressure_alert = 1

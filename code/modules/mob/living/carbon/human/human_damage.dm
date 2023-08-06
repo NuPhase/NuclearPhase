@@ -286,7 +286,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	BITSET(hud_updateflag, HEALTH_HUD)
 
 // damage MANY external organs, in random order
-/mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0, var/used_weapon = null)
+/mob/living/carbon/human/take_overall_damage(brute, burn, sharp = 0, edge = 0, used_weapon = null, armor_pen)
 	if(status_flags & GODMODE)	return	//godmode
 	var/list/obj/item/organ/external/parts = get_damageable_organs()
 	if(!parts.len) return
@@ -301,9 +301,9 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 			continue // The code below may affect the children of an organ.
 
 		if(brute_avg)
-			apply_damage(damage = brute_avg, damagetype = BRUTE, damage_flags = dam_flags, used_weapon = used_weapon, silent = TRUE, given_organ = E)
+			apply_damage(damage = brute_avg, damagetype = BRUTE, damage_flags = dam_flags, used_weapon = used_weapon, armor_pen = armor_pen, silent = TRUE, given_organ = E)
 		if(burn_avg)
-			apply_damage(damage = burn_avg, damagetype = BURN, damage_flags = dam_flags, used_weapon = used_weapon, silent = TRUE, given_organ = E)
+			apply_damage(damage = burn_avg, damagetype = BURN, damage_flags = dam_flags, used_weapon = used_weapon, armor_pen = armor_pen, silent = TRUE, given_organ = E)
 
 	updatehealth()
 	BITSET(hud_updateflag, HEALTH_HUD)
