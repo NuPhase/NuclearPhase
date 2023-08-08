@@ -237,7 +237,7 @@
 	overdose = 6
 	uid = "chem_opium"
 	var/addictiveness = 10 //addiction gained per unit consumed
-	var/painkill_magnitude = 70
+	var/painkill_magnitude = 130
 	var/effective_dose = 1
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
@@ -281,7 +281,7 @@
 	name = "tramadol"
 	lore_text = "A linear painkiller."
 	addictiveness = 5
-	painkill_magnitude = 140
+	painkill_magnitude = 190
 	overdose = 7
 	uid = "chem_tramadol"
 
@@ -301,14 +301,14 @@
 	name = "codeine"
 	lore_text = "A precursor to a large variety of opioids"
 	addictiveness = 1
-	painkill_magnitude = 10
+	painkill_magnitude = 40
 	uid = "chem_codeine"
 
 /decl/material/liquid/opium/codeine/desomorphine
 	name = "desomorphine"
 	lore_text = "An addictive painkiller with a very short window of action."
 	effective_dose = 0.5
-	painkill_magnitude = 180
+	painkill_magnitude = 220
 	overdose = 4
 	uid = "chem_desomorphine"
 
@@ -327,7 +327,7 @@
 
 /decl/material/liquid/opium/morphine
 	name = "morphine"
-	painkill_magnitude = 190
+	painkill_magnitude = 290
 	uid = "chem_morphine"
 	effective_dose = 1
 	overdose = 8
@@ -353,7 +353,7 @@
 /decl/material/liquid/opium/morphine/diamorphine
 	name = "diamorphine"
 	lore_text = "A synthetic morphine-derived drug."
-	painkill_magnitude = 210
+	painkill_magnitude = 330
 	uid = "chem_diamorphine"
 
 /decl/material/liquid/opium/morphine/diamorphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
@@ -362,7 +362,7 @@
 /decl/material/liquid/opium/morphine/diamorphine/dirty
 	name = "murky diamorphine"
 	lore_text = "A synthetic morphine-derived drug. Looks unpure."
-	painkill_magnitude = 150
+	painkill_magnitude = 250
 	uid = "chem_diamorphinedirty"
 
 /decl/material/liquid/opium/morphine/diamorphine/dirty/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
