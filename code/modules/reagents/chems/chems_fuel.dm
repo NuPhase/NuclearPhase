@@ -62,7 +62,7 @@
 	toxicity = 8
 	burn_product = /decl/material/liquid/acid/boric
 	gas_flags = XGM_GAS_FUEL
-	combustion_energy = 4284
+	combustion_energy = 428440
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	uid = "pentaborane"
 	glass_name = "fiery death"
@@ -90,7 +90,7 @@
 	heating_products = list(/decl/material/liquid/pentaborane = 0.7, /decl/material/solid/boron = 0.3)
 	heating_point = 470
 	gas_flags = XGM_GAS_FUEL
-	combustion_energy = 3067
+	combustion_energy = 87900
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	uid = "diborane"
 	value = 1.3
