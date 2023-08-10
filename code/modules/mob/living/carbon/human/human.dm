@@ -1373,6 +1373,8 @@
 	refresh_visible_overlays() //Do this exactly once per setup
 	if(!vessel)
 		reset_blood()
+	var/decl/cultural_info/culture = get_cultural_value(TAG_HOMEWORLD) //Installs CERES neuralink into Sirius inhabitants
+	culture.on_spawn(src)
 	max_oxygen_capacity = round(vessel.total_volume * 0.2) + get_skill_value(SKILL_FITNESS) * 80 //healthy athlete spleen oxygen stores
 	oxygen_amount = max_oxygen_capacity
 	//metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_FITNESS) * 0.05 //healthy athlete lower BPM

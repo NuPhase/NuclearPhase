@@ -39,6 +39,9 @@
 			secondary_langs -= additional_langs
 		UNSETEMPTY(secondary_langs)
 
+/decl/cultural_info/proc/on_spawn(mob/M)
+	return
+
 /decl/cultural_info/proc/get_random_name(var/mob/M, var/gender)
 	var/decl/language/_language
 	if(name_language)

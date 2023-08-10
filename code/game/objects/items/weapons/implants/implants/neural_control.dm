@@ -31,6 +31,7 @@
 /obj/item/implant/neural_control/meltdown()
 	if(malfunction == MALFUNCTION_PERMANENT) return
 	var/obj/item/organ/external/head/explodey_head = GET_EXTERNAL_ORGAN(imp_in, BP_HEAD)
+	explosion(get_turf(imp_in), -10, 0, 1, 2)
 	explodey_head.take_external_damage(500, used_weapon = "Electronics meltdown")
 	name = "melted implant"
 	desc = "Charred circuit in melted plastic case. Wonder what that used to be..."

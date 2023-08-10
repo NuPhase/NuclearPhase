@@ -15,7 +15,16 @@
 
 /decl/cultural_info/location/sirius
 	name = "Sirius"
-	description = "The youngest single-planet colony out of all three, the first people born here haven't reached their 50s yet."
+	description = "The youngest single-planet colony out of all three, the first people born here haven't reached their 50s yet. Every citizen of Sirius has a neural feedback implant."
 	capital = "New Tokyo"
 	ruling_body = "United Nations"
 	economic_power = 3
+
+/decl/cultural_info/location/sirius/on_spawn(mob/living/carbon/human/H)
+	var/obj/item/organ/external/head = GET_EXTERNAL_ORGAN(H, BP_HEAD)
+	var/obj/item/implant/neural_link/installed_implant = new
+	installed_implant.imp_in = H
+	installed_implant.implanted = TRUE
+	installed_implant.part = head
+	LAZYADD(head.implants, installed_implant)
+	H.StoreMemory("You've had a CERES neural link implant installed.", /decl/memory_options/system)
