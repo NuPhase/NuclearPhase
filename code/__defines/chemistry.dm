@@ -5,7 +5,7 @@
 #define XENOMORPH_THIRST_FACTOR 0.09 // Closed cycle body
 
 #define SYNTHETIC_HUNGER_FACTOR 0.05 // We're more energy efficient than humans
-#define SYNTHETIC_THIRST_FACTOR 0.4 // Gotta cool down fast
+#define SYNTHETIC_THIRST_FACTOR 0.2 // Gotta cool down fast
 
 #define REM 0.1 // Means 'Reagent Effect Multiplier'. This is how many units of reagent are consumed per tick
 

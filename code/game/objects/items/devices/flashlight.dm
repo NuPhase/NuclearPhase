@@ -157,7 +157,10 @@
 			to_chat(user, "<span class='notice'>\The [H]'s pupils narrow slightly, but are still very dilated.</span>")
 		else
 			to_chat(user, "<span class='notice'>\The [H]'s pupils narrow.</span>")
-
+	else
+		if(vision.damage)
+			to_chat(user, "<span class='warning'>There's visible damage to [H]'s eyes.</span>")
+		to_chat(user, "<span class='warning'>\The [H]'s emotionless eyes do not react to the light at all.</span>")
 	//if someone wants to implement inspecting robot eyes here would be the place to do it.
 
 /obj/item/flashlight/upgraded

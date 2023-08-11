@@ -136,7 +136,7 @@ We have a very powerful computer system that allows our neural network to fully 
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(get_shock() >= species.total_health)
+		if(get_shock() >= species.total_health  && a_intent != I_HURT)
 			if(!stat)
 				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
 				src.visible_message("<B>[src]</B> [species.halloss_message]")
@@ -403,3 +403,106 @@ We have a very powerful computer system that allows our neural network to fully 
 		tally = 0
 
 	return (tally+config.human_delay)
+
+/mob/living/carbon/human/synthetic/handle_environment(datum/gas_mixture/environment)
+
+	SHOULD_CALL_PARENT(FALSE)
+
+	if(!environment || (MUTATION_SPACERES in mutations))
+		return
+
+	//Stuff like water absorbtion happens here.
+	species.handle_environment_special(src)
+
+	//Moved pressure calculations here for use in skip-processing check.
+	var/pressure = environment.return_pressure()
+	var/adjusted_pressure = calculate_affecting_pressure(pressure)
+
+	//Check for contaminants before anything else because we don't want to skip it.
+	for(var/g in environment.gas)
+		var/decl/material/mat = GET_DECL(g)
+		if((mat.gas_flags & XGM_GAS_CONTAMINANT) && environment.gas[g] > mat.gas_overlay_limit + 1)
+			handle_contaminants()
+			break
+
+	if(isspaceturf(src.loc)) //being in a closet will interfere with radiation, may not make sense but we don't model radiation for atoms in general so it will have to do for now.
+		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
+		if(bodytemperature > (0.1 * HUMAN_HEAT_CAPACITY/(HUMAN_EXPOSED_SURFACE_AREA*STEFAN_BOLTZMANN_CONSTANT))**(1/4) + COSMIC_RADIATION_TEMPERATURE)
+
+			//Thermal radiation into space
+			var/heat_gain = get_thermal_radiation(bodytemperature, HUMAN_EXPOSED_SURFACE_AREA, 0.5, SPACE_HEAT_TRANSFER_COEFFICIENT)
+
+			var/temperature_gain = heat_gain/HUMAN_HEAT_CAPACITY
+			bodytemperature += temperature_gain //temperature_gain will often be negative
+
+	var/relative_density = (environment.total_moles/environment.volume) / (MOLES_CELLSTANDARD/CELL_VOLUME)
+	if(relative_density > 0.02) //don't bother if we are in vacuum or near-vacuum
+		var/loc_temp = environment.temperature
+
+		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1 && !failed_last_breath && species.body_temperature)
+			pressure_alert = 0
+			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
+
+		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
+		var/temp_adj = 0
+		if(loc_temp < bodytemperature)			//Place is colder than we are
+			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			if(thermal_protection < 1)
+				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
+		else if (loc_temp > bodytemperature)			//Place is hotter than we are
+			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			if(thermal_protection < 1)
+				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
+
+		//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
+		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
+
+	if(failed_last_breath) //no air cooling :(
+		if(hydration) //gotta watercool
+			adjust_hydration(SYNTHETIC_THIRST_FACTOR * -5)
+		else
+			bodytemperature += 30 //no water cooling :(
+
+	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
+	if(bodytemperature >= getSpeciesOrSynthTemp(HEAT_LEVEL_1))
+		//Body temperature is too hot.
+		fire_alert = max(fire_alert, 1)
+		if(status_flags & GODMODE)	return 1	//godmode
+		var/burn_dam = (bodytemperature - species.heat_level_1) * 0.03
+		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature", armor_pen = 200)
+		fire_alert = max(fire_alert, 2)
+
+	else if(bodytemperature <= getSpeciesOrSynthTemp(COLD_LEVEL_1))
+		fire_alert = max(fire_alert, 1)
+		if(status_flags & GODMODE)	return 1	//godmode
+
+		var/burn_dam = (species.heat_level_1 - bodytemperature) * 0.02
+		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature", armor_pen = 200)
+		var/obj/item/organ/external/victim = pick(internal_organs)
+		victim.germ_level += burn_dam
+		fire_alert = max(fire_alert, 1)
+
+	// Account for massive pressure differences.  Done by Polymorph
+	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
+	if(status_flags & GODMODE)	return 1	//godmode
+
+	if(adjusted_pressure >= species.hazard_high_pressure)
+		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
+		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure", armor_pen = 15)
+		pressure_alert = 2
+	else if(adjusted_pressure >= species.warning_high_pressure)
+		pressure_alert = 1
+	else if(adjusted_pressure >= species.warning_low_pressure)
+		pressure_alert = 0
+	else if(adjusted_pressure >= species.hazard_low_pressure)
+		pressure_alert = -1
+	else
+		var/list/obj/item/organ/external/parts = get_damageable_organs()
+		for(var/obj/item/organ/external/O in parts)
+			if(QDELETED(O) || !(O.owner == src))
+				continue
+			if(O.damage + (LOW_PRESSURE_DAMAGE) < O.min_broken_damage) //vacuum does not break bones
+				O.take_external_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+		pressure_alert = -2
+		overlay_fullscreen("brute", /obj/screen/fullscreen/brute, 6)
+	return

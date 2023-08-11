@@ -1,7 +1,7 @@
 /decl/species/human/synth
 	name = SPECIES_SYNTH
 	primitive_form = SPECIES_HUMAN
-	spawn_flags = SPECIES_IS_RESTRICTED
+	spawn_flags = SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE_NORMAL | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR | SPECIES_FLAG_NO_SCAN | SPECIES_FLAG_NO_POISON
 	exertion_reagent_path = /decl/material/liquid/water //watercooled
 
