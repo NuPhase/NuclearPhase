@@ -140,6 +140,7 @@
 /obj/structure/closet/hevacs/WillContain()
 	return list(
 		/obj/item/clothing/under/hevacs,
+		/obj/item/clothing/head/hevacs,
 		/obj/item/clothing/mask/breath/hevacs,
 		/obj/item/clothing/gloves/hevacs,
 		/obj/item/clothing/shoes/hevacs,

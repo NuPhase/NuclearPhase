@@ -1,7 +1,7 @@
 /obj/item/clothing/under/hevacs
 	name = "HevACS undersuit"
-	desc = "It's a tight-fitting undersuit consisting of layers of airtight fabric."
-	icon = 'icons/clothing/under/jumpsuits/jumpsuit_robotics.dmi'
+	desc = "It's a tight-fitting undersuit consisting of layers of airtight fabric and thermal insulation."
+	icon = 'icons/clothing/under/jumpsuits/hevacs.dmi'
 	min_cold_protection_temperature = 170
 	max_heat_protection_temperature = 410
 	armor = list(
@@ -9,11 +9,31 @@
 		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_MINOR,
 		bio = ARMOR_BIO_STRONG,
+		rad = ARMOR_RAD_SMALL
 	)
 
 /obj/item/clothing/under/hevacs/Initialize()
 	. = ..()
 	LAZYSET(slowdown_per_slot, slot_wear_suit_str, 0.7)
+
+/obj/item/clothing/head/hevacs
+	name = "HevACS helmet"
+	icon = 'icons/clothing/head/hevacs.dmi'
+	desc = "A helmet that provides general thermal and chemical protection."
+	permeability_coefficient = 0.05
+	armor = list(
+		bio = ARMOR_BIO_STRONG,
+		rad = ARMOR_RAD_MINOR
+		)
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCK_ALL_HAIR
+	item_flags = ITEM_FLAG_THICKMATERIAL
+	body_parts_covered = SLOT_HEAD|SLOT_FACE|SLOT_EYES|SLOT_EARS
+	siemens_coefficient = 0.9
+	origin_tech = "{'materials':3, 'engineering':3}"
+	matter = list(
+		/decl/material/solid/plastic = MATTER_AMOUNT_REINFORCEMENT,
+		/decl/material/solid/metal/silver = MATTER_AMOUNT_REINFORCEMENT
+	)
 
 /obj/item/clothing/mask/breath/hevacs
 	name = "HevACS mask"
@@ -40,6 +60,7 @@
 		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_MINOR,
 		bio = ARMOR_BIO_RESISTANT,
+		rad = ARMOR_RAD_SMALL
 	)
 
 /obj/item/clothing/gloves/hevacs
@@ -61,20 +82,22 @@
 		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_MINOR,
 		bio = ARMOR_BIO_RESISTANT,
+		rad = ARMOR_RAD_SMALL
 	)
 
 /obj/item/clothing/shoes/hevacs
 	name = "HevACS boots"
 	desc = "Tall boots with several layers of protective material."
-	icon = 'icons/clothing/feet/boots.dmi'
-	material = /decl/material/solid
-	applies_material_colour = TRUE
+	icon = 'icons/clothing/feet/hevacs.dmi'
+	material = /decl/material/solid/plastic
+	applies_material_colour = FALSE
 	force = 3
 	armor = list(
 		melee = ARMOR_MELEE_MINOR,
 		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_MINOR,
 		bio = ARMOR_BIO_RESISTANT,
+		rad = ARMOR_RAD_SMALL
 	)
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
