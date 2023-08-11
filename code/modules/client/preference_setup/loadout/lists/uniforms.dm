@@ -6,9 +6,14 @@
 	category = /decl/loadout_category/uniform
 
 /decl/loadout_option/uniform/jumpsuit
-	name = "jumpsuit, colour select"
+	name = "cotton jumpsuit, colour select"
 	path = /obj/item/clothing/under/color
 	flags = GEAR_HAS_COLOR_SELECTION
+
+/decl/loadout_option/uniform/graphene_jumpsuit
+	name = "graphene jumpsuit"
+	path = /obj/item/clothing/under/graphene
+	cost = 25
 
 /decl/loadout_option/uniform/shortjumpskirt
 	name = "short jumpskirt, colour select"
