@@ -758,18 +758,18 @@
 
 		if(nutrition_icon)
 			switch(nutrition)
-				if(450 to INFINITY)				nutrition_icon.icon_state = "nutrition0"
-				if(350 to 450)					nutrition_icon.icon_state = "nutrition1"
-				if(250 to 350)					nutrition_icon.icon_state = "nutrition2"
-				if(150 to 250)					nutrition_icon.icon_state = "nutrition3"
+				if(300 to INFINITY)				nutrition_icon.icon_state = "nutrition0"
+				if(250 to 300)					nutrition_icon.icon_state = "nutrition1"
+				if(200 to 250)					nutrition_icon.icon_state = "nutrition2"
+				if(150 to 200)					nutrition_icon.icon_state = "nutrition3"
 				else							nutrition_icon.icon_state = "nutrition4"
 
 		if(hydration_icon)
 			switch(hydration)
-				if(450 to INFINITY)				hydration_icon.icon_state = "hydration0"
-				if(350 to 450)					hydration_icon.icon_state = "hydration1"
-				if(250 to 350)					hydration_icon.icon_state = "hydration2"
-				if(150 to 250)					hydration_icon.icon_state = "hydration3"
+				if(300 to INFINITY)				hydration_icon.icon_state = "hydration0"
+				if(200 to 300)					hydration_icon.icon_state = "hydration1"
+				if(150 to 200)					hydration_icon.icon_state = "hydration2"
+				if(100 to 150)					hydration_icon.icon_state = "hydration3"
 				else							hydration_icon.icon_state = "hydration4"
 
 		if(isSynthetic())
