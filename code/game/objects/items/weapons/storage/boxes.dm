@@ -367,7 +367,7 @@
 	icon_state = "syringe"
 	w_class = ITEM_SIZE_SMALL
 
-	startswith = list(/obj/item/stack/medical/bruise_pack = 1, /obj/item/stack/medical/wound_filler = 1, /obj/item/stack/medical/splint = 1, /obj/item/chems/pill/painkillers = 1)
+	startswith = list(/obj/item/stack/medical/bruise_pack = 2, /obj/item/stack/medical/wound_filler = 1, /obj/item/stack/medical/splint = 1, /obj/item/chems/pill/painkillers = 3)
 
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
