@@ -19,7 +19,7 @@ var/global/list/skills = list()
 		"Master"      = "Professional Description"
 	)
 
-/decl/hierarchy/skill/proc/get_cost(var/level)
+/decl/hierarchy/skill/proc/get_cost(var/level, datum/preferences/pref)
 	switch(level)
 		if(SKILL_BASIC, SKILL_ADEPT)
 			return difficulty
@@ -134,6 +134,28 @@ var/global/list/skills = list()
 		"Master"      = "You are like a monkey."
 	)
 
+/decl/hierarchy/skill/health/agility/get_cost(level, datum/preferences/pref)
+	var/skill_cost_modifier = 1
+	switch(pref.get_character_age())
+		if(1 to 20)
+			skill_cost_modifier = 0.75
+		if(20 to 30)
+			skill_cost_modifier = 1
+		if(30 to 50)
+			skill_cost_modifier = 1.25
+		if(50 to INFINITY)
+			skill_cost_modifier = 1.5
+
+	switch(level)
+		if(SKILL_BASIC)
+			return difficulty*skill_cost_modifier
+		if(SKILL_ADEPT, SKILL_EXPERT)
+			return 2*difficulty*skill_cost_modifier
+		if(SKILL_PROF)
+			return 4*difficulty*skill_cost_modifier
+		else
+			return 0
+
 /decl/hierarchy/skill/health/strength
 	name = "Strength"
 	uid = "skill_strength"
@@ -145,6 +167,17 @@ var/global/list/skills = list()
 		"Experienced" = "Your strength is well above the strength of a normal human.",
 		"Master"      = "Your strength is unmatched."
 	)
+
+/decl/hierarchy/skill/health/strength/get_cost(level)
+	switch(level)
+		if(SKILL_BASIC)
+			return difficulty
+		if(SKILL_ADEPT, SKILL_EXPERT)
+			return 2*difficulty
+		if(SKILL_PROF)
+			return 4*difficulty
+		else
+			return 0
 
 /decl/hierarchy/skill/health/fitness
 	name = "Fitness"
@@ -158,9 +191,31 @@ var/global/list/skills = list()
 		"Master"      = "You are the healthiest human in the world."
 	)
 
+/decl/hierarchy/skill/health/fitness/get_cost(level, datum/preferences/pref)
+	var/skill_cost_modifier = 1
+	switch(pref.get_character_age())
+		if(1 to 22)
+			skill_cost_modifier = 0.75
+		if(22 to 30)
+			skill_cost_modifier = 1
+		if(30 to 50)
+			skill_cost_modifier = 1.25
+		if(50 to INFINITY)
+			skill_cost_modifier = 1.5
+
+	switch(level)
+		if(SKILL_BASIC)
+			return difficulty*skill_cost_modifier
+		if(SKILL_ADEPT, SKILL_EXPERT)
+			return 2*difficulty*skill_cost_modifier
+		if(SKILL_PROF)
+			return 4*difficulty*skill_cost_modifier
+		else
+			return 0
+
 // Category: General
 /decl/hierarchy/skill/general/eva
-	name = "Extra-vehicular activity"
+	name = "Extra-Vehicular Activity"
 	uid =  "skill_eva"
 	desc = "This skill describes your skill and knowledge of space-suits and working in vacuum."
 	levels = list(
@@ -177,14 +232,16 @@ var/global/list/skills = list()
 	desc = "Allows you to operate exosuits well."
 	levels = list(
 		"Untrained"   = "You are unfamiliar with exosuit controls, and if you attempt to use them you are liable to make mistakes.",
-		"Trained"     = "You are proficient in exosuit operation and safety, and can use them without penalties."
+		"Basic"		  = "You probably watched a few documentaries about powered exosuits, but you didn't have any practical experience.",
+		"Trained"     = "You had minor experience in using exosuits in specific work settings and were trained for it.",
+		"Experienced" = "You are very proficient in exosuit operation. You probably walked where no human has steeped foot before."
 	)
 	prerequisites = list(SKILL_EVA = SKILL_ADEPT)
 	default_max = SKILL_BASIC
 	difficulty = SKILL_AVERAGE
 
 /decl/hierarchy/skill/general/pilot
-	name = "Piloting"
+	name = "Spacecraft Operation"
 	uid =  "skill_pilot"
 	desc = "Describes your experience and understanding of piloting spacecraft, from small and short-range pods to corvette sized vessels."
 	levels = list(
@@ -198,7 +255,7 @@ var/global/list/skills = list()
 	default_max = SKILL_ADEPT
 
 /decl/hierarchy/skill/general/computer
-	name = "Information Technology"
+	name = "IT&Hacking"
 	uid =  "skill_computer"
 	desc = "Describes your understanding of computers, software and communication. Not a requirement for using computers, but definitely helps. Used in telecommunications and programming of computers and AIs."
 	levels = list(
@@ -332,7 +389,7 @@ var/global/list/skills = list()
 	)
 
 /decl/hierarchy/skill/engineering/atmos
-	name = "Atmospherics"
+	name = "Fluid Dynamics"
 	uid =  "skill_atmos"
 	desc = "Describes your knowledge of piping, air distribution and gas dynamics."
 	levels = list(
@@ -344,7 +401,7 @@ var/global/list/skills = list()
 	)
 
 /decl/hierarchy/skill/engineering/engines
-	name = "Engines"
+	name = "Power Generation"
 	uid =  "skill_engines"
 	desc = "Describes your knowledge of the various engine types common on space stations, such as the PACMAN, singularity, supermatter or RUST engine."
 	levels = list(
@@ -359,7 +416,7 @@ var/global/list/skills = list()
 // Category: Research
 
 /decl/hierarchy/skill/research/devices
-	name = "Complex Devices"
+	name = "Complex Machinery&Devices"
 	uid =  "skill_devices"
 	desc = "Describes the ability to assemble complex devices, such as computers, circuits, printers, robots or gas tank assemblies (bombs). Note that if a device requires electronics or programming, those skills are also required in addition to this skill."
 	levels = list(
@@ -384,7 +441,7 @@ var/global/list/skills = list()
 
 // Category: Medical
 /decl/hierarchy/skill/medical/medical
-	name = "Medicine"
+	name = "General Medicine"
 	uid =  "skill_medical"
 	desc = "Covers an understanding of the human body and medicine. At a low level, this skill gives a basic understanding of applying common types of medicine, and a rough understanding of medical devices like the health analyzer. At a high level, this skill grants exact knowledge of all the medicine available on the installation, as well as the ability to use complex medical devices like the body scanner or mass spectrometer."
 	levels = list(
@@ -408,7 +465,7 @@ var/global/list/skills = list()
 	)
 
 /decl/hierarchy/skill/medical/chemistry
-	name = "Chemistry"
+	name = "Chemistry&Pharmacology"
 	uid =  "skill_chemistry"
 	desc = "Experience with mixing chemicals, and an understanding of what the effect will be. This doesn't cover an understanding of the effect of chemicals on the human body, as such the medical skill is also required for medical chemists."
 	levels = list(

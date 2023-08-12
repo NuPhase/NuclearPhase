@@ -43,7 +43,7 @@
 	var/min = get_min_skill(job, S)
 	. = 0
 	for(var/i=min+1, i <= level, i++)
-		. += S.get_cost(i)
+		. += S.get_cost(i, src)
 
 /datum/preferences/proc/get_max_affordable(datum/job/job, decl/hierarchy/skill/S)
 	var/current_level = get_min_skill(job, S)
@@ -54,9 +54,9 @@
 	var/budget = points_by_job[job]
 	. = max
 	for(var/i=current_level+1, i <= max, i++)
-		if(budget - S.get_cost(i) < 0)
+		if(budget - S.get_cost(i, src) < 0)
 			return i-1
-		budget -= S.get_cost(i)
+		budget -= S.get_cost(i, src)
 
 //These procs convert to/from static save-data formats.
 /datum/category_item/player_setup_item/occupation/proc/load_skills()
@@ -214,7 +214,7 @@
 	return JOINTEXT(dat)
 
 /datum/category_item/player_setup_item/occupation/proc/open_skill_setup(mob/user, datum/job/job)
-	panel = new(user, "skill-selection", "Skill Selection: [job.title]", 770, 850, src)
+	panel = new(user, "skill-selection", "Skill Selection: [job.title]", 770, 900, src)
 	panel.set_content(generate_skill_content(job))
 	panel.open()
 
@@ -224,7 +224,7 @@
 	if(effective_level <= 0 || effective_level > length(skill.levels))
 		return "<th></th>"
 	var/level_name = skill.levels[effective_level]
-	var/cost = skill.get_cost(effective_level)
+	var/cost = skill.get_cost(effective_level, pref)
 	var/button_label = "[level_name] ([cost])"
 	if(effective_level < min)
 		return "<th><span class='Unavailable'>[button_label]</span></th>"
