@@ -43,6 +43,7 @@
 /obj/machinery/atmospherics/binary/pump/adv/on/Initialize()
 	. = ..()
 	mode = REACTOR_PUMP_MODE_IDLE
+	target_rpm = REACTOR_PUMP_RPM_SAFE
 	rpm = REACTOR_PUMP_RPM_SAFE
 	use_power = POWER_USE_IDLE
 	soundloop = new(list(src), TRUE)

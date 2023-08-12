@@ -25,6 +25,46 @@
 
 var/list/global/reactor_ports = list()
 
+/obj/machinery/atmospherics/unary/reactor_exchanger
+	icon = 'icons/obj/atmospherics/components/unary/connector.dmi'
+	icon_state = "map_connector"
+
+	name = "reactor port"
+
+	dir = SOUTH
+	initialize_directions = SOUTH
+
+	use_power = POWER_USE_OFF
+	interact_offline = TRUE
+
+	uncreated_component_parts = null
+	frame_type = /obj/item/pipe
+	construct_state = /decl/machine_construction/pipe
+
+	level = 1
+
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
+	build_icon_state = "connector"
+
+	pipe_class = PIPE_CLASS_UNARY
+	var/target_temperature = 4300
+
+/obj/machinery/atmospherics/unary/reactor_exchanger/Initialize()
+	. = ..()
+	air_contents.volume = 80000
+
+/obj/machinery/atmospherics/unary/reactor_exchanger/Process()
+	. = ..()
+	var/obj/machinery/power/hybrid_reactor/core = reactor_components["core"]
+	var/turf/A = get_turf(core)
+	var/datum/gas_mixture/coregas = A.return_air()
+	if(coregas.temperature > target_temperature) //we consoom
+		var/temperature_delta = target_temperature - air_contents.temperature
+		var/required_energy = air_contents.heat_capacity() * temperature_delta
+		coregas.add_thermal_energy(required_energy * -1)
+		air_contents.add_thermal_energy(required_energy)
+
+
 /obj/machinery/atmospherics/unary/reactor_connector
 	icon = 'icons/obj/atmospherics/components/unary/connector.dmi'
 	icon_state = "map_connector"
@@ -34,7 +74,6 @@ var/list/global/reactor_ports = list()
 	dir = SOUTH
 	initialize_directions = SOUTH
 
-	var/obj/machinery/portable_atmospherics/connected_device
 	use_power = POWER_USE_OFF
 	interact_offline = TRUE
 
