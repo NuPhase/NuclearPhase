@@ -118,8 +118,8 @@
 				to_chat(user, "<span class='warning'>\The [H] is missing [G.his] [initial(vision.name)]!</span>")
 				return
 
-			user.visible_message("<span class='notice'>\The [user] directs [src] into [M]'s [vision.name].</span>", \
-								 "<span class='notice'>You direct [src] into [M]'s [vision.name].</span>")
+			user.visible_message("<span class='notice'>\The [user] directs [src] into [M]'s eyes.</span>", \
+								 "<span class='notice'>You direct [src] into [M]'s eyes.</span>")
 
 			inspect_vision(vision, user)
 
@@ -161,7 +161,6 @@
 		if(vision.damage)
 			to_chat(user, "<span class='warning'>There's visible damage to [H]'s eyes.</span>")
 		to_chat(user, "<span class='warning'>\The [H]'s emotionless eyes do not react to the light at all.</span>")
-	//if someone wants to implement inspecting robot eyes here would be the place to do it.
 
 /obj/item/flashlight/upgraded
 	name = "\improper LED flashlight"
