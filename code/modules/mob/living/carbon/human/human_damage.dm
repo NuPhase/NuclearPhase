@@ -394,7 +394,7 @@ This function restores all organs.
 	traumatic_shock -= GET_CHEMICAL_EFFECT(src, CE_PAINKILLER)
 
 	if(stat == UNCONSCIOUS)
-		traumatic_shock *= 0.6
+		traumatic_shock *= 0.1
 	return max(0,traumatic_shock)
 
 //Electrical shock
