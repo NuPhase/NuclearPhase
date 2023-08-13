@@ -7542,7 +7542,8 @@
 "hDr" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/machinery/cooker/grill{
-	pixel_y = 30
+	pixel_y = 30;
+	density = 0
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/messhall)
@@ -8485,12 +8486,11 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/obj/effect/catwalk_plated,
 /obj/machinery/atmospherics/pipe/zpipe/down/supply{
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/open,
+/turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "iEr" = (
 /obj/machinery/light,
@@ -19265,7 +19265,8 @@
 /area/avalon)
 "ttp" = (
 /obj/machinery/atmospherics/binary/cryocooler{
-	dir = 1
+	dir = 1;
+	target_temperature = 86
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/atmos)
@@ -22530,12 +22531,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
-"wQW" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/wall/r_titanium,
-/area/avalon/shelter/expeditionpreparation)
 "wQX" = (
 /obj/machinery/light{
 	dir = 8
@@ -252219,7 +252214,7 @@ bdz
 rjT
 fjy
 mWP
-wQW
+dxE
 dxE
 dxE
 dxE

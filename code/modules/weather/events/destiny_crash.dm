@@ -35,12 +35,15 @@ var/global/obj/abstract/landmark/heighttag/HHH
 	sleep(10 SECONDS)
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, SPAN_ERPBOLD("It looks like it somehow changes course, albeit very slowly... What the hell?"))
+	radio_announce("TO ALL WHO'S NEARBY- w* a** comi** *own!", "UN Destiny")
 	sleep(32 SECONDS)
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, SPAN_ERPBOLD("The plasma that once covered the approaching vessel is now gone, leaving only glowing heat exposure marks that can be clearly seen after its unexpected turn in your direction."))
+	radio_announce("AIRING A*L STATIO*S, WE ARE AT*EMPTING * CONTROL*-ED DESCENT. CLEAR THE AREA IM--**DIATELY!", "UN Destiny")
+	spawn(50)
+		radio_announce("REPEAT, CLEAR *- AREA IMMEDIATE*!", "UN Destiny")
 	//INSERT ATMOSPHERE MANEUVERING SOUNDS
-	//INSERT DIRECT RADIO COMMS TO BUNKER MESSAGING SYSTEM
-	sleep(9 SECONDS)
+	sleep(10 SECONDS)
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>In what seems to be a controlled descent, the giant space faring vessel is coming down almost directly at the vast even ground where you stand. It's piloted, there are people on it! You are saved!</span>")
 	//INSERT SUBTLE ATMOSPHERE GLOW
@@ -48,6 +51,7 @@ var/global/obj/abstract/landmark/heighttag/HHH
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>The sky roars as a gigantic ship with glowing-red hull falls through the clouds right above you, you can notice large colored 'UN Destiny' logos and heat damage all over it. The engines on its underside blaze fire, it's heading for landing!</span>")
 		H.playsound_local(H.loc, 'sound/effects/ignition.ogg', 100, 0)
+	radio_announce("WE SUF-ERED S*V*RE DAMAGE, PREP-*RE RESCUE PERSONNEL.", "UN Destiny")
 	//INSERT PARTICLE EFFECTS HERE
 	sleep(9 SECONDS)
 	for(var/mob/living/carbon/human/H in surface_mobs)
@@ -58,6 +62,17 @@ var/global/obj/abstract/landmark/heighttag/HHH
 		H.playsound_local(H.loc, 'sound/effects/explosionfar.ogg', 50, 0)
 	for(var/area/surface/A in surface_areas)
 		A.do_ambience = TRUE
+
+	var/list/nonsurface_mobs = human_mob_list
+	for(var/mob/living/carbon/human/H in surface_mobs)
+		nonsurface_mobs -= H
+	for(var/mob/living/carbon/human/H in nonsurface_mobs)
+		if(H.job == "Office Clerk")
+			nonsurface_mobs -= H
+			continue
+		to_chat(H, "<span class=bigdanger>The whole shelter shook in place, like something massive exploded nearby!</span>")
+		H.playsound_local(H.loc, 'sound/effects/explosionfar.ogg', 50, 0)
+		shake_camera(H, 10, 2)
 
 	var/datum/map_template/templ = SSmapping.get_template("Destiny surface")
 	templ.load(locate(1, 1, HHH.z))
