@@ -214,7 +214,7 @@
 	return JOINTEXT(dat)
 
 /datum/category_item/player_setup_item/occupation/proc/open_skill_setup(mob/user, datum/job/job)
-	panel = new(user, "skill-selection", "Skill Selection: [job.title]", 770, 900, src)
+	panel = new(user, "skill-selection", "Skill Selection: [job.title]", 800, 900, src)
 	panel.set_content(generate_skill_content(job))
 	panel.open()
 
