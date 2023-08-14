@@ -56,6 +56,7 @@
 					drip(total_blood_lost, get_turf(src))
 		else
 			drip(total_blood_lost)
+	return total_blood_lost
 
 /mob/living/carbon/human/proc/get_bleeding_modifier(obj/item/organ/internal/heart/H)
 	var/cur_modifier = 1

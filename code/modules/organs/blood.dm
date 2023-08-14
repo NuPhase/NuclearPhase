@@ -131,8 +131,6 @@
 	if(!amt)
 		return 0
 
-	amt *= ((src.mob_size/MOB_SIZE_MEDIUM) ** 0.5)
-
 	return vessel.remove_any(amt)
 
 /****************************************************
