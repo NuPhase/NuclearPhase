@@ -1,3 +1,12 @@
+var/global/obj/abstract/landmark/typhos_tag/typhos_alt_tag
+
+/obj/abstract/landmark/typhos_tag
+	name = "height_tag"
+
+/obj/abstract/landmark/typhos_tag/Initialize()
+	. = ..()
+	typhos_alt_tag = src
+
 /datum/map_template/lander
 	name = "Lander enterior"
 	width = 7
@@ -30,7 +39,7 @@
 
 /obj/multitile_vehicle/aerial/lander
 	name = "Cargo Transport System"
-	desc = "Right before you stands a giant, the same one that sent many souls to the stars. The bright 'UN' and 'CTS' logos shine all throughout its hull, which has yet to be ravaged by the elements. Four of its huge engine thrust structures stand tall, towering above you in their glory. It doesn't look space-worthy at all, but that's probably because of the old stigma and untold stories."
+	desc = "Right before you stands a giant, the same one that sent many souls to the stars. Bright 'UN' and 'CTS' logos shine all throughout its hull, which has yet to be ravaged by the elements. Four of its huge engine thrust structures stand tall, towering above you in their glory. It doesn't look space-worthy at all, but that's probably because of the old stigma and untold stories."
 	icon = 'icons/obj/vehicle/cts.dmi'
 	icon_state = "undamaged"
 	uid = "CTS"
@@ -43,6 +52,9 @@
 	var/has_updated_navigation = FALSE
 	var/has_thrust_vanes = FALSE
 	var/has_shielding = FALSE
+
+	var/orbiting = FALSE
+	var/orbit_altitude = 0
 
 	var/datum/composite_sound/cts/soundloop
 	var/datum/composite_sound/cts_interior/soundloop_interior
@@ -76,7 +88,7 @@
 	QDEL_NULL(soundloop_interior)
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/liftoff()
-	set name = "Takeoff"
+	set name = "Start Propulsion"
 	set category = "CTS Control"
 	set src in view(0)
 	if(!vehicle.active)
@@ -84,7 +96,7 @@
 		cur_vehicle.liftoff()
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/land()
-	set name = "Land"
+	set name = "Stop Propulsion"
 	set category = "CTS Control"
 	set src in view(0)
 	if(vehicle.active)
@@ -95,13 +107,70 @@
 	set name = "Toggle Methane Injection"
 	set category = "CTS Control"
 	set src in view(0)
+	var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
+	if(cur_vehicle.filled_tank_volume < 2)
+		to_chat(usr, SPAN_WARNING("LCH2 levels low!"))
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/sonar()
 	set name = "Toggle Sonar"
 	set category = "CTS Control"
 	set src in view(0)
+	to_chat(usr, SPAN_WARNING("The sonar systems do not respond!"))
 
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/window_tint()
 	set name = "Tint Windows"
 	set category = "CTS Control"
 	set src in view(0)
+
+/obj/structure/bed/chair/comfy/vehicle/cts/verb/orbital_ascent()
+	set name = "Ascent to Orbit"
+	set category = "CTS Control"
+	set src in view(0)
+	var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
+	if(cur_vehicle.orbiting)
+		return
+	if(!cur_vehicle.has_updated_navigation)
+		to_chat(usr, SPAN_WARNING("Navigation systems are outdated!"))
+	if(cur_vehicle.filled_tank_volume < 8)
+		to_chat(usr, SPAN_WARNING("Insufficient LCH2 levels!"))
+	input(usr, "Select desired orbit altitude", "Orbital Ascent") as null|num
+
+/obj/structure/bed/chair/comfy/vehicle/cts/verb/ascent_to_altitude()
+	set name = "Ascent to Altitude"
+	set category = "CTS Control"
+	set src in view(0)
+	var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
+	if(cur_vehicle.orbiting)
+		return
+	if(!cur_vehicle.has_updated_navigation)
+		to_chat(usr, SPAN_WARNING("Navigation systems are outdated!"))
+	if(cur_vehicle.filled_tank_volume < 8)
+		to_chat(usr, SPAN_WARNING("Insufficient LCH2 levels!"))
+	var/altitude = input(usr, "Select desired ascent altitude in KM", "Orbital Ascent") as null|num
+	if(altitude != 170)
+		to_chat(usr, SPAN_WARNING("There's nothing of interest there."))
+		return
+	visible_message(SPAN_NOTICE("FNAV states: 'Received ascent request, awaiting confirmation...'."))
+	var/confirmation = alert(usr, "Are you sure you want to perform an ascent to 'Typhos'?", "Ascent and Rendezvous", "Blast it!", "I'm a pussy...")
+	if(confirmation == "I'm a pussy...")
+		return
+	cur_vehicle.acceleration = 0
+	visible_message(SPAN_NOTICE("FNAV states: 'Confirmation received, beginning automatic ascent to: 170KM ASL.'."))
+	cur_vehicle.orbiting = TRUE
+	cur_vehicle.entrypoint.can_use = FALSE
+	sleep(50)
+	cur_vehicle.visible_message(SPAN_DANGER("\The [cur_vehicle] blasts off right in front of you!"))
+	animate(cur_vehicle, alpha = 0, 20, easing = SINE_EASING)
+	spawn(20)
+		QDEL_NULL(cur_vehicle.soundloop)
+	visible_message(SPAN_WARNING("The whole vehicle jolts as it fires up its nuclear engines!"))
+	for(var/mob/living/carbon/human/H in view(9, src))
+		shake_camera(H, 5, 2)
+		if(H != cur_vehicle.controlling && prob(10))
+			H.vomit()
+	sleep(300)
+	visible_message(SPAN_WARNING("The main engines shut down, transitioning into idle mode."))
+	cur_vehicle.acceleration = 0.1
+	cur_vehicle.entrypoint.can_use = TRUE
+	cur_vehicle.forceMove(get_turf(typhos_alt_tag))
+	animate(cur_vehicle, alpha = 255, 20, easing = SINE_EASING)

@@ -15,5 +15,6 @@
 	name = "CTS orbital reference unit"
 	desc = "An unique piece of machinery designed to do orbital reference calculations in real time. A small inscription on its side reads: Precision up to 5mm"
 	icon = 'icons/obj/vehicle/components/cts.dmi'
+	icon_state = "computer"
 	var/is_updated = FALSE
 	w_class = ITEM_SIZE_LARGE

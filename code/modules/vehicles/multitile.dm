@@ -290,10 +290,11 @@ var/global/list/DIR2DEGREES = list(
 
 /obj/effect/interior_entrypoint/vehicle
 	var/obj/multitile_vehicle/vehicle = null
+	var/can_use = TRUE
 
 /obj/effect/interior_entrypoint/vehicle/attack_hand(mob/user)
 	. = ..()
-	if(vehicle)
+	if(vehicle && can_use)
 		user.forceMove(vehicle.loc)
 		if(ishuman(user) && vehicle.active)
 			var/mob/living/carbon/human/H = user
@@ -301,7 +302,7 @@ var/global/list/DIR2DEGREES = list(
 			to_chat(H, SPAN_DANGER("You fall out of the [vehicle]!"))
 
 /obj/effect/interior_entrypoint/vehicle/grab_attack(var/obj/item/grab/G)
-	if(!vehicle)
+	if(!vehicle || !can_use)
 		return
 
 	var/mob/user = G.assailant
