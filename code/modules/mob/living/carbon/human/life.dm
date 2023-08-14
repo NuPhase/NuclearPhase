@@ -883,9 +883,9 @@
 		shock_stage = min(shock_stage, 160)
 		var/recovery = 1
 		if(traumatic_shock < 0.5 * shock_stage) //lower shock faster if pain is gone completely
-			recovery++
+			recovery += 2
 		if(traumatic_shock < 0.25 * shock_stage)
-			recovery++
+			recovery += 5
 		shock_stage = max(shock_stage - recovery, 0)
 		return
 	if(stat) return 0
