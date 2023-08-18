@@ -37,8 +37,10 @@
 	if(!GET_CHEMICAL_EFFECT(owner, CE_ANTITOX))
 		if(prob(33))
 			if(is_broken())
-				owner.adjustToxLoss(0.5)
+				owner.adjustToxLoss(0.2)
 			if(status & ORGAN_DEAD)
-				owner.adjustToxLoss(1)
+				owner.adjustToxLoss(0.3)
+			else
+				owner.adjustToxLoss(-0.1)
 
 

@@ -107,5 +107,5 @@
 /decl/material/solid/potassium/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/volume = REAGENT_VOLUME(holder, type)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	heart.bpm_modifiers[name] = volume * -2
-	heart.cardiac_output_modifiers[name] = 1 - volume * 0.05
+	heart.bpm_modifiers[name] = volume * -3.2
+	heart.cardiac_output_modifiers[name] = 1 - volume * 0.01
