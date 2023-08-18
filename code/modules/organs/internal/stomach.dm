@@ -23,7 +23,7 @@
 /obj/item/organ/internal/stomach/setup_reagents()
 	. = ..()
 	if(!ingested)
-		ingested = new/datum/reagents/metabolism(240, (owner || src), CHEM_INGEST)
+		ingested = new/datum/reagents/metabolism(4000, (owner || src), CHEM_INGEST)
 	if(!ingested.my_atom)
 		ingested.my_atom = src
 
