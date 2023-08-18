@@ -4,9 +4,9 @@
 	icon_state = "battery0"
 	var/obj/item/cell/cell
 	var/charge_channel = ENVIRON  // The channel it attempts to charge from.
-	var/charge_rate = 1           // This is in battery units, per tick.
+	var/charge_rate = 5           // This is in battery units, per tick.
 	var/can_charge = TRUE
-	var/charge_wait_counter = 10  // How many ticks we wait until we start charging after charging becomes an option.
+	var/charge_wait_counter = 3  // How many ticks we wait until we start charging after charging becomes an option.
 	var/last_cell_charge  = 0     // Used for UI stuff.
 	var/seek_alternatives = 5     // How many ticks we wait before seeking other power sources, if we can provide the machine with power. Set to 0 to never do this.
 
