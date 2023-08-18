@@ -125,8 +125,7 @@
 /obj/machinery/power/generator/transformer/switchable/on/large{
 	dir = 1;
 	coef = 20;
-	name = "BUS to SECTOR E";
-	max_cap = 200000000
+	name = "BUS to SECTOR E"
 	},
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/structure/cable/heavy{
@@ -1818,10 +1817,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/storage/lockbox/vials,
 /obj/machinery/alarm{
 	pixel_y = 24
 	},
+/obj/item/storage/fancy/vials,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay)
 "bSd" = (
@@ -6555,8 +6554,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/catwalk_plated/dark,
-/turf/simulated/open,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "gHF" = (
 /obj/structure/closet/crate/secure/biohazard/alt,
@@ -11018,7 +11016,8 @@
 /area/avalon/shelter/reactormonitoring)
 "kYD" = (
 /obj/machinery/power/generator/transformer/large{
-	coef = 0.05
+	coef = 0.05;
+	max_cap = 200000000
 	},
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/structure/cable,
@@ -20844,6 +20843,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/armory)
 "vhJ" = (
@@ -22406,8 +22408,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/catwalk_plated/dark,
-/turf/simulated/open,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
 "wJY" = (
 /obj/effect/paint_stripe/green,
