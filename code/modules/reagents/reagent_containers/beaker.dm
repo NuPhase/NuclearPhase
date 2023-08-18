@@ -135,6 +135,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = @"[5,10,15,30]"
 	material_force_multiplier = 0.1
+	show_reagent_name = FALSE
 
 /obj/item/chems/glass/beaker/vial/throw_impact(atom/hit_atom)
 	. = ..()

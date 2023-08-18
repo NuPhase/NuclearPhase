@@ -171,60 +171,59 @@
 /obj/item/chems/glass/bottle/saline
 	initial_reagents = list(/decl/material/liquid/nanoblood/saline = 60)
 
-/obj/item/chems/glass/bottle/ampoule
+/obj/item/chems/glass/beaker/vial
 	name = "ampoule"
 	desc = "A small ampoule."
-	volume = 15
-	autolabel = FALSE
-	icon = 'icons/obj/items/chem/vial.dmi'
-	center_of_mass = @"{'x':15,'y':8}"
-	w_class = ITEM_SIZE_TINY
+	volume = 30
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = @"[5,10,15,30]"
-	material_force_multiplier = 0.1
+	var/list/initial_reagents 	// reagents that should spawn in the bottle
 
-/obj/item/chems/glass/bottle/ampoule/Initialize()
+/obj/item/chems/glass/beaker/vial/Initialize()
 	. = ..()
+	if(LAZYLEN(initial_reagents))
+		for(var/R in initial_reagents)
+			reagents.add_reagent(R, initial_reagents[R])
 	atom_flags ^= ATOM_FLAG_OPEN_CONTAINER
 	update_icon()
 
-/obj/item/chems/glass/bottle/ampoule/adrenaline
+/obj/item/chems/glass/beaker/vial/adrenaline
 	name = "adrenaline ampoule"
 	initial_reagents = list(/decl/material/liquid/adrenaline = 15)
 
-/obj/item/chems/glass/bottle/ampoule/noradrenaline
+/obj/item/chems/glass/beaker/vial/noradrenaline
 	name = "noradrenaline ampoule"
 	initial_reagents = list(/decl/material/liquid/noradrenaline = 15)
 
-/obj/item/chems/glass/bottle/ampoule/atropine
+/obj/item/chems/glass/beaker/vial/atropine
 	name = "atropine ampoule"
 	initial_reagents = list(/decl/material/liquid/atropine = 15)
 
-/obj/item/chems/glass/bottle/ampoule/ceftriaxone
+/obj/item/chems/glass/beaker/vial/ceftriaxone
 	name = "ceftriaxone ampoule"
 	initial_reagents = list(/decl/material/liquid/antibiotics/ceftriaxone = 15)
 
-/obj/item/chems/glass/bottle/ampoule/morphine
+/obj/item/chems/glass/beaker/vial/morphine
 	name = "morphine ampoule"
 	initial_reagents = list(/decl/material/liquid/opium/morphine = 5)
 	volume = 5
 
-/obj/item/chems/glass/bottle/ampoule/heroin
+/obj/item/chems/glass/beaker/vial/heroin
 	name = "heroin ampoule"
 	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine = 5)
 	volume = 5
 
-/obj/item/chems/glass/bottle/ampoule/heroin/dirty
+/obj/item/chems/glass/beaker/vial/heroin/dirty
 	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine/dirty = 5)
 
-/obj/item/chems/glass/bottle/ampoule/propofol
+/obj/item/chems/glass/beaker/vial/propofol
 	name = "propofol ampoule"
 	initial_reagents = list(/decl/material/liquid/propofol = 15)
 
-/obj/item/chems/glass/bottle/ampoule/heparin
+/obj/item/chems/glass/beaker/vial/heparin
 	name = "heparin ampoule"
 	initial_reagents = list(/decl/material/liquid/heparin = 15)
 
-/obj/item/chems/glass/bottle/ampoule/adenosine
+/obj/item/chems/glass/beaker/vial/adenosine
 	name = "adenosine ampoule"
 	initial_reagents = list(/decl/material/liquid/adenosine = 15)
