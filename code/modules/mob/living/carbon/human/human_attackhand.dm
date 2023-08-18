@@ -248,7 +248,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 	add_mcv = rand(150, 200) * pumping_skill
 
 	if(is_asystole())
-		var/resuscitation_chance = 5 + pumping_skill - (heart.oxygen_deprivation * 0.05)
+		var/resuscitation_chance = 1 + pumping_skill - (heart.oxygen_deprivation * 0.05)
 		if(stat != DEAD && prob(resuscitation_chance))
 			resuscitate()
 
