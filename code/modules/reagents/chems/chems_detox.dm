@@ -71,5 +71,16 @@
 	metabolism = 0.1
 
 /decl/material/liquid/pentenate_calcium_trisodium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
-	. = ..()
 	H.bloodstr.remove_reagent(/decl/material/solid/metal/plutonium, 1)
+	H.radiation -= 1
+
+/decl/material/solid/sodium_bicarbonate
+	name = "sodium bicarbonate"
+	taste_description = "alkaline"
+	color = "#e2e2e2"
+	uid = "sodium_bicarbonate"
+	metabolism = 0.1
+
+/decl/material/solid/sodium_bicarbonate/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/volume = REAGENT_VOLUME(holder, type)
+	H.bloodstr.remove_reagent(/decl/material/solid/potassium, volume * 0.7)

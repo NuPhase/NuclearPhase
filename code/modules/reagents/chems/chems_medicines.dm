@@ -270,4 +270,4 @@
 	name = "electrolytes"
 	lore_text = "A mixture of vital electrolytes used to counter starvation and hyponatremia."
 	uid = "electrolytes"
-	metabolism = 0.1
+	metabolism = 0.01

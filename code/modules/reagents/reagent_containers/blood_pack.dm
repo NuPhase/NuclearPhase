@@ -16,6 +16,12 @@
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 	var/mob/living/carbon/human/attached
+	var/additional_examine_info
+
+/obj/item/chems/ivbag/examine(mob/user)
+	. = ..()
+	if(additional_examine_info)
+		to_chat(SPAN_INFO(additional_examine_info))
 
 /obj/item/chems/ivbag/Destroy()
 	STOP_PROCESSING(SSobj,src)
@@ -112,8 +118,41 @@
 
 /obj/item/chems/ivbag/electrolytes
 	name = "electrolytes infusion pack"
+	additional_examine_info = "95% saline|5% electrolytes."
 	volume = 800
 
 /obj/item/chems/ivbag/electrolytes/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/electrolytes, volume)
+	reagents.add_reagent(/decl/material/liquid/electrolytes, volume * 0.05)
+	reagents.add_reagent(/decl/material/liquid/nanoblood/saline, volume * 0.95)
+
+/obj/item/chems/ivbag/sodium_bicarbonate
+	name = "sodium bicarbonate infusion pack"
+	additional_examine_info = "85% saline|15% sodium_bicarbonate."
+	volume = 800
+
+/obj/item/chems/ivbag/sodium_bicarbonate/Initialize()
+	. = ..()
+	reagents.add_reagent(/decl/material/solid/sodium_bicarbonate, volume * 0.15)
+	reagents.add_reagent(/decl/material/liquid/nanoblood/saline, volume * 0.85)
+
+/obj/item/chems/ivbag/antibiotics
+	name = "topical antibiotics infusion pack"
+	additional_examine_info = "96% saline|4% amicile."
+	volume = 800
+
+/obj/item/chems/ivbag/antibiotics/Initialize()
+	. = ..()
+	reagents.add_reagent(/decl/material/liquid/antibiotics/amicile, volume * 0.04)
+	reagents.add_reagent(/decl/material/liquid/nanoblood/saline, volume * 0.96)
+
+/obj/item/chems/ivbag/emergency_antibiotics
+	name = "emergency antibiotics infusion pack"
+	additional_examine_info = "87% saline|8% amicile|5% ceftriaxone."
+	volume = 800
+
+/obj/item/chems/ivbag/emergency_antibiotics/Initialize()
+	. = ..()
+	reagents.add_reagent(/decl/material/liquid/antibiotics/amicile, volume * 0.08)
+	reagents.add_reagent(/decl/material/liquid/antibiotics/ceftriaxone, volume * 0.04)
+	reagents.add_reagent(/decl/material/liquid/nanoblood/saline, volume * 0.87)
