@@ -204,7 +204,7 @@
 	data["species"] = species.name
 	data["has_oxy"] = species.blood_oxy
 	var/list/temp_chem = list()
-	for(var/R in reagents.reagent_volumes)
+	for(var/R in bloodstr.reagent_volumes)
 		temp_chem[R] = REAGENT_VOLUME(reagents, R)
 	data["trace_chem"] = temp_chem
 	data["dose_chem"] = chem_doses ? chem_doses.Copy() : list()

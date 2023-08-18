@@ -16,21 +16,35 @@
 	text += "<center><i>Biochemical Analysis</i></center><br>"
 	text += "Potassium: [round(0 + chem_data[/decl/material/solid/potassium])] (1-3)<br>"
 	text += "Proteins: [round(rand(9, 11), 0.1)] (5-17)<br>"
+	text += "Blood pH: [round(rand(7.35, 7.45), 0.01)] (7.35-7.45)<br>"
 	return jointext(text, "<br>")
 
 /decl/blood_analysis/blood
-	name = "General Blood Analysis"
+	name = "Blood Type Analysis"
 
 /decl/blood_analysis/blood/return_analysis(var/mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
 	//var/list/chem_data = blood_data["trace_chem"]
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
-	text += "<center><i>General Blood Analysis</i></center><br>"
+	text += "<center><i>Blood Type Analysis</i></center><br>"
 	text += "Blood Type: [blood_data["blood_type"]]<br>"
 	text += "DNA String: [blood_data["blood_DNA"]]<br>"
 	return jointext(text, "<br>")
 
+/decl/blood_analysis/organ
+	name = "Organ Function Analysis"
 
+/decl/blood_analysis/organ/return_analysis(var/mob/living/carbon/human/H, blood_data)
+	var/list/text = ""
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/obj/item/organ/internal/liver/liver = GET_INTERNAL_ORGAN(H, BP_LIVER)
+	var/obj/item/organ/internal/kidneys/kidneys = GET_INTERNAL_ORGAN(H, BP_KIDNEYS)
+	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
+	text += "<center><i>Organ Function Analysis</i></center><br>"
+	text += "Troponin-T: [rand(0, 0.05) + round(heart.damage * 0.3, 0.01)] (0.04<)<br>"
+	text += "Bilirubin: [rand(1.71, 20.5) + round(liver.damage * 0.6, 0.01)] (1.71-20.5)<br>"
+	text += "ACR: [rand(0, 29) + round(kidneys.damage * 1.3, 0.01)] (33<)<br>"
+	return jointext(text, "<br>")
 
 /obj/machinery/blood_analysis
 	name = "blood analyser"
@@ -66,7 +80,11 @@
 		visible_message(SPAN_NOTICE("The blood analyzer finishes running."))
 		running = FALSE
 		var/list/blood_data = inserted_vial.reagents.reagent_data[/decl/material/liquid/separated_blood]
-		new /obj/item/paper(get_turf(src), chosen_analysis.return_analysis(blood_data["donor"], blood_data), "Analysis Results for [blood_data["donor"]]")
+		var/weakref/W = LAZYACCESS(blood_data, "donor")
+		if(!W)
+			return
+		var/mob/living/carbon/human/H = W.resolve()
+		new /obj/item/paper(get_turf(src), chosen_analysis.return_analysis(H, blood_data), "Analysis Results for [H.real_name]")
 		inserted_vial.reagents.remove_any(inserted_vial.reagents.maximum_volume)
 		update_icon()
 
@@ -88,6 +106,8 @@
 	if(!do_after(user, 5, target))
 		return
 	if(!target.powered(EQUIP))
+		return
+	if(!target.inserted_vial.reagents.total_volume)
 		return
 	var/list/possible_analysis_decls = list()
 	for(var/cur_analysis in subtypesof(/decl/blood_analysis))
