@@ -1004,6 +1004,14 @@
 				else
 					var/message = pick("You have no lust now.")
 					to_chat(H, SPAN_ERP(message))
-
+	if(href_list["count_pulse"])
+		var/mob/living/carbon/human/H = usr
+		var/self = (usr == src)
+		to_chat(H, "You must[self ? "" : " both"] remain still until counting is finished.")
+		if(do_mob(usr, src, 60))
+			var/message = "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>"
+			to_chat(usr, message)
+		else
+			to_chat(usr, "<span class='warning'>You failed to check the pulse. Try again.</span>")
 	..()
 	return

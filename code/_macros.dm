@@ -159,6 +159,8 @@
 
 #define SPAN_WARNING(X) "<span class='warning'>[X]</span>"
 
+#define SPAN_DEAD(X) "<span class='deadsay'>[X]</span>"
+
 #define SPAN_STYLE(style, X) "<span style=\"[style]\">[X]</span>"
 
 #define SPAN_DANGER(X) "<span class='danger'>[X]</span>"

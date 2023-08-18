@@ -163,7 +163,7 @@
 	//handcuffs?
 	var/obj/item/cuffs = get_equipped_item(slot_handcuffed_str)
 	if(cuffs)
-		msg += "<span class='warning'>[G.He] [G.is] [html_icon(cuffs)] restrained with \the [cuffs]!</span>\n"
+		msg += SPAN_WARNING("[G.He] [G.is] [html_icon(cuffs)] restrained with \the [cuffs]!\n") + "\n"
 	var/obj/item/organ/internal/lungs/lungs = GET_INTERNAL_ORGAN(src, BP_LUNGS)
 	if(lungs.chest_tube)
 		msg += SPAN_NOTICE("[G.He] [G.has] a [lungs.chest_tube] in their chest.\n")
@@ -182,15 +182,6 @@
 		if(distance < req_distance)
 			msg += "[cmsg]\n"
 
-	if(is_nude() && has_penis())
-		switch(potenzia)
-			if(-INFINITY to 11)
-				msg += SPAN_ERP("[G.His] dancer is small...") + "\n"
-			if(12 to 20)
-				msg += SPAN_CUMZONE("[G.His] dancer is medium.") + "\n"
-			if(21 to INFINITY)
-				msg += SPAN_CUMZONE("[G.His] dancer is large.") + "\n"
-
 	if(!skipface)
 		if((lip_style && lip_style_name))
 			msg += "[G.His] lips are covered with <font color='[lip_style]'>[lip_style_name]</font> lipstick.\n"
@@ -200,16 +191,16 @@
 
 	//buckled
 	if(buckled)
-		msg += "<span class='warning'>[G.He] [G.is] [html_icon(buckled)] buckled to [buckled]!</span>\n"
+		msg += SPAN_WARNING("[G.He] [G.is] [html_icon(buckled)] buckled to [buckled]!") + "\n"
 
 	//Jitters
 	var/jitteriness = GET_STATUS(src, STAT_JITTER)
 	if(jitteriness >= 300)
-		msg += "<span class='warning'><B>[G.He] [G.is] convulsing violently!</B></span>\n"
+		msg += SPAN_WARNING("<B>[G.He] [G.is] convulsing violently!</B>") + "\n"
 	else if(jitteriness >= 200)
-		msg += "<span class='warning'>[G.He] [G.is] extremely jittery.</span>\n"
+		msg += SPAN_WARNING("[G.He] [G.is] extremely jittery.") + "\n"
 	else if(jitteriness >= 100)
-		msg += "<span class='warning'>[G.He] [G.is] twitching ever so slightly.</span>\n"
+		msg += SPAN_WARNING("[G.He] [G.is] twitching ever so slightly.") + "\n"
 
 	//Disfigured face
 	if(!skipface) //Disfigurement only matters for the head currently.
@@ -218,26 +209,26 @@
 			if(E.species) //Check to make sure we have a species
 				msg += E.species.disfigure_msg(src)
 			else //Just in case they lack a species for whatever reason.
-				msg += "<span class='warning'>[G.His] face is horribly mangled!</span>\n"
+				msg += SPAN_WARNING("[G.His] face is horribly mangled!") + "\n"
 
 	//splints
 	for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
 		var/obj/item/organ/external/o = GET_EXTERNAL_ORGAN(src, organ)
 		if(o && o.splinted && o.splinted.loc == o)
-			msg += "<span class='warning'>[G.He] [G.has] \a [o.splinted] on [G.his] [o.name]!</span>\n"
+			msg += SPAN_WARNING("[G.He] [G.has] \a [o.splinted] on [G.his] [o.name]!") + "\n"
 
 	if (src.stat)
-		msg += "<span class='warning'>[G.He] [G.is]n't responding to anything around [G.him] and seems to be unconscious.</span>\n"
+		msg += SPAN_WARNING("[G.He] [G.is]n't responding to anything around [G.him] and seems to be unconscious.") + "\n"
 		if((stat == DEAD || is_asystole() || src.losebreath) && distance <= 3)
-			msg += "<span class='warning'>[G.He] [G.does] not appear to be breathing.</span>\n"
+			msg += SPAN_DANGER("[G.He] [G.does] not appear to be breathing.") + "\n"
 		if(ishuman(user) && !user.incapacitated() && Adjacent(user))
 			spawn(0)
 				user.visible_message("<b>\The [user]</b> checks \the [src]'s pulse.", "You check \the [src]'s pulse.")
 				if(do_after(user, 15, src))
 					if(pulse() == PULSE_NONE)
-						to_chat(user, "<span class='deadsay'>[G.He] [G.has] no pulse.</span>")
+						to_chat(user, SPAN_DANGER("[G.He] [G.has] no pulse!"))
 					else
-						to_chat(user, "<span class='deadsay'>[G.He] [G.has] a pulse!</span>")
+						to_chat(user, SPAN_NOTICE("[G.He] [G.has] a pulse. <a href='?src=\ref[src];count_pulse=1'>\[Count Pulse\]</a>"))
 
 	if(fire_stacks > 0)
 		if(on_fire)
@@ -265,6 +256,15 @@
 		msg += "[G.He] looks a lot younger than you remember.\n"
 	if(became_older)
 		msg += "[G.He] looks a lot older than you remember.\n"
+
+	if(is_nude() && has_penis())
+		switch(potenzia)
+			if(-INFINITY to 11)
+				msg += SPAN_ERP("[G.His] penis is small...") + "\n"
+			if(12 to 20)
+				msg += SPAN_CUMZONE("[G.His] penis is medium.") + "\n"
+			if(21 to INFINITY)
+				msg += SPAN_CUMZONE("[G.His] penis is large.") + "\n"
 
 	var/list/wound_flavor_text = list()
 	var/applying_pressure = ""

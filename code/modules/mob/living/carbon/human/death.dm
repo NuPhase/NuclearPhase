@@ -25,7 +25,7 @@
 	else
 		..()
 
-/mob/living/carbon/human/death(gibbed,deathmessage="seizes up and falls limp...", show_dead_message = "You have died.")
+/mob/living/carbon/human/death(gibbed,deathmessage="no message", show_dead_message = "You have died.")
 
 	if(stat == DEAD) return
 
@@ -45,10 +45,6 @@
 	if(SSticker.mode)
 		SSticker.mode.check_win()
 
-	if(config.show_human_death_message)
-		deathmessage = species.get_death_message(src) || "seizes up and falls limp..."
-	else
-		deathmessage = "no message"
 	. = ..(gibbed, deathmessage, show_dead_message)
 	if(!gibbed)
 		handle_organs()

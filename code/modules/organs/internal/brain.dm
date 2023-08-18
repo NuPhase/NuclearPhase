@@ -32,8 +32,8 @@
 	return 0
 
 /obj/item/organ/internal/brain/oxygen_starve(amount)
-	oxygen_deprivation = Clamp(oxygen_deprivation + amount, 0, 100)
-	if(oxygen_deprivation)
+	. = ..()
+	if(oxygen_deprivation > 10)
 		var/mob/living/carbon/human/H = owner
 		H.send_to_limb()
 

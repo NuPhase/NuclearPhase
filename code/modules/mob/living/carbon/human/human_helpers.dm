@@ -335,3 +335,18 @@
 		if(get_equipped_item(slot) == I)
 			return TRUE
 	return FALSE
+
+/mob/living/carbon/human/proc/ssd_check()
+	return !client && !teleop && !limb_mob
+
+/mob/living/carbon/human/proc/mind_control(var/mob/living/carbon/human/user)
+	to_chat(user, SPAN_NOTICE("[src] stares into your eyes. Command."))
+	to_chat(src, SPAN_ERPBOLD("[user]'s are as vast as the ocean and are akin to galaxies merging together... You gaze deep, unable to comprehend them."))
+	set_status(STAT_SILENCE, 10)
+	set_status(STAT_DRUGGY, 10)
+	set_status(STAT_CONFUSE, 15)
+	set_status(STAT_WEAK, 15)
+	var/command = input(user, "Command.", "Command.") as null|text
+	command = sanitize(command)
+	to_chat(src, "<font size='7' color='red'><b>[command]</b></font>")
+	alert(src, "You have to follow that command. You forget who gave you that command, although you can associate the requested action with said person. This command can(and should) impact the overall behaviour of your character. Example: if your character kills someone because of a command, they will kill with a lot less hesitation in the future.", "Command", "Understood")

@@ -103,7 +103,6 @@ var/global/list/gamemode_cache = list()
 
 	//game_options.txt configs
 
-	var/show_human_death_message = FALSE
 	var/health_threshold_dead = -100
 
 	var/organ_health_multiplier = 0.9
@@ -829,8 +828,6 @@ var/global/list/gamemode_cache = list()
 			value = text2num(value)
 
 			switch(name)
-				if("show_human_death_message")
-					config.show_human_death_message = TRUE
 				if ("max_character_aspects")
 					config.max_character_aspects = text2num(value)
 				if("health_threshold_dead")

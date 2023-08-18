@@ -112,6 +112,7 @@
 	var/old_stat = stat
 	. = ..()
 	if(stat)
+		retrieve_from_limb()
 		update_skin(1)
 	if(client && client.is_afk())
 		if(old_stat == UNCONSCIOUS && stat == CONSCIOUS)

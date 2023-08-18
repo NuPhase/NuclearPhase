@@ -9,11 +9,11 @@
 /mob/living/carbon/human/can_do_maneuver(var/decl/maneuver/maneuver, var/silent = FALSE)
 	. = ..()
 	if(.)
-		if(nutrition <= 20)
+		if(nutrition <= 90)
 			if(!silent)
 				to_chat(src, SPAN_WARNING("You are too hungry to jump around."))
 			return FALSE
-		if(hydration <= 20)
+		if(hydration <= 90)
 			if(!silent)
 				to_chat(src, SPAN_WARNING("You are too thirsty to jump around."))
 			return FALSE
