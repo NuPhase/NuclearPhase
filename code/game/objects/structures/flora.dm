@@ -7,7 +7,7 @@
 	density                = FALSE                                  //Plants usually have no collisions
 	w_class                = ITEM_SIZE_NORMAL                       //Size determines material yield
 	material               = /decl/material/solid/plantmatter       //Generic plantstuff
-	tool_interaction_flags = 0 
+	tool_interaction_flags = 0
 	hitsound               = 'sound/effects/hit_bush.ogg'
 	var/tmp/snd_cut        = 'sound/effects/plants/brush_leaves.ogg' //Sound to play when cutting the plant down
 	var/remains_type       = /obj/effect/decal/cleanable/plant_bits //What does the plant leaves behind in addition to the materials its made out of. (part_type is like this, but it drops instead of materials)
@@ -95,7 +95,27 @@
 
 /obj/structure/flora/tree/pine/init_appearance()
 	icon_state = "pine_[rand(1, 3)]"
-	
+
+/obj/structure/flora/tree/jungle
+	name = "jungle tree"
+	desc = "A large forest tree."
+	icon = 'icons/obj/flora/jungletrees.dmi'
+	icon_state = "tree1"
+	pixel_x = -64
+	anchored = TRUE
+	density = FALSE
+
+/obj/structure/flora/tree/jungle/init_appearance()
+	icon_state = "tree[rand(1, 6)]"
+
+/obj/structure/flora/tree/jungle/small
+	icon = 'icons/obj/flora/jungletreesmall.dmi'
+	pixel_x = -48
+
+/obj/structure/flora/tree/jungle/smaller
+	icon = 'icons/obj/flora/jungletreesmaller.dmi'
+	pixel_x = -32
+
 /obj/structure/flora/tree/pine/xmas
 	name         = "\improper Christmas tree"
 	desc         = "O Christmas tree, O Christmas tree..."

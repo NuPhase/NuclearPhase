@@ -125,6 +125,7 @@
 	reflectiveness = MAT_VALUE_DULL
 	wall_support_value = MAT_VALUE_LIGHT
 	value = 0.8
+	fuel_value = 1.6
 	default_solid_form = /obj/item/stack/material/slab
 	sound_manipulate = 'sound/foley/paperpickup2.ogg'
 	sound_dropped = 'sound/foley/paperpickup1.ogg'

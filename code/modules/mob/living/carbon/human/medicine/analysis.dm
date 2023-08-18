@@ -71,6 +71,7 @@
 		inserted_vial = I
 		user.drop_from_inventory(I, src)
 		visible_message(SPAN_NOTICE("[user] inserts a vial into the blood analyzer."))
+		return
 	. = ..()
 
 /obj/machinery/blood_analysis/proc/start(decl/blood_analysis/chosen_analysis)

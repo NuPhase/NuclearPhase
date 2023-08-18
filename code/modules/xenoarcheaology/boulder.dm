@@ -7,7 +7,7 @@
 	opacity = 1
 	anchored = 1
 	material = /decl/material/solid/stone/sandstone
-	material_alteration = MAT_FLAG_ALTERATION_COLOR | MAT_FLAG_ALTERATION_NAME
+	material_alteration = MAT_FLAG_ALTERATION_NAME
 	var/excavation_level = 0
 	var/datum/artifact_find/artifact_find
 	var/last_act = 0
@@ -15,9 +15,7 @@
 
 /obj/structure/boulder/Initialize(var/ml, var/_mat, var/coloration)
 	. = ..()
-	icon_state = "boulder[rand(1,6)]"
-	if(coloration)
-		color = coloration
+	icon_state = "boulder[rand(1,5)]"
 	excavation_level = rand(5, 50)
 
 /obj/structure/boulder/Destroy()

@@ -29,6 +29,7 @@
 		inserted_vials += I
 		user.drop_from_inventory(I, src)
 		visible_message(SPAN_NOTICE("[user] adds a vial to the centrifuge."))
+		return
 	. = ..()
 
 /obj/machinery/centrifuge/proc/start()

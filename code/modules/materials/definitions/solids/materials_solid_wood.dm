@@ -36,7 +36,7 @@
 	value = 1.5
 	reflectiveness = MAT_VALUE_DULL
 	wall_support_value = MAT_VALUE_NORMAL
-	fuel_value = 0.8
+	fuel_value = 3.2
 	default_solid_form = /obj/item/stack/material/plank
 	sound_manipulate = 'sound/foley/woodpickup1.ogg'
 	sound_dropped = list('sound/foley/wooddrop1.ogg', 'sound/foley/wooddrop2.ogg')
