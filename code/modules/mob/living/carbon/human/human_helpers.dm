@@ -336,7 +336,7 @@
 			return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/ssd_check()
+/mob/living/carbon/human/ssd_check()
 	return !client && !teleop && !limb_mob
 
 /mob/living/carbon/human/proc/mind_control(var/mob/living/carbon/human/user)
