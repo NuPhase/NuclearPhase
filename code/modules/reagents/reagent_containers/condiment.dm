@@ -14,7 +14,7 @@
 	possible_transfer_amounts = @"[1,5,10]"
 	center_of_mass = @"{'x':16,'y':6}"
 	randpixel = 6
-	volume = 50
+	volume = 150
 	var/list/starting_reagents
 	var/static/list/special_bottles = list(
 		/decl/material/liquid/nutriment/ketchup = /obj/item/chems/condiment/ketchup,
@@ -200,11 +200,11 @@
 	w_class = ITEM_SIZE_TINY
 	possible_transfer_amounts = @"[1,5,10]"
 	amount_per_transfer_from_this = 1
-	volume = 10
+	volume = 50
 
 /obj/item/chems/condiment/small/packet/salt
 	name = "salt packet"
-	desc = "Contains 5u of table salt."
+	desc = "Contains 5g of table salt."
 	icon_state = "packet_small_white"
 	starting_reagents = list(/decl/material/solid/sodiumchloride = 5)
 
@@ -212,100 +212,100 @@
 	name = "water disinfection packet"
 	desc = "Contains a premade water cleaning mix. Can clean up to a liter of liquid."
 	icon_state = "packet_small_white"
-	starting_reagents = list(/decl/material/solid/water_purifier_first = 10)
+	starting_reagents = list(/decl/material/solid/water_purifier_first = 50)
 
 /obj/item/chems/condiment/small/packet/pepper
 	name = "pepper packet"
-	desc = "Contains 5u of black pepper."
+	desc = "Contains 5g of black pepper."
 	icon_state = "packet_small_black"
 	starting_reagents = list(/decl/material/solid/blackpepper = 5)
 
 /obj/item/chems/condiment/small/packet/sugar
 	name = "sugar packet"
-	desc = "Contains 5u of refined sugar."
+	desc = "Contains 5g of refined sugar."
 	icon_state = "packet_small_white"
 	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 5)
 
 /obj/item/chems/condiment/small/packet/jelly
 	name = "jelly packet"
-	desc = "Contains 10u of cherry jelly. Best used for spreading on crackers."
+	desc = "Contains 10ml of cherry jelly. Best used for spreading on crackers."
 	starting_reagents = list(/decl/material/liquid/nutriment/cherryjelly = 10)
 	icon_state = "packet_medium"
 
 /obj/item/chems/condiment/small/packet/honey
 	name = "honey packet"
-	desc = "Contains 10u of honey."
+	desc = "Contains 10ml of honey."
 	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 10)
 	icon_state = "packet_medium"
 
 /obj/item/chems/condiment/small/packet/capsaicin
 	name = "hot sauce packet"
-	desc = "Contains 5u of hot sauce. Enjoy in moderation."
+	desc = "Contains 5ml of hot sauce. Enjoy in moderation."
 	icon_state = "packet_small_red"
 	starting_reagents = list(/decl/material/liquid/capsaicin = 5)
 
 /obj/item/chems/condiment/small/packet/ketchup
 	name = "ketchup packet"
-	desc = "Contains 5u of ketchup."
+	desc = "Contains 5ml of ketchup."
 	icon_state = "packet_small_red"
 	starting_reagents = list(/decl/material/liquid/nutriment/ketchup = 5)
 
 /obj/item/chems/condiment/small/packet/mayo
 	name = "mayonnaise packet"
-	desc = "Contains 5u of mayonnaise."
+	desc = "Contains 5ml of mayonnaise."
 	icon_state = "packet_small_white"
 	starting_reagents = list(/decl/material/liquid/nutriment/mayo = 5)
 
 /obj/item/chems/condiment/small/packet/soy
 	name = "soy sauce packet"
-	desc = "Contains 5u of soy sauce."
+	desc = "Contains 5ml of soy sauce."
 	icon_state = "packet_small_black"
 	starting_reagents = list(/decl/material/liquid/nutriment/soysauce = 5)
 
 /obj/item/chems/condiment/small/packet/coffee
 	name = "instant coffee powder packet"
-	desc = "Contains 5u of instant coffee powder. Mix with 25u of water."
+	desc = "Contains 5g of instant coffee powder. Mix with 250ml of water."
 	starting_reagents = list(/decl/material/liquid/nutriment/coffee/instant = 5)
 
 /obj/item/chems/condiment/small/packet/tea
 	name = "instant tea powder packet"
-	desc = "Contains 5u of instant black tea powder. Mix with 25u of water."
+	desc = "Contains 5g of instant black tea powder. Mix with 250ml of water."
 	starting_reagents = list(/decl/material/liquid/nutriment/tea/instant = 5)
 
 /obj/item/chems/condiment/small/packet/cocoa
 	name = "cocoa powder packet"
-	desc = "Contains 5u of cocoa powder. Mix with 25u of water and heat."
+	desc = "Contains 5g of cocoa powder. Mix with 250ml of water and heat."
 	starting_reagents = list(/decl/material/liquid/nutriment/coco = 5)
 
 /obj/item/chems/condiment/small/packet/grape
 	name = "grape juice powder packet"
-	desc = "Contains 5u of powdered grape juice. Mix with 15u of water."
+	desc = "Contains 5g of powdered grape juice. Mix with 150ml of water."
 	starting_reagents = list(/decl/material/liquid/nutriment/instantjuice/grape = 5)
 
 /obj/item/chems/condiment/small/packet/orange
 	name = "orange juice powder packet"
-	desc = "Contains 5u of powdered orange juice. Mix with 15u of water."
+	desc = "Contains 5g of powdered orange juice. Mix with 150ml of water."
 	starting_reagents = list(/decl/material/liquid/nutriment/instantjuice/orange = 5)
 
 /obj/item/chems/condiment/small/packet/watermelon
 	name = "watermelon juice powder packet"
-	desc = "Contains 5u of powdered watermelon juice. Mix with 15u of water."
+	desc = "Contains 5g of powdered watermelon juice. Mix with 150ml of water."
 	starting_reagents = list(/decl/material/liquid/nutriment/instantjuice/watermelon = 5)
 
 /obj/item/chems/condiment/small/packet/apple
 	name = "apple juice powder packet"
-	desc = "Contains 5u of powdered apple juice. Mix with 15u of water."
+	desc = "Contains 5g of powdered apple juice. Mix with 150ml of water."
 	starting_reagents = list(/decl/material/liquid/nutriment/instantjuice/apple = 5)
 
 /obj/item/chems/condiment/small/packet/protein
 	name = "protein powder packet"
-	desc = "Contains 10u of powdered protein. Mix with 20u of water."
+	desc = "Contains 10g of powdered protein. Mix with 200ml of water."
 	icon_state = "packet_medium"
 	starting_reagents = list(/decl/material/liquid/nutriment/protein = 10)
 
 /obj/item/chems/condiment/small/packet/crayon
 	name = "crayon powder packet"
-	desc = "Contains 10u of powdered crayon. Mix with 30u of water."
+	desc = "Contains 10g of powdered crayon. Mix with 300ml of water."
 	starting_reagents = list(/decl/material/liquid/pigment = 10)
 /obj/item/chems/condiment/small/packet/crayon/red
 	starting_reagents = list(/decl/material/liquid/pigment/red = 10)
@@ -332,8 +332,9 @@
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "flour"
 	item_state = "flour"
+	volume = 1000
 	randpixel = 10
-	starting_reagents = list(/decl/material/liquid/nutriment/flour = 50)
+	starting_reagents = list(/decl/material/liquid/nutriment/flour = 1000)
 
 /obj/item/chems/condiment/flour/on_reagent_change()
 	return
@@ -345,9 +346,9 @@
 	icon_state = "salt"
 	item_state = "flour"
 	randpixel = 10
-	volume = 500
+	volume = 5000
 	w_class = ITEM_SIZE_LARGE
-	starting_reagents = list(/decl/material/solid/sodiumchloride = 500)
+	starting_reagents = list(/decl/material/solid/sodiumchloride = 5000)
 
 /obj/item/chems/condiment/salt/on_reagent_change()
 	return
@@ -367,5 +368,5 @@
 	desc = "A dark, salty, savoury flavoring."
 	icon_state = "soysauce"
 	amount_per_transfer_from_this = 1
-	volume = 20
-	starting_reagents = list(/decl/material/liquid/nutriment/soysauce = 20)
+	volume = 200
+	starting_reagents = list(/decl/material/liquid/nutriment/soysauce = 200)

@@ -9,7 +9,7 @@
 	item_state = "null"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = @"[5,10,15,25,30,60]"
-	volume = 60
+	volume = 150
 	w_class = ITEM_SIZE_SMALL
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	item_flags = ITEM_FLAG_HOLLOW
@@ -113,9 +113,9 @@
 	icon_state = ICON_STATE_WORLD
 	center_of_mass = @"{'x':16,'y':9}"
 	w_class = ITEM_SIZE_NORMAL
-	amount_per_transfer_from_this = 20
+	amount_per_transfer_from_this = 120
 	possible_transfer_amounts = @"[10,20,30,60,120,150,180]"
-	volume = 180
+	volume = 5000
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	show_reagent_name = TRUE
 	unacidable = 0
@@ -128,7 +128,7 @@
 /obj/item/chems/glass/bucket/wood
 	desc = "It's a wooden bucket. How rustic."
 	icon = 'icons/obj/items/wooden_bucket.dmi'
-	volume = 200
+	volume = 6000
 	material = /decl/material/solid/wood
 
 /obj/item/chems/glass/bucket/attackby(var/obj/D, mob/user)

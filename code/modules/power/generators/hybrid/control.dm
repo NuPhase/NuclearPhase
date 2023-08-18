@@ -46,6 +46,7 @@
 	required_interaction_dexterity = DEXTERITY_SIMPLE_MACHINES
 	var/cooldown = 10
 	var/used = FALSE
+	var/needs_control_node = TRUE
 	var/id
 	var/action_sounds = list(
 	'sound/machines/button1.ogg',
@@ -72,10 +73,12 @@
 		return
 
 	var/obj/machinery/reactor_control_node/cnode = reactor_components["control_node"]
-	if(cnode && cnode.check_controllability())
-		do_action(user)
-		if(action_sounds)
-			playsound(loc, pick(action_sounds), 50, 1)
+	if(needs_control_node && cnode && !cnode.check_controllability())
+		return
+
+	do_action(user)
+	if(action_sounds)
+		playsound(loc, pick(action_sounds), 50, 1)
 
 	used = TRUE
 	spawn(cooldown)

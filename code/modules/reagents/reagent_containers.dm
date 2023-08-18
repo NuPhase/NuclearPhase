@@ -6,9 +6,9 @@
 	w_class = ITEM_SIZE_SMALL
 
 	var/base_name
-	var/amount_per_transfer_from_this = 5
-	var/possible_transfer_amounts = @"[5,10,15,25,30]"
-	var/volume = 30
+	var/amount_per_transfer_from_this = 50
+	var/possible_transfer_amounts = @"[5,10,30,50,100]"
+	var/volume = 500
 	var/label_text
 	var/show_reagent_name = FALSE
 
@@ -153,7 +153,7 @@
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
 			self_feed_message(user)
-			reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
+			reagents.trans_to_mob(user, amount_per_transfer_from_this, CHEM_INGEST)
 			feed_sound(user)
 			add_trace_DNA(user)
 			return 1

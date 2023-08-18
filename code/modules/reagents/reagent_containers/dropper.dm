@@ -10,7 +10,7 @@
 	possible_transfer_amounts = @"[1,2,3,4,5]"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	volume = 5
+	volume = 10
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 
 /obj/item/chems/dropper/afterattack(var/obj/target, var/mob/user, var/proximity)
@@ -46,7 +46,7 @@
 					if(safe_thing && (safe_thing.body_parts_covered & SLOT_EYES))
 						trans = reagents.splash(safe_thing, amount_per_transfer_from_this, max_spill=30)
 						user.visible_message(
-							SPAN_DANGER("\The [user] tries to squirt something into [target]'s eyes, but fails!"), 
+							SPAN_DANGER("\The [user] tries to squirt something into [target]'s eyes, but fails!"),
 							SPAN_DANGER("You squirt [trans] unit\s at \the [target]'s eyes, but fail!")
 						)
 						return

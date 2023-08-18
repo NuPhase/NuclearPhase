@@ -72,7 +72,7 @@
 	desc = "A large beaker."
 	icon = 'icons/obj/items/chem/beakers/large.dmi'
 	center_of_mass = @"{'x':16,'y':10}"
-	volume = 120
+	volume = 400
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = @"[5,10,15,25,30,60,120]"
 	material_force_multiplier = 0.5
@@ -111,7 +111,7 @@
 	desc = "An advanced beaker, powered by experimental technology."
 	icon = 'icons/obj/items/chem/beakers/advanced.dmi'
 	center_of_mass = @"{'x':16,'y':10}"
-	volume = 300
+	volume = 500
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = @"[5,10,15,25,30,60,120,150,200,250,300]"
 	material_force_multiplier = 2.5

@@ -14,7 +14,7 @@
 	icon_state = "rg"
 	material = /decl/material/solid/glass
 	amount_per_transfer_from_this = 1
-	possible_transfer_amounts = @"[1,2,3,4,5]"
+	possible_transfer_amounts = @"[1,2,3,4,5,10,15]"
 	volume = 15
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS

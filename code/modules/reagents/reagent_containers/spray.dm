@@ -13,11 +13,11 @@
 	throw_range = 10
 	amount_per_transfer_from_this = 10
 	unacidable = 1 //plastic
-	possible_transfer_amounts = @"[5,10]"
-	volume = 250
+	possible_transfer_amounts = @"[5,10,20]"
+	volume = 750
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
-	var/step_delay = 10 // lower is faster
+	var/step_delay = 5 // lower is faster
 
 /obj/item/chems/spray/Initialize()
 	. = ..()
