@@ -95,13 +95,14 @@
 	var/all_alert_messages = list()
 	for(var/symptom in symptoms)
 		var/decl/medical_symptom/sympt = GET_DECL(symptom)
+		sympt.time += 2
 		if(sympt.can_go_away(src))
 			sympt.go_away(src)
 			continue
 		if(sympt.periodical_message)
 			all_alert_messages += sympt.periodical_message
 		sympt.apply_pain(src)
-	if(next_symptom_message < world.time)
+	if(next_symptom_message < world.time && length(all_alert_messages))
 		next_symptom_message = world.time + 300
 		to_chat(src, SPAN_WARNING(pick(all_alert_messages)))
 

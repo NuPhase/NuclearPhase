@@ -60,6 +60,10 @@ var/global/list/antigen_comparison_cache = list()
 				break
 		global.antigen_comparison_cache[type][other_blood_type.type] = .
 
+/decl/blood_type/rhnull
+	name = "Rh Null"
+	random_weighting = 0
+
 /decl/blood_type/ominus
 	name = "O-"
 	random_weighting = 4

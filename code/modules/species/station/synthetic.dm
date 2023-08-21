@@ -1,19 +1,26 @@
 /decl/species/human/synth
 	name = SPECIES_SYNTH
+	roleplay_summary = "You are a synthetic made by United Nations and were used to spy on important people. You were sealed in the shelter together with normal human beings. You have to conceal what you really are, and terminate any witnesses."
 	primitive_form = SPECIES_HUMAN
 	spawn_flags = SPECIES_IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE_NORMAL | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR | SPECIES_FLAG_NO_SCAN | SPECIES_FLAG_NO_POISON
 	exertion_reagent_path = /decl/material/liquid/water //watercooled
+	unarmed_attacks = list(/decl/natural_attack/stomp, /decl/natural_attack/kick, /decl/natural_attack/punch, /decl/natural_attack/bite)
+
+	blood_types = list(
+		/decl/blood_type/rhnull
+	)
 
 	blood_volume = SPECIES_BLOOD_SYNTHETIC
 	hunger_factor = SYNTHETIC_HUNGER_FACTOR // Multiplier for hunger.
 	thirst_factor = SYNTHETIC_THIRST_FACTOR // Multiplier for thirst.
 	taste_sensitivity = TASTE_DULL
+	strength = STR_HIGH
 
 	brute_mod = 0.8 //metal metal metal metal
 	burn_mod = 1.3 //we overheat easily
 	toxins_mod = 0
-	radiation_mod = 0.5
+	radiation_mod = 0.1
 
 	oxy_mod = 0.1 //we only use oxygen to imitate breathing
 	flash_mod = 1.1

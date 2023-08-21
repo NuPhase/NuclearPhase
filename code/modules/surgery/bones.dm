@@ -68,7 +68,7 @@
 	shock_level = 40
 	delicate = 1
 	surgery_candidate_flags = SURGERY_NO_ROBOTIC | SURGERY_NEEDS_ENCASEMENT
-	required_stage = 1
+	required_stage = 0
 
 /decl/surgery_step/bone/set_bone/begin_step(mob/user, mob/living/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)

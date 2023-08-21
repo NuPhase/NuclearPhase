@@ -54,7 +54,7 @@
 	name = "stomach acid"
 	uid = "liquid_stomach_acid"
 	taste_description = "coppery foulness"
-	solvent_power = MAT_SOLVENT_MODERATE
+	solvent_power = MAT_SOLVENT_STRONG
 	color = "#d8ff00"
 	hidden_from_codex = TRUE
 	value = 0

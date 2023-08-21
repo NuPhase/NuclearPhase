@@ -5,7 +5,7 @@
 	color = "#404030"
 	touch_met = 5
 	fuel_value = 0.75
-	solvent_power = MAT_SOLVENT_MODERATE
+	solvent_power = MAT_SOLVENT_MILD
 	uid = "chem_ethanol"
 
 	heating_message = "boils away its water content, leaving pure ethanol."
