@@ -544,6 +544,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 /decl/material/proc/touch_mob(var/mob/living/M, var/amount, var/datum/reagents/holder)
 	if(fuel_value && amount && istype(M))
 		M.fire_stacks += FLOOR((amount * fuel_value)/FLAMMABLE_LIQUID_DIVISOR)
+	if(!iscarbon(M))
+		return
+	var/obj/item/suit = M.get_equipped_item(slot_wear_suit_str)
+	if(suit)
+		if(suit.permeability_coefficient)
+			affect_touch(M, amount * suit.permeability_coefficient, holder)
+	else
+		affect_touch(M, amount, holder)
 #undef FLAMMABLE_LIQUID_DIVISOR
 
 /decl/material/proc/touch_turf(var/turf/T, var/amount, var/datum/reagents/holder) // Cleaner cleaning, lube lubbing, etc, all go here
@@ -687,34 +695,42 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				return
 		M.clean_blood()
 
-	if(solvent_power >= MAT_SOLVENT_STRONG && removed >= solvent_melt_dose)
+	switch(solvent_power)
+		if(MAT_SOLVENT_MODERATE to MAT_SOLVENT_STRONG-0.1)
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				var/to_affect = pick(BP_L_FOOT, BP_R_FOOT)
+				var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, to_affect)
+				H.add_symptom(/decl/medical_symptom/irritation, to_affect)
+				to_chat(H, SPAN_WARNING("Your [affecting.name] starts to hurt from the liquid!"))
+		if(MAT_SOLVENT_STRONG to INFINITY)
+			if(removed >= solvent_melt_dose)
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					for(var/slot in global.standard_headgear_slots)
+						var/obj/item/thing = H.get_equipped_item(slot)
+						if(!istype(thing))
+							continue
+						if(thing.unacidable || !H.unEquip(thing))
+							to_chat(H, SPAN_NOTICE("Your [thing] protects you from the acid."))
+							holder.remove_reagent(type, REAGENT_VOLUME(holder, type))
+							return
+						to_chat(H, SPAN_DANGER("Your [thing] dissolves!"))
+						qdel(thing)
+						removed -= solvent_melt_dose
+						if(removed <= 0)
+							return
 
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			for(var/slot in global.standard_headgear_slots)
-				var/obj/item/thing = H.get_equipped_item(slot)
-				if(!istype(thing))
-					continue
-				if(thing.unacidable || !H.unEquip(thing))
-					to_chat(H, SPAN_NOTICE("Your [thing] protects you from the acid."))
-					holder.remove_reagent(type, REAGENT_VOLUME(holder, type))
-					return
-				to_chat(H, SPAN_DANGER("Your [thing] dissolves!"))
-				qdel(thing)
-				removed -= solvent_melt_dose
-				if(removed <= 0)
-					return
+					if(!H.unacidable)
+						var/screamed
+						for(var/obj/item/organ/external/affecting in H.get_external_organs())
+							if(!screamed && prob(15) && affecting.can_feel_pain())
+								screamed = TRUE
+								H.emote("agony")
+							affecting.status |= ORGAN_DISFIGURED
 
-			if(!H.unacidable)
-				var/screamed
-				for(var/obj/item/organ/external/affecting in H.get_external_organs())
-					if(!screamed && affecting.can_feel_pain())
-						screamed = TRUE
-						H.emote("agony")
-					affecting.status |= ORGAN_DISFIGURED
-
-		if(!M.unacidable)
-			M.take_organ_damage(0, min(removed * solvent_power * ((removed < solvent_melt_dose) ? 0.1 : 0.2), solvent_max_damage), override_droplimb = DISMEMBER_METHOD_ACID)
+			if(!M.unacidable)
+				M.take_organ_damage(0, min(removed * solvent_power * ((removed < solvent_melt_dose) ? 0.1 : 0.2), solvent_max_damage), override_droplimb = DISMEMBER_METHOD_ACID)
 
 /decl/material/proc/affect_overdose(var/mob/living/M, var/datum/reagents/holder) // Overdose effect. Doesn't happen instantly.
 	M.add_chemical_effect(CE_TOXIN, 1)

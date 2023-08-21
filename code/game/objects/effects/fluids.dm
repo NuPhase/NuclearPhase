@@ -66,14 +66,15 @@
 	update_icon()
 
 /obj/effect/fluid/Destroy()
-	var/turf/simulated/T = get_turf(src)
+	ADD_ACTIVE_FLUID(src)
 	for(var/checkdir in global.cardinal)
-		var/obj/effect/fluid/F = locate() in get_step(T, checkdir)
+		var/obj/effect/fluid/F = locate() in get_step(loc, checkdir)
 		if(F)
 			ADD_ACTIVE_FLUID(F)
 	REMOVE_ACTIVE_FLUID(src)
 	SSfluids.pending_flows -= src
 	. = ..()
+	var/turf/simulated/T = loc
 	if(istype(T) && reagents?.total_volume > 0)
 		T.wet_floor()
 
