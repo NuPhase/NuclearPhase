@@ -10,7 +10,7 @@
 	density = 1
 	var/coef = 2
 	var/obj/machinery/power/generator/transformer/connected = null
-	var/max_cap = 250000 //w
+	var/max_cap = 2500000 //w
 	var/should_transfer_demand = FALSE
 	var/on = 1
 	var/critical = FALSE
@@ -90,7 +90,7 @@
 	. = ..()
 	if(on)
 		to_chat(user, "<span class='good'>Its lever is in 'RESET' position.</span>")
-		to_chat(user, "<span class='notice'>The load is: [connected.powernet.ldemand]W.</span>")
+		to_chat(user, "<span class='notice'>The load is: [watts_to_text(connected.powernet.ldemand)]W.</span>")
 	else
 		to_chat(user, "<span class='warning'>Its lever is in 'TRIP' position.</span>")
 

@@ -687,7 +687,7 @@ var/global/list/fullstop_alternatives = list(".", "!", "?")
 		if(0 to 1 MEGAWATTS)
 			load_text = "[round(watts / 1000, 0.1)]kW"
 		if(1 MEGAWATTS to 1 GIGAWATTS)
-			load_text = "[round(watts / 1000000, 0.1)]mW"
+			load_text = "[round(watts / 1000000, 0.1)]MW"
 		if(1 GIGAWATTS to INFINITY)
-			load_text = "[round(watts / 1000000000, 0.1)]gW"
+			load_text = "[round(watts / 1000000000, 0.1)]GW"
 	return load_text

@@ -547,7 +547,7 @@ update_flag
 	. = ..()
 	air_contents.adjust_gas(/decl/material/gas/methane, MolesForVolume(/decl/material/gas/methane))
 	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(4*ONE_ATMOSPHERE))
-	air_contents.temperature = 95
+	air_contents.temperature = 93
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane/central

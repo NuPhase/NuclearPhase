@@ -19,8 +19,8 @@
 var/global/datum/composite_sound/light/light_soundloop = new
 /datum/composite_sound/light
 	mid_sounds = list('sound/machines/lights/buzz1.wav', 'sound/machines/lights/buzz2.wav', 'sound/machines/lights/buzz3.wav', 'sound/machines/lights/buzz4.wav')
-	mid_length = 49
-	volume = 15
+	mid_length = 48
+	volume = 30
 	distance = -5
 
 // the standard tube light fixture

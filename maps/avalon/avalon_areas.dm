@@ -48,11 +48,30 @@
 	name = "\improper Testing Site Ferry"
 	icon_state = "shuttle"
 
+#define TURF_HEATING_POWER 327 //watts per turf
 /area/avalon
 	name = "'Serenity' survival shelter"
 	base_turf = /turf/simulated/floor
 	ambience = list('sound/ambience/ominous1.ogg', 'sound/ambience/ominous2.ogg', 'sound/ambience/ominous3.ogg', 'sound/ambience/rumble1.ogg', 'sound/ambience/rumble2.ogg', 'sound/ambience/rumble3.ogg', 'sound/ambience/rumble4.ogg')
 	area_flags = AREA_FLAG_RAD_SHIELDED
+	var/heating_consumption = 0
+
+/area/avalon/Initialize()
+	. = ..()
+	for(var/turf/T in contents)
+		if(isturf(T))
+			heating_consumption += TURF_HEATING_POWER
+
+/area/avalon/usage(chan)
+	switch(chan)
+		if(LIGHT)
+			return used_light + oneoff_light
+		if(EQUIP)
+			return used_equip + oneoff_equip
+		if(ENVIRON)
+			return used_environ + oneoff_environ + heating_consumption
+		if(TOTAL)
+			return .(LIGHT) + .(EQUIP) + .(ENVIRON)
 
 /area/avalon/has_gravity()
 	return TRUE

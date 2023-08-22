@@ -795,7 +795,9 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/water,
+/obj/machinery/portable_atmospherics/canister/water{
+	volume = 2700
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "aOG" = (
@@ -14956,7 +14958,7 @@
 	},
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive{
 	dir = 1;
-	wanted_temperature = 94;
+	wanted_temperature = 102;
 	initial_volume = 10000
 	},
 /obj/structure/cable{
@@ -15488,7 +15490,7 @@
 "pxZ" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive{
-	wanted_temperature = 335;
+	wanted_temperature = 293;
 	heating = 0;
 	initial_volume = 10000
 	},
@@ -17617,7 +17619,7 @@
 /area/avalon/shelter/messhall)
 "rJa" = (
 /obj/machinery/atmospherics/binary/pump/adv/on{
-	flow_capacity = 150;
+	flow_capacity = 155;
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/monotile,

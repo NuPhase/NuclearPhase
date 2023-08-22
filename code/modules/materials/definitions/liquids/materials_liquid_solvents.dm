@@ -9,6 +9,7 @@
 	value = 1.2
 	solvent_power = MAT_SOLVENT_STRONG + 2
 	solvent_melt_dose = 10
+	solvent_max_damage = 30
 	boiling_point = 290 CELSIUS
 	melting_point = 10 CELSIUS
 	latent_heat = 612
