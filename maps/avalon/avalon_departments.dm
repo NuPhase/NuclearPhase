@@ -1,5 +1,6 @@
 /decl/department/engineering
 	name = "Engineering"
+	goals = list(/datum/goal/department/turbine_trips, /datum/goal/department/electrical_deaths, /datum/goal/department/malfunctions)
 	announce_channel = "Engineering"
 	colour = "#ffa500"
 	display_priority = 4
@@ -40,7 +41,7 @@
 
 /decl/department/science
 	name = "Science"
-	goals = list(/datum/goal/department/extract_slime_cores)
+	goals = list(/datum/goal/department/catastrophe_reason, /datum/goal/department/gather_supplies, /datum/goal/department/escape)
 	announce_channel = "Science"
 	colour = "#a65ba6"
 	display_color = "#e79fff"

@@ -29,6 +29,9 @@ SUBSYSTEM_DEF(statistics)
 	var/list/value_details = list()
 	var/list/population_log = list()
 
+	var/turbines_tripped = FALSE
+	var/person_shocked = FALSE //was someone electrically shocked
+
 /datum/controller/subsystem/statistics/fire(resumed = FALSE)
 	population_log[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")] = list("players" = LAZYLEN(global.clients), "admin" = LAZYLEN(global.admins))
 

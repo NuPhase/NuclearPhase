@@ -105,6 +105,11 @@
 				all_messages.Remove(cleared_message)
 		cleared_messages.Cut()
 		last_message_clearing = 0
+	if(scram_control && (generator1.connected || generator2.connected) && (get_meter_pressure("T-M-TURB IN") > 10000 || get_meter_pressure("T-M-TURB EX") > 3000 || get_meter_temperature("T-M-TURB IN") < 700 || turbine1.vibration > 50 || turbine2.vibration > 50))
+		turbine_trip()
+		do_message("TURBINE TRIP", 3)
+	if(scram_control)
+		check_autoscram()
 
 /datum/reactor_control_system/proc/semi_auto_control()
 	moderate_reactor_loop()
@@ -209,11 +214,7 @@
 		do_message("VAPOR IN FEEDWATER LOOP", 2)
 
 /datum/reactor_control_system/proc/auto_control()
-	if((generator1.connected || generator2.connected) && (get_meter_pressure("T-M-TURB IN") > 10000 || get_meter_pressure("T-M-TURB EX") > 3000 || get_meter_temperature("T-M-TURB IN") < 700 || turbine1.vibration > 50 || turbine2.vibration > 50))
-		turbine_trip()
-		do_message("TURBINE TRIP", 3)
-	if(scram_control)
-		check_autoscram()
+	return
 
 /datum/reactor_control_system/proc/moderate_reactor_loop()
 	return
@@ -284,6 +285,7 @@
 	current_switch.state = 0
 	current_switch.do_action()
 	playsound(current_switch.loc, 'sound/machines/switchbuzzer.ogg', 50)
+	SSstatistics.turbines_tripped = TRUE
 
 /datum/reactor_control_system/proc/scram(cause)
 	do_message("SCRAM. CAUSE: [capitalize(cause)]", 3)

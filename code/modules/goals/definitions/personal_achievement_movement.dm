@@ -18,7 +18,7 @@
 	completion_message = "It sure feels good to stretch your legs."
 	var/steps = 0
 	var/required_steps
-	var/min_steps = 4500
+	var/min_steps = 1500
 	var/max_steps = 5500
 
 /datum/goal/movement/walk/proc/valid_step()
@@ -40,9 +40,9 @@
 
 /datum/goal/movement/walk/check_success()
 	return (steps >= required_steps)
-	
+
 /datum/goal/movement/walk/update_strings()
-	description = "Stave off microgravity muscle atrophy by walking at least [required_steps] step\s this shift."
+	description = "Stave off laziness by walking at least [required_steps] step\s this shift."
 
 /datum/goal/movement/walk/eva
 	completion_message = "We're so very small, in the end..."
@@ -54,4 +54,4 @@
 	return isspaceturf(mind.current.loc)
 
 /datum/goal/movement/walk/eva/update_strings()
-	description = "It's so stuffy inside. Go for a spacewalk - at least [required_steps] step\s."
+	description = "It's so stuffy inside. Go for a walk outside - at least [required_steps] step\s."

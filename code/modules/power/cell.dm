@@ -199,6 +199,7 @@
 	weight = 2
 
 /obj/item/cell/quantum/quadruplecapacity
+	name = "quantum power cell array"
 	maxcharge = 12560
 	weight = 8
 

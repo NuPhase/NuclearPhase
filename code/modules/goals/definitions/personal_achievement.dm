@@ -15,6 +15,10 @@
 /datum/goal/achievement/check_success()
 	return success
 
+/datum/goal/achievement/see_surface
+	description = "See what the surface is like."
+	completion_message = "You finally managed to take a peek at how the surface looks after the catastrophe."
+
 /datum/goal/achievement/fistfight
 	description = "You're feeling antsy. Blow off some steam in a fistfight."
 	completion_message = "You feel less like you want to punch someone."

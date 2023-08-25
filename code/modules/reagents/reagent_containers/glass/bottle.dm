@@ -159,7 +159,9 @@
 	volume = 30
 
 /obj/item/chems/glass/bottle/dronedarone
+	name = "bottle (dronedarone)"
 	initial_reagents = list(/decl/material/liquid/dronedarone = 60)
+	autolabel = 0
 
 /obj/item/chems/glass/bottle/potassium_iodide
 	initial_reagents = list(/decl/material/liquid/potassium_iodide = 60)
