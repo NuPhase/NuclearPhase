@@ -121,6 +121,7 @@ Class Procs:
 	var/processing_flags         // What is being processed
 
 	var/list/initial_access		// Used to setup network locks on machinery at populate_parts.
+	var/list/mob/living/electrocuting = list()
 
 /obj/machinery/Initialize(mapload, d=0, populate_parts = TRUE)
 	. = ..()

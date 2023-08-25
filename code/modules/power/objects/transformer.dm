@@ -90,7 +90,7 @@
 	. = ..()
 	if(on)
 		to_chat(user, "<span class='good'>Its lever is in 'RESET' position.</span>")
-		to_chat(user, "<span class='notice'>The load is: [watts_to_text(connected.powernet.ldemand)]W.</span>")
+		to_chat(user, "<span class='notice'>The load is: [watts_to_text(connected.powernet.ldemand)].</span>")
 	else
 		to_chat(user, "<span class='warning'>Its lever is in 'TRIP' position.</span>")
 
@@ -122,7 +122,7 @@
 			var/mob/living/carbon/human/H = user
 			if(H.fire_stacks < 0)
 				electrocution_chance += 20
-			electrocution_chance = user.skill_fail_chance(SKILL_ELECTRICAL, electrocution_chance, SKILL_EXPERT, 1.5)
+			electrocution_chance = user.skill_fail_chance(SKILL_ELECTRICAL, electrocution_chance, SKILL_EXPERT, 0.5)
 			if(prob(electrocution_chance))
 				start_electrocution(user)
 		else

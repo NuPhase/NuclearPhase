@@ -18,7 +18,6 @@
 	active_power_usage = 0
 	var/efficiency = 0.95
 	var/should_heat = FALSE //whether we should heat up surrounding air from resistance
-	var/list/mob/living/electrocuting = list()
 
 /obj/machinery/power/Initialize()
 	. = ..()
@@ -197,18 +196,27 @@
 
 	return net1
 
-/obj/machinery/power/proc/start_electrocution(mob/living/M)
+/obj/machinery/proc/start_electrocution(mob/living/M)
 	if(M in electrocuting)
 		return
 	electrocuting += M
 	M.electrocuted_by = src
 	process_electrocution()
 
-/obj/machinery/power/proc/stop_electrocution(mob/living/M)
+/obj/machinery/proc/stop_electrocution(mob/living/M)
 	M.electrocuted_by = null
 	electrocuting -= M
 
-/obj/machinery/power/proc/process_electrocution()
+/obj/machinery/proc/process_electrocution()
+	if(!length(electrocuting))
+		return
+	for(var/mob/living/carbon/C in electrocuting)
+		if(Adjacent(C))
+			electrocute_mob(C, get_area(src), src)
+		else
+			stop_electrocution(C)
+
+/obj/machinery/power/process_electrocution()
 	if(!length(electrocuting))
 		return
 	for(var/mob/living/carbon/C in electrocuting)

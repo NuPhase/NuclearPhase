@@ -127,6 +127,7 @@ About the new airlock wires panel:
 		if(src.isElectrified())
 			if(!src.justzap)
 				if(src.shock(user, 100))
+					start_electrocution(user)
 					src.justzap = 1
 					spawn (10)
 						src.justzap = 0
