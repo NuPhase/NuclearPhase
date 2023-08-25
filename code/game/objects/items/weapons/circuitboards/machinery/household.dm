@@ -4,7 +4,7 @@
 	board_type = "machine"
 	origin_tech = "{'biotech':2,'engineering':2}"
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/engine = 1,
 		/obj/item/stock_parts/micro_laser = 2,
 		/obj/item/stock_parts/matter_bin = 1)
 	additional_spawn_components = list(
@@ -19,7 +19,7 @@
 	board_type = "machine"
 	origin_tech = "{'biotech':2,'materials':2}"
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/engine/medium = 1,
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/knife/kitchen/cleaver = 1)
 	additional_spawn_components = list(
@@ -34,7 +34,7 @@
 	origin_tech = "{'biotech':1,'materials':1}"
 	buildtype_select = TRUE
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/engine = 2,
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stack/cable_coil = 10)
 	additional_spawn_components = list(
@@ -66,7 +66,7 @@
 	board_type = "machine"
 	origin_tech = "{'biotech':2,'engineering':3}"
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/engine = 2,
 		/obj/item/stock_parts/matter_bin = 2)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
@@ -85,7 +85,7 @@
 	board_type = "machine"
 	origin_tech = "{'engineering':1}"
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/engine/medium = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/pipe = 1)
@@ -97,7 +97,7 @@
 	origin_tech = "{'engineering':2}"
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
-		/obj/item/stock_parts/manipulator = 1
+		/obj/item/stock_parts/engine = 3
 	)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
@@ -119,7 +119,7 @@
 	board_type = "machine"
 	origin_tech = "{'magnets':2,'materials':4,'engineering':4}"
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/engine/medium = 2,
 		/obj/item/stock_parts/matter_bin = 2)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
@@ -133,7 +133,7 @@
 	board_type = "machine"
 	origin_tech = "{'magnets':2,'materials':2,'engineering':2}"
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/engine = 1,
 		/obj/item/stock_parts/matter_bin = 1)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
@@ -192,5 +192,5 @@
 	build_path = /obj/machinery/papershredder
 	board_type = "machine"
 	origin_tech = "{'engineering':1}"
-	req_components = list(/obj/item/stock_parts/manipulator = 1)
+	req_components = list(/obj/item/stock_parts/engine = 1)
 	additional_spawn_components = null
