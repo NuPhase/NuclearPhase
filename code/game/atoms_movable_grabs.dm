@@ -8,7 +8,7 @@
 	if(anchored)
 		to_chat(grabber, SPAN_WARNING("\The [src] won't budge!"))
 		return FALSE
-	if(weight * pull_coefficient > grabber.get_skill_value(SKILL_STRENGTH) * 20)
+	if(weight * pull_coefficient > grabber.drag_capacity)
 		to_chat(grabber, SPAN_WARNING("\The [src] is too heavy for you to move!"))
 		return FALSE
 	return TRUE

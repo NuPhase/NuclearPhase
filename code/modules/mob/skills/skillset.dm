@@ -63,6 +63,8 @@ var/global/list/all_skill_verbs
 		return
 	for(var/decl/hierarchy/skill/skill in global.skills)
 		skill.update_special_effects(owner, get_value(skill.type))
+	owner.pickup_capacity = owner.get_skill_value(SKILL_STRENGTH) * 6
+	owner.drag_capacity = owner.get_skill_value(SKILL_STRENGTH) * 20
 
 /datum/skillset/proc/obtain_from_client(datum/job/job, client/given_client, override = 0)
 	if(!skills_transferable)

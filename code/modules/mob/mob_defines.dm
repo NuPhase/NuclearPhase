@@ -175,3 +175,6 @@
 	var/datum/ai/ai						// Type abused. Define with path and will automagically create. Determines behaviour for clientless mobs.
 
 	var/holder_type
+
+	var/pickup_capacity = 6
+	var/drag_capacity = 20

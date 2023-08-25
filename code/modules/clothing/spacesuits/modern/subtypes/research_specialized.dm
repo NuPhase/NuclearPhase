@@ -23,6 +23,7 @@
 	)
 	windbreak_coefficient = 0.4
 	minimum_leak_damage = 15
+	lifting_strength_boost = 10
 
 /obj/item/clothing/head/helmet/modern/space/research/cold
 	name = "CROCS-0.8V helmet"

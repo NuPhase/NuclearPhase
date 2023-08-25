@@ -29,6 +29,7 @@
 	weight = 35 //we're very light
 	windbreak_coefficient = 1.5
 	siemens_coefficient = 0.1
+	lifting_strength_boost = 30
 	armor = list(
 		melee = ARMOR_MELEE_SMALL,
 		bullet = ARMOR_BALLISTIC_SMALL,
@@ -42,4 +43,4 @@
 
 /obj/item/storage/backpack/lifesupportpack/adaptive_cooling/engineering
 	target_pressure = 65 //oxygen toxicity is a real thing, but this suit is for brief use only
-	battery_type = /obj/item/cell/doublecapacity
+	battery_type = /obj/item/cell/quadruplecapacity

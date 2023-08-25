@@ -21,6 +21,7 @@
 		bio = ARMOR_BIO_SHIELDED,
 		rad = ARMOR_RAD_RESISTANT
 	)
+	lifting_strength_boost = 15
 
 /obj/item/clothing/suit/modern/space/combat_specialized/verb/emergency_ejection()
 	set name = "Emergency Ejection"
@@ -87,6 +88,7 @@
 	weight = 147
 	windbreak_coefficient = 0.6
 	minimum_leak_damage = 50 //dynamic protection
+	lifting_strength_boost = 20
 	lifesupport_type = /obj/item/storage/backpack/lifesupportpack/military_prototype
 
 /obj/item/storage/backpack/lifesupportpack/military_prototype

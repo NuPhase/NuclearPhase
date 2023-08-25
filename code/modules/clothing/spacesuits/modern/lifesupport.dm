@@ -33,8 +33,7 @@
 	var/obj/item/clothing/suit/modern/space/owner = null
 
 	var/obj/item/cell/battery = null
-	var/battery_type = /obj/item/cell
-
+	var/battery_type = /obj/item/cell/doublecapacity
 	canremove = FALSE
 
 /obj/item/storage/backpack/lifesupportpack/Initialize()

@@ -243,23 +243,28 @@
 	. = ..()
 	suit = new /obj/item/clothing/suit/modern/space/research/cold
 	helmet = new /obj/item/clothing/head/helmet/modern/space/research/cold
+	update_icon()
 
 /obj/machinery/modernsuit_storage/research_hot/Initialize()
 	. = ..()
 	suit = new /obj/item/clothing/suit/modern/space/research/hot
 	helmet = new /obj/item/clothing/head/helmet/modern/space/research/hot
+	update_icon()
 
 /obj/machinery/modernsuit_storage/medical/Initialize()
 	. = ..()
 	suit = new /obj/item/clothing/suit/modern/space/medical
 	helmet = new /obj/item/clothing/head/helmet/modern/space/medical
+	update_icon()
 
 /obj/machinery/modernsuit_storage/security_cold/Initialize()
 	. = ..()
 	suit = new /obj/item/clothing/suit/modern/space/combat_specialized/cold
 	helmet = new /obj/item/clothing/head/helmet/modern/space/combat_specialized/cold
+	update_icon()
 
 /obj/machinery/modernsuit_storage/engineering/Initialize()
 	. = ..()
 	suit = new /obj/item/clothing/suit/modern/space/engineering
 	helmet = new /obj/item/clothing/head/helmet/modern/space/engineering
+	update_icon()

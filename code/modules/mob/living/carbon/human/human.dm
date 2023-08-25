@@ -1377,6 +1377,8 @@
 	culture.on_spawn(src)
 	max_oxygen_capacity = round(vessel.total_volume * 0.2) + get_skill_value(SKILL_FITNESS) * 80 //healthy athlete spleen oxygen stores
 	oxygen_amount = max_oxygen_capacity
+	pickup_capacity = get_skill_value(SKILL_STRENGTH) * 6
+	drag_capacity = get_skill_value(SKILL_STRENGTH) * 20
 	//metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_FITNESS) * 0.05 //healthy athlete lower BPM
 
 /mob/living/carbon/human/handle_flashed(var/obj/item/flash/flash, var/flash_strength)
