@@ -16,7 +16,7 @@
 		return
 	var/volume = REAGENT_VOLUME(holder, type)
 	H.immunity = max(H.immunity - 0.1, 0)
-	H.add_chemical_effect(CE_ANTIBIOTIC, strength)
+	H.add_chemical_effect(CE_ANTIBIOTIC, strength*volume)
 	if(volume > 10)
 		H.immunity = max(H.immunity - 0.3, 0)
 	if(LAZYACCESS(H.chem_doses, type) > 15)
@@ -30,19 +30,19 @@
 /decl/material/liquid/antibiotics/penicillin
 	name = "penicillin"
 	uid = "chem_antibiotics_penicillin"
-	strength = 0.15
+	strength = 0.75
 	overdose = 30
 
 /decl/material/liquid/antibiotics/amicile
 	name = "amicile"
 	uid = "chem_antibiotics_amicile"
-	strength = 0.4
+	strength = 1.4
 	overdose = 6
 
 /decl/material/liquid/antibiotics/ceftriaxone
 	name = "ceftriaxone"
 	uid = "chem_antibiotics_ceftriaxone"
-	strength = 1
+	strength = 5
 	overdose = 3
 
 /decl/material/liquid/antibiotics/ceftriaxone/affect_blood(mob/living/M, removed, datum/reagents/holder)

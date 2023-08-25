@@ -240,8 +240,8 @@
 				germ_level += Clamp(round(1/germ_immunity), 1, 10) // Immunity starts at 100. This doubles infection rate at 50% immunity. Rounded to nearest whole.
 			else // Will only trigger if immunity has hit zero. Once it does, 10x infection rate.
 				germ_level += 10
-		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
+		if(owner.bodytemperature < 44.8 CELSIUS)
+			owner.bodytemperature += 1.7 * (germ_level / INFECTION_LEVEL_FOUR)
 
 	if(germ_level >= INFECTION_LEVEL_TWO && antibiotics < 10)
 		var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
@@ -251,7 +251,7 @@
 	if(germ_level > INFECTION_LEVEL_FOUR)
 		if(prob(3))	//about once every 30 seconds
 			take_general_damage(1,silent=prob(30))
-		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.3)
+		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.1)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of

@@ -87,9 +87,9 @@
 #define GERM_LEVEL_MOVE_CAP 300 // Maximum germ level you can reach by running around.
 
 #define INFECTION_LEVEL_ONE   250
-#define INFECTION_LEVEL_TWO   500  // infections grow from ambient to two in ~5 minutes
-#define INFECTION_LEVEL_THREE 1000 // infections grow from two to three in ~10 minutes
-#define INFECTION_LEVEL_FOUR  2000 //necrosis
+#define INFECTION_LEVEL_TWO   1000  // infections grow from ambient to two in ~5 minutes
+#define INFECTION_LEVEL_THREE 1500 // infections grow from two to three in ~10 minutes
+#define INFECTION_LEVEL_FOUR  2500 //necrosis
 
 //Blood levels. These are percentages based on the species blood_volume far.
 #define BLOOD_VOLUME_SAFE    85
