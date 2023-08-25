@@ -65,6 +65,11 @@
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 		T.footstep_type = /decl/footsteps/water
 	sleep(240)
+	var/image/fire_overlay = image(icon = 'icons/effects/fire.dmi', icon_state = "1", layer = FIRE_LAYER)
+	fire_overlay.mouse_opacity = 0
+	fire_overlay.blend_mode = BLEND_ADD
+	fire_overlay.color = FIRE_COLOR_DEFAULT
+	fire_overlay.alpha = 140
 	interpolate_temperature(20, 30, 10, 574) //flash
 	weather.icon_state = "ashfall_light"
 	weather.favorable_wind_speed = 380
@@ -76,6 +81,7 @@
 		H.add_client_color(/datum/client_color/sunrise4, 10, CUBIC_EASING)
 		H.remove_client_color(/datum/client_color/sunrise3)
 	for(var/turf/exterior/surface/T in surface_turfs)
+		T.overlays += fire_overlay
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE4, 3)
 		T.icon = 'icons/turf/exterior/volcanic.dmi'
 		T.possible_states = 0
@@ -96,6 +102,7 @@
 		H.remove_client_color(/datum/client_color/sunrise4)
 	spawn(0) //So we won't slow down
 		for(var/turf/T in surface_turfs)
+			T.overlays -= fire_overlay
 			T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 			if(prob(1))
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/effects/explosionfar.ogg', 200, 1, 50, 1), rand(1, 50))
@@ -112,8 +119,7 @@
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>In a nick of a second, your body gets torn into millions of pieces by immense shockwaves generated in a one large flash of exploded gas. No one will remember you.</span>")
 		H.flash_eyes(99)
-		spawn(10)
-			H.dust()
+		H.dust()
 	for(var/turf/T in surface_turfs)
 		T.set_ambient_light(COLOR_HOT_SURFACE, 2)
 	weather.weather_system.set_state(/decl/state/weather/ash)
