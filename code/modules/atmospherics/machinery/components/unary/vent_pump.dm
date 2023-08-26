@@ -105,7 +105,7 @@
 	if (!id_tag)
 		id_tag = "[sequential_id("obj/machinery")]"
 	. = ..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
+	air_contents.volume = 2500
 	update_sound()
 
 /obj/machinery/atmospherics/unary/vent_pump/Destroy()

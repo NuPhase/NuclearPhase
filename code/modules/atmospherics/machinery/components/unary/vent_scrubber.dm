@@ -14,7 +14,7 @@
 	level = 1
 
 	var/hibernate = 0 //Do we even process?
-	var/scrubbing = SCRUBBER_EXCHANGE
+	var/scrubbing = SCRUBBER_SCRUB
 	var/list/scrubbing_gas
 
 	var/panic = 0 //is this scrubber panicked?
@@ -69,7 +69,7 @@
 			if(g != /decl/material/gas/oxygen && g != /decl/material/gas/nitrogen)
 				scrubbing_gas += g
 	. = ..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
+	air_contents.volume = 1500
 
 /obj/machinery/atmospherics/unary/vent_scrubber/reset_area(area/old_area, area/new_area)
 	if(old_area == new_area)
