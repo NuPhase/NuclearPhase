@@ -1416,7 +1416,7 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	if(!limb_mob)
 		return 0
 	var/obj/item/organ/internal/brain/victim_brain = GET_INTERNAL_ORGAN(src, BP_BRAIN)
-	if(!forced && get_blood_perfusion() < 0.5 && !victim_brain.oxygen_deprivation)
+	if(!forced && (get_blood_perfusion() < 0.5 || victim_brain.oxygen_deprivation))
 		return 0
 	key = limb_mob.key
 	qdel(limb_mob)
