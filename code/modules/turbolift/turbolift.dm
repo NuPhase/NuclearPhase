@@ -164,7 +164,7 @@
 	if(floor_arrival_sound)
 		playsound(control_panel_interior.loc, floor_arrival_sound, 50, 1)
 
-	if(prob(5))
+	if(prob(1))
 		stuck()
 
 	return 1
