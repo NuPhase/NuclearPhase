@@ -263,14 +263,14 @@
 /obj/machinery/power/generator/port_gen/liquid/diesel/large
 	name = "industrial diesel generator"
 	desc = "You feel more and more deaf even when this beast is turned off."
-	power_gen = 15000000 //1.5MW
+	power_gen = 15000000 //15MW
 	icon = 'icons/obj/machines/diesel_generator.dmi'
 	icon_state = "large"
 	combustion_chamber_volume = 5
 	anchored = TRUE
 	density = 0
 	power_output = 10
-	output_voltage = 1000
+	output_voltage = 4400
 	weight = 370
 
 /obj/machinery/power/generator/port_gen/liquid/diesel/large/roundstart/Initialize()
