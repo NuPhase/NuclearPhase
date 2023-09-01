@@ -23,7 +23,7 @@
 
 /obj/machinery/reactor_button/rswitch/lasprime
 	name = "LAS-PRIMER"
-	cooldown = 30
+	cooldown = 10
 	icon_state = "switch2-off"
 	off_icon_state = "switch2-off"
 	on_icon_state = "switch2-on"
@@ -33,15 +33,19 @@
 	visible_message(SPAN_WARNING("[user] switches [src] to [state ? "PRIMED" : "ABORT"]!"))
 	if(state == 1)
 		var/primed = FALSE
+		var/total_energy = 0
 		for(var/tag in reactor_components)
 			var/obj/machinery/rlaser/las = reactor_components[tag]
 			if(!istype(las, /obj/machinery/rlaser))
 				continue
 			if(las.prime())
+				total_energy += las.capacitor_charge * las.active_power_usage
 				primed = TRUE
 		if(primed)
 			playsound(src, 'sound/machines/switchbuzzer.ogg', 50)
 		spawn(5 SECONDS)
+			for(var/obj/machinery/reactor_monitor/warnings/mon in rcontrol.announcement_monitors)
+				mon.chat_report("LASERS DISCHARGED. TOTAL ENERGY: [watts_to_text(total_energy)]/s*1.4.", 1)
 			state = 0
 			icon_state = off_icon_state
 	else

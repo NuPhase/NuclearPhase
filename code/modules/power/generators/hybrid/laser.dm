@@ -71,7 +71,7 @@
 		SSradiation.radiate(src, 90)
 	if(omode == LASER_MODE_IGNITION)
 		capacitor_charge += 1
-		capacitor_charge = Clamp(capacitor_charge, 1, 100)
+		capacitor_charge = Clamp(capacitor_charge, 1, 150)
 
 /obj/machinery/rlaser/proc/prime()
 	if(!armed)
