@@ -349,7 +349,7 @@
 	target.attackby(O, user)
 
 /obj/item/organ/proc/can_feel_pain()
-	return (!BP_IS_PROSTHETIC(src) && (!species || !(species.species_flags & SPECIES_FLAG_NO_PAIN)))
+	return (!BP_IS_PROSTHETIC(src) && !BP_IS_CRYSTAL(src) && (!species || !(species.species_flags & SPECIES_FLAG_NO_PAIN)))
 
 /obj/item/organ/proc/is_usable()
 	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
@@ -448,7 +448,10 @@ var/global/list/ailment_reference_cache = list()
 		ailment = get_ailment_reference(ailment)
 	if(!istype(ailment) || !ailment.can_apply_to(src))
 		return FALSE
-	LAZYADD(ailments, new ailment.type(src))
+	for(var/datum/ailm in ailments)
+		if(ailm.type == ailment.type)
+			return FALSE
+	LAZYADD(ailments, new ailment.type(_organ = src))
 	return TRUE
 
 /obj/item/organ/proc/add_random_ailment()

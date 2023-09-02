@@ -2,6 +2,13 @@
 	name = "crystal covered floor"
 	desc = "These crystals are terrifying in their perfect placement patterns."
 	layer = DECAL_LAYER
+	anchored = 1
+	icon = 'icons/turf/mining_decals.dmi'
+	icon_state = "crystal"
+
+/obj/effect/crystal_growth/New(loc, ...)
+	. = ..()
+	set_light(1, 1, COLOR_LIME)
 
 /obj/effect/crystal_growth/meat
 	desc = "These crystals are terrifying in their perfect placement patterns. There are pieces of flesh lodged inbetween individual shards..."
@@ -37,7 +44,8 @@
 					if(BP_IS_PROSTHETIC(affecting))
 						return
 					affecting.take_external_damage(7, 0)
-					infecting.add_ailment(/datum/ailment/crystal/phase_one)
+					if(!length(infecting.ailments))
+						infecting.add_ailment(/datum/ailment/crystal/phase_one)
 					H.updatehealth()
 					if(affecting.can_feel_pain())
 						SET_STATUS_MAX(H, STAT_WEAK, 3)
@@ -55,26 +63,69 @@
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
 			var/obj/item/organ/external/chest/affecting = GET_EXTERNAL_ORGAN(H, BP_CHEST)
-			affecting.add_ailment(/datum/ailment/crystal/phase_one)
+			if(!length(affecting.ailments))
+				affecting.add_ailment(/datum/ailment/crystal/phase_one)
+			SET_STATUS_MAX(H, STAT_WEAK, 3)
 	. = ..()
 
 /obj/effect/crystal_wall
 	name = "crystal wall"
-	desc = "A seemingly indestructive obstacle of crystalline origin."
+	desc = "A seemingly fragile obstacle of crystalline origin."
 	density = 1
 	opacity = 1
 	anchored = 1
 	mouse_opacity = 2
+	alpha = 200
 	layer = ABOVE_HUMAN_LAYER
+	var/min_shatter_dam = 10
 	var/shatter_prob = 15
+	icon = 'icons/turf/mining_decals.dmi'
+	icon_state = "crystal_wall"
+
+/obj/effect/crystal_wall/New(loc, ...)
+	. = ..()
+	set_light(2, 1, COLOR_LIME)
+	var/turf/T = get_turf(src)
+	for(var/mob/living/L in T)
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(rand(5, 10), BRUTE, used_weapon = "sharp crystals")
+		L.forceMove(src)
+
+/obj/effect/crystal_wall/Destroy()
+	for(var/obj/item/I in contents)
+		I.forceMove(loc)
+	for(var/mob/M in contents)
+		M.forceMove(loc)
+	. = ..()
+
+/obj/effect/crystal_wall/proc/shatter()
+	playsound(src, "glasscrack", 50, 1)
+	fragmentate(get_turf(src), fragtypes = list(/obj/item/projectile/bullet/pellet/fragment/crystal))
+
+/obj/effect/crystal_wall/attackby(obj/item/I, mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(src)
+	if(I.sharp && prob(5))
+		to_chat(user, SPAN_WARNING("Your [I] gets stuck in \the [src]!"))
+		user.drop_from_inventory(I, src)
+		return
+	visible_message(SPAN_WARNING("[user] attacks \the [src] with \the [I]!"))
+	playsound(src, "glasscrack", 50, 1)
+	if(I.force > min_shatter_dam && prob(shatter_prob))
+		if(prob(20))
+			shatter()
+		visible_message(SPAN_DANGER("[src] gets shredded to pieces!"))
+		qdel(src)
+	. = ..()
 
 /obj/effect/crystal_wall/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()
 	if(istype(P, /obj/item/projectile/bullet/pellet/fragment/crystal))
 		return
-
-	playsound(src, "glasscrack", 50, 1)
-	fragmentate(get_turf(src), fragtypes = list(/obj/item/projectile/bullet/pellet/fragment/crystal))
+	if(prob(10))
+		shatter()
 	if(prob(shatter_prob))
+		playsound(src, "glasscrack", 50, 1)
 		visible_message(SPAN_DANGER("[src] gets shredded to pieces!"))
 		qdel(src)
