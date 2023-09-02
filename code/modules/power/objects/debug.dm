@@ -27,11 +27,8 @@
 /obj/machinery/power/generator/debug_items/infinite_generator
 	name = "Fractal Energy Reactor"
 	desc = "An experimental power generator"
-	var/power_generation_rate = 1000000
-	var/voltage = 1000
-
-/obj/machinery/power/generator/debug_items/infinite_generator/Process()
-	add_power(power_generation_rate)
+	var/power_generation_rate = 10000000
+	var/voltage = 4400
 
 /obj/machinery/power/generator/debug_items/infinite_generator/get_voltage()
 	return voltage

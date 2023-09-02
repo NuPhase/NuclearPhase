@@ -74,17 +74,17 @@
 /datum/powernet/proc/handle_generators()
 	var/list/sorted = list() // unperformance shit
 	for(var/obj/machinery/power/generator/G in nodes)
-		sorted[G] = G.available_power()
+		if(G.available_power())
+			sorted[G] = G.available_power()
 	for(var/obj/machinery/power/generator/transformer/transf in nodes)
 		if(transf.available() > transf.connected.available())
-			transf.powernet.ldemand += transf.connected.powernet.ldemand
-			transf.powernet.ldemand += transf.connected.powernet.last_losses
+			transf.powernet.ldemand += transf.connected.powernet.ldemand + transf.connected.powernet.last_losses
 
 	if(sorted.len > 1)
 		sorted = sortAssoc(sorted)
 		var/tcoef = (sorted.len / (sorted.len-1))
 
-		var/tosuck = ldemand
+		var/tosuck = ldemand + losses + 15000
 		for(var/A in sorted)
 			var/obj/machinery/power/generator/G = A
 			var/np = tosuck / sorted.len

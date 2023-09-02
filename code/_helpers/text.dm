@@ -684,7 +684,9 @@ var/global/list/fullstop_alternatives = list(".", "!", "?")
 /proc/watts_to_text(var/watts)
 	var/load_text = ""
 	switch(watts)
-		if(0 to 1 MEGAWATTS)
+		if(0 to 1 KILOWATTS)
+			load_text = "[round(watts, 1)]W"
+		if(1 KILOWATTS to 1 MEGAWATTS)
 			load_text = "[round(watts / 1000, 0.1)]kW"
 		if(1 MEGAWATTS to 1 GIGAWATTS)
 			load_text = "[round(watts / 1000000, 0.1)]MW"

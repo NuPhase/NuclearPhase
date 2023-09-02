@@ -91,6 +91,7 @@
 	if(on)
 		to_chat(user, "<span class='good'>Its lever is in 'RESET' position.</span>")
 		to_chat(user, "<span class='notice'>The load is: [watts_to_text(connected.powernet.ldemand)].</span>")
+		to_chat(user, SPAN_NOTICE("The grid experiences [watts_to_text(connected.powernet.last_losses)] of resistive heating losses."))
 	else
 		to_chat(user, "<span class='warning'>Its lever is in 'TRIP' position.</span>")
 

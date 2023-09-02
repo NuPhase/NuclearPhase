@@ -130,6 +130,7 @@
 	var/closed_cycle = FALSE //whether this generator runs in closed cycle or not. If not, it will use oxidizer and spew waste into the environment.
 	var/list/decl/material/allowed_fuels = list()
 	var/combustion_chamber_volume = 2 //basically means fuel consumption
+	var/actual_fuel_consumption = 0 //per process
 	power_gen = 20000
 	power_output = 3
 	working_sound = 'sound/machines/engine.ogg'
@@ -148,7 +149,7 @@
 
 /obj/machinery/power/generator/port_gen/liquid/examine(mob/user, distance)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("The fuel gauge is at [reagents.total_volume/reagents.maximum_volume * 100]%."))
+	to_chat(user, SPAN_NOTICE("The fuel gauge is at [round(reagents.total_volume * 1000, 0.1)] liters."))
 	if(oxidizer_tank)
 		to_chat(user, SPAN_NOTICE("The oxidizer tank pressure is: [oxidizer_tank.air_contents.return_pressure()]kPa."))
 	if(waste_tank)
@@ -196,7 +197,8 @@
 		burn_mixture.merge(environment.remove(required_fuel_moles * 10))
 		burn_mixture.fire_react(null, TRUE, TRUE)
 		environment.merge(burn_mixture)
-	reagents.remove_reagent(mat.type, required_fuel_moles * mat.molar_volume)
+	actual_fuel_consumption = required_fuel_moles * mat.molar_volume
+	reagents.remove_reagent(mat.type, actual_fuel_consumption)
 	environment.add_thermal_energy(POWER2HEAT(power_requirement) * (1 - efficiency))
 	update_sound()
 
@@ -266,16 +268,29 @@
 	power_gen = 15000000 //15MW
 	icon = 'icons/obj/machines/diesel_generator.dmi'
 	icon_state = "large"
-	combustion_chamber_volume = 5
+	tank_volume = 60000 //60 liters
+	combustion_chamber_volume = 20
 	anchored = TRUE
 	density = 0
 	power_output = 10
 	output_voltage = 4400
 	weight = 370
+	var/last_power_output = 0
+
+/obj/machinery/power/generator/port_gen/liquid/diesel/large/on_power_drain(w)
+	. = ..()
+	last_power_output = w
+
+/obj/machinery/power/generator/port_gen/liquid/diesel/large/examine(mob/user, distance)
+	. = ..()
+	if(!active)
+		return
+	to_chat(user, SPAN_NOTICE("It consumes about [round(actual_fuel_consumption HOUR * 0.001, 0.1)] liters of fuel per hour."))
+	to_chat(user, SPAN_NOTICE("It currently outputs [watts_to_text(round(last_power_output), 10)]."))
 
 /obj/machinery/power/generator/port_gen/liquid/diesel/large/roundstart/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(100, 400))
+	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(2200, 14000))
 	active = TRUE
 	update_icon()
 
