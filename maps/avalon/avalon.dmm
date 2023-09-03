@@ -6121,6 +6121,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
+"fYi" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/atmos)
 "fYC" = (
 /obj/machinery/door/airlock/civilian,
 /turf/simulated/floor/tiled/white,
@@ -11566,6 +11572,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/barracks)
+"luB" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/atmos)
 "luD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -12469,6 +12481,12 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/brig/breakroom)
+"mrn" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/avalon/shelter/atmos)
 "mrR" = (
 /obj/machinery/vending/cigarette{
 	dir = 8;
@@ -18967,8 +18985,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/garage)
 "sXd" = (
-/obj/machinery/atmospherics/pipe/cap/visible{
-	dir = 1
+/obj/machinery/atmospherics/binary/passive_gate/on{
+	dir = 1;
+	regulate_mode = 1;
+	target_pressure = 7500;
+	starting_volume = 500
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/atmos)
@@ -21050,6 +21071,10 @@
 "via" = (
 /turf/exterior/wall,
 /area/avalon/shelter/command)
+"vim" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/red,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "vis" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 6
@@ -21375,6 +21400,15 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/staircase)
+"vAu" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/empty{
+	volume = 75000
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/atmos)
 "vBj" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
@@ -21430,6 +21464,12 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/command)
+"vDn" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/atmos)
 "vDI" = (
 /obj/machinery/light{
 	dir = 1
@@ -199269,9 +199309,9 @@ nBJ
 nBJ
 nBJ
 nBJ
-uzo
-uzo
-uzo
+nBJ
+nBJ
+nBJ
 uzo
 uzo
 uzo
@@ -199398,10 +199438,10 @@ nBJ
 dyO
 yjp
 aTK
+dyO
+fYi
+vAu
 nBJ
-uzo
-uzo
-uzo
 uzo
 uzo
 uzo
@@ -199528,9 +199568,9 @@ nBJ
 dyO
 hXJ
 dyO
-nBJ
-nBJ
-nBJ
+dyO
+vDn
+dyO
 nBJ
 nBJ
 nBJ
@@ -199659,7 +199699,7 @@ wJz
 lTY
 wJz
 wJz
-wJz
+sYE
 fJG
 wJz
 wJz
@@ -199789,7 +199829,7 @@ wCJ
 czF
 wJz
 wJz
-wJz
+sYE
 wJz
 wJz
 wJz
@@ -199919,7 +199959,7 @@ lxr
 dbU
 wJz
 wJz
-wJz
+sYE
 wJz
 wJz
 wJz
@@ -200046,10 +200086,10 @@ fXp
 rZl
 czC
 fXp
-sXd
-wJz
-wJz
-wJz
+fXp
+fXp
+fXp
+mrn
 wJz
 wJz
 wJz
@@ -201350,8 +201390,8 @@ gbn
 fOB
 ncc
 ncc
-qrh
 ctm
+wJz
 dFG
 nBJ
 mXM
@@ -201481,7 +201521,7 @@ fXp
 vgi
 ejn
 lbh
-cON
+wJz
 wJz
 nBJ
 csS
@@ -201611,10 +201651,10 @@ wJz
 oEl
 ttp
 lbh
-cON
-wJz
-nBJ
-aHh
+luB
+sXd
+czC
+vim
 iVn
 iVn
 iVn
@@ -202000,8 +202040,8 @@ nBJ
 wJz
 sYE
 wJz
-cON
-cON
+trJ
+lbh
 wJz
 nBJ
 con

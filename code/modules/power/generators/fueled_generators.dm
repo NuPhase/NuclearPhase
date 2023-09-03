@@ -149,7 +149,7 @@
 
 /obj/machinery/power/generator/port_gen/liquid/examine(mob/user, distance)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("The fuel gauge is at [round(reagents.total_volume * 1000, 0.1)] liters."))
+	to_chat(user, SPAN_NOTICE("The fuel gauge is at [round(reagents.total_volume * 0.001, 0.1)] liters."))
 	if(oxidizer_tank)
 		to_chat(user, SPAN_NOTICE("The oxidizer tank pressure is: [oxidizer_tank.air_contents.return_pressure()]kPa."))
 	if(waste_tank)
