@@ -78,10 +78,10 @@
 
 /obj/random/powercell/spawn_choices()
 	return list(/obj/item/cell/crap = 1,
-				/obj/item/cell = 8,
-				/obj/item/cell/high = 5,
-				/obj/item/cell/super = 2,
-				/obj/item/cell/hyper = 1,
+				/obj/item/cell/standard = 8,
+				/obj/item/cell/doublecapacity = 5,
+				/obj/item/cell/quadruplecapacity = 2,
+				/obj/item/cell/quantum = 1,
 				/obj/item/cell/device/standard = 7,
 				/obj/item/cell/device/high = 5)
 

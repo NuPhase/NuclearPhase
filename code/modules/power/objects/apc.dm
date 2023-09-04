@@ -48,7 +48,7 @@ var/global/list/all_apcs = list()
 
 /obj/machinery/power/apc/high
 	uncreated_component_parts = list(
-		/obj/item/cell/high
+		/obj/item/cell/doublecapacity
 	)
 
 /obj/machinery/power/apc/high/inactive
@@ -59,7 +59,7 @@ var/global/list/all_apcs = list()
 
 /obj/machinery/power/apc/super
 	uncreated_component_parts = list(
-		/obj/item/cell/super
+		/obj/item/cell/quadruplecapacity
 	)
 
 /obj/machinery/power/apc/super/critical
@@ -67,7 +67,7 @@ var/global/list/all_apcs = list()
 
 /obj/machinery/power/apc/hyper
 	uncreated_component_parts = list(
-		/obj/item/cell/hyper
+		/obj/item/cell/quantum/quadruplecapacity
 	)
 
 /obj/machinery/power/apc/derelict
@@ -147,7 +147,7 @@ var/global/list/all_apcs = list()
 	frame_type = /obj/item/frame/apc
 	construct_state = /decl/machine_construction/wall_frame/panel_closed/hackable
 	uncreated_component_parts = list(
-		/obj/item/cell/apc
+		/obj/item/cell/standard
 	)
 	stock_part_presets = list(/decl/stock_part_preset/terminal_setup)
 

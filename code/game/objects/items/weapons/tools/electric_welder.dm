@@ -9,7 +9,7 @@
 	force = 7
 	throwforce = 7
 	lit_colour = COLOR_CYAN_BLUE
-	var/obj/item/cell/cell = /obj/item/cell/high
+	var/obj/item/cell/cell = /obj/item/cell/standard
 	var/fuel_cost_multiplier = 10
 
 /obj/item/weldingtool/electric/Initialize()
@@ -74,7 +74,7 @@
 /obj/item/weldingtool/electric/burn_fuel(var/amount)
 	spend_charge(amount * fuel_cost_multiplier)
 	var/turf/T = get_turf(src)
-	if(T) 
+	if(T)
 		T.hotspot_expose(700, 5)
 
 /obj/item/weldingtool/electric/on_update_icon()

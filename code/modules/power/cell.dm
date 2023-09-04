@@ -171,6 +171,7 @@
 	name = "lithium-ion power cell"
 	desc = "A standard and relatively cheap power cell, commonly used."
 	origin_tech = "{'powerstorage':1}"
+	icon_state = "cell"
 	maxcharge = 1000
 	material = /decl/material/solid/metal/steel
 	matter = list(
@@ -182,12 +183,14 @@
 /obj/item/cell/doublecapacity
 	name = "lithium-ion coupled power cell"
 	w_class = ITEM_SIZE_LARGE
+	icon_state = "cell_coupled"
 	maxcharge = 2000
 	weight = 4
 
 /obj/item/cell/quadruplecapacity
 	name = "lithium-ion power cell array"
 	w_class = ITEM_SIZE_LARGE
+	icon_state = "cell_array"
 	maxcharge = 4000
 	weight = 8
 
