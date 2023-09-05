@@ -8,14 +8,15 @@
 	projectile_type = /obj/item/projectile/beam/highenergy
 	one_hand_penalty = 5 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	slot_flags = SLOT_BACK
-	charge_cost = 40
+	charge_cost = 700
 	max_shots = 4
 	fire_delay = 35
 	force = 10
 	w_class = ITEM_SIZE_HUGE
-	accuracy = 3 //shooting at the hip
+	accuracy = 6
 	scoped_accuracy = 9
 	scope_zoom = 2
+	power_supply = /obj/item/cell/smes
 	var/charging = FALSE
 
 /obj/item/gun/energy/sniperrifle/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex, set_click_cooldown)
