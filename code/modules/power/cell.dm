@@ -171,6 +171,7 @@
 	name = "lithium-ion power cell"
 	desc = "A standard and relatively cheap power cell, commonly used."
 	origin_tech = "{'powerstorage':1}"
+	w_class = ITEM_SIZE_SMALL
 	icon_state = "cell"
 	maxcharge = 1000
 	material = /decl/material/solid/metal/steel
@@ -182,7 +183,7 @@
 
 /obj/item/cell/doublecapacity
 	name = "lithium-ion coupled power cell"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_NORMAL
 	icon_state = "cell_coupled"
 	maxcharge = 2000
 	weight = 4
@@ -196,6 +197,7 @@
 
 /obj/item/cell/quantum //1570wh/kg
 	name = "quantum power cell"
+	w_class = ITEM_SIZE_SMALL
 	desc = "Despite the name, this is real technology."
 	icon_state = "hcell"
 	maxcharge = 3140
@@ -203,8 +205,18 @@
 
 /obj/item/cell/quantum/quadruplecapacity
 	name = "quantum power cell array"
+	w_class = ITEM_SIZE_LARGE
 	maxcharge = 12560
 	weight = 8
+
+/obj/item/cell/smes //5455wh/kg
+	name = "SME cell"
+	w_class = ITEM_SIZE_SMALL
+	desc = "Superconductive Magnetic Energy Cell. A compact superconductor induction coil at room temperature.\
+ While not exactly effective, it's extraordinarily dense and quite susceptible to damage."
+	icon_state = "smecell"
+	maxcharge = 16365
+	weight = 3
 
 /obj/item/cell/apc
 	name = "APC power cell"
