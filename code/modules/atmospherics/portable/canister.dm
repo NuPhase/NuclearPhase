@@ -1,5 +1,6 @@
 /obj/machinery/portable_atmospherics/canister
 	name = "\improper Canister: \[CAUTION\]"
+	desc = "A 700L canister. 61kg empty weight."
 	icon = 'icons/obj/atmospherics/canisters.dmi'
 	icon_state = "yellow"
 	density = 1
@@ -23,7 +24,7 @@
 	volume = 700
 	interact_offline = 1 // Allows this to be used when not in powered area.
 	var/update_flag = 0
-	weight = 10
+	weight = 61
 
 /obj/machinery/portable_atmospherics/canister/Initialize(mapload, material)
 	if(ispath(material))

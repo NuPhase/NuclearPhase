@@ -52,13 +52,22 @@
 	if(!ATOM_IS_OPEN_CONTAINER(src))
 		to_chat(user, "<span class='notice'>The airtight lid seals it completely.</span>")
 
-/obj/item/chems/glass/attack_self()
+/obj/item/chems/glass/attack_self(mob/user)
 	..()
 	if(ATOM_IS_OPEN_CONTAINER(src))
 		to_chat(usr, "<span class = 'notice'>You put the lid on \the [src].</span>")
 		atom_flags ^= ATOM_FLAG_OPEN_CONTAINER
 	else
 		to_chat(usr, "<span class = 'notice'>You take the lid off \the [src].</span>")
+		var/turf/T = get_turf(user)
+		var/datum/gas_mixture/environment = T.return_air()
+		var/old_pressure = pressure
+		pressure = environment.return_pressure()
+		if(old_pressure - pressure > ONE_ATMOSPHERE)
+			reagents.touch_mob(user)
+			reagents.trans_to_turf(T, reagents.total_volume * 0.44)
+			playsound(user, 'sound/items/steam_blast.ogg', 50, 0, -3)
+			user.visible_message(SPAN_DANGER("The contents of [src] spill all over the place!"))
 		atom_flags |= ATOM_FLAG_OPEN_CONTAINER
 	update_icon()
 

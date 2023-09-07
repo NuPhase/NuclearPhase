@@ -11,6 +11,7 @@
 	var/volume = 500
 	var/label_text
 	var/show_reagent_name = FALSE
+	var/pressure = ONE_ATMOSPHERE
 
 /obj/item/chems/proc/cannot_interact(mob/user)
 	if(!CanPhysicallyInteract(user))
