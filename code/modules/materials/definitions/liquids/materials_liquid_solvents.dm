@@ -8,7 +8,7 @@
 	touch_met = 50 // It's acid!
 	value = 1.2
 	solvent_power = MAT_SOLVENT_STRONG + 2
-	solvent_melt_dose = 10
+	solvent_melt_dose = 60
 	solvent_max_damage = 30
 	boiling_point = 290 CELSIUS
 	melting_point = 10 CELSIUS
@@ -22,7 +22,7 @@
 	taste_description = "stomach acid"
 	color = "#808080"
 	solvent_power = MAT_SOLVENT_STRONG
-	solvent_melt_dose = 8
+	solvent_melt_dose = 48
 	solvent_max_damage = 30
 	value = 1.5
 	boiling_point = 48 CELSIUS
@@ -35,7 +35,7 @@
 	lore_text = "A weak acid."
 	color = "#808080"
 	solvent_power = MAT_SOLVENT_MILD
-	solvent_melt_dose = 15
+	solvent_melt_dose = 120
 	solvent_max_damage = 5
 	value = 1.5
 
@@ -46,7 +46,7 @@
 	taste_description = "acid"
 	color = "#8e18a9"
 	solvent_power = MAT_SOLVENT_STRONG + 7
-	solvent_melt_dose = 4
+	solvent_melt_dose = 24
 	solvent_max_damage = 60
 	value = 1.8
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
