@@ -10,6 +10,7 @@
 	weight = 10
 	var/haswheels = FALSE
 	var/atom/movable/load = null
+	var/max_weight = 270
 
 /obj/structure/cart/Move()
 	. = ..()
@@ -47,8 +48,11 @@
 		return
 
 	if(do_after(user, 2 SECONDS, src))
+		if(cargo.weight > max_weight)
+			to_chat(user, SPAN_WARNING("\The [cargo] is too heavy for \the [src]."))
+			return
 		if(!load(cargo))
-			to_chat(user, SPAN_WARNING("You are unable to load [cargo] on [src]"))
+			to_chat(user, SPAN_WARNING("You are unable to load [cargo] on [src]."))
 			return
 		density = TRUE
 
