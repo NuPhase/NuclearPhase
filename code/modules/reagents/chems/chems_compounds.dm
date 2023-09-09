@@ -256,7 +256,7 @@
 		M.add_chemical_effect(CE_SLOWDOWN, (volume/15) ** 2)
 	else if(LAZYACCESS(M.chem_doses, type) > 30) //after prolonged exertion
 		ADJ_STATUS(M, STAT_JITTER, 5)
-		M.add_chemical_effect(CE_BREATHLOSS, 0.02 * volume)
+		M.add_chemical_effect(CE_BREATHLOSS, 0.2 * volume)
 
 /decl/material/liquid/nanoblood
 	name = "nanoblood"

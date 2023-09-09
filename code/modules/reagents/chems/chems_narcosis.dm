@@ -21,6 +21,6 @@
 
 /decl/material/liquid/propofol/affect_overdose(mob/living/M, datum/reagents/holder)
 	var/volume = REAGENT_VOLUME(holder, type)
-	M.add_chemical_effect(CE_BREATHLOSS, volume)
+	M.add_chemical_effect(CE_BREATHLOSS, -volume)
 	M.add_chemical_effect(CE_PRESSURE, (volume * -10))
 	M.add_chemical_effect(CE_PULSE, (volume * -5))

@@ -251,11 +251,11 @@
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
-		H.add_chemical_effect(CE_BREATHLOSS, 2 * boozed)
+		H.add_chemical_effect(CE_BREATHLOSS, -2 * boozed)
 
 /decl/material/liquid/opium/affect_overdose(mob/living/carbon/human/H, datum/reagents/holder)
 	. = ..()
-	H.add_chemical_effect(CE_BREATHLOSS, 5)
+	H.add_chemical_effect(CE_BREATHLOSS, -5)
 	ADJ_STATUS(H, STAT_DIZZY,  3)
 
 /decl/material/liquid/opium/on_leaving_metabolism(atom/parent, metabolism_class)
@@ -295,7 +295,7 @@
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
-		H.add_chemical_effect(CE_BREATHLOSS, 1 * boozed)
+		H.add_chemical_effect(CE_BREATHLOSS, -1 * boozed)
 
 /decl/material/liquid/opium/codeine
 	name = "codeine"
@@ -343,7 +343,7 @@
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
-		H.add_chemical_effect(CE_BREATHLOSS, 1 * boozed)
+		H.add_chemical_effect(CE_BREATHLOSS, -1 * boozed)
 
 /decl/material/liquid/opium/morphine/ethylmorphine
 	name = "ethylmorphine"

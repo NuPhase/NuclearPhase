@@ -33,8 +33,7 @@
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
 	oxygen_consumption = 1
 	var/oxygen_generation = 1.86 // default per breath
-	var/breath_rate = 15 //per minute
-	var/breath_efficiency = 1 //coefficient
+	var/breath_rate = 16 //per minute
 
 /obj/item/organ/internal/lungs/rejuvenate(ignore_prosthetic_prefs)
 	. = ..()
@@ -170,10 +169,6 @@
 		else
 			safe_pressure_min *= 1.1 //helps a little
 
-	var/breatheffect = GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
-	if(!forced && breatheffect && !GET_CHEMICAL_EFFECT(owner, CE_STABLE)) //opiates are bad mmkay
-		safe_pressure_min *= 1 + breatheffect
-
 	if(owner.lying)
 		safe_pressure_min *= 0.8
 
@@ -184,7 +179,7 @@
 	var/inhale_efficiency = min(round(((inhaling/breath.total_moles)*breath_pressure)/safe_pressure_min, 0.001), 3)
 
 	// Not enough to breathe
-	if(inhale_efficiency < 1)
+	if(inhale_efficiency < 0.6)
 		if(prob(20) && active_breathing)
 			if(inhale_efficiency < 0.6)
 				owner.emote("gasp")
@@ -220,10 +215,7 @@
 		var/decl/material/gas = GET_DECL(gasname)
 		if(gas.gas_metabolically_inert)
 			continue
-		// Little bit of sanity so we aren't trying to add 0.0000000001 units of CO2, and so we don't end up with 99999 units of CO2.
 		var/reagent_amount = breath.gas[gasname] * gas.molar_volume * ratio
-		//if(reagent_amount < 0.05)
-		//	continue
 		owner.reagents.add_reagent(gasname, reagent_amount)
 		breath.adjust_gas(gasname, -breath.gas[gasname], update = 0) //update after
 
@@ -236,11 +228,11 @@
 	var/failed_breath = failed_inhale || failed_exhale
 	if(!failed_breath || forced)
 		calculate_breath_rate()
-		owner.add_oxygen(oxygen_generation * breath_rate * breath_efficiency)
+		owner.add_oxygen(oxygen_generation * breath_rate * inhale_efficiency)
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
 		if(mask || breath_rate > 20)
-			var/breathing_sound = get_breathing_sound(mask)
+			var/breathing_sound = get_breathing_sound(mask, inhale_efficiency)
 			if(breathing_sound)
 				sound_to(owner, sound(breathing_sound,0,0,0,35))
 
@@ -253,12 +245,12 @@
 		owner.oxygen_alert = 0
 	return failed_breath
 
-/obj/item/organ/internal/lungs/proc/get_breathing_sound(mask)
+/obj/item/organ/internal/lungs/proc/get_breathing_sound(mask, efficiency)
 	if(!mask)
 		if(owner.gender == MALE)
 			switch(breath_rate)
 				if(30 to 45)
-					if(breath_efficiency < 0.75)
+					if(efficiency < 0.75)
 						return 'sound/voice/breath/30_male_75.wav'
 				if(45 to 60)
 					return 'sound/voice/breath/60_male.wav'
@@ -274,8 +266,12 @@
 			return 'sound/voice/breath/mask_breathing.wav'
 
 /obj/item/organ/internal/lungs/proc/calculate_breath_rate()
+	if(!last_int_pressure)
+		breath_rate = 0
+		return
 	breath_rate = initial(breath_rate)
 	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
+	breath_rate += min(25, owner.shock_stage * 0.1)
 	var/breath_rate_delta = owner.max_oxygen_capacity - owner.oxygen_amount
 	breath_rate += breath_rate_delta * 0.14
 

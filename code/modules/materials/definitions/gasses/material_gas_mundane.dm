@@ -54,6 +54,36 @@
 	boiling_point = -78 CELSIUS
 	liquid_density = 1190
 	color = "#272727"
+	metabolism = 5
+
+/decl/material/gas/carbon_dioxide/affect_blood(mob/living/M, removed, datum/reagents/holder)
+	if(!istype(M))
+		return
+	var/warning_message
+	var/warning_prob = 5
+	var/dosage = LAZYACCESS(M.chem_doses, type)
+	var/mob/living/carbon/human/H = M
+	if(dosage >= 50)
+		warning_message = pick("extremely dizzy","short of breath","faint","confused")
+		warning_prob = 15
+		M.adjustOxyLoss(10,20)
+		if(istype(H))
+			H.co2_alert = 1
+	else if(dosage >= 25)
+		warning_message = pick("dizzy","short of breath","faint","momentarily confused")
+		M.adjustOxyLoss(3,5)
+		if(istype(H))
+			H.co2_alert = 1
+	else if(dosage >= 10)
+		warning_message = pick("a little dizzy","short of breath")
+		warning_prob = 10
+		if(istype(H))
+			H.co2_alert = 0
+	else if(istype(H))
+		H.co2_alert = 0
+	H.add_chemical_effect(CE_BREATHLOSS, dosage * 0.01)
+	if(warning_message && prob(warning_prob))
+		to_chat(M, SPAN_WARNING("You feel [warning_message]."))
 
 /decl/material/gas/carbon_dioxide/touch_mob(var/mob/living/M, var/amount, var/datum/reagents/holder)
 	..()
@@ -122,8 +152,7 @@
 			H.co2_alert = 0
 	else if(istype(H))
 		H.co2_alert = 0
-	if(istype(H) && dosage > 1 && H.losebreath < 15)
-		H.losebreath++
+	H.add_chemical_effect(CE_BREATHLOSS, dosage * -0.05)
 	if(warning_message && prob(warning_prob))
 		to_chat(M, SPAN_WARNING("You feel [warning_message]."))
 

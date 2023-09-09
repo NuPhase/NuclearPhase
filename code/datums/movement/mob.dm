@@ -250,7 +250,7 @@
 			G.adjust_position()
 
 /mob/proc/get_stamina_used_per_step()
-	return 1
+	return 5
 
 /mob/living/carbon/human/get_stamina_used_per_step()
 	var/mod = (1-((get_skill_value(SKILL_FITNESS) - SKILL_MIN)/(SKILL_MAX - SKILL_MIN)))

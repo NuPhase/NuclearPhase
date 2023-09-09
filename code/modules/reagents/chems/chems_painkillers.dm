@@ -91,7 +91,7 @@
 	var/boozed = isboozed(M)
 	if(boozed)
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
-		M.add_chemical_effect(CE_BREATHLOSS, 1 * boozed) //drinking and opiating suppresses breathing.
+		M.add_chemical_effect(CE_BREATHLOSS, -1 * boozed) //drinking and opiating suppresses breathing.
 
 /decl/material/liquid/painkillers/affect_overdose(var/mob/living/M, var/datum/reagents/holder)
 	..()
@@ -100,9 +100,9 @@
 	M.set_hallucination(120, 30)
 	SET_STATUS_MAX(M, STAT_DRUGGY, 10)
 	M.add_chemical_effect(CE_PAINKILLER, pain_power*0.5) //extra painkilling for extra trouble
-	M.add_chemical_effect(CE_BREATHLOSS, breathloss_severity*2) //ODing on opiates can be deadly.
+	M.add_chemical_effect(CE_BREATHLOSS, breathloss_severity*-2) //ODing on opiates can be deadly.
 	if(isboozed(M))
-		M.add_chemical_effect(CE_BREATHLOSS, breathloss_severity*4) //Don't drink and OD on opiates folks
+		M.add_chemical_effect(CE_BREATHLOSS, breathloss_severity*-4) //Don't drink and OD on opiates folks
 
 /decl/material/liquid/painkillers/proc/isboozed(var/mob/living/carbon/M)
 	. = 0
