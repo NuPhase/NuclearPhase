@@ -497,7 +497,7 @@ var/global/list/global/tank_gauge_cache = list()
 			T.assume_air(leaked_gas)
 			if(!leaking)
 				visible_message("[html_icon(src)] <span class='warning'>\The [src] relief valve flips open with a hiss!</span>", "You hear hissing.")
-				playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
+				playsound(loc, 'sound/effects/tank_rupture.wav', 10, 1, -3)
 				leaking = 1
 				#ifdef FIREDBG
 				log_debug("<span class='warning'>[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]</span>")

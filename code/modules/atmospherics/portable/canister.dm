@@ -229,7 +229,7 @@ update_flag
 		location.assume_air(air_contents)
 
 		src.destroyed = 1
-		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
+		playsound(src.loc, 'sound/effects/tank_rupture.wav', 10, 1, -3)
 		src.set_density(0)
 		update_icon()
 

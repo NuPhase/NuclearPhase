@@ -29,23 +29,22 @@
 	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
-	var/breathing = 0
 	var/last_successful_breath
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
 	oxygen_consumption = 1
-	var/oxygen_generation = 28 // default
-	var/max_oxygen_generation = 28 //weak lungs
+	var/oxygen_generation = 1.86 // default per breath
+	var/breath_rate = 15 //per minute
+	var/breath_efficiency = 1 //coefficient
 
 /obj/item/organ/internal/lungs/rejuvenate(ignore_prosthetic_prefs)
 	. = ..()
 	ruptured = FALSE
-	oxygen_generation = max_oxygen_generation
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
 	if(ishuman(owner))
 		spawn(50) //ugly workaround, lungs don't have post initialize proc
-			max_oxygen_generation += owner.get_skill_value(SKILL_FITNESS) * 1.5
+			oxygen_generation += owner.get_skill_value(SKILL_FITNESS) * 0.08
 
 /obj/item/organ/internal/lungs/proc/can_drown()
 	return (is_broken() || !has_gills)
@@ -236,18 +235,14 @@
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
 	if(!failed_breath || forced)
-		if(!owner.add_oxygen(oxygen_generation))
-			oxygen_generation = Interpolate(oxygen_generation, max_oxygen_generation, 0.2)
-		else
-			oxygen_generation = Interpolate(oxygen_generation, initial(oxygen_generation), 0.2)
+		calculate_breath_rate()
+		owner.add_oxygen(oxygen_generation * breath_rate * breath_efficiency)
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
-		if(!BP_IS_PROSTHETIC(src) && species.breathing_sound && is_below_sound_pressure(get_turf(owner)))
-			if(breathing || owner.shock_stage >= 10)
-				sound_to(owner, sound(species.breathing_sound,0,0,0,5))
-				breathing = 0
-			else
-				breathing = 1
+		if(mask || breath_rate > 20)
+			var/breathing_sound = get_breathing_sound(mask)
+			if(breathing_sound)
+				sound_to(owner, sound(breathing_sound,0,0,0,35))
 
 	handle_temperature_effects(breath)
 	breath.update_values()
@@ -257,6 +252,32 @@
 	else
 		owner.oxygen_alert = 0
 	return failed_breath
+
+/obj/item/organ/internal/lungs/proc/get_breathing_sound(mask)
+	if(!mask)
+		if(owner.gender == MALE)
+			switch(breath_rate)
+				if(30 to 45)
+					if(breath_efficiency < 0.75)
+						return 'sound/voice/breath/30_male_75.wav'
+				if(45 to 60)
+					return 'sound/voice/breath/60_male.wav'
+				if(60 to INFINITY)
+					return 'sound/voice/breath/75_male.wav'
+		else
+			if(breath_rate > 30)
+				return 'sound/voice/breath/60_female.wav'
+	else
+		if(owner.internal)
+			return 'sound/voice/breath/mask_tank_breathing.wav'
+		else
+			return 'sound/voice/breath/mask_breathing.wav'
+
+/obj/item/organ/internal/lungs/proc/calculate_breath_rate()
+	breath_rate = initial(breath_rate)
+	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
+	var/breath_rate_delta = owner.max_oxygen_capacity - owner.oxygen_amount
+	breath_rate += breath_rate_delta * 0.14
 
 /obj/item/organ/internal/lungs/proc/handle_failed_breath()
 	if(prob(15) && oxygen_deprivation < 100)
@@ -306,7 +327,7 @@
 	else if(breath.temperature <= species.cold_discomfort_level)
 		species.get_environment_discomfort(owner,"cold")
 
-/obj/item/organ/internal/lungs/listen()
+/obj/item/organ/internal/lungs/listen(mob/user)
 	if(owner.failed_last_breath || !active_breathing)
 		return "no respiration"
 
@@ -320,6 +341,11 @@
 	if(ruptured)
 		. += "weak [pick("wheezing", "gurgling")] without any signs of respiration on one side."
 
+	if(ruptured || damage > 20)
+		sound_to(user, sound('sound/voice/breath/lung_stridor.wav',0,0,0,35))
+	else
+		sound_to(user, sound('sound/voice/breath/lung_normal.wav',0,0,0,35))
+
 	var/list/breathtype = list()
 	if(get_oxygen_deprivation() > 10)
 		breathtype += pick("straining","labored")
@@ -328,7 +354,7 @@
 	if(!breathtype.len)
 		breathtype += "healthy"
 
-	. += "[english_list(breathtype)] breathing"
+	. += "[english_list(breathtype)] respiration at [round(breath_rate, 1)] breaths per minute."
 
 	return english_list(.)
 
