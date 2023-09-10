@@ -29,9 +29,9 @@
 	set src in usr
 
 	leakiness = 100
-	visible_message(SPAN_DANGER("[usr] ejects from the [src], tearing it apart!"))
+	usr.visible_message(SPAN_DANGER("[usr] ejects from the [src], tearing it apart!"))
 	usr.drop_from_inventory(src, usr.loc)
-	var/turf/T = get_ranged_target_turf(usr, wearer.dir, 15)
+	var/turf/T = get_ranged_target_turf(usr, usr.dir, 15)
 	usr.throw_at(T, 15, 3, src)
 
 /obj/item/clothing/head/helmet/modern/space/combat_specialized/cold
