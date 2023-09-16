@@ -1,4 +1,4 @@
-#define MINIMUM_GLOW_TEMPERATURE 323
+#define MINIMUM_GLOW_TEMPERATURE 413
 #define MINIMUM_GLOW_VALUE       25
 #define MAXIMUM_GLOW_VALUE       255
 #define HEATER_MODE_HEAT         "heat"
@@ -6,14 +6,14 @@
 
 /obj/machinery/reagent_temperature
 	name = "chemical heater"
-	desc = "A small electric Bunsen, used to heat beakers and vials of chemicals."
+	desc = "A small electric heater, used to heat beakers and vials of chemicals."
 	icon = 'icons/obj/machines/heat_sources.dmi'
 	icon_state = "hotplate"
 	atom_flags = ATOM_FLAG_CLIMBABLE
 	density =    TRUE
 	anchored =   TRUE
 	idle_power_usage = 0
-	active_power_usage = 1.2 KILOWATTS
+	active_power_usage = 1400
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0
@@ -24,9 +24,8 @@
 
 	var/heater_mode =          HEATER_MODE_HEAT
 	var/list/permitted_types = list(/obj/item/chems/glass)
-	var/max_temperature =      200 CELSIUS
+	var/max_temperature =      310 CELSIUS
 	var/min_temperature =      40  CELSIUS
-	var/heating_power =        10 // K
 	var/last_temperature
 	var/target_temperature
 	var/obj/item/container
@@ -37,7 +36,7 @@
 	icon_state = "coldplate"
 	heater_mode =      HEATER_MODE_COOL
 	max_temperature =  30 CELSIUS
-	min_temperature = -80 CELSIUS
+	min_temperature =  0 CELSIUS
 
 /obj/machinery/reagent_temperature/Initialize()
 	target_temperature = min_temperature
@@ -48,14 +47,6 @@
 		container.dropInto(loc)
 		container = null
 	. = ..()
-
-/obj/machinery/reagent_temperature/RefreshParts()
-	heating_power = initial(heating_power) * Clamp(total_component_rating_of_type(/obj/item/stock_parts/capacitor), 0, 10)
-
-	var/comp = 0.25 KILOWATTS * total_component_rating_of_type(/obj/item/stock_parts/micro_laser)
-	if(comp)
-		change_power_consumption(max(0.5 KILOWATTS, initial(active_power_usage) - comp), POWER_USE_ACTIVE)
-	..()
 
 /obj/machinery/reagent_temperature/Process()
 	..()
@@ -72,9 +63,9 @@
 	if(use_power >= POWER_USE_ACTIVE)
 		var/last_temperature = temperature
 		if(heater_mode == HEATER_MODE_HEAT && temperature < target_temperature)
-			temperature = min(target_temperature, temperature + heating_power)
+			temperature = min(target_temperature, temperature + (active_power_usage/4)/container.reagents.total_volume)
 		else if(heater_mode == HEATER_MODE_COOL && temperature > target_temperature)
-			temperature = max(target_temperature, temperature - heating_power)
+			temperature = max(target_temperature, temperature - (active_power_usage/4)/container.reagents.total_volume) //assume water heat capacity for now
 		if(temperature != last_temperature)
 			if(container)
 				QUEUE_TEMPERATURE_ATOMS(container)
@@ -105,7 +96,7 @@
 				return TRUE
 		to_chat(user, SPAN_WARNING("\The [src] cannot accept \the [thing]."))
 		return FALSE
-	
+
 	. = ..()
 
 /obj/machinery/reagent_temperature/on_update_icon()
@@ -141,16 +132,14 @@
 	dat += "<tr><td>Target temperature:</td><td>"
 
 	if(target_temperature > min_temperature)
-		dat += "<a href='?src=\ref[src];adjust_temperature=-[heating_power]'>-</a> "
+		dat += "<a href='?src=\ref[src];adjust_temperature=-[10]'>-</a> "
 
 	dat += "[target_temperature - T0C]C"
 
 	if(target_temperature < max_temperature)
-		dat += " <a href='?src=\ref[src];adjust_temperature=[heating_power]'>+</a>"
+		dat += " <a href='?src=\ref[src];adjust_temperature=[10]'>+</a>"
 
 	dat += "</td></tr>"
-
-	dat += "<tr><td>Current temperature:</td><td>[FLOOR(temperature - T0C)]C</td></tr>"
 
 	dat += "<tr><td>Loaded container:</td>"
 	dat += "<td>[container ? "[container.name] ([FLOOR(container.temperature - T0C)]C) <a href='?src=\ref[src];remove_container=1'>Remove</a>" : "None."]</td></tr>"

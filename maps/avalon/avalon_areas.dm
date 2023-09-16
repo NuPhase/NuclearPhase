@@ -48,7 +48,7 @@
 	name = "\improper Testing Site Ferry"
 	icon_state = "shuttle"
 
-#define TURF_HEATING_POWER 327 //watts per turf
+#define TURF_HEATING_POWER 43 //watts per turf
 /area/avalon
 	name = "'Serenity' survival shelter"
 	base_turf = /turf/simulated/floor

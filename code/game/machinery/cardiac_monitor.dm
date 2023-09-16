@@ -71,6 +71,7 @@
 
 /obj/machinery/cardiac_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/obj/item/organ/internal/heart/H = attached?.get_organ(BP_HEART, /obj/item/organ/internal/heart)
+	var/obj/item/organ/internal/lungs/L = attached?.get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
 	if(!attached || !H)
 		return
 
@@ -100,13 +101,10 @@
 	data["status"] = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE"
 
 	data["ecg"] = list()
-/*
-	var/obj/item/organ/internal/brain/brain = attached.get_organ(BP_BRAIN, /obj/item/organ/internal/brain)
-	if(attached.stat == DEAD || !brain)
-		data["ecg"] += list("Neurological activity not present")
+	if(L.breath_rate)
+		data["ecg"] += list("Respiration Rate: [round(L.breath_rate, 1)]/m")
 	else
-		data["ecg"] += list("Neurological system activity: [100 - round(100 * CLAMP01(brain.damage / brain.max_damage))]% of normal.")
-*/
+		data["ecg"] += list("No respiration.")
 	if(H.oxygen_deprivation)
 		data["ecg"] += list("Ischemia: [H.oxygen_deprivation]%")
 	data["ecg"] += list("TPVR: [round(attached.tpvr)] N·s·m<sup><small>-5</small></sup>")

@@ -17,6 +17,21 @@
 	name = "circuitboard (chemical cooler)"
 	build_path = /obj/machinery/reagent_temperature/cooler
 
+/obj/item/stock_parts/circuitboard/kitchen_stove
+	name = "circuitboard (inductive stove)"
+	build_path = /obj/machinery/reagent_temperature/stove
+	board_type = "machine"
+	origin_tech = "{'powerstorage':2,'engineering':1}"
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/capacitor = 1
+	)
+	additional_spawn_components = list(
+		/obj/item/stock_parts/console_screen = 1,
+		/obj/item/stock_parts/keyboard = 1,
+		/obj/item/stock_parts/power/apc/buildable = 1
+	)
+
 /obj/item/stock_parts/circuitboard/chem_master
 	name = "circuitboard (ChemMaster 3000)"
 	build_path = /obj/machinery/chem_master
