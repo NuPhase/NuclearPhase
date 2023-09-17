@@ -627,6 +627,9 @@ SUBSYSTEM_DEF(timer)
 		return TRUE
 	return FALSE
 
+/proc/gettimer(id, datum/controller/subsystem/timer/timer_subsystem)
+	return timer_subsystem.timer_id_dict[id]
+
 /**
  * Get the remaining deciseconds on a timer
  *
