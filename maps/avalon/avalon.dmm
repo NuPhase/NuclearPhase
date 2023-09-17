@@ -710,7 +710,7 @@
 /turf/exterior/wall,
 /area/avalon/shelter/factory)
 "aKh" = (
-/obj/machinery/design_database,
+/obj/machinery/communications/relay,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/science)
 "aKE" = (
@@ -3138,6 +3138,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
+"dep" = (
+/obj/machinery/communications/relay,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/factory)
 "dex" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
@@ -9167,7 +9171,7 @@
 /area/surface)
 "jcf" = (
 /obj/effect/floor_decal/corner/purple/border,
-/obj/structure/table/steel,
+/obj/machinery/communications/relay,
 /turf/simulated/floor/tiled,
 /area/avalon/shelter/expeditionpreparation)
 "jcN" = (
@@ -9892,10 +9896,10 @@
 /area/avalon/shelter/reactor)
 "jMP" = (
 /obj/structure/table/steel,
-/obj/item/radio/off,
-/obj/item/radio/off,
-/obj/item/radio/off,
-/obj/item/radio/off,
+/obj/item/communications/pocket_radio,
+/obj/item/communications/pocket_radio,
+/obj/item/communications/pocket_radio,
+/obj/item/communications/pocket_radio,
 /turf/simulated/floor/tiled/monotile,
 /area/avalon/shelter/expeditionpreparation)
 "jMV" = (
@@ -9992,6 +9996,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/communications/relay,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/messhall)
 "jQc" = (
@@ -18282,13 +18287,10 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/structure/bed/psych,
-/obj/item/bikehorn/rubberducky{
-	name = "The Warden"
-	},
 /obj/effect/floor_decal/corner/red{
 	dir = 9
 	},
+/obj/machinery/communications/relay,
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/armory)
 "sni" = (
@@ -19781,6 +19783,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/turbinehall)
+"tKF" = (
+/obj/machinery/communications/relay,
+/turf/simulated/floor/plating,
+/area/avalon/shelter/engineering)
 "tMh" = (
 /obj/structure/wall_frame/titanium,
 /obj/structure/window/reinforced/full,
@@ -20231,9 +20237,7 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/factory)
 "ukE" = (
-/obj/structure/mopbucket,
-/obj/item/mop,
-/obj/item/chems/glass/bucket,
+/obj/machinery/communications/relay,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/medbay)
 "ukF" = (
@@ -34230,7 +34234,7 @@ oEX
 oEX
 hEC
 oEX
-oEX
+dep
 pWS
 ezm
 ezm
@@ -201399,7 +201403,7 @@ sPC
 gqC
 teV
 fPp
-con
+tKF
 cfb
 xTS
 wtG

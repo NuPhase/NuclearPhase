@@ -24,7 +24,7 @@
 	path = /obj/item/radio/headset
 
 /datum/fabricator_recipe/radio_bounced
-	path = /obj/item/radio/off
+	path = /obj/item/communications/pocket_radio
 
 ///datum/fabricator_recipe/suit_cooler
 //	path = /obj/item/suit_cooling_unit

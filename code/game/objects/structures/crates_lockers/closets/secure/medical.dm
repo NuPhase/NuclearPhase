@@ -75,7 +75,7 @@
 	    /obj/item/tank/emergency/oxygen/engi,
 	    /obj/item/clothing/glasses/hud/health,
 	    /obj/item/scanner/health,
-	    /obj/item/radio/off,
+	    /obj/item/communications/pocket_radio,
 	    /obj/random/medical,
 	    /obj/item/crowbar,
 	    /obj/item/extinguisher/mini,

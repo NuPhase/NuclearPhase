@@ -3,7 +3,7 @@
 	shoes = /obj/item/clothing/shoes/color/white
 	pda_type = /obj/item/modular_computer/pda/medical
 	pda_slot = slot_l_store_str
-	l_pocket = /obj/item/radio
+	l_pocket = /obj/item/communications/pocket_radio
 
 /decl/hierarchy/outfit/job/medical/Initialize()
 	. = ..()

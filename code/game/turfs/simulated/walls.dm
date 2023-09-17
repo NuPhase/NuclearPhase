@@ -46,6 +46,7 @@ var/global/list/wall_fullblend_objects = list(
 	var/stripe_color
 	var/handle_structure_blending = TRUE
 	var/shielding = 70
+	signal_block_coef = 5
 
 /turf/simulated/wall/receive_mouse_drop(atom/dropping, mob/M)
 	. = ..()

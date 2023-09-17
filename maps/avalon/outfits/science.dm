@@ -3,7 +3,7 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/color/white
 	pda_type = /obj/item/modular_computer/pda/science
-	l_pocket = /obj/item/radio
+	l_pocket = /obj/item/communications/pocket_radio
 
 /decl/hierarchy/outfit/job/science/rd
 	name = "Job - Chief Science Officer"

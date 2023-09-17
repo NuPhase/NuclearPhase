@@ -8,4 +8,4 @@
 	suit = /obj/item/clothing/suit/modern/space/combat_specialized/cold
 	head = /obj/item/clothing/head/helmet/modern/space/combat_specialized/cold
 	hands = list(/obj/item/gun/projectile/railgun)
-	l_pocket = /obj/item/radio
+	l_pocket = /obj/item/communications/pocket_radio

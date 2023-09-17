@@ -1,6 +1,6 @@
 /decl/hierarchy/outfit/job/cargo
 	abstract_type = /decl/hierarchy/outfit/job/cargo
-	l_pocket = /obj/item/radio
+	l_pocket = /obj/item/communications/pocket_radio
 
 /decl/hierarchy/outfit/job/cargo/qm
 	name = "Job - Cargo"

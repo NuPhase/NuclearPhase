@@ -4,7 +4,7 @@
 	shoes = /obj/item/clothing/shoes/workboots
 	pda_slot = slot_l_store_str
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
-	l_pocket = /obj/item/radio
+	l_pocket = /obj/item/communications/pocket_radio
 
 /decl/hierarchy/outfit/job/engineering/Initialize()
 	. = ..()

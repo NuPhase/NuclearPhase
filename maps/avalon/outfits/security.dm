@@ -5,7 +5,7 @@
 	gloves = /obj/item/clothing/gloves/thick
 	shoes = /obj/item/clothing/shoes/jackboots
 	backpack_contents = list(/obj/item/handcuffs = 1)
-	l_pocket = /obj/item/radio
+	l_pocket = /obj/item/communications/pocket_radio
 
 /decl/hierarchy/outfit/job/security/Initialize()
 	. = ..()

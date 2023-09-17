@@ -18,6 +18,7 @@ var/global/list/natural_walls = list()
 	var/decl/material/material
 	var/decl/material/reinf_material
 	var/floor_type = /turf/exterior/open_ocean
+	signal_block_coef = 10
 
 /turf/exterior/wall/examine(mob/user, distance, infix, suffix)
 	. = ..()
