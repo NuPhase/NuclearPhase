@@ -1,3 +1,25 @@
+/datum/composite_sound/breath_sound
+	mid_sounds = list()
+	mid_length = 20
+	volume = 35
+	direct = TRUE
+	var/obj/item/organ/internal/lungs/our_lungs
+
+/datum/composite_sound/breath_sound/New(list/_output_atoms, start_immediately, _direct, _our_lungs)
+	output_atoms = _output_atoms
+	direct = _direct
+	our_lungs = _our_lungs
+	start()
+
+/datum/composite_sound/breath_sound/play(soundfile)
+	if(!soundfile)
+		return
+	. = ..()
+
+/datum/composite_sound/breath_sound/get_sound()
+	var/obj/item/clothing/mask/mask = our_lungs.owner.get_equipped_item(slot_wear_mask_str)
+	return our_lungs.get_breathing_sound(mask, our_lungs.last_breath_efficiency)
+
 /obj/item/organ/internal/lungs
 	name = "lungs"
 	icon_state = "lungs"
@@ -34,6 +56,12 @@
 	oxygen_consumption = 1
 	var/oxygen_generation = 1.86 // default per breath
 	var/breath_rate = 16 //per minute
+	var/last_breath_efficiency = 1
+	var/datum/composite_sound/breath_sound/soundloop
+
+/obj/item/organ/internal/lungs/Destroy()
+	. = ..()
+	qdel(soundloop)
 
 /obj/item/organ/internal/lungs/rejuvenate(ignore_prosthetic_prefs)
 	. = ..()
@@ -41,6 +69,7 @@
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
+	soundloop = new(_output_atoms=list(src), _our_lungs=src)
 	if(ishuman(owner))
 		spawn(50) //ugly workaround, lungs don't have post initialize proc
 			oxygen_generation += owner.get_skill_value(SKILL_FITNESS) * 0.08
@@ -177,6 +206,7 @@
 
 	var/inhaling = breath.gas[breath_type]
 	var/inhale_efficiency = min(round(((inhaling/breath.total_moles)*breath_pressure)/safe_pressure_min, 0.001), 3)
+	last_breath_efficiency = inhale_efficiency
 
 	// Not enough to breathe
 	if(inhale_efficiency < 0.6)
@@ -231,10 +261,6 @@
 		owner.add_oxygen(oxygen_generation * breath_rate * inhale_efficiency)
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
-		if(mask || breath_rate > 20)
-			var/breathing_sound = get_breathing_sound(mask, inhale_efficiency)
-			if(breathing_sound)
-				sound_to(owner, sound(breathing_sound,0,0,0,35))
 
 	handle_temperature_effects(breath)
 	breath.update_values()

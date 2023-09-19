@@ -164,10 +164,10 @@
 		to_chat(user, "<span class='warning'>The [joint] is dislocated!</span>")
 	return 1
 
-/obj/item/organ/external/listen()
+/obj/item/organ/external/listen(mob/user)
 	var/list/sounds = list()
 	for(var/obj/item/organ/internal/I in internal_organs)
-		var/gutsound = I.listen()
+		var/gutsound = I.listen(mob/user)
 		if(gutsound)
 			sounds += gutsound
 	if(!sounds.len)
