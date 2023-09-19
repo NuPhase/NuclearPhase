@@ -48,6 +48,8 @@
 
 /obj/machinery/communications/relay/proc/receive_relay(message, frequency)
 	for(var/mob/M in human_mob_list)
+		if(M.z != src.z)
+			continue
 		var/obj/item/communications/receiving_radio = locate(/obj/item/communications) in M.contents
 		if(!receiving_radio)
 			continue
