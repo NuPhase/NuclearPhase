@@ -230,11 +230,13 @@
 	wearer.equip_to_slot(lifesupportsystem, slot_back_str)
 	wearer.pickup_capacity += lifting_strength_boost
 	wearer.drag_capacity += lifting_strength_boost * 1.5
+	wearer.update_transform()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/suit/modern/space/dropped(mob/user)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
+	wearer.update_transform()
 	wearer?.msuit = null
 	wearer = null
 	user.pickup_capacity -= lifting_strength_boost

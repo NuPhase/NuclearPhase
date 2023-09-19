@@ -167,7 +167,7 @@
 /obj/item/organ/external/listen(mob/user)
 	var/list/sounds = list()
 	for(var/obj/item/organ/internal/I in internal_organs)
-		var/gutsound = I.listen(mob/user)
+		var/gutsound = I.listen(user)
 		if(gutsound)
 			sounds += gutsound
 	if(!sounds.len)

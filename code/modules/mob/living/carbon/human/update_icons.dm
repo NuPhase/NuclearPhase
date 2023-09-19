@@ -230,11 +230,13 @@ Please contact me on #coderbus IRC. ~Carn x
 			if (length(scale_effect))
 				height_modifier = 0.01 * scale_effect[height_descriptor]
 	var/build_modifier = 0
+	if(msuit)
+		height_modifier += 0.08
+		build_modifier += 0.08
 	return list(
 		(1 + build_modifier),
 		(1 + height_modifier)
 	)
-
 
 /mob/living/carbon/human/update_transform()
 

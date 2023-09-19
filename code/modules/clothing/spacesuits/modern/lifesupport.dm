@@ -24,7 +24,7 @@
 	var/target_pressure = 45 //kPa
 	var/atmosphere_uptake = FALSE
 
-	var/propulsion_status = SUIT_PROPULSION_OFF
+	var/propulsion_status = SUIT_PROPULSION_READY
 	var/propulsion_cooldown = 30
 
 	var/status_warning_cooldown = FALSE

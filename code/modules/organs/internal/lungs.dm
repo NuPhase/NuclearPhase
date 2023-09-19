@@ -1,6 +1,6 @@
 /datum/composite_sound/breath_sound
 	mid_sounds = list()
-	mid_length = 20
+	mid_length = 22
 	volume = 35
 	direct = TRUE
 	var/obj/item/organ/internal/lungs/our_lungs
@@ -361,7 +361,7 @@
 
 	. = list()
 	if(ruptured)
-		. += "weak [pick("wheezing", "gurgling")] without any signs of respiration on one side."
+		. += "weak [pick("wheezing", "gurgling")] on one side."
 
 	if(ruptured || damage > 20)
 		sound_to(user, sound('sound/voice/breath/lung_stridor.wav',0,0,0,35))
