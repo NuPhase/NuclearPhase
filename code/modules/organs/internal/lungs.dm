@@ -173,7 +173,7 @@
 	if(!owner)
 		return 1
 
-	if(!breath || (max_damage <= 0) || !owner.bpm)
+	if(!breath || (max_damage <= 0) || oxygen_deprivation)
 		breath_fail_ratio = 1
 		handle_failed_breath()
 		return 1
@@ -302,12 +302,10 @@
 	breath_rate += breath_rate_delta * 0.14
 
 /obj/item/organ/internal/lungs/proc/handle_failed_breath()
-	if(prob(15) && oxygen_deprivation < 100)
+	if(oxygen_deprivation && prob(15))
 		if(!owner.is_asystole())
 			if(active_breathing)
 				owner.emote("gasp")
-		else
-			owner.emote(pick("shiver","twitch"))
 
 	owner.oxygen_alert = max(owner.oxygen_alert, 2)
 	last_int_pressure = 0
