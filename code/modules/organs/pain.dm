@@ -33,11 +33,11 @@
 	// Anti message spam checks
 	if(force || (message != last_pain_message) || (world.time >= next_pain_time))
 		last_pain_message = message
-		if(power >= 70)
+		if(power >= 150)
 			to_chat(src, "<span class='danger'><font size=3>[message]</font></span>")
-		else if(power >= 40)
+		else if(power >= 100)
 			to_chat(src, "<span class='danger'><font size=2>[message]</font></span>")
-		else if(power >= 10)
+		else if(power >= 50)
 			to_chat(src, "<span class='danger'>[message]</span>")
 		else
 			to_chat(src, "<span class='warning'>[message]</span>")

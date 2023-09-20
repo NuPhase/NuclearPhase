@@ -78,7 +78,7 @@
 	if(instability > 10)
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
-			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(5))
+			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(10))
 				add_arrythmia(A)
 				break
 		for(var/decl/arrythmia/A in arrythmias)
@@ -134,7 +134,7 @@
 		//High pulse value corresponds to a fast rate of heartbeat.
 		//Divided by 2, otherwise it is too slow.
 		var/rate = (BPM_AUDIBLE_HEARTRATE - pulse)/2
-		if(owner.has_chemical_effect(CE_PULSE, 2))
+		if(owner.has_chemical_effect(CE_PULSE, 30))
 			heartbeat++
 
 		if(heartbeat >= rate)

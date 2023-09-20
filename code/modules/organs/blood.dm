@@ -288,43 +288,6 @@
 /mob/living/carbon/human/proc/get_blood_volume()
 	return species.blood_volume? round((vessel.total_volume/species.blood_volume)*100) : 0
 
-//Percentage of maximum blood volume, affected by the condition of circulation organs
-/mob/living/carbon/human/proc/get_blood_circulation()
-	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	var/blood_volume = get_blood_volume()
-	if(!heart)
-		return 0.25 * blood_volume
-
-	var/recent_pump = LAZYACCESS(heart.external_pump, 1) > world.time - (20 SECONDS)
-	var/pulse_mod = 1
-	if((status_flags & FAKEDEATH) || BP_IS_PROSTHETIC(heart))
-		pulse_mod = 1
-	else
-		switch(heart.pulse)
-			if(PULSE_NONE)
-				if(recent_pump)
-					pulse_mod = LAZYACCESS(heart.external_pump, 2)
-				else
-					pulse_mod *= 0.25
-			if(PULSE_SLOW)
-				pulse_mod *= 0.9
-			if(PULSE_FAST)
-				pulse_mod *= 1.1
-			if(PULSE_2FAST, PULSE_THREADY)
-				pulse_mod *= 1.25
-	blood_volume *= pulse_mod
-
-	if(lying)
-		blood_volume *= 1.25
-
-	var/min_efficiency = recent_pump ? 0.5 : 0.3
-	blood_volume *= max(min_efficiency, (1-(heart.damage / heart.max_damage)))
-
-	if(!heart.open && has_chemical_effect(CE_BLOCKAGE, 1))
-		blood_volume *= max(0, 1-GET_CHEMICAL_EFFECT(src, CE_BLOCKAGE))
-
-	return min(blood_volume, 100)
-
 //Whether the species needs blood to carry oxygen. Used in get_blood_oxygenation and may be expanded based on blood rather than species in the future.
 /mob/living/carbon/human/proc/blood_carries_oxygen()
 	return species.blood_oxy

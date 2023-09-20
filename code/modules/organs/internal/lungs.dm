@@ -292,7 +292,7 @@
 			return 'sound/voice/breath/mask_breathing.wav'
 
 /obj/item/organ/internal/lungs/proc/calculate_breath_rate()
-	if(!last_int_pressure)
+	if(!last_int_pressure || owner.is_asystole())
 		breath_rate = 0
 		return
 	breath_rate = initial(breath_rate)

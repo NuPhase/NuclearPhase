@@ -30,7 +30,7 @@
 
 /decl/medical_symptom/headache/apply_pain(mob/living/carbon/human/victim)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(victim, BP_HEAD)
-	affected.add_pain(min((victim.syspressure - 120) * 0.1, 10))
+	affected.add_pain(min((victim.syspressure - 120) * 0.01, 5))
 
 /decl/medical_symptom/irritation
 	self_examine_message = "One of your limbs is irritated."

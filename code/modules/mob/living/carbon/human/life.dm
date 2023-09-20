@@ -570,7 +570,7 @@
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(get_shock() >= species.total_health)
+		if(get_shock() >= 250)
 			if(!stat)
 				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
 				src.visible_message("<B>[src]</B> [species.halloss_message]")
