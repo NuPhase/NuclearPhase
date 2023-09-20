@@ -97,7 +97,9 @@ SUBSYSTEM_DEF(radiation)
 				working = round((working / (origin.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.1)
 			if((working <= .) || (working <= RADIATION_THRESHOLD_CUTOFF))
 				break // Already affected by a stronger source (or its zero...)
+		var/area/background_area = T.loc
 		. = max((working / (dist ** 2)), .) //Butchered version of the inverse square law. Works for this purpose
+		. += background_area.background_radiation
 		if(. <= RADIATION_THRESHOLD_CUTOFF)
 			. = 0
 

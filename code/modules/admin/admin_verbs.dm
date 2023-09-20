@@ -264,6 +264,7 @@ var/global/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_world_narrate,
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
+	/client/proc/play_player_sound,
 	/client/proc/play_server_sound,
 	/client/proc/object_talk,
 	/datum/admins/proc/cmd_admin_dress,

@@ -41,19 +41,19 @@
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>Everything around you suddenly lights up, like a million lights in a dark living room. It starts to grow hot, you see flashes in your eyes, it can't be good...</span>")
 	adjust_solar_output(5)
-	for(var/z in using_map.station_levels)
-		SSradiation.z_radiate(locate(1, 1, z), 480, TRUE)
-
+	for(var/area/A in surface_areas)
+		A.background_radiation = 473.9
 
 /datum/event/solar_storm/tick()
 	if(activeFor % rad_interval == 0)
 		for(var/mob/living/carbon/human/H in surface_mobs)
-			if(prob(20))
+			if(prob(60))
 				H.flash_eyes(99)
 
 /datum/event/solar_storm/end()
 	adjust_solar_output()
-
+	for(var/area/A in surface_areas)
+		A.background_radiation = initial(A.background_radiation)
 
 //For a false alarm scenario.
 /datum/event/solar_storm/syndicate/adjust_solar_output()

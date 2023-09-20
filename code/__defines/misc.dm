@@ -164,7 +164,7 @@
 #define RAD_LEVEL_HIGH 40
 #define RAD_LEVEL_VERY_HIGH 100
 
-#define RADIATION_THRESHOLD_CUTOFF 0.1	// Radiation will not affect a tile when below this value.
+#define RADIATION_THRESHOLD_CUTOFF 0.01	// Radiation will not affect a tile when below this value.
 
 #define SUPPLY_SECURITY_ELEVATED 1
 #define SUPPLY_SECURITY_HIGH 2

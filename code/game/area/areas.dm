@@ -67,6 +67,7 @@ var/global/list/areas = list()
 	var/do_ambience = TRUE
 
 	var/should_condense = TRUE //whether this area should have condensation happening in it
+	var/background_radiation = 0.04
 
 /area/New()
 	icon_state = ""

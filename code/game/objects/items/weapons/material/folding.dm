@@ -4,7 +4,8 @@
 	name = "pocketknife"
 	desc = "A small folding knife."
 	icon = 'icons/obj/items/weapon/knives/folding/basic.dmi'
-	material_force_multiplier = 0.2
+	material_force_multiplier = 0.4
+	max_force = 40
 	applies_material_name = FALSE
 	unbreakable = TRUE
 	w_class = ITEM_SIZE_SMALL

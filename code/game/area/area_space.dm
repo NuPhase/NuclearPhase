@@ -13,6 +13,7 @@
 	show_starlight = TRUE
 	is_outside = OUTSIDE_YES
 	should_condense = FALSE
+	background_radiation = 2.38
 
 /area/space/has_gravity()
 	return 0

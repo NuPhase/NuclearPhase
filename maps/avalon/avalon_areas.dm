@@ -101,6 +101,7 @@
 	name = "Reactor Chamber"
 	lightswitch = FALSE
 	icon_state = "engine"
+	background_radiation = 1.13
 
 /area/avalon/shelter/reactor/power_change()
 	. = ..()
@@ -114,6 +115,7 @@
 /area/avalon/shelter/reactormonitoring
 	name = "Reactor Control Room"
 	area_flags = AREA_FLAG_RAD_SHIELDED
+	background_radiation = 0.07
 /area/avalon/shelter/engineering
 	name = "Engineering 2nd Floor"
 	icon_state = "engineering"
@@ -238,6 +240,7 @@
 		"You witness something from your dreams, back from when you imagined how the surface looked like. It looks surprisingly beautiful and lively, is it really that bad around here?"
 	)
 	var/list/hot_descriptions = list()
+	background_radiation = 1.49
 
 /area/surface/location //more intense
 	cold_ambience = list('sound/music/lurk.ogg')
