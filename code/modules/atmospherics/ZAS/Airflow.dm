@@ -32,7 +32,7 @@ Contains helper procs for airflow, called by /connection_group.
 		return FALSE
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)
 		return FALSE
-	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
+	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN) || weight > 160)
 		to_chat(src, SPAN_NOTICE("You stay upright as the air rushes past you."))
 		return FALSE
 	if(buckled)

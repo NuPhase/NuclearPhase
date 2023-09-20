@@ -236,9 +236,9 @@
 /obj/item/clothing/suit/modern/space/dropped(mob/user)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
-	wearer.update_transform()
 	wearer?.msuit = null
 	wearer = null
+	user.update_transform()
 	user.pickup_capacity -= lifting_strength_boost
 	user.drag_capacity -= lifting_strength_boost * 2
 	user.drop_from_inventory(lifesupportsystem, src)
