@@ -66,7 +66,7 @@
 	lore_text = "Mollusc meat, or slug meat - something slimy, anyway."
 	scannable = 1
 	taste_description = "cold, bitter slime"
-	overdose = 10
+	overdose = 100
 	hydration_factor = 6
 	uid = "chem_nutriment_slime"
 
@@ -167,7 +167,8 @@
 
 /decl/material/liquid/nutriment/coffee/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
-	M.add_chemical_effect(CE_PULSE, 2)
+	var/volume = REAGENT_VOLUME(holder, type)
+	M.add_chemical_effect(CE_PULSE, volume * 0.15)
 
 /decl/material/liquid/nutriment/coffee/instant
 	name = "instant coffee powder"

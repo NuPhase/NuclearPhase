@@ -200,22 +200,22 @@
 	gas_tile_overlay = "sleeping_agent"
 	gas_overlay_limit = 1
 	gas_flags = XGM_GAS_OXIDIZER //N2O is a powerful oxidizer
-	metabolism = 0.05 // So that low dosages have a chance to build up in the body.
+	metabolism = 2 // So that low dosages have a chance to build up in the body.
 	value = 0.25
 
 /decl/material/gas/nitrous_oxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/dosage = LAZYACCESS(M.chem_doses, type)
-	if(dosage >= 1)
+	if(dosage >= 100)
 		if(prob(5)) SET_STATUS_MAX(M, STAT_ASLEEP, 3)
 		SET_STATUS_MAX(M, STAT_DIZZY, 3)
 		SET_STATUS_MAX(M, STAT_CONFUSE, 3)
-	if(dosage >= 0.3)
+	if(dosage >= 30)
 		if(prob(5)) SET_STATUS_MAX(M, STAT_PARA, 1)
 		SET_STATUS_MAX(M, STAT_DROWSY, 3)
 		SET_STATUS_MAX(M, STAT_SLUR, 3)
 	if(prob(20))
 		M.emote(pick("giggle", "laugh"))
-	M.add_chemical_effect(CE_PULSE, -1)
+	M.add_chemical_effect(CE_PULSE, dosage * -0.05)
 
 /decl/material/gas/nitrogen
 	name = "nitrogen"
@@ -327,7 +327,7 @@
 	lore_text = "A caustic substance commonly used in fertilizer or household cleaners."
 	color = "#404030"
 	metabolism = REM * 0.5
-	overdose = 5
+	overdose = 500
 
 /decl/material/gas/xenon
 	name = "xenon"
@@ -354,7 +354,7 @@
 		if(prob(5)) SET_STATUS_MAX(M, STAT_PARA, 1)
 		SET_STATUS_MAX(M, STAT_DROWSY, 3)
 		SET_STATUS_MAX(M, STAT_SLUR, 3)
-	M.add_chemical_effect(CE_PULSE, -1)
+	M.add_chemical_effect(CE_PULSE, dosage * -0.05)
 
 /decl/material/gas/chlorine
 	name = "chlorine"

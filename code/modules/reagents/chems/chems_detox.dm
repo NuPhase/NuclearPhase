@@ -54,7 +54,7 @@
 	color = "#161a16"
 	uid = "chem_charcoal"
 	metabolism = 0.5
-	overdose = 60
+	overdose = 600
 
 /decl/material/liquid/potassium_iodide
 	name = "potassium iodide"

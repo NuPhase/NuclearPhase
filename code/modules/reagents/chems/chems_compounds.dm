@@ -284,7 +284,7 @@
 /decl/material/liquid/nanoblood/saline
 	name = "saline solution"
 	lore_text = "Saline (also known as saline solution) is a mixture of sodium chloride and water. It has a number of uses in medicine including cleaning wounds, removal and storage of contact lenses, and help with dry eyes."
-	overdose = 560
+	overdose = 5600
 	color = "#bebebe"
 	metabolism = 10
 	uid = "chem_saline"

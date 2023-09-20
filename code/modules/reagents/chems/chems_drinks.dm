@@ -306,7 +306,7 @@
 	adj_drowsy = -3
 	adj_sleepy = -2
 	adj_temp = 25
-	overdose = 60
+	overdose = 480 //2 cups
 	glass_name = "coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 	exoplanet_rarity = MAT_RARITY_NOWHERE
@@ -337,18 +337,19 @@
 		return
 
 	var/volume = REAGENT_VOLUME(holder, type)
-	if(volume > 15)
-		M.add_chemical_effect(CE_PULSE, 1)
-	if(volume > 45)
-		M.add_chemical_effect(CE_PULSE, 1)
+	M.add_chemical_effect(CE_PULSE, volume * 0.15)
+	M.add_chemical_effect(CE_PRESSURE, volume * 0.05)
 
 /decl/material/liquid/drink/coffee/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
-	M.add_chemical_effect(CE_PULSE, 2)
+	var/volume = REAGENT_VOLUME(holder, type)
+	M.add_chemical_effect(CE_PULSE, volume * 0.25)
+	M.add_chemical_effect(CE_PRESSURE, volume * 0.15)
 
 /decl/material/liquid/drink/coffee/affect_overdose(var/mob/living/M, var/datum/reagents/holder)
 	ADJ_STATUS(M, STAT_JITTER, 5)
-	M.add_chemical_effect(CE_PULSE, 1)
+	var/volume = REAGENT_VOLUME(holder, type)
+	M.add_chemical_effect(CE_PULSE, volume * 0.05) //cumulative
 
 /decl/material/liquid/drink/coffee/build_presentation_name_from_reagents(var/obj/item/prop, var/supplied)
 
@@ -805,7 +806,7 @@
 
 	ADJ_STATUS(M, STAT_DROWSY, -7)
 	ADJ_STATUS(M, STAT_JITTER, 2)
-	M.add_chemical_effect(CE_PULSE, 1)
+	M.add_chemical_effect(CE_PULSE, 30)
 
 /decl/material/liquid/drink/kefir
 	name = "kefir"

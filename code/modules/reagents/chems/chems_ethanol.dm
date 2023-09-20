@@ -36,6 +36,7 @@
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
 	value = 1.2
+	metabolism = 5
 
 /decl/material/liquid/ethanol/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
@@ -91,7 +92,7 @@
 	taste_description = "death and licorice"
 	taste_mult = 1.5
 	color = "#33ee00"
-	strength = 12
+	strength = 120
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 
 	glass_name = "absinthe"
@@ -103,7 +104,7 @@
 	lore_text = "A dark alchoholic beverage made by malted barley and yeast."
 	taste_description = "hearty barley ale"
 	color = "#4c3100"
-	strength = 50
+	strength = 500
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 
 	glass_name = "ale"
@@ -116,7 +117,7 @@
 	lore_text = "An alcoholic beverage made from malted grains, hops, yeast, and water."
 	taste_description = "piss water"
 	color = "#ffd300"
-	strength = 50
+	strength = 500
 	nutriment_factor = 1
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 
@@ -141,7 +142,7 @@
 	taste_description = "oranges"
 	taste_mult = 1.1
 	color = "#0000cd"
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_bluecuracao"
 
@@ -154,7 +155,7 @@
 	taste_description = "rich and smooth alcohol"
 	taste_mult = 1.1
 	color = "#ab3c05"
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_cognac"
 
@@ -166,7 +167,7 @@
 	lore_text = "It's gin. In space. I say, good sir."
 	taste_description = "an alcoholic christmas tree"
 	color = "#0064c6"
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_gin"
 
@@ -180,12 +181,12 @@
 	taste_description = "spiked coffee"
 	taste_mult = 1.1
 	color = "#4c3100"
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_coffee"
 	glass_name = "coffee liqueur"
 	glass_desc = "Guaranteed to perk you up."
-	overdose = 45
+	overdose = 450
 
 /decl/material/liquid/ethanol/coffee/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	..()
@@ -207,7 +208,7 @@
 	lore_text = "A relatively sweet and fruity 46 proof liqueur."
 	taste_description = "fruity alcohol"
 	color = "#138808" // rgb: 19, 136, 8
-	strength = 50
+	strength = 500
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_melon"
 
@@ -220,7 +221,7 @@
 	taste_description = "spiked butterscotch"
 	taste_mult = 1.1
 	color = "#ecb633"
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_rum"
 
@@ -232,7 +233,7 @@
 	lore_text = "Anime's favorite drink."
 	taste_description = "dry alcohol"
 	color = "#dddddd"
-	strength = 25
+	strength = 250
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_sake"
 
@@ -244,7 +245,7 @@
 	lore_text = "A strong and mildly flavoured, mexican produced spirit. Feeling thirsty hombre?"
 	taste_description = "paint stripper"
 	color = "#ffff91"
-	strength = 25
+	strength = 250
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_tequila"
 
@@ -256,7 +257,7 @@
 	lore_text = "A potent mixture of caffeine and alcohol."
 	taste_description = "jitters and death"
 	color = "#102000"
-	strength = 25
+	strength = 250
 	nutriment_factor = 1
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_thirteenloko"
@@ -282,7 +283,7 @@
 	taste_description = "dry alcohol"
 	taste_mult = 1.3
 	color = "#91ff91" // rgb: 145, 255, 145
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_vermouth"
 
@@ -295,7 +296,7 @@
 	lore_text = "Number one drink AND fueling choice for Independents around the galaxy."
 	taste_description = "grain alcohol"
 	color = "#0064c8" // rgb: 0, 100, 200
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_vodka"
 
@@ -308,7 +309,7 @@
 	lore_text = "Premium distilled vodka imported directly from the Gilgamesh Colonial Confederation."
 	taste_description = "clear kvass"
 	color = "#aaddff" // rgb: 170, 221, 255 - very light blue.
-	strength = 10
+	strength = 100
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_premiumvodka"
 
@@ -317,7 +318,7 @@
 	lore_text = "A superb and well-aged single-malt whiskey. Damn."
 	taste_description = "molasses"
 	color = "#4c3100"
-	strength = 25
+	strength = 250
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_whiskey"
 
@@ -329,7 +330,7 @@
 	lore_text = "An premium alchoholic beverage made from distilled grape juice."
 	taste_description = "bitter sweetness"
 	color = "#7e4043" // rgb: 126, 64, 67
-	strength = 15
+	strength = 150
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_wine"
 
@@ -341,7 +342,7 @@
 	lore_text = "An exceptionally expensive alchoholic beverage made from distilled white grapes."
 	taste_description = "white velvet"
 	color = "#ffddaa" // rgb: 255, 221, 170 - a light cream
-	strength = 20
+	strength = 200
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_whitewine"
 
@@ -350,7 +351,7 @@
 	lore_text = "A complex blend of herbs, spices and roots mingle in this old Earth classic."
 	taste_description = "a sweet summer garden"
 	color = "#dfff00"
-	strength = 13
+	strength = 130
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_herbal"
 
@@ -362,7 +363,7 @@
 	lore_text = "Either someone's failure at cocktail making or attempt in alchohol production. In any case, do you really want to drink that?"
 	taste_description = "pure resignation"
 	color = "#4c3100"
-	strength = 25
+	strength = 250
 	alcohol_toxicity = 2
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_hooch"
@@ -375,7 +376,7 @@
 	lore_text = "Whiskey-imbued cream."
 	taste_description = "creamy alcohol"
 	color = "#dddd9a"
-	strength = 25
+	strength = 250
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_irishcream"
 
@@ -387,7 +388,7 @@
 	lore_text = "A Viking's drink, though a cheap one."
 	taste_description = "sweet, sweet alcohol"
 	color = "#ffbb00"
-	strength = 30
+	strength = 300
 	nutriment_factor = 1
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_mead"
@@ -401,7 +402,7 @@
 	taste_description = "bitterness"
 	taste_mult = 2.5
 	color = "#0064c8"
-	strength = 12
+	strength = 120
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_moonshine"
 
@@ -413,7 +414,7 @@
 	lore_text = "Is this even wine? Toxic! Hallucinogenic! Probably consumed in boatloads by your superiors!"
 	taste_description = "purified alcoholic death"
 	color = "#000000"
-	strength = 10
+	strength = 100
 	halluci = 10
 	glass_name = "???"
 	glass_desc = "A black ichor with an oily purple sheer on top. Are you sure you should drink this?"
@@ -443,7 +444,7 @@
 	name = "aged whiskey"
 	lore_text = "A well-aged whiskey of high quality. Probably imported. Just a sip'll do it, but that burn will leave you wanting more."
 	color = "#523600"
-	strength = 25
+	strength = 250
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_agedwhiskey"
 
@@ -455,7 +456,7 @@
 	lore_text = "A refreshing glass of apple cider."
 	taste_description = "cool apple cider"
 	color = "#cac089"
-	strength = 50
+	strength = 500
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_applecider"
 
@@ -467,7 +468,7 @@
 	lore_text = "A refreshing glass of pear cider."
 	taste_description = "cool pear cider"
 	color = "#cac089"
-	strength = 50
+	strength = 500
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_pearcider"
 
@@ -479,7 +480,7 @@
 	lore_text = "Smooth sparkling wine, produced in the same region of France as it has for centuries."
 	taste_description = "a superior taste of sparkling wine"
 	color = "#e8dfc1"
-	strength = 25
+	strength = 250
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_champagne"
 
@@ -491,7 +492,7 @@
 	lore_text = "A special blend of alcohol, herbs, and spices. It has remained a popular Earther drink."
 	taste_description = "herbs, spices, and alcohol"
 	color = "#596e3e"
-	strength = 20
+	strength = 200
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_jagermeister"
 
@@ -503,7 +504,7 @@
 	lore_text = "An alcoholic drink commonly made from bread."
 	taste_description = "vkusnyy kvas, ypa!"
 	color = "#362f22"
-	strength = 30
+	strength = 300
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_ethanol_kvass"
 

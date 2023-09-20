@@ -115,59 +115,59 @@
 	name = "universal enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
-	starting_reagents = list(/decl/material/liquid/enzyme = 50)
+	starting_reagents = list(/decl/material/liquid/enzyme = 150)
 
 /obj/item/chems/condiment/barbecue
 	name = "barbecue sauce"
 	desc = "Barbecue sauce, it's labeled 'sweet and spicy'"
 	icon_state = "barbecue"
-	starting_reagents = list(/decl/material/liquid/nutriment/barbecue = 50)
+	starting_reagents = list(/decl/material/liquid/nutriment/barbecue = 150)
 
 /obj/item/chems/condiment/sugar
 	name = "sugar"
 	desc = "Cavities in a bottle."
-	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 50)
+	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 150)
 
 /obj/item/chems/condiment/ketchup
 	name = "ketchup"
 	desc = "Tomato, but more liquid, stronger, better."
 	icon_state = "ketchup"
-	starting_reagents = list(/decl/material/liquid/nutriment/ketchup = 50)
+	starting_reagents = list(/decl/material/liquid/nutriment/ketchup = 150)
 
 /obj/item/chems/condiment/cornoil
 	name = "corn oil"
 	desc = "A delicious oil used in cooking. Made from corn."
 	icon_state = "oliveoil"
-	starting_reagents = list(/decl/material/liquid/nutriment/cornoil = 50)
+	starting_reagents = list(/decl/material/liquid/nutriment/cornoil = 150)
 
 /obj/item/chems/condiment/vinegar
 	name = "vinegar"
 	icon_state = "vinegar"
 	desc = "As acidic as it gets in the kitchen."
-	starting_reagents = list(/decl/material/liquid/nutriment/vinegar = 50)
+	starting_reagents = list(/decl/material/liquid/nutriment/vinegar = 150)
 
 /obj/item/chems/condiment/mayo
 	name = "mayonnaise"
 	icon_state = "mayo"
 	desc = "Mayonnaise, used for centuries to make things edible."
-	starting_reagents = list(/decl/material/liquid/nutriment/mayo = 50)
+	starting_reagents = list(/decl/material/liquid/nutriment/mayo = 150)
 
 /obj/item/chems/condiment/frostoil
 	name = "coldsauce"
 	desc = "Leaves the tongue numb in its passage."
 	icon_state = "coldsauce"
-	starting_reagents = list(/decl/material/liquid/frostoil = 50)
+	starting_reagents = list(/decl/material/liquid/frostoil = 150)
 
 /obj/item/chems/condiment/capsaicin
 	name = "hotsauce"
 	desc = "You can almost TASTE the stomach ulcers now!"
 	icon_state = "hotsauce"
-	starting_reagents = list(/decl/material/liquid/capsaicin = 50)
+	starting_reagents = list(/decl/material/liquid/capsaicin = 150)
 
 /obj/item/chems/condiment/small
 	possible_transfer_amounts = @"[1,20]"
 	amount_per_transfer_from_this = 1
-	volume = 20
+	volume = 120
 
 /obj/item/chems/condiment/small/on_reagent_change()
 	return
@@ -177,21 +177,21 @@
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
 	center_of_mass = @"{'x':16,'y':9}"
-	starting_reagents = list(/decl/material/solid/sodiumchloride = 20)
+	starting_reagents = list(/decl/material/solid/sodiumchloride = 120)
 
 /obj/item/chems/condiment/small/peppermill
 	name = "pepper mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
 	center_of_mass = @"{'x':16,'y':8}"
-	starting_reagents = list(/decl/material/solid/blackpepper = 20)
+	starting_reagents = list(/decl/material/solid/blackpepper = 120)
 
 /obj/item/chems/condiment/small/sugar
 	name = "sugar"
 	desc = "Sweetness in a bottle"
 	icon_state = "sugarsmall"
 	center_of_mass = @"{'x':17,'y':9}"
-	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 20)
+	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 120)
 
 //MRE condiments and drinks.
 

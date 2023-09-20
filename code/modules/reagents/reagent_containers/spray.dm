@@ -157,11 +157,11 @@
 	item_state = "sunflower"
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
-	volume = 10
+	volume = 100
 
 /obj/item/chems/spray/waterflower/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/water, 10)
+	reagents.add_reagent(/decl/material/liquid/water, 100)
 
 /obj/item/chems/spray/chemsprayer
 	name = "chem sprayer"

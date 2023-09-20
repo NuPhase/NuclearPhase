@@ -3,7 +3,7 @@
 	lore_text = "Intensely coloured powder."
 	taste_description = "the back of class"
 	color = "#888888"
-	overdose = 5
+	overdose = 50
 	hidden_from_codex = TRUE
 	uid = "chem_pigment"
 

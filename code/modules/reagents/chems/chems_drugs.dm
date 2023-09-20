@@ -39,7 +39,7 @@
 	taste_description = "peppery bitterness"
 	color = "#efebaa"
 	metabolism = REM * 0.002
-	overdose = 6
+	overdose = 60
 	scannable = 1
 	value = 2
 	uid = "chem_nicotine"
@@ -57,7 +57,8 @@
 
 /decl/material/liquid/nicotine/affect_overdose(var/mob/living/M, var/datum/reagents/holder)
 	..()
-	M.add_chemical_effect(CE_PULSE, 2)
+	var/volume = REAGENT_VOLUME(holder, type)
+	M.add_chemical_effect(CE_PULSE, volume * 0.2)
 
 /decl/material/liquid/sedatives
 	name = "sedatives"
@@ -234,7 +235,7 @@
 	lore_text = "Unrefined substance extracted from opium poppy flowers."
 	color = "#ccccff"
 	metabolism = REM * 0.1
-	overdose = 6
+	overdose = 60
 	uid = "chem_opium"
 	var/addictiveness = 10 //addiction gained per unit consumed
 	var/painkill_magnitude = 130
@@ -282,7 +283,7 @@
 	lore_text = "A linear painkiller."
 	addictiveness = 5
 	painkill_magnitude = 190
-	overdose = 7
+	overdose = 17
 	uid = "chem_tramadol"
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
@@ -309,7 +310,7 @@
 	lore_text = "An addictive painkiller with a very short window of action."
 	effective_dose = 0.5
 	painkill_magnitude = 220
-	overdose = 4
+	overdose = 14
 	uid = "chem_desomorphine"
 
 /decl/material/liquid/tianeptine
@@ -330,7 +331,7 @@
 	painkill_magnitude = 290
 	uid = "chem_morphine"
 	effective_dose = 1
-	overdose = 8
+	overdose = 18
 
 /decl/material/liquid/opium/morphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)

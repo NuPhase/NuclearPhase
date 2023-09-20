@@ -322,7 +322,7 @@
 
 /obj/item/chems/drinks/tea/black/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/tea/black, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/tea/black, 300)
 
 /obj/item/chems/drinks/tea/green
 	name = "cup of green tea"
@@ -330,7 +330,7 @@
 
 /obj/item/chems/drinks/tea/green/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/tea/green, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/tea/green, 300)
 
 /obj/item/chems/drinks/tea/chai
 	name = "cup of chai tea"
@@ -338,4 +338,4 @@
 
 /obj/item/chems/drinks/tea/chai/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/tea/chai, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/tea/chai, 300)

@@ -76,7 +76,7 @@ var/global/list/hygiene_props = list()
 				next_gurgle = world.time + 80
 				playsound(T, pick(SSfluids.gurgles), 50, 1)
 			var/obj/effect/fluid/F = locate() in T
-			var/adding = min(flood_amt-F?.reagents.total_volume, rand(30,50)*clogged)
+			var/adding = min(flood_amt-F?.reagents.total_volume, rand(300,500)*clogged)
 			if(adding > 0)
 				if(!F) F = new(T)
 				F.reagents.add_reagent(/decl/material/liquid/water/dirty4, adding)

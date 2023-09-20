@@ -5,7 +5,7 @@
 	taste_description = "rush of panic"
 	color = "#ff6c17"
 	scannable = 0
-	overdose = 10
+	overdose = 80
 	metabolism = 0.1
 	uid = "deterria_extract"
 	var/static/list/overdose_messages = list(
