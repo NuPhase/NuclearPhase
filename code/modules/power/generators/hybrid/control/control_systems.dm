@@ -83,7 +83,7 @@
 	for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
 		SL.purge_alarm = new(list(SL.loc), TRUE)
 		spawn(31 SECONDS)
-			playsound(rcore.superstructure, 'sound/effects/purge.ogg', 300, falloff = 3)
+			playsound(rcore.superstructure, 'sound/effects/purge.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
 			var/turf/T = get_turf(rcore)
 			var/datum/gas_mixture/coreenvironment = T.return_air()
 			var/datum/gas_mixture/total_mixture = coreenvironment.remove_ratio(0.8)

@@ -31,6 +31,15 @@ var/global/list/sounds_cache = list()
 	playsound(get_turf(src.mob), S, 50, 0, 0)
 	SSstatistics.add_field_details("admin_verb","PLS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/play_player_sound(S as sound, mob/M as mob in SSmobs.mob_list)
+	set category = "Fun"
+	set name = "Play Sound to Player"
+	if(!check_rights(R_SOUNDS))	return
+
+	log_admin("[key_name(src)] played a sound [S] to [M]")
+	message_admins("[key_name_admin(src)] played a sound [S] to [M]", 1)
+	sound_to(M, sound(S, volume=50))
+	SSstatistics.add_field_details("admin_verb","PPS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_server_sound()
 	set category = "Fun"
@@ -38,12 +47,12 @@ var/global/list/sounds_cache = list()
 	if(!check_rights(R_SOUNDS))	return
 
 	var/list/sounds = list("sound/items/bikehorn.ogg","sound/effects/siren.ogg")
-	sounds += sounds_cache	
+	sounds += sounds_cache
 
 	var/melody = input("Select a sound from the server to play", "Server sound list") as null|anything in sounds
 
-	if(!melody)	
+	if(!melody)
 		return
-		
+
 	play_sound(melody)
 	SSstatistics.add_field_details("admin_verb","PSS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
