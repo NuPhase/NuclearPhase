@@ -7,10 +7,21 @@
 
 /datum/composite_sound/alarm_monitor
 	mid_sounds = list('sound/machines/heart_monitor/alarm1.wav'=1)
-	mid_length = 23
+	mid_length = 24
 	volume = 60
 	sfalloff = 1
 	distance = -1
+
+/obj/machinery/cardiac_monitor/verb/toggle_alarms()
+	set name = "Toggle Alarms"
+	set category = "Object"
+	set src in view(1)
+
+	alarms_active = !alarms_active
+	if(alarms_active)
+		visible_message(SPAN_NOTICE("[usr] switches on the alarms on \the [src]."))
+	else
+		visible_message(SPAN_WARNING("[usr] switches off the alarms on \the [src]."))
 
 /obj/machinery/cardiac_monitor
 	name = "\improper cardiac monitor"
@@ -22,6 +33,7 @@
 	var/mob/living/carbon/human/attached
 	var/datum/composite_sound/pulse_monitor/pulse_loop = null
 	var/datum/composite_sound/alarm_monitor/alarm_loop = null
+	var/alarms_active = TRUE
 
 /obj/machinery/cardiac_monitor/MouseDrop(mob/living/carbon/human/over_object, src_location, over_location)
 	. = ..()
@@ -89,7 +101,7 @@
 	else
 		overlays += image(icon, "mon-ox")
 
-	if(should_alarm)
+	if(should_alarm && alarms_active)
 		if(!alarm_loop)
 			alarm_loop = new(list(src), TRUE)
 	else
