@@ -27,6 +27,14 @@
 	icon_state = "impact_u_laser"
 	light_color = LIGHT_COLOR_BLUE
 
+/obj/effect/projectile/impact/plasma
+	name = "plasma impact"
+	icon = 'icons/effects/projectiles/large.dmi'
+	icon_state = "muzzle"
+	light_color = LIGHT_COLOR_VIOLET
+	pixel_x = -16
+	pixel_y = -16
+
 /obj/effect/projectile/impact/plasma_cutter
 	name = "plasma impact"
 	icon_state = "impact_plasmacutter"
@@ -88,7 +96,7 @@
 	icon_state = "impact_laser_white"
 	overlay_state = "_overlay"
 	light_color = COLOR_WHITE
-	
+
 /obj/effect/projectile/impact/variable_heavy
 	icon_state = "impact_laser_heavy_white"
 	overlay_state = "_overlay"

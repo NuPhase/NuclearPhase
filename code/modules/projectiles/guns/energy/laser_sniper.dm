@@ -19,6 +19,9 @@
 	power_supply = /obj/item/cell/smes
 	var/charging = FALSE
 
+/obj/item/gun/energy/sniperrifle/admin
+	projectile_type = /obj/item/projectile/beam/plasma_discharge
+
 /obj/item/gun/energy/sniperrifle/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex, set_click_cooldown)
 	if(!user || !target || charging)
 		return

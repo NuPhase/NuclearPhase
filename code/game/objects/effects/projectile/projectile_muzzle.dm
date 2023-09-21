@@ -22,6 +22,17 @@
 	icon_state = "muzzle_u_laser"
 	light_color = LIGHT_COLOR_BLUE
 
+/obj/effect/projectile/muzzle/plasma
+	icon = 'icons/effects/projectiles/large.dmi'
+	icon_state = "muzzle"
+	light_color = LIGHT_COLOR_VIOLET
+	pixel_x = -16
+	pixel_y = -16
+
+/obj/effect/projectile/muzzle/plasma/Initialize(mapload, angle_override, p_x, p_y, color_override, scaling)
+	light_color = pick(LIGHT_COLOR_VIOLET, LIGHT_COLOR_BLUE, LIGHT_COLOR_CYAN, LIGHT_COLOR_RED, LIGHT_COLOR_YELLOW)
+	. = ..()
+
 /obj/effect/projectile/muzzle/gauss
 	icon_state = "muzzle_gauss"
 	light_color = LIGHT_COLOR_BLUE

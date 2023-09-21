@@ -39,6 +39,14 @@
 	icon_state = "u_laser"
 	light_color = LIGHT_COLOR_BLUE
 
+/obj/effect/projectile/tracer/plasma
+	name = "plasma trail"
+	icon = 'icons/effects/projectiles/large.dmi'
+	icon_state = "muzzle"
+	light_color = LIGHT_COLOR_VIOLET
+	pixel_x = -16
+	pixel_y = -16
+
 /obj/effect/projectile/tracer/plasma_cutter
 	name = "plasma blast"
 	icon_state = "plasmacutter"
