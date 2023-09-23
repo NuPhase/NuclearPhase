@@ -274,7 +274,7 @@
 
 /datum/composite_sound/flare
 	mid_sounds = list('sound/items/flare/burning1.ogg'=1)
-	mid_length = 27
+	mid_length = 26
 	volume = 100
 
 /obj/item/flashlight/flare

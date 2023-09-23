@@ -31,6 +31,12 @@
 	var/opened = null
 	var/open_sound = null
 
+/obj/item/storage/update_weight()
+	. = ..()
+	for(var/obj/item/I in contents)
+		I.update_weight()
+		weight += I.weight
+
 /obj/item/storage/proc/calculate_weight()
 	var/added_weight = 0
 	for(var/obj/item/I in contents)

@@ -19,10 +19,10 @@
 	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/projectile/invislight/proc/copy_from(var/obj/effect/projectile/owner)
-	light_range = initial(owner.light_range)
-	light_power = initial(owner.light_power)
-	light_color = initial(owner.light_color)
-	light_wedge = initial(owner.light_wedge)
+	light_range = owner.light_range
+	light_power = owner.light_power
+	light_color = owner.light_color
+	light_wedge = owner.light_wedge
 
 	set_light(light_range, light_power, light_color, light_wedge)
 

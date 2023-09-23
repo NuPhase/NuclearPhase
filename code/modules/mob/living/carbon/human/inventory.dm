@@ -300,6 +300,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(old_item)
 		qdel(old_item)
 
+	update_weight()
+
 	return 1
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
@@ -363,3 +365,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/obj/item/organ/external/O = GET_EXTERNAL_ORGAN(src, zone)
 	if(O)
 		return get_covering_equipped_item(O.body_part)
+
+/mob/living/carbon/human/remove_from_mob(var/obj/O, var/atom/target)
+	. = ..()
+	update_weight()

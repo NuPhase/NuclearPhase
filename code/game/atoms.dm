@@ -527,3 +527,6 @@
 /atom/proc/get_alt_interactions(var/mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	return list()
+
+/atom/proc/update_weight()
+	weight = initial(weight)

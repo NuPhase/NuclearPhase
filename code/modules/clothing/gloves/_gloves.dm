@@ -15,6 +15,7 @@
 	blood_overlay_type = "bloodyhands"
 	bodytype_equip_flags = BODY_FLAG_HUMANOID
 	var/obj/item/clothing/ring/covering_ring
+	weight = 0.05
 
 /obj/item/clothing/gloves/update_clothing_icon()
 	if(ismob(loc))

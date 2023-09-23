@@ -39,7 +39,7 @@
 	else
 		icon_state = get_world_inventory_state()
 
-/obj/item/gun/projectile/sniper/ngdmr/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex, set_click_cooldown)
+/obj/item/gun/projectile/sniper/ngdmr/handle_post_fire(mob/user, atom/target)
 	. = ..()
 	var/turf/T = get_turf(src)
 	for(var/mob/living/carbon/human/M in view(3, user))

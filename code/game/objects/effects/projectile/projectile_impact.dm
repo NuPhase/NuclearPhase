@@ -32,8 +32,8 @@
 	icon = 'icons/effects/projectiles/large.dmi'
 	icon_state = "muzzle"
 	light_color = LIGHT_COLOR_VIOLET
-	pixel_x = -16
-	pixel_y = -16
+	pixel_x = -24
+	pixel_y = -24
 
 /obj/effect/projectile/impact/plasma_cutter
 	name = "plasma impact"

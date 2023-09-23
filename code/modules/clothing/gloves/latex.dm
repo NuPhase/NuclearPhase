@@ -7,6 +7,7 @@
 	icon_state = ICON_STATE_WORLD
 	anomaly_shielding = 0.1
 	material = /decl/material/solid/plastic //todo: latex
+	weight = 0.07
 
 /obj/item/clothing/gloves/latex/nitrile
 	name = "nitrile gloves"

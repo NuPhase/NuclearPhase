@@ -81,7 +81,7 @@
 /obj/item/projectile/bullet/pistol/holdout
 	damage = 40
 	penetration_modifier = 1.2
-	distance_falloff = 4
+	distance_falloff = 2
 
 /obj/item/projectile/bullet/pistol/strong
 	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'

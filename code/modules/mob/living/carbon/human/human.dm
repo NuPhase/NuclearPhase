@@ -1239,7 +1239,6 @@
 		return FALSE
 	return TRUE
 
-
 /mob/living/carbon/human/lose_hair()
 	if(species.set_default_hair(src))
 		. = TRUE
@@ -1422,3 +1421,9 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	qdel(limb_mob)
 	limb_mob = null
 	sound_to(src, sound(null))
+
+/mob/living/carbon/human/update_weight()
+	. = ..()
+	for(var/obj/item/I in contents)
+		I.update_weight()
+		weight += I.weight

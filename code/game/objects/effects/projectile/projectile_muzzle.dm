@@ -26,8 +26,8 @@
 	icon = 'icons/effects/projectiles/large.dmi'
 	icon_state = "muzzle"
 	light_color = LIGHT_COLOR_VIOLET
-	pixel_x = -16
-	pixel_y = -16
+	pixel_x = -24
+	pixel_y = -24
 
 /obj/effect/projectile/muzzle/plasma/Initialize(mapload, angle_override, p_x, p_y, color_override, scaling)
 	light_color = pick(LIGHT_COLOR_VIOLET, LIGHT_COLOR_BLUE, LIGHT_COLOR_CYAN, LIGHT_COLOR_RED, LIGHT_COLOR_YELLOW)

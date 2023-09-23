@@ -392,7 +392,6 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(randpixel)
 		pixel_z = randpixel //an idea borrowed from some of the older pixel_y randomizations. Intended to make items appear to drop at a character
-	user.weight -= weight
 	update_twohanding()
 	for(var/obj/item/thing in user?.get_held_items())
 		thing.update_twohanding()
@@ -430,8 +429,6 @@
 
 	hud_layerise()
 	addtimer(CALLBACK(src, .proc/reconsider_client_screen_presence, user.client, slot), 0)
-
-	user.weight += weight
 
 	//Update two-handing status
 	var/mob/M = loc
