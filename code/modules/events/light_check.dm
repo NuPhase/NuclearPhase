@@ -15,7 +15,8 @@
 		if(!D.locked)
 			D.lock()
 			spawn(20 SECONDS)
-				D.unlock()
+				D.locked = FALSE
+				D.update_icon()
 
 /datum/event/light_check/announce()
 	command_announcement.Announce(replacetext("Mandatory load spreading system reboot commenced..", "%STATION_NAME%", station_name()), "Lights Out", new_sound = global.using_map.grid_check_sound, zlevels = affecting_z)
