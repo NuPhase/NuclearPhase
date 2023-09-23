@@ -332,7 +332,7 @@
 			new /obj/structure/inflatable/wall(T)
 			stored_walls--
 
-	playsound(T, 'sound/items/zip.ogg', 75, 1)
+	playsound(T, 'sound/items/inflate.mp3', 75, 1)
 	to_chat(user, "You deploy the inflatable [mode ? "door" : "wall"]!")
 
 /obj/item/inflatable_dispenser/proc/pick_up(var/obj/A, var/mob/living/user)

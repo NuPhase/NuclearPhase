@@ -112,6 +112,19 @@ var/global/list/glasscrack_sound = list(
 	'sound/effects/glass_crack4.ogg'
 )
 
+var/global/list/eatfood_sound = list(
+	'sound/items/eatfood/eat1.mp3',
+	'sound/items/eatfood/eat2.mp3',
+	'sound/items/eatfood/eat3.mp3',
+	'sound/items/eatfood/eat4.mp3',
+	'sound/items/eatfood/eat5.mp3',
+	'sound/items/eatfood/eat6.mp3',
+	'sound/items/eatfood/eat7.mp3',
+	'sound/items/eatfood/eat8.mp3',
+	'sound/items/eatfood/eat9.mp3',
+	'sound/items/eatfood/eat10.mp3'
+)
+
 var/global/list/light_strike_sound = list(
 	'sound/effects/hit_kick.ogg',
 	'sound/effects/hit_punch.ogg'

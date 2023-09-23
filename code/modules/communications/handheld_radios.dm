@@ -12,7 +12,7 @@
 
 /obj/item/communications/proc/transmit(var/message, mob/user)
 	var/obj/machinery/communications/relay/cur_relay = try_find_relay()
-	playsound(loc, 'sound/effects/walkietalkie.ogg', 20, 0, -1)
+	playsound(loc, pick('sound/effects/radio1.mp3', 'sound/effects/radio2.mp3'), 20, 0, -1)
 	if(cur_relay && cur_relay.is_functioning())
 		var/quality = get_local_signal_quality(get_turf(user), get_turf(cur_relay), free_penetration, penetration_modifier, cur_relay.receiving_boost)
 		cur_relay.relay(apply_message_quality(message, quality, user), frequency)

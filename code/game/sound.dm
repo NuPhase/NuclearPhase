@@ -163,6 +163,7 @@ var/global/const/FALLOFF_SOUNDS = 0.5
 			if ("button") soundin = pick(global.button_sound)
 			if ("chop") soundin = pick(global.chop_sound)
 			if ("glasscrack") soundin = pick(global.glasscrack_sound)
+			if ("eatfood") soundin = pick(global.eatfood_sound)
 	return soundin
 
 /client/verb/stop_sounds()

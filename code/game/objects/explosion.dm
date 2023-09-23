@@ -9,7 +9,7 @@
 	set waitfor = FALSE
 
 	epicenter = get_turf(epicenter)
-	if(!epicenter) 
+	if(!epicenter)
 		return
 
 	var/start_time = REALTIMEOFDAY
@@ -46,7 +46,7 @@
 			else if(dist <= far_dist)
 				var/far_volume = Clamp(far_dist, 30, 50) // Volume is based on explosion size and dist
 				far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
-				M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
+				M.playsound_local(epicenter, pick('sound/effects/explosionfar.ogg', 'sound/effects/explosionfar2.ogg', 'sound/effects/explosionfar3.ogg', 'sound/effects/explosionfar4.ogg', 'sound/effects/explosionfar5.ogg', 'sound/effects/explosionfar6.ogg'), far_volume, 1, frequency, falloff = 5)
 
 	if(adminlog)
 		log_and_message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
@@ -89,7 +89,7 @@
 						addtimer(CALLBACK(AM, /atom/movable/.proc/throw_at, throw_target, throw_dist, throw_dist), 0)
 
 	var/took = (REALTIMEOFDAY-start_time)/10
-	if(Debug2) 
+	if(Debug2)
 		to_world_log("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
 	return 1
 
@@ -219,7 +219,7 @@
 				M.playsound_local(epicenter, explosion_sound, min(100, volume), 1, frequency, falloff = 5)
 				//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 			else
-				volume = M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', volume, 1, frequency, falloff = 1000)
+				volume = M.playsound_local(epicenter, pick('sound/effects/explosionfar.ogg', 'sound/effects/explosionfar2.ogg', 'sound/effects/explosionfar3.ogg', 'sound/effects/explosionfar4.ogg', 'sound/effects/explosionfar5.ogg', 'sound/effects/explosionfar6.ogg'), volume, 1, frequency, falloff = 1000)
 
 		if ((reception & EXPLFX_SHAKE) && volume > 0)
 			shake_camera(M, min(30, max(2,(power*2) / dist)), min(3.5, ((power/3) / dist)),0.05)

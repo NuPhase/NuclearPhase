@@ -65,7 +65,7 @@
 				if(replace_message)
 					location.visible_message("<span class='notice'>[html_icon(location)] [replace_message]</span>")
 				if(replace_sound)
-					playsound(location, replace_sound, 80, 1)
+					playsound(location, pick(replace_sound), 80, 1)
 
 		else // Otherwise, collect all possible reactions.
 			eligible_reactions |= SSmaterials.chemical_reactions_by_id[R.type]

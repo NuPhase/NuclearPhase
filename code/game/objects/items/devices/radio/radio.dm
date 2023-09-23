@@ -303,7 +303,7 @@
 			return 0
 
 	if(loc == M)
-		playsound(loc, 'sound/effects/walkietalkie.ogg', 20, 0, -1)
+		playsound(loc, pick('sound/effects/radio1.mp3', 'sound/effects/radio2.mp3'), 20, 0, -1)
 
 
 	/* Quick introduction:

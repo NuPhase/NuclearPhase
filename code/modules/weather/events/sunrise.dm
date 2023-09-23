@@ -105,7 +105,7 @@
 			T.overlays -= fire_overlay
 			T.set_ambient_light(COLOR_SUNRISE_SURFACE3, 2)
 			if(prob(1))
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/effects/explosionfar.ogg', 200, 1, 50, 1), rand(1, 50))
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, pick('sound/effects/explosionfar.ogg', 'sound/effects/explosionfar2.ogg', 'sound/effects/explosionfar3.ogg', 'sound/effects/explosionfar4.ogg', 'sound/effects/explosionfar5.ogg', 'sound/effects/explosionfar6.ogg'), 200, 1, 50, 1), rand(1, 50))
 
 	sleep(260)
 	for(var/mob/living/carbon/human/H in surface_mobs)

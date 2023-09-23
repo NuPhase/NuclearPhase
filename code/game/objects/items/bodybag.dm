@@ -26,8 +26,8 @@
 	desc = "A plastic bag designed for the storage and transportation of cadavers."
 	icon = 'icons/obj/storage/bodybag.dmi'
 	closet_appearance = null
-	open_sound = 'sound/items/zip.ogg'
-	softclose_sound = list('sound/items/zip.ogg')
+	open_sound = list('sound/items/zip/unzip1.mp3', 'sound/items/zip/unzip2.mp3', 'sound/items/zip/unzip3.mp3')
+	softclose_sound = list('sound/items/zip/zip1.mp3', 'sound/items/zip/zip2.mp3', 'sound/items/zip/zip3.mp3')
 	var/item_path = /obj/item/bodybag
 	density = FALSE
 	storage_capacity = (MOB_SIZE_MEDIUM * 2) - 1

@@ -17,7 +17,7 @@
 	user.visible_message("[user] starts inflating \the [src].", "You start inflating \the [src].")
 	if(!do_after(user, 1 SECOND, src))
 		return
-	playsound(loc, 'sound/items/zip.ogg', 75, 1)
+	playsound(loc, 'sound/items/inflate.mp3', 75, 1)
 	user.visible_message(SPAN_NOTICE("[user] inflates \the [src]."), SPAN_NOTICE("You inflate \the [src]."))
 	var/obj/structure/inflatable/R = new deploy_path(user.loc)
 	transfer_fingerprints_to(R)
@@ -127,7 +127,7 @@
 		return
 	if(T.can_use(2))
 		to_chat(user, SPAN_WARNING("You need 2 [T.plural_name] to repair \the [src]."))
-		return 
+		return
 	T.use(2)
 	playsound(src, 'sound/effects/tape.ogg', 50, TRUE)
 	last_damage_message = null

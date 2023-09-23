@@ -368,7 +368,7 @@ var/global/list/hygiene_props = list()
 		return
 
 	to_chat(usr, SPAN_NOTICE("You start washing your hands."))
-	playsound(loc, 'sound/effects/sink_long.ogg', 75, 1)
+	playsound(loc, pick('sound/structures/sink/wash1.mp3', 'sound/structures/sink/wash2.mp3'), 75, 0)
 
 	busy = 1
 	if(!do_after(user, 40, src))
@@ -380,7 +380,6 @@ var/global/list/hygiene_props = list()
 	user.visible_message( \
 		SPAN_NOTICE("\The [user] washes their hands using \the [src]."), \
 		SPAN_NOTICE("You wash your hands using \the [src]."))
-
 
 /obj/structure/hygiene/sink/attackby(obj/item/O, var/mob/user)
 	if(isplunger(O) && clogged > 0)

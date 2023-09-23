@@ -259,14 +259,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 
 	var/chilling_point
 	var/chilling_message = "crackles and freezes!"
-	var/chilling_sound = 'sound/effects/bubbles.ogg'
+	var/chilling_sound = list('sound/chemistry/freeze/freeze1.mp3', 'sound/chemistry/freeze/freeze2.mp3', 'sound/chemistry/freeze/freeze3.mp3', 'sound/chemistry/freeze/freeze4.mp3')
 	var/list/chilling_products
 	var/bypass_cooling_products_for_root_type
 
 	var/list/electrolysis_products
 	var/electrolysis_difficulty = 1
 
-	var/reactivity_coefficient = 0.33 //explosions, chemical reactions, etc
+	var/reactivity_coefficient = 0.25 //explosions, chemical reactions, etc
 
 	var/heating_point
 	var/heating_temperature_product = 0

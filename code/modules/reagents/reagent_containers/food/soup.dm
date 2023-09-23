@@ -10,7 +10,7 @@
 	filling_color = "#785210"
 	center_of_mass = @"{'x':16,'y':8}"
 	bitesize = 5
-	eat_sound = list('sound/items/eatfood.ogg', 'sound/items/drink.ogg')
+	eat_sound = list("eatfood", 'sound/items/drink.ogg')
 
 /obj/item/chems/food/meatballsoup/Initialize()
 	. = ..()
@@ -58,7 +58,7 @@
 	nutriment_desc = list("carrot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
 	nutriment_amt = 8
 	bitesize = 5
-	eat_sound = list('sound/items/eatfood.ogg', 'sound/items/drink.ogg')
+	eat_sound = list("eatfood", 'sound/items/drink.ogg')
 
 /obj/item/chems/food/vegetablesoup/Initialize()
 	. = ..()
@@ -74,7 +74,7 @@
 	nutriment_desc = list("salad" = 4, "egg" = 2, "potato" = 2)
 	nutriment_amt = 8
 	bitesize = 5
-	eat_sound = list('sound/items/eatfood.ogg', 'sound/items/drink.ogg')
+	eat_sound = list("eatfood", 'sound/items/drink.ogg')
 
 /obj/item/chems/food/nettlesoup/Initialize()
 	. = ..()
@@ -252,7 +252,7 @@
 	nutriment_desc = list("mushroom" = 8, "milk" = 2)
 	nutriment_amt = 8
 	bitesize = 3
-	eat_sound = list('sound/items/eatfood.ogg', 'sound/items/drink.ogg')
+	eat_sound = list("eatfood", 'sound/items/drink.ogg')
 
 /obj/item/chems/food/beetsoup
 	name = "beet soup"
