@@ -141,3 +141,15 @@
 	fatigue_pressure = 350*ONE_ATMOSPHERE
 	alert_pressure = 350*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_FUEL
+
+/obj/machinery/atmospherics/pipe/zpipe/up/water
+	name = "upwards water pipe"
+	desc = "A water pipe segment to connect upwards."
+	connect_types = CONNECT_TYPE_WATER
+	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/zpipe/down/water
+	name = "downwards water pipe"
+	desc = "A water pipe segment to connect downwards."
+	connect_types = CONNECT_TYPE_WATER
+	color = PIPE_COLOR_BLUE

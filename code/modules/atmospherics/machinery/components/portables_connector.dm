@@ -19,7 +19,7 @@
 
 	level = 1
 
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 	build_icon_state = "connector"
 
 	pipe_class = PIPE_CLASS_UNARY

@@ -792,6 +792,12 @@
 	color = PIPE_COLOR_ORANGE
 	connect_types = CONNECT_TYPE_FUEL
 
+/obj/machinery/atmospherics/pipe/cap/visible/water
+	name = "water pipe endcap"
+	desc = "An endcap for water pipes."
+	color = PIPE_COLOR_BLUE
+	connect_types = CONNECT_TYPE_WATER
+
 /obj/machinery/atmospherics/pipe/cap/hidden
 	level = 1
 	icon_state = "cap"
