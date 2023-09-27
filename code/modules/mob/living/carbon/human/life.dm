@@ -687,7 +687,7 @@
 					if(0.41 to 0.56)		severity = 6
 					if(0 to 0.4)			severity = 7
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
-				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 5) //we are JACKED on adrenaline
+				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.5) //we are JACKED on adrenaline
 					if(blood_perfusion < 0.5) //fancy flickering when low on oxygen
 						add_client_color(/datum/client_color/oxygendeprivation_desat)
 						remove_client_color(/datum/client_color/oxygendeprivation_oversat)

@@ -365,7 +365,7 @@ This function restores all organs.
 		return 0
 
 	if(organ.can_feel_pain())
-		release_adrenaline(round(damage/10))
+		release_adrenaline(round(damage/40))
 
 	var/datum/wound/created_wound
 	damageoverlaytemp = 20

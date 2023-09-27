@@ -297,6 +297,7 @@
 	var/on_damage = 7
 	var/produce_heat = 1500
 	var/datum/composite_sound/flare/soundloop
+	var/should_play_sound = TRUE
 
 /obj/item/flashlight/flare/Initialize()
 	. = ..()
@@ -337,7 +338,8 @@
 		set_flashlight()
 		update_icon()
 		START_PROCESSING(SSobj, src)
-		soundloop = new(list(src), TRUE)
+		if(should_play_sound)
+			soundloop = new(list(src), TRUE)
 
 /obj/item/flashlight/flare/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(proximity && istype(O) && on)
@@ -375,6 +377,7 @@
 
 	flashlight_range = 3
 	flashlight_power = 2
+	should_play_sound = FALSE
 
 /obj/item/flashlight/flare/glowstick/Initialize()
 	. = ..()

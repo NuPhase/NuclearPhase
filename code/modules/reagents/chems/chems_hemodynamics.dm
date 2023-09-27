@@ -14,9 +14,9 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
 	H.add_chemical_effect(CE_BREATHLOSS, volume * 1.5)
-	heart.bpm_modifiers[name] = volume * 15
+	heart.bpm_modifiers[name] = volume * 25
 	heart.cardiac_output_modifiers[name] = 1 + volume * 0.01
-	if(volume > 2)
+	if(volume < 2)
 		H.add_chemical_effect(CE_PRESSURE, volume * -8)
 	else
 		H.add_chemical_effect(CE_PRESSURE, volume * 8)

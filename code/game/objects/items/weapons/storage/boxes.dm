@@ -74,7 +74,7 @@
 	icon_state = "survival"
 	startswith = list(/obj/item/clothing/mask/breath = 1,
 					/obj/item/tank/emergency/oxygen = 1,
-					/obj/item/chems/hypospray/autoinjector = 1,
+					/obj/item/chems/hypospray/autoinjector/pouch_auto/adrenaline = 1,
 					/obj/item/flashlight/flare/glowstick = 1,
 					/obj/item/crowbar/cheap = 1)
 
@@ -84,7 +84,7 @@
 	icon_state = "survivaleng"
 	startswith = list(/obj/item/clothing/mask/breath/scba = 1,
 					/obj/item/tank/emergency/oxygen/engi = 1,
-					/obj/item/chems/hypospray/autoinjector = 1,
+					/obj/item/chems/hypospray/autoinjector/pouch_auto/adrenaline = 1,
 					/obj/item/chems/hypospray/autoinjector/antirad = 1,
 					/obj/item/stack/medical/bruise_pack = 1,
 					/obj/item/flashlight/flare/glowstick = 1,
