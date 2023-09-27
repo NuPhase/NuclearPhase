@@ -158,9 +158,9 @@
 		if(istype(machine) && (machine.stat & MAINT))
 			to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
 			return TRUE
-		if(I.w_class != ITEM_SIZE_NORMAL)
+		/*if(I.w_class != ITEM_SIZE_NORMAL)
 			to_chat(user, "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here.")
-			return TRUE
+			return TRUE*/
 
 		if(!user.unEquip(I, src))
 			return

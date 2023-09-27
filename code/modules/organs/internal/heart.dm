@@ -114,20 +114,9 @@
 		pulse = max(Interpolate(pulse, target_pulse, HEMODYNAMICS_INTERPOLATE_FACTOR), 0)
 		external_pump = 0
 
-	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers)
+	var/cardiac_output_pulse_modifier = min(1, 60 / pulse + 0.6)
+	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier
 
-/*	//If heart is stopped, it isn't going to restart itself randomly.
-	if(pulse == 0)
-		return
-	else //and if it's beating, let's see if it should
-		var/should_stop = prob(instability * 0.05)
-		//should_stop = should_stop || prob(max(0, owner.getBrainLoss() - owner.maxHealth * 0.75)) //brain failing to work heart properly
-		if(should_stop) // The heart has stopped due to going into traumatic or cardiovascular shock.
-			to_chat(owner, "<span class='danger'>Your heart has stopped!</span>")
-			pulse = PULSE_NONE
-			current_pattern = HEART_PATTERN_ASYSTOLE
-			return
-*/
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= BPM_AUDIBLE_HEARTRATE || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.

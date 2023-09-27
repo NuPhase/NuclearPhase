@@ -27,9 +27,12 @@
 		lungs.chest_tube = src
 		user.drop_from_inventory(src, lungs)
 		M.visible_message(SPAN_NOTICE("[user] successfully installs a [src] into [M]'s chest."))
+		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(M, BP_CHEST)
+		M.custom_pain("You are stabbed in the ribs!", 40, 0, affecting)
 	else
 		lungs.ruptured = TRUE
 		M.visible_message(SPAN_DANGER("[user] installs a [src] into [M]'s chest. Something pops inside of it!"))
 		var/obj/item/organ/external/chest/chest = GET_EXTERNAL_ORGAN(M, BP_CHEST)
 		user.drop_from_inventory(src, M.loc)
 		chest.embed(src, 0)
+		M.custom_pain("You are stabbed in the ribs!", 50, 0, chest)

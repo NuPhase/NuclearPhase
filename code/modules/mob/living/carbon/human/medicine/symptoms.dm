@@ -14,7 +14,6 @@
 
 /decl/medical_symptom/proc/go_away(mob/living/carbon/human/victim)
 	victim.symptoms -= src
-	qdel(src)
 
 /decl/medical_symptom/proc/apply_pain(mob/living/carbon/human/victim)
 	return 0

@@ -5,16 +5,21 @@
 	taste_description = "rush"
 	color = "#76319e"
 	scannable = 1
-	overdose = 16
-	metabolism = 0.1
+	overdose = 10
+	metabolism = 0.01
 	value = 1.5
 	uid = "chem_adrenaline"
 
-/decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
+/decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = volume * 5
-	heart.cardiac_output_modifiers[name] = 1 + volume * 0.05
+	H.add_chemical_effect(CE_BREATHLOSS, volume * 1.5)
+	heart.bpm_modifiers[name] = volume * 15
+	heart.cardiac_output_modifiers[name] = 1 + volume * 0.01
+	if(volume > 2)
+		H.add_chemical_effect(CE_PRESSURE, volume * -8)
+	else
+		H.add_chemical_effect(CE_PRESSURE, volume * 8)
 	if(volume < overdose)
 		heart.stability_modifiers[name] = volume * 3
 	else
@@ -30,7 +35,7 @@
 	color = "#1e3c7e"
 	scannable = 1
 	overdose = 12
-	metabolism = 0.05
+	metabolism = 0.01
 	value = 1.5
 	uid = "chem_noradrenaline"
 

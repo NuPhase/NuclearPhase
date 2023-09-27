@@ -176,6 +176,7 @@
 	if(!breath || (max_damage <= 0) || oxygen_deprivation)
 		breath_fail_ratio = 1
 		handle_failed_breath()
+		breath_rate = 0
 		return 1
 
 	var/breath_pressure = breath.return_pressure()
@@ -292,7 +293,7 @@
 			return 'sound/voice/breath/mask_breathing.wav'
 
 /obj/item/organ/internal/lungs/proc/calculate_breath_rate()
-	if(!last_int_pressure || owner.is_asystole())
+	if(!last_int_pressure)
 		breath_rate = 0
 		return
 	breath_rate = initial(breath_rate)
