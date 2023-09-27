@@ -5,47 +5,6 @@
 
 #define FUCK_COOLDOWN_DEFAULT 7
 
-/obj/effect/decal/cleanable/cum
-	name = "cream"
-	desc = "It's pie cream from a cream pie. Or not..."
-	density = 0
-	layer = 2
-	icon = 'honk/icons/effects/cum.dmi'
-	anchored = 1
-	random_icon_states = list("cum1", "cum2", "cum3", "cum4", "cum5", "cum6", "cum7", "cum8", "cum9", "cum10", "cum11", "cum12")
-
-/obj/effect/decal/cleanable/cum/attack_hand(mob/living/carbon/human/user)
-	. = ..()
-	visible_message(SPAN_CUMZONE("[user] licks [src] from the floor."))
-	user.nutrition += 5
-	qdel(src)
-
-/obj/effect/decal/cleanable/cum/New()
-	..()
-	icon_state = pick(random_icon_states)
-
-/obj/effect/decal/cleanable/cum/fem
-	name = "slippery liquid"
-	desc = "Uhh... Someone had fun..."
-	icon = 'honk/icons/effects/lewd_decals.dmi'
-	random_icon_states = list("femcum_1", "femcum_2", "femcum_3", "femcum_4")
-
-/decl/material/liquid/semen
-	solid_name = "semen"
-	gas_name = "semen"
-	liquid_name = "semen"
-	uid = "liquid_semen"
-	lore_text = "Something hot and full of love."
-	exoplanet_rarity = MAT_RARITY_NOWHERE
-	ingest_met = 1
-	taste_description = "Something hot and full of love..."
-	color = "#FFFFFF" // rgb: 255, 255, 255
-
-/decl/material/liquid/semen/on_mob_life(mob/living/M, metabolism_class, datum/reagents/holder)
-	. = ..()
-	if(prob(1))
-		to_chat(M, SPAN_CUMZONE("You feel something hot and full of love at your face..."))
-
 /mob/living/carbon/human/receive_mouse_drop(mob/M as mob, mob/user as mob)
 	if(M == src || src == usr || M != usr)		return
 	if(usr.restrained())		return
@@ -714,86 +673,6 @@
 
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = initial(pixel_x), pixel_y = final_pixel_y, time = 2)
-
-/obj/item/weapon/dildo
-	name = "dildo"
-	desc = "Hmmm, deal throw."
-	icon = 'honk/icons/obj/items/dildo.dmi'
-	icon_state = "dildo"
-	item_state = "c_tube"
-	throwforce = 0
-	force = 5
-	w_class = 1
-	throw_speed = 3
-	throw_range = 15
-	attack_verb = list("slammed", "bashed", "whipped")
-	var/hole = "vagina"
-	var/pleasure = 10
-
-/obj/item/weapon/dildo/attack(mob/living/carbon/human/M, mob/living/carbon/human/user)
-	var/hasvagina = (M.gender == FEMALE && M.species.genitals)
-	var/hasanus = M.species.anus
-	var/message = ""
-
-	if(istype(M, /mob/living/carbon/human) && user.zone_sel.selecting == "groin" && M.is_nude())
-		if (hole == "vagina" && hasvagina)
-			if (user == M)
-				message = pick("fucks their own pussy")
-			else
-				message = pick("fucks [M] right in the pussy with the dildo", "jams it right into [M]")
-
-			if (prob(5) && M.stat != DEAD && M.stat != UNCONSCIOUS)
-				M.lust += pleasure * 2
-
-			else if (M.stat != DEAD && M.stat != UNCONSCIOUS)
-				M.lust += pleasure
-
-			user.visible_message(SPAN_ERPBOLD("[user] ") + SPAN_ERP(message))
-			if (M.lust >= M.resistenza)
-				M.cum(M, user, "floor")
-			else
-				M.moan(pleasure)
-
-			user.do_fucking_animation(M)
-			playsound(loc, "honk/sound/interactions/bang[rand(4, 6)].ogg", 70, 1, -1)
-
-		else if (hole == "anus" && hasanus)
-			if (user == M)
-				message = pick("fucks their ass")
-			else
-				message = pick("fucks [M]'s asshole")
-
-			if (prob(5) && M.stat != DEAD && M.stat != UNCONSCIOUS)
-				M.lust += pleasure * 2
-			else if (M.stat != DEAD && M.stat != UNCONSCIOUS)
-				M.lust += pleasure
-
-			user.visible_message(SPAN_ERPBOLD("[user] ") + SPAN_ERP(message))
-
-			if (M.lust >= M.resistenza)
-				M.cum(M, user, "floor")
-			else
-				M.moan(pleasure*2)
-
-			user.do_fucking_animation(M)
-			playsound(loc, "honk/sound/interactions/bang[rand(4, 6)].ogg", 70, 1, -1)
-
-		else
-			..()
-	else
-		..()
-
-/obj/item/weapon/dildo/attack_self(mob/user as mob)
-	if(hole == "vagina")
-		hole = "anus"
-	else
-		hole = "vagina"
-	to_chat(user, "<span class='warning'>Hmmm. Maybe we should put it in \the [hole]?!</span>")
-
-/datum/stack_recipe/dildo
-	title = "Horse"
-	result_type = /obj/item/weapon/dildo
-	difficulty = 4
 
 /mob/living/carbon/human/Topic(href, href_list)
 	if(href_list["interaction"])

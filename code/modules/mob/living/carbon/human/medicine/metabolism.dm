@@ -1,11 +1,3 @@
-/datum/reagent/macro
-	var/energy_value = 0
-	var/density = 0
-
-/datum/reagent/macro/carbohydrate
-/datum/reagent/macro/fat
-/datum/reagent/macro/protein
-
 /mob/living/carbon/human
 	var/hunger_mes_cooldown = 0
 	var/list/adrenaline_messages = list(
