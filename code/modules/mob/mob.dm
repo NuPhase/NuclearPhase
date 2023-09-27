@@ -951,9 +951,9 @@
 	return gender
 
 /mob/is_fluid_pushable(var/amt)
-	if(..() && !buckled && (lying || !Check_Shoegrip()) && (amt >= mob_size * (lying ? 5 : 10)))
+	if(..() && !buckled && (lying || !Check_Shoegrip()) && (amt >= mob_size * (lying ? 500 : 1000)))
 		if(!lying)
-			SET_STATUS_MAX(src, STAT_WEAK, 1)
+			SET_STATUS_MAX(src, STAT_WEAK, 2)
 			if(lying && prob(10))
 				to_chat(src, "<span class='danger'>You are pushed down by the flood!</span>")
 		return TRUE

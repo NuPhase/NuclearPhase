@@ -722,7 +722,7 @@
 	icon_state = "dildo"
 	item_state = "c_tube"
 	throwforce = 0
-	force = 10
+	force = 5
 	w_class = 1
 	throw_speed = 3
 	throw_range = 15
