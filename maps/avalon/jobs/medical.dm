@@ -162,6 +162,34 @@
 	)
 	skill_points = 16
 
+/datum/job/intern
+	title = "Medical Intern"
+	department_types = list(/decl/department/medical)
+	total_positions = 4
+	spawn_positions = 4
+	supervisors = "the hospital deputee"
+	selection_color = "#013d3b"
+	economic_power = 3
+	access = list(
+		access_medical
+	)
+	minimal_access = list(
+		access_medical
+	)
+	outfit_type = /decl/hierarchy/outfit/job/medical/doctor/nurse
+	min_skill = list(
+		SKILL_LITERACY  = SKILL_BASIC,
+		SKILL_MEDICAL   = SKILL_BASIC,
+		SKILL_CHEMISTRY = SKILL_BASIC
+	)
+	max_skill = list(
+		SKILL_MEDICAL   = SKILL_ADEPT,
+		SKILL_ANATOMY	= SKILL_ADEPT,
+		SKILL_CHEMISTRY = SKILL_MAX
+	)
+	skill_points = 12
+	only_for_whitelisted = FALSE
+
 /datum/job/counselor
 	title = "Counselor"
 	alt_titles = list("Mentalist")

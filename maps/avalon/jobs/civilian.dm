@@ -10,6 +10,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/generic/assistant
 	department_types = list(/decl/department/civilian)
 	skill_points = 24
+	only_for_whitelisted = FALSE
 
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
@@ -230,6 +231,7 @@
 		SKILL_PILOT    = SKILL_MAX
 	)
 	skill_points = 24
+	only_for_whitelisted = FALSE
 
 /datum/job/janitor
 	title = "Sanitation Specialist"
@@ -265,6 +267,7 @@
 	)
 	event_categories = list(ASSIGNMENT_JANITOR)
 	skill_points = 20
+	only_for_whitelisted = FALSE
 
 /obj/item/card/id/cargo
 	name = "identification card"
