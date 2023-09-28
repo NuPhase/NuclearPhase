@@ -29,7 +29,7 @@
 	weight = 35 //we're very light
 	windbreak_coefficient = 1.5
 	siemens_coefficient = 0.1
-	lifting_strength_boost = 30
+	lifting_strength_boost = 55
 	armor = list(
 		melee = ARMOR_MELEE_SMALL,
 		bullet = ARMOR_BALLISTIC_SMALL,
