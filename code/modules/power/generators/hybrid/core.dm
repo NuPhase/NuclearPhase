@@ -69,7 +69,7 @@
 	neutrons_absorbed = 0
 	for(var/g in GM.gas)
 		var/decl/material/mat = GET_DECL(g)
-		var/react_amount = GM.gas[g] * FISSION_RATE * sqrt(neutron_flux) + 0.00001
+		var/react_amount = GM.gas[g] * FISSION_RATE * sqrt(neutron_flux) + 0.01
 		neutrons_absorbed += mat.neutron_absorption * react_amount
 		if(mat.fission_energy)
 			neutron_moles += mat.neutron_production * react_amount * max(0.5, sqrt(neutron_flux))
@@ -78,6 +78,11 @@
 			if(mat.fission_products)
 				for(var/fp in mat.fission_products)
 					GM.adjust_gas(fp, react_amount*mat.fission_products[fp])
+		if(mat.absorption_products)
+			var/moles_absorbed = min(GM.gas[g], GM.gas[g] * rand(0.001, 0.01) * sqrt(neutron_flux) + 0.01)
+			GM.adjust_gas(mat.type, moles_absorbed * -1)
+			for(var/ap in mat.absorption_products)
+				GM.adjust_gas(ap, moles_absorbed*mat.absorption_products[ap])
 	neutrons_absorbed = min(neutrons_absorbed, neutron_moles)
 	neutron_moles -= neutrons_absorbed
 	GM.add_thermal_energy(max(0, NEUTRON_MOLE_ENERGY * neutrons_absorbed))
@@ -94,12 +99,12 @@
 		if(cur_reaction.minimum_temperature > GM.temperature)
 			continue
 
-		var/uptake_moles = min(GM.gas[cur_reaction.first_reactant], GM.gas[cur_reaction.second_reactant])
-		uptake_moles *= neutron_flux*FISSION_RATE
+		var/uptake_moles = min(GM.gas[cur_reaction.first_reactant], GM.gas[cur_reaction.second_reactant], neutron_moles) * FISSION_RATE
 		GM.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5)
 		GM.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5)
 		GM.adjust_gas(cur_reaction.product, uptake_moles)
 		GM.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
+		neutron_moles -= uptake_moles
 		neutron_moles += cur_reaction.free_neutron_moles * uptake_moles
 
 /obj/machinery/power/hybrid_reactor/proc/receive_power(power) //in watts

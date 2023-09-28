@@ -34,7 +34,12 @@
 		ui.open()
 		ui.set_auto_update(TRUE)
 
-/obj/machinery/reactor_monitor/general/get_display_data(var/atom/target)
+/obj/machinery/reactor_monitor/general/examine(mob/user)
+	. = ..()
+	var/obj/reactor = reactor_components["core"]
+	print_atmos_analysis(user, get_chamber_analysis(reactor.loc))
+
+/obj/machinery/reactor_monitor/general/proc/get_chamber_analysis(var/atom/target)
 	. = list()
 	. += "Results of the analysis of the chamber interior:"
 	var/datum/gas_mixture/mixture = target.return_air()
@@ -52,7 +57,6 @@
 				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string]"
 			var/totalGas_add_string = ", Total weight: [round(mixture.get_mass(), 0.01)]kg"
 			. += "[totalGas_add_string]"
-			. = jointext(., "<br>")
 			return
 	return "<span class='warning'>\The chamber has no gases!</span>"
 

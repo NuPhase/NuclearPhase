@@ -156,6 +156,11 @@ var/global/datum/announcement/minor/minor_announcement = new(new_sound = 'sound/
 		return dept.announce_channel
 	return "Common"
 
-/proc/radio_announce(var/message, var/name, var/frequency = "Common")
-	var/obj/item/radio/announcer = get_global_announcer()
-	announcer.autosay(message, name, frequency)
+/proc/radio_announce(var/message, var/name, var/frequency = "172.9")
+	for(var/mob/M in human_mob_list)
+		var/obj/item/communications/receiving_radio = locate(/obj/item/communications) in M.contents
+		if(!receiving_radio)
+			continue
+			receive_comm_message(M, message, frequency)
+	for(var/mob/observer/O in ghost_mob_list)
+		receive_comm_message(O, message, frequency)

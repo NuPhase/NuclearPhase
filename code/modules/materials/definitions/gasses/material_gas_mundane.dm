@@ -427,6 +427,7 @@
 	color = "#777777"
 	stack_origin_tech = "{'materials':5}"
 	boiling_point = -233 CELSIUS
+	neutron_absorption = 70
 	liquid_density = 202
 	value = 0.45
 	exoplanet_rarity = MAT_RARITY_UNCOMMON

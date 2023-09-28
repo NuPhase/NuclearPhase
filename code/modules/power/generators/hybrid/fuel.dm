@@ -5,9 +5,14 @@
 	icon_state = "cell"
 	w_class = ITEM_SIZE_LARGE
 	volume = 35000
+	var/spec_desc = ""
 	var/sealed = FALSE
 	var/list/initial_reagents
 	weight = 12
+
+/obj/item/chems/fuel_cell/examine(mob/user)
+	. = ..()
+	to_chat(user, spec_desc)
 
 /obj/item/chems/fuel_cell/Initialize()
 	. = ..()
@@ -17,7 +22,7 @@
 
 /obj/item/chems/fuel_cell/deuterium_tritium
 	name = "D-T fuel cell"
-	desc = "This fuel cell contains a simple D-T fuel mixture. You are boring."
+	spec_desc = "This fuel cell contains a simple D-T fuel mixture. You are boring."
 	initial_reagents = list(
 		/decl/material/gas/hydrogen/deuterium = 24000,
 		/decl/material/gas/hydrogen/tritium = 11000
@@ -25,31 +30,38 @@
 
 /obj/item/chems/fuel_cell/hydrogen
 	name = "H2 fuel cell"
-	desc = "This fuel cell contains purely hydrogen, like in the cores of juvenile stars."
+	spec_desc = "This fuel cell contains purely hydrogen, like in the cores of juvenile stars."
 	initial_reagents = list(
 		/decl/material/gas/hydrogen = 35000
 	)
 
 /obj/item/chems/fuel_cell/helium3
 	name = "3He2 fuel cell"
-	desc = "This fuel cell contains an isotope of helium, an extremely potent fusion fuel. Good luck igniting it, though."
+	spec_desc = "This fuel cell contains an isotope of helium, an extremely potent fusion fuel. Good luck igniting it, though."
 	initial_reagents = list(
 		/decl/material/gas/helium/isotopethree = 35000
 	)
 
 /obj/item/chems/fuel_cell/fissionclassic
 	name = "U_235-Pu fuel cell"
-	desc = "This fuel cell contains fissilable uranium and highly fissile plutonium mixed with xenon for safety."
+	spec_desc = "This fuel cell contains fissilable uranium and highly fissile plutonium mixed with xenon for safety."
 	initial_reagents = list(
-		/decl/material/solid/metal/uranium = 20000,
-		/decl/material/solid/metal/plutonium = 14000
+		/decl/material/solid/metal/uranium = 2000,
+		/decl/material/solid/metal/plutonium = 700
 	)
 
 /obj/item/chems/fuel_cell/fissionbreeder
 	name = "U_238 fuel cell"
-	desc = "This fuel cell contains an almost useless isotope of uranium. Best used in tandem with fusion."
+	spec_desc = "This fuel cell contains an almost useless isotope of uranium. Best used in tandem with fusion."
 	initial_reagents = list(
-		/decl/material/solid/metal/depleted_uranium = 35000
+		/decl/material/solid/metal/depleted_uranium = 3500
+	)
+
+/obj/item/chems/fuel_cell/heavywater
+	name = "D2O fuel cell"
+	spec_desc = "This fuel cell contains heavy water that can be split into fusion isotopes."
+	initial_reagents = list(
+		/decl/material/liquid/water/heavy = 35000
 	)
 
 /obj/machinery/reactor_fuelport
@@ -93,7 +105,7 @@
 	var/removing = inserted.reagents.total_volume * injection_ratio + 0.1
 	for(var/moving in inserted.reagents.reagent_volumes)
 		var/decl/material/smat = GET_DECL(moving)
-		core_environment.adjust_gas(moving, removing / smat.molar_volume)
+		core_environment.adjust_gas_temp(moving, removing / smat.molar_volume, core_environment.temperature)
 		inserted.reagents.remove_reagent(moving, removing)
 
 /obj/machinery/reactor_fuelport/Initialize()

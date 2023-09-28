@@ -26,7 +26,10 @@
 				continue
 			receive_comm_message(M, apply_message_quality(message, quality, M), frequency)
 
-/obj/item/communications/proc/try_find_relay() //TODO: OPTIMIZE
+	for(var/mob/observer/O in ghost_mob_list)
+		receive_comm_message(O, message, frequency)
+
+/obj/item/communications/proc/try_find_relay()
 	for(var/obj/machinery/communications/relay/cur_relay in radio_relays)
 		var/turf/our_turf = get_turf(src)
 		if(cur_relay.z == our_turf.z)
