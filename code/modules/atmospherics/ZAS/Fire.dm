@@ -127,6 +127,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		firelevel = fluid_mixture.fire_react(null, 1, 1)
 		burning_fluid.temperature = fluid_mixture.temperature
 		air_contents.merge(fluid_mixture)
+		if(!firelevel)
+			qdel(src)
 
 	if(firelevel > 6)
 		icon_state = "3"

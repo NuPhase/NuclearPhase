@@ -5,7 +5,7 @@
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = @"[10,25,50,100]"
-	initial_capacity = 7500
+	initial_capacity = 350000
 	initial_reagent_types = list(/decl/material/liquid/water = 1)
 	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
 	movable_flags = MOVABLE_FLAG_WHEELED
@@ -31,6 +31,7 @@
 	desc = "A tank containing welding fuel."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
+	initial_capacity = 300000
 	amount_per_transfer_from_this = 10
 	initial_reagent_types = list(/decl/material/liquid/fuel = 1)
 	atom_flags = ATOM_FLAG_CLIMBABLE
