@@ -113,10 +113,11 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 /obj/fire/on_update_icon()
 	if(burning_fluid)
+		layer = BELOW_OBJ_LAYER
 		switch(firelevel)
 			if(0 to 2)
 				icon_state = "fluid_1"
-				set_light(1, 1, no_update = TRUE)
+				set_light(1, 2, no_update = TRUE)
 			if(2 to 4)
 				icon_state = "fluid_2"
 				set_light(4, 2, no_update = TRUE)
@@ -127,6 +128,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				icon_state = "fluid_4"
 				set_light(8, 4, no_update = TRUE)
 	else
+		layer = FIRE_LAYER
 		if(firelevel > 6)
 			icon_state = "3"
 			set_light(7, 3, no_update = TRUE)
@@ -279,7 +281,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		var/reaction_limit = min(total_oxidizers*(FIRE_REACTION_FUEL_AMOUNT/FIRE_REACTION_OXIDIZER_AMOUNT), total_fuel) //stoichiometric limit
 
 		//vapour fuels are extremely volatile! The reaction progress is a percentage of the total fuel (similar to old zburn).)
-		var/firelevel = calculate_firelevel(total_fuel, total_oxidizers, reaction_limit, volume*group_multiplier) / vsc.fire_firelevel_multiplier
+		var/firelevel = calculate_firelevel(total_fuel, total_oxidizers, reaction_limit, volume*group_multiplier)
 		var/min_burn = 0.30*volume*group_multiplier/CELL_VOLUME //in moles - so that fires with very small gas concentrations burn out fast
 		var/total_reaction_progress = min(max(min_burn, firelevel*total_fuel)*FIRE_GAS_BURNRATE_MULT, total_fuel)
 		var/used_fuel = min(total_reaction_progress, reaction_limit)
