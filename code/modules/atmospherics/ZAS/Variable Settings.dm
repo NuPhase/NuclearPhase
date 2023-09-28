@@ -4,16 +4,11 @@ var/global/vs_control/vsc = new
 	var/fire_consuption_rate = 0.1
 	var/fire_consuption_rate_NAME = "Fire - Air Consumption Ratio"
 	var/fire_consuption_rate_DESC = "Ratio of air removed and combusted per tick."
+	var/fluid_fire_consuption_rate = 0.01
 
 	var/fire_firelevel_multiplier = 25
 	var/fire_firelevel_multiplier_NAME = "Fire - Firelevel Constant"
 	var/fire_firelevel_multiplier_DESC = "Multiplied by the equation for firelevel, affects mainly the extingiushing of fires."
-
-	//Note that this parameter and the gas heat capacity have a significant impact on TTV yield.
-	var/fire_fuel_energy_release = 866000 //J/mol. Adjusted to compensate for fire energy release being fixed, was 397000
-	var/fire_fuel_energy_release_NAME = "Fire - Fuel energy release"
-	var/fire_fuel_energy_release_DESC = "The energy in joule released when burning one mol of a burnable substance"
-
 
 	var/IgnitionLevel = 0.5
 	var/IgnitionLevel_DESC = "Determines point at which fire can ignite"
@@ -30,15 +25,15 @@ var/global/vs_control/vsc = new
 	var/airflow_medium_pressure_NAME = "Airflow - Heavy Movement Threshold %"
 	var/airflow_medium_pressure_DESC = "Percent of 1 Atm. at which items with the largest weight classes will move."
 
-	var/airflow_heavy_pressure = 65
+	var/airflow_heavy_pressure = 85
 	var/airflow_heavy_pressure_NAME = "Airflow - Mob Movement Threshold %"
 	var/airflow_heavy_pressure_DESC = "Percent of 1 Atm. at which mobs will move."
 
-	var/airflow_dense_pressure = 85
+	var/airflow_dense_pressure = 150
 	var/airflow_dense_pressure_NAME = "Airflow - Dense Movement Threshold %"
 	var/airflow_dense_pressure_DESC = "Percent of 1 Atm. at which items with canisters and closets will move."
 
-	var/airflow_stun_pressure = 60
+	var/airflow_stun_pressure = 180
 	var/airflow_stun_pressure_NAME = "Airflow - Mob Stunning Threshold %"
 	var/airflow_stun_pressure_DESC = "Percent of 1 Atm. at which mobs will be stunned by airflow."
 
@@ -290,7 +285,6 @@ var/global/vs_control/vsc = new
 		if("ZAS/Contaminants - Initial")
 			fire_consuption_rate 			= initial(fire_consuption_rate)
 			fire_firelevel_multiplier 		= initial(fire_firelevel_multiplier)
-			fire_fuel_energy_release 		= initial(fire_fuel_energy_release)
 			IgnitionLevel 					= initial(IgnitionLevel)
 			airflow_lightest_pressure 		= initial(airflow_lightest_pressure)
 			airflow_light_pressure 			= initial(airflow_light_pressure)

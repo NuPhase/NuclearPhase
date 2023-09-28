@@ -158,7 +158,7 @@ var/global/obj/abstract/flood/flood_object = new
 	var/update_air = FALSE
 	for(var/rtype in reagents.reagent_volumes)
 		var/decl/material/mat = GET_DECL(rtype)
-		var/moles = round((reagents.reagent_volumes[rtype] * vsc.fire_consuption_rate + 10) / mat.molar_volume)
+		var/moles = round((reagents.reagent_volumes[rtype] * vsc.fluid_fire_consuption_rate + 1) / mat.molar_volume)
 		if(moles > 0)
 			air.adjust_gas_temp(rtype, moles, temperature, FALSE)
 			reagents.remove_reagent(round(moles * mat.molar_volume + 5))

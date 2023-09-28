@@ -80,6 +80,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
 		fire.burning_fluid = newburnfluid
+		update_icon()
 		return 1
 
 	if(!zone)
@@ -96,6 +97,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /obj/fire
 	//Icon for fire on turfs.
 
+	alpha = 0
 	anchored = 1
 	mouse_opacity = 0
 
@@ -108,6 +110,32 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
 	var/obj/effect/fluid/burning_fluid = null //if we have one
+
+/obj/fire/on_update_icon()
+	if(burning_fluid)
+		switch(firelevel)
+			if(0 to 2)
+				icon_state = "fluid_1"
+				set_light(1, 1, no_update = TRUE)
+			if(2 to 4)
+				icon_state = "fluid_2"
+				set_light(4, 2, no_update = TRUE)
+			if(4 to 6)
+				icon_state = "fluid_3"
+				set_light(6, 3, no_update = TRUE)
+			if(6 to INFINITY)
+				icon_state = "fluid_4"
+				set_light(8, 4, no_update = TRUE)
+	else
+		if(firelevel > 6)
+			icon_state = "3"
+			set_light(7, 3, no_update = TRUE)
+		else if(firelevel > 2.5)
+			icon_state = "2"
+			set_light(5, 2, no_update = TRUE)
+		else
+			icon_state = "1"
+			set_light(3, 1, no_update = TRUE)
 
 /obj/fire/Process()
 	. = 1
@@ -122,23 +150,15 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	var/datum/gas_mixture/air_contents = my_tile.return_air()
 
 	if(burning_fluid)
-		var/datum/gas_mixture/fluid_mixture = air_contents.remove_ratio(vsc.fire_consuption_rate)
+		var/datum/gas_mixture/fluid_mixture = air_contents.remove_ratio(vsc.fluid_fire_consuption_rate)
 		burning_fluid.vaporize_fuel(fluid_mixture)
 		firelevel = fluid_mixture.fire_react(null, 1, 1)
 		burning_fluid.temperature = fluid_mixture.temperature
 		air_contents.merge(fluid_mixture)
-		if(!firelevel)
+		if(firelevel < 0.01)
 			qdel(src)
 
-	if(firelevel > 6)
-		icon_state = "3"
-		set_light(7, 3, no_update = TRUE)
-	else if(firelevel > 2.5)
-		icon_state = "2"
-		set_light(5, 2, no_update = TRUE)
-	else
-		icon_state = "1"
-		set_light(3, 1, no_update = TRUE)
+	update_icon()
 
 	for(var/mob/living/L in loc)
 		L.FireBurn(firelevel, air_contents.temperature, air_contents.return_pressure())  //Burn the mobs!
@@ -198,15 +218,16 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	firelevel = fl
 	SSair.active_hotspots.Add(src)
+	update_icon()
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	if(burning_fluid)
 		var/decl/material/main_reagent = burning_fluid.reagents.get_primary_reagent_decl()
 		if(main_reagent)
-			alpha = main_reagent.fire_alpha
+			animate(src, alpha = main_reagent.fire_alpha, 20)
 			return main_reagent.fire_color
 	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
-	alpha = 255
+	animate(src, alpha = 255, 20)
 	return heat2color(temperature)
 
 /obj/fire/Destroy()

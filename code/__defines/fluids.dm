@@ -1,11 +1,11 @@
 #define FLUID_QDEL_POINT 1           // Depth a fluid begins self-deleting
-#define FLUID_MINIMUM_TRANSFER 5    // Minimum amount that a flowing fluid will transfer from one turf to another.
+#define FLUID_MINIMUM_TRANSFER 50    // Minimum amount that a flowing fluid will transfer from one turf to another.
 #define FLUID_PUDDLE 2500              // Minimum total depth that a fluid needs before it will start spreading.
 #define FLUID_SHALLOW 50000            // Depth shallow icon is used
 #define FLUID_OVER_MOB_HEAD 300000      // Depth icon layers over mobs.
 #define FLUID_DEEP 800000               // Depth deep icon is used
 #define FLUID_MAX_DEPTH FLUID_DEEP*4 // Arbitrary max value for flooding.
-#define FLUID_PUSH_THRESHOLD 20      // Amount of flow needed to push items.
+#define FLUID_PUSH_THRESHOLD 250      // Amount of flow needed to push items.
 
 // Expects /turf for T.
 #define ADD_ACTIVE_FLUID_SOURCE(T)    if(!T.changing_turf) { SSfluids.water_sources[T] = TRUE; }
