@@ -451,6 +451,11 @@ var/global/list/all_apcs = list()
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
 	if (istype(construct_state, /decl/machine_construction/wall_frame/panel_closed/hackable/hacking) && (IS_MULTITOOL(W) || IS_WIRECUTTER(W) || istype(W, /obj/item/assembly/signaler)))
 		return wires.Interact(user)
+	if(istype(W, /obj/item/apc_cover) && cover_removed)
+		if(do_after(user, 30, src))
+			user.visible_message(SPAN_NOTICE("[user] replaces the cover on \the [src]."), SPAN_NOTICE("You replace the cover on \the [src]."))
+			cover_removed = FALSE
+		return
 	return ..()
 
 /obj/machinery/power/apc/bash(obj/item/W, mob/user)
@@ -941,6 +946,7 @@ var/global/list/all_apcs = list()
 		if(2)
 			wires.CutAll()
 			cover_removed = TRUE
+			panel_open = TRUE
 			visible_message("<span class='warning'>[src]'s cover flies out with the remains of its power cell!</span>")
 			playsound(src, 'sound/weapons/flashbang.ogg', 100)
 			new /obj/effect/effect/smoke/illumination(loc, 5, 30, 1, "#ffffff")
@@ -948,12 +954,12 @@ var/global/list/all_apcs = list()
 			overload_lighting()
 			qdel(cell)
 		if(3)
-			if(prob(50))
-				visible_message("<span class='warning'>[src]'s screen flashes loads of errors!</span>")
+			visible_message("<span class='danger'>[src]'s screen flashes loads of errors!</span>")
 			spawn(50)
 				visible_message("<span class='warning'>The [src] gets shredded to pieces by a large explosion!</span>")
 				wires.CutAll()
 				cover_removed = TRUE
+				panel_open = TRUE
 				overload_lighting()
 				var/obj/item/cell = get_cell()
 				qdel(cell)

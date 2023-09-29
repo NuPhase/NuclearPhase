@@ -44,7 +44,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		igniting = 1
 
 	if(igniting)
-		create_fire(exposed_temperature, F)
+		create_fire(exposed_temperature / vsc.fire_firelevel_multiplier, F)
 	return igniting
 
 /zone/proc/process_fire()

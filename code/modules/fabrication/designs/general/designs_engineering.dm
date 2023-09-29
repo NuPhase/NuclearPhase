@@ -60,6 +60,9 @@
 /datum/fabricator_recipe/engineering/powermodule_kit
 	path = /obj/item/frame/apc/kit
 
+/datum/fabricator_recipe/engineering/apc_cover
+	path = /obj/item/apc_cover
+
 /datum/fabricator_recipe/engineering/requests_console_board
 	path = /obj/item/stock_parts/circuitboard/requests_console
 

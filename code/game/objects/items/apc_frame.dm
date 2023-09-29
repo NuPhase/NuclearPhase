@@ -28,3 +28,9 @@
 	name = "APC kit"
 	desc = "An all-in-one APC kit, comes preassembled."
 	build_machine_type = /obj/machinery/power/apc
+
+/obj/item/apc_cover
+	name = "\improper APC cover"
+	desc = "Used for repairing APCs."
+	icon = 'icons/obj/apc_repair.dmi'
+	icon_state = "apc_cover"

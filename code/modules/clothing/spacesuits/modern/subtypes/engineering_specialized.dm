@@ -26,7 +26,7 @@
 	min_cold_protection_temperature = ENGINEERING_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ENGINEERING_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	max_pressure_protection = ENGIE_SUIT_MAX_PRESSURE
-	weight = 35 //we're very light
+	weight = 340
 	windbreak_coefficient = 1.5
 	siemens_coefficient = 0.1
 	lifting_strength_boost = 55

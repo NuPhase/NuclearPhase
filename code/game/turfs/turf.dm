@@ -195,6 +195,9 @@
 		step(G.affecting, get_dir(G.affecting.loc, src))
 		return TRUE
 
+	if(W.get_heat() > T100C)
+		hotspot_expose(W.get_heat())
+
 	return ..()
 
 /turf/Cross(O)
