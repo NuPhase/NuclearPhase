@@ -27,9 +27,10 @@
 	name = "\improper cardiac monitor"
 	icon = 'icons/obj/medicine.dmi'
 	icon_state = "mon"
-	use_power = POWER_USE_IDLE
+	use_power = POWER_USE_OFF
 	anchored = 0
 	density = 0
+	interact_offline = TRUE
 	var/mob/living/carbon/human/attached
 	var/datum/composite_sound/pulse_monitor/pulse_loop = null
 	var/datum/composite_sound/alarm_monitor/alarm_loop = null

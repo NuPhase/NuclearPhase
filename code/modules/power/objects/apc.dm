@@ -455,6 +455,11 @@ var/global/list/all_apcs = list()
 		if(do_after(user, 30, src))
 			user.visible_message(SPAN_NOTICE("[user] replaces the cover on \the [src]."), SPAN_NOTICE("You replace the cover on \the [src]."))
 			cover_removed = FALSE
+			panel_open = FALSE
+			var/decl/machine_construction/wall_frame/panel_open/opened_state = construct_state
+			opened_state.try_change_state(src, opened_state.active_state, user)
+			update_icon()
+			qdel(W)
 		return
 	return ..()
 
@@ -939,35 +944,34 @@ var/global/list/all_apcs = list()
 /obj/machinery/power/apc/proc/critical_failure(var/severity = 1)
 	switch(severity)
 		if(1)
+			overload_lighting()
 			wires.CutAll()
 			visible_message("<span class='warning'>[src]'s screen goes blank with a loud bang!</span>")
 			playsound(src, 'sound/weapons/flashbang.ogg', 100)
-			overload_lighting()
 		if(2)
+			overload_lighting()
 			wires.CutAll()
 			cover_removed = TRUE
-			panel_open = TRUE
+			force_open_panel()
 			visible_message("<span class='warning'>[src]'s cover flies out with the remains of its power cell!</span>")
 			playsound(src, 'sound/weapons/flashbang.ogg', 100)
 			new /obj/effect/effect/smoke/illumination(loc, 5, 30, 1, "#ffffff")
 			var/obj/item/cell = get_cell()
-			overload_lighting()
 			qdel(cell)
 		if(3)
 			visible_message("<span class='danger'>[src]'s screen flashes loads of errors!</span>")
+			overload_lighting()
 			spawn(50)
 				visible_message("<span class='warning'>The [src] gets shredded to pieces by a large explosion!</span>")
 				wires.CutAll()
 				cover_removed = TRUE
-				panel_open = TRUE
-				overload_lighting()
+				force_open_panel()
 				var/obj/item/cell = get_cell()
 				qdel(cell)
 				var/turf/T = get_turf(src)
-				explosion(T, 0, 0, 2, 5)
+				explosion(T, 0, 0, 1, 5)
+				new /obj/effect/effect/smoke/illumination(loc, 5, 30, 1, "#ffffff")
 				src.fragmentate(T, 72, 7, list(/obj/item/projectile/bullet/pellet/fragment/flaming = 1))
-	update_icon()
-
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
 	switch(val)

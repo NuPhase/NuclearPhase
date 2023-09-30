@@ -82,6 +82,9 @@
 	if(!istype(target) || !istype(user) || !target.Adjacent(user) || !user.Adjacent(src) || user.incapacitated())
 		return FALSE
 
+	if(occupant)
+		to_chat(user, SPAN_WARNING("The [src] already has someone inside of it."))
+		return FALSE
 	if(locked)
 		to_chat(user, SPAN_WARNING("The [src] is locked."))
 		return FALSE
