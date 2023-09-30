@@ -123,6 +123,8 @@
 	announce("Mode switched to: [new_mode].")
 
 /obj/machinery/defibrillator/proc/detach_pads(mob/user)
+	if(pads.taken_out)
+		return
 	pads.forceMove(src.loc)
 	pads = null
 	user.visible_message("<span class='notice'>\The [user] removes the [src] pads.</span>", "<span class='warning'>You remove the defibrillator pads.</span>")
@@ -213,8 +215,7 @@
 /obj/item/clothing/suit/electrode_pads
 	name = "electrode pads"
 	desc = "Special single-use sticky pads used for delivering shocks in an emergency."
-	icon = 'icons/obj/medicine.dmi'
-	icon_state = "paddles"
+	icon = 'icons/clothing/suit/defib_paddles.dmi'
 	var/taken_out = FALSE
 	var/mob/living/carbon/human/attached = null
 
