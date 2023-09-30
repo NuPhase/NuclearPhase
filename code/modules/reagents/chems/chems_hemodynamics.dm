@@ -17,9 +17,9 @@
 	heart.bpm_modifiers[name] = volume * 25
 	heart.cardiac_output_modifiers[name] = 1 + volume * 0.01
 	if(volume < 2)
-		H.add_chemical_effect(CE_PRESSURE, volume * -8)
+		H.add_chemical_effect(CE_PRESSURE, volume * -4)
 	else
-		H.add_chemical_effect(CE_PRESSURE, volume * 8)
+		H.add_chemical_effect(CE_PRESSURE, volume * 4)
 	if(volume < overdose)
 		heart.stability_modifiers[name] = volume * 3
 	else

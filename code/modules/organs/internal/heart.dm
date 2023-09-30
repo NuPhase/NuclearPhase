@@ -1,4 +1,4 @@
-#define ARRYTHMIAS_GRACE_PERIOD 70 SECONDS
+#define ARRYTHMIAS_GRACE_PERIOD 10 SECONDS
 
 /obj/item/organ/internal/heart
 	name = "heart"
@@ -60,15 +60,13 @@
 		ninstability += 40
 	if(owner.get_blood_perfusion() < 0.5)
 		ninstability += 20
-	if(pulse > 100)
-		ninstability += 20
-	if(pulse > 250)
-		ninstability += 25
 	if(cardiac_output < 0.5)
 		ninstability += 20
 	if(owner.tpvr > 280)
 		ninstability += 20
 
+	var/pulse_over_norm = max(pulse - 90, 0)
+	ninstability += pulse_over_norm * 0.6
 	ninstability += damage * 0.3
 	ninstability += oxygen_deprivation * 0.1
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
@@ -78,11 +76,11 @@
 	if(instability > 10)
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
-			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(10))
+			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(instability * 0.2))
 				add_arrythmia(A)
 				break
 		for(var/decl/arrythmia/A in arrythmias)
-			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) < world.time && prob(10))
+			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) < world.time && prob(instability * 0.2))
 				add_arrythmia(GET_DECL(A.evolves_into))
 				remove_arrythmia(A)
 	else if(instability == 0)
