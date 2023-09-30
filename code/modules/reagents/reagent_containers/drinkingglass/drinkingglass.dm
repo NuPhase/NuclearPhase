@@ -12,7 +12,7 @@ var/global/const/DRINK_ICON_NOISY = "noise"
 	icon_state = null
 	base_icon = "square" // Base icon name
 	filling_states = @"[20,40,60,80,100]"
-	volume = 30
+	volume = 300
 	material = /decl/material/solid/glass
 
 	drop_sound = 'sound/foley/bottledrop1.ogg'
@@ -203,3 +203,9 @@ var/global/const/DRINK_ICON_NOISY = "noise"
 	. = ..()
 	if(old_temp != temperature)
 		update_icon()
+
+/obj/item/chems/drinks/glass2/physically_destroyed(var/skip_qdel)
+	reagents.splash(loc, reagents.total_volume)
+	if(istype(material))
+		playsound(src, "shatter", 30, 1)
+	return ..()
