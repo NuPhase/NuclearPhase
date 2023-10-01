@@ -18,7 +18,7 @@
 	attack_verb = list("robusted")
 	use_sound = 'sound/effects/storage/toolbox.ogg'
 	load_spreading_coefficient = 0.8 //they are SLIGHTLY easier to carry around
-	weight = 2
+	weight = 0.8
 
 /obj/item/storage/toolbox/emergency
 	name = "emergency toolbox"

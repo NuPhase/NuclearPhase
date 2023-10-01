@@ -136,10 +136,10 @@
 
 	var/list/data = list()
 	data["name"] = "[attached]"
-	if(H.pulse < 310)
+	if(H.pulse < 280)
 		data["hr"] = round(H.pulse)
 	else
-		data["hr"] = "ERROR "
+		data["hr"] = "-- "
 	data["rythme"] = H.get_rhythm_fluffy()
 	data["bp"] = "[round(attached.syspressure)]/[round(attached.dyspressure)]"
 	switch(attached.meanpressure)

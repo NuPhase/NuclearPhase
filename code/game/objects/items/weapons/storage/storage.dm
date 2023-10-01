@@ -36,12 +36,7 @@
 	for(var/obj/item/I in contents)
 		I.update_weight()
 		weight += I.weight
-
-/obj/item/storage/proc/calculate_weight()
-	var/added_weight = 0
-	for(var/obj/item/I in contents)
-		added_weight += I.weight
-	weight = added_weight * load_spreading_coefficient + initial(weight)
+	weight * load_spreading_coefficient
 
 /obj/item/storage/Destroy()
 	if(istype(storage_ui))
@@ -211,7 +206,6 @@
 		if(!NoUpdate)
 			update_ui_after_item_insertion()
 	update_icon()
-	calculate_weight()
 	return 1
 
 /obj/item/storage/proc/update_ui_after_item_insertion()
@@ -247,7 +241,6 @@
 	W.on_exit_storage(src)
 	if(!NoUpdate)
 		update_icon()
-	calculate_weight()
 	return 1
 
 // Only do ui functions for now; the obj is responsible for anything else.
@@ -407,7 +400,6 @@
 				for(var/i in 1 to (isnull(data)? 1 : data))
 					new item_path(src)
 		update_icon()
-	calculate_weight()
 
 /obj/item/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))

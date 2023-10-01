@@ -291,6 +291,6 @@
 
 /obj/item/storage/backpack/lifesupportpack/adaptive_cooling/Initialize()
 	. = ..()
-	create_reagents(120)
+	create_reagents(12000)
 
 #undef KWH_PER_KG_WEIGHT
