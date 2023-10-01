@@ -49,6 +49,39 @@ SUBSYSTEM_DEF(mapping)
 			PRINT_STACK_TRACE("Missing z-level data object for z[num2text(z)]!")
 		level.setup_level_data()
 
+	old_maxz = world.maxz
+	// Build away sites.
+	global.using_map.build_away_sites()
+	global.using_map.build_planets()
+	for(var/z = old_maxz + 1 to world.maxz)
+		var/datum/level_data/level = levels_by_z[z]
+		if(!istype(level))
+			level = new /datum/level_data/space(z)
+			PRINT_STACK_TRACE("Missing z-level data object for z[num2text(z)]!")
+		level.setup_level_data()
+
+	// Generate turbolifts last, since away sites may have elevators to generate too.
+	for(var/obj/abstract/turbolift_spawner/turbolift as anything in turbolifts_to_initialize)
+		turbolift.build_turbolift()
+
+	// Resize the world to the max template size to fix a BYOND bug with world resizing breaking events.
+	// REMOVE WHEN THIS IS FIXED: https://www.byond.com/forum/post/2833191
+	var/new_maxx = world.maxx
+	var/new_maxy = world.maxy
+	for(var/map_template_name in map_templates)
+		var/datum/map_template/map_template = map_templates[map_template_name]
+		new_maxx = max(map_template.width, new_maxx)
+		new_maxy = max(map_template.height, new_maxy)
+	if (new_maxx > world.maxx)
+		world.maxx = new_maxx
+	if (new_maxy > world.maxy)
+		world.maxy = new_maxy
+
+	// Initialize z-level objects.
+#ifdef UNIT_TEST
+	set_config_value(/decl/config/toggle/roundstart_level_generation, FALSE) //#FIXME: Shouldn't this be set before running level_data/setup_level_data()?
+#endif
+
 	. = ..()
 
 /datum/controller/subsystem/mapping/Recover()

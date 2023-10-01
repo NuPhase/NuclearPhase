@@ -194,7 +194,7 @@
 /datum/level_data/proc/setup_ambient()
 	if(!take_starlight_ambience)
 		return
-	ambient_light_level = config.exterior_ambient_light
+	ambient_light_level = get_config_value(/decl/config/num/exterior_ambient_light)
 	ambient_light_color = SSskybox.background_color
 
 ///Setup/generate atmosphere for exterior turfs on the level.
@@ -219,6 +219,8 @@
 
 ///Called when setting up the level. Apply generators and anything that modifies the turfs of the level.
 /datum/level_data/proc/generate_level()
+	if(!get_config_value(/decl/config/toggle/roundstart_level_generation))
+		return
 	var/origx = level_inner_min_x
 	var/origy = level_inner_min_y
 	var/endx  = level_inner_min_x + level_inner_width
@@ -229,6 +231,8 @@
 ///Apply the parent entity's map generators. (Planets generally)
 ///This proc is to give a chance to level_data subtypes to individually chose to ignore the parent generators.
 /datum/level_data/proc/apply_map_generators(var/list/map_gen)
+	if(!get_config_value(/decl/config/toggle/roundstart_level_generation))
+		return
 	var/origx = level_inner_min_x
 	var/origy = level_inner_min_y
 	var/endx  = level_inner_min_x + level_inner_width

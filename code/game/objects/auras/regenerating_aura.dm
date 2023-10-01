@@ -35,14 +35,19 @@
 		low_nut_warning()
 		return 0
 
+	var/update_health = FALSE
+	var/organ_regen = get_config_value(/decl/config/num/health_organ_regeneration_multiplier)
 	if(brute_mult && H.getBruteLoss())
-		H.adjustBruteLoss(-brute_mult * config.organ_regeneration_multiplier)
+		update_health = TRUE
+		H.adjustBruteLoss(-brute_mult * organ_regen, do_update_health = FALSE)
 		H.adjust_nutrition(-nutrition_damage_mult)
 	if(fire_mult && H.getFireLoss())
-		H.adjustFireLoss(-fire_mult * config.organ_regeneration_multiplier)
+		update_health = TRUE
+		H.adjustFireLoss(-fire_mult * organ_regen, do_update_health = FALSE)
 		H.adjust_nutrition(-nutrition_damage_mult)
 	if(tox_mult && H.getToxLoss())
-		H.adjustToxLoss(-tox_mult * config.organ_regeneration_multiplier)
+		update_health = TRUE
+		H.adjustToxLoss(-tox_mult * organ_regen, do_update_health = FALSE)
 		H.adjust_nutrition(-nutrition_damage_mult)
 
 	if(!can_regenerate_organs())

@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(jobs)
 				archetype_job_datums |= job
 
 	// Load job configuration (is this even used anymore?)
-	if(job_config_file && config.load_jobs_from_txt)
+	if(job_config_file && get_config_value(/decl/config/toggle/load_jobs_from_txt))
 		var/list/jobEntries = file2list(job_config_file)
 		for(var/job in jobEntries)
 			if(!job)
@@ -179,7 +179,7 @@ SUBSYSTEM_DEF(jobs)
 	if(!job.is_position_available())
 		to_chat(joining, "<span class='warning'>Unfortunately, that job is no longer available.</span>")
 		return FALSE
-	if(!config.enter_allowed)
+	if(!get_config_value(/decl/config/toggle/on/enter_allowed))
 		to_chat(joining, "<span class='warning'>There is an administrative lock on entering the game!</span>")
 		return FALSE
 	if(SSticker.mode && SSticker.mode.station_explosion_in_progress)
