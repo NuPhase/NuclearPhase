@@ -756,10 +756,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/reactor)
 "aLL" = (
-/obj/structure/hygiene/shower{
-	pixel_y = 20
-	},
 /obj/structure/curtain/open/shower,
+/obj/structure/hygiene/shower/emergency{
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/science)
 "aMt" = (
@@ -3075,6 +3075,13 @@
 "cSh" = (
 /turf/exterior/wall,
 /area/avalon/shelter/atmos)
+"cSB" = (
+/obj/structure/curtain/open/shower,
+/obj/structure/hygiene/shower/emergency{
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/medbay)
 "cSX" = (
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled/white,
@@ -8394,6 +8401,12 @@
 	},
 /turf/simulated/open,
 /area/avalon/shelter/atmos)
+"ifb" = (
+/obj/structure/hygiene/shower/emergency{
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/engineering)
 "ifc" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -118115,7 +118128,7 @@ oKc
 wLc
 cdZ
 cdZ
-wvB
+cSB
 cdZ
 rjH
 cMl
@@ -203003,7 +203016,7 @@ uzo
 uzo
 uzo
 uvp
-bFO
+ifb
 psW
 psW
 xsC
@@ -203133,7 +203146,7 @@ uzo
 uzo
 uzo
 uvp
-bFO
+ifb
 psW
 psW
 lSR

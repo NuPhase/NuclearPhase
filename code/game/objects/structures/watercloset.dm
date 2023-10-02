@@ -234,11 +234,38 @@ var/global/list/hygiene_props = list()
 	var/sound_id = /obj/structure/hygiene/shower
 	var/datum/sound_token/sound_token
 
+/obj/structure/hygiene/shower/emergency
+	name = "emergency shower"
+	desc = "An emergency high-pressure shower."
+	icon = 'icons/obj/structures/blast_shower.dmi'
+	icon_state = "blast_shower"
+	watertemp = "boiling"
+	temperature_settings = list("boiling" = T0C+94)
+
+/obj/structure/hygiene/shower/emergency/attack_hand(mob/M)
+	if(on)
+		return
+	switch_state(TRUE, M)
+	var/datum/effect/effect/system/smoke_spread/bad/smoke = new /datum/effect/effect/system/smoke_spread/bad()
+	smoke.attach(src)
+	smoke.set_up(1, 0, usr.loc)
+	smoke.start()
+	spawn(20)
+		switch_state(FALSE, M)
+
+/obj/structure/hygiene/shower/emergency/switch_state(new_state, mob/user)
+	. = ..()
+	Process()
+
+/obj/structure/hygiene/shower/emergency/update_sound()
+	if(on)
+		playsound(src, 'sound/structures/emergency_shower.mp3', 50, 0)
+
 //add heat controls? when emagged, you can freeze to death in it?
 
 /obj/structure/hygiene/shower/Initialize()
 	. = ..()
-	create_reagents(5)
+	create_reagents(500)
 
 /obj/structure/hygiene/shower/Destroy()
 	QDEL_NULL(sound_token)
