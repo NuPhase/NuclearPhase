@@ -84,7 +84,7 @@
 
 // Click cooldown
 #define DEFAULT_ATTACK_COOLDOWN 8 //Default timeout for aggressive actions
-#define DEFAULT_QUICK_COOLDOWN  4
+#define DEFAULT_QUICK_COOLDOWN  2
 
 #define FAST_WEAPON_COOLDOWN 3
 #define DEFAULT_WEAPON_COOLDOWN 5
