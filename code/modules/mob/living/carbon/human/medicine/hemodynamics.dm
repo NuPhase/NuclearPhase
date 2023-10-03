@@ -32,7 +32,10 @@
 
 /mob/living/carbon/human/proc/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	bpm = heart.pulse + heart.external_pump
+	if(BP_IS_PROSTHETIC(heart))
+		bpm = 60
+	else
+		bpm = heart.pulse + heart.external_pump
 
 	if(bpm < 10)
 		dyspressure = 0

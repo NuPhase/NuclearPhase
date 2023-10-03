@@ -29,19 +29,26 @@
 
 /obj/item/organ/internal/heart/Process()
 	if(owner)
-		calculate_instability()
-		apply_instability()
-		get_modifiers()
-		handle_pulse()
-		bpm_modifiers.Cut()
-		cardiac_output_modifiers.Cut()
-		stability_modifiers.Cut()
-		if(pulse)
-			handle_heartbeat()
-			if(pulse > 160 && prob(1))
-				take_internal_damage(0.5)
-			if(pulse > 220 && prob(5))
-				take_internal_damage(0.5)
+		if(BP_IS_PROSTHETIC(src))
+			pulse = 0
+			if(is_usable())
+				cardiac_output = initial(cardiac_output) - damage * 0.01
+			else
+				cardiac_output = 0
+		else
+			calculate_instability()
+			apply_instability()
+			get_modifiers()
+			handle_pulse()
+			bpm_modifiers.Cut()
+			cardiac_output_modifiers.Cut()
+			stability_modifiers.Cut()
+			if(pulse)
+				handle_heartbeat()
+				if(pulse > 160 && prob(1))
+					take_internal_damage(0.5)
+				if(pulse > 220 && prob(5))
+					take_internal_damage(0.5)
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
@@ -65,8 +72,8 @@
 	if(owner.tpvr > 280)
 		ninstability += 20
 
-	var/pulse_over_norm = max(pulse - 90, 0)
-	ninstability += pulse_over_norm * 0.6
+	var/pulse_over_norm = max(pulse - 110, 0)
+	ninstability += pulse_over_norm * 0.5
 	ninstability += damage * 0.3
 	ninstability += oxygen_deprivation * 0.1
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
@@ -76,7 +83,7 @@
 	if(instability > 10)
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
-			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(instability * 0.2))
+			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(instability * 0.15))
 				add_arrythmia(A)
 				break
 		for(var/decl/arrythmia/A in arrythmias)
@@ -103,10 +110,6 @@
 	arrythmias -= A
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
-	if(BP_IS_PROSTHETIC(src))
-		pulse = 60	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
-		return
-
 	if(pulse)
 		var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
 		pulse = max(Interpolate(pulse, target_pulse, HEMODYNAMICS_INTERPOLATE_FACTOR), 0)

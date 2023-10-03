@@ -272,8 +272,8 @@
 		owner.oxygen_alert = 0
 	return failed_breath
 
-/obj/item/organ/internal/lungs/proc/get_breathing_sound(mask, efficiency)
-	if(!mask)
+/obj/item/organ/internal/lungs/proc/get_breathing_sound(obj/item/clothing/mask/mask, efficiency)
+	if(!mask || !(mask.item_flags & ITEM_FLAG_AIRTIGHT))
 		if(owner.gender == MALE)
 			switch(breath_rate)
 				if(30 to 45)
