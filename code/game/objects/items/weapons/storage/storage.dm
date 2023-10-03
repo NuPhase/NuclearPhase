@@ -36,7 +36,7 @@
 	for(var/obj/item/I in contents)
 		I.update_weight()
 		weight += I.weight
-	weight * load_spreading_coefficient
+	weight *= load_spreading_coefficient
 
 /obj/item/storage/Destroy()
 	if(istype(storage_ui))
