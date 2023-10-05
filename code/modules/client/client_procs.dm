@@ -40,6 +40,10 @@ var/global/list/localhost_addresses = list(
 
 	#endif
 
+	// Tgui Topic middleware
+	if(tgui_Topic(href_list))
+		return
+
 	// asset_cache
 	if(href_list["asset_cache_confirm_arrival"])
 //		to_chat(src, "ASSET JOB [href_list["asset_cache_confirm_arrival"]] ARRIVED.")

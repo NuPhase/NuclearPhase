@@ -187,6 +187,27 @@ var/global/list/asset_datums = list()
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 var/global/template_file_name = "all_templates.json"
 
+
+/datum/asset/simple/tgui_common
+	verify = FALSE
+	assets = list(
+		"tgui-common.bundle.js" = 'tgui/public/tgui-common.bundle.js',
+	)
+
+/datum/asset/simple/tgui
+	verify = FALSE
+	assets = list(
+		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+	)
+
+/datum/asset/simple/tgui_panel
+	verify = FALSE
+	assets = list(
+		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
+		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
+	)
+
 /datum/asset/nanoui
 	var/list/common = list()
 

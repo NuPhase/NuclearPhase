@@ -11,6 +11,8 @@ var/global/const/PREF_HIDE = "Hide"
 var/global/const/PREF_FANCY = "Fancy"
 var/global/const/PREF_PLAIN = "Plain"
 var/global/const/PREF_PRIMARY = "Primary"
+var/global/const/PREF_WHITE = "White"
+var/global/const/PREF_DARK = "Dark"
 var/global/const/PREF_ALL = "All"
 var/global/const/PREF_ON = "On"
 var/global/const/PREF_OFF = "Off"
@@ -297,6 +299,33 @@ var/global/list/_client_preferences_by_type
 			C.force_white_theme()
 			winset(C, "output", "is-visible=true;is-disabled=false")
 			winset(C, "browseroutput", "is-visible=false")
+
+/datum/client_preference/tgui_style
+	description = "TGUI Style"
+	key = "TGUI_FANCY"
+	options = list(PREF_FANCY, PREF_PLAIN)
+
+/datum/client_preference/tgui_monitor
+	description = "TGUI Monitor"
+	key = "TGUI_MONITOR"
+	options = list(PREF_PRIMARY, PREF_ALL)
+
+/datum/client_preference/tgui_theme
+	description = "TGUI Theme"
+	key = "TGUI_THEME"
+	options = list(PREF_WHITE, PREF_DARK)
+
+/datum/client_preference/tgui_input
+	description = "TGUI Input"
+	key = "TGUI_INPUT"
+
+/datum/client_preference/tgui_input_large
+	description = "TGUI Input Large Buttons"
+	key = "TGUI_INPUT_BUTTONS"
+
+/datum/client_preference/tgui_input_swapped
+	description = "TGUI Input Swapped Buttons"
+	key = "TGUI_INPUT_SWAPPED"
 
 /********************
 * General Staff Preferences *
