@@ -70,7 +70,7 @@
 	name = "\improper Canister: \[Water\]"
 	icon_state = "water"
 	can_label = 0
-	start_pressure = REACTOR_WATER_PRESSURE
+	start_pressure = ONE_ATMOSPHERE*4
 
 /obj/machinery/portable_atmospherics/canister/water/tall
 	name = "\improper Industrial Tank: \[Water\]"
@@ -449,7 +449,7 @@ update_flag
 	. = ..()
 	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForVolume(/decl/material/solid/metal/tungsten))
 	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE*5))
-	air_contents.temperature = 3900
+	air_contents.temperature = 4280
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()

@@ -238,10 +238,6 @@
 	density = 1
 	pixel_x = -32
 	pixel_y = -64
-	bound_x = -32
-	bound_y = -64
-	bound_width = 96
-	bound_height = 192
 	var/datum/composite_sound/turbine/soundloop
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine_stage
 

@@ -99,7 +99,5 @@
 #define ATMOSTANK_HYDROGEN_FUEL 25000
 #define ATMOSTANK_NITROUSOXIDE  10000 // N2O doesn't have a real useful use, i guess it's on station just to allow refilling of sec's riot control canisters?
 
-#define MAX_PUMP_PRESSURE		15000	// Maximal pressure setting for pumps and vents
-#define MAX_OMNI_PRESSURE		15000	// Maximal output(s) pressure for omni devices (filters/mixers)
-
-#define REACTOR_WATER_PRESSURE 480
+#define MAX_PUMP_PRESSURE		8700	// Maximal pressure setting for pumps and vents
+#define MAX_OMNI_PRESSURE		8700	// Maximal output(s) pressure for omni devices (filters/mixers)

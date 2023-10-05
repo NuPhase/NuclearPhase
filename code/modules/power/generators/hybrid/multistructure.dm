@@ -51,7 +51,7 @@ var/list/global/reactor_ports = list()
 
 /obj/machinery/atmospherics/unary/reactor_exchanger/Initialize()
 	. = ..()
-	air_contents.volume = 80000
+	air_contents.volume = 800000
 
 /obj/machinery/atmospherics/unary/reactor_exchanger/Process()
 	. = ..()

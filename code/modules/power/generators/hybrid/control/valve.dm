@@ -103,6 +103,7 @@
 	name = "relief valve"
 	var/working = FALSE
 	icon_state = "switch1-off"
+	cooldown = 5.1 SECONDS
 
 /obj/machinery/reactor_button/relief_valve/do_action(mob/user)
 	..()
