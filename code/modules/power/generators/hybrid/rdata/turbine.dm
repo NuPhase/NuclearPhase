@@ -25,7 +25,7 @@
 	data["var14"] = "[breaks_engaged2]"
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
+		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 450)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)
@@ -55,8 +55,10 @@
 	data["var12"] = "Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s."
 	data["var13"] = "Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s."
 	data["var14"] = "[breaks_engaged2]"
+	data["var15"] = ""
+	data["var16"] = ""
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
+		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 450)
 		ui.set_initial_data(data)
 		ui.open()

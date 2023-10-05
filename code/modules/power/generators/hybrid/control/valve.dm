@@ -20,20 +20,20 @@
 	var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
 	if(!current_valve)
 		return
-	var/setting = input(user, "Which setting do you want to change?", "Setting change") in list("Status", "Pressure Setting", "Direction", "Cancel")
+	var/setting = tgui_input_list(user, "Which setting do you want to change?", "Setting change", list("Status", "Pressure Setting", "Direction", "Cancel"))
 	switch(setting)
 		if("Status")
-			var/newinput = input(user, "Select status", "Status selection") in list("On", "Off")
+			var/newinput = tgui_input_list(user, "Select status", "Status selection", list("On", "Off"))
 			if(newinput == "On")
 				current_valve.unlocked = TRUE
 			else
 				current_valve.unlocked = FALSE
 		if("Pressure Setting")
-			var/newinput = input(user, "Choose Pressure", "Pressure adjustment") as null|num
+			var/newinput = tgui_input_number(user, "Choose Max Pressure", "Pressure adjustment", current_valve.max_pressure_setting, 15000, 0)
 			if(newinput)
 				current_valve.target_pressure = clamp(newinput, 0, current_valve.max_pressure_setting)
 		if("Direction")
-			var/newinput = input(user, "Which direction to regulate?", "Regulation selection") in list("Input", "Output")
+			var/newinput = tgui_input_list(user, "Which direction to regulate?", "Regulation selection", list("Input", "Output"))
 			if(newinput == "Input")
 				current_valve.regulate_mode = 1
 			else if(newinput == "Output")
@@ -48,14 +48,16 @@
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve = rcontrol.reactor_valves[id]
 	if(!current_valve)
 		return
-	var/openage = input(user, "Select a new openage percentage for this valve.", "Valve regulation") as null|num
-	current_valve.set_openage(Clamp(openage, 0, 100))
+	var/openage = tgui_input_number(user, "Select a new openage percentage for this valve.", "Valve regulation", 0, 100, 0)
+	if(isnum(openage))
+		current_valve.set_openage(Clamp(openage, 0, 100))
 
 /obj/machinery/reactor_button/turbine_valve/do_action(mob/user)
 	..()
 	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
-	var/openage = input(user, "Select a new openage percentage for this turbine.", "Turbine intake regulation") as null|num
-	tst.feeder_valve_openage = Clamp(openage * 0.01, 0, 1)
+	var/openage = tgui_input_number(user, "Select a new openage percentage for this turbine.", "Turbine intake regulation", 0, 100, 0)
+	if(isnum(openage))
+		tst.feeder_valve_openage = Clamp(openage * 0.01, 0, 1)
 
 /obj/machinery/reactor_button/turbine_valve/first
 	name = "TURB 1V-IN"
@@ -85,8 +87,9 @@
 /obj/machinery/reactor_button/rswitch/turbine_expansion/do_action(mob/user)
 	..()
 	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
-	var/expansion = input(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation") as null|num
-	tst.volume_ratio = 1 - Clamp(expansion * 0.01, 0.65, 0.87)
+	var/expansion = tgui_input_number(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation", 0, 100, 0)
+	if(isnum(expansion))
+		tst.volume_ratio = 1 - Clamp(expansion * 0.01, 0.65, 0.87)
 
 /obj/machinery/reactor_button/rswitch/turbine_grates
 	name = "TURB V-GRATES"

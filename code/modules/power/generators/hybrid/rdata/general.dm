@@ -27,6 +27,16 @@
 	data["var4"] = "Neutron Rate: [round(rcore.neutron_rate*100-100)]%"
 	data["var5"] = "Radiation Emission: [round(rcore.last_radiation)] Roentgen/Hour"
 	data["var6"] = "Chamber Temperature: [temp_readout]"
+	data["var7"] = ""
+	data["var8"] = ""
+	data["var9"] = ""
+	data["var10"] = ""
+	data["var11"] = ""
+	data["var12"] = ""
+	data["var13"] = ""
+	data["var14"] = ""
+	data["var15"] = ""
+	data["var16"] = ""
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
