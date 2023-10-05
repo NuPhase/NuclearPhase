@@ -7,7 +7,7 @@
 
 	if(!message)
 		if(!isnewplayer(mob) && last_ooc < world.time)
-			if(alert("Are you sure you want to send an OOC message?", ,"Yes", "No") == "No")
+			if(tgui_alert(usr, "Are you sure you want to send an OOC message?", ,list("Yes", "No")) == "No")
 				return
 		last_ooc = world.time + OOC_TIMEOUT_LIMIT
 		message = input(mob, "", "ooc \"text\"") as text|null

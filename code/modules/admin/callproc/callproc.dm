@@ -11,7 +11,7 @@
 	var/target = null
 	var/targetselected = 0
 
-	switch(alert("Proc owned by something?",, "Yes", "No", "Cancel"))
+	switch(tgui_alert(usr, "Proc owned by something?", , list("Yes", "No", "Cancel")))
 		if("Yes")
 			targetselected=1
 			switch(input("Proc owned by...", "Owner", null) as null|anything in list("Obj", "Mob", "Area or Turf", "Client"))

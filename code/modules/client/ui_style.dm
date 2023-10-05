@@ -61,7 +61,7 @@ var/global/all_tooltip_styles = list(
 
 	apply_ui_style(icons, UI_style_icon_new, UI_style_color_new, UI_style_alpha_new)
 
-	if(alert("Like it? Save changes?",,"Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Like it? Save changes?",,list("Yes", "No")) == "Yes")
 		prefs.UI_style = UI_style_new
 		prefs.UI_style_alpha = UI_style_alpha_new
 		prefs.UI_style_color = UI_style_color_new

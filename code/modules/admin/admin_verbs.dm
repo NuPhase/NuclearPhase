@@ -632,7 +632,7 @@ var/global/list/admin_verbs_mod = list(
 	set category = "Admin"
 
 	if(holder)
-		if(alert("Confirm self-deadmin for the round? You can re-admin yourself at any time.",,"Yes","No") == "Yes")
+		if(tgui_alert(usr, "Confirm self-deadmin for the round? You can re-admin yourself at any time.",,list("Yes","No")) == "Yes")
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", 1)
 			deadmin()

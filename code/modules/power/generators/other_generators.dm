@@ -19,7 +19,7 @@
 	. = ..()
 	if(used)
 		return
-	if(alert(user, "Are you sure you want to switch on the reactor? It won't be usable after it finishes running.", "Usage Warning", "DESCEND HELL UPON EARTH!", "No...") == "DESCEND HELL UPON EARTH!")
+	if(tgui_alert(user, "Are you sure you want to switch on the reactor? It won't be usable after it finishes running.", "Usage Warning", list("DESCEND HELL UPON EARTH!", "No...")) == "DESCEND HELL UPON EARTH!")
 		used = TRUE
 		active = TRUE
 		SSradiation.radiate(src, 15)
