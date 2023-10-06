@@ -158,8 +158,10 @@
 	icon_state = "up-steam"
 	name = "upwards steam pipe"
 	desc = "A steam pipe segment to connect upwards."
+	density = 1
 
 /obj/machinery/atmospherics/pipe/zpipe/down/steam
 	icon_state = "down-steam"
 	name = "downwards steam pipe"
 	desc = "A steam pipe segment to connect downwards."
+	density = 1
