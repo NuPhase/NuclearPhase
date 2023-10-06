@@ -153,3 +153,13 @@
 	desc = "A water pipe segment to connect downwards."
 	connect_types = CONNECT_TYPE_WATER
 	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/zpipe/up/steam
+	icon_state = "up-steam"
+	name = "upwards steam pipe"
+	desc = "A steam pipe segment to connect upwards."
+
+/obj/machinery/atmospherics/pipe/zpipe/down/steam
+	icon_state = "down-steam"
+	name = "downwards steam pipe"
+	desc = "A steam pipe segment to connect downwards."
