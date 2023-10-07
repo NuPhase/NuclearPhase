@@ -337,8 +337,8 @@ Class Procs:
 		return 0
 	if(!prob(prb))
 		return 0
-	spark_at(src, amount=5, cardinal_only = TRUE)
 	if(electrocute_mob(user, get_area(src), src, 0.7))
+		spark_at(src, amount=5, cardinal_only = TRUE)
 		var/area/temp_area = get_area(src)
 		if(temp_area)
 			var/obj/machinery/power/apc/temp_apc = temp_area.get_apc()

@@ -539,14 +539,6 @@ About the new airlock wires panel:
 			if (user)
 				src.attack_ai(user)
 
-/obj/machinery/door/airlock/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (src.isElectrified())
-		if (istype(mover, /obj/item))
-			var/obj/item/i = mover
-			if(i.material && i.material.conductive)
-				spark_at(src, amount=5, cardinal_only = TRUE)
-	return ..()
-
 /obj/machinery/door/airlock/physical_attack_hand(mob/user)
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())
