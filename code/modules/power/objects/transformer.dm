@@ -106,14 +106,14 @@
 
 	busy = 1
 	user.visible_message(SPAN_NOTICE("\The [user] starts switching \the [src]!"))
-	if(do_after(user, 50,src))
+	if(do_after(user, 20,src))
 		on = !on
 		playsound(loc, 'sound/machines/transformerswitch.ogg', 50, 1)
 		user.visible_message(
 			SPAN_NOTICE("\The [user] [on ? "enabled" : "disabled"] \the [src]!"),\
 			SPAN_NOTICE("You [on ? "enabled" : "disabled"] \the [src]!"))
 		update_locked = 1
-		spawn(50)
+		spawn(30 SECONDS)
 			update_locked = 0
 		if(on)
 			start_ambience()

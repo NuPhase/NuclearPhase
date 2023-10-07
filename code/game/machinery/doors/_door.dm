@@ -129,6 +129,7 @@
 			INVOKE_ASYNC(src, /obj/machinery/door/proc/close)
 		else
 			close_door_at = 0
+	process_electrocution()
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)

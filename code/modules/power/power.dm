@@ -222,6 +222,11 @@
 	for(var/mob/living/carbon/C in electrocuting)
 		if(Adjacent(C))
 			electrocute_mob(C, powernet, src)
+			if(powernet.ldemand > 40000)
+				playsound(src, pick('sound/effects/shock1.mp3', 'sound/effects/shock2.mp3'), 100, 1, -1)
+				new /obj/effect/effect/smoke/illumination(loc, 2, 2, 4, pick("#00b7ff", "#30c4ff", "#53ceff", "#5bd0ff", "#a6e6ff"))
+				if(prob(10))
+					new /obj/effect/effect/smoke/bad/transformer(loc)
 		else
 			stop_electrocution(C)
 

@@ -209,16 +209,13 @@
 		return between(0, (lavailable / load()) * 100, 100)
 
 /datum/powernet/proc/get_electrocute_damage()
-	var/amperage = POWERNET_AMPERAGE(src)
-	switch(amperage)
-		if(10000 to INFINITY)
-			return amperage * 0.001
-		if(1000 to 10000)
-			return amperage * 0.005
-		if(1 to 1000)
-			return amperage * 0.01
-		else
-			return 0
+	switch(ldemand)
+		if(1000000 to INFINITY)
+			return ldemand * 0.00001
+		if(10000 to 1000000)
+			return ldemand * 0.0001
+		if(0 to 10000)
+			return ldemand * 0.003
 
 ////////////////////////////////////////////////
 // Misc.

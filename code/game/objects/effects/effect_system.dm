@@ -243,6 +243,11 @@ steam.start() -- spawns the effect
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)
 	return 1
+
+/obj/effect/effect/smoke/bad/transformer
+	color = COLOR_COPPER //evaporated steel
+	time_to_live = 5 SECONDS
+
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
