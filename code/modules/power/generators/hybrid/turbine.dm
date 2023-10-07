@@ -1,5 +1,4 @@
 #define TURBINE_MOMENT_OF_INERTIA 1327000
-#define STEAM_SPEED_MODIFIER 1.3
 #define TURBINE_PERFECT_RPM 3550
 #define TURBINE_ABNORMAL_RPM 4000
 #define TURBINE_MAX_RPM 10000
@@ -73,18 +72,30 @@
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
 	update_networks()
-	total_mass_flow = (air1.net_flow_mass + air1.get_mass()) * feeder_valve_openage //barely enough to start it
 
-	pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0) * feeder_valve_openage
-	var/pressure_fall_factor = pressure_difference / 20
-	steam_velocity = sqrt(2 * pressure_fall_factor * GRAVITY_CONSTANT) * STEAM_SPEED_MODIFIER
+	// flow speed
+	// sqrt((2 * (P1 - P2) / rho) + (2 * g * (h1 - h2)))
+	if(feeder_valve_openage)
+		pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
+		steam_velocity = sqrt((2 * pressure_difference / 2.16) + (2 * GRAVITY_CONSTANT))
+	else
+		steam_velocity = 0
+
+	//Steam enters at 1.5m diameter, expands to 5.5m. 5.5m diameter > area = 95.03
+	var/nozzle_exit_area = 95.03 * feeder_valve_openage
+	total_mass_flow = nozzle_exit_area*expansion_ratio*0.598*sqrt(steam_velocity * 4.2 * (1-(air2.return_pressure()/air1.return_pressure())**0.23))
 
 	var/datum/gas_mixture/air_all = new
 	air_all.volume = air1.volume + air2.volume
+
 	pump_passive(air1, air_all, total_mass_flow)
-	var/old_temperature = air_all.temperature
-	air_all.temperature = air_all.temperature * volume_ratio ** ADIABATIC_EXPONENT
-	if(air_all.temperature > 320 && air_all.temperature < 400)
+
+	kin_total = get_specific_enthalpy(air_all.temperature, air1.return_pressure()) * total_mass_flow
+	kin_total *= expansion_ratio
+	air_all.add_thermal_energy(kin_total * -1)
+	air_all.temperature = max(air_all.temperature, 311)
+
+	if(air_all.temperature < 340)
 		if(water_grates_open)
 			water_level += 0.01
 		else
@@ -92,10 +103,6 @@
 	else if(water_grates_open)
 		water_level -= 0.05
 	water_level = CLAMP01(water_level)
-	air_all.temperature = max(air_all.temperature, 360)
-
-	kin_total = get_specific_enthalpy(old_temperature, air1.return_pressure()) * total_mass_flow
-	kin_total *= expansion_ratio
 
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
 	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
@@ -112,7 +119,7 @@
 	apply_vibration_effects()
 	calculate_efficiency()
 
-	if(rpm > 250)
+	if(rpm > 800)
 		use_power = POWER_USE_ACTIVE
 		if(!visual.soundloop)
 			visual.spool_up()

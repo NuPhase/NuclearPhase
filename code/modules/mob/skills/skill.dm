@@ -138,13 +138,13 @@ var/global/list/skills = list()
 	var/skill_cost_modifier = 1
 	switch(pref.get_character_age())
 		if(1 to 20)
-			skill_cost_modifier = 0.75
+			skill_cost_modifier = 0.5
 		if(20 to 30)
 			skill_cost_modifier = 1
 		if(30 to 50)
-			skill_cost_modifier = 1.25
-		if(50 to INFINITY)
 			skill_cost_modifier = 1.5
+		if(50 to INFINITY)
+			skill_cost_modifier = 1.75
 
 	switch(level)
 		if(SKILL_BASIC)
@@ -236,9 +236,8 @@ var/global/list/skills = list()
 		"Trained"     = "You had minor experience in using exosuits in specific work settings and were trained for it.",
 		"Experienced" = "You are very proficient in exosuit operation. You probably walked where no human has steeped foot before."
 	)
-	prerequisites = list(SKILL_EVA = SKILL_ADEPT)
 	default_max = SKILL_BASIC
-	difficulty = SKILL_AVERAGE
+	difficulty = SKILL_EASY
 
 /decl/hierarchy/skill/general/pilot
 	name = "Spacecraft Operation"
@@ -389,7 +388,7 @@ var/global/list/skills = list()
 	)
 
 /decl/hierarchy/skill/engineering/atmos
-	name = "Fluid Dynamics"
+	name = "Fluid Mechanics"
 	uid =  "skill_atmos"
 	desc = "Describes your knowledge of piping, air distribution and gas dynamics."
 	levels = list(

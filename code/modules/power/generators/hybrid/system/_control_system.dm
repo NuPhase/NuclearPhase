@@ -190,7 +190,7 @@
 	if(get_meter_temperature("T-M-TURB IN") > MAX_REACTOR_STEAM_TEMP)
 		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
-	if(get_meter_temperature("T-M-TURB EX") > 380)
+	if(get_meter_temperature("T-M-TURB EX") > 380 && !(current_switch && current_switch.state))
 		do_message("TURBINE CONDENSER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
 
@@ -210,7 +210,7 @@
 	if(get_pump_flow_rate("T-CP 2") < 50)
 		do_message("TURBINE LOOP PUMP #2 MASS FLOW < 50KG/S", 1)
 
-	if(get_meter_temperature("T-M-TURB EX") > 390)
+	if(get_meter_temperature("T-M-TURB EX") > 390 && !(current_switch && current_switch.state))
 		do_message("VAPOR IN FEEDWATER LOOP", 2)
 
 /datum/reactor_control_system/proc/auto_control()

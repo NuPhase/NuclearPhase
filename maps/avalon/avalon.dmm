@@ -5275,12 +5275,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
-"eUJ" = (
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/avalon/shelter/atmos)
 "eUQ" = (
 /obj/structure/table,
 /turf/simulated/floor/tiled/dark,
@@ -10957,7 +10951,9 @@
 	},
 /obj/machinery/atmospherics/unary/heater/reactor{
 	uid = "T-COOLANT PREHEAT";
-	dir = 4
+	dir = 4;
+	max_power_rating = 1500000;
+	set_temperature = 293.15
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
@@ -20445,7 +20441,7 @@
 "tcb" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 1;
-	initial_volume = 3000
+	initial_volume = 9000
 	},
 /turf/simulated/floor/plating,
 /area/avalon/shelter/machinehall)
@@ -21876,8 +21872,8 @@
 /area/avalon/shelter/breakerroom)
 "uxH" = (
 /obj/machinery/light,
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/atmos)
@@ -204102,7 +204098,7 @@ wCJ
 rlW
 iaR
 xwg
-eUJ
+cON
 uxH
 nBJ
 pVz
