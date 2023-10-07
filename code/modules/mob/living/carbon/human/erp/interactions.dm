@@ -16,20 +16,6 @@
 /mob/proc/make_interaction()
 	return
 
-/mob/living/carbon/human/proc/has_penis()
-	if(gender == MALE && potenzia > -1 && species.genitals)
-		return 1
-	else return 0
-
-/mob/living/carbon/human/proc/is_nude()
-	var/have_blocking_underwear = FALSE
-	for(var/piece in worn_underwear)
-		if(!istype(piece, /obj/item/underwear/bottom))
-			continue
-
-		have_blocking_underwear = TRUE
-	return (!_w_uniform ? 1 : 0) && !have_blocking_underwear
-
 /decl/species/human
 	genitals = TRUE
 	anus = TRUE
@@ -151,11 +137,9 @@
 	var/mob/living/carbon/human/partner
 	var/mob/living/carbon/human/lastfucked
 	var/lfhole
-	var/lust = 0
-	var/multiorgasms = 0
 	var/lastmoan
 	var/erpcooldown = 1
-	var/virgin = FALSE //:mistake:
+	var/virgin = FALSE
 	var/fuckcooldown = 0
 
 /mob/living/carbon/human/AltClick(mob/user)
@@ -187,20 +171,21 @@
 		if(isnude)
 			if(haspenis && erpcooldown == 0)
 				message = pick("strokes his dick.", "masturbates his penis.")
-				if (lust < 6)
-					lust += 6
-				visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
-				lust += 8
-				if (lust >= resistenza)
-					cum(src, src)
+				adjust_pleasure(60)
+				adjust_arousal(-15)
+				if (pleasure >= 1000)
+					climax(src)
 				else
 					moan()
 				if(prob(50))
 					sound = pick(flist("honk/sound/new/ACTIONS/PENIS/HANDJOB/"))
 					playsound(loc, "honk/sound/new/ACTIONS/PENIS/HANDJOB/[sound]", 90, 1, -5)
 				do_fucking_animation(src)
-				if (prob(potenzia))
-					visible_message(SPAN_ERPBOLD("[src] " + SPAN_ERP("strokes <B>his's</B> [pick("cock","dick","penis")] faster")))
+				if(pleasure > 700 && prob(15))
+					message = pick("strokes his dick faster.", "masturbates his penis faster.")
+				else
+					message = pick("strokes his dick.", "masturbates his penis.")
+				visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
 
 			else if(hasvagina)
 				message = pick("fingers herself.", "fingers her pussy.")
@@ -212,12 +197,11 @@
 					playsound(loc, "honk/sound/new/ACTIONS/VAGINA/INSERTION/[sound]", 90, 1, -5)
 					lastfucked = src
 					lfhole = "vagina"
-				if (prob(5) && stat != DEAD)
-					lust += 8
+				adjust_pleasure(40)
+				adjust_arousal(10)
 				visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
-				lust += 8
-				if (lust >= resistenza)
-					cum(src, src)
+				if (pleasure >= 1000)
+					climax(src)
 				else
 					moan(rand(1, 15))
 				sound = pick(flist("honk/sound/new/ACTIONS/VAGINA/TOUCH/"))
@@ -227,9 +211,10 @@
 		else if(hasvagina)
 			message = pick("gently rubs her pussy.", "pats her pussy.")
 			visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
-			lust += 4
-			if (lust >= resistenza)
-				cum(src, src)
+			adjust_pleasure(30)
+			adjust_arousal(15)
+			if (pleasure >= 1000)
+				climax(src)
 			else
 				moan()
 			sound = pick(flist("honk/sound/new/ACTIONS/HANDS/RUB/CLOTHES/"))
@@ -240,93 +225,9 @@
 		var/decl/pronouns/G = get_pronouns()
 		message = pick("licks [G.his] finger.", "sucking [G.his] fingers.")
 		visible_message(SPAN_ERPBOLD("[src] ") + SPAN_ERP(message))
-		if(lust+50 <= resistenza)
-			lust += 2
-		else if(lust+100 >= resistenza)
-			moan()
+		adjust_arousal(10)
 		sound = pick(flist("honk/sound/new/ACTIONS/MOUTH/SUCK/"))
 		playsound(loc, ("honk/sound/new/ACTIONS/MOUTH/SUCK/[sound]"), 40, 1, -5)
-
-/mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
-	var/sound
-	var/sound_path
-	var/message = ""
-	var/turf/T
-
-	switch(H.gender)
-		if(MALE)
-			playsound(loc, "honk/sound/interactions/final_m[rand(1, 5)].ogg", 90, 0, -5)
-		if(FEMALE)
-			playsound(loc, "honk/sound/interactions/final_f[rand(1, 3)].ogg", 90, 0, -5)
-	to_chat(H, SPAN_CUMZONE(pick("OH FUCK", "HOLY SHIT"))) //creativity
-	if (has_penis())
-		if (P)
-			T = get_turf(P)
-		else
-			T = get_turf(H)
-		if (H.multiorgasms < H.potenzia)
-			var/obj/effect/decal/cleanable/cum/C = new(T)
-			C.add_fingerprint(H)
-
-		if (H.species.genitals)
-			if (hole == "mouth" || H?.zone_sel?.selecting == "mouth")
-				message = pick("cums right in [P]'s mouth.")
-				P.add_examine_descriptor(SPAN_ERP("[P.pronouns.His] face [P.pronouns.is] covered in a white liquid..."), DESCRIPTOR_DIRTINESS)
-				sound_path = "honk/sound/new/ACTIONS/MOUTH/SWALLOW/"
-				sound = pick(flist("[sound_path]"))
-			else if (hole == "vagina")
-				message = pick("cums in [P]'s pussy")
-
-			else if (hole == "anus")
-				message = pick("cums in [P]'s asshole.")
-			else if (hole == "floor")
-				message = "cums on the floor!"
-
-			sound_path = "honk/sound/new/ACTIONS/PENIS/CUM/"
-			sound = pick(flist("[sound_path]"))
-		else
-			message = pick("cums!", "orgasms!")
-
-		H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
-		if (istype(P.loc, /obj/structure/closet))
-			P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
-		H.lust = 5
-		H.resistenza += 50
-		H.hydration -= 5
-		H.nutrition -= 5
-	else
-		message = pick("cums!")
-		H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
-		if (istype(P.loc, /obj/structure/closet))
-			P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE(message))
-		var/delta = rand(20, 100)
-		switch(lust)
-			if(0 to 150)
-				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/SHORT/"
-			if(150 to INFINITY)
-				sound_path = "honk/sound/new/ACTIONS/VAGINA/SQUIRT/LONG/"
-				if(prob(25))
-					T = get_turf(H)
-					var/obj/effect/decal/cleanable/cum/fem/f = new(T)
-					var/obj/item/organ/external/groin/dam_groin = GET_EXTERNAL_ORGAN(H, BP_GROIN)
-					if(dam_groin.damage > 10)
-						H.blood_squirt(15, T)
-					H.hydration -= 15
-					f.add_fingerprint(H)
-				else if(!is_nude())
-					visible_message(SPAN_ERPBOLD("[H] ") + SPAN_CUMZONE("cums in her pants..."))
-		sound = pick(flist("[sound_path]"))
-		src.lust -= delta
-
-	H.multiorgasms += 1
-	if(sound && sound_path)
-		playsound(loc, "[sound_path][sound]", 100, 1, -5)
-
-	ADJ_STATUS(H, STAT_DRUGGY, 30)
-	bloodstr.add_reagent(/decl/material/liquid/dopamine, rand(1, 10))
-	H.multiorgasms += 1
-	H.erpcooldown += 3
-
 
 /mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
 	if(fuckcooldown > world.time)
@@ -346,15 +247,14 @@
 				H.lastfucked = P
 				H.lfhole = hole
 
-			if (prob(5) && P.stat != DEAD)
-				P.lust += 10
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (istype(P.loc, /obj/structure/closet))
 				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
-				P.lust += 10
-				if (P.lust >= P.resistenza)
-					P.cum(P, H)
+				P.adjust_pleasure(80)
+				P.adjust_arousal(20)
+				if (P.pleasure >= 1000)
+					P.climax(src, "oral")
 				else
 					P.moan()
 			if(prob(75))
@@ -377,13 +277,12 @@
 				H.lastfucked = P
 				H.lfhole = hole
 
-			if (prob(5) && P.stat != DEAD)
-				P.lust += 8
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
-				P.lust += 8
-				if (P.lust >= P.resistenza)
-					P.cum(P, H)
+				P.adjust_pleasure(70)
+				P.adjust_arousal(30)
+				if (P.pleasure >= 1000)
+					P.climax(src, "surface")
 				else
 					P.moan()
 
@@ -399,19 +298,10 @@
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SUCK/"
 			sound = pick(flist("[sound_path]"))
 
-			if (H.lust < 6)
-				H.lust += 6
-
-			if(prob(5) && P.stat != DEAD)
-				P.lust += 10
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if(P.stat != DEAD)
-				P.lust += 10
-				if (P.lust >= P.resistenza)
-					P.cum(P, H, "floor")
-				else
-					P.moan()
+				P.adjust_arousal(15)
 
 			H.do_fucking_animation(P)
 			playsound(loc, ("[sound_path][sound]"), 90, 1, -5)
@@ -427,17 +317,13 @@
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SUCK/"
 			sound = pick(flist("[sound_path]"))
 
-			if (H.lust < 6)
-				H.lust += 6
-
-			if(prob(5) && P.stat != DEAD)
-				P.lust += 10
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if(P.stat != DEAD)
-				P.lust += 10
-				if (P.lust >= P.resistenza)
-					P.cum(P, H, "mouth")
+				P.adjust_pleasure(70)
+				P.adjust_arousal(40)
+				if (P.pleasure >= 1000)
+					P.climax(src, "oral")
 				else
 					P.moan()
 
@@ -451,19 +337,14 @@
 
 		if("handjob")
 			message = pick("strokes [P]'s dick.", "masturbate [P]'s penis.")
-			if (H.lust < 6)
-				H.lust += 6
-
-			if(prob(5))
-				if(P.stat != DEAD)
-					P.lust += 10
 
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
-				P.lust += 8
-				if (P.lust >= P.resistenza)
-					P.cum(P, H)
+				P.adjust_pleasure(70)
+				P.adjust_arousal(30)
+				if (P.pleasure >= 1000)
+					P.climax(H, "surface")
 				else
 					P.moan()
 			if(prob(50))
@@ -487,20 +368,20 @@
 			if(P.virgin)
 				P.virgin = FALSE
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("pop's ") + SPAN_ERPBOLD("[P]'s " + SPAN_ERP("cherry")))
-			if (prob(5) && P.stat != DEAD)
-				P.lust += H.get_pleasure_amt("vaginal-2")
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			if (istype(P.loc, /obj/structure/closet))
 				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 				playsound(P.loc.loc, 'sound/effects/clang.ogg', 50, 0, 0)
-			H.lust += 10
-			if (H.lust >= H.resistenza)
-				H.cum(H, P, "vagina")
+			H.adjust_pleasure(80)
+			H.adjust_arousal(50)
+			if (H.pleasure >= 1000)
+				H.climax(src, "vaginal")
 
 			if (P.stat != DEAD)
-				P.lust += H.get_pleasure_amt("vaginal")
-				if (P.lust >= P.resistenza)
-					P.cum(P, H)
+				P.adjust_pleasure(80)
+				P.adjust_arousal(50)
+				if (P.pleasure >= 1000)
+					P.climax(src, "vaginal")
 				else
 					P.moan(H.potenzia)
 			H.do_fucking_animation(P)
@@ -523,20 +404,19 @@
 				H.virgin = FALSE
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("pop's ") + SPAN_ERPBOLD("[P]'s " + SPAN_ERP("cherry")))
 
-			if (prob(5) && P.stat != DEAD)
-				P.lust += H.potenzia * 2
-
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
-			H.lust += P.potenzia
-			if (H.lust >= H.resistenza)
-				H.cum(H, P, "vagina")
+			H.adjust_pleasure(80)
+			H.adjust_arousal(40)
+			if (H.pleasure >= 1000)
+				H.climax(src, "vaginal")
 			else
 				H.moan(P.potenzia)
 			if (P.stat != DEAD)
-				P.lust += H.get_pleasure_amt("vaginal")
-				if (P.lust >= P.resistenza)
-					P.cum(P, H, "vagina")
+				P.adjust_pleasure(80)
+				P.adjust_arousal(60)
+				if (P.pleasure >= 1000)
+					P.climax(src, "vaginal")
 				else
 					P.moan(P.potenzia)
 			H.do_fucking_animation(P)
@@ -555,23 +435,23 @@
 				H.lastfucked = P
 				H.lfhole = hole
 
-			if (prob(5) && P.stat != DEAD)
-				P.lust += H.get_pleasure_amt("anal-2")
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if (istype(P.loc, /obj/structure/closet))
 				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 				playsound(P.loc.loc, 'sound/effects/clang.ogg', 50, 0, 0)
-			H.lust += 12
-			if (H.lust >= H.resistenza)
-				H.cum(H, P, "anus")
+			H.adjust_pleasure(70)
+			H.adjust_arousal(30)
+			if (H.pleasure >= 1000)
+				H.climax(src, "anal")
 			else
 				P.moan(H.potenzia)
 
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
-				P.lust += H.get_pleasure_amt("anal")
-				if (P.lust >= P.resistenza)
-					P.cum(P, H)
+				P.adjust_pleasure(80)
+				P.adjust_arousal(40)
+				if (P.pleasure >= 1000)
+					P.climax(src, "anal")
 				else
 					P.moan(H.potenzia)
 			H.do_fucking_animation(P)
@@ -588,16 +468,15 @@
 				H.lastfucked = P
 				H.lfhole = hole
 
-			if (prob(5) && H.stat != DEAD)
-				H.lust += 15
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 
 			if (istype(P.loc, /obj/structure/closet))
 				P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 				playsound(P.loc.loc, 'sound/effects/clang.ogg', 50, 0, 0)
-			H.lust += 15
-			if (H.lust >= H.resistenza)
-				H.cum(H, P, "mouth")
+			H.adjust_pleasure(70)
+			H.adjust_arousal(50)
+			if (H.pleasure >= 1000)
+				H.climax(src, "oral")
 
 			if (prob(H.potenzia))
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SWALLOW/"
@@ -613,7 +492,7 @@
 /mob/living/carbon/human/proc/moan(var/size = 0)
 	var/mob/living/carbon/human/H = src
 	if (species.name == "Human")
-		if (prob(H.lust / H.resistenza * 65))
+		if (prob(H.pleasure / 1000))
 			var/message = pick("moans", "moans in pleasure")
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			var/g = H.gender == FEMALE ? "f" : "m"
@@ -637,13 +516,12 @@
 			lastmoan = moan
 
 /mob/living/carbon/human/proc/handle_lust()
-	lust -= 4
-	if (lust <= 0)
-		lust = 0
+	arousal -= 4
+	if (arousal <= 0)
+		arousal = 0
 		lastfucked = null
 		lfhole = ""
-		multiorgasms = 0
-	if (lust == 0)
+	if (arousal == 0)
 		erpcooldown -= 1
 	if (erpcooldown < 0)
 		erpcooldown = 0
@@ -713,17 +591,15 @@
 
 		else if (href_list["interaction"] == "kiss")
 			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && mouthfree_p)
-				if (H.lust == 0)
-					if (H.lust < 5)
-						H.lust = 5
+				H.adjust_arousal(30)
 
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("kisses ") + SPAN_ERPBOLD("[P]"))
 				P.retrieve_from_limb()
 				var/sound_path
-				switch(H.lust)
-					if(0 to 20)
+				switch(H.arousal)
+					if(0 to 200)
 						sound_path = "honk/sound/new/ACTIONS/MOUTH/KISS/"
-					if(20 to INFINITY)
+					if(200 to INFINITY)
 						sound_path = "honk/sound/new/ACTIONS/MOUTH/FRENCH_KISS/"
 				var/sound = pick(flist("[sound_path]"))
 				playsound(loc, "[sound_path][sound]", 50, 1, -1)
@@ -734,9 +610,7 @@
 
 		else if (href_list["interaction"] == "footlick")
 			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && noboots)
-				if (H.lust == 0)
-					if (H.lust < 5)
-						H.lust = 5
+				H.adjust_arousal(20)
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("licks ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("feet..."))
 				var/sound = pick(flist("honk/sound/new/ACTIONS/MOUTH/SUCK/"))
 				playsound(loc, ("honk/sound/new/ACTIONS/MOUTH/SUCK/[sound]"), 40, 1, -1)
@@ -819,16 +693,16 @@
 				if (istype(P.loc, /obj/structure/closet))
 					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("slaps ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("right on the ass!"))
 				playsound(loc, 'honk/sound/interactions/slap.ogg', 50, 1, -1)
-				H.lust += rand(0.1,0.5)
-				P.lust += rand(0.1,0.5)
+				H.adjust_arousal(15)
+				P.adjust_arousal(30)
 
 		else if (href_list["interaction"] == "squeezebreast")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
 				H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("squeezes ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("breasts!"))
 				if (istype(P.loc, /obj/structure/closet))
 					P.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP("squeezes ") + SPAN_ERPBOLD("[P] ") + SPAN_ERP("breasts!"))
-				H.lust += rand(0.1,0.5)
-				P.lust += rand(0.1,0.5)
+				H.adjust_arousal(15)
+				P.adjust_arousal(25)
 
 		else if (href_list["interaction"] == "vaglick")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && mouthfree && hasvagina_p)
