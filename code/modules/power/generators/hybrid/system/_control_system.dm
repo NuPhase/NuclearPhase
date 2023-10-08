@@ -147,9 +147,8 @@
 	if(current_switch && current_switch.state)
 		do_message("TURBINES ON BYPASS", 1)
 
-	if(turbine1.rpm > 3400 || turbine2.rpm > 3400) //you shouldn't accelerate past that without load
-		if(generator1.last_load < 50000 || generator2.last_load < 50000)
-			do_message("FULL LOAD REJECTION", 3)
+	if((generator1.connected && generator1.last_load < 50000) || (generator2.connected && generator2.last_load < 50000))
+		do_message("FULL LOAD REJECTION", 3)
 
 	if(turbine1.braking)
 		do_message("TURBINE #1 BRAKING ACTION", 2)
@@ -266,11 +265,11 @@
 	else
 		var/rpm_difference = 0
 		var/target_valve_openage = 0
-		if(turbine1.rpm > 100) //don't start turbines from a complete standstill
+		if(turbine1.feeder_valve_openage >= 0.1) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine1.rpm
 			target_valve_openage = rpm_difference * 0.073
 			turbine1.feeder_valve_openage = Interpolate(turbine1.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
-		if(turbine2.rpm > 100) //don't start turbines from a complete standstill
+		if(turbine2.feeder_valve_openage >= 0.1) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine2.rpm
 			target_valve_openage = rpm_difference * 0.073
 			turbine2.feeder_valve_openage = Interpolate(turbine2.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
