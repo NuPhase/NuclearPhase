@@ -1,7 +1,8 @@
 /datum/composite_sound/breath_sound
 	mid_sounds = list()
 	mid_length = 22
-	volume = 35
+	volume = 25
+	distance = -6
 	direct = TRUE
 	var/obj/item/organ/internal/lungs/our_lungs
 

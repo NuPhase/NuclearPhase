@@ -5,13 +5,19 @@
 #define REACTOR_PUMP_RPM_SAFE 2600
 #define REACTOR_PUMP_RPM_MAX  3100
 
-/datum/composite_sound/pump
+/datum/composite_sound/large_pump
 	start_sound = list('sound/machines/pumpstart.ogg')
 	start_length = 470
 	mid_sounds = list('sound/machines/pumprunning.ogg'=1)
-	mid_length = 80
-	distance = -5
+	mid_length = 75
+	distance = -2
 	volume = 15
+
+/datum/composite_sound/small_pump
+	mid_sounds = list('sound/machines/small_pump_loop.wav'=1)
+	mid_length = 49
+	distance = -2
+	volume = 50
 
 /obj/machinery/atmospherics/binary/pump/adv
 	icon = 'icons/obj/atmospherics/components/binary/pump.dmi'
@@ -35,7 +41,8 @@
 	var/rpm = 0
 	var/target_rpm = 0
 
-	var/datum/composite_sound/pump/soundloop
+	var/datum/composite_sound/soundloop
+	var/soundloop_type = /datum/composite_sound/small_pump
 
 /obj/machinery/atmospherics/binary/pump/adv/on
 	icon_state = "map_on"
@@ -46,12 +53,13 @@
 	target_rpm = REACTOR_PUMP_RPM_SAFE
 	rpm = REACTOR_PUMP_RPM_SAFE
 	use_power = POWER_USE_IDLE
-	soundloop = new(list(src), TRUE)
+	soundloop = new soundloop_type(list(src), TRUE)
 
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
 	flow_capacity = 1500 //kgs
 	power_rating = 140000 //fucking chonker
+	soundloop_type = /datum/composite_sound/large_pump
 
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
 	name = "molten metal pump"
@@ -62,6 +70,7 @@
 	//icon_state = "off"
 	flow_capacity = 300 //kgs
 	power_rating = 210000 //molten metals take a lot of energy to move
+	soundloop_type = /datum/composite_sound/large_pump
 
 /obj/machinery/atmospherics/binary/pump/adv/on_update_icon()
 	if(stat & NOPOWER)
@@ -107,7 +116,7 @@
 		icon_state = "map_off"
 		return
 	else if(!soundloop)
-		soundloop = new(list(src), TRUE)
+		soundloop = new soundloop_type(list(src), TRUE)
 		icon_state = "on"
 
 	flow_capacity = initial_flow_capacity * (rpm / REACTOR_PUMP_RPM_SAFE)

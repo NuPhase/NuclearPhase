@@ -256,7 +256,7 @@ var/global/list/DIR2DEGREES = list(
 			dir = get_cardinal_dir(old_turf, cur_turf)
 
 		if(controlling)
-			animate(controlling.client, pixel_x = round(xvel), pixel_y = round(yvel), time = 1, easing = SINE_EASING)
+			animate(controlling.client, pixel_x = round(xvel*1.5), pixel_y = round(yvel*1.5), time = 1, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/proc/process_inertia()
 	if(last_acceleration_time_x + INERTIA_DELAY <= world.time)
