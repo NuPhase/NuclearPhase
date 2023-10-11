@@ -282,21 +282,62 @@
 	name = "tramadol"
 	lore_text = "A linear painkiller."
 	addictiveness = 5
-	painkill_magnitude = 190
-	overdose = 17
+	painkill_magnitude = 11
+	overdose = 70
 	uid = "chem_tramadol"
+	ingest_met = 0.1
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/volume = REAGENT_VOLUME(holder, type)
-	var/dose = LAZYACCESS(H.chem_doses, type)
-	heart.bpm_modifiers[name] = volume * -2
-	if(dose > effective_dose)
-		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
+	heart.bpm_modifiers[name] = volume * -0.1
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
 		H.add_chemical_effect(CE_BREATHLOSS, -1 * boozed)
+
+/decl/material/liquid/opium/tramadol/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/dose = LAZYACCESS(H.chem_doses, type)
+	heart.bpm_modifiers[name] = dose * -0.1
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose)
+	var/boozed = isboozed(H)
+	if(boozed)
+		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
+		H.add_chemical_effect(CE_BREATHLOSS, -1 * boozed)
+
+/decl/material/liquid/opium/fentanyl
+	name = "fentanyl"
+	lore_text = "An extremely strong painkiller."
+	addictiveness = 3
+	painkill_magnitude = 740
+	overdose = 3 //can't drink fentanyl in ohio
+	uid = "chem_fentanyl"
+
+/decl/material/liquid/opium/fentanyl/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/volume = REAGENT_VOLUME(holder, type)
+	heart.bpm_modifiers[name] = volume * -5
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
+	H.add_chemical_effect(CE_PRESSURE, -3 * volume)
+	H.add_chemical_effect(CE_BREATHLOSS, -1 * volume)
+	var/boozed = isboozed(H)
+	if(boozed)
+		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 2)
+		H.add_chemical_effect(CE_BREATHLOSS, -3 * boozed)
+
+/decl/material/liquid/opium/fentanyl/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/dose = LAZYACCESS(H.chem_doses, type)
+	heart.bpm_modifiers[name] = dose * -5
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose)
+	H.add_chemical_effect(CE_PRESSURE, -3 * dose)
+	H.add_chemical_effect(CE_BREATHLOSS, -1 * dose)
+	var/boozed = isboozed(H)
+	if(boozed)
+		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 2)
+		H.add_chemical_effect(CE_BREATHLOSS, -3 * boozed)
 
 /decl/material/liquid/opium/codeine
 	name = "codeine"
