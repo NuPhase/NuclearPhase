@@ -12,7 +12,7 @@
 	possible_transfer_amounts = null
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	volume = 30
+	volume = 50
 	var/static/list/colorizable_icon_states = list("pill1", "pill2", "pill3", "pill4", "pill5") // if using an icon state from here, color will be derived from reagents
 	weight = 0.01
 
@@ -136,35 +136,19 @@
 /obj/item/chems/pill/stox/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/sedatives, 15)
 
-/obj/item/chems/pill/burn_meds
-	name = "synthskin (15u)"
-	desc = "Used to treat burns."
-	icon_state = "pill2"
-/obj/item/chems/pill/burn_meds/initialize_reagents()
-	reagents.add_reagent(/decl/material/liquid/burn_meds, 15)
-
 /obj/item/chems/pill/painkillers
-	name = "painkillers (15u)"
+	name = "tramadol (50mg)"
 	desc = "A simple painkiller."
 	icon_state = "pill3"
 /obj/item/chems/pill/painkillers/initialize_reagents()
-	reagents.add_reagent(/decl/material/liquid/painkillers, 15)
+	reagents.add_reagent(/decl/material/liquid/opium/tramadol, 50)
 
-
-/obj/item/chems/pill/stabilizer
-	name = "stabilizer (30u)"
-	desc = "Used to stabilize patients."
-	icon_state = "pill1"
-/obj/item/chems/pill/adrenaline/initialize_reagents()
-	reagents.add_reagent(/decl/material/liquid/stabilizer, 30)
-
-
-/obj/item/chems/pill/oxygen
-	name = "oxygen (15u)"
-	desc = "Used to treat oxygen deprivation."
-	icon_state = "pill1"
-/obj/item/chems/pill/oxygen/initialize_reagents()
-	reagents.add_reagent(/decl/material/liquid/oxy_meds, 15)
+/obj/item/chems/pill/fentanyl
+	name = "fentanyl (250mcg)"
+	desc = "An extremely strong painkiller with a lot of side effects."
+	icon_state = "pill3"
+/obj/item/chems/pill/fentanyl/initialize_reagents()
+	reagents.add_reagent(/decl/material/liquid/opium/fentanyl, 0.25)
 
 /obj/item/chems/pill/antitoxins
 	name = "antitoxins (15u)"
@@ -172,14 +156,6 @@
 	icon_state = "pill1"
 /obj/item/chems/pill/antitoxins/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/antitoxins, 15)
-
-
-/obj/item/chems/pill/brute_meds
-	name = "styptic (20u)"
-	desc = "Used to treat physical injuries."
-	icon_state = "pill2"
-/obj/item/chems/pill/brute_meds/initialize_reagents()
-	reagents.add_reagent(/decl/material/liquid/brute_meds, 20)
 
 
 /obj/item/chems/pill/happy

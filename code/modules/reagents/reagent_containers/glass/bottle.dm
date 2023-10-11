@@ -210,6 +210,11 @@
 	initial_reagents = list(/decl/material/liquid/opium/morphine = 5)
 	volume = 5
 
+/obj/item/chems/glass/beaker/vial/fentanyl
+	name = "fentanyl ampoule(100mcg/1ml)"
+	initial_reagents = list(/decl/material/liquid/opium/fentanyl = 0.5, /decl/material/liquid/nanoblood/saline = 4.5)
+	volume = 5
+
 /obj/item/chems/glass/beaker/vial/heroin
 	name = "heroin ampoule"
 	initial_reagents = list(/decl/material/liquid/opium/morphine/diamorphine = 5)

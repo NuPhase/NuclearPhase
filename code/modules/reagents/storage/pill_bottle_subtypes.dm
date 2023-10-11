@@ -5,20 +5,6 @@
 	startswith = list(/obj/item/chems/pill/antitox = 21)
 	wrapper_color = COLOR_GREEN
 
-/obj/item/storage/pill_bottle/brute_meds
-	name = "pill bottle (styptic)"
-	desc = "Contains pills used to stabilize the severely injured."
-
-	startswith = list(/obj/item/chems/pill/brute_meds = 21)
-	wrapper_color = COLOR_MAROON
-
-/obj/item/storage/pill_bottle/oxygen
-	name = "pill bottle (oxygen)"
-	desc = "Contains pills used to treat oxygen deprivation."
-
-	startswith = list(/obj/item/chems/pill/oxygen = 21)
-	wrapper_color = COLOR_LIGHT_CYAN
-
 /obj/item/storage/pill_bottle/antitoxins
 	name = "pill bottle (antitoxins)"
 	desc = "Contains pills used to treat toxic substances in the blood."
@@ -26,19 +12,12 @@
 	startswith = list(/obj/item/chems/pill/antitoxins = 21)
 	wrapper_color = COLOR_GREEN
 
-/obj/item/storage/pill_bottle/adrenaline
-	name = "pill bottle (adrenaline)"
-	desc = "Contains pills used to stabilize patients."
+/obj/item/storage/pill_bottle/charcoal
+	name = "pill bottle (charcoal)"
+	desc = "Contains pills used to counter toxins."
 
-	startswith = list(/obj/item/chems/pill/adrenaline = 21)
-	wrapper_color = COLOR_PALE_BLUE_GRAY
-
-/obj/item/storage/pill_bottle/burn_meds
-	name = "pill bottle (synthskin)"
-	desc = "Contains pills used to treat burns."
-
-	startswith = list(/obj/item/chems/pill/burn_meds = 21)
-	wrapper_color = COLOR_SUN
+	startswith = list(/obj/item/chems/pill/charcoal = 21)
+	wrapper_color = COLOR_BLACK
 
 /obj/item/storage/pill_bottle/antibiotics
 	name = "pill bottle (antibiotics)"
@@ -74,12 +53,9 @@
 	desc = "Commonly found on paramedics, these assorted pill bottles contain all the basics."
 
 	startswith = list(
-			/obj/item/chems/pill/stabilizer = 6,
 			/obj/item/chems/pill/antitoxins = 6,
 			/obj/item/chems/pill/sugariron = 2,
 			/obj/item/chems/pill/painkillers = 2,
-			/obj/item/chems/pill/oxygen = 2,
-			/obj/item/chems/pill/burn_meds = 2,
 			/obj/item/chems/pill/antirads
 		)
 
@@ -89,6 +65,13 @@
 
 	startswith = list(/obj/item/chems/pill/betapace = 21)
 	wrapper_color = COLOR_GRAY
+
+/obj/item/storage/pill_bottle/fentanyl
+	name = "pill bottle (fentanyl)"
+	desc = "Fentanyl is an extremely powerful opioid. Dosed in 250mcg."
+
+	startswith = list(/obj/item/chems/pill/fentanyl = 21)
+	wrapper_color = COLOR_RED
 
 /obj/item/storage/pill_bottle/handmade
 	name = "pill bottle (handmade)"

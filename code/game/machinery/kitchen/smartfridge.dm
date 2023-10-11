@@ -93,6 +93,7 @@
 		/obj/item/chems/glass/beaker/vial/noradrenaline,
 		/obj/item/chems/glass/beaker/vial/noradrenaline,
 		/obj/item/chems/glass/beaker/vial/atropine,
+		/obj/item/chems/glass/beaker/vial/atropine,
 		/obj/item/chems/glass/bottle/penicillin,
 		/obj/item/chems/glass/bottle/penicillin,
 		/obj/item/chems/glass/bottle/penicillin,
@@ -101,7 +102,10 @@
 		/obj/item/chems/glass/beaker/vial/morphine,
 		/obj/item/chems/glass/beaker/vial/morphine,
 		/obj/item/chems/glass/beaker/vial/morphine,
-		/obj/item/chems/glass/beaker/vial/heroin/dirty,
+		/obj/item/chems/glass/beaker/vial/morphine,
+		/obj/item/chems/glass/beaker/vial/morphine,
+		/obj/item/chems/glass/beaker/vial/fentanyl,
+		/obj/item/chems/glass/beaker/vial/fentanyl,
 		/obj/item/chems/glass/bottle/ethanol,
 		/obj/item/chems/glass/bottle/ethanol,
 		/obj/item/chems/glass/bottle/ethanol,
@@ -123,7 +127,15 @@
 		/obj/item/chems/glass/bottle/saline,
 		/obj/item/chems/glass/bottle/saline,
 		/obj/item/chems/glass/bottle/saline,
-		/obj/item/chems/glass/bottle/dronedarone
+		/obj/item/chems/glass/bottle/dronedarone,
+		/obj/item/chems/glass/bottle/dronedarone,
+		/obj/item/storage/pill_bottle/fentanyl,
+		/obj/item/storage/pill_bottle/fentanyl,
+		/obj/item/storage/pill_bottle/betapace,
+		/obj/item/storage/pill_bottle/betapace,
+		/obj/item/storage/pill_bottle/charcoal,
+		/obj/item/storage/pill_bottle/charcoal,
+		/obj/item/storage/pill_bottle/charcoal
 	)
 
 /obj/machinery/smartfridge/secure/medbay/stocked/Initialize()
@@ -410,7 +422,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "smartfridge.tmpl", src.name, 400, 500)
+		ui = new(user, src, ui_key, "smartfridge.tmpl", src.name, 500, 600)
 		ui.set_initial_data(data)
 		ui.open()
 
