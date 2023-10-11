@@ -25,6 +25,12 @@ SUBSYSTEM_DEF(materials)
 	// Overlay caches
 	var/list/wall_damage_overlays
 
+	var/material_references = list()
+
+/datum/controller/subsystem/materials/proc/test_co2(var/pressure)
+	var/decl/material/mat = GET_DECL(/decl/material/gas/carbon_dioxide)
+	return mat.get_boiling_temp(pressure)
+
 /datum/controller/subsystem/materials/Initialize()
 
 	// Init reaction list.
