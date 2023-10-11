@@ -63,21 +63,27 @@
 	air2.volume = 7500
 	reactor_components[uid] = src
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(ntemp, npres)
+/obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(npres, ntemp)
 	if(ntemp > 750)
-		return 3758119 //PLEASE make an approximation using specific steam tables.
-	else
-		return 5000
+		return 3758119 //Hooked to steam table API
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/get_density(npres, ntemp)
+	return 2.16 //Hooked to steam table API
 
 /obj/machinery/atmospherics/binary/turbinestage/Process()
 	. = ..()
 	update_networks()
 
+	if(!air1.temperature || !air2.temperature)
+		return
+
+	var/air1_density = get_density(air1.return_pressure(), air1.temperature)
+
 	// flow speed
 	// sqrt((2 * (P1 - P2) / rho) + (2 * g * (h1 - h2)))
 	if(feeder_valve_openage)
 		pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
-		steam_velocity = sqrt((2 * pressure_difference / 2.16) + (2 * GRAVITY_CONSTANT))
+		steam_velocity = sqrt((2 * pressure_difference / air1_density) + (2 * GRAVITY_CONSTANT))
 	else
 		steam_velocity = 0
 
@@ -90,7 +96,7 @@
 
 	pump_passive(air1, air_all, total_mass_flow)
 
-	kin_total = get_specific_enthalpy(air_all.temperature, air1.return_pressure()) * total_mass_flow
+	kin_total = get_specific_enthalpy(air1.return_pressure(), air_all.temperature) * total_mass_flow
 	kin_total *= expansion_ratio
 	air_all.add_thermal_energy(kin_total * -1)
 	air_all.temperature = max(air_all.temperature, 311)
