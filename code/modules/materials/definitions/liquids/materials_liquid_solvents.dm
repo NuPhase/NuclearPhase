@@ -12,7 +12,7 @@
 	solvent_max_damage = 30
 	boiling_point = 290 CELSIUS
 	melting_point = 10 CELSIUS
-	latent_heat = 612
+	latent_heat = 25730
 	molar_mass = 0.098
 
 /decl/material/liquid/acid/hydrochloric //Like sulfuric, but less toxic and more acidic.
@@ -73,5 +73,5 @@
 	toxicity = 3
 	boiling_point = 56 CELSIUS
 	melting_point = -95 CELSIUS
-	latent_heat = 525
+	latent_heat = 32000
 	molar_mass = 0.058

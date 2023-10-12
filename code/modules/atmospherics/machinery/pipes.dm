@@ -26,9 +26,9 @@
 	var/leaking = 0		// Do not set directly, use set_leaking(TRUE/FALSE)
 
 	//minimum pressure before check_pressure(...) should be called
-	var/maximum_pressure = 210 * ONE_ATMOSPHERE
-	var/fatigue_pressure = 170 * ONE_ATMOSPHERE
-	var/alert_pressure = 170 * ONE_ATMOSPHERE
+	var/maximum_pressure = 2100 * ONE_ATMOSPHERE
+	var/fatigue_pressure = 1700 * ONE_ATMOSPHERE
+	var/alert_pressure = 1700 * ONE_ATMOSPHERE
 	var/datum/sound_token/sound_token
 
 /obj/machinery/atmospherics/pipe/bullet_act(obj/item/projectile/P)
@@ -329,9 +329,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/water
 	name = "water pipe"
 	color = PIPE_COLOR_BLUE
-	maximum_pressure = 25*ONE_ATMOSPHERE
-	fatigue_pressure = 20*ONE_ATMOSPHERE
-	alert_pressure = 15*ONE_ATMOSPHERE
+	maximum_pressure = 2500*ONE_ATMOSPHERE
+	fatigue_pressure = 2000*ONE_ATMOSPHERE
+	alert_pressure = 1500*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/simple/visible/fuel
@@ -415,9 +415,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/water
 	name = "water pipe"
 	color = PIPE_COLOR_BLUE
-	maximum_pressure = 25*ONE_ATMOSPHERE
-	fatigue_pressure = 20*ONE_ATMOSPHERE
-	alert_pressure = 15*ONE_ATMOSPHERE
+	maximum_pressure = 2500*ONE_ATMOSPHERE
+	fatigue_pressure = 2000*ONE_ATMOSPHERE
+	alert_pressure = 1500*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel
@@ -505,9 +505,9 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/water
 	name = "water pipe manifold"
 	color = PIPE_COLOR_BLUE
-	maximum_pressure = 25*ONE_ATMOSPHERE
-	fatigue_pressure = 20*ONE_ATMOSPHERE
-	alert_pressure = 15*ONE_ATMOSPHERE
+	maximum_pressure = 2500*ONE_ATMOSPHERE
+	fatigue_pressure = 2000*ONE_ATMOSPHERE
+	alert_pressure = 1500*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/manifold/visible/fuel
@@ -591,9 +591,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/water
 	name = "water pipe manifold"
 	color = PIPE_COLOR_BLUE
-	maximum_pressure = 25*ONE_ATMOSPHERE
-	fatigue_pressure = 20*ONE_ATMOSPHERE
-	alert_pressure = 15*ONE_ATMOSPHERE
+	maximum_pressure = 2500*ONE_ATMOSPHERE
+	fatigue_pressure = 2000*ONE_ATMOSPHERE
+	alert_pressure = 1500*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel
@@ -679,9 +679,9 @@
 /obj/machinery/atmospherics/pipe/manifold4w/visible/water
 	name = "water pipe manifold"
 	color = PIPE_COLOR_BLUE
-	maximum_pressure = 25*ONE_ATMOSPHERE
-	fatigue_pressure = 20*ONE_ATMOSPHERE
-	alert_pressure = 15*ONE_ATMOSPHERE
+	maximum_pressure = 2500*ONE_ATMOSPHERE
+	fatigue_pressure = 2000*ONE_ATMOSPHERE
+	alert_pressure = 1500*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible/fuel
@@ -739,9 +739,9 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/water
 	name = "water pipe manifold"
 	color = PIPE_COLOR_BLUE
-	maximum_pressure = 25*ONE_ATMOSPHERE
-	fatigue_pressure = 20*ONE_ATMOSPHERE
-	alert_pressure = 15*ONE_ATMOSPHERE
+	maximum_pressure = 2500*ONE_ATMOSPHERE
+	fatigue_pressure = 2000*ONE_ATMOSPHERE
+	alert_pressure = 1500*ONE_ATMOSPHERE
 	connect_types = CONNECT_TYPE_WATER
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel

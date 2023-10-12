@@ -8,7 +8,7 @@
 	value = 0.15
 	burn_product = /decl/material/gas/carbon_monoxide
 	molar_mass =    0.032 // kg/mol
-	latent_heat = 213
+	latent_heat = 3400 //assuming oxygen
 	reflectiveness = 0
 	hardness = 0
 	weight = 1

@@ -27,8 +27,8 @@ SUBSYSTEM_DEF(materials)
 
 	var/material_references = list()
 
-/datum/controller/subsystem/materials/proc/test_co2(var/pressure)
-	var/decl/material/mat = GET_DECL(/decl/material/gas/carbon_dioxide)
+/datum/controller/subsystem/materials/proc/test_boiling_point(var/pressure, var/stype = /decl/material/gas/carbon_dioxide)
+	var/decl/material/mat = GET_DECL(stype)
 	return mat.get_boiling_temp(pressure)
 
 /datum/controller/subsystem/materials/Initialize()

@@ -234,6 +234,7 @@
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
 	phases.Cut()
+	var/saved_pressure = return_pressure()
 	total_moles = 0
 	gas_moles = 0
 	var/liquid_volume = 0
@@ -243,7 +244,7 @@
 		else
 			total_moles += gas[g]
 			var/decl/material/mat = GET_DECL(g)
-			phases[g] = mat.phase_at_temperature(temperature, return_pressure())
+			phases[g] = mat.phase_at_temperature(temperature, saved_pressure)
 			if(phases[g] == MAT_PHASE_GAS)
 				gas_moles += gas[g]
 			else if(phases[g] == MAT_PHASE_LIQUID)

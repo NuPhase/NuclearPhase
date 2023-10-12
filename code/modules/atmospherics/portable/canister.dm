@@ -435,7 +435,7 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/water/Initialize()
 	. = ..()
 	air_contents.adjust_gas(/decl/material/liquid/water, MolesForVolume(/decl/material/liquid/water))
-	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE))
+	air_contents.adjust_gas(/decl/material/gas/nitrogen, MolesForPressure(ONE_ATMOSPHERE*45))
 	air_contents.temperature = T20C
 	queue_icon_update()
 
@@ -448,8 +448,8 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/reactor/Initialize()
 	. = ..()
 	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForVolume(/decl/material/solid/metal/tungsten))
-	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE*5))
-	air_contents.temperature = 4280
+	air_contents.adjust_gas(/decl/material/gas/nitrogen, MolesForPressure(ONE_ATMOSPHERE*15))
+	air_contents.temperature = 3750
 	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()

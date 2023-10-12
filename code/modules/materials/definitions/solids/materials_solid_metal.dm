@@ -479,7 +479,8 @@
 	color = "#dcdcdc"
 	value = 0.5
 	liquid_density = 19250
-	melting_point = 3400
+	melting_point = 3695
+	latent_heat = 824000
 	boiling_point = 5828
 	molar_mass = 0.183
 	solid_specific_heat = 24.8

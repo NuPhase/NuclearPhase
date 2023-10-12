@@ -123,7 +123,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/melting_point = 700
 	/// K, point that material will become a gas.
 	var/boiling_point = 3000
-	/// kJ/kg, enthalpy of vaporization
+	/// J/mol, enthalpy of vaporization
 	var/latent_heat = 7000
 	/// kg/mol,
 	var/molar_mass = 0.06
@@ -405,7 +405,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	return ((1/boiling_point) - (R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat)**-1
 
 // Returns the phase of the matterial at the given temperature and pressure
-/decl/material/proc/phase_at_temperature(var/temperature, var/pressure = ONE_ATMOSPHERE)
+/decl/material/proc/phase_at_temperature(var/temperature = T20C, var/pressure = ONE_ATMOSPHERE)
 	//#TODO: implement plasma temperature and do pressure checks
 	if(temperature >= get_boiling_temp(pressure))
 		return MAT_PHASE_GAS

@@ -7,7 +7,7 @@
 	flags = MAT_FLAG_FUSION_FUEL
 	gas_specific_heat = 20
 	molar_mass = 0.032
-	latent_heat = 213
+	latent_heat = 3409
 	boiling_point = -183 CELSIUS
 	liquid_density = 1140
 	gas_flags = XGM_GAS_OXIDIZER
@@ -23,7 +23,7 @@
 	lore_text = "A noble gas. It makes your voice squeaky."
 	gas_specific_heat = 80
 	molar_mass = 0.004
-	latent_heat = 21.1
+	latent_heat = 84.5
 	boiling_point = 4.21
 	liquid_density = 113.9
 	taste_description = "nothing"
@@ -50,7 +50,7 @@
 	lore_text = "A byproduct of respiration."
 	gas_specific_heat = 30
 	molar_mass = 0.044
-	latent_heat = 380
+	latent_heat = 15550
 	boiling_point = -78 CELSIUS
 	liquid_density = 1190
 	color = "#272727"
@@ -120,7 +120,7 @@
 	lore_text = "A highly poisonous gas."
 	gas_specific_heat = 30
 	molar_mass = 0.028
-	latent_heat = 216
+	latent_heat = 6040
 	boiling_point = -192 CELSIUS
 	liquid_density = 790
 	taste_description = "stale air"
@@ -164,7 +164,7 @@
 	lore_text = "A once-popular fumigant and weedkiller."
 	gas_specific_heat = 42.59
 	molar_mass = 0.095
-	latent_heat = 253
+	latent_heat = 25210
 	boiling_point = 4 CELSIUS
 	liquid_density = 1720
 	taste_description = "pestkiller"
@@ -194,7 +194,7 @@
 	lore_text = "A mild sedative. Also known as laughing gas."
 	gas_specific_heat = 40
 	molar_mass = 0.044
-	latent_heat = 376
+	latent_heat = 3760
 	boiling_point = -90 CELSIUS
 	liquid_density = 1000
 	gas_tile_overlay = "sleeping_agent"
@@ -225,7 +225,7 @@
 	lore_text = "An ubiquitous noble gas."
 	gas_specific_heat = 20
 	molar_mass = 0.028
-	latent_heat = 199
+	latent_heat = 5600
 	boiling_point = -195 CELSIUS
 	liquid_density = 804.3
 	gas_metabolically_inert = TRUE
@@ -239,7 +239,7 @@
 	color = "#ca6409"
 	gas_specific_heat = 37
 	molar_mass = 0.054
-	latent_heat = 272
+	latent_heat = 5200
 	boiling_point = -9 CELSIUS
 	liquid_density = 1439
 	gas_flags = XGM_GAS_OXIDIZER
@@ -251,7 +251,7 @@
 	gas_symbol_html = "NO"
 	gas_specific_heat = 10
 	molar_mass = 0.030
-	latent_heat = 410
+	latent_heat = 3900
 	boiling_point = -152 CELSIUS
 	liquid_density = 1269
 	gas_flags = XGM_GAS_OXIDIZER
@@ -264,7 +264,7 @@
 	gas_specific_heat = 35.8
 	liquid_specific_heat = 52.9
 	molar_mass = 0.016
-	latent_heat = 510
+	latent_heat = 25210
 	boiling_point = 111
 	melting_point = 90
 	liquid_density = 415
@@ -281,7 +281,7 @@
 	lore_text = "Just when you need it, all of your supplies argon."
 	gas_specific_heat = 10
 	molar_mass = 0.039
-	latent_heat = 163
+	latent_heat = 6506
 	boiling_point = -185 CELSIUS
 	liquid_density = 1373.9
 	value = 0.25
@@ -294,7 +294,7 @@
 	gas_symbol_html = "Kr"
 	gas_specific_heat = 5
 	molar_mass = 0.083
-	latent_heat = 108
+	latent_heat = 9029
 	boiling_point = -153 CELSIUS
 	liquid_density = 2370.7
 	value = 0.25
@@ -306,7 +306,7 @@
 	gas_symbol_html = "Ne"
 	gas_specific_heat = 20
 	molar_mass = 0.02
-	latent_heat = 86
+	latent_heat = 1732
 	boiling_point = -246 CELSIUS
 	liquid_density = 1204
 	value = 0.25
@@ -318,7 +318,7 @@
 	gas_symbol_html = "NH<sub>3</sub>"
 	gas_specific_heat = 20
 	molar_mass = 0.017
-	latent_heat = 1370
+	latent_heat = 23400
 	boiling_point = -33 CELSIUS
 	liquid_density = 682.6
 	metabolism = 0.05 // So that low dosages have a chance to build up in the body.
@@ -336,7 +336,7 @@
 	gas_symbol_html = "Xe"
 	gas_specific_heat = 3
 	molar_mass = 0.131
-	latent_heat = 96
+	latent_heat = 12600
 	boiling_point = -108 CELSIUS
 	liquid_density = 3520
 	value = 0.25
@@ -365,7 +365,7 @@
 	gas_overlay_limit = 0.5
 	gas_specific_heat = 5
 	molar_mass = 0.071 //Cl2 gas
-	latent_heat = 254
+	latent_heat = 10200
 	boiling_point = -34 CELSIUS
 	gas_flags = XGM_GAS_CONTAMINANT
 	taste_description = "bleach"
@@ -401,7 +401,7 @@
 	construction_difficulty = MAT_VALUE_HARD_DIY
 	gas_specific_heat = 100
 	molar_mass = 0.002
-	latent_heat = 454
+	latent_heat = 449
 	boiling_point = 20.2
 	melting_point = 13.9
 	liquid_density = 70.516

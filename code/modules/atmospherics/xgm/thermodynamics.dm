@@ -1,6 +1,9 @@
+
+//This gets called whenever we add/remove energy from a gasmix. Returns the energy change after phase transitions
 /datum/gas_mixture/proc/make_phase_changes(thermal_energy_change)
 
 	var/total_system_heat_capacity = heat_capacity()
+	var/final_energy = thermal_energy_change
 
 	//evaporation
 	for(var/liquid in liquids)
@@ -12,7 +15,7 @@
 			var/liquid_moles_boiled = excess_energy / liquid_mat.latent_heat
 			liquids[liquid] -= liquid_moles_boiled
 			gas[liquid] += liquid_moles_boiled
-			add_thermal_energy(excess_energy * -1, FALSE)
+			final_energy += excess_energy * -1
 
 	//condensation
 	for(var/g in gas)
@@ -24,4 +27,6 @@
 			var/gas_moles_condensed = short_energy / gas_mat.latent_heat
 			gas += gas_moles_condensed //it's negative so we're ok
 			liquids += abs(gas_moles_condensed) //turning negative to positive
-			add_thermal_energy(short_energy, FALSE)
+			final_energy += short_energy
+
+	return final_energy

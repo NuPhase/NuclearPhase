@@ -9,9 +9,9 @@
 	gas_specific_heat = 36.5
 	liquid_specific_heat = 75.6
 	molar_mass = 0.018
-	boiling_point = 103 CELSIUS
+	boiling_point = 100 CELSIUS
 	melting_point = 0 CELSIUS
-	latent_heat = 2258
+	latent_heat = 40800
 	gas_condensation_point = 308.15 // 35C. Dew point is ~20C but this is better for gameplay considerations.
 	gas_symbol_html = "H<sub>2</sub>O"
 	gas_symbol = "H2O"
@@ -81,7 +81,7 @@
 	M.adjust_hydration(removed * 10)
 	affect_blood(M, removed, holder)
 
-#define WATER_LATENT_HEAT 9500 // How much heat is removed when applied to a hot turf, in J/unit (9500 makes 120 u of water roughly equivalent to 2L
+#define WATER_LATENT_HEAT 40650 // How much heat is removed when applied to a hot turf, in J/unit (9500 makes 120 u of water roughly equivalent to 2L
 /decl/material/liquid/water/touch_turf(var/turf/T, var/amount, var/datum/reagents/holder)
 
 	..()
