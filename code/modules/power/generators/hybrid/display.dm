@@ -27,6 +27,7 @@
 	if(special_description)
 		to_chat(user, special_description)
 	ui_interact(user)
+	tgui_interact(user)
 	to_chat(user, "<span class='notice'>[get_display_data()]</span>")
 
 /obj/machinery/reactor_display/interface_interact(mob/user)
@@ -73,6 +74,7 @@
 	. = ..()
 	if(on)
 		ui_interact(user)
+		tgui_interact(user)
 	to_chat(user, "<span class='notice'>[get_display_data()]</span>")
 
 /obj/machinery/reactor_monitor/Initialize()
@@ -90,6 +92,7 @@
 /obj/machinery/reactor_monitor/interface_interact(mob/user)
 	if(on)
 		ui_interact(user)
+		tgui_interact(user)
 	return TRUE
 
 /obj/machinery/reactor_monitor/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)

@@ -2,63 +2,60 @@
 	name = "turbine monitoring computer"
 	program_overlay = "turbine"
 
-/obj/machinery/reactor_monitor/turbine/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
-	var/breaks_engaged1 = ""
-	var/breaks_engaged2 = ""
-	if(rcontrol.turbine1.braking)
-		breaks_engaged1 = "EMERGENCY BRAKING IN EFFECT.<br>"
-	if(rcontrol.turbine2.braking)
-		breaks_engaged2 = "EMERGENCY BRAKING IN EFFECT.<br>"
-	data["var1"] = "Turbine #1:"
-	data["var2"] = "RPM: [round(rcontrol.turbine1.rpm)]."
-	data["var3"] = "Estimated Efficiency: [round(rcontrol.turbine1.efficiency * 100)]%."
-	data["var4"] = "Vibration: [rcontrol.turbine1.get_vibration_flavor()]."
-	data["var5"] = "Mass flow: [round(rcontrol.turbine1.total_mass_flow)]kg/s."
-	data["var6"] = "Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s."
-	data["var7"] = "[breaks_engaged1]"
-	data["var8"] = "Turbine #2:"
-	data["var9"] = "RPM: [round(rcontrol.turbine2.rpm)]."
-	data["var10"] = "Estimated Efficiency: [round(rcontrol.turbine2.efficiency * 100)]%."
-	data["var11"] = "Vibration: [rcontrol.turbine2.get_vibration_flavor()]."
-	data["var12"] = "Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s."
-	data["var13"] = "Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s."
-	data["var14"] = "[breaks_engaged2]"
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+/obj/machinery/reactor_monitor/turbine/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 450)
-		ui.set_initial_data(data)
+		ui = new(user, src, "TurbineMonitor", "Turbine Monitoring")
 		ui.open()
-		ui.set_auto_update(TRUE)
+
+/obj/machinery/reactor_monitor/turbine/tgui_data(mob/user)
+	var/list/data = list(
+		"turb1" = list(
+						"rpm" = round(rcontrol.turbine1.rpm),
+						"efficiency" = round(rcontrol.turbine1.efficiency, 0.01),
+						"vibration" = rcontrol.turbine1.get_vibration_flavor(),
+						"mass_flow" = round(rcontrol.turbine1.total_mass_flow),
+						"steam_velocity" = round(rcontrol.turbine1.steam_velocity),
+						"breaks_engaged" = rcontrol.turbine1.braking
+						),
+		"turb2" = list(
+						"rpm" = round(rcontrol.turbine2.rpm),
+						"efficiency" = round(rcontrol.turbine2.efficiency, 0.01),
+						"vibration" = rcontrol.turbine2.get_vibration_flavor(),
+						"mass_flow" = round(rcontrol.turbine2.total_mass_flow),
+						"steam_velocity" = round(rcontrol.turbine2.steam_velocity),
+						"breaks_engaged" = rcontrol.turbine2.braking
+						)
+	)
+	return data
 
 /obj/machinery/reactor_display/group/turbine
 	name = "turbine monitoring displays"
 	overlaying = "turbinecomp"
 
-/obj/machinery/reactor_display/group/turbine/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
-	var/breaks_engaged1 = ""
-	var/breaks_engaged2 = ""
-	if(rcontrol.turbine1.braking)
-		breaks_engaged1 = "EMERGENCY BRAKING IN EFFECT.<br>"
-	if(rcontrol.turbine2.braking)
-		breaks_engaged2 = "EMERGENCY BRAKING IN EFFECT.<br>"
-	data["var1"] = "Turbine #1:"
-	data["var2"] = "RPM: [round(rcontrol.turbine1.rpm)]."
-	data["var3"] = "Estimated Efficiency: [round(rcontrol.turbine1.efficiency * 100)]%."
-	data["var4"] = "Vibration: [rcontrol.turbine1.get_vibration_flavor()]."
-	data["var5"] = "Mass flow: [round(rcontrol.turbine1.total_mass_flow)]kg/s."
-	data["var6"] = "Steam Velocity: [round(rcontrol.turbine1.steam_velocity)]m/s."
-	data["var7"] = "[breaks_engaged1]"
-	data["var8"] = "Turbine #2:"
-	data["var9"] = "RPM: [round(rcontrol.turbine2.rpm)]."
-	data["var10"] = "Estimated Efficiency: [round(rcontrol.turbine2.efficiency * 100)]%."
-	data["var11"] = "Vibration: [rcontrol.turbine2.get_vibration_flavor()]."
-	data["var12"] = "Mass flow: [round(rcontrol.turbine2.total_mass_flow)]kg/s."
-	data["var13"] = "Steam Velocity: [round(rcontrol.turbine2.steam_velocity)]m/s."
-	data["var14"] = "[breaks_engaged2]"
-	data["var15"] = ""
-	data["var16"] = ""
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+/obj/machinery/reactor_display/group/turbine/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 450)
-		ui.set_initial_data(data)
+		ui = new(user, src, "TurbineMonitor", "Turbine Monitoring")
 		ui.open()
+
+/obj/machinery/reactor_display/group/turbine/tgui_data(mob/user)
+	var/list/data = list(
+		"turb1" = list(
+						round(rcontrol.turbine1.rpm),
+						round(rcontrol.turbine1.efficiency),
+						rcontrol.turbine1.get_vibration_flavor(),
+						round(rcontrol.turbine1.total_mass_flow),
+						round(rcontrol.turbine1.steam_velocity),
+						rcontrol.turbine1.braking
+						),
+		"turb2" = list(
+						round(rcontrol.turbine2.rpm),
+						round(rcontrol.turbine2.efficiency),
+						rcontrol.turbine2.get_vibration_flavor(),
+						round(rcontrol.turbine2.total_mass_flow),
+						round(rcontrol.turbine2.steam_velocity),
+						rcontrol.turbine2.braking
+						)
+	)
+	return data
