@@ -77,7 +77,7 @@
 	if(!air1.temperature || !air2.temperature)
 		return
 
-	var/air1_density = get_density(air1.return_pressure(), air1.temperature)
+	var/air1_density = get_density(air1.return_pressure() * 0.001, air1.temperature - 273.15)
 
 	// flow speed
 	// sqrt((2 * (P1 - P2) / rho) + (2 * g * (h1 - h2)))
@@ -96,7 +96,7 @@
 
 	pump_passive(air1, air_all, total_mass_flow)
 
-	kin_total = get_specific_enthalpy(air1.return_pressure(), air_all.temperature) * total_mass_flow
+	kin_total = get_specific_enthalpy(air1.return_pressure() * 0.001, air_all.temperature - 273.15) * total_mass_flow
 	kin_total *= expansion_ratio
 	air_all.add_thermal_energy(kin_total * -1)
 	air_all.temperature = max(air_all.temperature, 311)

@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { Button, Flex, LabeledList, ProgressBar, Section, Tabs } from "../components";
+import { LabeledList, ProgressBar, Section, Tabs } from "../components";
 import { Window } from "../layouts";
 
 type InputData = {

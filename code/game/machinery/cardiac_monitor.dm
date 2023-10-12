@@ -27,7 +27,7 @@
 	name = "\improper cardiac monitor"
 	icon = 'icons/obj/medicine.dmi'
 	icon_state = "mon"
-	use_power = POWER_USE_OFF
+	use_power = POWER_USE_IDLE
 	anchored = 0
 	density = 0
 	interact_offline = TRUE
@@ -128,61 +128,36 @@
 	else
 		timer.wait = 10000 //kinda bad
 
-/obj/machinery/cardiac_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/obj/item/organ/internal/heart/H = attached?.get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	var/obj/item/organ/internal/lungs/L = attached?.get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
-	if(!attached || !H)
+/obj/machinery/cardiac_monitor/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CardiacMonitor", "ECG Monitor")
+		ui.open()
+		ui.set_autoupdate(TRUE)
+
+/obj/machinery/cardiac_monitor/tgui_data(mob/user)
+	if(!attached)
 		return
 
-	var/list/data = list()
-	data["name"] = "[attached]"
-	if(H.pulse < 280)
-		data["hr"] = round(H.pulse)
-	else
-		data["hr"] = "-- "
-	data["rythme"] = H.get_rhythm_fluffy()
-	data["bp"] = "[round(attached.syspressure)]/[round(attached.dyspressure)]"
-	switch(attached.meanpressure)
-		if(-INFINITY to BLOOD_PRESSURE_L2BAD)
-			data["bp_s"] = "bad"
-		if(BLOOD_PRESSURE_L2BAD to BLOOD_PRESSURE_NORMAL - 30)
-			data["bp_s"] = "average"
-		if(BLOOD_PRESSURE_HBAD to BLOOD_PRESSURE_H2BAD)
-			data["bp_s"] = "average"
-		if(BLOOD_PRESSURE_H2BAD to INFINITY)
-			data["bp_s"] = "bad"
+	var/obj/item/organ/internal/heart/H = attached.get_organ(BP_HEART, /obj/item/organ/internal/heart)
+	var/obj/item/organ/internal/lungs/L = attached.get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
 
-	switch(attached.get_blood_perfusion())
-		if(0 to 0.6)
-			data["perfusion_s"] = "bad"
-		if(0.6 to 0.8)
-			data["perfusion_s"] = "average"
-	data["ischemia"] = H.oxygen_deprivation
-	data["saturation"] = round(attached.get_blood_saturation() * 100)
-	data["perfusion"] = round(attached.get_blood_perfusion() * 100)
-	data["status"] = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE"
-
-	data["ecg"] = list()
-	if(L.breath_rate)
-		data["ecg"] += list("Respiration Rate: [round(L.breath_rate + rand(-1, 1), 1)]/m")
-	else
-		data["ecg"] += list("No respiration.")
-	if(H.oxygen_deprivation)
-		data["ecg"] += list("Ischemia: [H.oxygen_deprivation]%")
-	data["ecg"] += list("TPVR: [round(attached.tpvr)] N·s·m<sup><small>-5</small></sup>")
-	data["ecg"] += list("MCV: [round(attached.mcv)/1000] L/m")
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "cardiac_monitor.tmpl", "Cardiac Monitor", 450, 270)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(TRUE)
+	return list(
+		"name" = "[attached]",
+		"status" = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE",
+		"pulse" = H.pulse,
+		"pressure" = "[round(attached.syspressure)]/[round(attached.dyspressure)]",
+		"saturation" = round(attached.get_blood_saturation() * 100),
+		"rhythm" = H.get_rhythm_fluffy(),
+		"breath_rate" = round(L.breath_rate + rand(-1, 1), 1),
+		"tpvr" = round(attached.tpvr),
+		"mcv" = round(attached.mcv)/1000
+	)
 
 /obj/machinery/cardiac_monitor/attack_hand(mob/user)
 	. = ..()
-	ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/cardiac_monitor/examine(mob/user)
 	. = ..()
-	ui_interact(user)
+	tgui_interact(user)
