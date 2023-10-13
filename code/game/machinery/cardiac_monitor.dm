@@ -145,7 +145,7 @@
 	return list(
 		"name" = "[attached]",
 		"status" = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE",
-		"pulse" = H.pulse,
+		"pulse" = round(H.pulse, 1),
 		"pressure" = "[round(attached.syspressure)]/[round(attached.dyspressure)]",
 		"saturation" = round(attached.get_blood_saturation() * 100),
 		"rhythm" = H.get_rhythm_fluffy(),
