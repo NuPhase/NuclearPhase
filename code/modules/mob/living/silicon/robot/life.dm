@@ -43,11 +43,11 @@
 
 	if ( cell && is_component_functioning("power cell") && src.cell.charge > 0 )
 		if(src.module_state_1)
-			cell_use_power(50) // 50W load for every enabled tool TODO: tool-specific loads
+			cell_use_power(150) // 150W load for every enabled tool TODO: tool-specific loads
 		if(src.module_state_2)
-			cell_use_power(50)
+			cell_use_power(150)
 		if(src.module_state_3)
-			cell_use_power(50)
+			cell_use_power(150)
 
 		if(lights_on)
 			if(intenselight)

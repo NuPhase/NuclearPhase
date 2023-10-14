@@ -189,11 +189,19 @@
 	weight = 4
 
 /obj/item/cell/quadruplecapacity
-	name = "lithium-ion power cell array"
+	name = "lithium-ion quad power cell"
 	w_class = ITEM_SIZE_LARGE
 	icon_state = "cell_array"
 	maxcharge = 4000
 	weight = 8
+
+/obj/item/cell/lithium_array
+	name = "lithium-ion power cell array"
+	desc = "A hefty battery for industry usage."
+	w_class = ITEM_SIZE_LARGE
+	icon_state = "cell_array"
+	maxcharge = 12500
+	weight = 25
 
 /obj/item/cell/quantum //1570wh/kg
 	name = "quantum power cell"

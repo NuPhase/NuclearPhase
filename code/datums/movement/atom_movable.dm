@@ -28,6 +28,7 @@
 
 /datum/movement_handler/delay/DoMove()
 	next_move = world.time + delay
+	UpdateGlideSize()
 
 /datum/movement_handler/delay/MayMove()
 	return world.time >= next_move ? MOVEMENT_PROCEED : MOVEMENT_STOP

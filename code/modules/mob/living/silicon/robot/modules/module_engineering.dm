@@ -18,7 +18,8 @@
 		"Basic"              = 'icons/mob/robots/robot_engineer_old.dmi',
 		"Antique"            = 'icons/mob/robots/robot_engineer_old_alt.dmi',
 		"Landmate"           = 'icons/mob/robots/robot_engineer.dmi',
-		"Landmate - Treaded" = 'icons/mob/robots/robot_engineer_treaded.dmi'
+		"Landmate - Treaded" = 'icons/mob/robots/robot_engineer_treaded.dmi',
+		"Drake"				 = 'icons/mob/robots/robot_engineer_drake.dmi'
 	)
 	no_slip = 1
 	equipment = list(
