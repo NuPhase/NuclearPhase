@@ -54,8 +54,10 @@ var/global/list/bodytypes_by_category = list()
 	)
 
 	var/list/bodyfall_sounds = list(
-		'sound/foley/meat1.ogg',
-		'sound/foley/meat2.ogg'
+		'sound/effects/bodyfall1.ogg',
+		'sound/effects/bodyfall2.ogg',
+		'sound/effects/bodyfall3.ogg',
+		'sound/effects/bodyfall4.ogg'
 	)
 
 	var/list/synthetic_bodyfall_sounds = list(
