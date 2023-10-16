@@ -59,7 +59,7 @@ var/global/const/FALLOFF_SOUNDS = 0.5
 		var/turf/simulated/sim_source = turf_source
 		var/turf/simulated/sim_destination = T
 		if(sim_destination.zone != sim_source.zone)
-			volume -= 30
+			volume = round(volume * 0.7) // quick and dirty volume reduction from ZAS flood fill
 	return volume
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet)

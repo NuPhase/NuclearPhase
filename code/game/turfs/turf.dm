@@ -335,7 +335,7 @@ var/global/const/enterloopsanity = 100
 
 // Called when turf is hit by a thrown object
 /turf/hitby(atom/movable/AM, var/datum/thrownthing/TT)
-	..()
+	SHOULD_CALL_PARENT(FALSE) // /atom/hitby() applies damage to AM if it's a living mob.
 	if(density)
 		if(isliving(AM))
 			var/mob/living/M = AM
