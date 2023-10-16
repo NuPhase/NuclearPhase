@@ -274,7 +274,7 @@ Helpers
 		to_world("<B>The current game mode is Secret!</B>")
 		var/list/mode_names = list()
 		for (var/mode_tag in base_runnable_modes)
-			var/decl/game_mode/M = decls_repository.get_decl_by_id(mode_tag)
+			var/decl/game_mode/M = decls_repository.get_decl_by_id(mode_tag, validate_decl_type = FALSE)
 			if(M)
 				mode_names |= M.name
 		if (get_config_value(/decl/config/toggle/secret_hide_possibilities))

@@ -22,7 +22,7 @@
 	..()
 	choices += get_config_value(/decl/config/lists/mode_votable)
 	for (var/F in choices)
-		var/decl/game_mode/M = decls_repository.get_decl_by_id(F)
+		var/decl/game_mode/M = decls_repository.get_decl_by_id(F, validate_decl_type = FALSE)
 		if(!M)
 			continue
 		display_choices[F] = capitalize(M.name)
