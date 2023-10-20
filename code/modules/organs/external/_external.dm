@@ -81,6 +81,8 @@
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image
 
+	var/lifting_strength_boost = 1 // Affects how much more(or less) our parent can lift. A coefficient.
+
 /obj/item/organ/external/proc/get_fingerprint()
 
 	if((limb_flags & ORGAN_FLAG_FINGERPRINT) && dna && !BP_IS_PROSTHETIC(src))
@@ -1290,6 +1292,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	slowdown = R.movement_slowdown
 	max_damage *= R.hardiness
 	min_broken_damage *= R.hardiness
+	lifting_strength_boost *= R.lifting_boost_coefficient
 	status &= (~ORGAN_DISLOCATED)
 	limb_flags &= (~ORGAN_FLAG_CAN_DISLOCATE)
 	remove_splint()

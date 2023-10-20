@@ -14,6 +14,7 @@
 	var/list/allowed_bodytypes = list(BODYTYPE_HUMANOID)          // Determines which bodytypes can apply the limb.
 	var/modifier_string = "robotic"                               // Used to alter the name of the limb.
 	var/hardiness = 1                                             // Modifies min and max broken damage for the limb.
+	var/lifting_boost_coefficient = 1							  // Coefficient of lifting strength boost.
 	var/manual_dexterity = DEXTERITY_FULL                         // For hands, determines the dexterity value passed to get_dexterity().
 	var/movement_slowdown = 0                                     // Applies a slowdown value to this limb.
 	var/is_robotic = TRUE                                         // Determines if EMP damage is applied to this prosthetic.
