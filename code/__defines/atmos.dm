@@ -101,3 +101,4 @@
 
 #define MAX_PUMP_PRESSURE		8700	// Maximal pressure setting for pumps and vents
 #define MAX_OMNI_PRESSURE		8700	// Maximal output(s) pressure for omni devices (filters/mixers)
+#define MAX_TANK_PRESSURE		13500
