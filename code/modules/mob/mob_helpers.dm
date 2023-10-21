@@ -336,6 +336,21 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 #undef TICKS_PER_RECOIL_ANIM
 #undef PIXELS_PER_STRENGTH_VAL
 
+#define NORMAL_OSCILLATION_TIME 3
+//duration - effect duration
+//frequency - time between oscillations
+//magnitude - pixels per oscillation
+/proc/screen_vibration(mob/M, duration = 1, frequency = 8, magnitude = 6)
+	if(!M || !M.client || M.stat || isEye(M) || isAI(M))
+		return
+	var/cycles_completed = 0
+	var/cycles_to_complete = duration * NORMAL_OSCILLATION_TIME * frequency
+	while(cycles_completed < cycles_to_complete)
+		animate(M.client, pixel_x = rand(-(magnitude), magnitude), pixel_y = rand(-(magnitude), magnitude), time = frequency, easing = ELASTIC_EASING)
+		cycles_completed++
+		sleep(frequency)
+	animate(M.client, pixel_x = (M.client.default_pixel_x || 0), pixel_y = (M.client.default_pixel_y || 0), time = frequency)
+
 /proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list)
 		if (M.real_name == text("[msg]"))
