@@ -114,49 +114,76 @@
 
 #define MINIMUM_ARCING_CONDUCTIVITY 0.3
 #define HEAT_LEAK_COEF 0.0001
-/obj/machinery/atmospherics/unary/furnace/arc
+/obj/structure/arc_furnace_overlay
 	name = "arc furnace"
 	desc = "A giant electric furnace."
 	icon = 'icons/obj/machines/arc_furnace.dmi'
 	icon_state = "unloaded-offline"
+	layer = ABOVE_HUMAN_LAYER
+	var/obj/machinery/atmospherics/unary/furnace/arc/our_furnace
+	bound_x = -64
+	bound_y = -32
+	bound_width = 96
+	bound_height = 96
+	pixel_x = -80
+	pixel_y = -32
+	anchored = TRUE
+	density = TRUE
+
+/obj/machinery/atmospherics/unary/furnace/arc
 	internal_volume = 3000
 	var/list/inserted_electrodes = list()
 	var/nominal_power_usage = 178 MWATT
 	idle_power_usage = 50 KWATT
 	active_power_usage = 178 MWATT
 	power_channel = EQUIP
-	pixel_x = -64
-	pixel_y = -32
-	layer = ABOVE_HUMAN_LAYER
+	var/obj/structure/arc_furnace_overlay/overlay
+	var/firelevel = 0 //firelevel that is returned on fire_react()
+	var/stability = 0 //0-100, defines how much everything sloshes around
 
-/obj/machinery/atmospherics/unary/furnace/arc/attackby(obj/item/I, mob/user)
+/obj/machinery/atmospherics/unary/furnace/arc/Initialize()
 	. = ..()
-	if(use_power == POWER_USE_ACTIVE)
-		electrocute_mob(user, get_area(src), src)
+	overlay = new(get_turf(src))
+	overlay.our_furnace = src
+
+/obj/structure/arc_furnace_overlay/on_update_icon()
+	if(length(our_furnace.inserted_electrodes))
+		icon_state = "loaded-offline"
+	else
+		icon_state = "unloaded-offline"
+
+/obj/structure/arc_furnace_overlay/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(our_furnace.use_power == POWER_USE_ACTIVE)
+		electrocute_mob(user, get_area(src), our_furnace)
 		return
 	if(IS_WRENCH(I))
-		if(!length(inserted_electrodes))
+		if(!length(our_furnace.inserted_electrodes))
 			to_chat(user, SPAN_NOTICE("\The [src] doesn't have any electrodes installed."))
 			return
-		var/obj/item/electrode = pick(inserted_electrodes)
+		var/obj/item/electrode = pick(our_furnace.inserted_electrodes)
 		user.put_in_hands(electrode)
-		inserted_electrodes -= electrode
+		our_furnace.inserted_electrodes -= electrode
 		visible_message(SPAN_NOTICE("[user] removes an electrode from \the [src]."))
+		update_icon()
 		return
 	if(istype(I, /obj/item/arc_electrode))
-		if(length(inserted_electrodes) >= 3)
+		if(length(our_furnace.inserted_electrodes) >= 3)
 			to_chat(user, SPAN_NOTICE("\The [src] already has 3 electrodes installed."))
 			return
 		if(!user.do_skilled(100, SKILL_DEVICES, src))
 			return
 		user.drop_from_inventory(I, src)
-		inserted_electrodes += I
+		our_furnace.inserted_electrodes += I
 		visible_message(SPAN_NOTICE("[user] inserts an electrode into \the [src]."))
+		update_icon()
+		return
+	our_furnace.attackby(I, user)
 
-/obj/machinery/atmospherics/unary/furnace/arc/examine(mob/user)
+/obj/structure/arc_furnace_overlay/examine(mob/user)
 	. = ..()
-	if(length(inserted_electrodes))
-		to_chat(user, SPAN_NOTICE("It has [length(inserted_electrodes)] electrodes installed."))
+	if(length(our_furnace.inserted_electrodes))
+		to_chat(user, SPAN_NOTICE("It has [length(our_furnace.inserted_electrodes)] electrodes installed."))
 	else
 		to_chat(user, SPAN_WARNING("It doesn't have any electrodes installed."))
 
@@ -170,15 +197,13 @@
 		coef_sum += 1 - cur_electrode.coke_content * 0.01
 	return coef_sum / length(inserted_electrodes)
 
-/obj/machinery/atmospherics/unary/furnace/arc/proc/get_stability()
-	return 100
-
 /obj/machinery/atmospherics/unary/furnace/arc/proc/lose_electrode_integrity(conduction_coefficient)
 	for(var/obj/item/arc_electrode/cur_electrode in inserted_electrodes)
 		cur_electrode.integrity = max(0, cur_electrode.integrity - cur_electrode.integrity_loss_per_cycle * conduction_coefficient)
-		cur_electrode.coke_content = min(100, cur_electrode.coke_content + 0.5)
+		cur_electrode.coke_content = min(100, cur_electrode.coke_content + 0.1)
 
-/obj/machinery/atmospherics/unary/furnace/arc/proc/process_stability(stability)
+/obj/machinery/atmospherics/unary/furnace/arc/proc/process_stability()
+	stability = 100
 	return
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/start_arcing()
@@ -196,16 +221,18 @@
 		return
 	. = ..()
 	var/conductivity_coefficient = get_conductivity_coefficient()
-	var/arcing_stability = get_stability()
 
 	if(!powered(EQUIP) || get_conductivity_coefficient() < MINIMUM_ARCING_CONDUCTIVITY)
 		stop_arcing()
 
+	firelevel = air_contents.fire_react()
 	var/actually_used_power = nominal_power_usage * conductivity_coefficient
 	heat_up(actually_used_power * CELLRATE)
 	change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
 	lose_electrode_integrity(conductivity_coefficient)
-	process_stability(arcing_stability)
+	process_stability()
+	spark_at(get_turf(pick(oview(2, src))), 3, 0)
+	set_light(rand(2, 4), pick(1, 5), pick("#00b7ff", "#30c4ff", "#53ceff", "#5bd0ff", "#a6e6ff"))
 
 /obj/machinery/atmospherics/unary/furnace/arc/heat_up(joules)
 	. = ..()
