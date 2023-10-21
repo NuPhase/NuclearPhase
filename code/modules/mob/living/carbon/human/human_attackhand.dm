@@ -239,10 +239,11 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 	animate(src, pixel_y = starting_pixel_y + 4, time = 2)
 	animate(src, pixel_y = starting_pixel_y, time = 2)
 
+	var/obj/item/organ/external/chest = GET_EXTERNAL_ORGAN(src, BP_CHEST)
 	if(prob(5 + 5 * (SKILL_EXPERT - pumping_skill)))
-		var/obj/item/organ/external/chest = GET_EXTERNAL_ORGAN(src, BP_CHEST)
 		if(chest)
 			chest.fracture()
+	chest.add_pain(7)
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 
 	add_mcv = rand(150, 200) * pumping_skill
