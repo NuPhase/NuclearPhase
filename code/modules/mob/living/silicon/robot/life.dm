@@ -217,24 +217,6 @@
 			else
 				src.bodytemp.icon_state = "temp-2"
 
-	var/datum/gas_mixture/environment = loc?.return_air()
-	if(fire && environment)
-		switch(environment.temperature)
-			if(-INFINITY to T100C)
-				src.fire.icon_state = "fire0"
-			else
-				src.fire.icon_state = "fire1"
-	if(oxygen && environment)
-		var/decl/species/species = all_species[global.using_map.default_species]
-		if(!species.breath_type || environment.gas[species.breath_type] >= species.breath_pressure)
-			src.oxygen.icon_state = "oxy0"
-			for(var/gas in species.poison_types)
-				if(environment.gas[gas])
-					src.oxygen.icon_state = "oxy1"
-					break
-		else
-			src.oxygen.icon_state = "oxy1"
-
 	if(stat != DEAD)
 		if(blinded)
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)

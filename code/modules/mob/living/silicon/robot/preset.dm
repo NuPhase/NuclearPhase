@@ -26,7 +26,8 @@
 	modtype = "Engineering"
 	module = /obj/item/robot_module/engineering
 	cell = /obj/item/cell/lithium_array
-	speed = -3
+	speed = -1
 	weight = 370 //FUCKING HEAVY
 	icon = 'icons/mob/robots/robot_engineer_drake.dmi'
 	icon_selected = TRUE
+	default_pixel_x = -16
