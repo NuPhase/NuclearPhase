@@ -7,4 +7,6 @@
 #include "ghost_skyscraper.dmm"
 #include "limb.dmm"
 
+#include "../../mods/content/mouse_highlights/_mouse_highlight.dme"
+
 #define USING_MAP_DATUM /datum/map/avalon

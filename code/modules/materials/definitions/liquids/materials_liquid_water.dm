@@ -16,7 +16,7 @@
 	gas_symbol_html = "H<sub>2</sub>O"
 	gas_symbol = "H2O"
 	scannable = 1
-	metabolism = REM * 10
+	metabolism = REM * 5
 	taste_description = "clean water"
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."

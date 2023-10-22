@@ -20,3 +20,14 @@
 	spawn_sound = 'sound/mecha/nominalsyndi.ogg'
 	cell = /obj/item/cell/super
 	pitch_toggle = 0
+
+/mob/living/silicon/robot/engineering
+	lawupdate = 0
+	modtype = "Engineering"
+	module = /obj/item/robot_module/engineering
+	cell = /obj/item/cell/lithium_array
+	speed = -1
+	weight = 370 //FUCKING HEAVY
+	icon = 'icons/mob/robots/robot_engineer_drake.dmi'
+	icon_selected = TRUE
+	default_pixel_x = -16

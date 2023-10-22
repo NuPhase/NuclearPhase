@@ -30,16 +30,6 @@
 	to_chat(who, SPAN_BOLD("Obey the following laws."))
 	to_chat(who, SPAN_ITALIC("All laws have equal priority. Laws may override other laws if written specifically to do so. If laws conflict, break the least."))
 	laws.show_laws(who)
-	// TODO: Update to new antagonist system.
-	if (mind && (mind.assigned_special_role == /decl/special_role/traitor && mind.original == src) && connected_ai)
-		to_chat(who, "<b>Remember, [connected_ai.name] is technically your master, but your objective comes first.</b>")
-	else if (connected_ai)
-		to_chat(who, "<b>Remember, [connected_ai.name] is your master, other AIs can be ignored.</b>")
-	else if (emagged)
-		to_chat(who, "<b>Remember, you are not required to listen to the AI.</b>")
-	else
-		to_chat(who, "<b>Remember, you are not bound to any AI, you are not required to listen to them.</b>")
-
 
 /mob/living/silicon/robot/lawsync()
 	laws_sanity_check()

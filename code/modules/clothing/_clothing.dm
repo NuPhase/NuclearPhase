@@ -22,6 +22,7 @@
 	var/volume_multiplier = 1
 	var/markings_icon	// simple colored overlay that would be applied to the icon
 	var/markings_color	// for things like colored parts of labcoats or shoes
+	var/lifting_strength_boost = 0
 
 /obj/item/clothing/Initialize()
 	. = ..()
@@ -233,6 +234,7 @@
 /obj/item/clothing/equipped(var/mob/user)
 	if(needs_vision_update())
 		update_vision()
+	user.calculate_strength_coefficients()
 	return ..()
 
 /obj/item/clothing/proc/refit_for_bodytype(var/target_bodytype)

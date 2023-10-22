@@ -27,7 +27,7 @@
 	boiling_point = 4.21
 	liquid_density = 113.9
 	taste_description = "nothing"
-	metabolism = 0.05
+	metabolism = REM * 5
 	value = 0.3
 	color = "#fff9e8"
 
@@ -54,7 +54,7 @@
 	boiling_point = -78 CELSIUS
 	liquid_density = 1190
 	color = "#272727"
-	metabolism = 5
+	metabolism = REM * 5
 
 /decl/material/gas/carbon_dioxide/affect_blood(mob/living/M, removed, datum/reagents/holder)
 	if(!istype(M))
@@ -124,7 +124,7 @@
 	boiling_point = -192 CELSIUS
 	liquid_density = 790
 	taste_description = "stale air"
-	metabolism = 0.05 // As with helium.
+	metabolism = REM * 5 // As with helium.
 	color = "#111111"
 
 /decl/material/gas/carbon_monoxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
@@ -200,7 +200,7 @@
 	gas_tile_overlay = "sleeping_agent"
 	gas_overlay_limit = 1
 	gas_flags = XGM_GAS_OXIDIZER //N2O is a powerful oxidizer
-	metabolism = 2 // So that low dosages have a chance to build up in the body.
+	metabolism = REM * 2 // So that low dosages have a chance to build up in the body.
 	value = 0.25
 
 /decl/material/gas/nitrous_oxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
@@ -321,12 +321,12 @@
 	latent_heat = 23400
 	boiling_point = -33 CELSIUS
 	liquid_density = 682.6
-	metabolism = 0.05 // So that low dosages have a chance to build up in the body.
+	metabolism = REM * 5 // So that low dosages have a chance to build up in the body.
 	taste_description = "mordant"
 	taste_mult = 2
 	lore_text = "A caustic substance commonly used in fertilizer or household cleaners."
 	color = "#404030"
-	metabolism = REM * 0.5
+	metabolism = REM * 5
 	overdose = 500
 
 /decl/material/gas/xenon

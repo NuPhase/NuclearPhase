@@ -94,3 +94,45 @@
 /obj/item/storage/backpack/lifesupportpack/military_prototype
 	target_pressure = 75
 	battery_type = /obj/item/cell/quantum/quadruplecapacity
+
+
+
+/obj/item/clothing/head/helmet/modern/space/adaptive //EVEN MORE CHEESE
+	name = "AEGIS-7.2V helmet"
+	icon = 'icons/clothing/spacesuit/void/military/helmet.dmi'
+	armor = list(
+		melee = ARMOR_MELEE_VERY_HIGH,
+		bullet = ARMOR_BALLISTIC_AP,
+		laser = ARMOR_LASER_HEAVY,
+		energy = ARMOR_ENERGY_SHIELDED,
+		bomb = ARMOR_BOMB_RESISTANT,
+		bio = ARMOR_BIO_SHIELDED,
+		rad = ARMOR_RAD_SHIELDED
+	)
+	min_cold_protection_temperature = COLD_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = ENGINEERING_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	weight = 70
+
+/obj/item/clothing/suit/modern/space/adaptive
+	name = "AEGIS-7.2V suit"
+	icon = 'icons/clothing/spacesuit/void/military/suit.dmi'
+	armor = list(
+		melee = ARMOR_MELEE_VERY_HIGH,
+		bullet = ARMOR_BALLISTIC_AP,
+		laser = ARMOR_LASER_HEAVY,
+		energy = ARMOR_ENERGY_SHIELDED,
+		bomb = ARMOR_BOMB_RESISTANT,
+		bio = ARMOR_BIO_SHIELDED,
+		rad = ARMOR_RAD_SHIELDED
+	)
+	min_cold_protection_temperature = COLD_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = ENGINEERING_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	weight = 370
+	windbreak_coefficient = 0.4
+	minimum_leak_damage = 90 //dynamic protection
+	lifting_strength_boost = 50
+	lifesupport_type = /obj/item/storage/backpack/lifesupportpack/aegis
+
+/obj/item/storage/backpack/lifesupportpack/aegis
+	target_pressure = 75
+	battery_type = /obj/item/cell/quantum/quadruplecapacity

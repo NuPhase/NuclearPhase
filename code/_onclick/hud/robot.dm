@@ -135,19 +135,6 @@ var/global/obj/screen/robot_inventory
 	R.bodytemp.SetName("body temperature")
 	R.bodytemp.screen_loc = ui_temp
 
-
-	R.oxygen = new /obj/screen()
-	R.oxygen.icon = 'icons/hud/screen1_robot.dmi'
-	R.oxygen.icon_state = "oxy0"
-	R.oxygen.SetName("oxygen")
-	R.oxygen.screen_loc = ui_oxygen
-
-	R.fire = new /obj/screen()
-	R.fire.icon = 'icons/hud/screen1_robot.dmi'
-	R.fire.icon_state = "fire0"
-	R.fire.SetName("fire")
-	R.fire.screen_loc = ui_fire
-
 	R.up_hint = new /obj/screen()
 	R.up_hint.icon = 'icons/hud/screen1_robot.dmi'
 	R.up_hint.icon_state = "uphint0"
@@ -166,7 +153,7 @@ var/global/obj/screen/robot_inventory
 	R.radio_use_icon = new /obj/screen/gun/radio(null)
 
 	R.client.screen = list()
-	R.client.screen += list(R.throw_icon, R.zone_sel, R.oxygen, R.fire, R.up_hint, R.hands, R.healths, R.cells, robot_inventory, R.gun_setting_icon)
+	R.client.screen += list(R.throw_icon, R.zone_sel, R.up_hint, R.hands, R.healths, R.cells, robot_inventory, R.gun_setting_icon)
 	R.client.screen += adding + other
 
 /datum/hud/proc/toggle_show_robot_modules()

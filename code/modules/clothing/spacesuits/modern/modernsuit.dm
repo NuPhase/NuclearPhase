@@ -150,7 +150,6 @@
 	var/leakiness = 0 //0-100. Determines how much air leaks out in percent per second
 	var/leak_message_on_cooldown = FALSE
 	var/minimum_leak_damage = 10
-	var/lifting_strength_boost = 5
 	var/windbreak_coefficient = 1 //basically suit aerodynamics and shockwave creation. A coefficient of 0.3 would mean that the suit receives x1.7 of convective heat and x0.3 of the wind
 	weight = 100
 
@@ -229,7 +228,6 @@
 		wearer.drop_from_inventory(backp, get_turf(wearer))
 	wearer.equip_to_slot(lifesupportsystem, slot_back_str)
 	wearer.pickup_capacity += lifting_strength_boost
-	wearer.drag_capacity += lifting_strength_boost * 1.5
 	wearer.update_transform()
 	START_PROCESSING(SSobj, src)
 
@@ -240,7 +238,6 @@
 	wearer = null
 	user.update_transform()
 	user.pickup_capacity -= lifting_strength_boost
-	user.drag_capacity -= lifting_strength_boost * 2
 	user.drop_from_inventory(lifesupportsystem, src)
 
 /obj/item/clothing/suit/modern/space/Process()

@@ -46,8 +46,8 @@
 	shoes =      /obj/item/clothing/shoes/jackboots/space_suit
 	l_ear =      /obj/item/clothing/ears/kitty
 	back =       null
-	head =       /obj/item/clothing/head/helmet/modern/space/military_prototype
-	suit = 	     /obj/item/clothing/suit/modern/space/military_prototype
+	head =       /obj/item/clothing/head/helmet/modern/space/adaptive
+	suit = 	     /obj/item/clothing/suit/modern/space/adaptive
 	belt =       /obj/item/storage/belt/utility/full/quantum
 	backpack_contents = list(/obj/item/plasma_sword=1)
 	id_slot =  slot_wear_id_str

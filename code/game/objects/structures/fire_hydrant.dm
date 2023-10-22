@@ -20,8 +20,9 @@
 	if(!hydrant.stored_tank)
 		return 0
 	var/datum/gas_mixture/takeup = hydrant.stored_tank.air_contents.remove(6)
-	if(takeup.total_moles == 6)
-		var/datum/gas_mixture/environment = loc.return_air()
+	if(takeup.total_moles >= 4)
+		var/turf/T = get_turf(loc)
+		var/datum/gas_mixture/environment = T.return_air()
 		environment.merge(takeup)
 		return 1
 	return 0

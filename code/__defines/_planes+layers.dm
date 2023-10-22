@@ -175,6 +175,8 @@ What is the naming convention for planes or layers?
 #define EMISSIVE_PLANE           3 // For over-lighting overlays (ex. cigarette glows)
   #define EMISSIVE_LAYER           1
 
+#define POINT_PLANE 5
+
 #define ABOVE_LIGHTING_PLANE     4 // laser beams, etc. that shouldn't be affected by darkness
   #define ABOVE_LIGHTING_LAYER     1
   #define BEAM_PROJECTILE_LAYER    2

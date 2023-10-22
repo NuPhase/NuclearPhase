@@ -6,7 +6,7 @@
 	density = 1
 	active_power_usage = 200
 	var/mob/living/carbon/human/connected = null
-	var/set_mcv = 1200
+	var/set_mcv = 3200
 
 /obj/machinery/blood_circulator/Initialize()
 	. = ..()

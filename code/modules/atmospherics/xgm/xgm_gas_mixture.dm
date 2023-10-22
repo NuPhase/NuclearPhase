@@ -33,6 +33,12 @@
 	group_multiplier = _group_multiplier
 	if(initial_gas)
 		gas = initial_gas
+
+	// This section prevents roundstart flashing of liquids into gas
+	for(var/g in gas)
+		var/decl/material/mat = GET_DECL(g)
+		phases[g] = mat.phase_at_stp()
+
 	update_values()
 
 /datum/gas_mixture/proc/get_gas(gasid)

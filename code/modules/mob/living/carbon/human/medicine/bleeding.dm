@@ -62,4 +62,4 @@
 	var/cur_modifier = 1
 	cur_modifier *= mcv / NORMAL_MCV
 	cur_modifier *= 1 + GET_CHEMICAL_EFFECT(src, CE_BLOOD_THINNING) * 0.5
-	return 1
+	return max(0.01, cur_modifier)

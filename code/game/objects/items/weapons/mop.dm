@@ -21,7 +21,7 @@
 
 /obj/item/mop/Initialize()
 	. = ..()
-	create_reagents(30)
+	create_reagents(3000)
 
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
@@ -58,12 +58,12 @@
 
 		var/trans_amt = FLUID_QDEL_POINT
 		if(user.a_intent == I_HURT)
-			trans_amt = round(FLUID_PUDDLE * 0.25)
+			trans_amt = 1250
 			user.visible_message(SPAN_DANGER("\The [user] begins to aggressively mop \the [T]!"))
 		else
 			user.visible_message(SPAN_NOTICE("\The [user] begins to clean \the [T]."))
 		if(do_after(user, mopspeed, T) && reagents?.total_volume)
-			reagents.splash(T, trans_amt)
+			reagents.splash(A, trans_amt)
 			to_chat(user, SPAN_NOTICE("You have finished mopping!"))
 
 /obj/effect/attackby(obj/item/I, mob/user)

@@ -1,5 +1,5 @@
 /obj/structure/iv_drip
-	name = "\improper IV drip"
+	name = "\improper IV drip pump"
 	icon = 'icons/obj/structures/iv_drip.dmi'
 	anchored = FALSE
 	density = FALSE
@@ -7,8 +7,8 @@
 	var/mob/living/carbon/human/attached
 	var/mode = 1 // 1 is injecting, 0 is taking blood.
 	var/obj/item/chems/beaker
-	var/list/transfer_amounts = list(0.05, 0.1, 0.2, 5)
-	var/transfer_amount = 1
+	var/transfer_mode = "ml/sec"
+	var/transfer_amount = 0.01
 	weight = 7
 
 /obj/structure/iv_drip/Initialize()
@@ -24,12 +24,33 @@
 		to_chat(usr, SPAN_WARNING("You're in no condition to do that!"))
 		return
 
-	var/N = input("Amount per transfer from this:","[src]") as null|anything in transfer_amounts
+	transfer_mode = tgui_input_list(usr, "Select a volume measuring mode.", "IV Pump Configuration", list("ml/sec", "ml/min", "ml/hour"), transfer_mode)
+	var/nmax_value = 100
+	switch(transfer_mode)
+		if("ml/sec")
+			nmax_value = 8
+		if("ml/min")
+			nmax_value = 480
+		if("ml/hour")
+			nmax_value = 7200
+	var/new_transfer_amount = tgui_input_number(usr, "Select transfer volume in [transfer_mode].", "IV Pump Configuration", transfer_amount, min_value = 0.01, max_value = nmax_value, round_value = FALSE)
+
+	//we need to convert the given value into ml/tick
+	switch(transfer_mode)
+		if("ml/sec")
+			new_transfer_amount *= 2 //process time is 2 seconds, so we double it
+		if("ml/min")
+			new_transfer_amount = new_transfer_amount / 30
+		if("ml/hour")
+			new_transfer_amount = new_transfer_amount / 1800
+
 	if(!CanPhysicallyInteract(usr)) // because input takes time and the situation can change
 		to_chat(usr, SPAN_WARNING("You're in no condition to do that!"))
 		return
-	if(N)
-		transfer_amount = N
+
+	if(new_transfer_amount)
+		transfer_amount = new_transfer_amount
+		playsound(src, "keyboard", 35, extrarange = -4)
 
 /obj/structure/iv_drip/on_update_icon()
 	..()

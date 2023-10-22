@@ -6,26 +6,23 @@
 	color = "#76319e"
 	scannable = 1
 	overdose = 10
-	metabolism = 0.01
 	value = 1.5
 	uid = "chem_adrenaline"
 
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	H.add_chemical_effect(CE_BREATHLOSS, volume * 1.5)
-	heart.bpm_modifiers[name] = volume * 25
-	heart.cardiac_output_modifiers[name] = 1 + volume * 0.01
-	if(volume < 2)
-		H.add_chemical_effect(CE_PRESSURE, volume * -4)
+	H.add_chemical_effect(CE_BREATHLOSS, removed * 1100)
+	heart.bpm_modifiers[name] = removed * 2000
+	heart.cardiac_output_modifiers[name] = 1 + removed * 1.2
+	if(removed < 0.03)
+		H.add_chemical_effect(CE_PRESSURE, removed * -400)
 	else
-		H.add_chemical_effect(CE_PRESSURE, volume * 4)
-	if(volume < overdose)
-		heart.stability_modifiers[name] = volume * 3
-	else
-		heart.stability_modifiers[name] = volume * -3
-	if(volume > 5)
 		ADJ_STATUS(H, STAT_JITTER, 5)
+		H.add_chemical_effect(CE_PRESSURE, removed * 400)
+	if(removed < overdose)
+		heart.stability_modifiers[name] = removed * 3000
+	else
+		heart.stability_modifiers[name] = removed * -3000
 
 /decl/material/liquid/noradrenaline
 	name = "noradrenaline"
@@ -35,18 +32,16 @@
 	color = "#1e3c7e"
 	scannable = 1
 	overdose = 12
-	metabolism = 0.01
 	value = 1.5
 	uid = "chem_noradrenaline"
 
 /decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	H.add_chemical_effect(CE_PRESSURE, volume * 5)
-	heart.cardiac_output_modifiers[name] = 1 + volume * -0.01
-	heart.bpm_modifiers[name] = volume * 2
-	if(volume > 2)
-		ADJ_STATUS(H, STAT_ASLEEP, volume * -10)
+	H.add_chemical_effect(CE_PRESSURE, removed * 1100)
+	heart.cardiac_output_modifiers[name] = 1 + removed * 0.1
+	heart.bpm_modifiers[name] = removed * 200
+	if(removed > 0.02)
+		ADJ_STATUS(H, STAT_ASLEEP, removed * -10)
 		H.retrieve_from_limb()
 
 /decl/material/liquid/atropine
@@ -63,8 +58,7 @@
 
 /decl/material/liquid/atropine/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = volume * 60
+	heart.bpm_modifiers[name] = removed * 4000
 
 /decl/material/liquid/dopamine
 	name = "dopamine"
@@ -79,8 +73,7 @@
 /decl/material/liquid/dopamine/affect_blood(var/mob/living/carbon/human/H, removed, datum/reagents/holder)
 	. = ..()
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	heart.cardiac_output_modifiers[name] = 1 + volume * 0.05
+	heart.cardiac_output_modifiers[name] = 1 + removed * 3
 
 /decl/material/liquid/nitroglycerin
 	name = "nitroglycerin"
@@ -95,9 +88,8 @@
 
 /decl/material/liquid/nitroglycerin/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	heart.cardiac_output_modifiers[name] = 1 - volume * 0.03
-	heart.oxygen_deprivation = max(0, heart.oxygen_deprivation - volume * 0.2)
+	heart.cardiac_output_modifiers[name] = 1 - removed * 3
+	heart.oxygen_deprivation = max(0, heart.oxygen_deprivation - removed * 2)
 
 /decl/material/solid/betapace
 	name = "betapace"
@@ -112,9 +104,8 @@
 
 /decl/material/solid/betapace/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = volume * -2
-	heart.stability_modifiers[name] = volume * 7
+	heart.bpm_modifiers[name] = removed * -20
+	heart.stability_modifiers[name] = removed * 700
 
 /decl/material/liquid/dronedarone
 	name = "dronedarone"
@@ -129,8 +120,7 @@
 
 /decl/material/liquid/dronedarone/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	heart.stability_modifiers[name] = volume * 10
+	heart.stability_modifiers[name] = removed * 1000
 
 /decl/material/liquid/heparin
 	name = "heparin"
@@ -143,21 +133,19 @@
 	uid = "chem_heparin"
 
 /decl/material/liquid/heparin/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
-	var/volume = REAGENT_VOLUME(holder, type)
-	H.add_chemical_effect(CE_BLOOD_THINNING, volume)
+	H.add_chemical_effect(CE_BLOOD_THINNING, removed)
 
 /decl/material/liquid/adenosine
 	name = "adenosine"
 	color = "#d6d6d6"
 	scannable = 1
 	overdose = 10
-	metabolism = 2
+	metabolism = 0.9
 	value = 1.5
 	uid = "adenosine"
 
 /decl/material/liquid/adenosine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
-	var/volume = REAGENT_VOLUME(holder, type)
-	if(volume > 2)
+	if(removed > 2)
 		var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 		heart.bpm_modifiers[name] = -140
 		for(var/decl/arrythmia/A in heart.arrythmias)

@@ -38,7 +38,7 @@
 	lore_text = "A sickly yellow liquid sourced from tobacco leaves. Stimulates and relaxes the mind and body."
 	taste_description = "peppery bitterness"
 	color = "#efebaa"
-	metabolism = REM * 0.002
+	metabolism = REM * 0.2
 	overdose = 60
 	scannable = 1
 	value = 2

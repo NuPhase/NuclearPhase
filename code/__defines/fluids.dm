@@ -1,5 +1,5 @@
-#define FLUID_QDEL_POINT 1           // Depth a fluid begins self-deleting
-#define FLUID_MINIMUM_TRANSFER 50    // Minimum amount that a flowing fluid will transfer from one turf to another.
+#define FLUID_QDEL_POINT 10           // Depth a fluid begins self-deleting
+#define FLUID_MINIMUM_TRANSFER 150    // Minimum amount that a flowing fluid will transfer from one turf to another.
 #define FLUID_PUDDLE 2500              // Minimum total depth that a fluid needs before it will start spreading.
 #define FLUID_SHALLOW 50000            // Depth shallow icon is used
 #define FLUID_OVER_MOB_HEAD 300000      // Depth icon layers over mobs.

@@ -70,7 +70,7 @@
 	var/has_power = 1
 	var/spawn_module = null
 
-	var/spawn_sound = 'sound/voice/liveagain.ogg'
+	var/spawn_sound = null
 	var/pitch_toggle = 1
 	var/list/req_access = list(access_robotics)
 	var/ident = 0
@@ -89,7 +89,7 @@
 	var/speed = 0 //Cause sec borgs gotta go fast //No they dont!
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
-	var/braintype = "Cyborg"
+	var/braintype = "Robot"
 	var/intenselight = 0	// Whether cyborg's integrated light was upgraded
 	var/vtec = FALSE
 

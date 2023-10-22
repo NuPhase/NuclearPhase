@@ -208,6 +208,27 @@
 	name = "Medbay"
 	icon_state = "medbay3"
 
+/area/avalon/shelter/medbay/surgery
+	name = "Surgery"
+	icon_state = "surgery"
+
+/area/avalon/shelter/medbay/break_room
+	name = "Medbay Break Room"
+	icon_state = "medbay4"
+
+/area/avalon/shelter/medbay/storage
+	name = "Medbay Storage"
+	icon_state = "medbay"
+
+/area/avalon/shelter/medbay/morgue
+	name = "Morgue"
+	icon_state = "medbay4"
+
+/area/avalon/shelter/medbay/intensive_care
+	name = "Intensive Care"
+	icon_state = "medbay2"
+
+
 /area/avalon/shelter/factory
 	name = "Factory"
 

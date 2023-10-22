@@ -20,7 +20,7 @@
 
 /obj/item/soap/Initialize()
 	. = ..()
-	create_reagents(30)
+	create_reagents(300)
 	wet()
 	var/shape = pick(valid_shapes)
 	var/scent = pick(valid_scents)
@@ -32,7 +32,7 @@
 	update_icon()
 
 /obj/item/soap/proc/wet()
-	reagents.add_reagent(/decl/material/liquid/cleaner, 15)
+	reagents.add_reagent(/decl/material/liquid/cleaner, 150)
 
 /obj/item/soap/Crossed(var/mob/living/AM)
 	if(istype(AM))
@@ -72,7 +72,7 @@
 			reagents.trans_to(target, reagents.total_volume / 8)
 		target.clean_blood() //Clean bloodied atoms. Blood decals themselves need to be handled above.
 		cleaned = TRUE
-	else 
+	else
 		to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 		target.clean_blood() //Clean bloodied atoms. Blood decals themselves need to be handled above.
 		cleaned = TRUE
