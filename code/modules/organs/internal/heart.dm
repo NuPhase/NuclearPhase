@@ -115,6 +115,8 @@
 		pulse = max(Interpolate(pulse, target_pulse, HEMODYNAMICS_INTERPOLATE_FACTOR), 0)
 		external_pump = 0
 
+	if(!pulse)
+		return
 	var/cardiac_output_pulse_modifier = min(1, 60 / pulse + 0.6)
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier
 

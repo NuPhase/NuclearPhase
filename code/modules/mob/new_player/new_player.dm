@@ -392,7 +392,6 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 /mob/new_player/proc/close_spawn_windows()
 	close_browser(src, "window=latechoices") //closes late choices window
 	close_browser(src, "window=preferences_window") //closes preferences window
-	panel.close()
 
 /mob/new_player/proc/check_species_allowed(var/decl/species/S, var/show_alert=1)
 	if(!S.is_available_for_join() && !has_admin_rights())

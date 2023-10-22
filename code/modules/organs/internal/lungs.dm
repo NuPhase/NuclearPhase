@@ -18,6 +18,8 @@
 	. = ..()
 
 /datum/composite_sound/breath_sound/get_sound()
+	if(!our_lungs.owner)
+		return
 	var/obj/item/clothing/mask/mask = our_lungs.owner.get_equipped_item(slot_wear_mask_str)
 	return our_lungs.get_breathing_sound(mask, our_lungs.last_breath_efficiency)
 

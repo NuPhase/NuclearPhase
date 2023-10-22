@@ -16,6 +16,8 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 	. = ..()
 	for(var/mob/living/carbon/human/H in human_mob_list)
 		var/area/A = H.lastarea
+		if(!A)
+			continue
 		if(!A.object_ambience)
 			A.object_ambience = TRUE
 			for(var/obj/O in A.ambient_objects)
