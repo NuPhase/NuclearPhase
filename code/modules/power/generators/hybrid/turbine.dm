@@ -64,8 +64,9 @@
 	reactor_components[uid] = src
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(npres, ntemp)
-	if(ntemp > 750)
+	if(ntemp > 450)
 		return 3758119 //Hooked to steam table API
+	return 40000
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_density(npres, ntemp)
 	return 2.16 //Hooked to steam table API

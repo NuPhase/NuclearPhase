@@ -7,6 +7,7 @@
 	if(!ui)
 		ui = new(user, src, "TurbineMonitor", "Turbine Monitoring")
 		ui.open()
+		ui.set_autoupdate(1)
 
 /obj/machinery/reactor_monitor/turbine/tgui_data(mob/user)
 	var/list/data = list(
@@ -38,6 +39,7 @@
 	if(!ui)
 		ui = new(user, src, "TurbineMonitor", "Turbine Monitoring")
 		ui.open()
+		ui.set_autoupdate(1)
 
 /obj/machinery/reactor_display/group/turbine/tgui_data(mob/user)
 	var/list/data = list(

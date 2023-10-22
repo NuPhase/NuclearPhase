@@ -51,10 +51,11 @@
 #define TURF_HEATING_POWER 43 //watts per turf
 /area/avalon
 	name = "'Serenity' survival shelter"
-	base_turf = /turf/simulated/floor
+	base_turf = /turf/simulated/floor/plating
 	ambience = list('sound/ambience/ominous1.ogg', 'sound/ambience/ominous2.ogg', 'sound/ambience/ominous3.ogg', 'sound/ambience/rumble1.ogg', 'sound/ambience/rumble2.ogg', 'sound/ambience/rumble3.ogg', 'sound/ambience/rumble4.ogg')
 	area_flags = AREA_FLAG_RAD_SHIELDED
 	var/heating_consumption = 0
+	is_outside = OUTSIDE_NO
 
 /area/avalon/Initialize()
 	. = ..()
@@ -250,7 +251,7 @@
 	var/list/cold_ambience = list('sound/music/calmnight.ogg', 'sound/music/facilityoutside.ogg', 'sound/music/outside1.ogg', 'sound/music/outside2.ogg', 'sound/music/outside3.ogg')
 	forced_ambience = list('sound/music/calmnight.ogg', 'sound/music/facilityoutside.ogg', 'sound/music/outside1.ogg', 'sound/music/outside2.ogg', 'sound/music/outside3.ogg')
 	has_gravity = TRUE
-	is_outside = TRUE
+	is_outside = OUTSIDE_YES
 	var/phase = 0
 	base_turf = /turf/exterior/surface
 	should_condense = FALSE
