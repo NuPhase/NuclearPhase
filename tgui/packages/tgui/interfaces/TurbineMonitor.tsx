@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { LabeledList, ProgressBar, Section, Tabs } from "../components";
+import { LabeledList, ProgressBar, NoticeBox, Section, Tabs } from "../components";
 import { Window } from "../layouts";
 
 type InputData = {
@@ -56,7 +56,7 @@ export const TurbineMonitor = (props: any, context: any) => {
             <LabeledList.Item label="Steam Velocity">
               {data.turb1.steam_velocity}m/s
             </LabeledList.Item>
-            {!data.turb1.breaks_engaged ? null : <LabeledList.Item color = "#FF0000">EMERGENCY BRAKES ENGAGED</LabeledList.Item>}
+            {!data.turb1.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
         </Section>
         <Section title="Turbine 2">
@@ -94,7 +94,7 @@ export const TurbineMonitor = (props: any, context: any) => {
             <LabeledList.Item label="Steam Velocity">
               {data.turb2.steam_velocity}m/s
             </LabeledList.Item>
-            {!data.turb2.breaks_engaged ? null : <LabeledList.Item color = "#FF0000">EMERGENCY BRAKES ENGAGED</LabeledList.Item>}
+            {!data.turb2.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
         </Section>
       </Window.Content>
