@@ -286,7 +286,7 @@
 	lore_text = "Saline (also known as saline solution) is a mixture of sodium chloride and water. It has a number of uses in medicine including cleaning wounds, removal and storage of contact lenses, and help with dry eyes."
 	overdose = 5600
 	color = "#bebebe"
-	metabolism = 10
+	metabolism = REM * 9
 	uid = "chem_saline"
 	blood_power = 1
 
@@ -343,7 +343,7 @@
 	lore_text = "Tastes naturally minty, and imparts a very mild numbing sensation."
 	taste_description = "mint"
 	color = "#80af9c"
-	metabolism = REM * 0.002
+	metabolism = REM * 0.2
 	overdose = REAGENTS_OVERDOSE * 0.25
 	scannable = 1
 	hidden_from_codex = TRUE

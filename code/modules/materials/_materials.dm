@@ -226,7 +226,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	// Copied reagent values. Todo: integrate.
 	var/taste_description = "old rotten bandaids"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
-	var/metabolism = REM // This would be 0.2 normally
+	var/metabolism = REM // Ratio of reagents removed per tick. 0.01 means 1% of the reagent volume will be metabolized
 	var/ingest_met = 0
 	var/touch_met = 0
 	var/overdose = 0
@@ -591,7 +591,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 			affect_overdose(M, holder)
 
 	//determine the metabolism rate
-	var/removed = metabolism
+	var/removed = (REAGENT_VOLUME(holder, type) * metabolism) + 0.001
 	if(ingest_met && (metabolism_class == CHEM_INGEST))
 		removed = ingest_met
 	if(touch_met && (metabolism_class == CHEM_TOUCH))
@@ -605,14 +605,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 
 	var/dose = LAZYACCESS(M.chem_doses, type) + effective
 	LAZYSET(M.chem_doses, type, dose)
-	if(effective >= (metabolism * 0.1) || effective >= 0.1) // If there's too little chemical, don't affect the mob, just remove it
-		switch(metabolism_class)
-			if(CHEM_INJECT)
-				affect_blood(M, effective, holder)
-			if(CHEM_INGEST)
-				affect_ingest(M, effective, holder)
-			if(CHEM_TOUCH)
-				affect_touch(M, effective, holder)
+	switch(metabolism_class)
+		if(CHEM_INJECT)
+			affect_blood(M, effective, holder)
+		if(CHEM_INGEST)
+			affect_ingest(M, effective, holder)
+		if(CHEM_TOUCH)
+			affect_touch(M, effective, holder)
 	holder.remove_reagent(type, removed)
 
 /decl/material/proc/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)

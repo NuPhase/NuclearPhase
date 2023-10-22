@@ -7,7 +7,7 @@
 #define SYNTHETIC_HUNGER_FACTOR 0.05 // We're more energy efficient than humans
 #define SYNTHETIC_THIRST_FACTOR 0.2 // Gotta cool down fast
 
-#define REM 0.1 // Means 'Reagent Effect Multiplier'. This is how many units of reagent are consumed per tick
+#define REM 0.01 // Means 'Reagent Effect Multiplier'. This is a ratio of how much reagents are consumed per tick
 
 #define CHEM_TOUCH 1
 #define CHEM_INGEST 2

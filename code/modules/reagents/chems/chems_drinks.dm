@@ -5,6 +5,7 @@
 	hidden_from_codex = TRUE // They don't need to generate a codex entry, their recipes will do that.
 	value = 0.4
 	abstract_type = /decl/material/liquid/drink
+	metabolism = REM * 5
 
 	var/nutrition = 0 // Per unit
 	var/hydration = 6 // Per unit
