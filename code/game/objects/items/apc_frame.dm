@@ -34,3 +34,4 @@
 	desc = "Used for repairing APCs."
 	icon = 'icons/obj/apc_repair.dmi'
 	icon_state = "apc_cover"
+	material = /decl/material/solid/metal/steel

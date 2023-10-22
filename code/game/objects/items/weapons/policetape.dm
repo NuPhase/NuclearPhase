@@ -324,6 +324,9 @@ var/global/list/image/hazard_overlays //Cached hazard floor overlays for the bar
 		for(var/obj/structure/tape_barricade/B in get_tape_line())
 			B.lift(10 SECONDS) //~10 seconds
 		return TRUE
+	else if(user.a_intent == I_HURT)
+		dismantle()
+		return
 	. = ..()
 
 /obj/structure/tape_barricade/dismantle()

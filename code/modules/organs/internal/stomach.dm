@@ -93,7 +93,7 @@
 	if(is_usable())
 		ingested.metabolize()
 
-#define STOMACH_VOLUME 65
+#define STOMACH_VOLUME 4000
 
 /obj/item/organ/internal/stomach/Process()
 	..()
