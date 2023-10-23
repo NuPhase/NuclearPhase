@@ -234,3 +234,7 @@
 /obj/item/chems/glass/beaker/vial/adenosine
 	name = "adenosine ampoule"
 	initial_reagents = list(/decl/material/liquid/adenosine = 15)
+
+/obj/item/chems/glass/beaker/vial/dopamine
+	name = "dopamine ampoule"
+	initial_reagents = list(/decl/material/liquid/dopamine = 15)

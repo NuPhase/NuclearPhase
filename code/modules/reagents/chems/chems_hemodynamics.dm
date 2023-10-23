@@ -38,7 +38,7 @@
 /decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_PRESSURE, removed * 1100)
-	heart.cardiac_output_modifiers[name] = 1 + removed * 0.1
+	heart.cardiac_output_modifiers[name] = 1 + removed * 0.3
 	heart.bpm_modifiers[name] = removed * 200
 	if(removed > 0.02)
 		ADJ_STATUS(H, STAT_ASLEEP, removed * -10)

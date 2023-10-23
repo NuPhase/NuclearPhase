@@ -49,17 +49,18 @@
 		return
 
 	visible_message("<span class='danger'>\The [src] weeps: STAND BACK FROM THE PATIENT!</span>")
-	sleep(20)
+	sleep(10)
 	pads.attached.visible_message("<span class='warning'>\The [pads.attached]'s body convulses violently!</span>")
 	playsound(get_turf(src), "bodyfall", 50, 1)
 	playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 50, 1, -1)
-	pads.attached.apply_damage(rand(5, 20), BURN, BP_CHEST)
+	pads.attached.apply_damage(rand(5, 10), BURN, BP_CHEST)
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
+	heart.pulse = rand(35, 60)
+	heart.instability = max(heart.instability -= rand(100, 140), 0)
 	for(var/decl/arrythmia/A in heart.arrythmias)
-		if(A.can_be_shocked && prob(85))
+		if(A.can_be_shocked && prob(95))
 			heart.arrythmias.Remove(A)
-	heart.external_pump += rand(80, 120)
 	shock_charged = FALSE
 	log_and_message_admins("used \a [src] to electrocute [key_name(pads.attached)].")
 
@@ -91,7 +92,8 @@
 	pads.attached.apply_damage(rand(1, 5), BURN, BP_CHEST)
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
-	heart.bpm_modifiers["defibrillation"] = rand(20, 40)
+	heart.pulse = rand(55, 65)
+	heart.instability = max(heart.instability -= rand(40, 70), 0)
 	shock_charged = FALSE
 	for(var/decl/arrythmia/A in heart.arrythmias)
 		if(!A.can_be_shocked && prob(90))

@@ -240,12 +240,12 @@
 	icon_state_broken = "binradio_broken"
 
 /obj/item/robot_parts/robot_component/actuator
-	name = "actuator"
+	name = "actuation unit"
 	icon_state = "motor"
 	icon_state_broken = "motor_broken"
 
 /obj/item/robot_parts/robot_component/armour
-	name = "armour plating"
+	name = "shock-absorbing plating"
 	icon_state = "armor"
 	icon_state_broken = "armor_broken"
 
@@ -254,7 +254,7 @@
 	material = /decl/material/solid/metal/steel
 
 /obj/item/robot_parts/robot_component/camera
-	name = "camera"
+	name = "sensor suite"
 	icon_state = "camera"
 	icon_state_broken = "camera_broken"
 
@@ -264,6 +264,6 @@
 	icon_state_broken = "analyser_broken"
 
 /obj/item/robot_parts/robot_component/radio
-	name = "radio"
+	name = "comms suite"
 	icon_state = "radio"
 	icon_state_broken = "radio_broken"
