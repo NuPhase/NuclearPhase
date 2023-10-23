@@ -48,6 +48,37 @@
 	//	return
 	//C.slip("the floor", 6)
 
+/obj/effect/fluid/proc/process_phase_change()
+	var/turf/T = get_turf(loc)
+	var/datum/gas_mixture/environment = T.return_air()
+	var/evaporated = FALSE
+	var/freezed = FALSE
+	if(!environment || !environment.temperature)
+		return
+
+	for(var/mat_t in reagents.reagent_volumes)
+		var/decl/material/mat = GET_DECL(mat_t)
+		var/cur_phase = mat.phase_at_temperature(environment.temperature, environment.return_pressure())
+		if(cur_phase == MAT_PHASE_GAS)
+			var/units_to_remove = reagents.reagent_volumes[mat_t]
+			reagents.remove_reagent(mat_t, units_to_remove, defer_update = 1)
+			environment.adjust_gas(mat_t, units_to_remove / mat.molar_volume, update = 0)
+			evaporated = TRUE
+		else if(cur_phase == MAT_PHASE_SOLID)
+			var/units_to_remove = reagents.reagent_volumes[mat_t]
+			reagents.remove_reagent(mat_t, units_to_remove, defer_update = 1)
+			mat.create_object(T, units_to_remove / mat.molar_volume, /obj/item/stack/material/lump)
+			freezed = TRUE
+		else
+			return
+
+	if(evaporated)
+		playsound(T, 'sound/chemistry/bufferadd.ogg', 50)
+	if(freezed)
+		playsound(T, pick(list('sound/chemistry/freeze/freeze1.mp3', 'sound/chemistry/freeze/freeze2.mp3', 'sound/chemistry/freeze/freeze3.mp3', 'sound/chemistry/freeze/freeze4.mp3')), 50)
+
+	environment.update_values()
+
 /obj/effect/fluid/airlock_crush()
 	qdel(src)
 

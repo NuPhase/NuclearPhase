@@ -7,7 +7,7 @@
 
 	var/list/phases = list()
 	//Temperature in Kelvin of this gas mix.
-	var/temperature = 0
+	var/temperature = T20C
 
 	//Sum of all the gas moles in this mix.  Updated by update_values()
 	var/total_moles = 0
@@ -26,7 +26,7 @@
 	var/atom/holder = null //for chemistry
 	var/net_flow_mass = 0 //kg/s, updated from networks
 
-/datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = 0, _group_multiplier = 1, initial_gas = null)
+/datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = T20C, _group_multiplier = 1, initial_gas = null)
 	volume = _volume
 	available_volume = volume
 	temperature = _temperature
@@ -36,8 +36,11 @@
 
 	// This section prevents roundstart flashing of liquids into gas
 	for(var/g in gas)
+		total_moles += gas[g]
 		var/decl/material/mat = GET_DECL(g)
 		phases[g] = mat.phase_at_stp()
+		if(phases[g] == MAT_PHASE_GAS)
+			gas_moles += gas[g]
 
 	update_values()
 
@@ -259,10 +262,7 @@
 
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
-/datum/gas_mixture/proc/return_pressure() //Legacy support
-	return return_gas_pressure()
-
-/datum/gas_mixture/proc/return_gas_pressure()
+/datum/gas_mixture/proc/return_pressure()
 	if(volume)
 		if(!gas_moles)
 			return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume

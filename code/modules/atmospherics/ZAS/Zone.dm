@@ -163,7 +163,7 @@ Class Procs:
 			CHECK_TICK
 
 	// Handle condensation from the air.
-	if(!condensing)
+	if(!condensing && air.total_moles)
 		handle_condensation()
 
 	// Update atom temperature.
@@ -175,6 +175,8 @@ Class Procs:
 				if(checking.simulated)
 					QUEUE_TEMPERATURE_ATOMS(checking)
 			CHECK_TICK
+
+//#define CONDENSATION_DEBUG
 
 /zone/proc/handle_condensation()
 	/*set waitfor = FALSE
@@ -207,7 +209,7 @@ Class Procs:
 		if(air.phases[g] == MAT_PHASE_LIQUID)
 			var/decl/material/mat = GET_DECL(g)
 			var/turf/flooding = pick(contents)
-			var/condense_amt = min(air.gas[g], rand(10,1000))
+			var/condense_amt = min(air.gas[g], rand(10, 1000))
 			if(condense_amt < 1)
 				return
 			air.adjust_gas(g, -condense_amt)
@@ -217,6 +219,12 @@ Class Procs:
 			F.reagents.add_reagent(g, condense_reagent_amt)
 			air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
 			F.temperature = air.temperature
+			F.process_phase_change()
+			#ifdef CONDENSATION_DEBUG
+			to_world("******CONDENSATION DEBUG******")
+			to_world("Condensed [mat.name]")
+			to_world("Conditions: Temperature: ([air.temperature]) Pressure: ([air.return_pressure()]) Moles: ([air.total_moles])")
+			#endif
 		CHECK_TICK
 	condensing = FALSE
 
