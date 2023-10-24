@@ -10,7 +10,7 @@
 SUBSYSTEM_DEF(xenoarch)
 	name = "Xenoarch"
 	init_order = SS_INIT_XENOARCH
-	flags = SS_NO_FIRE
+	flags = SS_NO_INIT
 	var/list/artifact_spawning_turfs = list()
 	var/list/digsite_spawning_turfs = list()
 	var/list/digsite_types_weighted = list()
@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(xenoarch)
 					archeo_turf.update_icon()
 
 			//have a chance for an artifact to spawn here, but not in animal or plant digsites
-			
+
 			var/decl/xenoarch_digsite/D = GET_DECL(digsite)
 			if(isnull(M.artifact_find) && D.can_have_anomalies)
 				artifact_spawning_turfs.Add(archeo_turf)
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(xenoarch)
 
 /datum/controller/subsystem/xenoarch/proc/get_nearest_artifact(var/turf/source)
 	var/artifact_distance = INFINITY
-	var/artifact_id 
+	var/artifact_id
 	for(var/turf/exterior/wall/T in artifact_spawning_turfs)
 		if(T.artifact_find)
 			var/cur_dist = get_dist(source, T) * 2
