@@ -237,6 +237,9 @@
 				if("emote_see")
 					visible_emote("[pick(emote_see)].")
 
+/mob/living/simple_animal/can_swap_with(mob/living/tmob)
+	return 0
+
 /mob/living/simple_animal/proc/handle_atmos(var/atmos_suitable = 1)
 	//Atmos
 
