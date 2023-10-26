@@ -206,6 +206,7 @@
 	name = "electrode pads"
 	desc = "Special single-use sticky pads used for delivering shocks in an emergency."
 	icon = 'icons/clothing/suit/defib_paddles.dmi'
+	body_parts_covered = null
 	var/taken_out = FALSE
 	var/mob/living/carbon/human/attached = null
 

@@ -24,8 +24,8 @@
 	name = "Make incision"
 	description = "This procedure cuts a small wound that allows access to deeper tissue."
 	allowed_tools = list(TOOL_SCALPEL = 100)
-	min_duration = 90
-	max_duration = 110
+	min_duration = 25
+	max_duration = 70
 	var/fail_string = "slicing open"
 	var/access_string = "an incision"
 
@@ -42,7 +42,8 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts [access_string] on [target]'s [affected.name] with \the [tool].", \
 	"You start [access_string] on [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.name]!",40, affecting = affected)
+	target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.name]!",60, affecting = affected)
+	playsound(target.loc, 'sound/surgery/scalpel1.ogg', 100, 1, 1)
 	..()
 
 /decl/surgery_step/generic/cut_open/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -50,7 +51,7 @@
 	user.visible_message("<span class='notice'>[user] has made [access_string] on [target]'s [affected.name] with \the [tool].</span>", \
 	"<span class='notice'>You have made [access_string] on [target]'s [affected.name] with \the [tool].</span>",)
 	affected.createwound(CUT, CEILING(affected.min_broken_damage/2), TRUE)
-	playsound(target.loc, 'sound/weapons/bladeslice.ogg', 15, 1)
+	playsound(target.loc, 'sound/surgery/scalpel2.ogg', 100, 1, 1)
 	if(tool.damtype == BURN)
 		affected.clamp_organ()
 
@@ -77,8 +78,8 @@
 		TOOL_HEMOSTAT = 100,
 		TOOL_CABLECOIL = 75
 	)
-	min_duration = 40
-	max_duration = 60
+	min_duration = 20
+	max_duration = 50
 	surgery_candidate_flags = SURGERY_NO_ROBOTIC | SURGERY_NO_CRYSTAL | SURGERY_NEEDS_INCISION
 	strict_access_requirement = FALSE
 
@@ -100,7 +101,7 @@
 	"<span class='notice'>You clamp bleeders in [target]'s [affected.name] with \the [tool].</span>")
 	affected.clamp_organ()
 	spread_germs_to_organ(affected, user)
-	playsound(target.loc, 'sound/items/Welder.ogg', 15, 1)
+	playsound(target.loc, 'sound/surgery/hemostat1.ogg', 100, 1, 1)
 
 /decl/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
@@ -118,7 +119,7 @@
 		TOOL_RETRACTOR = 100,
 		TOOL_CROWBAR = 75
 	)
-	min_duration = 30
+	min_duration = 20
 	max_duration = 40
 	surgery_candidate_flags = SURGERY_NO_ROBOTIC | SURGERY_NO_CRYSTAL | SURGERY_NEEDS_INCISION
 	strict_access_requirement = TRUE
@@ -138,6 +139,7 @@
 	user.visible_message("[user] starts to pry open the incision on [target]'s [affected.name] with \the [tool].",	\
 	"You start to pry open the incision on [target]'s [affected.name] with \the [tool].")
 	target.custom_pain("It feels like the skin on your [affected.name] is on fire!",40,affecting = affected)
+	playsound(target.loc, 'sound/surgery/retractor1.ogg', 100, 1, 1)
 	..()
 
 /decl/surgery_step/generic/retract_skin/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -145,6 +147,7 @@
 	user.visible_message("<span class='notice'>[user] keeps the incision open on [target]'s [affected.name] with \the [tool].</span>",	\
 	"<span class='notice'>You keep the incision open on [target]'s [affected.name] with \the [tool].</span>")
 	affected.open_incision()
+	playsound(target.loc, 'sound/surgery/retractor2.ogg', 100, 1, 1)
 
 /decl/surgery_step/generic/retract_skin/fail_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
@@ -162,8 +165,8 @@
 		TOOL_CAUTERY = 100,
 		TOOL_WELDER = 25
 	)
-	min_duration = 70
-	max_duration = 100
+	min_duration = 30
+	max_duration = 70
 	surgery_candidate_flags = SURGERY_NO_ROBOTIC | SURGERY_NO_CRYSTAL
 	var/cauterize_term = "cauterize"
 	var/post_cauterize_term = "cauterized"
@@ -186,6 +189,7 @@
 	user.visible_message("[user] is beginning to [cauterize_term][W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool]." , \
 	"You are beginning to [cauterize_term][W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool].")
 	target.custom_pain("Your [affected.name] is being burned!",40,affecting = affected)
+	playsound(target.loc, 'sound/surgery/cautery1.ogg', 100, 1, 1)
 	..()
 
 /decl/surgery_step/generic/cauterize/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -193,6 +197,7 @@
 	var/datum/wound/W = affected.get_incision()
 	user.visible_message("<span class='notice'>[user] [post_cauterize_term][W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool].</span>", \
 	"<span class='notice'>You [cauterize_term][W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool].</span>")
+	playsound(target.loc, 'sound/surgery/cautery2.ogg', 100, 1, 1)
 	if(istype(W))
 		W.close()
 		affected.update_wounds()
@@ -251,6 +256,7 @@
 			SPAN_DANGER("\The [user] starts hacking at \the [target]'s [affected.name] with \the [tool]!") , \
 			SPAN_DANGER("<FONT size=3>You start hacking at \the [target]'s [affected.amputation_point] with \the [tool]!</FONT>"))
 	target.custom_pain("Your [affected.amputation_point] is being ripped apart!",100,affecting = affected)
+	playsound(target.loc, 'sound/surgery/saw.ogg', 100, 1, 1)
 	..()
 
 /decl/surgery_step/generic/amputate/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

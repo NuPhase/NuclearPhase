@@ -111,7 +111,7 @@
 	var/obj/item/organ/internal/heart/H = attached.get_organ(BP_HEART, /obj/item/organ/internal/heart)
 
 	if(!H)
-		icon_state = "mon-Asystole"
+		overlays += image(icon, "mon-r")
 		return
 
 	if(H.pulse)
@@ -159,6 +159,9 @@
 	if(metronome)
 		var/obj/item/organ/internal/heart/H = attached?.get_organ(BP_HEART, /obj/item/organ/internal/heart)
 		var/datum/timedevent/timer = gettimer(pulse_loop.timerid, SStimer)
+		if(!H)
+			timer.wait = 10000 //kinda bad lol
+			return
 		if(H.pulse)
 			var/cur_pulse = min(180, H.pulse)
 			timer.wait = 60 / cur_pulse * 10
@@ -179,17 +182,28 @@
 	var/obj/item/organ/internal/heart/H = attached.get_organ(BP_HEART, /obj/item/organ/internal/heart)
 	var/obj/item/organ/internal/lungs/L = attached.get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
 
-	return list(
+	var/list/data = list(
 		"name" = "[attached]",
 		"status" = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE",
-		"pulse" = round(H.pulse, 1),
 		"pressure" = "[round(attached.syspressure)]/[round(attached.dyspressure)]",
 		"saturation" = round(attached.get_blood_saturation() * 100),
-		"rhythm" = H.get_rhythm_fluffy(),
-		"breath_rate" = round(L.breath_rate, 1),
 		"tpvr" = round(attached.tpvr),
 		"mcv" = round(attached.mcv)/1000
 	)
+
+	if(H)
+		data["pulse"] = round(H.pulse, 1)
+		data["rhythm"] = H.get_rhythm_fluffy()
+	else
+		data["pulse"] = 0
+		data["rhythm"] = "NO HEART"
+
+	if(L)
+		data["breath_rate"] = round(L.breath_rate, 1)
+	else
+		data["breath_rate"] = 0
+
+	return data
 
 /obj/machinery/cardiac_monitor/attack_hand(mob/user)
 	. = ..()

@@ -32,10 +32,13 @@
 
 /mob/living/carbon/human/proc/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	if(BP_IS_PROSTHETIC(heart))
-		bpm = 60
+	if(heart)
+		if(BP_IS_PROSTHETIC(heart))
+			bpm = 60
+		else
+			bpm = heart.pulse + heart.external_pump
 	else
-		bpm = heart.pulse + heart.external_pump
+		bpm = 0
 
 	if(bpm < 10)
 		dyspressure = 0
@@ -61,7 +64,7 @@
 
 	meanpressure = (syspressure + dyspressure) / 2
 
-	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr + add_mcv) * coeff, 0, 12000)
+	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff + add_mcv, 0, 12000)
 	add_mcv = 0
 	//mcv = meanpressure * 132.32 * 60 / tpvr
 

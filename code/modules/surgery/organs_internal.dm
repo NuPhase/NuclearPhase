@@ -388,7 +388,7 @@
 		TOOL_SUTURES = 100,
 		TOOL_CABLECOIL = 75
 	)
-	min_duration = 100
+	min_duration = 60
 	max_duration = 120
 	surgery_candidate_flags = SURGERY_NO_CRYSTAL | SURGERY_NO_ROBOTIC
 

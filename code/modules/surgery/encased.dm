@@ -32,12 +32,14 @@
 	user.visible_message("[user] begins to cut through [target]'s [affected.encased] with \the [tool].", \
 	"You begin to cut through [target]'s [affected.encased] with \the [tool].")
 	target.custom_pain("Something hurts horribly in your [affected.name]!",60, affecting = affected)
+	playsound(target.loc, 'sound/surgery/saw.ogg', 100, 1, 1)
 	..()
 
 /decl/surgery_step/open_encased/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("<span class='notice'>[user] has cut [target]'s [affected.encased] open with \the [tool].</span>",		\
 	"<span class='notice'>You have cut [target]'s [affected.encased] open with \the [tool].</span>")
+	playsound(target.loc, 'sound/surgery/organ1.ogg', 100, 1, 1)
 	affected.fracture()
 
 /decl/surgery_step/open_encased/fail_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

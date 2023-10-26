@@ -84,6 +84,7 @@
 	var/obj/item/organ/external/E = tool
 	user.visible_message("[user] starts attaching [E.name] to [target]'s [E.amputation_point].", \
 	"You start attaching [E.name] to [target]'s [E.amputation_point].")
+	playsound(target.loc, 'sound/surgery/organ1.ogg', 25, 1)
 
 /decl/surgery_step/limb/attach/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
 	if(!user.unEquip(tool))
@@ -92,6 +93,7 @@
 	var/obj/item/organ/external/E = tool
 	user.visible_message("<span class='notice'>[user] has attached [target]'s [E.name] to the [E.amputation_point].</span>",	\
 	"<span class='notice'>You have attached [target]'s [E.name] to the [E.amputation_point].</span>")
+	playsound(target.loc, 'sound/surgery/organ2.ogg', 25, 1)
 
 	//Add the organ but in a detached state
 	target.add_organ(E, P, FALSE, TRUE, TRUE)
@@ -143,6 +145,7 @@
 	var/obj/item/organ/external/P = GET_EXTERNAL_ORGAN(target, E.parent_organ)
 	user.visible_message("<span class='notice'>[user] has connected tendons and muscles in [target]'s [E.amputation_point] with [tool].</span>",	\
 	"<span class='notice'>You have connected tendons and muscles in [target]'s [E.amputation_point] with [tool].</span>")
+	playsound(target.loc, 'sound/surgery/hemostat1.ogg', 25, 1)
 
 	//This time we call add_organ but we want it to install in a non detached state
 	target.add_organ(E, P, FALSE, TRUE, FALSE)

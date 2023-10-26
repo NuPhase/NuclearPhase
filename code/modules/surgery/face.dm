@@ -8,8 +8,8 @@
 		TOOL_HEMOSTAT = 100,
 		TOOL_CABLECOIL = 75
 	)
-	min_duration = 100
-	max_duration = 120
+	min_duration = 40
+	max_duration = 90
 	surgery_candidate_flags = SURGERY_NO_ROBOTIC | SURGERY_NO_CRYSTAL | SURGERY_NEEDS_RETRACTED
 	strict_access_requirement = TRUE
 
@@ -22,13 +22,15 @@
 /decl/surgery_step/fix_face/begin_step(mob/user, mob/living/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts repairing damage to \the [target]'s face with \the [tool].", \
 	"You start repairing damage to \the [target]'s face with \the [tool].")
+	playsound(target.loc, 'sound/surgery/hemostat1.ogg', 100, 1, 1)
 	..()
 
 /decl/surgery_step/fix_face/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] repairs \the [target]'s face with \the [tool].</span>",	\
 	"<span class='notice'>You repair \the [target]'s face with \the [tool].</span>")
+	playsound(target.loc, 'sound/surgery/hemostat1.ogg', 100, 1, 1)
 	var/obj/item/organ/external/h = GET_EXTERNAL_ORGAN(target, target_zone)
-	if(h) 
+	if(h)
 		h.status &= ~ORGAN_DISFIGURED
 
 /decl/surgery_step/fix_face/fail_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
