@@ -12,16 +12,39 @@
 	sfalloff = 1
 	distance = -1
 
-/obj/machinery/cardiac_monitor/verb/toggle_alarms()
-	set name = "Toggle Alarms"
+/obj/machinery/cardiac_monitor/verb/configure()
+	set name = "Configure"
 	set category = "Object"
 	set src in view(1)
 
-	alarms_active = !alarms_active
-	if(alarms_active)
-		visible_message(SPAN_NOTICE("[usr] switches on the alarms on \the [src]."))
+	var/list/to_turn_on = tgui_input_checkboxes(usr, "Select which alarm should be turned on.", "Alarm Config", list("Metronome", "High/Low BP", "High/Low HR", "Low SAT", "AutoECG"), 0)
+	if(!to_turn_on)
+		return
+	if("Metronome" in to_turn_on)
+		metronome = TRUE
+		if(!pulse_loop)
+			pulse_loop = new(list(src), FALSE)
+			spawn(15)
+				pulse_loop.sound_loop()
 	else
-		visible_message(SPAN_WARNING("[usr] switches off the alarms on \the [src]."))
+		metronome = FALSE
+		QDEL_NULL(pulse_loop)
+	if("High/Low BP" in to_turn_on)
+		bp_alarm = TRUE
+	else
+		bp_alarm = FALSE
+	if("High/Low HR" in to_turn_on)
+		hr_alarm = TRUE
+	else
+		hr_alarm = FALSE
+	if("Low SAT" in to_turn_on)
+		ox_alarm = TRUE
+	else
+		ox_alarm = FALSE
+	if("AutoECG" in to_turn_on)
+		ecg_alarm = TRUE
+	else
+		ecg_alarm = FALSE
 
 /obj/machinery/cardiac_monitor
 	name = "\improper cardiac monitor"
@@ -34,7 +57,12 @@
 	var/mob/living/carbon/human/attached
 	var/datum/composite_sound/pulse_monitor/pulse_loop = null
 	var/datum/composite_sound/alarm_monitor/alarm_loop = null
-	var/alarms_active = TRUE
+
+	var/metronome = TRUE
+	var/bp_alarm = TRUE
+	var/hr_alarm = TRUE
+	var/ox_alarm = TRUE
+	var/ecg_alarm = FALSE
 
 /obj/machinery/cardiac_monitor/MouseDrop(mob/living/carbon/human/over_object, src_location, over_location)
 	. = ..()
@@ -56,9 +84,10 @@
 		attached = over_object
 		START_PROCESSING(SSobj, src)
 		playsound(src, 'sound/machines/heart_monitor/on.wav', 50, 0)
-		pulse_loop = new(list(src), FALSE)
-		spawn(15)
-			pulse_loop.sound_loop()
+		if(metronome)
+			pulse_loop = new(list(src), FALSE)
+			spawn(15)
+				pulse_loop.sound_loop()
 
 	update_icon()
 
@@ -88,21 +117,28 @@
 	if(H.pulse)
 		icon_state = "mon-Sinus rhythm"
 	else
-		should_alarm = TRUE
 		icon_state = "mon-Asystole"
+
+	if(length(H.arrythmias))
+		if(ecg_alarm)
+			should_alarm = TRUE
 
 	if(attached.meanpressure < BLOOD_PRESSURE_L2BAD || attached.meanpressure > BLOOD_PRESSURE_H2BAD)
 		overlays += image(icon, "mon-y")
-		should_alarm = TRUE
+		if(bp_alarm)
+			should_alarm = TRUE
+
 	if(H.pulse > 120)
 		overlays += image(icon, "mon-r")
-	if(attached.get_blood_perfusion() < 0.7)
+
+	if(attached.get_blood_saturation() < 0.75)
 		overlays += image(icon, "mon-c")
-		should_alarm = TRUE
+		if(ox_alarm)
+			should_alarm = TRUE
 	else
 		overlays += image(icon, "mon-ox")
 
-	if(should_alarm && alarms_active)
+	if(should_alarm)
 		if(!alarm_loop)
 			alarm_loop = new(list(src), TRUE)
 	else
@@ -120,13 +156,14 @@
 		visible_message(SPAN_WARNING("\The [src] announces: \"ECG electrodes disconnected!\""))
 		return PROCESS_KILL
 	update_icon()
-	var/obj/item/organ/internal/heart/H = attached?.get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	var/datum/timedevent/timer = gettimer(pulse_loop.timerid, SStimer)
-	if(H.pulse)
-		var/cur_pulse = min(180, H.pulse)
-		timer.wait = 60 / cur_pulse * 10
-	else
-		timer.wait = 10000 //kinda bad
+	if(metronome)
+		var/obj/item/organ/internal/heart/H = attached?.get_organ(BP_HEART, /obj/item/organ/internal/heart)
+		var/datum/timedevent/timer = gettimer(pulse_loop.timerid, SStimer)
+		if(H.pulse)
+			var/cur_pulse = min(180, H.pulse)
+			timer.wait = 60 / cur_pulse * 10
+		else
+			timer.wait = 10000 //kinda bad
 
 /obj/machinery/cardiac_monitor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
