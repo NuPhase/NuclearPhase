@@ -147,7 +147,7 @@
 	TLV[/decl/material/gas/oxygen] =			list(16, 19, 135, 140) // Partial pressure, kpa
 	TLV[/decl/material/gas/carbon_dioxide] = list(-1, -1, 5, 10) // Partial pressure, kpa
 	TLV["other"] =			list(-1, -1, 0.2, 0.5) // Partial pressure, kpa
-	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
+	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.60,ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*1.50,ONE_ATMOSPHERE*2.70) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 	var/decl/environment_data/env_info = GET_DECL(environment_type)

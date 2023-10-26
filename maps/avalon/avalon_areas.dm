@@ -229,6 +229,9 @@
 	name = "Intensive Care"
 	icon_state = "medbay2"
 
+/area/avalon/shelter/medbay/chemistry
+	name = "Chemistry"
+	icon_state = "medbay"
 
 /area/avalon/shelter/factory
 	name = "Factory"

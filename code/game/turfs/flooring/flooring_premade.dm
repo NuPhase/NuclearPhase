@@ -24,12 +24,24 @@
 /turf/simulated/floor/concrete/surface
 	exterior_turf = TRUE
 
+/turf/simulated/floor/concrete/surface/return_air()
+	var/datum/gas_mixture/gas
+	gas = new
+	gas.copy_from(using_map.exterior_atmosphere)
+	return gas
+
 /turf/simulated/floor/concrete/road
 	name = "road"
 	color = COLOR_GRAY40
 
 /turf/simulated/floor/concrete/road/surface
 	exterior_turf = TRUE
+
+/turf/simulated/floor/concrete/road/surface/return_air()
+	var/datum/gas_mixture/gas
+	gas = new
+	gas.copy_from(using_map.exterior_atmosphere)
+	return gas
 
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
