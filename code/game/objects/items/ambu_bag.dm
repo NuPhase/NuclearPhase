@@ -22,5 +22,5 @@
 	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(M, BP_LUNGS)
 	var/turf/T = get_turf(user)
 	var/datum/gas_mixture/environment = T.return_air()
-	L.handle_breath(environment, 1)
+	L.handle_breath(environment, 1, 1)
 	do_pump(M, user)

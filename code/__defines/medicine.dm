@@ -6,6 +6,7 @@
 #define OXYGEN_BRAIN_OKAY 7
 #define OXYGEN_BRAIN_BAD 5
 #define OXYGEN_BRAIN_SURVIVE 3
+#define OXYGEN_DELTA_DIVISOR 37 //a divisor of how much oxygen is actually available to an organ.
 
 #define BPM_LOW 40
 #define BPM_NORMAL 60

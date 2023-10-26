@@ -83,6 +83,8 @@
 	if(instability > 10)
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
+			if(A in arrythmias)
+				continue
 			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(instability * 0.15))
 				add_arrythmia(A)
 				break

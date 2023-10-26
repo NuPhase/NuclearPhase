@@ -67,7 +67,7 @@
 
 /mob/living/carbon/human/proc/consume_oxygen(amount)
 	var/available_oxygen = oxygen_amount * get_blood_perfusion()
-	if(available_oxygen > amount)
+	if(available_oxygen > amount * OXYGEN_DELTA_DIVISOR)
 		oxygen_amount -= amount
 		return 1
 	return 0

@@ -171,12 +171,12 @@
 	if(amount > 10 && lung_rupture_prob)
 		rupture()
 
-/obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced)
+/obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced, var/forced_breath_rate = 0)
 
 	if(!owner)
 		return 1
 
-	if(!breath || (max_damage <= 0) || oxygen_deprivation)
+	if(!breath || (max_damage <= 0) || oxygen_deprivation && !forced)
 		breath_fail_ratio = 1
 		handle_failed_breath()
 		breath_rate = 0
@@ -262,6 +262,7 @@
 	var/failed_breath = failed_inhale || failed_exhale
 	if(!failed_breath || forced)
 		calculate_breath_rate()
+		breath_rate += forced_breath_rate
 		owner.add_oxygen(oxygen_generation * breath_rate * inhale_efficiency)
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
@@ -304,6 +305,7 @@
 	breath_rate += min(25, owner.shock_stage * 0.1)
 	var/breath_rate_delta = owner.max_oxygen_capacity - owner.oxygen_amount
 	breath_rate += breath_rate_delta * 0.14
+	breath_rate = Clamp(breath_rate, 0, 61)
 
 /obj/item/organ/internal/lungs/proc/handle_failed_breath()
 	if(oxygen_deprivation && prob(15))
