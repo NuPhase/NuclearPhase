@@ -26,13 +26,6 @@
 /obj/machinery/defibrillator/proc/announce(var/message)
 	visible_message(SPAN_NOTICE("The defibrillator states: '[message]'"))
 
-/obj/machinery/defibrillator/proc/determine_shock_power(var/mode) //1 for defib, 2 for cardiovert
-	if(mode == 1)
-		joule_setting = pads.attached.weight * 4
-	else
-		joule_setting = round(pads.attached.weight * 0.75)
-	announce("Shock power determined: [joule_setting].")
-
 /obj/machinery/defibrillator/proc/deliver_shock(mob/user)
 	if(!pads)
 		announce("Resistance threshold met, check the pads connection.")
@@ -57,7 +50,8 @@
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
 	heart.pulse = rand(35, 60)
-	heart.instability = max(heart.instability -= rand(100, 140), 0)
+	heart.cardiac_output_modifiers["defibrillation"] = 1.4
+	heart.instability = max(heart.instability -= rand(150, 240), 0)
 	for(var/decl/arrythmia/A in heart.arrythmias)
 		if(A.can_be_shocked && prob(95))
 			heart.arrythmias.Remove(A)
@@ -93,10 +87,10 @@
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
 	heart.pulse = rand(55, 65)
-	heart.instability = max(heart.instability -= rand(40, 70), 0)
+	heart.instability = max(heart.instability -= rand(70, 170), 0)
 	shock_charged = FALSE
 	for(var/decl/arrythmia/A in heart.arrythmias)
-		if(!A.can_be_shocked && prob(90))
+		if(!A.can_be_shocked && prob(95))
 			heart.arrythmias.Remove(A)
 
 /obj/machinery/defibrillator/proc/change_pacing_rate(mob/user)
@@ -150,13 +144,11 @@
 				options += "Deliver shock"
 			else
 				options += "Charge for shock"
-				options += "Determine shock power"
 		if("Cardioversion")
 			if(shock_charged)
 				options += "Cardiovert"
 			else
 				options += "Charge for shock"
-				options += "Determine cardioversion power"
 		if("Pacing")
 			options += "Change pacing rate"
 			if(!pace_sync)
@@ -171,10 +163,6 @@
 			deliver_shock(user)
 		if("Charge for shock")
 			charge(user)
-		if("Determine shock power")
-			determine_shock_power(1)
-		if("Determine cardioversion power")
-			determine_shock_power(2)
 		if("Cardiovert")
 			cardiovert()
 		if("Change pacing rate")
@@ -228,3 +216,21 @@
 /obj/item/clothing/suit/electrode_pads/dropped(mob/user)
 	..()
 	attached = null
+
+/obj/item/clothing/suit/electrode_pads/attack(mob/living/carbon/human/M, mob/living/user, var/target_zone)
+	if(istype(M) && user.a_intent == I_HELP)
+		var/obj/item/suit = M.get_equipped_item(slot_wear_suit_str)
+		if(suit)
+			to_chat(user, SPAN_WARNING("Their [suit] is in the way, remove it first!"))
+			return 1
+		user.visible_message(SPAN_NOTICE("[user] starts fitting [src] onto the [M]'s chest."))
+
+		if(!do_mob(user, M, 2 SECONDS))
+			return
+
+		if(user.unEquip(src))
+			if(!M.equip_to_slot_if_possible(src, slot_wear_suit_str, del_on_fail=0, disable_warning=1, redraw_mob=1))
+				user.put_in_active_hand(src)
+			return 1
+	else
+		return ..()

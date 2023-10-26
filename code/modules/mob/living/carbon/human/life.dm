@@ -645,6 +645,11 @@
 			if(!stat && prob(1))
 				to_chat(src, "<span class='notice'>You feel slow and sluggish...</span>")
 
+		var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(src, BP_HEART)
+		if(H && stat == CONSCIOUS)
+			if(length(H.arrythmias) || H.pulse > PULSE_2FAST)
+				to_chat_cooldown(src, SPAN_DANGER("Your heart [pick("flutters", "hurts", "pounds")]!"), "palpitations", 30 SECONDS)
+
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()

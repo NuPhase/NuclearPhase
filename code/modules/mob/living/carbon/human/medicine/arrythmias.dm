@@ -105,8 +105,7 @@
 /decl/arrythmia/asystole
 	name = "Asystole"
 	cardiac_output_mod = 0.01
-	required_instability = 80
-	can_appear = FALSE
+	required_instability = 200
 	severity = 10
 
 /decl/arrythmia/asystole/get_pulse_mod()
