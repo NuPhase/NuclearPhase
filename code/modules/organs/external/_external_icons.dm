@@ -67,9 +67,7 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/update_limb_icon_file()
 	if (BP_IS_PROSTHETIC(src))
-		if(!model)
-			icon = 'icons/mob/species/cyberlimbs/robotic.dmi'
-		else
+		if(model)
 			var/decl/prosthetics_manufacturer/R = GET_DECL(model)
 			icon = R.get_base_icon(owner)
 	else if(owner && (limb_flags & ORGAN_FLAG_SKELETAL))

@@ -97,5 +97,12 @@
 		BP_BRAIN =    /obj/item/organ/internal/brain/synthetic,
 		BP_EYES =     /obj/item/organ/internal/eyes/synthetic,
 		BP_VOICE =    /obj/item/organ/internal/voicebox/synthetic,
-		BP_REACTOR =  /obj/item/organ/internal/reactor
+		BP_POWER =  /obj/item/organ/internal/power_source/reactor
 		)
+
+/decl/species/human/synth/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	for(var/obj/item/organ/external/ext_organ in H.get_external_organs())
+		if(ext_organ.organ_tag == BP_CHEST)
+			continue
+		ext_organ.robotize(/decl/prosthetics_manufacturer/advanced_biomech, keep_organs = TRUE, skip_prosthetics = TRUE)

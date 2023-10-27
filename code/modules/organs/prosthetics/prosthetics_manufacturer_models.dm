@@ -50,12 +50,18 @@ DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/basic_biomech, biom
 /decl/prosthetics_manufacturer/advanced_biomech
 	name = "Biomechanical - Advanced"
 	desc = "An advanced prosthetic capable of extremely precise movement."
-	modifier_string = "biomech"
+	modifier_string = "" //sneaky
 	hardiness = 1.35
 	lifting_boost_coefficient = 1.3
 	movement_slowdown = -1.5
 	manual_dexterity = DEXTERITY_FULL
 	modular_prosthetic_tier = MODULAR_BODYPART_CYBERNETIC
+
+/decl/prosthetics_manufacturer/advanced_biomech/get_base_icon(mob/living/carbon/human/owner)
+	if(owner.gender == MALE)
+		return 'icons/mob/species/human/body_male.dmi'
+	else
+		return 'icons/mob/species/human/body_female.dmi'
 
 /decl/prosthetics_manufacturer/exo_biomech
 	name = "Exomechanical - Advanced"
