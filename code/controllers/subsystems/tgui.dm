@@ -167,7 +167,7 @@ SUBSYSTEM_DEF(tgui)
 /datum/controller/subsystem/tgui/proc/get_open_ui(mob/user, datum/src_object)
 	var/key = "\ref[src_object]"
 	// No UIs opened for this src_object
-	if(QDELETED(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
+	if(!LAZYLEN(src_object?.open_object_uis))
 		return null
 	for(var/datum/tgui/ui in open_uis_by_src[key])
 		// Make sure we have the right userc
@@ -184,8 +184,8 @@ SUBSYSTEM_DEF(tgui)
 	var/key = "\ref[src_object]"
 	. = list()
 	// No UIs opened for this src_object
-	if(QDELETED(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
-		return
+	if(!LAZYLEN(src_object?.open_object_uis))
+		return null
 	for(var/datum/tgui/ui in open_uis_by_src[key])
 		. += ui
 
@@ -202,7 +202,7 @@ SUBSYSTEM_DEF(tgui)
 	var/count = 0
 	var/key = "\ref[src_object]"
 	// No UIs opened for this src_object
-	if(QDELETED(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
+	if(!LAZYLEN(src_object?.open_object_uis))
 		return count
 	for(var/datum/tgui/ui in open_uis_by_src[key])
 		// Check if UI is valid.
@@ -224,7 +224,7 @@ SUBSYSTEM_DEF(tgui)
 	var/count = 0
 	var/key = "\ref[src_object]"
 	// No UIs opened for this src_object
-	if(QDELETED(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
+	if(!LAZYLEN(src_object?.open_object_uis))
 		return count
 	for(var/datum/tgui/ui in open_uis_by_src[key])
 		// Check if UI is valid.
@@ -299,9 +299,10 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/on_open(datum/tgui/ui)
 	var/key = "\ref[ui.src_object]"
-	if(QDELETED(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
+	if(!LAZYLEN(ui.src_object?.open_object_uis))
 		open_uis_by_src[key] = list()
 	ui.user.tgui_open_uis |= ui
+	LAZYOR(ui.src_object.open_object_uis, ui)
 	var/list/uis = open_uis_by_src[key]
 	uis |= ui
 	open_uis |= ui
@@ -317,13 +318,15 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/on_close(datum/tgui/ui)
 	var/key = "\ref[ui.src_object]"
-	if(QDELETED(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
+	if(!LAZYLEN(ui.src_object?.open_object_uis))
 		return FALSE
 	// Remove it from the list of processing UIs.
 	open_uis.Remove(ui)
 	// If the user exists, remove it from them too.
 	if(ui.user)
 		ui.user.tgui_open_uis.Remove(ui)
+	if(ui.src_object)
+		LAZYREMOVE(ui.src_object.open_object_uis, ui)
 	var/list/uis = open_uis_by_src[key]
 	uis.Remove(ui)
 	if(length(uis) == 0)
