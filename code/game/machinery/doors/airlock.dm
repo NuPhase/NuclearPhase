@@ -544,6 +544,11 @@ About the new airlock wires panel:
 		if(src.isElectrified())
 			if(src.shock(user, 100))
 				return TRUE
+	if(!arePowerSystemsOn() && isliving(user))
+		var/mob/living/L = user
+		if(L.drag_capacity > AIRLOCK_OPEN_FORCE && density && !welded && !operating && !locked)
+			L.visible_message(SPAN_WARNING("[L] forces the airlock open with their hands!"))
+			open(1)
 	. = ..()
 
 /obj/machinery/door/airlock/CanUseTopic(var/mob/user)

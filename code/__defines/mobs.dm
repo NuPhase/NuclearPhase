@@ -186,7 +186,7 @@
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
 #define BP_ACETONE  "acetone reactor"
-#define BP_REACTOR  "rtg"
+#define BP_POWER  "rtg"
 
 // Robo Organs.
 #define BP_POSIBRAIN         "posibrain"
@@ -347,3 +347,7 @@
 
 #define HUMAN_BODY_VOLUME 62
 #define COLLISION_SEVERITY_MULTIPLIER 0.05
+
+
+//weight defines
+#define AIRLOCK_OPEN_FORCE 70 //minimum lifting_capacity to open an airlock by hand
