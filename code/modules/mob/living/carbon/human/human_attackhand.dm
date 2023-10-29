@@ -290,7 +290,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		if(!L)
 			return
 		var/datum/gas_mixture/breath = H.get_breath_from_environment()
-		var/fail = L.handle_breath(breath, 1)
+		var/fail = L.handle_breath(breath, 1, 1)
 		if(!fail)
 			if(!L.is_bruised())
 				losebreath = 0

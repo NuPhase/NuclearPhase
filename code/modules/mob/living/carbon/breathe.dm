@@ -11,10 +11,11 @@
 
 	if(!need_breathe()) return
 
+	var/using_type
 	var/datum/gas_mixture/breath = null
 
 	//First, check if we can breathe at all
-	if(handle_drowning() || (is_asystole() && !GET_CHEMICAL_EFFECT(src, CE_STABLE) && active_breathe)) //crit aka circulatory shock
+	if(handle_drowning() || (is_asystole() && active_breathe)) //crit aka circulatory shock
 		losebreath = max(2, losebreath + 1)
 
 	if(losebreath>0) //Suffocating so do not take a breath
@@ -25,8 +26,10 @@
 		//Okay, we can breathe, now check if we can get air
 		var/volume_needed = get_breath_volume()
 		breath = get_breath_from_internal(volume_needed) //First, check for air from internals
+		using_type = "internal"
 		if(!breath)
 			breath = get_breath_from_environment(volume_needed) //No breath from internals so let's try to get air from our location
+			using_type = "external"
 		if(!breath)
 			var/static/datum/gas_mixture/vacuum //avoid having to create a new gas mixture for each breath in space
 			if(!vacuum) vacuum = new
@@ -35,6 +38,7 @@
 
 	handle_breath(breath)
 	handle_post_breath(breath)
+	return using_type
 
 /mob/living/carbon/proc/get_breath_from_internal(var/volume_needed=STD_BREATH_VOLUME) //hopefully this will allow overrides to specify a different default volume without breaking any cases where volume is passed in.
 	if(msuit)
@@ -48,7 +52,7 @@
 		if(internal)
 			if (internals)
 				internals.icon_state = "internal1"
-			return internal.remove_air_volume(volume_needed)
+			return internal.air_contents.remove_air_volume(volume_needed)
 		else
 			if (internals)
 				internals.icon_state = "internal0"

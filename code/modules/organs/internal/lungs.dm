@@ -209,11 +209,12 @@
 	var/failed_exhale = 0
 
 	var/inhaling = breath.gas[breath_type]
-	var/inhale_efficiency = min(round(((inhaling/breath.total_moles)*breath_pressure)/safe_pressure_min, 0.001), 3)
+	var/inhaling_ratio = inhaling/breath.total_moles
+	var/inhale_efficiency = min(round((inhaling_ratio*breath_pressure)/safe_pressure_min, 0.001), 3)
 	last_breath_efficiency = inhale_efficiency
 
 	// Not enough to breathe
-	if(inhale_efficiency < 0.6)
+	if(inhale_efficiency < 0.8)
 		if(prob(20) && active_breathing)
 			if(inhale_efficiency < 0.6)
 				owner.emote("gasp")

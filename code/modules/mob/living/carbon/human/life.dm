@@ -132,7 +132,7 @@
 		var/obj/item/organ/internal/lungs/L = get_organ(species_organ, /obj/item/organ/internal/lungs)
 		if(L)
 			active_breaths = L.active_breathing
-		..(active_breaths)
+		. = ..(active_breaths)
 
 // Calculate how vulnerable the human is to the current pressure.
 // Returns 0 (equals 0 %) if sealed in an undamaged suit that's rated for the pressure, 1 if unprotected (equals 100%).
@@ -283,33 +283,6 @@
 		if(istype(gear) && (gear.item_flags & ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT))
 			return
 	..()
-
-/mob/living/carbon/human/get_breath_from_internal(volume_needed=STD_BREATH_VOLUME)
-	if(msuit)
-		return msuit.internal_atmosphere.remove_air_volume(volume_needed)
-	if(internal)
-
-		var/obj/item/tank/rig_supply
-		var/obj/item/rig/rig = get_equipped_item(slot_back_str)
-		if(istype(rig) && !rig.offline && (rig.air_supply && internal == rig.air_supply))
-			rig_supply = rig.air_supply
-
-		if(!rig_supply)
-			if(!contents.Find(internal))
-				set_internals(null)
-			else
-				var/found_mask = FALSE
-				for(var/slot in global.airtight_slots)
-					var/obj/item/gear = get_equipped_item(slot)
-					if(gear && (gear.item_flags & ITEM_FLAG_AIRTIGHT))
-						found_mask = TRUE
-						break
-				if(!found_mask)
-					set_internals(null)
-
-		if(internal)
-			return internal.remove_air_volume(volume_needed)
-	return null
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
