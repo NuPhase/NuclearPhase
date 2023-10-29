@@ -94,3 +94,16 @@
 
 /obj/item/gun/projectile/pistol/military_service/loadout
 	magazine_type = /obj/item/ammo_magazine/pistol/oneround
+
+/obj/item/gun/projectile/pistol/gyro_rocket
+	name = "REF-V4"
+	desc = "Rocket Expander Firearm."
+	icon = 'icons/obj/guns/gyropistol.dmi'
+	w_class = ITEM_SIZE_NORMAL
+	weight = 1.7
+	magazine_type = null
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol)
+	magazine_type = /obj/item/ammo_magazine/pistol
+	ammo_indicator = FALSE
+	waterproof = TRUE
+	fire_delay = 3

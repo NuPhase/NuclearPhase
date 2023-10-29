@@ -75,6 +75,9 @@
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_TRACE
 	)
 
+/obj/item/clothing/under/tactical/lima_guard
+	icon = 'icons/clothing/under/lima_guard.dmi'
+
 /*
  * Detective
  */

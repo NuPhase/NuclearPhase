@@ -21,7 +21,7 @@
 	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	mixture_holder = new
 	mixture_holder.air_contents.volume = STD_BREATH_VOLUME * 15
-	mixture_holder.remove(mixture_holder.air_contents.total_moles)
+	mixture_holder.air_contents.remove(mixture_holder.air_contents.total_moles)
 	contained = new
 
 /obj/machinery/lung_ventilator/examine(mob/user)

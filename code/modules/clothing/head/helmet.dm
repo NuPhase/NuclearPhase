@@ -56,6 +56,11 @@
 	matter = list(/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_REINFORCEMENT)
 	origin_tech = "{'materials':2,'engineering':2,'combat':2}"
 
+/obj/item/clothing/head/helmet/merc/lima_guard
+	name = "heavy guard helmet"
+	desc = "A heavily reinforced helmet painted with white plates. Feels like it could take a lot of punishment."
+	icon = 'icons/clothing/head/armor/lima_guard.dmi'
+
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."

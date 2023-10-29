@@ -24,3 +24,7 @@
 		bomb = ARMOR_BOMB_PADDED
 		)
 	starting_accessories = list(/obj/item/clothing/accessory/storage/pouches)
+
+/obj/item/clothing/suit/armor/vest/heavy/lima_guard
+	name = "heavy guard vest"
+	icon = 'icons/clothing/suit/armor/lima_guard.dmi'
