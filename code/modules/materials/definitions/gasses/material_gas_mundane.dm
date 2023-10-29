@@ -200,7 +200,7 @@
 	gas_tile_overlay = "sleeping_agent"
 	gas_overlay_limit = 1
 	gas_flags = XGM_GAS_OXIDIZER //N2O is a powerful oxidizer
-	metabolism = REM * 2 // So that low dosages have a chance to build up in the body.
+	metabolism = REM * 5 // So that low dosages have a chance to build up in the body.
 	value = 0.25
 
 /decl/material/gas/nitrous_oxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
@@ -216,6 +216,9 @@
 	if(prob(20))
 		M.emote(pick("giggle", "laugh"))
 	M.add_chemical_effect(CE_PULSE, dosage * -0.05)
+	M.add_chemical_effect(CE_PRESSURE, dosage * -0.15)
+	var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(M, BP_HEART)
+	H.cardiac_output_modifiers[name] = 1 - dosage * 0.0004
 
 /decl/material/gas/nitrogen
 	name = "nitrogen"
