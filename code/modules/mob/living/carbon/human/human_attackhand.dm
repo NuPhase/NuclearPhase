@@ -240,7 +240,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 	animate(src, pixel_y = starting_pixel_y, time = 2)
 
 	var/obj/item/organ/external/chest = GET_EXTERNAL_ORGAN(src, BP_CHEST)
-	if(prob(5 + 5 * (SKILL_EXPERT - pumping_skill)))
+	if(prob(1 + 3 * (SKILL_EXPERT - pumping_skill)))
 		if(chest)
 			chest.fracture()
 	chest.add_pain(7)
