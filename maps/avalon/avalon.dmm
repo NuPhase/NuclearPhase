@@ -3006,8 +3006,9 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/maintenance)
 "cOk" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 5
+/obj/machinery/atmospherics/valve/digital{
+	uid = "F-CP 1V-IN";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
@@ -3555,12 +3556,14 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/atmos)
 "drq" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
 /obj/machinery/meter{
 	uid = "F-M OUT"
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
@@ -3941,6 +3944,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/garage)
+"dHK" = (
+/obj/machinery/atmospherics/valve/digital{
+	uid = "F-CP 2V-IN";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/machinehall)
 "dHM" = (
 /obj/structure/table/glass/pglass,
 /obj/effect/floor_decal/corner/paleblue{
@@ -4007,6 +4017,15 @@
 	dir = 8
 	},
 /turf/simulated/floor/concrete,
+/area/avalon/shelter/machinehall)
+"dMc" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "dMf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -4270,10 +4289,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/atmos)
 "eaN" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
@@ -5775,6 +5796,12 @@
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
@@ -10846,10 +10873,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "jKj" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
-	dir = 1
-	},
 /obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "jKH" = (
@@ -11574,14 +11599,11 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/intensive_care)
 "ksp" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 5
+/obj/structure/railing/mapped{
+	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/avalon/shelter/machinehall)
+/turf/simulated/open,
+/area/avalon/shelter/staircase)
 "ktr" = (
 /obj/effect/floor_decal/borderfloorblack/corner{
 	dir = 4
@@ -15144,6 +15166,13 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/habitationdeck)
+"nEc" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/machinehall)
 "nEJ" = (
 /obj/machinery/door/firedoor{
 	dir = 4
@@ -15151,11 +15180,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/brig)
 "nEV" = (
-/obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 1V-IN"
+/obj/structure/railing/mapped{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/avalon/shelter/machinehall)
+/turf/simulated/open,
+/area/avalon/shelter/staircase)
 "nFm" = (
 /obj/machinery/door/window/northleft,
 /obj/effect/floor_decal/industrial/warning{
@@ -17602,14 +17631,14 @@
 /turf/simulated/floor/plating,
 /area/avalon)
 "pOy" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 4
-	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
@@ -18176,13 +18205,13 @@
 /turf/simulated/open,
 /area/avalon/shelter/reactor)
 "qmH" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
-	dir = 1
-	},
 /obj/machinery/meter{
 	uid = "F-M IN"
 	},
 /obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "qnn" = (
@@ -19957,10 +19986,10 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/habitationdeck)
 "sdB" = (
-/obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 2V-EX"
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "sdR" = (
 /obj/structure/cable{
@@ -20693,10 +20722,13 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
 "sJV" = (
-/obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 2V-IN"
+/obj/structure/fire_hydrant_manual{
+	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "sKu" = (
 /obj/structure/table,
@@ -22823,6 +22855,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/engineering)
+"uPw" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/machinehall)
 "uQz" = (
 /obj/machinery/door/airlock/hatch{
 	initial_access = list("ACCESS_MAINT")
@@ -23621,10 +23662,14 @@
 /turf/simulated/floor/plating,
 /area/avalon/shelter/garage)
 "vzK" = (
-/obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 1V-EX"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
 "vzN" = (
 /obj/effect/floor_decal/corner/blue{
@@ -24861,6 +24906,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/upperhall)
+"wEg" = (
+/obj/machinery/atmospherics/valve/digital{
+	uid = "F-CP 2V-EX";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/machinehall)
 "wEQ" = (
 /obj/effect/floor_decal/corner/white/bordercorner{
 	dir = 8
@@ -25395,8 +25447,9 @@
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/chemistry)
 "xbB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 10
+/obj/machinery/atmospherics/valve/digital{
+	uid = "F-CP 1V-EX";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/avalon/shelter/machinehall)
@@ -25942,11 +25995,11 @@
 /turf/simulated/floor/concrete/road,
 /area/avalon/shelter/machinehall)
 "xED" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 10
-	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/avalon/shelter/machinehall)
@@ -69039,7 +69092,7 @@ dbu
 bCg
 kbb
 kbb
-kbb
+ksp
 akF
 oEq
 qaK
@@ -85418,7 +85471,7 @@ xDZ
 bCg
 akF
 oEq
-kbb
+nEV
 kbb
 kbb
 bCg
@@ -102321,7 +102374,7 @@ xDZ
 bCg
 kbb
 kbb
-kbb
+ksp
 akF
 oEq
 oEq
@@ -118700,7 +118753,7 @@ oEq
 oEq
 cMA
 oEq
-kbb
+nEV
 kbb
 kbb
 oHE
@@ -135603,7 +135656,7 @@ cCQ
 aUh
 kbb
 kbb
-kbb
+ksp
 oEq
 akF
 oEq
@@ -151982,7 +152035,7 @@ oEq
 jGM
 wcl
 oEq
-kbb
+nEV
 kbb
 kbb
 aUh
@@ -168885,7 +168938,7 @@ weI
 aUh
 kbb
 kbb
-kbb
+ksp
 oEq
 akF
 fhU
@@ -185264,7 +185317,7 @@ oEq
 dQh
 eMr
 oEq
-kbb
+nEV
 kbb
 kbb
 gxB
@@ -185394,7 +185447,7 @@ oEq
 kFN
 lOQ
 aUh
-kbb
+nEV
 kbb
 kbb
 gxB
@@ -188128,7 +188181,7 @@ odk
 jvl
 oot
 lyp
-lyp
+dMc
 wRg
 coq
 odk
@@ -188257,8 +188310,8 @@ odk
 odk
 hMu
 qmH
-sJV
-cOk
+lhX
+dHK
 lhX
 qVl
 odk
@@ -188518,9 +188571,9 @@ ybC
 gjy
 rac
 lhX
-xbB
-sdB
-ksp
+wEg
+lhX
+qVl
 odk
 tbz
 lYX
@@ -188645,11 +188698,11 @@ odk
 atq
 aQr
 bcf
-rmm
+sdB
 eaN
+vzK
 fjl
-fjl
-fjl
+vzK
 pOy
 odk
 jMV
@@ -188775,9 +188828,9 @@ wbo
 kdP
 iDU
 ybC
-bao
+sJV
 jKj
-nEV
+lhX
 cOk
 lhX
 etX
@@ -189039,7 +189092,7 @@ ylc
 qkI
 lhX
 xbB
-vzK
+lhX
 drq
 odk
 fZB
@@ -189168,8 +189221,8 @@ pTa
 rzX
 nUB
 qLP
-qLP
-qLP
+uPw
+nEc
 xED
 rmm
 xfA
@@ -202167,7 +202220,7 @@ egH
 aUh
 kbb
 kbb
-kbb
+ksp
 akF
 oEq
 cgo
@@ -218546,7 +218599,7 @@ oEq
 oEq
 dFz
 akF
-kbb
+nEV
 kbb
 kbb
 dYr
@@ -235449,7 +235502,7 @@ nIV
 aUh
 kbb
 kbb
-kbb
+ksp
 oEq
 oEq
 qaK
@@ -251958,7 +252011,7 @@ akF
 jgf
 oEq
 aUh
-kbb
+ksp
 kbb
 kbb
 aUh
