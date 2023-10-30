@@ -112,32 +112,6 @@
 	. = ..()
 	if(distance > 1 || !density)
 		return
-
-	if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
-		to_chat(user, "<span class='warning'>WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!</span>")
-	to_chat(user, "<b>Sensor readings:</b>")
-	for(var/index = 1; index <= tile_info.len; index++)
-		var/o = "&nbsp;&nbsp;"
-		switch(index)
-			if(1)
-				o += "NORTH: "
-			if(2)
-				o += "SOUTH: "
-			if(3)
-				o += "EAST: "
-			if(4)
-				o += "WEST: "
-		if(tile_info[index] == null)
-			o += "<span class='warning'>DATA UNAVAILABLE</span>"
-			to_chat(user, o)
-			continue
-		var/celsius = convert_k2c(tile_info[index][1])
-		var/pressure = tile_info[index][2]
-		o += "<span class='[(dir_alerts[index] & (FIREDOOR_ALERT_HOT|FIREDOOR_ALERT_COLD)) ? "warning" : "color:blue"]'>"
-		o += "[celsius]&deg;C</span> "
-		o += "<span style='color:blue'>"
-		o += "[pressure]kPa</span></li>"
-		to_chat(user, o)
 	if(islist(users_to_open) && users_to_open.len)
 		var/users_to_open_string = users_to_open[1]
 		if(users_to_open.len >= 2)
@@ -152,60 +126,103 @@
 		return ..()
 	return 0
 
+/obj/machinery/door/firedoor/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	var/alarmed = lockdown
+	for(var/area/A in areas_added)		//Checks if there are fire alarms in any areas associated with that firedoor
+		if(A.fire || A.air_doors_activated)
+			alarmed = 1
+	var/mob/living/user = usr
+	if(action == "Open")
+		if(operating || !density)
+			return TRUE//Already doing something.
+		if(user.incapacitated() || (get_dist(src, user) > 1  && !issilicon(user)))
+			to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to open it.")
+			return
+		if(blocked)
+			to_chat(user, "<span class='warning'>\The [src] is welded solid!</span>")
+			return
+		if(density && (stat & (BROKEN|NOPOWER))) //can still close without power
+			to_chat(user, "\The [src] is not functioning, you'll have to force it open manually.")
+			return
+		if(alarmed && density && lockdown && !allowed(user))
+			to_chat(user, "<span class='warning'>Access denied. Please wait for authorities to arrive, or for the alert to clear.</span>")
+			return
+		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\
+		"\The [src] [density ? "open" : "close"]s.",\
+		"You hear a beep, and an airlock opening.")
+		var/needs_to_close = 0
+		if(density)
+			if(alarmed)
+				// Accountability!
+				users_to_open |= user.name
+				needs_to_close = !issilicon(user)
+			spawn()
+				open()
+
+		if(needs_to_close)
+			spawn(50)
+				alarmed = 0
+				for(var/area/A in areas_added)		//Just in case a fire alarm is turned off while the firedoor is going through an autoclose cycle
+					if(A.fire || A.air_doors_activated)
+						alarmed = 1
+				if(alarmed)
+					nextstate = FIREDOOR_CLOSED
+					close()
+		return TRUE
+
 /obj/machinery/door/firedoor/physical_attack_hand(mob/user)
-	if(operating)
-		return FALSE//Already doing something.
+	if(density)
+		tgui_interact(user)
+	else
+		close()
 
-	. = TRUE
-	if(blocked)
-		to_chat(user, "<span class='warning'>\The [src] is welded solid!</span>")
-		return
+/obj/machinery/door/firedoor/proc/index_to_dir(index)
+	switch(index)
+		if(1)
+			return "NORTH"
+		if(2)
+			return "SOUTH"
+		if(3)
+			return "EAST"
+		if(4)
+			return "WEST"
 
+/obj/machinery/door/firedoor/tgui_data(mob/user)
+	var/direction = "NONE"
+	var/highest_pressure = ONE_ATMOSPHERE
+	var/highest_temperature = T20C
 	var/alarmed = lockdown
 	for(var/area/A in areas_added)		//Checks if there are fire alarms in any areas associated with that firedoor
 		if(A.fire || A.air_doors_activated)
 			alarmed = 1
 
-	var/answer = alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
-	"\The [src]", "Yes, [density ? "open" : "close"]", "No")
-	if(answer == "No")
-		return
-	if(user.incapacitated() || (get_dist(src, user) > 1  && !issilicon(user)))
-		to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to use it.")
-		return
-	if(density && (stat & (BROKEN|NOPOWER))) //can still close without power
-		to_chat(user, "\The [src] is not functioning, you'll have to force it open manually.")
-		return
+	for(var/index = 1; index <= tile_info.len; index++)
+		if(tile_info[index] == null)
+			continue
+		var/current_temp = tile_info[index][1]
+		if(current_temp > highest_temperature)
+			highest_temperature = convert_k2c(current_temp)
+			direction = index_to_dir(index)
+		var/current_pressure = tile_info[index][2]
+		if(current_pressure > highest_pressure)
+			highest_pressure = current_pressure
+			direction = index_to_dir(index)
 
-	if(alarmed && density && lockdown && !allowed(user))
-		to_chat(user, "<span class='warning'>Access denied. Please wait for authorities to arrive, or for the alert to clear.</span>")
-		return
-	else
-		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\
-		"\The [src] [density ? "open" : "close"]s.",\
-		"You hear a beep, and a door opening.")
+	var/data = list(
+		"highest_pressure" = highest_pressure,
+		"direction" = direction,
+		"temperature" = highest_temperature,
+		"opened" = (!density || operating),
+		"danger" = alarmed
+	)
+	return data
 
-	var/needs_to_close = 0
-	if(density)
-		if(alarmed)
-			// Accountability!
-			users_to_open |= user.name
-			needs_to_close = !issilicon(user)
-		spawn()
-			open()
-	else
-		spawn()
-			close()
-
-	if(needs_to_close)
-		spawn(50)
-			alarmed = 0
-			for(var/area/A in areas_added)		//Just in case a fire alarm is turned off while the firedoor is going through an autoclose cycle
-				if(A.fire || A.air_doors_activated)
-					alarmed = 1
-			if(alarmed)
-				nextstate = FIREDOOR_CLOSED
-				close()
+/obj/machinery/door/firedoor/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "EmergencyShutter", "Emergency Shutter")
+		ui.open()
 
 /obj/machinery/door/firedoor/attackby(obj/item/C, mob/user)
 	add_fingerprint(user, 0, C)
