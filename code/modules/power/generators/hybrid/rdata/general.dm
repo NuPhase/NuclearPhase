@@ -2,47 +2,45 @@
 	name = "general stats monitor"
 	program_overlay = "warnings"
 
-/obj/machinery/reactor_monitor/general/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
-	var/tload = rcontrol.generator1.last_load + rcontrol.generator2.last_load
-	tload = watts_to_text(tload)
+/obj/machinery/reactor_monitor/general/physical_attack_hand(user)
+	. = ..()
+	tgui_interact(user)
 
-	var/mload = rcontrol.turbine1.kin_total + rcontrol.turbine2.kin_total
-	mload = watts_to_text(mload)
-
-	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
-
-	var/datum/gas_mixture/core_air = rcore.return_air()
-	var/temp_readout = core_air.temperature
-	switch(temp_readout)
-		if(0 to 1 MEGAKELVIN)
-			temp_readout = "[round(temp_readout / 1000, 0.1)]KK"
-		if(1.1 MEGAKELVIN to 1 GIGAKELVIN)
-			temp_readout = "[round(temp_readout / 1000000, 0.1)]MK"
-		if(1.1 GIGAKELVIN to INFINITY)
-			temp_readout = "[round(temp_readout / 1000000000, 0.1)]GK"
-
-	data["var1"] = "GENERAL STATISTICS:"
-	data["var2"] = "Total Power Generation: [tload]"
-	data["var3"] = "Total Energy Flow: [mload]"
-	data["var4"] = "Neutron Rate: [round(rcore.neutron_rate*100-100)]%"
-	data["var5"] = "Radiation Emission: [round(rcore.last_radiation)] Roentgen/Hour"
-	data["var6"] = "Chamber Temperature: [temp_readout]"
-	data["var7"] = ""
-	data["var8"] = ""
-	data["var9"] = ""
-	data["var10"] = ""
-	data["var11"] = ""
-	data["var12"] = ""
-	data["var13"] = ""
-	data["var14"] = ""
-	data["var15"] = ""
-	data["var16"] = ""
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+/obj/machinery/reactor_monitor/general/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
-		ui.set_initial_data(data)
+		ui = new(user, src, "GeneralReactorMonitor", "Reactor Monitoring")
 		ui.open()
-		ui.set_auto_update(TRUE)
+		ui.set_autoupdate(1)
+
+/obj/machinery/reactor_monitor/general/tgui_data(mob/user)
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	var/datum/gas_mixture/core_air = rcore.return_air()
+	var/list/data = list(
+		"alarmlist" = assemble_tgui_alarm_list(),
+		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
+		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
+		"neutron_rate" = round(rcore.neutron_rate*100-100),
+		"radiation" = round(rcore.last_radiation),
+		"chamber_temperature" = core_air.temperature,
+		"containment_consumption" = round(rcore.field_power_consumption),
+		"containment_temperature" = round(rcore.shield_temperature),
+		"containment_charge" = 100 //not implemented
+	)
+	return data
+
+/obj/machinery/reactor_monitor/general/proc/assemble_tgui_alarm_list()
+	var/alarm_list = list()
+	for(var/message in rcontrol.all_messages)
+		var/mcolor = COLOR_BLUE_LIGHT
+		var/is_bold = FALSE
+		if(rcontrol.all_messages[message] == 2)
+			mcolor = COLOR_RED
+		else if(rcontrol.all_messages[message] == 3)
+			mcolor = COLOR_RED
+			is_bold = TRUE
+		alarm_list += list(list("content" = message, "alarm_color" = mcolor, "is_bold" = is_bold))
+	return alarm_list
 
 /obj/machinery/reactor_monitor/general/examine(mob/user)
 	. = ..()
@@ -65,7 +63,7 @@
 					continue
 				var/decl/material/mat = GET_DECL(mix)
 				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string]"
-			var/totalGas_add_string = ", Total weight: [round(mixture.get_mass(), 0.01)]kg"
+			var/totalGas_add_string = "Total mass: [round(mixture.get_mass(), 0.01)]kg"
 			. += "[totalGas_add_string]"
 			return
 	return "<span class='warning'>\The chamber has no gases!</span>"

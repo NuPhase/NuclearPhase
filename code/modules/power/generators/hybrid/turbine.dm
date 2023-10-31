@@ -51,11 +51,11 @@
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
 	switch(vibration)
 		if(0 to 25)
-			return "minor"
+			return "low"
 		if(26 to 50)
-			return "major"
+			return "medium"
 		if(51 to INFINITY)
-			return "critical"
+			return "high"
 
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()

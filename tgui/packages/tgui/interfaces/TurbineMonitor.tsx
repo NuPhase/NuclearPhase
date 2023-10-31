@@ -19,7 +19,7 @@ type TurbineData = {
 export const TurbineMonitor = (props: any, context: any) => {
   const { act, data } = useBackend<InputData>(context);
   return (
-    <Window width={450} height={450}>
+    <Window width={450} height={450} theme = "ntos">
       <Window.Content fitted>
         <Section title="Turbine 1">
           <LabeledList>

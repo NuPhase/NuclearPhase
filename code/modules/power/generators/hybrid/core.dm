@@ -23,7 +23,7 @@
 	var/shutdown_failure = FALSE
 	var/last_radiation = 0
 
-	var/containment = FALSE
+	var/containment = TRUE
 	var/field_power_consumption = 0
 	var/shield_temperature = 36
 
