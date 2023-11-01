@@ -25,7 +25,7 @@
 							 "<span class='notice'>You hear splitting wood.</span>")
 		physically_destroyed()
 		return TRUE
-	return attack_hand(user)
+	return ..()
 
 /obj/structure/largecrate/mule
 	name = "MULE crate"
