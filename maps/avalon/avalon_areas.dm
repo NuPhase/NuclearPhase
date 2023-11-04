@@ -90,12 +90,22 @@
 	icon_state = "shuttle"
 /area/avalon/shelter/comms
 	name = "Communications"
+
 /area/avalon/shelter/habitationdeck
 	name = "Habitation Deck"
-/area/avalon/shelter/freezer
+	icon_state = "dk_yellow"
+/area/avalon/shelter/habitationdeck/crew
+	name = "Crew Quarters"
+	icon_state = "crew_quarters"
+/area/avalon/shelter/habitationdeck/kitchen
+	name = "Kitchen"
+	icon_state = "kitchen"
+/area/avalon/shelter/habitationdeck/freezer
 	name = "Food Freezer"
-/area/avalon/shelter/messhall
+	icon_state = "LP"
+/area/avalon/shelter/habitationdeck/messhall
 	name = "Mess Hall"
+	icon_state = "bar"
 
 /area/avalon/shelter/reactor
 	sound_env = LARGE_ENCLOSED
