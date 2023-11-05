@@ -35,6 +35,19 @@
 	var/tmp/list/desc_list = list()
 	var/tmp/list/damage_list = list()
 
+/datum/wound/proc/get_pain()
+	return damage * get_pain_modifier() * 3 //implement internally
+
+/datum/wound/proc/get_pain_modifier()
+	var/modifier = 1
+	if(bandaged || packed || clamped)
+		modifier -= 0.1
+	if(salved)
+		modifier -= 0.2
+	if(damage_type == BURN && (parent_organ.damage / parent_organ.max_damage) > 0.7) //above 70% burns
+		modifier -= 0.8
+	return max(0, modifier)
+
 /datum/wound/New(var/damage, var/obj/item/organ/external/organ = null, var/surgical)
 
 	created = world.time

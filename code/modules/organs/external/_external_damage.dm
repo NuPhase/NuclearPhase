@@ -251,13 +251,13 @@
 		return 0
 	var/lasting_pain = 0
 	if(is_broken())
-		lasting_pain += 10
+		lasting_pain += 100
 	else if(is_dislocated())
-		lasting_pain += 5
+		lasting_pain += 50
 	var/tox_dam = 0
 	for(var/obj/item/organ/internal/I in internal_organs)
 		tox_dam += I.getToxLoss()
-	return pain + lasting_pain + 0.7 * brute_dam + 0.8 * burn_dam + 0.3 * tox_dam + 0.5 * get_genetic_damage()
+	return pain + lasting_pain + 0.3 * tox_dam + 0.5 * get_genetic_damage()
 
 /obj/item/organ/external/proc/remove_pain(var/amount)
 	if(!can_feel_pain())

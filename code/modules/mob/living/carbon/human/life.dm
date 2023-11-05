@@ -543,7 +543,7 @@
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(get_shock() >= 250)
+		if(get_shock() >= 1000)
 			if(!stat)
 				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
 				src.visible_message("<B>[src]</B> [species.halloss_message]")
@@ -856,7 +856,7 @@
 		shock_stage = 0
 		return
 
-	var/traumatic_shock = get_shock()
+	var/traumatic_shock = get_shock() * 0.1
 	if(traumatic_shock >= max(30, 0.8*shock_stage))
 		shock_stage += 1
 	else if (!is_asystole())
