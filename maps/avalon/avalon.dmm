@@ -2511,6 +2511,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering_first)
+"cpd" = (
+/obj/effect/floor_decal/corner/lightgrey/mono,
+/obj/structure/table/marble,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/white/monotile,
+/area/avalon/shelter/habitationdeck/kitchen)
 "cpe" = (
 /obj/structure/rack,
 /obj/random/trash,
@@ -5905,14 +5911,13 @@
 	pixel_y = 6
 	},
 /obj/effect/floor_decal/corner/beige/border,
-/obj/machinery/reactor_monitor/warnings{
-	pixel_x = 5;
-	pixel_y = 10;
-	layer = 2.221
-	},
 /obj/machinery/reactor_button/protected/containment{
 	pixel_x = -11;
 	pixel_y = -3
+	},
+/obj/machinery/reactor_monitor/general{
+	pixel_y = 10;
+	pixel_x = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/reactormonitoring)
@@ -12115,6 +12120,9 @@
 /obj/abstract/landmark/start{
 	name = "Engineer"
 	},
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "kCB" = (
@@ -12567,6 +12575,15 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
+"kZE" = (
+/obj/structure/rack,
+/obj/item/chems/drinks/milk,
+/obj/item/chems/drinks/milk,
+/obj/item/chems/drinks/milk,
+/obj/item/chems/drinks/milk,
+/obj/item/chems/drinks/milk,
+/turf/simulated/floor/tiled/freezer,
+/area/avalon/shelter/habitationdeck/freezer)
 "laj" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
@@ -24880,6 +24897,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/intensive_care)
+"vSx" = (
+/obj/structure/rack,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/turf/simulated/floor/tiled/freezer,
+/area/avalon/shelter/habitationdeck/freezer)
 "vSz" = (
 /obj/effect/floor_decal/corner/white/bordercorner{
 	dir = 1
@@ -26590,7 +26616,10 @@
 /area/avalon/shelter/habitationdeck/kitchen)
 "xtX" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
-/obj/structure/table/steel,
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/load_bank/reactor,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/breakerroom)
 "xub" = (
@@ -218005,7 +218034,7 @@ pRd
 jhi
 rrT
 xgb
-qSU
+cpd
 dQS
 otp
 pvu
@@ -218406,7 +218435,7 @@ sNf
 xzf
 jlZ
 jlZ
-bfw
+kZE
 ecb
 ezm
 ezm
@@ -218536,7 +218565,7 @@ sNf
 kMF
 jlZ
 jlZ
-bfw
+vSx
 ecb
 ezm
 ezm
@@ -221231,7 +221260,7 @@ ezm
 ezm
 ezm
 ezm
-hNK
+vUB
 hNK
 hNK
 hNK
