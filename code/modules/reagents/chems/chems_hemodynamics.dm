@@ -3,6 +3,7 @@
 	lore_text = "Adrenaline is a hormone that was used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 	mechanics_text = "Increases BPM. Makes resuscitations easier."
 	taste_description = "rush"
+	metabolism = REM * 2
 	color = "#76319e"
 	scannable = 1
 	overdose = 10
@@ -29,6 +30,7 @@
 	lore_text = "Noradrenaline is a hormone responsible for blood pressure modulation. It was widely used as an injectable drug for the treatment of critically low blood pressure."
 	mechanics_text = "Increases BP. Can wake people up."
 	taste_description = "sobriety"
+	metabolism = REM * 2
 	color = "#1e3c7e"
 	scannable = 1
 	overdose = 12
