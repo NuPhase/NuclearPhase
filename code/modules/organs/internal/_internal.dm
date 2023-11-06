@@ -15,7 +15,7 @@
 	var/damage_reduction = 0.5     //modifier for internal organ injury
 	var/oxygen_consumption = 0 //per 2 seconds. 12.7 is available every 2 seconds in a body
 	var/oxygen_deprivation = 0
-	var/oxygen_deprivation_tick = 0.1
+	var/oxygen_deprivation_tick = 0.6
 
 /obj/item/organ/internal/proc/oxygen_starve(amount)
 	oxygen_deprivation = Clamp(oxygen_deprivation + amount, 0, 100)

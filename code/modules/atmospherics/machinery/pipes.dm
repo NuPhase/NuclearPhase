@@ -360,9 +360,9 @@
 	desc = "This pipe is made of hafnium-carbide alloy coated with inconel protective blankets. Something tells you that having it rupture would bring an end to everything."
 	volume = 150
 	color = PIPE_COLOR_GREY
-	maximum_pressure = 420*ONE_ATMOSPHERE
-	fatigue_pressure = 350*ONE_ATMOSPHERE
-	alert_pressure = 350*ONE_ATMOSPHERE
+	maximum_pressure = 420*ONE_ATMOSPHERE*100
+	fatigue_pressure = 350*ONE_ATMOSPHERE*100
+	alert_pressure = 350*ONE_ATMOSPHERE*100
 	matter = list(
 		/decl/material/solid/metal/hafniumcarbide = 10200, //calculated for a 2m 160 liter pipe
 		/decl/material/solid/metal/inconel = 2500 //some wrapping

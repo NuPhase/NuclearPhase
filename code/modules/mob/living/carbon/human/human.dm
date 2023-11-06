@@ -929,6 +929,8 @@
 
 /mob/living/carbon/human/proc/pulse()
 	var/obj/item/organ/internal/heart/H = get_organ(BP_HEART, /obj/item/organ/internal/heart)
+	if(!syspressure)
+		return PULSE_NONE
 	return H ? H.pulse : PULSE_NONE
 
 /mob/living/carbon/human/can_devour(atom/movable/victim, var/silent = FALSE)
@@ -1090,7 +1092,7 @@
 
 /mob/living/carbon/human/melee_accuracy_mods()
 	. = ..()
-	if(get_shock() > 50)
+	if(get_shock() > 500)
 		. += 15
 	if(shock_stage > 10)
 		. += 15
@@ -1101,7 +1103,7 @@
 	. = ..()
 	if(get_shock() > 10 && !skill_check(SKILL_WEAPONS, SKILL_ADEPT))
 		. -= 1
-	if(get_shock() > 50)
+	if(get_shock() > 500)
 		. -= 1
 	if(shock_stage > 10)
 		. -= 1

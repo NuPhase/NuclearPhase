@@ -15,7 +15,7 @@ type InputData = {
 export const LungVentilator = (props: any, context: any) => {
   const { act, data } = useBackend<InputData>(context);
   return (
-    <Window width={300} height={300}>
+    <Window width={300} height={270}>
       <Window Content>
         <LabeledList>
           <LabeledList.Item label="O2">

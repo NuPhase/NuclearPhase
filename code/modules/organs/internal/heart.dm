@@ -14,6 +14,7 @@
 	relative_size = 5
 	max_damage = 45
 	oxygen_consumption = 0.2
+	oxygen_deprivation_tick = 0.7
 	var/open
 	var/external_pump = 0 //simulated beats per minute
 	var/cardiac_output = 1
@@ -52,8 +53,8 @@
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
-	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 100
-	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.55, 0, 110)
+	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 30
+	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.35, 0, 110)
 	for(var/decl/arrythmia/A in arrythmias)
 		bpm_modifiers[A.name] = A.get_pulse_mod()
 		cardiac_output_modifiers[A.name] = A.cardiac_output_mod
@@ -120,7 +121,8 @@
 	if(!pulse)
 		return
 	var/cardiac_output_pulse_modifier = min(1, 60 / pulse + 0.6)
-	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier
+	var/cardiac_output_oxygen_modifier = min(1, 1 - oxygen_deprivation / 100)
+	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier * cardiac_output_oxygen_modifier
 
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= BPM_AUDIBLE_HEARTRATE || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))
@@ -150,7 +152,8 @@
 		else
 			return "steady whirr of the pump"
 
-	if(!pulse || (owner.status_flags & FAKEDEATH))
+	var/mob/living/carbon/human/H = owner
+	if(!H.pulse() || (owner.status_flags & FAKEDEATH))
 		return "no pulse"
 
 	var/speed = "normal"

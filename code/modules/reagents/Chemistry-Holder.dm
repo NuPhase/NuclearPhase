@@ -166,7 +166,15 @@ var/global/obj/temp_reagents_holder = new
 	if(my_atom)
 		my_atom.on_reagent_change()
 
-/datum/reagents/proc/add_reagent(var/reagent_type, var/amount, var/data = null, var/safety = 0, var/defer_update = FALSE)
+//The same as 'add_reagent' except it checks the amount of reagent currently present in this datum.
+/datum/reagents/proc/add_reagent_max(reagent_type, amount, max_amount, data = null, safety = 0, defer_update = FALSE)
+	if(REAGENT_VOLUME(src, reagent_type) > max_amount)
+		return FALSE
+	return add_reagent(reagent_type, amount, data, safety, defer_update)
+
+//Adds [amount] of [reagent_type] with [data] to this datum.
+//It's good practice to defer update when you add multiple reagents for optimisation purposes.
+/datum/reagents/proc/add_reagent(reagent_type, amount, data = null, safety = 0, defer_update = FALSE)
 	amount = NONUNIT_FLOOR(min(amount, REAGENTS_FREE_SPACE(src)), MINIMUM_CHEMICAL_VOLUME)
 	if(amount <= 0)
 		return FALSE

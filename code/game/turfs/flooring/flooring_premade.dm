@@ -239,6 +239,29 @@
 	icon_state = "dark"
 	initial_flooring = /decl/flooring/tiling/dark
 
+/turf/simulated/floor/tiled/dark/edge
+	icon_state = "dark_edge"
+/turf/simulated/floor/tiled/dark/half
+	icon_state = "dark_half"
+/turf/simulated/floor/tiled/dark/corner
+	icon_state = "dark_corner"
+/turf/simulated/floor/tiled/dark/small
+	icon_state = "dark_small"
+/turf/simulated/floor/tiled/dark/diagonal
+	icon_state = "dark_diagonal"
+/turf/simulated/floor/tiled/dark/herringbone
+	icon_state = "dark_herringbone"
+/turf/simulated/floor/tiled/dark/textured
+	icon_state = "textured_dark"
+/turf/simulated/floor/tiled/dark/textured/edge
+	icon_state = "textured_dark_edge"
+/turf/simulated/floor/tiled/dark/textured/half
+	icon_state = "textured_dark_half"
+/turf/simulated/floor/tiled/dark/textured/corner
+	icon_state = "textured_dark_corner"
+/turf/simulated/floor/tiled/dark/textured/monotile
+	icon_state = "textured_dark_large"
+
 /turf/simulated/floor/tiled/dark/monotile
 	name = "floor"
 	icon_state = "monotiledark"

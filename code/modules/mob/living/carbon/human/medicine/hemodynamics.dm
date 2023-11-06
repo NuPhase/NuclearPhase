@@ -54,6 +54,7 @@
 	tpvr = metabolic_coefficient * 218.50746
 	tpvr += syspressure * (0.0008 * syspressure - 0.8833) + 94 //this simulates vascular elasticity. More pressure - less TPVR, and side versa
 	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE)
+	tpvr = Clamp(tpvr, TPVR_MIN, TPVR_MAX)
 
 	var/bpmd = ccp * 0.109 + 0.159
 	var/coeff = get_blood_volume_hemo() * (bpmd * 3.73134328)

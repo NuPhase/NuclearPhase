@@ -238,17 +238,14 @@
 	overdose = 60
 	uid = "chem_opium"
 	var/addictiveness = 10 //addiction gained per unit consumed
-	var/painkill_magnitude = 130
+	var/painkill_magnitude = 130000
 	var/effective_dose = 1
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	var/dose = LAZYACCESS(H.chem_doses, type)
-	if(dose > effective_dose)
-		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
-		SET_STATUS_MAX(H, STAT_DRUGGY, 15)
-	heart.bpm_modifiers[name] = volume * -3
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
+	SET_STATUS_MAX(H, STAT_DRUGGY, 15)
+	heart.bpm_modifiers[name] = removed * -3000
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
@@ -282,16 +279,15 @@
 	name = "tramadol"
 	lore_text = "A linear painkiller."
 	addictiveness = 5
-	painkill_magnitude = 11
+	painkill_magnitude = 110000
 	overdose = 70
 	uid = "chem_tramadol"
 	ingest_met = 0.1
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = volume * -0.1
-	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
+	heart.bpm_modifiers[name] = removed * -100
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
@@ -301,7 +297,7 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/dose = LAZYACCESS(H.chem_doses, type)
 	heart.bpm_modifiers[name] = dose * -0.1
-	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose)
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose * metabolism)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
@@ -311,17 +307,16 @@
 	name = "fentanyl"
 	lore_text = "An extremely strong painkiller."
 	addictiveness = 3
-	painkill_magnitude = 740
+	painkill_magnitude = 740000
 	overdose = 3 //can't drink fentanyl in ohio
 	uid = "chem_fentanyl"
 
 /decl/material/liquid/opium/fentanyl/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	heart.bpm_modifiers[name] = volume * -5
-	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
-	H.add_chemical_effect(CE_PRESSURE, -3 * volume)
-	H.add_chemical_effect(CE_BREATHLOSS, -1 * volume)
+	heart.bpm_modifiers[name] = removed * -5000
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
+	H.add_chemical_effect(CE_PRESSURE, -3000 * removed)
+	H.add_chemical_effect(CE_BREATHLOSS, -1000 * removed)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 2)
@@ -331,7 +326,7 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/dose = LAZYACCESS(H.chem_doses, type)
 	heart.bpm_modifiers[name] = dose * -5
-	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose)
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose * metabolism)
 	H.add_chemical_effect(CE_PRESSURE, -3 * dose)
 	H.add_chemical_effect(CE_BREATHLOSS, -1 * dose)
 	var/boozed = isboozed(H)
@@ -343,14 +338,14 @@
 	name = "codeine"
 	lore_text = "A precursor to a large variety of opioids"
 	addictiveness = 1
-	painkill_magnitude = 40
+	painkill_magnitude = 40000
 	uid = "chem_codeine"
 
 /decl/material/liquid/opium/codeine/desomorphine
 	name = "desomorphine"
 	lore_text = "An addictive painkiller with a very short window of action."
 	effective_dose = 0.5
-	painkill_magnitude = 220
+	painkill_magnitude = 220000
 	overdose = 14
 	uid = "chem_desomorphine"
 
@@ -369,19 +364,16 @@
 
 /decl/material/liquid/opium/morphine
 	name = "morphine"
-	painkill_magnitude = 290
+	painkill_magnitude = 290000
 	uid = "chem_morphine"
 	effective_dose = 1
 	overdose = 18
 
 /decl/material/liquid/opium/morphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	var/volume = REAGENT_VOLUME(holder, type)
-	var/dose = LAZYACCESS(H.chem_doses, type)
-	heart.bpm_modifiers[name] = volume * -2
-	if(dose > effective_dose)
-		H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * volume)
-		SET_STATUS_MAX(H, STAT_DRUGGY, 15)
+	heart.bpm_modifiers[name] = removed * -700
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
+	SET_STATUS_MAX(H, STAT_DRUGGY, 15)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
@@ -395,7 +387,7 @@
 /decl/material/liquid/opium/morphine/diamorphine
 	name = "diamorphine"
 	lore_text = "A synthetic morphine-derived drug."
-	painkill_magnitude = 330
+	painkill_magnitude = 330000
 	uid = "chem_diamorphine"
 
 /decl/material/liquid/opium/morphine/diamorphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
@@ -404,7 +396,7 @@
 /decl/material/liquid/opium/morphine/diamorphine/dirty
 	name = "murky diamorphine"
 	lore_text = "A synthetic morphine-derived drug. Looks unpure."
-	painkill_magnitude = 250
+	painkill_magnitude = 250000
 	uid = "chem_diamorphinedirty"
 
 /decl/material/liquid/opium/morphine/diamorphine/dirty/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)

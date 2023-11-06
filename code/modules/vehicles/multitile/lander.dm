@@ -135,6 +135,19 @@ var/global/obj/abstract/landmark/typhos_tag/typhos_alt_tag
 		to_chat(usr, SPAN_WARNING("Insufficient LCH2 levels!"))
 	input(usr, "Select desired orbit altitude", "Orbital Ascent") as null|num
 
+/obj/structure/bed/chair/comfy/vehicle/cts
+	var/datum/composite_sound/cts_ascent/ascent_loop = null
+
+/datum/composite_sound/cts_ascent
+	start_sound = 'sound/vehicle/cts/lift_burst.wav'
+	start_length = 3
+	mid_sounds = list('sound/vehicle/cts/lift_high.wav')
+	mid_length = 99
+	volume = 10
+	sfalloff = 9
+
+
+//Ascent takes 4 minutes. Average acceleration is 3G
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/ascent_to_altitude()
 	set name = "Ascent to Altitude"
 	set category = "CTS Control"
@@ -151,7 +164,7 @@ var/global/obj/abstract/landmark/typhos_tag/typhos_alt_tag
 		to_chat(usr, SPAN_WARNING("There's nothing of interest there."))
 		return
 	visible_message(SPAN_NOTICE("FNAV states: 'Received ascent request, awaiting confirmation...'."))
-	var/confirmation = alert(usr, "Are you sure you want to perform an ascent to 'Typhos'?", "Ascent and Rendezvous", "Blast it!", "I'm a pussy...")
+	var/confirmation = tgui_alert(usr, "Are you sure you want to perform an ascent to 'Typhos'?", "Ascent and Rendezvous", list("Blast it!", "I'm a pussy..."))
 	if(confirmation == "I'm a pussy...")
 		return
 	cur_vehicle.acceleration = 0
@@ -164,11 +177,28 @@ var/global/obj/abstract/landmark/typhos_tag/typhos_alt_tag
 	spawn(20)
 		QDEL_NULL(cur_vehicle.soundloop)
 	visible_message(SPAN_WARNING("The whole vehicle jolts as it fires up its nuclear engines!"))
+	var/list/play_sound_to = list()
 	for(var/mob/living/carbon/human/H in view(9, src))
-		shake_camera(H, 5, 2)
+		play_sound_to += H
+		shake_camera(H, 2, 4)
 		if(H != cur_vehicle.controlling && prob(10))
 			H.vomit()
-	sleep(300)
+	ascent_loop = new(play_sound_to, TRUE, TRUE)
+	spawn(20 SECONDS)
+		for(var/mob/living/carbon/human/H in play_sound_to)
+			H.playsound_local(get_turf(H), 'sound/vehicle/cts/lift_rattle_high.wav', 200, 0)
+	spawn(40 SECONDS)
+		ascent_loop.mid_sounds = list('sound/vehicle/cts/lift_low.wav')
+		for(var/mob/living/carbon/human/H in play_sound_to)
+			H.playsound_local(get_turf(H), 'sound/vehicle/cts/lift_rattle_medium.wav', 200, 0)
+	spawn(60 SECONDS)
+		for(var/mob/living/carbon/human/H in play_sound_to)
+			H.playsound_local(get_turf(H), 'sound/vehicle/cts/lift_rattle_low.wav', 200, 0)
+	sleep(10)
+	for(var/mob/living/carbon/human/H in view(9, src))
+		shake_camera(H, 2800, 0.2)
+	sleep(5 MINUTES)
+	QDEL_NULL(ascent_loop)
 	visible_message(SPAN_WARNING("The main engines shut down, transitioning into idle mode."))
 	cur_vehicle.acceleration = 0.1
 	cur_vehicle.entrypoint.can_use = TRUE

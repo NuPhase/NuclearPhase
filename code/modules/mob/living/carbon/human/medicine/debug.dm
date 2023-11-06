@@ -2,6 +2,7 @@
 	var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(src, BP_HEART)
 	to_chat(user, "Heart Rate: [bpm]")
 	to_chat(user, "Heart Instability: [H.instability]")
+	to_chat(user, "Heart CO: [H.cardiac_output * 100]%")
 	to_chat(user, "MCV: [mcv]")
 	to_chat(user, "TPVR: [tpvr]")
 	to_chat(user, "Blood Pressure: ([syspressure]/[dyspressure])")

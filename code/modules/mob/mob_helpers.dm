@@ -317,39 +317,46 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		p=p+n_mod
 	return sanitize(t)
 
-#define TICKS_PER_RECOIL_ANIM 2
-#define PIXELS_PER_STRENGTH_VAL 16
-
+#define TILES_PER_SECOND 0.7
+///Shake the camera of the person viewing the mob SO REAL!
+///Takes the mob to shake, the time span to shake for, and the amount of tiles we're allowed to shake by in tiles
+///Duration isn't taken as a strict limit, since we don't trust our coders to not make things feel shitty. So it's more like a soft cap.
 /proc/shake_camera(mob/M, duration, strength=1)
-	var/current_time = world.time
-	if(!M || !M.client || (M.shakecamera > current_time)|| M.stat || isEye(M) || isAI(M))
+	if(!M || !M.client || duration < 1)
 		return
-	M.shakecamera = current_time + max(TICKS_PER_RECOIL_ANIM, duration)
-	strength = abs(strength)*PIXELS_PER_STRENGTH_VAL
-	var/steps = min(1, FLOOR(duration/TICKS_PER_RECOIL_ANIM))-1
-	animate(M.client, pixel_x = rand(-(strength), strength), pixel_y = rand(-(strength), strength), time = TICKS_PER_RECOIL_ANIM, easing = SINE_EASING)
-	if(steps)
-		for(var/i = 1 to steps)
-			animate(pixel_x = (M.client?.default_pixel_x || 0) + rand(-(strength), strength), pixel_y = (M.client?.default_pixel_y || 0) + rand(-(strength), strength), time = TICKS_PER_RECOIL_ANIM, easing = SINE_EASING)
-	animate(pixel_x = (M.client.default_pixel_x || 0), pixel_y = (M.client.default_pixel_y || 0), time = TICKS_PER_RECOIL_ANIM)
+	var/client/C = M.client
+	var/oldx = C.pixel_x
+	var/oldy = C.pixel_y
+	var/max = strength*world.icon_size
+	var/min = -(strength*world.icon_size)
 
-#undef TICKS_PER_RECOIL_ANIM
-#undef PIXELS_PER_STRENGTH_VAL
+	//How much time to allot for each pixel moved
+	var/time_scalar = (1 / world.icon_size) * TILES_PER_SECOND
+	var/last_x = oldx
+	var/last_y = oldy
 
-#define NORMAL_OSCILLATION_TIME 3
-//duration - effect duration
-//frequency - time between oscillations
-//magnitude - pixels per oscillation
-/proc/screen_vibration(mob/M, duration = 1, frequency = 8, magnitude = 6)
-	if(!M || !M.client || M.stat || isEye(M) || isAI(M))
-		return
-	var/cycles_completed = 0
-	var/cycles_to_complete = duration * NORMAL_OSCILLATION_TIME * frequency
-	while(cycles_completed < cycles_to_complete)
-		animate(M.client, pixel_x = rand(-(magnitude), magnitude), pixel_y = rand(-(magnitude), magnitude), time = frequency, easing = ELASTIC_EASING)
-		cycles_completed++
-		sleep(frequency)
-	animate(M.client, pixel_x = (M.client.default_pixel_x || 0), pixel_y = (M.client.default_pixel_y || 0), time = frequency)
+	var/time_spent = 0
+	while(time_spent < duration)
+		//Get a random pos in our box
+		var/x_pos = rand(min, max) + oldx
+		var/y_pos = rand(min, max) + oldy
+
+		//We take the smaller of our two distances so things still have the propencity to feel somewhat jerky
+		var/time = round(max(min(abs(last_x - x_pos), abs(last_y - y_pos)) * time_scalar, 1))
+
+		if (time_spent == 0)
+			animate(C, pixel_x=x_pos, pixel_y=y_pos, time=time)
+		else
+			animate(pixel_x=x_pos, pixel_y=y_pos, time=time)
+
+		last_x = x_pos
+		last_y = y_pos
+		//We go based on time spent, so there is a chance we'll overshoot our duration. Don't care
+		time_spent += time
+
+	animate(pixel_x=oldx, pixel_y=oldy, time=3)
+
+#undef TILES_PER_SECOND
 
 /proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list)

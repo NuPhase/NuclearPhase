@@ -19,7 +19,7 @@
 	tally += GET_CHEMICAL_EFFECT(src, CE_SLOWDOWN)
 
 	if(can_feel_pain())
-		if(get_shock() >= 10) tally += (get_shock() / 10) //pain shouldn't slow you down if you can't even feel it
+		if(get_shock() >= 50) tally += (get_shock() / 100) //pain shouldn't slow you down if you can't even feel it
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))

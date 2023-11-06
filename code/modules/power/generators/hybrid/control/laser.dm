@@ -46,6 +46,8 @@
 		spawn(5 SECONDS)
 			for(var/obj/machinery/reactor_monitor/warnings/mon in rcontrol.announcement_monitors)
 				mon.chat_report("LASERS DISCHARGED. TOTAL ENERGY: [watts_to_text(total_energy)]/s*1.4.", 1)
+			for(var/mob/living/carbon/human/H in human_mob_list)
+				shake_camera(H, 20, 0.9)
 			state = 0
 			icon_state = off_icon_state
 	else

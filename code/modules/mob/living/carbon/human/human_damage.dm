@@ -41,12 +41,24 @@
 			return species.total_health
 	return 0
 
+#define WOUND_PAIN_PENALTY_COEFF 0.1
 //Straight pain values, not affected by painkillers etc
 /mob/living/carbon/human/getHalLoss()
-	var/amount = 0
+	var/pain_total = 0
+
+	var/list/wound_pain_values = list()
 	for(var/obj/item/organ/external/E in get_external_organs())
-		amount += E.get_pain()
-	return amount
+		if(length(E.wounds))
+			for(var/datum/wound/W in E.wounds)
+				wound_pain_values += W.get_pain()
+		pain_total += E.get_pain()
+	sortTim(wound_pain_values, /proc/cmp_numeric_dsc, 0)
+
+	//this formula REQUIRES [wound_pain_values] to be sorted by numeric descending
+	for(var/wound_pain in wound_pain_values)
+		pain_total += max(0, wound_pain - pain_total * WOUND_PAIN_PENALTY_COEFF)
+
+	return pain_total
 
 /mob/living/carbon/human/setHalLoss(var/amount)
 	adjustHalLoss(getHalLoss()-amount)

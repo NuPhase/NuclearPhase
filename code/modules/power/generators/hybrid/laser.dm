@@ -90,9 +90,9 @@
 
 /obj/machinery/rlaser/proc/fire(power)
 	if(omode == LASER_MODE_IGNITION)
-		playsound(src, 'sound/machines/laserignition.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
+		playsound(src, 'sound/machines/laserignition.ogg', 100, FALSE, 50, 20, ignore_walls = TRUE)
 		spawn(30)
-			playsound(src, 'sound/machines/power_down2.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
+			playsound(src, 'sound/machines/power_down2.ogg', 100, FALSE, 50, 15, ignore_walls = TRUE)
 		capacitor_charge = 0
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.receive_power(power * 1000)

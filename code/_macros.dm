@@ -175,6 +175,8 @@
 
 #define SPAN_INFO(X) "<span class='info'>[X]</span>"
 
+#define SPAN_RADIO(X) "<span class='radio'>[X]</span>"
+
 #define SPAN_LOGIN(X) "<span class='login'>[X]</span>"
 
 #define SPAN_PHOBIA(X) "<span class='phobia'>[X]</span>"

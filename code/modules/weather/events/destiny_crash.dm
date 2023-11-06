@@ -72,7 +72,7 @@ var/global/obj/abstract/landmark/heighttag/HHH
 			continue
 		to_chat(H, "<span class=bigdanger>The whole shelter shook in place, like something massive exploded nearby!</span>")
 		H.playsound_local(H.loc, 'sound/effects/explosionfar.ogg', 50, 0)
-		shake_camera(H, 10, 2)
+		shake_camera(H, 4, 5)
 
 	var/datum/map_template/templ = SSmapping.get_template("Destiny surface")
 	templ.load(locate(1, 1, HHH.z))
