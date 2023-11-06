@@ -25,8 +25,7 @@
 	planetary_area = /area/surface
 
 	lobby_screens = list(
-		'maps/avalon/cdllobby.jpg',
-		'maps/avalon/atom.jpg'
+		'maps/avalon/planet.png'
 	)
 	credit_sound = list('sound/music/aftermath.ogg')
 	reboot_sound = list()
