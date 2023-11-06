@@ -19,19 +19,7 @@
 	level = 1
 
 /obj/machinery/atmospherics/pipe/zpipe/check_pressure(pressure)
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/pressure_difference = pressure - environment.return_pressure()
-
-	if(pressure_difference > maximum_pressure)
-		burst()
-
-	else if(pressure_difference > fatigue_pressure)
-		//TODO: leak to turf, doing pfshhhhh
-		if(prob(5))
-			burst()
-
-	else return 1
+	return 1
 
 /obj/machinery/atmospherics/pipe/zpipe/proc/burst()
 	src.visible_message("<span class='warning'>\The [src] bursts!</span>");
