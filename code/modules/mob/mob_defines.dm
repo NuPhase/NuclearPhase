@@ -129,7 +129,7 @@
 	var/list/mutations = list() // TODO: Lazylist this var.
 	//see: setup.dm for list of mutations
 
-	var/radiation = 0.0//Carbon
+	var/radiation = 0.0 //Defined in milisieverts
 
 	var/voice_name = "unidentifiable voice"
 

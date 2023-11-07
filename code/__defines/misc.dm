@@ -159,10 +159,10 @@
 //Error handler defines
 #define ERROR_USEFUL_LEN 2
 
-#define RAD_LEVEL_LOW 1 // Around the level at which radiation starts to become harmful
-#define RAD_LEVEL_MODERATE 25
-#define RAD_LEVEL_HIGH 40
-#define RAD_LEVEL_VERY_HIGH 100
+#define RAD_LEVEL_LOW 15 // Around the level at which radiation starts to become harmful
+#define RAD_LEVEL_MODERATE 100
+#define RAD_LEVEL_HIGH 400
+#define RAD_LEVEL_VERY_HIGH 10000
 
 #define RADIATION_THRESHOLD_CUTOFF 0.01	// Radiation will not affect a tile when below this value.
 

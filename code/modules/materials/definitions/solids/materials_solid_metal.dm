@@ -25,7 +25,7 @@
 	mechanics_text = "Uranium can be used as fuel in fission reactors."
 	taste_description = "the inside of a reactor"
 	flags = MAT_FLAG_FISSIBLE
-	radioactivity = 12
+	radioactivity = 0.8
 	icon_base = 'icons/turf/walls/stone.dmi'
 	wall_flags = 0
 	table_icon_base = "stone"
@@ -66,7 +66,7 @@
 	taste_description = "the color blue, and regret"
 	color = "#dbabd9"
 	value = 0.5
-	radioactivity = 18
+	radioactivity = 0.24
 
 /decl/material/solid/metal/gold
 	name = "gold"

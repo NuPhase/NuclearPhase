@@ -95,6 +95,11 @@
 			ADD_ACTIVE_FLUID(F)
 	update_lighting = TRUE
 	update_icon()
+	var/total_radioactivity = 0
+	for(var/reagent_type in reagents.reagent_volumes)
+		var/decl/material/mat = GET_DECL(reagent_type)
+		total_radioactivity += mat.radioactivity * reagents.reagent_volumes[reagent_type]
+	SSradiation.radiate(src, total_radioactivity)
 
 /obj/effect/fluid/Destroy()
 	ADD_ACTIVE_FLUID(src)

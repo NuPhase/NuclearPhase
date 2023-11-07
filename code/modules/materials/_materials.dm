@@ -116,7 +116,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	/// Delay in ticks when cutting through this wall.
 	var/cut_delay = 0
 	/// Radiation var. Used in wall and object processing to irradiate surroundings.
-	var/radioactivity
+	var/radioactivity = 0
 	/// K, point at which the material catches on fire.
 	var/ignition_point
 	/// K, walls will take damage if they're next to a fire hotter than this
@@ -591,27 +591,22 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 			affect_overdose(M, holder)
 
 	//determine the metabolism rate
-	var/removed = (REAGENT_VOLUME(holder, type) * metabolism) + 0.001
+	var/removed = (REAGENT_VOLUME(holder, type) * metabolism) + 0.00001
 	if(ingest_met && (metabolism_class == CHEM_INGEST))
 		removed = ingest_met
 	if(touch_met && (metabolism_class == CHEM_TOUCH))
 		removed = touch_met
 	removed = M.get_adjusted_metabolism(removed)
 
-	//adjust effective amounts - removed, dose, and max_dose - for mob size
-	var/effective = removed
-	if(!(flags & IGNORE_MOB_SIZE) && metabolism_class != CHEM_TOUCH)
-		effective *= (MOB_SIZE_MEDIUM/M.mob_size)
-
-	var/dose = LAZYACCESS(M.chem_doses, type) + effective
+	var/dose = LAZYACCESS(M.chem_doses, type) + removed
 	LAZYSET(M.chem_doses, type, dose)
 	switch(metabolism_class)
 		if(CHEM_INJECT)
-			affect_blood(M, effective, holder)
+			affect_blood(M, removed, holder)
 		if(CHEM_INGEST)
-			affect_ingest(M, effective, holder)
+			affect_ingest(M, removed, holder)
 		if(CHEM_TOUCH)
-			affect_touch(M, effective, holder)
+			affect_touch(M, removed, holder)
 	holder.remove_reagent(type, removed)
 
 /decl/material/proc/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)

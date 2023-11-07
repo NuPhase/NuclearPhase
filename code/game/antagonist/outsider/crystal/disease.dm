@@ -42,7 +42,7 @@
 		_organ.add_ailment(/datum/ailment/crystal/phase_four)
 
 /datum/ailment/crystal/phase_three/on_ailment_event()
-	SSradiation.radiate(organ.owner, 15)
+	SSradiation.radiate(organ.owner, 1500)
 	var/list/limbs_to_infect = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG)
 	var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(organ.owner, pick(limbs_to_infect))
 	if(!affecting || BP_IS_CRYSTAL(affecting))
@@ -70,4 +70,4 @@
 	if(destroying)
 		destroying.take_external_damage(rand(5, 10))
 
-	SSradiation.radiate(organ.owner, 40)
+	SSradiation.radiate(organ.owner, 4000)

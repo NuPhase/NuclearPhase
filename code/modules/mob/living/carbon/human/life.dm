@@ -209,6 +209,14 @@
 			spawn(0)
 				emote("cough")
 
+//Our radiation dose is defined in sieverts.
+//1000mSv is the minimum for all effects.
+//1000-2000mSv causes very rare vomiting, slight headache, low immunity, fatigue and weakness.
+//2000-6000mSv causes rare vomiting, moderate headache, slight fever, slight brain damage, low immunity, internal bleeding and infections
+//6000-8000mSv causes vomiting, severe headache, severe fever, moderate brain damage, immunity loss, internal bleeding, infections, disorientation, hypotension, rare arrythmias
+//8000-30000mSv causes heavy vomiting, debilitating headache, very severe fever, severe brain damage, immunity loss, infections, internal bleeding, severe hypotension
+//>30000mSv causes all of the above, except with frequent seizures, tremor, ataxia, sleepiness and death within a hour.
+//100000mSv is death in a matter of minutes. We'll just shut down the heart, cause extreme bleeding and hypotension with added brain damage
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(getFireLoss())
 		if((MUTATION_COLD_RESISTANCE in mutations) || (prob(1)))
@@ -228,54 +236,59 @@
 		if(species.appearance_flags & RADIATION_GLOWS)
 			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
 		// END DOGSHIT SNOWFLAKE
-		var/damage = 0
-		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-		if(prob(25))
-			damage = 2
 
-		if (radiation > 50)
-			damage = 2
-			radiation -= 2 * RADIATION_SPEED_COEFFICIENT
-			if(!isSynthetic())
-				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
-					radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-					to_chat(src, "<span class='warning'>You feel weak.</span>")
-					SET_STATUS_MAX(src, STAT_WEAK, 3)
-					if(!lying)
-						emote("collapse")
-			SSradiation.radiate(src, radiation * 0.01)
-
-		if (radiation > 75)
-			damage = 3
-			radiation -= 3 * RADIATION_SPEED_COEFFICIENT
-			if(!isSynthetic())
-				if(prob(5))
-					take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
+		//TODO: Headache
+		switch(radiation)
+			if(1000 to 2000)
+				if(prob(0.1))
+					vomit()
+				adjust_immunity(-0.3)
+				to_chat_cooldown(src, SPAN_WARNING("You feel [pick("weak", "tired")]..."), "radweak", rand(2 MINUTES, 5 MINUTES))
+			if(2000 to 6000)
 				if(prob(1))
-					to_chat(src, "<span class='warning'>You feel strange!</span>")
-					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
-					emote("gasp")
-		if(radiation > 150)
-			damage = 8
-			radiation -= 4 * RADIATION_SPEED_COEFFICIENT
-			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
-				lose_hair()
-
-		if(radiation > 500)
-			add_chemical_effect(CE_GLOWINGEYES, 1)
-
-		damage = FLOOR(damage * species.get_radiation_mod(src))
-		if(damage)
-			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
-			immunity = max(0, immunity - damage * 15 * RADIATION_SPEED_COEFFICIENT)
-			updatehealth()
-			var/list/limbs = get_external_organs()
-			if(!isSynthetic() && LAZYLEN(limbs))
-				var/obj/item/organ/external/O = pick(limbs)
-				if(istype(O))
-					O.add_autopsy_data("Radiation Poisoning", damage)
-
-	/** breathing **/
+					vomit()
+					adjustToxLoss(1)
+				bodytemperature += rand(1.3, 1.4)
+				var/obj/item/organ/internal/brain/cur_brain = GET_INTERNAL_ORGAN(src, BP_BRAIN)
+				cur_brain.take_internal_damage(0.01)
+				adjust_immunity(-0.5)
+				to_chat_cooldown(src, SPAN_WARNING("You feel quite [pick("weak", "tired")]..."), "radweak", rand(2 MINUTES, 5 MINUTES))
+			if(6000 to 8000)
+				if(prob(2))
+					vomit()
+					adjustToxLoss(1.5)
+				var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
+				if(prob(1))
+					take_organ_damage(0, 2, 1)
+					cur_heart.instability += 40
+				add_chemical_effect(CE_PRESSURE, rand(-8, -11))
+				bodytemperature += rand(2.6, 2.7)
+				var/obj/item/organ/internal/brain/cur_brain = GET_INTERNAL_ORGAN(src, BP_BRAIN)
+				cur_brain.take_internal_damage(0.03)
+				adjust_immunity(-1)
+				to_chat_cooldown(src, SPAN_WARNING("You feel very [pick("weak", "tired")]..."), "radweak", rand(2 MINUTES, 5 MINUTES))
+			if(8000 to INFINITY)
+				if(prob(5))
+					vomit()
+					adjustToxLoss(5)
+				var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
+				if(prob(3))
+					take_organ_damage(0, 5, 1)
+					cur_heart.instability += 60
+				add_chemical_effect(CE_PRESSURE, rand(-11, -17))
+				bodytemperature += rand(3.4, 3.5)
+				var/obj/item/organ/internal/brain/cur_brain = GET_INTERNAL_ORGAN(src, BP_BRAIN)
+				cur_brain.take_internal_damage(0.05)
+				adjust_immunity(-10)
+				to_chat_cooldown(src, SPAN_DANGER("You feel extremely [pick("weak", "tired")]..."), "radweak", rand(2 MINUTES, 5 MINUTES))
+				if(radiation > 30000)
+					add_chemical_effect(CE_GLOWINGEYES, 1)
+					take_overall_damage(0, 3, used_weapon = "Radiation Burns")
+					if(prob(1))
+						seizure()
+				if(radiation > 100000) //exitus letalis
+					cur_heart.instability += 1000
+					cur_brain.take_internal_damage(1)
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
 	for(var/slot in global.standard_headgear_slots)

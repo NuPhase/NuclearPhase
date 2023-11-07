@@ -284,7 +284,7 @@ var/global/list/meteors_cataclysm = list(\
 /obj/effect/meteor/irradiated/meteor_effect()
 	..()
 	explosion(src.loc, 0, 0, 4, 3, 0)
-	SSradiation.radiate(src, 50)
+	SSradiation.radiate(src, 50000)
 
 /obj/effect/meteor/golden
 	name = "golden meteor"

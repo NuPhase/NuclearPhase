@@ -40,4 +40,4 @@
 
 /obj/item/organ/internal/power_source/reactor/die()
 	. = ..()
-	SSradiation.radiate(src, 12)
+	SSradiation.radiate(src, 8400)

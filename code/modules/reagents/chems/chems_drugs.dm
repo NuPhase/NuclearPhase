@@ -313,10 +313,10 @@
 
 /decl/material/liquid/opium/fentanyl/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	heart.bpm_modifiers[name] = removed * -5000
+	heart.bpm_modifiers[name] = removed * -50000
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
-	H.add_chemical_effect(CE_PRESSURE, -3000 * removed)
-	H.add_chemical_effect(CE_BREATHLOSS, -1000 * removed)
+	H.add_chemical_effect(CE_PRESSURE, -30000 * removed)
+	H.add_chemical_effect(CE_BREATHLOSS, -10000 * removed)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 2)
