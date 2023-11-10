@@ -22,7 +22,7 @@
 		overlay.icon_state = item_state
 	. = ..()
 
-/obj/item/clothing/suit/handle_shield()
+/obj/item/clothing/suit/handle_shield(mob/user, damage, atom/damage_source, mob/attacker, def_zone, attack_text)
 	return FALSE
 
 /obj/item/clothing/suit/proc/get_collar()
