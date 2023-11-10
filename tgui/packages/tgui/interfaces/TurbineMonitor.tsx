@@ -69,6 +69,8 @@ export const TurbineMonitor = (props: any, context: any) => {
                 average: [800, 3500],
                 teal: [0, 800],
                 }}
+                minValue = {0}
+                maxValue = {4000}
                 value={data.turb2.rpm}>
                 {data.turb2.rpm}
               </ProgressBar>

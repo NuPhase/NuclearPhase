@@ -127,6 +127,7 @@ steam.start() -- spawns the effect
 	if(holder)
 		sparks.attach(holder)
 	sparks.start()
+	sparks.spread()
 
 /datum/effect/effect/system/spark_spread
 
