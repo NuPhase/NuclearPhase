@@ -140,7 +140,10 @@
 		f_name += "<font color ='[blood_color]'>stained</font> [name][infix]!"
 
 	to_chat(user, "[html_icon(src)] That's [f_name] [suffix]")
-	to_chat(user, desc)
+	if(russian_desc && user.get_preference_value(/datum/client_preference/russian_translation) == PREF_YES)
+		to_chat(user, russian_desc)
+	else
+		to_chat(user, desc)
 	return TRUE
 
 // called by mobs when e.g. having the atom as their machine, loc (AKA mob being inside the atom) or buckled var set.

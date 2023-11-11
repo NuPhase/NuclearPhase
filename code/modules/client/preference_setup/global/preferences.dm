@@ -260,6 +260,11 @@ var/global/list/_client_preferences_by_type
 	key = "FLOATING_CHAT"
 	options = list(PREF_SHOW, PREF_HIDE)
 
+/datum/client_preference/russian_translation
+	description = "Russian Translation"
+	key = "RUSSIAN_TRANSLATION"
+	options = list(PREF_NO, PREF_YES)
+
 /datum/client_preference/show_status_markers
 	description ="Show overhead status markers"
 	key = "STATUS_MARKERS"
