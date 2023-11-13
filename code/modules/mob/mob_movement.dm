@@ -163,6 +163,12 @@
 	if(!mob)
 		return // Moved here to avoid nullrefs below
 
+	if(mob.shifting)
+		mob.pixel_shift(direction)
+		return FALSE
+	else if(mob.is_shifted)
+		mob.unpixel_shift()
+
 	return mob.SelfMove(direction)
 
 /mob/Process_Spacemove(var/allow_movement)
