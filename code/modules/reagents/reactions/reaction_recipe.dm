@@ -115,3 +115,24 @@
 	required_reagents = list(/decl/material/liquid/nutriment/rice = 10, /decl/material/liquid/drink/tea/green = 1)
 	result_amount = 10
 	mix_message = "The tea mingles with the rice."
+
+/decl/chemical_reaction/recipe/boiled_rice
+	name = "Boiled Rice"
+	result = /decl/material/liquid/nutriment/boiled_rice
+	required_reagents = list(/decl/material/liquid/nutriment/rice = 1, /decl/material/liquid/water = 1.5)
+	result_amount = 1.3
+	mix_message = "The rice boils and cooks."
+	thermal_product = 0.2
+	minimum_temperature = 85 CELSIUS
+	hidden_from_codex = TRUE
+
+/decl/chemical_reaction/recipe/burnt_rice
+	name = "Burnt Rice"
+	result = /decl/material/liquid/nutriment/burnt_rice
+	required_reagents = list(/decl/material/liquid/nutriment/rice = 1)
+	inhibitors = list(/decl/material/liquid/water)
+	result_amount = 0.9
+	mix_message = "The rice burns."
+	thermal_product = 0.1
+	minimum_temperature = 86 CELSIUS
+	hidden_from_codex = TRUE
