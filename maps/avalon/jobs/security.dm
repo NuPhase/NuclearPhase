@@ -264,6 +264,57 @@
 	)
 	event_categories = list(ASSIGNMENT_SECURITY)
 
+/datum/job/field_medic
+	title = "Field Medic"
+	department_types = list(/decl/department/security)
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the sergeant"
+	selection_color = "#166320"
+	economic_power = 4
+	skill_points = 26
+	access = list(
+		access_security,
+		access_eva,
+		access_sec_doors,
+		access_brig,
+		access_maint_tunnels,
+		access_morgue,
+		access_external_airlocks,
+		access_medical,
+		access_medical_equip
+	)
+	minimal_access = list(
+		access_security,
+		access_eva,
+		access_sec_doors,
+		access_brig,
+		access_maint_tunnels,
+		access_external_airlocks,
+		access_medical,
+		access_medical_equip
+	)
+	minimal_player_age = 7
+	outfit_type = /decl/hierarchy/outfit/job/security/officer
+	guestbanned = 1
+	min_skill = list(
+		SKILL_LITERACY  = SKILL_BASIC,
+		SKILL_EVA       = SKILL_BASIC,
+		SKILL_COMBAT    = SKILL_BASIC,
+		SKILL_WEAPONS   = SKILL_ADEPT,
+		SKILL_FORENSICS = SKILL_BASIC
+	)
+	max_skill = list(
+		SKILL_COMBAT    = SKILL_MAX,
+	    SKILL_WEAPONS   = SKILL_MAX,
+	    SKILL_FORENSICS = SKILL_MAX
+	)
+	software_on_spawn = list(
+		/datum/computer_file/program/digitalwarrant,
+		/datum/computer_file/program/camera_monitor
+	)
+	event_categories = list(ASSIGNMENT_SECURITY)
+
 /obj/item/card/id/security
 	name = "identification card"
 	desc = "A card issued to security staff."
