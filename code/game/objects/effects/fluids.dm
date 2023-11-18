@@ -28,6 +28,8 @@
 /obj/effect/fluid/Crossed(mob/living/carbon/C)
 	if(!iscarbon(C))
 		return
+	if(reagents.total_volume > FLUID_SHALLOW)
+		playsound(get_turf(src), pick('sound/effects/fluid/water_wade1.ogg', 'sound/effects/fluid/water_wade2.ogg', 'sound/effects/fluid/water_wade3.ogg', 'sound/effects/fluid/water_wade4.ogg'), 50, 0, -2)
 	reagents.touch_mob(C)
 
 	var/temp_adj = 0
