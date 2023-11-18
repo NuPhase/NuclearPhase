@@ -292,6 +292,17 @@ Class Procs:
 		return FALSE // The interactions below all assume physical access to the machine. If this is not the case, we let the machine take further action.
 	if(!user.check_dexterity(required_interaction_dexterity))
 		return TRUE
+	if(HAS_ASPECT(user, /decl/aspect/perk/neutral/engineer_master) && prob(5))
+		var/list/possible_phrases = list(
+			"Я специалист, я лучше вижу!",
+			"O, я работал c этим!",
+			"Щас подправим малышку.",
+			"Дебил отойди, сам разберусь!",
+			"Кто производил оборудование?! Руки бы оторвать!",
+			"He ссы, я профессионал",
+			"Эти машины просто малыши!",
+		)
+		user.say(pick(possible_phrases))
 	if((. = component_attack_hand(user)))
 		return
 	if(wires && (. = wires.Interact(user)))
