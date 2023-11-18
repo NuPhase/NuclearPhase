@@ -222,9 +222,9 @@
 /obj/structure/explosion_act(severity)
 	..()
 	if(!QDELETED(src))
-		if(severity == 1)
+		if(severity > 1000)
 			physically_destroyed()
-		else if(severity == 2)
+		else if(severity > 500)
 			take_damage(rand(20, 30))
 		else
 			take_damage(rand(5, 15))

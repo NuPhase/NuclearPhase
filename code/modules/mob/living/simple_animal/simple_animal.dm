@@ -449,11 +449,11 @@
 	..()
 	var/damage
 	switch(severity)
-		if(1)
+		if(200 to EXPLOSION_MAX_POWER)
 			damage = 500
-		if(2)
+		if(100 to 200)
 			damage = 120
-		if(3)
+		if(1 to 100)
 			damage = 30
 	apply_damage(damage, BRUTE, damage_flags = DAM_EXPLODE)
 

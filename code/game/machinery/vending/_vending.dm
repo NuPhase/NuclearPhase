@@ -132,7 +132,7 @@
 /obj/machinery/vending/explosion_act(severity)
 	..()
 	if(!QDELETED(src))
-		if(severity == 1 || (severity == 2 && prob(50)))
+		if(prob(severity * 0.1))
 			qdel(src)
 		else if(prob(25))
 			malfunction()

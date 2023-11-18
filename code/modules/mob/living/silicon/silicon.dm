@@ -277,13 +277,13 @@
 	var/brute
 	var/burn
 	switch(severity)
-		if(1)
+		if(500 to 1000)
 			brute = 400
 			burn = 100
-		if(2)
+		if(200 to 500)
 			brute = 60
 			burn = 60
-		if(3)
+		if(1 to 200)
 			brute = 30
 	apply_damage(brute, BRUTE, damage_flags = DAM_EXPLODE)
 	apply_damage(burn, BURN, damage_flags = DAM_EXPLODE)

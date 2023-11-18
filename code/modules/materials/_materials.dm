@@ -157,7 +157,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	/// Is the material transparent? 0.5< makes transparent walls/doors.
 	var/opacity = 1
 	/// Only used by walls currently.
-	var/explosion_resistance = 5
+	var/explosion_resistance = 300
 	/// Objects with this var add CONDUCTS to flags on spawn.
 	var/conductive = 1
 	/// Does this material glow?

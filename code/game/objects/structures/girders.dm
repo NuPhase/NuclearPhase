@@ -191,7 +191,7 @@
 
 /obj/structure/girder/explosion_act(severity)
 	..()
-	if(severity == 1 || (severity == 2 && prob(30)) || (severity == 3 && prob(5)))
+	if(severity > 1000 || (severity > 500 && prob(30)) || (severity > 200 && prob(5)))
 		physically_destroyed()
 
 /obj/structure/girder/cult

@@ -438,7 +438,7 @@ Class Procs:
 /obj/machinery/fluid_act(var/datum/reagents/fluids)
 	..()
 	if(!(stat & (NOPOWER|BROKEN)) && !waterproof && (fluids.total_volume > FLUID_DEEP))
-		explosion_act(3)
+		explosion_act(150)
 
 /obj/machinery/Move()
 	var/atom/lastloc = loc

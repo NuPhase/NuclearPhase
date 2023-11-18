@@ -65,7 +65,7 @@ var/global/list/natural_walls = list()
 			T.ChangeTurf(floor_type, keep_air = TRUE)
 
 /turf/exterior/wall/explosion_act(severity)
-	if(severity == 1 || (severity == 2 && prob(40)))
+	if(severity > 1000 || (severity > 500 && prob(40)))
 		dismantle_wall()
 
 /turf/exterior/wall/Destroy()

@@ -23,6 +23,8 @@
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
 
+	var/list/datum/automata_cell/autocells
+
 	var/list/decals
 
 	// Used for slowdown.

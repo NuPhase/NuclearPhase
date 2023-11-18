@@ -1,8 +1,8 @@
 /turf/simulated/floor/explosion_act(severity)
 	SHOULD_CALL_PARENT(FALSE)
-	if(severity == 1)
+	if(severity > 1000)
 		ChangeTurf(get_base_turf_by_area(src))
-	else if(severity == 2)
+	else if(severity > 500)
 		switch(pick(40;1,40;2,3))
 			if (1)
 				if(prob(33))
@@ -12,7 +12,7 @@
 			if(2)
 				ChangeTurf(get_base_turf_by_area(src))
 			if(3)
-				if(prob(33)) 
+				if(prob(33))
 					var/decl/material/mat = GET_DECL(/decl/material/solid/metal/steel)
 					mat.place_shard(src)
 				if(prob(80))
@@ -20,7 +20,7 @@
 				else
 					break_tile()
 				hotspot_expose(1000,CELL_VOLUME)
-	else if(severity == 3 && prob(50))
+	else if(severity > 200 && prob(50))
 		break_tile()
 		hotspot_expose(1000,CELL_VOLUME)
 

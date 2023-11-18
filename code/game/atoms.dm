@@ -14,7 +14,7 @@
 	var/datum/reagents/reagents // chemical contents.
 	var/list/climbers
 	var/climb_speed_mult = 1
-	var/explosion_resistance = 0
+	var/explosion_resistance = 10
 	var/weight = DEFAULT_ATOM_WEIGHT //kg
 	var/icon_scale_x = 1 // Holds state of horizontal scaling applied.
 	var/icon_scale_y = 1 // Ditto, for vertical scaling.
@@ -215,7 +215,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(!currently_exploding)
 		currently_exploding = TRUE
-		. = (severity <= 3)
+		. = (severity <= 30)
 		if(.)
 			for(var/atom/movable/AM in get_contained_external_atoms())
 				AM.explosion_act(severity++)

@@ -444,7 +444,7 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	if(. && !QDELETED(src))
 		if(severity == 1)
 			physically_destroyed()
-		else if((severity == 2 && prob(75)) || (severity == 3 && prob(50)))
+		else if((severity > 200 && prob(75)) || (severity > 50 && prob(50)))
 			broken()
 
 // timed process

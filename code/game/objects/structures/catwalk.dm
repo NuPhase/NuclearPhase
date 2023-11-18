@@ -76,7 +76,7 @@
 
 /obj/structure/catwalk/explosion_act(severity)
 	..()
-	if(!QDELETED(src) && severity != 3)
+	if(!QDELETED(src) && severity > 500)
 		physically_destroyed()
 
 /obj/structure/catwalk/grab_attack(var/obj/item/grab/G)

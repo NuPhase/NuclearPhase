@@ -132,7 +132,7 @@ var/global/list/meteors_cataclysm = list(\
 	density = 1
 	anchored = 1
 	var/hits = 4
-	var/hitpwr = 2 //Level of ex_act to be called on hit.
+	var/hitpwr = 200 //Level of ex_act to be called on hit.
 	var/dest
 	pass_flags = PASS_FLAG_TABLE
 	var/heavy = 0

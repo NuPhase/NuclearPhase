@@ -131,10 +131,10 @@ var/global/list/floor_light_cache = list()
 /obj/machinery/floor_light/explosion_act(severity)
 	. = ..()
 	if(. && !QDELETED(src))
-		if(severity == 1 || (severity == 2 && prob(50)) || (severity == 3 && prob(5)))
+		if(severity > 400)
 			physically_destroyed()
 		else
-			if(severity == 2 && prob(20))
+			if(severity > 200 && prob(20))
 				set_broken(TRUE)
 			if(isnull(damaged))
 				damaged = 0

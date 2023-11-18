@@ -25,7 +25,7 @@ var/global/list/wall_fullblend_objects = list(
 	blocks_air = 1
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
-	explosion_resistance = 10
+	explosion_resistance = 700
 	color = COLOR_GRAY40
 	atom_flags = ATOM_FLAG_CAN_BE_PAINTED
 
@@ -253,14 +253,14 @@ var/global/list/wall_fullblend_objects = list(
 
 /turf/simulated/wall/explosion_act(severity)
 	SHOULD_CALL_PARENT(FALSE)
-	if(severity == 1)
+	if(severity > 1000)
 		dismantle_wall(1,1,1)
-	else if(severity == 2)
+	else if(severity > 500)
 		if(prob(75))
 			take_damage(rand(150, 250))
 		else
 			dismantle_wall(1,1)
-	else if(severity == 3)
+	else if(severity > 200)
 		take_damage(rand(0, 250))
 
 // Wall-rot effect, a nasty fungus that destroys walls.

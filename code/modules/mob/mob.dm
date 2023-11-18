@@ -1021,7 +1021,7 @@
 /mob/explosion_act(var/severity)
 	. = ..()
 	if(!QDELETED(src))
-		if(severity == 1)
+		if(severity > 1000)
 			physically_destroyed()
 		else if(!blinded)
 			flash_eyes()

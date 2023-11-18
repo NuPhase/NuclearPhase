@@ -65,10 +65,7 @@
 /obj/machinery/deployable/barrier/explosion_act(severity)
 	. = ..()
 	if(. && !QDELETED(src))
-		if(severity == 1)
-			health = 0
-		else if(severity == 2)
-			health -= 25
+		health -= severity * 0.1
 		if(health <= 0)
 			explode()
 
@@ -91,7 +88,7 @@
 /obj/machinery/deployable/barrier/physically_destroyed(skip_qdel)
 	SSmaterials.create_object(/decl/material/solid/metal/steel, get_turf(src), 1, /obj/item/stack/material/rods)
 	. = ..()
-	
+
 /obj/machinery/deployable/barrier/proc/explode()
 	visible_message("<span class='danger'>[src] blows apart!</span>")
 	spark_at(src, cardinal_only = TRUE)

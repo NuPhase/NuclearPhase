@@ -51,11 +51,6 @@
 		user.visible_message("<span class='warning'>\The [user] adjusts \the [src], [airtight ? "preventing" : "allowing"] air flow.</span>")
 	else ..()
 
-/obj/structure/plasticflaps/explosion_act(severity)
-	..()
-	if(!QDELETED(src) && (severity == 1 || (severity == 2 && prob(50)) || (severity == 3 && prob(5))))
-		physically_destroyed()
-
 /obj/structure/plasticflaps/Initialize()
 	. = ..()
 	if(airtight)
@@ -74,5 +69,5 @@
 	atmos_canpass = CANPASS_ALWAYS
 	update_nearby_tiles()
 
-/obj/structure/plasticflaps/airtight // airtight defaults to on 
+/obj/structure/plasticflaps/airtight // airtight defaults to on
 	airtight = TRUE
