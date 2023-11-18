@@ -8,6 +8,12 @@
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	is_ghost_role = TRUE
 
 /datum/job/officeman/do_spawn_special(mob/living/character, mob/new_player/new_player_mob, latejoin)

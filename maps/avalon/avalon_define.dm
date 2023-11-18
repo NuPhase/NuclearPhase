@@ -2,6 +2,7 @@
 	name = "Serenity"
 	full_name = "'Serenity' Emergency Shelter"
 	path = "avalon"
+	flags = MAP_HAS_BRANCH|MAP_HAS_RANK
 
 	system_name = "Sirius"
 	station_name = "Serenity"

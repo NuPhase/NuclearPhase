@@ -2,6 +2,7 @@
 #include "avalon_shuttles.dm"
 #include "avalon_departments.dm"
 #include "avalon_jobs.dm"
+#include "avalon_ranks.dm"
 #include "avalon_unit_testing.dm"
 #include "avalon.dmm"
 #include "ghost_skyscraper.dmm"

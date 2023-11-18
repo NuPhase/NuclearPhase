@@ -10,6 +10,12 @@
 	account_allowed = 0
 	economic_power = 0
 	outfit_type = /decl/hierarchy/outfit/job/silicon/ai
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/synth
+	)
 	loadout_allowed = FALSE
 	hud_icon = "hudblank"
 	skill_points = 0
@@ -59,6 +65,12 @@
 	economic_power = 0
 	loadout_allowed = FALSE
 	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/synth
+	)
 	hud_icon = "hudblank"
 	skill_points = 0
 	no_skill_buffs = TRUE

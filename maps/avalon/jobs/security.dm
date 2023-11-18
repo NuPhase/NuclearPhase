@@ -1,5 +1,5 @@
 /datum/job/hos
-	title = "Lieutenant"
+	title = "Troop Commander"
 	head_position = 1
 	department_types = list(
 		/decl/department/security,
@@ -64,6 +64,14 @@
 	must_fill = 1
 	not_random_selectable = 1
 	outfit_type = /decl/hierarchy/outfit/job/security/hos
+	allowed_branches = list(
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/army/o1,
+		/datum/mil_rank/army/o2,
+		/datum/mil_rank/army/o3
+		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
 		SKILL_EVA       = SKILL_BASIC,
@@ -119,6 +127,14 @@
 	)
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/warden
+	allowed_branches = list(
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/army/e4,
+		/datum/mil_rank/army/e5,
+		/datum/mil_rank/army/e6
+		)
 	guestbanned = 1
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
@@ -166,6 +182,12 @@
 	)
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/detective
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	guestbanned = 1
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
@@ -187,7 +209,7 @@
 	)
 
 /datum/job/officer
-	title = "Private"
+	title = "Trooper"
 	department_types = list(/decl/department/security)
 	total_positions = 4
 	spawn_positions = 4
@@ -215,6 +237,14 @@
 	)
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/officer
+	allowed_branches = list(
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/army/e1,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
+		)
 	guestbanned = 1
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_BASIC,
