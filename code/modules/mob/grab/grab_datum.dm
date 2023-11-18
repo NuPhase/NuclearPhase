@@ -84,7 +84,7 @@
 /decl/grab/proc/can_throw(obj/item/grab/G)
 	if(iscarbon(G.assailant))
 		var/mob/living/carbon/C_assailant = G.assailant
-		var/mob/living/carbon/C_victim = G.victim
+		var/mob/living/carbon/C_victim = G.affecting
 		if(C_assailant.pickup_capacity > C_victim.weight * 0.5) //can always throw with one hand
 			return TRUE
 	return can_throw

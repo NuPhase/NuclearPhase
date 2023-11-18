@@ -82,6 +82,18 @@
 	material = /decl/material/solid/metal/steel
 	marking_color = COLOR_PAKISTAN_GREEN
 
+/obj/item/ammo_magazine/shotholder/incendiary
+	name = "dragon breath shell holder"
+	ammo_type = /obj/item/ammo_casing/shotgun/dragon_breath
+	material = /decl/material/solid/metal/steel
+	marking_color = COLOR_ORANGE
+
+/obj/item/ammo_magazine/shotholder/riot
+	name = "riot control shell holder"
+	ammo_type = /obj/item/ammo_casing/shotgun/riot
+	material = /decl/material/solid/metal/steel
+	marking_color = COLOR_RED_LIGHT
+
 /obj/item/ammo_magazine/shotholder/flash
 	name = "illumination shell holder"
 	ammo_type = /obj/item/ammo_casing/shotgun/flash

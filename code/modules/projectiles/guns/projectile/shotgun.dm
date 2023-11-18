@@ -3,7 +3,7 @@
 	desc = "The mass-produced W-T Remmington 29x shotgun is a favourite of police and security forces on many worlds. Useful for sweeping alleys."
 	icon = 'icons/obj/guns/shotgun/pump.dmi'
 	icon_state = ICON_STATE_WORLD
-	max_shells = 4
+	max_shells = 6
 	w_class = ITEM_SIZE_HUGE
 	force = 10
 	obj_flags =  OBJ_FLAG_CONDUCTIBLE
@@ -11,7 +11,7 @@
 	caliber = CALIBER_SHOTGUN
 	origin_tech = "{'combat':4,'materials':2}"
 	load_method = SINGLE_CASING
-	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	ammo_type = /obj/item/ammo_casing/shotgun/riot
 	handle_casings = HOLD_CASINGS
 	one_hand_penalty = 8
 	bulk = 6

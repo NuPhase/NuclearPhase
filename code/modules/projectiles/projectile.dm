@@ -68,7 +68,7 @@
 
 	var/vacuum_traversal = 1 //Determines if the projectile can exist in vacuum, if false, the projectile will be deleted if it enters vacuum.
 //Movement parameters
-	var/speed = 0.4		//Amount of deciseconds it takes for projectile to travel
+	var/speed = 0.3		//Amount of deciseconds it takes for projectile to travel
 	var/pixel_speed = 33	//pixels per move - DO NOT FUCK WITH THIS UNLESS YOU ABSOLUTELY KNOW WHAT YOU ARE DOING OR UNEXPECTED THINGS /WILL/ HAPPEN!
 	var/Angle = 0
 	var/original_Angle = 0		//Angle at firing

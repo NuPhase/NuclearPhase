@@ -115,7 +115,47 @@
 	agony = 60
 	embed = 0
 	armor_penetration = 0
+	stun = 3
+	weaken = 2
 	distance_falloff = 3
+
+/obj/item/projectile/bullet/shotgun/incendiary
+	name = "dragon breath"
+	icon_state = "incendiary"
+	fire_sound = 'sound/weapons/gunshot/shotgun.ogg'
+	damage_type = BURN
+	damage_flags = DAM_LASER
+	damage = 25
+	eyeblur = 2
+	agony = 20
+	armor_penetration = 0
+	distance_falloff = 0.5 //we're large so falloff is lower
+
+/obj/item/projectile/bullet/shotgun/incendiary/on_hit(atom/target, blocked)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		L.adjust_fire_stacks(rand(5,8))
+		L.IgniteMob()
+	else
+		deflagration(get_turf(target), 15, 10, FIRE_COLOR_DEFAULT)
+
+/obj/item/projectile/bullet/shotgun/riot
+	name = "riot control"
+	fire_sound = 'sound/weapons/gunshot/shotgun.ogg'
+	damage_type = BRUTE
+	damage_flags = DAM_BULLET
+	damage = 5
+	eyeblur = 5
+	agony = 200
+	armor_penetration = 0
+
+/obj/item/projectile/bullet/shotgun/riot/on_hit(atom/target, blocked)
+	. = ..()
+	playsound(target.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	var/datum/effect/effect/system/smoke_spread/mustard/smoke = new
+	smoke.attach(target)
+	smoke.set_up(9, 0, get_turf(target))
 
 /* "Rifle" rounds */
 
