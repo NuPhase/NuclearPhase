@@ -82,8 +82,6 @@ export const TurbineMonitor = (props: any, context: any) => {
                   average: [0.4, 0.85],
                   bad: [0, 0.4],
                   }}
-                  minValue = {0}
-                  maxValue = {1}
                   value={data.turb2.efficiency}>
                 </ProgressBar>
             </LabeledList.Item>
