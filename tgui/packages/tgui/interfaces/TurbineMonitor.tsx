@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { LabeledList, ProgressBar, NoticeBox, Section, Tabs } from "../components";
+import { LabeledList, Button, ProgressBar, NoticeBox, Section, Tabs } from "../components";
 import { Window } from "../layouts";
 
 type InputData = {
@@ -96,6 +96,18 @@ export const TurbineMonitor = (props: any, context: any) => {
             </LabeledList.Item>
             {!data.turb2.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
+          <Button.Confirm
+            confirmContent = ""
+            confirmColor = "red"
+            mx = {5}
+            textAlign = "center"
+            fontSize = {2}
+            tooltip = "Braking the turbine can put you in danger. Think carefully."
+            verticalAlignContent = "middle"
+            color = {"orange"}
+            onClick={() => act('braketurb2')}>
+            T2 BRAKE
+          </Button.Confirm>
         </Section>
       </Window.Content>
     </Window>

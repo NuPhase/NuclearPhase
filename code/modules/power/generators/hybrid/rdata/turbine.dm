@@ -61,3 +61,16 @@
 						)
 	)
 	return data
+
+/obj/machinery/reactor_display/group/turbine/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	var/mob/living/user = usr
+	switch(action)
+		if("braketurb1")
+			rcontrol.turbine1.braking = TRUE
+			to_chat(user, "TURB 1 BRK")
+			return
+		if("braketurb2")
+			rcontrol.turbine2.braking = TRUE
+			to_chat(user, "TURB 2 BRK")
+			return
