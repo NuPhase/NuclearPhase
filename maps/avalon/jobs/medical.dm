@@ -112,7 +112,7 @@
 		"Surgeon" =             /decl/hierarchy/outfit/job/medical/doctor/surgeon,
 		"Emergency Physician" = /decl/hierarchy/outfit/job/medical/doctor/emergency_physician,
 		"Nurse" =               /decl/hierarchy/outfit/job/medical/doctor/nurse,
-		"Virologist" =          /decl/hierarchy/outfit/job/medical/doctor/virologist
+		"Anesthesiologist" =               /decl/hierarchy/outfit/job/medical/doctor/nurse
 	)
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
 	allowed_branches = list(
