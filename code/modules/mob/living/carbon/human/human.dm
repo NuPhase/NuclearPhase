@@ -1422,7 +1422,6 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	new_character.update_eyes()
 	new_character.refresh_visible_overlays()
 	new_character.key = key
-	new_character.limb_mob = src
 	limb_mob = new_character
 	SSjobs.equip_ghostrank(new_character, "Explorer", 0)
 

@@ -156,9 +156,3 @@
 					else
 						bodytemp.icon_state = "temp0"
 	return 1
-
-/mob/living/carbon/human/limb/verb/wakeup()
-	set name = "WAKE UP"
-	set category = "WAKE UP"
-	if(!limb_mob.retrieve_from_limb())
-		to_chat(usr, SPAN_WARNING("You desperately try to wake up, but fail!"))
