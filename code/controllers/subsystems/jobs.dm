@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(jobs)
 	if(airstatus > 0 || radlevel > 5)
 		var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
 		You may die shortly after spawning. \
-		Spawn anyway? More information: [airstatus] Radiation: [radlevel] Sieverts", "Atmosphere warning", "Abort", "Spawn anyway")
+		Spawn anyway? More information: [airstatus] Radiation: [radlevel]mSv/hour", "Atmosphere warning", "Abort", "Spawn anyway")
 		if(reply == "Abort")
 			return FALSE
 		else
