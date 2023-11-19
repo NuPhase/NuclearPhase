@@ -1637,7 +1637,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/factory)
 "bEw" = (
-/obj/structure/iv_drip,
+/obj/machinery/lung_ventilator,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/intensive_care)
 "bEO" = (
@@ -3563,8 +3563,8 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 9
 	},
-/obj/structure/iv_drip,
 /obj/structure/window/basic,
+/obj/machinery/lung_ventilator,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/intensive_care)
 "dkN" = (
@@ -9114,7 +9114,6 @@
 /area/avalon/shelter/expeditionpreparation)
 "hVS" = (
 /obj/structure/table/glass,
-/obj/item/storage/box/freezer/prefilled,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/surgery)
@@ -11304,7 +11303,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/avalon/shelter/machinehall)
 "jJJ" = (
-/obj/structure/closet/secure_closet/warden,
+/obj/structure/closet/secure_closet/warden{
+	name = "sergeant's locker"
+	},
 /obj/effect/floor_decal/corner/pink,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -13203,8 +13204,8 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 6
 	},
-/obj/structure/iv_drip,
 /obj/structure/window/basic,
+/obj/machinery/lung_ventilator,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/intensive_care)
 "lst" = (
@@ -13958,6 +13959,10 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 6
 	},
+/obj/structure/iv_drip{
+	pixel_y = -2;
+	pixel_x = -8
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/intensive_care)
 "lUD" = (
@@ -14436,7 +14441,17 @@
 /obj/effect/floor_decal/corner/blue{
 	dir = 10
 	},
-/obj/machinery/lung_ventilator,
+/obj/structure/rack/dark,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
+/obj/item/chest_tube,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/storage)
 "muE" = (
@@ -18588,6 +18603,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/avalon/shelter/brig)
+"pLW" = (
+/obj/structure/bed,
+/obj/effect/floor_decal/corner/blue{
+	dir = 9
+	},
+/obj/structure/iv_drip{
+	pixel_y = -2;
+	pixel_x = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/medbay/intensive_care)
 "pMc" = (
 /obj/structure/sign/warning/radioactive,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -21507,7 +21533,9 @@
 /obj/effect/floor_decal/corner/pink{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/hos,
+/obj/structure/closet/secure_closet/hos{
+	name = "commander's locker"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/brig/sergeantroom)
 "suf" = (
@@ -23261,7 +23289,6 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/lung_ventilator,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/medbay/surgery)
 "uba" = (
@@ -23905,6 +23932,10 @@
 /area/avalon/shelter/engineering)
 "uJv" = (
 /obj/structure/bed,
+/obj/structure/iv_drip{
+	pixel_y = -2;
+	pixel_x = 8
+	},
 /obj/effect/floor_decal/corner/blue{
 	dir = 9
 	},
@@ -122198,7 +122229,7 @@ vOp
 bde
 vOp
 bRz
-uJv
+pLW
 dkH
 uJv
 jaU
