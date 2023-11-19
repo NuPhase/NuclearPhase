@@ -5,7 +5,7 @@
 	permit_ao = TRUE
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
-	explosion_resistance = 1
+	explosion_resistance = 10
 
 	// Damage to flooring.
 	var/broken

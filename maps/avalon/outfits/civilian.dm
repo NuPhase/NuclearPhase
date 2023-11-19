@@ -53,3 +53,6 @@
 	name = "Job - Explorer"
 	uniform = /obj/item/clothing/under/familiargarb
 	shoes = /obj/item/clothing/shoes/color/brown
+	id_type = null
+	id_slot = null
+	id_desc = null

@@ -10,7 +10,7 @@
 //similar to weeds, but only barfed out by nurses manually
 /obj/effect/spider/explosion_act(severity)
 	..()
-	if(!QDELETED(src) && (severity == 1 || (severity == 2 && prob(50) || (severity == 3 && prob(5)))))
+	if(!QDELETED(src) && (severity > 100 || (severity > 500 && prob(50) || (severity > 1000 && prob(5)))))
 		qdel(src)
 
 /obj/effect/spider/attack_hand(mob/user)

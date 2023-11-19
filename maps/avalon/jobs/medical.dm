@@ -53,6 +53,12 @@
 	must_fill = 1
 	not_random_selectable = 1
 	outfit_type = /decl/hierarchy/outfit/job/medical/cmo
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
 		SKILL_MEDICAL   = SKILL_EXPERT,
@@ -106,9 +112,15 @@
 		"Surgeon" =             /decl/hierarchy/outfit/job/medical/doctor/surgeon,
 		"Emergency Physician" = /decl/hierarchy/outfit/job/medical/doctor/emergency_physician,
 		"Nurse" =               /decl/hierarchy/outfit/job/medical/doctor/nurse,
-		"Virologist" =          /decl/hierarchy/outfit/job/medical/doctor/virologist
+		"Anesthesiologist" =               /decl/hierarchy/outfit/job/medical/doctor/nurse
 	)
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 		SKILL_EVA      = SKILL_BASIC,
@@ -150,6 +162,12 @@
 		access_chemistry
 	)
 	outfit_type = /decl/hierarchy/outfit/job/medical/chemist
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
 		SKILL_MEDICAL   = SKILL_ADEPT,
@@ -177,6 +195,12 @@
 		access_medical
 	)
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor/nurse
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_BASIC,
 		SKILL_MEDICAL   = SKILL_BASIC,
@@ -215,6 +239,12 @@
 		access_psychiatrist
 	)
 	outfit_type = /decl/hierarchy/outfit/job/medical/psychiatrist
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 		SKILL_MEDICAL  = SKILL_BASIC

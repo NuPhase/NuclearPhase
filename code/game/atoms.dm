@@ -14,7 +14,7 @@
 	var/datum/reagents/reagents // chemical contents.
 	var/list/climbers
 	var/climb_speed_mult = 1
-	var/explosion_resistance = 0
+	var/explosion_resistance = 10
 	var/weight = DEFAULT_ATOM_WEIGHT //kg
 	var/icon_scale_x = 1 // Holds state of horizontal scaling applied.
 	var/icon_scale_y = 1 // Ditto, for vertical scaling.
@@ -140,7 +140,10 @@
 		f_name += "<font color ='[blood_color]'>stained</font> [name][infix]!"
 
 	to_chat(user, "[html_icon(src)] That's [f_name] [suffix]")
-	to_chat(user, desc)
+	if(russian_desc && user.get_preference_value(/datum/client_preference/russian_translation) == PREF_YES)
+		to_chat(user, russian_desc)
+	else
+		to_chat(user, desc)
 	return TRUE
 
 // called by mobs when e.g. having the atom as their machine, loc (AKA mob being inside the atom) or buckled var set.
@@ -212,7 +215,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(!currently_exploding)
 		currently_exploding = TRUE
-		. = (severity <= 3)
+		. = (severity <= 30)
 		if(.)
 			for(var/atom/movable/AM in get_contained_external_atoms())
 				AM.explosion_act(severity++)

@@ -5,7 +5,7 @@
 // Sound obtained then edited from here : https://freesound.org/people/leonelmail/sounds/328381/ -- Under creative commons 0
 
 /obj/item/geiger
-	name = "geiger counter"
+	name = "dosimeter"
 	desc = "A handheld device used for detecting and measuring radiation in an area."
 	icon = 'icons/obj/items/device/geiger.dmi'
 	icon_state = "geiger_off"
@@ -14,6 +14,7 @@
 	action_button_name = "Toggle geiger counter"
 	var/scanning = 0
 	var/radiation_count = 0
+	var/accumulated_dose = 0
 	var/datum/sound_token/sound_token
 	var/geiger_volume = 0
 	var/sound_id
@@ -37,15 +38,21 @@
 	if(!scanning)
 		return
 	radiation_count = SSradiation.get_rads_at_turf(get_turf(src))
+	accumulated_dose += radiation_count / 3600
 	update_icon()
 
 /obj/item/geiger/examine(mob/user)
 	. = ..()
-	var/msg = "[scanning ? "ambient" : "stored"] Radiation level: [radiation_count ? radiation_count : "0"] Roentgen."
+	var/rad_msg = "[scanning ? "Ambient" : "Stored"] Radiation level: [radiation_count ? radiation_count : "0"]mSv/hour."
+	var/dose_msg = "Accumulated Radiation Dose: [round(accumulated_dose, 0.01)]mSv."
 	if(radiation_count > RAD_LEVEL_LOW)
-		to_chat(user, "<span class='warning'>[msg]</span>")
+		to_chat(user, "<span class='warning'>[rad_msg]</span>")
 	else
-		to_chat(user, "<span class='notice'>[msg]</span>")
+		to_chat(user, "<span class='notice'>[rad_msg]</span>")
+	if(accumulated_dose > RAD_LEVEL_MODERATE)
+		to_chat(user, "<span class='warning'>[dose_msg]</span>")
+	else
+		to_chat(user, "<span class='notice'>[dose_msg]</span>")
 
 /obj/item/geiger/attack_self(var/mob/user)
 	scanning = !scanning
@@ -87,5 +94,3 @@
 			icon_state = "geiger_on_5"
 			geiger_volume = 60
 			sound_token.SetVolume(geiger_volume)
-
-

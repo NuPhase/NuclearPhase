@@ -33,11 +33,6 @@
 	else
 		icon_state = "morgue_closed"
 
-/obj/structure/morgue/explosion_act(severity)
-	..()
-	if(!QDELETED(src) && (severity == 1 || (severity == 2 && prob(50)) || (severity == 3 && prob(5))))
-		physically_destroyed()
-
 /obj/structure/morgue/proc/open()
 	if(open)
 		return
@@ -58,7 +53,7 @@
 /obj/structure/morgue/proc/close()
 	if(!open)
 		return
-	
+
 	if(!connected_tray)
 		return
 
@@ -72,7 +67,7 @@
 	open = FALSE
 	update_icon()
 
-/obj/structure/morgue/attack_hand(mob/user)	
+/obj/structure/morgue/attack_hand(mob/user)
 	if(open)
 		close()
 	else

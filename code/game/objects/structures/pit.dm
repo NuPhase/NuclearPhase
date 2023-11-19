@@ -105,7 +105,7 @@
 
 /obj/structure/pit/explosion_act(severity)
 	//Pop open and throw the stuff out
-	if(!open && severity > 2)
+	if(!open && severity > 200)
 		open()
 	. = ..()
 

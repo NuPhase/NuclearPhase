@@ -191,7 +191,7 @@
 /obj/machinery/door/firedoor/tgui_data(mob/user)
 	var/direction = "NONE"
 	var/highest_pressure = ONE_ATMOSPHERE
-	var/highest_temperature = T20C
+	var/highest_temperature = convert_k2c(T20C)
 	var/alarmed = lockdown
 	for(var/area/A in areas_added)		//Checks if there are fire alarms in any areas associated with that firedoor
 		if(A.fire || A.air_doors_activated)

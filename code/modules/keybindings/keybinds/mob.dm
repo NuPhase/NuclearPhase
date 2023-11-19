@@ -15,7 +15,7 @@
 	return TRUE
 
 /datum/keybinding/mob/hold_throw_mode
-	hotkey_keys = list("Space")
+	hotkey_keys = list("P")
 	name = "hold_throw_mode"
 	full_name = "Hold throw mode"
 	description = "Hold this to turn on throw mode, and release it to turn off throw mode"

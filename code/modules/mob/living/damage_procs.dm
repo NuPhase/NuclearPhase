@@ -46,7 +46,7 @@
 	if(!damage)
 		return FALSE
 
-	radiation = max(0, radiation + damage)
+	radiation = max(0, radiation + damage / 1800) //our radiation is in mSv per hour, this gets triggered once every two seconds.
 	return TRUE
 
 /mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/damage_flags = 0)

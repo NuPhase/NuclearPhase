@@ -8,6 +8,12 @@
 	minimal_access = list()
 	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant")
 	outfit_type = /decl/hierarchy/outfit/job/generic/assistant
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	department_types = list(/decl/department/civilian)
 	skill_points = 24
 	only_for_whitelisted = FALSE
@@ -36,6 +42,12 @@
 		access_crematorium
 	)
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	is_holy = TRUE
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
@@ -59,6 +71,12 @@
 	minimal_access = list(access_bar)
 	alt_titles = list("Barista")
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
 		SKILL_COOKING   = SKILL_BASIC,
@@ -81,6 +99,12 @@
 	minimal_access = list(access_kitchen)
 	alt_titles = list("Cook")
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
 		SKILL_COOKING   = SKILL_ADEPT,
@@ -103,6 +127,12 @@
 	minimal_access = list(access_hydroponics)
 	alt_titles = list("Hydroponicist")
 	outfit_type = /decl/hierarchy/outfit/job/service/gardener
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
 		SKILL_BOTANY    = SKILL_BASIC,
@@ -140,6 +170,12 @@
 	minimal_player_age = 3
 	ideal_character_age = 40
 	outfit_type = /decl/hierarchy/outfit/job/cargo/qm
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 	    SKILL_FINANCE  = SKILL_BASIC,
@@ -181,6 +217,12 @@
 		access_mailsorting
 	)
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 		SKILL_FINANCE  = SKILL_BASIC,
@@ -222,6 +264,12 @@
 		"Prospector"
 	)
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 		SKILL_STRENGTH  = SKILL_ADEPT,
@@ -261,6 +309,12 @@
 		"Sanitation Technician"
 	)
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 		SKILL_FITNESS  = SKILL_BASIC

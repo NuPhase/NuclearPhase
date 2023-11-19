@@ -25,11 +25,11 @@
 		return
 
 	var/message = pick(list(
-		"Ah, can they just shut up?",
-		"I don't care, just shut up!",
+		"Ah, can [args_["source"]] just shut up?",
+		"I don't care [args_["source"]], just shut up!",
 		"Why is [args_["source"]] so damn loud?",
 		"Control your fucking emotions, [args_["source"]]!",
-		"Stop being so whiney!"
+		"Stop being so whiney [args_["source"]]!"
 	))
 
 	to_chat(holder, SPAN_PHOBIA(message))

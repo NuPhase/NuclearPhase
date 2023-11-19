@@ -5,6 +5,7 @@
 	mechanics_text = "Depleted uranium can be enriched in fission reactors for use as fuel."
 	taste_description = "the outside of a reactor"
 	flags = MAT_FLAG_FISSIBLE
+	radioactivity = 0.12
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
@@ -37,7 +38,7 @@
 	mechanics_text = "Neptunium can be used as fuel in fission reactors at high neutron energies."
 	taste_description = "lemon juice and hot concrete."
 	flags = MAT_FLAG_FISSIBLE
-	radioactivity = 30
+	radioactivity = 17
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
@@ -60,6 +61,7 @@
 	mechanics_text = "Plutonium can be used as fuel in fission reactors."
 	taste_description = "nuclear fallout"
 	flags = MAT_FLAG_FISSIBLE
+	radioactivity = 8
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
@@ -91,7 +93,7 @@
 	lore_text = "A crazy mix of hundreds of isotopes of unreactive nuclear fuel. Extremely radioactive, yet almost useless in reactors."
 	mechanics_text = "Nuclear waste can be processed into various exotic chemicals."
 	taste_description = "heavy metal"
-	radioactivity = 60
+	radioactivity = 37
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'

@@ -9,6 +9,13 @@
 	material = /decl/material/solid/leather
 	starting_accessories = null
 
+/obj/item/clothing/suit/armor/pcarrier/handle_shield(mob/user, damage, atom/damage_source, mob/attacker, def_zone, attack_text)
+	for(var/obj/item/clothing/accessory/acc_decl in accessories)
+		if(acc_decl.handle_shielding(user, damage, damage_source, attacker, def_zone))
+			playsound(user, 'sound/effects/armor_reflect.wav', 60, 1, -2)
+			return 1
+	return 0
+
 /obj/item/clothing/suit/armor/pcarrier/light
 	starting_accessories = list(/obj/item/clothing/accessory/armor/plate)
 

@@ -68,7 +68,7 @@
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.neutron_moles += rand(50, 200) //neutron generators are extremely unpredictable and inaccurate
 		use_power_oneoff(70000, EQUIP)
-		SSradiation.radiate(src, 90)
+		SSradiation.radiate(src, 9000)
 	if(omode == LASER_MODE_IGNITION)
 		capacitor_charge += 1
 		capacitor_charge = Clamp(capacitor_charge, 1, 150)

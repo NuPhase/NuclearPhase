@@ -105,6 +105,22 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
 	material = /decl/material/solid/metal/steel
 
+/obj/item/ammo_casing/shotgun/dragon_breath
+	name = "dragon breath shell"
+	desc = "A dragon breath shell."
+	icon_state = "pshell"
+	spent_icon = "pshell-spent"
+	projectile_type = /obj/item/projectile/bullet/shotgun/incendiary
+	material = /decl/material/solid/metal/steel
+
+/obj/item/ammo_casing/shotgun/riot
+	name = "riot shell"
+	desc = "A riot shell."
+	icon_state = "stunshell"
+	spent_icon = "stunshell-spent"
+	projectile_type = /obj/item/projectile/bullet/shotgun/riot
+	material = /decl/material/solid/metal/steel
+
 //Can stun in one hit if aimed at the head, but
 //is blocked by clothing that stops tasers and is vulnerable to EMP
 /obj/item/ammo_casing/shotgun/stunshell

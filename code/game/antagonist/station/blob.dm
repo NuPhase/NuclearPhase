@@ -91,7 +91,7 @@
 		return
 	for(var/obj/machinery/door/D in T) // There can be several - and some of them can be open, locate() is not suitable
 		if(D.density)
-			D.explosion_act(2)
+			D.explosion_act(200)
 			return
 	var/obj/structure/foamedmetal/F = locate() in T
 	if(F)
@@ -104,7 +104,7 @@
 
 	var/obj/vehicle/V = locate() in T
 	if(V)
-		V.explosion_act(2)
+		V.explosion_act(200)
 		return
 	var/obj/machinery/camera/CA = locate() in T
 	if(CA)

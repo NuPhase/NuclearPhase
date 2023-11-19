@@ -44,7 +44,6 @@
 	heart.bpm_modifiers[name] = removed * 200
 	if(removed > 0.02)
 		ADJ_STATUS(H, STAT_ASLEEP, removed * -10)
-		H.retrieve_from_limb()
 
 /decl/material/liquid/atropine
 	name = "atropine"

@@ -37,7 +37,7 @@
 	uid = "solid_exotic_matter"
 	lore_text = "Hypercrystalline supermatter is a subset of non-baryonic 'exotic' matter. It is found mostly in the heart of large stars, and features heavily in all kinds of fringe physics-defying technology."
 	color = "#ffff00"
-	radioactivity = 20
+	radioactivity = 200
 	stack_origin_tech = "{'wormholes':2,'materials':6,'exoticmatter':4}"
 	luminescence = 3
 	value = 3

@@ -22,7 +22,7 @@
 	if(tgui_alert(user, "Are you sure you want to switch on the reactor? It won't be usable after it finishes running.", "Usage Warning", list("DESCEND HELL UPON EARTH!", "No...")) == "DESCEND HELL UPON EARTH!")
 		used = TRUE
 		active = TRUE
-		SSradiation.radiate(src, 15)
+		SSradiation.radiate(src, 150)
 		visible_message(SPAN_WARNING("[user] turns on the [src]!"))
 		spawn(30 MINUTES)
 			active = FALSE

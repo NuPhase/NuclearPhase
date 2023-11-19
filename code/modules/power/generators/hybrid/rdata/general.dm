@@ -21,7 +21,7 @@
 		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
 		"neutron_rate" = round(rcore.neutron_rate*100-100),
-		"radiation" = round(rcore.last_radiation),
+		"radiation" = round(rcore.last_radiation * 0.001),
 		"chamber_temperature" = core_air.temperature,
 		"containment_consumption" = round(rcore.field_power_consumption),
 		"containment_temperature" = round(rcore.shield_temperature),

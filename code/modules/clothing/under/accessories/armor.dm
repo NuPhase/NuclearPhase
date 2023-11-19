@@ -42,6 +42,48 @@
 /obj/item/clothing/accessory/armor/plate/get_fibers()
 	return null	//plates do not shed
 
+/obj/item/clothing/accessory/armor/plate/dynamic
+	name = "reactive armor"
+	var/current_blocked_projectiles = 0 //counts up each time we suck up a projectile
+	var/max_blocked_projectiles = 5
+	var/min_blocking_damage = 10
+	var/max_blocking_damage = 40
+
+/obj/item/clothing/accessory/armor/plate/dynamic/handle_shielding(mob/user, damage, atom/damage_source, mob/attacker, def_zone, attack_text)
+	if(current_blocked_projectiles < max_blocked_projectiles)
+		current_blocked_projectiles += 1
+		if(damage > min_blocking_damage && damage < max_blocking_damage)
+			return TRUE
+	return FALSE
+
+/obj/item/clothing/accessory/armor/plate/dynamic/light
+	name = "REDP armor plate" //reactive electric discharge protection
+	desc = "An armor system consisting of a microcomputer and a set of independent modules consisting of capacitors and discharge systems. It is designed primarily to stop slow projectiles that do not have much kinetic energy."
+	russian_desc = "Броневая система, представляющая из себя микрокомпьютер и набор независимых модулей, состоящих из конденсаторов и систем разрядки. Она разработана в первую очередь для остановки медленных снарядов, не обладающих большой кинетической энергией."
+	max_blocked_projectiles = 17
+	min_blocking_damage = 5
+	max_blocking_damage = 35
+	weight = 5.2
+
+/obj/item/clothing/accessory/armor/plate/dynamic/medium
+	name = "RDP armor plate" //reactive detonation protection
+	desc = "Classic body armor with additional protection in the form of small explosive rounds capable of deflecting or stopping a flying projectile. Designed to stop most pistol calibers."
+	russian_desc = "Классический бронежилет c дополнительной защитой в виде небольших взрывпакетов, способных отклонить или остановить летящий снаряд. Разработана для остановки большинства пистолетных калибров."
+	icon = 'icons/clothing/accessories/armor/armor_medium.dmi'
+	max_blocked_projectiles = 4
+	min_blocking_damage = 30
+	max_blocking_damage = 70
+	weight = 5.8
+
+/obj/item/clothing/accessory/armor/plate/dynamic/heavy
+	name = "RDP-X armor plate"
+	desc = "A strengthened version of RDP armor."
+	russian_desc = "Усиленная версия бронежилета RDP. Опасно."
+	max_blocked_projectiles = 2
+	min_blocking_damage = 40
+	max_blocking_damage = 200
+	weight = 7.4
+
 /obj/item/clothing/accessory/armor/plate/medium
 	name = "medium armor plate"
 	desc = "A plasteel-reinforced synthetic armor plate, providing good protection. Attaches to a plate carrier."

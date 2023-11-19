@@ -24,6 +24,7 @@
 		/datum/job/hos,
 		/datum/job/warden,
 		/datum/job/officer,
+		/datum/job/field_medic,
 		/datum/job/officeman,
 		/datum/job/explorer,
 		/datum/job/hobo

@@ -41,7 +41,7 @@
 		command_announcement.Announce("The [location_name()] has passed the radiation belt. Please allow for up to one minute while radiation levels dissipate, and report to the infirmary if you experience any unusual symptoms. Maintenance will return to normal access parameters shortly.", "[location_name()] Sensor Array", zlevels = affecting_z)
 
 /datum/event/radiation_storm/proc/radiate()
-	var/radiation_level = rand(15, 35)
+	var/radiation_level = rand(15000, 35000)
 	for(var/z in affecting_z)
 		SSradiation.z_radiate(locate(1, 1, z), radiation_level, 1)
 

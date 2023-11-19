@@ -13,6 +13,9 @@
 	var/hide_on_uniform_rolldown = FALSE
 	var/hide_on_uniform_rollsleeves = FALSE
 
+/obj/item/clothing/accessory/proc/handle_shielding(mob/user, damage, atom/damage_source, mob/attacker, def_zone, attack_text)
+	return FALSE
+
 /obj/item/clothing/accessory/Destroy()
 	on_removed()
 	return ..()

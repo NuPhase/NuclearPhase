@@ -475,12 +475,12 @@ meteor_act
 	var/b_loss = null
 	var/f_loss = null
 	switch (severity)
-		if(1)
+		if(500 to EXPLOSION_MAX_POWER)
 			b_loss = 400
 			f_loss = 100
 			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 			throw_at(target, 200, 4)
-		if(2)
+		if(200 to 500)
 			b_loss = 60
 			f_loss = 60
 			if (get_sound_volume_multiplier() >= 0.2)
@@ -488,7 +488,7 @@ meteor_act
 				SET_STATUS_MAX(src, STAT_DEAF, 120)
 			if(prob(70))
 				SET_STATUS_MAX(src, STAT_PARA, 10)
-		if(3)
+		if(1 to 200)
 			b_loss = 30
 			if (get_sound_volume_multiplier() >= 0.2)
 				SET_STATUS_MAX(src, STAT_TINNITUS, 15)

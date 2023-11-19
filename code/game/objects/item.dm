@@ -188,7 +188,7 @@
 
 /obj/item/explosion_act(severity)
 	..()
-	if(!QDELETED(src) && (severity == 1 || (severity == 2 && prob(50) || (severity == 3 && prob(5)))))
+	if(!QDELETED(src) && (severity > 1000 || (severity > 500 && prob(50) || (severity > 200 && prob(5)))))
 		qdel(src)
 
 /obj/item/examine(mob/user, distance)

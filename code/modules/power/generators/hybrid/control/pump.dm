@@ -8,8 +8,8 @@
 
 /obj/machinery/reactor_button/pump/do_action(mob/user)
 	. = ..()
-	var/mode = tgui_input_list(user, "Select a new pump operation mode", "Pump Mode", list(REACTOR_PUMP_MODE_OFF, REACTOR_PUMP_MODE_IDLE, REACTOR_PUMP_MODE_MAX, "Cancel"))
-	if(!mode || mode == "Cancel")
+	var/mode = tgui_input_list(user, "Select a new pump operation mode", "Pump Mode", list(REACTOR_PUMP_MODE_OFF, REACTOR_PUMP_MODE_IDLE, REACTOR_PUMP_MODE_MAX))
+	if(!mode)
 		return
 	switch(mode)
 		if(REACTOR_PUMP_MODE_OFF)

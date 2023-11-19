@@ -63,8 +63,8 @@
 
 /obj/machinery/reactor_button/lasomode/do_action(mob/user)
 	..()
-	var/mode = tgui_input_list(user, "Select a new laser operation mode", "LASER-OMODE", list(LASER_MODE_CONTINUOUS, LASER_MODE_IGNITION, LASER_MODE_IMPULSE, "Cancel"))
-	if(!mode || mode == "Cancel")
+	var/mode = tgui_input_list(user, "Select a new laser operation mode", "LASER-OMODE", list(LASER_MODE_CONTINUOUS, LASER_MODE_IGNITION, LASER_MODE_IMPULSE))
+	if(!mode)
 		return
 	for(var/tag in reactor_components)
 		var/obj/machinery/rlaser/las = reactor_components[tag]
@@ -79,8 +79,8 @@
 
 /obj/machinery/reactor_button/lasnmode/do_action(mob/user)
 	..()
-	var/mode = tgui_input_list(user, "Select a new laser neutron mode", "LASER-OMODE", list(NEUTRON_MODE_BOMBARDMENT, NEUTRON_MODE_MODERATION, NEUTRON_MODE_OFF, "Cancel"))
-	if(!mode || mode == "Cancel")
+	var/mode = tgui_input_list(user, "Select a new laser neutron mode", "LASER-OMODE", list(NEUTRON_MODE_BOMBARDMENT, NEUTRON_MODE_MODERATION, NEUTRON_MODE_OFF))
+	if(!mode)
 		return
 	for(var/tag in reactor_components)
 		var/obj/machinery/rlaser/las = reactor_components[tag]

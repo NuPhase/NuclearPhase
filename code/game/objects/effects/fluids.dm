@@ -28,6 +28,8 @@
 /obj/effect/fluid/Crossed(mob/living/carbon/C)
 	if(!iscarbon(C))
 		return
+	if(reagents.total_volume > FLUID_SHALLOW)
+		playsound(get_turf(src), pick('sound/effects/fluid/water_wade1.ogg', 'sound/effects/fluid/water_wade2.ogg', 'sound/effects/fluid/water_wade3.ogg', 'sound/effects/fluid/water_wade4.ogg'), 50, 0, -2)
 	reagents.touch_mob(C)
 
 	var/temp_adj = 0
@@ -95,6 +97,11 @@
 			ADD_ACTIVE_FLUID(F)
 	update_lighting = TRUE
 	update_icon()
+	var/total_radioactivity = 0
+	for(var/reagent_type in reagents.reagent_volumes)
+		var/decl/material/mat = GET_DECL(reagent_type)
+		total_radioactivity += mat.radioactivity * reagents.reagent_volumes[reagent_type]
+	SSradiation.radiate(src, total_radioactivity)
 
 /obj/effect/fluid/Destroy()
 	ADD_ACTIVE_FLUID(src)

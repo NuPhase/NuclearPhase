@@ -49,7 +49,7 @@
 
 /obj/structure/lattice/explosion_act(severity)
 	..()
-	if(!QDELETED(src) && severity <= 2)
+	if(!QDELETED(src) && severity <= 200)
 		physically_destroyed()
 
 /obj/structure/lattice/proc/deconstruct(var/mob/user)
@@ -99,7 +99,7 @@
 		if(locate(/obj/structure/lattice, T) || locate(/obj/structure/catwalk, T))
 			dir_sum += direction
 		else
-			var/turf/O = get_step(src, direction) 
+			var/turf/O = get_step(src, direction)
 			if(!istype(O) || !O.is_open())
 				dir_sum += direction
 	icon_state = "lattice[dir_sum]"

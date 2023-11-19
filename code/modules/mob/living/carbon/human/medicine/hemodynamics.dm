@@ -60,12 +60,12 @@
 	var/coeff = get_blood_volume_hemo() * (bpmd * 3.73134328)
 	var/bpm53 = bpm * coeff * 53.0
 	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)), HEMODYNAMICS_INTERPOLATE_FACTOR))
-	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure * get_cardiac_output() - (7646.0 * metabolic_coefficient)/54.0, HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
+	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure * get_cardiac_output() - (7646.0 * metabolic_coefficient)/54, HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
 	dyspressure = min(dyspressure, max(10, syspressure)-10)
 
-	meanpressure = (syspressure + dyspressure) / 2
+	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 
-	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff + add_mcv, 0, 12000)
+	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff + add_mcv, 0, 32000)
 	add_mcv = 0
 	//mcv = meanpressure * 132.32 * 60 / tpvr
 

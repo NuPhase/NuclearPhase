@@ -7,6 +7,12 @@
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/explorer
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	is_ghost_role = TRUE
 
 /datum/job/explorer/do_spawn_special(mob/living/character, mob/new_player/new_player_mob, latejoin)
@@ -22,6 +28,12 @@
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/explorer
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	forced_spawnpoint = /decl/spawnpoint/service
 
 /datum/job/hobo/do_spawn_special(mob/living/character, mob/new_player/new_player_mob, latejoin)

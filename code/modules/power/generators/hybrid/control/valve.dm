@@ -11,6 +11,7 @@
 		V.close()
 	else
 		V.open()
+
 /obj/machinery/reactor_button/presvalve
 	name = "pressure valve regulator"
 	icon_state = "switch1-off"
@@ -20,7 +21,7 @@
 	var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
 	if(!current_valve)
 		return
-	var/setting = tgui_input_list(user, "Which setting do you want to change?", "Setting change", list("Status", "Pressure Setting", "Direction", "Cancel"))
+	var/setting = tgui_input_list(user, "Which setting do you want to change?", "Setting change", list("Status", "Pressure Setting", "Direction"))
 	switch(setting)
 		if("Status")
 			var/newinput = tgui_input_list(user, "Select status", "Status selection", list("On", "Off"))

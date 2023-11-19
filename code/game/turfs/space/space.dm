@@ -2,7 +2,7 @@
 	name = "\proper space"
 	plane = SPACE_PLANE
 	icon = 'icons/turf/space.dmi'
-	explosion_resistance = 3
+	explosion_resistance = 70
 	icon_state = "default"
 	dynamic_lighting = FALSE
 	temperature = T20C

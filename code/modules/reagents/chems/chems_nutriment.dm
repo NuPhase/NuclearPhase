@@ -287,11 +287,30 @@
 /decl/material/liquid/nutriment/rice
 	name = "rice"
 	lore_text = "Enjoy the great taste of nothing."
+	taste_description = "dry uncooked rice"
+	taste_mult = 0.6
+	nutriment_factor = 2
+	color = "#ffffff"
+	uid = "chem_nutriment_rice"
+
+/decl/material/liquid/nutriment/boiled_rice
+	name = "boiled rice"
+	lore_text = "Enjoy the great taste of nothing."
 	taste_description = "rice"
 	taste_mult = 0.4
 	nutriment_factor = 5
 	color = "#ffffff"
-	uid = "chem_nutriment_rice"
+	uid = "chem_nutriment_boiled_rice"
+
+/decl/material/liquid/nutriment/burnt_rice
+	name = "burnt rice"
+	lore_text = "Enjoy the great taste of nothing."
+	taste_description = "awfully burnt rice"
+	taste_mult = 1.5
+	nutriment_factor = 0.7 //suffer
+	color = "#ffffff"
+	toxicity = 0.1
+	uid = "chem_nutriment_burnt_rice"
 
 /decl/material/liquid/nutriment/rice/chazuke
 	name = "chazuke"

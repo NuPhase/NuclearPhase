@@ -180,10 +180,10 @@
 			remove_message("EXCESSIVE VIBRATION IN TURBINE #2")
 			remove_message("HIGH VIBRATION IN TURBINE #2")
 
-	if(get_meter_temperature("REACTOR-M CHAMBER") > 3950)
+	if(get_meter_temperature("REACTOR-M CHAMBER") > 4200)
 		do_message("REACTOR HEATEXCHANGER OVERHEAT", 2)
 		pressure_temperature_should_alarm = TRUE
-	if(get_meter_temperature("REACTOR-M CHAMBER") < 3500 && get_meter_mass("REACTOR-M CHAMBER") > 10)
+	if(get_meter_temperature("REACTOR-M CHAMBER") < 4100 && get_meter_mass("REACTOR-M CHAMBER") > 10)
 		do_message("REACTOR HEATEXCHANGER TEMPERATURE LOW", 2)
 		pressure_temperature_should_alarm = TRUE
 	if(get_meter_temperature("T-M-TURB IN") > MAX_REACTOR_STEAM_TEMP)
@@ -210,7 +210,7 @@
 		do_message("TURBINE LOOP PUMP #2 MASS FLOW < 50KG/S", 1)
 
 	if(get_meter_temperature("T-M-TURB EX") > 390 && !(current_switch && current_switch.state))
-		do_message("VAPOR IN FEEDWATER LOOP", 2)
+		do_message("VAPOR IN HOTWELL LOOP", 2)
 
 /datum/reactor_control_system/proc/auto_control()
 	return

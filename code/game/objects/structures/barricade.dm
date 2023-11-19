@@ -48,7 +48,7 @@
 		add_overlay(overlay_image(icon, "cheval_spikes", color = reinf_material.color, flags = RESET_COLOR))
 	else
 		icon_state = "barricade"
-	
+
 /obj/structure/barricade/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material/rods) && !reinf_material)
 		var/obj/item/stack/material/rods/R = W
@@ -69,10 +69,10 @@
 /obj/structure/barricade/explosion_act(severity)
 	..()
 	if(QDELETED(src))
-		if(severity == 1)
+		if(severity > 1000)
 			parts_type = null
 			physically_destroyed()
-		else if(severity == 2)
+		else if(severity > 200)
 			take_damage(25)
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.

@@ -16,6 +16,12 @@
 	guestbanned = 1
 	must_fill = 1
 	not_random_selectable = 1
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	min_skill = list(
 		SKILL_LITERACY    = SKILL_ADEPT,
 		SKILL_SCIENCE     = SKILL_ADEPT,

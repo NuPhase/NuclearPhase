@@ -100,12 +100,15 @@
 
 /obj/machinery/defibrillator/proc/sync_pacer()
 	announce("Beginning pacer synchronization...")
+	playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
 	sleep(rand(20, 100))
 	announce("Pacer synchronization complete. Automatic pacing startup...")
+	playsound(get_turf(src), 'sound/machines/defib_SafetyOn.ogg', 50, 0)
 	pace_sync = TRUE
 	sleep(10)
 	pacing = TRUE
 	announce("Pacing starting at a rate of [pace_rate].")
+	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
 
 /obj/machinery/defibrillator/proc/switch_mode(mob/user)
 	var/new_mode = input(user, "Which mode to switch to?", "Mode switching") as null|anything in list("Defibrillation", "Cardioversion", "Pacing")
@@ -117,6 +120,7 @@
 	pace_sync = FALSE
 	mode = new_mode
 	announce("Mode switched to: [new_mode].")
+	playsound(get_turf(src), 'sound/machines/defib_ready.ogg', 50, 0)
 
 /obj/machinery/defibrillator/proc/detach_pads(mob/user)
 	if(pads.taken_out)
@@ -124,6 +128,7 @@
 	pads.forceMove(src.loc)
 	pads = null
 	user.visible_message("<span class='notice'>\The [user] removes the [src] pads.</span>", "<span class='warning'>You remove the defibrillator pads.</span>")
+	playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
 
 /obj/machinery/defibrillator/attack_hand(mob/user)
 	. = ..()
@@ -157,7 +162,7 @@
 				options += "Stop pacing"
 			if(!pacing && pace_sync)
 				options += "Start pacing"
-	var/setting = input(user, "What to do?", "MED") as null|anything in options
+	var/setting = tgui_input_list(user, "What to do?", "MED", options)
 	switch(setting)
 		if("Deliver shock")
 			deliver_shock(user)
@@ -189,6 +194,7 @@
 				var/mob/M = pads.loc
 				if(M.drop_from_inventory(pads, src))
 					to_chat(user, "<span class='notice'>\The [pads] snap back into the main unit.</span>")
+					playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
 			else
 				pads.forceMove(src)
 			P.taken_out = FALSE
@@ -198,6 +204,7 @@
 				pads.forceMove(src.loc)
 			pads = P
 			user.visible_message("<span class='notice'>\The [user] replaces the [src] pads.</span>", "<span class='warning'>You replace the defibrillator pads.</span>")
+			playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
 		return
 	. = ..()
 
@@ -232,6 +239,8 @@
 		if(user.unEquip(src))
 			if(!M.equip_to_slot_if_possible(src, slot_wear_suit_str, del_on_fail=0, disable_warning=1, redraw_mob=1))
 				user.put_in_active_hand(src)
+			else
+				playsound(get_turf(src), 'sound/machines/defib_SafetyOn.ogg', 50, 0)
 			return 1
 	else
 		return ..()

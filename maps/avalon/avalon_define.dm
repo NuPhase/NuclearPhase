@@ -2,6 +2,7 @@
 	name = "Serenity"
 	full_name = "'Serenity' Emergency Shelter"
 	path = "avalon"
+	flags = MAP_HAS_BRANCH|MAP_HAS_RANK
 
 	system_name = "Sirius"
 	station_name = "Serenity"
@@ -25,8 +26,7 @@
 	planetary_area = /area/surface
 
 	lobby_screens = list(
-		'maps/avalon/cdllobby.jpg',
-		'maps/avalon/atom.jpg'
+		'maps/avalon/planet.png'
 	)
 	credit_sound = list('sound/music/aftermath.ogg')
 	reboot_sound = list()

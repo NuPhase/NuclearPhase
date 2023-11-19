@@ -250,12 +250,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	SHOULD_CALL_PARENT(FALSE)
 	new /obj/item/stack/cable_coil(loc, (d1 ? 2 : 1), color)
 
-//explosion handling
-/obj/structure/cable/explosion_act(severity)
-	. = ..()
-	if(. && (severity == 1 || (severity == 2 && prob(50)) || (severity == 3 && prob(25))))
-		physically_destroyed()
-
 /obj/structure/cable/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	var/turf/T = get_turf(src)
 	if(!T || !T.is_plating())

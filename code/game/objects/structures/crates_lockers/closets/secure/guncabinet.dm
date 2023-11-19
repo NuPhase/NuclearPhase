@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/guncabinet
-	name = "gun cabinet"
+	name = "SMG cabinet"
 	req_access = list(access_armory)
 	icon = 'icons/obj/storage/guncabinet.dmi'
 	closet_appearance = null
@@ -64,4 +64,13 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/smg,
+	)
+
+/obj/structure/closet/secure_closet/guncabinet/shotgun
+	name = "shotgun cabinet"
+
+/obj/structure/closet/secure_closet/guncabinet/shotgun/WillContain()
+	return list(
+		/obj/item/gun/projectile/shotgun/pump,
+		/obj/item/ammo_magazine/shotholder/riot
 	)

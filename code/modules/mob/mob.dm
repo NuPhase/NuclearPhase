@@ -1021,7 +1021,7 @@
 /mob/explosion_act(var/severity)
 	. = ..()
 	if(!QDELETED(src))
-		if(severity == 1)
+		if(severity > 1000)
 			physically_destroyed()
 		else if(!blinded)
 			flash_eyes()
@@ -1162,3 +1162,30 @@
 
 /mob/proc/do_flash_animation()
 	return
+
+//pixelshift overrides
+/mob/proc/northshift()
+	pixel_shift(NORTH)
+
+/mob/proc/southshift()
+	pixel_shift(SOUTH)
+
+/mob/proc/eastshift()
+	pixel_shift(EAST)
+
+/mob/proc/westshift()
+	pixel_shift(WEST)
+
+/mob/verb/tilt_left()
+	set hidden = TRUE
+	if(!canface() || is_tilted < -45)
+		return FALSE
+	transform = transform.Turn(-1)
+	is_tilted--
+
+/mob/verb/tilt_right()
+	set hidden = TRUE
+	if(!canface() || is_tilted > 45)
+		return FALSE
+	transform = transform.Turn(1)
+	is_tilted++

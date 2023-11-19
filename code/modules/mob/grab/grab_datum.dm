@@ -81,10 +81,18 @@
 	special_target_effect(G)
 	process_effect(G)
 
+/decl/grab/proc/can_throw(obj/item/grab/G)
+	if(iscarbon(G.assailant))
+		var/mob/living/carbon/C_assailant = G.assailant
+		var/mob/living/carbon/C_victim = G.affecting
+		if(C_assailant.pickup_capacity > C_victim.weight * 0.5) //can always throw with one hand
+			return TRUE
+	return can_throw
+
 /decl/grab/proc/throw_held(var/obj/item/grab/G)
 	if(G.assailant == G.affecting)
 		return
-	if(can_throw)
+	if(can_throw(G))
 		. = G.affecting
 		var/mob/thrower = G.loc
 		qdel(G)
