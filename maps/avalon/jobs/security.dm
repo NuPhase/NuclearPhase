@@ -103,7 +103,7 @@
 	department_types = list(/decl/department/security)
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the lieutenant"
+	supervisors = "the Troop Commander"
 	selection_color = "#166320"
 	economic_power = 5
 	access = list(
@@ -160,7 +160,7 @@
 
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the head of security"
+	supervisors = "the Troop Commander"
 	selection_color = "#166320"
 	alt_titles = list(
 		"Forensic Technician" = /decl/hierarchy/outfit/job/security/detective/forensic
@@ -213,9 +213,9 @@
 	department_types = list(/decl/department/security)
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the sergeant"
+	supervisors = "the Sergeant and Troop Commander"
 	selection_color = "#166320"
-	alt_titles = list("Recruit")
+	alt_titles = list("Recruit Trooper")
 	economic_power = 4
 	skill_points = 22
 	access = list(
@@ -269,7 +269,7 @@
 	department_types = list(/decl/department/security)
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the sergeant"
+	supervisors = "the Sergeant and Troop Commander"
 	selection_color = "#166320"
 	economic_power = 4
 	skill_points = 26
@@ -296,6 +296,13 @@
 	)
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/officer
+	allowed_branches = list(
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
+	)
 	guestbanned = 1
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_BASIC,

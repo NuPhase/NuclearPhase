@@ -62,6 +62,12 @@
 	minimal_player_age = 14
 	economic_power = 10
 	ideal_character_age = 50
+	allowed_branches = list(
+		/datum/mil_branch/civ
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ
+		)
 	guestbanned = 1
 	not_random_selectable = 1
 	access = list(
