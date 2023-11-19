@@ -58,6 +58,18 @@ export const TurbineMonitor = (props: any, context: any) => {
             </LabeledList.Item>
             {!data.turb1.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
+          <Button.Confirm
+            confirmContent = ""
+            confirmColor = "red"
+            textAlign = "center"
+            disabled = {data.turb1.breaks_engaged}
+            fontSize = {1.5}
+            tooltip = "Braking the turbine can put you in danger. Think carefully."
+            verticalAlignContent = "middle"
+            color = {"yellow"}
+            onClick={() => act('braketurb1')}>
+            T1 BRK
+          </Button.Confirm>
         </Section>
         <Section title="Turbine 2">
           <LabeledList>
@@ -99,14 +111,14 @@ export const TurbineMonitor = (props: any, context: any) => {
           <Button.Confirm
             confirmContent = ""
             confirmColor = "red"
-            mx = {5}
             textAlign = "center"
-            fontSize = {2}
+            disabled = {data.turb2.breaks_engaged}
+            fontSize = {1.5}
             tooltip = "Braking the turbine can put you in danger. Think carefully."
             verticalAlignContent = "middle"
-            color = {"orange"}
+            color = {"yellow"}
             onClick={() => act('braketurb2')}>
-            T2 BRAKE
+            T2 BRK
           </Button.Confirm>
         </Section>
       </Window.Content>
