@@ -204,10 +204,10 @@ SUBSYSTEM_DEF(jobs)
 /datum/controller/subsystem/jobs/proc/check_unsafe_spawn(var/mob/living/spawner, var/turf/spawn_turf)
 	var/radlevel = SSradiation.get_rads_at_turf(spawn_turf)
 	var/airstatus = IsTurfAtmosUnsafe(spawn_turf)
-	if(airstatus || radlevel > 0)
+	if(airstatus > 0 || radlevel > 5)
 		var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
 		You may die shortly after spawning. \
-		Spawn anyway? More information: [airstatus] Radiation: [radlevel] Roentgen", "Atmosphere warning", "Abort", "Spawn anyway")
+		Spawn anyway? More information: [airstatus] Radiation: [radlevel]mSv/hour", "Atmosphere warning", "Abort", "Spawn anyway")
 		if(reply == "Abort")
 			return FALSE
 		else
