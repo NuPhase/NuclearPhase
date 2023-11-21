@@ -263,6 +263,7 @@
 	var/list/hot_ambience = list('sound/ambience/magma.ogg')
 	var/list/cold_ambience = list('sound/music/calmnight.ogg', 'sound/music/facilityoutside.ogg', 'sound/music/outside1.ogg', 'sound/music/outside2.ogg', 'sound/music/outside3.ogg')
 	forced_ambience = list('sound/music/calmnight.ogg', 'sound/music/facilityoutside.ogg', 'sound/music/outside1.ogg', 'sound/music/outside2.ogg', 'sound/music/outside3.ogg')
+	ambience_volume = 75
 	has_gravity = TRUE
 	is_outside = OUTSIDE_YES
 	var/phase = 0
@@ -275,7 +276,7 @@
 		"You witness something from your dreams, back from when you imagined how the surface looked like. It looks surprisingly beautiful and lively, is it really that bad around here?"
 	)
 	var/list/hot_descriptions = list()
-	background_radiation = 1.49
+	background_radiation = 1490
 
 /area/surface/location //more intense
 	cold_ambience = list('sound/music/lurk.ogg')
