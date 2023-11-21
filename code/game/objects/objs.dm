@@ -15,8 +15,10 @@
 	var/armor_penetration = 0
 	var/anchor_fall = FALSE
 	var/holographic = 0 //if the obj is a holographic object spawned by the holodeck
+
 	var/start_dirty = FALSE	// Shall we add dirt to the object at initialization
-	var/max_quanity_of_dirt_sprites = 4
+	var/start_old = FALSE //Shall we add random malfunctions at init
+	var/dirt_sprites_amount = 0
 
 /obj/proc/start_ambience()
 	return
@@ -221,13 +223,18 @@
 	. = ..()
 	LAZYADD(., /decl/interaction_handler/rotate)
 
-/obj/proc/append_some_dirt(var/q = max_quanity_of_dirt_sprites)
-	var/dirt_state
-	for(var/i = q, i>0, i--)
-		dirt_state = "[icon_state]_dirt[rand(1,q)]"
-		if(dirt_state in icon_states(icon))
-			add_overlay(icon(icon, dirt_state))
-			return
+/obj/proc/append_some_dirt(var/q = dirt_sprites_amount)
+	if(dirt_sprites_amount)
+		var/dirt_state
+		for(var/i = q, i>0, i--)
+			dirt_state = "[icon_state]_dirt[rand(1,q)]"
+			if(dirt_state in icon_states(icon))
+				add_overlay(icon(icon, dirt_state))
+				return
+	else
+		color = pick("#996633", "#663300", "#666666")
+		if(light_color)
+			light_color = BlendRGB(light_color, color, 0.5)
 
 /decl/interaction_handler/rotate
 	name = "Rotate"
