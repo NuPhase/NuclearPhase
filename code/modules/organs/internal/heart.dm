@@ -1,4 +1,4 @@
-#define ARRYTHMIAS_GRACE_PERIOD 10 SECONDS
+#define ARRYTHMIAS_GRACE_PERIOD 5 SECONDS
 
 /obj/item/organ/internal/heart
 	name = "heart"
@@ -53,7 +53,7 @@
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
-	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 30
+	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 120
 	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.35, 0, 110)
 	for(var/decl/arrythmia/A in arrythmias)
 		bpm_modifiers[A.name] = A.get_pulse_mod()
@@ -64,8 +64,8 @@
 
 	if(owner.mcv > 10000)
 		ninstability += 20
-	if(owner.mcv < 500)
-		ninstability += 40
+	if(owner.mcv < 400)
+		ninstability += 60
 	if(owner.get_blood_perfusion() < 0.5)
 		ninstability += 20
 	if(cardiac_output < 0.5)
@@ -82,6 +82,8 @@
 
 /obj/item/organ/internal/heart/proc/apply_instability()
 	if(instability > 10)
+		if(!pulse)
+			add_arrythmia(GET_DECL(/decl/arrythmia/asystole))
 		for(var/req_A in subtypesof(/decl/arrythmia))
 			var/decl/arrythmia/A = GET_DECL(req_A)
 			if(A in arrythmias)
@@ -120,7 +122,7 @@
 
 	if(!pulse)
 		return
-	var/cardiac_output_pulse_modifier = min(1, 60 / pulse + 0.6)
+	var/cardiac_output_pulse_modifier = min(1, 60 / pulse * 1.7)
 	var/cardiac_output_oxygen_modifier = min(1, 1 - oxygen_deprivation / 100)
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier * cardiac_output_oxygen_modifier
 

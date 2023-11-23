@@ -4,7 +4,7 @@
 	var/syspressure = 120
 	var/dyspressure = 80
 	var/meanpressure = 100
-	var/mcv = 3900 //Minute Circulation Volume
+	var/mcv = NORMAL_MCV //Minute Circulation Volume
 	var/tpvr = 279 //Total Peripherial Vascular Resistance
 	var/max_oxygen_capacity = 120
 	var/oxygen_amount = 120
@@ -29,6 +29,10 @@
 		return 0
 
 	. = CLAMP01((mcv / (NORMAL_MCV * metabolic_coefficient)) * get_blood_saturation())
+
+/mob/living/carbon/human/proc/get_stroke_volume()
+	var/stroke_volume_coeff = get_blood_volume_hemo() * min(1.7, meanpressure / NORMAL_MEAN_PRESSURE) * get_cardiac_output()
+	return NORMAL_STROKE_VOLUME * stroke_volume_coeff
 
 /mob/living/carbon/human/proc/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
@@ -61,13 +65,12 @@
 	var/bpm53 = bpm * coeff * 53.0
 	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)), HEMODYNAMICS_INTERPOLATE_FACTOR))
 	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure * get_cardiac_output() - (7646.0 * metabolic_coefficient)/54, HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
-	dyspressure = min(dyspressure, max(10, syspressure)-10)
+	dyspressure = min(dyspressure, max(10, syspressure)-3)
 
 	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 
-	mcv = Clamp((((syspressure + dyspressure) * 4000) / tpvr) * coeff + add_mcv, 0, 32000)
+	mcv = Clamp((bpm * get_stroke_volume() + add_mcv * get_blood_volume_hemo()), 0, 32000)
 	add_mcv = 0
-	//mcv = meanpressure * 132.32 * 60 / tpvr
 
 /mob/living/carbon/human/proc/consume_oxygen(amount)
 	var/available_oxygen = oxygen_amount * get_blood_perfusion()
