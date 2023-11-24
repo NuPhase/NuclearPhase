@@ -153,16 +153,14 @@
 /obj/item/projectile/bullet/shotgun/riot/on_hit(atom/target, blocked)
 	. = ..()
 	playsound(target.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-	var/datum/effect/effect/system/smoke_spread/mustard/smoke = new
-	smoke.attach(target)
-	smoke.set_up(9, 0, get_turf(target))
+	new /obj/effect/effect/smoke/mustard(get_turf(target))
 
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle
-	fire_sound = 'sound/weapons/gunshot/gunshot3.ogg'
-	damage = 45
-	armor_penetration = 25
+	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
+	damage = 70
+	armor_penetration = 35
 	penetration_modifier = 1.5
 	penetrating = 1
 	distance_falloff = 1.5

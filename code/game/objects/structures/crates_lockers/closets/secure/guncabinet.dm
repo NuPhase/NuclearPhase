@@ -74,3 +74,14 @@
 		/obj/item/gun/projectile/shotgun/pump,
 		/obj/item/ammo_magazine/shotholder/riot
 	)
+
+/obj/structure/closet/secure_closet/guncabinet/rifle
+	name = "rifle cabinet"
+
+/obj/structure/closet/secure_closet/guncabinet/rifle/WillContain()
+	return list(
+		/obj/item/gun/projectile/automatic/assault_rifle,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/rifle
+	)
