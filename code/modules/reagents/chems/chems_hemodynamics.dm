@@ -6,24 +6,25 @@
 	metabolism = REM * 2
 	color = "#76319e"
 	scannable = 1
-	overdose = 10
+	overdose = 4
 	value = 1.5
 	uid = "chem_adrenaline"
 
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_BREATHLOSS, removed * 1100)
-	heart.bpm_modifiers[name] = removed * 2000
+	heart.bpm_modifiers[name] = removed * 4300
 	heart.cardiac_output_modifiers[name] = 1 + removed * 1.2
 	if(removed < 0.03)
 		H.add_chemical_effect(CE_PRESSURE, removed * -400)
 	else
 		ADJ_STATUS(H, STAT_JITTER, 5)
 		H.add_chemical_effect(CE_PRESSURE, removed * 400)
-	if(removed < overdose)
-		heart.stability_modifiers[name] = removed * 3000
-	else
-		heart.stability_modifiers[name] = removed * -3000
+	heart.stability_modifiers[name] = removed * 3000
+
+/decl/material/liquid/adrenaline/affect_overdose(var/mob/living/carbon/human/H, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	heart.stability_modifiers["[name] overdose"] = -950
 
 /decl/material/liquid/noradrenaline
 	name = "noradrenaline"

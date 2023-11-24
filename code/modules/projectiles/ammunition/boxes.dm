@@ -225,7 +225,7 @@
 	caliber = CALIBER_RIFLE
 	material = /decl/material/solid/metal/steel
 	ammo_type = /obj/item/ammo_casing/rifle
-	max_ammo = 15 //if we lived in a world where normal mags had 30 rounds, this would be a 20 round mag
+	max_ammo = 30
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/rifle/empty

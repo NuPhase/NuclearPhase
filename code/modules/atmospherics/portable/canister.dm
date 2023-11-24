@@ -80,6 +80,7 @@
 	canister_color = "water"
 	layer = ABOVE_HUMAN_LAYER
 	start_dirty = TRUE
+	dirt_sprites_amount = 4
 
 /obj/machinery/portable_atmospherics/canister/empty/water
 	icon_state = "purple"

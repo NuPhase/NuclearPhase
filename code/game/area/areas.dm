@@ -43,6 +43,7 @@ var/global/list/areas = list()
 	var/list/all_doors		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
 	var/list/forced_ambience
+	var/ambience_volume = 25
 	var/sound_env = STANDARD_STATION
 	var/description //A text-based description of what this area is for.
 
@@ -386,9 +387,9 @@ var/global/list/mob/living/forced_ambiance_list = new
 
 	if(LAZYLEN(forced_ambience) && !(L in forced_ambiance_list))
 		forced_ambiance_list += L
-		L.playsound_local(T,sound(pick(forced_ambience), repeat = 1, wait = 0, volume = 25, channel = sound_channels.lobby_channel))
+		L.playsound_local(T,sound(pick(forced_ambience), repeat = 1, wait = 0, volume = ambience_volume, channel = sound_channels.lobby_channel))
 	if(ambience.len && prob(5) && (world.time >= L.client.played + 3 MINUTES))
-		L.playsound_local(T, sound(pick(ambience), repeat = 0, wait = 0, volume = 15, channel = sound_channels.ambience_channel))
+		L.playsound_local(T, sound(pick(ambience), repeat = 0, wait = 0, volume = ambience_volume, channel = sound_channels.ambience_channel))
 		L.client.played = world.time
 
 /area/proc/clear_ambience(var/mob/living/L)

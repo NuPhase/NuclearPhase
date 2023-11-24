@@ -24,6 +24,8 @@
 	create_matter()
 	if(start_dirty)
 		append_some_dirt()
+	if(start_old)
+		make_old(start_dirty)
 
 /obj/proc/HandleObjectHeating(var/obj/item/heated_by, var/mob/user, var/adjust_temp)
 	if(ATOM_SHOULD_TEMPERATURE_ENQUEUE(src))

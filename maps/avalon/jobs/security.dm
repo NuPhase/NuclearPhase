@@ -99,7 +99,7 @@
 		H.implant_loyalty(H)
 
 /datum/job/warden
-	title = "Sergeant"
+	title = "Warrant Officer"
 	department_types = list(/decl/department/security)
 	total_positions = 1
 	spawn_positions = 1
