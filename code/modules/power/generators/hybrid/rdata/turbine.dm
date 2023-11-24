@@ -32,7 +32,6 @@
 
 /obj/machinery/reactor_monitor/turbine/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	var/mob/living/user = usr
 	switch(action)
 		if("braketurb1")
 			rcontrol.turbine1.braking = TRUE
@@ -75,7 +74,6 @@
 
 /obj/machinery/reactor_display/group/turbine/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	var/mob/living/user = usr
 	switch(action)
 		if("braketurb1")
 			rcontrol.turbine1.braking = TRUE

@@ -19,7 +19,7 @@ type TurbineData = {
 export const TurbineMonitor = (props: any, context: any) => {
   const { act, data } = useBackend<InputData>(context);
   return (
-    <Window width={450} height={450} theme = "ntos">
+    <Window width={500} height={500} theme = "ntos">
       <Window.Content fitted>
         <Section title="Turbine 1">
           <LabeledList>
@@ -59,7 +59,7 @@ export const TurbineMonitor = (props: any, context: any) => {
             {!data.turb1.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
           <Button.Confirm
-            confirmContent = ""
+            confirmContent = "CONFIRM "
             confirmColor = "red"
             textAlign = "center"
             disabled = {data.turb1.breaks_engaged}
@@ -68,7 +68,7 @@ export const TurbineMonitor = (props: any, context: any) => {
             verticalAlignContent = "middle"
             color = {"yellow"}
             onClick={() => act('braketurb1')}>
-            T1 BRK
+            EMER BRAKE
           </Button.Confirm>
         </Section>
         <Section title="Turbine 2">
@@ -109,7 +109,7 @@ export const TurbineMonitor = (props: any, context: any) => {
             {!data.turb2.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
           <Button.Confirm
-            confirmContent = ""
+            confirmContent = "CONFIRM "
             confirmColor = "red"
             textAlign = "center"
             disabled = {data.turb2.breaks_engaged}
@@ -118,7 +118,7 @@ export const TurbineMonitor = (props: any, context: any) => {
             verticalAlignContent = "middle"
             color = {"yellow"}
             onClick={() => act('braketurb2')}>
-            T2 BRK
+            EMER BRAKE
           </Button.Confirm>
         </Section>
       </Window.Content>

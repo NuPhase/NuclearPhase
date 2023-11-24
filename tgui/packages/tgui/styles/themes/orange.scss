@@ -1,0 +1,53 @@
+.theme-orange {
+  .TitleBar {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    border: none;
+    box-shadow: none;
+    user-select: none;
+    -ms-user-select: none;
+
+    background-color: #d35400;
+
+    &__close {
+      background-color: #ff5e00;
+      color: white;
+
+      &:hover {
+        background-color: red;
+        color: white;
+      }
+    }
+  }
+
+  .Layout__content {
+    font-family: 'Arial', sans-serif;
+    background: none;
+    background-color: #d35400;
+  }
+
+  .Layout,
+  .Layout * {
+    scrollbar-base-color: #442510;
+    scrollbar-face-color: #442510;
+    scrollbar-3dlight-color: #442510;
+    scrollbar-highlight-color: #442510;
+    scrollbar-track-color: #693919;
+    scrollbar-arrow-color: #442510;
+    scrollbar-shadow-color: #693919;
+  }
+
+  .Section {
+    background-color: #1b1b1b;
+    border-radius: 3px;
+  }
+
+  .Section__title {
+    border-bottom: #d35400 solid 2px;
+  }
+
+  .Divider--horizontal {
+    border-top: #d35400 solid 1px;
+  }
+}
+
