@@ -25,6 +25,13 @@
 	var/list/stability_modifiers = list()
 	var/last_arrythmia_appearance //world time
 
+/obj/item/organ/internal/heart/die()
+	. = ..()
+	pulse = 0
+	cardiac_output = 0
+	arrythmias.Cut()
+	add_arrythmia(GET_DECL(/decl/arrythmia/asystole))
+
 /obj/item/organ/internal/heart/open
 	open = 1
 

@@ -29,6 +29,14 @@
 
 	if(stat == DEAD) return
 
+	bpm = 0
+	syspressure = 0
+	dyspressure = 0
+	meanpressure = 0
+	mcv = 0
+	tpvr = initial(tpvr)
+	oxygen_amount = 0
+
 	retrieve_from_limb(TRUE)
 
 	BITSET(hud_updateflag, HEALTH_HUD)

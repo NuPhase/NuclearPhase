@@ -350,4 +350,4 @@
 
 
 //weight defines
-#define AIRLOCK_OPEN_FORCE 70 //minimum lifting_capacity to open an airlock by hand
+#define AIRLOCK_OPEN_FORCE 115 //minimum lifting_capacity to open an airlock by hand

@@ -176,5 +176,5 @@
 
 	var/holder_type
 
-	var/pickup_capacity = 6
-	var/drag_capacity = 20
+	var/pickup_capacity = 7
+	var/drag_capacity = 40

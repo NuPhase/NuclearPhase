@@ -7,7 +7,12 @@
 	system_name = "Sirius"
 	station_name = "Serenity"
 	station_short = "Serenity"
-	game_year = 185
+	boss_name = "Autonomous System"
+	boss_short = "AS'"
+	company_name = "United Nations"
+	company_short = "UN's"
+	system_name = "Sirius"
+	game_year = 184
 
 	base_floor_type = /turf/exterior/wall/ice
 
