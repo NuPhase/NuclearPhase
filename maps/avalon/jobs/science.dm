@@ -130,8 +130,8 @@
 /datum/job/roboticist
 	title = "Roboticist"
 	department_types = list(/decl/department/science)
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the Chief Science Officer"
 	selection_color = "#633d63"
 	economic_power = 5

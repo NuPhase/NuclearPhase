@@ -28,6 +28,8 @@
 	cell = /obj/item/cell/lithium_array
 	speed = -1
 	weight = 370 //FUCKING HEAVY
+	pickup_capacity = 40
+	drag_capacity = 240
 	icon = 'icons/mob/robots/robot_engineer_drake.dmi'
 	icon_selected = TRUE
 	default_pixel_x = -16

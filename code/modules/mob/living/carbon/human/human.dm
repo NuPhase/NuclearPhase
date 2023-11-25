@@ -1382,15 +1382,15 @@
 	//metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_FITNESS) * 0.05 //healthy athlete lower BPM
 
 /mob/proc/calculate_strength_coefficients()
-	pickup_capacity = 6
-	drag_capacity = 20
+	pickup_capacity = initial(pickup_capacity)
+	drag_capacity = initial(drag_capacity)
 
 /mob/living/carbon/human/calculate_strength_coefficients()
-	pickup_capacity = get_skill_value(SKILL_STRENGTH) * 6
-	drag_capacity = get_skill_value(SKILL_STRENGTH) * 20
+	pickup_capacity = get_skill_value(SKILL_STRENGTH) * 7
+	drag_capacity = get_skill_value(SKILL_STRENGTH) * 35
 	for(var/obj/item/clothing/C in contents)
 		pickup_capacity += C.lifting_strength_boost
-		drag_capacity += C.lifting_strength_boost * 1.5
+		drag_capacity += C.lifting_strength_boost * 2.5
 	for(var/obj/item/organ/external/O in organs_by_tag)
 		pickup_capacity *= O.lifting_strength_boost
 		drag_capacity *= O.lifting_strength_boost

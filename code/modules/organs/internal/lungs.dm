@@ -57,7 +57,7 @@
 	var/last_successful_breath
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
 	oxygen_consumption = 1
-	var/oxygen_generation = 1.86 // default per breath
+	var/oxygen_generation = 0.52 // default per breath
 	var/breath_rate = 16 //per minute
 	var/last_breath_efficiency = 1
 	var/datum/composite_sound/breath_sound/soundloop
