@@ -64,5 +64,3 @@
 		debuff()
 	else if(!is_broken() && debuffing)
 		buff()
-
-

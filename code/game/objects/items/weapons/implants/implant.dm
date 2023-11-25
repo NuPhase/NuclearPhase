@@ -124,3 +124,10 @@
 	if(istype(implanter) && implanter.imp == src)
 		implanter.imp = null
 	return ..()
+
+/obj/item/implant/AttemptAugmentation(mob/user, target_zone)
+	if(can_implant(user, user, target_zone) && implant_in_mob(user, user, target_zone))
+		var/obj/item/organ/organ = GET_EXTERNAL_ORGAN(user, target_zone)
+		to_chat(user, SPAN_NOTICE("You have \a [src] implanted in your [organ.name]."))
+	else
+		..()

@@ -133,7 +133,8 @@
 	allowed_ranks = list(
 		/datum/mil_rank/army/e4,
 		/datum/mil_rank/army/e5,
-		/datum/mil_rank/army/e6
+		/datum/mil_rank/army/e6,
+		/datum/mil_rank/army/e7
 		)
 	guestbanned = 1
 	min_skill = list(
@@ -263,6 +264,11 @@
 		/datum/computer_file/program/camera_monitor
 	)
 	event_categories = list(ASSIGNMENT_SECURITY)
+
+/datum/job/officer/equip(mob/living/carbon/human/H, alt_title, datum/mil_branch/branch, datum/mil_rank/grade)
+	. = ..()
+	var/obj/item/organ/internal/augment/boost/sleep_processor/sp = new
+	sp.AttemptAugmentation(H, BP_HEAD)
 
 /datum/job/field_medic
 	title = "Field Medic"
