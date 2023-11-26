@@ -183,9 +183,6 @@
 	if(get_meter_temperature("REACTOR-M CHAMBER") > 4200)
 		do_message("REACTOR HEATEXCHANGER OVERHEAT", 2)
 		pressure_temperature_should_alarm = TRUE
-	if(get_meter_temperature("REACTOR-M CHAMBER") < 4100 && get_meter_mass("REACTOR-M CHAMBER") > 10)
-		do_message("REACTOR HEATEXCHANGER TEMPERATURE LOW", 2)
-		pressure_temperature_should_alarm = TRUE
 	if(get_meter_temperature("T-M-TURB IN") > MAX_REACTOR_STEAM_TEMP)
 		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE

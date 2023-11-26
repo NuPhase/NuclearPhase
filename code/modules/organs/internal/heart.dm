@@ -129,7 +129,7 @@
 
 	if(!pulse)
 		return
-	var/cardiac_output_pulse_modifier = min(1, 60 / pulse * 1.7)
+	var/cardiac_output_pulse_modifier = Clamp(130 / pulse, 0.7, 1)
 	var/cardiac_output_oxygen_modifier = min(1, 1 - oxygen_deprivation / 100)
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier * cardiac_output_oxygen_modifier
 
