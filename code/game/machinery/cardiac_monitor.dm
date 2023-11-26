@@ -64,6 +64,8 @@
 	var/ox_alarm = TRUE
 	var/ecg_alarm = FALSE
 
+	var/datum/beam/connection_beam
+
 /obj/machinery/cardiac_monitor/MouseDrop(mob/living/carbon/human/over_object, src_location, over_location)
 	. = ..()
 	if(!Adjacent(over_object))
@@ -75,6 +77,7 @@
 		playsound(src, 'sound/machines/heart_monitor/off.wav', 50, 0)
 		QDEL_NULL(pulse_loop)
 		QDEL_NULL(alarm_loop)
+		QDEL_NULL(connection_beam)
 	else if(over_object)
 		if(!ishuman(over_object))
 			return
@@ -84,6 +87,7 @@
 		attached = over_object
 		START_PROCESSING(SSobj, src)
 		playsound(src, 'sound/machines/heart_monitor/on.wav', 50, 0)
+		connection_beam = Beam(attached, "1-full", time = INFINITY, beam_color = COLOR_GREEN_GRAY)
 		if(metronome)
 			pulse_loop = new(list(src), FALSE)
 			spawn(15)
@@ -96,6 +100,7 @@
 	attached = null
 	qdel(pulse_loop)
 	qdel(alarm_loop)
+	QDEL_NULL(connection_beam)
 	. = ..()
 
 /obj/machinery/cardiac_monitor/on_update_icon()
@@ -152,6 +157,7 @@
 		update_icon()
 		QDEL_NULL(pulse_loop)
 		QDEL_NULL(alarm_loop)
+		QDEL_NULL(connection_beam)
 		playsound(src, 'sound/machines/heart_monitor/off.wav', 50, 0)
 		visible_message(SPAN_WARNING("\The [src] announces: \"ECG electrodes disconnected!\""))
 		return PROCESS_KILL
@@ -192,7 +198,10 @@
 	)
 
 	if(H)
-		data["pulse"] = round(H.pulse, 1)
+		if(H.pulse > 310)
+			data["pulse"] = 0
+		else
+			data["pulse"] = round(H.pulse, 1)
 		data["rhythm"] = H.get_rhythm_fluffy()
 	else
 		data["pulse"] = 0

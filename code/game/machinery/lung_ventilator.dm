@@ -16,6 +16,12 @@
 	var/pumping = FALSE //whether we force air into the patient's lungs
 	var/pump_rate = 15
 
+	var/datum/beam/connection_beam
+
+/obj/machinery/lung_ventilator/Destroy()
+	. = ..()
+	QDEL_NULL(connection_beam)
+
 /obj/machinery/lung_ventilator/Initialize()
 	. = ..()
 	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
@@ -125,6 +131,7 @@
 /obj/machinery/lung_ventilator/proc/disconnect(var/forceful = FALSE)
 	if(!forceful)
 		visible_message(SPAN_NOTICE("The [src]'s mask slips back into its storage."))
+	QDEL_NULL(connection_beam)
 	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	mixture_holder.forceMove(src)
 	connected.drop_from_inventory(contained, src)
@@ -139,6 +146,7 @@
 	if(operating)
 		set_internals(connected)
 	START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
+	connection_beam = Beam(connected, "1-full", time = INFINITY, beam_color = COLOR_BLUE_LIGHT)
 
 /obj/machinery/lung_ventilator/handle_mouse_drop(atom/over, mob/user)
 	if(connected)
