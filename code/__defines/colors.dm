@@ -183,6 +183,7 @@
 #define LIGHT_COLOR_VIOLET     "#b43cb8" //Deep purple. rgb(180, 60, 184)
 #define LIGHT_COLOR_SCARLET    "#e85656" //Light red. rgb(232, 86, 86)
 #define LIGHT_COLOR_ULTRAVIOLET "#7f1ae5"
+#define LIGHT_COLOR_MOON "#b7d1f0"
 
 #define FIRE_COLOR_DEFAULT	   "#f8aa00"
 #define MOLTEN_METAL_COLOR	   "#fda54d"

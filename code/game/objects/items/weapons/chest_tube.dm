@@ -1,5 +1,5 @@
 /obj/item/chest_tube
-	name = "thoracic catheter"
+	name = "decompression needle"
 	desc = "A chest tube (also chest drain, thoracic catheter, tube thoracostomy or intercostal drain) is a surgical drain that is inserted through the chest wall and into the pleural space or the mediastinum in order to remove clinically undesired substances such as air."
 	icon = 'icons/obj/medical_kits.dmi'
 	icon_state = "chest-tube"
