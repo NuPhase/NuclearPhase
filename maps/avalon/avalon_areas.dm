@@ -48,31 +48,17 @@
 	name = "\improper Testing Site Ferry"
 	icon_state = "shuttle"
 
-#define TURF_HEATING_POWER 43 //watts per turf
 /area/avalon
 	name = "'Serenity' survival shelter"
 	base_turf = /turf/simulated/floor/plating
 	ambience = list('sound/ambience/ominous1.ogg', 'sound/ambience/ominous2.ogg', 'sound/ambience/ominous3.ogg', 'sound/ambience/rumble1.ogg', 'sound/ambience/rumble2.ogg', 'sound/ambience/rumble3.ogg', 'sound/ambience/rumble4.ogg')
 	area_flags = AREA_FLAG_RAD_SHIELDED
-	var/heating_consumption = 0
 	is_outside = OUTSIDE_NO
+	var/temperature_interpolation_coefficient = 0.004 //Will heat up 24 degrees every 10 minutes and cool 11 degrees every 10 minutes. Adjust for higher/lower areas.
 
 /area/avalon/Initialize()
 	. = ..()
-	for(var/turf/T in contents)
-		if(isturf(T))
-			heating_consumption += TURF_HEATING_POWER
-
-/area/avalon/usage(chan)
-	switch(chan)
-		if(LIGHT)
-			return used_light + oneoff_light
-		if(EQUIP)
-			return used_equip + oneoff_equip
-		if(ENVIRON)
-			return used_environ + oneoff_environ + heating_consumption
-		if(TOTAL)
-			return .(LIGHT) + .(EQUIP) + .(ENVIRON)
+	SSplanet.interpolating_areas += src
 
 /area/avalon/has_gravity()
 	return TRUE
@@ -88,12 +74,14 @@
 /area/avalon/shelter/staircase
 	name = "Staircase"
 	icon_state = "shuttle"
+	temperature_interpolation_coefficient = 0.003
 /area/avalon/shelter/comms
 	name = "Communications"
 
 /area/avalon/shelter/habitationdeck
 	name = "Habitation Deck"
 	icon_state = "dk_yellow"
+	temperature_interpolation_coefficient = 0.002 //we're considerably lower
 /area/avalon/shelter/habitationdeck/crew
 	name = "Crew Quarters"
 	icon_state = "crew_quarters"
@@ -103,6 +91,7 @@
 /area/avalon/shelter/habitationdeck/freezer
 	name = "Food Freezer"
 	icon_state = "LP"
+	temperature_interpolation_coefficient = 0.001 //insulated well
 /area/avalon/shelter/habitationdeck/messhall
 	name = "Mess Hall"
 	icon_state = "bar"
@@ -113,6 +102,7 @@
 	lightswitch = FALSE
 	icon_state = "engine"
 	background_radiation = 1.13
+	temperature_interpolation_coefficient = 0.002 //insulated well
 
 /area/avalon/shelter/reactor/power_change()
 	. = ..()
@@ -158,11 +148,13 @@
 /area/avalon/shelter/service_tunnels
 	name = "Reactor Service Tunnels"
 	ambience = list('sound/ambience/maint1.ogg', 'sound/ambience/maint2.ogg')
+	temperature_interpolation_coefficient = 0.002 //they're deep
 
 /area/avalon/shelter/maintenance
 	name = "Maintenance"
 	ambience = list()
 	var/powered_ambience
+	temperature_interpolation_coefficient = 0.002 //they're deep
 
 /area/avalon/shelter/maintenance/power_change()
 	. = ..()
@@ -179,6 +171,7 @@
 /area/avalon/shelter/brig
 	name = "Security"
 	area_flags = AREA_FLAG_SECURITY
+	temperature_interpolation_coefficient = 0.002 //they're deep
 /area/avalon/shelter/brig/interrogation
 	name = "Security Interrogation"
 /area/avalon/shelter/brig/medbay
@@ -203,6 +196,7 @@
 
 /area/avalon/shelter/command
 	name = "Command"
+	temperature_interpolation_coefficient = 0.001 //deep and insulated
 /area/avalon/shelter/command/commcenter
 	name = "Comm Center"
 
@@ -218,6 +212,7 @@
 /area/avalon/shelter/medbay
 	name = "Medbay"
 	icon_state = "medbay3"
+	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
 /area/avalon/shelter/medbay/surgery
 	name = "Surgery"
@@ -245,10 +240,12 @@
 
 /area/avalon/shelter/factory
 	name = "Factory"
+	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
 /area/avalon/shelter/science
 	name = "Research Labs"
 	icon_state = "research"
+	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
 
 /area/turbolift/e1

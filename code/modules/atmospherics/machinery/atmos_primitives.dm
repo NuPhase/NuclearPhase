@@ -88,7 +88,6 @@
 		return -1
 
 	//P = q * h * ρ / (6.116 * μ)
-	//var/power_draw = 10000
 	var/power_draw = ((transfer_mass/mat.liquid_density*1000) * mat.liquid_density / (6.116 * efficiency))
 
 	sink.merge(removed)
