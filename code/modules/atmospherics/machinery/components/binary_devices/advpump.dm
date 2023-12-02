@@ -5,20 +5,6 @@
 #define REACTOR_PUMP_RPM_SAFE 2600
 #define REACTOR_PUMP_RPM_MAX  3100
 
-/datum/composite_sound/large_pump
-	start_sound = list('sound/machines/pumpstart.ogg')
-	start_length = 470
-	mid_sounds = list('sound/machines/pumprunning.ogg'=1)
-	mid_length = 75
-	distance = -2
-	volume = 15
-
-/datum/composite_sound/small_pump
-	mid_sounds = list('sound/machines/small_pump_loop.wav'=1)
-	mid_length = 49
-	distance = -2
-	volume = 50
-
 /obj/machinery/atmospherics/binary/pump/adv
 	icon = 'icons/obj/atmospherics/components/binary/pump.dmi'
 	icon_state = "map_off"
@@ -41,8 +27,13 @@
 	var/rpm = 0
 	var/target_rpm = 0
 
-	var/datum/composite_sound/soundloop
-	var/soundloop_type = /datum/composite_sound/small_pump
+	var/sound_id
+	var/playing_sound = FALSE
+	var/datum/sound_token/sound_token
+	var/start_sound = null
+	var/start_length = 0
+	var/running_sound = 'sound/machines/small_pump_loop.wav'
+	var/running_length = 49
 
 /obj/machinery/atmospherics/binary/pump/adv/on
 	icon_state = "map_on"
@@ -53,13 +44,17 @@
 	target_rpm = REACTOR_PUMP_RPM_SAFE
 	rpm = REACTOR_PUMP_RPM_SAFE
 	use_power = POWER_USE_IDLE
-	soundloop = new soundloop_type(list(src), TRUE)
+	playing_sound = TRUE
+	sound_token = play_looping_sound(src, sound_id, running_sound, 80, 10, 3)
 
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
 	flow_capacity = 1500 //kgs
 	power_rating = 140000 //fucking chonker
-	soundloop_type = /datum/composite_sound/large_pump
+	start_sound = 'sound/machines/pumpstart.ogg'
+	start_length = 470
+	running_sound = 'sound/machines/pumprunning.ogg'
+	running_length = 75
 
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
 	name = "molten metal pump"
@@ -70,7 +65,10 @@
 	//icon_state = "off"
 	flow_capacity = 300 //kgs
 	power_rating = 210000 //molten metals take a lot of energy to move
-	soundloop_type = /datum/composite_sound/large_pump
+	start_sound = 'sound/machines/pumpstart.ogg'
+	start_length = 470
+	running_sound = 'sound/machines/pumprunning.ogg'
+	running_length = 75
 
 /obj/machinery/atmospherics/binary/pump/adv/on_update_icon()
 	if(stat & NOPOWER)
@@ -84,6 +82,7 @@
 	switch(new_mode)
 		if(REACTOR_PUMP_MODE_OFF)
 			target_rpm = 0
+			QDEL_NULL(sound_token)
 		if(REACTOR_PUMP_MODE_IDLE)
 			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.5
 		if(REACTOR_PUMP_MODE_MAX)
@@ -92,6 +91,7 @@
 
 /obj/machinery/atmospherics/binary/pump/adv/Initialize()
 	. = ..()
+	sound_id = "[/obj/machinery/atmospherics/binary/pump/adv]_[sequential_id(/obj/machinery/atmospherics/binary/pump/adv)]"
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
@@ -100,7 +100,7 @@
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()
-	QDEL_NULL(soundloop)
+	QDEL_NULL(sound_token)
 
 /obj/machinery/atmospherics/binary/pump/adv/Process()
 	build_network()
@@ -112,11 +112,16 @@
 		rpm = round(Interpolate(rpm, 0, 0.15))
 
 	if(!rpm)
-		QDEL_NULL(soundloop)
+		QDEL_NULL(sound_token)
 		icon_state = "map_off"
+		playing_sound = FALSE
 		return
-	else if(!soundloop)
-		soundloop = new soundloop_type(list(src), TRUE)
+	else if(!playing_sound)
+		playing_sound = TRUE
+		if(start_sound)
+			playsound(src, start_sound, 100, 0, 7)
+		spawn(start_length)
+			sound_token = play_looping_sound(src, sound_id, running_sound, 80, 10, 5)
 		icon_state = "on"
 
 	flow_capacity = initial_flow_capacity * (rpm / REACTOR_PUMP_RPM_SAFE)

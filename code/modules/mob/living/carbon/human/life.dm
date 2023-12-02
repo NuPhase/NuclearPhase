@@ -68,8 +68,8 @@
 		//Organs and blood
 		handle_nutrition()
 		handle_bleeding()
-		process_hemodynamics()
 		handle_organs()
+		process_hemodynamics()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
 		handle_symptoms()
@@ -585,18 +585,12 @@
 			add_symptom(/decl/medical_symptom/headache)
 
 		//Resting
-		if(resting)
-			if(HAS_STATUS(src, STAT_DIZZY))
-				ADJ_STATUS(src, STAT_DIZZY, -15)
-			if(HAS_STATUS(src, STAT_JITTER))
-				ADJ_STATUS(src, STAT_JITTER, -15)
-			adjustHalLoss(-3)
-		else
-			if(HAS_STATUS(src, STAT_DIZZY))
-				ADJ_STATUS(src, STAT_DIZZY, -3)
-			if(HAS_STATUS(src, STAT_JITTER))
-				ADJ_STATUS(src, STAT_JITTER, -3)
-			adjustHalLoss(-1)
+		var/status_relief_modifier = resting * 5 + meditating
+		if(HAS_STATUS(src, STAT_DIZZY))
+			ADJ_STATUS(src, STAT_DIZZY, -3 * status_relief_modifier)
+		if(HAS_STATUS(src, STAT_JITTER))
+			ADJ_STATUS(src, STAT_JITTER, -3 * status_relief_modifier)
+		adjustHalLoss(-1 * status_relief_modifier)
 
 		if(HAS_STATUS(src, STAT_DROWSY))
 			SET_STATUS_MAX(src, STAT_BLURRY, 2)
@@ -700,12 +694,12 @@
 		if(hurtdamage)
 			var/severity = 0
 			switch(hurtdamage)
-				if(10 to 25)		severity = 1
-				if(25 to 40)		severity = 2
-				if(40 to 55)		severity = 3
-				if(55 to 70)		severity = 4
-				if(70 to 85)		severity = 5
-				if(85 to INFINITY)	severity = 6
+				if(10 to 40)		severity = 1
+				if(40 to 70)		severity = 2
+				if(70 to 100)		severity = 3
+				if(100 to 150)		severity = 4
+				if(150 to 250)		severity = 5
+				if(250 to INFINITY)	severity = 6
 			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
@@ -723,7 +717,7 @@
 				var/no_damage = 1
 				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
 				if(can_feel_pain())
-					trauma_val = max(shock_stage,get_shock())/(species.total_health-100)
+					trauma_val = max(shock_stage,get_shock())/700
 				// Collect and apply the images all at once to avoid appearance churn.
 				var/list/health_images = list()
 				for(var/obj/item/organ/external/E in get_external_organs())

@@ -60,14 +60,28 @@
 
 /decl/arrythmia/paroxysmal_tachycardia
 	name = "Paroxysmal Tachycardia"
-	cardiac_output_mod = 0.8
+	cardiac_output_mod = 0.85
 	required_instability = 30
 	degrades_into = /decl/arrythmia/tachycardia
+	evolves_into = /decl/arrythmia/ventricular_tachycardia
 	can_appear = FALSE
 	severity = 3
 
 /decl/arrythmia/paroxysmal_tachycardia/get_pulse_mod()
 	return rand(90, 140)
+
+/decl/arrythmia/ventricular_tachycardia
+	name = "Ventricular Tachycardia"
+	cardiac_output_mod = 0.75
+	required_instability = 40
+	degrades_into = /decl/arrythmia/paroxysmal_tachycardia
+	evolves_into = /decl/arrythmia/ventricular_flaunt
+	can_appear = FALSE
+	can_be_shocked = TRUE
+	severity = 4
+
+/decl/arrythmia/ventricular_tachycardia/get_pulse_mod()
+	return rand(100, 140)
 
 
 /decl/arrythmia/ventricular_flaunt
@@ -77,7 +91,7 @@
 	evolves_into = /decl/arrythmia/ventricular_fibrillation
 	evolve_time = 30 SECONDS
 	can_be_shocked = TRUE
-	severity = 4
+	severity = 5
 
 /decl/arrythmia/ventricular_flaunt/get_pulse_mod()
 	return rand(100, 200)
@@ -96,7 +110,7 @@
 	evolve_time = 1 MINUTE
 	can_be_shocked = TRUE
 	can_appear = FALSE
-	severity = 5
+	severity = 6
 
 /decl/arrythmia/ventricular_fibrillation/get_pulse_mod()
 	return rand(300, 400)

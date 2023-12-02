@@ -140,6 +140,7 @@
 		pixel_y = initial(pixel_y)
 		layer = initial(layer)
 		isLeaning = 0
+		meditating = 0
 
 		var/stamina_cost = 0
 		for(var/obj/item/grab/G as anything in get_active_grabs())

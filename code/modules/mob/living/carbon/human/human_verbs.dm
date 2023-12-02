@@ -325,3 +325,30 @@
 	set desc = "Try not to hurt them."
 	set category = "IC"
 	species.toggle_stance(src)
+
+
+
+/*
+TODO:
+-Attach to skills
+-Reduce insanity
+-Transport
+
+Stage 1 does nothing
+Stage 2 reduces hallucinations with no visual effects
+Stage 3 reduces negative effects and hallucinations, resistant to brainwashing
+Stage 4 closes eyes, completely negates most negative effects, immune to brainwashing and memetics
+Stage 5 gives subconscious visions
+*/
+/mob/living/carbon/human/verb/meditate()
+	set name = "Meditate"
+	set desc = "Clear your mind."
+	set category = "IC"
+
+	switch(meditating)
+		if(0)
+			visible_message(SPAN_NOTICE("[usr] gets quiet and focuses..."), "You try to focus on your inner self.", range = 4)
+			if(!do_after(usr, rand(5 SECONDS, 20 SECONDS), src))
+				to_chat(usr, "You interrupt your meditation.")
+				return
+			meditating = 1
