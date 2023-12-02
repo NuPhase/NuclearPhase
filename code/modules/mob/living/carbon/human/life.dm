@@ -68,8 +68,8 @@
 		//Organs and blood
 		handle_nutrition()
 		handle_bleeding()
-		handle_organs()
 		process_hemodynamics()
+		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
 		handle_symptoms()

@@ -31,7 +31,7 @@
 	. = CLAMP01((mcv / (NORMAL_MCV * metabolic_coefficient)) * get_blood_saturation())
 
 /mob/living/carbon/human/proc/get_stroke_volume()
-	var/stroke_volume_coeff = max(4, get_blood_volume_hemo() * min(1.7, meanpressure / NORMAL_MEAN_PRESSURE) * get_cardiac_output())
+	var/stroke_volume_coeff = get_blood_volume_hemo() * min(1.7, meanpressure / NORMAL_MEAN_PRESSURE) * get_cardiac_output()
 	return NORMAL_STROKE_VOLUME * stroke_volume_coeff
 
 /mob/living/carbon/human/proc/process_hemodynamics()
