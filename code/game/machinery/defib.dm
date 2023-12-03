@@ -14,8 +14,13 @@
 	var/pacing = FALSE
 
 	var/obj/item/clothing/suit/electrode_pads/pads = new
+	var/datum/beam/connection_beam
 
 	var/list/options = list()
+
+/obj/machinery/defibrillator/Destroy()
+	. = ..()
+	QDEL_NULL(connection_beam)
 
 /obj/machinery/defibrillator/Process()
 	if(pacing && pace_sync && pads)
@@ -129,6 +134,7 @@
 	pads = null
 	user.visible_message("<span class='notice'>\The [user] removes the [src] pads.</span>", "<span class='warning'>You remove the defibrillator pads.</span>")
 	playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
+	QDEL_NULL(connection_beam)
 
 /obj/machinery/defibrillator/attack_hand(mob/user)
 	. = ..()
@@ -137,6 +143,7 @@
 		pads.loc = user.loc
 		user.put_in_active_hand(pads)
 		user.visible_message("<span class='notice'>\The [user] takes out the [src] pads.</span>", "<span class='warning'>You take out the defibrillator pads.</span>")
+		connection_beam = Beam(pads, "1-full", time = INFINITY, beam_color = COLOR_BLUE_LIGHT)
 		return
 
 	options.Cut()
@@ -199,12 +206,14 @@
 				pads.forceMove(src)
 			P.taken_out = FALSE
 			P.attached = null
+			QDEL_NULL(connection_beam)
 		else
 			if(pads)
 				pads.forceMove(src.loc)
 			pads = P
 			user.visible_message("<span class='notice'>\The [user] replaces the [src] pads.</span>", "<span class='warning'>You replace the defibrillator pads.</span>")
 			playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
+			QDEL_NULL(connection_beam)
 		return
 	. = ..()
 

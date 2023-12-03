@@ -251,7 +251,7 @@
 			to_chat(H, SPAN_ERPBOLD("Destined to starve and die, far from being controlled nor sustained."))
 		sleep(27 SECONDS)
 		for(var/mob/living/carbon/human/H in human_mob_list)
-			to_chat(H, SPAN_ERPBOLD("Everything comes to an end, including your own existence."))
+			to_chat(H, SPAN_ERPBOLD("Everything comes to an end, as with your own existence."))
 		var/list/animate_targets = superstructure.get_above_oo() + superstructure
 		for(var/thing in animate_targets)
 			var/atom/movable/AM = thing

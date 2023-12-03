@@ -48,7 +48,7 @@
 	icon_state = "alarm0"
 	anchored = 1
 	idle_power_usage = 80
-	active_power_usage = 35000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
+	active_power_usage = 45000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
 	power_channel = ENVIRON
 	initial_access = list(list(access_atmospherics, access_engine_equip))
 	clicksound = "button"
@@ -145,7 +145,7 @@
 
 	// breathable air according to human/Life()
 	TLV[/decl/material/gas/oxygen] =			list(16, 19, 135, 140) // Partial pressure, kpa
-	TLV[/decl/material/gas/carbon_dioxide] = list(-1, -1, 5, 10) // Partial pressure, kpa
+	TLV[/decl/material/gas/carbon_dioxide] = list(-1, -1, 10, 33) // Partial pressure, kpa
 	TLV["other"] =			list(-1, -1, 0.2, 0.5) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.60,ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*1.50,ONE_ATMOSPHERE*2.70) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K

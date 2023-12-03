@@ -82,6 +82,11 @@
 	var/obj/item/tank/firefighting/stored_tank = new
 	var/obj/item/fire_hose/hose = new
 	var/hose_taken = FALSE
+	var/datum/beam/connection_beam
+
+/obj/structure/fire_hydrant_manual/Destroy()
+	. = ..()
+	QDEL_NULL(connection_beam)
 
 /obj/structure/fire_hydrant_manual/Initialize(ml, _mat, _reinf_mat)
 	. = ..()
@@ -99,6 +104,7 @@
 		hose_taken = TRUE
 		playsound(src.loc, 'sound/effects/extout.ogg', 50, 0)
 		START_PROCESSING(SSobj, hose)
+		connection_beam = Beam(hose, "hose", time = INFINITY)
 		return
 	if(stored_tank)
 		user.put_in_hands(stored_tank)
@@ -112,6 +118,7 @@
 		to_chat(user, "<span class='notice'>You place \the [O] in [src].</span>")
 		playsound(src.loc, 'sound/effects/extin.ogg', 50, 0)
 		STOP_PROCESSING(SSobj, hose)
+		QDEL_NULL(connection_beam)
 		return
 	if(istype(O, /obj/item/tank/firefighting) && !stored_tank)
 		user.drop_from_inventory(O, src)

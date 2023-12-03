@@ -19,7 +19,7 @@
 /turf/exterior/Initialize(mapload, no_update_icon = FALSE, should_override = FALSE)
 	. = ..()
 	if(!should_override)
-		set_ambient_light(COLOR_WHITE, 2)
+		set_ambient_light(LIGHT_COLOR_MOON, 0.2)
 
 /turf/exterior/is_floor()
 	return !density && !is_open()

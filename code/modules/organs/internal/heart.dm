@@ -61,6 +61,7 @@
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
 	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 120
+	bpm_modifiers["ischemia"] = oxygen_deprivation * -2.4
 	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.35, 0, 110)
 	for(var/decl/arrythmia/A in arrythmias)
 		bpm_modifiers[A.name] = A.get_pulse_mod()
@@ -83,7 +84,7 @@
 	var/pulse_over_norm = max(pulse - 110, 0)
 	ninstability += pulse_over_norm * 0.5
 	ninstability += damage * 0.3
-	ninstability += oxygen_deprivation * 0.1
+	ninstability += oxygen_deprivation * 0.25
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
 	instability = max(Interpolate(instability, ninstability, 0.1), 0)
 
@@ -91,22 +92,25 @@
 	if(instability > 10)
 		if(!pulse)
 			add_arrythmia(GET_DECL(/decl/arrythmia/asystole))
-		for(var/req_A in subtypesof(/decl/arrythmia))
-			var/decl/arrythmia/A = GET_DECL(req_A)
-			if(A in arrythmias)
-				continue
-			if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && A.can_appear(src) && A.required_instability < instability && prob(instability * 0.15))
-				add_arrythmia(A)
-				break
-		for(var/decl/arrythmia/A in arrythmias)
-			if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) < world.time && prob(instability * 0.2))
-				add_arrythmia(GET_DECL(A.evolves_into))
-				remove_arrythmia(A)
+		if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && prob(instability * 0.15))
+			for(var/req_A in SSmobs.arrythmias_sorted_list)
+				var/decl/arrythmia/A = GET_DECL(req_A)
+				if(A in arrythmias)
+					continue
+				if(A.can_appear(src) && A.required_instability < instability)
+					add_arrythmia(A)
+					break
+			for(var/decl/arrythmia/A in arrythmias)
+				if(A.evolves_into && (last_arrythmia_appearance + A.evolve_time) < world.time)
+					add_arrythmia(GET_DECL(A.evolves_into))
+					remove_arrythmia(A)
 	else if(instability == 0)
 		if(prob(10))
 			for(var/decl/arrythmia/A in arrythmias)
 				if(!A.can_be_shocked)
 					remove_arrythmia(A)
+					if(A.degrades_into)
+						add_arrythmia(GET_DECL(A.degrades_into))
 
 /obj/item/organ/internal/heart/proc/add_arrythmia(var/decl/arrythmia/A)
 	for(var/decl/arrythmia/existing_A in arrythmias)
@@ -129,7 +133,7 @@
 
 	if(!pulse)
 		return
-	var/cardiac_output_pulse_modifier = min(1, 60 / pulse * 1.7)
+	var/cardiac_output_pulse_modifier = Clamp(130 / pulse, 0.7, 1)
 	var/cardiac_output_oxygen_modifier = min(1, 1 - oxygen_deprivation / 100)
 	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier * cardiac_output_oxygen_modifier
 

@@ -120,6 +120,8 @@
 
 	var/mob/living/carbon/human/limb_mob = null
 
+	var/meditating = 0 //0 for not meditating, 1-5 for meditating
+
 /mob/living/carbon/human/proc/get_age()
 	. = LAZYACCESS(appearance_descriptors, "age") || 30
 

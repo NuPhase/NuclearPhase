@@ -9,6 +9,12 @@
 	icon_state = "bluespace"
 	desc = "Looks like eternity."
 
+/turf/unsimulated/floor/simulator //non-doomsday version for transit and wizden
+	name = "\proper infinity"
+	icon = 'icons/turf/space.dmi'
+	icon_state = "bluespace"
+	desc = "Looks like eternity."
+
 /turf/unsimulated/mask
 	name = "mask"
 	icon = 'icons/turf/walls.dmi'

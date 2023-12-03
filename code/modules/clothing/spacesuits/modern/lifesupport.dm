@@ -93,20 +93,20 @@
 		return
 	LAZYSET(owner.slowdown_per_slot, slot_wear_suit_str, 1)
 
-	if(atmosphere_filter && atmosphere_filter.clean_gasmix(owner.internal_atmosphere))
-		power_draw += atmosphere_filter.power_consumption
-		//play working sound here
-	else
-		if(status_warning_cooldown == FALSE && prob(5))
-			status_warning_cooldown = TRUE
-			to_chat(owner.wearer, "<span class='danger'>\The [src] dictates: 'CHECK CO2. CHECK CO2.'.</span>")
-			spawn(STATUS_MESSAGE_COOLDOWN)
-				status_warning_cooldown = FALSE
-
-	if(!atmosphere_uptake && oxygen_tank)
-		var/pressure_delta = target_pressure - owner.internal_atmosphere.return_pressure()
-		var/transfer_moles = calculate_transfer_moles(oxygen_tank.air_contents, owner.internal_atmosphere, pressure_delta)
-		power_draw += pump_gas(src, oxygen_tank.air_contents, owner.internal_atmosphere, transfer_moles)
+	if(!atmosphere_uptake)
+		if(atmosphere_filter && atmosphere_filter.clean_gasmix(owner.internal_atmosphere))
+			power_draw += atmosphere_filter.power_consumption
+			//play working sound here
+		else
+			if(status_warning_cooldown == FALSE && prob(5))
+				status_warning_cooldown = TRUE
+				to_chat(owner.wearer, "<span class='danger'>\The [src] dictates: 'CHECK CO2. CHECK CO2.'.</span>")
+				spawn(STATUS_MESSAGE_COOLDOWN)
+					status_warning_cooldown = FALSE
+		if(oxygen_tank)
+			var/pressure_delta = target_pressure - owner.internal_atmosphere.return_pressure()
+			var/transfer_moles = calculate_transfer_moles(oxygen_tank.air_contents, owner.internal_atmosphere, pressure_delta)
+			power_draw += pump_gas(src, oxygen_tank.air_contents, owner.internal_atmosphere, transfer_moles)
 
 	power_draw += owner.weight * KWH_PER_KG_WEIGHT
 

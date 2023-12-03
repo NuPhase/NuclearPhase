@@ -9,6 +9,14 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 
 	var/list/mob_list
 
+	//TODO: Autogenerate this in the future. From most unstable to least unstable.
+	var/list/arrythmias_sorted_list = list(
+		/decl/arrythmia/asystole,
+		/decl/arrythmia/ventricular_flaunt,
+		/decl/arrythmia/tachycardia,
+		/decl/arrythmia/atrial_flaunt
+	)
+
 /datum/controller/subsystem/processing/mobs/PreInit()
 	mob_list = processing // Simply setups a more recognizable var name than "processing"
 
