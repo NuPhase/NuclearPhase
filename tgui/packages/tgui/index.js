@@ -12,7 +12,6 @@ import "./styles/themes/vending.scss";
 import "./styles/themes/arcade.scss";
 import "./styles/themes/spellbook.scss";
 import "./styles/themes/operating.scss";
-import "./styles/themes/orange.scss";
 import "./styles/themes/changeling.scss";
 import "./styles/themes/neutral.scss";
 import "./styles/themes/ntos.scss";
