@@ -115,7 +115,6 @@
 		SetName(holding.name)
 		desc = "[holding.desc] This one is suitable for installation on an exosuit."
 
-
 /obj/item/mech_equipment/mounted_system/Destroy()
 	events_repository.unregister(/decl/observ/destroyed, holding, src, PROC_REF(forget_holding))
 	if(holding)

@@ -74,8 +74,6 @@
 
 	addtimer(CALLBACK(src, PROC_REF(handle_events)), 0)
 
-
-
 /datum/musical_event_manager/proc/deactivate()
 	if (src.kill_loop) return 0
 	if (src.active) src.kill_loop = 1

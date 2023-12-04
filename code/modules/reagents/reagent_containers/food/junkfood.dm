@@ -567,7 +567,7 @@
 	for(var/reagent in heated_reagents)
 		reagents.add_reagent(reagent, heated_reagents[reagent])
 	bitesize = 6
-	SetName("warm " + name)
+	SetName("warm donk-pocket")
 	addtimer(CALLBACK(src, PROC_REF(cool)), 7 MINUTES)
 
 /obj/item/chems/food/donkpocket/proc/cool()
