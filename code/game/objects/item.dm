@@ -395,8 +395,8 @@
 	update_twohanding()
 	for(var/obj/item/thing in user?.get_held_items())
 		thing.update_twohanding()
-	if(drop_sound && SSticker.mode)
-		addtimer(CALLBACK(src, .proc/dropped_sound_callback), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
+	if(play_dropsound && drop_sound && SSticker.mode)
+		addtimer(CALLBACK(src, PROC_REF(dropped_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
 
 	if(user && (z_flags & ZMM_MANGLE_PLANES))
 		addtimer(CALLBACK(user, /mob/proc/check_emissive_equipment), 0, TIMER_UNIQUE)
@@ -429,7 +429,7 @@
 	add_fingerprint(user)
 
 	hud_layerise()
-	addtimer(CALLBACK(src, .proc/reconsider_client_screen_presence, user.client, slot), 0)
+	addtimer(CALLBACK(src, PROC_REF(reconsider_client_screen_presence), user.client, slot), 0)
 
 	//Update two-handing status
 	var/mob/M = loc
@@ -437,13 +437,14 @@
 		for(var/obj/item/held in M.get_held_items())
 			held.update_twohanding()
 
-	if(SSticker.mode && (equip_sound || pickup_sound))
-		if((slot_flags & global.slot_flags_enumeration[slot]) && equip_sound)
-			addtimer(CALLBACK(src, .proc/equipped_sound_callback), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
-		else if(isliving(user) && pickup_sound)
-			var/mob/living/L = user
-			if(slot in L.held_item_slots)
-				addtimer(CALLBACK(src, .proc/pickup_sound_callback), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
+	if(user)
+		if(SSticker.mode)
+			if(pickup_sound && (slot in user.get_held_item_slots()))
+				addtimer(CALLBACK(src, PROC_REF(pickup_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
+			else if(equip_sound)
+				addtimer(CALLBACK(src, PROC_REF(equipped_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
+		if(z_flags & ZMM_MANGLE_PLANES)
+			addtimer(CALLBACK(user, /mob/proc/check_emissive_equipment), 0, TIMER_UNIQUE)
 
 	if(user && (z_flags & ZMM_MANGLE_PLANES))
 		addtimer(CALLBACK(user, /mob/proc/check_emissive_equipment), 0, TIMER_UNIQUE)

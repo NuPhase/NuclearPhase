@@ -16,7 +16,7 @@
 /obj/structure/defensive_barrier/Initialize()
 	. = ..()
 	update_icon()
-	events_repository.register(/decl/observ/dir_set, src, src, .proc/update_layers)
+	events_repository.register(/decl/observ/dir_set, src, src, PROC_REF(update_layers))
 
 /obj/structure/defensive_barrier/show_examined_damage(mob/user, perc)
 	if(maxhealth == -1)
@@ -36,7 +36,7 @@
 	. = ..()
 
 /obj/structure/defensive_barrier/Destroy()
-	events_repository.unregister(/decl/observ/dir_set, src, src, .proc/update_layers)
+	events_repository.unregister(/decl/observ/dir_set, src, src, PROC_REF(update_layers))
 	. = ..()
 
 /obj/structure/defensive_barrier/proc/update_layers()

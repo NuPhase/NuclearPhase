@@ -536,7 +536,7 @@
 		return
 	has_been_heated = 1
 	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
-	addtimer(CALLBACK(src, .proc/heat, weakref(user)), 20 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(heat), weakref(user)), 20 SECONDS)
 
 /obj/item/chems/food/donkpocket/sinpocket/heat(weakref/message_to)
 	..()
@@ -568,7 +568,7 @@
 		reagents.add_reagent(reagent, heated_reagents[reagent])
 	bitesize = 6
 	SetName("warm " + name)
-	addtimer(CALLBACK(src, .proc/cool), 7 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(cool)), 7 MINUTES)
 
 /obj/item/chems/food/donkpocket/proc/cool()
 	if(!warm)
