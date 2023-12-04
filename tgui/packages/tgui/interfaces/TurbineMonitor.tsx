@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { LabeledList, Button, ProgressBar, NoticeBox, Section, Tabs } from "../components";
+import { LabeledList, Button, ProgressBar, NoticeBox, Section, Divider, Tabs } from "../components";
 import { Window } from "../layouts";
 
 type InputData = {
@@ -56,8 +56,9 @@ export const TurbineMonitor = (props: any, context: any) => {
             <LabeledList.Item label="Steam Velocity">
               {data.turb1.steam_velocity}m/s
             </LabeledList.Item>
-            {!data.turb1.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
+          <Divider/>
+          {!data.turb1.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           <Button.Confirm
             confirmContent = "CONFIRM "
             confirmColor = "red"
@@ -68,9 +69,10 @@ export const TurbineMonitor = (props: any, context: any) => {
             verticalAlignContent = "middle"
             color = {"yellow"}
             onClick={() => act('braketurb1')}>
-            EMER BRAKE
+            EMERGENCY BRAKE
           </Button.Confirm>
         </Section>
+
         <Section title="Turbine 2">
           <LabeledList>
             <LabeledList.Item label="RPM">
@@ -106,8 +108,9 @@ export const TurbineMonitor = (props: any, context: any) => {
             <LabeledList.Item label="Steam Velocity">
               {data.turb2.steam_velocity}m/s
             </LabeledList.Item>
-            {!data.turb2.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
+          <Divider/>
+          {!data.turb2.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           <Button.Confirm
             confirmContent = "CONFIRM "
             confirmColor = "red"
@@ -118,7 +121,7 @@ export const TurbineMonitor = (props: any, context: any) => {
             verticalAlignContent = "middle"
             color = {"yellow"}
             onClick={() => act('braketurb2')}>
-            EMER BRAKE
+            EMERGENCY BRAKE
           </Button.Confirm>
         </Section>
       </Window.Content>
