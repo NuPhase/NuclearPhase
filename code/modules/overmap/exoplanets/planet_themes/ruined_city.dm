@@ -116,9 +116,11 @@
 
 // Buildings
 /turf/simulated/wall/concrete
-	icon_state = "stone"
 	floor_type = null
 	material = /decl/material/solid/stone/concrete
+
+/turf/simulated/wall/concrete/nano
+	material = /decl/material/solid/stone/concrete/nano
 
 //Generic ruin
 /datum/random_map/maze/concrete
@@ -214,6 +216,6 @@
 			new/obj/structure/rubble/lab(T)
 		if(prob(20))
 			new/obj/item/remains/xeno/charred(T)
-	
+
 
 #undef TRANSLATE_COORD
