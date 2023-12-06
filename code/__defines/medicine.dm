@@ -14,7 +14,7 @@
 #define BPM_AUDIBLE_HEARTRATE 140
 
 #define TPVR_MAX 470
-#define TPVR_MIN 143
+#define TPVR_MIN 83
 
 #define NORMAL_STROKE_VOLUME 70
 #define NORMAL_MCV 4200
