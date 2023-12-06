@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { LabeledList, ProgressBar, NoticeBox, Section, Tabs } from "../components";
+import { LabeledList, Button, ProgressBar, NoticeBox, Section, Divider, Tabs } from "../components";
 import { Window } from "../layouts";
 
 type InputData = {
@@ -19,7 +19,7 @@ type TurbineData = {
 export const TurbineMonitor = (props: any, context: any) => {
   const { act, data } = useBackend<InputData>(context);
   return (
-    <Window width={450} height={450} theme = "ntos">
+    <Window width={500} height={500} theme = "ntos">
       <Window.Content fitted>
         <Section title="Turbine 1">
           <LabeledList>
@@ -56,9 +56,23 @@ export const TurbineMonitor = (props: any, context: any) => {
             <LabeledList.Item label="Steam Velocity">
               {data.turb1.steam_velocity}m/s
             </LabeledList.Item>
-            {!data.turb1.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
+          <Divider/>
+          {!data.turb1.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
+          <Button.Confirm
+            confirmContent = "CONFIRM "
+            confirmColor = "red"
+            textAlign = "center"
+            disabled = {data.turb1.breaks_engaged}
+            fontSize = {1.5}
+            tooltip = "Braking the turbine can put you in danger. Think carefully."
+            verticalAlignContent = "middle"
+            color = {"yellow"}
+            onClick={() => act('braketurb1')}>
+            EMERGENCY BRAKE
+          </Button.Confirm>
         </Section>
+
         <Section title="Turbine 2">
           <LabeledList>
             <LabeledList.Item label="RPM">
@@ -94,8 +108,21 @@ export const TurbineMonitor = (props: any, context: any) => {
             <LabeledList.Item label="Steam Velocity">
               {data.turb2.steam_velocity}m/s
             </LabeledList.Item>
-            {!data.turb2.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
           </LabeledList>
+          <Divider/>
+          {!data.turb2.breaks_engaged ? null : <NoticeBox warning>EMERGENCY BRAKES ENGAGED</NoticeBox>}
+          <Button.Confirm
+            confirmContent = "CONFIRM "
+            confirmColor = "red"
+            textAlign = "center"
+            disabled = {data.turb2.breaks_engaged}
+            fontSize = {1.5}
+            tooltip = "Braking the turbine can put you in danger. Think carefully."
+            verticalAlignContent = "middle"
+            color = {"yellow"}
+            onClick={() => act('braketurb2')}>
+            EMERGENCY BRAKE
+          </Button.Confirm>
         </Section>
       </Window.Content>
     </Window>
