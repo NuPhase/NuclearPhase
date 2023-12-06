@@ -31,7 +31,8 @@
 	. = CLAMP01((mcv / (NORMAL_MCV * metabolic_coefficient)) * get_blood_saturation())
 
 /mob/living/carbon/human/proc/get_stroke_volume()
-	var/stroke_volume_coeff = get_blood_volume_hemo() * min(1.7, meanpressure / NORMAL_MEAN_PRESSURE) * get_cardiac_output()
+	//blood volume, preload, afterload, cardiac contractility
+	var/stroke_volume_coeff = get_blood_volume_hemo() * (min(1.7, dyspressure / 80) - (max(120, syspressure) - 120) * 0.008) * get_cardiac_output()
 	return NORMAL_STROKE_VOLUME * stroke_volume_coeff
 
 /mob/living/carbon/human/proc/process_hemodynamics()
@@ -65,7 +66,7 @@
 	var/bpm53 = bpm * coeff * 53.0
 	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)), HEMODYNAMICS_INTERPOLATE_FACTOR))
 	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure * get_cardiac_output() - (7646.0 * metabolic_coefficient)/49, HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
-	dyspressure = min(dyspressure, max(10, syspressure)-3)
+	dyspressure = min(dyspressure, max(10, syspressure)-7)
 
 	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 

@@ -13,12 +13,11 @@
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_BREATHLOSS, removed * 1100)
-	heart.bpm_modifiers[name] = removed * 4300
-	heart.cardiac_output_modifiers[name] = 1 + removed * 1.2
-	if(removed < 0.03)
-		H.add_chemical_effect(CE_PRESSURE, removed * -400)
+	heart.bpm_modifiers[name] = removed * 3900
+	heart.cardiac_output_modifiers[name] = 1 + removed * 5.7
+	if(removed < 0.003)
+		H.add_chemical_effect(CE_PRESSURE, removed * -700)
 	else
-		ADJ_STATUS(H, STAT_JITTER, 5)
 		H.add_chemical_effect(CE_PRESSURE, removed * 400)
 	heart.stability_modifiers[name] = removed * 3000
 
@@ -40,10 +39,10 @@
 
 /decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	H.add_chemical_effect(CE_PRESSURE, removed * 1100)
+	H.add_chemical_effect(CE_PRESSURE, removed * 1550)
 	heart.cardiac_output_modifiers[name] = 1 + removed * 0.3
 	heart.bpm_modifiers[name] = removed * 200
-	if(removed > 0.02)
+	if(removed > 0.008)
 		ADJ_STATUS(H, STAT_ASLEEP, removed * -10)
 
 /decl/material/liquid/atropine
@@ -69,11 +68,10 @@
 	color = "#cea82c"
 	scannable = 1
 	overdose = 8
-	metabolism = 0.05
+	metabolism = REM * 2
 	uid = "chem_dopamine"
 
 /decl/material/liquid/dopamine/affect_blood(var/mob/living/carbon/human/H, removed, datum/reagents/holder)
-	. = ..()
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	heart.cardiac_output_modifiers[name] = 1 + removed * 3
 

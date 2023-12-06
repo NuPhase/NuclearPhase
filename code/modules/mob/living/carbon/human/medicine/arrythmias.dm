@@ -86,7 +86,7 @@
 
 /decl/arrythmia/ventricular_flaunt
 	name = "Ventricular Flaunt"
-	cardiac_output_mod = 0.35
+	cardiac_output_mod = 0.25
 	required_instability = 60
 	evolves_into = /decl/arrythmia/ventricular_fibrillation
 	evolve_time = 30 SECONDS
@@ -103,7 +103,7 @@
 
 /decl/arrythmia/ventricular_fibrillation
 	name = "Ventricular Fibrillation"
-	cardiac_output_mod = 0.1
+	cardiac_output_mod = 0.05
 	required_instability = 70
 	degrades_into = /decl/arrythmia/ventricular_flaunt
 	evolves_into = /decl/arrythmia/asystole

@@ -67,6 +67,7 @@
 	name = "concrete"
 	uid = "solid_concrete"
 	lore_text = "The most ubiquitous building material of old Earth, now in space. Consists of mineral aggregate bound with some sort of cementing solution."
+	icon_base = 'icons/turf/walls/solid.dmi'
 	color = COLOR_GRAY
 	value = 0.9
 	exoplanet_rarity = MAT_RARITY_NOWHERE
@@ -79,6 +80,17 @@
 
 /decl/material/solid/stone/concrete/get_wall_texture()
 	return texture
+
+/decl/material/solid/stone/concrete/nano
+	name = "nanoconcrete"
+	uid = "nanoconcrete"
+	codex_name = "nanoconcrete"
+	lore_text = "Concrete:rethinked. Atomically perfect mineral aggregate bound in an atomized cementing solution."
+	color = COLOR_DARK_GRAY
+	value = 1.2
+	weight = MAT_VALUE_NORMAL
+	hardness = MAT_VALUE_HARD //nanoconcrete son
+	brute_armor = 8 //nanoconcrete son
 
 /decl/material/solid/stone/cult
 	name = "disturbing stone"

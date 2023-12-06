@@ -44,5 +44,6 @@
 		if(!(T.z in affecting_zs))
 			continue
 		sound_to(C.mob, sound('sound/effects/weather/thunder.ogg', repeat = FALSE, wait = 0, volume = 100))
+		shake_camera(C.mob, 5, 0.4)
 	sleep(3)
 	animate(lightning_overlay, alpha = initial(lightning_overlay.alpha), time = 5 SECONDS)

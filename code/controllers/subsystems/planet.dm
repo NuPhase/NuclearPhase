@@ -2,12 +2,20 @@
 
 SUBSYSTEM_DEF(planet)
 	name = "Planet"
-	wait = 1 MINUTE
+	wait = 10 SECONDS
 	priority = SS_PRIORITY_PLANET
 	init_order = SS_INIT_MISC_LATE
 
 	var/list/interpolating_areas = list()
 	var/surface_time = 0
+
+	var/weather_volatility = 0
+	var/weather_volatility_mod = 1
+
+/datum/controller/subsystem/planet/Initialize(start_timeofday)
+	for(var/area/avalon/A in interpolating_areas)
+		if(!length(A.contents))
+			interpolating_areas -= A
 
 /datum/controller/subsystem/planet/fire(resumed)
 	. = ..()
@@ -20,3 +28,11 @@ SUBSYSTEM_DEF(planet)
 		var/temperature_delta = using_map.exterior_atmosphere.temperature - environment.temperature
 		environment.temperature += temperature_delta * A.temperature_interpolation_coefficient
 		environment.update_values()
+
+	//weather next
+	weather_volatility += weather_volatility_mod
+	if(weather_volatility > 3)
+		if(prob(weather_volatility * 5))
+			using_map.weather_system.lightning_strike()
+			weather_volatility -= 3
+	using_map.weather_system.favorable_wind_speed = clamp(27 * weather_volatility, 0, 370)
