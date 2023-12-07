@@ -113,7 +113,7 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	light_type = /obj/item/light/tube/large/neon
 
 /obj/machinery/light/ultraviolet
-	name = "grow light"
+	name = "growth light"
 	light_type = /obj/item/light/tube/ultraviolet
 	active_power_usage = 200 //200W industrial grow light
 
@@ -578,8 +578,9 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	b_range = 12
 
 /obj/item/light/tube/ultraviolet
-	name = "grow light tube"
+	name = "growth light tube"
 	b_color = LIGHT_COLOR_ULTRAVIOLET
+	b_power = 1.8
 
 /obj/item/light/tube/large/neon
 	b_color = LIGHT_COLOR_PURPLE

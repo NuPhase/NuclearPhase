@@ -59,6 +59,9 @@
 			set_density(0)
 		set_opacity(0)
 
+	if(closed_system)
+		new_overlays += "cover"
+
 	overlays |= new_overlays
 
 	// Update bioluminescence.
