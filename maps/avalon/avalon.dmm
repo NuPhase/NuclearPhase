@@ -658,6 +658,7 @@
 "aDG" = (
 /obj/structure/table/steel,
 /obj/machinery/recharger,
+/obj/item/flashlight/flare/glowstick/red,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/factory)
 "aDH" = (
@@ -10572,6 +10573,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/avalon/shelter/engineering)
+"itq" = (
+/obj/structure/table/steel,
+/obj/item/flashlight/upgraded{
+	pixel_y = 10
+	},
+/obj/item/flashlight/upgraded,
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/factory)
 "ity" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -11347,6 +11356,10 @@
 /obj/machinery/door/airlock/glass/research,
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/science)
+"iUW" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/techfloor,
+/area/avalon/shelter/factory)
 "iVi" = (
 /obj/structure/table/steel,
 /obj/item/camera,
@@ -13767,6 +13780,10 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/avalon/shelter/medbay)
+"kOW" = (
+/obj/machinery/drainage_pump,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/avalon/shelter/factory)
 "kPf" = (
 /obj/effect/floor_decal/corner/black/mono,
 /obj/effect/floor_decal/corner/yellow/bordercorner{
@@ -21508,6 +21525,10 @@
 /area/avalon/shelter/medbay)
 "qCN" = (
 /obj/structure/table/steel,
+/obj/item/flashlight/upgraded,
+/obj/item/flashlight/upgraded{
+	pixel_y = 10
+	},
 /turf/simulated/floor/tiled/white,
 /area/avalon/shelter/factory)
 "qCQ" = (
@@ -23142,6 +23163,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor/plating,
 /area/avalon/shelter/maintenance)
+"rRT" = (
+/obj/structure/hygiene/shower{
+	dir = 4;
+	pixel_x = -5
+	},
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/white,
+/area/avalon/shelter/factory)
 "rSd" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/machinery/light{
@@ -25699,6 +25728,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/avalon)
+"tYN" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/closet/firecloset,
+/turf/simulated/floor/tiled/techmaint,
+/area/avalon/shelter/factory)
 "tYO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -41704,7 +41740,7 @@ pWS
 hNk
 xCs
 oSt
-cYs
+tYN
 pWS
 ezm
 ezm
@@ -42224,7 +42260,7 @@ pWS
 jmP
 jmP
 jmP
-hlu
+rRT
 mXq
 gQV
 gQV
@@ -42489,9 +42525,9 @@ aDG
 qCN
 hlu
 pWS
-ezm
-ezm
-ezm
+kFE
+kFE
+kFE
 ezm
 mJk
 mJk
@@ -42615,12 +42651,12 @@ pWS
 pWS
 pWS
 hlu
-qCN
+itq
 yeu
 hlu
 pWS
-kFE
-kFE
+kOW
+kOW
 kFE
 tNq
 mJk
@@ -43265,11 +43301,11 @@ nmn
 nmn
 nmn
 nmn
-nmn
-hhx
+iUW
+pWS
 omU
-wHk
-nxK
+kOW
+kFE
 mJk
 mJk
 mJk
