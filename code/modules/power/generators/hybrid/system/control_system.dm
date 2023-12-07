@@ -1,53 +1,3 @@
-#define MAX_REACTOR_VESSEL_PRESSURE 500000 //kPa
-#define ALARM_REACTOR_TUNGSTEN_TEMP 3700
-#define MAX_REACTOR_TUNGSTEN_TEMP 3800
-#define OPERATIONAL_REACTOR_TUNGSTEN_TEMP 3550
-
-#define OPTIMAL_REACTOR_STEAM_TEMP 738
-#define MAX_REACTOR_STEAM_TEMP 1250
-#define OPTIMAL_TURBINE_MASS_FLOW 2500
-
-/datum/reactor_control_system
-	var/name = "'Velocity' Control System"
-	var/mode = REACTOR_CONTROL_MODE_MANUAL
-	var/semiautocontrol_available = TRUE
-	var/autocontrol_available = FALSE
-	var/scram_control = FALSE //should we autoscram?
-	var/closed_governor_cycle = FALSE
-
-	var/list/all_messages = list()
-	var/list/cleared_messages = list()
-
-	var/list/spinning_lights = list()
-	var/list/control_spinning_lights = list() //these are specifically inside the control room and similiar areas
-	var/list/radlocks = list()
-
-	var/list/reactor_pumps = list()
-	var/list/reactor_meters = list()
-	var/list/reactor_valves = list()
-	var/list/announcement_monitors = list() //list of monitors we should announce warnings on
-	var/obj/machinery/atmospherics/binary/turbinestage/turbine1 = null
-	var/obj/machinery/atmospherics/binary/turbinestage/turbine2 = null
-	var/obj/machinery/power/generator/turbine_generator/generator1 = null
-	var/obj/machinery/power/generator/turbine_generator/generator2 = null
-	var/last_message_clearing = 0
-
-	var/current_running_program //reference to decl
-
-	var/should_alarm = TRUE
-	var/pressure_temperature_should_alarm = FALSE
-
-	var/list/unwanted_materials = list(
-		/decl/material/gas/oxygen,
-		/decl/material/gas/nitrogen,
-		/decl/material/gas/helium,
-		/decl/material/solid/caesium
-	)
-
-	var/laser_marker
-	var/laser_animating = FALSE
-	var/obj/neutron_marker
-
 /datum/reactor_control_system/proc/initialize()
 	turbine1 = reactor_components["turbine1"]
 	turbine2 = reactor_components["turbine2"]
@@ -56,38 +6,6 @@
 	if(!turbine1 || !turbine2)
 		spawn(50)
 			initialize()
-
-/datum/reactor_control_system/proc/switch_mode(newmode) //returns 1 if modes were switched succesfully, 0 if mode is unavailable and 2 if it is the same mode
-	if(newmode == mode)
-		return 2
-	switch(newmode)
-		if(REACTOR_CONTROL_MODE_MANUAL)
-			mode = REACTOR_CONTROL_MODE_MANUAL
-			do_message("MANUAL CONTROL ENGAGED", 1)
-			return 1
-		if(REACTOR_CONTROL_MODE_SEMIAUTO)
-			if(semiautocontrol_available)
-				mode = REACTOR_CONTROL_MODE_SEMIAUTO
-				do_message("SEMI-AUTO CONTROL ENGAGED", 1)
-				return 1
-			else
-				return 0
-		if(REACTOR_CONTROL_MODE_AUTO)
-			if(autocontrol_available)
-				mode = REACTOR_CONTROL_MODE_AUTO
-				do_message("FULL-AUTO CONTROL ENGAGED", 1)
-				return 1
-			else
-				return 0
-
-/datum/reactor_control_system/proc/run_program(var/decl/control_program/program)
-	if(current_running_program)
-		stop_running_program()
-	program = GET_DECL(program)
-	current_running_program = program
-	program.initiated()
-
-/datum/reactor_control_system/proc/stop_running_program()
 
 /datum/reactor_control_system/proc/control()
 	make_reports()
@@ -210,81 +128,15 @@
 		do_message("VAPOR IN HOTWELL LOOP", 2)
 
 /datum/reactor_control_system/proc/auto_control()
+	if(current_running_program)
+		current_running_program.process()
 	return
 
 /datum/reactor_control_system/proc/moderate_reactor_loop()
 	return
 
-/datum/reactor_control_system/proc/moderate_turbine_loop()
-	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
-	//var/obj/machinery/reactor_button/rswitch/current_switch
-
-	current_gate = reactor_valves["T-COOLANT V-IN"]
-	if(get_meter_temperature("T-M-TURB EX") > 360)
-		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
-	else
-		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
-
-	current_gate = reactor_valves["T-COOLANT V-OUT"]
-	if(get_meter_temperature("T-M-COOLANT") > 320 || get_meter_pressure("T-M-COOLANT") > 9000 || get_meter_temperature("T-M-TURB EX") > 360)
-		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
-	else
-		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
-
-	if(get_meter_temperature("T-M-TURB IN") < 690)
-		if(scram_control && (generator1.connected || generator2.connected))
-			turbine_trip()
-			do_message("TURBINE TRIP", 3)
-		else
-			turbine1.feeder_valve_openage = 0
-			turbine2.feeder_valve_openage = 0
-		return
-
-	if(closed_governor_cycle) //open cycle achieves RPM, closed cycle adapts to generator load
-		var/governor_adjustment = 0.01
-		var/load_difference = 0
-		//predefining vars for performance
-		load_difference = generator1.last_load - (turbine1.kin_total * turbine1.efficiency)
-		governor_adjustment = sqrt(load_difference) * 0.00001
-		if(turbine1.rpm > 3600)
-			governor_adjustment -= 0.02
-		else
-			governor_adjustment += 0.005
-		turbine1.feeder_valve_openage = CLAMP01(turbine1.feeder_valve_openage + governor_adjustment)
-
-		load_difference = generator2.last_load - (turbine2.kin_total * turbine2.efficiency)
-		governor_adjustment = sqrt(load_difference) * 0.00001
-		if(turbine2.rpm > 3600)
-			governor_adjustment -= 0.005
-		else
-			governor_adjustment += 0.005
-		turbine2.feeder_valve_openage = CLAMP01(turbine2.feeder_valve_openage + governor_adjustment)
-	else
-		var/rpm_difference = 0
-		var/target_valve_openage = 0
-		if(turbine1.feeder_valve_openage >= 0.1) //don't start turbines from a complete standstill
-			rpm_difference = 3600 - turbine1.rpm
-			target_valve_openage = rpm_difference * 0.073
-			turbine1.feeder_valve_openage = Interpolate(turbine1.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
-		if(turbine2.feeder_valve_openage >= 0.1) //don't start turbines from a complete standstill
-			rpm_difference = 3600 - turbine2.rpm
-			target_valve_openage = rpm_difference * 0.073
-			turbine2.feeder_valve_openage = Interpolate(turbine2.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
-
-/datum/reactor_control_system/proc/turbine_trip()
-	var/obj/machinery/reactor_button/rswitch/current_switch
-	turbine1.feeder_valve_openage = 0
-	turbine2.feeder_valve_openage = 0
-	generator1.connected = FALSE
-	generator2.connected = FALSE
-	current_switch = reactor_buttons["TURB V-BYPASS"]
-	current_switch.state = 0
-	current_switch.do_action()
-	playsound(current_switch.loc, 'sound/machines/switchbuzzer.ogg', 50)
-	SSstatistics.turbines_tripped = TRUE
-
 /datum/reactor_control_system/proc/scram(cause)
-	do_message("SCRAM. CAUSE: [capitalize(cause)]", 3)
+	do_message("SCRAM: [capitalize(cause)]", 3)
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
 	var/obj/machinery/reactor_button/rswitch/current_switch
 
@@ -309,7 +161,7 @@
 	if(has_message(message))
 		return //we already have that one
 	all_messages[message] = urgency
-	for(var/obj/machinery/reactor_monitor/warnings/mon in announcement_monitors)
+	for(var/obj/machinery/reactor_monitor/general/mon in announcement_monitors)
 		mon.chat_report(message, urgency)
 
 /datum/reactor_control_system/proc/has_message(message)

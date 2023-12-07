@@ -68,6 +68,15 @@
 			return
 	return "<span class='warning'>\The chamber has no gases!</span>"
 
+/obj/machinery/reactor_monitor/general/proc/chat_report(message, urgency)
+	switch(urgency)
+		if(1)
+			loc.visible_message("[src] declares: [SPAN_NOTICE(message)].")
+		if(2)
+			loc.visible_message("[src] beeps: [SPAN_WARNING(message)].")
+		if(3)
+			loc.visible_message("[src] buzzes: [SPAN_DANGER(message)]!")
+
 /obj/machinery/reactor_monitor/containment
 	name = "containment monitoring computer"
 	program_overlay = "containment"

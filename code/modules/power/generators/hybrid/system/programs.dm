@@ -4,6 +4,8 @@
 
 /decl/control_program/proc/initiated()
 	return
+/decl/control_program/proc/process()
+	return
 /decl/control_program/proc/abrupted()
 	return
 /decl/control_program/proc/end()
