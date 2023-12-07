@@ -27,7 +27,7 @@
 
 	var/list/ports = new()
 
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 
 	pipe_class = PIPE_CLASS_OMNI
 	connect_dir_type = SOUTH | NORTH | EAST | WEST

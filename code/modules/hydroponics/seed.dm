@@ -193,7 +193,7 @@
 	// For now, only light-dependent reactions are available (no Calvin cycle).
 	// It's active only for those plants which doesn't consume nor exude gasses.
 	if(!get_trait(TRAIT_PHOTOSYNTHESIS))
-		return FALSE
+		return TRUE
 	if(!(environment) || !(environment.gas))
 		return FALSE
 	if(LAZYLEN(exude_gasses) || LAZYLEN(consume_gasses ))

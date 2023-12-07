@@ -31,7 +31,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	var/max_pressure_setting = MAX_PUMP_PRESSURE
 
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 	build_icon_state = "pump"
 
 	uncreated_component_parts = list(
