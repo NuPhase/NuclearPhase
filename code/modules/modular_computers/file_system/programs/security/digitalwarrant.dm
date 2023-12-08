@@ -3,7 +3,7 @@ var/global/list/all_warrants
 /datum/computer_file/program/digitalwarrant
 	filename = "digitalwarrant"
 	filedesc = "Warrant Assistant"
-	extended_desc = "Official NTsec program for creation and handling of warrants."
+	extended_desc = "A program for creation and handling of warrants."
 	size = 8
 	program_icon_state = "warrant"
 	program_key_state = "security_key"

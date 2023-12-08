@@ -11,7 +11,7 @@
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	size = 6
-	available_on_network = 1
+	available_on_network = 0
 	usage_flags = PROGRAM_ALL
 	nanomodule_path = /datum/nano_module/program/folding
 	category = PROG_UTIL

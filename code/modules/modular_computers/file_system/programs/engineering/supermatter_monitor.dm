@@ -14,6 +14,7 @@
 	read_access = list(access_engine)
 	network_destination = "supermatter monitoring system"
 	requires_network = 1
+	available_on_network = 0
 	requires_network_feature = NET_FEATURE_SYSTEMCONTROL
 	size = 5
 	category = PROG_ENG

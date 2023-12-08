@@ -4,7 +4,7 @@
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	program_menu_icon = "arrowthickstop-1-s"
-	extended_desc = "This program allows downloads of software from the local software repositories"
+	extended_desc = "This program allows downloads of software from the local software repositories."
 	unsendable = 1
 	undeletable = 1
 	size = 4
@@ -33,7 +33,7 @@
 	var/datum/computer_network/net = computer.get_network()
 	if(!net)
 		return 0
-	
+
 	if(!check_file_download(filename))
 		return 0
 	var/datum/computer_file/program/PRG = net.find_file_by_name(filename, MF_ROLE_SOFTWARE)
@@ -71,7 +71,7 @@
 /datum/computer_file/program/appdownloader/process_tick()
 	if(!current_transfer)
 		return
-	
+
 	var/result = current_transfer.update_progress()
 	if(!result) //something went wrong
 		if(QDELETED(current_transfer)) //either completely

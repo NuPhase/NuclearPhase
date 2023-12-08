@@ -9,7 +9,7 @@
 	extended_desc = "A management tool that lets you see the status of the docking ports and beacons."
 	size = 10
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
-	available_on_network = 1
+	available_on_network = 0
 	requires_network = 1
 	requires_network_feature = NET_FEATURE_DECK
 	category = PROG_SUPPLY
@@ -42,15 +42,15 @@
 					if(S.shuttle_docking_controller.id_tag == D.program.id_tag)
 						shuttleside = 1
 						break
-			if(shuttleside)	
+			if(shuttleside)
 				continue
 			docking_controllers += D.program.id_tag
-		
+
 	// Add magnetic docking beacons.
 	var/datum/computer_network/network = get_network()
 	if(network)
 		docking_beacons |= network.get_tags_by_type(/obj/machinery/docking_beacon)
-	
+
 /datum/nano_module/program/docking/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = global.default_topic_state)
 	var/list/data = host.initial_data()
 	var/list/docks = list()
@@ -70,7 +70,7 @@
 				"docked" = docked,
 				"codes" = P.docking_codes ? P.docking_codes : "Unset"
 				)))
-	
+
 	for(var/beacontag in docking_beacons)
 		var/datum/extension/network_device/D = network.get_device_by_tag(beacontag)
 		var/obj/machinery/docking_beacon/beacon = D.holder
@@ -96,7 +96,7 @@
 /datum/nano_module/program/docking/Topic(href, href_list, state)
 	if(..())
 		return TOPIC_HANDLED
-	
+
 	if(istext(href_list["edit_docking_codes"]))
 		var/datum/computer/file/embedded_program/docking/P = SSshuttle.docking_registry[href_list["edit_docking_codes"]]
 		if(P)
@@ -118,7 +118,7 @@
 		if(P)
 			P.receive_user_command("undock")
 		return TOPIC_HANDLED
-	
+
 	if(istext(href_list["beacon"]))
 		var/datum/computer_network/network = get_network()
 		var/datum/extension/network_device/device = network.get_device_by_tag(href_list["beacon"])

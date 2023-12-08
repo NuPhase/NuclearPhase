@@ -9,6 +9,7 @@
 	ui_header = "shield.gif"
 	network_destination = "shields monitoring system"
 	requires_network = 1
+	available_on_network = 0
 	requires_network_feature = NET_FEATURE_SYSTEMCONTROL
 	size = 10
 	category = PROG_ENG

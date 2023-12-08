@@ -13,7 +13,7 @@
 	program_menu_icon = "clock"
 	extended_desc = "A tool for managing shuttles, filling out flight plans, and submitting flight-related paperwork."
 	size = 18
-	available_on_network = 1
+	available_on_network = 0
 	requires_network = 1
 	requires_network_feature = NET_FEATURE_DECK
 	category = PROG_SUPPLY
