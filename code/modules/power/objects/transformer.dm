@@ -82,9 +82,19 @@
 		open_icon_state = initial(icon_state)
 	if(on)
 		START_PROCESSING_MACHINE(src, null)
-		icon_state = on_icon_state
+		update_icon()
 	var/area/A = get_area(loc)
 	A.ambient_objects += src
+
+/obj/machinery/power/generator/transformer/switchable/on_update_icon()
+	cut_overlays()
+	if(on)
+		icon_state = on_icon_state
+		add_overlay(emissive_overlay(icon, "transformer_active_overlay"))
+		set_light(l_range = 2, l_power = 0.5, l_color = "#00d9ff")
+	else
+		icon_state = off_icon_state
+		set_light(0)
 
 /obj/machinery/power/generator/transformer/switchable/examine(mob/user)
 	. = ..()
@@ -118,7 +128,7 @@
 		if(on)
 			start_ambience()
 			START_PROCESSING_MACHINE(src, null)
-			icon_state = on_icon_state
+			update_icon()
 			var/electrocution_chance = 10
 			var/mob/living/carbon/human/H = user
 			if(H.fire_stacks < 0)
@@ -128,7 +138,7 @@
 				start_electrocution(user)
 		else
 			STOP_PROCESSING_MACHINE(src, null)
-			icon_state = off_icon_state
+			update_icon()
 			stop_ambience()
 	busy = 0
 	return TRUE
@@ -144,7 +154,7 @@
 	spawn(rand(1, 50))
 		playsound(loc, 'sound/machines/power_down2.ogg', 50, 1)
 		spark_at(src, amount = 7, cardinal_only = FALSE)
-		icon_state = off_icon_state
+		update_icon()
 
 /obj/machinery/power/generator/transformer/switchable/on
 	on = 1

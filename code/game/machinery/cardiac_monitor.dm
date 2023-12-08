@@ -104,44 +104,55 @@
 	. = ..()
 
 /obj/machinery/cardiac_monitor/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/should_alarm = FALSE
 	if(use_power == POWER_USE_OFF)
 		icon_state = "mon"
+		set_light(0)
 		return
 	if(!attached)
 		icon_state = "mon-on"
+		set_light(0)
 		return
-	icon_state = "mon-active"
+	set_light(l_range = 1, l_power = 0.8, l_color = "#daf9ff")
+	add_overlay(emissive_overlay(icon, "mon-active"))
 	var/obj/item/organ/internal/heart/H = attached.get_organ(BP_HEART, /obj/item/organ/internal/heart)
 
 	if(!H)
-		overlays += image(icon, "mon-r")
+		add_overlay(emissive_overlay(icon, "mon-r"))
 		return
 
 	if(H.pulse)
-		icon_state = "mon-Sinus rhythm"
+		var/has_shockable_rhythm = FALSE
+		for(var/decl/arrythmia/cur_r in H.arrythmias)
+			if(cur_r.can_be_shocked)
+				has_shockable_rhythm = TRUE
+				break
+		if(has_shockable_rhythm)
+			add_overlay(emissive_overlay(icon, "mon-Vfib"))
+		else
+			add_overlay(emissive_overlay(icon, "mon-Sinus rhythm"))
 	else
-		icon_state = "mon-Asystole"
+		add_overlay(emissive_overlay(icon, "mon-Asystole"))
 
 	if(length(H.arrythmias))
 		if(ecg_alarm)
 			should_alarm = TRUE
 
 	if(attached.meanpressure < BLOOD_PRESSURE_L2BAD || attached.meanpressure > BLOOD_PRESSURE_H2BAD)
-		overlays += image(icon, "mon-y")
+		add_overlay(emissive_overlay(icon, "mon-y"))
 		if(bp_alarm)
 			should_alarm = TRUE
 
 	if(H.pulse > 120)
-		overlays += image(icon, "mon-r")
+		add_overlay(emissive_overlay(icon, "mon-r"))
 
 	if(attached.get_blood_saturation() < 0.75)
-		overlays += image(icon, "mon-c")
+		add_overlay(emissive_overlay(icon, "mon-c"))
 		if(ox_alarm)
 			should_alarm = TRUE
 	else
-		overlays += image(icon, "mon-ox")
+		add_overlay(emissive_overlay(icon, "mon-ox"))
 
 	if(should_alarm)
 		if(!alarm_loop)

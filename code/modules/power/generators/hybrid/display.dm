@@ -99,9 +99,12 @@
 	return
 
 /obj/machinery/reactor_monitor/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(powered(EQUIP) && on)
-		overlays += image(icon, "overlay-[program_overlay]")
+		add_overlay(emissive_overlay(icon, "overlay-[program_overlay]"))
+		set_light(l_range = 1, l_power = 0.5, l_color = "#00d9ff")
+	else
+		set_light(0)
 
 /obj/machinery/reactor_monitor/proc/turn_on()
 	icon_state = "on"
