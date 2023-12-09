@@ -112,6 +112,14 @@
 	var/datum/composite_sound/overheat_overpressure_alarm/oo_alarm
 	var/datum/composite_sound/arm_alarm/arm_alarm
 	var/datum/composite_sound/purge_alarm/purge_alarm
+	var/datum/composite_sound/evac_alarm/evac_alarm
+
+/obj/machinery/rotating_alarm/reactor/Destroy()
+	. = ..()
+	qdel(oo_alarm)
+	qdel(arm_alarm)
+	qdel(purge_alarm)
+	qdel(evac_alarm)
 
 /obj/machinery/rotating_alarm/reactor/Initialize()
 	. = ..()

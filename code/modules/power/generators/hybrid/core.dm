@@ -116,8 +116,14 @@
 /obj/machinery/power/hybrid_reactor/proc/prime_alarms()
 
 /obj/machinery/power/hybrid_reactor/proc/activate_alarms()
-	for(var/obj/machinery/rotating_alarm/SL in rcontrol.spinning_lights)
+	for(var/obj/machinery/rotating_alarm/reactor/SL in rcontrol.spinning_lights)
 		addtimer(CALLBACK(SL, /obj/machinery/rotating_alarm/proc/set_on), rand(1,20))
+		SL.evac_alarm = new(SL, TRUE)
+
+/obj/machinery/power/hybrid_reactor/proc/stop_alarms()
+	for(var/obj/machinery/rotating_alarm/reactor/SL in rcontrol.spinning_lights)
+		SL.set_off()
+		QDEL_NULL(SL.evac_alarm)
 
 /obj/machinery/power/hybrid_reactor/proc/start_burning()
 	var/list/animate_targets = superstructure.get_above_oo() + superstructure
@@ -153,7 +159,7 @@
 
 /obj/machinery/power/hybrid_reactor/proc/produce_explosion()
 	var/turf/T = superstructure.loc
-	explosion(superstructure, 15, 25, 75, 150)
+	cell_explosion(get_turf(superstructure), 2000, 20)
 	var/list/our_mobs = mobs_on_main_map()
 	for(var/mob/living/carbon/human/H in our_mobs)
 		H.playsound_local(H.loc, 'sound/effects/explosion_huge.ogg', 20, 0)
@@ -163,10 +169,18 @@
 		F.reagents.add_reagent(/decl/material/solid/metal/tungsten, 1000000)
 		F.temperature = 3900
 
+/obj/machinery/power/hybrid_reactor/proc/scr_det(id)
+	var/obj/effect/scripted_detonation/scr_detonation = scripted_explosions[id]
+	if(scr_detonation)
+		scr_detonation.trigger()
+
+/obj/machinery/power/hybrid_reactor/proc/scr_def(id)
+	var/obj/effect/scripted_deflagration/scr_deflagration
+	if(scr_deflagration)
+		scr_deflagration.trigger()
+
 /obj/machinery/power/hybrid_reactor/proc/meltdown()
 	meltdown = TRUE
-	var/obj/effect/scripted_detonation/scr_detonation
-	var/obj/effect/scripted_deflagration/scr_deflagration
 	rcontrol.do_message("MAJOR SENSOR DAMAGE IN REACTOR UNIT", 3)
 	sleep(10 SECONDS)
 	rcontrol.do_message("MAJOR WIRING AND SENSOR DAMAGE IN REACTOR UNIT", 3)
@@ -191,13 +205,11 @@
 	neutron_flux *= 100
 	rcontrol.do_message("THERMOELECTRIC SYSTEMS OVERHEAT", 3)
 	rcontrol.do_message("MAJOR INTERNAL STRUCTURAL DAMAGE", 3)
-	scr_detonation = scripted_explosions["reactor1"]
-	scr_detonation.trigger()
+	scr_det("reactor1")
 	spawn(2 SECONDS)
 		rcontrol.do_message("REACTOR UNIT SYSTEMS UNRESPONSIVE", 3)
 		rcontrol.scram("CONTROL LOSS") //won't work lol
-		scr_detonation = scripted_explosions["reactor2"]
-		scr_detonation.trigger()
+		scr_det("reactor2")
 	for(var/mob/living/carbon/human/H in human_mob_list)
 		if(H.job == "Engineer" || H.job == "Chief Engineer")
 			H.playsound_local(H, 'sound/music/howmuchmorecanyoulose.ogg', 50, 0)
@@ -206,20 +218,18 @@
 	var/ann_name = "[pick(first_names_male)] [pick(last_names)]"
 	radio_announce("ATTENTION ALL REACTOR OPERATIONS PERSONNEL.", ann_name)
 	sleep(3 SECONDS)
-	scr_detonation = scripted_explosions["reactor3"]
-	scr_detonation.trigger()
+	scr_det("reactor3")
 	radio_announce("THIS IS OUR LAST CHANCE TO PREVENT THE UNCONTROLLABLE DETONATION OF THE H.S.S.R.", ann_name)
 	sleep(4 SECONDS)
-	scr_detonation = scripted_explosions["reactor4"]
-	scr_detonation.trigger()
+	scr_det("reactor4")
 	radio_announce("CLIMB UP THE REACTOR UNIT, AND EJECT ALL FUEL CELLS NO LONGER THAN WITHIN 3 SECONDS OF EACH OTHER.", ann_name)
 	sleep(3 SECONDS)
 	radio_announce("TO INVOKE A REACTION STALL AND STOP THE THERMAL RUNAWAY. YOU HAVE A MINUTE, GOOD LUCK.", ann_name)
 	sleep(5 SECONDS)
-	scr_detonation = scripted_explosions["reactor5"]
-	scr_detonation.trigger()
-	scr_detonation = scripted_explosions["reactor8"]
-	scr_detonation.trigger()
+	scr_det("reactor5")
+	scr_det("reactor6")
+	scr_det("reactor7")
+	scr_det("reactor8")
 	close_blastdoors()
 	radio_announce("SITEWIDE RADIATION INTERLOCKS WILL ACTIVATE IN: 1 MINUTE.", rcontrol.name)
 	sleep(40 SECONDS)
@@ -231,15 +241,12 @@
 			radio_announce("ABORTING...", rcontrol.name)
 		return
 	radio_announce("I believe it's too late... We're all gonna die.", ann_name)
-	scr_deflagration = scripted_explosions["dreactor1"]
-	scr_deflagration.trigger()
+	scr_def("dreactor1")
 	spawn(2 SECONDS)
 		radio_announce("CONTINGENCY OPERATION FAILURE. SHUTTING DOWN...", rcontrol.name)
-		scr_deflagration = scripted_explosions["machinehall"]
-		scr_deflagration.trigger()
+		scr_def("machinehall")
 	sleep(12 SECONDS)
 	close_radlocks()
-	sleep(5 SECONDS)
 	if(shutdown_failure)
 		make_plasmaball()
 		visible_message("<span class=bigdanger>The reactor implodes on itself, creating something that cannot be described with any language!</span>", range = 20)
@@ -263,5 +270,6 @@
 				var/atom/movable/AM = thing
 				animate(AM, transform = matrix()*0.01, time = 10, easing = QUAD_EASING | EASE_IN)
 		sleep(30 SECONDS)
+	stop_alarms()
 	produce_explosion()
 	radio_announce("MULTIPLE SEISMIC VIBRATIONS OF MAGNITUDE 9 DETECTED.", rcontrol.name)
