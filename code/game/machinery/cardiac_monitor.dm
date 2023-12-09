@@ -203,10 +203,14 @@
 		"name" = "[attached]",
 		"status" = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE",
 		"pressure" = "[round(attached.syspressure)]/[round(attached.dyspressure)]",
-		"saturation" = round(attached.get_blood_saturation() * 100),
 		"tpvr" = round(attached.tpvr),
 		"mcv" = round(attached.mcv)/1000
 	)
+
+	if(attached.mcv > 800)
+		data["saturation"] = round(CLAMP01(attached.get_blood_saturation() * attached.get_blood_perfusion()) * 100)
+	else
+		data["saturation"] = 0
 
 	if(H)
 		if(H.pulse > 310)

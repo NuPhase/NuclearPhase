@@ -76,7 +76,7 @@
 	required_instability = 40
 	degrades_into = /decl/arrythmia/paroxysmal_tachycardia
 	evolves_into = /decl/arrythmia/ventricular_flaunt
-	can_appear = FALSE
+	can_appear = TRUE
 	can_be_shocked = TRUE
 	severity = 4
 

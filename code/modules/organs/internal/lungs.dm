@@ -304,7 +304,7 @@
 	breath_rate = initial(breath_rate)
 	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
 	breath_rate += min(25, owner.shock_stage * 0.1)
-	var/breath_rate_delta = owner.max_oxygen_capacity - owner.oxygen_amount
+	var/breath_rate_delta = owner.normal_oxygen_capacity - owner.oxygen_amount
 	breath_rate += breath_rate_delta * 0.14
 	breath_rate = Clamp(breath_rate, 0, 61)
 

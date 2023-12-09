@@ -6,7 +6,8 @@
 	var/meanpressure = 100
 	var/mcv = NORMAL_MCV //Minute Circulation Volume
 	var/tpvr = 279 //Total Peripherial Vascular Resistance
-	var/max_oxygen_capacity = 120
+	var/max_oxygen_capacity = 160
+	var/normal_oxygen_capacity = 120
 	var/oxygen_amount = 120
 	var/add_mcv = 0
 
@@ -22,7 +23,7 @@
 		return 0
 	if(status_flags & GODMODE)
 		return 1
-	. = oxygen_amount / max_oxygen_capacity
+	. = oxygen_amount / normal_oxygen_capacity
 
 /mob/living/carbon/human/proc/get_blood_perfusion()
 	if(stat == DEAD)
@@ -82,7 +83,7 @@
 
 /mob/living/carbon/human/proc/add_oxygen(amount)
 	oxygen_amount = Clamp(oxygen_amount + amount, 0, max_oxygen_capacity)
-	if(oxygen_amount < max_oxygen_capacity - 10)
+	if(oxygen_amount < normal_oxygen_capacity - 10)
 		return 0
 	return 1
 
