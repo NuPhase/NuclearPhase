@@ -11,6 +11,13 @@
 
 #define SENSOR_TOLERANCE 1
 
+var/datum/composite_sound/airlock_alarm/alkloop = new
+/datum/composite_sound/airlock_alarm
+	start_sound = 'sound/machines/beeps_airlock.wav'
+	mid_sounds = list('sound/machines/airlock_alarm.wav'=1)
+	mid_length = 15
+	volume = 90
+
 /datum/computer/file/embedded_program/airlock
 	var/tag_exterior_door
 	var/tag_interior_door
@@ -27,6 +34,7 @@
 	var/tag_pump_out_internal
 
 	var/tag_air_alarm
+
 
 /datum/computer/file/embedded_program/airlock/New(var/obj/machinery/embedded_controller/M)
 	memory["chamber_sensor_pressure"] = ONE_ATMOSPHERE
@@ -261,6 +269,7 @@
 					cycleDoors(target_state)
 					state = STATE_IDLE
 					target_state = TARGET_NONE
+					done_cycling()
 
 
 		if(STATE_DEPRESSURIZE)
@@ -280,6 +289,7 @@
 						cycleDoors(target_state)
 						state = STATE_IDLE
 						target_state = TARGET_NONE
+						done_cycling()
 
 
 	memory["processing"] = (state != target_state)
@@ -292,20 +302,20 @@
 	state = STATE_IDLE
 	target_state = TARGET_INOPEN
 	memory["purge"] = cycle_to_external_air
-	playsound(master, 'sound/machines/warning-buzzer.ogg', 50)
+	alkloop.start(master)
 	shutAlarm()
 
 /datum/computer/file/embedded_program/airlock/proc/begin_dock_cycle()
 	state = STATE_IDLE
 	target_state = TARGET_INOPEN
-	playsound(master, 'sound/machines/warning-buzzer.ogg', 50)
+	alkloop.start(master)
 	shutAlarm()
 
 /datum/computer/file/embedded_program/airlock/proc/begin_cycle_out()
 	state = STATE_IDLE
 	target_state = TARGET_OUTOPEN
 	memory["purge"] = cycle_to_external_air
-	playsound(master, 'sound/machines/warning-buzzer.ogg', 50)
+	alkloop.start(master)
 	shutAlarm()
 
 /datum/computer/file/embedded_program/airlock/proc/close_doors()
@@ -315,8 +325,10 @@
 /datum/computer/file/embedded_program/airlock/proc/stop_cycling()
 	state = STATE_IDLE
 	target_state = TARGET_NONE
+	alkloop.stop(master)
 
 /datum/computer/file/embedded_program/airlock/proc/done_cycling()
+	alkloop.stop(master)
 	return (state == STATE_IDLE && target_state == TARGET_NONE)
 
 //are the doors closed and locked?
