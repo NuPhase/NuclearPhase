@@ -56,7 +56,5 @@
 	emergency_shuttle_recall_message = "The emergency shuttle has been recalled"
 
 /datum/map/avalon/get_map_info()
-	return "Полярное сияние наполняет плотную атмосферу планеты, ветер постепенно утихает, словно затишье перед бурей. \
-			Спустя столько времени выжившие наконец смогли получить точное местоположение единственного выжившего здания в ближайшей сотне километров. \
-			Нельзя терять ни минуты, на кону стоит знание, и возможно - ключ к побегу из этого ада. Пора перестать бояться идти дальше, чем на сотню метров от теплого убежища. \
-			Человеческий род всегда покорял новые земли, вне зависимости от риска или цены."
+	return "You were a citizen of a nearby city - New Tokyo, in the star system Sirius. Something horrible happened more than a year ago; a sudden climate-induced cataclysm that brought hell upon this newly formed colony. The planet's surface quickly became uninhabitable, forcing the planetary government to make a last-ditch attempt to save the remaining population. In addition to already existing military doomsday shelters, several facilities were hastily retrofitted. One of these shelters, 'Serenity', is where you are currently located. Whether by luck, effort or sheer circumstance, you are among the last people alive on this barren planet. Survive.\n \n \
+	Вы были жителем соседнего города - Нью-Токио, расположенного в звездной системе Сириус. Более года назад произошло нечто ужасное: внезапный климатический катаклизм обрушил ад на недавно образованную колонию. Поверхность планеты быстро стала непригодной для жизни, что вынудило планетарное правительство предпринять последнюю попытку спасти оставшееся население. В дополнение к уже существующим военным убежищам судного дня было спешно переоборудовано несколько объектов. В одном из таких убежищ, 'Serenity', вы сейчас находитесь. Благодаря удаче, усилиям или просто обстоятельствам вы оказались в числе последних живых людей на этой бесплодной планете."

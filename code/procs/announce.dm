@@ -161,6 +161,6 @@ var/global/datum/announcement/minor/minor_announcement = new(new_sound = 'sound/
 		var/obj/item/communications/receiving_radio = locate(/obj/item/communications) in M.contents
 		if(!receiving_radio)
 			continue
-			receive_comm_message(M, message, frequency)
+		receive_comm_message(M, message, frequency)
 	for(var/mob/observer/O in ghost_mob_list)
 		receive_comm_message(O, message, frequency)

@@ -32,6 +32,7 @@ DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/basic_hydraulic, hy
 	movement_slowdown = 0
 	manual_dexterity = DEXTERITY_WEAPONS
 	modular_prosthetic_tier = MODULAR_BODYPART_PROSTHETIC
+	can_eat = 1
 
 DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/advanced_hydraulic, hydraulic_advanced, 3)
 
@@ -44,6 +45,7 @@ DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/advanced_hydraulic,
 	movement_slowdown = 0
 	manual_dexterity = DEXTERITY_COMPLEX_TOOLS
 	modular_prosthetic_tier = MODULAR_BODYPART_CYBERNETIC
+	can_eat = 1
 
 DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/basic_biomech, biomech_basic, 4)
 
@@ -56,6 +58,7 @@ DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/basic_biomech, biom
 	movement_slowdown = -1.5
 	manual_dexterity = DEXTERITY_FULL
 	modular_prosthetic_tier = MODULAR_BODYPART_CYBERNETIC
+	can_eat = 1
 
 /decl/prosthetics_manufacturer/advanced_biomech/get_base_icon(mob/living/carbon/human/owner)
 	if(owner.gender == MALE)
@@ -72,3 +75,4 @@ DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/basic_biomech, biom
 	manual_dexterity = DEXTERITY_FULL
 	modular_prosthetic_tier = MODULAR_BODYPART_CYBERNETIC
 	can_feel_pain = TRUE
+	can_eat = 1

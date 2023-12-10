@@ -13,3 +13,8 @@
 	mid_length = 500
 	volume = 10
 	sfalloff = 3
+
+/datum/composite_sound/evac_alarm
+	mid_sounds = list('sound/effects/alarms/evac.ogg'=1)
+	mid_length = 35
+	volume = 10
