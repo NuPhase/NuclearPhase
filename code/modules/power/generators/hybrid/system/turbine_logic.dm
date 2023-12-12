@@ -55,11 +55,11 @@
 	else
 		var/rpm_difference = 0
 		var/target_valve_openage = 0
-		if(turbine1.feeder_valve_openage >= 0.1) //don't start turbines from a complete standstill
+		if(turbine1.feeder_valve_openage > 0) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine1.rpm
 			target_valve_openage = rpm_difference * 0.073
 			turbine1.feeder_valve_openage = Interpolate(turbine1.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
-		if(turbine2.feeder_valve_openage >= 0.1) //don't start turbines from a complete standstill
+		if(turbine2.feeder_valve_openage > 0) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine2.rpm
 			target_valve_openage = rpm_difference * 0.073
 			turbine2.feeder_valve_openage = Interpolate(turbine2.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
