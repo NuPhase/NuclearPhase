@@ -19,7 +19,7 @@
 	var/on = FALSE
 	var/activation_sound = 'sound/effects/flashlight.ogg'
 
-	var/flashlight_range = 4 // range of light when on, can be negative
+	var/flashlight_range = 6 // range of light when on, can be negative
 	var/flashlight_power     // brightness of light when on
 	var/flashlight_flags = 0 // FLASHLIGHT_ bitflags
 
