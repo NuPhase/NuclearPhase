@@ -22,7 +22,7 @@
 	var/damage_threshold_value
 	var/healed_threshold = 1
 	var/oxygen_reserve = 6
-	oxygen_consumption = 2.5
+	oxygen_consumption = 1.53
 	max_damage = 160
 	min_broken_damage = 90
 	min_bruised_damage = 30

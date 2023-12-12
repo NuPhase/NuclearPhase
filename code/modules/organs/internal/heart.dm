@@ -13,7 +13,7 @@
 	damage_reduction = 0.7
 	relative_size = 5
 	max_damage = 45
-	oxygen_consumption = 0.2
+	oxygen_consumption = 0.96
 	oxygen_deprivation_tick = 0.7
 	var/open
 	var/external_pump = 0 //simulated beats per minute

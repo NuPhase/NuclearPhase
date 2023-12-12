@@ -5,7 +5,7 @@
 	to_chat(user, "Heart CO: [H.cardiac_output * 100]%")
 	to_chat(user, "MCV: [mcv] ([round(bpm)] * [round(get_stroke_volume())])")
 	to_chat(user, "TPVR: [tpvr]")
-	to_chat(user, "Blood Pressure: ([syspressure]/[dyspressure])")
+	to_chat(user, "Blood Pressure: ([syspressure]/[dyspressure]) MAP: [meanpressure]")
 	to_chat(user, "Blood Saturation: [get_blood_saturation() * 100]%")
 	to_chat(user, "Blood Perfusion: [get_blood_perfusion() * 100]%")
 	to_chat(user, "Blood Volume: [get_blood_volume_hemo() * 100]%")

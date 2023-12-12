@@ -1376,11 +1376,9 @@
 		reset_blood()
 	var/decl/cultural_info/culture = get_cultural_value(TAG_HOMEWORLD) //Installs CERES neuralink into Sirius inhabitants
 	culture.on_spawn(src)
-	normal_oxygen_capacity = round(vessel.total_volume * 0.06) + get_skill_value(SKILL_FITNESS) * 40 //healthy athlete spleen oxygen stores
-	max_oxygen_capacity = normal_oxygen_capacity * 1.4
+	update_oxygen_capacities()
 	oxygen_amount = max_oxygen_capacity
 	calculate_strength_coefficients()
-	//metabolic_coefficient = 1 + rand(-0.1, 0.1) - get_skill_value(SKILL_FITNESS) * 0.05 //healthy athlete lower BPM
 
 /mob/proc/calculate_strength_coefficients()
 	pickup_capacity = initial(pickup_capacity)

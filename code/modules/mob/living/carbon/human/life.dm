@@ -69,6 +69,7 @@
 		handle_nutrition()
 		handle_bleeding()
 		process_hemodynamics()
+		consume_oxygen(3.13) //skeletal muscle+soft tissues
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
