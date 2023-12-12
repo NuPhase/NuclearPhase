@@ -56,8 +56,8 @@
 	var/SA_sleep_min = 5
 	var/last_successful_breath
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
-	oxygen_consumption = 1
-	var/oxygen_generation = 0.52 // default per breath
+	oxygen_consumption = 1.83
+	var/oxygen_generation = 0.57 // default per breath
 	var/breath_rate = 16 //per minute
 	var/last_breath_efficiency = 1
 	var/datum/composite_sound/breath_sound/soundloop
@@ -75,7 +75,7 @@
 	soundloop = new(_output_atoms=list(src), _our_lungs=src)
 	if(ishuman(owner))
 		spawn(50) //ugly workaround, lungs don't have post initialize proc
-			oxygen_generation += owner.get_skill_value(SKILL_FITNESS) * 0.08
+			oxygen_generation += owner.get_skill_value(SKILL_FITNESS) * 0.06
 
 /obj/item/organ/internal/lungs/proc/can_drown()
 	return (is_broken() || !has_gills)

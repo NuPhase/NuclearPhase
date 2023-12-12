@@ -58,3 +58,50 @@
 	if(gender == PLURAL)
 		gender = pick(MALE, FEMALE)
 	. = ..(mapload, SPECIES_MONKEY)
+
+/mob/living/carbon/human/training_dummy
+	real_name = "training dummy"
+	virtual_mob = null
+
+/mob/living/carbon/human/training_dummy/emote(act, m_type, message)
+	return
+
+/mob/living/carbon/human/training_dummy/Initialize(mapload, species_name, datum/dna/new_dna)
+	. = ..()
+	global.human_mob_list -= src
+
+/obj/item/training_dummy_controller
+	name = "dummy controller"
+	desc = "A controller for a medical training dummy."
+	icon = 'icons/obj/items/device/locator_borg.dmi'
+	var/mob/living/carbon/human/training_dummy/assigned_dummy = null
+
+/obj/item/training_dummy_controller/attack(mob/living/M, mob/living/user, target_zone, animate)
+	. = ..()
+	if(istype(M, /mob/living/carbon/human/training_dummy))
+		assigned_dummy = M
+		to_chat(user, "Dummy reassigned.")
+
+/obj/item/training_dummy_controller/attack_self(mob/user)
+	. = ..()
+	if(!assigned_dummy)
+		return
+	var/input = tgui_input_list(user, "Choose an action.", "Dummy Control", list("Reset Dummy", "Add Arrythmia", "Remove Arrythmias", "Clear Bloodstream", "Unique Condition"))
+	var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(assigned_dummy, BP_HEART)
+	switch(input)
+		if("Reset Dummy")
+			assigned_dummy.rejuvenate()
+		if("Add Arrythmia")
+			var/list/sorted_arrythmias = list()
+			for(var/decl/arrythmia/arr in subtypesof(/decl/arrythmia))
+				arr = GET_DECL(arr)
+				sorted_arrythmias[arr.name] = arr
+			var/chosen_arrythmia = sorted_arrythmias[tgui_input_list(user, "Choose an arrythmia.", "Arrythmia Induction", sorted_arrythmias)]
+			if(!chosen_arrythmia)
+				return
+			H.arrythmias.Cut()
+			H.add_arrythmia(chosen_arrythmia)
+		if("Remove Arrythmias")
+			H.arrythmias.Cut()
+		if("Clear Bloodstream")
+			assigned_dummy.bloodstr.remove_any(5000)

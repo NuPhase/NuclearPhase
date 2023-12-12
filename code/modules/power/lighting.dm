@@ -591,13 +591,13 @@ var/global/datum/composite_sound/light/light_soundloop = new
 
 /obj/item/light/bulb
 	name = "light bulb"
-	desc = "A replacement light bulb."
+	desc = "A replacement LED light bulb."
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
 	broken_chance = 3
 	material = /decl/material/solid/glass
-	b_color = LIGHT_COLOR_TUNGSTEN
+	b_color = LIGHT_COLOR_HALOGEN
 	lighting_modes = list(
 		LIGHTMODE_EMERGENCY = list(l_range = 2, l_power = 1, l_color = LIGHT_COLOR_EMERGENCY),
 	)

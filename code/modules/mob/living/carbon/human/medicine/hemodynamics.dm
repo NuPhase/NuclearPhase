@@ -6,8 +6,8 @@
 	var/meanpressure = 100
 	var/mcv = NORMAL_MCV //Minute Circulation Volume
 	var/tpvr = 279 //Total Peripherial Vascular Resistance
-	var/max_oxygen_capacity = 160
-	var/normal_oxygen_capacity = 120
+	var/max_oxygen_capacity = 1450
+	var/normal_oxygen_capacity = 1040
 	var/oxygen_amount = 120
 	var/add_mcv = 0
 
@@ -29,12 +29,17 @@
 	if(stat == DEAD)
 		return 0
 
-	. = CLAMP01((mcv / (NORMAL_MCV * metabolic_coefficient)) * get_blood_saturation())
+	. = CLAMP01((mcv / (NORMAL_MCV * metabolic_coefficient)) * oxygen_amount/1200 * meanpressure / NORMAL_MEAN_PRESSURE)
 
 /mob/living/carbon/human/proc/get_stroke_volume()
 	//blood volume, preload, afterload, cardiac contractility
 	var/stroke_volume_coeff = get_blood_volume_hemo() * (min(1.7, dyspressure / 80) - (max(120, syspressure) - 120) * 0.008) * get_cardiac_output()
 	return NORMAL_STROKE_VOLUME * stroke_volume_coeff
+
+/mob/living/carbon/human/proc/update_oxygen_capacities()
+	normal_oxygen_capacity = round(vessel.total_volume * 0.2) + get_skill_value(SKILL_FITNESS) * 130 //1 liter of blood can contain 200ml of oxygen + spleen storage
+	max_oxygen_capacity = normal_oxygen_capacity * 1.4
+	oxygen_amount = Clamp(oxygen_amount, 0, max_oxygen_capacity)
 
 /mob/living/carbon/human/proc/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
@@ -46,32 +51,27 @@
 	else
 		bpm = 0
 
-	if(bpm < 10)
-		dyspressure = 0
-		syspressure = 0
-		mcv = 0
-		tpvr = metabolic_coefficient * 218.50746
-		return
-
 	var/ccp = 0 //cardiac cycle period
 	if(bpm > 0)
 		ccp = 60/bpm
 
-	tpvr = metabolic_coefficient * 218.50746
-	tpvr += syspressure * (0.0008 * syspressure - 0.8833) + 94 //this simulates vascular elasticity. More pressure - less TPVR, and side versa
-	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE)
+	var/perfusion = get_blood_perfusion()
+	tpvr = metabolic_coefficient * 312.50746
+	tpvr += syspressure * (0.0008 * syspressure - 0.8833) //this simulates vascular elasticity. More pressure - less TPVR, and side versa
+	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE) //vasoconstriction depends on muscles, muscles need oxygen
+	tpvr *= perfusion
 	tpvr = Clamp(tpvr, TPVR_MIN, TPVR_MAX)
 
 	var/bpmd = ccp * 0.109 + 0.159
 	var/coeff = get_blood_volume_hemo() * (bpmd * 3.73134328)
 	var/bpm53 = bpm * coeff * 53.0
-	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)), HEMODYNAMICS_INTERPOLATE_FACTOR))
-	syspressure = Clamp(Interpolate(syspressure, (50 * mcv) / (27 * bpm) + 2.0 * dyspressure * get_cardiac_output() - (7646.0 * metabolic_coefficient)/49, HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
+	var/stroke_volume = get_stroke_volume()
+	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53))*get_blood_volume_hemo(), HEMODYNAMICS_INTERPOLATE_FACTOR))
+	syspressure = Clamp(Interpolate(syspressure, dyspressure + (stroke_volume * 0.5714) + (add_mcv * 0.013), HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
 	dyspressure = min(dyspressure, max(10, syspressure)-7)
-
 	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 
-	mcv = Clamp((bpm * get_stroke_volume() + add_mcv * get_blood_volume_hemo()), 0, 32000)
+	mcv = Clamp((bpm * stroke_volume + add_mcv * get_blood_volume_hemo()), 0, 32000)
 	add_mcv = 0
 
 /mob/living/carbon/human/proc/consume_oxygen(amount)

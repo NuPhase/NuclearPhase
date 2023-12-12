@@ -1,11 +1,11 @@
 /obj/structure/largecrate
 	name = "large crate"
-	desc = "A hefty wooden crate."
+	desc = "A hefty plastic panel crate."
 	icon = 'icons/obj/storage/shipping_crates.dmi'
 	icon_state = "densecrate"
 	density = 1
 	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
-	material = /decl/material/solid/wood
+	material = /decl/material/solid/plastic
 
 /obj/structure/largecrate/Initialize()
 	. = ..()
@@ -22,7 +22,7 @@
 	if(IS_CROWBAR(W))
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
-							 "<span class='notice'>You hear splitting wood.</span>")
+							 "<span class='notice'>You hear dislodging plastic panels.</span>")
 		physically_destroyed()
 		return TRUE
 	return ..()

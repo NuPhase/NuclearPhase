@@ -23,9 +23,6 @@
 				all_messages.Remove(cleared_message)
 		cleared_messages.Cut()
 		last_message_clearing = 0
-	if(scram_control && (generator1.connected || generator2.connected) && (get_meter_pressure("T-M-TURB IN") > 10000 || get_meter_pressure("T-M-TURB EX") > 3000 || get_meter_temperature("T-M-TURB IN") < 700 || turbine1.vibration > 50 || turbine2.vibration > 50))
-		turbine_trip()
-		do_message("TURBINE TRIP", 3)
 	if(scram_control)
 		check_autoscram()
 
@@ -152,7 +149,7 @@
 	current_valve = reactor_valves["REACTOR-F-V-OUT"]
 	current_valve.set_openage(100)
 
-	turbine_trip()
+	turbine_trip("SCRAM")
 
 	mode = REACTOR_CONTROL_MODE_MANUAL
 	scram_control = FALSE

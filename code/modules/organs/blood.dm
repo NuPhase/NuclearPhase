@@ -27,6 +27,7 @@
 			vessel.add_reagent(species.blood_reagent, amt, blood_data)
 		else
 			vessel.remove_any(abs(amt))
+	update_oxygen_capacities()
 
 //Resets blood data
 /mob/living/carbon/human/proc/reset_blood()
