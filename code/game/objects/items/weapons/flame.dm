@@ -4,11 +4,6 @@
 	var/waterproof = FALSE
 	var/lit = 0
 
-/obj/item/flame/afterattack(var/obj/O, var/mob/user, proximity)
-	..()
-	if(proximity && lit && istype(O))
-		O.HandleObjectHeating(src, user, 700)
-
 /obj/item/flame/proc/extinguish(var/mob/user, var/no_message)
 	lit = 0
 	damtype = BRUTE

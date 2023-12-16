@@ -13,8 +13,8 @@
 	use_power = POWER_USE_OFF
 	stat_immune = NOSCREEN | NOINPUT | NOPOWER
 	uncreated_component_parts = null
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CHECKS_BORDER
-	opacity = 0
+	atom_flags = ATOM_FLAG_CHECKS_BORDER
+	opacity = FALSE
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 	pry_mod = 0.5

@@ -1,23 +1,18 @@
-/* Filing cabinets!
- * Contains:
- *		Filing Cabinets
- *		Security Record Cabinets
- *		Medical Record Cabinets
- */
-
-/*
- * Filing Cabinets
- */
-/obj/structure/filingcabinet
-	name = "filing cabinet"
-	desc = "A large cabinet with drawers."
-	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "filingcabinet"
-	density = 1
-	anchored = 1
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
-	obj_flags = OBJ_FLAG_ANCHORABLE
-	var/list/can_hold = list(
+/////////////////////////////////////////////////////////////////
+// Filling Cabinet
+/////////////////////////////////////////////////////////////////
+/obj/structure/filing_cabinet
+	name                   = "filing cabinet"
+	desc                   = "A large cabinet with drawers."
+	icon                   = 'icons/obj/structures/filling_cabinets.dmi'
+	icon_state             = "filingcabinet"
+	material               = /decl/material/solid/metal/steel
+	density                = TRUE
+	anchored               = TRUE
+	atom_flags             = ATOM_FLAG_CLIMBABLE
+	obj_flags              = OBJ_FLAG_ANCHORABLE
+	tool_interaction_flags = TOOL_INTERACTION_ANCHOR | TOOL_INTERACTION_DECONSTRUCT
+	var/tmp/list/can_hold  = list(
 		/obj/item/paper,
 		/obj/item/folder,
 		/obj/item/photo,

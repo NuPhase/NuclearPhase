@@ -169,11 +169,9 @@ Class Procs:
 	// Update atom temperature.
 	if(abs(air.temperature - last_air_temperature) >= ATOM_TEMPERATURE_EQUILIBRIUM_THRESHOLD)
 		last_air_temperature = air.temperature
-		for(var/turf/simulated/T in contents)
-			for(var/check_atom in T.contents)
-				var/atom/checking = check_atom
-				if(checking.simulated)
-					QUEUE_TEMPERATURE_ATOMS(checking)
+		for(var/turf/T as anything in contents)
+			for(var/atom/check_atom as anything in T.contents)
+				QUEUE_TEMPERATURE_ATOM(check_atom)
 			CHECK_TICK
 
 //#define CONDENSATION_DEBUG

@@ -182,8 +182,8 @@
 		if(isliving(O))
 			var/mob/living/L = O
 			L.IgniteMob()
-		else if(istype(O))
-			O.HandleObjectHeating(src, user, 700)
+		else if(isatom(O))
+			O.handle_external_heating(WELDING_TOOL_HOTSPOT_TEMP_ACTIVE, src, user)
 		if (isturf(location))
 			location.hotspot_expose(700, 50, 1)
 	return
@@ -222,13 +222,17 @@
 	if(isliving(src.loc))
 		var/mob/living/L = src.loc
 		if(!(src in L.get_held_items()))
-			in_mob = L
+			fuel_usage = max(fuel_usage, 2)
+			L.IgniteMob()
+	else if(isturf(loc))
+		var/turf/location = get_turf(src)
+		location.hotspot_expose(WELDING_TOOL_HOTSPOT_TEMP_IDLE, 5) //a bit colder when idling
+	else if(isatom(loc))
+		var/atom/A = loc
+		A.handle_external_heating(WELDING_TOOL_HOTSPOT_TEMP_IDLE)
 
-	if(in_mob)
-		amount = max(amount, 2)
-		tank.reagents.trans_type_to(in_mob, /decl/material/liquid/fuel, amount)
-		in_mob.IgniteMob()
-
+	if(use_fuel(fuel_usage))
+		return TRUE
 	else
 		tank.reagents.remove_reagent(/decl/material/liquid/fuel, amount)
 		var/turf/location = get_turf(src.loc)

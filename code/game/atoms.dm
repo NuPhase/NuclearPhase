@@ -1,7 +1,28 @@
 /atom
 	var/russian_desc
-	var/level = 2
-	var/atom_flags = ATOM_FLAG_NO_TEMP_CHANGE
+	/// (DEFINE) Determines where this atom sits in terms of turf plating. See misc.dm
+	var/level = LEVEL_ABOVE_PLATING
+	/// (BITFLAG) See flags.dm
+	var/atom_flags = 0
+	/// (FLOAT) The world.time that this atom last bumped another. Used mostly by mobs.
+	var/last_bumped = 0
+	/// (BITFLAG) See flags.dm
+	var/pass_flags = 0
+	/// (BOOL) If a thrown object can continue past this atom. Sometimes used for clicking as well? TODO: Rework this
+	var/throwpass = 0
+	/// (INTEGER) The number of germs on this atom.
+	var/germ_level = GERM_LEVEL_AMBIENT
+	/// (BOOL) If an atom should be interacted with by a number of systems (Atmos, Liquids, Turbolifts, Etc.)
+	var/simulated = TRUE
+	/// The chemical contents of this atom
+	var/datum/reagents/reagents
+	/// (INTEGER) The amount an explosion's power is decreased when encountering this atom
+	var/explosion_resistance = 0
+	/// (BOOL) If it can be spawned normally
+	var/is_spawnable_type = FALSE
+
+
+	/// (DICTIONARY) A lazy map. The `key` is a MD5 player name and the `value` is the blood type.
 	var/list/blood_DNA
 	var/was_bloodied
 	var/blood_color
@@ -188,6 +209,11 @@
 		if(!QDELETED(AM) && AM.simulated)
 			LAZYADD(., AM)
 
+// Return a list of all temperature-sensitive atoms, defaulting to above.
+/atom/proc/get_contained_temperature_sensitive_atoms()
+	return get_contained_external_atoms()
+
+/// Dump the contents of this atom onto its loc
 /atom/proc/dump_contents()
 	for(var/thing in get_contained_external_atoms())
 		var/atom/movable/AM = thing

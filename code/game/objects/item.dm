@@ -263,6 +263,16 @@
 /obj/item/proc/dragged_onto(var/mob/user)
 	attack_hand(user)
 
+/obj/item/afterattack(var/atom/A, var/mob/user, var/proximity)
+	. = ..()
+	if(. || !proximity)
+		return
+	var/atom_heat = get_heat()
+	if(atom_heat > 0)
+		A.handle_external_heating(atom_heat, src, user)
+		return TRUE
+	return FALSE
+
 /obj/item/attack_hand(mob/user)
 
 	if(!user)
