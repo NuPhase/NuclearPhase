@@ -252,7 +252,8 @@
 	return NO_EMAG_ACT
 
 /atom/proc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	handle_external_heating(adjust_temp = exposed_temperature)
 
 /atom/proc/melt()
 	return

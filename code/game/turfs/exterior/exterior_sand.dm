@@ -11,6 +11,7 @@
 /turf/exterior/sand/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if((temperature > T0C + 1700 && prob(5)) || temperature > T0C + 3000)
 		melt()
+	return ..()
 
 /turf/exterior/sand/melt()
 	if(icon_state != "glass")
