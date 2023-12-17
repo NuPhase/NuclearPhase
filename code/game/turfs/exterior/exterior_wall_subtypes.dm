@@ -2,26 +2,17 @@
 	reinf_material = null
 
 /turf/exterior/wall/random/proc/get_weighted_mineral_list()
-	if(strata)
-		var/decl/strata/strata_info = GET_DECL(strata)
-		. = strata_info.ores_sparse
-	if(!.)
-		. = SSmaterials.weighted_minerals_sparse
-
-/turf/exterior/wall/random/high_chance/get_weighted_mineral_list()
-	if(strata)
-		var/decl/strata/strata_info = GET_DECL(strata)
-		. = strata_info.ores_rich
-	if(!.)
-		. = SSmaterials.weighted_minerals_rich
+	return list(
+		/obj/item/stack/ore/hematite = /decl/material/solid/hematite,
+		/obj/item/stack/ore/chalcopyrite = /decl/material/solid/chalcopyrite
+	)
 
 /turf/exterior/wall/random/Initialize()
-	if(!strata)
-		strata = SSmaterials.get_strata(src)
 	if(isnull(reinf_material))
-		var/default_mineral_list = get_weighted_mineral_list()
-		if(LAZYLEN(default_mineral_list))
-			reinf_material = pickweight(default_mineral_list)
+		var/list/ore_list = get_weighted_mineral_list()
+		var/chosen_ore = pick(ore_list)
+		reinf_material = ore_list[chosen_ore]
+		ore_type = chosen_ore
 	. = ..()
 
 /turf/exterior/wall/volcanic

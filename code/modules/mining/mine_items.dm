@@ -40,7 +40,7 @@
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 0
 
-	var/digspeed = 150 //moving the delay to an item var so R&D can make improved picks. --NEO
+	var/digspeed = 70 //moving the delay to an item var so R&D can make improved picks. --NEO
 	var/drill_sound = 'sound/weapons/Genhit.ogg'
 	var/drill_verb = "drilling"
 	var/excavation_amount = 200

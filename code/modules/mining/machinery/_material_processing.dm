@@ -18,7 +18,7 @@
 	. = ..()
 	if(!processing_stack)
 		return
-	if(processing_stack.processing_flags & required_flag)
+	if(processing_stack.processing_flags & produced_flag)
 		to_chat(user, "It has finished running and can be emptied.")
 
 /obj/machinery/material_processing/attackby(obj/item/I, mob/user)

@@ -18,6 +18,7 @@ var/global/list/natural_walls = list()
 	var/decl/material/material
 	var/decl/material/reinf_material
 	var/floor_type = /turf/exterior/open_ocean
+	var/ore_type
 	signal_block_coef = 10
 
 /turf/exterior/wall/examine(mob/user, distance, infix, suffix)
@@ -210,19 +211,17 @@ var/global/list/natural_walls = list()
 		add_overlay(archaeo_overlay)
 
 /turf/exterior/wall/proc/dismantle_wall()
-	if(reinf_material?.ore_result_amount)
-		if(prob(80))
-			var/obj/structure/boulder/nboulder = new /obj/structure/boulder(loc)
-			nboulder.ore_type = reinf_material
-			nboulder.color = reinf_material.color
-	if(prob(MAT_DROP_CHANCE))
-		pass_geodata_to(new /obj/item/ore(src, material.type))
+	var/saved_ore_type = ore_type
 	destroy_artifacts(null, INFINITY)
 	. = ChangeTurf(floor_type || get_base_turf_by_area(src))
 	if(istype(., /turf/simulated/floor/asteroid))
 		var/turf/simulated/floor/asteroid/debris = .
 		debris.overlay_detail = "asteroid[rand(0,9)]"
 		debris.updateMineralOverlays(1)
+	if(saved_ore_type)
+		var/obj/structure/boulder/nboulder = new /obj/structure/boulder(.)
+		nboulder.ore_type = saved_ore_type
+		nboulder.ore_result_amount = rand(20, 100)
 
 /turf/exterior/wall/proc/get_default_material()
 	. = /decl/material/solid/stone/sandstone

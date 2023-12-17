@@ -36,7 +36,7 @@
 	water_overlay.color = COLOR_LIQUID_WATER
 	water_overlay.layer = ABOVE_HUMAN_LAYER
 	water_overlay.alpha = 170
-	water_overlay.mouse_opacity = TRUE
+	water_overlay.mouse_opacity = FALSE
 	add_overlay(water_overlay)
 
 /turf/exterior/open_ocean/Initialize()

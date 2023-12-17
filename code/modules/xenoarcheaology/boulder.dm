@@ -11,7 +11,8 @@
 	var/excavation_level = 0
 	var/datum/artifact_find/artifact_find
 	var/last_act = 0
-	var/ore_type
+	var/ore_result_amount = 1
+	var/obj/item/stack/ore/ore_type
 
 /obj/structure/boulder/Initialize(var/ml, var/_mat, var/coloration)
 	. = ..()
@@ -50,12 +51,10 @@
 		to_chat(user, "<span class='notice'>You finish [P.drill_verb] [src].</span>")
 		excavation_level += P.excavation_amount
 
-		if(excavation_level > 200)
+		if(excavation_level >= 200)
 			//failure
 			user.visible_message("<span class='warning'>\The [src] suddenly crumbles away.</span>", "<span class='warning'>\The [src] has disintegrated under your onslaught, any secrets it was holding are long gone.</span>")
-			var/decl/material/mat = GET_DECL(ore_type)
-			for(var/i = 1 to mat.ore_result_amount)
-				new /obj/item/ore(loc, mat.type)
+			ore_type = new(loc, ore_result_amount)
 			qdel(src)
 			return
 

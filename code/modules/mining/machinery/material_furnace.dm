@@ -18,7 +18,6 @@
 		visible_message(SPAN_NOTICE("[user] loads some ore into \the [src]."))
 	. = ..()
 
-
 /obj/machinery/atmospherics/unary/furnace/Process()
 	for(var/obj/item/stack/ore/cur_ore in contents)
 		for(var/proc_metal in cur_ore.composition)
@@ -26,14 +25,14 @@
 			switch(cur_mat.phase_at_temperature(air_contents.temperature, air_contents.return_pressure()))
 				if(MAT_PHASE_GAS)
 					if(length(cur_ore.composition) == 1)
-						air_contents.adjust_gas_temp(proc_metal, cur_ore.amount * cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
+						air_contents.adjust_gas_temp(proc_metal, cur_ore.amount / cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
 						cur_ore.composition.Remove(proc_metal)
 				if(MAT_PHASE_LIQUID)
-					air_contents.adjust_gas_temp(proc_metal, cur_ore.amount * cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
+					air_contents.adjust_gas_temp(proc_metal, cur_ore.amount / cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
 					cur_ore.composition.Remove(proc_metal)
 				if(MAT_PHASE_SOLID)
 					if(length(cur_ore.composition) == 1)
-						air_contents.adjust_gas_temp(proc_metal, cur_ore.amount * cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
+						air_contents.adjust_gas_temp(proc_metal, cur_ore.amount / cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
 						cur_ore.composition.Remove(proc_metal)
 		if(!length(cur_ore.composition))
 			qdel(cur_ore)
@@ -171,7 +170,7 @@
 		if(length(our_furnace.inserted_electrodes) >= 3)
 			to_chat(user, SPAN_NOTICE("\The [src] already has 3 electrodes installed."))
 			return
-		if(!user.do_skilled(100, SKILL_DEVICES, src))
+		if(!user.do_skilled(20, SKILL_DEVICES, src))
 			return
 		user.drop_from_inventory(I, src)
 		our_furnace.inserted_electrodes += I
@@ -232,7 +231,7 @@
 	lose_electrode_integrity(conductivity_coefficient)
 	process_stability()
 	spark_at(get_turf(pick(oview(2, src))), 3, 0)
-	set_light(rand(2, 4), pick(1, 5), pick("#00b7ff", "#30c4ff", "#53ceff", "#5bd0ff", "#a6e6ff"))
+	set_light(rand(4, 7), pick(3, 5), pick("#00b7ff", "#30c4ff", "#53ceff", "#5bd0ff", "#a6e6ff"))
 
 /obj/machinery/atmospherics/unary/furnace/arc/heat_up(joules)
 	. = ..()

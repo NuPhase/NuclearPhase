@@ -20,7 +20,7 @@
 		'sound/voice/eal/eal7.ogg',
 		'sound/voice/eal/eal8.ogg'
 	)
-		
+
 /decl/language/binary
 	name = "Robot Talk"
 	desc = "Most human facilities support free-use communications protocols and routing hubs for synthetic use."
