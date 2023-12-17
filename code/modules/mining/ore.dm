@@ -11,6 +11,7 @@
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 150 //150kg in one item, should be okay
+	var/processing_flags
 	var/true_mineral_name = "" //only visible to geologists
 	var/list/composition //associative list of binary ratios
 /*

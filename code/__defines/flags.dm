@@ -108,3 +108,10 @@ The latter will result in a linter warning and will not work correctly.
 #define OVERMAP_SECTOR_KNOWN              BITFLAG(1) // Makes the sector show up on nav computers
 #define OVERMAP_SECTOR_IN_SPACE           BITFLAG(2) // If the sector can be accessed by drifting off the map edge
 #define OVERMAP_SECTOR_UNTARGETABLE       BITFLAG(3) // If the sector is untargetable by missiles.
+
+//Ore flags. All processing flags are ordered after each other.
+#define ORE_FLAG_CRUSHED                  BITFLAG(0) //crushed to dust
+#define ORE_FLAG_SEPARATED_CRUDE          BITFLAG(1) //separated either by sifting or hand-picking
+#define ORE_FLAG_SEPARATED_GOOD           BITFLAG(2) //separated either by magnets or flotation
+#define ORE_FLAG_SEPARATED_BEST           BITFLAG(3) //separated by chemical processing
+#define ORE_FLAG_RUINED                   BITFLAG(4) //you messed up

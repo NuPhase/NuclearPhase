@@ -1,6 +1,3 @@
-#define SET_INPUT(_dir)  input_turf = _dir  ? get_step(loc, _dir) : null
-#define SET_OUTPUT(_dir) output_turf = _dir ? get_step(loc, _dir) : null
-
 /obj/machinery/material_processing
 	density =  TRUE
 	anchored = TRUE
@@ -8,110 +5,74 @@
 	uncreated_component_parts = null
 	stat_immune = 0
 	icon = 'icons/obj/machines/mining_machines.dmi'
-	var/use_ui_template
-	var/allow_ui_config =  FALSE
-	var/turf/input_turf =  WEST
-	var/turf/output_turf = EAST
+	icon_state = "compressor-off"
+	var/obj/item/stack/ore/processing_stack
+	var/required_flag = ORE_FLAG_CRUSHED
+	var/produced_flag = ORE_FLAG_SEPARATED_CRUDE
+	var/amount_processed = 1 //mass of material processed per Process() tick
+	var/already_processed = 0
+	var/finish_message = "grinds to a halt."
+	var/active_state = "compressor"
 
-/obj/machinery/material_processing/emp_act(severity)
-	if(severity == 1 || (severity == 2 && prob(50)))
-		emagged = TRUE
+/obj/machinery/material_processing/examine(mob/user)
 	. = ..()
-
-/obj/machinery/material_processing/emag_act(remaining_charges, mob/user, emag_source)
-	if(!emagged)
-		emagged = TRUE
-		to_chat(user, SPAN_NOTICE("You short out \the [src]'s intake safety protocol."))
-		return TRUE
-
-/obj/machinery/material_processing/on_update_icon()
-
-	cut_overlays()
-	
-	icon_state = initial(icon_state)
-	if(panel_open)
-		add_overlay("[icon_state]-open")
-	if(!use_power || (stat & (BROKEN|NOPOWER)))
-		icon_state = "[icon_state]-off"
-	
-	var/overlay_dir = 0
-	if(input_turf)
-		overlay_dir = get_dir(src, input_turf)
-		if(overlay_dir != 0)
-			var/image/I = image('icons/obj/machines/mining_machine_overlays.dmi', "[global.reverse_dir[overlay_dir]]")
-			I.layer = DECAL_LAYER
-			switch(overlay_dir)
-				if(NORTH) I.pixel_y += world.icon_size
-				if(SOUTH) I.pixel_y -= world.icon_size
-				if(EAST)  I.pixel_x += world.icon_size
-				if(WEST)  I.pixel_x -= world.icon_size
-			add_overlay(I)
-	if(output_turf)
-		overlay_dir = get_dir(src, output_turf)
-		if(overlay_dir != 0)
-			var/image/I = image('icons/obj/machines/mining_machine_overlays.dmi', "[overlay_dir]")
-			I.layer = DECAL_LAYER
-			switch(overlay_dir)
-				if(NORTH) I.pixel_y += world.icon_size
-				if(SOUTH) I.pixel_y -= world.icon_size
-				if(EAST)  I.pixel_x += world.icon_size
-				if(WEST)  I.pixel_x -= world.icon_size
-			add_overlay(I)
-	if(overlay_dir == 0)
-		var/image/I = image('icons/obj/machines/mining_machine_overlays.dmi', "0")
-		I.layer = DECAL_LAYER
-		add_overlay(I)
-
-/obj/machinery/material_processing/proc/get_ui_data()
-	var/list/data = list()
-	data["on"] = (use_power > 0)
-	data["can_configure"] = allow_ui_config
-	data["output_value"] =  output_turf ? get_dir(src, output_turf) : 0
-	data["output_label"] =  data["output_value"] ? dir2text(data["output_value"]) : "disabled"
-	data["input_value"] =   input_turf ? get_dir(src, input_turf) : 0
-	data["input_label"] =   data["input_value"] ?  dir2text(data["input_value"])  : "disabled"
-	return data
-
-/obj/machinery/material_processing/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui=null, force_open=1)
-	if(!use_ui_template)
+	if(!processing_stack)
 		return
-	var/list/data = get_ui_data()
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, use_ui_template, "[capitalize(name)]", 600, 800, state = global.physical_topic_state)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	if(processing_stack.processing_flags & required_flag)
+		to_chat(user, "It has finished running and can be emptied.")
 
-/obj/machinery/material_processing/interface_interact(mob/user)
-	ui_interact(user)
-	return TRUE
-
-/obj/machinery/material_processing/Destroy()
-	input_turf = null
-	output_turf = null
+/obj/machinery/material_processing/attackby(obj/item/I, mob/user)
 	. = ..()
+	if(istype(I, /obj/item/stack/ore) && !processing_stack)
+		if(!user.do_skilled(50, SKILL_DEVICES, src))
+			return
+		user.visible_message("[user] loads \the [src].")
+		user.drop_from_inventory(I, src)
+		processing_stack = I
+		START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 
-/obj/machinery/material_processing/Initialize()
-	dir = output_turf || input_turf
-	SET_INPUT(input_turf)
-	SET_OUTPUT(output_turf)
+/obj/machinery/material_processing/physical_attack_hand(mob/living/carbon/human/user)
 	. = ..()
-	queue_icon_update()
+	if(use_power == POWER_USE_ACTIVE)
+		if(ishuman(user))
+			if(user.get_skill_value(SKILL_DEVICES) > SKILL_BASIC)
+				return //your hand is saved you smart virgin
+			var/affected = pick(BP_R_HAND, BP_L_HAND)
+			var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(user, affected)
+			affecting.take_external_damage(rand(20, 30), damage_flags = DAM_SHARP)
+			user.visible_message(SPAN_DANGER("[user]'s hand gets mangled by \the [src]!"))
+	else if(processing_stack)
+		if(!user.do_skilled(50, SKILL_DEVICES, src))
+			return
+		user.visible_message("[user] unloads \the [src].")
+		processing_stack.forceMove(get_turf(src))
+		processing_stack = null
+		use_power = POWER_USE_IDLE
+		STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_ALL)
 
-/obj/machinery/material_processing/OnTopic(var/user, var/list/href_list)
-	if(href_list["toggle_power"])
-		update_use_power(use_power ? 0 : POWER_USE_IDLE)
-		. = TOPIC_REFRESH
-	if(href_list["set_input"])
-		SET_INPUT(text2num(href_list["set_input"]))
-		queue_icon_update()
-		. = TOPIC_REFRESH
-	if(href_list["set_output"])
-		dir = text2num(href_list["set_output"])
-		SET_OUTPUT(dir)
-		queue_icon_update()
-		. = TOPIC_REFRESH
-	if(href_list["toggle_configuration"])
-		allow_ui_config = !allow_ui_config
-		. = TOPIC_REFRESH
+/obj/machinery/material_processing/proc/can_work()
+	if(!processing_stack)
+		return FALSE
+	if(!powered(EQUIP))
+		return FALSE
+	if(processing_stack.processing_flags & produced_flag)
+		return FALSE
+	if(processing_stack.processing_flags & required_flag)
+		return TRUE
+	return FALSE
+
+/obj/machinery/material_processing/proc/finish_processing()
+	processing_stack.processing_flags |= produced_flag
+	visible_message("[src] [finish_message]")
+	already_processed = 0
+
+/obj/machinery/material_processing/Process()
+	if(!can_work())
+		use_power = POWER_USE_IDLE
+		icon_state = initial(icon_state)
+		return FALSE
+	use_power = POWER_USE_ACTIVE
+	icon_state = active_state
+	already_processed += amount_processed
+	if(already_processed > processing_stack.amount)
+		finish_processing()
