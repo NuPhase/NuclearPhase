@@ -51,6 +51,8 @@
 	var/waterproof = FALSE
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again. Cannot be less than [burst_delay+1]
+	var/muzzle_flash_color = COLOR_MUZZLE_FLASH
+	var/muzzle_flash_intensity = 1
 	var/burst_delay = 1	//delay between shots, if firing in bursts
 	var/fire_sound = 'sound/weapons/gunshot/gunshot.ogg'
 	var/fire_sound_text = "gunshot"
@@ -341,6 +343,8 @@
 /obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0, var/obj/projectile)
 	if(fire_anim)
 		flick(fire_anim, src)
+	if(muzzle_flash_intensity)
+		new /obj/effect/effect/smoke/illumination(get_turf(projectile), 1, 2, muzzle_flash_intensity, muzzle_flash_color)
 
 	if(!silenced && check_fire_message_spam("fire"))
 		var/user_message = SPAN_WARNING("You fire \the [src][pointblank ? " point blank":""] at \the [target][reflex ? " by reflex" : ""]!")

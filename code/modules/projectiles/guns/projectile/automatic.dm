@@ -24,12 +24,13 @@
 
 	fire_delay = 2
 	firemodes = list(
-		list(mode_name="semi auto",      burst=1, fire_delay=2, one_hand_penalty=2, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=2, one_hand_penalty=3, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 1.6, 2.4, 2.4)),
-		list(mode_name="short bursts",   burst=5, fire_delay=2, one_hand_penalty=3, burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4)),
+		list(mode_name="semi auto",      burst=1, fire_delay=1.5, one_hand_penalty=2, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=1.5, one_hand_penalty=3, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 1.6, 2.4, 2.4)),
+		list(mode_name="short bursts",   burst=5, fire_delay=1.5, one_hand_penalty=3, burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4)),
 		list(mode_name="full auto",      burst=1, fire_delay=0,    burst_delay=1,      one_hand_penalty=4,                 burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4), autofire_enabled=1)
 	)
 	weight = 1.4
+	muzzle_flash_intensity = 4
 
 /obj/item/gun/projectile/automatic/assault_rifle
 	name = "assault rifle"
@@ -61,9 +62,10 @@
 	)
 	firemodes = list(
 		list(mode_name="semi auto",      burst=1,    fire_delay=null, one_hand_penalty=4,  burst_accuracy=null,            dispersion=null),
-		list(mode_name="full auto",      burst=1,    fire_delay=0,    burst_delay=1,     one_hand_penalty=5,             autofire_enabled=1)
+		list(mode_name="full auto",      burst=1,    fire_delay=-2,    burst_delay=-2,     one_hand_penalty=5,             autofire_enabled=1)
 	)
 	weight = 4.09
+	muzzle_flash_intensity = 5
 
 /obj/item/gun/projectile/automatic/assault_rifle/update_base_icon()
 	if(ammo_magazine)

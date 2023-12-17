@@ -158,7 +158,7 @@
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle
-	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
+	fire_sound = 'sound/weapons/gunshot/gunshot2.ogg'
 	damage = 70
 	armor_penetration = 35
 	penetration_modifier = 1.5

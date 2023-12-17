@@ -29,6 +29,7 @@
 	mag_remove_sound = 'sound/weapons/guns/interaction/batrifle_magout.ogg'
 	material = /decl/material/solid/metal/tantalumhafniumcarbide
 	hot_color = COLOR_AMBER
+	muzzle_flash_intensity = 0
 
 /obj/item/gun/projectile/sniper/ngdmr/update_base_icon()
 	if(ammo_magazine)

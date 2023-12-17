@@ -83,6 +83,7 @@
 	ammo_indicator = FALSE
 	waterproof = TRUE
 	fire_delay = 3
+	muzzle_flash_intensity = 5
 
 /obj/item/gun/projectile/pistol/military_service/load_ammo(obj/item/A, mob/user)
 	. = ..()

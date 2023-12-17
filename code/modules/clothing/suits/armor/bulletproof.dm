@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/armor/bulletproof
-	name = "ballistic vest"
+	name = "anti-rifle vest"
 	desc = "An armored vest with heavy plates to protect against ballistic projectiles."
 	icon = 'icons/clothing/suit/armor/ballistic.dmi'
 	valid_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA, ACCESSORY_SLOT_ARMOR_A, ACCESSORY_SLOT_ARMOR_L)
@@ -44,7 +44,7 @@
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_TRACE
 		)
 	origin_tech = "{'materials':3,'engineering':1,'combat':3}"
-	
+
 /obj/item/clothing/accessory/legguards/ballistic
 	name = "ballistic leg guards"
 	desc = "A pair of armored leg pads with heavy plates to protect against ballistic projectiles. Looks like they might impair movement."

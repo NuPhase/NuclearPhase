@@ -17,6 +17,7 @@
 	bulk = 6
 	var/recentpump = 0 // to prevent spammage
 	load_sound = 'sound/weapons/guns/interaction/shotgun_instert.ogg'
+	muzzle_flash_intensity = 2
 
 /obj/item/gun/projectile/shotgun/update_base_icon()
 	if(length(loaded))
