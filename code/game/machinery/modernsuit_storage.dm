@@ -98,6 +98,7 @@
 		occupant = target
 		add_fingerprint(user)
 		update_icon()
+		playsound(loc, 'sound/machines/suit_storage_enter.ogg', 50, 0)
 		return TRUE
 	return FALSE
 
@@ -239,6 +240,7 @@
 	update_icon()
 	add_fingerprint(user)
 	updateUsrDialog()
+	playsound(loc, 'sound/machines/suit_storage_eject.ogg', 50, 0)
 
 	return
 
