@@ -737,9 +737,34 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 /decl/material/proc/mix_data(var/datum/reagents/reagents, var/list/newdata, var/amount)
 	. = REAGENT_DATA(reagents, type)
 
+#define EXPLOSION_ENERGY_COEFFICIENT 0.0001 //explosion power per joule of combustion energy
+#define DEFLAG_ENERGY_COEFFICIENT 0.01
 /decl/material/proc/explosion_act(obj/item/chems/holder, severity)
 	SHOULD_CALL_PARENT(TRUE)
 	. = TRUE
+	if(!combustion_energy)
+		return
+	var/turf/T = get_turf(holder)
+	var/datum/gas_mixture/environment = T.return_air()
+	var/datum/gas_mixture/products = new
+	var/volume = REAGENT_VOLUME(holder?.reagents, type)
+	var/gas_moles = volume / molar_volume
+	var/oxidizer_moles = environment.get_by_flag(XGM_GAS_OXIDIZER)
+	var/actually_combusted = min(gas_moles, oxidizer_moles)
+	var/total_energy = actually_combusted * combustion_energy
+	products.adjust_gas(burn_product, gas_moles*0.05, FALSE)
+	products.adjust_gas(type, gas_moles*0.95, FALSE)
+	environment.merge(products)
+	holder.reagents.remove_reagent(type, volume)
+	environment.remove_by_flag(XGM_GAS_OXIDIZER, actually_combusted)
+	environment.add_thermal_energy(0.05 * total_energy)
+	if(phase_at_temperature(environment.temperature, environment.return_pressure()) == MAT_PHASE_SOLID) //detonation
+		cell_explosion(T, total_energy * EXPLOSION_ENERGY_COEFFICIENT)
+	else
+		deflagration(T, total_energy * DEFLAG_ENERGY_COEFFICIENT, shock_color = fire_color)
+
+#undef EXPLOSION_ENERGY_COEFFICIENT
+#undef DEFLAG_ENERGY_COEFFICIENT
 
 /decl/material/proc/get_value()
 	. = value

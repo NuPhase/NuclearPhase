@@ -18,25 +18,6 @@
 /decl/material/liquid/fuel/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	M.adjustToxLoss(2 * removed)
 
-/decl/material/liquid/fuel/explosion_act(obj/item/chems/holder, severity)
-	. = ..()
-	if(.)
-		var/volume = REAGENT_VOLUME(holder?.reagents, type)
-		if(volume <= 50)
-			return
-		var/turf/T = get_turf(holder)
-		var/datum/gas_mixture/products = new(_temperature = 5 * FLAMMABLE_GAS_FLASHPOINT)
-		var/gas_moles = 3 * volume
-		products.adjust_multi(/decl/material/gas/nitricoxide, 0.1 * gas_moles, /decl/material/gas/nitrodioxide, 0.1 * gas_moles, /decl/material/gas/nitrogen, 0.6 * gas_moles, /decl/material/gas/hydrogen, 0.02 * gas_moles)
-		T.assume_air(products)
-		if(volume > 500)
-			explosion(T,1,2,4)
-		else if(volume > 100)
-			explosion(T,0,1,3)
-		else if(volume > 50)
-			explosion(T,-1,1,2)
-		holder?.reagents?.remove_reagent(type, volume)
-
 /decl/material/liquid/fuel/hydrazine
 	name = "hydrazine"
 	lore_text = "A toxic, colorless, flammable liquid with a strong ammonia-like odor, in hydrate form."
@@ -95,3 +76,33 @@
 	uid = "diborane"
 	value = 1.3
 	ignition_point = 346
+
+/decl/material/solid/trinitrotoluene
+	name = "trinitrotoluene"
+	lore_text = "TNT is occasionally used as a reagent in chemical synthesis, but it is best known as an explosive material with convenient handling properties. The explosive yield of TNT is considered to be the standard comparative convention of bombs and asteroid impacts."
+	color = "#e4ff49"
+	touch_met = 5
+	fuel_value = 3
+	fire_alpha = 140
+	toxicity = 1.3
+	burn_product = /decl/material/gas/carbon_dioxide
+	gas_flags = XGM_GAS_FUEL|XGM_GAS_OXIDIZER
+	combustion_energy = 3291500
+	uid = "tnt"
+	ignition_point = 986
+	molar_mass = 0.227
+
+/decl/material/solid/cyclonite
+	name = "cyclonite"
+	lore_text = "A widely used explosive and propellant."
+	color = "#c7e710"
+	touch_met = 5
+	fuel_value = 3
+	fire_alpha = 140
+	toxicity = 1.1
+	burn_product = /decl/material/gas/carbon_dioxide
+	gas_flags = XGM_GAS_FUEL|XGM_GAS_OXIDIZER
+	combustion_energy = 4937250
+	uid = "cyclonite"
+	ignition_point = 477
+	molar_mass = 0.222

@@ -76,7 +76,7 @@
 		visible_message(SPAN_DANGER("[user] punctures the [src] with [W]!"))
 		punctured = TRUE
 		spawn(5 SECONDS)
-			new /obj/effect/deflagarate(loc, 60, 20)
+			deflagration(loc, 500, 10)
 			var/obj/effect/fluid/F = new(loc)
 			F.reagents.add_reagent(/decl/material/solid/lithium, 120)
 			F.temperature = 800 CELSIUS

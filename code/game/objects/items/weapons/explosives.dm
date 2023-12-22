@@ -1,5 +1,5 @@
 /obj/item/plastique
-	name = "plastic explosives"
+	name = "shaped charge"
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/assemblies.dmi'
@@ -11,6 +11,7 @@
 	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10
 	var/atom/target = null
+	var/explosion_direction
 	var/open_panel = 0
 	var/image_overlay = null
 	weight = 1.5
@@ -53,6 +54,7 @@
 		if(!user.unEquip(src))
 			return
 		src.target = target
+		explosion_direction = get_dir(user, target)
 		forceMove(null)
 
 		if (ismob(target))
@@ -73,16 +75,7 @@
 	if(!target)
 		target = src
 	if(location)
-		explosion(location, -1, -1, 2, 3)
-
-	if(target)
-		if (istype(target, /turf/simulated/wall))
-			var/turf/simulated/wall/W = target
-			W.dismantle_wall(1)
-		else if(istype(target, /mob/living))
-			target.explosion_act(600) // c4 can't gib mobs anymore.
-		else
-			target.explosion_act(100)
+		cell_explosion(get_turf(target), 1100, 600, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, explosion_direction)
 	if(target)
 		target.overlays -= image_overlay
 	qdel(src)

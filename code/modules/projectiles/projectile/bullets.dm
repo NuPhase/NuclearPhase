@@ -132,13 +132,12 @@
 	distance_falloff = 0.5 //we're large so falloff is lower
 
 /obj/item/projectile/bullet/shotgun/incendiary/on_hit(atom/target, blocked)
-	. = ..()
-	if(isliving(target))
+	if(..(target, blocked) && isliving(target))
 		var/mob/living/L = target
 		L.adjust_fire_stacks(rand(5,8))
 		L.IgniteMob()
 	else
-		deflagration(get_turf(target), 15, 10, FIRE_COLOR_DEFAULT)
+		deflagration(get_turf(target), 150, 10, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, shock_color = FIRE_COLOR_DEFAULT)
 
 /obj/item/projectile/bullet/shotgun/riot
 	name = "riot control"
@@ -158,7 +157,7 @@
 /* "Rifle" rounds */
 
 /obj/item/projectile/bullet/rifle
-	fire_sound = 'sound/weapons/gunshot/gunshot2.ogg'
+	fire_sound = 'sound/weapons/gunshot/gunshot_556.ogg'
 	damage = 70
 	armor_penetration = 35
 	penetration_modifier = 1.5

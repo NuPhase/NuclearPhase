@@ -2,10 +2,10 @@
 	name = "incendiary grenade"
 	desc = "Used for clearing rooms of living things."
 	icon = 'icons/obj/items/grenades/grenade_chem.dmi'
-	var/strength = 20
+	var/strength = 200
 	var/falloff = 5
 
 /obj/item/grenade/incendiary/detonate()
 	..()
-	new /obj/effect/deflagarate(loc, strength, falloff)
+	deflagration(loc, strength, falloff, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, spread_fluid = /decl/material/solid/cyclonite)
 	qdel(src)

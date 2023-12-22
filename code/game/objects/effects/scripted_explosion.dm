@@ -40,4 +40,4 @@ var/global/list/scripted_explosions = list()
 		scripted_explosions[id] = src
 
 /obj/effect/scripted_deflagration/proc/trigger()
-	new /obj/effect/deflagarate(get_turf(src), strength, falloff)
+	deflagration(get_turf(src), strength, falloff)
