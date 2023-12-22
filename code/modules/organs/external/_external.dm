@@ -70,6 +70,7 @@
 	var/hatch_state = 0
 	var/stage = 0
 	var/cavity = 0
+	var/masking = TRUE //biomechanical masking layer
 
 	var/list/unarmed_attacks
 

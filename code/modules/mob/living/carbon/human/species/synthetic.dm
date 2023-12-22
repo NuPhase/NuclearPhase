@@ -506,3 +506,16 @@ We have a very powerful computer system that allows our neural network to fully 
 		pressure_alert = -2
 		overlay_fullscreen("brute", /obj/screen/fullscreen/brute, 6)
 	return
+
+/mob/living/carbon/human/synthetic/verb/remove_masking_layer()
+	set name = "Remove Masking Layer"
+	set desc = "Remove your masking skin layer."
+	set category = "Synthetic"
+
+	var/list/chosen_organs = tgui_input_checkboxes(usr, "Choose limbs to unmask.", "Limb unmasking", list(BP_CHEST, BP_GROIN, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
+	if(!length(chosen_organs))
+		return
+	for(var/org_tag in chosen_organs)
+		var/obj/item/organ/external/ext_organ = GET_EXTERNAL_ORGAN(usr, org_tag)
+		ext_organ.masking = FALSE
+		ext_organ.update_icon()

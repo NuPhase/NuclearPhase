@@ -44,7 +44,7 @@ DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/advanced_hydraulic,
 	lifting_boost_coefficient = 1.1
 	movement_slowdown = 0
 	manual_dexterity = DEXTERITY_COMPLEX_TOOLS
-	modular_prosthetic_tier = MODULAR_BODYPART_CYBERNETIC
+	modular_prosthetic_tier = MODULAR_BODYPART_PROSTHETIC
 	can_eat = 1
 
 DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/basic_biomech, biomech_basic, 4)
@@ -60,10 +60,14 @@ DEFINE_ROBOLIMB_MODEL_ASPECTS(/decl/prosthetics_manufacturer/basic_biomech, biom
 	modular_prosthetic_tier = MODULAR_BODYPART_CYBERNETIC
 	can_eat = 1
 
-/decl/prosthetics_manufacturer/advanced_biomech/get_base_icon(mob/living/carbon/human/owner)
+/decl/prosthetics_manufacturer/advanced_biomech/get_base_icon(mob/living/carbon/human/owner, masked)
 	if(owner.gender == MALE)
+		if(masked)
+			return 'icons/mob/species/cyberlimbs/biomech_male.dmi'
 		return 'icons/mob/species/human/body_male.dmi'
 	else
+		if(masked)
+			return 'icons/mob/species/cyberlimbs/biomech_female.dmi'
 		return 'icons/mob/species/human/body_female.dmi'
 
 /decl/prosthetics_manufacturer/exo_biomech

@@ -69,7 +69,7 @@ var/global/list/limb_icon_cache = list()
 	if (BP_IS_PROSTHETIC(src))
 		if(model)
 			var/decl/prosthetics_manufacturer/R = GET_DECL(model)
-			icon = R.get_base_icon(owner)
+			icon = R.get_base_icon(owner, masking)
 	else if(owner && (limb_flags & ORGAN_FLAG_SKELETAL))
 		icon = bodytype.get_skeletal_icon(owner)
 	else
