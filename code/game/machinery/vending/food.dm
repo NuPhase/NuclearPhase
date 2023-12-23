@@ -244,12 +244,6 @@
 	icon_deny = "sovietsoda-deny"
 	base_type = /obj/machinery/vending/sovietsoda
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
-	products = list(
-		/obj/item/chems/drinks/cans/syndicola =         8,
-		/obj/item/chems/drinks/cans/syndicolax =        8,
-		/obj/item/chems/drinks/cans/artbru =            8,
-		/obj/item/chems/drinks/glass2/square/boda =     8,
-		/obj/item/chems/drinks/glass2/square/bodaplus = 8
-	)
+	products = list()
 	contraband = list(/obj/item/chems/drinks/bottle/space_up = 8) // TODO Russian cola can
 	idle_power_usage = 211

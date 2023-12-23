@@ -16,6 +16,7 @@
 	var/obj/item/chems/glass/rag/rag = null
 	var/rag_underlay = "rag"
 	var/stop_spin_bottle = FALSE //Gotta stop the rotation.
+	pour_sound = list('sound/chemistry/pour/bottle1.mp3', 'sound/chemistry/pour/bottle2.mp3', 'sound/chemistry/pour/bottle3.mp3')
 
 /obj/item/chems/drinks/bottle/Initialize()
 	. = ..()

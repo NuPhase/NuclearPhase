@@ -15,3 +15,5 @@
 	material = /decl/material/solid/metal/steel
 	applies_material_colour = FALSE
 	show_reagent_name = FALSE
+	drop_sound = 'sound/foley/candrop.mp3'
+	pour_sound = 'sound/chemistry/pour/jerry_can.mp3'

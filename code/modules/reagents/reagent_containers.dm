@@ -12,6 +12,7 @@
 	var/label_text
 	var/show_reagent_name = FALSE
 	var/pressure = ONE_ATMOSPHERE
+	var/pour_sound = 'sound/effects/pour.ogg'
 
 /obj/item/chems/proc/cannot_interact(mob/user)
 	if(!CanPhysicallyInteract(user))
@@ -203,7 +204,7 @@
 		return 1
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-	playsound(src, 'sound/effects/pour.ogg', 25, 1)
+	playsound(src, pick(pour_sound), 50, 1)
 	to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to \the [target].  \The [src] now contains [src.reagents.total_volume] units.</span>")
 	return 1
 

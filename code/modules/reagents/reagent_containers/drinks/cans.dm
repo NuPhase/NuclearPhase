@@ -150,68 +150,6 @@
 	. = ..()
 	reagents.add_reagent(/decl/material/liquid/drink/beastenergy, 30)
 
-//Items exclusive to the BODA machine on deck 4 and wherever else it pops up. First two are a bit jokey. Second two are genuine article.
-
-/obj/item/chems/drinks/cans/syndicolax
-	name = "\improper Red Army Twist!"
-	desc = "A taste of what keeps our glorious nation running! Served as Space Commissariat Stahlin prefers it! Luke warm."
-	icon_state = "syndi_cola_x"
-	center_of_mass = @"{'x':16,'y':10}"
-
-/obj/item/chems/drinks/cans/syndicolax/Initialize()
-	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/juice/potato, 30)
-
-/obj/item/chems/drinks/cans/artbru
-	name = "\improper Arstotzka Bru"
-	desc = "Just what any bureaucrat needs to get through the day. Keep stamping those papers!"
-	icon_state = "art_bru"
-	center_of_mass = @"{'x':16,'y':10}"
-
-/obj/item/chems/drinks/cans/artbru/Initialize()
-	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/juice/turnip, 30)
-
-/obj/item/chems/drinks/cans/syndicola
-	name = "\improper TerraCola"
-	desc = "A can of the only soft drink state approved for the benefit of the people. Served at room temperature regardless of ambient temperatures thanks to innovative Terran insulation technology."
-	icon_state = "syndi_cola"
-	center_of_mass = @"{'x':16,'y':10}"
-
-/obj/item/chems/drinks/cans/syndicola/Initialize()
-	. = ..()
-	reagents.add_reagent(/decl/material/liquid/water, 25)
-	reagents.add_reagent(/decl/material/solid/metal/iron, 5)
-
-/obj/item/chems/drinks/glass2/square/boda
-	name = "boda"
-	desc = "A tall glass of refreshing Boda!"
-	center_of_mass = @"{'x':16,'y':10}"
-
-/obj/item/chems/drinks/glass2/square/boda/Initialize()
-	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/sodawater, 30)
-
-/obj/item/chems/drinks/glass2/square/bodaplus
-	name = "tri kopeiki sirop boda"
-	desc = "A tall glass of even more refreshing Boda! Now with Sok!"
-	center_of_mass = @"{'x':16,'y':10}"
-
-/obj/item/chems/drinks/glass2/square/bodaplus/Initialize()
-	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/sodawater, 15)
-	reagents.add_reagent(pick(list(
-				/decl/material/liquid/drink/citrusseltzer,
-				/decl/material/liquid/drink/juice/grape,
-				/decl/material/liquid/drink/juice/orange,
-				/decl/material/liquid/drink/juice/lemon,
-				/decl/material/liquid/drink/juice/lime,
-				/decl/material/liquid/drink/juice/apple,
-				/decl/material/liquid/drink/juice/pear,
-				/decl/material/liquid/drink/juice/banana,
-				/decl/material/liquid/drink/juice/berry,
-				/decl/material/liquid/drink/juice/watermelon)), 15)
-
 //Canned alcohols.
 
 /obj/item/chems/drinks/cans/speer
