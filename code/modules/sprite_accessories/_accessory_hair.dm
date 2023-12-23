@@ -689,8 +689,12 @@
 	icon_state = "hair_wong_slim"
 
 /decl/sprite_accessory/hair/female/ladylike
-	name = "Ladylike"
+	name = "Ladylike 1"
 	icon_state = "hair_ladylike_slim"
+
+/decl/sprite_accessory/hair/female/ladylike_two
+	name = "Ladylike 2"
+	icon_state = "hair_ladylike2_slim"
 
 /decl/sprite_accessory/hair/female/bluntbangs
 	name = "Bluntbangs"
@@ -711,6 +715,38 @@
 /decl/sprite_accessory/hair/female/spikyponytail
 	name = "Ponytail Spiky"
 	icon_state = "hair_spikyponytail_slim"
+
+/decl/sprite_accessory/hair/female/unkept
+	name = "Unkept"
+	icon_state = "hair_unkept_slim"
+
+/decl/sprite_accessory/hair/female/stylo
+	name = "Stylo"
+	icon_state = "hair_stylo_slim"
+
+/decl/sprite_accessory/hair/female/messy
+	name = "Messy"
+	icon_state = "hair_smessy_slim"
+
+/decl/sprite_accessory/hair/female/shoulder
+	name = "Shoulder 1"
+	icon_state = "hair_tressshoulder_slim"
+
+/decl/sprite_accessory/hair/female/shoulder_two
+	name = "Shoulder 2"
+	icon_state = "hair_oneshoulder_slim"
+
+/decl/sprite_accessory/hair/female/modern
+	name = "Modern"
+	icon_state = "hair_modern_slim"
+
+/decl/sprite_accessory/hair/female/medium_braid
+	name = "Medium Braid"
+	icon_state = "hair_mediumbraid_slim"
+
+/decl/sprite_accessory/hair/female/ponytail_high
+	name = "Ponytail High"
+	icon_state = "hair_highponytail_slim"
 
 
 
