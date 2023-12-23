@@ -120,21 +120,7 @@
 
 	return mob_icon
 
-/obj/item/organ/external/head/proc/get_hair_icon()
-	var/image/res = image(bodytype.icon_template,"")
-	if(!owner)
-		return res
-
-	if(owner.f_style)
-		var/decl/sprite_accessory/facial_hair_style = GET_DECL(owner.f_style)
-		if(facial_hair_style)
-			if(!facial_hair_style.species_allowed || (species.get_root_species_name(owner) in facial_hair_style.species_allowed))
-				if(!facial_hair_style.subspecies_allowed || (species.name in facial_hair_style.subspecies_allowed))
-					var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
-					if(owner.facial_hair_colour && facial_hair_style.do_colouration)
-						facial_s.Blend(owner.facial_hair_colour, facial_hair_style.blend)
-					res.overlays |= facial_s
-
+/obj/item/organ/external/head/proc/get_hair_overlay()
 	if(owner.h_style)
 		var/decl/sprite_accessory/hair/hair_style = GET_DECL(owner.h_style)
 		var/obj/item/head = owner.get_equipped_item(slot_head_str)
@@ -151,7 +137,24 @@
 						hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]")
 					if(hair_style.do_colouration && hair_colour)
 						hair_s.Blend(hair_colour, hair_style.blend)
-					res.overlays |= hair_s
+					return hair_s
+
+/obj/item/organ/external/head/proc/get_hair_icon()
+	var/image/res = image(bodytype.icon_template,"")
+	if(!owner)
+		return res
+
+	if(owner.f_style)
+		var/decl/sprite_accessory/facial_hair_style = GET_DECL(owner.f_style)
+		if(facial_hair_style)
+			if(!facial_hair_style.species_allowed || (species.get_root_species_name(owner) in facial_hair_style.species_allowed))
+				if(!facial_hair_style.subspecies_allowed || (species.name in facial_hair_style.subspecies_allowed))
+					var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
+					if(owner.facial_hair_colour && facial_hair_style.do_colouration)
+						facial_s.Blend(owner.facial_hair_colour, facial_hair_style.blend)
+					res.overlays |= facial_s
+
+	res.overlays |= get_hair_overlay()
 
 	for (var/M in markings)
 		var/decl/sprite_accessory/marking/mark_style = GET_DECL(M)

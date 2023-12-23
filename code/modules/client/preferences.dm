@@ -376,6 +376,8 @@ var/global/list/time_prefs_fixed = list()
 
 	character.h_style = h_style
 	character.f_style = f_style
+	character.grad_style = g_style
+	character.grad_color = gradient_color
 
 	character.virgin = virginity
 

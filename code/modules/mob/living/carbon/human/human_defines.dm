@@ -8,6 +8,11 @@
 	var/skin_colour =        COLOR_BLACK
 	var/eye_colour =         COLOR_BLACK
 
+	///Colour used for the hair gradient.
+	var/grad_color = "000"
+	///Style used for the hair gradient.
+	var/grad_style
+
 	var/regenerate_body_icon = FALSE // If true, the next icon update will also regenerate the body.
 
 	var/skin_tone = 0  //Skin tone

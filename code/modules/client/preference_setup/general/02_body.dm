@@ -4,7 +4,9 @@
 
 	var/h_style = /decl/sprite_accessory/hair/bald
 	var/f_style = /decl/sprite_accessory/facial_hair/shaved
+	var/g_style = /decl/sprite_accessory/hair_gradient/none
 
+	var/gradient_color = COLOR_BLACK
 	var/hair_colour = COLOR_BLACK
 	var/skin_colour = COLOR_BLACK
 	var/facial_hair_colour = COLOR_BLACK
@@ -34,6 +36,7 @@
 
 	pref.h_style =                R.read("hair_style_name")
 	pref.f_style =                R.read("facial_style_name")
+	pref.g_style =                R.read("gradient_style_name")
 	pref.body_markings =          R.read("body_markings")
 	pref.virginity =              R.read("virginity")
 
@@ -79,6 +82,8 @@
 	W.write("hair_style_name", sprite.name)
 	sprite = GET_DECL(pref.f_style)
 	W.write("facial_style_name", sprite.name)
+	sprite = GET_DECL(pref.g_style)
+	W.write("gradient_style_name", sprite.name)
 	var/list/body_marking_names = list()
 	for(var/marking in pref.body_markings)
 		sprite = GET_DECL(marking)
@@ -110,6 +115,9 @@
 
 	if(!ispath(pref.f_style, /decl/sprite_accessory/facial_hair))
 		pref.f_style = initial(pref.f_style)
+
+	if(!ispath(pref.g_style, /decl/sprite_accessory/hair_gradient))
+		pref.g_style = initial(pref.g_style)
 
 	if(!islist(pref.body_markings))
 		pref.body_markings = list()
@@ -171,6 +179,12 @@
 	. += "<td>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "[COLORED_SQUARE(pref.hair_colour)] <a href='?src=\ref[src];hair_color=1'>Change</a>"
+	. += "</td>"
+	. += "<td><b>Gradient</b></td>"
+	. += "<td><a href='?src=\ref[src];gradient_style=1'>[GET_DECL(pref.g_style)]</a></td>"
+	. += "<td>"
+	if(has_flag(mob_species, HAS_HAIR_COLOR))
+		. += "[COLORED_SQUARE(pref.gradient_color)] <a href='?src=\ref[src];gradient_color=1'>Change</a>"
 	. += "</td>"
 	. += "<tr>"
 	. += "</tr>"
@@ -246,6 +260,14 @@
 			pref.hair_colour = new_hair
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["gradient_color"])
+		if(!has_flag(mob_species, HAS_HAIR_COLOR))
+			return TOPIC_NOACTION
+		var/new_hair = input(user, "Choose your character's hair gradient colour:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.gradient_color) as color|null
+		if(new_hair && has_flag(get_species_by_key(pref.species), HAS_HAIR_COLOR) && CanUseTopic(user))
+			pref.gradient_color = new_hair
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["hair_style"])
 		var/decl/bodytype/B = mob_species.get_bodytype_by_name(pref.bodytype)
 		mob_species = get_species_by_key(pref.species)
@@ -255,6 +277,15 @@
 		mob_species = get_species_by_key(pref.species)
 		if(new_h_style && CanUseTopic(user) && (new_h_style in mob_species.get_hair_styles(B?.associated_gender)))
 			pref.h_style = new_h_style.type
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["gradient_style"])
+		var/list/gradients_to_display = list()
+		for(var/style in subtypesof(/decl/sprite_accessory/hair_gradient))
+			gradients_to_display += GET_DECL(style)
+		var/decl/sprite_accessory/new_g_style = input(user, "Choose your character's gradient style:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.g_style)  as null|anything in gradients_to_display
+		if(new_g_style && CanUseTopic(user))
+			pref.g_style = new_g_style.type
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["facial_color"])

@@ -711,3 +711,60 @@
 /decl/sprite_accessory/hair/female/spikyponytail
 	name = "Ponytail Spiky"
 	icon_state = "hair_spikyponytail_slim"
+
+
+
+/decl/sprite_accessory/hair_gradient
+	icon = 'icons/mob/species/human/hair_gradients.dmi'
+
+/decl/sprite_accessory/hair_gradient/none
+	name = "None"
+	icon_state = "none"
+
+/decl/sprite_accessory/hair_gradient/fadeup
+	name = "Fade Up"
+	icon_state = "fadeup"
+
+/decl/sprite_accessory/hair_gradient/fadedown
+	name = "Fade Down"
+	icon_state = "fadedown"
+
+/decl/sprite_accessory/hair_gradient/vertical_split
+	name = "Vertical Split"
+	icon_state = "vsplit"
+
+/decl/sprite_accessory/hair_gradient/_split
+	name = "Horizontal Split"
+	icon_state = "bottomflat"
+
+/decl/sprite_accessory/hair_gradient/reflected
+	name = "Reflected"
+	icon_state = "reflected_high"
+
+/decl/sprite_accessory/hair_gradient/reflected_inverse
+	name = "Reflected Inverse"
+	icon_state = "reflected_inverse_high"
+
+/decl/sprite_accessory/hair_gradient/wavy
+	name = "Wavy"
+	icon_state = "wavy"
+
+/decl/sprite_accessory/hair_gradient/long_fade_up
+	name = "Long Fade Up"
+	icon_state = "long_fade_up"
+
+/decl/sprite_accessory/hair_gradient/long_fade_down
+	name = "Long Fade Down"
+	icon_state = "long_fade_down"
+
+/decl/sprite_accessory/hair_gradient/short_fade_up
+	name = "Short Fade Up"
+	icon_state = "short_fade_up"
+
+/decl/sprite_accessory/hair_gradient/short_fade_down
+	name = "Short Fade Down"
+	icon_state = "short_fade_down"
+
+/decl/sprite_accessory/hair_gradient/wavy_spike
+	name = "Spiked Wavy"
+	icon_state = "wavy_spiked"

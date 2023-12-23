@@ -474,7 +474,20 @@ var/global/list/damage_icon_parts = list()
 				queue_icon_update()
 			return
 
-	overlays_standing[HO_HAIR_LAYER] = head_organ.get_hair_icon()
+	var/list/standing = list()
+	var/mutable_appearance/gradient_overlay = mutable_appearance(layer = HO_HAIR_LAYER)
+	if(grad_style)
+		var/decl/sprite_accessory/gradient = GET_DECL(grad_style)
+		var/icon/temp = icon(gradient.icon, gradient.icon_state)
+		var/icon/temp_hair = head_organ.get_hair_overlay()
+		temp.Blend(temp_hair, ICON_ADD)
+		gradient_overlay.icon = temp
+		gradient_overlay.color = grad_color
+
+	standing += head_organ.get_hair_icon()
+	standing += gradient_overlay
+
+	overlays_standing[HO_HAIR_LAYER] = standing
 	if(update_icons)
 		queue_icon_update()
 
