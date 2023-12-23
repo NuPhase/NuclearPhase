@@ -715,7 +715,7 @@ SUBSYSTEM_DEF(jobs)
 /client/proc/show_roundstart_intro()
 	set waitfor = FALSE
 	if(mob)
-		mob.set_status(STAT_BLIND, 23)
+		mob.set_status(STAT_BLIND, 19)
 	sound_to(src, sound('sound/ambience/apocalypse_loop_cut.wav', volume = 50))
 
 	var/style = "font-family: 'Fixedsys'; -dm-text-outline: 1 black; font-size: 14px;"
@@ -726,7 +726,7 @@ SUBSYSTEM_DEF(jobs)
 	T.layer = FLOAT_LAYER
 	T.plane = HUD_PLANE
 	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	T.screen_loc = "LEFT+2,TOP-6"
+	T.screen_loc = "LEFT+4,TOP-5"
 
 	screen += T
 	for(var/i = 1, i <= 4, i++)
