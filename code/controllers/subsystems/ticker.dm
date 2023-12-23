@@ -301,6 +301,7 @@ Helpers
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
 				SSjobs.equip_rank(player, player.mind.assigned_role, 0)
 				SScustomitems.equip_custom_items(player)
+			player.client.show_roundstart_intro()
 	if(captainless)
 		for(var/mob/M in global.player_list)
 			if(!istype(M,/mob/new_player))
