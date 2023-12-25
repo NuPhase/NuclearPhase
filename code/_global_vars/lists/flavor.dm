@@ -97,7 +97,7 @@ var/global/list/music_tracks = list(
 	"Robopup - Program Me" = /decl/music_track/robopup/programme,
 	"Robopup - Silly Girl" = /decl/music_track/robopup/sillygirl,
 	"Robopup - Waste" = /decl/music_track/robopup/waste,
-	"Rachel Lorin - Only 1" = /decl/music_track/7clouds/onlyone
+	"Rachel Lorin - Only 1" = /decl/music_track/seven_clouds/onlyone
 )
 
 var/global/list/engineering_music_tracks = list(
