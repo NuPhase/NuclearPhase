@@ -7,5 +7,8 @@
 
 /obj/item/grenade/incendiary/detonate()
 	..()
-	deflagration(loc, strength, falloff, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, spread_fluid = /decl/material/solid/cyclonite)
+	deflagration(loc, strength, falloff, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, spread_fluid = /decl/material/solid/phosphorus)
+	var/datum/effect/effect/system/smoke_spread/bad/smoke = new
+	smoke.attach(get_turf(src))
+	smoke.set_up(10, 0, get_turf(src))
 	qdel(src)

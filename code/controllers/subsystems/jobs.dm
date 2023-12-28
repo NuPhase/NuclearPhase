@@ -689,3 +689,50 @@ SUBSYSTEM_DEF(jobs)
 	if(C)
 		C.screen -= T
 	qdel(T)
+
+/client/proc/get_intro_text(stage, russian_translation)
+	if(russian_translation == PREF_NO)
+		switch(stage)
+			if(1)
+				return "You were a citizen of a nearby city - New Tokyo, in the star system Sirius."
+			if(2)
+				return "Something horrible happened more than a year ago; a sudden climate-induced cataclysm that brought hell upon this newly formed colony. The planet's surface quickly became uninhabitable, forcing the planetary government to make a last-ditch attempt to save the remaining population."
+			if(3)
+				return "In addition to already existing military doomsday shelters, several facilities were hastily retrofitted. One of these shelters, 'Serenity', is where you are currently located."
+			if(4)
+				return "Whether by luck, effort or sheer circumstance, you are among the last people alive on this barren planet. Survive."
+	else
+		switch(stage)
+			if(1)
+				return "Вы были жителем соседнего города - Нью-Токио, расположенного в звездной системе Сириус."
+			if(2)
+				return "Более года назад произошло нечто ужасное: внезапный климатический катаклизм обрушил ад на недавно образованную колонию. Поверхность планеты быстро стала непригодной для жизни, что вынудило планетарное правительство предпринять последнюю попытку спасти оставшееся население."
+			if(3)
+				return "В дополнение к уже существующим военным убежищам судного дня было спешно переоборудовано несколько объектов. В одном из таких убежищ, 'Serenity', вы сейчас находитесь."
+			if(4)
+				return "Благодаря удаче, усилиям или просто обстоятельствам вы оказались в числе последних живых людей на этой бесплодной планете."
+
+/client/proc/show_roundstart_intro()
+	set waitfor = FALSE
+	if(mob)
+		mob.set_status(STAT_BLIND, 19)
+	sound_to(src, sound('sound/ambience/apocalypse_loop_cut.wav', volume = 50))
+
+	var/style = "font-family: 'Fixedsys'; -dm-text-outline: 1 black; font-size: 14px;"
+
+	var/obj/effect/overlay/T = new()
+	T.maptext_height = 128
+	T.maptext_width = 512
+	T.layer = FLOAT_LAYER
+	T.plane = HUD_PLANE
+	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	T.screen_loc = "LEFT+4,TOP-5"
+
+	screen += T
+	for(var/i = 1, i <= 4, i++)
+		animate(T, alpha = 255, time = 30)
+		T.maptext = "<span style=\"[style]\">[get_intro_text(i, get_preference_value(/datum/client_preference/russian_translation))] </span>"
+		sleep(9 SECONDS)
+		animate(T, alpha = 0, time = 10)
+		sleep(1 SECOND)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_location_blurb, src, T), 45 SECONDS)

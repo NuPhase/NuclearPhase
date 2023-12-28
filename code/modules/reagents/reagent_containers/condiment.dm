@@ -30,6 +30,7 @@
 		/decl/material/liquid/nutriment/mayo = /obj/item/chems/condiment/mayo,
 		/decl/material/liquid/nutriment/vinegar = /obj/item/chems/condiment/vinegar
 		)
+	pour_sound = 'sound/chemistry/pour/salt_shaker.mp3'
 
 /obj/item/chems/condiment/attackby(var/obj/item/W, var/mob/user)
 	if(IS_PEN(W))

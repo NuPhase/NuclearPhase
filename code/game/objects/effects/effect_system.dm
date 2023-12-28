@@ -193,6 +193,8 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (!istype(M))
 		return 0
+	if(M.msuit && !M.msuit.lifesupportsystem.atmosphere_uptake)
+		return FALSE
 	if(M.internal != null)
 		for(var/slot in global.airtight_slots)
 			var/obj/item/gear = M.get_equipped_item(slot)
@@ -248,6 +250,15 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad/transformer
 	color = COLOR_COPPER //evaporated steel
 	time_to_live = 5 SECONDS
+
+/obj/effect/effect/smoke/bad/poison
+	color = "#fcb839"
+
+/obj/effect/effect/smoke/bad/poison/affect(mob/living/carbon/M)
+	if (!..())
+		return 0
+	M.bloodstr.add_reagent(/decl/material/liquid/glowsap/gleam, 0.7)
+	M.bloodstr.add_reagent(/decl/material/liquid/presyncopics, 0.7)
 
 /////////////////////////////////////////////
 // Sleep smoke
@@ -350,6 +361,9 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/smoke_spread/bad
 	smoke_type = /obj/effect/effect/smoke/bad
+
+/datum/effect/effect/system/smoke_spread/bad/poison
+	smoke_type = /obj/effect/effect/smoke/bad/poison
 
 /datum/effect/effect/system/smoke_spread/sleepy
 	smoke_type = /obj/effect/effect/smoke/sleepy

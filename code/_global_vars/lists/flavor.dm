@@ -91,7 +91,13 @@ var/global/list/music_tracks = list(
 	"Monument" = /decl/music_track/monument,
 	"Wild Encounters" = /decl/music_track/wildencounters,
 	"Torn" = /decl/music_track/torn,
-	"Nebula" = /decl/music_track/nebula
+	"Nebula" = /decl/music_track/nebula,
+	"Robopup - Copy" = /decl/music_track/robopup/copy,
+	"Robopup - Nothing Feels The Way It Should" = /decl/music_track/robopup/nothingfeelsthewayitshould,
+	"Robopup - Program Me" = /decl/music_track/robopup/programme,
+	"Robopup - Silly Girl" = /decl/music_track/robopup/sillygirl,
+	"Robopup - Waste" = /decl/music_track/robopup/waste,
+	"Rachel Lorin - Only 1" = /decl/music_track/seven_clouds/onlyone
 )
 
 var/global/list/engineering_music_tracks = list(

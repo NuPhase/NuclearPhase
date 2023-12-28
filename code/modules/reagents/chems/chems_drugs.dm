@@ -165,7 +165,7 @@
 	name = "Gleam"
 	lore_text = "A powerful hallucinogenic and psychotropic derived from various species of glowing mushroom. Some say it can have permanent effects on the brains of those who over-indulge."
 	color = "#ccccff"
-	metabolism = REM
+	metabolism = REM*5
 	overdose = 25
 	uid = "chem_gleam"
 
