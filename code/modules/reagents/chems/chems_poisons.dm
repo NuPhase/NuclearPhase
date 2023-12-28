@@ -3,7 +3,7 @@
 	lore_text = "A powerful paralytic agent."
 	taste_description = "metallic"
 	color = "#ff337d"
-	metabolism = REM * 0.5
+	metabolism = REM * 3
 	overdose = REAGENTS_OVERDOSE * 0.5
 	value = 1.5
 	uid = "chem_pigment_paralytics"
@@ -31,7 +31,7 @@
 	lore_text = "A compound that causess presyncopic effects in the taker, including confusion and dizzyness."
 	taste_description = "sourness"
 	color = "#000055"
-	metabolism = REM * 0.5
+	metabolism = REM * 3
 	overdose = REAGENTS_OVERDOSE
 	heating_point = 61 CELSIUS
 	heating_products = list(

@@ -8,7 +8,7 @@
 		E.shockwave.alpha = E.power
 		E.shockwave.color = E.shock_color
 	if(E.spread_fluid_type)
-		E.in_turf.add_fluid(spread_fluid_type, power)
+		E.in_turf.add_fluid(spread_fluid_type, power*100)
 	return
 
 /datum/automata_cell/explosion/deflagration/update_state(list/turf/neighbors)

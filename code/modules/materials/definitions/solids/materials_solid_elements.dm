@@ -52,9 +52,10 @@
 	uid = "solid_phosphorus"
 	lore_text = "A chemical element, the backbone of biological energy carriers."
 	flags = XGM_GAS_FUEL
-	combustion_energy = 9910
+	combustion_energy = 137600
 	taste_description = "vinegar"
 	color = "#832828"
+	fire_color = "#ffd271"
 	value = 0.5
 
 /decl/material/solid/silicon
