@@ -42,7 +42,7 @@
 		qdel(src)
 		return
 
-	var/list/to_spread = get_propagation_dirs(reflected)
+	var/list/to_spread = get_propagation_dirs()
 	for(var/dir in to_spread)
 		if(passed_distance >= max_distance)
 			return
