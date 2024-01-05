@@ -1,10 +1,9 @@
 /obj/structure/door
 	name = "door"
-	icon = 'icons/obj/doors/material_doors.dmi'
-	icon_state = "metal"
+	icon = 'icons/obj/doors/thin/preview.dmi'
+	icon_state = "NO_STATE"
 	hitsound = 'sound/weapons/genhit.ogg'
-	material_alteration = MAT_FLAG_ALTERATION_NAME | MAT_FLAG_ALTERATION_DESC | MAT_FLAG_ALTERATION_COLOR
-	maxhealth = 50
+	maxhealth = 240
 	density =  TRUE
 	anchored = TRUE
 	opacity =  TRUE
@@ -16,14 +15,15 @@
 	var/icon_base
 	var/door_sound_volume = 25
 
+	var/frame_type = "default"
+	var/door_type = "default"
+	var/handle_type
+
 /obj/structure/door/Initialize()
 	. = ..()
-	if(!istype(material))
-		return INITIALIZE_HINT_QDEL
 	if(lock)
 		lock = new /datum/lock(src, lock)
-	if(!icon_base)
-		icon_base = material.door_icon_base
+	icon_state = "NO_STATE"
 	update_icon()
 	update_nearby_tiles(need_rebuild = TRUE)
 	if(material?.luminescence)
@@ -39,7 +39,20 @@
 
 /obj/structure/door/on_update_icon()
 	..()
-	icon_state = "[icon_base][!density ? "_open" : ""]"
+	cut_overlays()
+	var/list/overlay_list = list()
+	overlay_list += image('icons/obj/doors/thin/frame.dmi', icon_state = frame_type, dir = dir, layer = ABOVE_HUMAN_LAYER)
+	if(!density)
+		if(dir == EAST || dir == WEST)
+			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = CLOSED_DOOR_LAYER, pixel_x = -13, pixel_y = 8)
+		else
+			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]_open", layer = CLOSED_DOOR_LAYER)
+	else
+		if(!(dir == EAST || dir == WEST))
+			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = door_type, layer = CLOSED_DOOR_LAYER)
+	if(handle_type)
+		overlay_list += image('icons/obj/doors/thin/handle.dmi', icon_state = handle_type, dir = dir, layer = ABOVE_DOOR_LAYER)
+	add_overlay(overlay_list)
 
 /obj/structure/door/proc/post_change_state()
 	update_nearby_tiles()

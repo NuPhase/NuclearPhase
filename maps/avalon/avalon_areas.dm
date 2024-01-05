@@ -50,6 +50,7 @@
 
 /area/avalon
 	name = "'Serenity' survival shelter"
+	icon_state = "dark128"
 	base_turf = /turf/simulated/floor/plating
 	ambience = list('sound/ambience/ominous1.ogg', 'sound/ambience/ominous2.ogg', 'sound/ambience/ominous3.ogg', 'sound/ambience/rumble1.ogg', 'sound/ambience/rumble2.ogg', 'sound/ambience/rumble3.ogg', 'sound/ambience/rumble4.ogg')
 	area_flags = AREA_FLAG_RAD_SHIELDED
@@ -118,8 +119,41 @@
 	area_flags = AREA_FLAG_RAD_SHIELDED
 	background_radiation = 0.07
 /area/avalon/shelter/engineering
-	name = "Engineering 2nd Floor"
+	name = "Engineering"
 	icon_state = "engineering"
+
+/area/avalon/shelter/engineering/pumps_a
+	name = "Pump Station A"
+	icon_state = "pumpA"
+/area/avalon/shelter/engineering/pumps_b
+	name = "Pump Station B"
+	icon_state = "pumpB"
+
+/area/avalon/shelter/engineering/reactor_operations
+	name = "Reactor Operations"
+	icon_state = "hallC1"
+
+/area/avalon/shelter/engineering/reactor_operations/office
+	name = "Reactor Operations Offices"
+	icon_state = "heads"
+
+/area/avalon/shelter/engineering/reactor_operations/office/chief_engineer
+	name = "Chief Engineer Office"
+	icon_state = "heads_ce"
+
+/area/avalon/shelter/engineering/reactor_operations/office/senior_engineer
+	name = "Senior Engineer Office"
+	icon_state = "heads_ce"
+
+/area/avalon/shelter/engineering/electrical
+	name = "Electrical Centre"
+	icon_state = "substation"
+/area/avalon/shelter/engineering/service_tunnels
+	name = "Service Tunnels"
+	icon_state = "maintcentral"
+/area/avalon/shelter/engineering/service_tunnels/heat_exchanger
+	name = "Heat Exchanger Maintenance"
+	icon_state = "heat_exchanger"
 /area/avalon/shelter/engineering_first
 	name = "Engineering 1st Floor"
 	icon_state = "engineering_foyer"

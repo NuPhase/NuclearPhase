@@ -76,6 +76,9 @@
 /obj/effect/paint/blue
 	color = COLOR_NAVY_BLUE
 
+/obj/effect/paint/brown
+	color = COLOR_DARK_BROWN
+
 //Stripes the wall it spawns on, then dies
 /obj/effect/paint_stripe
 	name = "stripe of paint"
@@ -123,5 +126,5 @@
 /obj/effect/paint_stripe/white
 	color = COLOR_SILVER
 
-/obj/effect/paint/brown
-	color = COLOR_DARK_BROWN
+/obj/effect/paint_stripe/black
+	color = COLOR_DARK_GRAY
