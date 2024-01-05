@@ -74,6 +74,15 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	. = ..()
 	reactor_floodlights += src
 
+/obj/machinery/light/ceiling
+	icon_state = "ceiling_tube1"
+	base_state = "ceiling_tube"
+
+/obj/machinery/light/ceiling/Initialize(mapload, d, populate_parts)
+	. = ..()
+	light_offset_x = 0
+	light_offset_y = 0
+
 // the smaller bulb light fixture
 /obj/machinery/light/small
 	icon_state = "bulb_map"

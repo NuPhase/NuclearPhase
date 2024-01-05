@@ -9,6 +9,7 @@
 	var/start_pressure = 25*ONE_ATMOSPHERE
 	var/filling // list of gas ratios to use.
 
+	layer = STRUCTURE_LAYER
 	level = 1
 	dir = SOUTH
 	initialize_directions = 2
@@ -82,6 +83,34 @@
 	name = "Pressure Tank (Hydrogen)"
 	icon_state = "h2"
 	filling = list(/decl/material/gas/hydrogen = 1)
+
+/obj/machinery/atmospherics/unary/tank/large
+	name = "Large Tank"
+	desc = "A large 150m3 tank for fluids and gases."
+	icon = 'icons/obj/atmospherics/large_tanks.dmi'
+	icon_state = "blank"
+	volume = 150000
+	pixel_x = -32
+
+/obj/machinery/atmospherics/unary/tank/large/water
+	name = "Large Tank (Water)"
+	icon_state = "water"
+	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/water = 0.99)
+
+/obj/machinery/atmospherics/unary/tank/large/nitrogen
+	name = "Large Tank (Nitrogen)"
+	icon_state = "nitrogen"
+	filling = list(/decl/material/gas/nitrogen = 1)
+
+/obj/machinery/atmospherics/unary/tank/large/diesel
+	name = "Large Tank (Diesel)"
+	icon_state = "diesel"
+	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/diesel = 0.99)
+
+/obj/machinery/atmospherics/unary/tank/large/decontamination
+	name = "Large Tank (Decontamination)"
+	icon_state = "decontamination"
+	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/solid/metal/fission_byproduct = 0.03)
 
 /obj/item/pipe/tank
 	icon = 'icons/obj/atmospherics/stationary_canisters.dmi'

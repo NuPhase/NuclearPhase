@@ -135,3 +135,13 @@
 	user.put_in_hands(cur_vial)
 	target.inserted_vial = null
 	target.visible_message(SPAN_NOTICE("[user] removes a vial from the blood analyzer."))
+
+
+
+/decl/scanner_analysis
+	var/name
+	var/description
+	var/time = 5 SECONDS
+
+/decl/scanner_analysis/proc/return_analysis(var/mob/living/carbon/human/H, blood_data)
+	return ""
