@@ -1,6 +1,6 @@
 /obj/item/clothing/accessory/rank
 	name = "master ranks"
-	icon = 'maps/avalon/icons/obj_accessories_army.dmi'
+	icon = 'maps/serenity/icons/obj_accessories_army.dmi'
 	w_class = ITEM_SIZE_TINY
 	hide_on_uniform_rolldown = TRUE
 	high_visibility = TRUE

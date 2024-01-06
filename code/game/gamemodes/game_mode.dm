@@ -393,7 +393,7 @@ var/global/list/additional_antag_types = list()
 					escaped_total++
 					if(ishuman(M))
 						escaped_humans++
-				if(istype(A, /area/avalon))
+				if(istype(A, /area/serenity))
 					shelter_survivors++
 			else if(isghost(M))
 				ghosts++

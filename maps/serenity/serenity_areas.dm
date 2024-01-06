@@ -48,7 +48,7 @@
 	name = "\improper Testing Site Ferry"
 	icon_state = "shuttle"
 
-/area/avalon
+/area/serenity
 	name = "'Serenity' survival shelter"
 	icon_state = "dark128"
 	base_turf = /turf/simulated/floor/plating
@@ -57,47 +57,47 @@
 	is_outside = OUTSIDE_NO
 	var/temperature_interpolation_coefficient = 0.004 //Will heat up 24 degrees every 10 minutes and cool 11 degrees every 10 minutes. Adjust for higher/lower areas.
 
-/area/avalon/Initialize()
+/area/serenity/Initialize()
 	. = ..()
 	SSplanet.interpolating_areas += src
 
-/area/avalon/has_gravity()
+/area/serenity/has_gravity()
 	return TRUE
 
-/area/avalon/shelter/expeditionpreparation
+/area/serenity/shelter/expeditionpreparation
 	name = "Expedition Preparation"
 	icon_state = "research_dock"
-/area/avalon/shelter/garage
+/area/serenity/shelter/garage
 	name = "Vehicle Garage"
 	icon_state = "mechbay"
-/area/avalon/shelter/upperhall
+/area/serenity/shelter/upperhall
 	name = "Upper Hall"
-/area/avalon/shelter/staircase
+/area/serenity/shelter/staircase
 	name = "Staircase"
 	icon_state = "shuttle"
 	temperature_interpolation_coefficient = 0.003
-/area/avalon/shelter/comms
+/area/serenity/shelter/comms
 	name = "Communications"
 
-/area/avalon/shelter/habitationdeck
+/area/serenity/shelter/habitationdeck
 	name = "Habitation Deck"
 	icon_state = "dk_yellow"
 	temperature_interpolation_coefficient = 0.002 //we're considerably lower
-/area/avalon/shelter/habitationdeck/crew
+/area/serenity/shelter/habitationdeck/crew
 	name = "Crew Quarters"
 	icon_state = "crew_quarters"
-/area/avalon/shelter/habitationdeck/kitchen
+/area/serenity/shelter/habitationdeck/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
-/area/avalon/shelter/habitationdeck/freezer
+/area/serenity/shelter/habitationdeck/freezer
 	name = "Food Freezer"
 	icon_state = "LP"
 	temperature_interpolation_coefficient = 0.001 //insulated well
-/area/avalon/shelter/habitationdeck/messhall
+/area/serenity/shelter/habitationdeck/messhall
 	name = "Mess Hall"
 	icon_state = "bar"
 
-/area/avalon/shelter/reactor
+/area/serenity/shelter/reactor
 	sound_env = LARGE_ENCLOSED
 	name = "Reactor Chamber"
 	lightswitch = FALSE
@@ -105,7 +105,7 @@
 	background_radiation = 1.13
 	temperature_interpolation_coefficient = 0.002 //insulated well
 
-/area/avalon/shelter/reactor/power_change()
+/area/serenity/shelter/reactor/power_change()
 	. = ..()
 	if(power_equip)
 		forced_ambience = list('sound/ambience/reactorchamberfans.ogg')
@@ -114,169 +114,169 @@
 		forced_ambience = null
 		description = "You feel a strong metal smell in the still air of the vast space that you've entered. The entire chamber perimeter is dimly lit by small red lights, as if they were placed there specifically to be a little more sane in such an inconceivable environment. Everything below is completely dark, looks like it goes really deep..."
 
-/area/avalon/shelter/reactormonitoring
+/area/serenity/shelter/reactormonitoring
 	name = "Reactor Control Room"
 	area_flags = AREA_FLAG_RAD_SHIELDED
 	background_radiation = 0.07
-/area/avalon/shelter/engineering
+/area/serenity/shelter/engineering
 	name = "Engineering"
 	icon_state = "engineering"
 
-/area/avalon/shelter/engineering/pumps_a
+/area/serenity/shelter/engineering/pumps_a
 	name = "Pump Station A"
 	icon_state = "pumpA"
-/area/avalon/shelter/engineering/pumps_b
+/area/serenity/shelter/engineering/pumps_b
 	name = "Pump Station B"
 	icon_state = "pumpB"
 
-/area/avalon/shelter/engineering/reactor_operations
+/area/serenity/shelter/engineering/reactor_operations
 	name = "Reactor Operations"
 	icon_state = "hallC1"
 
-/area/avalon/shelter/engineering/reactor_operations/office
+/area/serenity/shelter/engineering/reactor_operations/office
 	name = "Reactor Operations Offices"
 	icon_state = "heads"
 
-/area/avalon/shelter/engineering/reactor_operations/office/chief_engineer
+/area/serenity/shelter/engineering/reactor_operations/office/chief_engineer
 	name = "Chief Engineer Office"
 	icon_state = "heads_ce"
 
-/area/avalon/shelter/engineering/reactor_operations/office/senior_engineer
+/area/serenity/shelter/engineering/reactor_operations/office/senior_engineer
 	name = "Senior Engineer Office"
 	icon_state = "heads_ce"
 
-/area/avalon/shelter/engineering/electrical
+/area/serenity/shelter/engineering/electrical
 	name = "Electrical Centre"
 	icon_state = "substation"
-/area/avalon/shelter/engineering/service_tunnels
+/area/serenity/shelter/engineering/service_tunnels
 	name = "Service Tunnels"
 	icon_state = "maintcentral"
-/area/avalon/shelter/engineering/service_tunnels/heat_exchanger
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger
 	name = "Heat Exchanger Maintenance"
 	icon_state = "heat_exchanger"
-/area/avalon/shelter/engineering_first
+/area/serenity/shelter/engineering_first
 	name = "Engineering 1st Floor"
 	icon_state = "engineering_foyer"
-/area/avalon/shelter/atmos
+/area/serenity/shelter/atmos
 	name = "Fluid Management"
 	icon_state = "atmos"
-/area/avalon/shelter/climatecontrol
+/area/serenity/shelter/climatecontrol
 	name = "Climate Control"
-/area/avalon/shelter/turbinehall
+/area/serenity/shelter/turbinehall
 	name = "Turbine Hall"
 	sound_env = LARGE_ENCLOSED
-/area/avalon/shelter/machinehall
+/area/serenity/shelter/machinehall
 	name = "Machine Hall"
 	sound_env = LARGE_ENCLOSED
-/area/avalon/shelter/breakerroom
+/area/serenity/shelter/breakerroom
 	name = "Breaker Room"
 	var/powered_ambience = list('sound/ambience/breaker_room.wav')
 	forced_ambience = list('sound/ambience/breaker_room.wav')
-/area/avalon/shelter/breakerroom/power_change()
+/area/serenity/shelter/breakerroom/power_change()
 	. = ..()
 	if(power_equip)
 		forced_ambience = powered_ambience
 	else
 		forced_ambience = null
 
-/area/avalon/shelter/service_tunnels
+/area/serenity/shelter/service_tunnels
 	name = "Reactor Service Tunnels"
 	ambience = list('sound/ambience/maint1.ogg', 'sound/ambience/maint2.ogg')
 	temperature_interpolation_coefficient = 0.002 //they're deep
 
-/area/avalon/shelter/maintenance
+/area/serenity/shelter/maintenance
 	name = "Maintenance"
 	ambience = list()
 	var/powered_ambience
 	temperature_interpolation_coefficient = 0.002 //they're deep
 
-/area/avalon/shelter/maintenance/power_change()
+/area/serenity/shelter/maintenance/power_change()
 	. = ..()
 	if(power_equip)
 		forced_ambience = powered_ambience
 	else
 		forced_ambience = null
 
-/area/avalon/shelter/maintenance/Initialize()
+/area/serenity/shelter/maintenance/Initialize()
 	. = ..()
 	powered_ambience = list(pick('sound/machines/vent/running1.wav', 'sound/machines/vent/running2.wav', 'sound/machines/vent/running3.wav')) //has to be a list, sorry
 	forced_ambience = powered_ambience
 
-/area/avalon/shelter/brig
+/area/serenity/shelter/brig
 	name = "Security"
 	area_flags = AREA_FLAG_SECURITY
 	temperature_interpolation_coefficient = 0.002 //they're deep
-/area/avalon/shelter/brig/interrogation
+/area/serenity/shelter/brig/interrogation
 	name = "Security Interrogation"
-/area/avalon/shelter/brig/medbay
+/area/serenity/shelter/brig/medbay
 	name = "Security Medbay"
-/area/avalon/shelter/brig/office
+/area/serenity/shelter/brig/office
 	name = "Security Office"
-/area/avalon/shelter/brig/reception
+/area/serenity/shelter/brig/reception
 	name = "Security Reception"
-/area/avalon/shelter/brig/breakroom
+/area/serenity/shelter/brig/breakroom
 	name = "Security Break Room"
-/area/avalon/shelter/brig/armory
+/area/serenity/shelter/brig/armory
 	name = "Armory"
-/area/avalon/shelter/brig/preparation
+/area/serenity/shelter/brig/preparation
 	name = "Security Preparations"
-/area/avalon/shelter/brig/prison
+/area/serenity/shelter/brig/prison
 	name = "Security Prison"
 	area_flags = AREA_FLAG_PRISON
-/area/avalon/shelter/brig/sergeantroom
+/area/serenity/shelter/brig/sergeantroom
 	name = "Security Sergeant Room"
-/area/avalon/shelter/brig/barracks
+/area/serenity/shelter/brig/barracks
 	name = "Security Barracks"
 
-/area/avalon/shelter/command
+/area/serenity/shelter/command
 	name = "Command"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
-/area/avalon/shelter/command/commcenter
+/area/serenity/shelter/command/commcenter
 	name = "Comm Center"
 
 
-/area/avalon/shelter/cargo/warehouse
+/area/serenity/shelter/cargo/warehouse
 	name = "Main Warehouse"
 	name = "storage"
 
-/area/avalon/shelter/cargo/rest_area
+/area/serenity/shelter/cargo/rest_area
 	name = "Supply Operations Break Room"
 	icon_state = "auxstorage"
 
-/area/avalon/shelter/medbay
+/area/serenity/shelter/medbay
 	name = "Medbay"
 	icon_state = "medbay3"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
-/area/avalon/shelter/medbay/surgery
+/area/serenity/shelter/medbay/surgery
 	name = "Surgery"
 	icon_state = "surgery"
 
-/area/avalon/shelter/medbay/break_room
+/area/serenity/shelter/medbay/break_room
 	name = "Medbay Break Room"
 	icon_state = "medbay4"
 
-/area/avalon/shelter/medbay/storage
+/area/serenity/shelter/medbay/storage
 	name = "Medbay Storage"
 	icon_state = "medbay"
 
-/area/avalon/shelter/medbay/morgue
+/area/serenity/shelter/medbay/morgue
 	name = "Morgue"
 	icon_state = "medbay4"
 
-/area/avalon/shelter/medbay/intensive_care
+/area/serenity/shelter/medbay/intensive_care
 	name = "Intensive Care"
 	icon_state = "medbay2"
 
-/area/avalon/shelter/medbay/chemistry
+/area/serenity/shelter/medbay/chemistry
 	name = "Chemistry"
 	icon_state = "medbay"
 
-/area/avalon/shelter/factory
+/area/serenity/shelter/factory
 	name = "Factory"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
-/area/avalon/shelter/science
+/area/serenity/shelter/science
 	name = "Research Labs"
 	icon_state = "research"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated

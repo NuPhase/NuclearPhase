@@ -13,14 +13,14 @@ SUBSYSTEM_DEF(planet)
 	var/weather_volatility_mod = 1
 
 /datum/controller/subsystem/planet/Initialize(start_timeofday)
-	for(var/area/avalon/A in interpolating_areas)
+	for(var/area/serenity/A in interpolating_areas)
 		if(!length(A.contents))
 			interpolating_areas -= A
 
 /datum/controller/subsystem/planet/fire(resumed)
 	. = ..()
 	//first of all, handle the heating of areas
-	for(var/area/avalon/A in interpolating_areas)
+	for(var/area/serenity/A in interpolating_areas)
 		var/turf/T = pick(A.contents)
 		if(istype(T, /turf/simulated/wall))
 			continue //yeah we'd like to not heat up a wall

@@ -15,7 +15,6 @@
 	head = /obj/item/clothing/head/hardhat/white
 	uniform = /obj/item/clothing/under/chief_engineer
 	gloves = /obj/item/clothing/gloves/thick
-	id_type = /obj/item/card/id/engineering/head
 	pda_type = /obj/item/modular_computer/pda/heads/ce
 
 /decl/hierarchy/outfit/job/engineering/engineer
@@ -23,7 +22,6 @@
 	head = /obj/item/clothing/head/hardhat
 	uniform = /obj/item/clothing/under/engineer
 	r_pocket = /obj/item/t_scanner
-	id_type = /obj/item/card/id/engineering
 	pda_type = /obj/item/modular_computer/pda/engineering
 
 /decl/hierarchy/outfit/job/engineering/engineer_trainee
@@ -31,7 +29,6 @@
 	head = /obj/item/clothing/head/hardhat
 	uniform = /obj/item/clothing/under/hazard
 	r_pocket = /obj/item/t_scanner
-	id_type = /obj/item/card/id/engineering
 	pda_type = /obj/item/modular_computer/pda/engineering
 
 /decl/hierarchy/outfit/job/engineering/atmos
