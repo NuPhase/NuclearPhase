@@ -27,7 +27,6 @@
 	description = "A box stocked for military first aid."
 	path = /obj/item/storage/box/military_medkit
 	cost = 30
-	allowed_roles = list(/datum/job/hos, /datum/job/warden, /datum/job/officer, /datum/job/scientist)
 
 /decl/loadout_option/medical/medkit
 	name = "first aid kit"

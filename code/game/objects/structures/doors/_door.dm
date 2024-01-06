@@ -12,8 +12,10 @@
 
 	var/has_window = FALSE
 	var/changing_state = FALSE
+	var/sliding = FALSE //whether the door opens the classic way or slides into the frame
+	var/open_sound = 'sound/machines/doors/default_door.ogg'
 	var/icon_base
-	var/door_sound_volume = 25
+	var/door_sound_volume = 50
 
 	var/frame_type = "default"
 	var/door_type = "default"
@@ -37,21 +39,25 @@
 /obj/structure/door/get_material_health_modifier()
 	. = 10
 
-/obj/structure/door/on_update_icon()
+/obj/structure/door/on_update_icon(var/animate_sliding = FALSE, var/sliding_direction) //sliding direction either takes -1 or 1
 	..()
 	cut_overlays()
 	var/list/overlay_list = list()
 	overlay_list += image('icons/obj/doors/thin/frame.dmi', icon_state = frame_type, dir = dir, layer = ABOVE_HUMAN_LAYER)
-	if(!density)
+	if(!density || animate_sliding)
 		if(dir == EAST || dir == WEST)
-			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = CLOSED_DOOR_LAYER, pixel_x = -13, pixel_y = 8)
+			if(!sliding)
+				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = CLOSED_DOOR_LAYER, pixel_x = -13, pixel_y = 8)
 		else
-			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]_open", layer = CLOSED_DOOR_LAYER)
+			if(!sliding)
+				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]_open", layer = CLOSED_DOOR_LAYER)
+			else
+				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = OPEN_DOOR_LAYER, pixel_x = -23)
 	else
 		if(!(dir == EAST || dir == WEST))
 			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = door_type, layer = CLOSED_DOOR_LAYER)
-	if(handle_type)
-		overlay_list += image('icons/obj/doors/thin/handle.dmi', icon_state = handle_type, dir = dir, layer = ABOVE_DOOR_LAYER)
+		if(handle_type)
+			overlay_list += image('icons/obj/doors/thin/handle.dmi', icon_state = handle_type, dir = dir, layer = ABOVE_DOOR_LAYER)
 	add_overlay(overlay_list)
 
 /obj/structure/door/proc/post_change_state()
@@ -66,11 +72,10 @@
 	set waitfor = 0
 	if(!can_close())
 		return FALSE
-	flick("[icon_base]_closing", src)
-	playsound(src, material.dooropen_noise, door_sound_volume, 1)
+	playsound(src, open_sound, door_sound_volume, 1)
 
 	changing_state = TRUE
-	sleep(1 SECOND)
+	sleep(0.4 SECOND)
 	set_density(TRUE)
 	set_opacity(!has_window && material.opacity > 0.5)
 	post_change_state()
@@ -80,11 +85,10 @@
 	set waitfor = 0
 	if(!can_open())
 		return FALSE
-	flick("[icon_base]_opening", src)
-	playsound(src, material.dooropen_noise, door_sound_volume, 1)
+	playsound(src, open_sound, door_sound_volume, 1)
 
 	changing_state = TRUE
-	sleep(1 SECOND)
+	sleep(0.4 SECOND)
 	set_density(FALSE)
 	set_opacity(FALSE)
 	post_change_state()

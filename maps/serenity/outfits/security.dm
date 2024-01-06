@@ -14,7 +14,6 @@
 /decl/hierarchy/outfit/job/security/hos
 	name = "Job - Head of security"
 	uniform = /obj/item/clothing/under/head_of_security
-	id_type = /obj/item/card/id/security/head
 	pda_type = /obj/item/modular_computer/pda/heads
 	backpack_contents = list(/obj/item/handcuffs = 1)
 
@@ -22,7 +21,6 @@
 	name = "Job - Warden"
 	uniform = /obj/item/clothing/under/tactical
 	r_pocket = /obj/item/flash
-	id_type = /obj/item/card/id/security
 	pda_type = /obj/item/modular_computer/pda
 
 /decl/hierarchy/outfit/job/security/detective
@@ -33,7 +31,6 @@
 	r_pocket = /obj/item/flame/lighter/zippo
 	shoes = /obj/item/clothing/shoes/dress
 	hands = list(/obj/item/storage/briefcase/crimekit)
-	id_type = /obj/item/card/id/security
 	pda_type = /obj/item/modular_computer/pda
 	backpack_contents = list(/obj/item/storage/box/evidence = 1)
 
@@ -55,5 +52,4 @@
 	suit = /obj/item/clothing/suit/armor/pcarrier/tactical
 	backpack_contents = list(/obj/item/flash=1)
 	r_pocket = /obj/item/handcuffs
-	id_type = /obj/item/card/id/security
 	pda_type = /obj/item/modular_computer/pda

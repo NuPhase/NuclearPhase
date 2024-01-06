@@ -16,7 +16,6 @@
 	shoes = /obj/item/clothing/shoes/color/brown
 	hands = list(/obj/item/storage/firstaid/adv)
 	r_pocket = /obj/item/flashlight/pen
-	id_type = /obj/item/card/id/medical/head
 	pda_type = /obj/item/modular_computer/pda/heads
 
 /decl/hierarchy/outfit/job/medical/doctor
@@ -25,7 +24,6 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	hands = list(/obj/item/storage/firstaid/adv)
 	r_pocket = /obj/item/flashlight/pen
-	id_type = /obj/item/card/id/medical
 
 /decl/hierarchy/outfit/job/medical/doctor/emergency_physician
 	name = "Job - Emergency physician"
@@ -66,7 +64,6 @@
 	name = "Job - Chemist"
 	uniform = /obj/item/clothing/under/chemist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
-	id_type = /obj/item/card/id/medical
 	pda_type = /obj/item/modular_computer/pda/medical
 
 /decl/hierarchy/outfit/job/medical/chemist/Initialize()
@@ -78,4 +75,3 @@
 	uniform = /obj/item/clothing/under/psych
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/dress
-	id_type = /obj/item/card/id/medical

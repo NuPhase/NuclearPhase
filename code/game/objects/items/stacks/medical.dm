@@ -458,3 +458,46 @@
 			SPAN_NOTICE("You patch fractures on \the [M]'s [affecting.name] with resin."))
 		affecting.heal_damage(heal_brute, heal_burn, robo_repair = TRUE)
 		use(1)
+
+
+/*
+/obj/item/stack/medical/synth_spares
+	name = "synthetic spare parts"
+	singular_name = "spare part"
+	desc = "Some spare parts for sneaky shelter synths."
+	icon_state = "brutepack"
+	origin_tech = "{'biotech':1}"
+	animal_heal = 5
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
+	amount = 3
+	weight = 0.15
+	var/can_heal_above_damage = 0 //minimum damage for use
+	var/can_heal_below_damage = 0 //maximum damage for use
+
+/obj/item/stack/medical/synth_spares/proc/can_apply(var/mob/living/carbon/M, var/mob/user)
+	var/mob/living/carbon/human/H = M
+	var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, user.zone_sel.selecting) //nullchecked by ..()
+	if(affecting.damage > can_heal_above_damage && affecting.damage < can_heal_below_damage)
+		return TRUE
+	return FALSE
+
+/obj/item/stack/medical/synth_spares/attack(var/mob/living/carbon/M, var/mob/user)
+	if(..())
+		return 1
+
+	if(!can_apply(M, user))
+		return
+
+	if (istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, user.zone_sel.selecting) //nullchecked by ..()
+		user.visible_message(SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."), \
+				             SPAN_NOTICE("You start treating [M]'s [affecting.name]."))
+		var/used = 0
+		for (var/datum/wound/W in affecting.wounds)
+			qdel(W)
+			playsound(src, pick(apply_sounds), 25)
+			used++
+		affecting.damage = can_heal_above_damage
+		affecting.update_damages()
+		use(used)*/

@@ -1,4 +1,4 @@
-/decl/department/engineering
+/decl/department/reactor_operations
 	name = "Engineering"
 	goals = list(/datum/goal/department/turbine_trips, /datum/goal/department/electrical_deaths, /datum/goal/department/malfunctions)
 	announce_channel = "Engineering"
@@ -7,10 +7,10 @@
 	display_color = "#fff5cc"
 
 /obj/item/robot_module/engineering
-	associated_department = /decl/department/engineering
+	associated_department = /decl/department/reactor_operations
 
 /obj/machinery/network/pager/engineering
-	department = /decl/department/engineering
+	department = /decl/department/reactor_operations
 
 /decl/department/security
 	name = "Security"
@@ -39,7 +39,7 @@
 /obj/machinery/network/pager/medical
 	department = /decl/department/medical
 
-/decl/department/science
+/decl/department/laboratories
 	name = "Science"
 	goals = list(/datum/goal/department/catastrophe_reason, /datum/goal/department/gather_supplies, /datum/goal/department/escape)
 	announce_channel = "Science"
@@ -47,24 +47,24 @@
 	display_color = "#e79fff"
 
 /obj/item/robot_module/research
-	associated_department = /decl/department/science
+	associated_department = /decl/department/laboratories
 
 /obj/machinery/network/pager/science
-	department = /decl/department/science
+	department = /decl/department/laboratories
 
-/decl/department/civilian
+/decl/department/site_operations
 	name = "Civilian"
 	display_priority = 1
 	display_color = "#dddddd"
 
-/decl/department/command
+/decl/department/administration
 	name = "Command"
 	colour = "#800080"
 	display_priority = 5
 	display_color = "#ccccff"
 
 /obj/machinery/network/pager
-	department = /decl/department/command
+	department = /decl/department/administration
 
 /decl/department/miscellaneous
 	name = "Misc"

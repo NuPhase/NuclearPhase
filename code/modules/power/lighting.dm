@@ -77,11 +77,12 @@ var/global/datum/composite_sound/light/light_soundloop = new
 /obj/machinery/light/ceiling
 	icon_state = "ceiling_tube1"
 	base_state = "ceiling_tube"
+	pixel_y = 8
 
 /obj/machinery/light/ceiling/Initialize(mapload, d, populate_parts)
 	. = ..()
 	light_offset_x = 0
-	light_offset_y = 0
+	light_offset_y = 8
 
 // the smaller bulb light fixture
 /obj/machinery/light/small

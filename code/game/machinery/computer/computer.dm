@@ -1,7 +1,8 @@
 /obj/machinery/computer
 	name = "computer console"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
+	icon = 'icons/obj/modernmonitor.dmi'
+	icon_state = "off"
+	layer = ABOVE_HUMAN_LAYER
 	density = 1
 	anchored = 1.0
 	idle_power_usage = 300
@@ -40,7 +41,7 @@
 
 	if(reason_broken & MACHINE_BROKEN_NO_PARTS)
 		set_light(0)
-		icon = 'icons/obj/computer.dmi'
+		icon = 'icons/obj/modernmonitor.dmi'
 		icon_state = "wired"
 		var/screen = get_component_of_type(/obj/item/stock_parts/console_screen)
 		var/keyboard = get_component_of_type(/obj/item/stock_parts/keyboard)
