@@ -267,8 +267,6 @@
 	return active
 
 /datum/job/proc/is_species_allowed(var/decl/species/S)
-	return TRUE //TEMPORARY, REMOVE AFTER TEST
-
 	if(global.using_map.is_species_job_restricted(S, src))
 		return FALSE
 	// We also make sure that there is at least one valid branch-rank combo for the species.
