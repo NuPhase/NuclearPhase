@@ -9,6 +9,8 @@
 	opacity =  TRUE
 
 	var/datum/lock/lock
+	var/lock_type = /datum/lock
+	var/lock_data
 
 	var/has_window = FALSE
 	var/changing_state = FALSE
@@ -23,8 +25,8 @@
 
 /obj/structure/door/Initialize()
 	. = ..()
-	if(lock)
-		lock = new /datum/lock(src, lock)
+	if(lock_type)
+		lock = new lock_type(src, lock_data)
 	icon_state = "NO_STATE"
 	update_icon()
 	update_nearby_tiles(need_rebuild = TRUE)
@@ -66,7 +68,7 @@
 	changing_state = FALSE
 
 /obj/structure/door/attack_hand(mob/user)
-	return density ? open() : close()
+	return density ? open(user) : close()
 
 /obj/structure/door/proc/close()
 	set waitfor = 0
@@ -81,10 +83,12 @@
 	post_change_state()
 	return TRUE
 
-/obj/structure/door/proc/open()
+/obj/structure/door/proc/open(mob/user)
 	set waitfor = 0
-	if(!can_open())
+	if(!can_open(user))
+		lock.failure_open()
 		return FALSE
+	sleep(lock.success_open())
 	playsound(src, open_sound, door_sound_volume, 1)
 
 	changing_state = TRUE
@@ -94,10 +98,12 @@
 	post_change_state()
 	return TRUE
 
-/obj/structure/door/proc/can_open()
-	if(lock && lock.isLocked())
+/obj/structure/door/proc/can_open(mob/user)
+	if(!lock)
+		return density && !changing_state
+	if(lock.isLocked())
 		return FALSE
-	return density && !changing_state
+	return lock.can_open(user)
 
 /obj/structure/door/proc/can_close()
 	return !density && !changing_state
@@ -105,7 +111,10 @@
 /obj/structure/door/examine(mob/user, distance)
 	. = ..()
 	if(distance <= 1 && lock)
-		to_chat(user, SPAN_NOTICE("It appears to have a lock."))
+		to_chat(user, SPAN_NOTICE("It appears to have \a [lock.name] lock."))
+	if(isobserver(user))
+		if(istype(lock, /datum/lock/keypad))
+			to_chat(user, SPAN_NOTICE("The lock code is [lock.lock_data]."))
 
 /obj/structure/door/attack_ai(mob/living/silicon/ai/user)
 	if(Adjacent(user) && isrobot(user))
@@ -169,7 +178,7 @@
 		var/mob/M = AM
 		if(M.restrained() || issmall(M))
 			return
-	open()
+		open(M)
 
 /obj/structure/door/iron
 	material = /decl/material/solid/metal/iron

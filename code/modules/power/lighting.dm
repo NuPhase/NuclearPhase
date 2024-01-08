@@ -78,8 +78,14 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	icon_state = "ceiling_tube1"
 	base_state = "ceiling_tube"
 	pixel_y = 12
+	alpha = 170
 
 /obj/machinery/light/ceiling/Initialize(mapload, d, populate_parts)
+	. = ..()
+	pixel_y = 12
+	default_pixel_y = 12
+
+/obj/machinery/light/ceiling/on_update_icon(trigger)
 	. = ..()
 	pixel_y = 12
 	default_pixel_y = 12
