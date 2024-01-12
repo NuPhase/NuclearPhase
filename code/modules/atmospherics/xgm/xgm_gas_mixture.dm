@@ -412,6 +412,7 @@
 			if(!(tile_overlay in graphic))
 				LAZYADD(graphic_add, tile_overlay)
 	. = 0
+
 	//Apply changes
 	if(graphic_add && graphic_add.len)
 		graphic |= graphic_add
@@ -612,3 +613,20 @@
 
 /datum/gas_mixture/proc/get_taken_volume()
 	return volume - available_volume
+
+/datum/gas_mixture/proc/handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+	var/energy_delta = 0
+	for(var/g in gas)
+		var/decl/material/mat = GET_DECL(g)
+		if(!mat.neutron_interactions)
+			continue
+		var/list/returned_list = mat.handle_nuclear_fission(src, slow_neutrons, fast_neutrons)
+		slow_neutrons = returned_list["slow_neutrons_changed"]
+		fast_neutrons = returned_list["fast_neutrons_changed"]
+		energy_delta += returned_list["thermal_energy_released"]
+	add_thermal_energy(energy_delta)
+	update_values()
+	return list(
+		"slow_neutrons_changed" = slow_neutrons,
+		"fast_neutrons_changed" = fast_neutrons
+	)

@@ -4,9 +4,15 @@
 	lore_text = "Boron is a chemical element with the symbol B and atomic number 5."
 	flags = MAT_FLAG_FUSION_FUEL | MAT_FLAG_FISSIBLE
 
-	neutron_cross_section = 10
 	neutron_interactions = list(
-		INTERACTION_ABSORPTION = 2500
+		"slow" = list(
+			INTERACTION_SCATTER = 2,
+			INTERACTION_ABSORPTION = 200
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 2,
+			INTERACTION_ABSORPTION = 0.4
+		)
 	)
 	absorption_products = list(
 		/decl/material/solid/lithium = 0.5,
@@ -38,6 +44,16 @@
 	color = "#1c1300"
 	value = 0.5
 	dirtiness = 30
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 5,
+			INTERACTION_ABSORPTION = 0.002
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 2,
+			INTERACTION_ABSORPTION = 0.00001
+		)
+	)
 
 /decl/material/solid/carbon/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/datum/reagents/ingested = M.get_ingested_reagents()

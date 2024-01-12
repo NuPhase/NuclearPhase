@@ -97,7 +97,7 @@
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.receive_power(power * 1000)
 		R.neutron_moles += 500
-		R.neutron_flux = 5
+		R.fast_neutrons += 100
 	return
 
 /obj/structure/rlaser_receiver

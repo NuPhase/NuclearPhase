@@ -68,7 +68,6 @@
 	slot_flags = SLOT_BACK
 	power_cost = 100
 	load_type = /obj/item/magnetic_ammo
-	projectile_type = /obj/item/projectile/bullet/magnetic/flechette
 	loaded = /obj/item/magnetic_ammo
 	material = /decl/material/solid/metal/steel
 	matter = list(

@@ -14,6 +14,16 @@
 	gas_metabolically_inert = TRUE
 	value = 0.25
 	color = "#0091a1f8"
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 4,
+			INTERACTION_ABSORPTION = 0.0001
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 3,
+			INTERACTION_ABSORPTION = 0.00000003
+		)
+	)
 
 /decl/material/gas/helium
 	name = "helium"
@@ -343,9 +353,19 @@
 	boiling_point = -108 CELSIUS
 	liquid_density = 3520
 	value = 0.25
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 400000,
+			INTERACTION_ABSORPTION = 2000000
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 5,
+			INTERACTION_ABSORPTION = 0.0008
+		)
+	)
 	neutron_absorption = 150
 	neutron_production = 10
-	fission_products = list(/decl/material/solid/caesium = 1)
+	absorption_products = list(/decl/material/solid/caesium = 1)
 
 /decl/material/gas/xenon/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/dosage = LAZYACCESS(M.chem_doses, type)
@@ -418,6 +438,16 @@
 	color = "#cb82fc"
 	fire_color = "#0077ff"
 	fire_alpha = 30
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 20,
+			INTERACTION_ABSORPTION = 0.2
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 4,
+			INTERACTION_ABSORPTION = 0.00004
+		)
+	)
 
 /decl/material/gas/hydrogen/tritium
 	name = "tritium"
@@ -459,6 +489,16 @@
 	)
 	neutron_absorption = 70
 	neutron_cross_section = 3
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 4,
+			INTERACTION_ABSORPTION = 0.0003
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 3,
+			INTERACTION_ABSORPTION = 0.000007
+		)
+	)
 
 /decl/material/gas/tungstenhexafluoride
 	name = "tungsten hexafluoride"

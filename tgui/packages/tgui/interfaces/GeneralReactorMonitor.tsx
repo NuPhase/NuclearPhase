@@ -1,5 +1,5 @@
 import { useBackend} from "../backend";
-import { LabeledList, Box, Section, Flex } from "../components";
+import { LabeledList, Box, Section, Flex, ProgressBar } from "../components";
 import { formatSiUnit } from "../format";
 import { Window } from "../layouts";
 
@@ -14,11 +14,14 @@ type InputData = {
   power_load: number;
   thermal_load: number;
   neutron_rate: number;
+  xray_flux: number;
   radiation: number;
   chamber_temperature: number;
   containment_consumption: number;
   containment_temperature: number;
   containment_charge: number;
+  moderator_position: number;
+  reflector_position: number;
 }
 
 export const GeneralReactorMonitor = (props: any, context: any) => {
@@ -51,10 +54,24 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                   {formatSiUnit(data.thermal_load, 1, "W")}
                 </LabeledList.Item>
                 <LabeledList.Item label = "Neutron Generation Rate">
-                  {data.neutron_rate}%
+                  <ProgressBar
+                    ranges={{
+                    bad: [1.2, Infinity],
+                    good: [0.95, 1.05],
+                    average: [1.05, 1.2],
+                    teal: [0, 0.95],
+                    }}
+                    minValue = {0}
+                    maxValue = {2}
+                    value={data.neutron_rate}>
+                  {data.neutron_rate*100-100}%
+                  </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item label = "External Radiation Level">
                   {data.radiation} Sv/hour
+                </LabeledList.Item>
+                <LabeledList.Item label = "XRay Flux">
+                  {data.xray_flux}
                 </LabeledList.Item>
                 <LabeledList.Item label = "Chamber Temperature">
                   {formatSiUnit(data.chamber_temperature, 1, "K")}
@@ -71,6 +88,12 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                 </LabeledList.Item>
                 <LabeledList.Item label = "Shield Battery Charge">
                   {data.containment_charge}%
+                </LabeledList.Item>
+                <LabeledList.Item label = "Moderator Position">
+                  {data.moderator_position*100}%
+                </LabeledList.Item>
+                <LabeledList.Item label = "Reflector Position">
+                  {data.reflector_position*100}%
                 </LabeledList.Item>
               </LabeledList>
             </Section>
