@@ -1,6 +1,7 @@
 /obj/item/mech_equipment/mounted_system/rcd
 	icon_state = "mech_rcd"
 	holding_type = /obj/item/rcd/mounted
+	origin_tech = @'{"engineering":4,"materials":3,"powerstorage":1}'
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_ENGINEERING)
 	material = /decl/material/solid/metal/steel
