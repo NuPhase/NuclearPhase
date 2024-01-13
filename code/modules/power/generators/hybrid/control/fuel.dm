@@ -14,7 +14,7 @@
 /obj/machinery/reactor_button/moderator
 	name = "MOD MAIN"
 
-/obj/machinery/reactor_button/regvalve/moderator
+/obj/machinery/reactor_button/turn_switch/regvalve/moderator
 	name = "MOD V-GAS"
 	id = "MOD V-GAS"
 

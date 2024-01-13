@@ -12,11 +12,10 @@
 	else
 		V.open()
 
-/obj/machinery/reactor_button/presvalve
+/obj/machinery/reactor_button/turn_switch/presvalve
 	name = "pressure valve regulator"
-	icon_state = "switch1-off"
 
-/obj/machinery/reactor_button/presvalve/do_action(mob/user)
+/obj/machinery/reactor_button/turn_switch/presvalve/do_action(mob/user)
 	..()
 	var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
 	if(!current_valve)
@@ -40,11 +39,10 @@
 			else if(newinput == "Output")
 				current_valve.regulate_mode = 2
 
-/obj/machinery/reactor_button/regvalve
+/obj/machinery/reactor_button/turn_switch/regvalve
 	name = "adjustable valve regulator"
-	icon_state = "switch1-off"
 
-/obj/machinery/reactor_button/regvalve/do_action(mob/user)
+/obj/machinery/reactor_button/turn_switch/regvalve/do_action(mob/user)
 	..()
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve = rcontrol.reactor_valves[id]
 	if(!current_valve)
@@ -52,23 +50,23 @@
 	var/openage = tgui_input_number(user, "Select a new openage percentage for this valve.", "Valve regulation", 0, 100, 0)
 	if(isnum(openage))
 		current_valve.set_openage(Clamp(openage, 0, 100))
+		update_icon(openage * 0.01)
 
-/obj/machinery/reactor_button/turbine_valve/do_action(mob/user)
+/obj/machinery/reactor_button/turn_switch/turbine_valve/do_action(mob/user)
 	..()
 	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
 	var/openage = tgui_input_number(user, "Select a new openage percentage for this turbine.", "Turbine intake regulation", 0, 100, 0)
 	if(isnum(openage))
 		tst.feeder_valve_openage = Clamp(openage * 0.01, 0, 1)
+		update_icon(openage * 0.01)
 
-/obj/machinery/reactor_button/turbine_valve/first
+/obj/machinery/reactor_button/turn_switch/turbine_valve/first
 	name = "TURB 1V-IN"
 	id = "turbine1"
-	icon_state = "switch1-off"
 
-/obj/machinery/reactor_button/turbine_valve/second
+/obj/machinery/reactor_button/turn_switch/turbine_valve/second
 	name = "TURB 2V-IN"
 	id = "turbine2"
-	icon_state = "switch1-off"
 
 /obj/machinery/reactor_button/rswitch/valve/turbinebypass
 	name = "TURB V-BYPASS"

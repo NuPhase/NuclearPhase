@@ -35,7 +35,7 @@
 /obj/machinery/reactor_button/rswitch/valve/pump4v2
 	name = "T-CP 2V-EX"
 	id = "T-CP 2V-EX"
-/obj/machinery/reactor_button/presvalve/tprescontrol
+/obj/machinery/reactor_button/turn_switch/presvalve/tprescontrol
 	name = "T-PRES-CONTROL"
 	id = "T-PRES-CONTROL"
 
@@ -43,7 +43,7 @@
 	name = "T-FEEDWATER V-MAKEUP"
 	id = "T-FEEDWATER V-MAKEUP"
 
-/obj/machinery/reactor_button/regvalve/feeddrain
+/obj/machinery/reactor_button/turn_switch/regvalve/feeddrain
 	name = "T-FEEDWATER V-DRAIN"
 	id = "T-FEEDWATER V-DRAIN"
 
@@ -65,23 +65,23 @@
 	name = "T-COOLANT PREHEAT"
 	id = "T-COOLANT PREHEAT"
 
-/obj/machinery/reactor_button/regvalve/reactorfvin
+/obj/machinery/reactor_button/turn_switch/regvalve/reactorfvin
 	name = "REACTOR-F-V-IN"
 	id = "REACTOR-F-V-IN"
 
-/obj/machinery/reactor_button/regvalve/reactorfvout
+/obj/machinery/reactor_button/turn_switch/regvalve/reactorfvout
 	name = "REACTOR-F-V-OUT"
 	id = "REACTOR-F-V-OUT"
 
-/obj/machinery/reactor_button/regvalve/heatexchangervin
+/obj/machinery/reactor_button/turn_switch/regvalve/heatexchangervin
 	name = "HEATEXCHANGER V-IN"
 	id = "HEATEXCHANGER V-IN"
 
-/obj/machinery/reactor_button/presvalve/tcoolantvin
+/obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvin
 	name = "T-COOLANT V-IN"
 	id = "T-COOLANT V-IN"
 
-/obj/machinery/reactor_button/presvalve/tcoolantvout
+/obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvout
 	name = "T-COOLANT V-OUT"
 	id = "T-COOLANT V-OUT"
 

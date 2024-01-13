@@ -114,3 +114,25 @@
 
 /obj/machinery/reactor_button/rswitch/do_action(mob/user)
 	handle_icon()
+
+
+/obj/machinery/reactor_button/turn_switch
+	name = "switch"
+	icon_state = "switch4-0"
+	action_sounds = list(
+	'sound/machines/switch1.ogg',
+	'sound/machines/switch2.ogg',
+	'sound/machines/switch3.ogg',
+	'sound/machines/switch4.ogg'
+)
+
+/obj/machinery/reactor_button/turn_switch/on_update_icon(open_value)
+	switch(open_value)
+		if(0)
+			icon_state = "switch4-0"
+		if(0 to 0.25)
+			icon_state = "switch4-25"
+		if(0.25 to 0.5)
+			icon_state = "switch4-50"
+		if(0.5 to 1)
+			icon_state = "switch4-75"
