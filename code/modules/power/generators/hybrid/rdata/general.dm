@@ -20,12 +20,15 @@
 		"alarmlist" = assemble_tgui_alarm_list(),
 		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
-		"neutron_rate" = round(rcore.neutron_rate*100-100),
+		"neutron_rate" = round(rcore.neutron_rate, 0.0001),
+		"xray_flux" = round(rcore.xray_flux, 0.1),
 		"radiation" = round(rcore.last_radiation * 0.001),
 		"chamber_temperature" = core_air.temperature,
 		"containment_consumption" = round(rcore.field_power_consumption),
 		"containment_temperature" = round(rcore.shield_temperature),
-		"containment_charge" = 100 //not implemented
+		"containment_charge" = 100, //not implemented
+		"moderator_position" = rcore.moderator_position,
+		"reflector_position" = rcore.reflector_position
 	)
 	return data
 

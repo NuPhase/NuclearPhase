@@ -8,7 +8,10 @@
 	var/operable = TRUE
 	use_power = POWER_USE_ACTIVE
 	idle_power_usage = 100
-	active_power_usage = 5000 //powerful computing system
+	active_power_usage = 50000 //powerful computing system
+
+/obj/machinery/reactor_control_node/Process()
+	rcontrol.control()
 
 /obj/machinery/reactor_control_node/Destroy()
 	. = ..()

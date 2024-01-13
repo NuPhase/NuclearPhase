@@ -72,6 +72,12 @@
 	icon_state = "mechbay"
 /area/serenity/shelter/upperhall
 	name = "Upper Hall"
+
+/area/serenity/shelter/entrance_zone
+	name = "Entrance Zone"
+/area/serenity/shelter/entrance_zone/viewing_area
+	name = "Viewing Area"
+
 /area/serenity/shelter/staircase
 	name = "Staircase"
 	icon_state = "shuttle"
@@ -97,7 +103,7 @@
 	name = "Mess Hall"
 	icon_state = "bar"
 
-/area/serenity/shelter/reactor
+/area/serenity/shelter/engineering/reactor
 	sound_env = LARGE_ENCLOSED
 	name = "Reactor Chamber"
 	lightswitch = FALSE
@@ -105,7 +111,7 @@
 	background_radiation = 1.13
 	temperature_interpolation_coefficient = 0.002 //insulated well
 
-/area/serenity/shelter/reactor/power_change()
+/area/serenity/shelter/engineering/reactor/power_change()
 	. = ..()
 	if(power_equip)
 		forced_ambience = list('sound/ambience/reactorchamberfans.ogg')
@@ -114,10 +120,6 @@
 		forced_ambience = null
 		description = "You feel a strong metal smell in the still air of the vast space that you've entered. The entire chamber perimeter is dimly lit by small red lights, as if they were placed there specifically to be a little more sane in such an inconceivable environment. Everything below is completely dark, looks like it goes really deep..."
 
-/area/serenity/shelter/reactormonitoring
-	name = "Reactor Control Room"
-	area_flags = AREA_FLAG_RAD_SHIELDED
-	background_radiation = 0.07
 /area/serenity/shelter/engineering
 	name = "Engineering"
 	icon_state = "engineering"
@@ -132,6 +134,11 @@
 /area/serenity/shelter/engineering/reactor_operations
 	name = "Reactor Operations"
 	icon_state = "hallC1"
+
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring
+	name = "Reactor Control Room"
+	area_flags = AREA_FLAG_RAD_SHIELDED
+	background_radiation = 0.07
 
 /area/serenity/shelter/engineering/reactor_operations/office
 	name = "Reactor Operations Offices"
@@ -154,30 +161,14 @@
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger
 	name = "Heat Exchanger Maintenance"
 	icon_state = "heat_exchanger"
-/area/serenity/shelter/engineering_first
-	name = "Engineering 1st Floor"
-	icon_state = "engineering_foyer"
-/area/serenity/shelter/atmos
+/area/serenity/shelter/engineering/atmos
 	name = "Fluid Management"
 	icon_state = "atmos"
-/area/serenity/shelter/climatecontrol
+/area/serenity/shelter/engineering/climatecontrol
 	name = "Climate Control"
-/area/serenity/shelter/turbinehall
+/area/serenity/shelter/engineering/electrical/turbinehall
 	name = "Turbine Hall"
 	sound_env = LARGE_ENCLOSED
-/area/serenity/shelter/machinehall
-	name = "Machine Hall"
-	sound_env = LARGE_ENCLOSED
-/area/serenity/shelter/breakerroom
-	name = "Breaker Room"
-	var/powered_ambience = list('sound/ambience/breaker_room.wav')
-	forced_ambience = list('sound/ambience/breaker_room.wav')
-/area/serenity/shelter/breakerroom/power_change()
-	. = ..()
-	if(power_equip)
-		forced_ambience = powered_ambience
-	else
-		forced_ambience = null
 
 /area/serenity/shelter/service_tunnels
 	name = "Reactor Service Tunnels"
@@ -242,6 +233,16 @@
 /area/serenity/shelter/cargo/rest_area
 	name = "Supply Operations Break Room"
 	icon_state = "auxstorage"
+
+/area/serenity/shelter/labs
+	name = "Laboratories"
+	icon_state = "research"
+/area/serenity/shelter/labs/particle_physics
+	name = "Particle Physics Laboratory"
+	icon_state = "devlab"
+/area/serenity/shelter/labs/genetics
+	name = "General Genetics Laboratory"
+	icon_state = "toxlab"
 
 /area/serenity/shelter/medbay
 	name = "Medbay"

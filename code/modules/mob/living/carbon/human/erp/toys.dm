@@ -41,6 +41,18 @@
 /obj/item/sex_toy/dildo/get_pain()
 	return 1.5 * size
 
+/obj/item/sex_toy/dildo/brutalist
+	name = "brutalist dildo"
+	desc = "You got what you wanted."
+	icon_state = "dildo_brutalist"
+
+/obj/item/sex_toy/dildo/brutalist/get_pleasure()
+	return 6
+
+/obj/item/sex_toy/dildo/brutalist/get_pain()
+	return 14
+
+
 /obj/item/sex_toy/dildo/attack(mob/living/carbon/human/M, mob/living/carbon/human/user)
 	var/hasvagina = (M.gender == FEMALE && M.species.genitals)
 	var/hasanus = M.species.anus

@@ -5,6 +5,7 @@
 #define REACTOR_POWER_MODIFIER 10 //Currently unused
 #define WATTS_PER_KPA 0.5
 #define REACTOR_SHIELDING_COEFFICIENT 0.05
+#define REACTOR_MODERATOR_POWER 0.27
 
 /obj/machinery/power/hybrid_reactor
 	name = "reactor superstructure"
@@ -13,7 +14,12 @@
 	density = 1
 	anchored = 1
 
-	var/neutron_flux = 1 //a flux of 1 will mean that neutron amount does not change
+	var/slow_neutrons = 0
+	var/fast_neutrons = 0
+	var/total_neutrons = 0
+
+	var/xray_flux = 0
+
 	var/neutron_rate = 0
 	var/neutron_moles = 0 //how many moles can we split
 	var/neutrons_absorbed = 0
@@ -26,6 +32,8 @@
 	var/containment = TRUE
 	var/field_power_consumption = 0
 	var/shield_temperature = 36
+	var/moderator_position = 0.72 //0-1. 1 means it scatters most of the neutrons.
+	var/reflector_position = 1 //0-1. 1 means it reflects most of the neutrons.
 
 	var/obj/structure/reactor_superstructure/superstructure
 
@@ -41,21 +49,28 @@
 	reactor_components["core"] = null
 
 /obj/machinery/power/hybrid_reactor/Process()
-	rcontrol.control()
 	var/turf/A = get_turf(src)
 	var/datum/gas_mixture/GM = A.return_air()
 
-	var/last_neutron_moles = neutron_moles
+	var/last_neutrons = slow_neutrons + fast_neutrons
 
-	process_fission(GM)
+	var/list/returned_list = GM.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+	slow_neutrons = returned_list["slow_neutrons_changed"]
+	fast_neutrons = returned_list["fast_neutrons_changed"]
+
+	handle_control_panels()
+
+	xray_flux = 0
 	process_fusion(GM)
 
-	if(last_neutron_moles)
-		neutron_rate = neutron_moles / last_neutron_moles
-	else
-		neutron_rate = 0
+	total_neutrons = slow_neutrons + fast_neutrons
 
-	var/total_radiation = neutron_moles * RADS_PER_NEUTRON
+	if(last_neutrons)
+		neutron_rate = total_neutrons / last_neutrons
+	else
+		neutron_rate = 1
+
+	var/total_radiation = total_neutrons * RADS_PER_NEUTRON
 	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)
 	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
@@ -65,28 +80,15 @@
 			field_power_consumption = GM.return_pressure() * WATTS_PER_KPA
 			use_power_oneoff(field_power_consumption, EQUIP)
 
-/obj/machinery/power/hybrid_reactor/proc/process_fission(datum/gas_mixture/GM)
-	neutrons_absorbed = 0
-	for(var/g in GM.gas)
-		var/decl/material/mat = GET_DECL(g)
-		var/react_amount = GM.gas[g] * FISSION_RATE * sqrt(neutron_flux) + 0.01
-		neutrons_absorbed += mat.neutron_absorption * react_amount
-		if(mat.fission_energy)
-			neutron_moles += mat.neutron_production * react_amount * max(0.5, sqrt(neutron_flux))
-			GM.add_thermal_energy(mat.fission_energy * react_amount)
-			GM.adjust_gas(mat.type, react_amount * -1)
-			if(mat.fission_products)
-				for(var/fp in mat.fission_products)
-					GM.adjust_gas(fp, react_amount*mat.fission_products[fp])
-		if(mat.absorption_products)
-			var/moles_absorbed = min(GM.gas[g], GM.gas[g] * rand(0.001, 0.01) * sqrt(neutron_flux) + 0.01)
-			GM.adjust_gas(mat.type, moles_absorbed * -1)
-			for(var/ap in mat.absorption_products)
-				GM.adjust_gas(ap, moles_absorbed*mat.absorption_products[ap])
-	neutrons_absorbed = min(neutrons_absorbed, neutron_moles)
-	neutron_moles -= neutrons_absorbed
-	GM.add_thermal_energy(max(0, NEUTRON_MOLE_ENERGY * neutrons_absorbed))
-	neutron_flux = Interpolate(neutron_flux, Clamp(neutron_moles * NEUTRON_FLUX_RATE, 0.01, 1000), 0.2)
+/obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
+	var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
+	var/fast_neutrons_lost = sqrt(fast_neutrons) * (1.001 - reflector_position)
+	slow_neutrons -= slow_neutrons_lost
+	fast_neutrons -= fast_neutrons_lost
+
+	var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position
+	fast_neutrons -= fast_neutrons_moderated
+	slow_neutrons += fast_neutrons_moderated
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/GM)
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
@@ -99,13 +101,13 @@
 		if(cur_reaction.minimum_temperature > GM.temperature)
 			continue
 
-		var/uptake_moles = min(GM.gas[cur_reaction.first_reactant], GM.gas[cur_reaction.second_reactant], neutron_moles) * FISSION_RATE
-		GM.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5)
-		GM.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5)
+		var/uptake_moles = min(GM.gas[cur_reaction.first_reactant], GM.gas[cur_reaction.second_reactant]) / GM.volume
+		GM.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
+		GM.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
 		GM.adjust_gas(cur_reaction.product, uptake_moles)
 		GM.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
-		neutron_moles -= uptake_moles
-		neutron_moles += cur_reaction.free_neutron_moles * uptake_moles
+		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
+		xray_flux += uptake_moles * 1.74
 
 /obj/machinery/power/hybrid_reactor/proc/receive_power(power) //in watts
 	var/turf/A = get_turf(src)
@@ -202,7 +204,6 @@
 	sleep(10 SECONDS)
 	radio_announce("BLAST DOORS CLOSING IN: 20 SECONDS.", rcontrol.name)
 	start_burning()
-	neutron_flux *= 100
 	rcontrol.do_message("THERMOELECTRIC SYSTEMS OVERHEAT", 3)
 	rcontrol.do_message("MAJOR INTERNAL STRUCTURAL DAMAGE", 3)
 	scr_det("reactor1")

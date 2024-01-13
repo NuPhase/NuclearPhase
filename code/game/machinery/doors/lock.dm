@@ -3,20 +3,28 @@
 
 
 /datum/lock
-	var/status = 1 //unlocked, 1 == locked 2 == broken
-	var/lock_data = "" //basically a randomized string. The longer the string the more complex the lock.
+	var/name
+	var/status = 0 //unlocked, 1 == locked 2 == broken
+	var/lock_data = null //use case depends on type of lock. List for RFID
 	var/atom/holder
 
 /datum/lock/New(var/atom/h, var/complexity = 1)
 	holder = h
-	if(istext(complexity))
-		lock_data = complexity
-	else
-		lock_data = generateRandomString(complexity)
+	lock_data = complexity
 
 /datum/lock/Destroy()
 	holder = null
 	. = ..()
+
+/datum/lock/proc/can_open(var/mob/user)
+	return TRUE
+
+/datum/lock/proc/failure_open()
+	return 0
+
+//should return a delay before opening
+/datum/lock/proc/success_open()
+	return 1
 
 /datum/lock/proc/unlock(var/key = "", var/mob/user)
 	if(status ^ LOCK_LOCKED)
@@ -77,3 +85,41 @@
 	else
 		to_chat(user, "<span class='warning'>You fail to pick open \the [holder].</span>")
 	return 0
+
+/datum/lock/keypad
+	name = "keypad"
+
+/datum/lock/keypad/New(atom/h, complexity)
+	. = ..()
+	lock_data = rand(11111, 55555)
+
+/datum/lock/keypad/can_open(var/mob/user)
+	var/user_input = tgui_input_number(user, "Enter a 5-digit code.", "Keycode Access", max_value = 99999, min_value = 11111, timeout = 20 SECONDS)
+	return user_input == lock_data
+
+/datum/lock/keypad/success_open()
+	playsound(holder, 'sound/machines/beeps_airlock.wav', 25, 0)
+	return 9
+
+/datum/lock/keypad/failure_open()
+	playsound(holder, 'sound/machines/buzz-two.ogg', 25, 0)
+
+/datum/lock/id_card
+	name = "RFID"
+
+/datum/lock/id_card/can_open(var/mob/user)
+	return has_access(lock_data, user.GetAccess())
+
+/datum/lock/id_card/success_open()
+	playsound(holder, 'sound/machines/beeps_airlock.wav', 25, 0)
+	return 9
+
+/datum/lock/id_card/failure_open()
+	playsound(holder, 'sound/machines/buzz-two.ogg', 25, 0)
+
+/datum/lock/key
+	name = "keyed"
+
+/datum/lock/key/New(atom/h, complexity)
+	. = ..()
+	lock_data = generateRandomString(complexity)

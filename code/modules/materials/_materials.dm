@@ -284,8 +284,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/scent_descriptor = SCENT_DESC_SMELL
 	var/scent_range = 1
 
-	var/list/neutron_interactions // Associative List of potential neutron interactions for the material to undergo, corresponding to the ideal
-								  // neutron energy for that reaction to occur.
+	var/list/neutron_interactions // Associative List of nuclear cross section for "fast" and "slow" neutrons.
 
 	var/neutron_cross_section	  // How broad the neutron interaction curve is, independent of temperature. Materials that are harder to react with will have lower values.
 	var/list/decl/material/absorption_products		  // Transmutes into these reagents following neutron absorption and/or subsequent beta decay. Generally forms heavier reagents.
@@ -294,6 +293,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/neutron_absorption = 1		  // Chance of one mole of that material absorbing a neutron-mole
 	var/fission_heat = 0			  // How much thermal energy per unit per fission event this material releases.
 	var/fission_energy = 0			  // Energy of neutrons released by fission.
+	var/fission_neutrons = 0 		  // Amount of neutrons released by fission
 	var/moderation_target		  // The 'target' neutron energy value that the fission environment shifts towards after a moderation event.
 								  // Neutron moderators can only slow down neutrons.
 
@@ -799,3 +799,70 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 			total_interacted_units -= interacted_units
 		if(total_interacted_units <= 0)
 			return
+
+
+// Nuclear Interactions
+// For the sake of simplicity, everything neutron-related is calculated in moles. So moles instead of atoms.
+// That means that 1 neutron is equivalent to 1 mole amount of neutrons.
+
+// Should returns a list with the following:
+// slow_neutrons_changed
+// fast_neutrons_changed
+// thermal_energy_released
+
+#define SLOW_NEUTRON_ENERGY 96485 //for absorption
+
+/decl/material/proc/handle_nuclear_fission(datum/gas_mixture/container, slow_neutrons=0, fast_neutrons=0)
+	if(!neutron_interactions)
+		return null
+
+	var/list/slow_list = neutron_interactions["slow"]
+	var/energy_delta = 0
+
+	for(var/reaction_type in slow_list)
+		switch(reaction_type)
+			if(INTERACTION_SCATTER)
+				var/scattered_neutrons = get_nuclear_reaction_rate(container, INTERACTION_SCATTER, slow_neutrons, fast_neutrons)
+				scattered_neutrons = min(fast_neutrons, scattered_neutrons)
+				fast_neutrons -= scattered_neutrons
+				slow_neutrons += scattered_neutrons
+			if(INTERACTION_ABSORPTION)
+				var/absorbed_neutrons = get_nuclear_reaction_rate(container, INTERACTION_ABSORPTION, slow_neutrons, fast_neutrons)
+				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons)
+				fast_neutrons -= absorbed_neutrons * 0.5
+				slow_neutrons -= absorbed_neutrons * 0.5
+				energy_delta += absorbed_neutrons * SLOW_NEUTRON_ENERGY
+				if(absorption_products)
+					container.adjust_gas(src.type, absorbed_neutrons * -1, FALSE)
+					for(var/abs_type in absorption_products)
+						container.adjust_gas(abs_type, absorbed_neutrons * absorption_products[abs_type], FALSE)
+			if(INTERACTION_FISSION)
+				var/fission_reactions = get_nuclear_reaction_rate(container, INTERACTION_FISSION, slow_neutrons, fast_neutrons)
+				fission_reactions = min(container.gas[src.type], fission_reactions)
+				if(slow_neutrons > fast_neutrons)
+					slow_neutrons -= fission_reactions
+				else
+					fast_neutrons -= fission_reactions
+				 container.adjust_gas(src.type, fission_reactions * -1, FALSE)
+				 for(var/waste_type in fission_products)
+				 	container.adjust_gas(waste_type, fission_reactions*fission_products[waste_type], FALSE)
+				fast_neutrons += fission_neutrons
+				energy_delta += fission_reactions * fission_energy
+
+	return list(
+		"slow_neutrons_changed" = max(slow_neutrons, 0),
+		"fast_neutrons_changed" = max(fast_neutrons, 0),
+		"thermal_energy_released" = energy_delta
+	)
+
+/decl/material/proc/get_nuclear_reaction_rate(datum/gas_mixture/container, reaction_type, slow_neutrons, fast_neutrons)
+	var/list/cross_sections_list
+	if(slow_neutrons > fast_neutrons)
+		cross_sections_list = neutron_interactions["slow"]
+	else
+		cross_sections_list = neutron_interactions["fast"]
+	var/actual_cross_section = cross_sections_list[reaction_type]
+
+	return ((slow_neutrons + fast_neutrons)/sqrt(container.volume)*2) * actual_cross_section * container.gas[src.type]/container.volume
+
+#undef SLOW_NEUTRON_ENERGY

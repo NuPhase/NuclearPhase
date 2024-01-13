@@ -46,9 +46,15 @@
 	dirtiness = 15
 
 	flags = MAT_FLAG_FISSIBLE
-	neutron_cross_section = 30
 	neutron_interactions = list(
-		INTERACTION_SCATTER = 2000
+		"slow" = list(
+			INTERACTION_SCATTER = 5,
+			INTERACTION_ABSORPTION = 0.002
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 2,
+			INTERACTION_ABSORPTION = 0.00001
+		)
 	)
 	moderation_target = 1500
 	dissolves_into = list(
