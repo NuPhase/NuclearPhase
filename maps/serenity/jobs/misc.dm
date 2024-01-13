@@ -17,7 +17,7 @@
 
 /datum/job/explorer/do_spawn_special(mob/living/character, mob/new_player/new_player_mob, latejoin)
 	. = ..()
-	to_chat(character, SPAN_ERPBOLD(description))
+	to_chat(character, SPAN_ERP("You wake up in a strange place. A lush forest, a quiet remnant of one's memories devoid of life. It seems safe and peaceful, yet you can't let off the feeling that you're not alone amidst these woods..."))
 
 /datum/job/hobo
 	title = "Hobo"
