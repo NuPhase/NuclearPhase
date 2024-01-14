@@ -178,3 +178,6 @@
 
 	var/pickup_capacity = 7
 	var/drag_capacity = 40
+
+	// contains /atom/movable/screen/alert only
+	var/list/alerts = list()
