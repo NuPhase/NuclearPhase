@@ -136,6 +136,7 @@
 	do_message("SCRAM: [capitalize(cause)]", 3)
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
 	var/obj/machinery/reactor_button/rswitch/current_switch
+	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 
 	current_switch = reactor_buttons["EP-SCRAM"]
 	playsound(current_switch.loc, 'sound/machines/switchbuzzer.ogg', 50)
@@ -153,6 +154,9 @@
 
 	mode = REACTOR_CONTROL_MODE_MANUAL
 	scram_control = FALSE
+
+	R.reflector_position = 0
+	R.moderator_position = 0
 
 /datum/reactor_control_system/proc/do_message(message, urgency = 1) //urgency 1-3
 	if(has_message(message))
