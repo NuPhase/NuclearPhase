@@ -82,7 +82,7 @@
 	)
 	fission_heat = 35000
 	fission_energy = 81080100000
-	fission_neutrons = 0.01
+	fission_neutrons = 0.001
 	neutron_absorption = 950
 	neutron_production = 900
 

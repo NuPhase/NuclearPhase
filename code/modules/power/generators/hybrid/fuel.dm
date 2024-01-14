@@ -20,12 +20,26 @@
 		for(var/R in initial_reagents)
 			reagents.add_reagent(R, initial_reagents[R])
 
+/obj/item/chems/fuel_cell/deuterium
+	name = "D fuel cell"
+	spec_desc = "This fuel cell contains deuterium. Only deuterium."
+	initial_reagents = list(
+		/decl/material/gas/hydrogen/deuterium = 35000
+	)
+
 /obj/item/chems/fuel_cell/deuterium_tritium
 	name = "D-T fuel cell"
 	spec_desc = "This fuel cell contains a simple D-T fuel mixture. You are boring."
 	initial_reagents = list(
 		/decl/material/gas/hydrogen/deuterium = 24000,
 		/decl/material/gas/hydrogen/tritium = 11000
+	)
+
+/obj/item/chems/fuel_cell/lithium
+	name = "Li-6 fuel cell"
+	spec_desc = "This fuel cell contains an isotope of lithium that can breed into tritium."
+	initial_reagents = list(
+		/decl/material/solid/lithium = 35000
 	)
 
 /obj/item/chems/fuel_cell/hydrogen
@@ -90,22 +104,23 @@
 		return
 
 	var/obj/machinery/power/hybrid_reactor/reactor = reactor_components["core"]
-	var/datum/gas_mixture/core_environment = reactor.loc.return_air()
 
 	if(inserted.reagents.total_volume != inserted.reagents.maximum_volume) //we're not full of sticky white liquid some engineer left in us
-		for(var/g in core_environment.gas)
+		for(var/g in reactor.containment_field.gas)
 			if(g in rcontrol.unwanted_materials)
 				var/decl/material/mat = GET_DECL(g)
-				var/removed = core_environment.gas[g] * 0.1 + 0.1
-				core_environment.adjust_gas(g, removed * -1)
+				var/removed = reactor.containment_field.gas[g] * 0.1 + 0.1
+				reactor.containment_field.adjust_gas(g, removed * -1)
 				inserted.reagents.add_reagent(g, removed * mat.molar_volume)
 
 	if(!injection_ratio)
 		return
 	var/removing = inserted.reagents.total_volume * injection_ratio + 0.1
 	for(var/moving in inserted.reagents.reagent_volumes)
+		if(moving in rcontrol.unwanted_materials)
+			continue //we don't want that
 		var/decl/material/smat = GET_DECL(moving)
-		core_environment.adjust_gas_temp(moving, removing / smat.molar_volume, core_environment.temperature)
+		reactor.containment_field.adjust_gas(moving, removing / smat.molar_volume)
 		inserted.reagents.remove_reagent(moving, removing)
 
 /obj/machinery/reactor_fuelport/Initialize()
