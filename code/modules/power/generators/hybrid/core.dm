@@ -1,7 +1,7 @@
 #define FISSION_RATE 0.01 //General modifier of fission speed
 #define NEUTRON_FLUX_RATE 0.001 //Neutron flux per neutron mole
 #define NEUTRON_MOLE_ENERGY 1000 //J per neutron mole
-#define RADS_PER_NEUTRON 0.3
+#define RADS_PER_NEUTRON 30
 #define REACTOR_POWER_MODIFIER 10 //Currently unused
 #define WATTS_PER_KPA 0.5
 #define REACTOR_SHIELDING_COEFFICIENT 0.05
@@ -32,13 +32,16 @@
 	var/containment = TRUE
 	var/field_power_consumption = 0
 	var/shield_temperature = 36
-	var/moderator_position = 0.72 //0-1. 1 means it scatters most of the neutrons.
+	var/moderator_position = 0.15 //0-1. 1 means it scatters most of the neutrons.
 	var/reflector_position = 1 //0-1. 1 means it reflects most of the neutrons.
 
 	var/obj/structure/reactor_superstructure/superstructure
 
+	var/datum/gas_mixture/containment_field
+
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
+	containment_field = new(50000, 4200)
 	reactor_components["core"] += src
 	rcontrol.initialize()
 	spawn(1 MINUTE)
@@ -49,19 +52,16 @@
 	reactor_components["core"] = null
 
 /obj/machinery/power/hybrid_reactor/Process()
-	var/turf/A = get_turf(src)
-	var/datum/gas_mixture/GM = A.return_air()
-
 	var/last_neutrons = slow_neutrons + fast_neutrons
 
-	var/list/returned_list = GM.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
 	slow_neutrons = returned_list["slow_neutrons_changed"]
 	fast_neutrons = returned_list["fast_neutrons_changed"]
 
 	handle_control_panels()
 
 	xray_flux = 0
-	process_fusion(GM)
+	process_fusion(containment_field)
 
 	total_neutrons = slow_neutrons + fast_neutrons
 
@@ -75,9 +75,9 @@
 	SSradiation.radiate(src, total_radiation)
 	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
 
-	if(GM.temperature > 5000)
+	if(containment_field.temperature > 5000)
 		if(containment)
-			field_power_consumption = GM.return_pressure() * WATTS_PER_KPA
+			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA
 			use_power_oneoff(field_power_consumption, EQUIP)
 
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
@@ -90,29 +90,29 @@
 	fast_neutrons -= fast_neutrons_moderated
 	slow_neutrons += fast_neutrons_moderated
 
-/obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/GM)
+/obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
 		var/decl/thermonuclear_reaction/cur_reaction = GET_DECL(cur_reaction_type)
 
-		if(!(cur_reaction.first_reactant in GM.gas))
+		if(!(cur_reaction.first_reactant in containment_field.gas))
 			continue
-		if(!(cur_reaction.second_reactant in GM.gas))
+		if(!(cur_reaction.second_reactant in containment_field.gas))
 			continue
-		if(cur_reaction.minimum_temperature > GM.temperature)
+		if(cur_reaction.minimum_temperature > containment_field.temperature)
 			continue
 
-		var/uptake_moles = min(GM.gas[cur_reaction.first_reactant], GM.gas[cur_reaction.second_reactant]) / GM.volume
-		GM.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
-		GM.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
-		GM.adjust_gas(cur_reaction.product, uptake_moles)
-		GM.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
+		var/uptake_moles = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant]) / containment_field.volume * cur_reaction.cross_section
+		containment_field.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
+		containment_field.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
+		containment_field.adjust_gas(cur_reaction.product, uptake_moles)
+		containment_field.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
 		xray_flux += uptake_moles * 1.74
 
 /obj/machinery/power/hybrid_reactor/proc/receive_power(power) //in watts
 	var/turf/A = get_turf(src)
-	var/datum/gas_mixture/GM = A.return_air()
-	GM.add_thermal_energy(power)
+	var/datum/gas_mixture/containment_field = A.return_air()
+	containment_field.add_thermal_energy(power)
 	return
 
 /obj/machinery/power/hybrid_reactor/proc/prime_alarms()

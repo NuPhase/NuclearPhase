@@ -54,20 +54,20 @@
 /obj/machinery/reactor_display/group/turbine/tgui_data(mob/user)
 	var/list/data = list(
 		"turb1" = list(
-						round(rcontrol.turbine1.rpm),
-						round(rcontrol.turbine1.efficiency),
-						rcontrol.turbine1.get_vibration_flavor(),
-						round(rcontrol.turbine1.total_mass_flow),
-						round(rcontrol.turbine1.steam_velocity),
-						rcontrol.turbine1.braking
+						"rpm" = round(rcontrol.turbine1.rpm),
+						"efficiency" = round(rcontrol.turbine1.efficiency, 0.01),
+						"vibration" = rcontrol.turbine1.get_vibration_flavor(),
+						"mass_flow" = round(rcontrol.turbine1.total_mass_flow),
+						"steam_velocity" = round(rcontrol.turbine1.steam_velocity),
+						"breaks_engaged" = rcontrol.turbine1.braking
 						),
 		"turb2" = list(
-						round(rcontrol.turbine2.rpm),
-						round(rcontrol.turbine2.efficiency),
-						rcontrol.turbine2.get_vibration_flavor(),
-						round(rcontrol.turbine2.total_mass_flow),
-						round(rcontrol.turbine2.steam_velocity),
-						rcontrol.turbine2.braking
+						"rpm" = round(rcontrol.turbine2.rpm),
+						"efficiency" = round(rcontrol.turbine2.efficiency, 0.01),
+						"vibration" = rcontrol.turbine2.get_vibration_flavor(),
+						"mass_flow" = round(rcontrol.turbine2.total_mass_flow),
+						"steam_velocity" = round(rcontrol.turbine2.steam_velocity),
+						"breaks_engaged" = rcontrol.turbine2.braking
 						)
 	)
 	return data

@@ -34,6 +34,17 @@
 		/decl/material/gas/hydrogen/tritium = 0.3,
 		/decl/material/gas/helium = 0.7
 	)
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 0.67,
+			INTERACTION_ABSORPTION = 0.03
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 0.03,
+			INTERACTION_ABSORPTION = 0.13
+		)
+	)
+
 
 /decl/material/solid/carbon
 	name = "carbon"

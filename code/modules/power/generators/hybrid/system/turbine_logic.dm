@@ -33,6 +33,7 @@
 	return FALSE
 
 /datum/reactor_control_system/proc/control_turbine_rpm()
+	var/obj/machinery/reactor_button/rswitch/current_switch
 	if(closed_governor_cycle) //open cycle achieves RPM, closed cycle adapts to generator load
 		var/governor_adjustment = 0.01
 		var/load_difference = 0
@@ -44,6 +45,8 @@
 		else
 			governor_adjustment += 0.15
 		turbine1.feeder_valve_openage = CLAMP01(turbine1.feeder_valve_openage + governor_adjustment)
+		current_switch = reactor_buttons["turbine1"]
+		current_switch.update_icon(turbine1.feeder_valve_openage)
 
 		load_difference = generator2.last_load - (turbine2.kin_total * turbine2.efficiency)
 		governor_adjustment = sqrt(abs(load_difference)) * 0.0001 * (load_difference > 0 ? 1 : -1)
@@ -52,6 +55,8 @@
 		else
 			governor_adjustment += 0.15
 		turbine2.feeder_valve_openage = CLAMP01(turbine2.feeder_valve_openage + governor_adjustment)
+		current_switch = reactor_buttons["turbine2"]
+		current_switch.update_icon(turbine2.feeder_valve_openage)
 	else
 		var/rpm_difference = 0
 		var/target_valve_openage = 0
@@ -59,10 +64,14 @@
 			rpm_difference = 3600 - turbine1.rpm
 			target_valve_openage = rpm_difference * 0.073
 			turbine1.feeder_valve_openage = Interpolate(turbine1.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
+			current_switch = reactor_buttons["turbine1"]
+			current_switch.update_icon(turbine1.feeder_valve_openage)
 		if(turbine2.feeder_valve_openage > 0) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine2.rpm
 			target_valve_openage = rpm_difference * 0.073
 			turbine2.feeder_valve_openage = Interpolate(turbine2.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
+			current_switch = reactor_buttons["turbine2"]
+			current_switch.update_icon(turbine2.feeder_valve_openage)
 
 /datum/reactor_control_system/proc/control_cooling()
 	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
@@ -81,12 +90,26 @@
 /datum/reactor_control_system/proc/turbine_trip(reason)
 	do_message("TURBINE TRIP: [reason]", 3)
 	var/obj/machinery/reactor_button/rswitch/current_switch
+
 	turbine1.feeder_valve_openage = 0
 	turbine2.feeder_valve_openage = 0
+	current_switch = reactor_buttons["turbine1"]
+	current_switch.update_icon(turbine1.feeder_valve_openage)
+	current_switch = reactor_buttons["turbine2"]
+	current_switch.update_icon(turbine2.feeder_valve_openage)
+
 	generator1.connected = FALSE
 	generator2.connected = FALSE
+	current_switch = reactor_buttons["generator1"]
+	current_switch.state = 1
+	current_switch.do_action()
+	current_switch = reactor_buttons["generator2"]
+	current_switch.state = 1
+	current_switch.do_action()
+
 	current_switch = reactor_buttons["TURB V-BYPASS"]
 	current_switch.state = 0
 	current_switch.do_action()
+
 	playsound(current_switch.loc, 'sound/machines/switchbuzzer.ogg', 50)
 	SSstatistics.turbines_tripped = TRUE

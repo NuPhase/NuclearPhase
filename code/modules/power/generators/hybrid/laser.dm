@@ -66,7 +66,7 @@
 /obj/machinery/rlaser/Process()
 	if(nmode == NEUTRON_MODE_BOMBARDMENT)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-		R.neutron_moles += rand(50, 200) //neutron generators are extremely unpredictable and inaccurate
+		R.fast_neutrons += rand(10, 50) //neutron generators are extremely unpredictable and inaccurate
 		use_power_oneoff(70000, EQUIP)
 		SSradiation.radiate(src, 9000)
 	if(omode == LASER_MODE_IGNITION)
@@ -96,8 +96,7 @@
 		capacitor_charge = 0
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.receive_power(power * 1000)
-		R.neutron_moles += 500
-		R.fast_neutrons += 100
+		R.fast_neutrons += 750
 	return
 
 /obj/structure/rlaser_receiver

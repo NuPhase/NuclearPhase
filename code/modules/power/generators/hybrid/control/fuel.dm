@@ -14,6 +14,20 @@
 /obj/machinery/reactor_button/moderator
 	name = "MOD MAIN"
 
+/obj/machinery/reactor_button/moderator/do_action(mob/user)
+	. = ..()
+	var/panel_type = tgui_input_list(user, "Select a panel type.", "Reactor Moderation", list("Reflectors", "Moderators"))
+	if(isnull(panel_type))
+		return
+	var/panel_setting = tgui_input_number(user, "Select a new panel exposure percentage.", "Panel Configuration", min_value = 0, max_value = 100)
+	if(isnull(panel_setting))
+		return
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	if(panel_type == "Reflectors")
+		rcore.reflector_position = panel_setting * 0.01
+	else
+		rcore.moderator_position = panel_setting = 0.01
+
 /obj/machinery/reactor_button/turn_switch/regvalve/moderator
 	name = "MOD V-GAS"
 	id = "MOD V-GAS"

@@ -294,3 +294,17 @@
 	icon_state = "prog_bar_100"
 	invisibility = INVISIBILITY_MAXIMUM
 	screen_loc = ui_stamina
+
+/// Wrapper for adding anything to a client's screen
+/client/proc/add_to_screen(screen_add)
+	screen += screen_add
+
+/// Wrapper for removing anything from a client's screen
+/client/proc/remove_from_screen(screen_remove)
+	screen -= screen_remove
+
+// Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there
+/datum/hud/proc/reorganize_alerts(mob/viewmob)
+	var/mob/screenmob = viewmob || mymob
+	if(!screenmob.client)
+		return

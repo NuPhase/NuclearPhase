@@ -2,6 +2,10 @@
 	name = "general stats monitor"
 	program_overlay = "warnings"
 
+/obj/machinery/reactor_monitor/general/Initialize()
+	. = ..()
+	rcontrol.announcement_monitors += src
+
 /obj/machinery/reactor_monitor/general/physical_attack_hand(user)
 	. = ..()
 	tgui_interact(user)
@@ -15,14 +19,14 @@
 
 /obj/machinery/reactor_monitor/general/tgui_data(mob/user)
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
-	var/datum/gas_mixture/core_air = rcore.return_air()
+	var/datum/gas_mixture/core_air = rcore.containment_field
 	var/list/data = list(
 		"alarmlist" = assemble_tgui_alarm_list(),
 		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
-		"neutron_rate" = round(rcore.neutron_rate, 0.0001),
-		"xray_flux" = round(rcore.xray_flux, 0.1),
-		"radiation" = round(rcore.last_radiation * 0.001),
+		"neutron_rate" = round(rcore.neutron_rate, 0.01),
+		"xray_flux" = round(rcore.xray_flux, 0.01),
+		"radiation" = round(rcore.last_radiation * 0.01),
 		"chamber_temperature" = core_air.temperature,
 		"containment_consumption" = round(rcore.field_power_consumption),
 		"containment_temperature" = round(rcore.shield_temperature),
@@ -47,13 +51,12 @@
 
 /obj/machinery/reactor_monitor/general/examine(mob/user)
 	. = ..()
-	var/obj/reactor = reactor_components["core"]
-	print_atmos_analysis(user, get_chamber_analysis(reactor.loc))
+	var/obj/machinery/power/hybrid_reactor/reactor = reactor_components["core"]
+	print_atmos_analysis(user, get_chamber_analysis(reactor.containment_field))
 
-/obj/machinery/reactor_monitor/general/proc/get_chamber_analysis(var/atom/target)
+/obj/machinery/reactor_monitor/general/proc/get_chamber_analysis(datum/gas_mixture/mixture)
 	. = list()
 	. += "Results of the analysis of the chamber interior:"
-	var/datum/gas_mixture/mixture = target.return_air()
 
 	if(mixture)
 		var/total_moles = mixture.total_moles

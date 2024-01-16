@@ -714,25 +714,11 @@ SUBSYSTEM_DEF(jobs)
 
 /client/proc/show_roundstart_intro()
 	set waitfor = FALSE
-	if(mob)
-		mob.set_status(STAT_BLIND, 19)
+	if(!mob)
+		return
+	mob.set_status(STAT_BLIND, 19)
+	sleep(20)
 	sound_to(src, sound('sound/ambience/apocalypse_loop_cut.wav', volume = 50))
 
-	var/style = "font-family: 'Fixedsys'; -dm-text-outline: 1 black; font-size: 14px;"
-
-	var/obj/effect/overlay/T = new()
-	T.maptext_height = 128
-	T.maptext_width = 512
-	T.layer = FLOAT_LAYER
-	T.plane = HUD_PLANE
-	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	T.screen_loc = "LEFT+4,TOP-5"
-
-	screen += T
 	for(var/i = 1, i <= 4, i++)
-		animate(T, alpha = 255, time = 30)
-		T.maptext = "<span style=\"[style]\">[get_intro_text(i, get_preference_value(/datum/client_preference/russian_translation))] </span>"
-		sleep(9 SECONDS)
-		animate(T, alpha = 0, time = 10)
-		sleep(1 SECOND)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_location_blurb, src, T), 45 SECONDS)
+		mob.play_screen_text(get_intro_text(i, get_preference_value(/datum/client_preference/russian_translation)), /atom/movable/screen/text/screen_text/intro)
