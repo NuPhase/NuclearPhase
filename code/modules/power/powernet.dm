@@ -7,7 +7,6 @@
 	var/viewload = 0			// the load as it appears on the power console (gradually updated)
 	var/number = 0				// Unused //TODEL
 
-	var/battery_demand = 0
 	var/smes_demand = 0			// Amount of power demanded by all SMESs from this network. Needed for load balancing.
 	var/list/inputting = list()	// List of SMESs that are demanding power from this network. Needed for load balancing.
 
@@ -114,6 +113,24 @@
 		available += ap
 		G.on_power_drain(min(ap, ldemand))
 
+/datum/powernet/proc/handle_batteries()
+	var/list/batteries = list()
+	for(var/obj/machinery/power/generator/battery/cur_bat in nodes)
+		batteries += cur_bat
+	if(!length(batteries))
+		return
+
+	var/actually_available = lavailable
+	for(var/obj/machinery/power/generator/battery/cur_bat in batteries)
+		actually_available -= cur_bat.available_power()
+
+	var/net_excess = actually_available - ldemand
+	var/divided_power = net_excess / length(batteries)
+
+	if(net_excess > 0) // we got spare power and can charge
+		for(var/obj/machinery/power/generator/battery/cur_bat in batteries)
+			cur_bat.capacity = min(cur_bat.max_capacity, cur_bat.capacity + divided_power)
+
 //remove a cable from the current powernet
 //if the powernet is then empty, delete it
 //Warning : this proc DON'T check if the cable exists
@@ -177,6 +194,7 @@
 		losses += used
 
 	handle_generators()
+	handle_batteries()
 
 	netexcess = lavailable - load()
 
@@ -187,7 +205,6 @@
 	smes_avail = smes_newavail
 	inputting.Cut()
 	smes_demand = 0
-	battery_demand = 0
 	voltage = newvoltage
 	newvoltage = 0
 	ldemand = demand

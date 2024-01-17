@@ -42,17 +42,17 @@
 		connected.connected = src
 
 /obj/machinery/power/generator/transformer/get_voltage()
-	if(!powernet || !connected.powernet || (available() > connected.available()))
+	if(!powernet || !connected.powernet)
 		return 0
 	return connected.powernet.voltage * coef
 
 /obj/machinery/power/generator/transformer/available_power()
-	if(!powernet || !connected.powernet || (available() > connected.available()) || !connected.on)
+	if(!powernet || !connected.powernet || !connected.on)
 		return 0
 	return min(max_cap, connected.available())
 
 /obj/machinery/power/generator/transformer/on_power_drain(w)
-	if(!powernet || !connected.powernet || (available() > connected.available()))
+	if(!powernet || !connected.powernet)
 		return 0
 	return connected.draw_power(w)
 
