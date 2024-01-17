@@ -7,6 +7,9 @@
 #define REACTOR_SHIELDING_COEFFICIENT 0.05
 #define REACTOR_MODERATOR_POWER 0.27
 
+#define MAX_MAGNET_DELTA 800000000
+#define MAX_MAGNET_CHARGE 10000000
+
 /obj/machinery/power/hybrid_reactor
 	name = "reactor superstructure"
 	icon = 'icons/obj/machines/power/fission.dmi'
@@ -30,8 +33,12 @@
 	var/last_radiation = 0
 
 	var/containment = TRUE
+	var/magnets_quenched = FALSE // needs manual reset
 	var/field_power_consumption = 0
 	var/shield_temperature = 36
+	var/field_battery_charge = MAX_MAGNET_CHARGE
+	var/field_charging = FALSE // whether we soak power
+
 	var/moderator_position = 0.15 //0-1. 1 means it scatters most of the neutrons.
 	var/reflector_position = 1 //0-1. 1 means it reflects most of the neutrons.
 
@@ -75,10 +82,15 @@
 	SSradiation.radiate(src, total_radiation)
 	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
 
-	if(containment_field.temperature > 5000)
+	if(containment_field.temperature > 1000)
 		if(containment)
 			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA
-			use_power_oneoff(field_power_consumption, EQUIP)
+			field_battery_charge = max(0, field_battery_charge - field_power_consumption * CELLRATE)
+		if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
+			var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
+			charge_delta = min(MAX_MAGNET_DELTA, charge_delta) //so we don't drain all power at once
+			field_battery_charge += charge_delta * CELLRATE
+			use_power_oneoff(charge_delta, EQUIP)
 
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)

@@ -1,8 +1,8 @@
 /datum/job/administration
 	head_position = 1
 	department_types = list(/decl/department/administration)
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "company officials and Corporate Regulations"
 	selection_color = "#222255"
 	req_admin_notify = 1
@@ -25,15 +25,23 @@
 
 /datum/job/administration/ceo
 	title = "Chief Executive Officer"
+	total_positions = 1
+	spawn_positions = 1
 
 /datum/job/administration/coo
 	title = "Chief Operations Officer"
 	supervisors = "the CEO"
+	total_positions = 1
+	spawn_positions = 1
 
 /datum/job/administration/cso
 	title = "Chief Security Officer"
 	supervisors = "the CEO"
+	total_positions = 1
+	spawn_positions = 1
 
 /datum/job/administration/sdd
 	title = "Site Deputy Director"
 	supervisors = "the CEO"
+	total_positions = 1
+	spawn_positions = 1

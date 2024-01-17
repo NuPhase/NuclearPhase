@@ -150,13 +150,42 @@
 	current_valve = reactor_valves["REACTOR-F-V-OUT"]
 	current_valve.set_openage(100)
 
-	turbine_trip("SCRAM")
+	spawn(2 SECONDS)
+		turbine_trip("SCRAM")
+	spawn(4 SECONDS)
+		containment_shutdown(TRUE)
 
 	mode = REACTOR_CONTROL_MODE_MANUAL
 	scram_control = FALSE
 
 	R.reflector_position = 0
 	R.moderator_position = 0
+
+/datum/reactor_control_system/proc/containment_shutdown(emergency=FALSE)
+	do_message("PRIMARY CONTAINMENT SHUTDOWN", 3)
+	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
+	R.containment = FALSE
+	if(emergency)
+		R.magnets_quenched = TRUE
+		purge()
+
+/datum/reactor_control_system/proc/delayed_purge()
+	for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
+		SL.purge_alarm = new(list(SL.loc), TRUE)
+		spawn(31 SECONDS)
+			purge()
+		spawn(20 SECONDS)
+			QDEL_NULL(SL.purge_alarm)
+
+/datum/reactor_control_system/proc/purge()
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	playsound(rcore.superstructure, 'sound/effects/purge.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
+	var/turf/T = get_turf(rcore)
+	var/datum/gas_mixture/coreenvironment = T.return_air()
+	var/datum/gas_mixture/total_mixture = coreenvironment.remove_ratio(0.8)
+	var/turf/sT = get_turf(rcore.superstructure)
+	var/datum/gas_mixture/senvironment = sT.return_air()
+	senvironment.merge(total_mixture.remove_ratio(0.05))
 
 /datum/reactor_control_system/proc/do_message(message, urgency = 1) //urgency 1-3
 	if(has_message(message))

@@ -12,7 +12,7 @@
 	company_name = "United Nations"
 	company_short = "UN's"
 	system_name = "Sirius"
-	game_year = 184
+	game_year = 182
 
 	base_floor_type = /turf/exterior/wall/ice
 
@@ -45,6 +45,8 @@
 	allowed_spawns = list(
 		/decl/spawnpoint/arrivals
 	)
+
+	default_job_type = /datum/job/site_operations/sme
 
 	shuttle_docked_message = "The shuttle has docked."
 	shuttle_leaving_dock = "The shuttle has departed from home dock."

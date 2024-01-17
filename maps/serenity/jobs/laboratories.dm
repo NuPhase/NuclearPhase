@@ -1,7 +1,7 @@
 /datum/job/laboratories
 	department_types = list(/decl/department/laboratories)
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "administration"
 	selection_color = "#1a718b"
 	guestbanned = 1
@@ -19,10 +19,14 @@
 /datum/job/laboratories/lod
 	title = "Laboratory Operations Director"
 	supervisors = "the CEO"
+	total_positions = 1
+	spawn_positions = 1
 
 /datum/job/laboratories/load
 	title = "Laboratory Operations Assistant Director"
 	supervisors = "the Laboratory Operations Director"
+	total_positions = 1
+	spawn_positions = 1
 
 /datum/job/laboratories/pps
 	title = "Particle Physics Specialist"

@@ -79,21 +79,18 @@
 
 /obj/machinery/reactor_button/protected/purge/do_action(mob/user)
 	..()
-	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
-	for(var/obj/machinery/rotating_alarm/reactor/control_room/SL in rcontrol.control_spinning_lights)
-		SL.purge_alarm = new(list(SL.loc), TRUE)
-		spawn(31 SECONDS)
-			playsound(rcore.superstructure, 'sound/effects/purge.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
-			var/turf/T = get_turf(rcore)
-			var/datum/gas_mixture/coreenvironment = T.return_air()
-			var/datum/gas_mixture/total_mixture = coreenvironment.remove_ratio(0.8)
-			var/turf/sT = get_turf(rcore.superstructure)
-			var/datum/gas_mixture/senvironment = sT.return_air()
-			senvironment.merge(total_mixture.remove_ratio(0.05))
-		spawn(20 SECONDS)
-			QDEL_NULL(SL.purge_alarm)
+	rcontrol.delayed_purge()
 
 /obj/machinery/reactor_button/protected/efss_discharge
 	name = "EFSS DISCHARGE"
 	id = "EFSS"
 	cooldown = 5 MINUTES
+
+/obj/machinery/reactor_button/rswitch/battery_charging
+	name = "BATTERY CHARGER"
+	id = "BATTERY CHARGER"
+
+/obj/machinery/reactor_button/rswitch/battery_charging/do_action(mob/user)
+	..()
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	rcore.field_charging = state

@@ -26,7 +26,7 @@
 	if(panel_type == "Reflectors")
 		rcore.reflector_position = panel_setting * 0.01
 	else
-		rcore.moderator_position = panel_setting = 0.01
+		rcore.moderator_position = panel_setting * 0.01
 
 /obj/machinery/reactor_button/turn_switch/regvalve/moderator
 	name = "MOD V-GAS"
