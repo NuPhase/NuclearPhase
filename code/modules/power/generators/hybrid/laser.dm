@@ -69,9 +69,17 @@
 		R.fast_neutrons += rand(10, 50) //neutron generators are extremely unpredictable and inaccurate
 		use_power_oneoff(70000, EQUIP)
 		SSradiation.radiate(src, 9000)
+	else if(nmode == NEUTRON_MODE_MODERATION)
+		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
+		if(R.total_neutrons < 5000)
+			R.fast_neutrons += rand(5, 10)
+
 	if(omode == LASER_MODE_IGNITION)
 		capacitor_charge += 1
 		capacitor_charge = Clamp(capacitor_charge, 1, 150)
+	else if(omode == LASER_MODE_CONTINUOUS)
+		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
+		R.receive_power(active_power_usage)
 
 /obj/machinery/rlaser/proc/prime()
 	if(!armed)

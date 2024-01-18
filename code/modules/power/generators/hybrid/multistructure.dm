@@ -56,8 +56,7 @@ var/list/global/reactor_ports = list()
 /obj/machinery/atmospherics/unary/reactor_exchanger/Process()
 	. = ..()
 	var/obj/machinery/power/hybrid_reactor/core = reactor_components["core"]
-	var/turf/A = get_turf(core)
-	var/datum/gas_mixture/coregas = A.return_air()
+	var/datum/gas_mixture/coregas = core.containment_field
 	if(coregas.temperature > target_temperature) //we consoom
 		var/temperature_delta = target_temperature - air_contents.temperature
 		var/required_energy = air_contents.heat_capacity() * temperature_delta

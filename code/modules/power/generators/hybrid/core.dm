@@ -122,8 +122,6 @@
 		xray_flux += uptake_moles * 1.74
 
 /obj/machinery/power/hybrid_reactor/proc/receive_power(power) //in watts
-	var/turf/A = get_turf(src)
-	var/datum/gas_mixture/containment_field = A.return_air()
 	containment_field.add_thermal_energy(power)
 	return
 
