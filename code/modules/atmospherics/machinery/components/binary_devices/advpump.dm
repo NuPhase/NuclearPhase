@@ -132,6 +132,7 @@
 
 	power_draw = pump_fluid(src, air1, air2, mass_transfer, flow_capacity, power_rating)
 	last_mass_flow = min(air1_mass, flow_capacity)
+	air1.net_flow_mass += last_mass_flow
 
 	update_networks()
 

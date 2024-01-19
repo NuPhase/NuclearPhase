@@ -1,20 +1,37 @@
 /datum/gas_mixture
-	//Associative list of gas moles.
-	//Gases with 0 moles are not tracked and are pruned by update_values()
+	/*
+	Associative list of material moles.
+	/decl/material/fluid = x
+	Materials with 0 moles are not tracked and are pruned by update_values()
+	*/
 	var/list/gas = list()
-	var/list/liquids = list()
-	var/list/solids = list()
 
+	/*
+	Associative list of current material phases in the fluid mix. A list is nested inside with moles of phases.
+	The example below means that 90% of 'fluid' is in liquid state, while 10% is in gas state.
+	list(
+		/decl/material/fluid = list(
+			MAT_PHASE_LIQUID = 900,
+			MAT_PHASE_GAS = 100
+		)
+	)
+	*/
 	var/list/phases = list()
-	//Temperature in Kelvin of this gas mix.
+
+	// Temperature in Kelvin of this gas mix.
 	var/temperature = T20C
 
-	//Sum of all the gas moles in this mix.  Updated by update_values()
+	// Updated by update_values()
+	// Sum of ALL moles in this mix.
 	var/total_moles = 0
+	// Sum of all the GAS moles in this mix.
 	var/gas_moles = 0
-	//Volume of this mix.
+
+	// Total volume of this mix.
 	var/volume = CELL_VOLUME
+	// Volume not taken up by fluid.
 	var/available_volume = CELL_VOLUME
+
 	//Size of the group this gas_mixture is representing.  1 for singletons.
 	var/group_multiplier = 1
 
@@ -23,7 +40,9 @@
 	//Cache of gas overlay objects
 	var/list/tile_overlay_cache
 
-	var/atom/holder = null //for chemistry
+	// An atom that this mixture belongs to. Only used in chemistry as for now.
+	var/atom/holder = null
+
 	var/net_flow_mass = 0 //kg/s, updated from networks
 
 /datum/gas_mixture/New(_volume = CELL_VOLUME, _temperature = T20C, _group_multiplier = 1, initial_gas = null)
@@ -33,15 +52,6 @@
 	group_multiplier = _group_multiplier
 	if(initial_gas)
 		gas = initial_gas
-
-	// This section prevents roundstart flashing of liquids into gas
-	for(var/g in gas)
-		total_moles += gas[g]
-		var/decl/material/mat = GET_DECL(g)
-		phases[g] = mat.phase_at_stp()
-		if(phases[g] == MAT_PHASE_GAS)
-			gas_moles += gas[g]
-
 	update_values()
 
 /datum/gas_mixture/proc/get_gas(gasid)
@@ -163,13 +173,7 @@
 		var/decl/material/mat = GET_DECL(g)
 		if(!mat)
 			return
-		switch(phases[g])
-			if(MAT_PHASE_GAS)
-				. += mat.gas_specific_heat * gas[g]
-			if(MAT_PHASE_LIQUID)
-				. += mat.liquid_specific_heat * gas[g]
-			if(MAT_PHASE_SOLID)
-				. += mat.solid_specific_heat * gas[g]
+		. += mat.gas_specific_heat * gas[g]
 	. *= max(1, group_multiplier)
 
 
@@ -210,6 +214,8 @@
 		. += gas[g] * specific_entropy_gas(g)
 	. /= total_moles
 
+/datum/gas_mixture/proc/get_decl_for_rust(var/gasid) // shitty shit
+	return GET_DECL(gasid)
 
 /*
 	It's arguable whether this should even be called entropy anymore. It's more "based on" entropy than actually entropy now.
@@ -222,8 +228,6 @@
 	So returning a constant/(partial pressure) would probably do what most players expect. Although the version I have implemented below is a bit more nuanced than simply 1/P in that it scales in a way
 	which is bit more realistic (natural log), and returns a fairly accurate entropy around room temperatures and pressures.
 */
-/datum/gas_mixture/proc/get_decl_for_rust(var/gasid) // shitty shit
-	return GET_DECL(gasid)
 
 /datum/gas_mixture/proc/specific_entropy_gas(var/gasid)
 	if (!(gasid in gas) || gas[gasid] == 0)
@@ -242,24 +246,11 @@
 
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
-	phases.Cut()
-	var/saved_pressure = return_pressure()
 	total_moles = 0
-	gas_moles = 0
-	var/liquid_volume = 0
+	net_flow_mass = 0
 	for(var/g in gas)
-		if(gas[g] <= 0)
-			gas -= g
-		else
-			total_moles += gas[g]
-			var/decl/material/mat = GET_DECL(g)
-			phases[g] = mat.phase_at_temperature(temperature, saved_pressure)
-			if(phases[g] == MAT_PHASE_GAS)
-				gas_moles += gas[g]
-			else if(phases[g] == MAT_PHASE_LIQUID)
-				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density * 1000
-	available_volume = volume - liquid_volume
-
+		total_moles += gas[g]
+	update_phases()
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure()
@@ -470,6 +461,9 @@
 	//Shares a specific ratio of gas between mixtures using simple weighted averages.
 	var/ratio = sharing_lookup_table[6]
 
+	if(length(sharing_lookup_table) >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
+		ratio = sharing_lookup_table[connecting_tiles]
+
 	var/size = max(1, group_multiplier)
 	if(isnull(share_size)) share_size = max(1, other.group_multiplier)
 
@@ -491,11 +485,6 @@
 	if(full_heat_capacity + s_full_heat_capacity)
 		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
 
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
-	if(sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
-		ratio = sharing_lookup_table[connecting_tiles]
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
-
 	for(var/g in avg_gas)
 		gas[g] = max(0, (gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
 		if(!one_way)
@@ -511,13 +500,13 @@
 	return compare(other)
 
 
-//A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.
+// A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.
 /datum/gas_mixture/proc/share_space(datum/gas_mixture/unsim_air)
 	return share_ratio(unsim_air, unsim_air.group_multiplier, max(1, max(group_multiplier + 3, 1) + unsim_air.group_multiplier), one_way = 1)
 
-//Equalizes a list of gas mixtures.  Used for pipe networks.
+// Equalizes a list of gas mixtures.  Used for pipe networks.
 /proc/equalize_gases(list/datum/gas_mixture/gases)
-	//Calculate totals from individual components
+	// Calculate totals from individual components
 	var/total_volume = 0
 	var/total_thermal_energy = 0
 	var/total_heat_capacity = 0
@@ -535,19 +524,15 @@
 		var/datum/gas_mixture/combined = new(total_volume)
 		combined.gas = total_gas
 
-		//Calculate temperature
+		// Calculate temperature
 		if(total_heat_capacity > 0)
 			combined.temperature = total_thermal_energy / total_heat_capacity
 		combined.update_values()
 
-		//Allow for reactions
+		// Allow for reactions
 		combined.fire_react()
 
-		//Average out the gases
-		for(var/g in combined.gas)
-			combined.gas[g] /= total_volume
-
-		//Update individual gas_mixtures
+		// Firstly we equalize based on flow mass
 		for(var/datum/gas_mixture/gasmix in gases)
 			gasmix.gas = combined.gas.Copy()
 			gasmix.temperature = combined.temperature
