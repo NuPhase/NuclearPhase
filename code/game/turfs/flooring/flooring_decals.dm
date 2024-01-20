@@ -141,6 +141,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/black/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/black/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/black/half
 	icon_state = "bordercolorhalf"
 
@@ -175,6 +178,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/blue/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/blue/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/blue/half
 	icon_state = "bordercolorhalf"
 
@@ -208,6 +214,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/paleblue/border
 	icon_state = "bordercolor"
+
+/obj/effect/floor_decal/corner/paleblue/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/paleblue/half
 	icon_state = "bordercolorhalf"
@@ -244,6 +253,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/navyblue/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/navyblue/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/navyblue/half
 	icon_state = "bordercolorhalf"
 
@@ -277,6 +289,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/green/border
 	icon_state = "bordercolor"
+
+/obj/effect/floor_decal/corner/green/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/green/half
 	icon_state = "bordercolorhalf"
@@ -312,6 +327,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/lime/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/lime/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/lime/half
 	icon_state = "bordercolorhalf"
 
@@ -345,6 +363,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/yellow/border
 	icon_state = "bordercolor"
+
+/obj/effect/floor_decal/corner/yellow/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/yellow/half
 	icon_state = "bordercolorhalf"
@@ -386,6 +407,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/beige/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/beige/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/beige/bordercorner
 	icon_state = "bordercolorcorner"
 
@@ -413,6 +437,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/red/border
 	icon_state = "bordercolor"
+
+/obj/effect/floor_decal/corner/red/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/red/half
 	icon_state = "bordercolorhalf"
@@ -448,6 +475,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/pink/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/pink/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/pink/half
 	icon_state = "bordercolorhalf"
 
@@ -481,6 +511,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/purple/border
 	icon_state = "bordercolor"
+
+/obj/effect/floor_decal/corner/purple/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/purple/half
 	icon_state = "bordercolorhalf"
@@ -516,6 +549,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/mauve/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/mauve/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/mauve/half
 	icon_state = "bordercolorhalf"
 
@@ -549,6 +585,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/orange/border
 	icon_state = "bordercolor"
+
+/obj/effect/floor_decal/corner/orange/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/orange/half
 	icon_state = "bordercolorhalf"
@@ -584,6 +623,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/brown/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/brown/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/brown/half
 	icon_state = "bordercolorhalf"
 
@@ -615,6 +657,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/white/full
 	icon_state = "corner_white_full"
 
+/obj/effect/floor_decal/corner/white/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/white/half
 	icon_state = "bordercolorhalf"
 
@@ -639,6 +684,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/grey/half
 	icon_state = "bordercolorhalf"
+
+/obj/effect/floor_decal/corner/grey/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/grey/mono
 	icon_state = "bordercolormonofull"
@@ -692,6 +740,9 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/corner/lightgrey/border
 	icon_state = "bordercolor"
 
+/obj/effect/floor_decal/corner/lightgrey/line
+	icon_state = "linecolor"
+
 /obj/effect/floor_decal/corner/lightgrey/half
 	icon_state = "bordercolorhalf"
 
@@ -725,6 +776,9 @@ var/global/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/b_green/border
 	icon_state = "bordercolor"
+
+/obj/effect/floor_decal/corner/b_green/line
+	icon_state = "linecolor"
 
 /obj/effect/floor_decal/corner/b_green/half
 	icon_state = "bordercolorhalf"

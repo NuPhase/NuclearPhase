@@ -32,6 +32,7 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_state = "concrete"
+	footstep_type = /decl/footsteps/concrete
 	initial_flooring = null
 
 /turf/simulated/floor/holofloor/tiled

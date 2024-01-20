@@ -25,6 +25,14 @@
 		'sound/effects/footstep/floor4.ogg',
 		'sound/effects/footstep/floor5.ogg')
 
+/decl/footsteps/concrete
+	footstep_sounds = list(
+		'sound/effects/footstep/concrete1.ogg',
+		'sound/effects/footstep/concrete2.ogg',
+		'sound/effects/footstep/concrete3.ogg',
+		'sound/effects/footstep/concrete4.ogg',
+		'sound/effects/footstep/concrete5.ogg')
+
 /decl/footsteps/plating
 	footstep_sounds = list(
 		'sound/effects/footstep/plating1.ogg',

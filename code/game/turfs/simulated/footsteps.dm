@@ -9,7 +9,7 @@
 		if(S.footstep_type)
 			return get_footstep(S.footstep_type, caller)
 
-	if(check_fluid_depth(10) && !is_flooded(TRUE))
+	if(check_fluid_depth(10000) && !is_flooded(TRUE))
 		return get_footstep(/decl/footsteps/water, caller)
 
 	if(footstep_type)
@@ -49,7 +49,7 @@
 	if(!has_footsteps())
 		return
 
-	 //every other turf makes a sound
+	// every other turf makes a sound
 	if((step_count % 2) && !MOVING_DELIBERATELY(src))
 		return
 
@@ -62,7 +62,7 @@
 		var/footsound = T.get_footstep_sound(src)
 		if(footsound)
 			var/range = world.view - 2
-			var/volume = 70
+			var/volume = 100
 			if(MOVING_DELIBERATELY(src))
 				volume -= 45
 				range -= 0.333

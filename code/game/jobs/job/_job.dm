@@ -29,8 +29,8 @@
 	var/is_holy = FALSE                       // Can this role perform blessings?
 	var/outfit_type                           // The outfit the employee will be dressed in, if any
 	var/loadout_allowed = TRUE                // Whether or not loadout equipment is allowed and to be created when joining.
-	var/list/allowed_branches                 // For maps using branches and ranks, also expandable for other purposes
-	var/list/allowed_ranks                    // Ditto
+	var/list/allowed_branches = list(/datum/mil_branch/civ) // For maps using branches and ranks, also expandable for other purposes
+	var/list/allowed_ranks = list(/datum/mil_rank/civ/civ)  // Ditto
 	var/announced = TRUE                      // If their arrival is announced on radio
 	var/latejoin_at_spawnpoints               // If this job should use roundstart spawnpoints for latejoin (offstation jobs etc)
 	var/forced_spawnpoint                     // If set to a spawnpoint name, will use that spawn point for joining as this job.

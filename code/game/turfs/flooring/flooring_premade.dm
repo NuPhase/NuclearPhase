@@ -9,6 +9,7 @@
 	name = "concrete"
 	icon = 'icons/turf/exterior/concrete.dmi'
 	icon_state = "0"
+	footstep_type = /decl/footsteps/concrete
 	var/exterior_turf = FALSE
 
 /turf/simulated/floor/concrete/Initialize(ml, floortype)

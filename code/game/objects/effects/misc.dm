@@ -84,7 +84,7 @@
 	name = "stripe of paint"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "paintdot"
-	layer = TURF_DETAIL_LAYER
+	layer = BASE_ABOVE_OBJ_LAYER
 	blend_mode = BLEND_MULTIPLY
 
 /obj/effect/paint_stripe/Initialize()

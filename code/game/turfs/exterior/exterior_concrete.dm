@@ -15,7 +15,8 @@ var/global/exterior_broken_states = icon_states('icons/turf/exterior/broken.dmi'
 	desc = "A flat expanse of artificial stone-like artificial material."
 	icon = 'icons/turf/exterior/concrete.dmi'
 	diggable = FALSE
-	var/broken 
+	footstep_type = /decl/footsteps/concrete
+	var/broken
 	var/burned
 
 /turf/exterior/concrete/flooded
