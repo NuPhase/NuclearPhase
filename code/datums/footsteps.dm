@@ -71,6 +71,12 @@
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg')
 
+/decl/footsteps/exosuit
+	footstep_sounds = list(
+		'sound/effects/footstep/powered1.ogg',
+		'sound/effects/footstep/powered2.ogg',
+		'sound/effects/footstep/powered3.ogg')
+
 /decl/footsteps/lava
 	footstep_sounds = list(
 		'sound/effects/footstep/lava1.ogg',

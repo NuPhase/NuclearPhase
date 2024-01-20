@@ -12,6 +12,11 @@
 	if(check_fluid_depth(10000) && !is_flooded(TRUE))
 		return get_footstep(/decl/footsteps/water, caller)
 
+	if(iscarbon(caller))
+		var/mob/living/carbon/C = caller
+		if(C.msuit)
+			return get_footstep(/decl/footsteps/exosuit, caller)
+
 	if(footstep_type)
 		return get_footstep(footstep_type, caller)
 

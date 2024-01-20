@@ -54,7 +54,7 @@ var/global/obj/temp_reagents_holder = new
 
 #define BASAL_REACTION_RATE 50
 
-/datum/reagents/proc/get_reaction_rate(var/decl/material/R, activation_energy, temperature) // in ml per reaction
+/datum/reagents/proc/get_reaction_speed_coef(var/decl/material/R, activation_energy, temperature) // in ml per reaction
 	. = min(0, R.reactivity_coefficient * (temperature / activation_energy * R_IDEAL_GAS_EQUATION))
 	return .
 
