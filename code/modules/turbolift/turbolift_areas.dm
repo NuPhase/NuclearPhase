@@ -59,3 +59,84 @@
 /area/turbolift/avalon/factory/a2
 	lift_floor_label = "2"
 	lift_floor_name = "Break Room, Changing Room"
+
+/area/turbolift/serenity/personnel
+	name = "Personnel Elevator"
+
+/area/turbolift/serenity/personnel/a3
+	lift_floor_label = "3"
+	lift_floor_name = "Entrance; Administration"
+
+/area/turbolift/serenity/personnel/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Laboratories; Reactor Ops."
+
+/area/turbolift/serenity/personnel/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Security"
+
+/area/turbolift/serenity/main
+	name = "Personnel Elevator"
+
+/area/turbolift/serenity/main/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Entrance; Administration"
+
+/area/turbolift/serenity/main/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Laboratories; Reactor Ops."
+
+/area/turbolift/serenity/ro_staircase
+	name = "RO Elevator"
+
+/area/turbolift/serenity/ro_staircase/a2
+	lift_floor_label = "2"
+	lift_floor_name = "RO Entrance; Atmos Annex"
+
+/area/turbolift/serenity/ro_staircase/a1
+	lift_floor_label = "1"
+	lift_floor_name = "RO Offices; Main Catwalks"
+
+/area/turbolift/serenity/ro_control
+	name = "RO Elevator"
+
+/area/turbolift/serenity/ro_control/a2
+	lift_floor_label = "2"
+	lift_floor_name = "RO Main Catwalks; Pump Station A"
+
+/area/turbolift/serenity/ro_control/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Reactor Control Station"
+
+/area/turbolift/serenity/ro_electrical
+	name = "RO Elevator"
+
+/area/turbolift/serenity/ro_electrical/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Reactor Maintenance Tunnels"
+
+/area/turbolift/serenity/ro_electrical/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Electrical Station; Turbine Hall"
+
+/area/turbolift/serenity/reactor
+	name = "RO Elevator"
+
+/area/turbolift/serenity/reactor/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Fuel Port Access"
+
+/area/turbolift/serenity/reactor/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Chamber Entrance"
+
+/area/turbolift/serenity/entrance
+	name = "Entrance Elevator"
+
+/area/turbolift/serenity/entrance/a3
+	lift_floor_label = "3"
+	lift_floor_name = "Facility Exit"
+/area/turbolift/serenity/entrance/a2
+/area/turbolift/serenity/entrance/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Entrance Zone"

@@ -7,6 +7,7 @@
 	density =  TRUE
 	anchored = TRUE
 	opacity =  TRUE
+	atmos_canpass = CANPASS_DENSITY
 
 	var/datum/lock/lock
 	var/lock_type = /datum/lock

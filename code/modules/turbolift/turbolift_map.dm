@@ -8,7 +8,7 @@
 	var/lift_size_y = 2 // ie. a 3x3 lift would have a value of 2 in each of these variables.
 
 	// Various turf and door types used when generating the turbolift floors.
-	var/wall_type =     /turf/simulated/wall/elevator
+	var/wall_type =     /turf/simulated/wall/r_wall
 	var/floor_type =    /turf/simulated/floor/tiled/dark
 	var/door_type =     /obj/machinery/door/airlock/lift
 	var/firedoor_type = /obj/machinery/door/firedoor
@@ -62,7 +62,7 @@
 
 		if(NORTH)
 
-			int_panel_x = ux + FLOOR(lift_size_x/2) 
+			int_panel_x = ux + FLOOR(lift_size_x/2)
 			int_panel_y = uy + 1
 			ext_panel_x = ux
 			ext_panel_y = ey + 2
@@ -79,7 +79,7 @@
 
 		if(SOUTH)
 
-			int_panel_x = ux + FLOOR(lift_size_x/2) 
+			int_panel_x = ux + FLOOR(lift_size_x/2)
 			int_panel_y = ey - 1
 			ext_panel_x = ex
 			ext_panel_y = uy - 2

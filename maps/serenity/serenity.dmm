@@ -1529,6 +1529,12 @@
 /obj/item/stack/medical/wound_filler,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
+"gb" = (
+/obj/turbolift_map_holder/serenity/ro_control{
+	dir = 2
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/reactor_operations)
 "gc" = (
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -3346,6 +3352,10 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"mV" = (
+/obj/turbolift_map_holder/serenity/personnel_elevator,
+/turf/simulated/floor/plating,
+/area/serenity)
 "mW" = (
 /obj/machinery/conveyor,
 /obj/structure/plasticflaps/airtight,
@@ -3375,6 +3385,12 @@
 /obj/effect/floor_decal/spline/fancy/wood,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/chief_engineer)
+"nh" = (
+/obj/turbolift_map_holder/serenity/entrance_elevator{
+	dir = 2
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/entrance_zone)
 "ni" = (
 /obj/structure/table/glass,
 /obj/machinery/recharger,
@@ -6977,7 +6993,9 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "Al" = (
-/obj/turbolift_map_holder,
+/obj/turbolift_map_holder/serenity/main_elevator{
+	dir = 2
+	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/entrance_zone)
 "Am" = (
@@ -8376,6 +8394,12 @@
 /obj/item/pen,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
+"FL" = (
+/obj/turbolift_map_holder/serenity/ro_staircase{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/reactor_operations)
 "FP" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/corner/green{
@@ -9462,6 +9486,12 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
+"Kh" = (
+/obj/turbolift_map_holder/serenity/reactor{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/road,
+/area/serenity/shelter/engineering/reactor)
 "Kk" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -11443,6 +11473,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations)
+"Rk" = (
+/obj/turbolift_map_holder/serenity/ro_electrical{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical)
 "Rl" = (
 /obj/machinery/atmospherics/pipe/simple/visible/water,
 /turf/simulated/wall/concrete/nano,
@@ -84105,7 +84141,7 @@ cU
 hp
 hp
 hp
-hp
+Rk
 cU
 nW
 yF
@@ -86668,7 +86704,7 @@ Kx
 VY
 VY
 VY
-VY
+Kh
 Kx
 nW
 nW
@@ -91728,7 +91764,7 @@ eu
 Xo
 Xo
 Xo
-Xo
+gb
 eu
 mU
 FE
@@ -99699,7 +99735,7 @@ eu
 Xo
 Xo
 Xo
-Xo
+FL
 eu
 DQ
 DQ
@@ -101177,12 +101213,12 @@ qE
 Nf
 Nf
 Nf
-Nf
+mV
 qE
 Nf
 Nf
 Nf
-Nf
+mV
 qE
 cQ
 cQ
@@ -111033,7 +111069,7 @@ mD
 nY
 nY
 nY
-nY
+Al
 bP
 FS
 dA
@@ -111523,7 +111559,7 @@ mD
 nY
 nY
 nY
-nY
+Al
 bP
 dA
 dA
@@ -119188,7 +119224,7 @@ nY
 nY
 nY
 nY
-Al
+nh
 bP
 bP
 bP

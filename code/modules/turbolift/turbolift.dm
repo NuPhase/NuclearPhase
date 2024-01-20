@@ -39,6 +39,7 @@
 	switch(weight)
 		if(1 to 25)
 			control_panel_interior.visible_message("<span class='warning'>The elevator skids and stops abruptly!</span>")
+			playsound(control_panel_interior, 'sound/effects/elevator_stuck.ogg', 50, 0, -2, 3)
 			var/area/A = current_floor.area_ref
 			for(var/obj/machinery/light/L in A)
 				if(prob(50))
