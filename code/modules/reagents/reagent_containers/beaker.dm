@@ -142,6 +142,12 @@
 	if(material.is_brittle())
 		shatter()
 
+/obj/item/chems/glass/beaker/vial/afterattack(obj/target, mob/user, proximity)
+	if(istype(target, /obj/machinery/centrifuge))
+			return TRUE	
+	. = ..()
+	
+
 /obj/item/chems/glass/beaker/insulated
 	name = "insulated beaker"
 	desc = "A glass beaker surrounded with black insulation."
