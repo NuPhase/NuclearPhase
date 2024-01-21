@@ -5,7 +5,7 @@
 	allowed_ranks = list(/datum/mil_rank/civ/civ)
 	required_language = null
 
-/datum/map/avalon
+/datum/map/serenity
 	branch_types = list(
 		/datum/mil_branch/civ,
 		/datum/mil_branch/army
