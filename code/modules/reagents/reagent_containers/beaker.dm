@@ -144,9 +144,9 @@
 
 /obj/item/chems/glass/beaker/vial/afterattack(obj/target, mob/user, proximity)
 	if(istype(target, /obj/machinery/centrifuge))
-			return TRUE	
+		return TRUE
 	. = ..()
-	
+
 
 /obj/item/chems/glass/beaker/insulated
 	name = "insulated beaker"

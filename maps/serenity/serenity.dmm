@@ -3885,6 +3885,13 @@
 /obj/machinery/reactor_server,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity)
+"pm" = (
+/obj/machinery/light/ceiling,
+/obj/machinery/detector/radiation_intoxication{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "pn" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 9
@@ -4472,6 +4479,13 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
+"rk" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/machinery/detector/radiation_intoxication,
+/turf/simulated/floor/tiled/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "rl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green,
 /turf/simulated/wall/concrete/nano,
@@ -8731,6 +8745,13 @@
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"Hk" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/detector/radiation_intoxication,
+/turf/simulated/floor/tiled/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "Hm" = (
 /obj/machinery/light,
 /turf/simulated/floor/concrete/road,
@@ -11473,6 +11494,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations)
+"Rj" = (
+/obj/machinery/door/airlock/glass/command,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "Rk" = (
 /obj/turbolift_map_holder/serenity/ro_electrical{
 	dir = 8
@@ -12037,6 +12065,10 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
+"Tw" = (
+/obj/structure/railing/mapped,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "Tz" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped{
@@ -12614,6 +12646,15 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
+"Vu" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/detector/radiation_intoxication{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "Vv" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/zpipe/down,
@@ -93637,7 +93678,7 @@ Wc
 Wq
 Wq
 Wq
-Wq
+sH
 Wq
 JY
 Pk
@@ -93735,7 +93776,7 @@ Iq
 Wq
 Wq
 Wq
-Wq
+sH
 Wq
 JY
 id
@@ -93832,8 +93873,8 @@ AA
 Bu
 Wq
 Wq
-Wq
-Wq
+Tw
+sH
 Wq
 JY
 KQ
@@ -93930,8 +93971,8 @@ AA
 Bu
 Wq
 Wq
-Wq
-Wq
+Tw
+sH
 Wq
 JY
 gi
@@ -94028,9 +94069,9 @@ aC
 JR
 Wq
 Wq
-Wq
-Wq
-JR
+Tw
+Vu
+pm
 AA
 AA
 AA
@@ -94127,7 +94168,7 @@ AA
 AA
 AA
 AA
-aF
+Rj
 aF
 AA
 vW
@@ -94225,7 +94266,7 @@ Qu
 gc
 AA
 HM
-Wq
+sH
 Wq
 AA
 Ge
@@ -94323,7 +94364,7 @@ YM
 gc
 AA
 Qw
-Wq
+sH
 Wq
 AA
 uv
@@ -94421,7 +94462,7 @@ gc
 gc
 kZ
 Wq
-Wq
+sH
 Wq
 AA
 WB
@@ -94519,7 +94560,7 @@ AA
 oX
 AA
 GL
-Wq
+sH
 Wq
 AA
 YH
@@ -99817,7 +99858,7 @@ dg
 LW
 VD
 Ij
-zG
+Hk
 zG
 eY
 ii
@@ -99915,7 +99956,7 @@ xp
 xp
 GZ
 nx
-VV
+rk
 oP
 VV
 BL
