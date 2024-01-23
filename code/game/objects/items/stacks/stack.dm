@@ -342,7 +342,7 @@
 
 
 /obj/item/stack/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/stack) && can_merge())
+	if (istype(W, /obj/item/stack) && can_merge(src))
 		var/obj/item/stack/S = W
 		. = src.transfer_to(S)
 

@@ -72,8 +72,8 @@ SUBSYSTEM_DEF(radiation)
 		var/datum/radiation_source/source = value
 		if(source.rad_power < .)
 			continue // Already being affected by a stronger source
-		if(source.source_turf.z != T.z)
-			continue // Radiation is not multi-z
+		//if(source.source_turf.z != T.z)
+		//	continue // Radiation is not multi-z
 		if(source.respect_maint)
 			var/area/A = T.loc
 			if(A.area_flags & AREA_FLAG_RAD_SHIELDED)
@@ -86,15 +86,23 @@ SUBSYSTEM_DEF(radiation)
 			. = max(., source.rad_power)
 			continue // No need to ray trace for flat  field
 
-		// Okay, now ray trace to find resistence!
+		// Okay, now ray trace to find resistance!
 		var/turf/origin = source.source_turf
 		var/working = source.rad_power
-		while(origin != T)
-			origin = get_step_towards(origin, T) //Raytracing
-			if(!resistance_cache[origin]) //Only get the resistance if we don't already know it.
-				origin.calc_rad_resistance()
-			if(origin.cached_rad_resistance)
-				working = round((working / (origin.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.1)
+		var/x = abs(origin.x - T.x)
+		var/y = abs(origin.y - T.y)
+		var/z = abs(origin.z - T.z)
+		var/datum/vector3/vec = new(x, y, z)
+		var/hip = round(vec.get_hipotynuse())
+		var/datum/vector3/norm_vec = vec.copy()
+		for(var/block in 1 to round(hip, 1))
+			norm_vec.normalise()
+			norm_vec.mult(new /datum/vector3(block, block, block))
+			var/turf/blocking = locate(T.x + round(norm_vec.x, 1), T.y + round(norm_vec.y, 1), T.z + round(norm_vec.z))
+			if(!resistance_cache[blocking]) //Only get the resistance if we don't already know it.
+				blocking.calc_rad_resistance()
+			if(blocking.cached_rad_resistance)
+				working = round((working / (blocking.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.1)
 			if((working <= .) || (working <= RADIATION_THRESHOLD_CUTOFF))
 				break // Already affected by a stronger source (or its zero...)
 		. = max((working / (dist ** 2)), .) //Butchered version of the inverse square law. Works for this purpose

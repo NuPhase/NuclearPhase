@@ -213,7 +213,7 @@ var/global/world_topic_last = world.timeofday
 				D.associate(global.ckey_directory[ckey])
 
 /world/proc/update_status()
-	var/s = "<b>[station_name()]</b>"
+	var/s = "<b>\[RU/EN\] [station_name()]</b>"
 
 	if(config && config.discordurl)
 		s += " (<a href=\"[config.discordurl]\">Discord</a>)"
@@ -231,14 +231,6 @@ var/global/world_topic_last = world.timeofday
 	if (!config.enter_allowed)
 		features += "closed"
 
-	features += config.abandon_allowed ? "respawn" : "no respawn"
-
-	if (config && config.allow_vote_mode)
-		features += "vote"
-
-	if (config && config.allow_ai)
-		features += "AI allowed"
-
 	var/n = 0
 	for (var/mob/M in global.player_list)
 		if (M.client)
@@ -248,10 +240,6 @@ var/global/world_topic_last = world.timeofday
 		features += "~[n] players"
 	else if (n > 0)
 		features += "~[n] player"
-
-
-	if (config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
 
 	if (features)
 		s += ": [jointext(features, ", ")]"
