@@ -737,8 +737,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 /decl/material/proc/mix_data(var/datum/reagents/reagents, var/list/newdata, var/amount)
 	. = REAGENT_DATA(reagents, type)
 
-#define EXPLOSION_ENERGY_COEFFICIENT 0.0001 //explosion power per joule of combustion energy
-#define DEFLAG_ENERGY_COEFFICIENT 0.01
+#define EXPLOSION_ENERGY_COEFFICIENT 0.00001 //explosion power per joule of combustion energy
+#define DEFLAG_ENERGY_COEFFICIENT 0.0001
 /decl/material/proc/explosion_act(obj/item/chems/holder, severity)
 	SHOULD_CALL_PARENT(TRUE)
 	. = TRUE

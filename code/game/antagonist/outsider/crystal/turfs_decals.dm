@@ -1,17 +1,70 @@
 /obj/effect/crystal_growth //stepping barefoot will be PUNISHED
 	name = "crystal covered floor"
 	desc = "These crystals are terrifying in their perfect placement patterns."
-	layer = DECAL_LAYER
+	layer = CATWALK_LAYER
 	anchored = 1
 	icon = 'icons/turf/mining_decals.dmi'
 	icon_state = "crystal"
 
-/obj/effect/crystal_growth/New(loc, ...)
+/obj/effect/crystal_growth/Process()
+	try_expand()
+
+/obj/effect/crystal_growth/Initialize()
 	. = ..()
 	set_light(1, 1, COLOR_LIME)
+	var/area/A = get_area(loc)
+	A.background_radiation += 2.1
+	START_PROCESSING(SSblob, src)
+
+/obj/effect/crystal_growth/Destroy()
+	SSmaterials.create_object(/decl/material/solid/static_crystal, get_turf(src), 3, /obj/item/stack/material/gemstone)
+	. = ..()
+	var/area/A = get_area(loc)
+	A.background_radiation -= 2.1
+	STOP_PROCESSING(SSblob, src)
 
 /obj/effect/crystal_growth/meat
 	desc = "These crystals are terrifying in their perfect placement patterns. There are pieces of flesh lodged inbetween individual shards..."
+
+/obj/effect/crystal_growth/attackby(obj/item/I, mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(src)
+	visible_message(SPAN_WARNING("[user] attacks \the [src] with \the [I]!"))
+	playsound(src, "glasscrack", 50, 1)
+	if(I.force > 10 && prob(I.force))
+		visible_message(SPAN_DANGER("[src] gets shredded to pieces!"))
+		qdel(src)
+	. = ..()
+
+/obj/effect/crystal_growth/proc/expand(var/turf/T)
+	if(!istype(T, /turf/simulated/floor))
+		return
+
+	for(var/obj/machinery/door/D in T) // There can be several - and some of them can be open, locate() is not suitable
+		if(D.density)
+			return
+
+	var/obj/machinery/camera/CA = locate() in T
+	if(CA)
+		CA.take_damage(30)
+		return
+
+	new /obj/effect/crystal_growth(T)
+
+/obj/effect/crystal_growth/proc/try_expand()
+	set waitfor = FALSE
+	sleep(4)
+	var/pushDir = pick(global.cardinal)
+	var/turf/T = get_step(src, pushDir)
+	var/obj/effect/crystal_growth/C = (locate() in T)
+	if(!C)
+		expand(T)
+		return
+
+/obj/effect/crystal_growth/explosion_act(severity)
+	. = ..()
+	if(prob(severity * 0.5))
+		qdel(src)
 
 /obj/effect/crystal_growth/Crossed(atom/movable/AM)
 	..()
@@ -54,7 +107,7 @@
 			return
 
 /obj/item/projectile/bullet/pellet/fragment/crystal
-	damage = 6
+	damage = 3
 	irradiate = 5
 	eyeblur = 1
 
@@ -93,6 +146,7 @@
 		L.forceMove(src)
 
 /obj/effect/crystal_wall/Destroy()
+	SSmaterials.create_object(/decl/material/solid/static_crystal, loc, 7, /obj/item/stack/material/gemstone)
 	for(var/obj/item/I in contents)
 		I.forceMove(loc)
 	for(var/mob/M in contents)

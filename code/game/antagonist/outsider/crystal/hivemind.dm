@@ -7,6 +7,8 @@
 /mob/living/crystal_hivemind //stationary. Think of the blob.
 	name = "Patient Zero"
 	desc = "A barely recognizable crystal mass merged with something that looks like a human."
+	icon = 'icons/turf/mining_decals.dmi'
+	icon_state = "crystal_wall"
 	var/eye_type = /mob/observer/eye/freelook
 	var/datum/visualnet/eyenet
 	universal_understand = TRUE
@@ -28,3 +30,7 @@
 	eyeobj = new eye_type(get_turf(src), eyenet)
 	eyeobj.possess(src)
 	eyenet.add_source(src)
+
+/mob/living/crystal_hivemind/death(gibbed, deathmessage, show_dead_message)
+	. = ..()
+	qdel(src)
