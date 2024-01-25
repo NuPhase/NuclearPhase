@@ -21,7 +21,7 @@ var/global/list/mining_floors = list()
 	footstep_type = /decl/footsteps/asteroid
 	initial_flooring = /decl/flooring/asteroid
 	//initial_gas = list(/decl/material/gas/oxygen = MOLES_O2MINE, /decl/material/gas/nitrogen = MOLES_N2MINE, /decl/material/gas/carbon_dioxide = 2, /decl/material/gas/sulfur_dioxide = 1)
-	temperature = TCMB
+	temperature = T20C-15
 	turf_flags = TURF_FLAG_BACKGROUND
 
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug

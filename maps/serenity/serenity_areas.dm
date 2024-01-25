@@ -240,6 +240,11 @@
 /area/serenity/shelter/labs/particle_physics
 	name = "Particle Physics Laboratory"
 	icon_state = "devlab"
+
+/area/serenity/shelter/labs/particle_physics/particle_accelerator
+	name = "Particle Accelerator Chamber"
+	background_radiation = 1.83
+
 /area/serenity/shelter/labs/genetics
 	name = "General Genetics Laboratory"
 	icon_state = "toxlab"
