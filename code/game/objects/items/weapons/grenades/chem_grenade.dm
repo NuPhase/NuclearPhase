@@ -162,6 +162,7 @@
 
 	for(var/obj/item/chems/glass/G in beakers)
 		G.reagents.trans_to_obj(src, G.reagents.total_volume)
+		try_detonate_reagents()
 
 	anchored = TRUE
 	set_invisibility(INVISIBILITY_MAXIMUM)

@@ -750,6 +750,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/volume = REAGENT_VOLUME(holder?.reagents, type)
 	var/gas_moles = volume / molar_volume
 	var/oxidizer_moles = environment.get_by_flag(XGM_GAS_OXIDIZER)
+	if(gas_flags & XGM_GAS_OXIDIZER) //we can oxidize ourselves
+		oxidizer_moles += gas_moles
 	var/actually_combusted = min(gas_moles, oxidizer_moles)
 	var/total_energy = actually_combusted * combustion_energy
 	products.adjust_gas(burn_product, gas_moles*0.05, FALSE)

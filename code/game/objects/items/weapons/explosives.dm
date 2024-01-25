@@ -75,7 +75,7 @@
 	if(!target)
 		target = src
 	if(location)
-		cell_explosion(get_turf(target), 1100, 600, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, explosion_direction)
+		cell_explosion(get_turf(target), 3100, 2500, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, explosion_direction)
 	if(target)
 		target.overlays -= image_overlay
 	qdel(src)
