@@ -11,6 +11,7 @@
 	layer = ABOVE_HUMAN_LAYER
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
 	icon = 'icons/obj/machines/fusion_reactor.dmi'
+	icon_state = "reactor"
 	pixel_y = -208
 	pixel_x = -208
 	var/datum/composite_sound/reactor/soundloop
@@ -19,6 +20,7 @@
 	. = ..()
 	add_filter("glow", 1, list(type="drop_shadow", x = 0, y = 0, offset = 0, size = 0))
 	reactor_components["superstructure"] = src
+	add_overlay(overlay_image(icon, "control_connector"))
 
 /obj/structure/reactor_superstructure/proc/startsound()
 	soundloop = new(list(src), TRUE)
