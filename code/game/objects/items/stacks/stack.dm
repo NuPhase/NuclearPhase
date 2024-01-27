@@ -11,8 +11,7 @@
 
 /obj/item/stack
 	gender = PLURAL
-	origin_tech = "{'materials':1}"
-
+	origin_tech = @'{"materials":1}'
 	var/singular_name
 	var/plural_name
 	var/base_state

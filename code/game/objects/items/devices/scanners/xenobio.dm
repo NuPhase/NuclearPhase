@@ -6,7 +6,7 @@
 	item_state = "analyzer"
 	scan_sound = 'sound/effects/scanbeep.ogg'
 	printout_color = "#f3e6ff"
-	origin_tech = "{'magnets':1,'biotech':1}"
+	origin_tech = @'{"magnets":1,"biotech":1}'
 	material = /decl/material/solid/metal/steel
 	matter = list(
 		/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT,

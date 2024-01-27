@@ -5,9 +5,8 @@
 	a hostile enviroment."
 	icon = 'icons/obj/storage/cryobag.dmi'
 	icon_state = "bodybag_folded"
-	origin_tech = "{'biotech':4}"
 	material = /decl/material/solid/plastic
-	material = /decl/material/solid/plastic
+	origin_tech = @'{"biotech":4}'
 	matter = list(
 		/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/metal/silver = MATTER_AMOUNT_TRACE,

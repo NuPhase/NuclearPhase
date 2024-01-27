@@ -41,7 +41,7 @@
 	throw_speed = 4
 	throw_range = 5
 	force = 5
-	origin_tech = "{'combat':1}"
+	origin_tech = @'{"combat":1}'
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 
@@ -129,7 +129,7 @@
 		autofiring_at = fire_at
 		autofiring_by = fire_by
 		if(!autofiring_timer)
-			autofiring_timer = addtimer(CALLBACK(src, .proc/handle_autofire), burst_delay, (TIMER_STOPPABLE | TIMER_LOOP | TIMER_UNIQUE | TIMER_OVERRIDE))
+			autofiring_timer = addtimer(CALLBACK(src, PROC_REF(handle_autofire)), burst_delay, (TIMER_STOPPABLE | TIMER_LOOP | TIMER_UNIQUE | TIMER_OVERRIDE))
 	else
 		clear_autofire()
 
@@ -385,7 +385,7 @@
 					to_chat(user, "<span class='warning'>You struggle to hold \the [src] steady!</span>")
 
 	if(screen_shake)
-		shake_camera(user, (burst > 1? burst_delay : fire_delay), screen_shake)
+		directional_recoil(user, screen_shake, Get_Angle(user, target))
 
 	if(combustion)
 		var/turf/curloc = get_turf(src)

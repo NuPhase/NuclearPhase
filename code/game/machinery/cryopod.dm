@@ -118,12 +118,12 @@
 /obj/item/stock_parts/circuitboard/cryopodcontrol
 	name = "circuit board (Cryogenic Oversight Console)"
 	build_path = /obj/machinery/computer/cryopod
-	origin_tech = "{'programming':3}"
+	origin_tech = @'{"programming":3}'
 
 /obj/item/stock_parts/circuitboard/robotstoragecontrol
 	name = "circuit board (Robotic Storage Console)"
 	build_path = /obj/machinery/computer/cryopod/robot
-	origin_tech = "{'programming':3}"
+	origin_tech = @'{"programming":3}'
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -267,7 +267,7 @@
 	if(!control_computer)
 		control_computer = locate(/obj/machinery/computer/cryopod) in get_area(src)
 		if(control_computer)
-			events_repository.register(/decl/observ/destroyed, control_computer, src, .proc/clear_control_computer)
+			events_repository.register(/decl/observ/destroyed, control_computer, src, PROC_REF(clear_control_computer))
 	return control_computer
 
 /obj/machinery/cryopod/proc/clear_control_computer()

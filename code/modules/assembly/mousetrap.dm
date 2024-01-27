@@ -2,8 +2,8 @@
 	name = "rat trap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
-	origin_tech = "{'combat':1}"
 	material = /decl/material/solid/wood
+	origin_tech = @'{"combat":1}'
 	matter = list(/decl/material/solid/metal/steel = MATTER_AMOUNT_REINFORCEMENT)
 	var/armed = 0
 

@@ -131,13 +131,17 @@
 	armor_penetration = 0
 	distance_falloff = 0.5 //we're large so falloff is lower
 
+/obj/item/projectile/bullet/shotgun/incendiary/after_move()
+	. = ..()
+	new /obj/effect/fake_fire/dragon_breath(loc)
+
 /obj/item/projectile/bullet/shotgun/incendiary/on_hit(atom/target, blocked)
-	if(..(target, blocked) && isliving(target))
-		var/mob/living/L = target
-		L.adjust_fire_stacks(rand(5,8))
-		L.IgniteMob()
-	else
-		deflagration(get_turf(target), 150, 10, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, shock_color = FIRE_COLOR_DEFAULT)
+	if(..(target, blocked))
+		if(isliving(target))
+			var/mob/living/L = target
+			L.adjust_fire_stacks(rand(5,8))
+			L.IgniteMob()
+	deflagration(get_turf(target), 150, 25, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, shock_color = FIRE_COLOR_DEFAULT)
 
 /obj/item/projectile/bullet/shotgun/riot
 	name = "riot control"

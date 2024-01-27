@@ -3,7 +3,7 @@
 	..()
 	if(owner)
 		var/datum/mind/mind = owner
-		events_repository.register(/decl/observ/moved, mind.current, src, .proc/owner_moved)
+		events_repository.register(/decl/observ/moved, mind.current, src, PROC_REF(owner_moved))
 
 /datum/goal/movement/proc/owner_moved()
 	return

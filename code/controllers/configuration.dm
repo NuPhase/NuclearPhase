@@ -156,8 +156,8 @@ var/global/list/gamemode_cache = list()
 	var/simultaneous_pm_warning_timeout = 100
 
 	var/use_iterative_explosions //Defines whether the server uses iterative or circular explosions.
-	var/iterative_explosives_z_threshold = 10
-	var/iterative_explosives_z_multiplier = 0.75
+	var/iterative_explosives_z_threshold = 200
+	var/iterative_explosives_z_multiplier = 0.15
 
 	var/assistant_maint = 0 //Do assistants get maint access?
 	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.

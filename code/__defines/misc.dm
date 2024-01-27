@@ -282,3 +282,10 @@
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+/// Causes the atom to ignore clicks, hovers, etc.
+#define MOUSE_OPACITY_UNCLICKABLE 0
+/// Causes the atom to catch clicks, hovers, etc.
+#define MOUSE_OPACITY_NORMAL 1
+/// Causes the atom to catch clicks, hovers, etc, taking priority over NORMAL for a shared pointer target.
+#define MOUSE_OPACITY_PRIORITY 2

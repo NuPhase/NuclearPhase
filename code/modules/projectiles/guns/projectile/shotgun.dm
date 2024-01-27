@@ -9,7 +9,7 @@
 	obj_flags =  OBJ_FLAG_CONDUCTIBLE
 	slot_flags = SLOT_BACK
 	caliber = CALIBER_SHOTGUN
-	origin_tech = "{'combat':4,'materials':2}"
+	origin_tech = @'{"combat":4,"materials":2}'
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/riot
 	handle_casings = HOLD_CASINGS
@@ -18,6 +18,7 @@
 	var/recentpump = 0 // to prevent spammage
 	load_sound = 'sound/weapons/guns/interaction/shotgun_instert.ogg'
 	muzzle_flash_intensity = 2
+	screen_shake = 10
 
 /obj/item/gun/projectile/shotgun/update_base_icon()
 	if(length(loaded))
@@ -65,7 +66,7 @@
 	obj_flags =  OBJ_FLAG_CONDUCTIBLE
 	slot_flags = SLOT_BACK
 	caliber = CALIBER_SHOTGUN
-	origin_tech = "{'combat':3,'materials':1}"
+	origin_tech = @'{"combat":3,"materials":1}'
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	one_hand_penalty = 2
 

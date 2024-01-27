@@ -11,7 +11,7 @@
 
 /obj/structure/emergency_dispenser/attack_hand(mob/user)
 	if(!CanPhysicallyInteract(user))	//Added by Strumpetplaya - AI shouldn't be able to  (you're both stupid, need CanPhysicallyInteract --Chinsky)
-		return							//activate emergency lockers.  This fixes that.  (Does this make sense, the AI can't call attack_hand, can it? --Mloc) 
+		return							//activate emergency lockers.  This fixes that.  (Does this make sense, the AI can't call attack_hand, can it? --Mloc)
 	. = TRUE
 	if(!amount)
 		to_chat(user, SPAN_WARNING("It's empty."))

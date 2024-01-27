@@ -114,8 +114,7 @@
 	name = "Power - portable fission generator parts"
 	contains = list(/obj/item/stock_parts/micro_laser,
 					/obj/item/stock_parts/capacitor,
-					/obj/item/stock_parts/matter_bin,
-					/obj/item/stock_parts/circuitboard/pacman/super)
+					/obj/item/stock_parts/matter_bin)
 	containername = "portable fission generator construction kit"
 	containertype = /obj/structure/closet/crate/secure
 	access = access_tech_storage

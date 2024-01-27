@@ -46,7 +46,7 @@
 		if(!islist(shuttle_area))
 			shuttle_area = list(shuttle_area)
 		for(var/T in shuttle_area)
-			if(istype(T, /area)) // If the shuttle area is already a type, it does not need to be located. 
+			if(istype(T, /area)) // If the shuttle area is already a type, it does not need to be located.
 				areas += T
 				continue
 			var/area/A
@@ -264,7 +264,7 @@
 
 // Remove all powernets and pipenets that were affected, and rebuild them.
 /datum/shuttle/proc/handle_pipes_and_power_on_move(var/list/new_turfs)
-	var/list/powernets = list()	
+	var/list/powernets = list()
 	var/list/cables = list()
 	var/list/pipes = list()
 

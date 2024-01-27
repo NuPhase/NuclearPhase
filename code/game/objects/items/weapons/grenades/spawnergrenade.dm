@@ -2,8 +2,8 @@
 	desc = "It is set to detonate in 5 seconds. It will unleash unleash an unspecified anomaly into the vicinity."
 	name = "delivery grenade"
 	icon = 'icons/obj/items/grenades/delivery.dmi'
-	origin_tech = "{'materials':3,'magnets':4}"
 	var/banglet = 0
+	origin_tech = @'{"materials":3,"magnets":4}'
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver
 
@@ -25,10 +25,10 @@
 	name = "manhack delivery grenade"
 	spawner_type = /mob/living/simple_animal/hostile/viscerator
 	deliveryamt = 5
-	origin_tech = "{'materials':3,'magnets':4,'esoteric':4}"
+	origin_tech = @'{"materials":3,"magnets":4,"esoteric":4}'
 
 /obj/item/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"
 	spawner_type = /mob/living/simple_animal/hostile/carp
 	deliveryamt = 5
-	origin_tech = "{'materials':3,'magnets':4,'esoteric':4}"
+	origin_tech = @'{"materials":3,"magnets":4,"esoteric":4}'

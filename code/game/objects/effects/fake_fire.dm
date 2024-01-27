@@ -12,6 +12,7 @@
 /obj/effect/fake_fire/Initialize()
 	. = ..()
 	set_light(3, 0.5, color)
+	Process()
 	START_PROCESSING(SSobj,src)
 	if(lifetime)
 		QDEL_IN(src,lifetime)
@@ -26,3 +27,11 @@
 /obj/effect/fake_fire/Destroy()
 	STOP_PROCESSING(SSobj,src)
 	. = ..()
+
+/obj/effect/fake_fire/dragon_breath
+	icon_state = "1"
+	lifetime = 3
+	firelevel = 5
+	last_temperature = 800
+	pressure = ONE_ATMOSPHERE
+	color = FIRE_COLOR_DEFAULT

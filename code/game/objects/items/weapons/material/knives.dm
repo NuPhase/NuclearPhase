@@ -7,15 +7,15 @@
 	material_force_multiplier = 0.3
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	material = /decl/material/solid/metal/steel
-	origin_tech = "{'materials':1}"
 	unbreakable = TRUE
+	origin_tech = @'{"materials":1}'
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	sharp = TRUE
 	edge = TRUE
 	item_flags = ITEM_FLAG_CAN_HIDE_IN_SHOES
 	applies_material_name = TRUE
 	applies_material_colour = TRUE
-	pickup_sound = 'sound/foley/knife1.ogg' 
+	pickup_sound = 'sound/foley/knife1.ogg'
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 
 	var/draw_handle
@@ -25,10 +25,10 @@
 /obj/item/knife/Initialize(ml, material_key)
 	. = ..()
 	if(!has_extension(src, /datum/extension/tool))
-		set_extension(src, /datum/extension/tool/variable, list( 
+		set_extension(src, /datum/extension/tool/variable, list(
 			TOOL_SCALPEL =     TOOL_QUALITY_MEDIOCRE,
 			TOOL_SAW =         TOOL_QUALITY_BAD,
-			TOOL_RETRACTOR =   TOOL_QUALITY_BAD, 
+			TOOL_RETRACTOR =   TOOL_QUALITY_BAD,
 			TOOL_SCREWDRIVER = TOOL_QUALITY_BAD
 		))
 

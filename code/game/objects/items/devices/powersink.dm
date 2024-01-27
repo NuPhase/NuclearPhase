@@ -14,7 +14,7 @@
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/metallic_hydrogen = MATTER_AMOUNT_REINFORCEMENT)
 
-	origin_tech = "{'powerstorage':3,'esoteric':5}"
+	origin_tech = @'{"powerstorage":3,"esoteric":5}'
 	var/drain_rate = 1500000		// amount of power to drain per tick
 	var/apc_drain_rate = 5000 		// Max. amount drained from single APC. In Watts.
 	var/dissipation_rate = 20000	// Passive dissipation of drained power. In Watts.

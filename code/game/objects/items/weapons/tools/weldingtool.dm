@@ -1,32 +1,30 @@
 /obj/item/weldingtool
-	name = "welding tool"
-	icon = 'icons/obj/items/tool/welders/welder.dmi'
-	icon_state = ICON_STATE_WORLD
-	desc = "A portable welding gun with a port for attaching fuel tanks."
-	obj_flags = OBJ_FLAG_CONDUCTIBLE
-	slot_flags = SLOT_LOWER_BODY
-	center_of_mass = @"{'x':14,'y':15}"
-	force = 5
-	throwforce = 5
-	throw_speed = 1
-	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
-	material = /decl/material/solid/metal/steel
-	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
-	origin_tech = "{'engineering':1}"
-	drop_sound = list('sound/foley/tooldrop1.ogg', 'sound/foley/tooldrop2.ogg', 'sound/foley/tooldrop3.ogg')
-	z_flags = ZMM_MANGLE_PLANES
-
-	var/lit_colour = COLOR_PALE_ORANGE
-	var/waterproof = FALSE
-	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
-	var/status = 1 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
-	var/welding_resource = "welding fuel"
-	var/obj/item/welder_tank/tank = /obj/item/welder_tank // where the fuel is stored
-
-	var/activate_sound = 'sound/items/welderactivate.ogg'
-	var/deactivate_sound = 'sound/items/welderdeactivate.ogg'
-	weight = 2.5
+	name                                = "welding tool"
+	desc                                = "A portable welding gun with a port for attaching fuel tanks."
+	icon                                = 'icons/obj/items/tool/welders/welder.dmi'
+	icon_state                          = ICON_STATE_WORLD
+	obj_flags                           = OBJ_FLAG_CONDUCTIBLE
+	slot_flags                          = SLOT_LOWER_BODY
+	center_of_mass                      = @'{"x":14,"y":15}'
+	force                               = 5
+	throwforce                          = 5
+	throw_speed                         = 1
+	throw_range                         = 5
+	w_class                             = ITEM_SIZE_SMALL
+	material                            = /decl/material/solid/metal/steel
+	matter                              = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
+	origin_tech                         = @'{"engineering":1}'
+	drop_sound                          = 'sound/foley/tooldrop1.ogg'
+	z_flags                             = ZMM_MANGLE_PLANES
+	attack_cooldown                     = DEFAULT_ATTACK_COOLDOWN
+	var/lit_colour                      = COLOR_PALE_ORANGE
+	var/waterproof                      = FALSE
+	var/welding                         = FALSE 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
+	var/status                          = TRUE 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
+	var/tmp/welding_resource            = "welding fuel"
+	var/obj/item/chems/welder_tank/tank = /obj/item/chems/welder_tank // where the fuel is stored
+	var/tmp/activate_sound              = 'sound/items/welderactivate.ogg'
+	var/tmp/deactivate_sound            = 'sound/items/welderdeactivate.ogg'
 
 /obj/item/weldingtool/Initialize()
 	if(ispath(tank))
@@ -115,7 +113,7 @@
 		qdel(src)
 		return TRUE
 
-	if (istype(W, /obj/item/welder_tank))
+	if (istype(W, /obj/item/chems/welder_tank))
 		if(tank)
 			to_chat(user, SPAN_WARNING("\The [src] already has a tank attached - remove it first."))
 			return
@@ -337,23 +335,23 @@
 	return ..()
 
 /obj/item/weldingtool/mini
-	tank = /obj/item/welder_tank/mini
+	tank = /obj/item/chems/welder_tank/mini
 
 /obj/item/weldingtool/largetank
-	tank = /obj/item/welder_tank/large
+	tank = /obj/item/chems/welder_tank/large
 
 /obj/item/weldingtool/hugetank
-	tank = /obj/item/welder_tank/huge
+	tank = /obj/item/chems/welder_tank/huge
 
 /obj/item/weldingtool/experimental
-	tank = /obj/item/welder_tank/experimental
+	tank = /obj/item/chems/welder_tank/experimental
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT)
 
 ///////////////////////
 //Welding tool tanks//
 /////////////////////
-/obj/item/welder_tank
+/obj/item/chems/welder_tank
 	name = "\improper welding fuel tank"
 	desc = "An interchangeable fuel tank meant for a welding tool."
 	icon = 'icons/obj/items/tool/welders/welder_tanks.dmi'
@@ -367,12 +365,12 @@
 	var/unlit_force = 7
 	var/lit_force = 11
 
-/obj/item/welder_tank/Initialize()
+/obj/item/chems/welder_tank/Initialize()
 	create_reagents(max_fuel)
 	reagents.add_reagent(/decl/material/liquid/fuel, max_fuel)
 	. = ..()
 
-/obj/item/welder_tank/afterattack(obj/O, mob/user, proximity)
+/obj/item/chems/welder_tank/afterattack(obj/O, mob/user, proximity)
 	if (!proximity)
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src, O) <= 1)
@@ -383,7 +381,7 @@
 		to_chat(user, SPAN_NOTICE("You refuel \the [src]."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 
-/obj/item/welder_tank/mini
+/obj/item/chems/welder_tank/mini
 	name = "small welding fuel tank"
 	icon_state = "tank_small"
 	w_class = ITEM_SIZE_TINY
@@ -394,7 +392,7 @@
 	unlit_force = 5
 	lit_force = 7
 
-/obj/item/welder_tank/large
+/obj/item/chems/welder_tank/large
 	name = "large welding fuel tank"
 	icon_state = "tank_large"
 	w_class = ITEM_SIZE_SMALL
@@ -404,7 +402,7 @@
 	size_in_use = ITEM_SIZE_NORMAL
 
 
-/obj/item/welder_tank/huge
+/obj/item/chems/welder_tank/huge
 	name = "huge welding fuel tank"
 	icon_state = "tank_huge"
 	w_class = ITEM_SIZE_NORMAL
@@ -415,7 +413,7 @@
 	unlit_force = 9
 	lit_force = 15
 
-/obj/item/welder_tank/experimental
+/obj/item/chems/welder_tank/experimental
 	name = "experimental welding fuel tank"
 	icon_state = "tank_experimental"
 	w_class = ITEM_SIZE_NORMAL
@@ -428,15 +426,15 @@
 	lit_force = 15
 	var/last_gen = 0
 
-/obj/item/welder_tank/experimental/Initialize()
+/obj/item/chems/welder_tank/experimental/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/welder_tank/experimental/Destroy()
+/obj/item/chems/welder_tank/experimental/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/welder_tank/experimental/Process()
+/obj/item/chems/welder_tank/experimental/Process()
 	var/cur_fuel = REAGENT_VOLUME(reagents, /decl/material/liquid/fuel)
 	if(cur_fuel < max_fuel)
 		var/gen_amount = ((world.time-last_gen)/25)
