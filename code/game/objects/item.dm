@@ -395,7 +395,7 @@
 	update_twohanding()
 	for(var/obj/item/thing in user?.get_held_items())
 		thing.update_twohanding()
-	if(play_dropsound && drop_sound && SSticker.mode)
+	if(drop_sound && SSticker.mode)
 		addtimer(CALLBACK(src, PROC_REF(dropped_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
 
 	if(user && (z_flags & ZMM_MANGLE_PLANES))
@@ -439,7 +439,7 @@
 
 	if(user)
 		if(SSticker.mode)
-			if(pickup_sound && (slot in user.get_held_item_slots()))
+			if(pickup_sound)
 				addtimer(CALLBACK(src, PROC_REF(pickup_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
 			else if(equip_sound)
 				addtimer(CALLBACK(src, PROC_REF(equipped_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))

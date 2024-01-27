@@ -9,8 +9,6 @@
 			set_extension(living_mob, /datum/extension/waddle)
 		events_repository.register_global(/decl/observ/life, src, PROC_REF(enroll_in_waddling))
 		events_repository.register_global(/decl/observ/death, src, PROC_REF(cure_waddling))
-	else
-		events_repository.unregister_global(/decl/observ/moved, src, .proc/waddle)
 
 /datum/admin_secret_item/fun_secret/waddle/proc/enroll_in_waddling(mob/living/waddler)
 	if(!istype(waddler))

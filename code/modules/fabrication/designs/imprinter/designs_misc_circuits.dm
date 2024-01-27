@@ -170,15 +170,6 @@
 /datum/fabricator_recipe/imprinter/circuit/pacman
 	path = /obj/item/stock_parts/circuitboard/pacman
 
-/datum/fabricator_recipe/imprinter/circuit/superpacman
-	path = /obj/item/stock_parts/circuitboard/pacman/super
-
-/datum/fabricator_recipe/imprinter/circuit/mrspacman
-	path = /obj/item/stock_parts/circuitboard/pacman/mrs
-
-/datum/fabricator_recipe/imprinter/circuit/pacmanpotato
-	path = /obj/item/stock_parts/circuitboard/pacman/super/potato
-
 /datum/fabricator_recipe/imprinter/circuit/batteryrack
 	path = /obj/item/stock_parts/circuitboard/batteryrack
 

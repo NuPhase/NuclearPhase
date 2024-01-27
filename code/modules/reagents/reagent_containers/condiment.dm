@@ -187,9 +187,6 @@
 	starting_reagents = list(/decl/material/solid/blackpepper = 120)
 	center_of_mass = @'{"x":16,"y":8}'
 
-/obj/item/chems/condiment/small/peppermill/populate_reagents()
-	reagents.add_reagent(/decl/material/solid/blackpepper, reagents.maximum_volume)
-
 /obj/item/chems/condiment/small/sugar
 	name = "sugar"
 	desc = "Sweetness in a bottle"
@@ -197,25 +194,15 @@
 	starting_reagents = list(/decl/material/liquid/nutriment/sugar = 120)
 	center_of_mass = @'{"x":17,"y":9}'
 
-/obj/item/chems/condiment/small/sugar/populate_reagents()
-	reagents.add_reagent(/decl/material/liquid/nutriment/sugar, reagents.maximum_volume)
-
 /obj/item/chems/condiment/small/mint
 	name = "mint essential oil"
 	desc = "A small bottle of the essential oil of some kind of mint plant."
-	icon = 'icons/obj/food.dmi'
 	icon_state = "coldsauce"
-
-/obj/item/chems/condiment/small/mint/populate_reagents()
-	reagents.add_reagent(/decl/material/liquid/drink/syrup/mint, reagents.maximum_volume)
 
 /obj/item/chems/condiment/small/soysauce
 	name = "soy sauce"
 	desc = "A dark, salty, savoury flavoring."
 	icon_state = "soysauce"
-
-/obj/item/chems/condiment/small/soysauce/populate_reagents()
-	reagents.add_reagent(/decl/material/liquid/nutriment/soysauce, reagents.maximum_volume)
 
 //MRE condiments and drinks.
 

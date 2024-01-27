@@ -921,7 +921,6 @@ var/global/list/allCasters = list() //Global list that will contain reference to
 		audible_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"[news_call]\"</span>")
 		src.alert = 1
 		src.update_icon()
-		addtimer(CALLBACK(src, PROC_REF(reset_alert)), alert_delay, TIMER_UNIQUE | TIMER_OVERRIDE) //stay alert for the full time if we get a new one
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 75, 1)
 	else
 		audible_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>")

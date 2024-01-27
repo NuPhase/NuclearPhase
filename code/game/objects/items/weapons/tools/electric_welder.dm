@@ -47,7 +47,7 @@
 	return cell ? cell.charge : 0
 
 /obj/item/weldingtool/electric/attackby(var/obj/item/W, var/mob/user)
-	if(istype(W,/obj/item/stack/material/rods) || istype(W, /obj/item/welder_tank))
+	if(istype(W,/obj/item/stack/material/rods) || istype(W, /obj/item/chems/welder_tank))
 		return
 	if(IS_SCREWDRIVER(W))
 		if(cell)
