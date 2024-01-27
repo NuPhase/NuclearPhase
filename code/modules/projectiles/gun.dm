@@ -385,7 +385,7 @@
 					to_chat(user, "<span class='warning'>You struggle to hold \the [src] steady!</span>")
 
 	if(screen_shake)
-		shake_camera(user, (burst > 1? burst_delay : fire_delay), screen_shake)
+		directional_recoil(user, screen_shake, Get_Angle(user, target))
 
 	if(combustion)
 		var/turf/curloc = get_turf(src)

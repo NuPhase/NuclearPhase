@@ -5,7 +5,7 @@
 	origin_tech = @'{"combat":2,"materials":2}'
 	w_class = ITEM_SIZE_NORMAL
 	material = /decl/material/solid/metal/steel
-	screen_shake = 1
+	screen_shake = 2
 	space_recoil = 1
 	combustion = 1
 

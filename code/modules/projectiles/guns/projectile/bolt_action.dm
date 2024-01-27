@@ -77,7 +77,7 @@
 	force = 10
 	origin_tech = @'{"combat":7,"materials":2,"esoteric":8}'
 	caliber = CALIBER_ANTI_MATERIEL
-	screen_shake = 2 //extra kickback
+	screen_shake = 16 //extra kickback
 	one_hand_penalty = 6
 	accuracy = -2
 	bulk = 8

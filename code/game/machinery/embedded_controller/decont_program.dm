@@ -8,18 +8,29 @@
 	if(decontaminating)
 		return
 	decontaminating = TRUE
+	var/list/range_list = range(7, get_turf(master))
 	if(direction)
-		signalDoor(tag_exterior_door, list("close"))
+		close_doors(range_list, tag_exterior_door)
 	else
-		signalDoor(tag_interior_door, list("close"))
+		close_doors(range_list, tag_interior_door)
 	sleep(2 SECONDS)
-	for(var/obj/machinery/atmospherics/binary/decontaminator/cur_decont in view(6))
+	for(var/obj/machinery/atmospherics/binary/decontaminator/cur_decont in range_list)
 		cur_decont.activate()
 	sleep(5 SECONDS)
-	if(direction)
-		signalDoor(tag_exterior_door, list("open"))
+	if(!direction)
+		open_doors(range_list, tag_exterior_door)
 	else
-		signalDoor(tag_interior_door, list("open"))
+		open_doors(range_list, tag_interior_door)
 	sleep(3 SECONDS)
 	direction = !direction
 	decontaminating = FALSE
+
+/datum/computer/file/embedded_program/decont_airlock/proc/open_doors(range_list, door_tag)
+	for(var/obj/machinery/door/D in range_list)
+		if(D.id_tag == door_tag)
+			D.open()
+
+/datum/computer/file/embedded_program/decont_airlock/proc/close_doors(range_list, door_tag)
+	for(var/obj/machinery/door/D in range_list)
+		if(D.id_tag == door_tag)
+			D.close()
