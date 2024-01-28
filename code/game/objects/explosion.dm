@@ -200,7 +200,7 @@
 			CHECK_TICK
 			continue
 
-		if (!ARE_Z_CONNECTED(T.z, epicenter.z))
+		if (!LEVELS_ARE_Z_CONNECTED(T.z, epicenter.z))
 			CHECK_TICK
 			continue
 

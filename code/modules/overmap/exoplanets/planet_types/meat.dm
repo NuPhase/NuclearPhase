@@ -75,5 +75,4 @@
 	icon = 'icons/turf/exterior/water_still.dmi'
 	reagent_type = /decl/material/liquid/acid/stomach
 	color = "#c7c27c"
-	base_color = "#c7c27c"
 	dirt_color = "#c40031"

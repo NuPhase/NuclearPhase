@@ -111,19 +111,19 @@
 
 	msg_admin_attack("Explosion with Power: [power], Falloff: [falloff], Shape: [falloff_shape] in [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]).", epicenter.x, epicenter.y, epicenter.z)
 
-	if(power >= config.iterative_explosives_z_threshold)
+	if(power >= get_config_value(/decl/config/num/iterative_explosives_z_threshold))
 		var/turf/above_T = GetAbove(epicenter)
 		var/turf/below_T = GetBelow(epicenter)
 		if((z_transfer & UP) && above_T)
 			if(istype(above_T, /turf/simulated/open))
 				deflagration(above_T, power * 0.5, z_transfer=UP)
 			else
-				deflagration(above_T, power * config.iterative_explosives_z_multiplier, z_transfer=UP)
+				deflagration(above_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), z_transfer=UP)
 		if((z_transfer & DOWN) && below_T)
 			if(istype(below_T, /turf/simulated/open))
 				deflagration(below_T, power * 0.5, z_transfer=DOWN)
 			else
-				deflagration(below_T, power * config.iterative_explosives_z_multiplier, z_transfer=DOWN)
+				deflagration(below_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), z_transfer=DOWN)
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!

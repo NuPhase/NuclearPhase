@@ -22,42 +22,7 @@
 	events_repository.register(/decl/observ/destroyed, A, src, /obj/effect/overmap/visitable/sector/exoplanet/proc/remove_animal)
 
 /obj/effect/overmap/visitable/sector/exoplanet/proc/adapt_animal(var/mob/living/simple_animal/A)
-	if(species[A.type])
-		A.SetName(species[A.type])
-		A.real_name = species[A.type]
-	else
-		A.SetName("alien creature")
-		A.real_name = "alien creature"
-		A.verbs |= /mob/living/simple_animal/proc/name_species
-	var/datum/level_data/level_data = zlevels[1]
-	if(level_data.exterior_atmosphere)
-		//Set up gases for living things
-		var/list/all_gasses = decls_repository.get_decl_paths_of_subtype(/decl/material/gas)
-		if(!LAZYLEN(breathgas))
-			var/list/goodgases = all_gasses.Copy()
-			var/gasnum = min(rand(1,3), goodgases.len)
-			for(var/i = 1 to gasnum)
-				var/gas = pick(goodgases)
-				breathgas[gas] = round(0.4*goodgases[gas], 0.1)
-				goodgases -= gas
-		if(!badgas)
-			var/list/badgases = all_gasses.Copy()
-			badgases -= level_data.exterior_atmosphere.gas
-			badgas = pick(badgases)
-
-		A.minbodytemp = level_data.exterior_atmosphere.temperature - 20
-		A.maxbodytemp = level_data.exterior_atmosphere.temperature + 30
-		A.bodytemperature = (A.maxbodytemp+A.minbodytemp)/2
-		if(A.min_gas)
-			A.min_gas = breathgas.Copy()
-		if(A.max_gas)
-			A.max_gas = list()
-			A.max_gas[badgas] = 5
-	else
-		A.min_gas = null
-		A.max_gas = null
-	for(var/datum/exoplanet_theme/T in themes)
-		T.adapt_animal(src, A)
+	return
 
 /obj/effect/overmap/visitable/sector/exoplanet/proc/get_random_species_name()
 	return pick("nol","shan","can","fel","xor")+pick("a","e","o","t","ar")+pick("ian","oid","ac","ese","inian","rd")

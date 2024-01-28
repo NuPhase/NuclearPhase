@@ -1,4 +1,6 @@
 /datum
+	/// Used to indicate that this type is abstract and should not itself be instantiated.
+	var/abstract_type = /datum
 	var/tmp/gc_destroyed //Time when this object was destroyed.
 	var/tmp/is_processing = FALSE
 	var/list/active_timers  //for SStimer

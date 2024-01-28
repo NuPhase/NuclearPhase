@@ -77,7 +77,7 @@
 	if(src.resting)
 		SET_STATUS_MAX(src, STAT_WEAK, 5)
 
-	if(health < config.health_threshold_dead && src.stat != 2) //die only once
+	if(health < get_config_value(/decl/config/num/health_health_threshold_dead) && src.stat != 2) //die only once
 		death()
 
 	if (src.stat != DEAD) //Alive.

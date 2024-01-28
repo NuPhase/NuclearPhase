@@ -66,7 +66,7 @@ var/global/list/alien_whitelist = list()
 		var/decl/language/L = species
 		if(L.flags & RESTRICTED)
 			return FALSE
-		if(!get_config_value(/decl/config/toggle/use_alien_whitelist) || !(L.flags & LANG_FLAG_WHITELISTED))
+		if(!get_config_value(/decl/config/toggle/use_alien_whitelist))
 			return TRUE
 		return whitelist_lookup(L.name, M.ckey)
 

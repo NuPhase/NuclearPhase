@@ -131,11 +131,6 @@ var/global/world_topic_last = world.timeofday
 
 	Master.Shutdown()
 
-	var/serverurl = get_config_value(/decl/config/text/server)
-	if(serverurl)	//if you set a server location in configuration, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-		for(var/client/C in global.clients)
-			to_chat(C, link("byond://[serverurl]"))
-
 	if(get_config_value(/decl/config/toggle/wait_for_sigusr1_reboot) && reason != 3)
 		text2file("foo", "reboot_called")
 		to_world("<span class=danger>World reboot waiting for external scripts. Please be patient.</span>")

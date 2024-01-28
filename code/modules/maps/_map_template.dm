@@ -167,8 +167,6 @@
 	init_shuttles(shuttle_state, map_hash, initialized_areas_by_type)
 	after_load()
 	for(var/z_index = bounds[MAP_MINZ] to bounds[MAP_MAXZ])
-		var/datum/level_data/level = SSmapping.levels_by_z[z_index]
-		level.post_template_load(src)
 		if(SSlighting.initialized)
 			SSlighting.InitializeZlev(z_index)
 	log_game("Z-level [name] loaded at [x],[y],[world.maxz]")

@@ -2,7 +2,7 @@
 	name = "mobile ladder"
 	desc = "A lightweight deployable ladder, which you can use to move up or down. Or alternatively, you can bash some faces in."
 	icon = 'icons/obj/mobile_ladder.dmi'
-	
+
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/plastic = MATTER_AMOUNT_SECONDARY)
 	icon_state = ICON_STATE_WORLD
@@ -30,7 +30,7 @@
 		else if(T.CanZPass(T, DOWN))
 			to_chat(user, SPAN_WARNING("You can't find anything to support \the [src] on!"))
 			return FALSE
-	else if (istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
+	else if (T.is_floor())
 		target = GetAbove(A)
 		if(!istype(target) || !target.is_open() || target.contains_dense_objects())
 			to_chat(user, SPAN_WARNING("There is something above \the [T]. You can't deploy \the [src]!"))

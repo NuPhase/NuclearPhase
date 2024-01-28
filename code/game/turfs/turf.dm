@@ -515,12 +515,5 @@ var/global/const/enterloopsanity = 100
 	ChangeTurf(base_turf_type)
 	return 2
 
-/turf/on_defilement()
-	var/decl/special_role/cultist/cult = GET_DECL(/decl/special_role/cultist)
-	cult.add_cultiness(CULTINESS_PER_TURF)
-
-/turf/proc/is_defiled()
-	return (locate(/obj/effect/narsie_footstep) in src)
-
 /turf/proc/resolve_to_actual_turf()
 	return src

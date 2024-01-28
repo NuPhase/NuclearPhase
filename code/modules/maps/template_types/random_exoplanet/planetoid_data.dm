@@ -27,7 +27,7 @@
 
 	// *** Atmos ***
 	///The habitability rating for this planetoid
-	var/habitability_class = HABITABILITY_DEAD
+	var/habitability_class = 0
 	///The cached planet's atmosphere that sub-levels of this planet should use. Can be a type path at definition, and an instance at runtime.
 	var/datum/gas_mixture/atmosphere
 	///The minimum temperature that can be reached on the planet.(For instance via meteo or sunlight/shade or whatever)
@@ -51,7 +51,7 @@
 	///If we have rings, this is the color they'll have on the overmap
 	var/ring_color = COLOR_OFF_WHITE
 	///If we have rings, this is the sprite we picked for it
-	var/ring_type_name = SKYBOX_PLANET_RING_TYPE_SPARSE
+	var/ring_type_name = null
 	///The overall strata of the planet. May be a type path at definition, or instance at runtime.
 	var/decl/strata/strata
 
@@ -60,10 +60,6 @@
 	var/list/themes
 	///List of subtemplates types we picked and spawned on this planet.
 	var/list/subtemplates
-
-	// *** Xenorach ***
-	///A xenoarch flavor text generator instance for this planet. Used for unique engravings and weird visions stuff.
-	var/datum/xenoarch_engraving_flavor/engraving_generator = /datum/xenoarch_engraving_flavor
 
 	// *** Ambient Lighting ***
 	//#TODO: Make it so this is handled in a subsystem or something?
@@ -125,10 +121,6 @@
 		setup_fauna_generator(fauna)
 		generate_life()
 
-	//Xenoarch stuff
-	if(ispath(engraving_generator))
-		set_engraving_generator(engraving_generator)
-
 	//Always keep the overmap marker in sync if we have one set already
 	try_update_overmap_marker()
 
@@ -148,27 +140,15 @@
 
 ///Sets the atmosphere of the planet to the given gas_mixture instance or type path. Will Clone() the mixture in the arguments for itself.
 /datum/planetoid_data/proc/set_atmosphere(var/datum/gas_mixture/A)
-	if(ispath(A))
-		atmosphere = new A
-		return
-	//Externally set atmos instances should make a clone always to be the safe side
-	atmosphere = A.Clone()
+	return
 
 ///Resets the given weather state to our planet replacing the old one, and trigger updates. Can be a type path or instance.
 /datum/planetoid_data/proc/reset_weather(var/decl/state/weather/W)
-	initial_weather_state = W
-	if(!(topmost_level_id in SSmapping.levels_by_id))
-		return //It's entire possible the levels weren't initialized yet, so don't bother.
-	//Tells all our levels exposed to the sky to force change the weather.
-	SSweather.setup_weather_system(topmost_level_id, initial_weather_state)
+	return
 
 ///Associate an overmap marker with this planetoid data so we can synchronize the information displayed on the overmap with the actual state of the planet.
 /datum/planetoid_data/proc/set_overmap_marker(var/obj/effect/overmap/visitable/sector/planetoid/P)
-	if(isnull(P))
-		overmap_marker = null
-	else
-		overmap_marker = weakref(P)
-		P.update_from_data(src)
+	return
 
 ///Sets the planet's strata to the given one. The argument may be a type path or instance. Shouldn't be used outside of setup after the world was generated.
 /datum/planetoid_data/proc/set_strata(var/decl/strata/_strata)
@@ -178,9 +158,7 @@
 
 ///Sets the xenoarch engraving generator for the planet. The argument can be either an instance, or a type path.
 /datum/planetoid_data/proc/set_engraving_generator(var/datum/xenoarch_engraving_flavor/X)
-	if(ispath(X))
-		X = new X
-	engraving_generator = X
+	return
 
 ///Set the id of the topmost level of the planetoid. Argument can be a level_data, or level_id string. Should only be set once during setup ideally.
 /datum/planetoid_data/proc/set_topmost_level(var/datum/level_data/LD)
@@ -286,11 +264,7 @@
 
 ///Force any overmap markers linked to us to update to match our state
 /datum/planetoid_data/proc/try_update_overmap_marker()
-	var/obj/effect/overmap/visitable/sector/planetoid/P = overmap_marker?.resolve()
-	if(istype(P))
-		P.update_from_data(src)
-		return TRUE
-	return FALSE
+	return
 
 //
 // Plants and Critter Spawner Procs
@@ -331,7 +305,7 @@
 	///Possible ring colors
 	var/list/possible_ring_color = list(COLOR_OFF_WHITE, "#f0fcff", "#dcc4ad", "#d1dcad", "#adb8dc")
 	///Possible ring sprites that can be used for a possible ring
-	var/list/possible_ring_type_name = list(SKYBOX_PLANET_RING_TYPE_SPARSE, SKYBOX_PLANET_RING_TYPE_DENSE)
+	var/list/possible_ring_type_name = list()
 
 	///Possible colors for rock walls and rocks in general on this planet (Honestly, should be handled via materal system maybe?)
 	var/list/possible_rock_colors = list(COLOR_ASTEROID_ROCK)
@@ -348,9 +322,9 @@
 	///Maximum possible base temperature range to pick from, in kelvins, when generating the atmosphere on this planet.
 	var/atmosphere_gen_temperature_max = T100C
 	///Minimum atmospheric pressure in the range to pick from for this planet template.
-	var/atmosphere_gen_pressure_min = 0.5 ATM
+	var/atmosphere_gen_pressure_min = 50
 	///Maximum atmospheric pressure in the range to pick from for this planet template.
-	var/atmosphere_gen_pressure_max = 2 ATM
+	var/atmosphere_gen_pressure_max = 200
 
 	///Planet ambient lighting minimum possible value from 0 to 1. This value may be overridden in individual /datum/level_data.
 	var/surface_light_gen_level_min = 0.45
@@ -426,18 +400,7 @@
 
 ///Pick an hability class for this planet. Should be done as early as possible during generation.
 /datum/planetoid_data/random/proc/generate_habitability()
-	if(isnull(habitability_class))
-		if(prob(10))
-			. = HABITABILITY_IDEAL
-		else if(prob(30))
-			. = HABITABILITY_OKAY
-		else if(prob(40))
-			. = HABITABILITY_BAD
-		else
-			. = HABITABILITY_DEAD
-	else
-		. = habitability_class
-	set_habitability(.)
+	return
 
 ///Go through all materials and pick those that we could pick from on this planet
 /datum/planetoid_data/random/proc/pick_atmospheric_gases_candidates(var/atmos_temperature, var/atmos_pressure, var/blacklisted_flags, var/list/blacklisted_gases)
@@ -447,9 +410,6 @@
 	//Filter and list gases paths with their exoplanet rarity
 	for(var/mat_type in all_materials)
 		var/decl/material/mat = all_materials[mat_type]
-		//Check if this material is allowed
-		if((mat.gas_flags & blacklisted_flags) || (mat.exoplanet_rarity_gas == MAT_RARITY_NOWHERE))
-			continue
 		// No gaseous ice.
 		// Maybe consider adding heating products instead, but it'd have to change how this loop is done.
 		// Also that'd result in a ton of water vapor when really we'd only be interested in the volatiles...
@@ -468,11 +428,6 @@
 			if(MAT_PHASE_LIQUID)
 				if(will_condensate)
 					continue //A liquid below dew point cannot be in the atmosphere
-				//Otherwise allow liquids if they may exist as vapor
-			if(MAT_PHASE_SOLID, MAT_PHASE_PLASMA)
-				continue //In any other cases if we're not a gas skip
-		candidates[mat.type] = mat.exoplanet_rarity_gas
-
 	if(prob(50)) //alium gas should be slightly less common than mundane shit
 		candidates -= /decl/material/gas/alien
 
@@ -481,14 +436,6 @@
 ///Generates a valid surface temperature for the planet's atmosphere matching its habitability class
 /datum/planetoid_data/random/proc/generate_surface_temperature()
 	. = rand(atmosphere_gen_temperature_min, atmosphere_gen_temperature_max)
-
-	//Adjust for species habitability
-	if(habitability_class == HABITABILITY_OKAY || habitability_class == HABITABILITY_IDEAL)
-		var/decl/species/S = global.get_species_by_key(global.using_map.default_species)
-		if(habitability_class == HABITABILITY_IDEAL)
-			. = clamp(., S.default_bodytype.cold_discomfort_level + rand(1,5), S.default_bodytype.heat_discomfort_level - rand(1,5)) //Clamp between comfortable levels since we're ideal
-		else
-			. = clamp(., S.default_bodytype.cold_level_1 + 1, S.default_bodytype.heat_level_1 - 1) //clamp between values species starts taking damages at
 
 ///Generates a valid surface pressure for the planet's atmosphere matching it's habitability class
 /datum/planetoid_data/random/proc/generate_surface_pressure()
@@ -546,8 +493,8 @@
 
 		//Make sure temperature can't damage people on casual planets (Only when not forcing an atmosphere)
 		var/decl/species/S = global.get_species_by_key(global.using_map.default_species)
-		var/lower_temp            = max(S.default_bodytype.cold_level_1, atmosphere_gen_temperature_min)
-		var/higher_temp           = min(S.default_bodytype.heat_level_1, atmosphere_gen_temperature_max)
+		var/lower_temp            = 0
+		var/higher_temp           = 0
 		var/breathed_gas          = S.breath_type
 		var/breathed_min_pressure = S.breath_pressure
 
@@ -594,13 +541,6 @@
 				current_merged_flags |= mat.gas_flags
 				var/min_percent = 10
 				var/max_percent = 90
-				switch(mat.exoplanet_rarity_gas)
-					if(MAT_RARITY_UNCOMMON)
-						min_percent = 5
-						max_percent = 60
-					if(MAT_RARITY_EXOTIC)
-						min_percent = 1
-						max_percent = 10
 				var/part = available_moles * (rand(min_percent, max_percent)/100) //allocate percentage to it
 				if(i == number_gases || !length(candidate_gases)) //if it's last gas, let it have all remaining moles
 					part = available_moles
@@ -635,7 +575,7 @@
 		return pick(possible_surface_light_gen_colors)
 	else
 		//Otherwise generate it randomly
-		var/atmos_color = atmosphere?.get_overall_color() || get_random_colour()
+		var/atmos_color = 0
 		var/list/HSV    = rgb2num(atmos_color, COLORSPACE_HSV)
 		var/sat_factor  = rand(50, 80) / 100 //Make the color less saturated to around 50% to 80%
 		var/val_factor  = 1 + (rand(10, 50) / 100) //Make the color brighter within a factor of 10%-50%

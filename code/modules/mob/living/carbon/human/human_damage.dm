@@ -1,8 +1,8 @@
 //Updates the mob's health from organs and mob damage variables
-/mob/living/carbon/human/update_health()
+/mob/living/carbon/human/updatehealth()
 	..()
 	//TODO: fix husking
-	if(stat == DEAD && (get_max_health() - getFireLoss()) < get_config_value(/decl/config/num/health_health_threshold_dead))
+	if(stat == DEAD && (maxHealth - getFireLoss()) < get_config_value(/decl/config/num/health_health_threshold_dead))
 		make_husked()
 
 	if(status_flags & GODMODE)

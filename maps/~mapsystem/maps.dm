@@ -252,18 +252,7 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 #endif
 
 /datum/map/proc/build_exoplanets()
-	if(!length(overmap_ids))
-		return
-	if(LAZYLEN(planet_size))
-		if(world.maxx < planet_size[1])
-			world.maxx = planet_size[1]
-		if(world.maxy < planet_size[2])
-			world.maxy = planet_size[2]
-	for(var/i = 0, i < num_exoplanets, i++)
-		var/exoplanet_type = pick_exoplanet()
-		var/datum/level_data/exoplanet/planet_level = SSmapping.increment_world_z_size(/datum/level_data/exoplanet, TRUE)
-		var/obj/effect/overmap/visitable/sector/exoplanet/new_planet = new exoplanet_type(null, world.maxz)
-		new_planet.build_level(planet_size[1], planet_size[2])
+	return
 
 /datum/map/proc/pick_exoplanet()
 	var/planets = list()
@@ -431,15 +420,3 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 /datum/map/proc/populate_overmap_events()
 	for(var/overmap_id in global.overmaps_by_name)
 		SSmapping.overmap_event_handler.create_events(global.overmaps_by_name[overmap_id])
-
-/datum/map/proc/get_zlevel_name(var/z)
-	z = "[z]"
-	if(!z)
-		return "Unknown Sector"
-	var/obj/abstract/level_data/level = global.levels_by_z[z]
-	if(level?.level_name)
-		return level.level_name
-	var/obj/effect/overmap/overmap_entity = global.overmap_sectors[z]
-	if(overmap_entity?.name)
-		return overmap_entity.name
-	return "Sector #[z]"

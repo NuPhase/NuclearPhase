@@ -121,7 +121,7 @@
 // Entered() which is part of Move(), by spawn()ing we let that complete.  But we want to preserve if we were in client movement
 // or normal movement so other move behavior can continue.
 /atom/movable/proc/begin_falling(var/lastloc, var/below)
-	addtimer(CALLBACK(src, /atom/movable/proc/fall_callback, below), 0)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, fall_callback), below), 0)
 
 /atom/movable/proc/fall_callback(var/turf/below)
 	if(!QDELETED(src))
@@ -186,22 +186,42 @@
 	if(..())
 		return species.can_fall(src)
 
-/atom/movable/proc/handle_fall(var/turf/landing)
+/atom/movable/proc/protected_from_fall_damage(var/turf/landing)
+	if(!!(locate(/obj/structure/stairs) in landing))
+		return TRUE
+
+/mob/protected_from_fall_damage(var/turf/landing)
+	. = ..()
+
+/atom/movable
+	var/started_falling_from_z
+
+/atom/movable/proc/get_fall_height()
+	. = 0
+	var/turf/T = get_turf(src)
+	if(istype(T) && T.z <= started_falling_from_z)
+		for(var/fall_z in T.z to started_falling_from_z)
+			. += 1
+
+/atom/movable/proc/handle_fall(var/turf/landing, var/fall_distance)
 	var/turf/previous = get_turf(loc)
 	Move(landing, get_dir(previous, landing))
-	if(locate(/obj/structure/stairs) in landing)
-		return 1
-	if(landing && landing.get_fluid_depth() >= FLUID_DEEP)
-		var/primary_fluid = landing.reagents.get_primary_reagent_name()
+	started_falling_from_z = max(started_falling_from_z, landing.z)
+	if(protected_from_fall_damage(landing))
+		. = TRUE
+	else if(landing.get_fluid_depth() >= FLUID_DEEP)
+		var/primary_fluid = "fluid" //TODO: make name
 		if(previous.get_fluid_depth() >= FLUID_DEEP) //We're sinking further
 			visible_message(SPAN_NOTICE("\The [src] sinks deeper down into \the [primary_fluid]!"), SPAN_NOTICE("\The [primary_fluid] rushes around you as you sink!"))
 			playsound(previous, pick(SSfluids.gurgles), 50, 1)
 		else
 			visible_message(SPAN_NOTICE("\The [src] falls into the [primary_fluid]!"), SPAN_NOTICE("What a splash!"))
 			playsound(src,  'sound/effects/watersplash.ogg', 30, TRUE)
-		return 1
+		. = TRUE
 	else
-		handle_fall_effect(landing)
+		. = handle_fall_effect(landing)
+	if(.)
+		started_falling_from_z = 0
 
 /atom/movable/proc/handle_fall_effect(var/turf/landing)
 	SHOULD_CALL_PARENT(TRUE)
@@ -209,13 +229,15 @@
 		visible_message("\The [src] falls through \the [landing]!", "You hear a whoosh of displaced air.")
 	else
 		visible_message("\The [src] slams into \the [landing]!", "You hear something slam into the [global.using_map.ground_noun].")
-		var/fall_damage = fall_damage()
+		var/fall_damage = fall_damage() * get_fall_height()
 		if(fall_damage > 0)
 			for(var/mob/living/M in landing.contents)
 				if(M == src)
 					continue
 				visible_message("\The [src] hits \the [M.name]!")
 				M.take_overall_damage(fall_damage)
+		return TRUE
+	return FALSE
 
 /atom/movable/proc/fall_damage()
 	return 0
@@ -232,18 +254,18 @@
 		return
 	if(species && species.handle_fall_special(src, landing))
 		return
-	var/min_damage = 7
-	var/max_damage = 14
-	max_damage -= get_skill_value(SKILL_AGILITY)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_HEAD, armor_pen = 25)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_CHEST, armor_pen = 25)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_GROIN, armor_pen = 50)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_L_LEG, armor_pen = 75)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_R_LEG, armor_pen = 75)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_L_FOOT, armor_pen = 75)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_R_FOOT, armor_pen = 75)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_L_ARM, armor_pen = 50)
-	apply_damage(rand(min_damage, max_damage), BRUTE, BP_R_ARM, armor_pen = 50)
+	var/fall_height = get_fall_height()
+	var/min_damage = 7  * fall_height
+	var/max_damage = 14 * fall_height
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_HEAD, armor_pen = 50)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_CHEST, armor_pen = 50)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_GROIN, armor_pen = 75)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_L_LEG, armor_pen = 100)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_R_LEG, armor_pen = 100)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_L_FOOT, armor_pen = 100)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_R_FOOT, armor_pen = 100)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_L_ARM, armor_pen = 75)
+	apply_damage(rand(min_damage, max_damage), BRUTE, BP_R_ARM, armor_pen = 75)
 	SET_STATUS_MAX(src, STAT_WEAK, 3)
 	if(prob(skill_fail_chance(SKILL_AGILITY, 40, SKILL_EXPERT, 2)))
 		var/list/victims = list()
@@ -255,7 +277,6 @@
 			var/obj/item/organ/external/victim = pick(victims)
 			victim.dislocate()
 			to_chat(src, "<span class='warning'>You feel a sickening pop as your [victim.joint] is wrenched out of the socket.</span>")
-	updatehealth()
 
 /mob/living/carbon/human/proc/climb_up(atom/A)
 	if(!isturf(loc) || !bound_overlay || bound_overlay.destruction_timer || is_physically_disabled())	// This destruction_timer check ideally wouldn't be required, but I'm not awake enough to refactor this to not need it.
@@ -323,14 +344,8 @@
 /mob/living/can_float()
 	return !is_physically_disabled()
 
-/mob/living/simple_animal/aquatic/can_float()
-	return TRUE
-
-/mob/living/simple_animal/hostile/aquatic/can_float()
-	return TRUE
-
-/mob/living/simple_animal/hostile/retaliate/aquatic/can_float()
-	return TRUE
+/mob/living/simple_animal/can_float()
+	return FALSE
 
 /mob/living/carbon/human/can_float()
 	return species.can_float(src)
@@ -352,7 +367,7 @@
 	. = ..()
 	owner = user
 	follow()
-	events_repository.register(/decl/observ/moved, owner, src, /atom/movable/z_observer/proc/follow)
+	events_repository.register(/decl/observ/moved, owner, src, TYPE_PROC_REF(/atom/movable/z_observer, follow))
 
 /atom/movable/z_observer/proc/follow()
 
@@ -376,7 +391,7 @@
 	qdel(src)
 
 /atom/movable/z_observer/Destroy()
-	events_repository.unregister(/decl/observ/moved, owner, src, /atom/movable/z_observer/proc/follow)
+	events_repository.unregister(/decl/observ/moved, owner, src, TYPE_PROC_REF(/atom/movable/z_observer, follow))
 	owner = null
 	. = ..()
 
@@ -385,13 +400,4 @@
 
 /atom/movable/z_observer/explosion_act()
 	SHOULD_CALL_PARENT(FALSE)
-	return
-
-/atom/movable/z_observer/singularity_act()
-	return
-
-/atom/movable/z_observer/singularity_pull()
-	return
-
-/atom/movable/z_observer/singuloCanEat()
 	return

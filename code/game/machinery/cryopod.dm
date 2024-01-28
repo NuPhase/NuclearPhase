@@ -220,38 +220,8 @@
 	return airtank
 
 /obj/machinery/cryopod/lifepod/proc/launch()
-	launched = 1
-	for(var/d in global.cardinal)
-		var/turf/T = get_step(src,d)
-		var/obj/machinery/door/blast/B = locate() in T
-		if(B && B.density)
-			B.force_open()
-			break
+	return
 
-	var/newz
-	if(prob(10))
-		var/list/possible_locations
-		var/obj/effect/overmap/visitable/O = global.overmap_sectors[num2text(z)]
-		if(istype(O))
-			for(var/obj/effect/overmap/visitable/OO in range(O,2))
-				if((OO.sector_flags & OVERMAP_SECTOR_IN_SPACE) || istype(OO,/obj/effect/overmap/visitable/sector/exoplanet))
-					LAZYDISTINCTADD(possible_locations, text2num(level))
-		if(length(possible_locations))
-			newz = pick(possible_locations)
-	if(!newz)
-		var/datum/level_data/level = SSmapping.increment_world_z_size(/datum/level_data/space)
-		newz = level.level_z
-
-	var/newz = get_empty_zlevel(/turf/space)
-	if(possible_locations.len && prob(10))
-		newz = pick(possible_locations)
-	var/turf/nloc = locate(rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE), rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE),newz)
-	if(!isspaceturf(nloc))
-		explosion(nloc, 1, 2, 3)
-	playsound(loc,'sound/effects/rocket.ogg',100)
-	forceMove(nloc)
-
-//Don't use these for in-round leaving
 // don't tell me what to do chinsky
 /obj/machinery/cryopod/lifepod/Process()
 	if(SSevac.evacuation_controller && SSevac.evacuation_controller.state >= EVAC_LAUNCHING)

@@ -50,7 +50,7 @@
 	if((. = ..()))
 		return
 	if(get_config_value(/decl/config/num/vote_no_dead_crew_transfer))
-		return !isliving(user) || ismouse(user) || isdrone(user)
+		return !isliving(user) || ismouse(user)
 
 /datum/vote/transfer/check_toggle()
 	return get_config_value(/decl/config/toggle/vote_restart) ? "Allowed" : "Disallowed"

@@ -231,25 +231,25 @@ Helpers
 		return
 
 	var/list/base_runnable_modes = list()
-	var/list/all_modes = decls_repository.get_decls_of_subtype(/decl/game_mode)
+	var/list/all_modes = decls_repository.get_decls_of_subtype(/datum/game_mode)
 	for(var/mode_type in all_modes)
-		var/decl/game_mode/game_mode = all_modes[mode_type]
+		var/datum/game_mode/game_mode = all_modes[mode_type]
 		if(game_mode.probability > 0 && !game_mode.startRequirements())
 			base_runnable_modes[game_mode.uid] = game_mode.probability
 
 	if((mode_to_try=="random") || (mode_to_try=="secret"))
 		var/list/runnable_modes = base_runnable_modes - bad_modes
 		if(secret_force_mode != "secret") // Config option to force secret to be a specific mode.
-			mode_datum = config.pick_mode(secret_force_mode)
+			mode_datum = decls_repository.get_decl_by_id(secret_force_mode, validate_decl_type = FALSE)
 		else if(!length(runnable_modes))  // Indicates major issues; will be handled on return.
 			bad_modes += mode_to_try
 			return
 		else
-			mode_datum = config.pick_mode(pickweight(runnable_modes))
+			mode_datum = decls_repository.get_decl_by_id(pickweight(runnable_modes), validate_decl_type = FALSE)
 			if(length(runnable_modes) > 1) // More to pick if we fail; we won't tell anyone we failed unless we fail all possibilities, though.
 				. = CHOOSE_GAMEMODE_SILENT_REDO
 	else
-		mode_datum = config.pick_mode(mode_to_try)
+		mode_datum = decls_repository.get_decl_by_id(mode_to_try, validate_decl_type = FALSE)
 	if(!istype(mode_datum))
 		bad_modes += mode_to_try
 		return

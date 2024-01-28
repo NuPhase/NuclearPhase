@@ -23,11 +23,11 @@ var/global/list/local_networks = list()
 
 /datum/local_network/proc/add_device(var/obj/machinery/device)
 	var/list/entities = get_devices(device.type)
-	
+
 	if(!entities)
 		entities = list()
 		network_entities[device.type] = entities
-	
+
 	entities[device] = TRUE
 
 	return entities[device]
@@ -72,6 +72,6 @@ var/global/list/multilevel_local_networks = list()
 /datum/local_network/multilevel/within_radius(var/atom/checking)
 	for(var/entity_list in network_entities)
 		for(var/atom/entity in entity_list)
-			if(!(get_z(entity) in GetConnectedZlevels(get_z(checking))))
+			if(!(get_z(entity) in SSmapping.get_connected_levels(get_z(checking))))
 				return FALSE
 	return TRUE

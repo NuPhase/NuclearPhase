@@ -7,15 +7,15 @@
 	. = ..()
 	if(url)		// URL provided for this manual
 		// If we haven't wikiurl or it included in url - just use url
-		if(config.wikiurl && !findtextEx(url, config.wikiurl, 1, length(config.wikiurl)+1))
+		if(get_config_value(/decl/config/text/wikiurl) && !findtextEx(url, get_config_value(/decl/config/text/wikiurl), 1, length(get_config_value(/decl/config/text/wikiurl))+1))
 			// If we have wikiurl, but it hasn't "index.php" then add it and making full link in url
-			if(config.wikiurl && !findtextEx(config.wikiurl, "/index.php", -10))
-				if(findtextEx(config.wikiurl, "/", -1))
-					url = config.wikiurl + "index.php?title=" + url
+			if(get_config_value(/decl/config/text/wikiurl) && !findtextEx(get_config_value(/decl/config/text/wikiurl), "/index.php", -10))
+				if(findtextEx(get_config_value(/decl/config/text/wikiurl), "/", -1))
+					url = get_config_value(/decl/config/text/wikiurl) + "index.php?title=" + url
 				else
-					url = config.wikiurl + "/index.php?title=" + url
+					url = get_config_value(/decl/config/text/wikiurl) + "/index.php?title=" + url
 			else	//Or just making full link in url
-				url = config.wikiurl + "?title=" + url
+				url = get_config_value(/decl/config/text/wikiurl) + "?title=" + url
 		dat = {"
 			<html>
 				<head>

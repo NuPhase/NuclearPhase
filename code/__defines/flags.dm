@@ -115,3 +115,7 @@ The latter will result in a linter warning and will not work correctly.
 #define ORE_FLAG_SEPARATED_GOOD           BITFLAG(2) //separated either by magnets or flotation
 #define ORE_FLAG_SEPARATED_BEST           BITFLAG(3) //separated by chemical processing
 #define ORE_FLAG_RUINED                   BITFLAG(4) //you messed up
+
+// Decl-level flags (/decl/var/decl_flags)
+#define DECL_FLAG_ALLOW_ABSTRACT_INIT       BITFLAG(0)  // Abstract subtypes without this set will CRASH() if fetched with GET_DECL().
+#define DECL_FLAG_MANDATORY_UID             BITFLAG(1)  // Requires uid to be non-null.

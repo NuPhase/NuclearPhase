@@ -1,4 +1,4 @@
-/datum/game_mode/traitorling
+/decl/game_mode/traitorling
 	name = "Changeling & Traitor"
 	round_description = "There are traitors and alien changelings. Do not let the changelings succeed!"
 	extended_round_description = "Traitors and changelings both spawn during this mode."

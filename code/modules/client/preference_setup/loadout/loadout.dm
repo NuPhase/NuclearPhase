@@ -356,9 +356,6 @@ var/global/list/gear_datums = list()
 
 /decl/loadout_option/Initialize()
 
-	if(get_config_value(/decl/config/toggle/allow_loadout_customization))
-		loadout_flags |= GEAR_HAS_CUSTOM_SELECTION
-
 	. = ..()
 
 	if(is_abstract())

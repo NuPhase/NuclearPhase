@@ -48,7 +48,7 @@
 				burn = max(burn - spillover, 0)
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner)
-		owner.update_health() //droplimb will call update_health() again if it does end up being called
+		owner.updatehealth() //droplimb will call update_health() again if it does end up being called
 		if((limb_flags & ORGAN_FLAG_CAN_AMPUTATE) && get_config_value(/decl/config/toggle/on/health_limbs_can_break))
 			var/total_damage = brute_dam + burn_dam + brute + burn + spillover
 			var/threshold = max_damage * get_config_value(/decl/config/num/health_organ_health_multiplier)

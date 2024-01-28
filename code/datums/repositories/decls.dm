@@ -1,4 +1,4 @@
-// /decl is a subtype used for singletons that should never have more than one instance 
+// /decl is a subtype used for singletons that should never have more than one instance
 // in existence at a time. If you want to use a /decl you should use a pattern like:
 //     var/decl/somedecl/mydecl = GET_DECL(/decl/somedecl)
 
@@ -25,6 +25,7 @@ var/global/repository/decls/decls_repository = new
 	var/list/fetched_decl_ids =      list()
 	var/list/fetched_decl_types =    list()
 	var/list/fetched_decl_subtypes = list()
+	var/list/fetched_decl_paths_by_subtype = list()
 
 /repository/decls/New()
 	..()
@@ -78,11 +79,20 @@ var/global/repository/decls/decls_repository = new
 		. = get_decls(subtypesof(decl_prototype))
 		fetched_decl_subtypes[decl_prototype] = .
 
+/repository/decls/proc/get_decl_paths_of_subtype(var/decl_prototype)
+	. = fetched_decl_paths_by_subtype[decl_prototype]
+	if(!.)
+		. = list()
+		for(var/decl_path in get_decls_of_subtype(decl_prototype))
+			. += decl_path
+		fetched_decl_paths_by_subtype[decl_prototype] = .
+
 /decl
 	var/uid
-	var/abstract_type = /decl
+	abstract_type = /decl
 	var/crash_on_abstract_init = FALSE
 	var/initialized = FALSE
+	var/decl_flags = null // DECL_FLAG_ALLOW_ABSTRACT_INIT, DECL_FLAG_MANDATORY_UID
 
 /decl/proc/Initialize()
 	SHOULD_CALL_PARENT(TRUE)
@@ -99,3 +109,5 @@ var/global/repository/decls/decls_repository = new
 
 /decl/proc/is_abstract()
 	return abstract_type == type
+
+/decl/proc/validate()

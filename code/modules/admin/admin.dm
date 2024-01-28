@@ -963,20 +963,6 @@ var/global/floorIsLava = 0
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in SSmobs.mob_list)
-	set category = "Admin"
-	set name = "Unprison"
-	if (isAdminLevel(M.z))
-		if (get_config_value(/decl/config/toggle/on/admin_jump))
-			M.forceMove(get_random_spawn_turf(SPAWN_FLAG_PRISONERS_CAN_SPAWN))
-			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
-			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
-		else
-			alert("Admin jumping disabled")
-	else
-		alert("[M.name] is not prisoned.")
-	SSstatistics.add_field_details("admin_verb","UP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode

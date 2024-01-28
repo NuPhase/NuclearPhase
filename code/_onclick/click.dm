@@ -337,11 +337,11 @@ var/global/list/click_catchers
 /proc/get_click_catchers()
 	if(!global.click_catchers)
 		global.click_catchers = list()
-		var/ox = -(round(config.max_client_view_x*0.5))
-		for(var/i = 0 to config.max_client_view_x)
-			var/oy = -(round(config.max_client_view_y*0.5))
+		var/ox = -(round(get_config_value(/decl/config/num/clients/max_client_view_x)*0.5))
+		for(var/i = 0 to get_config_value(/decl/config/num/clients/max_client_view_x))
+			var/oy = -(round(get_config_value(/decl/config/num/clients/max_client_view_y)*0.5))
 			var/tx = ox + i
-			for(var/j = 0 to config.max_client_view_y)
+			for(var/j = 0 to get_config_value(/decl/config/num/clients/max_client_view_y))
 				var/ty = oy + j
 				var/obj/screen/click_catcher/CC = new
 				CC.screen_loc = "CENTER[tx < 0 ? tx : "+[tx]"],CENTER[ty < 0 ? ty : "+[ty]"]"

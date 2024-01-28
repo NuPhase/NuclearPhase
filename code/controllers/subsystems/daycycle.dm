@@ -1,10 +1,8 @@
 ///Subsystem for updating day/night ambient lighting for sets of z-levels that share a common day/night state.
 SUBSYSTEM_DEF(daycyle)
 	name       = "Day Cycle"
-	priority   = SS_PRIORITY_DAYCYCLE
 	wait       = 1 MINUTE
-	flags      = SS_BACKGROUND | SS_POST_FIRE_TIMING | SS_NO_INIT
-	runlevels  = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	flags      = SS_NO_INIT | SS_NO_FIRE
 	init_order = SS_INIT_TICKER
 	///List of the topmost level_ids associated with their /datum/ssdaycycle_registered that contains the current daystate for that set of levels.
 	var/list/registered_levels

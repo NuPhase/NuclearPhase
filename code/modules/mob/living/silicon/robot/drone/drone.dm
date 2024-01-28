@@ -77,7 +77,7 @@
 
 	if(!(old_loc && new_loc)) // Allows inventive admins to move drones between non-adjacent Z-levels by moving them to null space first I suppose
 		return
-	if(ARE_Z_CONNECTED(old_loc.z, new_loc.z))
+	if(LEVELS_ARE_Z_CONNECTED(old_loc.z, new_loc.z))
 		return
 
 	// None of the tests passed, good bye
@@ -174,7 +174,7 @@
 
 		if(stat == 2)
 
-			if(!get_config_value(/decl/config/toggle/on/allow_drone_spawn) || emagged || should_be_dead()) //It's dead, Dave.
+			if(!get_config_value(/decl/config/toggle/on/allow_drone_spawn) || emagged) //It's dead, Dave.
 				to_chat(user, "<span class='danger'>The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.</span>")
 				return
 
