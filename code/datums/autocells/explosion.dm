@@ -252,14 +252,14 @@ as having entered the turf.
 		var/turf/below_T = GetBelow(epicenter)
 		if((z_transfer & UP) && above_T)
 			if(istype(above_T, /turf/simulated/open))
-				cell_explosion(above_T, power * 0.5, z_transfer=UP)
+				cell_explosion(above_T, power * 0.5, falloff=falloff, z_transfer=UP)
 			else
-				cell_explosion(above_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), z_transfer=UP)
+				cell_explosion(above_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), falloff=falloff, z_transfer=UP)
 		if((z_transfer & DOWN) && below_T)
 			if(istype(below_T, /turf/simulated/open))
-				cell_explosion(below_T, power * 0.5, z_transfer=DOWN)
+				cell_explosion(below_T, power * 0.5, falloff=falloff, z_transfer=DOWN)
 			else
-				cell_explosion(below_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), z_transfer=DOWN)
+				cell_explosion(below_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), falloff=falloff, z_transfer=DOWN)
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
