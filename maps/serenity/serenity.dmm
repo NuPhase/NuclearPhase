@@ -529,6 +529,13 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
+"aSa" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	pixel_y = -32
+	},
+/turf/simulated/floor/concrete/road,
+/area/serenity)
 "aSu" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Storage&Filtration"
@@ -1625,6 +1632,16 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"cmw" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/structure/sign/warning/engineering_access{
+	dir = 8;
+	pixel_x = 32
+	},
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations)
 "cmz" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2728,11 +2745,11 @@
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "dJG" = (
-/obj/structure/stairs/long,
-/obj/structure/railing/mapped{
-	dir = 8
+/obj/structure/door/sliding{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card
 	},
-/turf/simulated/open,
+/turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "dJT" = (
 /obj/structure/table/glass,
@@ -3322,6 +3339,13 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
+"exK" = (
+/obj/structure/sign/warning/detailed{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity)
 "exW" = (
 /obj/machinery/door/airlock/hatch/maintenance/bolted,
 /turf/simulated/floor/plating)
@@ -5087,7 +5111,6 @@
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "gIE" = (
 /obj/structure/reagent_dispensers/watertank/firefighter,
-/obj/effect/floor_decal/industrial/fire/fulltile,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
 "gIN" = (
@@ -5366,12 +5389,11 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
 "hcj" = (
-/obj/structure/closet/firecloset,
 /obj/structure/railing/mapped,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/fire/fulltile,
+/obj/structure/largecrate,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
 "hcB" = (
@@ -6659,6 +6681,7 @@
 "iMr" = (
 /obj/structure/catwalk,
 /obj/structure/closet/firecloset,
+/obj/structure/railing/mapped,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
 "iMw" = (
@@ -6719,9 +6742,9 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "iQm" = (
-/obj/structure/closet/secure_closet/engineering_welding,
-/turf/simulated/floor/concrete/road,
-/area/serenity/shelter/engineering/pumps_a)
+/obj/machinery/light/ceiling,
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/reactor_operations)
 "iQJ" = (
 /obj/effect/floor_decal/carpet/purple{
 	dir = 8
@@ -7381,6 +7404,10 @@
 /obj/machinery/light/ceiling{
 	dir = 4;
 	pixel_y = 17
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	pixel_y = -32
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity)
@@ -8375,8 +8402,8 @@
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
 "kOR" = (
-/obj/structure/closet/toolcloset,
 /obj/effect/floor_decal/industrial/fire/fulltile,
+/obj/structure/closet/firecloset,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
 "kPl" = (
@@ -10014,6 +10041,10 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
+"mBM" = (
+/obj/machinery/light/ceiling,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity)
 "mBX" = (
 /obj/structure/table/steel,
 /obj/item/toy/desk/fan,
@@ -10067,10 +10098,10 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
 "mFS" = (
-/obj/structure/stairs/long,
 /obj/structure/railing/mapped{
 	dir = 8
 	},
+/obj/structure/stairs/long,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity)
 "mGc" = (
@@ -15527,7 +15558,7 @@
 /area/serenity/shelter/engineering/reactor)
 "tct" = (
 /obj/structure/door/fire,
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity)
 "tcT" = (
 /obj/machinery/light/ceiling{
@@ -17926,11 +17957,11 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
 "vQD" = (
-/obj/structure/fire_hydrant_manual{
+/obj/structure/extinguisher_cabinet{
 	pixel_y = 32
 	},
-/turf/simulated/floor/concrete/road,
-/area/serenity)
+/turf/simulated/floor/tiled/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "vQE" = (
 /obj/machinery/conveyor,
 /obj/structure/plasticflaps/airtight,
@@ -69567,8 +69598,8 @@ aIK
 aIK
 aIK
 aIK
-vQD
 qDY
+aSa
 aIK
 erI
 rBS
@@ -69660,9 +69691,9 @@ xEy
 xEy
 xEy
 aIK
-rLq
-quL
-rLq
+exK
+mBM
+ncq
 tct
 qDY
 qDY
@@ -69758,7 +69789,7 @@ xEy
 xEy
 xEy
 aIK
-rLq
+nwX
 nOB
 mFS
 aIK
@@ -79069,12 +79100,12 @@ xEy
 xEy
 xEy
 hus
-iMr
-jFG
-vLn
 vLn
 jFG
-lQL
+vLn
+lGD
+iQm
+vQD
 lQL
 hus
 lQL
@@ -79168,9 +79199,9 @@ xEy
 xEy
 hus
 iMr
-cjJ
 crh
-crh
+cmw
+lGD
 dJG
 lQL
 lQL
@@ -107001,7 +107032,7 @@ xEy
 xEy
 xEy
 dsT
-itf
+eXQ
 vtO
 hcj
 tlx
@@ -107492,7 +107523,7 @@ biH
 biH
 biH
 eXQ
-iQm
+gkX
 gkX
 gkX
 oRu
@@ -116899,8 +116930,8 @@ gzA
 biH
 oag
 oag
+oag
 kpY
-fqb
 fqb
 kIU
 biH
