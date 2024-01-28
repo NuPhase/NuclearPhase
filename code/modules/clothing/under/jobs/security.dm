@@ -64,8 +64,8 @@
 	)
 
 /obj/item/clothing/under/tactical
-	name = "tactical jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	name = "combat uniform"
+	desc = "A standard combat uniform of the SAF, made from robust fabric to withstand harsh conditions. This one comes in a lovely forest green camo pattern."
 	icon = 'icons/clothing/under/uniform_swat.dmi'
 	armor = list(
 		melee = ARMOR_MELEE_SMALL
