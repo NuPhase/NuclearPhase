@@ -303,3 +303,5 @@
 #define MOUSE_OPACITY_NORMAL 1
 /// Causes the atom to catch clicks, hovers, etc, taking priority over NORMAL for a shared pointer target.
 #define MOUSE_OPACITY_PRIORITY 2
+
+#define TYPE_IS_ABSTRACT(D) (initial(D.abstract_type) == D)

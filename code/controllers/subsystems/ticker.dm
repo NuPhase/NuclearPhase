@@ -231,9 +231,9 @@ Helpers
 		return
 
 	var/list/base_runnable_modes = list()
-	var/list/all_modes = decls_repository.get_decls_of_subtype(/datum/game_mode)
+	var/list/all_modes = decls_repository.get_decls_of_subtype(/decl/game_mode)
 	for(var/mode_type in all_modes)
-		var/datum/game_mode/game_mode = all_modes[mode_type]
+		var/decl/game_mode/game_mode = all_modes[mode_type]
 		if(game_mode.probability > 0 && !game_mode.startRequirements())
 			base_runnable_modes[game_mode.uid] = game_mode.probability
 
