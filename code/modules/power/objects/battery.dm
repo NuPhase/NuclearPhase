@@ -20,8 +20,8 @@
 /obj/machinery/power/generator/battery/proc/burst()
 	set waitfor = FALSE
 	sleep(5 SECONDS)
-		deflagration(loc, 150, 10, spread_fluid = /decl/material/solid/lithium)
-		qdel(src)
+	deflagration(loc, 150, 10, spread_fluid = /decl/material/solid/lithium)
+	qdel(src)
 
 /obj/machinery/power/generator/battery/examine(mob/user)
 	. = ..()
