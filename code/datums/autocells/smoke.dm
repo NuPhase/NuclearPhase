@@ -46,6 +46,9 @@
 		var/turf/T = get_step(get_turf(in_turf), dir)
 		if(T.density)
 			continue
+		for(var/obj/machinery/door/D in T)
+			if(D.density)
+				continue
 		var/datum/automata_cell/smoke/E = propagate(dir)
 		if(E)
 			E.direction = dir

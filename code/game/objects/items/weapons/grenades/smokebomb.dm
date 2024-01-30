@@ -13,7 +13,7 @@
 
 /obj/item/grenade/smokebomb/detonate()
 	playsound(src.loc, 'sound/effects/tank_rupture.wav', 50, 1, -3)
-	cell_smoke(get_turf(src), 5)
+	cell_smoke(get_turf(src), 3)
 	for(var/obj/effect/blob/B in view(8,src))
 		var/damage = round(30/(get_dist(B,src)+1))
 		B.health -= damage
@@ -26,7 +26,7 @@
 
 /obj/item/grenade/smokebomb/poison/detonate()
 	playsound(src.loc, 'sound/effects/tank_rupture.wav', 50, 1, -3)
-	cell_smoke(get_turf(src), 5, /obj/effect/effect/smoke/bad/poison)
+	cell_smoke(get_turf(src), 3, /obj/effect/effect/smoke/bad/poison)
 	for(var/obj/effect/blob/B in view(8,src))
 		var/damage = round(30/(get_dist(B,src)+1))
 		B.health -= damage

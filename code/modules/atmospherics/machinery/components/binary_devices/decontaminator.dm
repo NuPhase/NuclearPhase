@@ -13,7 +13,7 @@
 /obj/machinery/atmospherics/binary/decontaminator/proc/activate()
 	var/turf/T = get_turf(src)
 	playsound(T, 'sound/machines/decontaminator.ogg', 25)
-	cell_smoke(T, 4, /obj/effect/effect/smoke/decontamination)
+	cell_smoke(T, 2, /obj/effect/effect/smoke/decontamination)
 	var/datum/gas_mixture/environment = T.return_air()
 	var/datum/gas_mixture/filtered = air1.remove(500)
 	for(var/g in environment.gas)

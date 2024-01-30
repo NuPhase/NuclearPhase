@@ -56,6 +56,12 @@
 	// Propagate the explosion
 	var/list/to_spread = get_propagation_dirs(reflected)
 	for(var/dir in to_spread)
+		var/turf/T = get_step(get_turf(in_turf), dir)
+		if(T.density)
+			continue
+		for(var/obj/machinery/door/D in T)
+			if(D.density)
+				continue
 		// Diagonals are longer, that should be reflected in the power falloff
 		var/dir_falloff = 1
 		if(dir in cornerdirs)
