@@ -264,7 +264,8 @@ steam.start() -- spawns the effect
 	M.bloodstr.add_reagent(/decl/material/liquid/presyncopics, 0.7)
 
 /obj/effect/effect/smoke/decontamination
-	color = "#ddf8ff"
+	color = "#90cedd"
+	time_to_live = 5 SECONDS
 
 /obj/effect/effect/smoke/decontamination/affect(mob/living/carbon/M)
 	if(!istype(M))
