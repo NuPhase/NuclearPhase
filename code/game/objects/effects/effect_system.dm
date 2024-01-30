@@ -169,20 +169,23 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke
 	name = "smoke"
-	icon_state = "smoke"
-	opacity = 1
+	opacity = 0
 	anchored = 0.0
+	layer = ABOVE_HUMAN_LAYER
 	var/amount = 6.0
 	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	var/time_to_live = 100
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
+	icon_state = "gibberish"
 	pixel_x = -32
 	pixel_y = -32
+	alpha = 240
 
 /obj/effect/effect/smoke/Initialize()
 	. = ..()
+	particles = SSparticles.get_particle(/particles/smoke_continuous)
 	QDEL_IN(src, time_to_live)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M)

@@ -8,12 +8,15 @@
 	var/firelevel = 0 //Larger the number, worse burns.
 	var/last_temperature = 0 //People with heat protection above this temp will be immune.
 	var/pressure = 0 //Larger the number, worse burns.
+	var/obj/effect/abstract/particle_holder/our_holder = null
 
 /obj/effect/fake_fire/Initialize()
 	. = ..()
 	set_light(3, 0.5, color)
 	Process()
 	START_PROCESSING(SSobj,src)
+	our_holder = new(loc, /particles/smoke_continuous/fire)
+	our_holder.alpha = 170
 	if(lifetime)
 		QDEL_IN(src,lifetime)
 
@@ -26,6 +29,7 @@
 
 /obj/effect/fake_fire/Destroy()
 	STOP_PROCESSING(SSobj,src)
+	qdel(our_holder)
 	. = ..()
 
 /obj/effect/fake_fire/dragon_breath
