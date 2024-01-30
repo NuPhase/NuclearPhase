@@ -232,35 +232,3 @@
 		/datum/computer_file/program/shields_monitor
 	)
 	event_categories = list(ASSIGNMENT_ENGINEER)
-
-/obj/item/card/id/engineering
-	name = "identification card"
-	desc = "A card issued to engineering staff."
-	detail_color = COLOR_SUN
-	var/acquired_dose = 0 //mSv
-
-/obj/item/card/id/engineering/Initialize()
-	. = ..()
-	START_PROCESSING(SSobj, src)
-
-/obj/item/card/id/engineering/examine(mob/user, distance)
-	. = ..()
-	var/message
-	switch(acquired_dose)
-		if(0 to 1000)
-			message = SPAN_NOTICE("The radiation dose badge is green and clear.")
-		if(1000 to 6000)
-			message = SPAN_WARNING("The radiation dose badge is yellow, signaling dangerous levels.")
-		if(6000 to 28000)
-			message = SPAN_DANGER("The radiation dose badge is discolored to lethal red...")
-		if(28000 to INFINITY)
-			message = SPAN_DANGER("The radiation dose badge burned out and turned black from radiation...")
-	to_chat(user, message)
-
-/obj/item/card/id/engineering/Process()
-	acquired_dose += SSradiation.get_rads_at_turf(get_turf(src)) / 3600
-
-/obj/item/card/id/engineering/head
-	name = "identification card"
-	desc = "A card which represents creativity and ingenuity."
-	extra_details = list("goldstripe")

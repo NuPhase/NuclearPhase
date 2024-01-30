@@ -100,9 +100,12 @@
 	starting_accessories = list(/obj/item/clothing/accessory/tunic/zeng)
 
 /obj/item/clothing/under/executive/zeng
-	name = "\improper Zeng-Hu polo and pants"
-	desc = "A fashionable polo and pair of trousers made from expensive biohazard-resistant fabrics. The colors denote the wearer as a Zeng-Hu Pharmaceuticals higher-up."
+	name = "\improper RO polo and pants"
+	desc = "A fashionable polo and pair of trousers made from expensive biohazard-resistant fabrics. The colors denote the wearer as a RO worker."
 	icon = 'mods/content/corporate/icons/clothing/under/smock_exec_zeng.dmi'
+
+/obj/item/clothing/under/executive/zeng/head
+	desc = "A fashionable polo and pair of trousers made from expensive biohazard-resistant fabrics. The colors denote the wearer as a RO executive."
 	starting_accessories = list(/obj/item/clothing/accessory/tunic/exec/zeng)
 
 /obj/item/clothing/under/suit_jacket/corp/zeng
