@@ -3,7 +3,7 @@
 	neighbor_type = NEIGHBORS_NONE
 
 	//Diagonal cells have a small delay when branching off from a non-diagonal cell. This helps the explosion look circular
-	var/delay = 0
+	var/delay = 1
 
 	var/passed_distance = 0
 	var/max_distance = 1
@@ -38,22 +38,23 @@
 		delay--
 		return
 
-	if(istype(in_turf, /turf/simulated/wall))
-		qdel(src)
+	if(passed_distance >= max_distance)
 		return
 
 	var/list/to_spread = get_propagation_dirs()
 	for(var/dir in to_spread)
-		if(passed_distance >= max_distance)
-			return
+		var/turf/T = get_step(get_turf(in_turf), dir)
+		if(T.density)
+			continue
 		var/datum/automata_cell/smoke/E = propagate(dir)
 		if(E)
 			E.direction = dir
 			//Diagonal cells have a small delay when branching off the center. This helps the explosion look circular
 			if(!direction && (dir in cornerdirs))
-				E.delay = 1
+				E.delay = 2
 
 			E.passed_distance = passed_distance + 1
+			E.max_distance = max_distance
 
 	// We've done our duty, now die pls
 	qdel(src)
