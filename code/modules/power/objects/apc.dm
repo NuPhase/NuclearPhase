@@ -977,6 +977,7 @@ var/global/list/all_apcs = list()
 			explosion(T, 0, 0, 1, 5)
 			new /obj/effect/effect/smoke/illumination(loc, 5, 30, 1, "#ffffff")
 			src.fragmentate(T, 72, 7, list(/obj/item/projectile/bullet/pellet/fragment/flaming = 1))
+			qdel(src)
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
 	switch(val)

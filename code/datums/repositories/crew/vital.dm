@@ -1,25 +1,25 @@
 /* Vital */
 /crew_sensor_modifier/vital/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
-	crew_data["true_pulse"] = -1
+	crew_data["true_pulse"] = 0
 	crew_data["pulse"] = "N/A"
 	crew_data["pulse_span"] = "neutral"
 	if(!H.isSynthetic() && H.should_have_organ(BP_HEART))
 		var/obj/item/organ/internal/heart/O = H.get_organ(BP_HEART, /obj/item/organ/internal/heart)
 		if (!O || !BP_IS_PROSTHETIC(O)) // Don't make medical freak out over prosthetic hearts
 			crew_data["true_pulse"] = H.pulse()
-			crew_data["pulse"] = H.get_pulse(GETPULSE_TOOL)
+			crew_data["pulse"] = round(H.get_pulse(GETPULSE_TOOL), 1)
 			switch(crew_data["true_pulse"])
-				if(PULSE_NONE)
+				if(PULSE_NONE to PULSE_SLOW)
 					crew_data["pulse_span"] = "bad"
-				if(PULSE_SLOW)
+				if(PULSE_SLOW to PULSE_NORM)
 					crew_data["pulse_span"] = "average"
-				if(PULSE_NORM)
+				if(PULSE_NORM to PULSE_FAST)
 					crew_data["pulse_span"] = "good"
-				if(PULSE_FAST)
+				if(PULSE_FAST to PULSE_2FAST)
 					crew_data["pulse_span"] = "highlight"
-				if(PULSE_2FAST)
+				if(PULSE_2FAST to PULSE_THREADY)
 					crew_data["pulse_span"] = "average"
-				if(PULSE_THREADY)
+				if(PULSE_THREADY to INFINITY)
 					crew_data["pulse_span"] = "bad"
 	crew_data["charge"] = "N/A"
 	crew_data["charge_span"] = "N/A"
@@ -43,9 +43,6 @@
 		crew_data["pressure"] = H.get_blood_pressure()
 		crew_data["true_oxygenation"] = H.get_blood_oxygenation()
 		switch (crew_data["true_oxygenation"])
-			if(105 to INFINITY)
-				crew_data["oxygenation"] = "increased"
-				crew_data["oxygenation_span"] = "highlight"
 			if(BLOOD_VOLUME_SAFE to 105)
 				crew_data["oxygenation"] = "normal"
 				crew_data["oxygenation_span"] = "good"
@@ -59,7 +56,7 @@
 				crew_data["oxygenation"] = "extremely low"
 				crew_data["oxygenation_span"] = "bad"
 
-	crew_data["bodytemp"] = H.bodytemperature - T0C
+	crew_data["bodytemp"] = round(H.bodytemperature - T0C, 0.1)
 	return ..()
 
 /crew_sensor_modifier/vital/proc/set_healthy(var/list/crew_data)

@@ -166,6 +166,15 @@
 			spawn(10 SECONDS)
 				AM.set_light(9, 5, "#fcee6f")
 
+/obj/machinery/power/hybrid_reactor/proc/stop_burning()
+	set waitfor = FALSE
+	var/list/animate_targets = superstructure.get_above_oo() + superstructure
+	for(var/thing in animate_targets)
+		var/atom/movable/AM = thing
+		AM.set_light(4, 1, "#fcac77")
+		animate(AM, color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN)
+		AM.animate_filter("glow", list(color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN))
+
 /obj/machinery/power/hybrid_reactor/proc/close_blastdoors()
 
 /obj/machinery/power/hybrid_reactor/proc/launch_fuel_cells()

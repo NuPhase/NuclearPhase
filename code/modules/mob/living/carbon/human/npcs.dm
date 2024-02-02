@@ -156,3 +156,43 @@
 					else
 						bodytemp.icon_state = "temp0"
 	return 1
+
+/mob/living/carbon/human/limb/verb/respawn()
+	set name = "Respawn"
+	set category = "OOC"
+
+	if (!get_config_value(/decl/config/toggle/on/abandon_allowed))
+		to_chat(usr, SPAN_WARNING("Respawn is disabled."))
+		return
+	if (!SSticker.mode)
+		to_chat(usr, SPAN_WARNING("<b>You may not attempt to respawn yet.</b>"))
+		return
+	if (SSticker.mode.deny_respawn)
+		to_chat(usr, SPAN_WARNING("Respawn is disabled for this roundtype."))
+		return
+	else if(!MayRespawn(1, get_config_value(/decl/config/num/respawn_delay)))
+		return
+
+	to_chat(usr, SPAN_NOTICE("You can respawn now, enjoy your new life!"))
+	to_chat(usr, SPAN_NOTICE("<b>Make sure to play a different character, and please roleplay correctly!</b>"))
+	announce_ghost_joinleave(client, 0)
+
+	var/mob/new_player/M = new /mob/new_player()
+	M.key = key
+	log_and_message_admins("has respawned.", M)
+
+/mob/living/carbon/human/limb/MayRespawn(var/feedback = 0, var/respawn_time = 0)
+	if(!client)
+		return 0
+	if(limb_mob.stat != DEAD)
+		if(feedback)
+			to_chat(src, "<span class='warning'>Your non-dead body prevents you from respawning.</span>")
+		return 0
+
+	//var/timedifference = world.time - timeofdeath
+	//if(!client.holder && respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
+	//	var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
+	//	to_chat(src, "<span class='warning'>You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.</span>")
+	//	return 0
+
+	return 1

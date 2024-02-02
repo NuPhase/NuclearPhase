@@ -29,15 +29,7 @@
 
 	if(stat == DEAD) return
 
-	bpm = 0
-	syspressure = 0
-	dyspressure = 0
-	meanpressure = 0
-	mcv = 0
-	tpvr = initial(tpvr)
-	oxygen_amount = 0
-
-	retrieve_from_limb(TRUE)
+	send_to_limb()
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
@@ -63,9 +55,14 @@
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
-	spawn(300)
-		if(client)
-			ghostize()
+
+	bpm = 0
+	syspressure = 0
+	dyspressure = 0
+	meanpressure = 0
+	mcv = 0
+	tpvr = initial(tpvr)
+	oxygen_amount = 0
 
 /mob/living/carbon/human/proc/is_husked()
 	return (MUTATION_HUSK in mutations)
