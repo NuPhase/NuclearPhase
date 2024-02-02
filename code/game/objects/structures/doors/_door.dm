@@ -55,7 +55,7 @@
 			if(!sliding)
 				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]_open", layer = CLOSED_DOOR_LAYER)
 			else
-				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = ABOVE_WIRE_LAYER, pixel_x = -23)
+				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = TURF_DETAIL_LAYER, pixel_x = -23)
 	else
 		if(!(dir == EAST || dir == WEST))
 			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = door_type, layer = CLOSED_DOOR_LAYER)
