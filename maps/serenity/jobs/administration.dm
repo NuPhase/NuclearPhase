@@ -1,4 +1,5 @@
 /datum/job/administration
+	abstract_type = /datum/job/administration
 	head_position = 1
 	department_types = list(/decl/department/administration)
 	total_positions = 0

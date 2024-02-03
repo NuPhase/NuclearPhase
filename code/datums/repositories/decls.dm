@@ -71,8 +71,9 @@ var/global/repository/decls/decls_repository = new
 			CRASH("Invalid decl_type supplied to get_decl(): [decl_type || "NULL"]")
 		return null
 
-	if(TYPE_IS_ABSTRACT(decl_type) && !(initial(decl_type.decl_flags) & DECL_FLAG_ALLOW_ABSTRACT_INIT))
-		return // We do not instantiate abstract decls.
+	//if(TYPE_IS_ABSTRACT(decl_type) && !(initial(decl_type.decl_flags) & DECL_FLAG_ALLOW_ABSTRACT_INIT))
+	//	return // We do not instantiate abstract decls.
+	//THIS IS AN EMERGENCY FIX
 	. = fetched_decls[decl_type]
 	if(!.)
 		var/decl/decl = new decl_type

@@ -1,4 +1,5 @@
 /datum/job/laboratories
+	abstract_type = /datum/job/laboratories
 	department_types = list(/decl/department/laboratories)
 	total_positions = 0
 	spawn_positions = 0

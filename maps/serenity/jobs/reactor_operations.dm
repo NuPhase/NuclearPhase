@@ -1,4 +1,5 @@
 /datum/job/reactor_operations
+	abstract_type = /datum/job/reactor_operations
 	department_types = list(/decl/department/reactor_operations)
 	total_positions = 1
 	spawn_positions = 1
