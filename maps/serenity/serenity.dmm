@@ -105,10 +105,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 20;
-	name = "BUS to SECTOR D";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "BUS to SECTOR D"
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
@@ -1423,8 +1423,8 @@
 /area/serenity/shelter/engineering/atmos)
 "bIr" = (
 /obj/structure/closet/crate/secure/biohazard/alt{
-	req_access = null;
-	anchored = 1
+	anchored = 1;
+	req_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white/monotile,
@@ -1595,7 +1595,14 @@
 "bSE" = (
 /obj/structure/sign/warning/hot_exhaust{
 	dir = 1;
+	pixel_x = 17;
 	pixel_y = -32
+	},
+/obj/machinery/embedded_controller/radio/decontamination_airlock{
+	dir = 1;
+	pixel_y = -27;
+	tag_exterior_door = "reactor_room_ex";
+	tag_interior_door = "reactor_room_in"
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
@@ -1624,8 +1631,8 @@
 	dir = 1
 	},
 /obj/machinery/computer/modular/preset/civilian{
-	pixel_y = 12;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 12
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
@@ -1799,11 +1806,11 @@
 /obj/machinery/power/apc{
 	dir = 1
 	},
-/obj/structure/cable/blue{
-	dir = 1
-	},
 /obj/machinery/atmospherics/binary/decontaminator,
 /obj/effect/floor_decal/corner/grey/borderfull,
+/obj/structure/cable/blue{
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "cal" = (
@@ -2066,8 +2073,8 @@
 	pixel_y = 5
 	},
 /obj/item/radio/phone{
-	pixel_x = 10;
-	anchored = 1
+	anchored = 1;
+	pixel_x = 10
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -2151,8 +2158,8 @@
 "cur" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green,
 /obj/machinery/door/blast/regular{
-	id_tag = "ro_decont_interior";
-	dir = 4
+	dir = 4;
+	id_tag = "ro_decont_interior"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -2422,9 +2429,9 @@
 /area/serenity/shelter/labs/particle_physics)
 "cMh" = (
 /obj/machinery/atmospherics/valve/digital{
+	alpha = 0;
 	dir = 4;
-	uid = "T-CP 1V-EX";
-	alpha = 0
+	uid = "T-CP 1V-EX"
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
@@ -2647,10 +2654,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 20;
-	name = "BUS to SECTOR B";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "BUS to SECTOR B"
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
@@ -2684,11 +2691,11 @@
 /area/serenity/shelter/engineering/atmos)
 "cZN" = (
 /obj/structure/bed/chair/armchair/black,
-/obj/structure/cable/blue{
-	dir = 1
-	},
 /obj/machinery/power/apc{
 	dir = 1
+	},
+/obj/structure/cable/blue{
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
@@ -2701,6 +2708,18 @@
 /obj/item/stack/material/bolt/mapped/green/thirty,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
+"daO" = (
+/obj/machinery/light/reactor{
+	dir = 1;
+	uid = "access"
+	},
+/obj/machinery/embedded_controller/radio/decontamination_airlock{
+	pixel_y = 24;
+	tag_exterior_door = "reactor_room_ex";
+	tag_interior_door = "reactor_room_in"
+	},
+/turf/simulated/floor/concrete/road,
+/area/serenity/shelter/engineering/reactor)
 "dcg" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -2892,16 +2911,16 @@
 	pixel_y = 5
 	},
 /obj/machinery/reactor_button/relief_valve{
-	pixel_x = -9;
-	pixel_y = -9;
+	id = "T-TURB RELIEF-IN";
 	name = "T-TURB RELIEF-IN";
-	id = "T-TURB RELIEF-IN"
+	pixel_x = -9;
+	pixel_y = -9
 	},
 /obj/machinery/reactor_button/relief_valve{
-	pixel_x = -9;
-	pixel_y = -15;
+	id = "T-TURB RELIEF-OUT";
 	name = "T-TURB RELIEF-OUT";
-	id = "T-TURB RELIEF-OUT"
+	pixel_x = -9;
+	pixel_y = -15
 	},
 /obj/machinery/reactor_button/turn_switch/presvalve/tprescontrol{
 	pixel_x = -9;
@@ -3075,18 +3094,18 @@
 /area/serenity/shelter/brig/prison)
 "duD" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
@@ -3183,9 +3202,9 @@
 /area/serenity/shelter/brig/preparation)
 "dDP" = (
 /obj/structure/door/sliding{
+	dir = 8;
 	lock_data = list("ACCESS_ENGINEERING");
-	lock_type = /datum/lock/id_card;
-	dir = 8
+	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -3590,19 +3609,19 @@
 "ecb" = (
 /obj/machinery/door/blast/shutters/open{
 	dir = 4;
-	name = "RO Lockdown";
-	id_tag = "ro_lockdown"
+	id_tag = "ro_lockdown";
+	name = "RO Lockdown"
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/reactor_operations)
 "ecy" = (
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop{
 	dir = 4;
-	uid = "T-CP 2";
 	icon = 'icons/obj/atmospherics/components/binary/waterpump.dmi';
 	layer = 3.01;
 	pixel_x = -32;
-	pixel_y = -32
+	pixel_y = -32;
+	uid = "T-CP 2"
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
@@ -3711,8 +3730,8 @@
 /area/serenity/shelter/engineering/atmos)
 "efC" = (
 /obj/machinery/rlaser{
-	pixel_x = -16;
-	lasid = "laser_bravo"
+	lasid = "laser_bravo";
+	pixel_x = -16
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
@@ -4043,9 +4062,11 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "eyO" = (
-/obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	id_tag = "reactor_room_in"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor)
@@ -4200,8 +4221,8 @@
 /area/serenity/shelter/habitationdeck/freezer)
 "eHj" = (
 /obj/machinery/door/blast/regular{
-	name = "Blast Shelter A";
-	id_tag = "blast_shelter_a"
+	id_tag = "blast_shelter_a";
+	name = "Blast Shelter A"
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -4493,9 +4514,9 @@
 /area/serenity/shelter/entrance_zone)
 "fcR" = (
 /obj/machinery/atmospherics/omni/filter{
+	tag_filter_gas_west = "gas_carbon_dioxide";
 	tag_north = 2;
-	tag_west = 8;
-	tag_filter_gas_west = "gas_carbon_dioxide"
+	tag_west = 8
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -4693,9 +4714,9 @@
 /area/serenity/shelter/entrance_zone)
 "fnu" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	name = "HP duct";
+	alert_pressure = 170225.3;
 	fatigue_pressure = 170225.3;
-	alert_pressure = 170225.3
+	name = "HP duct"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -5006,9 +5027,9 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	uid = "kitchen_shutter";
 	id_tag = "heatexchanger";
-	name = "Heat Exchanger"
+	name = "Heat Exchanger";
+	uid = "kitchen_shutter"
 	},
 /obj/effect/floor_decal/corner/yellow/bordercorner,
 /obj/machinery/atmospherics/pipe/simple/visible/water{
@@ -5279,10 +5300,10 @@
 /area/serenity/shelter/engineering/atmos)
 "fWq" = (
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 20;
-	name = "BUS to SECTOR A";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "BUS to SECTOR A"
 	},
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
@@ -5303,27 +5324,27 @@
 	},
 /obj/machinery/reactor_display/group/steamloop{
 	layer = 2.221;
-	pixel_y = 6;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 6
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump4v1{
-	pixel_y = 2;
+	layer = 3.062;
 	pixel_x = -21;
-	layer = 3.062
+	pixel_y = 2
 	},
 /obj/machinery/reactor_button/pump/tcp2{
 	dir = 4;
-	pixel_y = 2;
-	pixel_x = -15
+	pixel_x = -15;
+	pixel_y = 2
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump4v2{
 	pixel_x = -9;
 	pixel_y = 2
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump3v1{
+	layer = 3.062;
 	pixel_x = -21;
-	pixel_y = -4;
-	layer = 3.062
+	pixel_y = -4
 	},
 /obj/machinery/reactor_button/pump/tcp1{
 	dir = 4;
@@ -5335,16 +5356,16 @@
 	pixel_y = -4
 	},
 /obj/machinery/reactor_button/rswitch/preheat/coolant{
-	pixel_y = -4;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -4
 	},
 /obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvin{
 	pixel_x = 9;
 	pixel_y = -4
 	},
 /obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvout{
-	pixel_y = -4;
-	pixel_x = 15
+	pixel_x = 15;
+	pixel_y = -4
 	},
 /obj/effect/floor_decal/corner/black/line,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -5588,8 +5609,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/blast/regular{
-	name = "Particle Accelerator";
-	id_tag = "radiology_protection"
+	id_tag = "radiology_protection";
+	name = "Particle Accelerator"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics)
@@ -5630,20 +5651,20 @@
 	pixel_y = 6
 	},
 /obj/machinery/reactor_display/group/pumps{
-	pixel_y = 6;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/machinery/reactor_button/turn_switch/turbine_valve/first{
-	pixel_y = -4;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = -4
 	},
 /obj/machinery/reactor_button/turn_switch/turbine_valve/second{
 	pixel_x = 5;
 	pixel_y = -4
 	},
 /obj/machinery/reactor_button/rswitch/turbine_expansion/first{
-	pixel_y = 2;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 2
 	},
 /obj/machinery/reactor_button/rswitch/turbine_expansion/second{
 	pixel_x = 5;
@@ -5673,9 +5694,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/office)
 "gny" = (
-/obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/simple/hidden/water{
 	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	id_tag = "reactor_room_ex"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor)
@@ -5773,9 +5796,9 @@
 "grI" = (
 /obj/machinery/reactor_display/group/turbine{
 	dir = 8;
+	layer = 2.23;
 	pixel_x = 30;
-	pixel_y = 17;
-	layer = 2.23
+	pixel_y = 17
 	},
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -5791,8 +5814,8 @@
 /area/serenity/shelter/entrance_zone)
 "gsD" = (
 /obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 2V-IN";
-	dir = 8
+	dir = 8;
+	uid = "F-CP 2V-IN"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/pumps_b)
@@ -6027,9 +6050,9 @@
 /area/surface)
 "gFN" = (
 /obj/machinery/atmospherics/valve/digital{
+	alpha = 0;
 	dir = 4;
-	uid = "T-CP 1V-IN";
-	alpha = 0
+	uid = "T-CP 1V-IN"
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
@@ -6191,10 +6214,10 @@
 "gQM" = (
 /obj/machinery/atmospherics/omni/mixer{
 	tag_north = 1;
-	tag_west = 1;
-	tag_west_con = 0.21;
 	tag_north_con = 0.79;
-	tag_south = 2
+	tag_south = 2;
+	tag_west = 1;
+	tag_west_con = 0.21
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -6447,11 +6470,13 @@
 	},
 /area/serenity/shelter/brig/office)
 "heu" = (
-/obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/water,
+/obj/machinery/door/blast/regular{
+	id_tag = "reactor_room_in"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor)
 "hex" = (
@@ -6621,9 +6646,9 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "hqN" = (
 /obj/machinery/button/blast_door{
+	dir = 8;
 	id_tag = "pumpbeta1";
 	name = "Shutter Control";
-	dir = 8;
 	pixel_x = 22
 	},
 /obj/machinery/light/ceiling,
@@ -6715,8 +6740,10 @@
 	},
 /area/serenity)
 "hwm" = (
-/obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/manifold/hidden/water,
+/obj/machinery/door/blast/regular{
+	id_tag = "reactor_room_ex"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor)
 "hwQ" = (
@@ -7326,8 +7353,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/binary/pump/high_power/on{
-	target_pressure = 1700;
-	dir = 1
+	dir = 1;
+	target_pressure = 1700
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/atmos)
@@ -7451,9 +7478,9 @@
 "imk" = (
 /obj/machinery/atmospherics/binary/pump/adv{
 	dir = 2;
-	uid = "T-FEEDWATER CP-MAKEUP";
 	flow_capacity = 216;
-	name = "T-FEEDWATER CP-MAKEUP"
+	name = "T-FEEDWATER CP-MAKEUP";
+	uid = "T-FEEDWATER CP-MAKEUP"
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
@@ -7635,9 +7662,9 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "ivf" = (
 /obj/machinery/button/blast_door{
+	dir = 8;
 	id_tag = "heatexchanger";
 	name = "Shutter Control";
-	dir = 8;
 	pixel_x = 22
 	},
 /turf/simulated/floor/concrete/road,
@@ -7671,16 +7698,16 @@
 	dir = 1
 	},
 /obj/machinery/computer/modular/preset/security{
-	pixel_y = 12;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 12
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "ivX" = (
 /obj/machinery/door/blast/regular/radlock,
 /obj/machinery/door/blast/shutters{
-	name = "Pump Station Beta";
-	id_tag = "pumpbeta2"
+	id_tag = "pumpbeta2";
+	name = "Pump Station Beta"
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_b)
@@ -7877,8 +7904,8 @@
 /obj/item/chems/drinks/glass2/coffeecup/pawn,
 /obj/machinery/computer/modular/preset/security{
 	dir = 4;
-	pixel_y = 12;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 12
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
@@ -8159,8 +8186,8 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/regular/open{
-	id_tag = "lab_decont_interior";
-	dir = 4
+	dir = 4;
+	id_tag = "lab_decont_interior"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/labs)
@@ -8366,9 +8393,9 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	uid = "kitchen_shutter";
 	id_tag = "heatexchanger";
-	name = "Heat Exchanger"
+	name = "Heat Exchanger";
+	uid = "kitchen_shutter"
 	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -9008,9 +9035,9 @@
 	icon_state = "4-8"
 	},
 /obj/structure/door/sliding{
+	dir = 8;
 	lock_data = list("ACCESS_ENGINEERING");
-	lock_type = /datum/lock/id_card;
-	dir = 8
+	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
@@ -9315,9 +9342,9 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	uid = "kitchen_shutter";
 	id_tag = "heatexchanger";
-	name = "Heat Exchanger"
+	name = "Heat Exchanger";
+	uid = "kitchen_shutter"
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
@@ -9378,8 +9405,8 @@
 "klT" = (
 /obj/structure/bed/padded,
 /obj/structure/iv_drip{
-	pixel_y = -2;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -2
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -9595,8 +9622,8 @@
 /area/serenity/shelter/labs)
 "kvw" = (
 /obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 1V-EX";
-	dir = 8
+	dir = 8;
+	uid = "F-CP 1V-EX"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/pumps_b)
@@ -9696,13 +9723,13 @@
 	pixel_y = 6
 	},
 /obj/machinery/reactor_display/group/pumps{
-	pixel_y = 6;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 6
 	},
 /obj/machinery/reactor_button/moderator{
+	icon_state = "switch4-0";
 	pixel_x = -14;
-	pixel_y = -3;
-	icon_state = "switch4-0"
+	pixel_y = -3
 	},
 /obj/effect/floor_decal/corner/black/line,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -10399,9 +10426,9 @@
 /area/serenity/shelter/habitationdeck/crew)
 "lnN" = (
 /obj/machinery/atmospherics/omni/filter{
+	tag_filter_gas_west = "gas_nitrogen";
 	tag_north = 2;
-	tag_west = 8;
-	tag_filter_gas_west = "gas_nitrogen"
+	tag_west = 8
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -10484,9 +10511,9 @@
 /area/serenity/shelter/brig/barracks)
 "lsU" = (
 /obj/machinery/atmospherics/omni/filter{
+	tag_filter_gas_west = "gas_oxygen";
 	tag_north = 2;
-	tag_west = 8;
-	tag_filter_gas_west = "gas_oxygen"
+	tag_west = 8
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -10913,9 +10940,9 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "lLU" = (
 /obj/machinery/button/blast_door{
+	dir = 8;
 	id_tag = "disaster_response";
 	name = "Response Unit";
-	dir = 8;
 	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -10936,6 +10963,12 @@
 /obj/structure/closet/firecloset,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/embedded_controller/radio/decontamination_airlock{
+	dir = 8;
+	pixel_x = 23;
+	tag_exterior_door = "lab_decont_exterior";
+	tag_interior_door = "lab_decont_interior"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -11227,9 +11260,9 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "mdm" = (
 /obj/machinery/atmospherics/valve/digital{
+	alpha = 0;
 	dir = 4;
-	uid = "T-CP 2V-EX";
-	alpha = 0
+	uid = "T-CP 2V-EX"
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
@@ -11336,8 +11369,8 @@
 /obj/structure/window/reinforced,
 /obj/effect/floor_decal/corner/blue/border,
 /obj/structure/closet/crate/secure/biohazard/alt{
-	req_access = null;
-	anchored = 1
+	anchored = 1;
+	req_access = null
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -11375,18 +11408,18 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "mjB" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/effect/floor_decal/spline/plain/grey{
 	dir = 5
@@ -11525,14 +11558,14 @@
 	pixel_y = 6
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump1v1{
+	layer = 3.062;
 	pixel_x = -23;
-	pixel_y = 12;
-	layer = 3.062
+	pixel_y = 12
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump2v1{
+	layer = 3.062;
 	pixel_x = -17;
-	pixel_y = 12;
-	layer = 3.062
+	pixel_y = 12
 	},
 /obj/machinery/reactor_button/rswitch/valve/pump1v2{
 	pixel_x = -23;
@@ -11543,23 +11576,23 @@
 	pixel_y = 7
 	},
 /obj/machinery/reactor_button/pump/fcp1{
+	layer = 3.061;
 	pixel_x = -23;
-	pixel_y = -3;
-	layer = 3.061
+	pixel_y = -3
 	},
 /obj/machinery/reactor_button/pump/fcp2{
+	layer = 3.061;
 	pixel_x = -17;
-	pixel_y = -3;
-	layer = 3.061
+	pixel_y = -3
 	},
 /obj/machinery/reactor_button/rswitch/intake_valves{
-	pixel_y = -3;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -3
 	},
 /obj/machinery/reactor_button/fuel{
+	icon_state = "switch4-0";
 	pixel_x = 12;
-	pixel_y = -3;
-	icon_state = "switch4-0"
+	pixel_y = -3
 	},
 /obj/machinery/reactor_button/rswitch/battery_charging{
 	pixel_y = -3
@@ -11849,9 +11882,9 @@
 /obj/machinery/atmospherics/binary/passive_gate/on{
 	dir = 4;
 	regulate_mode = 1;
-	target_pressure = 2500;
+	set_flow_rate = 2000;
 	starting_volume = 2000;
-	set_flow_rate = 2000
+	target_pressure = 2500
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -12204,8 +12237,8 @@
 /obj/machinery/atmospherics/binary/decontaminator,
 /obj/machinery/embedded_controller/radio/decontamination_airlock{
 	pixel_y = 24;
-	tag_interior_door = "lab_decont_interior";
-	tag_exterior_door = "lab_decont_exterior"
+	tag_exterior_door = "lab_decont_exterior";
+	tag_interior_door = "lab_decont_interior"
 	},
 /obj/effect/floor_decal/corner/grey/borderfull,
 /turf/simulated/floor/tiled/white/monotile,
@@ -13195,9 +13228,11 @@
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
 "nZF" = (
-/obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/manifold/hidden/green{
 	dir = 1
+	},
+/obj/machinery/door/blast/regular{
+	id_tag = "reactor_room_in"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor)
@@ -13247,13 +13282,13 @@
 /area/serenity/shelter/brig/office)
 "obS" = (
 /obj/structure/filingcabinet{
-	pixel_x = -10;
-	density = 0
+	density = 0;
+	pixel_x = -10
 	},
 /obj/structure/filingcabinet,
 /obj/structure/filingcabinet{
-	pixel_x = 10;
-	density = 0
+	density = 0;
+	pixel_x = 10
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -13560,8 +13595,8 @@
 "onZ" = (
 /obj/structure/table/steel,
 /obj/machinery/computer{
-	pixel_y = 16;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 16
 	},
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
@@ -13871,8 +13906,8 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "oCG" = (
 /obj/machinery/door/blast/regular{
-	name = "Particle Accelerator";
-	id_tag = "radiology_protection"
+	id_tag = "radiology_protection";
+	name = "Particle Accelerator"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics)
@@ -13990,8 +14025,8 @@
 /obj/item/pen,
 /obj/machinery/computer/modular/preset/civilian{
 	dir = 4;
-	pixel_y = 12;
-	pixel_x = -16
+	pixel_x = -16;
+	pixel_y = 12
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
@@ -14014,9 +14049,9 @@
 "oKW" = (
 /obj/machinery/light/ceiling,
 /obj/structure/sign/directions/engineering{
-	pixel_y = -6;
+	dir = 1;
 	pixel_x = 32;
-	dir = 1
+	pixel_y = -6
 	},
 /obj/structure/sign/directions/science{
 	dir = 1;
@@ -14136,8 +14171,8 @@
 /obj/structure/table/steel,
 /obj/machinery/computer{
 	dir = 1;
-	pixel_y = 6;
-	pixel_x = -16
+	pixel_x = -16;
+	pixel_y = 6
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -14286,8 +14321,8 @@
 "oYX" = (
 /obj/structure/bed/padded,
 /obj/structure/iv_drip{
-	pixel_y = -2;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = -2
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -14406,15 +14441,15 @@
 /obj/machinery/atmospherics/binary/passive_gate/on{
 	dir = 2;
 	regulate_mode = 1;
-	target_pressure = 700;
-	starting_volume = 2500
+	starting_volume = 2500;
+	target_pressure = 700
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "pff" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
-	target_pressure = 700;
-	dir = 1
+	dir = 1;
+	target_pressure = 700
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -14486,9 +14521,9 @@
 "plf" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/button/blast_door{
+	dir = 1;
 	id_tag = "pumpbeta2";
-	name = "Pump Access";
-	dir = 1
+	name = "Pump Access"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
@@ -14721,9 +14756,9 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	uid = "kitchen_shutter";
 	id_tag = "heatexchanger";
-	name = "Heat Exchanger"
+	name = "Heat Exchanger";
+	uid = "kitchen_shutter"
 	},
 /obj/effect/floor_decal/corner/yellow/bordercorner{
 	dir = 4
@@ -14847,6 +14882,18 @@
 /obj/item/pen,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
+"pBK" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/embedded_controller/radio/decontamination_airlock{
+	pixel_y = 24;
+	tag_exterior_door = "ro_decont_exterior";
+	tag_interior_door = "ro_decont_interior"
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/reactor_operations)
 "pCd" = (
 /obj/structure/bed/chair/armchair/black,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -15087,9 +15134,9 @@
 /area/serenity/shelter/brig/office)
 "pRo" = (
 /obj/structure/door/sliding{
+	dir = 8;
 	lock_data = list("ACCESS_ENGINEERING");
-	lock_type = /datum/lock/id_card;
-	dir = 8
+	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -15151,8 +15198,8 @@
 	dir = 9
 	},
 /obj/machinery/computer/modular/preset/civilian{
-	pixel_y = 12;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 12
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
@@ -15291,18 +15338,18 @@
 /area/serenity/shelter/habitationdeck/crew)
 "qfK" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 5
@@ -15389,8 +15436,8 @@
 /area/serenity/shelter/labs/genetics)
 "qoi" = (
 /obj/machinery/door/blast/regular{
-	name = "Exposure Chamber";
-	id_tag = "radiology_protection"
+	id_tag = "radiology_protection";
+	name = "Exposure Chamber"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
@@ -15466,8 +15513,8 @@
 "qrl" = (
 /obj/machinery/reactor_fuelport{
 	pixel_x = -16;
-	uid = "fuel2";
-	pixel_y = 14
+	pixel_y = 14;
+	uid = "fuel2"
 	},
 /obj/structure/railing/mapped,
 /turf/simulated/open,
@@ -15534,8 +15581,8 @@
 /area/serenity/shelter/entrance_zone)
 "quT" = (
 /obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 2V-EX";
-	dir = 8
+	dir = 8;
+	uid = "F-CP 2V-EX"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/pumps_b)
@@ -16047,20 +16094,20 @@
 	pixel_y = 6
 	},
 /obj/machinery/reactor_button/rswitch/lighting/superstructure{
-	pixel_y = 12;
-	pixel_x = -12
+	pixel_x = -12;
+	pixel_y = 12
 	},
 /obj/machinery/reactor_button/rswitch/lighting/auxillary{
-	pixel_y = 12;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 12
 	},
 /obj/machinery/reactor_button/rswitch/lighting/perimeter{
-	pixel_y = 12;
-	pixel_x = -18
+	pixel_x = -18;
+	pixel_y = 12
 	},
 /obj/machinery/reactor_button/rswitch/lighting/access{
-	pixel_y = 12;
-	pixel_x = -24
+	pixel_x = -24;
+	pixel_y = 12
 	},
 /obj/effect/floor_decal/corner/black/line,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -16137,10 +16184,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 20;
-	name = "BUS to SECTOR E";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "BUS to SECTOR E"
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
@@ -16244,8 +16291,8 @@
 /area/serenity)
 "qXE" = (
 /obj/machinery/atmospherics/valve/digital{
-	uid = "F-CP 1V-IN";
-	dir = 8
+	dir = 8;
+	uid = "F-CP 1V-IN"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/pumps_b)
@@ -16583,8 +16630,8 @@
 "rnd" = (
 /obj/structure/table/woodentable_reinforced/walnut,
 /obj/machinery/media/jukebox{
-	pixel_y = 21;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 21
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
@@ -16641,6 +16688,11 @@
 /obj/structure/closet/firecloset,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/embedded_controller/radio/decontamination_airlock{
+	pixel_y = 19;
+	tag_exterior_door = "ro_decont_exterior";
+	tag_interior_door = "ro_decont_interior"
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -16942,10 +16994,10 @@
 /area/serenity/shelter/habitationdeck/kitchen)
 "rIJ" = (
 /obj/machinery/atmospherics/unary/heater/reactor{
-	uid = "T-COOLANT PREHEAT";
 	dir = 8;
 	max_power_rating = 1500000;
-	set_temperature = 293.15
+	set_temperature = 293.15;
+	uid = "T-COOLANT PREHEAT"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -17379,13 +17431,13 @@
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "sjR" = (
-/obj/structure/cable/blue{
-	dir = 8
-	},
 /obj/machinery/power/apc{
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/structure/cable/blue{
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "sjY" = (
@@ -17475,8 +17527,8 @@
 	pixel_y = 14
 	},
 /obj/machinery/reactor_button/rswitch/lasarm{
-	pixel_y = 12;
-	layer = 3.061
+	layer = 3.061;
+	pixel_y = 12
 	},
 /obj/machinery/reactor_button/lasnmode{
 	pixel_x = 5;
@@ -17702,11 +17754,11 @@
 /area/serenity/shelter/labs/particle_physics)
 "sAR" = (
 /obj/machinery/atmospherics/omni/mixer{
-	tag_north = 1;
-	tag_west = 2;
-	tag_north_con = 0.05;
 	tag_east = 1;
-	tag_east_con = 0.95
+	tag_east_con = 0.95;
+	tag_north = 1;
+	tag_north_con = 0.05;
+	tag_west = 2
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/genetics)
@@ -17727,9 +17779,9 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "sBH" = (
 /obj/structure/door/sliding{
+	dir = 8;
 	lock_data = list("ACCESS_ENGINEERING");
-	lock_type = /datum/lock/id_card;
-	dir = 8
+	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/half,
 /area/serenity/shelter/brig/reception)
@@ -17895,7 +17947,7 @@
 /obj/structure/sign/directions/engineering{
 	dir = 8;
 	pixel_x = -32;
-	pixel_y = -6
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -18022,11 +18074,11 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "sRo" = (
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 8;
 	critical = 1;
-	name = "GENERATOR to BUS";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "GENERATOR to BUS"
 	},
 /obj/structure/cable/heavy{
 	icon_state = "0-4"
@@ -18240,8 +18292,8 @@
 "taL" = (
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_cryo{
 	dir = 1;
-	wanted_temperature = 70;
-	heating = 0
+	heating = 0;
+	wanted_temperature = 70
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -18657,10 +18709,10 @@
 	dir = 4;
 	icon = 'icons/obj/engine/turbine_condenser.dmi';
 	icon_state = null;
-	pixel_x = 21;
+	layer = 3.01;
 	name = "condenser";
-	pixel_y = -48;
-	layer = 3.01
+	pixel_x = 21;
+	pixel_y = -48
 	},
 /obj/effect/invisible_barrier,
 /turf/simulated/floor/concrete/road,
@@ -18730,18 +18782,18 @@
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "tDS" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
@@ -18803,9 +18855,9 @@
 "tHC" = (
 /obj/structure/table/steel,
 /obj/machinery/button/blast_door{
+	dir = 8;
 	id_tag = "ro_lockdown";
-	name = "RO Lockdown";
-	dir = 8
+	name = "RO Lockdown"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -18993,18 +19045,18 @@
 /area/serenity/shelter/brig/armory)
 "tUT" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -19117,8 +19169,8 @@
 	pixel_x = -32
 	},
 /obj/structure/sign/directions/engineering{
-	pixel_y = -6;
-	pixel_x = -32
+	pixel_x = -32;
+	pixel_y = -6
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
@@ -19169,8 +19221,8 @@
 "ubC" = (
 /obj/machinery/door/blast/regular/radlock,
 /obj/machinery/door/blast/shutters{
-	name = "Pump Station Beta";
-	id_tag = "pumpbeta2"
+	id_tag = "pumpbeta2";
+	name = "Pump Station Beta"
 	},
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -19295,18 +19347,18 @@
 /area/serenity)
 "uiZ" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -19557,9 +19609,9 @@
 	icon_state = "4-8"
 	},
 /obj/structure/door/sliding{
+	dir = 8;
 	lock_data = list("ACCESS_ENGINEERING");
-	lock_type = /datum/lock/id_card;
-	dir = 8
+	lock_type = /datum/lock/id_card
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -19636,11 +19688,11 @@
 /area/serenity/shelter/engineering/pumps_b)
 "uCp" = (
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 8;
 	critical = 1;
-	name = "TURBINE to BUS";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "TURBINE to BUS"
 	},
 /obj/structure/cable/heavy{
 	icon_state = "0-4"
@@ -19714,18 +19766,18 @@
 /area/serenity/shelter/entrance_zone)
 "uHn" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -19863,25 +19915,25 @@
 /area/serenity/shelter/engineering/atmos)
 "uOx" = (
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/exchanger_steam{
-	wanted_temperature = 791;
-	dir = 4
+	dir = 4;
+	wanted_temperature = 791
 	},
 /turf/simulated/floor/reinforced/nitrogen,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "uOQ" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -20025,10 +20077,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 20;
-	name = "BUS to SECTOR C";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "BUS to SECTOR C"
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
@@ -20155,8 +20207,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/regular/open{
-	id_tag = "lab_decont_interior";
-	dir = 4
+	dir = 4;
+	id_tag = "lab_decont_interior"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -20354,8 +20406,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/binary/pump/high_power/on{
-	target_pressure = 8700;
-	dir = 2
+	dir = 2;
+	target_pressure = 8700
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/atmos)
@@ -20440,9 +20492,9 @@
 /obj/item/extinguisher,
 /obj/item/extinguisher,
 /obj/machinery/button/blast_door{
+	dir = 4;
 	id_tag = "disaster_response";
 	name = "Response Unit";
-	dir = 4;
 	pixel_x = -22;
 	pixel_y = 1
 	},
@@ -20797,8 +20849,8 @@
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "vDW" = (
 /obj/machinery/door/blast/regular{
-	name = "Particle Accelerator";
-	id_tag = "radiology_protection"
+	id_tag = "radiology_protection";
+	name = "Particle Accelerator"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
@@ -20811,11 +20863,11 @@
 /area/serenity/shelter/habitationdeck/crew)
 "vEF" = (
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	dir = 1;
 	coef = 20;
 	critical = 1;
-	name = "EXTERNAL to BUS";
-	max_cap = 0
+	dir = 1;
+	max_cap = 0;
+	name = "EXTERNAL to BUS"
 	},
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -20860,8 +20912,8 @@
 "vFP" = (
 /obj/machinery/embedded_controller/radio/decontamination_airlock{
 	pixel_y = 24;
-	tag_interior_door = "ro_decont_interior";
-	tag_exterior_door = "ro_decont_exterior"
+	tag_exterior_door = "ro_decont_exterior";
+	tag_interior_door = "ro_decont_interior"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -20884,9 +20936,9 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "vHO" = (
 /obj/machinery/button/blast_door{
+	dir = 8;
 	id_tag = "pumpbeta1";
 	name = "Shutter Control";
-	dir = 8;
 	pixel_x = 22
 	},
 /turf/simulated/floor/concrete/road,
@@ -20951,10 +21003,10 @@
 "vJR" = (
 /obj/machinery/atmospherics/omni/mixer{
 	tag_north = 1;
-	tag_west = 1;
 	tag_north_con = 0.995;
-	tag_west_con = 0.005;
-	tag_south = 2
+	tag_south = 2;
+	tag_west = 1;
+	tag_west_con = 0.005
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -21168,8 +21220,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/blast/regular{
-	name = "Particle Accelerator";
-	id_tag = "radiology_protection"
+	id_tag = "radiology_protection";
+	name = "Particle Accelerator"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
@@ -21295,7 +21347,7 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "wdE" = (
 /obj/structure/door/sliding{
-	lock_data = list("ACCESS_SECURITY_EQUIPMENT");
+	lock_data = list("ACCESS_BRIG");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/small,
@@ -21497,9 +21549,9 @@
 "wnr" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 8;
+	regulate_mode = 1;
 	starting_volume = 1500;
-	uid = "T-COOLANT V-OUT";
-	regulate_mode = 1
+	uid = "T-COOLANT V-OUT"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -21528,18 +21580,18 @@
 /area/serenity/shelter/habitationdeck/kitchen)
 "wos" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/effect/floor_decal/spline/plain/grey{
 	dir = 1
@@ -21766,7 +21818,14 @@
 	},
 /obj/machinery/light/reactor{
 	dir = 4;
+	pixel_x = 11;
 	uid = "access"
+	},
+/obj/machinery/embedded_controller/radio/decontamination_airlock{
+	dir = 8;
+	pixel_x = 17;
+	tag_exterior_door = "reactor_room_ex";
+	tag_interior_door = "reactor_room_in"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/reactor)
@@ -22132,6 +22191,12 @@
 /obj/structure/table/glass,
 /obj/item/storage/box/masks,
 /obj/item/storage/box/gloves,
+/obj/machinery/embedded_controller/radio/decontamination_airlock{
+	dir = 1;
+	pixel_y = -23;
+	tag_exterior_door = "lab_decont_exterior";
+	tag_interior_door = "lab_decont_interior"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "wSm" = (
@@ -22149,10 +22214,10 @@
 /area/serenity/shelter/engineering/reactor_operations/office)
 "wSY" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	name = "HP duct";
-	fatigue_pressure = 170225.3;
 	alert_pressure = 170225.3;
-	dir = 4
+	dir = 4;
+	fatigue_pressure = 170225.3;
+	name = "HP duct"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -22344,8 +22409,8 @@
 	},
 /obj/machinery/door/blast/shutters/open{
 	dir = 4;
-	name = "RO Lockdown";
-	id_tag = "ro_lockdown"
+	id_tag = "ro_lockdown";
+	name = "RO Lockdown"
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -22495,8 +22560,8 @@
 "xmu" = (
 /obj/structure/table/steel,
 /obj/machinery/reactor_monitor/turbine{
-	pixel_y = 16;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 16
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
@@ -22532,18 +22597,18 @@
 /area/serenity/shelter/habitationdeck/messhall)
 "xpg" = (
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = -10
+	pixel_x = -10;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
-	density = 0
+	density = 0;
+	pixel_y = 22
 	},
 /obj/structure/filingcabinet{
-	pixel_y = 22;
 	density = 0;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -22639,8 +22704,8 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "xuU" = (
 /obj/machinery/door/blast/regular{
-	name = "Exposure Chamber";
-	id_tag = "radiology_protection"
+	id_tag = "radiology_protection";
+	name = "Exposure Chamber"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics)
@@ -22653,11 +22718,11 @@
 "xvn" = (
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop{
 	dir = 4;
-	uid = "T-CP 1";
 	icon = 'icons/obj/atmospherics/components/binary/waterpump.dmi';
 	layer = 3.01;
 	pixel_x = -32;
-	pixel_y = -32
+	pixel_y = -32;
+	uid = "T-CP 1"
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
@@ -22792,9 +22857,9 @@
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "xCR" = (
 /obj/machinery/atmospherics/valve/digital{
+	alpha = 0;
 	dir = 4;
-	uid = "T-CP 2V-IN";
-	alpha = 0
+	uid = "T-CP 2V-IN"
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
@@ -22893,8 +22958,8 @@
 	pixel_x = 32
 	},
 /obj/structure/sign/directions/engineering{
-	pixel_y = -6;
-	pixel_x = 32
+	pixel_x = 32;
+	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -22943,8 +23008,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/regular/open{
-	id_tag = "lab_decont_interior";
-	dir = 4
+	dir = 4;
+	id_tag = "lab_decont_interior"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/labs)
@@ -95197,7 +95262,7 @@ iHn
 jtD
 iHn
 kQa
-kQF
+daO
 wjo
 ray
 seP
@@ -119893,7 +119958,7 @@ sri
 uAT
 mHE
 pMc
-frn
+pBK
 oFs
 oFs
 eAG
