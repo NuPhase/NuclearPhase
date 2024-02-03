@@ -13,6 +13,5 @@
 	cprogram.tag_interior_door = tag_interior_door
 
 /obj/machinery/embedded_controller/radio/decontamination_airlock/physical_attack_hand(user)
-	. = ..()
 	var/datum/computer/file/embedded_program/decont_airlock/cprogram = program
 	cprogram.decontaminate()

@@ -191,6 +191,12 @@
 	)
 	var/command = "cycle"
 
+/obj/machinery/button/access/physical_attack_hand(user)
+	for(var/obj/machinery/embedded_controller/radio/decontamination_airlock/decont_controller in range(7))
+		var/datum/computer/file/embedded_program/decont_airlock/cprogram = decont_controller.program
+		cprogram.decontaminate()
+		return
+
 /obj/machinery/button/access/on_update_icon()
 	if(stat & (NOPOWER | BROKEN))
 		icon_state = "access_button_off"

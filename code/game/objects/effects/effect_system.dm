@@ -265,7 +265,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/decontamination
 	color = "#90cedd"
-	time_to_live = 5 SECONDS
+	time_to_live = 2 SECONDS
 
 /obj/effect/effect/smoke/decontamination/affect(mob/living/carbon/M)
 	if(!istype(M))
