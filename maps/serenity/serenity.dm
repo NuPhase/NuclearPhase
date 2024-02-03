@@ -4,6 +4,7 @@
 #include "jobs/site_operations.dm"
 #include "jobs/reactor_operations.dm"
 #include "jobs/laboratories.dm"
+#include "jobs/security.dm"
 
 #include "outfits/_pda.dm"
 #include "outfits/cargo.dm"

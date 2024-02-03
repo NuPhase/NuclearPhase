@@ -30,3 +30,11 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/pda/heads
 	l_pocket = /obj/item/communications/pocket_radio
+
+/decl/hierarchy/outfit/job/faid
+	name = "Job - Facility AI Director"
+	uniform = /obj/item/clothing/under/lawyer/infil
+	shoes = /obj/item/clothing/shoes/dress/infilshoes
+	id_type = /obj/item/card/id
+	pda_type = /obj/item/modular_computer/pda
+	l_pocket = /obj/item/communications/pocket_radio

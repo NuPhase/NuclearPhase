@@ -15,18 +15,120 @@
 		SKILL_LITERACY    = SKILL_ADEPT
 	)
 	skill_points = 20
+	access = list(
+		access_eva,
+		access_engine,
+		access_engine_equip,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_external_airlocks,
+		access_construction,
+		access_atmospherics,
+		access_emergency_storage
+	)
+	minimal_access = list(
+		access_eva,
+		access_engine,
+		access_engine_equip,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_external_airlocks,
+		access_construction,
+		access_atmospherics,
+		access_emergency_storage
+	)
 
 /datum/job/reactor_operations/rod
 	title = "Reactor Operations Director"
 	head_position = 1
 	supervisors = "the CEO"
 	outfit_type = /decl/hierarchy/outfit/job/rod
+	access = list(
+		access_engine,
+		access_engine_equip,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_heads,
+		access_teleporter,
+		access_external_airlocks,
+		access_atmospherics,
+		access_emergency_storage,
+		access_eva,
+		access_bridge,
+		access_construction,
+		access_sec_doors,
+		access_ce,
+		access_RC_announce,
+		access_keycard_auth,
+		access_tcomsat,
+		access_ai_upload
+	)
+	minimal_access = list(
+		access_engine,
+		access_engine_equip,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_heads,
+		access_teleporter,
+		access_external_airlocks,
+		access_atmospherics,
+		access_emergency_storage,
+		access_eva,
+		access_bridge,
+		access_construction,
+		access_sec_doors,
+		access_ce,
+		access_RC_announce,
+		access_keycard_auth,
+		access_tcomsat,
+		access_ai_upload
+	)
 
 /datum/job/reactor_operations/road
 	title = "Reactor Operations Assistant Director"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
 	outfit_type = /decl/hierarchy/outfit/job/rod/assistant
+	access = list(
+		access_engine,
+		access_engine_equip,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_heads,
+		access_teleporter,
+		access_external_airlocks,
+		access_atmospherics,
+		access_emergency_storage,
+		access_eva,
+		access_bridge,
+		access_construction,
+		access_sec_doors,
+		access_ce,
+		access_RC_announce,
+		access_keycard_auth,
+		access_tcomsat,
+		access_ai_upload
+	)
+	minimal_access = list(
+		access_engine,
+		access_engine_equip,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_heads,
+		access_teleporter,
+		access_external_airlocks,
+		access_atmospherics,
+		access_emergency_storage,
+		access_eva,
+		access_bridge,
+		access_construction,
+		access_sec_doors,
+		access_ce,
+		access_RC_announce,
+		access_keycard_auth,
+		access_tcomsat,
+		access_ai_upload
+	)
 
 /datum/job/reactor_operations/rce
 	title = "Reactor Chief Engineer"
