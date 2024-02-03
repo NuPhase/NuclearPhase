@@ -40,9 +40,13 @@
 	return TRUE
 
 /obj/machinery/computer/modular/get_screen_overlay()
-	var/datum/extension/interactive/os/os = get_extension(src, /datum/extension/interactive/os)
-	if(os)
-		return os.get_screen_overlay()
+	var/image/I = image(icon, "blank", overlay_layer)
+	I.appearance_flags |= RESET_COLOR
+	return I
+
+	//var/datum/extension/interactive/os/os = get_extension(src, /datum/extension/interactive/os)
+	//if(os)
+	//	return os.get_screen_overlay()
 
 /obj/machinery/computer/modular/get_keyboard_overlay()
 	var/datum/extension/interactive/os/os = get_extension(src, /datum/extension/interactive/os)

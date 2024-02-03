@@ -42,13 +42,7 @@
 	if(reason_broken & MACHINE_BROKEN_NO_PARTS)
 		set_light(0)
 		icon = 'icons/obj/modernmonitor.dmi'
-		icon_state = "wired"
-		var/screen = get_component_of_type(/obj/item/stock_parts/console_screen)
-		var/keyboard = get_component_of_type(/obj/item/stock_parts/keyboard)
-		if(screen)
-			add_overlay("comp_screen")
-		if(keyboard)
-			add_overlay(icon_keyboard ? "[icon_keyboard]_off" : "keyboard")
+		icon_state = "off"
 		return
 
 	if(stat & NOPOWER)
@@ -65,15 +59,15 @@
 		var/screen_overlay = get_screen_overlay()
 		if(screen_overlay)
 			add_overlay(screen_overlay)
-	var/keyboard_overlay = get_keyboard_overlay()
-	if(keyboard_overlay)
-		add_overlay(keyboard_overlay)
 
 /obj/machinery/computer/proc/get_screen_overlay()
-	if(icon_screen)
-		var/image/I = image(icon, icon_screen, overlay_layer)
-		I.appearance_flags |= RESET_COLOR
-		return I
+	var/image/I = image(icon, "blank", overlay_layer)
+	I.appearance_flags |= RESET_COLOR
+	return I
+	//if(icon_screen)
+	//	var/image/I = image(icon, icon_screen, overlay_layer)
+	//	I.appearance_flags |= RESET_COLOR
+	//	return I
 
 /obj/machinery/computer/proc/get_keyboard_overlay()
 	if(icon_keyboard)

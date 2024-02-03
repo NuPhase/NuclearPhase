@@ -61,8 +61,9 @@
 	pref.prune_invalid_aspects()
 
 	var/modified_list = FALSE
-	while(get_aspect_total() > config.max_character_aspects)
-	
+	var/max_character_aspects = get_config_value(/decl/config/num/max_character_aspects)
+	while(get_aspect_total() > max_character_aspects)
+
 		// Find a costly aspect with no children to drop until our cost is below the threshold.
 		var/can_drop_aspect = FALSE
 		for(var/aspect_type in pref.aspects)
@@ -103,11 +104,12 @@
 	var/aspect_total = get_aspect_total()
 	// Change our formatting data if needed.
 	var/fcolor =  COLOR_CYAN_BLUE
-	if(aspect_total == config.max_character_aspects)
+	var/max_character_aspects = get_config_value(/decl/config/num/max_character_aspects)
+	if(aspect_total == max_character_aspects)
 		fcolor = COLOR_FONT_ORANGE
 
 	// Build the string.
-	. = list("<center><b><font color = '[fcolor]'>[aspect_total]/[config.max_character_aspects]</font> points spent.</b></center><br/>")
+	. = list("<center><b><font color = '[fcolor]'>[aspect_total]/[max_character_aspects]</font> points spent.</b></center><br/>")
 	if(!selected_category || !(selected_category in available_categories))
 		selected_category = available_categories[1]
 
@@ -167,7 +169,7 @@
 					if(A.children)
 						aspects_to_remove |= A.children
 			// Enable aspect.
-			else if(get_aspect_total() + A.aspect_cost <= config.max_character_aspects)
+			else if(get_aspect_total() + A.aspect_cost <= get_config_value(/decl/config/num/max_character_aspects))
 				pref.aspects |= A.type
 			// Tidy up in case we're in an incoherent state for whatever reason.
 			pref.prune_invalid_aspects()

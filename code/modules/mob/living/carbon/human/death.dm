@@ -29,15 +29,7 @@
 
 	if(stat == DEAD) return
 
-	bpm = 0
-	syspressure = 0
-	dyspressure = 0
-	meanpressure = 0
-	mcv = 0
-	tpvr = initial(tpvr)
-	oxygen_amount = 0
-
-	retrieve_from_limb(TRUE)
+	send_to_limb()
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
@@ -53,15 +45,24 @@
 	if(SSticker.mode)
 		SSticker.mode.check_win()
 
+	if(get_config_value(/decl/config/toggle/health_show_human_death_message))
+		deathmessage = species.get_death_message(src) || "seizes up and falls limp..."
+	else
+		deathmessage = "no message"
 	. = ..(gibbed, deathmessage, show_dead_message)
 	if(!gibbed)
 		handle_organs()
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
-	spawn(300)
-		if(client)
-			ghostize()
+
+	bpm = 0
+	syspressure = 0
+	dyspressure = 0
+	meanpressure = 0
+	mcv = 0
+	tpvr = initial(tpvr)
+	oxygen_amount = 0
 
 /mob/living/carbon/human/proc/is_husked()
 	return (MUTATION_HUSK in mutations)

@@ -27,21 +27,25 @@
 	title = "Chief Executive Officer"
 	total_positions = 1
 	spawn_positions = 1
+	outfit_type = /decl/hierarchy/outfit/job/ceo
 
 /datum/job/administration/coo
 	title = "Chief Operations Officer"
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
+	outfit_type = /decl/hierarchy/outfit/job/coo
 
 /datum/job/administration/cso
 	title = "Chief Security Officer"
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
+	outfit_type = /decl/hierarchy/outfit/job/cso
 
 /datum/job/administration/sdd
 	title = "Site Deputy Director"
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
+	outfit_type = /decl/hierarchy/outfit/job/sdd

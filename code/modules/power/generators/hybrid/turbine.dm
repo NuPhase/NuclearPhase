@@ -75,9 +75,29 @@
 	. = ..()
 	update_networks()
 
-	if(!air1.temperature || !air2.temperature)
-		return
+	if(air1.total_moles)
+		process_steam()
 
+	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
+
+	if(braking)
+		var/datum/gas_mixture/environment = loc.return_air()
+		kin_energy = max(0, kin_energy * 0.95 - 10000)
+		if(kin_energy)
+			environment.add_thermal_energy(kin_energy * 0.005 + 10000)
+
+	apply_vibration_effects()
+	calculate_efficiency()
+
+	if(rpm > 800)
+		use_power = POWER_USE_ACTIVE
+		if(!visual.soundloop)
+			visual.spool_up()
+	else
+		visual.spool_down()
+		use_power = POWER_USE_IDLE
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/process_steam()
 	var/air1_density = get_density(air1.return_pressure() * 0.001, air1.temperature - 273.15)
 
 	// flow speed
@@ -101,7 +121,6 @@
 	kin_total *= expansion_ratio
 	air_all.add_thermal_energy(kin_total * -1)
 	air_all.temperature = max(air_all.temperature, 311)
-
 	if(air_all.temperature < 340)
 		if(water_grates_open)
 			water_level += 0.01
@@ -112,27 +131,8 @@
 	water_level = CLAMP01(water_level)
 
 	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
-	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
-
 	calculate_vibration(air_all)
 	air2.merge(air_all)
-
-	if(braking)
-		var/datum/gas_mixture/environment = loc.return_air()
-		kin_energy = max(0, kin_energy * 0.95 - 10000)
-		if(kin_energy)
-			environment.add_thermal_energy(kin_energy * 0.005 + 10000)
-
-	apply_vibration_effects()
-	calculate_efficiency()
-
-	if(rpm > 800)
-		use_power = POWER_USE_ACTIVE
-		if(!visual.soundloop)
-			visual.spool_up()
-	else
-		visual.spool_down()
-		use_power = POWER_USE_IDLE
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_efficiency()
 	efficiency = 0.23

@@ -13,13 +13,20 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 
-	var/minimum_temperature_difference = 300
-	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
-
-	level = 1
-
 /obj/machinery/atmospherics/pipe/zpipe/check_pressure(pressure)
-	return 1
+	var/datum/gas_mixture/environment = loc.return_air()
+
+	var/pressure_difference = pressure - environment.return_pressure()
+
+	if(pressure_difference > maximum_pressure)
+		burst()
+
+	else if(pressure_difference > fatigue_pressure)
+		//TODO: leak to turf, doing pfshhhhh
+		if(prob(5))
+			burst()
+
+	else return 1
 
 /obj/machinery/atmospherics/pipe/zpipe/proc/burst()
 	src.visible_message("<span class='warning'>\The [src] bursts!</span>");
@@ -117,17 +124,15 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/fuel
 	name = "upwards fuel pipe"
 	color = PIPE_COLOR_ORANGE
-	maximum_pressure = 420*ONE_ATMOSPHERE
-	fatigue_pressure = 350*ONE_ATMOSPHERE
-	alert_pressure = 350*ONE_ATMOSPHERE
+	maximum_pressure = 420000
+	fatigue_pressure = 350000
 	connect_types = CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/pipe/zpipe/down/fuel
 	name = "downwards fuel pipe"
 	color = PIPE_COLOR_ORANGE
-	maximum_pressure = 420*ONE_ATMOSPHERE
-	fatigue_pressure = 350*ONE_ATMOSPHERE
-	alert_pressure = 350*ONE_ATMOSPHERE
+	maximum_pressure = 420000
+	fatigue_pressure = 350000
 	connect_types = CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/pipe/zpipe/up/water

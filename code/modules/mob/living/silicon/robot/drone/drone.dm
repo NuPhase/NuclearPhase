@@ -77,7 +77,7 @@
 
 	if(!(old_loc && new_loc)) // Allows inventive admins to move drones between non-adjacent Z-levels by moving them to null space first I suppose
 		return
-	if(ARE_Z_CONNECTED(old_loc.z, new_loc.z))
+	if(LEVELS_ARE_Z_CONNECTED(old_loc.z, new_loc.z))
 		return
 
 	// None of the tests passed, good bye
@@ -86,7 +86,7 @@
 /mob/living/silicon/robot/drone/can_be_possessed_by(var/mob/observer/ghost/possessor)
 	if(!istype(possessor) || !possessor.client || !possessor.ckey)
 		return 0
-	if(!config.allow_drone_spawn)
+	if(!get_config_value(/decl/config/toggle/on/allow_drone_spawn))
 		to_chat(src, "<span class='danger'>Playing as drones is not currently permitted.</span>")
 		return 0
 	if(too_many_active_drones())
@@ -174,7 +174,7 @@
 
 		if(stat == 2)
 
-			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
+			if(!get_config_value(/decl/config/toggle/on/allow_drone_spawn) || emagged) //It's dead, Dave.
 				to_chat(user, "<span class='danger'>The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.</span>")
 				return
 
@@ -352,7 +352,7 @@
 	for(var/mob/living/silicon/robot/drone/D in global.silicon_mob_list)
 		if(D.key && D.client)
 			drones++
-	return drones >= config.max_maint_drones
+	return drones >= get_config_value(/decl/config/num/max_maint_drones)
 
 /mob/living/silicon/robot/drone/show_laws(var/everyone = 0)
 	if(!controlling_ai)

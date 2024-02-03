@@ -326,7 +326,7 @@
 
 	face_atom(A)
 
-	if(!isghost(src))
+	if(!isghost(src) && get_config_value(/decl/config/toggle/visible_examine))
 		if((A.loc != src || (A in get_held_items())))
 			var/look_target = "at \the [A]"
 			if(isobj(A.loc))
@@ -1142,7 +1142,7 @@
 		return FALSE
 
 	// Not in a connected z-volume.
-	if(!(N.z in GetConnectedZlevels(T.z)))
+	if(!(N.z in SSmapping.get_connected_levels(T.z)))
 		return FALSE
 
 	// Are they below us?

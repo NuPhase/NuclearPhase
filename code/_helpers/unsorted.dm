@@ -368,7 +368,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/get_valid_silicon_zs(z)
 	if(z)
-		return GetConnectedZlevels(z)
+		return SSmapping.get_connected_levels(z)
 	return list() //We return an empty list, because we are apparently in nullspace
 
 //Returns a list of all mobs with their name
@@ -471,6 +471,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(A.density)//&&A.anchored
 			cant_pass = 1
 	return cant_pass
+
+/proc/get_step_resolving_mimic(var/atom/source, var/direction)
+	var/turf/turf = get_step(get_turf(source), direction)
+	return turf?.resolve_to_actual_turf()
 
 /proc/get_step_towards2(var/atom/ref , var/atom/trg)
 	var/base_dir = get_dir(ref, get_step_towards(ref,trg))

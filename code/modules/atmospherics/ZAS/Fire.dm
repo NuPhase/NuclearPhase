@@ -99,7 +99,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	alpha = 0
 	anchored = 1
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 
 	blend_mode = BLEND_ADD
 
@@ -110,6 +110,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
 	var/obj/effect/fluid/burning_fluid = null //if we have one
+	var/obj/effect/abstract/particle_holder/our_holder = null
 
 /obj/fire/on_update_icon()
 	if(burning_fluid)
@@ -223,6 +224,9 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	SSair.active_hotspots.Add(src)
 	update_icon()
 
+	our_holder = new(loc, /particles/smoke_continuous/fire)
+	our_holder.alpha = 170
+
 /obj/fire/proc/fire_color(var/env_temperature)
 	if(burning_fluid)
 		var/decl/material/main_reagent = burning_fluid.reagents.get_primary_reagent_decl()
@@ -239,6 +243,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		set_light(0)
 		T.fire = null
 	SSair.active_hotspots.Remove(src)
+	qdel(our_holder)
 	. = ..()
 
 /turf/simulated/var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.

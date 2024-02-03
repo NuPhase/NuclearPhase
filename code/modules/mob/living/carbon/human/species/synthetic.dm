@@ -402,7 +402,7 @@ We have a very powerful computer system that allows our neural network to fully 
 	if(mRun in mutations)
 		tally = 0
 
-	return (tally+config.human_delay)
+	return (tally+get_config_value(/decl/config/num/movement_human))
 
 /mob/living/carbon/human/synthetic/handle_environment(datum/gas_mixture/environment)
 

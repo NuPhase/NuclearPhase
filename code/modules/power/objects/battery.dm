@@ -13,6 +13,16 @@
 	weight = 400
 	//a reminder that watts are amperage*voltage
 
+/obj/machinery/power/generator/battery/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(exposed_temperature > 800)
+		burst()
+
+/obj/machinery/power/generator/battery/proc/burst()
+	set waitfor = FALSE
+	sleep(5 SECONDS)
+	deflagration(loc, 150, 10, spread_fluid = /decl/material/solid/lithium)
+	qdel(src)
+
 /obj/machinery/power/generator/battery/examine(mob/user)
 	. = ..()
 	to_chat(user, "It is rated for [initial(max_capacity)]Wh.")
@@ -65,13 +75,7 @@
 	. = ..()
 	if(W.sharp && !punctured)
 		visible_message(SPAN_DANGER("[user] punctures the [src] with [W]!"))
-		punctured = TRUE
-		spawn(5 SECONDS)
-			deflagration(loc, 500, 10)
-			var/obj/effect/fluid/F = new(loc)
-			F.reagents.add_reagent(/decl/material/solid/lithium, 120)
-			F.temperature = 800 CELSIUS
-			qdel(src)
+		burst()
 
 /obj/machinery/power/generator/battery/lithium_ion/prebuilt/Initialize()
 	. = ..()

@@ -9,7 +9,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect/effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
 
@@ -99,7 +99,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	var/amount = 6.0
 	anchored = 1.0
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 
 /obj/effect/sparks/Initialize()
 	. = ..()
@@ -169,20 +169,23 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke
 	name = "smoke"
-	icon_state = "smoke"
-	opacity = 1
+	opacity = 0
 	anchored = 0.0
-	mouse_opacity = 0
+	layer = ABOVE_HUMAN_LAYER
 	var/amount = 6.0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	var/time_to_live = 100
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
+	icon_state = "gibberish"
 	pixel_x = -32
 	pixel_y = -32
+	alpha = 240
 
 /obj/effect/effect/smoke/Initialize()
 	. = ..()
+	particles = SSparticles.get_particle(/particles/smoke_continuous)
 	QDEL_IN(src, time_to_live)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M)
@@ -261,7 +264,8 @@ steam.start() -- spawns the effect
 	M.bloodstr.add_reagent(/decl/material/liquid/presyncopics, 0.7)
 
 /obj/effect/effect/smoke/decontamination
-	color = "#ddf8ff"
+	color = "#90cedd"
+	time_to_live = 5 SECONDS
 
 /obj/effect/effect/smoke/decontamination/affect(mob/living/carbon/M)
 	if(!istype(M))

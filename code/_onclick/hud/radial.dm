@@ -169,7 +169,7 @@ var/global/list/radial_menus = list()
 	E.alpha = 0
 	E.name = "None"
 	E.maptext = null
-	E.mouse_opacity = 0
+	E.mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	E.choice = null
 	E.next_page = FALSE
 
@@ -190,7 +190,7 @@ var/global/list/radial_menus = list()
 
 	//Visuals
 	E.alpha = 255
-	E.mouse_opacity = 1
+	E.mouse_opacity = MOUSE_OPACITY_NORMAL
 	E.overlays.Cut()
 	if(choice_id == NEXT_PAGE_ID)
 		E.name = "Next Page"

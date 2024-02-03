@@ -4,8 +4,19 @@
 #define TURF_FLAG_NORUINS             BITFLAG(1) // Used by the ruin generator to skip placing loaded ruins on this turf.
 #define TURF_FLAG_BACKGROUND          BITFLAG(2) // Used by shuttle movement to determine if it should be ignored by turf translation.
 
-#define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
+///Width or height of a transition edge area along the map's borders where transition edge turfs are placed to connect levels together.
+#define TRANSITIONEDGE 7
+///Extra spacing needed between any random ruins and the transition edge of a level.
 #define RUIN_MAP_EDGE_PAD 15
+
+///Enum value for a level edge that's to be untouched
+#define LEVEL_EDGE_NONE 0
+///Enum value for a level edge that's to be looped with the opposite edge
+#define LEVEL_EDGE_LOOP 1
+///Enum value for a level edge that's to be filled with a wall filler turfs
+#define LEVEL_EDGE_WALL 2
+///Enum value for a level edge that's to be connected with another z-level
+#define LEVEL_EDGE_CON  3
 
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING    20
@@ -238,8 +249,8 @@
 #define SOULSTONE_EMPTY 0
 #define SOULSTONE_ESSENCE 1
 
-#define INCREMENT_WORLD_Z_SIZE world.maxz++; global.connected_z_cache.Cut(); if (SSzcopy.zlev_maximums.len) { SSzcopy.calculate_zstack_limits() }
-#define ARE_Z_CONNECTED(ZA, ZB) (ZA > 0 && ZB > 0 && ZA <= world.maxz && ZB <= world.maxz && ((ZA == ZB) || ((length(global.connected_z_cache) >= ZA && global.connected_z_cache[ZA] && length(global.connected_z_cache[ZA]) >= ZB) ? global.connected_z_cache[ZA][ZB] : AreConnectedZLevels(ZA, ZB))))
+#define INCREMENT_WORLD_Z_SIZE world.maxz++; SSmapping.connected_z_cache.Cut(); if (SSzcopy.zlev_maximums.len) { SSzcopy.calculate_zstack_limits() }
+#define LEVELS_ARE_Z_CONNECTED(ZA, ZB) ((ZA > 0 && ZB > 0 && ZA <= world.maxz && ZB <= world.maxz) && ((ZA == ZB) || ((length(SSmapping.connected_z_cache) >= ZA && SSmapping.connected_z_cache[ZA] && length(SSmapping.connected_z_cache[ZA]) >= ZB) ? SSmapping.connected_z_cache[ZA][ZB] : SSmapping.are_connected_levels(ZA, ZB))))
 
 //Request Console Department Types
 #define RC_ASSIST 1		//Request Assistance
@@ -283,9 +294,14 @@
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
+//Damage stuff
+#define ITEM_HEALTH_NO_DAMAGE -1
+
 /// Causes the atom to ignore clicks, hovers, etc.
 #define MOUSE_OPACITY_UNCLICKABLE 0
 /// Causes the atom to catch clicks, hovers, etc.
 #define MOUSE_OPACITY_NORMAL 1
 /// Causes the atom to catch clicks, hovers, etc, taking priority over NORMAL for a shared pointer target.
 #define MOUSE_OPACITY_PRIORITY 2
+
+#define TYPE_IS_ABSTRACT(D) (initial(D.abstract_type) == D)

@@ -157,7 +157,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!living_observers_present(GetConnectedZlevels(z)))
+	if(!living_observers_present(SSmapping.get_connected_levels(z)))
 		return
 	//Health
 	if(stat == DEAD)
@@ -431,7 +431,7 @@
 			tally = 1
 		tally *= purge
 
-	return tally+config.animal_delay
+	return tally+get_config_value(/decl/config/num/movement_animal)
 
 /mob/living/simple_animal/Stat()
 	. = ..()

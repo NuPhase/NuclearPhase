@@ -20,24 +20,29 @@
 	title = "Reactor Operations Director"
 	head_position = 1
 	supervisors = "the CEO"
+	outfit_type = /decl/hierarchy/outfit/job/rod
 
 /datum/job/reactor_operations/road
 	title = "Reactor Operations Assistant Director"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
+	outfit_type = /decl/hierarchy/outfit/job/rod/assistant
 
 /datum/job/reactor_operations/rce
 	title = "Reactor Chief Engineer"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
+	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
 
 /datum/job/reactor_operations/rmd
 	title = "Reactor Maintenance Director"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
+	outfit_type = /decl/hierarchy/outfit/job/engineering/rmd
 
 /datum/job/reactor_operations/ros
 	title = "Reactor Operations Specialist"
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Reactor Chief Engineer"
+	outfit_type = /decl/hierarchy/outfit/job/engineering/ros

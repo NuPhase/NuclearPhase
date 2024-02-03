@@ -33,8 +33,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 	atom_flags |= ATOM_FLAG_INITIALIZED
 
-	if (config.starlight)
-		update_starlight()
+	update_starlight()
 
 	//We might be an edge
 	if(y == world.maxy || forced_dirs & NORTH)

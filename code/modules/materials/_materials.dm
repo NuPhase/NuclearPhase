@@ -7,7 +7,7 @@ var/global/list/materials_by_gas_symbol = list()
 	icon_state = "generic"
 	layer = FIRE_LAYER
 	appearance_flags = RESET_COLOR
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	var/decl/material/material
 
 INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
@@ -234,7 +234,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/color = COLOR_BEIGE
 	var/color_weight = 1
 	var/fire_color = FIRE_COLOR_DEFAULT
-	var/fire_alpha = 255 //how visible is the fire
+	var/fire_alpha = 200 //how visible is the fire
 	var/cocktail_ingredient
 	var/defoliant
 	var/fruit_descriptor // String added to fruit desc if this chemical is present.

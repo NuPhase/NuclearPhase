@@ -114,3 +114,6 @@
 
 /proc/cmp_lobby_option_asc(var/datum/lobby_option/A, var/datum/lobby_option/B)
 	return A.sort_priority - B.sort_priority
+
+/proc/cmp_decl_uid_asc(decl/a, decl/b)
+	return sorttext(b.uid, a.uid)

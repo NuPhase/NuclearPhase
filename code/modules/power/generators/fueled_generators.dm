@@ -116,6 +116,9 @@
 	explosion(src.loc, -1, 3, 5, -1)
 	qdel(src)
 
+/obj/machinery/power/generator/port_gen/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	gen_shutdown()
+
 /obj/machinery/power/generator/port_gen/proc/gen_shutdown()
 	active = FALSE
 	update_icon()

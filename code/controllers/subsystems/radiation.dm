@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(radiation)
 		current_res_cache = resistance_cache.Copy()
 		listeners = global.living_mob_list_.Copy()
 
+	var/rad_decay_rate = get_config_value(/decl/config/num/radiation_decay_rate)
 	while(current_sources.len)
 		var/datum/radiation_source/S = current_sources[current_sources.len]
 		current_sources.len--
@@ -25,7 +26,7 @@ SUBSYSTEM_DEF(radiation)
 		if(QDELETED(S))
 			sources -= S
 		else if(S.decay)
-			S.update_rad_power(S.rad_power - config.radiation_decay_rate)
+			S.update_rad_power(S.rad_power - rad_decay_rate)
 		if (MC_TICK_CHECK)
 			return
 
@@ -102,7 +103,7 @@ SUBSYSTEM_DEF(radiation)
 			if(!resistance_cache[blocking]) //Only get the resistance if we don't already know it.
 				blocking.calc_rad_resistance()
 			if(blocking.cached_rad_resistance)
-				working = round((working / (blocking.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.1)
+				working = round((working / (blocking.cached_rad_resistance * get_config_value(/decl/config/num/radiation_resistance_multiplier))), 0.1)
 			if((working <= .) || (working <= RADIATION_THRESHOLD_CUTOFF))
 				break // Already affected by a stronger source (or its zero...)
 		. = max((working / (dist ** 2)), .) //Butchered version of the inverse square law. Works for this purpose

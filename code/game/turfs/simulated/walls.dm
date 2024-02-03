@@ -6,7 +6,8 @@ var/global/list/wall_blend_objects = list(
 	/obj/structure/window/reinforced/polarized/full,
 	/obj/structure/window/shuttle,
 	/obj/structure/window/borosilicate/full,
-	/obj/structure/window/borosilicate_reinforced/full
+	/obj/structure/window/borosilicate_reinforced/full,
+	/obj/structure/door
 )
 var/global/list/wall_noblend_objects = list(
 	/obj/machinery/door/window

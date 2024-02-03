@@ -805,7 +805,7 @@
 	name = "MAP: Doors shall be on appropriate turfs"
 
 /obj/abstract/map_data/proc/get_door_turf_exceptions(var/obj/machinery/door/D)
-	return LAZYACCESS(UT_turf_exceptions_by_door_type, D.type)
+	return null
 
 /datum/unit_test/doors_shall_be_on_appropriate_turfs/start_test()
 	var/bad_doors = 0

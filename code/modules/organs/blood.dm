@@ -291,4 +291,4 @@
 
 //Percentage of maximum blood volume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately matters for brain
 /mob/living/carbon/human/proc/get_blood_oxygenation()
-	return get_blood_perfusion() * 10
+	return get_blood_perfusion() * 100

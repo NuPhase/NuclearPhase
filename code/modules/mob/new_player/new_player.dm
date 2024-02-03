@@ -117,7 +117,7 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 				client.prefs.real_name = client.prefs.get_random_name()
 			observer.real_name = client.prefs.real_name
 			observer.SetName(observer.real_name)
-			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
+			if(!client.holder && !get_config_value(/decl/config/toggle/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 			observer.key = key
 			qdel(src)
@@ -162,7 +162,7 @@ INITIALIZE_IMMEDIATE(/mob/new_player)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished...</span>")
 		return 0
 
-	if(!config.enter_allowed)
+	if(!get_config_value(/decl/config/toggle/on/enter_allowed))
 		to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
 		return 0
 

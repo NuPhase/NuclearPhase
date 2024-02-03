@@ -138,12 +138,42 @@
 		QDEL_NULL(SL.evac_alarm)
 
 /obj/machinery/power/hybrid_reactor/proc/start_burning()
+	set waitfor = FALSE
 	var/list/animate_targets = superstructure.get_above_oo() + superstructure
 	for(var/thing in animate_targets)
 		var/atom/movable/AM = thing
-		animate(AM, color = "#ff0000", time = 60 SECONDS, easing = CUBIC_EASING)
-		AM.animate_filter("glow", list(color = "#ff0000", offset=2, size=10, time = 60 SECONDS, easing = CUBIC_EASING))
-		AM.set_light(5, 3, "#ff0000")
+		var/obj/effect/abstract/particle_holder/our_particle_holder = new(AM.loc, /particles/smoke_continuous/fire/reactor)
+		our_particle_holder.alpha = 220
+		var/current_spawn_time = 2 SECONDS
+		var/i
+		for(i=0, i<20, i++)
+			current_spawn_time += 3 SECONDS
+			spawn(current_spawn_time)
+				our_particle_holder.particles.spawning += 2
+		animate(AM, color = list(3.5,0,0,0,0,0,0,0,0), time = 20 SECONDS, easing = CUBIC_EASING|EASE_OUT)
+		AM.animate_filter("glow", list(color = "#ff0000", offset=2, size=10, time = 20 SECONDS, easing = CUBIC_EASING|EASE_OUT))
+		AM.animate_filter("blur", list(size=3, time = 60 SECONDS, easing = CUBIC_EASING))
+		AM.set_light(5, 1, "#ffdddd")
+		spawn(5 SECONDS)
+			AM.set_light(6, 2, "#ffb3b3")
+		spawn(10 SECONDS)
+			AM.set_light(7, 3, "#ff8181")
+		spawn(20 SECONDS)
+			animate(AM, color = list(3.5,0,0,2,0,0,0,0,0), time = 40 SECONDS, easing = CUBIC_EASING|EASE_OUT)
+			AM.animate_filter("glow", list(color = AM.color, time = 40 SECONDS, easing = CUBIC_EASING|EASE_OUT))
+			spawn(5 SECONDS)
+				AM.set_light(8, 5, "#fcac77")
+			spawn(10 SECONDS)
+				AM.set_light(9, 5, "#fcee6f")
+
+/obj/machinery/power/hybrid_reactor/proc/stop_burning()
+	set waitfor = FALSE
+	var/list/animate_targets = superstructure.get_above_oo() + superstructure
+	for(var/thing in animate_targets)
+		var/atom/movable/AM = thing
+		AM.set_light(4, 1, "#fcac77")
+		animate(AM, color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN)
+		AM.animate_filter("glow", list(color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN))
 
 /obj/machinery/power/hybrid_reactor/proc/close_blastdoors()
 

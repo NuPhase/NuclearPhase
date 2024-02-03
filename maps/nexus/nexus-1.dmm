@@ -246,7 +246,7 @@
 /turf/simulated/floor/plating,
 /area/nexus/hallway/starboard/fore)
 "ck" = (
-/obj/structure/dispenser,
+/obj/structure/tank_rack,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/nexus/engineering/storage)
 "cl" = (
@@ -891,7 +891,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/nexus/civilian)
 "iz" = (
-/obj/structure/filingcabinet,
+/obj/structure/filing_cabinet,
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /turf/simulated/floor/tiled,
 /area/nexus/engineering)
@@ -1183,7 +1183,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/nexus/hallway/starboard/fore)
 "ky" = (
-/obj/machinery/power/generator/smes/buildable/preset{
+/obj/machinery/power/smes/buildable/preset{
 	_fully_charged = 1;
 	_output_maxed = 1;
 	_output_on = 1;
@@ -1449,7 +1449,7 @@
 /turf/simulated/floor/tiled,
 /area/nexus/hallway/starboard/aft)
 "mT" = (
-/obj/structure/filingcabinet/chestdrawer,
+/obj/structure/filing_cabinet/chestdrawer,
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/techfloor,
 /area/nexus/command/port)
@@ -1565,7 +1565,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/obj/machinery/power/generator/smes/buildable/preset{
+/obj/machinery/power/smes/buildable/preset{
 	uncreated_component_parts = list(/obj/item/stock_parts/smes_coil/super_io = 5)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -2556,7 +2556,9 @@
 /turf/simulated/floor/plating,
 /area/nexus/command)
 "xX" = (
-/obj/abstract/level_data/main_level,
+/obj/abstract/level_data_spawner/main_level{
+	name = "Nexus Lower Deck";
+},
 /turf/space,
 /area/space)
 "yf" = (
@@ -2607,7 +2609,7 @@
 /turf/simulated/floor/tiled,
 /area/nexus/hallway/starboard/aft)
 "yE" = (
-/obj/machinery/power/generator/port_gen/pacman/super,
+/obj/machinery/port_gen/pacman/super,
 /obj/structure/cable,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -3984,7 +3986,7 @@
 /turf/simulated/floor/tiled,
 /area/nexus/hallway/port/fore)
 "MA" = (
-/obj/machinery/power/generator/smes/buildable/preset{
+/obj/machinery/power/smes/buildable/preset{
 	uncreated_component_parts = list(/obj/item/stock_parts/smes_coil/super_capacity = 5)
 	},
 /obj/structure/cable{
@@ -4355,9 +4357,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/nexus/command/starboard)
 "Px" = (
-/obj/machinery/photocopier/faxmachine{
-	department = "ISC nexus"
-	},
+/obj/machinery/faxmachine,
 /obj/structure/table/reinforced,
 /obj/structure/closet/medical_wall/filled{
 	pixel_x = -32
@@ -4921,7 +4921,7 @@
 /turf/simulated/floor/tiled,
 /area/nexus/hallway/starboard)
 "UB" = (
-/obj/structure/filingcabinet/chestdrawer,
+/obj/structure/filing_cabinet/chestdrawer,
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/techfloor,
 /area/nexus/command/starboard)
@@ -5352,7 +5352,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/computer/cryopod{
-	pixel_y = -32
+	dir = 1
 	},
 /obj/abstract/landmark/latejoin/cryo,
 /turf/simulated/floor/tiled/white,
@@ -5458,7 +5458,7 @@
 /turf/simulated/floor/tiled/white,
 /area/nexus/civilian)
 "Zy" = (
-/obj/machinery/power/generator/smes/buildable/preset{
+/obj/machinery/power/smes/buildable/preset{
 	uncreated_component_parts = list(/obj/item/stock_parts/smes_coil/super_capacity = 5)
 	},
 /obj/structure/cable,
@@ -5513,8 +5513,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/modular_computer/telescreen/preset/engineering{
-	pixel_y = 28
+/obj/machinery/computer/modular/telescreen/preset/engineering{
+	dir = 2
 	},
 /turf/simulated/floor/tiled,
 /area/nexus/engineering)

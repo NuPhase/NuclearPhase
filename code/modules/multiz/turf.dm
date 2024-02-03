@@ -48,10 +48,7 @@
 				return FALSE
 
 	else if(direction == DOWN)
-		if(!is_open() || !HasBelow(z))
-			return FALSE
-		var/obj/structure/catwalk/cw = locate(/obj/structure/catwalk)
-		if(cw in src && !cw.hatch_open)
+		if(!is_open() || !HasBelow(z) || (locate(/obj/structure/catwalk) in src))
 			return FALSE
 		if(check_neighbor_canzpass)
 			var/turf/T = GetBelow(src)
@@ -68,13 +65,15 @@
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = ""
-	density = 0
+	density = FALSE
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	z_flags = ZM_MIMIC_DEFAULTS | ZM_MIMIC_OVERWRITE | ZM_MIMIC_NO_AO | ZM_ALLOW_ATMOS
 	turf_flags = TURF_FLAG_BACKGROUND
 
 /turf/simulated/open/airless
 	initial_gas = null
+
+/turf/simulated/open/skyscraper
 
 /turf/simulated/open/flooded
 	name = "open water"
@@ -113,6 +112,7 @@
 	return shared_open_turf_attackby(src, C, user)
 
 /turf/simulated/open/attack_hand(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	return shared_open_turf_attackhand(src, user)
 
 //Most things use is_plating to test if there is a cover tile on top (like regular floors)
@@ -122,14 +122,6 @@
 /turf/simulated/open/cannot_build_cable()
 	return 0
 
-/turf/simulated/open/skyscraper
-	name = "the city below"
-
-/turf/simulated/open/skyscraper/Initialize(ml)
-	. = ..()
-	set_ambient_light(COLOR_WHITE, 1)
-	overlays += image('icons/effects/weather.dmi', icon_state = "rain")
-
 ////////////////////////////////
 // Open EXTERIOR
 ////////////////////////////////
@@ -137,7 +129,7 @@
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = ""
-	density = 0
+	density = FALSE
 	pathweight = 100000
 	z_flags = ZM_MIMIC_DEFAULTS | ZM_MIMIC_OVERWRITE | ZM_MIMIC_NO_AO | ZM_ALLOW_ATMOS
 
@@ -169,6 +161,7 @@
 	return shared_open_turf_attackby(src, C, user)
 
 /turf/exterior/open/attack_hand(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	return shared_open_turf_attackhand(src, user)
 
 /turf/exterior/open/cannot_build_cable()
