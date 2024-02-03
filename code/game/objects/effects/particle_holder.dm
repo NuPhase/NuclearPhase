@@ -19,7 +19,7 @@
 		log_error("particle holder was created with no loc!")
 		return INITIALIZE_HINT_QDEL
 	weak_attached = weakref(loc)
-	particles = new particle_path
+	particles = SSparticles.get_particle(particle_path)
 	update_visual_contents(loc)
 
 /obj/effect/abstract/particle_holder/Destroy(force)
@@ -31,7 +31,6 @@
 		attached.vis_contents -= src
 	if(additional_attached)
 		additional_attached.vis_contents -= src
-	QDEL_NULL(particles)
 	return ..()
 
 ///signal called when parent is moved

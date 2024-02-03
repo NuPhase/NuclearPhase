@@ -870,24 +870,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
-"bdx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/water{
-	dir = 4
-	},
-/obj/structure/cable/blue{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/button/access{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/labs/particle_physics)
 "bdT" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped,
@@ -1677,7 +1659,7 @@
 /area/serenity/shelter/engineering/reactor)
 "bVi" = (
 /obj/machinery/power/generator/transformer/large{
-	coef = 0.125;
+	coef = 8;
 	max_cap = 50000000
 	},
 /obj/structure/cable/heavy{
@@ -3172,14 +3154,6 @@
 /obj/structure/closet/toolcloset,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations)
-"dBi" = (
-/obj/structure/railing/mapped{
-	dir = 8
-	},
-/obj/item/chems/fuel_cell/heavywater,
-/obj/item/chems/fuel_cell/heavywater,
-/turf/simulated/floor/concrete/road,
-/area/serenity/shelter/engineering/reactor_operations)
 "dBq" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/water,
 /turf/simulated/floor/tiled/white/monotile,
@@ -4022,6 +3996,24 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/entrance_zone)
+"eus" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/water{
+	dir = 4
+	},
+/obj/structure/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/button/access{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "evI" = (
 /obj/structure/bed/sofa/r/black{
 	dir = 4
@@ -11738,6 +11730,14 @@
 /obj/structure/railing/mapped,
 /turf/simulated/floor/concrete/road/surface,
 /area/surface)
+"mug" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/item/chems/fuel_cell/heavywater,
+/obj/item/chems/fuel_cell/heavywater,
+/turf/simulated/floor/concrete/road,
+/area/serenity/shelter/engineering/reactor_operations)
 "muM" = (
 /obj/machinery/door/firedoor/autoset{
 	dir = 4
@@ -11830,6 +11830,12 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
+"mAO" = (
+/obj/machinery/button/access{
+	pixel_y = -20
+	},
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/labs/genetics)
 "mAX" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
@@ -18088,7 +18094,7 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "sRo" = (
 /obj/machinery/power/generator/transformer/switchable/on/large{
-	coef = 8;
+	coef = 0.125;
 	critical = 1;
 	dir = 1;
 	max_cap = 0;
@@ -19900,12 +19906,6 @@
 	},
 /turf/exterior/wall,
 /area/serenity)
-"uLc" = (
-/obj/machinery/button/access{
-	pixel_y = -20
-	},
-/turf/simulated/floor/tiled/white,
-/area/serenity/shelter/labs/genetics)
 "uLZ" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -94677,7 +94677,7 @@ pao
 pao
 pao
 mBo
-dBi
+mug
 yhI
 bUS
 nxr
@@ -119573,7 +119573,7 @@ dcg
 xmz
 pSS
 dKP
-bdx
+eus
 lVp
 qLj
 ndM
@@ -120158,7 +120158,7 @@ lYH
 bIr
 kLY
 bqG
-uLc
+mAO
 qYF
 mZh
 sLM
