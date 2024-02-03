@@ -79,7 +79,7 @@
 	    SKILL_ATMOS        = SKILL_MAX,
 	    SKILL_ENGINES      = SKILL_MAX
 	)
-	skill_points = 30
+	skill_points = 45
 	software_on_spawn = list(
 		/datum/computer_file/program/comm,
 		/datum/computer_file/program/network_monitor,
@@ -154,7 +154,7 @@
 	    SKILL_ATMOS        = SKILL_MAX,
 	    SKILL_ENGINES      = SKILL_MAX
 	)
-	skill_points = 20
+	skill_points = 36
 	software_on_spawn = list(
 		/datum/computer_file/program/power_monitor,
 		/datum/computer_file/program/supermatter_monitor,

@@ -15,25 +15,34 @@
 	min_skill = list(
 		SKILL_LITERACY    = SKILL_ADEPT
 	)
-	skill_points = 20
+	skill_points = 34
 
 /datum/job/site_operations/faid
 	title = "Facility AI Director"
 	head_position = 1
 	supervisors = "the Chief Operations Officer and Chief Security Officer"
 	outfit_type = /decl/hierarchy/outfit/job/faid
+	skill_points = 38
 
 /datum/job/site_operations/ca
 	title = "Chief Architect"
 	head_position = 1
 	supervisors = "the Chief Operations Officer and Reactor Operations Director"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
+	skill_points = 35
 
 /datum/job/site_operations/ss
 	title = "Safety Supervisor"
 	head_position = 1
 	supervisors = "the Chief Operations Officer"
 	outfit_type = /decl/hierarchy/outfit/job/sdd
+	skill_points = 35
+	max_skill = list(
+		SKILL_CONSTRUCTION = SKILL_MAX,
+	    SKILL_ELECTRICAL   = SKILL_MAX,
+	    SKILL_ATMOS        = SKILL_MAX,
+	    SKILL_ENGINES      = SKILL_MAX
+	)
 
 /datum/job/site_operations/sme
 	title = "Site Maintenance Engineer"
@@ -57,6 +66,7 @@
 		access_construction,
 		access_emergency_storage
 	)
+	skill_points = 35
 
 /datum/job/site_operations/janitor
 	title = "Sanitation Specialist"
@@ -95,7 +105,7 @@
 		SKILL_FITNESS  = SKILL_BASIC
 	)
 	event_categories = list(ASSIGNMENT_JANITOR)
-	skill_points = 20
+	skill_points = 22
 	only_for_whitelisted = FALSE
 
 /datum/job/site_operations/chef
@@ -122,4 +132,4 @@
 	    SKILL_BOTANY    = SKILL_BASIC,
 	    SKILL_CHEMISTRY = SKILL_BASIC
 	)
-	skill_points = 24
+	skill_points = 27

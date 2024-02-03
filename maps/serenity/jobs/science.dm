@@ -75,9 +75,12 @@
 	max_skill = list(
 		SKILL_ANATOMY  = SKILL_MAX,
 		SKILL_DEVICES  = SKILL_MAX,
-		SKILL_SCIENCE  = SKILL_MAX
+		SKILL_SCIENCE  = SKILL_MAX,
+		SKILL_COMPUTER  = SKILL_MAX,
+
+
 	)
-	skill_points = 30
+	skill_points = 42
 	event_categories = list(ASSIGNMENT_SCIENTIST)
 
 /datum/job/scientist
@@ -124,7 +127,7 @@
 	    SKILL_DEVICES  = SKILL_MAX,
 	    SKILL_SCIENCE  = SKILL_MAX
 	)
-	skill_points = 24
+	skill_points = 36
 	event_categories = list(ASSIGNMENT_SCIENTIST)
 
 /datum/job/roboticist
@@ -177,7 +180,7 @@
 	    SKILL_MEDICAL      = SKILL_EXPERT,
 	    SKILL_ANATOMY      = SKILL_EXPERT
 	)
-	skill_points = 20
+	skill_points = 31
 
 /obj/item/card/id/science
 	name = "identification card"

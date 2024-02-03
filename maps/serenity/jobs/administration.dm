@@ -22,7 +22,7 @@
 	min_skill = list(
 		SKILL_LITERACY    = SKILL_ADEPT
 	)
-	skill_points = 30
+	skill_points = 45
 
 /datum/job/administration/ceo
 	title = "Chief Executive Officer"
@@ -239,10 +239,12 @@
 		access_gateway,
 		access_external_airlocks
 	)
+	skill_points = 37
 
 /datum/job/administration/sdd
 	title = "Site Deputy Director"
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
+	skill_points = 45
 	outfit_type = /decl/hierarchy/outfit/job/sdd

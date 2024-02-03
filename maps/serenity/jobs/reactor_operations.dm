@@ -15,7 +15,15 @@
 	min_skill = list(
 		SKILL_LITERACY    = SKILL_ADEPT
 	)
-	skill_points = 20
+	max_skill = list(
+		SKILL_CONSTRUCTION = SKILL_MAX,
+	    SKILL_ELECTRICAL   = SKILL_MAX,
+	    SKILL_ATMOS        = SKILL_MAX,
+	    SKILL_ENGINES      = SKILL_MAX,
+		SKILL_COMPUTER  = SKILL_MAX,
+		SKILL_DEVICES  = SKILL_MAX
+	)
+	skill_points = 34
 	access = list(
 		access_eva,
 		access_engine,
@@ -84,6 +92,7 @@
 		access_tcomsat,
 		access_ai_upload
 	)
+	skill_points = 43
 
 /datum/job/reactor_operations/road
 	title = "Reactor Operations Assistant Director"
@@ -130,18 +139,21 @@
 		access_tcomsat,
 		access_ai_upload
 	)
+	skill_points = 40
 
 /datum/job/reactor_operations/rce
 	title = "Reactor Chief Engineer"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
+	skill_points = 43
 
 /datum/job/reactor_operations/rmd
 	title = "Reactor Maintenance Director"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/rmd
+	skill_points = 40
 
 /datum/job/reactor_operations/ros
 	title = "Reactor Operations Specialist"
@@ -149,3 +161,4 @@
 	spawn_positions = 10
 	supervisors = "the Reactor Chief Engineer"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/ros
+	skill_points =38

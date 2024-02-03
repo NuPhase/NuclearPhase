@@ -15,7 +15,7 @@
 	min_skill = list(
 		SKILL_LITERACY    = SKILL_ADEPT
 	)
-	skill_points = 20
+	skill_points = 35
 	access = list(
 		access_robotics,
 		access_tox,
