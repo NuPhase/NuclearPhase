@@ -62,6 +62,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/engineering/reactor_operations/office)
+"adL" = (
+/obj/machinery/power/apc/hyper{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "aeU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 8
@@ -203,9 +209,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
-"apz" = (
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/brig/reception)
 "apP" = (
 /obj/machinery/door/blast/regular/radlock,
 /obj/machinery/door/blast/shutters/open{
@@ -252,20 +255,6 @@
 /obj/structure/rack,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
-"atE" = (
-/obj/structure/door/fire{
-	dir = 8;
-	lock_data = list("ACCESS_SECURITY");
-	lock_type = /datum/lock/id_card
-	},
-/turf/simulated/floor/tiled/dark/half,
-/area/serenity/shelter/brig/reception)
-"atL" = (
-/obj/structure/hygiene/urinal{
-	pixel_y = 30
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/brig/preparation)
 "auz" = (
 /obj/machinery/atmospherics/pipe/zpipe/up,
 /turf/simulated/floor/tiled/techfloor,
@@ -282,6 +271,9 @@
 	},
 /obj/structure/bed/chair/office/comfy/black{
 	dir = 8
+	},
+/obj/abstract/landmark/start{
+	name = "Chief Executive Officer"
 	},
 /turf/simulated/floor/carpet,
 /area/serenity/shelter/entrance_zone)
@@ -430,6 +422,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"aHa" = (
+/obj/machinery/power/apc/hyper{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/armory)
 "aHd" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
@@ -492,6 +490,18 @@
 "aIK" = (
 /turf/simulated/wall/concrete/nano,
 /area/serenity)
+"aIN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/abstract/landmark/start{
+	name = "Particle Physics Specialist"
+	},
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "aIT" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -562,6 +572,12 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity)
+"aNj" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "aNA" = (
 /obj/machinery/light/small/red,
 /turf/simulated/floor/plating,
@@ -723,12 +739,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
-"aXH" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/brig/office)
 "aYb" = (
 /obj/structure/railing/mapped,
 /obj/machinery/light/small{
@@ -895,9 +905,6 @@
 "bhQ" = (
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
-"bie" = (
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/brig/prison)
 "biH" = (
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/concrete/nano,
@@ -998,6 +1005,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/entrance_zone/viewing_area)
+"bmM" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "bmQ" = (
 /obj/machinery/lung_ventilator,
 /turf/simulated/floor/tiled/white/monotile,
@@ -1017,6 +1028,10 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
+"boc" = (
+/obj/structure/curtain/privacy,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/brig/preparation)
 "bok" = (
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
@@ -1085,6 +1100,12 @@
 /obj/item/stool/bar/padded,
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity)
+"bsc" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/brig/office)
 "bsg" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -1171,6 +1192,14 @@
 "bws" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/dark/herringbone,
+/area/serenity/shelter/brig/prison)
+"bwH" = (
+/obj/structure/door/sliding{
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/tiled/dark/half,
 /area/serenity/shelter/brig/prison)
 "bxi" = (
 /obj/effect/floor_decal/spline/plain/black{
@@ -1362,6 +1391,14 @@
 /obj/machinery/floodlight,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/reactor_operations)
+"bLd" = (
+/obj/structure/door/sliding{
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "bLe" = (
 /obj/structure/bed/sofa/r/beige{
 	dir = 4
@@ -1565,12 +1602,11 @@
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity)
-"bVG" = (
-/obj/structure/catwalk,
-/obj/structure/railing/mapped{
-	dir = 8
+"bVX" = (
+/obj/machinery/power/apc/hyper{
+	dir = 1
 	},
-/turf/simulated/open,
+/turf/simulated/floor/plating,
 /area/serenity/shelter/brig/office)
 "bWj" = (
 /obj/structure/window/reinforced,
@@ -1582,6 +1618,12 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/atmos)
+"bWu" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/armory)
 "bWP" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -1648,6 +1690,9 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
+"bYU" = (
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/brig/reception)
 "bZa" = (
 /obj/structure/railing/mapped,
 /obj/structure/railing/mapped{
@@ -1697,6 +1742,15 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/carpet,
 /area/serenity/shelter/entrance_zone)
+"caD" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Assistant Director"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "cbb" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small{
@@ -1946,11 +2000,6 @@
 /obj/machinery/atmospherics/unary/tank/large/decontamination,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
-"cqD" = (
-/obj/structure/wall_frame/standard,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "cqQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -2248,12 +2297,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
-"cLt" = (
-/obj/structure/fire_hydrant_manual{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "cLz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -2329,6 +2372,10 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/labs)
+"cQo" = (
+/obj/structure/closet/toolcloset,
+/turf/simulated/floor/tiled/dark/small,
+/area/serenity/shelter/brig/armory)
 "cRc" = (
 /obj/structure/railing/mapped,
 /obj/structure/railing/mapped{
@@ -2351,6 +2398,7 @@
 /obj/structure/bed/sofa/l/black{
 	dir = 8
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
 "cTg" = (
@@ -2401,6 +2449,12 @@
 "cVl" = (
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"cVW" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "cWy" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
@@ -2526,9 +2580,6 @@
 /obj/item/stack/material/bolt/mapped/green/thirty,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
-"dbC" = (
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/brig/reception)
 "dcg" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -2554,6 +2605,15 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
+"ddf" = (
+/obj/abstract/landmark/start{
+	name = "Laboratory Operations Specialist"
+	},
+/obj/structure/bed/chair/armchair/purple{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "ddu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -2705,9 +2765,6 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
-"dlN" = (
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/brig/armory)
 "dmc" = (
 /obj/structure/reactor_table{
 	dir = 10;
@@ -2741,6 +2798,14 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/brig/office)
+"dmk" = (
+/obj/structure/catwalk,
+/obj/structure/railing/mapped,
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/serenity/shelter/brig/office)
 "dmn" = (
 /obj/structure/rack,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -2753,6 +2818,12 @@
 "dmZ" = (
 /obj/structure/flora/pottedplant/thinbush,
 /turf/simulated/floor/tiled/dark,
+/area/serenity/shelter/brig/office)
+"dng" = (
+/obj/structure/bed/chair/armchair/black{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/office)
 "dnt" = (
 /obj/structure/sign/janitor{
@@ -2792,6 +2863,13 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
+"doU" = (
+/obj/structure/bed/chair/office/light,
+/obj/abstract/landmark/start{
+	name = "Site Deputy Director"
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/entrance_zone)
 "dpR" = (
 /obj/structure/door/sliding{
 	dir = 8
@@ -2867,15 +2945,6 @@
 /obj/effect/paint_stripe/black,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations)
-"dud" = (
-/obj/structure/door/sliding{
-	lock_data = list("ACCESS_SECURITY");
-	lock_type = /datum/lock/id_card
-	},
-/turf/simulated/floor/tiled/dark/half{
-	dir = 1
-	},
-/area/serenity/shelter/brig/office)
 "dut" = (
 /obj/structure/bed/chair/pew,
 /turf/simulated/floor/tiled/steel_grid,
@@ -2933,6 +3002,9 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
+"dwD" = (
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "dxh" = (
 /obj/effect/floor_decal/corner/red/border{
 	dir = 1
@@ -2961,12 +3033,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
-"dBJ" = (
-/obj/machinery/vending/snack{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "dCv" = (
 /obj/structure/hygiene/toilet{
 	dir = 8
@@ -2982,20 +3048,15 @@
 /obj/item/chems/glass/beaker/large,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
-"dDJ" = (
-/obj/structure/door/sliding{
-	dir = 8;
-	lock_data = list("ACCESS_SECURITY");
-	lock_type = /datum/lock/id_card
-	},
-/turf/simulated/floor/tiled/dark/half,
-/area/serenity/shelter/brig/prison)
+"dDx" = (
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/preparation)
 "dDN" = (
 /obj/machinery/light/ceiling{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
+/area/serenity/shelter/brig/preparation)
 "dDP" = (
 /obj/structure/door/sliding{
 	lock_data = list("ACCESS_ENGINEERING");
@@ -3143,6 +3204,10 @@
 /obj/structure/window/borosilicate_reinforced/full,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
+"dLd" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/preparation)
 "dLm" = (
 /obj/structure/table/steel,
 /obj/item/paper_bin,
@@ -3323,10 +3388,6 @@
 "dXp" = (
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
-"dXB" = (
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/serenity/shelter/brig/office)
 "dXM" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3564,14 +3625,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/atmos)
-"eiK" = (
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
-/obj/abstract/landmark/start{
-	name = "Troop Commander"
-	},
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/brig/barracks)
 "ejo" = (
 /obj/effect/floor_decal/industrial/radiation,
 /turf/simulated/floor/tiled/white/monotile,
@@ -3677,6 +3730,9 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
+"epf" = (
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/brig/armory)
 "epM" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped,
@@ -3797,10 +3853,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
-"exr" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/serenity/shelter/brig/office)
 "exK" = (
 /obj/structure/sign/warning/detailed{
 	dir = 4;
@@ -4085,6 +4137,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"eOD" = (
+/obj/machinery/vending/snack{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "ePj" = (
 /obj/structure/railing/mapped,
 /obj/effect/floor_decal/industrial/fire{
@@ -4246,14 +4304,6 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
-"fbF" = (
-/obj/structure/catwalk,
-/obj/structure/railing/mapped,
-/obj/machinery/light/ceiling{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/serenity/shelter/brig/office)
 "fco" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -4618,9 +4668,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
-"fyi" = (
-/turf/simulated/floor/tiled/monotile,
-/area/serenity/shelter/brig/reception)
 "fym" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/concrete/road,
@@ -4832,10 +4879,6 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
-"fLp" = (
-/obj/structure/rack,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "fMf" = (
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 8
@@ -4850,7 +4893,7 @@
 	pixel_y = 30
 	},
 /turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/brig/reception)
+/area/serenity/shelter/brig/preparation)
 "fMn" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-8"
@@ -4947,12 +4990,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
-"fSk" = (
-/obj/machinery/light/ceiling{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/brig/preparation)
 "fSq" = (
 /obj/structure/table/marble,
 /turf/simulated/floor/tiled/white/monotile,
@@ -5015,6 +5052,12 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
+"fUY" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/brig/barracks)
 "fVl" = (
 /obj/machinery/door/window/northright,
 /turf/simulated/floor/tiled/techfloor,
@@ -5419,6 +5462,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"gnw" = (
+/obj/structure/closet/medical_wall/filled{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "gny" = (
 /obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/simple/hidden/water{
@@ -5485,6 +5534,14 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
+"gpO" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/abstract/landmark/start{
+	name = "Troop Commander"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/brig/barracks)
 "gpS" = (
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 10
@@ -5599,6 +5656,13 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
+"gvs" = (
+/obj/structure/catwalk,
+/obj/machinery/power/apc/hyper{
+	dir = 1
+	},
+/turf/simulated/open,
+/area/serenity/shelter/brig/barracks)
 "gvw" = (
 /obj/machinery/light/ceiling,
 /turf/simulated/open,
@@ -5638,12 +5702,6 @@
 /obj/item/knife/kitchen,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
-"gyT" = (
-/obj/structure/bed/chair/armchair/black{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "gzA" = (
 /turf/simulated/floor/plating,
 /area/serenity)
@@ -5693,16 +5751,16 @@
 /obj/machinery/rotating_alarm/reactor/control_room,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"gCM" = (
+/obj/structure/closet/secure_closet/warden,
+/turf/simulated/floor/tiled/dark/herringbone,
+/area/serenity/shelter/brig/prison)
 "gDr" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/serenity/shelter/entrance_zone)
-"gDD" = (
-/obj/structure/closet/toolcloset,
-/turf/simulated/floor/tiled/dark/small,
-/area/serenity/shelter/brig/armory)
 "gDF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
@@ -5852,6 +5910,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/water,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"gNB" = (
+/obj/machinery/door/airlock/double/security{
+	initial_access = list("ACCESS_ARMORY")
+	},
+/turf/exterior/wall,
+/area/serenity)
 "gNU" = (
 /obj/structure/railing/mapped,
 /obj/machinery/atmospherics/pipe/simple/visible/water{
@@ -5947,6 +6011,10 @@
 /obj/item/pen/retractable,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"gUP" = (
+/obj/structure/closet/crate/trashcart,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "gUV" = (
 /obj/structure/table/marble,
 /obj/item/chems/condiment/enzyme,
@@ -5959,7 +6027,7 @@
 	},
 /obj/item/paper/crumpled,
 /obj/item/paper/sticky{
-	info = "CHECKSAFETY!"
+	info = "CHECK SAFETY!"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/preparation)
@@ -5996,6 +6064,12 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"gXC" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/small,
+/area/serenity/shelter/brig/armory)
 "gXT" = (
 /obj/machinery/door/blast/regular/radlock,
 /obj/machinery/door/blast/shutters/open{
@@ -6042,10 +6116,6 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/reactor)
-"hab" = (
-/obj/structure/closet/secure_closet/warden,
-/turf/simulated/floor/tiled/dark/herringbone,
-/area/serenity/shelter/brig/prison)
 "haf" = (
 /obj/effect/floor_decal/corner/white/bordercorner{
 	dir = 1
@@ -6073,12 +6143,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
-"hba" = (
-/obj/machinery/power/apc/hyper{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/armory)
 "hbs" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -6139,6 +6203,15 @@
 /obj/structure/rack/dark,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/reactor)
+"hdV" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
+"het" = (
+/turf/simulated/floor/tiled/dark/corner{
+	dir = 4
+	},
+/area/serenity/shelter/brig/office)
 "heu" = (
 /obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
@@ -6183,6 +6256,9 @@
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
+"hgr" = (
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/brig/office)
 "hgN" = (
 /obj/machinery/dehumidifier,
 /turf/simulated/floor/concrete/road,
@@ -6252,9 +6328,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
-"hlq" = (
-/turf/simulated/floor/plating,
-/area/serenity/shelter/brig/office)
 "hmu" = (
 /obj/structure/hygiene/toilet{
 	dir = 4
@@ -6265,10 +6338,6 @@
 /obj/item/stack/tape_roll/barricade_tape/toilet,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/reception)
-"hmC" = (
-/obj/structure/closet/crate/trashcart,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "hne" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -6411,10 +6480,6 @@
 	dir = 8
 	},
 /area/serenity)
-"hvU" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "hwm" = (
 /obj/machinery/door/blast/regular,
 /obj/machinery/atmospherics/pipe/manifold/hidden/water,
@@ -6579,12 +6644,6 @@
 	},
 /turf/simulated/open,
 /area/serenity)
-"hEn" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "hEA" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -6886,6 +6945,13 @@
 /obj/structure/catwalk,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
+"hYU" = (
+/obj/structure/catwalk,
+/obj/machinery/power/apc/hyper{
+	dir = 1
+	},
+/turf/simulated/open,
+/area/serenity/shelter/brig/preparation)
 "hYV" = (
 /obj/machinery/light/ceiling{
 	dir = 4;
@@ -7021,6 +7087,9 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"igK" = (
+/turf/simulated/floor/tiled/monotile,
+/area/serenity/shelter/brig/reception)
 "igQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue,
 /obj/effect/catwalk_plated,
@@ -7089,13 +7158,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/entrance_zone)
-"ilm" = (
-/obj/structure/sign/warning/high_voltage{
-	dir = 4;
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "ilX" = (
 /obj/structure/rack/dark,
 /obj/item/flashlight/lamp/floodlamp,
@@ -7123,10 +7185,6 @@
 /obj/item/cell/doublecapacity,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
-"imS" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "imU" = (
 /obj/structure/door/sliding,
 /turf/simulated/floor/tiled/white/monotile,
@@ -7388,10 +7446,20 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/dark,
 /area/serenity/shelter/brig/office)
+"iyd" = (
+/obj/structure/catwalk,
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/serenity/shelter/brig/office)
 "iym" = (
 /obj/structure/bed,
 /turf/simulated/floor/tiled/steel_grid,
 /area/serenity/shelter/brig/prison)
+"iyV" = (
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/brig/barracks)
 "izc" = (
 /obj/structure/bed/chair/office/dark,
 /turf/simulated/floor/tiled/dark/herringbone,
@@ -7452,6 +7520,9 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/entrance_zone)
+"iEE" = (
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/brig/barracks)
 "iFs" = (
 /obj/structure/window/basic{
 	dir = 8
@@ -7642,6 +7713,9 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
+/obj/abstract/landmark/start{
+	name = "Troop Commander"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/preparation)
 "iOK" = (
@@ -7712,6 +7786,15 @@
 "iSC" = (
 /obj/structure/coatrack,
 /turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/office)
+"iTx" = (
+/obj/structure/sign/warning/high_voltage{
+	dir = 8;
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/dark/half{
+	dir = 1
+	},
 /area/serenity/shelter/brig/office)
 "iTB" = (
 /obj/structure/door/sliding{
@@ -7859,6 +7942,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
+"jdK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/abstract/landmark/start{
+	name = "Laboratory Operations Specialist"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "jdN" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/steam{
 	dir = 8
@@ -7925,6 +8019,10 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"jjq" = (
+/obj/structure/catwalk,
+/turf/simulated/open,
+/area/serenity/shelter/brig/office)
 "jjt" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped{
@@ -7967,12 +8065,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
-"jkI" = (
-/obj/machinery/light/ceiling{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "jkL" = (
 /obj/effect/floor_decal/corner/yellow/border,
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
@@ -8406,6 +8498,9 @@
 /obj/structure/closet/firecloset,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"jIg" = (
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/brig/prison)
 "jIq" = (
 /obj/machinery/light{
 	dir = 1
@@ -8416,6 +8511,15 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/entrance_zone/viewing_area)
+"jIJ" = (
+/obj/abstract/landmark/start{
+	name = "General Genetics Specialist"
+	},
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/genetics)
 "jIT" = (
 /obj/structure/railing/mapped,
 /turf/simulated/open,
@@ -8530,11 +8634,6 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/red,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/entrance_zone)
-"jPL" = (
-/turf/simulated/floor/tiled/dark/corner{
-	dir = 4
-	},
-/area/serenity/shelter/brig/office)
 "jQb" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/light/ceiling{
@@ -8549,9 +8648,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/pumps_a)
-"jRe" = (
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/brig/barracks)
 "jRn" = (
 /obj/structure/table,
 /obj/machinery/computer/modular/preset/civilian{
@@ -8637,6 +8733,13 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
+"jVY" = (
+/obj/structure/bed/chair/office/comfy/beige,
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Director"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "jWz" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -8908,12 +9011,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
-"kiK" = (
-/obj/structure/closet/medical_wall/filled{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "kiV" = (
 /obj/structure/railing/mapped,
 /obj/effect/floor_decal/spline/plain/red{
@@ -9154,6 +9251,8 @@
 	dir = 4;
 	pixel_y = 17
 	},
+/obj/item/chems/condiment/small/packet/coffee,
+/obj/item/chems/condiment/small/packet/coffee,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
 "kuO" = (
@@ -9171,10 +9270,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/labs)
-"kvp" = (
-/obj/structure/closet/l3closet/security,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "kvw" = (
 /obj/machinery/atmospherics/valve/digital{
 	uid = "F-CP 1V-EX";
@@ -9190,12 +9285,6 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
-"kxD" = (
-/obj/machinery/door/airlock/highsecurity{
-	initial_access = list("ACCESS_ARMORY")
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/armory)
 "kxM" = (
 /obj/structure/door/fire{
 	lock_data = list("ACCESS_MAINT");
@@ -9355,6 +9444,12 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"kFA" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/brig/preparation)
 "kFR" = (
 /obj/effect/paint_stripe/blue,
 /obj/effect/paint,
@@ -9363,6 +9458,15 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical)
+"kHi" = (
+/obj/structure/bed/chair/office/comfy/beige{
+	dir = 4
+	},
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Specialist"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "kHt" = (
 /turf/simulated/open,
 /area/serenity)
@@ -9603,6 +9707,9 @@
 	dir = 4
 	},
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"kSj" = (
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "kSl" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 5
@@ -9729,12 +9836,6 @@
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
-"lbb" = (
-/obj/machinery/power/apc/hyper{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/brig/reception)
 "lbF" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/pumps_b)
@@ -9990,6 +10091,12 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
+"lpF" = (
+/obj/machinery/power/apc/hyper{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/brig/reception)
 "lpG" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/structure/window/reinforced{
@@ -10089,6 +10196,10 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/steam,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"lus" = (
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/brig/office)
 "luy" = (
 /obj/effect/floor_decal/industrial/radiation{
 	dir = 1
@@ -10141,6 +10252,9 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
+"lwv" = (
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/brig/preparation)
 "lwB" = (
 /obj/structure/table/woodentable/walnut,
 /obj/machinery/chemical_dispenser/bar_coffee/full{
@@ -10867,6 +10981,9 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"miF" = (
+/turf/simulated/open,
+/area/serenity/shelter/brig/office)
 "miG" = (
 /obj/structure/hygiene/toilet{
 	dir = 4
@@ -10981,6 +11098,14 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"mmV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/bed/chair/office/light,
+/obj/abstract/landmark/start{
+	name = "Laboratory Operations Specialist"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "mnU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 9
@@ -11233,6 +11358,10 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
+"mwK" = (
+/obj/abstract/landmark/latejoin,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "mxb" = (
 /obj/structure/bed/sofa/r/green{
 	dir = 8
@@ -11260,6 +11389,9 @@
 "mzp" = (
 /obj/structure/bed/sofa/r/green{
 	dir = 1
+	},
+/obj/abstract/landmark/start{
+	name = "Laboratory Operations Assistant"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
@@ -11406,9 +11538,8 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/preparation)
 "mHc" = (
-/obj/abstract/landmark/latejoin,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/entrance_zone)
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/brig/reception)
 "mHw" = (
 /obj/structure/cable/heavy{
 	icon_state = "2-8"
@@ -11548,9 +11679,6 @@
 /obj/item/sticky_pad/random,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
-"mOa" = (
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/preparation)
 "mQE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/concrete,
@@ -11595,6 +11723,13 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
+"mTT" = (
+/obj/structure/table/marble,
+/obj/item/chems/condiment/small/packet/coffee,
+/obj/item/chems/condiment/small/packet/coffee,
+/obj/item/chems/condiment/small/packet/coffee,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "mUB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 6
@@ -11648,6 +11783,13 @@
 "mVP" = (
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
+"mVX" = (
+/obj/structure/table/marble,
+/obj/structure/window/basic{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "mWe" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 10
@@ -11693,6 +11835,11 @@
 /obj/effect/floor_decal/corner/grey/borderfull,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"mZE" = (
+/obj/structure/wall_frame/standard,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "mZT" = (
 /obj/structure/bed/sofa/m/black{
 	dir = 6
@@ -11726,6 +11873,10 @@
 "ncq" = (
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity)
+"ncz" = (
+/obj/structure/closet/l3closet/security,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "ncC" = (
 /obj/structure/sign/poster/shelter_rules/east,
 /turf/simulated/floor/concrete,
@@ -11801,6 +11952,15 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"nfU" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/abstract/landmark/start{
+	name = "Site Deputy Director"
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/entrance_zone)
 "ngf" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-4"
@@ -12185,13 +12345,6 @@
 /obj/item/paper/crumpled,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
-"nBw" = (
-/obj/structure/catwalk,
-/obj/machinery/power/apc/hyper{
-	dir = 1
-	},
-/turf/simulated/open,
-/area/serenity/shelter/brig/preparation)
 "nBY" = (
 /obj/structure/wall_frame/standard,
 /obj/structure/window/reinforced/full,
@@ -12260,13 +12413,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
-"nHg" = (
-/obj/structure/catwalk,
-/obj/machinery/power/apc/hyper{
-	dir = 1
-	},
-/turf/simulated/open,
-/area/serenity/shelter/brig/barracks)
 "nHi" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/green{
 	dir = 1
@@ -12396,6 +12542,15 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
+"nMD" = (
+/obj/structure/bed/chair/armchair/green{
+	dir = 8
+	},
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Specialist"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "nMP" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 9
@@ -12628,6 +12783,11 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations)
+"nYL" = (
+/obj/structure/wall_frame/standard,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "nZf" = (
 /obj/structure/door/fire,
 /turf/simulated/floor/tiled/white,
@@ -12818,6 +12978,10 @@
 /obj/structure/closet/crate/paper_refill,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"ogv" = (
+/obj/structure/rack,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "ogB" = (
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_atmos{
 	dir = 1
@@ -12833,7 +12997,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/small,
-/area/serenity/shelter/brig/armory)
+/area/serenity/shelter/brig/preparation)
 "ohJ" = (
 /obj/structure/bed/chair/armchair/black,
 /turf/simulated/floor/wood/walnut,
@@ -13069,6 +13233,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/serenity/shelter/entrance_zone)
+"oqK" = (
+/obj/structure/catwalk,
+/obj/structure/railing/mapped,
+/turf/simulated/open,
+/area/serenity/shelter/brig/office)
 "oqT" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/alarm,
@@ -13110,10 +13279,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
-"otq" = (
-/obj/structure/curtain/privacy,
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/brig/preparation)
 "otx" = (
 /obj/structure/railing/mapped{
 	dir = 4
@@ -13319,11 +13484,6 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
-"oDo" = (
-/obj/structure/catwalk,
-/obj/structure/railing/mapped,
-/turf/simulated/open,
-/area/serenity/shelter/brig/office)
 "oES" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam,
 /turf/simulated/wall/concrete/nano,
@@ -13846,6 +14006,7 @@
 /obj/structure/bed/chair/armchair/black{
 	dir = 1
 	},
+/obj/abstract/landmark/start,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
 "pgO" = (
@@ -13865,6 +14026,12 @@
 /obj/effect/paint_stripe/white,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels)
+"pjz" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "pjH" = (
 /obj/structure/sign/warning/server_room{
 	pixel_y = 26
@@ -14026,6 +14193,9 @@
 	dir = 1
 	},
 /obj/machinery/light/ceiling,
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "pso" = (
@@ -14140,12 +14310,6 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
-"pwo" = (
-/obj/machinery/power/apc/hyper{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/brig/office)
 "pwu" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/spline/plain/black,
@@ -14292,6 +14456,11 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
+"pEm" = (
+/turf/simulated/floor/tiled/dark/corner{
+	dir = 8
+	},
+/area/serenity/shelter/brig/office)
 "pEt" = (
 /obj/structure/door/fire{
 	dir = 8
@@ -14417,6 +14586,10 @@
 /obj/machinery/atmospherics/pipe/zpipe/up,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/entrance_zone)
+"pNh" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "pNw" = (
 /obj/structure/rack/dark,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
@@ -14456,6 +14629,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
+"pRh" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/abstract/landmark/start{
+	name = "Laboratory Operations Assistant"
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/office)
 "pRm" = (
 /turf/simulated/floor/tiled/dark/half{
 	dir = 1
@@ -14475,12 +14657,6 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
-"pRC" = (
-/obj/machinery/light/ceiling{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/small,
-/area/serenity/shelter/brig/preparation)
 "pRE" = (
 /obj/effect/invisible_barrier,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -14661,6 +14837,10 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
+"qdn" = (
+/obj/item/stool,
+/turf/simulated/floor/tiled/dark/small,
+/area/serenity/shelter/brig/armory)
 "qdK" = (
 /obj/structure/bed/sofa/m/blue{
 	dir = 4
@@ -14823,12 +15003,12 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
-"qqW" = (
-/obj/machinery/light/ceiling{
-	dir = 4
+"qqT" = (
+/obj/machinery/door/airlock/highsecurity{
+	initial_access = list("ACCESS_ARMORY")
 	},
 /turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/preparation)
+/area/serenity/shelter/brig/armory)
 "qrl" = (
 /obj/machinery/reactor_fuelport{
 	pixel_x = -16;
@@ -14842,6 +15022,13 @@
 /obj/machinery/atmospherics/omni/filter,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"qss" = (
+/obj/structure/sign/warning/high_voltage{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "qsB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
@@ -14927,6 +15114,9 @@
 /obj/machinery/floodlight,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
+"qwc" = (
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/brig/office)
 "qwl" = (
 /obj/machinery/network/relay/wall_mounted{
 	pixel_x = -10;
@@ -15108,7 +15298,7 @@
 	dir = 4
 	},
 /obj/abstract/landmark/start{
-	name = "Troop Commander"
+	name = "Chief Security Officer"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/office)
@@ -15135,14 +15325,6 @@
 /obj/item/toy/desk/fan,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
-"qDJ" = (
-/obj/structure/door/sliding{
-	dir = 8;
-	lock_data = list("ACCESS_SECURITY");
-	lock_type = /datum/lock/id_card
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "qDT" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/concrete/road,
@@ -15150,6 +15332,12 @@
 "qDY" = (
 /turf/simulated/floor/concrete/road,
 /area/serenity)
+"qEw" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "qEL" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -15242,10 +15430,6 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
-"qIz" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/preparation)
 "qJe" = (
 /obj/structure/closet/firecloset,
 /obj/structure/railing/mapped,
@@ -15369,9 +15553,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
-"qPj" = (
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/brig/preparation)
 "qPo" = (
 /obj/effect/paint_stripe/blue,
 /obj/effect/paint,
@@ -15445,18 +15626,17 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/reactor)
+"qSo" = (
+/obj/structure/largecrate,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "qSs" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/reactor)
-"qTj" = (
-/obj/structure/sign/warning/high_voltage{
-	dir = 8;
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/dark/half{
-	dir = 1
-	},
+"qSR" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/office)
 "qTl" = (
 /obj/structure/rack,
@@ -15553,10 +15733,6 @@
 /obj/item/stool/bar/padded,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
-"qWC" = (
-/obj/machinery/light/ceiling,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "qWJ" = (
 /obj/structure/flora/pottedplant/minitree,
 /turf/exterior/wall,
@@ -15686,14 +15862,6 @@
 /obj/item/toy/plushie/kitten,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
-"rbY" = (
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/brig/barracks)
-"rcy" = (
-/obj/structure/wall_frame/standard,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "rcQ" = (
 /obj/structure/door/fire{
 	dir = 8
@@ -15768,14 +15936,6 @@
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
-"rfY" = (
-/obj/structure/door/sliding{
-	lock_data = list("ACCESS_ENGINEERING");
-	lock_type = /datum/lock/id_card;
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/half,
-/area/serenity/shelter/brig/office)
 "rgi" = (
 /obj/structure/table,
 /obj/item/towel/random,
@@ -15920,6 +16080,9 @@
 	},
 /obj/structure/bed/chair/office/comfy/beige{
 	dir = 4
+	},
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Specialist"
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -16139,6 +16302,10 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
+"ryy" = (
+/obj/structure/safe/floor,
+/turf/simulated/floor/tiled/dark/herringbone,
+/area/serenity/shelter/brig/prison)
 "ryB" = (
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
@@ -16171,6 +16338,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
+/obj/structure/reagent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
 "rAD" = (
@@ -16310,12 +16478,6 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
-"rJn" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/armory)
 "rKN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white/monotile,
@@ -16340,9 +16502,6 @@
 /obj/structure/table/steel,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels)
-"rME" = (
-/turf/simulated/floor/tiled/dark/small,
-/area/serenity/shelter/brig/preparation)
 "rMH" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -16378,6 +16537,15 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
+"rPd" = (
+/obj/structure/door/sliding{
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/tiled/dark/half{
+	dir = 1
+	},
+/area/serenity/shelter/brig/office)
 "rQt" = (
 /obj/machinery/atmospherics/pipe/zpipe/down/steam,
 /turf/simulated/open,
@@ -16695,6 +16863,14 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"sjY" = (
+/obj/machinery/light/ceiling,
+/obj/structure/hygiene/urinal{
+	dir = 8;
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "skR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
@@ -16848,11 +17024,6 @@
 /obj/machinery/door/window/southright,
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity)
-"srI" = (
-/turf/simulated/floor/tiled/dark/corner{
-	dir = 8
-	},
-/area/serenity/shelter/brig/office)
 "srW" = (
 /obj/structure/wall_frame/standard,
 /obj/structure/window/reinforced/full,
@@ -16878,16 +17049,13 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
-"ssw" = (
-/obj/machinery/power/apc/hyper{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "ssA" = (
 /obj/structure/window/borosilicate_reinforced/full,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
+"sue" = (
+/turf/simulated/floor/plating,
+/area/serenity/shelter/brig/office)
 "svj" = (
 /obj/structure/closet/secure_closet/guncabinet/shotgun,
 /obj/structure/window/basic{
@@ -16900,9 +17068,6 @@
 /obj/item/chems/glass/beaker/large,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
-"svw" = (
-/turf/simulated/open,
-/area/serenity/shelter/brig/office)
 "svA" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/effect/floor_decal/spline/fancy/wood/corner{
@@ -17034,6 +17199,14 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"sBH" = (
+/obj/structure/door/sliding{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card;
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/half,
+/area/serenity/shelter/brig/reception)
 "sBT" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -17074,16 +17247,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
-"sCr" = (
-/obj/structure/catwalk,
-/obj/structure/sign/warning/fall{
-	pixel_x = -32
-	},
-/obj/structure/rack,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/turf/simulated/open,
-/area/serenity/shelter/brig/office)
 "sCX" = (
 /obj/structure/bed/chair/armchair/blue{
 	dir = 8
@@ -17297,9 +17460,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
-"sOa" = (
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/brig/reception)
 "sOf" = (
 /obj/machinery/light/ceiling,
 /obj/effect/floor_decal/corner/yellow/line{
@@ -17314,7 +17474,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/half,
-/area/serenity/shelter/brig/reception)
+/area/serenity/shelter/brig/office)
 "sPW" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/water{
 	dir = 1
@@ -17700,9 +17860,6 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
-"tjR" = (
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "tkh" = (
 /obj/machinery/light/small/red/reactor{
 	dir = 2;
@@ -18103,6 +18260,13 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
+"tIG" = (
+/obj/machinery/light/ceiling{
+	dir = 4;
+	pixel_y = 17
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "tIL" = (
 /obj/structure/railing/mapped{
 	dir = 8
@@ -18245,6 +18409,16 @@
 /obj/item/seeds/cotton,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"tTW" = (
+/obj/structure/catwalk,
+/obj/structure/sign/warning/fall{
+	pixel_x = -32
+	},
+/obj/structure/rack,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/turf/simulated/open,
+/area/serenity/shelter/brig/office)
 "tUt" = (
 /obj/machinery/modernsuit_storage/security_cold,
 /turf/simulated/floor/tiled/dark/small,
@@ -18350,6 +18524,12 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
+"tYh" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "tYm" = (
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
@@ -18397,9 +18577,6 @@
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
-"uaW" = (
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/brig/office)
 "ubb" = (
 /obj/effect/floor_decal/corner/red/bordercorner{
 	dir = 1
@@ -18571,6 +18748,10 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"uji" = (
+/obj/machinery/light/ceiling,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "ukJ" = (
 /obj/machinery/light{
 	dir = 1
@@ -18612,6 +18793,15 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/atmos)
+"umR" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Director"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "und" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 10
@@ -18739,9 +18929,6 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
-"uuK" = (
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/brig/preparation)
 "uvl" = (
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -19123,12 +19310,6 @@
 /obj/item/seeds/tomatoseed,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
-"uPy" = (
-/obj/structure/bed/chair/office/light{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/textured,
-/area/serenity/shelter/brig/office)
 "uPF" = (
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 4
@@ -19157,10 +19338,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
-"uQQ" = (
-/obj/structure/table/steel_reinforced,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "uRg" = (
 /obj/machinery/light{
 	dir = 1
@@ -19220,16 +19397,31 @@
 "uTl" = (
 /turf/simulated/floor/concrete/road/surface,
 /area/surface)
-"uTO" = (
-/obj/structure/safe/floor,
-/turf/simulated/floor/tiled/dark/herringbone,
-/area/serenity/shelter/brig/prison)
+"uTL" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/abstract/landmark/start{
+	name = "Reactor Maintenance Director"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "uTS" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/preparation)
+"uUa" = (
+/obj/structure/bed/sofa/m/blue{
+	dir = 8
+	},
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/obj/abstract/landmark/latejoin,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity)
 "uUd" = (
 /obj/structure/cable/heavy{
 	icon_state = "0-2"
@@ -19270,6 +19462,13 @@
 /obj/machinery/atmospherics/unary/tank/large/decontamination,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/labs)
+"uVI" = (
+/obj/structure/bed/chair/office/comfy/beige,
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Specialist"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "uWb" = (
 /obj/machinery/light{
 	dir = 4
@@ -19296,10 +19495,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
-"uXn" = (
-/obj/item/stool,
-/turf/simulated/floor/tiled/dark/small,
-/area/serenity/shelter/brig/armory)
 "uXq" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/paper_bin,
@@ -19403,9 +19598,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
-"vbm" = (
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "vbx" = (
 /obj/machinery/light,
 /turf/simulated/floor/concrete/road,
@@ -19462,6 +19654,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"vdL" = (
+/turf/simulated/floor/tiled/dark/small,
+/area/serenity/shelter/brig/preparation)
 "vdS" = (
 /obj/structure/catwalk,
 /turf/simulated/open,
@@ -19596,9 +19791,6 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/obj/abstract/landmark/start{
-	name = "Detective"
-	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/brig/office)
 "vkt" = (
@@ -19703,6 +19895,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/electrical)
+"voK" = (
+/obj/structure/fire_hydrant_manual{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "vpy" = (
 /obj/machinery/atmospherics/pipe/cap{
 	dir = 8
@@ -19729,12 +19927,6 @@
 /obj/machinery/camera,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
-"vrq" = (
-/obj/machinery/light/ceiling{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/brig/barracks)
 "vru" = (
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
@@ -19745,10 +19937,6 @@
 /obj/machinery/rotating_alarm/reactor,
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
-"vsd" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/prison)
 "vsA" = (
 /obj/effect/floor_decal/carpet,
 /turf/simulated/floor/carpet,
@@ -20129,6 +20317,7 @@
 /obj/structure/bed/sofa/m/black{
 	dir = 10
 	},
+/obj/abstract/landmark/latejoin,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity)
 "vJm" = (
@@ -20237,6 +20426,12 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"vPf" = (
+/obj/structure/hygiene/urinal{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/brig/reception)
 "vPo" = (
 /obj/structure/sign/warning/fire{
 	pixel_y = 32
@@ -20307,6 +20502,9 @@
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels)
+"vUt" = (
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/brig/reception)
 "vVr" = (
 /obj/structure/railing/mapped{
 	dir = 4
@@ -20472,6 +20670,14 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/open,
 /area/serenity/shelter/entrance_zone/viewing_area)
+"weL" = (
+/obj/structure/door/fire{
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/tiled/dark/half,
+/area/serenity/shelter/brig/reception)
 "wfp" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/storage/box/cups,
@@ -20844,6 +21050,9 @@
 /obj/structure/coatrack,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
+"wwV" = (
+/turf/simulated/wall/iron,
+/area/serenity/shelter/brig/reception)
 "wyB" = (
 /obj/effect/floor_decal/carpet/green,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -20959,12 +21168,6 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
-"wCU" = (
-/obj/machinery/door/airlock/double/security{
-	initial_access = list("ACCESS_ARMORY")
-	},
-/turf/exterior/wall,
-/area/serenity)
 "wDd" = (
 /obj/structure/railing/mapped,
 /obj/structure/bed/chair/armchair/purple{
@@ -21050,9 +21253,6 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
-"wHz" = (
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/brig/office)
 "wHN" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
 /turf/simulated/floor/concrete,
@@ -21080,10 +21280,6 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
-"wIZ" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "wJa" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
@@ -21131,6 +21327,21 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"wKv" = (
+/obj/item/paper/sticky{
+	info = "CHECK SAFETY!"
+	},
+/turf/exterior/wall,
+/area/serenity)
+"wKH" = (
+/obj/abstract/landmark/start{
+	name = "Particle Physics Specialist"
+	},
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/particle_physics)
 "wLj" = (
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 4
@@ -21225,6 +21436,9 @@
 "wPt" = (
 /obj/structure/bed/sofa/l/green{
 	dir = 1
+	},
+/obj/abstract/landmark/start{
+	name = "Laboratory Operations Assistant"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
@@ -21624,6 +21838,9 @@
 /obj/structure/bed/chair/office/comfy/beige{
 	dir = 8
 	},
+/obj/abstract/landmark/start{
+	name = "Reactor Operations Director"
+	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "xmz" = (
@@ -21961,11 +22178,8 @@
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels)
 "xEP" = (
-/obj/item/paper/sticky{
-	info = CHECKSAFETY!
-	},
-/turf/exterior/wall,
-/area/serenity)
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/brig/preparation)
 "xFC" = (
 /obj/machinery/light/ceiling,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -22128,13 +22342,6 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/electrical/turbinehall)
-"xRH" = (
-/obj/machinery/light/ceiling{
-	dir = 4;
-	pixel_y = 17
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/office)
 "xRI" = (
 /obj/structure/table/woodentable/walnut,
 /turf/simulated/floor/tiled/dark/textured,
@@ -22400,13 +22607,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/brig/preparation)
-"yjz" = (
-/obj/structure/door/sliding{
-	lock_data = list("ACCESS_SECURITY");
-	lock_type = /datum/lock/id_card
-	},
-/turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/preparation)
 "ykc" = (
 /obj/effect/floor_decal/corner/white/line{
@@ -89647,11 +89847,11 @@ xEy
 xEy
 xEy
 xEy
-bie
-bie
-bie
-bie
-bie
+jIg
+jIg
+jIg
+jIg
+jIg
 xEy
 "}
 (15,1,8) = {"
@@ -89745,11 +89945,11 @@ xEy
 xEy
 xEy
 xEy
-bie
-vsd
-fLp
-vbm
-bie
+jIg
+hdV
+ogv
+dwD
+jIg
 xEy
 "}
 (16,1,8) = {"
@@ -89843,11 +90043,11 @@ xEy
 xEy
 xEy
 xEy
-bie
-hEn
-vbm
-vbm
-bie
+jIg
+tYh
+dwD
+dwD
+jIg
 xEy
 "}
 (17,1,8) = {"
@@ -89941,11 +90141,11 @@ xEy
 xEy
 xEy
 xEy
-bie
-ssw
-vbm
-vbm
-bie
+jIg
+adL
+dwD
+dwD
+jIg
 xEy
 "}
 (18,1,8) = {"
@@ -90024,26 +90224,26 @@ qNT
 xEy
 xEy
 xEy
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-uaW
-uaW
-uaW
-uaW
-tjR
-uaW
-uaW
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+qwc
+qwc
+qwc
+qwc
+kSj
+qwc
+qwc
 xEy
 "}
 (19,1,8) = {"
@@ -90122,26 +90322,26 @@ qNT
 xEy
 xEy
 xEy
-bie
+jIg
 oac
 ixf
-bie
+jIg
 oac
 ixf
-bie
+jIg
 oac
 ixf
-bie
+jIg
 gaH
-vbm
+dwD
 dLD
-uaW
+qwc
 qAz
 avY
-ilm
-tjR
+qss
+kSj
 ivv
-uaW
+qwc
 xEy
 "}
 (20,1,8) = {"
@@ -90220,26 +90420,26 @@ qNT
 xEy
 xEy
 xEy
-bie
+jIg
 fKg
 nnj
-bie
+jIg
 fKg
 nnj
-bie
+jIg
 fKg
 nnj
-bie
+jIg
 oAh
-jkI
-hmC
-uaW
+aNj
+gUP
+qwc
 sdl
-tjR
-tjR
-dDN
+kSj
+kSj
+cVW
 ivv
-uaW
+qwc
 xEy
 "}
 (21,1,8) = {"
@@ -90318,26 +90518,26 @@ qNT
 xEy
 xEy
 xEy
-bie
+jIg
 iym
 cBB
-bie
+jIg
 iym
 cBB
-bie
+jIg
 iym
 cBB
-bie
-kvp
-vbm
+jIg
+ncz
+dwD
 sxW
-uaW
+qwc
 fAO
 lye
-tjR
-tjR
+kSj
+kSj
 ffe
-uaW
+qwc
 xEy
 "}
 (22,1,8) = {"
@@ -90415,27 +90615,27 @@ ikt
 qNT
 xEy
 xEy
-bie
-bie
+jIg
+jIg
 qvr
 hiP
-bie
+jIg
 qvr
 hiP
-bie
+jIg
 qvr
 hiP
-bie
-bie
+jIg
+jIg
 wgm
-bie
-uaW
+jIg
+qwc
 iDb
 bkD
-tjR
-tjR
+kSj
+kSj
 ivv
-uaW
+qwc
 xEy
 "}
 (23,1,8) = {"
@@ -90513,27 +90713,27 @@ ctL
 qNT
 xEy
 xEy
-bie
-vbm
-vbm
-vbm
-vbm
-vbm
-vbm
-vbm
-vbm
-vbm
-vbm
-vbm
-vbm
+jIg
+dwD
+dwD
+dwD
+dwD
+dwD
+dwD
+dwD
+dwD
+dwD
+dwD
+dwD
+dwD
 aBl
 mCW
-dDN
-tjR
-tjR
-dDN
+cVW
+kSj
+kSj
+cVW
 ffe
-uaW
+qwc
 xEy
 "}
 (24,1,8) = {"
@@ -90611,27 +90811,27 @@ ikt
 qNT
 xEy
 xEy
-bie
-vbm
-qWC
-vbm
-vbm
-vbm
-qWC
-vbm
-vbm
-vbm
-qWC
-vbm
-vbm
+jIg
+dwD
+uji
+dwD
+dwD
+dwD
+uji
+dwD
+dwD
+dwD
+uji
+dwD
+dwD
 aBl
 mCW
-tjR
-tjR
-tjR
-tjR
+kSj
+kSj
+kSj
+kSj
 ffe
-uaW
+qwc
 xEy
 "}
 (25,1,8) = {"
@@ -90709,27 +90909,27 @@ ikt
 qNT
 xEy
 xEy
-bie
-rcy
+jIg
+mZE
 hiP
-rcy
-rcy
-rcy
-rcy
-rcy
-rcy
-dDJ
-rcy
-bie
-uaW
-uaW
-uaW
-wHz
-wHz
-uaW
-uaW
-uaW
-uaW
+mZE
+mZE
+mZE
+mZE
+mZE
+mZE
+bwH
+mZE
+jIg
+qwc
+qwc
+qwc
+hgr
+hgr
+qwc
+qwc
+qwc
+qwc
 xEy
 "}
 (26,1,8) = {"
@@ -90807,27 +91007,27 @@ ikt
 qNT
 xEy
 xEy
-bie
+jIg
 dut
 cBB
 cBB
 aqR
-rcy
+mZE
 bws
 tvc
 tvc
 tvc
 tvc
-bie
-exr
-uaW
+jIg
+lus
+qwc
 xrr
 dYh
 dYh
 xvH
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (27,1,8) = {"
@@ -90905,27 +91105,27 @@ ikt
 qNT
 xEy
 xEy
-bie
+jIg
 uMB
 cBB
 cBB
 aqR
-rcy
+mZE
 tvc
 tvc
 sxp
 qCg
 tvc
-bie
-exr
-uaW
+jIg
+lus
+qwc
 dYh
 dYh
 dYh
 dYh
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (28,1,8) = {"
@@ -91003,27 +91203,27 @@ ikt
 qNT
 xEy
 xEy
-bie
+jIg
 dut
 eEo
 cBB
 scY
-rcy
+mZE
 sCX
 izc
 sxp
 mMN
 tvc
-bie
-exr
-uaW
+jIg
+lus
+qwc
 dYh
 dYh
 dYh
 dYh
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (29,1,8) = {"
@@ -91101,27 +91301,27 @@ ikt
 qNT
 xEy
 xEy
-bie
+jIg
 uMB
 cBB
 scY
 noz
-bie
+jIg
 lYO
 lYO
 sSd
-uTO
+ryy
 tvc
-bie
-exr
-uaW
+jIg
+lus
+qwc
 hvq
 dYh
 dYh
 vfV
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (30,1,8) = {"
@@ -91199,27 +91399,27 @@ ikt
 qNT
 xEy
 xEy
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
+jIg
 svj
-hab
-bie
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
+gCM
+jIg
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
 xEy
 "}
 (31,1,8) = {"
@@ -91305,10 +91505,10 @@ xEy
 xEy
 xEy
 xEy
-bie
-bie
-bie
-bie
+jIg
+jIg
+jIg
+jIg
 xEy
 xEy
 xEy
@@ -97860,25 +98060,25 @@ xEy
 xEy
 xEy
 xEy
-xEP
-xEP
 xEy
 xEy
 xEy
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
+xEy
+xEy
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
 xEy
 xEy
 xEy
@@ -97963,7 +98163,7 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
 gjB
 gjB
@@ -97976,7 +98176,7 @@ gjB
 gjB
 gjB
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98061,20 +98261,20 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
-dlN
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98159,20 +98359,20 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 mlJ
 gDO
 gDO
-ohg
+gXC
 bZs
 bZs
-ohg
+gXC
 bZs
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98257,20 +98457,20 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 gDO
-uXn
+qdn
 bZs
 bZs
 bZs
 jSA
 jSA
 jSA
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98355,10 +98555,10 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
-gDD
+epf
+cQo
 bZs
 mzk
 bZs
@@ -98366,9 +98566,9 @@ bZs
 bov
 doz
 wCK
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98453,20 +98653,20 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 bRV
 tUJ
 oWm
-ohg
+gXC
 bZs
 bZs
-ohg
+gXC
 bZs
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98551,9 +98751,9 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 wif
 uSi
 aAz
@@ -98562,9 +98762,9 @@ bZs
 pRS
 pRS
 pRS
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98649,20 +98849,20 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 gDO
-uXn
+qdn
 bZs
 bZs
 bZs
 itg
 itg
 itg
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98747,20 +98947,20 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 mlJ
 bZs
 bZs
-ohg
+gXC
 bZs
 bZs
-ohg
+gXC
 bZs
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
@@ -98841,13 +99041,13 @@ xEy
 xEy
 xEy
 xEy
+wKv
 xEy
 xEy
 xEy
-xEy
-dlN
+epf
 gjB
-dlN
+epf
 mzk
 tVF
 qAA
@@ -98856,14 +99056,14 @@ bZs
 gFe
 gFe
 gFe
-dlN
+epf
 gjB
-dlN
+epf
 xEy
-dlN
-dlN
-dlN
-dlN
+epf
+epf
+epf
+epf
 xEy
 xEy
 "}
@@ -98943,25 +99143,25 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
-dlN
-dlN
-dlN
+epf
+epf
+epf
+epf
 bZs
 hDg
-dlN
-dlN
-dlN
-dlN
+epf
+epf
+epf
+epf
 gjB
-dlN
-wCU
-dlN
-hba
-rJn
-dlN
+epf
+gNB
+epf
+aHa
+bWu
+epf
 xEy
 xEy
 "}
@@ -99041,26 +99241,26 @@ xEy
 xEy
 xEy
 xEy
-dlN
-dlN
-dlN
+epf
+epf
+epf
 gjB
-dlN
+epf
 eLD
 hpZ
 kiV
 gjB
-dlN
+epf
 gjB
-dlN
-dlN
-dlN
+epf
+epf
+epf
 xEy
-uaW
-uaW
-kxD
-uaW
-uaW
+qwc
+qwc
+qqT
+qwc
+qwc
 xEy
 "}
 (15,1,9) = {"
@@ -99141,24 +99341,24 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 eLD
 xbV
 owD
 gjB
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
-uaW
-sCr
-oDo
-svw
-uaW
+qwc
+tTW
+oqK
+miF
+qwc
 xEy
 "}
 (16,1,9) = {"
@@ -99239,24 +99439,24 @@ xEy
 xEy
 xEy
 xEy
-dlN
+epf
 gjB
-dlN
+epf
 eLD
 vfN
 ont
 gjB
-dlN
+epf
 gjB
-dlN
+epf
 xEy
 xEy
 xEy
-uaW
-nBw
-fbF
-svw
-uaW
+qwc
+hYU
+dmk
+miF
+qwc
 xEy
 "}
 (17,1,9) = {"
@@ -99334,27 +99534,27 @@ xEy
 xEy
 xEy
 xEy
-uuK
-uuK
-uuK
-uuK
-uuK
-dlN
-dlN
+xEP
+xEP
+xEP
+xEP
+xEP
+epf
+epf
 qAL
 qAL
-dlN
-dlN
-dlN
-dlN
+epf
+epf
+epf
+epf
 xEy
 xEy
 xEy
-uaW
-nHg
-dXB
-bVG
-uaW
+qwc
+gvs
+jjq
+iyd
+qwc
 xEy
 "}
 (18,1,9) = {"
@@ -99432,27 +99632,27 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 aZq
 bSP
 qEN
-uuK
+xEP
 kkP
-qIz
-mOa
-mOa
-mOa
+dLd
+dDx
+dDx
+dDx
 pKR
 ffm
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-tjR
-uaW
-uaW
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+kSj
+qwc
+qwc
 xEy
 "}
 (19,1,9) = {"
@@ -99530,27 +99730,27 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 gIU
-pRC
-rME
+ohg
+vdL
 wdE
-mOa
-qqW
-mOa
-mOa
-mOa
-qqW
+dDx
+dDN
+dDx
+dDx
+dDx
+dDN
 tqQ
-uaW
-imS
+qwc
+qSo
 xdk
 xdk
-dBJ
+eOD
 beA
-tjR
+kSj
 ivv
-uaW
+qwc
 xEy
 "}
 (20,1,9) = {"
@@ -99628,27 +99828,27 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 rfe
-rME
+vdL
 ocp
-uuK
+xEP
 llZ
-mOa
+dDx
 dnV
 dnV
-mOa
-mOa
+dDx
+dDx
 xwt
-uaW
-imS
-tjR
-dDN
-tjR
-tjR
-dDN
-tjR
-uaW
+qwc
+qSo
+kSj
+cVW
+kSj
+kSj
+cVW
+kSj
+qwc
 xEy
 "}
 (21,1,9) = {"
@@ -99726,27 +99926,27 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 bYd
-rME
+vdL
 mJG
-uuK
+xEP
 gVk
-mOa
+dDx
 dnV
 dnV
-mOa
-mOa
+dDx
+dDx
 wmp
-uaW
-cLt
-tjR
+qwc
+voK
+kSj
 noZ
 vFE
 fAO
 lye
-tjR
-uaW
+kSj
+qwc
 xEy
 "}
 (22,1,9) = {"
@@ -99824,27 +100024,27 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 tUt
-pRC
-rME
-uuK
+ohg
+vdL
+xEP
 hTZ
-mOa
+dDx
 dnV
 dnV
-mOa
-mOa
+dDx
+dDx
 rNk
-uaW
-kiK
-tjR
+qwc
+gnw
+kSj
 xNP
 qzY
 iDb
 bkD
-tjR
-uaW
+kSj
+qwc
 xEy
 "}
 (23,1,9) = {"
@@ -99922,27 +100122,27 @@ xEO
 xEO
 xEO
 xEy
-uuK
+xEP
 tUt
-rME
-rME
+vdL
+vdL
 wdE
-mOa
-qqW
-mOa
-mOa
-mOa
-qqW
-mOa
-dud
-tjR
-tjR
+dDx
 dDN
-tjR
-tjR
+dDx
+dDx
+dDx
 dDN
-tjR
-uaW
+dDx
+rPd
+kSj
+kSj
+cVW
+kSj
+kSj
+cVW
+kSj
+qwc
 xEy
 "}
 (24,1,9) = {"
@@ -100020,27 +100220,27 @@ uGx
 vtL
 xEO
 xEy
-jRe
-jRe
-jRe
-jRe
-uuK
+iEE
+iEE
+iEE
+iEE
+xEP
 xjO
 xjO
-mOa
-mOa
-mOa
-mOa
-mOa
-dud
-tjR
-tjR
-tjR
-tjR
-tjR
-tjR
-tjR
-uaW
+dDx
+dDx
+dDx
+dDx
+dDx
+rPd
+kSj
+kSj
+kSj
+kSj
+kSj
+kSj
+kSj
+qwc
 xEy
 "}
 (25,1,9) = {"
@@ -100117,28 +100317,28 @@ tWA
 xIO
 wFe
 xEO
-jRe
-jRe
+iEE
+iEE
 lrM
 lrM
 lrM
-uuK
-uuK
-uuK
+xEP
+xEP
+xEP
 tbA
 tbA
-uuK
-uuK
-uuK
-uaW
-uaW
-uaW
-wHz
-wHz
-uaW
-uaW
-uaW
-uaW
+xEP
+xEP
+xEP
+qwc
+qwc
+qwc
+hgr
+hgr
+qwc
+qwc
+qwc
+qwc
 xEy
 "}
 (26,1,9) = {"
@@ -100215,28 +100415,28 @@ pKU
 ubn
 wFe
 xEO
-jRe
+iEE
 lPS
-rbY
-vrq
-rbY
+iyV
+fUY
+iyV
 vDN
-mOa
-mOa
-mOa
-mOa
+dDx
+dDx
+dDx
+dDx
 flU
 rAI
-uuK
-exr
-uaW
+xEP
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (27,1,9) = {"
@@ -100313,28 +100513,28 @@ bhQ
 ubn
 wFe
 xEO
-jRe
+iEE
 uzu
 ocw
-eiK
+gpO
 ocw
-uuK
+xEP
 xgP
-qqW
-mOa
-mOa
+dDN
+dDx
+dDx
 mGw
-qIz
-uuK
-exr
-uaW
+dLd
+xEP
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (28,1,9) = {"
@@ -100411,28 +100611,28 @@ ngB
 vIe
 wFe
 xEO
-jRe
-jRe
-jRe
-jRe
-jRe
-uuK
+iEE
+iEE
+iEE
+iEE
+iEE
+xEP
 oKC
-mOa
-mOa
-mOa
+dDx
+dDx
+dDx
 bGj
 bkt
-uuK
-exr
-uaW
+xEP
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (29,1,9) = {"
@@ -100509,28 +100709,28 @@ uGx
 uGx
 jtj
 xEO
-jRe
-jRe
+iEE
+iEE
 lrM
 lrM
 lrM
-uuK
+xEP
 aDK
-mOa
-mOa
-mOa
+dDx
+dDx
+dDx
 uTS
 gVN
-uuK
-exr
-uaW
+xEP
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (30,1,9) = {"
@@ -100607,28 +100807,28 @@ xEO
 xEO
 xEO
 xEO
-jRe
+iEE
 lPS
-rbY
-vrq
-rbY
+iyV
+fUY
+iyV
 vDN
-mOa
-mOa
-mOa
+dDx
+dDx
+dDx
 fGP
-qIz
+dLd
 hEA
-uuK
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
+xEP
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
 xEy
 "}
 (31,1,9) = {"
@@ -100705,23 +100905,23 @@ xEy
 xEy
 xEy
 xEy
-jRe
+iEE
 pAs
 ocw
 ocw
 ocw
-uuK
+xEP
 xgP
-mOa
-mOa
+dDx
+dDx
 fGP
-qIz
+dLd
 hEA
-uuK
+xEP
 rlP
-qPj
+lwv
 yiV
-uuK
+xEP
 xEy
 xEy
 xEy
@@ -100803,23 +101003,23 @@ xEy
 xEy
 xEy
 xEy
-jRe
-jRe
-jRe
-jRe
-jRe
-uuK
+iEE
+iEE
+iEE
+iEE
+iEE
+xEP
 oKC
-qqW
-mOa
-mOa
+dDN
+dDx
+dDx
 iNV
-mOa
-uuK
+dDx
+xEP
 rlP
-fSk
+kFA
 yiV
-uuK
+xEP
 xEy
 xEy
 xEy
@@ -100906,18 +101106,18 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 oKC
-mOa
-mOa
-yjz
-mOa
-mOa
-uuK
-uuK
+dDx
+dDx
+dDx
+dDx
+dDx
+xEP
+xEP
 qMI
-uuK
-uuK
+xEP
+xEP
 xEy
 xEy
 xEy
@@ -101004,18 +101204,18 @@ xEy
 xEy
 xEy
 xEy
-uuK
-uuK
+xEP
+xEP
 tbA
-uuK
-uuK
-uuK
+xEP
+xEP
+xEP
 qMI
-uuK
+xEP
 eKu
-qPj
+lwv
 eKu
-uuK
+xEP
 xEy
 xEy
 xEy
@@ -101102,18 +101302,18 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 xtq
-mOa
+dDx
 gzP
-uuK
-qPj
-qPj
+xEP
+lwv
+lwv
 qMI
-qPj
-qPj
+lwv
+lwv
 kct
-uuK
+xEP
 xEy
 xEy
 xEy
@@ -101200,18 +101400,18 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 jVc
-qqW
+dDN
 cuh
-uuK
+xEP
 uqf
-qPj
-uuK
-atL
-fSk
+lwv
+xEP
+fMi
+kFA
 eCT
-uuK
+xEP
 xEy
 xEy
 xEy
@@ -101298,18 +101498,18 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 pAH
-mOa
+dDx
 kxR
-uuK
+xEP
 elQ
-qPj
-uuK
-atL
-qPj
+lwv
+xEP
+fMi
+lwv
 dFI
-uuK
+xEP
 xEy
 xEy
 xEy
@@ -101396,18 +101596,18 @@ xEy
 xEy
 xEy
 xEy
-uuK
-uuK
-uuK
-uuK
-uuK
-uuK
-uuK
-uuK
-qPj
-qPj
-qPj
-uuK
+xEP
+xEP
+xEP
+xEP
+xEP
+xEP
+xEP
+xEP
+lwv
+lwv
+lwv
+xEP
 xEy
 xEy
 xEy
@@ -101501,11 +101701,11 @@ xEy
 xEy
 xEy
 xEy
-uuK
-otq
-uuK
-otq
-uuK
+xEP
+boc
+xEP
+boc
+xEP
 xEy
 xEy
 xEy
@@ -101599,11 +101799,11 @@ xEy
 xEy
 xEy
 xEy
-uuK
+xEP
 wFg
-uuK
+xEP
 wFg
-uuK
+xEP
 xEy
 xEy
 xEy
@@ -101697,11 +101897,11 @@ xEy
 xEy
 xEy
 xEy
-uuK
-uuK
-uuK
-uuK
-uuK
+xEP
+xEP
+xEP
+xEP
+xEP
 xEy
 xEy
 xEy
@@ -107411,7 +107611,7 @@ xEy
 xEy
 tUw
 uWo
-ert
+jIJ
 ert
 ert
 aZg
@@ -108054,30 +108254,30 @@ swu
 pRP
 swu
 seB
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
 xEy
 "}
 (11,1,10) = {"
@@ -108153,29 +108353,29 @@ swu
 swu
 seB
 uor
-tjR
+kSj
 tkH
 uor
-uaW
+qwc
 wiL
 tiO
 tiO
 cuo
-uaW
-tjR
-tjR
-uaW
+qwc
+kSj
+kSj
+qwc
 wsx
 wsx
 tiO
 mSy
 mSy
-cqD
-tjR
-tjR
-tjR
+nYL
+kSj
+kSj
+kSj
 hne
-uaW
+qwc
 xEy
 "}
 (12,1,10) = {"
@@ -108251,29 +108451,29 @@ nwS
 swu
 seB
 tkH
-tjR
-tjR
-tjR
-uaW
+kSj
+kSj
+kSj
+qwc
 sGk
 dkU
 mSy
 uWk
-cqD
-tjR
-tjR
-cqD
+nYL
+kSj
+kSj
+nYL
 tiO
 dkU
 tiO
 dmj
 mSy
-cqD
-tjR
+nYL
+kSj
 snz
 qCG
 bNi
-uaW
+qwc
 xEy
 "}
 (13,1,10) = {"
@@ -108349,29 +108549,29 @@ ons
 swu
 seB
 tkH
-tjR
+kSj
 tkH
 tkH
-uaW
+qwc
 sGk
 tiO
-uPy
-uPy
-cqD
-tjR
-xRH
-cqD
+vki
+vki
+nYL
+kSj
+tIG
+nYL
 wIS
 tiO
 tiO
 tiO
 uId
-cqD
-tjR
-wIZ
-wIZ
+nYL
+kSj
+qSR
+qSR
 dLm
-uaW
+qwc
 xEy
 "}
 (14,1,10) = {"
@@ -108447,29 +108647,29 @@ ons
 swu
 seB
 uor
-tjR
-tjR
-dDN
-uaW
+kSj
+kSj
+cVW
+qwc
 iSC
 tiO
 tiO
 tiO
-dud
+rPd
 rhv
 rhv
-dud
+rPd
 tiO
 tiO
 tiO
 tiO
 tiO
-cqD
-tjR
+nYL
+kSj
 hko
 fPh
-tjR
-uaW
+kSj
+qwc
 xEy
 "}
 (15,1,10) = {"
@@ -108544,30 +108744,30 @@ dHE
 qQO
 dHE
 seB
-cqD
-qDJ
-cqD
-cqD
-uaW
+nYL
+bLd
+nYL
+nYL
+qwc
 obh
 tiO
 cuo
 tiO
-dud
+rPd
 iPj
 iPj
-dud
+rPd
 tiO
 tiO
 tiO
 tiO
 tiO
-dud
-tjR
-tjR
+rPd
+kSj
+kSj
 ryg
 cTg
-uaW
+qwc
 xEy
 "}
 (16,1,10) = {"
@@ -108643,29 +108843,29 @@ lxl
 dHE
 seB
 vFe
-tjR
-xRH
+kSj
+tIG
 lcS
-uaW
+qwc
 lxB
 tiO
 mSy
 mSy
-cqD
+nYL
 mfB
 emu
-cqD
+nYL
 uId
 mSy
 mSy
 tiO
 tiO
-cqD
-tjR
-tjR
+nYL
+kSj
+kSj
 wbG
 cTg
-uaW
+qwc
 xEy
 "}
 (17,1,10) = {"
@@ -108741,29 +108941,29 @@ qQO
 dHE
 seB
 xlE
-tjR
-tjR
-uQQ
-uaW
+kSj
+kSj
+bmM
+qwc
 uId
 dkU
-vki
+pRh
 dkU
-cqD
+nYL
 mfB
 mfB
-cqD
+nYL
 tiO
 dmj
 mSy
 dkU
 wIz
-cqD
+nYL
 iee
-tjR
+kSj
 sCc
 cTg
-uaW
+qwc
 xEy
 "}
 (18,1,10) = {"
@@ -108838,30 +109038,30 @@ vjM
 gRP
 sPZ
 seB
-uaW
+qwc
 krM
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
 nvb
-uaW
+qwc
 eaz
 mfB
-uaW
+qwc
 ikj
 tiO
 tiO
 tiO
-uaW
-uaW
-uaW
+qwc
+qwc
+qwc
 thJ
-uaW
-uaW
-uaW
+qwc
+qwc
+qwc
 xEy
 "}
 (19,1,10) = {"
@@ -108936,30 +109136,30 @@ mDY
 lpu
 lin
 seB
-uQQ
+bmM
 ein
 oxp
 pRm
 nOE
 rhv
-jPL
-uaW
-uaW
-uaW
+het
+qwc
+qwc
+qwc
 vPo
 mfB
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-gyT
-gyT
-tjR
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+dng
+dng
+kSj
 avY
 tGm
-uaW
+qwc
 xEy
 "}
 (20,1,10) = {"
@@ -109034,8 +109234,8 @@ bWo
 prJ
 jHt
 seB
-hvU
-srI
+pNh
+pEm
 iPj
 pRm
 pRm
@@ -109051,13 +109251,13 @@ pRm
 pRm
 nOE
 iur
-tjR
-dDN
-tjR
+kSj
+cVW
+kSj
 bkD
 lLX
 wDV
-uaW
+qwc
 xEy
 "}
 (21,1,10) = {"
@@ -109132,11 +109332,11 @@ bGK
 lDF
 nxH
 htg
-uaW
-uaW
+qwc
+qwc
 olw
-uaW
-uaW
+qwc
+qwc
 aBE
 iPj
 pRm
@@ -109146,16 +109346,16 @@ iPj
 oNs
 pRm
 pRm
-qTj
+iTx
 pRm
 iur
-tjR
-tjR
-tjR
-svw
-svw
-svw
-uaW
+kSj
+kSj
+kSj
+miF
+miF
+miF
+qwc
 xEy
 "}
 (22,1,10) = {"
@@ -109234,26 +109434,26 @@ ixP
 iPj
 iPj
 dmZ
-uaW
+qwc
 oib
 wqh
-dbC
-dbC
-dbC
-atE
-dbC
-dbC
-dbC
-uaW
+bYU
+bYU
+bYU
+weL
+bYU
+bYU
+bYU
+qwc
 krM
-uaW
-wIZ
-tjR
-tjR
-svw
-svw
-svw
-uaW
+qwc
+qSR
+kSj
+kSj
+miF
+miF
+miF
+qwc
 xEy
 "}
 (23,1,10) = {"
@@ -109332,26 +109532,26 @@ bOD
 iPj
 iPj
 iPj
-uaW
-rfY
-rfY
-dbC
+qwc
+sPH
+sPH
+bYU
 sUt
-apz
-apz
+vUt
+vUt
 xLL
 hmu
-dbC
-pwo
-hlq
-uaW
+bYU
+bVX
+sue
+qwc
 mIn
-dDN
-tjR
+cVW
+kSj
 kJi
 aLy
-svw
-uaW
+miF
+qwc
 xEy
 "}
 (24,1,10) = {"
@@ -109433,23 +109633,23 @@ iPj
 kCe
 mfB
 mfB
-dbC
+bYU
 sUt
-apz
+vUt
 hYV
-dbC
-dbC
-dbC
-lbb
-aXH
-uaW
+bYU
+bYU
+bYU
+lpF
+bsc
+qwc
 olI
-tjR
-tjR
+kSj
+kSj
 wDd
-svw
-svw
-uaW
+miF
+miF
+qwc
 xEy
 "}
 (25,1,10) = {"
@@ -109531,23 +109731,23 @@ iPj
 ixP
 wqh
 mfB
-dbC
+bYU
 sUt
-apz
-apz
+vUt
+vUt
 xLL
 miG
-dbC
-uaW
-uaW
-uaW
-uaW
-wHz
-wHz
-uaW
-uaW
-uaW
-uaW
+bYU
+qwc
+qwc
+qwc
+qwc
+hgr
+hgr
+qwc
+qwc
+qwc
+qwc
 xEy
 "}
 (26,1,10) = {"
@@ -109626,26 +109826,26 @@ lBV
 jmz
 cBO
 ixP
-uaW
+qwc
 hyu
 hyu
-dbC
+bYU
 eMp
-apz
-apz
-dbC
-dbC
-dbC
-uaW
-exr
-uaW
+vUt
+vUt
+bYU
+bYU
+bYU
+qwc
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (27,1,10) = {"
@@ -109720,30 +109920,30 @@ htg
 htg
 htg
 htg
-dbC
-dbC
+bYU
+bYU
 joK
 fwf
-dbC
-sPH
-sPH
-dbC
-dbC
-fMi
-apz
+bYU
+sBH
+sBH
+bYU
+bYU
+vPf
+vUt
 xLL
 hmu
-dbC
-uaW
-exr
-uaW
+bYU
+qwc
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (28,1,10) = {"
@@ -109808,40 +110008,40 @@ bhQ
 bhQ
 jkL
 nJv
-dbC
+bYU
 fHs
 fHs
 fHs
 rIY
-dbC
+bYU
 fHs
 fHs
 fHs
 rIY
-dbC
+bYU
 xsn
-sOa
-sOa
-sOa
-sOa
-sOa
+mHc
+mHc
+mHc
+mHc
+mHc
 uBU
-dbC
-fMi
+bYU
+vPf
 hYV
-dbC
-dbC
-dbC
-uaW
-exr
-uaW
+bYU
+bYU
+bYU
+qwc
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (29,1,10) = {"
@@ -109906,40 +110106,40 @@ bhQ
 bhQ
 jkL
 nJv
-dbC
+bYU
 fHs
 fHs
 fHs
 fHs
-dbC
+bYU
 fHs
 fHs
 fHs
 fHs
-dbC
+bYU
 kAg
 mRn
-sOa
-sOa
-sOa
+mHc
+mHc
+mHc
 mRn
 uBU
-dbC
-apz
-apz
+bYU
+vUt
+vUt
 xLL
 miG
-dbC
-uaW
-exr
-uaW
+bYU
+qwc
+lus
+qwc
 kHt
 kHt
 kHt
 kHt
-uaW
-exr
-uaW
+qwc
+lus
+qwc
 xEy
 "}
 (30,1,10) = {"
@@ -110004,40 +110204,40 @@ bhQ
 bhQ
 jkL
 nJv
-dbC
+bYU
 fHs
 fHs
 fHs
 fHs
-dbC
+bYU
 fHs
 fHs
 fHs
 fHs
-dbC
+bYU
 xjS
 mRn
-sOa
-sOa
-sOa
+mHc
+mHc
+mHc
 mRn
 uBU
-dbC
+bYU
 rKS
-dbC
-dbC
-dbC
-dbC
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
-uaW
+bYU
+bYU
+bYU
+bYU
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
+qwc
 xEy
 "}
 (31,1,10) = {"
@@ -110102,28 +110302,28 @@ bhQ
 bhQ
 jkL
 nJv
-dbC
+bYU
 fHs
 fHs
 fHs
 fHs
-dbC
+bYU
 fHs
 fHs
 fHs
 fHs
-dbC
+bYU
 eTa
-sOa
-sOa
+mHc
+mHc
 kqM
 gpw
 ncC
-sOa
+mHc
 jEd
-sOa
+mHc
 qkD
-dbC
+bYU
 xEy
 xEy
 xEy
@@ -110200,29 +110400,29 @@ bhQ
 bhQ
 jhU
 nJv
-dbC
-dbC
-fyi
-fyi
-dbC
-dbC
-dbC
-fyi
-fyi
-dbC
-dbC
-dbC
-sOa
-sOa
-dbC
-dbC
-dbC
-dbC
-dbC
-sOa
-sOa
-dbC
-fNn
+bYU
+bYU
+igK
+igK
+bYU
+bYU
+bYU
+igK
+igK
+bYU
+bYU
+bYU
+mHc
+mHc
+bYU
+bYU
+bYU
+bYU
+bYU
+mHc
+mHc
+bYU
+xEy
 xEy
 xEy
 xEy
@@ -110298,29 +110498,29 @@ bhQ
 bhQ
 jkL
 nJv
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
 lqW
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-fNn
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+wwV
+xEy
 xEy
 xEy
 xEy
@@ -110396,29 +110596,29 @@ bhQ
 bhQ
 jkL
 nJv
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-sOa
-fNn
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+mHc
+wwV
+xEy
 xEy
 xEy
 xEy
@@ -110503,19 +110703,19 @@ xEO
 xEO
 xEO
 xEO
-dbC
-dbC
-dbC
-dbC
-dbC
-dbC
-dbC
-dbC
-dbC
-dbC
-dbC
-xEy
-xEy
+bYU
+bYU
+bYU
+bYU
+bYU
+bYU
+bYU
+bYU
+bYU
+bYU
+bYU
+aIK
+aIK
 xEy
 xEy
 xEy
@@ -112436,7 +112636,7 @@ hus
 hVM
 cVl
 cVl
-fOK
+kHi
 rlZ
 kBj
 kHt
@@ -112533,7 +112733,7 @@ jyx
 hus
 bPU
 cVl
-uYN
+jVY
 sHz
 mfv
 kBj
@@ -112729,7 +112929,7 @@ hus
 hus
 dsl
 cVl
-uYN
+jVY
 dJf
 mfv
 kBj
@@ -113121,7 +113321,7 @@ oQJ
 hus
 fSR
 cVl
-uYN
+uVI
 aFx
 wsF
 kBj
@@ -113901,7 +114101,7 @@ xAU
 xAU
 pDq
 cVl
-tnt
+nMD
 tnt
 irv
 xAU
@@ -116827,14 +117027,14 @@ xuU
 jTN
 pSS
 xGq
-vXQ
+aIN
 iTR
 iTR
 uzc
 tfN
 pSS
 pSS
-pSS
+wKH
 pSS
 tfN
 jbD
@@ -117225,9 +117425,9 @@ iTR
 uCM
 xFC
 ovo
-ovo
+mmV
 aad
-typ
+jdK
 edz
 qRG
 jnt
@@ -117429,7 +117629,7 @@ ddu
 pSS
 iTR
 wwv
-pSS
+ddf
 uCM
 eFI
 iTR
@@ -118199,7 +118399,7 @@ pSS
 fho
 pSS
 nTI
-nTI
+pjz
 vXQ
 nTI
 iTR
@@ -118395,7 +118595,7 @@ pSS
 pSS
 pSS
 nTI
-nTI
+qEw
 vXQ
 nTI
 iTR
@@ -121055,7 +121255,7 @@ lGD
 lGD
 lGD
 lGD
-bWP
+uTL
 mSp
 hus
 htg
@@ -121248,7 +121448,7 @@ pao
 pao
 mBo
 jGG
-rkw
+caD
 lGD
 lGD
 lGD
@@ -121337,7 +121537,7 @@ xEy
 xEy
 hus
 lGD
-bWP
+umR
 gAG
 lGD
 srW
@@ -121933,7 +122133,7 @@ pao
 pao
 mBo
 eDK
-bWP
+umR
 fGh
 lGD
 lGD
@@ -123013,7 +123213,7 @@ dYh
 dYh
 dYh
 dYh
-dYh
+oJf
 oJf
 lIm
 dYh
@@ -123111,7 +123311,7 @@ dYh
 dYh
 dYh
 dYh
-dYh
+oJf
 oJf
 lIm
 dYh
@@ -123209,7 +123409,7 @@ dYh
 dYh
 dYh
 dYh
-dYh
+oJf
 oJf
 lIm
 dYh
@@ -123307,7 +123507,7 @@ dYh
 dYh
 dYh
 dYh
-dYh
+oJf
 oJf
 lIm
 dYh
@@ -123803,7 +124003,7 @@ ncq
 xvh
 dYh
 kgE
-dYh
+uar
 dYh
 dYh
 kgE
@@ -123901,7 +124101,7 @@ ncq
 aIK
 dYh
 dYh
-dYh
+uar
 dYh
 dnt
 dYh
@@ -123990,8 +124190,8 @@ ksW
 dYh
 dYh
 aIK
-hMZ
-hMZ
+mVX
+mVX
 ncq
 kIA
 qdK
@@ -124190,7 +124390,7 @@ ncq
 iVp
 ncq
 btB
-ibp
+uUa
 sAp
 aIK
 dYh
@@ -124774,8 +124974,8 @@ ksW
 dYh
 dYh
 aIK
-hMZ
-hMZ
+mVX
+mVX
 ncq
 kIA
 qdK
@@ -124883,11 +125083,11 @@ kmv
 dYh
 aIK
 nOU
-pGv
+mwK
 bVE
-pGv
-bVE
-pGv
+xTE
+sjY
+xTE
 aIK
 xEy
 xEy
@@ -124982,10 +125182,10 @@ kgE
 aIK
 qvK
 pGv
-xTE
-xTE
-xTE
 pGv
+aIK
+aIK
+aIK
 aIK
 xEy
 xEy
@@ -125082,9 +125282,9 @@ aIK
 aIK
 aIK
 aIK
-aIK
-aIK
-aIK
+xEy
+xEy
+xEy
 xEy
 xEy
 xEy
@@ -128098,10 +128298,10 @@ xEy
 xEy
 xEy
 htg
-wBr
+doU
 lVA
 aEO
-uoK
+nfU
 uZy
 qbt
 tuh
@@ -128119,7 +128319,7 @@ jTH
 jTH
 jTH
 jTH
-mHc
+tuh
 uGD
 igZ
 htg
@@ -132820,7 +133020,7 @@ aIK
 aIK
 aMU
 dYh
-dYh
+uar
 dYh
 dYh
 dYh
@@ -132918,7 +133118,7 @@ tSp
 aIK
 dYh
 dYh
-dYh
+uar
 dYh
 kgE
 dYh
@@ -133497,8 +133697,8 @@ ncq
 pGv
 hMZ
 aIK
-hMZ
-pGv
+mTT
+mwK
 ncq
 ncq
 ncq
@@ -133592,11 +133792,11 @@ kIA
 qdK
 tAa
 ncq
-hMZ
-hMZ
+mVX
+mVX
 aIK
-hMZ
-hMZ
+mVX
+mVX
 ncq
 kIA
 qdK
@@ -134376,11 +134576,11 @@ kIA
 qdK
 tAa
 ncq
-hMZ
-hMZ
+mVX
+mVX
 aIK
-hMZ
-hMZ
+mVX
+mVX
 ncq
 kIA
 qdK
@@ -134393,8 +134593,8 @@ kIA
 qdK
 tAa
 ncq
-hMZ
-hMZ
+mVX
+mVX
 aIK
 xEy
 xEy
