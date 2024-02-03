@@ -40,6 +40,9 @@
 	material = /decl/material/solid/metal/plasteel
 	origin_tech = @'{"materials":2,"engineering":2,"combat":2}'
 
+/obj/item/clothing/head/helmet/tactical/green
+	starting_accessories = list(/obj/item/clothing/accessory/armor/helmcover)
+
 /obj/item/clothing/head/helmet/merc
 	name = "combat helmet"
 	desc = "A heavily reinforced helmet painted with red markings. Feels like it could take a lot of punishment."

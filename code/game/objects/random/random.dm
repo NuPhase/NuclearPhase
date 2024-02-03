@@ -777,7 +777,7 @@
 	return list(/obj/item/clothing/suit/storage/hazardvest = 4,
 				/obj/item/clothing/suit/storage/toggle/labcoat = 4,
 				/obj/item/clothing/suit/armor/vest = 4,
-				/obj/item/clothing/suit/armor/pcarrier/tactical = 1,
+				/obj/item/clothing/suit/armor/pcarrier/green/tactical = 1,
 				/obj/item/clothing/suit/armor/vest/heavy = 3,
 				/obj/item/clothing/suit/storage/toggle/bomber = 3,
 				/obj/item/clothing/suit/chef/classic = 3,

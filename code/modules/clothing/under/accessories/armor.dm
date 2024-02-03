@@ -1,23 +1,32 @@
 //Pouches
 /obj/item/clothing/accessory/storage/pouches
 	name = "storage pouches"
-	desc = "A collection of black pouches that can be attached to a plate carrier. Carries up to two items."
-	icon = 'icons/clothing/accessories/pouches/pouches.dmi'
+	desc = "A bunch of tactical storage pouches for rigging harnesses and carriers."
+	icon = 'icons/clothing/accessories/pouches/pouches_black.dmi'
 	icon_state = ICON_STATE_WORLD
-	color = COLOR_GRAY40
 	gender = PLURAL
 	slot = ACCESSORY_SLOT_ARMOR_S
-	slots = 2
+	slots = 4
+
+/obj/item/clothing/accessory/storage/pouches/green
+	icon = 'icons/clothing/accessories/pouches/pouches_green.dmi'
+
+/obj/item/clothing/accessory/storage/pouches/tan
+	icon = 'icons/clothing/accessories/pouches/pouches_tan.dmi'
 
 /obj/item/clothing/accessory/storage/pouches/large
 	name = "large storage pouches"
-	desc = "A collection of black pouches that can be attached to a plate carrier. Carries up to four items."
-	icon = 'icons/clothing/accessories/pouches/lpouches.dmi'
-	slots = 4
-	slowdown = 1
+	desc = "A lot of tactical storage pouches for rigging harnesses and carriers. Cumbersome, but spacious."
+	icon = 'icons/clothing/accessories/pouches/lpouches_black.dmi'
+	slots = 8
+	slowdown = 0.3
+
+/obj/item/clothing/accessory/storage/pouches/large/green
+	icon = 'icons/clothing/accessories/pouches/lpouches_green.dmi'
 
 /obj/item/clothing/accessory/storage/pouches/large/tan
-	color = COLOR_TAN
+	icon = 'icons/clothing/accessories/pouches/lpouches_tan.dmi'
+
 
 //Armor plates
 /obj/item/clothing/accessory/armor/plate
@@ -74,6 +83,7 @@
 	min_blocking_damage = 30
 	max_blocking_damage = 70
 	weight = 5.8
+	slowdown = 0.1
 
 /obj/item/clothing/accessory/armor/plate/dynamic/heavy
 	name = "RDP-X armor plate"
@@ -83,6 +93,7 @@
 	min_blocking_damage = 40
 	max_blocking_damage = 200
 	weight = 7.4
+	slowdown = 0.2
 
 /obj/item/clothing/accessory/armor/plate/medium
 	name = "medium armor plate"
@@ -99,6 +110,7 @@
 		/decl/material/solid/metal/plasteel = MATTER_AMOUNT_SECONDARY
 	)
 	origin_tech = @'{"materials":2,"engineering":1,"combat":2}'
+	slowdown = 0.1
 
 /obj/item/clothing/accessory/armor/plate/tactical
 	name = "tactical armor plate"
@@ -111,7 +123,7 @@
 		energy = ARMOR_ENERGY_RESISTANT,
 		bomb = ARMOR_BOMB_PADDED
 		)
-	slowdown = 0.5
+	slowdown = 0.2
 	material = /decl/material/solid/metal/plasteel
 	matter = list(
 		/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT,
@@ -122,10 +134,9 @@
 //Arm guards
 /obj/item/clothing/accessory/armguards
 	name = "arm guards"
-	desc = "A pair of black arm pads reinforced with armor plating. Attaches to a plate carrier."
-	icon = 'icons/clothing/accessories/armor/armguards.dmi'
+	desc = "A pair of armored arm pads. They have some straps with which they're meant to be attached to a rig."
+	icon = 'icons/clothing/accessories/armor/armguards_black.dmi'
 	icon_state = ICON_STATE_WORLD
-	color = COLOR_GRAY40
 	gender = PLURAL
 	body_parts_covered = SLOT_ARMS
 	armor = list(
@@ -141,20 +152,28 @@
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_SECONDARY
 	)
 	origin_tech = @'{"materials":1,"engineering":1,"combat":1}'
+	slowdown = 0.1
+
+/obj/item/clothing/accessory/armguards/blue
+	icon = 'icons/clothing/accessories/armor/armguards_blue.dmi'
+
+/obj/item/clothing/accessory/armguards/green
+	icon = 'icons/clothing/accessories/armor/armguards_green.dmi'
+
+/obj/item/clothing/accessory/armguards/tan
+	icon = 'icons/clothing/accessories/armor/armguards_tan.dmi'
 
 /obj/item/clothing/accessory/armguards/craftable
 	material_armor_multiplier = 1
 	matter = null
-	applies_material_colour = TRUE
 	applies_material_name = TRUE
 
 //Leg guards
 /obj/item/clothing/accessory/legguards
 	name = "leg guards"
-	desc = "A pair of armored leg pads in black. Attaches to a plate carrier."
-	icon = 'icons/clothing/accessories/armor/legguards.dmi'
+	desc = "A pair of armored leg pads. They have some straps with which they're meant to be attached to a rig."
+	icon = 'icons/clothing/accessories/armor/legguards_black.dmi'
 	icon_state = ICON_STATE_WORLD
-	color = COLOR_GRAY40
 	gender = PLURAL
 	body_parts_covered = SLOT_LEGS
 	armor = list(
@@ -170,78 +189,98 @@
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_SECONDARY
 	)
 	origin_tech = @'{"materials":1,"engineering":1,"combat":1}'
+	slowdown = 0.1
+
+/obj/item/clothing/accessory/legguards/blue
+	icon = 'icons/clothing/accessories/armor/legguards_blue.dmi'
+
+/obj/item/clothing/accessory/legguards/green
+	icon = 'icons/clothing/accessories/armor/legguards_green.dmi'
+
+/obj/item/clothing/accessory/legguards/tan
+	icon = 'icons/clothing/accessories/armor/legguards_tan.dmi'
 
 /obj/item/clothing/accessory/legguards/craftable
 	material_armor_multiplier = 1
 	matter = null
-	applies_material_colour = TRUE
 	applies_material_name =  TRUE
 
 /obj/item/clothing/accessory/armor
-	name = "master armor"
+	name = "master armor accessory"
 	icon_state = ICON_STATE_WORLD
 
 //Decorative attachments
 /obj/item/clothing/accessory/armor/tag
-	name = "\improper WARDEN tag"
-	desc = "A tag with the word WARDEN printed in silver lettering on it."
+	name = "\improper SECURITY tag"
+	desc = "A black tag with the word SECURITY printed in silver lettering on it."
 	slot = ACCESSORY_SLOT_ARMOR_M
+	icon = 'icons/clothing/accessories/armor/tags.dmi'
+	icon_state = "sectag"
 
 /obj/item/clothing/accessory/armor/tag/press
 	name = "\improper PRESS tag"
-	desc = "A tag with the word PRESS printed in white lettering on it."
+	desc = "A high-contrast blue tag with the word PRESS printed in white lettering on it."
 	slot_flags = SLOT_LOWER_BODY
+	icon = 'icons/clothing/accessories/armor/whitetags.dmi'
+	icon_state = "presstag"
 
 /obj/item/clothing/accessory/armor/tag/hos
-	name = "\improper COMMANDER tag"
-	desc = "A tag with the word COMMANDER printed in golden lettering on it."
-	color = COLOR_GOLD
+	name = "\improper LEAD tag"
+	desc = "A black tag with the word LEAD printed in white lettering on it."
+	icon_state = "leadtag"
 
 /obj/item/clothing/accessory/armor/tag/oneg
 	name = "\improper O- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as O NEGATIVE."
+	icon_state = "onegtag"
 
 /obj/item/clothing/accessory/armor/tag/opos
 	name = "\improper O+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as O POSITIVE."
+	icon_state = "opostag"
 
 /obj/item/clothing/accessory/armor/tag/apos
 	name = "\improper A+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as A POSITIVE."
+	icon_state = "apostag"
 
 /obj/item/clothing/accessory/armor/tag/aneg
 	name = "\improper A- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as A NEGATIVE."
+	icon_state = "anegtag"
 
 /obj/item/clothing/accessory/armor/tag/bpos
 	name = "\improper B+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as B POSITIVE."
+	icon_state = "bpostag"
 
 /obj/item/clothing/accessory/armor/tag/bneg
 	name = "\improper B- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as B NEGATIVE."
+	icon_state = "bnegtag"
 
 /obj/item/clothing/accessory/armor/tag/abpos
 	name = "\improper AB+ blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as AB POSITIVE."
+	icon_state = "abpostag"
 
 /obj/item/clothing/accessory/armor/tag/abneg
 	name = "\improper AB- blood patch"
 	desc = "An embroidered patch indicating the wearer's blood type as AB NEGATIVE."
+	icon_state = "abnegtag"
 
 /obj/item/clothing/accessory/armor/helmcover
 	name = "helmet cover"
-	desc = "A fabric cover for armored helmets."
-	icon = 'icons/clothing/accessories/armor/helmcover.dmi'
+	desc = "A fabric cover for armored helmets. This one is forest green."
+	icon = 'icons/clothing/accessories/armor/helmcover_green.dmi'
 	icon_state = ICON_STATE_WORLD
 	slot = ACCESSORY_SLOT_HELM_C
 
 /obj/item/clothing/accessory/armor/helmcover/blue
-	color = COLOR_SKY_BLUE
-
-/obj/item/clothing/accessory/armor/helmcover/green
-	color = COLOR_DARK_GREEN_GRAY
+	name = "blue helmet cover"
+	desc = "A fabric cover for armored helmets. This one is baby blue, made for combat reporters and UN blue-hats."
+	icon = 'icons/clothing/accessories/armor/helmcover_blue.dmi'
 
 /obj/item/clothing/accessory/armor/helmcover/tan
-	color = COLOR_TAN
+	icon = 'icons/clothing/accessories/armor/helmcover_tan.dmi'
 
