@@ -7,7 +7,7 @@
 	selection_color = "#166320"
 	alt_titles = list("Recruit Trooper")
 	economic_power = 4
-	skill_points = 35,5
+	skill_points = 35
 	access = list(
 		access_security,
 		access_eva,
