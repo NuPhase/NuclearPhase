@@ -29,7 +29,7 @@
 	var/efficiency = 0.93
 	var/kin_energy = 0
 	var/kin_total = 0 //last kin energy generation
-	var/expansion_ratio = 0.87
+	var/expansion_ratio = 0.44
 	var/volume_ratio = 0.2
 	var/steam_velocity = 0
 	var/pressure_difference = 0
@@ -38,6 +38,14 @@
 	var/braking = FALSE //emergency brakes
 	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
 
+	//for logging and interfaces
+	var/inlet_temperature = T20C
+	var/exhaust_temperature = T20C
+	var/inlet_pressure = 0
+	var/exhaust_pressure = 0
+	var/real_expansion = 1 //inlet_pressure / exhaust_pressure
+	var/kinetic_energy_delta = 0 // (kin_total - generator.last_load) * 1800
+
 	var/water_level = 0 //0-1. Condensation inside turbine increases water level
 	var/water_grates_open = FALSE
 
@@ -45,6 +53,7 @@
 	var/shaft_integrity = 100
 
 	var/obj/structure/turbine_visual/visual = null
+	var/obj/machinery/power/generator/turbine_generator/generator = null
 
 	var/valve_id = ""
 
@@ -77,6 +86,19 @@
 
 	if(air1.total_moles)
 		process_steam()
+	else
+		total_mass_flow = 0
+		steam_velocity = 0
+		kin_total = 0
+
+	var/air2_pressure = air2.return_pressure()
+	if(air2_pressure)
+		real_expansion = air1.return_pressure() / air2_pressure
+	else
+		real_expansion = air1.return_pressure() / 0.001
+	real_expansion = min(real_expansion, expansion_ratio)
+
+	kinetic_energy_delta = kin_total - generator.last_load * 1800
 
 	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
 
@@ -100,7 +122,7 @@
 /obj/machinery/atmospherics/binary/turbinestage/proc/process_steam()
 	var/air1_density = get_density(air1.return_pressure() * 0.001, air1.temperature - 273.15)
 
-	// flow speed
+	//calculate flow velocity
 	// sqrt((2 * (P1 - P2) / rho) + (2 * g * (h1 - h2)))
 	if(feeder_valve_openage)
 		pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
@@ -108,19 +130,33 @@
 	else
 		steam_velocity = 0
 
+	//calculate flow mass
 	//Steam enters at 1.5m diameter, expands to 5.5m. 5.5m diameter > area = 95.03
 	var/nozzle_exit_area = 95.03 * feeder_valve_openage
 	total_mass_flow = nozzle_exit_area*expansion_ratio*0.598*sqrt(steam_velocity * 4.2 * (1-(air2.return_pressure()/air1.return_pressure())**0.23))
+	total_mass_flow = min(total_mass_flow, air1.get_mass())
 
+	//create the internal gas mixture and transfer inlet steam to it
 	var/datum/gas_mixture/air_all = new
-	air_all.volume = air1.volume + air2.volume
-
+	air_all.volume = air1.volume
 	pump_passive(air1, air_all, total_mass_flow)
 
+	//logging
+	inlet_temperature = air_all.temperature
+	inlet_pressure = air_all.return_pressure()
+
+	//get the kinetic energy received from steam and cool it down
 	kin_total = get_specific_enthalpy(air1.return_pressure() * 0.001, air_all.temperature - 273.15) * total_mass_flow
 	kin_total *= expansion_ratio
 	air_all.add_thermal_energy(kin_total * -1)
-	air_all.temperature = max(air_all.temperature, 311)
+	air_all.temperature = max(air_all.temperature, T0C)
+	air_all.update_values()
+
+	//logging
+	exhaust_temperature = air_all.temperature
+	exhaust_pressure = air_all.return_pressure()
+
+	//let water accumulate inside the turbine if the exhaust steam is too cold
 	if(air_all.temperature < 340)
 		if(water_grates_open)
 			water_level += 0.01
@@ -144,8 +180,8 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	var/tvibration = 0
-	//if(turbine_internals.temperature < 409) //condensing inside of the turbine is incredibly dangerous
-	//	tvibration += total_mass_flow * 0.04
+	if(turbine_internals.phases[/decl/material/liquid/water] == MAT_PHASE_LIQUID) //condensing inside of the turbine is incredibly dangerous
+		tvibration += total_mass_flow * 0.04
 	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
 		tvibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
@@ -212,6 +248,7 @@
 		turbine = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_step(src,dir)
 		if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 			turbine = null
+		turbine.generator = src
 
 /obj/machinery/power/generator/turbine_generator/Process()
 	if(!turbine)
