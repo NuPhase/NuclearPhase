@@ -24,6 +24,7 @@
 	random_icon_states = list("femcum_1", "femcum_2", "femcum_3", "femcum_4")
 
 /decl/material/liquid/semen
+	name = "semen"
 	solid_name = "semen"
 	gas_name = "semen"
 	liquid_name = "semen"
