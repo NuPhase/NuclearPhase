@@ -38,37 +38,45 @@
 		var/governor_adjustment = 0.01
 		var/load_difference = 0
 		//predefining vars for performance
-		load_difference = generator1.last_load - (turbine1.kin_total * turbine1.efficiency)
-		governor_adjustment = sqrt(abs(load_difference)) * 0.0001 * (load_difference > 0 ? 1 : -1)
-		if(turbine1.rpm > 3600)
-			governor_adjustment -= 0.15
-		else
-			governor_adjustment += 0.15
-		turbine1.feeder_valve_openage = CLAMP01(turbine1.feeder_valve_openage + governor_adjustment)
-		current_switch = reactor_buttons["turbine1"]
-		current_switch.update_icon(turbine1.feeder_valve_openage)
+		if(turbine1.feeder_valve_openage > 0)
+			load_difference = generator1.last_load - (turbine1.kin_total * turbine1.efficiency)
+			governor_adjustment = sqrt(abs(load_difference)) * 0.0001 * (load_difference > 0 ? 1 : -1)
+			if(turbine1.rpm > 3600)
+				governor_adjustment -= 0.15
+			else
+				governor_adjustment += 0.15
+			turbine1.feeder_valve_openage = CLAMP01(turbine1.feeder_valve_openage + governor_adjustment)
+			current_switch = reactor_buttons["turbine1"]
+			current_switch.update_icon(turbine1.feeder_valve_openage)
 
-		load_difference = generator2.last_load - (turbine2.kin_total * turbine2.efficiency)
-		governor_adjustment = sqrt(abs(load_difference)) * 0.0001 * (load_difference > 0 ? 1 : -1)
-		if(turbine2.rpm > 3600)
-			governor_adjustment -= 0.15
-		else
-			governor_adjustment += 0.15
-		turbine2.feeder_valve_openage = CLAMP01(turbine2.feeder_valve_openage + governor_adjustment)
-		current_switch = reactor_buttons["turbine2"]
-		current_switch.update_icon(turbine2.feeder_valve_openage)
+		if(turbine2.feeder_valve_openage > 0)
+			load_difference = generator2.last_load - (turbine2.kin_total * turbine2.efficiency)
+			governor_adjustment = sqrt(abs(load_difference)) * 0.0001 * (load_difference > 0 ? 1 : -1)
+			if(turbine2.rpm > 3600)
+				governor_adjustment -= 0.15
+			else
+				governor_adjustment += 0.15
+			turbine2.feeder_valve_openage = CLAMP01(turbine2.feeder_valve_openage + governor_adjustment)
+			current_switch = reactor_buttons["turbine2"]
+			current_switch.update_icon(turbine2.feeder_valve_openage)
 	else
 		var/rpm_difference = 0
 		var/target_valve_openage = 0
 		if(turbine1.feeder_valve_openage > 0) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine1.rpm
-			target_valve_openage = rpm_difference * 0.073
+			target_valve_openage = rpm_difference * 0.063 //main spinup function
+			target_valve_openage *= min(OPTIMAL_TURBINE_PRESSURE, get_meter_pressure("T-M-TURB IN")) / OPTIMAL_TURBINE_PRESSURE //low pressure protection
+			if(turbine1.rpm > 3600) //overspeed protection
+				target_valve_openage -= 0.15
 			turbine1.feeder_valve_openage = Interpolate(turbine1.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
 			current_switch = reactor_buttons["turbine1"]
 			current_switch.update_icon(turbine1.feeder_valve_openage)
 		if(turbine2.feeder_valve_openage > 0) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine2.rpm
-			target_valve_openage = rpm_difference * 0.073
+			target_valve_openage = rpm_difference * 0.063 //main spinup function
+			target_valve_openage *= min(OPTIMAL_TURBINE_PRESSURE, get_meter_pressure("T-M-TURB IN")) / OPTIMAL_TURBINE_PRESSURE //low pressure protection
+			if(turbine2.rpm > 3600) //overspeed protection
+				target_valve_openage -= 0.15
 			turbine2.feeder_valve_openage = Interpolate(turbine2.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
 			current_switch = reactor_buttons["turbine2"]
 			current_switch.update_icon(turbine2.feeder_valve_openage)

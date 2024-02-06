@@ -372,7 +372,7 @@
 	name = "steam pipe"
 	icon = 'icons/obj/atmospherics/pipes/steampipe.dmi'
 	color = null
-	volume = 6500 //2m diameter
+	volume = 2500 //2m diameter
 	density = 1
 
 /obj/machinery/atmospherics/pipe/simple/hidden
@@ -520,7 +520,7 @@
 	desc = "This manifold is made of hafnium-carbide alloy. It will corrode quickly under high pressures."
 	icon = 'icons/obj/atmospherics/pipes/inconelpipe.dmi'
 	icon_state = "manifold"
-	volume = 200
+	volume = 100
 	color = PIPE_COLOR_BLACK
 	maximum_pressure = 90*ONE_ATMOSPHERE
 	fatigue_pressure = 80*ONE_ATMOSPHERE
@@ -532,7 +532,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated
 	name = "heat-resistant manifold"
 	desc = "This manifold is made of hafnium-carbide alloy coated with inconel protective blankets. Something tells you that having it rupture would bring an end to everything."
-	volume = 190
+	volume = 150
 	color = PIPE_COLOR_GREY
 	maximum_pressure = 420*ONE_ATMOSPHERE
 	fatigue_pressure = 350*ONE_ATMOSPHERE
@@ -547,7 +547,7 @@
 	icon = 'icons/obj/atmospherics/pipes/steampipe.dmi'
 	icon_state = "manifold"
 	color = null
-	volume = 9000 //2m diameter
+	volume = 3000 //2m diameter
 
 /obj/machinery/atmospherics/pipe/manifold/hidden
 	icon_state = "map"
@@ -694,7 +694,7 @@
 	icon = 'icons/obj/atmospherics/pipes/steampipe.dmi'
 	icon_state = "4manifold"
 	color = null
-	volume = 6500 //2m diameter
+	volume = 4500 //2m diameter
 	density = 1
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden
