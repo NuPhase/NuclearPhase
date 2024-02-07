@@ -208,20 +208,20 @@
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
-	var/inhaling = breath.gas[breath_type]
-	var/inhaling_ratio = inhaling/breath.total_moles
-	var/inhale_efficiency = min(round((inhaling_ratio*breath_pressure)/safe_pressure_min, 0.001), 3)
+	var/inhaling_gas_moles = breath.gas[breath_type]
+	var/inhaling_ratio = inhaling_gas_moles/breath.total_moles
+	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/safe_pressure_min - breath_rate*0.01), 0.01, 3)
 	last_breath_efficiency = inhale_efficiency
 
 	// Not enough to breathe
-	if(inhale_efficiency < 0.8)
+	if(inhale_efficiency < 0.6)
 		if(prob(20) && active_breathing)
-			if(inhale_efficiency < 0.6)
-				owner.emote("gasp")
-			else if(prob(20))
-				to_chat(owner, SPAN_WARNING("It's hard to breathe..."))
+			owner.emote("gasp")
+		else if(prob(20))
+			to_chat(owner, SPAN_WARNING("It's hard to breathe..."))
+		if(inhale_efficiency < 0.1)
+			failed_inhale = 1
 		breath_fail_ratio = Clamp(0,(1 - inhale_efficiency + breath_fail_ratio)/2,1)
-		failed_inhale = 1
 	else
 		if(breath_fail_ratio && prob(20))
 			to_chat(owner, SPAN_NOTICE("It gets easier to breathe."))
@@ -229,7 +229,7 @@
 
 	owner.oxygen_alert = failed_inhale * 2
 
-	var/inhaled_gas_used = inhaling / 4
+	var/inhaled_gas_used = inhaling_gas_moles / 4
 	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
 
 	owner.toxins_alert = 0 // Reset our toxins alert for now.
@@ -245,12 +245,11 @@
 	// Pass reagents from the gas into our body.
 	// Presumably if you breathe it you have a specialized metabolism for it, so we drop/ignore breath_type. Also avoids
 	// humans processing thousands of units of oxygen over the course of a round.
-	var/ratio = BP_IS_PROSTHETIC(src)? 0.66 : 1
 	for(var/gasname in breath.gas - breath_type)
 		var/decl/material/gas = GET_DECL(gasname)
 		if(gas.gas_metabolically_inert)
 			continue
-		var/reagent_amount = breath.gas[gasname] * gas.molar_volume * ratio
+		var/reagent_amount = breath.gas[gasname] * gas.molar_volume
 		owner.reagents.add_reagent(gasname, reagent_amount)
 		breath.adjust_gas(gasname, -breath.gas[gasname], update = 0) //update after
 
@@ -261,10 +260,11 @@
 
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
+
 	if(!failed_breath || forced)
 		calculate_breath_rate()
-		breath_rate += forced_breath_rate
-		owner.add_oxygen(oxygen_generation * breath_rate * inhale_efficiency)
+		//oxygen volume = 1641ml per mole
+		owner.add_oxygen(inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency)
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
 
