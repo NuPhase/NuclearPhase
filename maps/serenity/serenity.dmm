@@ -947,6 +947,11 @@
 "bhQ" = (
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/service_tunnels)
+"bia" = (
+/obj/structure/table/marble,
+/obj/item/kitchen/rollingpin,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/habitationdeck/kitchen)
 "biH" = (
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/concrete/nano,
@@ -1265,9 +1270,11 @@
 	dir = 4
 	},
 /obj/structure/table/marble,
-/obj/machinery/alarm{
-	dir = 8
+/obj/structure/hygiene/sink/kitchen{
+	dir = 8;
+	pixel_x = 19
 	},
+/obj/item/chems/glass/rag,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
 "bxv" = (
@@ -4198,6 +4205,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
+/obj/structure/closet/crate/freezer/rations,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/habitationdeck/freezer)
 "eHj" = (
@@ -5910,6 +5918,9 @@
 /obj/structure/table/marble,
 /obj/item/knife/kitchen/cleaver,
 /obj/item/knife/kitchen,
+/obj/machinery/alarm{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
 "gzA" = (
@@ -6191,6 +6202,19 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/atmos)
+"gQS" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/chems/condiment/cornoil,
+/obj/item/chems/condiment/mayo,
+/obj/item/chems/condiment/ketchup,
+/obj/item/chems/condiment/ketchup,
+/obj/item/chems/condiment/soysauce,
+/obj/item/chems/condiment/soysauce,
+/obj/item/chems/condiment/mayo,
+/obj/item/chems/condiment/cornoil,
+/obj/item/chems/condiment/barbecue,
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/habitationdeck/freezer)
 "gRG" = (
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
@@ -6709,6 +6733,13 @@
 	dir = 8
 	},
 /area/serenity)
+"hvw" = (
+/obj/structure/table/glass/pglass,
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "hwm" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/water,
 /obj/machinery/door/blast/regular{
@@ -7564,6 +7595,14 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"irP" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/corner{
+	dir = 1
+	},
+/area/serenity/shelter/habitationdeck/crew)
 "isu" = (
 /obj/machinery/papershredder,
 /turf/simulated/floor/tiled/monotile,
@@ -7928,7 +7967,7 @@
 /area/serenity/shelter/engineering/reactor)
 "iLE" = (
 /obj/effect/floor_decal/spline/plain/black,
-/obj/structure/table/marble,
+/obj/structure/closet/chefcloset,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
 "iLU" = (
@@ -14118,6 +14157,10 @@
 	dir = 4
 	},
 /obj/structure/table/marble,
+/obj/structure/hygiene/sink/kitchen{
+	dir = 8;
+	pixel_x = 19
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
 "oQt" = (
@@ -14478,6 +14521,10 @@
 	dir = 4;
 	pixel_y = 17
 	},
+/obj/item/chems/food/can/beans,
+/obj/item/chems/food/can/beans,
+/obj/item/chems/food/can/beans,
+/obj/item/chems/food/can/beans,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/habitationdeck/freezer)
 "plf" = (
@@ -14530,6 +14577,18 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"pnq" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/chems/food/fish,
+/obj/item/chems/food/fish,
+/obj/item/chems/food/fish,
+/obj/item/chems/food/fish,
+/obj/item/chems/food/fish,
+/obj/item/chems/food/fish,
+/obj/item/chems/food/fish,
+/obj/item/chems/food/fish,
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/habitationdeck/freezer)
 "pny" = (
 /obj/structure/bed/sofa/m/black{
 	dir = 8
@@ -17933,7 +17992,12 @@
 /obj/effect/floor_decal/spline/plain/black{
 	dir = 6
 	},
-/obj/structure/table/marble,
+/obj/item/trash/plate,
+/obj/structure/rack,
+/obj/item/trash/plate,
+/obj/item/trash/plate,
+/obj/item/trash/plate,
+/obj/item/trash/plate,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/kitchen)
 "sJZ" = (
@@ -19078,6 +19142,18 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
+"tYg" = (
+/obj/structure/rack,
+/obj/item/chems/condiment/salt,
+/obj/item/chems/condiment/salt,
+/obj/item/chems/condiment/flour,
+/obj/item/chems/condiment/flour,
+/obj/item/chems/condiment/flour,
+/obj/item/chems/condiment/flour,
+/obj/item/chems/condiment/salt,
+/obj/item/chems/condiment/salt,
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/habitationdeck/freezer)
 "tYh" = (
 /obj/machinery/light{
 	dir = 1
@@ -21434,6 +21510,14 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/entrance_zone)
+"wls" = (
+/obj/structure/rack,
+/obj/item/chems/food/can/spinach,
+/obj/item/chems/food/can/spinach,
+/obj/item/chems/food/can/spinach,
+/obj/item/chems/food/can/spinach,
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/habitationdeck/freezer)
 "wlz" = (
 /obj/structure/sign/watercloset{
 	dir = 1;
@@ -132141,7 +132225,7 @@ wwV
 wwV
 wwV
 lKU
-riE
+pnq
 woX
 rIi
 rIi
@@ -132239,7 +132323,7 @@ wwV
 wwV
 wwV
 lKU
-riE
+gQS
 xGC
 xGC
 xGC
@@ -132344,7 +132428,7 @@ xGC
 rIm
 umz
 kfE
-fSq
+bia
 dDu
 hGy
 pZd
@@ -132437,7 +132521,7 @@ wwV
 lKU
 pcW
 xGC
-riE
+wls
 xGC
 rIm
 hNd
@@ -132535,7 +132619,7 @@ wwV
 lKU
 pcW
 xGC
-pcW
+tYg
 eGJ
 rIm
 dDV
@@ -133315,11 +133399,11 @@ wKv
 hMZ
 pGv
 smR
-jVY
+iVp
 jVY
 wKv
 hMZ
-pGv
+txT
 hMZ
 brs
 jVY
@@ -133607,7 +133691,7 @@ kgE
 kkP
 wKv
 lWc
-jVY
+iVp
 jVY
 tbV
 vpC
@@ -133615,7 +133699,7 @@ wKv
 fkU
 fkU
 fkU
-ozY
+irP
 jVY
 qWJ
 tzH
@@ -133900,17 +133984,17 @@ kkP
 kkP
 xvh
 smR
+iVp
 jVY
 jVY
-jVY
-jVY
+iVp
 jVY
 wKv
 tND
-hTR
+hvw
 hTR
 smR
-jVY
+iVp
 smR
 rCH
 kkP
