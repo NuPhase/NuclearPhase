@@ -37,7 +37,7 @@ var/global/repository/decls/decls_repository = new
 			fetched_decl_ids[decl_uid] = decl
 
 /decl/proc/is_abstract()
-	return TYPE_IS_ABSTRACT(src)
+	return src.abstract_type == src.type // TODO: normal port of abstract decls (Pl3aseJust3ndMyPa1n) - remindme
 
 /repository/decls/proc/get_decl_by_id(var/decl_id, var/validate_decl_type = TRUE)
 	RETURN_TYPE(/decl)
