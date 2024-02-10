@@ -6162,6 +6162,17 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/brig/reception)
+"gtb" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/structure/door/sliding{
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity)
 "gtB" = (
 /obj/structure/table,
 /obj/item/towel/random,
@@ -18921,7 +18932,7 @@
 "sBH" = (
 /obj/structure/door/sliding{
 	dir = 8;
-	lock_data = list("ACCESS_ENGINEERING");
+	lock_data = list("ACCESS_SECURITY");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/half,
@@ -23533,6 +23544,14 @@
 	},
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_a)
+"wRz" = (
+/obj/structure/door/sliding{
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/brig/reception)
 "wRL" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /obj/machinery/light/ceiling{
@@ -112434,7 +112453,7 @@ uBU
 bYU
 rKS
 bYU
-bYU
+wRz
 gsZ
 bPf
 hdf
@@ -112924,7 +112943,7 @@ saI
 bPf
 bPf
 qJV
-qJV
+gtb
 xxO
 xEy
 xEy
