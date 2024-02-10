@@ -38,6 +38,9 @@ SUBSYSTEM_DEF(jobs)
 		var/datum/job/job = get_by_path(jobtype)
 		if(!job)
 			job = new jobtype
+		if(job.abstract_type == job.type)
+			qdel(job)
+			continue
 		primary_job_datums += job
 
 	// Create abstract submap archetype jobs for use in prefs, etc.
