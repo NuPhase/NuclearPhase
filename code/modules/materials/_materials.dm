@@ -523,21 +523,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				affectedbook.dat = null
 				to_chat(usr, SPAN_NOTICE("The solution dissolves the ink on the book."))
 
-	if(solvent_power >= MAT_SOLVENT_STRONG && !O.unacidable && (istype(O, /obj/item) || istype(O, /obj/effect/vine)) && (REAGENT_VOLUME(holder, type) > solvent_melt_dose))
-		var/obj/effect/decal/cleanable/molten_item/I = new(O.loc)
-		I.visible_message(SPAN_DANGER("\The [O] dissolves!"))
-		I.desc = "It looks like it was \a [O] some time ago."
-		qdel(O)
+	if(solvent_power >= MAT_SOLVENT_STRONG && O.solvent_can_melt(solvent_power) && (istype(O, /obj/item) || istype(O, /obj/effect/vine)) && (REAGENT_VOLUME(holder, type) > solvent_melt_dose))
+		O.visible_message(SPAN_DANGER("\The [O] dissolves!"))
+		O.handle_melting()
 		holder?.remove_reagent(type, solvent_melt_dose)
-
-	if(dirtiness <= DIRTINESS_STERILE)
-		O.germ_level -= min(REAGENT_VOLUME(holder, type)*20, O.germ_level)
-		O.was_bloodied = null
-
-	if(dirtiness <= DIRTINESS_CLEAN)
-		O.clean_blood()
-
-	if(defoliant && istype(O, /obj/effect/vine))
+	else if(defoliant && istype(O, /obj/effect/vine))
 		qdel(O)
 
 #define FLAMMABLE_LIQUID_DIVISOR 7

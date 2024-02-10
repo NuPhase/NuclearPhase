@@ -248,8 +248,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 	handle_external_heating(adjust_temp = exposed_temperature)
 
-/atom/proc/melt()
-	return
+/// Handle this atom being destroyed through melting
+/atom/proc/handle_melting(list/meltable_materials)
+	SHOULD_CALL_PARENT(TRUE)
 
 /atom/proc/lava_act()
 	visible_message("<span class='danger'>\The [src] sizzles and melts away, consumed by the lava!</span>")

@@ -77,6 +77,11 @@
 		F.reagents.primary_reagent = fluid_type
 		F.temperature = ntemperature
 
+/turf/get_reagent_space()
+	if(!reagents)
+		create_reagents(FLUID_MAX_DEPTH)
+	return ..()
+
 /turf/proc/get_physical_height()
 	return 0
 

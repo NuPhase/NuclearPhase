@@ -250,3 +250,22 @@
 /decl/interaction_handler/rotate/invoked(atom/target, mob/user, obj/item/prop)
 	var/obj/O = target
 	O.rotate(user)
+
+/obj/handle_melting(list/meltable_materials)
+	. = ..()
+	if(QDELETED(src))
+		return
+	if(reagents?.total_volume)
+		reagents.trans_to(loc, reagents.total_volume)
+	dump_contents()
+	return place_melted_product(meltable_materials)
+
+/obj/proc/place_melted_product(list/meltable_materials)
+	if(length(matter))
+		var/datum/gas_mixture/environment = loc?.return_air()
+		for(var/mat in matter)
+			var/decl/material/M = GET_DECL(mat)
+			M.add_burn_product(environment, MOLES_PER_MATERIAL_UNIT(matter[mat]))
+		matter = null
+	. = new /obj/effect/decal/cleanable/molten_item(src)
+	qdel(src)
