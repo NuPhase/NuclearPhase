@@ -62,7 +62,7 @@
 	)
 	firemodes = list(
 		list(mode_name="semi auto",      burst=1,    fire_delay=null, one_hand_penalty=4,  burst_accuracy=null,            dispersion=null),
-		list(mode_name="full auto",      burst=1,    fire_delay=-2,    burst_delay=-2,     one_hand_penalty=5,             autofire_enabled=1)
+		list(mode_name="full auto",      burst=1,    fire_delay=0.5,    burst_delay=-2,     one_hand_penalty=5,             autofire_enabled=1)
 	)
 	weight = 4.09
 	muzzle_flash_intensity = 5
