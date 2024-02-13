@@ -401,4 +401,4 @@
 
 /decl/material/liquid/opium/morphine/diamorphine/dirty/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	. = ..()
-	H.adjustToxLoss(1)
+	H.adjustToxLoss(removed*5)

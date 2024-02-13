@@ -65,10 +65,10 @@
 /decl/material/liquid/blood/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(M.HasTrait(/decl/trait/metabolically_inert))
 		return
-	if(LAZYACCESS(M.chem_doses, type) > 5)
-		M.adjustToxLoss(removed)
-	if(LAZYACCESS(M.chem_doses, type) > 15)
-		M.adjustToxLoss(removed)
+	if(LAZYACCESS(M.chem_doses, type) > 50)
+		M.adjustToxLoss(removed*0.1)
+	if(LAZYACCESS(M.chem_doses, type) > 150)
+		M.adjustToxLoss(removed*0.1)
 
 /decl/material/liquid/blood/affect_touch(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(ishuman(M))

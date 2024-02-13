@@ -111,4 +111,4 @@
 			if(60 to 100)
 				custom_pain("Your whole body hurts badly.", getToxLoss())
 			if(100 to INFINITY)
-				custom_pain("Your body aches all over, it's driving you mad.", getToxLoss())
+				custom_pain("Your body aches all over, it's driving you mad!", getToxLoss())

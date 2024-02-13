@@ -23,8 +23,7 @@
 		BRUTE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[BRUTE]'>[getBruteLoss()]</a>
 		FIRE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[BURN]'>[getFireLoss()]</a>
 		TOXIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[TOX]'>[getToxLoss()]</a>
-		OXY:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[OXY]'>[getOxyLoss()]</a>
-		CLONE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[CLONE]'>[getCloneLoss()]</a>
+		ORGAN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[TOX]'>[getOrganDamage()]</a>
 		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[BP_BRAIN]'>[getBrainLoss()]</a>
 		</font>
 		"}

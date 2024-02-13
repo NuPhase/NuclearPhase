@@ -9,7 +9,7 @@
 	return E?.name
 
 /mob/living/carbon/human/proc/should_recheck_bad_external_organs()
-	var/damage_this_tick = getToxLoss()
+	var/damage_this_tick = getOrganDamage()
 	for(var/obj/item/organ/external/O in get_external_organs())
 		damage_this_tick += O.burn_dam + O.brute_dam
 
@@ -291,7 +291,7 @@
 
 /mob/living/carbon/human/on_lost_organ(var/obj/item/organ/O)
 	if(!(. = ..()))
-		return 
+		return
 	//Move some blood over to the organ
 	if(!BP_IS_PROSTHETIC(O) && O.species && O.reagents?.total_volume < 5)
 		vessel.trans_to(O, 5 - O.reagents.total_volume, 1, 1)
