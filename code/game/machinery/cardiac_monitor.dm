@@ -192,6 +192,11 @@
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
+/obj/machinery/cardiac_monitor/tgui_static_data(mob/user)
+	if(!attached)
+		return
+	return list("name" = "[attached]")
+
 /obj/machinery/cardiac_monitor/tgui_data(mob/user)
 	if(!attached)
 		return
@@ -200,9 +205,10 @@
 	var/obj/item/organ/internal/lungs/L = attached.get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
 
 	var/list/data = list(
-		"name" = "[attached]",
 		"status" = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE",
-		"pressure" = "[round(attached.syspressure)]/[round(attached.dyspressure)]",
+		"systolic_pressure" = round(attached.syspressure),
+		"diastolic_pressure" = round(attached.dyspressure),
+		"mean_pressure" = round(attached.meanpressure),
 		"tpvr" = round(attached.tpvr),
 		"mcv" = round(attached.mcv)/1000
 	)

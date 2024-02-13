@@ -65,11 +65,12 @@
 		ccp = 60/bpm
 
 	var/perfusion = get_blood_perfusion()
-	tpvr = metabolic_coefficient * 312.50746
+	tpvr = metabolic_coefficient * 312.50746 //base
 	tpvr += syspressure * (0.0008 * syspressure - 0.8833) //this simulates vascular elasticity. More pressure - less TPVR, and side versa
-	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE) //vasoconstriction depends on muscles, muscles need oxygen
-	tpvr *= perfusion
-	tpvr = Clamp(tpvr, TPVR_MIN, TPVR_MAX)
+	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE) //medication effects
+	tpvr -= getToxLoss() * 0.203 //toxicity dilates vessels
+	tpvr *= perfusion //vasoconstriction depends on muscles, muscles need oxygen
+	tpvr = Clamp(tpvr, TPVR_MIN, TPVR_MAX) //static friction and elasticity flatline
 
 	var/bpmd = ccp * 0.109 + 0.159
 	var/coeff = get_blood_volume_hemo() * (bpmd * 3.73134328) * get_cardiac_output()

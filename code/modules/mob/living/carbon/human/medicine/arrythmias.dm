@@ -113,7 +113,7 @@
 	severity = 6
 
 /decl/arrythmia/ventricular_fibrillation/get_pulse_mod()
-	return rand(300, 400)
+	return rand(400, 500)
 
 
 /decl/arrythmia/asystole
