@@ -4299,6 +4299,10 @@
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"eym" = (
+/obj/structure/railing/mapped,
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/brig/reception)
 "eyn" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/water{
 	dir = 8
@@ -4659,6 +4663,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/storage/lockbox/vials,
+/obj/item/chems/glass/beaker/vial,
+/obj/item/chems/glass/beaker/vial,
+/obj/item/chems/glass/beaker/vial,
+/obj/item/chems/glass/beaker/vial,
+/obj/item/chems/glass/beaker/vial,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "eSN" = (
@@ -4792,6 +4802,13 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/habitationdeck/messhall)
+"fcl" = (
+/obj/structure/rack/dark,
+/obj/item/wheelchair_kit,
+/obj/item/wheelchair_kit,
+/obj/item/wheelchair_kit,
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/labs/genetics)
 "fco" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -5670,6 +5687,14 @@
 /obj/effect/floor_decal/corner/black/line,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"fXG" = (
+/obj/structure/table/glass,
+/obj/machinery/smartfridge/secure/medbay/stocked/blood{
+	density = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/genetics)
 "fXI" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped{
@@ -5721,6 +5746,8 @@
 /area/surface)
 "fZL" = (
 /obj/structure/rack/dark,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
 /obj/item/storage/box/syringes,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -8077,12 +8104,6 @@
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/splint,
-/obj/item/stack/medical/wound_filler,
-/obj/item/stack/medical/wound_filler,
-/obj/item/stack/medical/wound_filler,
 /obj/item/sutures,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white/monotile,
@@ -10473,6 +10494,10 @@
 /obj/item/storage/box/rxglasses,
 /obj/item/clothing/suit/electrode_pads,
 /obj/item/clothing/suit/electrode_pads,
+/obj/item/clothing/accessory/stethoscope,
+/obj/item/clothing/accessory/stethoscope,
+/obj/item/clothing/accessory/stethoscope,
+/obj/item/clothing/accessory/stethoscope,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "kNp" = (
@@ -11122,6 +11147,8 @@
 "lte" = (
 /obj/structure/rack/dark,
 /obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "ltn" = (
@@ -11296,7 +11323,10 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "lyW" = (
-/obj/machinery/smartfridge/secure/medbay/stocked,
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 3.03
+	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "lzp" = (
@@ -11319,6 +11349,7 @@
 	},
 /obj/structure/table/woodentable_reinforced/walnut,
 /obj/item/storage/box/glasses,
+/obj/item/storage/box/glasses/wine,
 /turf/simulated/floor/wood/ebony,
 /area/serenity/shelter/habitationdeck/messhall)
 "lAp" = (
@@ -12889,6 +12920,8 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "mVo" = (
 /obj/structure/rack/dark,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "mVE" = (
@@ -13893,6 +13926,7 @@
 /obj/structure/closet/medical_wall/filled{
 	pixel_y = 32
 	},
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "nTm" = (
@@ -14656,8 +14690,12 @@
 /turf/simulated/floor/concrete/road,
 /area/serenity)
 "oxP" = (
-/obj/machinery/smartfridge/secure/medbay/stocked/blood,
-/turf/simulated/floor/tiled/white,
+/obj/structure/table/glass,
+/obj/machinery/smartfridge/secure/medbay/stocked{
+	pixel_y = 32;
+	density = 0
+	},
+/turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "oxS" = (
 /obj/structure/coatrack,
@@ -14884,7 +14922,7 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "oJf" = (
-/turf/simulated/wall/iron,
+/turf/simulated/wall/concrete,
 /area/serenity/shelter/habitationdeck/crew)
 "oJI" = (
 /obj/machinery/emitter/gyrotron/anchored{
@@ -17203,6 +17241,8 @@
 /area/serenity/shelter/labs/particle_physics)
 "qRL" = (
 /obj/structure/rack/dark,
+/obj/item/storage/backpack/dufflebag/med,
+/obj/item/storage/backpack/dufflebag/med,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "qSc" = (
@@ -23569,6 +23609,7 @@
 /obj/machinery/button/access{
 	pixel_y = -20
 	},
+/obj/item/storage/box/syringes,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "wSm" = (
@@ -110658,8 +110699,8 @@ dtu
 dtu
 dtu
 dtu
-xSQ
-xSQ
+dtu
+dtu
 dtu
 dtu
 xEy
@@ -112552,7 +112593,7 @@ gpw
 ncC
 mHc
 jEd
-mHc
+eym
 qkD
 iNb
 lxq
@@ -112650,7 +112691,7 @@ bYU
 bYU
 bYU
 bYU
-mHc
+eym
 mHc
 mHc
 lxq
@@ -113032,11 +113073,11 @@ gjw
 lea
 gjw
 gjw
-xEy
-xEy
-xEy
-xEy
-aIK
+bhQ
+bhQ
+bhQ
+bhQ
+xEO
 gzA
 gzA
 xEy
@@ -113130,11 +113171,11 @@ bhQ
 bhQ
 bhQ
 bhQ
-xEy
-xEy
-xEy
-xEy
-aIK
+bhQ
+bhQ
+bhQ
+bhQ
+xEO
 xEy
 xEy
 xEy
@@ -113228,11 +113269,11 @@ bhQ
 bhQ
 bhQ
 bhQ
-xEy
-xEy
-xEy
-xEy
-aIK
+bhQ
+bhQ
+bhQ
+bhQ
+xEO
 xEy
 xEy
 xEy
@@ -113326,11 +113367,11 @@ hfv
 pDJ
 hfv
 hfv
-xEy
-xEy
-xEy
-xEy
-aIK
+bhQ
+bhQ
+bhQ
+bhQ
+xEO
 xEy
 xEy
 xEy
@@ -113424,11 +113465,11 @@ xEO
 xEO
 xEO
 xEO
-xEy
-xEy
-xEy
-xEy
-aIK
+bhQ
+bhQ
+bhQ
+bhQ
+xEO
 xEy
 xEy
 xEy
@@ -121317,9 +121358,9 @@ jkx
 gJl
 oYX
 xzD
-oxP
-vkd
-sZh
+gtW
+fXG
+gtW
 tCp
 xUi
 lfa
@@ -121416,7 +121457,7 @@ uPF
 xvM
 iff
 lyW
-nVk
+oxP
 oRE
 gtW
 dJx
@@ -122010,7 +122051,7 @@ htg
 htg
 wJd
 gtW
-mVo
+fcl
 gtW
 tUw
 vhv
