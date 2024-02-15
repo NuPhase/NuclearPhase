@@ -48,6 +48,10 @@
 		var/obj/item/I = get_active_hand()
 		if(istype(I))
 			I.on_active_hand()
+		if(held_item_slots[1] == held_item_slot_selected) //left
+			sound_to(src, sound('sound/gui/hand_left.mp3', volume=60))
+		else //right or something else
+			sound_to(src, sound('sound/gui/hand_right.mp3', volume=60))
 
 /mob/living/get_active_hand()
 	var/datum/inventory_slot/inv_slot = LAZYACCESS(held_item_slots, get_active_held_item_slot())

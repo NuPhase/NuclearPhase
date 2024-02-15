@@ -231,6 +231,13 @@
 /obj/screen/intent/on_update_icon()
 	icon_state = "intent_[intent]"
 
+/obj/screen/MouseEntered(location, control, params)
+	if(icon_state == initial(icon_state))
+		return
+	if(!usr.canClick())
+		return 1
+	sound_to(usr, sound('sound/gui/hover.mp3', volume=40))
+
 /obj/screen/Click(location, control, params)
 	if(!usr)	return 1
 	switch(name)
