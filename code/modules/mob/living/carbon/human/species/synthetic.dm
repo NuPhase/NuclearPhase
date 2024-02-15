@@ -519,3 +519,45 @@ We have a very powerful computer system that allows our neural network to fully 
 		var/obj/item/organ/external/ext_organ = GET_EXTERNAL_ORGAN(usr, org_tag)
 		ext_organ.masking = FALSE
 		ext_organ.update_icon()
+
+/mob/living/carbon/human/synthetic/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SynthOS", "Synthetic Operating Software")
+		ui.open()
+
+/mob/living/carbon/human/synthetic/tgui_data(mob/user)
+	var/list/data = list(
+		"externalorganlist" = assemble_external_organ_list(),
+		"internalorganlist" = assemble_internal_organ_list(),
+		"body_temperature" = round(bodytemperature, 0.1),
+		"water_consumption" = 17.4, //fixed for now
+		"water_level" = round(hydration / initial(hydration) * 100),
+		"nutrient_level" = round(nutrition / initial(nutrition) * 100)
+	)
+	return data
+
+/mob/living/carbon/human/synthetic/proc/assemble_external_organ_list()
+	var/organ_list = list()
+	for(var/obj/item/organ/O in get_external_organs())
+		var/damage_percentage = 100
+		if(O.damage)
+			damage_percentage = abs(1 - O.damage / O.max_damage) * 100
+		organ_list += list(list("name" = O.name, "damage_percentage" = round(damage_percentage), "is_critical" = O.vital, "dead" = O.is_broken()))
+	return organ_list
+
+/mob/living/carbon/human/synthetic/proc/assemble_internal_organ_list()
+	var/organ_list = list()
+	for(var/obj/item/organ/O in get_internal_organs())
+		var/damage_percentage = 100
+		if(O.damage)
+			damage_percentage = abs(1 - O.damage / O.max_damage) * 100
+		organ_list += list(list("name" = O.name, "damage_percentage" = round(damage_percentage), "is_critical" = O.vital, "dead" = O.is_broken()))
+	return organ_list
+
+/mob/living/carbon/human/synthetic/verb/open_ui()
+	set name = "Open OS Interface"
+	set desc = "Check your status."
+	set category = "Synthetic"
+
+	tgui_interact(usr)
