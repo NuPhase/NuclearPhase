@@ -8,9 +8,11 @@
 #define OXYGEN_BRAIN_SURVIVE 3
 #define OXYGEN_DELTA_DIVISOR 37 //a divisor of how much oxygen is actually available to an organ.
 
-#define BPM_LOW 40
+#define BPM_2LOW 40
+#define BPM_LOW 50
 #define BPM_NORMAL 60
-#define BPM_HIGH 170
+#define BPM_HIGH 90
+#define BPM_2HIGH 130
 #define BPM_AUDIBLE_HEARTRATE 140
 
 #define TPVR_MAX 470

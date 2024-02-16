@@ -171,7 +171,7 @@ export const SynthOSContent = (props, context) => {
                     <Box
                       mb = {2}
                       bold = {Organ.is_critical}>
-                      {Organ.name} - {Organ.dead ? "Unresponsive": "Operational"} [{Organ.damage_percentage}%]
+                      {Organ.name} - {Organ.dead == true ? "Unresponsive": "Operational"} [{Organ.damage_percentage}%]
                     </Box>
                   ))}
                 </Section>
@@ -182,7 +182,7 @@ export const SynthOSContent = (props, context) => {
                     <Box
                       mb = {2}
                       bold = {Organ.is_critical}>
-                      {Organ.name} - {Organ.dead ? "Unresponsive": "Operational"} [{Organ.damage_percentage}%]
+                      {Organ.name} - {Organ.dead == true ? "Unresponsive": "Operational"} [{Organ.damage_percentage}%]
                     </Box>
                   ))}
                 </Section>
