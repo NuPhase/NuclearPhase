@@ -148,6 +148,9 @@
 		if(alarmed && density && lockdown && !allowed(user))
 			to_chat(user, "<span class='warning'>Access denied. Please wait for authorities to arrive, or for the alert to clear.</span>")
 			return
+		if(get_pressure_differential() > 300)
+			to_chat(user, SPAN_WARNING("The pressure differential is too high for the door to safely open. You can relieve the pressure manually."))
+			return
 		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\
 		"\The [src] [density ? "open" : "close"]s.",\
 		"You hear a beep, and an airlock opening.")
@@ -187,6 +190,19 @@
 			return "EAST"
 		if(4)
 			return "WEST"
+
+/obj/machinery/door/firedoor/proc/get_pressure_differential()
+	var/highest_pressure = ONE_ATMOSPHERE
+	var/lowest_pressure = ONE_ATMOSPHERE
+	for(var/index = 1; index <= tile_info.len; index++)
+		if(tile_info[index] == null)
+			continue
+		var/current_pressure = tile_info[index][2]
+		if(current_pressure > highest_pressure)
+			highest_pressure = current_pressure
+		else if(current_pressure < lowest_pressure)
+			lowest_pressure = current_pressure
+	return abs(highest_pressure - lowest_pressure)
 
 /obj/machinery/door/firedoor/tgui_data(mob/user)
 	var/direction = "NONE"
