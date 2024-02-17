@@ -874,7 +874,7 @@
 		// Please be very careful when calling custom_pain() from within code that relies on pain/trauma values. There's the
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nohalloss = TRUE in these cases!
-		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 10, nohalloss = TRUE)
+		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 150, nohalloss = TRUE)
 
 	var/obj/item/organ/internal/heart/H = get_organ(BP_HEART)
 	if(shock_stage >= 30)
@@ -890,7 +890,7 @@
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
-			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", 250, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 3)
 		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 20
@@ -898,7 +898,7 @@
 
 	if(shock_stage >= 80)
 		if (prob(5))
-			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", 450, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 5)
 		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 20
@@ -906,7 +906,7 @@
 
 	if(shock_stage >= 120)
 		if(!HAS_STATUS(src, STAT_PARA) && prob(2))
-			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", 750, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_PARA, 5)
 		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 30

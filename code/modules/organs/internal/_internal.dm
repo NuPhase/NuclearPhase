@@ -124,7 +124,7 @@
 					degree = " a lot"
 				if(damage < 5)
 					degree = " a bit"
-				owner.custom_pain("Something inside your [parent.name] hurts[degree].", amount, affecting = parent)
+				owner.custom_pain("Something inside your [parent.name] hurts[degree].", amount * 20, affecting = parent)
 
 /obj/item/organ/internal/handle_germ_effects()
 	. = ..()

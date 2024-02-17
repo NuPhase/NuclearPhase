@@ -35,7 +35,7 @@
 	if (affected.stage == 0)
 		user.visible_message("\The [user] starts applying \the [tool] to [bone]." , \
 		"You start applying \the [tool] to [bone].")
-	target.custom_pain("Something in your [affected.name] is causing you a lot of pain!",50, affecting = affected)
+	target.custom_pain("Something in your [affected.name] is causing you a lot of pain!",500, affecting = affected)
 	..()
 
 /decl/surgery_step/bone/glue/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -79,7 +79,7 @@
 	else
 		user.visible_message("[user] is beginning to set [bone] in place with \the [tool]." , \
 			"You are beginning to set [bone] in place with \the [tool].")
-	target.custom_pain("The pain in your [affected.name] is going to make you pass out!",50, affecting = affected)
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!",500, affecting = affected)
 	..()
 
 /decl/surgery_step/bone/set_bone/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

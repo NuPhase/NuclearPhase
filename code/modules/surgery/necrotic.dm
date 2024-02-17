@@ -62,7 +62,7 @@
 		user.visible_message(
 			"\The [user] slowly starts removing necrotic tissue from \the [target]'s [target_organ] with \the [tool].", \
 			"You slowly start removing necrotic tissue from \the [target]'s [target_organ] with \the [tool].")
-		target.custom_pain("You feel sporadic spikes of pain from points around your [affected.name]!",20, affecting = affected)
+		target.custom_pain("You feel sporadic spikes of pain from points around your [affected.name]!",200, affecting = affected)
 	..()
 
 /decl/surgery_step/necrotic/tissue/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

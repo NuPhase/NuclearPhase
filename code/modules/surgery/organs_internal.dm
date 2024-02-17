@@ -114,7 +114,7 @@
 /decl/surgery_step/internal/detatch_organ/begin_step(mob/user, mob/living/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to separate [target]'s [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)] with \the [tool].", \
 	"You start to separate [target]'s [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)] with \the [tool]." )
-	target.custom_pain("Someone's ripping out your [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)]!",100)
+	target.custom_pain("Someone's ripping out your [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)]!",450)
 	..()
 
 /decl/surgery_step/internal/detatch_organ/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -179,7 +179,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("\The [user] starts removing [target]'s [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)] with \the [tool].", \
 	"You start removing \the [target]'s [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)] with \the [tool].")
-	target.custom_pain("The pain in your [affected.name] is living hell!",100,affecting = affected)
+	target.custom_pain("The pain in your [affected.name] is living hell!",450,affecting = affected)
 	..()
 
 /decl/surgery_step/internal/remove_organ/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -262,7 +262,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts [robotic_surgery ? "reinstalling" : "transplanting"] \the [tool] into [target]'s [affected.name].", \
 	"You start [robotic_surgery ? "reinstalling" : "transplanting"] \the [tool] into [target]'s [affected.name].")
-	target.custom_pain("Someone's rooting around in your [affected.name]!",100,affecting = affected)
+	target.custom_pain("Someone's rooting around in your [affected.name]!",300,affecting = affected)
 	..()
 
 /decl/surgery_step/internal/replace_organ/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -360,7 +360,7 @@
 /decl/surgery_step/internal/attach_organ/begin_step(mob/user, mob/living/target, target_zone, obj/item/tool)
 	user.visible_message("[user] begins reattaching [target]'s [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)] with \the [tool].", \
 	"You start reattaching [target]'s [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)] with \the [tool].")
-	target.custom_pain("Someone's digging needles into your [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)]!",100)
+	target.custom_pain("Someone's digging needles into your [LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone)]!",350)
 	..()
 
 /decl/surgery_step/internal/attach_organ/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -421,7 +421,7 @@
 /decl/surgery_step/internal/pneumothorax/begin_step(mob/user, mob/living/target, target_zone, obj/item/tool)
 	user.visible_message("[user] begins reattaching [target]'s inner chest wall to the lungs with \the [tool].", \
 	"You start reattaching [target]'s inner chest wall to the lungs with \the [tool].")
-	target.custom_pain("Someone's digging needles into your lungs!",100)
+	target.custom_pain("Someone's digging needles into your lungs!",450)
 	..()
 
 /decl/surgery_step/internal/pneumothorax/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

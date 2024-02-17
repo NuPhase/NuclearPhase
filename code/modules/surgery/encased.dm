@@ -31,7 +31,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] begins to cut through [target]'s [affected.encased] with \the [tool].", \
 	"You begin to cut through [target]'s [affected.encased] with \the [tool].")
-	target.custom_pain("Something hurts horribly in your [affected.name]!",60, affecting = affected)
+	target.custom_pain("Something hurts horribly in your [affected.name]!",600, affecting = affected)
 	playsound(target.loc, 'sound/surgery/saw.ogg', 100, 1, 1)
 	..()
 

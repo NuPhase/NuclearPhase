@@ -30,7 +30,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts reattaching the damaged [affected.tendon_name] in [target]'s [affected.name] with \the [tool]." , \
 	"You start reattaching the damaged [affected.tendon_name] in [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("The pain in your [affected.name] is unbearable!",100,affecting = affected)
+	target.custom_pain("The pain in your [affected.name] is unbearable!",250,affecting = affected)
 	..()
 
 /decl/surgery_step/fix_tendon/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -74,7 +74,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts patching the damaged [affected.artery_name] in [target]'s [affected.name] with \the [tool]." , \
 	"You start patching the damaged [affected.artery_name] in [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("The pain in your [affected.name] is unbearable!",100,affecting = affected)
+	target.custom_pain("The pain in your [affected.name] is unbearable!",250,affecting = affected)
 	..()
 
 /decl/surgery_step/fix_vein/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -181,7 +181,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts pouring [tool]'s contents on \the [target]'s [affected.name]." , \
 	"You start pouring [tool]'s contents on \the [target]'s [affected.name].")
-	target.custom_pain("Your [affected.name] is on fire!",50,affecting = affected)
+	target.custom_pain("Your [affected.name] is on fire!",250,affecting = affected)
 	..()
 
 /decl/surgery_step/sterilize/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

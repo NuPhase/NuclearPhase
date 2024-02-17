@@ -22,7 +22,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] is beginning to close a wound on [target]'s [affected.name] with \the [tool]." , \
 		"You are beginning to close a wound on [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("Your [affected.name] is being stabbed!",1)
+	target.custom_pain("Your [affected.name] is being stabbed!",150)
 	..()
 
 /decl/surgery_step/suture_wounds/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

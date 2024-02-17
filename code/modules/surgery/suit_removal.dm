@@ -31,7 +31,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts cutting through the outer material of [target]'s [msuit] with \the [tool]." , \
 	"You start cutting through the outer material of [target]'s [msuit] with \the [tool].")
-	target.custom_pain("Something is burning its way through your flesh!", 120, affecting = affected)
+	target.custom_pain("Something is burning its way through your flesh!", 250, affecting = affected)
 	affected.take_external_damage(0, 15, used_weapon = tool)
 	..()
 

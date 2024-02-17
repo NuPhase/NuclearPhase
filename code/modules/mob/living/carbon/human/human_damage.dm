@@ -173,6 +173,7 @@
 	if((species.species_flags & SPECIES_FLAG_NO_POISON) || isSynthetic())
 		return 0
 	blood_toxin_content += amount
+	blood_toxin_content = max(0, blood_toxin_content)
 
 /mob/living/carbon/human/getOrganDamage()
 	if((species.species_flags & SPECIES_FLAG_NO_POISON) || isSynthetic())

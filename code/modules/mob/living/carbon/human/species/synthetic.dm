@@ -209,7 +209,7 @@ We have a very powerful computer system that allows our neural network to fully 
 		// Please be very careful when calling custom_pain() from within code that relies on pain/trauma values. There's the
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nohalloss = TRUE in these cases!
-		custom_pain("[pick("Pain imitation active")]!", 10, nohalloss = TRUE)
+		custom_pain("[pick("Pain imitation active")]!", 150, nohalloss = TRUE)
 
 	if(a_intent == I_HURT)
 		return
@@ -224,17 +224,17 @@ We have a very powerful computer system that allows our neural network to fully 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
-			custom_pain("[pick("Your pain imitation levels are high")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("Your pain imitation levels are high")]!", 250, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 1)
 
 	if(shock_stage >= 80)
 		if (prob(5))
-			custom_pain("[pick("Your sensors are signaling high levels of painful activity")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("Your sensors are signaling high levels of painful activity")]!", 450, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 1)
 
 	if(shock_stage >= 120)
 		if(!HAS_STATUS(src, STAT_PARA) && prob(2))
-			custom_pain("[pick("Extreme pain mimicing levels reached")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("Extreme pain mimicing levels reached")]!", 750, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 2)
 
 	if(shock_stage == 150)
@@ -260,7 +260,7 @@ We have a very powerful computer system that allows our neural network to fully 
 			SPAN_DANGER("Your [organ.name] sends warning messages as you bump [O] inside."), \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."),       \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."))
-		custom_pain(msg,40,affecting = organ)
+		custom_pain(msg,450,affecting = organ)
 	organ.take_external_damage(rand(1,3) + O.w_class, DAM_EDGE, 0)
 
 /mob/living/carbon/human/synthetic/help_shake_act(mob/living/carbon/M)

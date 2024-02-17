@@ -60,23 +60,23 @@
 		if(2)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 2
-			M.custom_pain("Something is not right with this liquid...", 10)
+			M.custom_pain("Something is not right with this liquid...", 10 * removed)
 		if(3)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 2
 			M.add_chemical_effect(CE_TOXIN, removed * 0.5)
-			M.custom_pain("Drinking this is extremely unpleasant...", 10)
+			M.custom_pain("Drinking this is extremely unpleasant...", 10 * removed)
 		if(4)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 10
 			M.add_chemical_effect(CE_TOXIN, removed)
-			M.custom_pain("This liquid tastes disgusting!", 15)
+			M.custom_pain("This liquid tastes disgusting!", 15 * removed)
 		if(5)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 10
 			M.add_chemical_effect(CE_TOXIN, removed*2)
 			M.add_chemical_effect(CE_ALCOHOL, removed*5)
-			M.custom_pain("You feel the walls of your esophagus eroding and burning!", 35)
+			M.custom_pain("You feel the walls of your esophagus eroding and burning!", 35 * removed)
 
 	M.adjust_hydration(removed * 10)
 	affect_blood(M, removed, holder)

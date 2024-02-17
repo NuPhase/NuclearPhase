@@ -157,7 +157,7 @@
 
 	if(status & ORGAN_BROKEN)
 		to_chat(user, "<span class='warning'>The [encased ? encased : "bone in the [name]"] moves slightly when you poke it!</span>")
-		owner.custom_pain("Your [name] hurts where it's poked.",40, affecting = src)
+		owner.custom_pain("Your [name] hurts where it's poked.",300, affecting = src)
 	else
 		to_chat(user, "<span class='notice'>The [encased ? encased : "bones in the [name]"] seem to be fine.</span>")
 

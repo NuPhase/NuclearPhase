@@ -14,7 +14,7 @@
 
 /decl/material/liquid/propofol/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/volume = REAGENT_VOLUME(holder, type)
-	H.custom_pain("You feel your veins burning!", 30)
+	H.custom_pain("You feel your veins burning!", 450)
 	H.add_chemical_effect(CE_PAINKILLER, 400)
 	H.add_chemical_effect(CE_PRESSURE, (volume * -10))
 	ADJ_STATUS(H, STAT_ASLEEP, volume * 1.1)

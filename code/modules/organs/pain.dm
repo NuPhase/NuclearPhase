@@ -33,11 +33,11 @@
 	// Anti message spam checks
 	if(force || (message != last_pain_message) || (world.time >= next_pain_time))
 		last_pain_message = message
-		if(power >= 150)
+		if(power >= 700)
 			to_chat(src, "<span class='danger'><font size=3>[message]</font></span>")
-		else if(power >= 100)
+		else if(power >= 400)
 			to_chat(src, "<span class='danger'><font size=2>[message]</font></span>")
-		else if(power >= 50)
+		else if(power >= 200)
 			to_chat(src, "<span class='danger'>[message]</span>")
 		else
 			to_chat(src, "<span class='warning'>[message]</span>")
@@ -99,16 +99,15 @@
 					message = "You feel a sharp pain in your [parent.name]"
 				src.custom_pain(message, pain, affecting = parent)
 
-
 	if(prob(1))
 		switch(getToxLoss())
-			if(5 to 17)
+			if(5 to 100)
 				custom_pain("Your body stings slightly.", getToxLoss())
-			if(17 to 35)
+			if(100 to 150)
 				custom_pain("Your body stings.", getToxLoss())
-			if(35 to 60)
+			if(150 to 250)
 				custom_pain("Your body stings strongly.", getToxLoss())
-			if(60 to 100)
+			if(250 to 400)
 				custom_pain("Your whole body hurts badly.", getToxLoss())
-			if(100 to INFINITY)
+			if(400 to INFINITY)
 				custom_pain("Your body aches all over, it's driving you mad!", getToxLoss())

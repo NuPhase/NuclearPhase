@@ -631,7 +631,7 @@
 			SPAN_DANGER("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name] painfully."),       \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name] painfully."))
-		custom_pain(msg,40,affecting = organ)
+		custom_pain(msg,250,affecting = organ)
 	organ.take_external_damage(rand(1,3) + O.w_class, DAM_EDGE, 0)
 
 /mob/living/carbon/human/proc/set_bodytype(var/decl/bodytype/new_bodytype, var/rebuild_body = FALSE)

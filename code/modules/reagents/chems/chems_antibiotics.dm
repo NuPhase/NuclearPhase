@@ -25,7 +25,7 @@
 /decl/material/liquid/antibiotics/affect_overdose(mob/living/carbon/human/H, datum/reagents/holder)
 	H.immunity = 0 //crash that
 	var/volume = REAGENT_VOLUME(holder, type)
-	H.custom_pain("You feel your insides burning!", volume * 3)
+	H.custom_pain("You feel your insides burning!", volume * 30)
 
 /decl/material/liquid/antibiotics/penicillin
 	name = "penicillin"

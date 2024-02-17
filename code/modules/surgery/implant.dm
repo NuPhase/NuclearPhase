@@ -38,7 +38,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts making some space inside [target]'s [affected.cavity_name] cavity with \the [tool].", \
 	"You start making some space inside [target]'s [affected.cavity_name] cavity with \the [tool]." )
-	target.custom_pain("The pain in your chest is living hell!",1,affecting = affected)
+	target.custom_pain("The pain in your chest is living hell!",750,affecting = affected)
 	affected.cavity = TRUE
 	..()
 
@@ -69,7 +69,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts mending [target]'s [affected.cavity_name] cavity wall with \the [tool].", \
 	"You start mending [target]'s [affected.cavity_name] cavity wall with \the [tool]." )
-	target.custom_pain("The pain in your chest is living hell!",1,affecting = affected)
+	target.custom_pain("The pain in your chest is living hell!",450,affecting = affected)
 	..()
 
 /decl/surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -122,7 +122,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts putting \the [tool] inside [target]'s [affected.cavity_name] cavity.", \
 	"You start putting \the [tool] inside [target]'s [affected.cavity_name] cavity." )
-	target.custom_pain("The pain in your chest is living hell!",1,affecting = affected)
+	target.custom_pain("The pain in your chest is living hell!",450,affecting = affected)
 	playsound(target.loc, 'sound/effects/squelch1.ogg', 25, 1)
 	..()
 
@@ -134,7 +134,7 @@
 	"<span class='notice'>You put \the [tool] inside [target]'s [affected.cavity_name] cavity.</span>" )
 	if (tool.w_class > affected.cavity_max_w_class/2 && prob(50) && !BP_IS_PROSTHETIC(affected) && affected.sever_artery())
 		to_chat(user, "<span class='warning'>You tear some blood vessels trying to fit such a big object in this cavity.</span>")
-		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1,affecting = affected)
+		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 450,affecting = affected)
 	LAZYDISTINCTADD(affected.implants, tool)
 	affected.cavity = 0
 
@@ -163,7 +163,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts poking around inside [target]'s [affected.name] with \the [tool].", \
 	"You start poking around inside [target]'s [affected.name] with \the [tool]." )
-	target.custom_pain("The pain in your [affected.name] is living hell!",1,affecting = affected)
+	target.custom_pain("The pain in your [affected.name] is living hell!",350,affecting = affected)
 	..()
 
 /decl/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
