@@ -88,13 +88,13 @@
 			turbine1.expansion_ratio += 0.01
 		else if(turbine1.exhaust_temperature < IDEAL_EXHAUST_TEMP)
 			turbine1.expansion_ratio -= 0.01
-		turbine1.expansion_ratio = Clamp(turbine1.expansion_ratio * 0.01, 0.35, 0.87)
+		turbine1.expansion_ratio = Clamp(turbine1.expansion_ratio, 0.35, 0.87)
 	if(turbine2.feeder_valve_openage > 0)
 		if(turbine2.exhaust_temperature > IDEAL_EXHAUST_TEMP)
 			turbine2.expansion_ratio += 0.01
 		else if(turbine2.exhaust_temperature < IDEAL_EXHAUST_TEMP)
 			turbine2.expansion_ratio -= 0.01
-		turbine2.expansion_ratio = Clamp(turbine2.expansion_ratio * 0.01, 0.35, 0.87)
+		turbine2.expansion_ratio = Clamp(turbine2.expansion_ratio, 0.35, 0.87)
 
 /datum/reactor_control_system/proc/control_cooling()
 	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
