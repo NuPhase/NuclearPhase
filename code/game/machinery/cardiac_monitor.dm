@@ -14,7 +14,7 @@
 
 /datum/composite_sound/monitor_heavy_alarm
 	mid_sounds = list('sound/machines/heart_monitor/heavy_alarm.mp3'=1)
-	mid_length = 30
+	mid_length = 22
 	volume = 60
 	sfalloff = 1
 	distance = -1

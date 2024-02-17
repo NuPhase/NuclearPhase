@@ -32,6 +32,7 @@
 		return TRUE
 	return FALSE
 
+#define IDEAL_EXHAUST_TEMP 405
 /datum/reactor_control_system/proc/control_turbine_rpm()
 	var/obj/machinery/reactor_button/rswitch/current_switch
 	if(closed_governor_cycle) //open cycle achieves RPM, closed cycle adapts to generator load
@@ -80,6 +81,20 @@
 			turbine2.feeder_valve_openage = Interpolate(turbine2.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
 			current_switch = reactor_buttons["turbine2"]
 			current_switch.update_icon(turbine2.feeder_valve_openage)
+
+	//control the expansion so we get the ideal temperature at the exhaust
+	if(turbine1.feeder_valve_openage > 0)
+		if(turbine1.exhaust_temperature > IDEAL_EXHAUST_TEMP)
+			turbine1.expansion_ratio += 0.01
+		else if(turbine1.exhaust_temperature < IDEAL_EXHAUST_TEMP)
+			turbine1.expansion_ratio -= 0.01
+		turbine1.expansion_ratio = Clamp(turbine1.expansion_ratio * 0.01, 0.35, 0.87)
+	if(turbine2.feeder_valve_openage > 0)
+		if(turbine2.exhaust_temperature > IDEAL_EXHAUST_TEMP)
+			turbine2.expansion_ratio += 0.01
+		else if(turbine2.exhaust_temperature < IDEAL_EXHAUST_TEMP)
+			turbine2.expansion_ratio -= 0.01
+		turbine2.expansion_ratio = Clamp(turbine2.expansion_ratio * 0.01, 0.35, 0.87)
 
 /datum/reactor_control_system/proc/control_cooling()
 	var/obj/machinery/atmospherics/binary/passive_gate/current_gate

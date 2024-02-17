@@ -132,8 +132,7 @@
 
 	//calculate flow mass
 	//Steam enters at 1.5m diameter, expands to 5.5m. 5.5m diameter > area = 95.03
-	var/nozzle_exit_area = 95.03 * feeder_valve_openage
-	total_mass_flow = nozzle_exit_area*expansion_ratio*0.598*sqrt(steam_velocity * 4.2 * (1-(air2.return_pressure()/air1.return_pressure())**0.23))
+	total_mass_flow = feeder_valve_openage*95.03*expansion_ratio*0.598*sqrt(steam_velocity * 4.2 * (1-(air2.return_pressure()/air1.return_pressure())**0.23))
 	total_mass_flow = min(total_mass_flow, air1.get_mass())
 
 	//create the internal gas mixture and transfer inlet steam to it

@@ -88,7 +88,7 @@
 	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
 	var/expansion = tgui_input_number(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation", 0, 100, 0)
 	if(isnum(expansion))
-		tst.volume_ratio = 1 - Clamp(expansion * 0.01, 0.65, 0.87)
+		tst.expansion_ratio = Clamp(expansion * 0.01, 0.65, 0.87)
 
 /obj/machinery/reactor_button/rswitch/turbine_grates
 	name = "TURB V-GRATES"
