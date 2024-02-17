@@ -165,8 +165,9 @@
 			add_overlay(emissive_overlay(icon, "mon-c"))
 	else
 		add_overlay(emissive_overlay(icon, "mon-ox"))
+		oxygen_alarm = 0
 
-	if(L.breath_rate > 25 || L.breath_rate < 15)
+	if(L.breath_rate > 25 || L.breath_rate < 12)
 		breath_alarm = 1
 		if(L.breath_rate > 40 || L.breath_rate < 5)
 			breath_alarm = 2
