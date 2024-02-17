@@ -72,7 +72,7 @@
 
 /decl/arrythmia/ventricular_tachycardia
 	name = "Ventricular Tachycardia"
-	cardiac_output_mod = 0.75
+	cardiac_output_mod = 0.55
 	required_instability = 40
 	degrades_into = /decl/arrythmia/paroxysmal_tachycardia
 	evolves_into = /decl/arrythmia/ventricular_flaunt

@@ -152,7 +152,7 @@
 /obj/structure/bed/roller/hydraulic //cannot be rolled, but is easy to pull around
 	name = "hydraulic stretcher"
 	desc = "This stretcher is outfitted with hydraulics and braking systems, making it easy to move it. You can't fold it."
-	pull_coefficient = 0.2
+	pull_coefficient = 0.05
 	item_form_type = null
 	weight = 15
 
