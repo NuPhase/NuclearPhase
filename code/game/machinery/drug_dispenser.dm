@@ -13,6 +13,11 @@
 	atmos_canpass = CANPASS_NEVER
 	required_interaction_dexterity = DEXTERITY_SIMPLE_MACHINES
 	var/list/reagent_volumes = list() // /decl/material = amount
+	var/list/all_categories = list(
+		DRUG_CATEGORY_ANALGESICS,
+		DRUG_CATEGORY_ANTIBIOTICS,
+		DRUG_CATEGORY_MISC,
+	)
 
 	var/vials_in_storage = 25
 	var/syringes_in_storage = 10
@@ -21,7 +26,7 @@
 /obj/machinery/drug_dispenser/physical_attack_hand(user)
 	tgui_interact(user)
 
-/obj/machinery/lung_ventilator/tgui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/drug_dispenser/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DrugDispenser", "Drug Dispenser")
@@ -29,6 +34,7 @@
 
 /obj/machinery/drug_dispenser/tgui_data(mob/user)
 	return list("reagent_list" = assemble_reagent_list(),
+				"categories" = all_categories,
 				"vial_available" = vials_in_storage > 0,
 				"syringe_available" = syringes_in_storage > 0,
 				"iv_pack_available" = iv_packs_in_storage > 0)
@@ -37,5 +43,5 @@
 	var/list/reagent_list = list()
 	for(var/mat_type in reagent_volumes)
 		var/decl/material/mat = GET_DECL(mat_type)
-		reagent_list += list(list("name" = mat.name, "category" = mat.drug_category, "amount" = reagent_volumes[mat_type]))
+		reagent_list += list(list("name" = mat.name, "uid" = mat.uid, "category" = mat.drug_category, "amount" = reagent_volumes[mat_type]))
 	return reagent_list
