@@ -76,8 +76,8 @@ var/list/marker_beacon_colors = list(
 	name = "marker beacon"
 	desc = "A prismatic path illumination device. It is anchored in place and glowing steadily."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "marker"
-//	layer = BELOW_OPEN_DOOR_LAYER
+	icon_state = "markerrandom"
+	layer = BELOW_DOOR_LAYER
 	anchored = TRUE
 	light_range = 2
 	light_power = 3
@@ -93,7 +93,7 @@ var/list/marker_beacon_colors = list(
 	..()
 	to_chat(user, "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>")
 
-/obj/structure/marker_beacon/update_icon()
+/obj/structure/marker_beacon/on_update_icon()
 	while(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = pick(marker_beacon_colors)
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
@@ -134,3 +134,7 @@ var/list/marker_beacon_colors = list(
 	if(input_color)
 		picked_color = input_color
 		update_icon()
+
+/obj/structure/marker_beacon/purple
+	icon_state = "markerpurple-on"
+	picked_color = "purple"
