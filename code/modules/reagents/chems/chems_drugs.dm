@@ -240,6 +240,7 @@
 	var/addictiveness = 10 //addiction gained per unit consumed
 	var/painkill_magnitude = 130000
 	var/effective_dose = 1
+	drug_category = DRUG_CATEGORY_ANALGESICS
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -307,7 +308,7 @@
 	name = "fentanyl"
 	lore_text = "An extremely strong painkiller."
 	addictiveness = 3
-	painkill_magnitude = 740000
+	painkill_magnitude = 1740000
 	overdose = 3 //can't drink fentanyl in ohio
 	uid = "chem_fentanyl"
 

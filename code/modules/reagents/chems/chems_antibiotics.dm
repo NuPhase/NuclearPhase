@@ -9,6 +9,7 @@
 	value = 1.5
 	uid = "chem_antibiotics"
 	var/strength = 0.3 //per unit
+	drug_category = DRUG_CATEGORY_ANTIBIOTICS
 
 /decl/material/liquid/antibiotics/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/mob/living/carbon/human/H = M

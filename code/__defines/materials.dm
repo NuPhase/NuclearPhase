@@ -78,3 +78,7 @@
 #define MAT_RARITY_EXOTIC   5
 #define MAT_RARITY_UNCOMMON 10
 #define MAT_RARITY_MUNDANE  20
+
+#define DRUG_CATEGORY_MISC "Misc"
+#define DRUG_CATEGORY_ANTIBIOTICS "Antibiotics"
+#define DRUG_CATEGORY_ANALGESICS "Analgesics"

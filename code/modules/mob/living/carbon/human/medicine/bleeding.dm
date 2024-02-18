@@ -53,8 +53,10 @@
 			if(total_blood_lost > 0)
 				total_blood_lost -= blood_squirt(total_blood_lost, sprayloc)
 				if(total_blood_lost > 0)
+					total_blood_lost = max(0.01, total_blood_lost)
 					drip(total_blood_lost, get_turf(src))
 		else
+			total_blood_lost = max(0.01, total_blood_lost)
 			drip(total_blood_lost)
 	return total_blood_lost
 
@@ -62,4 +64,4 @@
 	var/cur_modifier = 1
 	cur_modifier *= mcv / NORMAL_MCV
 	cur_modifier *= 1 + GET_CHEMICAL_EFFECT(src, CE_BLOOD_THINNING) * 0.5
-	return max(0.01, cur_modifier)
+	return max(0.05, cur_modifier)

@@ -80,6 +80,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/lore_text
 	var/mechanics_text
 	var/antag_text
+	var/drug_category
 	var/default_solid_form = /obj/item/stack/material/sheet
 
 	var/affect_blood_on_ingest = TRUE
