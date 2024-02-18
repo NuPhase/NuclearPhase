@@ -21,9 +21,6 @@
 
 	var/specialization //Defines the additional tracks that it will have. Available at the moment: engineering, medical, expedition
 
-	var/sound_id
-	var/datum/sound_token/sound_token
-
 	var/datum/track/current_track
 	var/list/datum/track/tracks
 
@@ -43,7 +40,6 @@
 	. = ..()
 	tracks = setup_music_tracks(tracks, specialization)
 	queue_icon_update()
-	sound_id = "[/obj/machinery/media/jukebox]_[sequential_id(/obj/machinery/media/jukebox)]"
 
 /obj/machinery/media/jukebox/Destroy()
 	StopPlaying()
@@ -177,21 +173,21 @@
 /obj/machinery/media/jukebox/proc/StopPlaying()
 	playing = 0
 	update_use_power(POWER_USE_IDLE)
-	QDEL_NULL(sound_token)
-
+	var/area/A = get_area(src)
+	A.forced_ambience = null
 
 /obj/machinery/media/jukebox/proc/StartPlaying()
 	StopPlaying()
 	if(!current_track)
 		return
 
-	// Jukeboxes cheat massively and actually don't share id. This is only done because it's music rather than ambient noise.
-	sound_token = play_looping_sound(src, sound_id, current_track.GetTrack(), volume = volume, range = 7, falloff = 3, prefer_mute = TRUE, preference = /datum/client_preference/play_game_music, streaming = TRUE)
+	var/area/A = get_area(src)
+	A.forced_ambience = current_track.GetTrack()
 
 	playing = 1
 	update_use_power(POWER_USE_ACTIVE)
 
 /obj/machinery/media/jukebox/proc/AdjustVolume(var/new_volume)
-	volume = Clamp(new_volume, 0, 50)
-	if(sound_token)
-		sound_token.SetVolume(volume)
+	var/area/A = get_area(src)
+	A.ambience_volume = new_volume
+	volume = new_volume
