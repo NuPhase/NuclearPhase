@@ -499,12 +499,16 @@
 			stomach.ingested.trans_to_obj(splat, min(15, stomach.ingested.total_volume))
 		handle_additional_vomit_reagents(splat)
 		splat.update_icon()
+	adjustToxLoss(-15)
 
 /mob/living/carbon/human/proc/vomit(var/timevomit = 1, var/level = 3, var/deliberate = FALSE)
 
 	set waitfor = 0
 
 	if(!check_has_mouth() || isSynthetic() || !timevomit || !level || stat == DEAD || lastpuke)
+		return
+
+	if(bloodstr.has_reagent(/decl/material/liquid/metoclopramide, 1))
 		return
 
 	if(deliberate)

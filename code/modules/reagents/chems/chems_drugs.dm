@@ -242,6 +242,8 @@
 	var/effective_dose = 1
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
 	SET_STATUS_MAX(H, STAT_DRUGGY, 15)
@@ -253,6 +255,8 @@
 
 /decl/material/liquid/opium/affect_overdose(mob/living/carbon/human/H, datum/reagents/holder)
 	. = ..()
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 4))
+		return
 	H.add_chemical_effect(CE_BREATHLOSS, -5)
 	ADJ_STATUS(H, STAT_DIZZY,  3)
 
@@ -285,6 +289,8 @@
 	ingest_met = 0.1
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	heart.bpm_modifiers[name] = removed * -100
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
@@ -294,6 +300,8 @@
 		H.add_chemical_effect(CE_BREATHLOSS, -1 * boozed)
 
 /decl/material/liquid/opium/tramadol/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/dose = LAZYACCESS(H.chem_doses, type)
 	heart.bpm_modifiers[name] = dose * -0.1
@@ -310,8 +318,11 @@
 	painkill_magnitude = 740000
 	overdose = 3 //can't drink fentanyl in ohio
 	uid = "chem_fentanyl"
+	ingest_met = 0.1
 
 /decl/material/liquid/opium/fentanyl/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	heart.bpm_modifiers[name] = removed * -50000
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
@@ -323,6 +334,8 @@
 		H.add_chemical_effect(CE_BREATHLOSS, -3 * boozed)
 
 /decl/material/liquid/opium/fentanyl/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/dose = LAZYACCESS(H.chem_doses, type)
 	heart.bpm_modifiers[name] = dose * -5
@@ -370,6 +383,8 @@
 	overdose = 18
 
 /decl/material/liquid/opium/morphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	heart.bpm_modifiers[name] = removed * -700
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
