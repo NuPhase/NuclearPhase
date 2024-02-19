@@ -238,3 +238,11 @@
 /obj/item/chems/glass/beaker/vial/dopamine
 	name = "dopamine ampoule"
 	initial_reagents = list(/decl/material/liquid/dopamine = 15)
+
+/obj/item/chems/glass/beaker/vial/metoclopramide
+	name = "metoclopramide ampoule"
+	initial_reagents = list(/decl/material/liquid/metoclopramide = 15)
+
+/obj/item/chems/glass/beaker/vial/naloxone
+	name = "naloxone ampoule"
+	initial_reagents = list(/decl/material/liquid/naloxone = 15)

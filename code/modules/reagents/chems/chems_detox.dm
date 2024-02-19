@@ -84,3 +84,19 @@
 /decl/material/solid/sodium_bicarbonate/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/volume = REAGENT_VOLUME(holder, type)
 	H.bloodstr.remove_reagent(/decl/material/solid/potassium, volume * 0.7)
+
+/decl/material/liquid/metoclopramide
+	name = "metoclopramide"
+	lore_text = "A common antiemetic. Antiemetics prevent people from vomiting."
+	color = "#e2e2e2"
+	uid = "metoclopramide"
+	overdose = 15
+	metabolism = REM*2
+
+/decl/material/liquid/naloxone
+	name = "naloxone"
+	lore_text = "An opioid antidote."
+	color = "#1a6181"
+	uid = "naloxone"
+	overdose = 8
+	metabolism = REM * 0.2
