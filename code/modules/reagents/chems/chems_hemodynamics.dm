@@ -9,6 +9,7 @@
 	overdose = 4
 	value = 1.5
 	uid = "chem_adrenaline"
+	drug_category = DRUG_CATEGORY_RESUSCITATION
 
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -36,6 +37,7 @@
 	overdose = 12
 	value = 1.5
 	uid = "chem_noradrenaline"
+	drug_category = DRUG_CATEGORY_RESUSCITATION
 
 /decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -56,6 +58,7 @@
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_atropine"
+	drug_category = DRUG_CATEGORY_RESUSCITATION
 
 /decl/material/liquid/atropine/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -70,6 +73,7 @@
 	overdose = 8
 	metabolism = REM * 2
 	uid = "chem_dopamine"
+	drug_category = DRUG_CATEGORY_RESUSCITATION
 
 /decl/material/liquid/dopamine/affect_blood(var/mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -85,6 +89,7 @@
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_nitroglycerin"
+	drug_category = DRUG_CATEGORY_RESUSCITATION
 
 /decl/material/liquid/nitroglycerin/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -101,6 +106,7 @@
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_betapace"
+	drug_category = DRUG_CATEGORY_CARDIAC
 
 /decl/material/solid/betapace/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -117,6 +123,7 @@
 	metabolism = 0.05
 	value = 1.5
 	uid = "chem_dronedarone"
+	drug_category = DRUG_CATEGORY_CARDIAC
 
 /decl/material/liquid/dronedarone/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
@@ -131,6 +138,7 @@
 	metabolism = 0.01
 	value = 1.5
 	uid = "chem_heparin"
+	drug_category = DRUG_CATEGORY_MISC
 
 /decl/material/liquid/heparin/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
 	H.add_chemical_effect(CE_BLOOD_THINNING, removed)
@@ -143,6 +151,7 @@
 	metabolism = 0.9
 	value = 1.5
 	uid = "adenosine"
+	drug_category = DRUG_CATEGORY_CARDIAC
 
 /decl/material/liquid/adenosine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	if(removed > 2)

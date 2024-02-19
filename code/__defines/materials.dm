@@ -81,4 +81,7 @@
 
 #define DRUG_CATEGORY_MISC "Misc"
 #define DRUG_CATEGORY_ANTIBIOTICS "Antibiotics"
-#define DRUG_CATEGORY_ANALGESICS "Analgesics"
+#define DRUG_CATEGORY_PAIN_SLEEP "Analgesics&Anesthetics"
+#define DRUG_CATEGORY_RESUSCITATION "Resuscitation"
+#define DRUG_CATEGORY_CARDIAC "Cardiac"
+#define DRUG_CATEGORY_TOX "Toxicology"

@@ -7,6 +7,7 @@
 	overdose = 20
 	value = 1.5
 	uid = "chem_propofol"
+	drug_category = DRUG_CATEGORY_PAIN_SLEEP
 
 /decl/material/liquid/propofol/affect_ingest(mob/living/M, removed, datum/reagents/holder)
 	. = ..()

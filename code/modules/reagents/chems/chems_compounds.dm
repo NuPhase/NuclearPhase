@@ -289,6 +289,7 @@
 	metabolism = REM * 9
 	uid = "chem_saline"
 	blood_power = 1
+	drug_category = DRUG_CATEGORY_MISC
 
 /decl/material/solid/tobacco
 	name = "tobacco"
