@@ -210,7 +210,7 @@
 
 	var/inhaling_gas_moles = breath.gas[breath_type]
 	var/inhaling_ratio = inhaling_gas_moles/breath.total_moles
-	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/safe_pressure_min - breath_rate*0.01), 0.01, 3)
+	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/safe_pressure_min - breath_rate*0.005), 0.01, 3)
 	last_breath_efficiency = inhale_efficiency
 
 	// Not enough to breathe
@@ -262,11 +262,11 @@
 	var/failed_breath = failed_inhale || failed_exhale
 
 	if(!failed_breath || forced)
-		calculate_breath_rate()
 		//oxygen volume = 1641ml per mole
 		owner.add_oxygen(inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency)
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
+	calculate_breath_rate()
 
 	handle_temperature_effects(breath)
 	breath.update_values()
@@ -303,9 +303,10 @@
 		return
 	breath_rate = initial(breath_rate)
 	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
-	breath_rate += min(25, owner.shock_stage * 0.1)
-	var/breath_rate_delta = owner.normal_oxygen_capacity - owner.oxygen_amount
-	breath_rate += breath_rate_delta * 0.14
+	breath_rate += min(18, owner.shock_stage * 0.1)
+	var/breath_rate_deficit = 1 - owner.get_blood_saturation()
+	if(breath_rate_deficit > 0)
+		breath_rate += min(30, (breath_rate_deficit * 100)**1.35)
 	breath_rate = Clamp(breath_rate, 0, 61)
 
 /obj/item/organ/internal/lungs/proc/handle_failed_breath()

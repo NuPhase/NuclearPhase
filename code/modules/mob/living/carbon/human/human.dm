@@ -1381,7 +1381,7 @@
 	var/decl/cultural_info/culture = get_cultural_value(TAG_HOMEWORLD) //Installs CERES neuralink into Sirius inhabitants
 	culture.on_spawn(src)
 	update_oxygen_capacities()
-	oxygen_amount = max_oxygen_capacity
+	oxygen_amount = normal_oxygen_capacity
 	calculate_strength_coefficients()
 
 /mob/proc/calculate_strength_coefficients()

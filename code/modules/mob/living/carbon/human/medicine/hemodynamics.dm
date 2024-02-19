@@ -44,7 +44,7 @@
 
 /mob/living/carbon/human/proc/update_oxygen_capacities()
 	normal_oxygen_capacity = round(vessel.total_volume * 0.2) + get_skill_value(SKILL_FITNESS) * 130 //1 liter of blood can contain 200ml of oxygen + spleen storage
-	max_oxygen_capacity = normal_oxygen_capacity * 1.4
+	max_oxygen_capacity = normal_oxygen_capacity * 1.1
 	oxygen_amount = Clamp(oxygen_amount, 0, max_oxygen_capacity)
 
 #define PULSE_PRESSURE(stroke_volume) stroke_volume * 0.5714

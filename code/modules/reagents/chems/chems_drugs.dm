@@ -258,7 +258,7 @@
 	. = ..()
 	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 4))
 		return
-	H.add_chemical_effect(CE_BREATHLOSS, -5)
+	H.add_chemical_effect(CE_BREATHLOSS, -15)
 	ADJ_STATUS(H, STAT_DIZZY,  3)
 
 /decl/material/liquid/opium/on_leaving_metabolism(atom/parent, metabolism_class)
