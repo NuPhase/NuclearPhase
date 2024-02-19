@@ -240,6 +240,7 @@
 	var/addictiveness = 10 //addiction gained per unit consumed
 	var/painkill_magnitude = 130000
 	var/effective_dose = 1
+	drug_category = DRUG_CATEGORY_PAIN_SLEEP
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
@@ -315,7 +316,7 @@
 	name = "fentanyl"
 	lore_text = "An extremely strong painkiller."
 	addictiveness = 3
-	painkill_magnitude = 740000
+	painkill_magnitude = 1740000
 	overdose = 3 //can't drink fentanyl in ohio
 	uid = "chem_fentanyl"
 	ingest_met = 0.1

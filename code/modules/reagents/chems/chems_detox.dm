@@ -55,6 +55,7 @@
 	uid = "chem_charcoal"
 	metabolism = 0.5
 	overdose = 600
+	drug_category = DRUG_CATEGORY_TOX
 
 /decl/material/liquid/potassium_iodide
 	name = "potassium iodide"
@@ -62,6 +63,7 @@
 	color = "#322235"
 	uid = "chem_potassium_iodide"
 	metabolism = 0.05
+	drug_category = DRUG_CATEGORY_TOX
 
 /decl/material/liquid/pentenate_calcium_trisodium
 	name = "pentenate calcium trisodium"
@@ -69,6 +71,7 @@
 	color = "#cecece"
 	uid = "chem_pentenate_calcium_trisodium"
 	metabolism = 0.1
+	drug_category = DRUG_CATEGORY_TOX
 
 /decl/material/liquid/pentenate_calcium_trisodium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	H.bloodstr.remove_reagent(/decl/material/solid/metal/plutonium, 1)
@@ -80,6 +83,7 @@
 	color = "#e2e2e2"
 	uid = "sodium_bicarbonate"
 	metabolism = 0.1
+	drug_category = DRUG_CATEGORY_TOX
 
 /decl/material/solid/sodium_bicarbonate/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/volume = REAGENT_VOLUME(holder, type)
@@ -92,6 +96,7 @@
 	uid = "metoclopramide"
 	overdose = 15
 	metabolism = REM*2
+	drug_category = DRUG_CATEGORY_TOX
 
 /decl/material/liquid/naloxone
 	name = "naloxone"
@@ -100,3 +105,4 @@
 	uid = "naloxone"
 	overdose = 8
 	metabolism = REM * 0.2
+	drug_category = DRUG_CATEGORY_TOX
