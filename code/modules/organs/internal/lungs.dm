@@ -176,7 +176,7 @@
 	if(!owner)
 		return 1
 
-	if(!breath || (max_damage <= 0) || oxygen_deprivation && !forced)
+	if(!breath || (max_damage <= 0) || oxygen_deprivation > 50 && !forced)
 		breath_fail_ratio = 1
 		handle_failed_breath()
 		breath_rate = 0
@@ -304,6 +304,7 @@
 	breath_rate = initial(breath_rate)
 	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
 	breath_rate += min(18, owner.shock_stage * 0.1)
+	breath_rate -= oxygen_deprivation * 1.65
 	var/breath_rate_deficit = 1 - owner.get_blood_saturation()
 	if(breath_rate_deficit > 0)
 		breath_rate += min(30, (breath_rate_deficit * 100)**1.35)

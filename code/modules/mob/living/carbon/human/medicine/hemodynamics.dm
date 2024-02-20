@@ -81,7 +81,7 @@
 	dyspressure = min(dyspressure, max(10, syspressure)-7)
 	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 
-	mcv = Clamp((bpm * stroke_volume + add_mcv * get_blood_volume_hemo()), 0, 32000)
+	mcv = Clamp(((bpm * stroke_volume) + (add_mcv * get_blood_volume_hemo())), 0, 32000)
 	add_mcv = 0
 
 #undef PULSE_PRESSURE
