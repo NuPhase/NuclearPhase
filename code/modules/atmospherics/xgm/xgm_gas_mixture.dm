@@ -45,7 +45,7 @@
 	update_values()
 
 /datum/gas_mixture/proc/get_gas(gasid)
-	if(!gas.len)
+	if(!length(gas))
 		return 0 //if the list is empty BYOND treats it as a non-associative list, which runtimes
 	return gas[gasid] * group_multiplier
 
@@ -202,7 +202,7 @@
 
 //Returns the ideal gas specific entropy of the whole mix. This is the entropy per mole of /mixed/ gas.
 /datum/gas_mixture/proc/specific_entropy()
-	if (!gas.len || total_moles == 0)
+	if (!length(gas) || total_moles == 0)
 		return SPECIFIC_ENTROPY_VACUUM
 
 	. = 0
@@ -414,13 +414,13 @@
 	. = 0
 
 	//Apply changes
-	if(graphic_add && graphic_add.len)
+	if(graphic_add && length(graphic_add))
 		graphic |= graphic_add
 		. = 1
-	if(graphic_remove && graphic_remove.len)
+	if(graphic_remove && length(graphic_remove))
 		graphic -= graphic_remove
 		. = 1
-	if(graphic.len)
+	if(length(graphic))
 		var/pressure_mod = Clamp(return_pressure() / ONE_ATMOSPHERE, 0, 2)
 		for(var/obj/effect/gas_overlay/O in graphic)
 			var/concentration_mod = Clamp(gas[O.material.type] / total_moles, 0.1, 1)
@@ -492,7 +492,7 @@
 		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
 
 	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
-	if(sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
+	if(length(sharing_lookup_table) >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
 		ratio = sharing_lookup_table[connecting_tiles]
 	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
 

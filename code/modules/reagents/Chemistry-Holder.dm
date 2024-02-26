@@ -188,13 +188,13 @@ var/global/obj/temp_reagents_holder = new
 		var/tmp_data = newreagent.initialize_data(data)
 		if(tmp_data)
 			LAZYSET(reagent_data, reagent_type, tmp_data)
-		if(reagent_volumes.len == 1) // if this is the first reagent, uncache color
+		if(length(reagent_volumes) == 1) // if this is the first reagent, uncache color
 			cached_color = null
 	else
 		reagent_volumes[reagent_type] += amount
 		if(!isnull(data))
 			LAZYSET(reagent_data, reagent_type, newreagent.mix_data(src, data, amount))
-	if(reagent_volumes.len > 1) // otherwise if we have a mix of reagents, uncache as well
+	if(length(reagent_volumes) > 1) // otherwise if we have a mix of reagents, uncache as well
 		cached_color = null
 	UNSETEMPTY(reagent_volumes)
 
@@ -209,7 +209,7 @@ var/global/obj/temp_reagents_holder = new
 	if(!isnum(amount) || amount <= 0 || REAGENT_VOLUME(src, reagent_type) <= 0)
 		return FALSE
 	reagent_volumes[reagent_type] -= amount
-	if(reagent_volumes.len > 1 || reagent_volumes[reagent_type] <= 0)
+	if(length(reagent_volumes) > 1 || reagent_volumes[reagent_type] <= 0)
 		cached_color = null
 
 	if(defer_update)
@@ -384,7 +384,7 @@ var/global/obj/temp_reagents_holder = new
 	for (var/turf/T in things)
 		turfs += T
 
-	if (!turfs.len)
+	if (!length(turfs))
 		return//Nowhere to splash to, somehow
 
 	//Create a temporary holder to hold all the amount that will be spread
@@ -392,7 +392,7 @@ var/global/obj/temp_reagents_holder = new
 	trans_to_holder(R, total_volume * portion, multiplier, copy)
 
 	//The exact amount that will be given to each turf
-	var/turfportion = R.total_volume / turfs.len
+	var/turfportion = R.total_volume / length(turfs)
 	for (var/turf/T in turfs)
 		R.splash_turf(T, amount = turfportion, multiplier = 1, copy = FALSE)
 	qdel(R)
@@ -417,8 +417,8 @@ var/global/obj/temp_reagents_holder = new
 		//Maybe also not hit things under tables.
 		objs += O
 
-	if (objs.len)
-		var/objportion = (amount * 0.2) / objs.len
+	if (length(objs))
+		var/objportion = (amount * 0.2) / length(objs)
 		for (var/o in objs)
 			var/obj/O = o
 
@@ -426,8 +426,8 @@ var/global/obj/temp_reagents_holder = new
 
 	amount = min(amount, total_volume)
 
-	if (mobs.len)
-		var/mobportion = (amount * 0.5) / mobs.len
+	if (length(mobs))
+		var/mobportion = (amount * 0.5) / length(mobs)
 		for (var/m in mobs)
 			var/mob/M = m
 			trans_to(M, mobportion, multiplier, copy)
