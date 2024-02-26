@@ -463,53 +463,40 @@
 	update_values()
 	return 1
 
+#define IN 1
+#define OUT 2
+#define RATIO_PER_SQRT_KPA_PRESSURE_DIFF 0.035
+/datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles=1, share_size = null, one_way = 0)
+	var/our_pressure = return_pressure()
+	var/other_pressure = other.return_pressure()
+	var/pressure_diff = abs(our_pressure - other_pressure)
 
-//Shares gas with another gas_mixture based on the amount of connecting tiles and a fixed lookup table.
-/datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles, share_size = null, one_way = 0)
-	var/static/list/sharing_lookup_table = list(0.30, 0.40, 0.48, 0.54, 0.60, 0.66)
-	//Shares a specific ratio of gas between mixtures using simple weighted averages.
-	var/ratio = sharing_lookup_table[6]
+	var/flow_direction = IN //IN means air flows into this mixture, OUT means air flows into the 'other' mixture
+	var/share_ratio = Clamp(sqrt(pressure_diff) * RATIO_PER_SQRT_KPA_PRESSURE_DIFF * min(4, connecting_tiles), 0.05, 0.7) //The ratio of the mixtures sharing.
 
-	var/size = max(1, group_multiplier)
-	if(isnull(share_size)) share_size = max(1, other.group_multiplier)
+	if(our_pressure > other_pressure)
+		flow_direction = OUT
 
-	var/full_heat_capacity = heat_capacity()
-	var/s_full_heat_capacity = other.heat_capacity()
-
-	var/list/avg_gas = list()
-
-	for(var/g in gas)
-		avg_gas[g] += gas[g] * size
-
-	for(var/g in other.gas)
-		avg_gas[g] += other.gas[g] * share_size
-
-	for(var/g in avg_gas)
-		avg_gas[g] /= (size + share_size)
-
-	var/temp_avg = 0
-	if(full_heat_capacity + s_full_heat_capacity)
-		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
-
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
-	if(length(sharing_lookup_table) >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
-		ratio = sharing_lookup_table[connecting_tiles]
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
-
-	for(var/g in avg_gas)
-		gas[g] = max(0, (gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
-		if(!one_way)
-			other.gas[g] = max(0, (other.gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
-
-	temperature = max(0, (temperature - temp_avg) * (1-ratio) + temp_avg)
-	if(!one_way)
-		other.temperature = max(0, (other.temperature - temp_avg) * (1-ratio) + temp_avg)
-
-	update_values()
-	other.update_values()
+	if(flow_direction == OUT)
+		var/pressure_coeff = R_IDEAL_GAS_EQUATION * temperature / volume //Pressure per mole of gas
+		var/minimum_moles_to_keep = other_pressure / pressure_coeff
+		var/free_moles = total_moles - minimum_moles_to_keep
+		var/moles_to_transfer = free_moles * share_ratio
+		var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
+		other.merge(taken_gas)
+	else
+		var/pressure_coeff = R_IDEAL_GAS_EQUATION * other.temperature / other.volume //Pressure per mole of gas
+		var/minimum_moles_to_keep = our_pressure / pressure_coeff
+		var/free_moles = other.total_moles - minimum_moles_to_keep
+		var/moles_to_transfer = free_moles * share_ratio
+		var/datum/gas_mixture/taken_gas = other.remove(moles_to_transfer)
+		merge(taken_gas)
 
 	return compare(other)
 
+#undef IN
+#undef OUT
+#undef RATIO_PER_SQRT_KPA_PRESSURE_DIFF
 
 //A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.
 /datum/gas_mixture/proc/share_space(datum/gas_mixture/unsim_air)
