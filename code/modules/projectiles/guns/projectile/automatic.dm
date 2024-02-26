@@ -5,13 +5,13 @@
 	icon_state = ICON_STATE_WORLD
 	safety_icon = "safety"
 	w_class = ITEM_SIZE_NORMAL
-	caliber = CALIBER_PISTOL_SMALL
+	caliber = "11x25"
 	origin_tech = @'{"combat":5,"materials":2}'
 	slot_flags = SLOT_LOWER_BODY|SLOT_BACK
-	ammo_type = /obj/item/ammo_casing/pistol/small
+	ammo_type = /obj/item/ammo_casing/caseless/c11x25
 	load_method = MAGAZINE
 	magazine_type = null
-	allowed_magazines = /obj/item/ammo_magazine/smg
+	allowed_magazines = /obj/item/ammo_magazine/smg/c11x25
 	accuracy_power = 7
 	one_hand_penalty = 2
 	bulk = -1
@@ -25,9 +25,9 @@
 	fire_delay = 2
 	firemodes = list(
 		list(mode_name="semi auto",      burst=1, fire_delay=1.5, one_hand_penalty=2, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=1.5, one_hand_penalty=3, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 1.6, 2.4, 2.4)),
-		list(mode_name="short bursts",   burst=5, fire_delay=1.5, one_hand_penalty=3, burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4)),
-		list(mode_name="full auto",      burst=1, fire_delay=0,    burst_delay=1,      one_hand_penalty=4,                 burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4), autofire_enabled=1)
+		list(mode_name="3-round bursts", burst=3, fire_delay=1.5, one_hand_penalty=3,       dispersion=list(0.0, 1.6, 2.4, 2.4)),
+		list(mode_name="short bursts",   burst=5, fire_delay=1.5, one_hand_penalty=3, dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4)),
+		list(mode_name="full auto",      burst=1, fire_delay=0,    burst_delay=0,      one_hand_penalty=4, autofire_enabled=1)
 	)
 	weight = 1.4
 	muzzle_flash_intensity = 4
@@ -40,11 +40,11 @@
 	force = 10
 	caliber = CALIBER_RIFLE
 	origin_tech = @'{"combat":7,"materials":3}'
-	ammo_type = /obj/item/ammo_casing/rifle
+	ammo_type = /obj/item/ammo_casing/c6p8x51/fmj
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/rifle
-	allowed_magazines = /obj/item/ammo_magazine/rifle
+	magazine_type = /obj/item/ammo_magazine/c6p8x51/fmj
+	allowed_magazines = list(/obj/item/ammo_magazine/c6p8x51/ap, /obj/item/ammo_magazine/c6p8x51/fmj, /obj/item/ammo_magazine/c6p8x51/hp)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	accuracy = 2
@@ -62,7 +62,7 @@
 	)
 	firemodes = list(
 		list(mode_name="semi auto",      burst=1,    fire_delay=null, one_hand_penalty=4,  burst_accuracy=null,            dispersion=null),
-		list(mode_name="full auto",      burst=1,    fire_delay=0.5,    burst_delay=-2,     one_hand_penalty=5,             autofire_enabled=1)
+		list(mode_name="full auto",      burst=1,    fire_delay=0.6,    burst_delay=-2,     one_hand_penalty=5,             autofire_enabled=1)
 	)
 	weight = 4.09
 	muzzle_flash_intensity = 5

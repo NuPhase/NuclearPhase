@@ -54,7 +54,7 @@
 
 /datum/fabricator_recipe/arms_ammo/hidden/magazine_arifle
 	name = "ammunition (rifle magazine)"
-	path = /obj/item/ammo_magazine/rifle
+	path = /obj/item/ammo_magazine/c6p8x51/fmj
 
 /datum/fabricator_recipe/arms_ammo/hidden/shotgun
 	name = "ammunition (slug, shotgun)"

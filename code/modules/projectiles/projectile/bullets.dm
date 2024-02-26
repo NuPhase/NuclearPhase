@@ -233,7 +233,7 @@
 
 
 
-/obj/item/projectile/bullet/modern/
+/obj/item/projectile/bullet/modern
 	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
 	damage = 45
 	armor_penetration = 25
@@ -243,13 +243,19 @@
 
 /obj/item/projectile/bullet/modern/c6p8x51
 	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
-	damage = 55
-	armor_penetration = 30
+	damage = 35
+/obj/item/projectile/bullet/modern/c6p8x51/ap
+	armor_penetration = ARMOR_BALLISTIC_AP
+/obj/item/projectile/bullet/modern/c6p8x51/fmj
+	armor_penetration = ARMOR_BALLISTIC_RIFLE
+/obj/item/projectile/bullet/modern/c6p8x51/hp
+	armor_penetration = ARMOR_BALLISTIC_SMALL
+	damage = 50
 
 /obj/item/projectile/bullet/modern/c11x25
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	damage = 20
-	armor_penetration = 10
+	armor_penetration = ARMOR_BALLISTIC_PISTOL
 
 /obj/item/projectile/bullet/modern/c10x77
 	fire_sound = 'sound/weapons/gunshot/sniper.ogg'

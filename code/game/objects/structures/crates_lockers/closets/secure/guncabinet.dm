@@ -58,12 +58,12 @@
 
 /obj/structure/closet/secure_closet/guncabinet/WillContain()
 	return list(
-		/obj/item/gun/projectile/automatic/smg,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/smg,
+		/obj/item/storage/guncase/blue/smg,
+		/obj/item/storage/guncase/blue/smg,
+		/obj/item/storage/guncase/blue/smg,
+		/obj/item/storage/guncase/blue/smg,
+		/obj/item/storage/box/ammo/smg,
+		/obj/item/storage/box/ammo/smg
 	)
 
 /obj/structure/closet/secure_closet/guncabinet/shotgun
@@ -80,8 +80,12 @@
 
 /obj/structure/closet/secure_closet/guncabinet/rifle/WillContain()
 	return list(
-		/obj/item/gun/projectile/automatic/assault_rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifle
+		/obj/item/storage/guncase/blue/assault_rifle,
+		/obj/item/storage/guncase/blue/assault_rifle,
+		/obj/item/storage/guncase/blue/assault_rifle,
+		/obj/item/storage/guncase/blue/assault_rifle,
+		/obj/item/storage/box/ammo/rifle_fmj,
+		/obj/item/storage/box/ammo/rifle_fmj,
+		/obj/item/storage/box/ammo/rifle_ap,
+		/obj/item/storage/box/ammo/rifle_hp
 	)

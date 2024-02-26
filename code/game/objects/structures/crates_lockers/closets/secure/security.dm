@@ -78,7 +78,7 @@
 		/obj/item/storage/belt/holster/security,
 		/obj/item/flash,
 		/obj/item/baton/loaded,
-		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/storage/guncase/service_pistol,
 		/obj/item/clothing/accessory/storage/holster/waist,
 		/obj/item/flashlight/maglight
 	)
@@ -105,7 +105,7 @@
 		/obj/item/storage/belt/holster/security,
 		/obj/item/chems/spray/pepper,
 		/obj/item/baton/loaded,
-		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/storage/guncase/service_pistol,
 		/obj/item/flashlight/maglight
 	)
 
@@ -129,8 +129,7 @@
 		/obj/item/stack/tape_roll/barricade_tape/police,
 		/obj/item/hailer,
 		/obj/item/clothing/accessory/storage/vest/black,
-		/obj/item/gun/projectile/pistol/military_service,
-		/obj/item/ammo_magazine/pistol,
+		/obj/item/storage/guncase/service_pistol,
 		/obj/item/flashlight/maglight
 	)
 
@@ -177,7 +176,7 @@
 		/obj/item/radio/headset/headset_sec,
 		/obj/item/clothing/suit/armor/pcarrier/detective,
 		/obj/item/stack/tape_roll/barricade_tape/police,
-		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/storage/guncase/service_pistol,
 		/obj/item/clothing/accessory/storage/holster/armpit,
 		/obj/item/chems/drinks/flask/detflask,
 		/obj/item/storage/briefcase/crimekit,

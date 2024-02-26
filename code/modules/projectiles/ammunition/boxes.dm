@@ -135,19 +135,19 @@
 	ammo_type = /obj/item/ammo_casing/pistol/small/practice
 
 /obj/item/ammo_magazine/smg/c11x25
-	name = "11x25 SMG magazine"
+	name = "11x25 CL SMG magazine"
 	caliber = "11x25"
-	ammo_type = /obj/item/ammo_casing/c11x25
-	max_ammo = 40
+	ammo_type = /obj/item/ammo_casing/caseless/c11x25
+	max_ammo = 60
 
 /obj/item/ammo_magazine/pistol
-	name = "pistol magazine"
+	name = "11x25 pistol magazine"
 	icon_state = "pistol"
 	origin_tech = @'{"combat":2}'
 	mag_type = MAGAZINE
 	caliber = CALIBER_PISTOL
 	material = /decl/material/solid/metal/steel
-	ammo_type = /obj/item/ammo_casing/pistol
+	ammo_type = /obj/item/ammo_casing/c11x25
 	max_ammo = 15
 	multiple_sprites = 1
 
@@ -240,8 +240,17 @@
 	caliber = "6.8x51"
 	ammo_type = /obj/item/ammo_casing/c6p8x51
 	max_ammo = 25
-	icon_state = "bullup"
+	icon_state = "assault_rifle"
 	mag_type = MAGAZINE
+/obj/item/ammo_magazine/c6p8x51/ap
+	name = "6.8x51 AP magazine"
+	ammo_type = /obj/item/ammo_casing/c6p8x51/ap
+/obj/item/ammo_magazine/c6p8x51/fmj
+	name = "6.8x51 FMJ magazine"
+	ammo_type = /obj/item/ammo_casing/c6p8x51/fmj
+/obj/item/ammo_magazine/c6p8x51/hp
+	name = "6.8x51 HP magazine"
+	ammo_type = /obj/item/ammo_casing/c6p8x51/hp
 
 /obj/item/ammo_magazine/c10x77
 	name = "10x77-HS special sniper magazine"

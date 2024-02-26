@@ -171,6 +171,26 @@
 	name = "box of sniper APDS shells"
 	startswith = list(/obj/item/ammo_casing/shell/apds = 3)
 
+/obj/item/storage/box/ammo/smg
+	name = "box of SMG magazines"
+	startswith = list(/obj/item/ammo_magazine/smg/c11x25 = 8)
+
+/obj/item/storage/box/ammo/pistol
+	name = "box of pistol magazines"
+	startswith = list(/obj/item/ammo_magazine/pistol = 10)
+
+/obj/item/storage/box/ammo/rifle_fmj
+	name = "box of rifle FMJ magazines"
+	startswith = list(/obj/item/ammo_magazine/c6p8x51/fmj = 6)
+
+/obj/item/storage/box/ammo/rifle_hp
+	name = "box of rifle HP magazines"
+	startswith = list(/obj/item/ammo_magazine/c6p8x51/hp = 6)
+
+/obj/item/storage/box/ammo/rifle_ap
+	name = "box of rifle AP magazines"
+	startswith = list(/obj/item/ammo_magazine/c6p8x51/ap = 6)
+
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs"
 	desc = "A box containing 7 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness from repeated use."
