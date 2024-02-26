@@ -136,6 +136,7 @@
 	taste_description = "stale air"
 	metabolism = REM * 5 // As with helium.
 	color = "#111111"
+	gas_overlay_limit = 0.5
 
 /decl/material/gas/carbon_monoxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(!istype(M))
@@ -144,25 +145,25 @@
 	var/warning_prob = 10
 	var/dosage = LAZYACCESS(M.chem_doses, type)
 	var/mob/living/carbon/human/H = M
-	if(dosage >= 3)
+	if(dosage >= 0.05)
 		warning_message = pick("extremely dizzy","short of breath","faint","confused")
 		warning_prob = 15
 		M.adjustOxyLoss(10,20)
 		if(istype(H))
 			H.co2_alert = 1
-	else if(dosage >= 1.5)
+	else if(dosage >= 0.015)
 		warning_message = pick("dizzy","short of breath","faint","momentarily confused")
 		M.adjustOxyLoss(3,5)
 		if(istype(H))
 			H.co2_alert = 1
-	else if(dosage >= 0.25)
+	else if(dosage >= 0.0025)
 		warning_message = pick("a little dizzy","short of breath")
 		warning_prob = 10
 		if(istype(H))
 			H.co2_alert = 0
 	else if(istype(H))
 		H.co2_alert = 0
-	H.add_chemical_effect(CE_BREATHLOSS, dosage * -0.05)
+	H.add_chemical_effect(CE_BREATHLOSS, dosage * -50)
 	if(warning_message && prob(warning_prob))
 		to_chat(M, SPAN_WARNING("You feel [warning_message]."))
 
@@ -282,6 +283,8 @@
 	melting_point = 90
 	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
+	gas_overlay_limit = 2
+	color = "#633a8a"
 	combustion_energy = 890000
 	fire_color = "#0044ff"
 	fire_alpha = 140
