@@ -390,3 +390,13 @@
 	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_BACKGROUND
 	has_gravity = TRUE
 	forced_ambience = list('sound/music/ocean.mp3')
+
+/area/ship/theseus
+	name = "UN Theseus"
+	has_gravity = FALSE
+	forced_ambience = list('sound/ambience/weather/storm_inside.wav')
+	ambience_volume = 10
+
+/area/space/theseus
+	name = "Gas Cloud"
+	forced_ambience = list('sound/ambience/weather/storm_outside.wav')

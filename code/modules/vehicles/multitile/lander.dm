@@ -196,8 +196,8 @@ var/global/obj/abstract/landmark/typhos_tag/typhos_alt_tag
 			H.playsound_local(get_turf(H), 'sound/vehicle/cts/lift_rattle_low.wav', 200, 0)
 	sleep(10)
 	for(var/mob/living/carbon/human/H in view(9, src))
-		shake_camera(H, 2800, 0.2)
-	sleep(5 MINUTES)
+		shake_camera(H, 1200, 0.2)
+	sleep(2 MINUTES)
 	QDEL_NULL(ascent_loop)
 	visible_message(SPAN_WARNING("The main engines shut down, transitioning into idle mode."))
 	cur_vehicle.acceleration = 0.1

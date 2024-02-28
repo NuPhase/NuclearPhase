@@ -40,7 +40,7 @@ Contains helper procs for airflow, called by /connection_group.
 		return FALSE
 	if(!lying)
 		to_chat(src, SPAN_DANGER("The sudden rush of air knocks you over!"))
-	SET_STATUS_MAX(src, STAT_WEAK, 5)
+	SET_STATUS_MAX(src, STAT_WEAK, 6 - get_skill_value(SKILL_AGILITY))
 	last_airflow_stun = world.time
 	return TRUE
 
@@ -162,6 +162,6 @@ Contains helper procs for airflow, called by /connection_group.
 	. = list()
 	for(var/turf/T in contents)
 		for(var/atom/movable/A in T)
-			if(!A.simulated || A.anchored || istype(A, /obj/effect) || isobserver(A))
+			if(!A.simulated || A.anchored)
 				continue
 			. += A

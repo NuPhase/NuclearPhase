@@ -5,6 +5,8 @@ it needs to create more trails.A beaker could have a steam_trail_follow system s
 would spawn and follow the beaker, even if it is carried or thrown.
 */
 
+/obj/effect //We specifically anchor objects for atmos
+	anchored = TRUE
 
 /obj/effect/effect
 	name = "effect"
@@ -12,6 +14,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
+	anchored = FALSE
 
 /datum/effect/effect/system
 	var/number = 3

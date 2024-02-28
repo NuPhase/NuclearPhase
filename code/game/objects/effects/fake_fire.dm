@@ -2,6 +2,7 @@
 	blend_mode = BLEND_ADD
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
+	anchored = TRUE
 	layer = FIRE_LAYER
 	var/lifetime = 10 SECONDS //0 for infinite
 	//See Fire.dm (the real one), but in a nutshell:
@@ -11,12 +12,15 @@
 	var/obj/effect/abstract/particle_holder/our_holder = null
 
 /obj/effect/fake_fire/Initialize()
+	if(last_temperature == 0)
+		last_temperature = temperature
 	. = ..()
 	set_light(3, 0.5, color)
 	Process()
 	START_PROCESSING(SSobj,src)
-	our_holder = new(loc, /particles/smoke_continuous/fire)
-	our_holder.alpha = 170
+	if(last_temperature < 15000)
+		our_holder = new(loc, /particles/smoke_continuous/fire)
+		our_holder.alpha = 170
 	if(lifetime)
 		QDEL_IN(src,lifetime)
 

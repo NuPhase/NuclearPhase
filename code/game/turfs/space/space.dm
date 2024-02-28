@@ -264,6 +264,20 @@
 	name = "\proper infinity"
 	icon_state = "bluespace"
 
-/turf/space/typhos_surroundings/Initialize()
+/turf/pseudospace/typhos_surroundings
+	name = "gas cloud"
+	color = "#352933"
+	plane = DEFAULT_PLANE
+	icon = 'icons/turf/space.dmi'
+	explosion_resistance = 70
+	icon_state = "speedspace_ns_1"
+	dynamic_lighting = FALSE
+	temperature = T20C
+	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	permit_ao = FALSE
+	z_eventually_space = TRUE
+	turf_flags = TURF_FLAG_BACKGROUND
+
+/turf/pseudospace/typhos_surroundings/Initialize()
 	. = ..()
-	toggle_transit(NORTH)
+	icon_state = "speedspace_ns_[rand(1, 15)]"

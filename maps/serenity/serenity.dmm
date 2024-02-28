@@ -9526,6 +9526,10 @@
 /area/serenity/shelter/entrance_zone)
 "hXI" = (
 /obj/structure/door/fire,
+/obj/machinery/door/blast/shutters/open{
+	id_tag = "exitlockdown";
+	name = "Exit Lockdown"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "hXS" = (
@@ -14391,6 +14395,13 @@
 /obj/item/toy/desk/newtoncradle,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/senior_engineer)
+"lRQ" = (
+/obj/machinery/door/blast/shutters/open{
+	id_tag = "exitlockdown";
+	name = "Exit Lockdown"
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/entrance_zone)
 "lSc" = (
 /obj/machinery/vending/coffee{
 	dir = 4
@@ -17545,8 +17556,12 @@
 /turf/simulated/floor/concrete/road,
 /area/serenity/shelter/engineering/pumps_b)
 "oiu" = (
-/obj/item/toy/desk/officetoy,
 /obj/structure/table/steel,
+/obj/machinery/button/blast_door{
+	dir = 8;
+	id_tag = "exitlockdown";
+	name = "Exit Lockdown"
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "ojF" = (
@@ -135873,7 +135888,7 @@ jTH
 jTH
 jTH
 jTH
-jTH
+lRQ
 atO
 rkA
 aOA
@@ -135971,7 +135986,7 @@ jTH
 jTH
 jTH
 jTH
-jTH
+lRQ
 vOC
 uGD
 igZ
@@ -136069,7 +136084,7 @@ jTH
 jTH
 jTH
 jTH
-jTH
+lRQ
 atO
 vOC
 igZ

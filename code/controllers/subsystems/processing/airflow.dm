@@ -90,7 +90,12 @@ PROCESSING_SUBSYSTEM_DEF(airflow)
 				return
 			continue
 
-		step_towards(target, target.airflow_dest)
+		if(target.airflow_speed > 10)
+			var/turf/T = get_ranged_target_turf(target, get_dir(target, get_step(target, target.airflow_dest)), target.airflow_speed)
+			target.throw_at(T, target.airflow_speed, max(1, 5 - target.weight*0.1))
+		else
+			step_towards(target, target.airflow_dest)
+
 		if (ismob(target))
 			var/mob/M = target
 			M.SetMoveCooldown(vsc.airflow_mob_slowdown)
