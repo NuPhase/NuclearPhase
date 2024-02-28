@@ -151,7 +151,7 @@ Contains helper procs for airflow, called by /connection_group.
 
 	apply_damage(b_loss/3, BRUTE, BP_GROIN, used_weapon =  "Airflow")
 
-	if(airflow_speed > 10)
+	if(airflow_speed > 5)
 		SET_STATUS_MAX(src, STAT_PARA, round(airflow_speed * vsc.airflow_stun))
 		SET_STATUS_MAX(src, STAT_STUN, GET_STATUS(src, STAT_PARA) + 3)
 	else
