@@ -32,7 +32,7 @@ var/global/datum/global_hud/hud
 	return screen
 
 /datum/global_hud/New()
-	nvg = setup_overlay("scanline", "#06ff00")
+	nvg = setup_overlay("scanline", "#0092cc")
 	thermal = setup_overlay("scanline", "#ff0000")
 	meson = setup_overlay("scanline", "#9fd800")
 	science = setup_overlay("scanline", "#d600d6")
