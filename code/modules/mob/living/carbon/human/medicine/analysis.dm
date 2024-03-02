@@ -3,13 +3,13 @@
 	var/description
 	var/time = 5 SECONDS
 
-/decl/blood_analysis/proc/return_analysis(var/mob/living/carbon/human/H, blood_data)
+/decl/blood_analysis/proc/return_analysis(mob/living/carbon/human/H, blood_data)
 	return ""
 
 /decl/blood_analysis/potassium
 	name = "Biochemical Analysis"
 
-/decl/blood_analysis/potassium/return_analysis(var/mob/living/carbon/human/H, blood_data)
+/decl/blood_analysis/potassium/return_analysis(mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
 	var/list/chem_data = blood_data["trace_chem"]
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
@@ -22,7 +22,7 @@
 /decl/blood_analysis/blood
 	name = "Blood Type Analysis"
 
-/decl/blood_analysis/blood/return_analysis(var/mob/living/carbon/human/H, blood_data)
+/decl/blood_analysis/blood/return_analysis(mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
 	//var/list/chem_data = blood_data["trace_chem"]
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
@@ -34,7 +34,7 @@
 /decl/blood_analysis/organ
 	name = "Organ Function Analysis"
 
-/decl/blood_analysis/organ/return_analysis(var/mob/living/carbon/human/H, blood_data)
+/decl/blood_analysis/organ/return_analysis(mob/living/carbon/human/H, blood_data)
 	var/list/text = ""
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/obj/item/organ/internal/liver/liver = GET_INTERNAL_ORGAN(H, BP_LIVER)
@@ -77,7 +77,7 @@
 /obj/machinery/blood_analysis/proc/start(decl/blood_analysis/chosen_analysis)
 	running = TRUE
 	update_icon()
-	spawn((40 - REAGENT_VOLUME(inserted_vial.reagents, /decl/material/liquid/separated_blood)) SECONDS)
+	spawn((35 - REAGENT_VOLUME(inserted_vial.reagents, /decl/material/liquid/separated_blood)) SECONDS)
 		visible_message(SPAN_NOTICE("The blood analyzer finishes running."))
 		running = FALSE
 		var/list/blood_data = inserted_vial.reagents.reagent_data[/decl/material/liquid/separated_blood]
@@ -141,7 +141,160 @@
 /decl/scanner_analysis
 	var/name
 	var/description
-	var/time = 5 SECONDS
+	var/time = 3 SECONDS
+	abstract_type = /decl/scanner_analysis
 
-/decl/scanner_analysis/proc/return_analysis(var/mob/living/carbon/human/H, blood_data)
-	return ""
+/decl/scanner_analysis/proc/after_analysis(obj/machinery/M) //for sounds, etc
+	return
+
+//should return a fail message if not
+/decl/scanner_analysis/proc/can_conduct(mob/living/carbon/human/H)
+	return TRUE
+
+/decl/scanner_analysis/proc/return_analysis(mob/living/carbon/human/H)
+	var/can_conduct = can_conduct()
+	if(can_conduct != TRUE)
+		return can_conduct //returns the fail message
+	else
+		return TRUE
+
+
+/decl/scanner_analysis/ultrasound
+	abstract_type = /decl/scanner_analysis/ultrasound
+
+/decl/scanner_analysis/ultrasound/proc/check_clothing()
+	return TRUE
+
+/decl/scanner_analysis/ultrasound/can_conduct(mob/living/carbon/human/H)
+	if(!check_clothing())
+		return "Scanned body parts are obstructed by clothing."
+	return TRUE
+
+/decl/scanner_analysis/ultrasound/return_analysis(mob/living/carbon/human/H, blood_data)
+	var/list/resulting_data = list()
+
+	if(H.get_blood_perfusion() < 0.9)
+		if(H.get_blood_perfusion() < 0.7)
+			resulting_data += "Tissue perfusion is extremely poor.<br>"
+		else
+			resulting_data += "Tissue perfusion is slightly reduced.<br>"
+
+	if(H.get_blood_oxygenation() < 0.7)
+		resulting_data += "Tissue is starved of oxygen.<br>"
+
+	return jointext(resulting_data, "<br>")
+
+/decl/scanner_analysis/ultrasound/fast
+	name = "EFAST ultrasound"
+	description = "A generic ultrasound scan for assessing trauma."
+
+/decl/scanner_analysis/ultrasound/fast/return_analysis(mob/living/carbon/human/H, blood_data)
+	var/list/resulting_data = list()
+
+	if(H.get_blood_perfusion() < 0.9)
+		if(H.get_blood_perfusion() < 0.7)
+			resulting_data += "Tissue perfusion is extremely poor.<br>"
+		else
+			resulting_data += "Tissue perfusion is slightly reduced.<br>"
+
+	if(H.get_blood_oxygenation() < 0.7)
+		resulting_data += "Tissue is starved of oxygen.<br>"
+
+	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(H, BP_LUNGS)
+	if(L && L.ruptured)
+		resulting_data += "Traumatic pneumothorax.<br>"
+
+	resulting_data += "<br>"
+
+	for(var/obj/item/organ/internal/I in H.get_internal_organs())
+		if(I.damage > I.max_damage * 0.35)
+			resulting_data += "Severe [I.name] damage.<br>"
+
+	resulting_data += "<br>"
+
+	for(var/obj/item/organ/external/E in H.get_external_organs())
+		if(E.status & ORGAN_ARTERY_CUT)
+			resulting_data += "[capitalize(E.artery_name)] bleeding in \the [E.name].<br>"
+
+	return jointext(resulting_data, "<br>")
+
+/decl/scanner_analysis/ultrasound/organ
+	name = "organ ultrasound"
+	description = "An ultrasound scan for diagnosing organ issues."
+	time = 10 SECONDS
+
+/decl/scanner_analysis/ultrasound/organ/return_analysis(mob/living/carbon/human/H, blood_data)
+	var/list/resulting_data = list()
+
+	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(H, BP_LUNGS)
+	if(L && L.ruptured)
+		resulting_data += "Traumatic pneumothorax.<br>"
+	var/obj/item/organ/internal/heart/our_heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	if(our_heart)
+		resulting_data += "Heart Stroke Volume: [round(H.get_stroke_volume())]ml CO:([round(our_heart.cardiac_output * 100)]%)"
+	var/obj/item/organ/internal/appendix/our_appendix = GET_INTERNAL_ORGAN(H, BP_APPENDIX)
+	if(our_appendix)
+		switch(our_appendix.inflamed)
+			if(1 to 200)
+				resulting_data += "Inflammatory appendicitis.<br>"
+			if(200 to 600)
+				resulting_data += "Acute appendicitis.<br>"
+			if(600 to INFINITY)
+				resulting_data += "Gangrenous appendicitis.<br>"
+
+	resulting_data += "<br>"
+
+	for(var/obj/item/organ/internal/I in H.get_internal_organs())
+		var/damage_fraction = I.damage / I.max_damage
+		var/infection_state = ""
+		switch(I.germ_level)
+			if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO)
+				infection_state = ", inflamed"
+			if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE)
+				infection_state = ", infected"
+			if(INFECTION_LEVEL_THREE to INFINITY)
+				infection_state = ", septic"
+		switch(damage_fraction)
+			if(0 to 0.1)
+				resulting_data += "[capitalize(I.name)]: normal[infection_state].<br>"
+			if(0.1 to 0.3)
+				resulting_data += "[capitalize(I.name)]: slight damage[infection_state].<br>"
+			if(0.3 to 0.7)
+				resulting_data += "[capitalize(I.name)]: severe damage[infection_state].<br>"
+			if(0.7 to 1)
+				resulting_data += "[capitalize(I.name)]: failing[infection_state].<br>"
+
+	resulting_data += "<br>"
+
+	for(var/obj/item/organ/external/E in H.get_external_organs())
+		if(E.status & ORGAN_ARTERY_CUT)
+			resulting_data += "[capitalize(E.artery_name)] bleeding in \the [E.name].<br>"
+
+	return jointext(resulting_data, "<br>")
+
+
+/decl/scanner_analysis/xray
+	name = "XRay"
+	description = "A general XRay scan"
+
+/decl/scanner_analysis/xray/after_analysis(obj/machinery/M)
+	playsound(M, 'sound/machines/xray_scan.mp3', 60, 0)
+
+/decl/scanner_analysis/xray/return_analysis(mob/living/carbon/human/H, blood_data)
+	var/list/resulting_data = list()
+
+	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(H, BP_LUNGS)
+	if(L && L.ruptured)
+		resulting_data += "Traumatic pneumothorax.<br>"
+
+	resulting_data += "<br>"
+
+	for(var/obj/item/organ/external/E in H.get_external_organs())
+		if(E.status & ORGAN_BROKEN)
+			resulting_data += "Fracture in \the [E.name].<br>"
+		if(E.status & ORGAN_DISLOCATED)
+			resulting_data += "Dislocation in \the [E.name].<br>"
+		if(E.status & ORGAN_TENDON_CUT)
+			resulting_data += "Cut tendon in \the [E.name].<br>"
+
+	return jointext(resulting_data, "<br>")
