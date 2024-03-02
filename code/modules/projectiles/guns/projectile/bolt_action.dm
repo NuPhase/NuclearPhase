@@ -69,18 +69,3 @@
 	if(!bolt_open)
 		return
 	..()
-
-/obj/item/gun/projectile/bolt_action/sniper
-	name = "anti-materiel rifle"
-	desc = "A portable anti-armour rifle fitted with a scope, the HI PTR-7 Rifle was originally designed to be used against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease."
-	icon = 'icons/obj/guns/heavysniper.dmi'
-	force = 10
-	origin_tech = @'{"combat":7,"materials":2,"esoteric":8}'
-	caliber = CALIBER_ANTI_MATERIEL
-	screen_shake = 16 //extra kickback
-	one_hand_penalty = 6
-	accuracy = -2
-	bulk = 8
-	scoped_accuracy = 8 //increased accuracy over the LWAP because only one shot
-	scope_zoom = 2
-	fire_delay = 12

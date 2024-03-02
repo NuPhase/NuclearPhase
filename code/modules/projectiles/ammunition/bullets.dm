@@ -159,20 +159,34 @@
 	origin_tech = @'{"combat":4,"materials":3}'
 
 /obj/item/ammo_casing/shell
-	name = "shell casing"
+	name = "50 BMG casing"
 	desc = "An anti-materiel shell casing."
 	caliber = CALIBER_ANTI_MATERIEL
-	projectile_type = /obj/item/projectile/bullet/rifle/shell
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99
 	material = /decl/material/solid/metal/steel
 	color = COLOR_POLISHED_BRASS
 	icon = 'icons/obj/ammo/casings/anti_materiel.dmi'
 
-/obj/item/ammo_casing/shell/apds
-	name = "\improper APDS shell casing"
-	desc = "An Armour Piercing Discarding Sabot shell."
-	projectile_type = /obj/item/projectile/bullet/rifle/shell/apds
+/obj/item/ammo_casing/shell/ap
+	name = "50 BMG AP casing"
+	marking_color = COLOR_GUNMETAL
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/ap
+
+/obj/item/ammo_casing/shell/tracer
+	name = "50 BMG Tracer casing"
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer
 	bullet_color = COLOR_RED_GRAY
 	marking_color = COLOR_NT_RED
+
+/obj/item/ammo_casing/shell/tracer/heavy
+	name = "50 BMG Incendiary casing"
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer/heavy
+	marking_color = COLOR_ORANGE
+
+/obj/item/ammo_casing/shell/tracer/explosive
+	name = "50 BMG Explosive casing"
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer/explosive
+	marking_color = COLOR_RED
 
 /obj/item/ammo_casing/rifle
 	desc = "A military rifle bullet casing."

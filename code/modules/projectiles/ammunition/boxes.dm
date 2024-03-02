@@ -252,13 +252,25 @@
 	name = "6.8x51 HP magazine"
 	ammo_type = /obj/item/ammo_casing/c6p8x51/hp
 
-/obj/item/ammo_magazine/c10x77
-	name = "10x77-HS special sniper magazine"
-	caliber = "10x77"
-	ammo_type = /obj/item/ammo_casing/c10x77
-	max_ammo = 8
+/obj/item/ammo_magazine/c127x99
+	name = "50 BMG sniper magazine"
+	caliber = CALIBER_ANTI_MATERIEL
+	ammo_type = /obj/item/ammo_casing/shell
+	max_ammo = 5
 	icon_state = "bullup"
 	mag_type = MAGAZINE
+/obj/item/ammo_magazine/c127x99/ap
+	name = "50 BMG AP sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/ap
+/obj/item/ammo_magazine/c127x99/tracer
+	name = "50 BMG Tracer sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/tracer
+/obj/item/ammo_magazine/c127x99/tracer/heavy
+	name = "50 BMG Incendiary sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/tracer/heavy
+/obj/item/ammo_magazine/c127x99/tracer/explosive
+	name = "50 BMG Explosive sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/tracer/explosive
 
 /obj/item/ammo_magazine/caps
 	name = "speed loader"

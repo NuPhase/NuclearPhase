@@ -265,3 +265,48 @@
 	armor_penetration = 70
 	penetration_modifier = 1.5
 	distance_falloff = 0.5
+
+/obj/item/projectile/bullet/modern/c127x99 //50 BMG
+	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
+	damage = 60
+	stun = 3
+	weaken = 1
+	armor_penetration = ARMOR_BALLISTIC_AP
+	penetration_modifier = 1.5
+	distance_falloff = 0.5
+	agony = 650
+
+/obj/item/projectile/bullet/modern/c127x99/ap
+	armor_penetration = ARMOR_BALLISTIC_HEAVY
+	damage = 50
+
+//light incendiary for setting stuff on fire, etc
+/obj/item/projectile/bullet/modern/c127x99/tracer
+	damage = 50
+	var/fire_stacks = 2
+	armor_penetration = ARMOR_BALLISTIC_RIFLE
+
+/obj/item/projectile/bullet/modern/c127x99/tracer/after_move()
+	. = ..()
+	new /obj/effect/fake_fire/dragon_breath(loc)
+
+/obj/item/projectile/bullet/modern/c127x99/tracer/on_hit(atom/target, blocked)
+	if(..(target, blocked))
+		if(isliving(target))
+			var/mob/living/L = target
+			L.adjust_fire_stacks(fire_stacks)
+			L.IgniteMob()
+
+//heavy incendiary for setting stuff on fire, etc
+/obj/item/projectile/bullet/modern/c127x99/tracer/heavy
+	damage = 45
+	fire_stacks = 10
+
+//explosive round
+/obj/item/projectile/bullet/modern/c127x99/tracer/explosive
+	damage = 90
+	fire_stacks = 5
+
+/obj/item/projectile/bullet/modern/c127x99/tracer/explosive/on_hit(atom/target, blocked)
+	cell_explosion(target, 200, 150, z_transfer = null)
+	. = ..()

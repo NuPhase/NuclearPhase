@@ -167,10 +167,6 @@
 	name = "box of sniper shells"
 	startswith = list(/obj/item/ammo_casing/shell = 7)
 
-/obj/item/storage/box/ammo/sniperammo/apds
-	name = "box of sniper APDS shells"
-	startswith = list(/obj/item/ammo_casing/shell/apds = 3)
-
 /obj/item/storage/box/ammo/smg
 	name = "box of SMG magazines"
 	startswith = list(/obj/item/ammo_magazine/smg/c11x25 = 8)
