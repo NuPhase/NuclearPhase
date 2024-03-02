@@ -27,6 +27,7 @@
 						total_blood_lost += W.bleed_amount * total_bleeding_modifier
 			if(cur_organ.status & ORGAN_ARTERY_CUT)
 				var/bleed_amount = mcv * cur_organ.arterial_bleed_severity
+				bleed_amount = max(0.1, bleed_amount)
 				if(bleed_amount)
 					if(open_wound)
 						spray_message_list += "[cur_organ.name]"
@@ -44,7 +45,7 @@
 
 			next_blood_squirt = world.time + 80
 			var/turf/sprayloc = get_turf(src)
-			total_blood_lost -= drip(CEILING(total_blood_lost/3), sprayloc)
+			total_blood_lost -= drip(NONUNIT_CEILING(total_blood_lost/3, 0.1), sprayloc)
 			if(total_blood_lost > 0)
 				total_blood_lost -= blood_squirt(total_blood_lost, sprayloc)
 				if(total_blood_lost > 0)

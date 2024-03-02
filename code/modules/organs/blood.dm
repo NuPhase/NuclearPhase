@@ -67,7 +67,7 @@
 	if(amt <= 0 || !istype(sprayloc))
 		return
 	var/spraydir = pick(global.alldirs)
-	amt = CEILING(amt/BLOOD_SPRAY_DISTANCE)
+	amt = NONUNIT_CEILING(amt/BLOOD_SPRAY_DISTANCE, 0.1)
 	var/bled = 0
 	spawn(0)
 		for(var/i = 1 to BLOOD_SPRAY_DISTANCE)
