@@ -10,6 +10,9 @@
 	var/volume = 0
 	var/destroyed = 0
 	var/start_pressure = ONE_ATMOSPHERE
+	var/start_temperature = T20C
+	var/contains_fluid = FALSE // whether it should use an alternative calculation
+	var/list/initial_gas //a list of binary ratios
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
 /obj/machinery/portable_atmospherics/get_single_monetary_worth()
@@ -21,8 +24,14 @@
 
 /obj/machinery/portable_atmospherics/Initialize()
 	..()
-	air_contents.volume = volume
-	air_contents.temperature = T20C
+	var/list/initial_gas_list = list()
+	for(var/mat_id in initial_gas)
+		var/decl/material/mat = GET_DECL(mat_id)
+		if(mat.phase_at_temperature(start_temperature, start_pressure) == MAT_PHASE_LIQUID)
+			initial_gas_list[mat_id] = MolesForVolume(mat_id) * initial_gas[mat_id]
+		else
+			initial_gas_list[mat_id] = MolesForPressure(start_pressure) * initial_gas[mat_id]
+	air_contents = new(volume, start_temperature, initial_gas = initial_gas_list)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/portable_atmospherics/Destroy()
