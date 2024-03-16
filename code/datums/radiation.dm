@@ -67,3 +67,10 @@
 		src.apply_damage(severity, IRRADIATE, damage_flags = DAM_DISPERSED)
 		for(var/atom/I in src)
 			I.rad_act(severity)
+		if(severity > RAD_LEVEL_HIGH)
+			if(severity > RAD_LEVEL_VERY_HIGH)
+				overlay_fullscreen("radnoise",/obj/screen/fullscreen/noise/heavy)
+			else
+				overlay_fullscreen("radnoise",/obj/screen/fullscreen/noise)
+		else
+			clear_fullscreen("radnoise")

@@ -4,10 +4,9 @@
 	icon_edge_layer = EXT_EDGE_SNOW
 	footstep_type = /decl/footsteps/snow
 	possible_states = 13
-	color = "#e4cfed"
-	dirt_color = "#e4cfed"
+	color = "#bdb3c2"
+	dirt_color = "#7a707e"
 	var/datum/map/mapowner = null
-	footstep_type = /decl/footsteps/snow
 
 /turf/exterior/surface/explosion_act(severity)
 	return
@@ -150,3 +149,21 @@
 
 /turf/simulated/open/exterior/proc/switch_cracks()
 	return
+
+/obj/effect/fake_fluid
+	name = "liquid gas"
+	icon = 'icons/effects/liquids.dmi'
+	icon_state = "mid_still"
+	anchored = 1
+	simulated = 0
+	opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
+	layer = FLY_LAYER
+	alpha = 135
+	color = "#72d3eb"
+
+//TODO: More advanced drowning effects
+/obj/effect/fake_fluid/Crossed(O)
+	if(ishuman(O))
+		var/mob/living/carbon/human/H = O
+		H.dust()

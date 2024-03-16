@@ -95,7 +95,7 @@
 
 #define COLOR_LIQUID_HELIUM	   "#bd9ae0"
 
-#define COLOR_COLD_SURFACE	   "#74a0ca"
+#define COLOR_COLD_SURFACE	   "#587b9c"
 #define COLOR_SUNRISE_SURFACE1 "#cc0000"
 #define COLOR_SUNRISE_SURFACE2 "#db2e03"
 #define COLOR_SUNRISE_SURFACE3 "#eb5600"

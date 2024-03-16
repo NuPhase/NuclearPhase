@@ -137,6 +137,9 @@
 	layer = FULLSCREEN_LAYER
 	alpha = 127
 
+/obj/screen/fullscreen/noise/heavy
+	icon_state = "1 heavy"
+
 /obj/screen/fullscreen/fadeout
 	icon = 'icons/hud/screen1.dmi'
 	icon_state = "black"
