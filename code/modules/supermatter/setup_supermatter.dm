@@ -28,6 +28,20 @@
 
 	log_and_message_admins("## SUPERMATTER SETUP - Setup initiated by [usr] using coolant type [response].")
 
+	// CONFIGURATION PHASE
+	// Coolant canisters, set types according to response.
+	for(var/obj/effect/engine_setup/coolant_canister/C in global.engine_setup_markers)
+		switch(response)
+			if("N2")
+				C.canister_type = /obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/
+				continue
+			if("CO2")
+				C.canister_type = /obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/
+				continue
+			if("H2")
+				C.canister_type = /obj/machinery/portable_atmospherics/canister/hydrogen/engine_setup/
+				continue
+
 	for(var/obj/effect/engine_setup/core/C in global.engine_setup_markers)
 		switch(response)
 			if("N2")

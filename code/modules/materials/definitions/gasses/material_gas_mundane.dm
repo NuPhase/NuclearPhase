@@ -9,7 +9,6 @@
 	molar_mass = 0.032
 	latent_heat = 3409
 	boiling_point = -183 CELSIUS
-	melting_point = 54.36
 	liquid_density = 1140
 	gas_flags = XGM_GAS_OXIDIZER
 	gas_metabolically_inert = TRUE
@@ -36,7 +35,6 @@
 	molar_mass = 0.004
 	latent_heat = 84.5
 	boiling_point = 4.21
-	melting_point = 0.95
 	liquid_density = 113.9
 	taste_description = "nothing"
 	metabolism = REM * 5
@@ -64,7 +62,6 @@
 	molar_mass = 0.044
 	latent_heat = 15550
 	boiling_point = -78 CELSIUS
-	melting_point = 140 //an arbitrary value since we don't have sublimation yet
 	liquid_density = 1190
 	color = "#272727"
 	metabolism = REM * 5
@@ -134,8 +131,7 @@
 	gas_specific_heat = 30
 	molar_mass = 0.028
 	latent_heat = 6040
-	boiling_point = 82
-	melting_point = 68
+	boiling_point = -192 CELSIUS
 	liquid_density = 790
 	taste_description = "stale air"
 	metabolism = REM * 5 // As with helium.
@@ -245,7 +241,6 @@
 	molar_mass = 0.028
 	latent_heat = 5600
 	boiling_point = -195 CELSIUS
-	melting_point = -210 CELSIUS
 	liquid_density = 804.3
 	gas_metabolically_inert = TRUE
 	color = "#ffe7e7"

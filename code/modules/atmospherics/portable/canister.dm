@@ -40,14 +40,12 @@
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/nitrous_oxide = 1)
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "\improper Canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/nitrogen = 1)
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/prechilled
 	name = "\improper Canister: \[N2 (Cooling)\]"
@@ -57,7 +55,6 @@
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/oxygen = 1)
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled
 	name = "\improper Canister: \[O2 (Cryo)\]"
@@ -68,14 +65,12 @@
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/hydrogen = 1)
 
 /obj/machinery/portable_atmospherics/canister/water
 	name = "\improper Canister: \[Water\]"
 	icon_state = "water"
 	can_label = 0
-	start_pressure = ONE_ATMOSPHERE*1.5
-	initial_gas = list(/decl/material/liquid/water = 0.99, /decl/material/gas/nitrogen = 0.01)
+	start_pressure = ONE_ATMOSPHERE*4
 
 /obj/machinery/portable_atmospherics/canister/water/tall
 	name = "\improper Industrial Tank: \[Water\]"
@@ -96,14 +91,12 @@
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/carbon_dioxide = 1)
 
 /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride
 	name = "\improper Canister \[WF6\]"
 	icon_state = "wf6"
 	canister_color = "wf6"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/tungstenhexafluoride = 1)
 
 /obj/machinery/portable_atmospherics/canister/empty/tungstenhexafluoride
 	icon_state = "wf6"
@@ -114,8 +107,6 @@
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/solid/metal/tungsten = 0.95, /decl/material/gas/nitrogen = 0.05)
-	start_temperature = 4200
 
 /obj/machinery/portable_atmospherics/canister/empty/reactor
 	icon_state = "black"
@@ -445,37 +436,134 @@ update_flag
 		return STATUS_CLOSE
 	return ..()
 
+/obj/machinery/portable_atmospherics/canister/oxygen/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/oxygen, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/hydrogen/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/hydrogen, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/water/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/liquid/water, MolesForVolume(/decl/material/liquid/water))
+	air_contents.adjust_gas(/decl/material/gas/nitrogen, MolesForPressure(ONE_ATMOSPHERE*45))
+	air_contents.temperature = T20C
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/tungstenhexafluoride/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/tungstenhexafluoride, MolesForPressure())
+	air_contents.temperature = 240
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/reactor/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/solid/metal/tungsten, MolesForVolume(/decl/material/solid/metal/tungsten))
+	air_contents.adjust_gas(/decl/material/gas/nitrogen, MolesForPressure(ONE_ATMOSPHERE*15))
+	air_contents.temperature = 3750
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()
+	. = ..()
+	air_contents.temperature = 80
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/sleeping_agent/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/nitrous_oxide, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/nitrogen/Initialize()
+	. = ..()
+	src.air_contents.adjust_gas(/decl/material/gas/nitrogen, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled/Initialize()
+	. = ..()
+	src.air_contents.temperature = 80
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide/Initialize()
+	. = ..()
+	src.air_contents.adjust_gas(/decl/material/gas/carbon_dioxide, MolesForPressure())
+	queue_icon_update()
+
+
+/obj/machinery/portable_atmospherics/canister/air/Initialize()
+	. = ..()
+	var/list/air_mix = StandardAirMix()
+	src.air_contents.adjust_multi(/decl/material/gas/oxygen, air_mix[/decl/material/gas/oxygen], /decl/material/gas/nitrogen, air_mix[/decl/material/gas/nitrogen])
+	queue_icon_update()
+
+
+// Special types used for engine setup admin verb, they contain double amount of that of normal canister.
+/obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/Initialize()
+	. = ..()
+	src.air_contents.adjust_gas(/decl/material/gas/nitrogen, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/Initialize()
+	. = ..()
+	src.air_contents.adjust_gas(/decl/material/gas/carbon_dioxide, MolesForPressure())
+	queue_icon_update()
+
+/obj/machinery/portable_atmospherics/canister/hydrogen/engine_setup/Initialize()
+	. = ..()
+	src.air_contents.adjust_gas(/decl/material/gas/hydrogen, MolesForPressure())
+	queue_icon_update()
+
 // Spawn debug tanks.
 /obj/machinery/portable_atmospherics/canister/helium
 	name = "\improper Canister \[He\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/helium = 1)
+
+/obj/machinery/portable_atmospherics/canister/helium/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure())
+	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/liquid_helium
 	name = "\improper Canister \[LHe2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/helium = 1)
-	start_temperature = 3
+
+/obj/machinery/portable_atmospherics/canister/liquid_helium/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForVolume(/decl/material/gas/helium))
+	air_contents.temperature = 2
+	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/liquid_hydrogen
 	name = "\improper Canister \[LH2\]"
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/hydrogen = 0.95, /decl/material/gas/helium = 0.05)
-	start_temperature = 15
+
+/obj/machinery/portable_atmospherics/canister/liquid_hydrogen/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/hydrogen, MolesForVolume(/decl/material/gas/hydrogen))
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(ONE_ATMOSPHERE))
+	air_contents.temperature = 15
+	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane
 	name = "\improper Canister \[LCH\]"
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/methane = 0.95, /decl/material/gas/helium = 0.05)
-	start_temperature = 93
+
+/obj/machinery/portable_atmospherics/canister/liquid_methane/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/methane, MolesForVolume(/decl/material/gas/methane))
+	air_contents.adjust_gas(/decl/material/gas/helium, MolesForPressure(4*ONE_ATMOSPHERE))
+	air_contents.temperature = 93
+	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane/central
 	volume = 1767146 //7.5m sphere
@@ -485,11 +573,20 @@ update_flag
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/methyl_bromide = 1)
+
+/obj/machinery/portable_atmospherics/canister/methyl_bromide/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/methyl_bromide, MolesForPressure())
+	queue_icon_update()
 
 /obj/machinery/portable_atmospherics/canister/chlorine
 	name = "\improper Canister \[Cl\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/chlorine = 1)
+
+/obj/machinery/portable_atmospherics/canister/chlorine/Initialize()
+	. = ..()
+	air_contents.adjust_gas(/decl/material/gas/chlorine, MolesForPressure())
+	queue_icon_update()
+// End debug tanks.
