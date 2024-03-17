@@ -38,7 +38,7 @@
 	for(var/g in gas)
 		total_moles += gas[g]
 		var/decl/material/mat = GET_DECL(g)
-		phases[g] = mat.phase_at_stp()
+		phases[g] = mat.phase_at_temperature(temperature, ONE_ATMOSPHERE)
 		if(phases[g] == MAT_PHASE_GAS)
 			gas_moles += gas[g]
 
@@ -260,13 +260,18 @@
 				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density * 1000
 	available_volume = volume - liquid_volume
 
-
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure()
 	if(volume)
-		if(!gas_moles)
+		if(!length(phases))
 			return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
-		return gas_moles * R_IDEAL_GAS_EQUATION * temperature / volume
+		var/total_pressure = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
+		for(var/g in gas)
+			if(!(phases[g] == MAT_PHASE_GAS))
+				var/decl/material/mat = GET_DECL(g)
+				var/temperature_factor = max(0, 1 - (sqrt(mat.boiling_point - temperature) * 0.1)) //should be 1 at boiling point and 0 at melting point
+				total_pressure += gas[g] * ONE_ATMOSPHERE * temperature_factor / volume
+		return total_pressure
 	return 0
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
