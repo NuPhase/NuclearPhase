@@ -95,7 +95,8 @@
 /obj/item/tank/firefighting/Initialize()
 	. = ..()
 	var/decl/material/mat = GET_DECL(/decl/material/gas/carbon_dioxide)
-	air_contents.adjust_gas_temp(/decl/material/gas/carbon_dioxide, air_contents.volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass * 0.9, 160)
+	air_contents.adjust_gas_temp(/decl/material/gas/carbon_dioxide, air_contents.volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass * 0.9, 150)
+	air_contents.update_values()
 
 /obj/item/tank/high_temp_waste
 	name = "HT-HE waste tank"

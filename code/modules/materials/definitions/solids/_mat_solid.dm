@@ -10,6 +10,8 @@
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
 	default_solid_form = /obj/item/stack/material/brick
 	abstract_type = /decl/material/solid
+	min_fluid_opacity = 200
+	max_fluid_opacity = 255
 
 /decl/material/solid/Initialize()
 	//if(!liquid_name)

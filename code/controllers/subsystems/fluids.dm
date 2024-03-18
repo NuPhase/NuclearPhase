@@ -153,7 +153,6 @@ SUBSYSTEM_DEF(fluids)
 						other_fluid = new(below)
 					if(!QDELETED(other_fluid) && other_fluid.reagents.total_volume < FLUID_MAX_DEPTH)
 						current_turf.transfer_fluids_to(below, min(FLOOR(current_depth*0.5), FLUID_MAX_DEPTH - other_fluid.reagents.total_volume), defer_update = TRUE)
-						other_fluid.temperature = current_fluid.temperature
 
 		if(current_depth <= FLUID_PUDDLE)
 			continue
@@ -190,7 +189,6 @@ SUBSYSTEM_DEF(fluids)
 		if(length(candidates))
 			lowest_neighbor = pick(candidates)
 			current_turf.transfer_fluids_to(lowest_neighbor, lowest_neighbor_flow, defer_update = TRUE)
-			lowest_neighbor.temperature = current_fluid.temperature
 			pending_flows[current_fluid] = TRUE
 
 		if(lowest_neighbor_flow >= FLUID_PUSH_THRESHOLD)
@@ -227,7 +225,7 @@ SUBSYSTEM_DEF(fluids)
 		reagent_holder = current_fluid.reagents
 		current_turf = current_fluid.loc
 		var/pushed_something = FALSE
-		if(reagent_holder.total_volume > FLUID_SHALLOW && current_fluid.last_flow_strength >= 10)
+		if(reagent_holder.total_volume > FLUID_SHALLOW && current_fluid.last_flow_strength >= FLUID_PUSH_THRESHOLD)
 			for(var/atom/movable/AM as anything in current_turf.get_contained_external_atoms())
 				if(AM.is_fluid_pushable(current_fluid.last_flow_strength))
 					AM.pushed(current_fluid.last_flow_dir)

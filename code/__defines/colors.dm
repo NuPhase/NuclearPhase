@@ -190,7 +190,7 @@
 #define LIGHT_COLOR_MOON "#b7d1f0"
 
 #define FIRE_COLOR_DEFAULT	   "#f8aa00"
-#define MOLTEN_METAL_COLOR	   "#fda54d"
+#define MOLTEN_METAL_COLOR	   "#ffdc13"
 
 //These ones aren't a direct colour like the ones above, because nothing would fit
 #define LIGHT_COLOR_FIRE       "#faa019" //Warm orange color, leaning strongly towards yellow. rgb(250, 160, 25)

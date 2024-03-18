@@ -15,6 +15,8 @@
 	opacity = 0.3
 	default_solid_form = /obj/item/stack/material/aerogel
 	abstract_type = /decl/material/gas
+	min_fluid_opacity = FLUID_MIN_ALPHA
+	max_fluid_opacity = 100
 
 /decl/material/gas/Initialize()
 	if(!liquid_name)
