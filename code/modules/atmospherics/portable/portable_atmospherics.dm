@@ -58,11 +58,11 @@
 		/decl/material/gas/nitrogen = N2STANDARD *  MolesForPressure())
 
 /obj/machinery/portable_atmospherics/proc/MolesForPressure(var/target_pressure = start_pressure)
-	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	return (target_pressure * volume) / (R_IDEAL_GAS_EQUATION * start_temperature)
 
 /obj/machinery/portable_atmospherics/proc/MolesForVolume(var/decl/material/mat)
 	mat = GET_DECL(mat)
-	return air_contents.volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass
+	return volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass
 
 /obj/machinery/portable_atmospherics/on_update_icon()
 	return null

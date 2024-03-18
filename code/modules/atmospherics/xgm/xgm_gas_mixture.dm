@@ -231,10 +231,9 @@
 
 	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/decl/material/mat = GET_DECL(gasid)
-	var/molar_mass = mat.get_molar_mass(temperature, return_pressure())
 	var/specific_heat = mat.get_specific_heat(temperature, return_pressure())
 	var/safe_temp = max(temperature, TCMB) // We're about to divide by this.
-	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * safe_temp)) * (molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
+	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * safe_temp)) * (mat.molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
 
 	//alternative, simpler equation
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
@@ -258,7 +257,8 @@
 				gas_moles += gas[g]
 			else if(phases[g] == MAT_PHASE_LIQUID)
 				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density * 1000
-	available_volume = volume - liquid_volume
+
+	available_volume = max(5, volume - liquid_volume)
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure()
@@ -269,7 +269,7 @@
 		for(var/g in gas)
 			if(!(phases[g] == MAT_PHASE_GAS))
 				var/decl/material/mat = GET_DECL(g)
-				var/temperature_factor = max(0, 1 - (sqrt(mat.boiling_point - temperature) * 0.1)) //should be 1 at boiling point and 0 at melting point
+				var/temperature_factor = max(0, 1 - (sqrt(max(0, mat.boiling_point - temperature)) * 0.1)) //should be 1 at boiling point and 0 at melting point
 				total_pressure += gas[g] * ONE_ATMOSPHERE * temperature_factor / volume
 		return total_pressure
 	return 0
@@ -319,6 +319,7 @@
 /datum/gas_mixture/proc/remove_volume(removed_volume)
 	var/datum/gas_mixture/removed = remove_ratio(removed_volume/(volume*group_multiplier), 1)
 	removed.volume = removed_volume
+	removed.available_volume = removed_volume
 	return removed
 
 //Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.
@@ -590,7 +591,7 @@
 /datum/gas_mixture/proc/get_mass()
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		. += gas[g] * mat.get_molar_mass(temperature, return_pressure()) * group_multiplier
+		. += gas[g] * mat.molar_mass * group_multiplier
 
 /datum/gas_mixture/proc/specific_mass()
 	var/M = get_total_moles()
