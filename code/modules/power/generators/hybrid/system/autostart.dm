@@ -57,7 +57,8 @@
 	R.slow_neutrons = 1000
 	R.moderator_position = 0.05
 
-	turbine1.kin_energy = 94298148290
+	turbine1.kin_energy = 94298145000
+	turbine1.feeder_valve_openage = 0.05
 	mode = REACTOR_CONTROL_MODE_SEMIAUTO
 
 	spawn(1 MINUTE)
