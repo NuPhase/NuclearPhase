@@ -849,7 +849,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				 container.adjust_gas(src.type, fission_reactions * -1, FALSE)
 				 for(var/waste_type in fission_products)
 				 	container.adjust_gas(waste_type, fission_reactions*fission_products[waste_type], FALSE)
-				fast_neutrons += fission_neutrons
+				fast_neutrons += fission_reactions * fission_neutrons
 				energy_delta += fission_reactions * fission_energy
 
 	return list(

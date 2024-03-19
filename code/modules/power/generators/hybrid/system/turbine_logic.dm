@@ -63,7 +63,7 @@
 	else
 		var/rpm_difference = 0
 		var/target_valve_openage = 0
-		if(turbine1.feeder_valve_openage > 0) //don't start turbines from a complete standstill
+		if(turbine1.feeder_valve_openage > 0 || turbine1.rpm > 3000) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine1.rpm
 			target_valve_openage = rpm_difference * 0.063 //main spinup function
 			target_valve_openage *= min(OPTIMAL_TURBINE_PRESSURE, get_meter_pressure("T-M-TURB IN")) / OPTIMAL_TURBINE_PRESSURE //low pressure protection
@@ -72,7 +72,7 @@
 			turbine1.feeder_valve_openage = Interpolate(turbine1.feeder_valve_openage, Clamp(target_valve_openage * 0.01, 0, 1), 0.2)
 			current_switch = reactor_buttons["turbine1"]
 			current_switch.update_icon(turbine1.feeder_valve_openage)
-		if(turbine2.feeder_valve_openage > 0) //don't start turbines from a complete standstill
+		if(turbine2.feeder_valve_openage > 0 || turbine2.rpm > 3000) //don't start turbines from a complete standstill
 			rpm_difference = 3600 - turbine2.rpm
 			target_valve_openage = rpm_difference * 0.063 //main spinup function
 			target_valve_openage *= min(OPTIMAL_TURBINE_PRESSURE, get_meter_pressure("T-M-TURB IN")) / OPTIMAL_TURBINE_PRESSURE //low pressure protection
