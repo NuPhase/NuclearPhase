@@ -17,7 +17,7 @@
 
 	tally -= GET_CHEMICAL_EFFECT(src, CE_SPEEDBOOST)
 	tally += GET_CHEMICAL_EFFECT(src, CE_SLOWDOWN)
-	tally += (1 - get_blood_saturation()) * 10
+	tally += (1 - get_blood_saturation()) * 6
 
 	if(can_feel_pain())
 		if(get_shock() >= 50) tally += (get_shock() / 100) //pain shouldn't slow you down if you can't even feel it
