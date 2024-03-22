@@ -17,6 +17,7 @@
 
 	tally -= GET_CHEMICAL_EFFECT(src, CE_SPEEDBOOST)
 	tally += GET_CHEMICAL_EFFECT(src, CE_SLOWDOWN)
+	tally += (1 - get_blood_saturation()) * 10
 
 	if(can_feel_pain())
 		if(get_shock() >= 50) tally += (get_shock() / 100) //pain shouldn't slow you down if you can't even feel it
@@ -41,11 +42,8 @@
 			var/obj/item/organ/external/E = GET_EXTERNAL_ORGAN(src, organ_name)
 			tally += E ? E.get_movement_delay(4) : 4
 
-	if(shock_stage >= 10 || get_stamina() <= 0)
+	if(shock_stage >= 10)
 		tally += 3
-
-	if(is_asystole())
-		tally += 10 // Heart attacks are kinda distracting.
 
 	if(aiming && aiming.aiming_at)
 		tally += 5 // Iron sights make you slower, it's a well-known fact.

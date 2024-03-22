@@ -448,8 +448,9 @@ Class Procs:
 // This is really pretty crap and should be overridden for specific machines.
 /obj/machinery/fluid_act(var/datum/reagents/fluids)
 	..()
-	if(!(stat & (NOPOWER|BROKEN)) && !waterproof && (fluids.total_volume > FLUID_DEEP))
-		explosion_act(150)
+	if(!(stat & (NOPOWER|BROKEN)) && (fluids.total_volume > FLUID_SHALLOW))
+		if(!waterproof || fluids.my_atom.temperature > 700)
+			explosion_act(150)
 
 /obj/machinery/Move()
 	var/atom/lastloc = loc

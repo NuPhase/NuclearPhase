@@ -635,20 +635,21 @@
 		return
 
 	if(stat != DEAD)
-		if(stat == UNCONSCIOUS && health < maxHealth/2)
+		if(stat == UNCONSCIOUS)
 			//Critical damage passage overlay
 			var/severity = 0
-			switch(health - maxHealth/2)
-				if(-20 to -10)			severity = 1
-				if(-30 to -20)			severity = 2
-				if(-40 to -30)			severity = 3
-				if(-50 to -40)			severity = 4
-				if(-60 to -50)			severity = 5
-				if(-70 to -60)			severity = 6
-				if(-80 to -70)			severity = 7
-				if(-90 to -80)			severity = 8
-				if(-95 to -90)			severity = 9
-				if(-INFINITY to -95)	severity = 10
+			var/obj/item/organ/internal/brain/B = GET_INTERNAL_ORGAN(src, BP_BRAIN)
+			switch(B.oxygen_deprivation)
+				if(0 to 2)				severity = 1
+				if(2 to 4)				severity = 2
+				if(4 to 6)				severity = 3
+				if(6 to 8)				severity = 4
+				if(8 to 10)				severity = 5
+				if(10 to 12)			severity = 6
+				if(12 to 14)			severity = 7
+				if(14 to 16)			severity = 8
+				if(16 to 18)			severity = 9
+				if(18 to 20)			severity = 10
 			overlay_fullscreen("crit", /obj/screen/fullscreen/crit, severity)
 		else
 			clear_fullscreen("crit")
@@ -657,13 +658,13 @@
 			if(blood_perfusion < 0.8)
 				var/severity = 0
 				switch(blood_perfusion)
-					if(0.76 to 0.8)			severity = 1
-					if(0.71 to 0.75)		severity = 2
-					if(0.65 to 0.7)			severity = 3
-					if(0.61 to 0.64)		severity = 4
-					if(0.57 to 0.6)			severity = 5
-					if(0.41 to 0.56)		severity = 6
-					if(0 to 0.4)			severity = 7
+					if(0.8 to 0.92)		severity = 1
+					if(0.7 to 0.8)		severity = 2
+					if(0.65 to 0.7)		severity = 3
+					if(0.6 to 0.65)		severity = 4
+					if(0.55 to 0.6)		severity = 5
+					if(0.5 to 0.55)		severity = 6
+					if(0 to 0.5)		severity = 7
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.5) //we are JACKED on adrenaline
 					if(blood_perfusion < 0.5) //fancy flickering when low on oxygen
@@ -682,7 +683,7 @@
 				remove_client_color(/datum/client_color/oxygendeprivation_desat)
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp + (get_shock() * 0.1)
 		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/severity = 0
@@ -771,26 +772,24 @@
 
 		if(bodytemp)
 			if (!species)
-				switch(bodytemperature) //310.055 optimal body temp
-					if(370 to INFINITY)		bodytemp.icon_state = "temp4"
-					if(350 to 370)			bodytemp.icon_state = "temp3"
-					if(335 to 350)			bodytemp.icon_state = "temp2"
-					if(320 to 335)			bodytemp.icon_state = "temp1"
-					if(300 to 320)			bodytemp.icon_state = "temp0"
-					if(295 to 300)			bodytemp.icon_state = "temp-1"
-					if(280 to 295)			bodytemp.icon_state = "temp-2"
-					if(260 to 280)			bodytemp.icon_state = "temp-3"
-					else					bodytemp.icon_state = "temp-4"
+				switch(bodytemperature) //309.8 optimal body temp
+					if(42 CELSIUS to INFINITY)				bodytemp.icon_state = "temp4"
+					if(40 CELSIUS to 42 CELSIUS)			bodytemp.icon_state = "temp3"
+					if(39 CELSIUS to 40 CELSIUS)			bodytemp.icon_state = "temp2"
+					if(37.5 CELSIUS to 39 CELSIUS)			bodytemp.icon_state = "temp1"
+					if(36 CELSIUS to 37.5 CELSIUS)			bodytemp.icon_state = "temp0"
+					if(35 CELSIUS to 36 CELSIUS)			bodytemp.icon_state = "temp-1"
+					if(34 CELSIUS to 35 CELSIUS)			bodytemp.icon_state = "temp-2"
+					if(32 CELSIUS to 34 CELSIUS)			bodytemp.icon_state = "temp-3"
+					else									bodytemp.icon_state = "temp-4"
 			else
 				//TODO: precalculate all of this stuff when the species datum is created
 				var/base_temperature = species.body_temperature
 				if(base_temperature == null) //some species don't have a set metabolic temperature
 					base_temperature = (getSpeciesOrSynthTemp(HEAT_LEVEL_1) + getSpeciesOrSynthTemp(COLD_LEVEL_1))/2
 
-				var/temp_step
+				var/temp_step = 1.5
 				if (bodytemperature >= base_temperature)
-					temp_step = (getSpeciesOrSynthTemp(HEAT_LEVEL_1) - base_temperature)/4
-
 					if (bodytemperature >= getSpeciesOrSynthTemp(HEAT_LEVEL_1))
 						bodytemp.icon_state = "temp4"
 					else if (bodytemperature >= base_temperature + temp_step*3)
@@ -803,8 +802,6 @@
 						bodytemp.icon_state = "temp0"
 
 				else if (bodytemperature < base_temperature)
-					temp_step = (base_temperature - getSpeciesOrSynthTemp(COLD_LEVEL_1))/4
-
 					if (bodytemperature <= getSpeciesOrSynthTemp(COLD_LEVEL_1))
 						bodytemp.icon_state = "temp-4"
 					else if (bodytemperature <= base_temperature - temp_step*3)
