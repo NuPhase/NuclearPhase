@@ -68,7 +68,7 @@
 		environment = location.return_air()
 
 	if(environment)
-		breath = environment.remove_volume(volume_needed)
+		breath = environment.remove_air_volume(volume_needed)
 		handle_chemical_smoke(environment) //handle chemical smoke while we're at it
 
 	if(breath && breath.total_moles)

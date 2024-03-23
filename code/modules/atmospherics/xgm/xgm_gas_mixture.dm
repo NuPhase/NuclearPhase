@@ -258,7 +258,7 @@
 			else if(phases[g] == MAT_PHASE_LIQUID)
 				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density * 1000
 
-	available_volume = max(5, volume - liquid_volume)
+	available_volume = max(0.01, volume - liquid_volume)
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure()
@@ -320,6 +320,7 @@
 	var/datum/gas_mixture/removed = remove_ratio(removed_volume/(volume*group_multiplier), 1)
 	removed.volume = removed_volume
 	removed.available_volume = removed_volume
+	removed.update_values()
 	return removed
 
 //Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.
@@ -602,6 +603,8 @@
 	var/datum/gas_mixture/removed = remove(return_pressure()*volume_to_return*((R_IDEAL_GAS_EQUATION*temperature)**-1))
 	if(removed)
 		removed.volume = volume_to_return
+		removed.available_volume = volume_to_return
+		removed.update_values()
 	return removed
 
 /datum/gas_mixture/proc/get_taken_volume()

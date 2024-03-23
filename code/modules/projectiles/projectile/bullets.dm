@@ -245,9 +245,9 @@
 	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
 	damage = 35
 /obj/item/projectile/bullet/modern/c6p8x51/ap
-	armor_penetration = ARMOR_BALLISTIC_AP
-/obj/item/projectile/bullet/modern/c6p8x51/fmj
 	armor_penetration = ARMOR_BALLISTIC_RIFLE
+/obj/item/projectile/bullet/modern/c6p8x51/fmj
+	armor_penetration = ARMOR_BALLISTIC_RESISTANT
 /obj/item/projectile/bullet/modern/c6p8x51/hp
 	armor_penetration = ARMOR_BALLISTIC_SMALL
 	damage = 50
