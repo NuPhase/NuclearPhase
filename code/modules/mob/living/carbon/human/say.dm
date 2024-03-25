@@ -154,6 +154,10 @@
 					R = get_equipped_item(slot)
 					if(istype(R))
 						break
+				for(var/slot in global.pocket_slots)
+					R = get_equipped_item(slot)
+					if(istype(R))
+						break
 				if(!istype(R))
 					R = GetRadio()
 				if(istype(R))

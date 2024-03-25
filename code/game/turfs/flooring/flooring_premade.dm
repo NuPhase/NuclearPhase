@@ -31,14 +31,23 @@
 	gas.copy_from(using_map.exterior_atmosphere)
 	return gas
 
-/turf/simulated/floor/concrete/road
-	name = "road"
+/turf/simulated/floor/concrete/gray
+	color = COLOR_GRAY
+
+/turf/simulated/floor/concrete/light_gray
+	color = "#bbbbbb"
+
+/turf/simulated/floor/concrete/black
 	color = COLOR_GRAY40
 
-/turf/simulated/floor/concrete/road/surface
+/turf/simulated/floor/concrete/very_black
+	color = COLOR_GRAY20
+
+/turf/simulated/floor/concrete/black/surface
+	name = "road"
 	exterior_turf = TRUE
 
-/turf/simulated/floor/concrete/road/surface/return_air()
+/turf/simulated/floor/concrete/black/surface/return_air()
 	var/datum/gas_mixture/gas
 	gas = new
 	gas.copy_from(using_map.exterior_atmosphere)

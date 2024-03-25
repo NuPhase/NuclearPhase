@@ -35,7 +35,7 @@
 	reagents.add_reagent(/decl/material/liquid/cleaner, 150)
 
 /obj/item/soap/Crossed(var/mob/living/AM)
-	if(istype(AM))
+	if(istype(AM) && prob(10))
 		AM.slip("the [src.name]", 3)
 
 /obj/item/soap/afterattack(atom/target, mob/user, proximity)
