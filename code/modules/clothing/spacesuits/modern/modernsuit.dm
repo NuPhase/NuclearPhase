@@ -243,7 +243,7 @@
 /obj/item/clothing/suit/modern/space/Process()
 	lifesupportsystem.do_support()
 	if(leakiness)
-		internal_atmosphere.remove_ratio(leakiness * 0.01)
+		internal_atmosphere.remove_ratio(leakiness * 0.003)
 		if(!leak_message_on_cooldown)
 			leak_message_on_cooldown = TRUE
 			spawn(50)

@@ -20,7 +20,7 @@
 	identifier = "AFP"
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 
-	var/flow_capacity = 600 //kg/s
+	var/flow_capacity = 30 //kg/s
 	var/initial_flow_capacity = 0
 	var/last_mass_flow = 0
 	var/mode = REACTOR_PUMP_MODE_OFF
@@ -84,7 +84,7 @@
 			target_rpm = 0
 			QDEL_NULL(sound_token)
 		if(REACTOR_PUMP_MODE_IDLE)
-			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.5
+			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.4
 		if(REACTOR_PUMP_MODE_MAX)
 			target_rpm = REACTOR_PUMP_RPM_SAFE
 	mode = new_mode
@@ -95,21 +95,51 @@
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
-	air1.volume = initial_flow_capacity * 40
-	air2.volume = initial_flow_capacity * 10
+	air1.volume = initial_flow_capacity * 5
+	air2.volume = initial_flow_capacity * 2
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()
 	QDEL_NULL(sound_token)
 
+/obj/machinery/atmospherics/binary/pump/adv/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open)
+	tgui_interact(user)
+
+/obj/machinery/atmospherics/binary/pump/adv/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "FluidPump", "Pump Control")
+		ui.open()
+		ui.set_autoupdate(1)
+
+/obj/machinery/atmospherics/binary/pump/adv/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(action == "mode_change")
+		update_mode(params["mode_change"])
+
+/obj/machinery/atmospherics/binary/pump/adv/tgui_data(mob/user)
+	return list(
+		"flow_capacity" = initial_flow_capacity,
+		"actual_mass_flow" = last_mass_flow,
+		"mode" = mode,
+		"target_rpm" = target_rpm,
+		"actual_rpm" = rpm,
+		"power_draw" = last_power_draw,
+		"max_power_draw" = power_rating,
+		"inlet_pressure" = air1.return_pressure(),
+		"exit_pressure" = air2.return_pressure(),
+		"temperature" = (air1.temperature + max(TCMB, air2.temperature))/2
+	)
+
 /obj/machinery/atmospherics/binary/pump/adv/Process()
 	build_network()
 	last_power_draw = 0
+	last_mass_flow = 0
 
 	if(powered(EQUIP))
-		rpm = round(Interpolate(rpm, target_rpm, 0.1))
+		rpm = round(Interpolate(rpm, target_rpm, 0.15))
 	else
-		rpm = round(Interpolate(rpm, 0, 0.15))
+		rpm = round(Interpolate(rpm, 0, 0.2))
 
 	if(!rpm)
 		QDEL_NULL(sound_token)
@@ -142,6 +172,3 @@
 		change_power_consumption(0, POWER_USE_OFF)
 
 	return 1
-
-/obj/machinery/atmospherics/binary/pump/adv/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open)
-	return

@@ -15,6 +15,7 @@ import "./styles/themes/operating.scss";
 import "./styles/themes/changeling.scss";
 import "./styles/themes/neutral.scss";
 import "./styles/themes/ntos.scss";
+import "./styles/themes/engineering.scss";
 import "./styles/themes/robotics.scss";
 
 import { perf } from "common/perf";

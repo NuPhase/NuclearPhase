@@ -4,7 +4,7 @@
 #define SUIT_PROPULSION_ATTACK_PERCENT 10
 
 #define STATUS_MESSAGE_COOLDOWN 100
-#define KWH_PER_KG_WEIGHT 15
+#define KWH_PER_KG_WEIGHT 1.2
 
 /obj/item/storage/backpack/lifesupportpack
 	name = "life support unit"

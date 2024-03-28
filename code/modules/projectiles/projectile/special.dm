@@ -174,7 +174,7 @@
 /obj/item/missile/throw_impact(atom/hit_atom)
 	..()
 	if(primed)
-		explosion(hit_atom, 0, 1, 2, 4)
+		cell_explosion(get_turf(hit_atom), 400, 100, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, z_transfer = null)
 		qdel(src)
 
 /obj/item/projectile/hotgas

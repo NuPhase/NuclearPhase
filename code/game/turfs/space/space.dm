@@ -272,7 +272,7 @@
 	explosion_resistance = 70
 	icon_state = "speedspace_ns_1"
 	dynamic_lighting = FALSE
-	temperature = T20C
+	temperature = 40
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	permit_ao = FALSE
 	z_eventually_space = TRUE

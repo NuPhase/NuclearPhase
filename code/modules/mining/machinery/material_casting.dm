@@ -1,16 +1,16 @@
-/obj/machinery/atmospherics/unary/small_caster
+/obj/machinery/atmospherics/unary/caster
 	name = "small metal caster"
 	icon = 'icons/obj/atmospherics/components/unary/cold_sink.dmi'
 	icon_state = "intact_off"
 	var/obj/item/casting_shape/loaded_shape
 	var/opened = FALSE
 
-/obj/machinery/atmospherics/unary/small_caster/examine(mob/user)
+/obj/machinery/atmospherics/unary/caster/examine(mob/user)
 	. = ..()
 	if(loaded_shape)
 		to_chat(user, SPAN_NOTICE("It has \a [loaded_shape] in it."))
 
-/obj/machinery/atmospherics/unary/small_caster/attackby(obj/item/I, mob/user)
+/obj/machinery/atmospherics/unary/caster/attackby(obj/item/I, mob/user)
 	. = ..()
 	if(istype(I, /obj/item/casting_shape))
 		if(!loaded_shape)
@@ -32,7 +32,7 @@
 		icon_state = "intact_off"
 		return
 
-/obj/machinery/atmospherics/unary/small_caster/physical_attack_hand(user)
+/obj/machinery/atmospherics/unary/caster/physical_attack_hand(user)
 	. = ..()
 	opened = !opened
 	if(opened)
@@ -40,8 +40,7 @@
 	else
 		visible_message(SPAN_NOTICE("[user] closes the valve on \the [src]."))
 
-/obj/machinery/atmospherics/unary/small_caster/Process()
-	. = ..()
+/obj/machinery/atmospherics/unary/caster/proc/try_cast()
 	if(opened)
 		if(loaded_shape)
 			if(loaded_shape.filled)

@@ -43,7 +43,7 @@ var/list/marker_beacon_colors = list(
 	to_chat(user, "<span class='notice'>Use in-hand to place a [singular_name].</span>")
 	to_chat(user, "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>")
 
-/obj/item/stack/marker_beacon/update_icon()
+/obj/item/stack/marker_beacon/on_update_icon()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]"
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
@@ -76,7 +76,7 @@ var/list/marker_beacon_colors = list(
 	name = "marker beacon"
 	desc = "A prismatic path illumination device. It is anchored in place and glowing steadily."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "markerrandom"
+	icon_state = "marker"
 	layer = BELOW_DOOR_LAYER
 	anchored = TRUE
 	light_range = 2
@@ -86,7 +86,8 @@ var/list/marker_beacon_colors = list(
 
 /obj/structure/marker_beacon/New(newloc, set_color)
 	. = ..()
-	picked_color = set_color
+	if(set_color)
+		picked_color = set_color
 	update_icon()
 
 /obj/structure/marker_beacon/examine(mob/user)
@@ -136,5 +137,4 @@ var/list/marker_beacon_colors = list(
 		update_icon()
 
 /obj/structure/marker_beacon/purple
-	icon_state = "markerpurple-on"
 	picked_color = "purple"

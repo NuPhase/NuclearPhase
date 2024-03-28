@@ -162,8 +162,13 @@
 	name = "Heat Exchanger Maintenance"
 	icon_state = "heat_exchanger"
 /area/serenity/shelter/engineering/atmos
-	name = "Fluid Management"
+	name = "Atmospheric Monitoring"
 	icon_state = "atmos"
+/area/serenity/shelter/engineering/atmos/climatecontrol
+	name = "Climate Control"
+/area/serenity/shelter/engineering/atmos/cryogenic
+	name = "Cryogenic Systems"
+
 /area/serenity/shelter/engineering/climatecontrol
 	name = "Climate Control"
 /area/serenity/shelter/engineering/electrical/turbinehall

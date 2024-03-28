@@ -27,6 +27,13 @@
 	icon_state = "dirt"
 	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	persistent = TRUE
+	alpha = 140
+
+/obj/effect/decal/cleanable/dirt/Initialize(ml, _age)
+	. = ..()
+	dir = pick(cardinal)
+	if(ml)
+		alpha = rand(35, 170)
 
 /obj/effect/decal/cleanable/dirt/Destroy()
 	var/turf/simulated/T = loc
