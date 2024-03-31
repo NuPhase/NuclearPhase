@@ -26,6 +26,17 @@
 	color = "#dbabd9"
 	value = 0.5
 	radioactivity = 0.24
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 8,
+			INTERACTION_ABSORPTION = 269
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 5,
+			INTERACTION_ABSORPTION = 141
+		)
+	)
+	absorption_products = list(/decl/material/solid/metal/lead = 1)
 
 /decl/material/solid/metal/gold
 	name = "gold"

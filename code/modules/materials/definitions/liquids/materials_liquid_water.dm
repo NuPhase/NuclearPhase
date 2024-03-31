@@ -147,6 +147,16 @@
 		/decl/material/gas/oxygen = 0.1,
 		/decl/material/gas/hydrogen = 0.4
 	)
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 4,
+			INTERACTION_ABSORPTION = 0.003
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 3,
+			INTERACTION_ABSORPTION = 3.1
+		)
+	)
 
 /decl/material/liquid/water/dirty1
 	dirty_stage = 1

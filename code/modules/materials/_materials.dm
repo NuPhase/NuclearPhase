@@ -831,7 +831,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				slow_neutrons += scattered_neutrons
 			if(INTERACTION_ABSORPTION)
 				var/absorbed_neutrons = get_nuclear_reaction_rate(container, INTERACTION_ABSORPTION, slow_neutrons, fast_neutrons)
-				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons)
+				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons, container.gas[src.type])
 				fast_neutrons -= absorbed_neutrons * 0.5
 				slow_neutrons -= absorbed_neutrons * 0.5
 				energy_delta += absorbed_neutrons * SLOW_NEUTRON_ENERGY
@@ -847,8 +847,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				else
 					fast_neutrons -= fission_reactions
 				 container.adjust_gas(src.type, fission_reactions * -1, FALSE)
-				 for(var/waste_type in fission_products)
-				 	container.adjust_gas(waste_type, fission_reactions*fission_products[waste_type], FALSE)
+				for(var/waste_type in fission_products)
+					container.adjust_gas(waste_type, fission_reactions*fission_products[waste_type], FALSE)
 				fast_neutrons += fission_reactions * fission_neutrons
 				energy_delta += fission_reactions * fission_energy
 
@@ -859,12 +859,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	)
 
 /decl/material/proc/get_nuclear_reaction_rate(datum/gas_mixture/container, reaction_type, slow_neutrons, fast_neutrons)
-	var/list/cross_sections_list
-	if(slow_neutrons > fast_neutrons)
-		cross_sections_list = neutron_interactions["slow"]
-	else
-		cross_sections_list = neutron_interactions["fast"]
-	var/actual_cross_section = cross_sections_list[reaction_type]
+	var/interpolation_weight = 0
+	if(slow_neutrons)
+		interpolation_weight = CLAMP01((fast_neutrons / slow_neutrons) * 0.1)
+
+	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
 
 	return ((slow_neutrons + fast_neutrons)/sqrt(container.volume)*2) * actual_cross_section * container.gas[src.type]/container.volume
 

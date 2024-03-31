@@ -43,7 +43,7 @@
 	neutron_absorption = 60
 	moderation_target = 3000
 	fission_heat = 35000
-	fission_energy = 700000
+	fission_energy = 21080100000
 	fission_neutrons = 2.45
 
 /decl/material/solid/metal/depleted_uranium
@@ -101,13 +101,23 @@
 	color = "#404c53"
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
-
-	neutron_cross_section = 4 // Difficult to use as fuel.
 	neutron_interactions = list(
-		INTERACTION_FISSION = 3000
+		"slow" = list(
+			INTERACTION_SCATTER = 9,
+			INTERACTION_ABSORPTION = 0.07,
+			INTERACTION_FISSION = 0.00002
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 3,
+			INTERACTION_ABSORPTION = 0.14,
+			INTERACTION_FISSION = 348
+		)
 	)
+	fission_energy = 13917914000
+	fission_neutrons = 1.5
+	neutron_cross_section = 4 // Difficult to use as fuel.
 	fission_products = list(
-		/decl/material/solid/metal/fission_byproduct = 1
+		/decl/material/solid/metal/plutonium = 1
 	)
 
 /decl/material/solid/metal/plutonium

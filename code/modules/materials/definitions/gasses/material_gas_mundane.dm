@@ -488,10 +488,6 @@
 	stack_origin_tech = @'{"materials":3}'
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
-
-	neutron_interactions = list(
-		INTERACTION_ABSORPTION = 1250
-	)
 	absorption_products = list(
 		/decl/material/gas/hydrogen/tritium = 1
 	)

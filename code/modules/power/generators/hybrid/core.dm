@@ -107,7 +107,7 @@
 		fast_neutrons -= fast_neutrons_moderated
 		slow_neutrons += fast_neutrons_moderated
 
-	var/radiative_heat_loss = containment_field.get_mass() * 15 * (containment_field.temperature**1.05) * (1.3 - reflector_position)
+	var/radiative_heat_loss = containment_field.get_mass() * 3 * (containment_field.temperature**0.8) * (1.1 - reflector_position)
 	containment_field.add_thermal_energy(-radiative_heat_loss)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
