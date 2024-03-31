@@ -166,6 +166,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
+"ahc" = (
+/obj/machinery/atmospherics/pipe/zpipe/down{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/serenity)
 "ahF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 6
@@ -7415,6 +7421,12 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"gie" = (
+/obj/machinery/atmospherics/pipe/cap/visible{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/serenity)
 "giL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 9
@@ -17114,6 +17126,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/visible/red,
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 8
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "nOB" = (
@@ -19754,8 +19769,11 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "pKU" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 6
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/red{
+	dir = 8
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
@@ -21096,6 +21114,12 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
+"qQc" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 6
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/service_tunnels)
 "qQr" = (
 /obj/structure/bed/sofa/l/blue{
 	dir = 4
@@ -21861,7 +21885,9 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "rqp" = (
-/obj/machinery/atmospherics/binary/pump/adv/on,
+/obj/machinery/atmospherics/binary/pump/adv/on{
+	flow_capacity = 60
+	},
 /turf/simulated/floor/asteroid,
 /area/serenity/shelter/engineering/reactor_operations)
 "rqH" = (
@@ -27094,6 +27120,12 @@
 /obj/item/book/skill/service/cooking/basic,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"vBO" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 6
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "vBV" = (
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/dark/corner,
@@ -29072,6 +29104,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/freezer)
+"xdp" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 10
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/service_tunnels)
 "xdz" = (
 /obj/structure/table/marble,
 /obj/item/knife/kitchen/cleaver,
@@ -29889,8 +29927,8 @@
 "xIO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 8
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
@@ -30053,6 +30091,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/entrance_zone)
+"xQt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 5
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "xQu" = (
 /obj/machinery/atmospherics/pipe/zpipe/down/steam{
 	dir = 8
@@ -108207,9 +108252,9 @@ xPO
 xEy
 xEy
 xEy
-xEO
-rLD
-bhQ
+qQc
+xQt
+vBO
 xIO
 uKG
 cUg
@@ -108305,7 +108350,7 @@ xPO
 yhW
 xEy
 xEy
-xEO
+xdp
 pKU
 nOe
 ubn
@@ -126754,8 +126799,8 @@ wmG
 lCS
 lCS
 lCS
-kHt
-kHt
+gie
+gie
 lCS
 lCS
 hoX
@@ -126852,8 +126897,8 @@ hoX
 lCS
 lCS
 lCS
-kHt
-kHt
+ahc
+ahc
 lCS
 lCS
 hoX

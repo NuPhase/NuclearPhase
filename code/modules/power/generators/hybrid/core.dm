@@ -1,7 +1,7 @@
 #define FISSION_RATE 0.01 //General modifier of fission speed
 #define NEUTRON_FLUX_RATE 0.001 //Neutron flux per neutron mole
 #define NEUTRON_MOLE_ENERGY 1000 //J per neutron mole
-#define RADS_PER_NEUTRON 30
+#define RADS_PER_NEUTRON 3
 #define REACTOR_POWER_MODIFIER 10 //Currently unused
 #define WATTS_PER_KPA 0.5
 #define REACTOR_SHIELDING_COEFFICIENT 0.05
@@ -23,6 +23,10 @@
 
 	var/xray_flux = 0
 
+	var/last_temperature = T0C
+	var/energy_rate = 0 //eV of temperature
+
+	var/last_neutrons = 0
 	var/neutron_rate = 0
 	var/neutron_moles = 0 //how many moles can we split
 	var/neutrons_absorbed = 0
@@ -59,11 +63,9 @@
 	reactor_components["core"] = null
 
 /obj/machinery/power/hybrid_reactor/Process()
-	var/last_neutrons = slow_neutrons + fast_neutrons
-
 	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
-	slow_neutrons = returned_list["slow_neutrons_changed"]
-	fast_neutrons = returned_list["fast_neutrons_changed"]
+	slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
+	fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 
 	handle_control_panels()
 
@@ -71,11 +73,6 @@
 	process_fusion(containment_field)
 
 	total_neutrons = slow_neutrons + fast_neutrons
-
-	if(last_neutrons)
-		neutron_rate = total_neutrons / last_neutrons
-	else
-		neutron_rate = 1
 
 	var/total_radiation = total_neutrons * RADS_PER_NEUTRON
 	last_radiation = total_radiation
@@ -86,21 +83,32 @@
 		if(containment)
 			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA
 			field_battery_charge = max(0, field_battery_charge - field_power_consumption * CELLRATE)
+			containment_field.add_thermal_energy(field_power_consumption * CELLRATE) // magnet waste heat
 		if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
 			var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
 			charge_delta = min(MAX_MAGNET_DELTA, charge_delta) //so we don't drain all power at once
 			field_battery_charge += charge_delta * CELLRATE
 			use_power_oneoff(charge_delta, EQUIP)
 
-/obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
-	var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
-	var/fast_neutrons_lost = sqrt(fast_neutrons) * (1.001 - reflector_position)
-	slow_neutrons -= slow_neutrons_lost
-	fast_neutrons -= fast_neutrons_lost
+	neutron_rate = total_neutrons - last_neutrons
+	energy_rate = (containment_field.temperature - last_temperature) * 0.00008 //kelvin difference to eV difference
+	last_neutrons = slow_neutrons + fast_neutrons
+	last_temperature = containment_field.temperature
 
-	var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position
-	fast_neutrons -= fast_neutrons_moderated
-	slow_neutrons += fast_neutrons_moderated
+/obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
+	if(slow_neutrons || fast_neutrons)
+		var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
+		var/fast_neutrons_lost = sqrt(fast_neutrons) * (1.001 - reflector_position)
+		slow_neutrons -= slow_neutrons_lost
+		fast_neutrons -= fast_neutrons_lost
+
+	if(fast_neutrons)
+		var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position
+		fast_neutrons -= fast_neutrons_moderated
+		slow_neutrons += fast_neutrons_moderated
+
+	var/radiative_heat_loss = containment_field.get_mass() * 15 * (containment_field.temperature**1.05) * (1.3 - reflector_position)
+	containment_field.add_thermal_energy(-radiative_heat_loss)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
@@ -113,7 +121,7 @@
 		if(cur_reaction.minimum_temperature > containment_field.temperature)
 			continue
 
-		var/uptake_moles = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant]) / containment_field.volume * cur_reaction.cross_section
+		var/uptake_moles = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant]) / containment_field.volume * cur_reaction.cross_section * (sqrt(containment_field.temperature - cur_reaction.minimum_temperature) * 0.0005)
 		containment_field.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.product, uptake_moles)

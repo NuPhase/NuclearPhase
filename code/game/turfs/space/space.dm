@@ -267,7 +267,7 @@
 /turf/pseudospace/typhos_surroundings
 	name = "gas cloud"
 	color = "#352933"
-	plane = DEFAULT_PLANE
+	plane = DUST_PLANE
 	icon = 'icons/turf/space.dmi'
 	explosion_resistance = 70
 	icon_state = "speedspace_ns_1"

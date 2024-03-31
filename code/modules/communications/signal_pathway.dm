@@ -24,7 +24,6 @@ Variables:
 			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef) * penetration_modifier
 	return max(0, quality)
 
-
 /proc/get_global_signal_quality(atom/sender, atom/receiver, sender_penetration = 2, penetration_modifier = 1, receiver_amplification = 0, zdistance, zblockage) //Across Z-levels
 	var/quality = 100
 	var/x = abs(receiver.x - sender.x)
