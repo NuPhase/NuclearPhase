@@ -1,77 +1,119 @@
 /obj/machinery/atmospherics/unary/caster
-	name = "small metal caster"
-	icon = 'icons/obj/atmospherics/components/unary/cold_sink.dmi'
-	icon_state = "intact_off"
-	var/obj/item/casting_shape/loaded_shape
-	var/opened = FALSE
+	name = "Hellcat X115 caster"
+	desc = "A hillariously named casting press made for liquid metals."
+	icon = 'icons/obj/machines/large_casting_machine.dmi'
+	icon_state = "map"
+	bound_height = 64
+	bound_width = 64
+	density = 1
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+	var/obj/machinery/portable_atmospherics/contained_canister
+	var/operating = FALSE
+	var/obj/effect/cover_overlay
+	var/datum/sound_token/sound_token
+	var/sound_id
 
-/obj/machinery/atmospherics/unary/caster/examine(mob/user)
+/obj/machinery/atmospherics/unary/caster/Initialize()
 	. = ..()
-	if(loaded_shape)
-		to_chat(user, SPAN_NOTICE("It has \a [loaded_shape] in it."))
-
-/obj/machinery/atmospherics/unary/caster/attackby(obj/item/I, mob/user)
-	. = ..()
-	if(istype(I, /obj/item/casting_shape))
-		if(!loaded_shape)
-			if(!do_after(user, 15, src))
-				return
-			loaded_shape = I
-			user.drop_from_inventory(I, src)
-			visible_message(SPAN_NOTICE("[user] inserts \a [I] in \the [src]."))
-			icon_state = "intact_on"
-		else
-			to_chat(user, SPAN_NOTICE("There is already a casting shape in \the [src]."))
-		return
-	if(IS_CROWBAR(I) && loaded_shape)
-		if(!do_after(user, 15, src))
-			return
-		visible_message(SPAN_NOTICE("[user] removes \the [loaded_shape] from \the [src]."))
-		user.put_in_hands(loaded_shape)
-		loaded_shape = null
-		icon_state = "intact_off"
-		return
+	icon_state = "bottom"
+	cover_overlay = new
+	cover_overlay.icon = 'icons/obj/machines/large_casting_machine.dmi'
+	cover_overlay.icon_state = "top"
+	cover_overlay.layer = ABOVE_HUMAN_LAYER
+	add_overlay(cover_overlay)
+	sound_id = "[/obj/machinery/atmospherics/unary/caster]_[sequential_id(/obj/machinery/atmospherics/unary/caster)]"
 
 /obj/machinery/atmospherics/unary/caster/physical_attack_hand(user)
 	. = ..()
-	opened = !opened
-	if(opened)
-		visible_message(SPAN_NOTICE("[user] opens the valve on \the [src]."))
-	else
-		visible_message(SPAN_NOTICE("[user] closes the valve on \the [src]."))
+	tgui_interact(user)
 
-/obj/machinery/atmospherics/unary/caster/proc/try_cast()
-	if(opened)
-		if(loaded_shape)
-			if(loaded_shape.filled)
-				return
-			var/used_mat
-			for(var/mat in air_contents.gas)
-				if(air_contents.phases[mat] == MAT_PHASE_GAS)
-					continue
-				if(!(mat in loaded_shape.accepted_materials))
-					return
-				used_mat = mat
-			if(!used_mat)
-				return
-			var/decl/material/mat_datum = GET_DECL(used_mat)
-			var/total_available_mass = air_contents.get_mass()
-			if(loaded_shape.weight_cost > total_available_mass)
-				return
-			var/moles_to_remove = air_contents.specific_mass() * loaded_shape.weight_cost
-			air_contents.remove(moles_to_remove)
-			loaded_shape.hot = TRUE
-			loaded_shape.temperature = mat_datum.melting_point + 76
-			loaded_shape.filled = used_mat
-			loaded_shape.update_icon()
-		else //spill on the floor if no shape present
-			var/spilled_fluid
-			for(var/g in air_contents.gas)
-				if(air_contents.phases[g] == MAT_PHASE_LIQUID)
-					spilled_fluid = g
-					break
-			if(!spilled_fluid)
-				return
-			var/turf/T = get_turf(src)
-			T.add_fluid(spilled_fluid, air_contents.gas[spilled_fluid], ntemperature = air_contents.temperature)
-			air_contents.adjust_gas(spilled_fluid, air_contents.gas[spilled_fluid]*-1)
+/obj/machinery/atmospherics/unary/caster/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MetalCaster", "Metal Caster")
+		ui.open()
+
+/obj/machinery/atmospherics/unary/caster/tgui_data(mob/user)
+	return list("has_canister" = contained_canister,
+				"canister_content_mass" = (contained_canister ? contained_canister.air_contents.get_mass() : 0),
+				"canister_content_temperature" = (contained_canister ? contained_canister.air_contents.temperature : T20C),
+				"is_operating" = operating)
+
+/obj/machinery/atmospherics/unary/caster/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("start")
+			if(!operating && params["cast_type"])
+				var/cast_string = params["cast_type"]
+				var/cast_type
+				switch(cast_string)
+					if("ingot")
+						cast_type = /obj/item/stack/material/ingot
+					if("rod")
+						cast_type = /obj/item/stack/material/rods
+					if("sheet")
+						cast_type = /obj/item/stack/material/sheet
+				start(cast_type)
+			return TRUE
+		if("stop")
+			if(operating)
+				stop()
+			return TRUE
+		if("remove_canister")
+			if(contained_canister)
+				eject_canister()
+			return TRUE
+
+/obj/machinery/atmospherics/unary/caster/proc/start(cast_type)
+	operating = TRUE
+	playsound(src, 'sound/machines/quiet_beep.ogg', 50)
+	spawn(5)
+		playsound(src, 'sound/machines/airlock_alarm.wav', 20, 0)
+	spawn(15)
+		place_cover()
+	spawn(35)
+		sound_token = play_looping_sound(src, sound_id, 'sound/machines/metal_caster/working.wav', 50, 10, 3)
+	spawn(215)
+		QDEL_NULL(sound_token)
+		remove_cover()
+	spawn(235)
+		if(operating)
+			try_cast(cast_type)
+			operating = FALSE
+
+/obj/machinery/atmospherics/unary/caster/proc/place_cover() //move -37 Y degrees
+	playsound(src, 'sound/machines/metal_caster/upper_move.wav', 50, 0)
+	cover_overlay.pixel_y = 0
+	animate(cover_overlay, pixel_y = -37, 30, easing = SINE_EASING)
+
+/obj/machinery/atmospherics/unary/caster/proc/remove_cover() //move +37 Y degrees
+	playsound(src, 'sound/machines/metal_caster/upper_move.wav', 50, 0)
+	cover_overlay.pixel_y = -37
+	animate(cover_overlay, pixel_y = 0, 30, easing = SINE_EASING)
+
+/obj/machinery/atmospherics/unary/caster/proc/stop()
+	operating = FALSE
+	QDEL_NULL(sound_token)
+	remove_cover()
+	return
+
+/obj/machinery/atmospherics/unary/caster/proc/eject_canister()
+	return
+
+/obj/machinery/atmospherics/unary/caster/proc/try_cast(cast_type)
+	if(!contained_canister)
+		return
+	var/used_mat
+	for(var/mat in contained_canister.air_contents.gas)
+		if(contained_canister.air_contents.phases[mat] == MAT_PHASE_GAS)
+			continue
+		used_mat = mat
+	if(!used_mat)
+		return
+	//var/decl/material/mat_datum = GET_DECL(used_mat)
+	var/total_available_mass = contained_canister.air_contents.get_mass()
+	if(12 > total_available_mass)
+		return
+	var/moles_to_remove = total_available_mass / contained_canister.air_contents.specific_mass()
+	contained_canister.air_contents.remove(moles_to_remove)
+	SSmaterials.create_object(used_mat, get_turf(src), total_available_mass / 12, cast_type)
