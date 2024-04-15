@@ -25,12 +25,15 @@
 		return 1
 	. = oxygen_amount / normal_oxygen_capacity
 
+#define MCV_COEF(mcv, metabolic_coefficient) mcv / NORMAL_MCV * metabolic_coefficient
+
 /mob/living/carbon/human/proc/get_blood_perfusion()
 	if(stat == DEAD)
 		return 0
 
-	. = CLAMP01((mcv / (NORMAL_MCV * metabolic_coefficient)) * oxygen_amount/1200 * meanpressure / NORMAL_MEAN_PRESSURE)
+	. = CLAMP01(MCV_COEF(mcv, metabolic_coefficient) * oxygen_amount/1200 * meanpressure / NORMAL_MEAN_PRESSURE)
 
+#undef MCV_COEF
 #define VENOUS_RETURN_COEF(dyspressure) min(1.7, dyspressure / 80)
 #define AFTERLOAD_COEF(syspressure) max(0.6, syspressure / 120)
 

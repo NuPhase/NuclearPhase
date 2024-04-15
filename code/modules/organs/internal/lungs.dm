@@ -193,24 +193,12 @@
 		handle_failed_breath()
 		return 1
 
-	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
-	// Lung damage increases the minimum safe pressure.
-	safe_pressure_min *= 1 + rand(1,2) * damage/max_damage
-	if(ruptured)
-		if(!chest_tube)
-			safe_pressure_min *= 1.4 //one lung collapsed
-		else
-			safe_pressure_min *= 1.1 //helps a little
-
-	if(owner.lying)
-		safe_pressure_min *= 0.8
-
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
 	var/inhaling_gas_moles = breath.gas[breath_type]
 	var/inhaling_ratio = inhaling_gas_moles/breath.total_moles
-	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/safe_pressure_min - breath_rate*0.005), 0.01, 3)
+	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/min_breath_pressure - breath_rate*0.005 - damage/max_damage - (ruptured*0.5) + (owner.lying*0.2)), 0.01, 3)
 	last_breath_efficiency = inhale_efficiency
 
 	// Not enough to breathe

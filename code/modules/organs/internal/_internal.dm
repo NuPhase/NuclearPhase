@@ -12,7 +12,7 @@
 	var/surface_accessible = FALSE
 	var/relative_size = 25   // Relative size of the organ. Roughly % of space they take in the target projection :D
 	var/min_bruised_damage = 10       // Damage before considered bruised
-	var/damage_reduction = 0.5     //modifier for internal organ injury
+	var/damage_reduction = 0.1     //modifier for internal organ injury
 	var/oxygen_consumption = 0 //per 2 seconds. 12.7 is available every 2 seconds in a body
 	var/oxygen_deprivation = 0
 	var/oxygen_deprivation_tick = 0.6
@@ -23,6 +23,7 @@
 /obj/item/organ/internal/Initialize(mapload, material_key, datum/dna/given_dna)
 	if(!alive_icon)
 		alive_icon = initial(icon_state)
+	damage_reduction = 0.1 + (relative_size * 0.01)
 	. = ..()
 
 /obj/item/organ/internal/set_species(species_name)
