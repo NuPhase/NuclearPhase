@@ -28,5 +28,4 @@
 		for(var/turf/exterior/crater in circlerangeturfs(crater_center, 3))
 			if(prob(10))
 				new/obj/item/remains/xeno/charred(crater)
-			crater.melt()
 			crater.update_icon()

@@ -3,13 +3,6 @@
 	if(QDELETED(src))
 		return
 
-	// Handle being burned by items that are too hot for you to touch.
-	// TODO: check holding organ coverage and be burned by hot items
-	// TODO: that one spell from D&D that heats up your armour
-	if(ismob(loc))
-		var/mob/holder = loc
-		try_burn_wearer(holder, holder.get_equipped_slot_for_item(src))
-
 	// Check if this is meltable at all.
 	var/list/meltable_materials
 	for(var/mat in matter)
@@ -50,7 +43,6 @@
 	icon_state = ICON_STATE_WORLD
 	w_class = ITEM_SIZE_SMALL
 	material = /decl/material/solid/slag
-	material_alteration = MAT_FLAG_ALTERATION_COLOR
 
 /obj/item/melted_thing/handle_melting(var/list/meltable_materials)
 	SHOULD_CALL_PARENT(FALSE)

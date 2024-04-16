@@ -26,7 +26,7 @@
 		check_health()
 
 /obj/item/proc/check_health(var/lastdamage = null, var/lastdamtype = null, var/lastdamflags = 0, var/consumed = FALSE)
-	if(health > 0 || !can_take_damage())
+	if(health > 0)
 		return //If invincible, or if we're not dead yet, skip
 	if(lastdamtype == BRUTE)
 		if(material?.is_brittle())

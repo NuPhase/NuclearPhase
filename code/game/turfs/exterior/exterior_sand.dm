@@ -13,9 +13,6 @@
 		handle_melting()
 	return ..()
 
-/turf/exterior/sand/get_diggable_resources()
-	return dug ? null : list(/obj/item/stack/material/ore/sand = list(3, 2))
-
 /turf/exterior/sand/handle_melting(list/meltable_materials)
 	. = ..()
 	if(icon_state != "glass")
