@@ -1441,3 +1441,18 @@ var/global/list/floor_decals = list()
 	icon = 'icons/turf/sector_markup.dmi'
 	icon_state = "a"
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+/obj/effect/floor_decal/ceres_logo
+	name = "CERES logo"
+	icon = 'icons/turf/ceres_logo.dmi'
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+/obj/effect/floor_decal/ai
+	name = "AI presence sign"
+	icon = 'icons/turf/decals.dmi'
+	icon_state = "ai"
+
+/obj/effect/floor_decal/mind_control
+	name = "strange sign"
+	icon = 'icons/turf/decals.dmi'
+	icon_state = "mind_control"

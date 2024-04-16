@@ -327,6 +327,10 @@
 
 /area/surface/location/space_center
 
+/area/surface/location/data_center
+	cold_ambience = list('sound/music/thestorycontinues.mp3')
+	requires_power = FALSE
+
 /area/surface/Initialize()
 	. = ..()
 	surface_areas += src
