@@ -10,7 +10,7 @@
 	pickup_sound = 'sound/foley/knife1.ogg'
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 	icon_state = ICON_STATE_WORLD
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_NO_BLOOD
+	atom_flags = ATOM_FLAG_NO_BLOOD
 	w_class = ITEM_SIZE_LARGE
 	sharp = 1
 	edge = 1

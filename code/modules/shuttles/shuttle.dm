@@ -57,7 +57,6 @@
 			if(!istype(A))
 				CRASH("Shuttle \"[name]\" couldn't locate area [T].")
 			areas += A
-			events_repository.register(/decl/observ/destroyed, A, src, PROC_REF(remove_shuttle_area))
 		shuttle_area = areas
 
 	if(initial_location)

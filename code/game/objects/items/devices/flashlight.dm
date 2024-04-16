@@ -343,7 +343,7 @@
 
 /obj/item/flashlight/flare/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(proximity && istype(O) && on)
-		O.HandleObjectHeating(src, user, 500)
+		O.handle_external_heating(500, src, user)
 	..()
 
 /obj/item/flashlight/flare/proc/activate(var/mob/user)

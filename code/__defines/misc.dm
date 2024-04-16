@@ -305,3 +305,6 @@
 #define MOUSE_OPACITY_PRIORITY 2
 
 #define TYPE_IS_ABSTRACT(D) (initial(D.abstract_type) == D)
+
+#define LEVEL_BELOW_PLATING 1
+#define LEVEL_ABOVE_PLATING 2

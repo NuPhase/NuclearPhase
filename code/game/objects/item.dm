@@ -449,7 +449,7 @@
 
 	if(user)
 		if(SSticker.mode)
-			if(pickup_sound && (slot in user.get_held_item_slots()))
+			if(pickup_sound)
 				addtimer(CALLBACK(src, PROC_REF(pickup_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))
 			else if(equip_sound)
 				addtimer(CALLBACK(src, PROC_REF(equipped_sound_callback)), 0, (TIMER_OVERRIDE | TIMER_UNIQUE))

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/barrel.dmi'
 	icon_state = "barrel_closed"
 	initial_capacity = 200000
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
+	atom_flags = ATOM_FLAG_CLIMBABLE
 	var/open = FALSE
 	var/mob/contained = null
 

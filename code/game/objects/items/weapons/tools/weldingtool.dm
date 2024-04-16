@@ -160,6 +160,9 @@
 		if((!waterproof && submerged()) || !remove_fuel(0.05))
 			setWelding(0)
 
+#define WELDING_TOOL_HOTSPOT_TEMP_ACTIVE 700
+#define WELDING_TOOL_HOTSPOT_TEMP_IDLE   400
+
 /obj/item/weldingtool/afterattack(var/obj/O, var/mob/user, proximity)
 	if(!proximity)
 		return
@@ -222,22 +225,12 @@
 	if(isliving(src.loc))
 		var/mob/living/L = src.loc
 		if(!(src in L.get_held_items()))
-			fuel_usage = max(fuel_usage, 2)
-			L.IgniteMob()
-	else if(isturf(loc))
-		var/turf/location = get_turf(src)
-		location.hotspot_expose(WELDING_TOOL_HOTSPOT_TEMP_IDLE, 5) //a bit colder when idling
-	else if(isatom(loc))
-		var/atom/A = loc
-		A.handle_external_heating(WELDING_TOOL_HOTSPOT_TEMP_IDLE)
+			in_mob = L
 
-	if(use_fuel(fuel_usage))
-		return TRUE
-	else
-		tank.reagents.remove_reagent(/decl/material/liquid/fuel, amount)
-		var/turf/location = get_turf(src.loc)
-		if(location)
-			location.hotspot_expose(700, 5)
+	if(in_mob)
+		amount = max(amount, 2)
+		tank.reagents.trans_type_to(in_mob, /decl/material/liquid/fuel, amount)
+		in_mob.IgniteMob()
 
 //Returns whether or not the welding tool is currently on.
 /obj/item/weldingtool/proc/isOn()
