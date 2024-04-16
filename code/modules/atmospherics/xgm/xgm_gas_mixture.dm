@@ -247,7 +247,7 @@
 	gas_moles = 0
 	var/liquid_volume = 0
 	for(var/g in gas)
-		if(gas[g] <= 0)
+		if(gas[g] <= 0 || isnull(g))
 			gas -= g
 		else
 			total_moles += gas[g]

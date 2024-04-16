@@ -755,7 +755,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 		oxidizer_moles += gas_moles
 	var/actually_combusted = min(gas_moles, oxidizer_moles)
 	var/total_energy = actually_combusted * combustion_energy
-	products.adjust_gas(burn_product, gas_moles*0.05, FALSE)
+	if(burn_product)
+		products.adjust_gas(burn_product, gas_moles*0.05, FALSE)
 	products.adjust_gas(type, gas_moles*0.95, FALSE)
 	environment.merge(products)
 	holder.reagents.remove_reagent(type, volume)

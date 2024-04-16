@@ -20,7 +20,8 @@
 	cover_overlay.icon = 'icons/obj/machines/large_casting_machine.dmi'
 	cover_overlay.icon_state = "top"
 	cover_overlay.layer = ABOVE_HUMAN_LAYER
-	add_overlay(cover_overlay)
+	cover_overlay.mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
+	cover_overlay.forceMove(get_turf(src))
 	sound_id = "[/obj/machinery/atmospherics/unary/caster]_[sequential_id(/obj/machinery/atmospherics/unary/caster)]"
 
 /obj/machinery/atmospherics/unary/caster/physical_attack_hand(user)
