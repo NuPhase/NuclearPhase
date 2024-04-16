@@ -26,6 +26,7 @@
 	lore_text = "A chemical element, used as antidepressant."
 	flags = MAT_FLAG_FUSION_FUEL | XGM_GAS_FUEL
 	combustion_energy = 2380
+	burn_product = /decl/material/gas/oxygen
 	taste_description = "metal"
 	color = "#808080"
 	value = 0.5
@@ -80,6 +81,7 @@
 	lore_text = "A chemical element, the backbone of biological energy carriers."
 	flags = XGM_GAS_FUEL
 	combustion_energy = 137600
+	burn_product = /decl/material/gas/carbon_dioxide
 	taste_description = "vinegar"
 	color = "#832828"
 	fire_color = "#ffd271"

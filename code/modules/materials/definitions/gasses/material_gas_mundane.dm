@@ -291,6 +291,7 @@
 	gas_overlay_limit = 2
 	color = "#633a8a"
 	combustion_energy = 890000
+	burn_product = /decl/material/gas/carbon_dioxide
 	fire_color = "#0044ff"
 	fire_alpha = 140
 
