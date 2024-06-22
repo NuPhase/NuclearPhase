@@ -1,6 +1,6 @@
 /decl/loadout_category/accessories
 	name = "Accessories"
-	
+
 /decl/loadout_option/accessory
 	category = /decl/loadout_category/accessories
 	slot = slot_tie_str
@@ -60,3 +60,8 @@
 	path = /obj/item/clothing/accessory/bracelet
 	cost = 1
 	flags = GEAR_HAS_COLOR_SELECTION
+
+/decl/loadout_option/accessory/un_armband
+	name = "UN armband"
+	description = "U.N. peacekeeper's armband."
+	path = /obj/item/clothing/accessory/armband/bluegold

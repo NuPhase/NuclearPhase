@@ -84,7 +84,8 @@ SUBSYSTEM_DEF(materials)
 		return
 	materials =         list()
 	materials_by_name = list()
-	for(var/mtype in subtypesof(/decl/material))
+	var/list/material_decls = decls_repository.get_decls_of_subtype(/decl/material)
+	for(var/mtype in material_decls)
 		var/decl/material/new_mineral = mtype
 		if(!initial(new_mineral.name))
 			continue
