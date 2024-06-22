@@ -15,7 +15,7 @@
 
 /obj/modular_map_anchor/LateInitialize()
 	. = ..()
-	INVOKE_ASYNC(src, .proc/load_map)
+	INVOKE_ASYNC(src, PROC_REF(load_map))
 
 /obj/modular_map_anchor/proc/load_map()
 	var/turf/spawn_turf = get_turf(src)

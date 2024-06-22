@@ -139,13 +139,13 @@
 		resistance += max(0, A.explosion_resistance)
 
 	// Blow stuff up
-	INVOKE_ASYNC(in_turf, /atom/proc/explosion_act, power, direction)
+	INVOKE_ASYNC(in_turf, TYPE_PROC_REF(/atom, explosion_act), power, direction)
 	for(var/atom/A in in_turf)
 		if(A in exploded_atoms)
 			continue
 		if(A.gc_destroyed)
 			continue
-		INVOKE_ASYNC(A, /atom/proc/explosion_act, power, direction)
+		INVOKE_ASYNC(A, TYPE_PROC_REF(/atom, explosion_act), power, direction)
 		exploded_atoms += A
 
 	var/reflected = FALSE
@@ -231,7 +231,7 @@ as having entered the turf.
 	if(A.gc_destroyed)
 		return
 
-	INVOKE_ASYNC(A, /atom/proc/explosion_act, power, null)
+	INVOKE_ASYNC(A, TYPE_PROC_REF(/atom, explosion_act), power, null)
 
 // I'll admit most of the code from here on out is basically just copypasta from DOREC
 
