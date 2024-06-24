@@ -28,9 +28,11 @@
 /datum/computer/file/embedded_program/decont_airlock/proc/open_doors(range_list, door_tag)
 	for(var/obj/machinery/door/D in range_list)
 		if(D.id_tag == door_tag)
-			D.open()
+			spawn()
+				D.open()
 
 /datum/computer/file/embedded_program/decont_airlock/proc/close_doors(range_list, door_tag)
 	for(var/obj/machinery/door/D in range_list)
 		if(D.id_tag == door_tag)
-			D.close()
+			spawn()
+				D.close()
