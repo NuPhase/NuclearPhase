@@ -52,6 +52,8 @@ Class Procs:
 	var/list/graphic_remove = list()
 	var/last_air_temperature = TCMB
 	var/condensing = FALSE
+
+	var/last_movable_calc = 0 //last world.time of movables indexation
 	var/list/movables = list()
 
 /zone/New()
@@ -162,6 +164,10 @@ Class Procs:
 		if(E.sleeping)
 			E.recheck()
 			CHECK_TICK
+
+	// Update movables list
+	if(last_movable_calc < world.time + 6 SECONDS)
+		INVOKE_ASYNC(src, PROC_REF(cache_movables))
 
 	// Handle condensation from the air.
 	if(!condensing && air.total_moles)

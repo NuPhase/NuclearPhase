@@ -159,9 +159,13 @@ Contains helper procs for airflow, called by /connection_group.
 	. = ..()
 
 /zone/proc/movables()
-	. = list()
+	return movables
+
+/zone/proc/cache_movables()
+	movables.Cut()
 	for(var/turf/T in contents)
 		for(var/atom/movable/A in T)
 			if(!A.simulated || A.anchored)
 				continue
-			. += A
+			movables += A
+	last_movable_calc = world.time
