@@ -61,6 +61,7 @@
 		if(A.can_be_shocked && prob(95))
 			heart.arrythmias.Remove(A)
 	shock_charged = FALSE
+	pads.attached.srec_dose *= 1.1
 	log_and_message_admins("used \a [src] to electrocute [key_name(pads.attached)].")
 
 
@@ -94,6 +95,7 @@
 	heart.pulse = rand(55, 65)
 	heart.instability = max(heart.instability -= rand(70, 170), 0)
 	shock_charged = FALSE
+	pads.attached.srec_dose *= 1.1
 	for(var/decl/arrythmia/A in heart.arrythmias)
 		if(!A.can_be_shocked && prob(95))
 			heart.arrythmias.Remove(A)

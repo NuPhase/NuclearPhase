@@ -75,7 +75,41 @@
 	desc = "Your heart is weak."
 	aspect_cost = -2
 
+/decl/aspect/perk/negative/heart_problem/apply(mob/living/carbon/human/holder)
+	. = ..()
+	var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(holder, BP_HEART)
+	cur_heart.damage = cur_heart.max_damage * 0.9
+
 /decl/aspect/perk/negative/heart_failure
 	name = "Heart Failure"
 	desc = "Your heart is barely functioning. You might need a transplant or intense treatment. You carry Amiodarone pills with you at all times."
 	aspect_cost = -5
+
+/decl/aspect/perk/negative/heart_failure/apply(mob/living/carbon/human/holder)
+	. = ..()
+	var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(holder, BP_HEART)
+	cur_heart.damage = cur_heart.max_damage * 0.7
+
+/decl/aspect/perk/negative/srec_infection
+	name = "SREC Infection"
+	desc = "An infection by Self-Replicating Electrotrophic Crystals. \
+			These silicon-like crystals use electricity for metabolism. The disease progression to the lethal stage may take dozens of years, \
+			but any electrical shocks strongly exacerbate it. Your infection is benign and relatively harmless(<80mcg/ml)."
+	incompatible_with = list(/decl/aspect/perk/negative/srec_infection/medium)
+	aspect_cost = -3
+
+/decl/aspect/perk/negative/srec_infection/apply(mob/living/carbon/human/holder)
+	. = ..()
+	holder.srec_dose = rand(40, 80)
+
+/decl/aspect/perk/negative/srec_infection/medium
+	name = "Developed SREC Infection"
+	desc = "An infection by Self-Replicating Electrotrophic Crystals. \
+			These silicon-like crystals use electricity for metabolism. Your infection has already developed symptoms, a few electric shocks \
+			will likely put an end to you."
+	incompatible_with = list(/decl/aspect/perk/negative/srec_infection)
+	aspect_cost = -8
+
+/decl/aspect/perk/negative/srec_infection/medium/apply(mob/living/carbon/human/holder)
+	. = ..()
+	holder.srec_dose = rand(120, 160)

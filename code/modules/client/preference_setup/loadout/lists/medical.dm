@@ -33,3 +33,15 @@
 	description = "It's an emergency medical kit for those serious boo-boos."
 	path = /obj/item/storage/firstaid/regular
 	cost = 60
+
+/decl/loadout_option/medical/srec
+	name = "SREC inhibitor autoinjector"
+	description = "A simple SREC-I autoinjector."
+	path = /obj/item/chems/hypospray/autoinjector/srec
+	cost = 15
+
+/decl/loadout_option/medical/srec/elite
+	name = "elite SREC inhibitor autoinjector"
+	description = "A SREC-IE autoinjector with a complex mixture of medication inside. Negates some symptoms of SREC."
+	path = /obj/item/chems/hypospray/autoinjector/srec
+	cost = 15

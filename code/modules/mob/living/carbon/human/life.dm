@@ -222,6 +222,9 @@
 		if(gene.is_active(src))
 			gene.OnMobLife(src)
 
+	if(srec_dose)
+		handle_srec()
+
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
 			set_light(0)
@@ -282,6 +285,57 @@
 				if(radiation > 100000) //exitus letalis
 					cur_heart.instability += 1000
 					cur_brain.take_internal_damage(1)
+
+//An infection by Self-Replicating Electrotrophic Crystals.
+//These silicon-like crystals use electricity for metabolism.
+//The disease progression to the lethal stage may take dozens of years, but any electrical shocks strongly exacerbate it.
+//SREC prevents microperfusion in capillary vessels, disrupting the delivery of oxygen to vital parts of the body.
+//In very high doses it disrupts biochemistry, causing widespread tissue damage with septic shock.
+
+//Our SREC dose is defined in mcg/ml.
+//Infections below below 80 mcg/ml are considered benign and won't show any symptoms.
+//80-120 mcg/ml shows disrupted microperfusion: weakened vision, occasional tickling in the extremities and slight skin paleness.
+//120-140 mcg/ml presents weakness, the eyes lose color, outer limbs get reduced pain sensation. No appetite.
+//140-160 mcg/ml is where flu-like symptoms appear as the immune system responds to hypoperfusion in outer tissues. Heighetened body temp and weakness.
+//160-180 mcg/ml. The immune system is totally inhibited. The eyes develop a greenish tinge and partial paralysis of outer limbs may occur.
+//180-200 mcg/ml. The dose can be much higher, but this is where things likely end. The slightest electric shock can cause a total circulatory collapse.
+//>200 mcg/ml. Survival is extremely unlikely without medication as organ failure begins to set in.
+/mob/living/carbon/human/proc/handle_srec()
+	if(srec_dose > 160 && !has_chemical_effect(CE_SREC)) //Replicate
+		srec_dose *= 1.001
+
+	if(srec_dose > 80)
+		var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
+		var/dose_sqrt = sqrt(srec_dose)
+		cur_heart.cardiac_output_modifiers["SREC"] = 1 - dose_sqrt * 0.003
+		cur_heart.stability_modifiers["SREC"] = -1.25 * dose_sqrt
+		if(client)
+			change_skin_tone(round(client.prefs.skin_tone * 1 - dose_sqrt * 0.003))
+		to_chat_cooldown(src, SPAN_INFO("Your skin tickles.."), "srectickle", rand(2 MINUTES, 5 MINUTES))
+	else
+		return
+	if(srec_dose > 120)
+		if(srec_dose < 160)
+			change_eye_color(COLOR_GRAY)
+		adjustHalLoss(-150)
+		adjust_stamina(srec_dose * -0.05)
+		to_chat_cooldown(src, SPAN_WARNING("You feel weak."), "srecweak", rand(4 MINUTES, 10 MINUTES))
+	else
+		return
+	if(srec_dose > 140)
+		if(prob(sqrt(srec_dose) * 0.1))
+			emote("cough")
+		bodytemperature += rand(1.3, 1.4)
+		adjust_immunity(-1)
+		if(srec_dose < 160)
+			to_chat_cooldown(src, SPAN_WARNING("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES))
+	else
+		return
+	if(srec_dose > 160)
+		adjust_immunity(-10)
+		change_eye_color(COLOR_GREEN_GRAY)
+		adjustHalLoss(-400)
+		to_chat_cooldown(src, SPAN_DANGER("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES))
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
 	for(var/slot in global.standard_headgear_slots)
@@ -655,7 +709,7 @@
 			clear_fullscreen("crit")
 			//Oxygen damage overlay
 			var/blood_perfusion = get_blood_perfusion()
-			if(blood_perfusion < 0.8)
+			if(blood_perfusion < 0.8 || srec_dose > 80)
 				var/severity = 0
 				switch(blood_perfusion)
 					if(0.8 to 0.92)		severity = 1
@@ -665,6 +719,11 @@
 					if(0.55 to 0.6)		severity = 5
 					if(0.5 to 0.55)		severity = 6
 					if(0 to 0.5)		severity = 7
+				if(srec_dose > 80)
+					severity += 1
+					if(srec_dose > 160)
+						severity += 1
+				severity = min(severity, 7)
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.5) //we are JACKED on adrenaline
 					if(blood_perfusion < 0.5) //fancy flickering when low on oxygen
