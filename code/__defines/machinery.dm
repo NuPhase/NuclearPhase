@@ -51,6 +51,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 
 #define CAMERA_CHANNEL_ROBOTS "Robots"
 #define CAMERA_CHANNEL_MINE "Mining"
+#define CAMERA_CHANNEL_CARGO "Cargo"
 #define CAMERA_CHANNEL_SECRET "Secret"
 
 // Non-station channels

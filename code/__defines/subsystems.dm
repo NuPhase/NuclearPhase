@@ -35,6 +35,7 @@
 #define SS_INIT_CIRCUIT          8
 #define SS_INIT_GRAPH            7
 #define SS_INIT_OPEN_SPACE       6
+#define SS_INIT_PERSISTENCE      5.5
 #define SS_INIT_ATOMS            5
 #define SS_INIT_CHAR_SETUP       4
 #define SS_INIT_MACHINES         3

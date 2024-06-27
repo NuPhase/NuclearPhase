@@ -1,11 +1,26 @@
+#define ITEM_POOL_PATH "data/item_pool.txt"
+
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
-	init_order = SS_INIT_MISC_LATE
+	init_order = SS_INIT_PERSISTENCE
 	flags = SS_NO_FIRE | SS_NEEDS_SHUTDOWN
 
 	var/elevator_fall_path = "data/elevator_falls_tracking.txt"
 	var/elevator_fall_shifts = -1 // This is snowflake, but oh well.
 	var/list/tracking_values = list()
+
+	var/list/loaded_item_pool = null //An actual item pool loaded from the previous round in Initialize(). Null if there isn't one
+	var/list/item_pool_areas = list() //Areas which should be used when creating an item pool
+	var/list/item_pool_blacklist = list(/obj/item/paper,
+										/obj/item/paper_bin,
+										/obj/item/toy,
+										/obj/item/kitchen,
+										/obj/item/flashlight/lamp,
+										/obj/item/book,
+										/obj/item/stool,
+										/obj/item/pen) //Blacklisted items
+	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
+										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
 
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
@@ -23,6 +38,13 @@ SUBSYSTEM_DEF(persistence)
 	elevator_fall_shifts++
 	// End snowflake.
 
+	//Load the item pool
+	if(fexists(ITEM_POOL_PATH))
+		loaded_item_pool = list()
+		var/list/extracted_list = file2list(ITEM_POOL_PATH, ", ") //This is a list of STRING but we need PATH
+		for(var/string in extracted_list)
+			loaded_item_pool += text2path(string)
+
 /datum/controller/subsystem/persistence/Shutdown()
 	var/list/all_persistence_datums = decls_repository.get_decls_of_subtype(/decl/persistence_handler)
 	for(var/thing in all_persistence_datums)
@@ -33,6 +55,8 @@ SUBSYSTEM_DEF(persistence)
 	if(fexists(elevator_fall_path))
 		fdel(elevator_fall_path)
 	text2file("[elevator_fall_shifts]", elevator_fall_path)
+
+	make_item_pool()
 
 /datum/controller/subsystem/persistence/proc/track_value(var/atom/value, var/track_type)
 
@@ -75,3 +99,28 @@ SUBSYSTEM_DEF(persistence)
 	var/datum/browser/popup = new(user, "admin_persistence", "Persistence Data")
 	popup.set_content(jointext(dat, null))
 	popup.open()
+
+/datum/controller/subsystem/persistence/proc/make_item_pool()
+	var/text_to_write = jointext(collect_item_pool(), ", ")
+	fdel(ITEM_POOL_PATH)
+	text2file(text_to_write, ITEM_POOL_PATH)
+
+/datum/controller/subsystem/persistence/proc/collect_item_pool()
+	var/list/fucking_chonker_return_list = list()
+	for(var/area/A in item_pool_areas)
+		for(var/obj/item/I in A.contents)
+			if(istype(I.loc, /obj/machinery)) //Machinery components shouldn't be saved
+				continue
+			for(var/b_type in item_pool_blacklist)
+				if(istype(I, b_type))
+					continue
+			if(I.anchored) //Mines, etc
+				continue
+			fucking_chonker_return_list += I.type
+		for(var/obj/structure/closet/C in A.contents)
+			for(var/obj/item/I in C.contents)
+				for(var/b_type in item_pool_blacklist)
+					if(istype(I, b_type))
+						continue
+				fucking_chonker_return_list += I.type
+	return fucking_chonker_return_list

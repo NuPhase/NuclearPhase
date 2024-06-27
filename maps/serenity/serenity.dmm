@@ -1737,6 +1737,13 @@
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
+"bAL" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "bAQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1904,6 +1911,16 @@
 "bIN" = (
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/entrance_zone)
+"bJa" = (
+/obj/machinery/button/blast_door{
+	id_tag = "cargo_internal";
+	name = "Shutter Control";
+	pixel_y = 32;
+	pixel_x = 8;
+	initial_access = list("ACCESS_CARGO")
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "bJQ" = (
 /obj/structure/table/glass,
 /obj/machinery/blood_analysis{
@@ -2078,7 +2095,7 @@
 /area/serenity/shelter/entrance_zone)
 "bRt" = (
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/wood/walnut,
@@ -2178,6 +2195,12 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
+"bVj" = (
+/obj/structure/rack{
+	pixel_y = 1
+	},
+/turf/simulated/floor/concrete,
+/area/serenity)
 "bVp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
@@ -2438,6 +2461,10 @@
 /obj/structure/stairs/very_long/north,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity)
+"ccP" = (
+/obj/structure/rack,
+/turf/simulated/floor/concrete,
+/area/serenity)
 "cdf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2479,6 +2506,10 @@
 /obj/effect/paint,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical)
+"cdV" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "cem" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/paper_bin,
@@ -2996,6 +3027,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/entrance_zone)
+"cBI" = (
+/obj/structure/sign/warning/detailed{
+	pixel_y = 32
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "cBM" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 6
@@ -3070,6 +3110,12 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
+"cDV" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "cEu" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -3098,6 +3144,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"cGd" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/staircase)
 "cGf" = (
 /obj/effect/floor_decal/sign/a{
 	pixel_y = 30
@@ -3709,6 +3761,12 @@
 /obj/item/chems/condiment/small/packet/pepper,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"dgw" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity)
 "dgN" = (
 /obj/structure/cable/heavy{
 	icon_state = "2-8"
@@ -4973,6 +5031,14 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
+"ecL" = (
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_VAULT");
+	lock_type = /datum/lock/id_card;
+	name = "High Security Storage"
+	},
+/turf/simulated/floor/concrete,
+/area/serenity)
 "ecM" = (
 /obj/structure/closet/crate/paper_refill,
 /obj/effect/decal/cleanable/dirt,
@@ -5237,6 +5303,12 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/tiled/steel_grid,
 /area/serenity/shelter/brig/prison)
+"eko" = (
+/obj/structure/bed/sofa/r/black{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "elc" = (
 /obj/effect/floor_decal/industrial/radiation,
 /obj/effect/decal/cleanable/dirt,
@@ -5579,6 +5651,11 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"eyv" = (
+/obj/structure/wall_frame/standard,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity)
 "eyO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
@@ -6028,6 +6105,12 @@
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"eTJ" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "eUd" = (
 /turf/exterior/wall,
 /area/serenity/shelter/labs/particle_physics)
@@ -6695,7 +6778,7 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "fBa" = (
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -7093,7 +7176,7 @@
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "fQD" = (
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -7593,6 +7676,10 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"ghU" = (
+/obj/structure/bed/sofa/m/black,
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "gie" = (
 /obj/machinery/atmospherics/pipe/cap/visible{
 	dir = 4
@@ -8954,6 +9041,10 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/dark/herringbone,
 /area/serenity/shelter/brig/prison)
+"hjQ" = (
+/obj/structure/stairs/long/west,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "hjX" = (
 /obj/machinery/light{
 	dir = 4
@@ -10329,10 +10420,13 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
 "ipn" = (
-/obj/structure/sign/warning/detailed{
-	pixel_y = 32
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/blast_door{
+	id_tag = "cargo_external";
+	name = "Shutter Control";
+	pixel_y = 32;
+	initial_access = list("ACCESS_EMERGENCY_STORAGE")
+	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "ipP" = (
@@ -10353,6 +10447,12 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
+"ipY" = (
+/obj/structure/door/fire{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "iqf" = (
 /obj/structure/rack/dark,
 /obj/machinery/light{
@@ -10423,6 +10523,12 @@
 /obj/machinery/papershredder,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"isQ" = (
+/obj/machinery/door/airlock/glass/research{
+	name = "Storage Module #3"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "itf" = (
 /obj/structure/closet/firecloset,
 /obj/effect/floor_decal/industrial/fire/fulltile,
@@ -10503,6 +10609,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible/water,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations)
+"ivC" = (
+/obj/machinery/door/blast/shutters{
+	dir = 4;
+	id_tag = "cargo_internal";
+	name = "Cargo Access"
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "ivF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 9
@@ -10622,6 +10736,12 @@
 /obj/structure/coatrack,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"iBz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "iBK" = (
 /obj/machinery/atmospherics/pipe/zpipe/up,
 /turf/simulated/open,
@@ -10786,6 +10906,13 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"iJw" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "iJK" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped{
@@ -11017,12 +11144,24 @@
 /obj/structure/bed/chair/pew,
 /turf/simulated/floor/tiled/steel_grid,
 /area/serenity/shelter/brig/prison)
+"iQF" = (
+/obj/machinery/door/airlock/glass/research{
+	name = "Storage Module #4"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "iQJ" = (
 /obj/effect/floor_decal/carpet/purple{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/purple,
 /area/serenity/shelter/engineering/reactor_operations)
+"iQM" = (
+/obj/structure/sign/warning/detailed{
+	pixel_y = 32
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "iQN" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -11217,6 +11356,12 @@
 /obj/machinery/atmospherics/pipe/simple/visible/steam,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"iZC" = (
+/obj/structure/sign/warning/secure_area{
+	pixel_y = 32
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "jao" = (
 /obj/machinery/light/reactor{
 	dir = 4;
@@ -11293,6 +11438,10 @@
 /obj/structure/safe/floor,
 /turf/simulated/floor/tiled/dark/herringbone,
 /area/serenity/shelter/brig/prison)
+"jdY" = (
+/obj/machinery/light/ceiling,
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "jet" = (
 /obj/structure/rack,
 /obj/item/chems/spray/cleaner/drone,
@@ -11341,6 +11490,14 @@
 /obj/item/toy/desk/fan,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"jgX" = (
+/obj/structure/door/fire{
+	dir = 2;
+	lock_data = list("ACCESS_CARGO");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "jhA" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -11770,7 +11927,7 @@
 /area/serenity/shelter/engineering/reactor)
 "jwJ" = (
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /obj/structure/cable/heavy{
@@ -11966,6 +12123,13 @@
 /obj/machinery/atmospherics/pipe/cap/hidden,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
+"jEN" = (
+/obj/structure/rack,
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity)
 "jEV" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -12289,6 +12453,14 @@
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_cryo,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"jSj" = (
+/obj/machinery/door/blast/shutters/open{
+	dir = 4;
+	id_tag = "cargo_internal";
+	name = "Cargo Access"
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "jSl" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -13011,7 +13183,7 @@
 /area/serenity/shelter/entrance_zone)
 "kxM" = (
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /obj/structure/cable/heavy{
@@ -14064,6 +14236,14 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"lnd" = (
+/obj/structure/door/fire{
+	dir = 2;
+	lock_data = list("ACCESS_CARGO");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/concrete,
+/area/serenity)
 "lnm" = (
 /obj/structure/door/sliding,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -14223,6 +14403,13 @@
 	},
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/engineering/reactor_operations/office)
+"ltS" = (
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_VAULT");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "ltW" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/steam,
 /turf/simulated/floor/concrete,
@@ -14264,7 +14451,7 @@
 "lvl" = (
 /obj/structure/door/fire{
 	dir = 8;
-	lock_data = list("ACCESS_ENGINE_EQUIP");
+	lock_data = list("ACCESS_CARGO");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/concrete/black,
@@ -14538,6 +14725,12 @@
 /obj/effect/floor_decal/industrial/radiation,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations)
+"lEb" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/turf/simulated/floor/concrete,
+/area/serenity)
 "lEn" = (
 /obj/structure/hygiene/shower{
 	dir = 4
@@ -15190,6 +15383,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"mcx" = (
+/obj/machinery/light/ceiling,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "mcW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -15434,6 +15631,10 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"mkt" = (
+/obj/machinery/power/generator/port_gen/liquid/diesel,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "mkK" = (
 /obj/structure/table/glass,
 /obj/machinery/defibrillator,
@@ -16214,7 +16415,7 @@
 /area/serenity/shelter/engineering/electrical)
 "mMr" = (
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -16609,7 +16810,7 @@
 "ndl" = (
 /obj/structure/door/fire{
 	dir = 8;
-	lock_data = list("ACCESS_ENGINE_EQUIP");
+	lock_data = list("ACCESS_CARGO");
 	lock_type = /datum/lock/id_card
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -17500,6 +17701,15 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"nMj" = (
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity)
 "nMD" = (
 /obj/structure/bed/chair/armchair/green{
 	dir = 8
@@ -17783,6 +17993,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/pumps_b)
+"nWi" = (
+/obj/machinery/door/airlock/glass/research,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity)
 "nWJ" = (
 /obj/structure/table/steel,
 /obj/item/mop,
@@ -17900,8 +18114,11 @@
 	},
 /area/serenity/shelter/habitationdeck/crew)
 "obh" = (
-/turf/exterior/wall,
-/area/serenity/shelter/staircase)
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity)
 "obr" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -18450,6 +18667,14 @@
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/tiled,
 /area/serenity/shelter/engineering/pumps_a)
+"otG" = (
+/obj/structure/door/fire{
+	dir = 8;
+	lock_data = list("ACCESS_CARGO");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "otR" = (
 /obj/structure/table/steel,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -19613,7 +19838,7 @@
 "poJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/water,
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/concrete,
@@ -19673,6 +19898,9 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
+"prw" = (
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "prJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -20268,6 +20496,14 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
+"pMv" = (
+/obj/machinery/door/blast/shutters/open{
+	dir = 4;
+	id_tag = "cargo_external";
+	name = "Cargo Access"
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "pMC" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp/lava/orange,
@@ -20787,6 +21023,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
+"qmM" = (
+/obj/structure/door/fire{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "qmQ" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
@@ -21445,6 +21687,10 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/brig)
+"qKz" = (
+/obj/structure/railing/mapped,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "qKU" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -23653,6 +23899,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"ssy" = (
+/obj/structure/bed/sofa/m/black{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "ssA" = (
 /obj/structure/window/borosilicate_reinforced/full,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -23782,6 +24034,10 @@
 /obj/item/storage/box/evidence,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/preparation)
+"sxq" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "sxB" = (
 /obj/structure/railing/mapped,
 /obj/effect/floor_decal/industrial/warning/dust,
@@ -24207,6 +24463,12 @@
 /obj/item/towel/random,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/breakroom)
+"sOw" = (
+/obj/machinery/door/airlock/glass/research{
+	name = "Storage Module #2"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "sPs" = (
 /obj/structure/bed/chair/armchair/black,
 /obj/effect/decal/cleanable/dirt,
@@ -24464,6 +24726,12 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"sYC" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "sYJ" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 4
@@ -24856,6 +25124,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
+"tqL" = (
+/obj/structure/bed/sofa/l/black,
+/turf/simulated/floor/tiled/monotile,
+/area/serenity)
 "tra" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
@@ -24936,6 +25208,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/genetics)
+"twf" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "twh" = (
 /obj/structure/table/steel,
 /obj/item/storage/toolbox/repairs,
@@ -25492,6 +25770,9 @@
 	dir = 8
 	},
 /turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
+"tVO" = (
+/turf/simulated/floor/concrete,
 /area/serenity/shelter/staircase)
 "tVT" = (
 /obj/structure/catwalk,
@@ -27958,7 +28239,7 @@
 "vIB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/water,
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -28436,6 +28717,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing/mapped{
 	dir = 8
+	},
+/obj/structure/sign/warning/detailed{
+	pixel_y = 32
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
@@ -29652,7 +29936,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_MAINT");
+	lock_data = list("ACCESS_VAULT");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -29781,6 +30065,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"xdN" = (
+/obj/machinery/button/blast_door{
+	id_tag = "cargo_internal";
+	name = "Shutter Control";
+	pixel_y = 32;
+	pixel_x = -8;
+	initial_access = list("ACCESS_CARGO")
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/staircase)
 "xdX" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /obj/machinery/door/firedoor/autoset,
@@ -29990,6 +30284,12 @@
 	},
 /turf/simulated/floor/carpet/purple,
 /area/serenity/shelter/habitationdeck/crew)
+"xkB" = (
+/obj/machinery/door/airlock/glass/research{
+	name = "Storage Module #1"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity)
 "xkN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam,
 /turf/simulated/open,
@@ -30645,6 +30945,11 @@
 /obj/machinery/door/firedoor/autoset,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
+"xKu" = (
+/obj/structure/stairs/long/east,
+/obj/structure/railing/mapped,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
 "xKG" = (
 /obj/structure/table/steel,
 /obj/effect/decal/cleanable/dirt,
@@ -30895,6 +31200,22 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
+"xWg" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity)
+"xWs" = (
+/obj/machinery/button/blast_door{
+	id_tag = "cargo_external";
+	name = "Shutter Control";
+	pixel_y = 32;
+	pixel_x = -8;
+	initial_access = list("ACCESS_EMERGENCY_STORAGE")
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "xWK" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -72705,10 +73026,10 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
+xhK
+xhK
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -72803,10 +73124,10 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
+xhK
+xhK
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -72901,10 +73222,10 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
+xhK
+xhK
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -72999,10 +73320,10 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
+xhK
+xhK
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -73183,14 +73504,14 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73281,14 +73602,14 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73379,14 +73700,14 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73477,14 +73798,14 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73575,14 +73896,14 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73673,11 +73994,11 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73771,11 +74092,11 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73869,11 +74190,11 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -73967,11 +74288,11 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -74065,11 +74386,11 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+azs
+azs
+azs
+azs
+azs
 xEy
 xEy
 xEy
@@ -80924,15 +81245,15 @@ xEy
 xEy
 xEy
 xEy
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81022,7 +81343,6 @@ xEy
 xEy
 xEy
 xEy
-qDY
 xhK
 xhK
 xhK
@@ -81030,7 +81350,8 @@ xhK
 xhK
 xhK
 xhK
-qDY
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81120,7 +81441,6 @@ xEy
 xEy
 xEy
 xEy
-qDY
 xhK
 xhK
 xhK
@@ -81128,7 +81448,8 @@ xhK
 xhK
 xhK
 xhK
-qDY
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81218,7 +81539,6 @@ xEy
 xEy
 xEy
 xEy
-qDY
 xhK
 xhK
 xhK
@@ -81226,7 +81546,8 @@ xhK
 xhK
 xhK
 xhK
-qDY
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81316,7 +81637,6 @@ xEy
 xEy
 xEy
 xEy
-qDY
 xhK
 xhK
 xhK
@@ -81324,7 +81644,8 @@ xhK
 xhK
 xhK
 xhK
-qDY
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81414,7 +81735,6 @@ xEy
 xEy
 xEy
 xEy
-qDY
 xhK
 xhK
 xhK
@@ -81422,7 +81742,8 @@ xhK
 xhK
 xhK
 xhK
-qDY
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81512,7 +81833,6 @@ xEy
 xEy
 xEy
 xEy
-qDY
 xhK
 xhK
 xhK
@@ -81520,7 +81840,8 @@ xhK
 xhK
 xhK
 xhK
-qDY
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81610,7 +81931,6 @@ xEy
 xEy
 xEy
 xEy
-qDY
 xhK
 xhK
 xhK
@@ -81618,7 +81938,8 @@ xhK
 xhK
 xhK
 xhK
-qDY
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -81708,15 +82029,15 @@ xEy
 xEy
 xEy
 xEy
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
-qDY
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
+xhK
 xEy
 xEy
 xEy
@@ -82015,12 +82336,12 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
 xEy
 xEy
 "}
@@ -82113,12 +82434,12 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -82211,12 +82532,12 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -82309,12 +82630,12 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -82407,12 +82728,12 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -82494,23 +82815,23 @@ aIK
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+prw
+prw
+aIK
+aIK
 xEy
 xEy
 "}
@@ -82592,22 +82913,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+dkv
+prw
+xWg
+prw
+prw
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -82690,22 +83011,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+dkv
+prw
+qKz
+bAL
+bAL
+cDV
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -82788,22 +83109,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+dkv
+prw
+qKz
+prw
+prw
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -82886,22 +83207,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+dkv
+prw
+qKz
+prw
+prw
+prw
+prw
+cdV
+aIK
 xEy
 xEy
 xEy
@@ -82984,22 +83305,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+kHt
+dkv
+iBz
+qKz
+prw
+prw
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -83082,22 +83403,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+cDV
+cDV
+cDV
+prw
+qKz
+prw
+prw
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -83180,22 +83501,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+prw
+prw
+prw
+prw
+qKz
+prw
+prw
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -83278,22 +83599,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+prw
+prw
+prw
+prw
+prw
+prw
+prw
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -83376,22 +83697,22 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+prw
+prw
+prw
+prw
+prw
+prw
+prw
+prw
+twf
+prw
+aIK
 xEy
 xEy
 xEy
@@ -83474,23 +83795,23 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+prw
+prw
+prw
+prw
+twf
+prw
+prw
+prw
+aIK
+aIK
+aIK
+aIK
 xEy
 xEy
 "}
@@ -83572,23 +83893,23 @@ gtE
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+iBz
+prw
+prw
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+cBI
+prw
+aIK
 xEy
 xEy
 "}
@@ -83674,19 +83995,19 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+iQM
+prw
+prw
+ecL
+fNn
+fNn
+fNn
+fNn
+ltS
+prw
+prw
+aIK
 xEy
 xEy
 "}
@@ -83772,19 +84093,19 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+iZC
+prw
+prw
+ecL
+fNn
+fNn
+fNn
+fNn
+aIK
+iZC
+prw
+aIK
 xEy
 xEy
 "}
@@ -83869,20 +84190,20 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+fNn
+obh
+fNn
+aIK
+aIK
+qmM
+aIK
+aIK
 xEy
 xEy
 "}
@@ -83967,20 +84288,20 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
+prw
+prw
+iJw
+aIK
 xEy
 xEy
 "}
@@ -84065,20 +84386,20 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
+prw
+qKz
+hjQ
+aIK
 xEy
 xEy
 "}
@@ -84163,20 +84484,20 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+sYC
+lCS
+lCS
+sOw
+fNn
+fNn
+fNn
+aIK
+prw
+qKz
+prw
+aIK
 xEy
 xEy
 "}
@@ -84261,20 +84582,20 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
+prw
+prw
+prw
+aIK
 xEy
 xEy
 "}
@@ -84359,22 +84680,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
 "}
 (63,1,6) = {"
 xEy
@@ -84457,22 +84778,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+fNn
+obh
+fNn
+nWi
+hwQ
+hwQ
+hwQ
+hwQ
+hwQ
+aIK
 "}
 (64,1,6) = {"
 xEy
@@ -84555,22 +84876,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
+hwQ
+hwQ
+hwQ
+hwQ
+hwQ
+aIK
 "}
 (65,1,6) = {"
 xEy
@@ -84653,22 +84974,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+eyv
+hwQ
+hwQ
+dgw
+hwQ
+hwQ
+aIK
 "}
 (66,1,6) = {"
 xEy
@@ -84751,22 +85072,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+sYC
+lCS
+lCS
+isQ
+fNn
+fNn
+fNn
+eyv
+hwQ
+hwQ
+hwQ
+hwQ
+hwQ
+aIK
 "}
 (67,1,6) = {"
 xEy
@@ -84849,22 +85170,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+eyv
+hwQ
+hwQ
+hwQ
+hwQ
+hwQ
+aIK
 "}
 (68,1,6) = {"
 xEy
@@ -84947,22 +85268,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+eyv
+hwQ
+hwQ
+hwQ
+hwQ
+hwQ
+aIK
 "}
 (69,1,6) = {"
 xEy
@@ -85045,22 +85366,22 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+fNn
+obh
+fNn
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
 "}
 (70,1,6) = {"
 xEy
@@ -85143,16 +85464,16 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 xEy
@@ -85241,16 +85562,16 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 xEy
@@ -85339,16 +85660,16 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+sYC
+lCS
+lCS
+iQF
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 xEy
@@ -85437,16 +85758,16 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 xEy
@@ -85535,16 +85856,16 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+wmG
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 xEy
@@ -85633,16 +85954,16 @@ aIK
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
 xEy
 xEy
 xEy
@@ -91220,7 +91541,7 @@ pHa
 ncz
 ncz
 ncz
-ncz
+pRS
 ncz
 dUY
 dUY
@@ -91425,11 +91746,11 @@ tMx
 rWh
 rWh
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
 xEy
 xEy
 "}
@@ -91511,11 +91832,11 @@ xEy
 gpO
 gpO
 gpO
-ncz
-ncz
-ncz
-ncz
-ncz
+pMv
+jSj
+jSj
+jSj
+jSj
 gpO
 gpO
 gpO
@@ -91523,11 +91844,11 @@ gpO
 gpO
 gpO
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
+xhK
+xhK
+xhK
+xhK
+aIK
 xEy
 xEy
 "}
@@ -91609,23 +91930,23 @@ xEy
 xEy
 xEy
 gpO
-ncz
+xWs
 ncz
 ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+mkt
+prw
+prw
+prw
+prw
+aIK
+xhK
+xhK
+xhK
+xhK
+aIK
 xEy
 xEy
 "}
@@ -91713,17 +92034,17 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+prw
+prw
+prw
+prw
+prw
+aIK
+xhK
+xhK
+xhK
+xhK
+aIK
 xEy
 xEy
 "}
@@ -91805,23 +92126,23 @@ aIK
 aIK
 aIK
 gpO
-ncz
+bJa
 ncz
 fuf
 ncz
-ncz
+pRS
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+prw
+prw
+twf
+prw
+prw
+aIK
+xhK
+xhK
+xhK
+xhK
+aIK
 xEy
 xEy
 "}
@@ -91902,24 +92223,24 @@ aIK
 aIK
 aIK
 aIK
+gpO
+ivC
+ivC
+ivC
+ivC
+ivC
+gpO
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+otG
+aIK
+aIK
+prw
+prw
+aIK
+aIK
 xEy
 xEy
 "}
@@ -92000,24 +92321,24 @@ xeh
 xeh
 aIK
 aIK
+gpO
+xdN
+tVO
+tVO
+tVO
+tVO
+tVO
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
 xEy
 xEy
 "}
@@ -92098,24 +92419,24 @@ xeh
 xeh
 aIK
 aIK
+gpO
+tVO
+tVO
+tVO
+tVO
+tVO
+tVO
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
 xEy
 xEy
 "}
@@ -92197,23 +92518,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+fNn
+fNn
+obh
+fNn
+fNn
+fNn
+fNn
+obh
+fNn
+fNn
+fNn
+fNn
+obh
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 "}
@@ -92295,23 +92616,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+ccP
+bVj
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -92393,23 +92714,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+pov
+pov
+pov
+pov
+pov
+fNn
+fNn
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -92491,23 +92812,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+fNn
+fNn
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -92589,23 +92910,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+fNn
+fNn
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -92687,23 +93008,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+fNn
+fNn
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -92785,23 +93106,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+fNn
+fNn
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -92883,23 +93204,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+kHt
+fNn
+fNn
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -92981,23 +93302,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+lEb
+lEb
+nMj
+lEb
+lEb
+fNn
+fNn
+obh
+ccP
+ccP
+fNn
+ccP
+jEN
+fNn
+ccP
+ccP
+aIK
 xEy
 xEy
 "}
@@ -93079,23 +93400,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 "}
@@ -93177,23 +93498,23 @@ xeh
 aIK
 aIK
 aIK
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+aIK
 xEy
 xEy
 "}
@@ -93281,17 +93602,17 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+wmG
+wmG
+xkB
+wmG
+wmG
+aIK
+aIK
+qmM
+aIK
+aIK
 xEy
 xEy
 "}
@@ -93379,17 +93700,17 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+lCS
+aIK
+prw
+prw
+cdV
+aIK
 xEy
 xEy
 "}
@@ -93477,17 +93798,17 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+mcx
+lCS
+lCS
+aIK
+qKz
+qKz
+kHt
+aIK
 xEy
 xEy
 "}
@@ -93575,17 +93896,17 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+lCS
+aIK
+xKu
+qKz
+kHt
+aIK
 xEy
 xEy
 "}
@@ -93673,17 +93994,17 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+lCS
+lCS
+lCS
+lCS
+lCS
+aIK
+cDV
+prw
+cDV
+aIK
 xEy
 xEy
 "}
@@ -93771,17 +94092,17 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
 xEy
 xEy
 "}
@@ -100834,11 +101155,11 @@ sxW
 miF
 miF
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+aIK
 xEy
 xEy
 "}
@@ -100932,11 +101253,11 @@ paL
 tVF
 tVF
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -101030,11 +101351,11 @@ vix
 qOc
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -101128,11 +101449,11 @@ iPz
 gpO
 gpO
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -101225,12 +101546,12 @@ ncz
 mzQ
 gpO
 xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+kHt
+kHt
+kHt
+kHt
+aIK
 xEy
 xEy
 "}
@@ -101322,13 +101643,13 @@ gpO
 gpO
 gpO
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+prw
+prw
+aIK
+aIK
 xEy
 xEy
 "}
@@ -101415,17 +101736,17 @@ ncz
 ncz
 ncz
 ncz
-ncz
-azs
-azs
-azs
-azs
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+gpO
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+aIK
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -101513,17 +101834,17 @@ ncz
 ncz
 ncz
 ncz
-ncz
-azs
-azs
-azs
-azs
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+tVO
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+aIK
+prw
+cdV
+aIK
 xEy
 xEy
 xEy
@@ -101611,17 +101932,17 @@ ncz
 ncz
 ncz
 ncz
-pRS
-azs
-azs
-azs
-azs
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+cGd
+fNn
+fNn
+fNn
+fNn
+obh
+fNn
+aIK
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -101709,17 +102030,17 @@ ncz
 ncz
 ncz
 ncz
-ncz
-azs
-azs
-azs
-azs
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+tVO
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+lnd
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -101807,17 +102128,17 @@ ncz
 fuf
 ncz
 ncz
-ncz
-azs
-azs
-azs
-azs
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+gpO
+fNn
+fNn
+fNn
+fNn
+fNn
+fNn
+lnd
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -101906,16 +102227,16 @@ dIU
 dIU
 gpO
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+sxq
+sxq
+sxq
+aIK
+aIK
+aIK
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -102004,16 +102325,16 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+rLq
+rLq
+rLq
+rLq
+rLq
+aIK
+prw
+prw
+cdV
+aIK
 xEy
 xEy
 xEy
@@ -102102,16 +102423,16 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+rLq
+rLq
+jdY
+rLq
+rLq
+aIK
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -102200,16 +102521,16 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+sxq
+rLq
+rLq
+rLq
+rLq
+aIK
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -102298,16 +102619,16 @@ fuf
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+sxq
+rLq
+rLq
+rLq
+rLq
+aIK
+prw
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -102396,16 +102717,16 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+aIK
+aIK
+aIK
+aIK
+ipY
+aIK
+aIK
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -102494,16 +102815,16 @@ ncz
 ncz
 gpO
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+rLq
+rLq
+rLq
+rLq
+rLq
+rLq
+aIK
+prw
+cdV
+aIK
 xEy
 xEy
 xEy
@@ -102592,16 +102913,16 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+rLq
+rLq
+rLq
+rLq
+rLq
+rLq
+jgX
+prw
+prw
+aIK
 xEy
 xEy
 xEy
@@ -102690,17 +103011,17 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+rLq
+rLq
+rLq
+rLq
+rLq
+rLq
+aIK
+aIK
+qmM
+aIK
+aIK
 xEy
 xEy
 "}
@@ -102788,17 +103109,17 @@ fuf
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+rLq
+rLq
+eTJ
+rLq
+rLq
+rLq
+aIK
+prw
+prw
+cdV
+aIK
 xEy
 xEy
 "}
@@ -102886,17 +103207,17 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+tqL
+sxq
+rLq
+rLq
+rLq
+rLq
+aIK
+dkv
+prw
+prw
+aIK
 xEy
 xEy
 "}
@@ -102984,17 +103305,17 @@ ncz
 ncz
 ncz
 gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+ghU
+sxq
+rLq
+rLq
+rLq
+rLq
+aIK
+dkv
+prw
+prw
+aIK
 xEy
 xEy
 "}
@@ -103080,19 +103401,19 @@ ncz
 ncz
 ncz
 ncz
+ncz
 gpO
-gpO
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+ssy
+eko
+rLq
+rLq
+rLq
+rLq
+aIK
+cDV
+prw
+prw
+aIK
 xEy
 xEy
 "}
@@ -103179,18 +103500,18 @@ gpO
 gpO
 gpO
 gpO
-obh
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
-xEy
+gpO
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
+aIK
 xEy
 xEy
 "}

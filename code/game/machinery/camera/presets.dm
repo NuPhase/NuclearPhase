@@ -20,6 +20,10 @@
 	preset_channels = list(CAMERA_CHANNEL_MINE)
 	initial_access = list(access_mining)
 
+/obj/machinery/camera/network/cargo
+	preset_channels = list(CAMERA_CHANNEL_CARGO)
+	initial_access = list(access_cargo)
+
 /obj/machinery/camera/network/research
 	preset_channels = list(CAMERA_CHANNEL_RESEARCH)
 	initial_access = list(access_research)

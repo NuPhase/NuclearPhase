@@ -1,6 +1,6 @@
 /proc/create_objects_in_loc(var/atom/loc, var/atom_paths)
 	if(!istype(loc))
-		CRASH("Inappropriate loction given.")
+		CRASH("Inappropriate location given.")
 
 	if(istype(atom_paths, /datum/atom_creator))
 		var/datum/atom_creator/atom_creator = atom_paths
@@ -13,6 +13,16 @@
 		new atom_paths(loc)
 	else
 		CRASH("Unhandled input: [log_info_line(atom_paths)]")
+
+/proc/create_objects_in_loc_pooled(var/atom/loc, var/atom_paths) //Takes things from an item pool and spawns them. Used for closets.
+	if(!SSpersistence.loaded_item_pool) //NO POOL???
+		create_objects_in_loc(loc, atom_paths)
+		return
+	for(var/atom_path in atom_paths)
+		if(atom_path in SSpersistence.loaded_item_pool)
+			for(var/i = 1 to max(1, atom_paths[atom_path]))
+				create_objects_in_loc(loc, atom_path)
+			SSpersistence.loaded_item_pool -= atom_path
 
 /datum/atom_creator/proc/create(var/loc)
 	return
