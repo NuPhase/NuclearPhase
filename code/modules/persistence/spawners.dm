@@ -12,3 +12,15 @@
 	priority = 0
 
 /obj/effect/item_spawner
+
+/obj/effect/item_spawner/trash
+
+/obj/effect/item_spawner/trash/Initialize()
+	spawn_paths = subtypesof(/obj/item/trash)
+	. = ..()
+
+/obj/effect/item_spawner/drinks
+
+/obj/effect/item_spawner/drinks/Initialize()
+	spawn_paths = subtypesof(/obj/item/chems/drinks/)
+	. = ..()

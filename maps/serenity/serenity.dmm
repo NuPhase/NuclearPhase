@@ -77,8 +77,11 @@
 /area/serenity/shelter/entrance_zone)
 "acY" = (
 /obj/structure/table/woodentable/walnut,
-/obj/item/chems/spray/cleaner,
 /obj/item/chems/glass/rag,
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/chems/spray/cleaner;
+	name = "Cleaner Spray"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/messhall)
 "adz" = (
@@ -291,12 +294,6 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/pumps_a)
-"apy" = (
-/obj/structure/table,
-/obj/random/mre/main,
-/obj/random/mre/sauce,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/breakroom)
 "apz" = (
 /obj/structure/railing/mapped{
 	dir = 4
@@ -451,8 +448,11 @@
 /area/serenity/shelter/entrance_zone)
 "ayO" = (
 /obj/structure/table/woodentable/walnut,
-/obj/item/modular_computer/tablet/preset/custom_loadout/standard,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/modular_computer/tablet/preset/custom_loadout/standard;
+	name = "Tablet Standart"
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "aze" = (
@@ -728,7 +728,7 @@
 /area/serenity)
 "aIU" = (
 /obj/structure/table/steel,
-/obj/item/trash/plate,
+/obj/effect/item_spawner/trash,
 /turf/simulated/floor/tiled/dark,
 /area/serenity/shelter/habitationdeck/messhall)
 "aJD" = (
@@ -1781,9 +1781,18 @@
 /area/serenity/shelter/engineering/electrical)
 "bCC" = (
 /obj/structure/rack,
-/obj/item/stack/tape_roll/duct_tape,
-/obj/item/stack/tape_roll/duct_tape,
-/obj/item/stack/tape_roll/duct_tape,
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "bCL" = (
@@ -2014,7 +2023,10 @@
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "bNs" = (
 /obj/structure/rack/dark,
-/obj/item/thermometer,
+/obj/effect/item_spawner{
+	name = "MEDICAL Thermometer";
+	spawn_paths = /obj/item/thermometer
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "bOD" = (
@@ -2166,6 +2178,14 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "bTU" = (
 /obj/structure/closet/secure_closet/medical1,
+/obj/effect/item_spawner{
+	name = "MEDICAL Emer Oxygen Tank";
+	spawn_paths = /obj/item/tank/emergency/oxygen/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Mask";
+	spawn_paths = /obj/item/clothing/mask/breath/medical
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "bUa" = (
@@ -2333,8 +2353,11 @@
 "bZd" = (
 /obj/structure/table/steel,
 /obj/effect/floor_decal/spline/fancy/wood,
-/obj/item/modular_computer/tablet/preset/custom_loadout/standard,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/modular_computer/tablet/preset/custom_loadout/standard;
+	name = "Tablet Standart"
+	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
 "bZg" = (
@@ -2433,8 +2456,15 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "cbF" = (
-/obj/item/intubation_bag,
 /obj/structure/rack,
+/obj/effect/item_spawner{
+	name = "MEDICAL Intubation Bag";
+	spawn_paths = /obj/item/intubation_bag
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Decomp Needle";
+	spawn_paths = /obj/item/chest_tube
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "ccd" = (
@@ -2899,9 +2929,15 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/water{
 	dir = 8
 	},
-/obj/item/flashlight/upgraded,
-/obj/item/flashlight/flare/glowstick/random,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "LED (strong) flashlight";
+	spawn_paths = /obj/item/flashlight/upgraded
+	},
+/obj/effect/item_spawner{
+	name = "GLOWSTICK Random";
+	spawn_paths = /obj/item/flashlight/flare/glowstick/random
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "cwW" = (
@@ -3354,6 +3390,22 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/brig/office)
+"cOI" = (
+/obj/structure/table,
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/soap;
+	name = "Soap"
+	},
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/soap;
+	name = "Soap"
+	},
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/soap;
+	name = "Soap"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "cOK" = (
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/concrete/black,
@@ -3373,7 +3425,10 @@
 /area/serenity/shelter/labs/genetics)
 "cPT" = (
 /obj/structure/table,
-/obj/item/storage/firstaid/combat,
+/obj/effect/item_spawner{
+	name = "MEDICAL Combat Aid Kit";
+	spawn_paths = /obj/item/storage/firstaid/combat
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "cQg" = (
@@ -3384,9 +3439,18 @@
 /area/serenity/shelter/labs)
 "cQo" = (
 /obj/structure/rack,
-/obj/item/chems/drinks/bottle/wine,
-/obj/item/chems/drinks/bottle/wine,
-/obj/item/chems/drinks/bottle/wine,
+/obj/effect/item_spawner{
+	name = "Special Wine";
+	spawn_paths = /obj/item/chems/drinks/bottle/wine
+	},
+/obj/effect/item_spawner{
+	name = "Special Wine";
+	spawn_paths = /obj/item/chems/drinks/bottle/wine
+	},
+/obj/effect/item_spawner{
+	name = "Special Wine";
+	spawn_paths = /obj/item/chems/drinks/bottle/wine
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/messhall)
 "cQY" = (
@@ -3511,6 +3575,10 @@
 /obj/machinery/light_switch/on{
 	dir = 8;
 	pixel_x = 18
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Thermometer";
+	spawn_paths = /obj/item/thermometer
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
@@ -4246,11 +4314,20 @@
 /area/serenity)
 "dxi" = (
 /obj/structure/rack,
-/obj/item/stack/tape_roll/duct_tape,
-/obj/item/stack/tape_roll/duct_tape,
-/obj/item/stack/tape_roll/duct_tape,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "dxE" = (
@@ -4342,8 +4419,8 @@
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "dDV" = (
 /obj/structure/table/steel,
-/obj/item/trash/cubewrapper,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner/trash,
 /turf/simulated/floor/tiled/dark,
 /area/serenity/shelter/habitationdeck/messhall)
 "dEf" = (
@@ -4955,10 +5032,13 @@
 /area/serenity/shelter/brig/medbay)
 "eaQ" = (
 /obj/structure/rack,
-/obj/item/storage/briefcase/inflatable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Inflatable Barrier Briefcase";
+	spawn_paths = /obj/item/storage/briefcase/inflatable
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "ebb" = (
@@ -4978,8 +5058,8 @@
 /area/turbolift/serenity/main/a2)
 "ebS" = (
 /obj/structure/closet/crate/trashcart,
-/obj/item/trash/tomato,
-/obj/item/trash/tomato,
+/obj/effect/item_spawner/trash,
+/obj/effect/item_spawner/trash,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/breakroom)
 "ebY" = (
@@ -6286,9 +6366,18 @@
 /area/serenity)
 "fcl" = (
 /obj/structure/rack/dark,
-/obj/item/wheelchair_kit,
-/obj/item/wheelchair_kit,
-/obj/item/wheelchair_kit,
+/obj/effect/item_spawner{
+	name = "Wheelchair Kit";
+	spawn_paths = /obj/item/wheelchair_kit
+	},
+/obj/effect/item_spawner{
+	name = "Wheelchair Kit";
+	spawn_paths = /obj/item/wheelchair_kit
+	},
+/obj/effect/item_spawner{
+	name = "Wheelchair Kit";
+	spawn_paths = /obj/item/wheelchair_kit
+	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "fco" = (
@@ -6334,9 +6423,19 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "feU" = (
 /obj/structure/rack,
-/obj/item/storage/bag/trash,
-/obj/item/storage/bag/trash,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Bucket";
+	spawn_paths = /obj/item/chems/glass/bucket
+	},
+/obj/effect/item_spawner{
+	name = "Trash Bag";
+	spawn_paths = /obj/item/storage/bag/trash
+	},
+/obj/effect/item_spawner{
+	name = "Trash Bag";
+	spawn_paths = /obj/item/storage/bag/trash
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "ffc" = (
@@ -7150,9 +7249,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/mop,
 /obj/item/chems/drinks/glass2/coffeecup/metal,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Bucket";
+	spawn_paths = /obj/item/chems/glass/bucket
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "fPu" = (
@@ -7288,14 +7390,7 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "fUK" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/chems/drinks/bottle/pwine{
-	pixel_x = -3;
-	pixel_y = 17
-	},
-/obj/item/chems/drinks/bottle/pwine{
-	pixel_x = -3;
-	pixel_y = 13
-	},
+/obj/effect/item_spawner/drinks,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/habitationdeck/messhall)
 "fUY" = (
@@ -8332,10 +8427,6 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations)
-"gDI" = (
-/obj/item/chems/glass/bucket,
-/turf/simulated/floor/tiled/dark/textured,
-/area/serenity/shelter/entrance_zone)
 "gEu" = (
 /obj/structure/table/woodentable/mahogany,
 /obj/item/paper_bin,
@@ -8579,10 +8670,22 @@
 /area/serenity/shelter/engineering/electrical)
 "gOy" = (
 /obj/structure/rack,
-/obj/item/storage/pill_bottle/antibiotics,
-/obj/item/storage/pill_bottle/antidepressants,
-/obj/item/storage/pill_bottle/charcoal,
-/obj/item/storage/pill_bottle/painkillers,
+/obj/effect/item_spawner{
+	name = "MEDICAL Expansive Cotton";
+	spawn_paths = /obj/item/stack/medical/wound_filler
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Expansive Cotton";
+	spawn_paths = /obj/item/stack/medical/wound_filler
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Roll of Bandages";
+	spawn_paths = /obj/item/stack/medical/bruise_pack
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Splint";
+	spawn_paths = /obj/item/stack/medical/splint
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "gOE" = (
@@ -9530,11 +9633,23 @@
 /area/serenity/shelter/habitationdeck/messhall)
 "hEA" = (
 /obj/structure/rack,
-/obj/item/telebaton,
-/obj/item/telebaton,
-/obj/item/telebaton,
-/obj/item/telebaton,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "WEAPON Telescopic Baton";
+	spawn_paths = /obj/item/telebaton
+	},
+/obj/effect/item_spawner{
+	name = "WEAPON Telescopic Baton";
+	spawn_paths = /obj/item/telebaton
+	},
+/obj/effect/item_spawner{
+	name = "WEAPON Telescopic Baton";
+	spawn_paths = /obj/item/telebaton
+	},
+/obj/effect/item_spawner{
+	name = "WEAPON Telescopic Baton";
+	spawn_paths = /obj/item/telebaton
+	},
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/armory)
 "hEE" = (
@@ -9552,10 +9667,14 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
 "hFA" = (
-/obj/structure/table,
-/obj/item/cash/c1,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/brig/breakroom)
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Bucket";
+	spawn_paths = /obj/item/chems/glass/bucket
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/entrance_zone)
 "hFC" = (
 /obj/machinery/light/ceiling,
 /obj/effect/decal/cleanable/dirt,
@@ -9571,9 +9690,9 @@
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "hGy" = (
 /obj/structure/table/steel,
-/obj/item/trash/tray,
-/obj/item/trash/tomato,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner/trash,
+/obj/effect/item_spawner/trash,
 /turf/simulated/floor/tiled/dark,
 /area/serenity/shelter/habitationdeck/messhall)
 "hGS" = (
@@ -9672,9 +9791,12 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/flashlight/upgraded,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "LED (strong) flashlight";
+	spawn_paths = /obj/item/flashlight/upgraded
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "hKm" = (
@@ -9976,7 +10098,6 @@
 "hXx" = (
 /obj/structure/table/steel,
 /obj/item/pen,
-/obj/item/toy/eightball,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured,
@@ -10054,23 +10175,70 @@
 /area/serenity/shelter/habitationdeck/messhall)
 "iaJ" = (
 /obj/structure/rack/dark,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/splint,
-/obj/item/stack/medical/splint,
-/obj/item/stack/medical/splint,
-/obj/item/stack/medical/wound_filler,
-/obj/item/stack/medical/wound_filler,
-/obj/item/stack/medical/wound_filler,
-/obj/item/stack/medical/wound_filler,
+/obj/effect/item_spawner{
+	name = "MEDICAL Roll of Bandages";
+	spawn_paths = /obj/item/stack/medical/bruise_pack
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Roll of Bandages";
+	spawn_paths = /obj/item/stack/medical/bruise_pack
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Roll of Bandages";
+	spawn_paths = /obj/item/stack/medical/bruise_pack
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Roll of Bandages";
+	spawn_paths = /obj/item/stack/medical/bruise_pack
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Roll of Bandages";
+	spawn_paths = /obj/item/stack/medical/bruise_pack
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Ointment";
+	spawn_paths = /obj/item/stack/medical/ointment
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Ointment";
+	spawn_paths = /obj/item/stack/medical/ointment
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Ointment";
+	spawn_paths = /obj/item/stack/medical/ointment
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Ointment";
+	spawn_paths = /obj/item/stack/medical/ointment
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Splint";
+	spawn_paths = /obj/item/stack/medical/splint
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Splint";
+	spawn_paths = /obj/item/stack/medical/splint
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Splint";
+	spawn_paths = /obj/item/stack/medical/splint
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Expansive Cotton";
+	spawn_paths = /obj/item/stack/medical/wound_filler
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Expansive Cotton";
+	spawn_paths = /obj/item/stack/medical/wound_filler
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Expansive Cotton";
+	spawn_paths = /obj/item/stack/medical/wound_filler
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Expansive Cotton";
+	spawn_paths = /obj/item/stack/medical/wound_filler
+	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "iba" = (
@@ -10323,9 +10491,18 @@
 /area/serenity/shelter/staircase)
 "ilX" = (
 /obj/structure/rack/dark,
-/obj/item/flashlight/lamp/floodlamp,
-/obj/item/flashlight/lamp/floodlamp,
-/obj/item/flashlight/upgraded,
+/obj/effect/item_spawner{
+	name = "LED (strong) flashlight";
+	spawn_paths = /obj/item/flashlight/upgraded
+	},
+/obj/effect/item_spawner{
+	name = "FLOOD Lamp";
+	spawn_paths = /obj/item/flashlight/lamp/floodlamp
+	},
+/obj/effect/item_spawner{
+	name = "FLOOD Lamp";
+	spawn_paths = /obj/item/flashlight/lamp/floodlamp
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity)
 "ilY" = (
@@ -10361,8 +10538,11 @@
 /area/serenity/shelter/habitationdeck/crew)
 "imN" = (
 /obj/structure/table/steel,
-/obj/item/cell/doublecapacity,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "CELL Li-Ion COUPLE";
+	spawn_paths = /obj/item/cell/doublecapacity
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
 "imU" = (
@@ -10538,11 +10718,15 @@
 /area/serenity/shelter/engineering/pumps_a)
 "itI" = (
 /obj/structure/table/glass,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/sutures,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/item_spawner{
+	name = "MEDICAL Roll of Bandages";
+	spawn_paths = /obj/item/stack/medical/bruise_pack
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Sutures";
+	spawn_paths = /obj/item/sutures
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "itJ" = (
@@ -10993,9 +11177,15 @@
 /obj/item/storage/secure/safe{
 	pixel_y = 32
 	},
-/obj/item/gun/projectile/pistol/holdout,
 /obj/structure/table/reinforced,
-/obj/item/flashlight/maglight,
+/obj/effect/item_spawner{
+	name = "GUN Holdout Pistol";
+	spawn_paths = /obj/item/gun/projectile/pistol/holdout
+	},
+/obj/effect/item_spawner{
+	name = "MAG flashlight";
+	spawn_paths = /obj/item/flashlight/maglight
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "iLV" = (
@@ -11444,11 +11634,20 @@
 /area/serenity)
 "jet" = (
 /obj/structure/rack,
-/obj/item/chems/spray/cleaner/drone,
-/obj/item/chems/spray/cleaner/drone,
-/obj/item/soap,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/chems/spray/cleaner;
+	name = "Cleaner Spray"
+	},
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/chems/spray/cleaner;
+	name = "Cleaner Spray"
+	},
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/soap;
+	name = "Soap"
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "jex" = (
@@ -12360,8 +12559,11 @@
 /obj/structure/rack/dark,
 /obj/item/storage/box/lights/mixed,
 /obj/item/chems/jerrycan,
-/obj/item/chems/spray/cleaner,
 /obj/item/wrench,
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/chems/spray/cleaner;
+	name = "Cleaner Spray"
+	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "jOC" = (
@@ -12552,9 +12754,12 @@
 "jXt" = (
 /obj/structure/rack/dark,
 /obj/machinery/atmospherics/pipe/simple/visible/water,
-/obj/item/storage/briefcase/inflatable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Inflatable Barrier Briefcase";
+	spawn_paths = /obj/item/storage/briefcase/inflatable
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "jYh" = (
@@ -12844,15 +13049,55 @@
 /area/serenity/shelter/labs/genetics)
 "kjv" = (
 /obj/structure/rack,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/shield/riot,
-/obj/item/shield/riot,
-/obj/item/shield/riot,
-/obj/item/shield/riot,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Armor";
+	spawn_paths = /obj/item/clothing/suit/armor/riot/prepared
+	},
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Armor";
+	spawn_paths = /obj/item/clothing/suit/armor/riot/prepared
+	},
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Armor";
+	spawn_paths = /obj/item/clothing/suit/armor/riot/prepared
+	},
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Armor";
+	spawn_paths = /obj/item/clothing/suit/armor/riot/prepared
+	},
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Helmet";
+	spawn_paths = /obj/item/clothing/head/helmet/riot
+	},
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Helmet";
+	spawn_paths = /obj/item/clothing/head/helmet/riot
+	},
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Helmet";
+	spawn_paths = /obj/item/clothing/head/helmet/riot
+	},
+/obj/effect/item_spawner{
+	name = "ARMOR Riot Helmet";
+	spawn_paths = /obj/item/clothing/head/helmet/riot
+	},
+/obj/effect/item_spawner{
+	name = "WEAPON Riot Shield";
+	spawn_paths = /obj/item/shield/riot
+	},
+/obj/effect/item_spawner{
+	name = "WEAPON Riot Shield";
+	spawn_paths = /obj/item/shield/riot
+	},
+/obj/effect/item_spawner{
+	name = "WEAPON Riot Shield";
+	spawn_paths = /obj/item/shield/riot
+	},
+/obj/effect/item_spawner{
+	name = "WEAPON Riot Shield";
+	spawn_paths = /obj/item/shield/riot
+	},
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/armory)
 "kjN" = (
@@ -12879,9 +13124,15 @@
 /area/serenity/shelter/brig)
 "kkI" = (
 /obj/structure/rack,
-/obj/item/stack/tape_roll/duct_tape,
-/obj/item/stack/tape_roll/duct_tape,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
 "kkP" = (
@@ -13486,11 +13737,16 @@
 /area/serenity/shelter/habitationdeck/crew)
 "kIU" = (
 /obj/structure/rack,
-/obj/item/stack/tape_roll/duct_tape,
-/obj/item/stack/tape_roll/duct_tape,
-/obj/item/wrench,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
+/obj/effect/item_spawner{
+	name = "Duct Tape Roll";
+	spawn_paths = /obj/item/stack/tape_roll/duct_tape
+	},
 /turf/simulated/floor/tiled,
 /area/serenity/shelter/engineering/pumps_a)
 "kIZ" = (
@@ -13637,12 +13893,15 @@
 /turf/exterior/concrete/reinforced/road,
 /area/serenity/shelter/entrance_zone)
 "kOC" = (
-/obj/item/storage/med_pouch/radiation,
 /obj/structure/closet/medical_wall{
 	pixel_y = 32
 	},
 /obj/effect/floor_decal/industrial/firstaid{
 	dir = 1
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Radiation Pouch";
+	spawn_paths = /obj/item/storage/med_pouch/radiation
 	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -13731,16 +13990,8 @@
 "kQn" = (
 /obj/structure/rack,
 /obj/item/trash/plate,
-/obj/item/trash/plate,
-/obj/item/kitchen/utensil/fork/plastic,
-/obj/item/kitchen/utensil/fork/plastic,
-/obj/item/kitchen/utensil/fork/plastic,
-/obj/item/kitchen/utensil/fork/plastic,
-/obj/item/kitchen/utensil/spoon/plastic,
-/obj/item/kitchen/utensil/spoon/plastic,
-/obj/item/kitchen/utensil/spoon/plastic,
-/obj/item/kitchen/utensil/spoon/plastic,
-/obj/item/kitchen/utensil/spoon/plastic,
+/obj/effect/item_spawner/trash,
+/obj/effect/item_spawner/trash,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/breakroom)
 "kQF" = (
@@ -14918,11 +15169,23 @@
 /area/serenity/shelter/habitationdeck/freezer)
 "lLq" = (
 /obj/structure/rack/dark,
-/obj/item/stock_parts/circuitboard/broken,
-/obj/item/stock_parts/circuitboard/broken,
-/obj/item/stock_parts/circuitboard/telecomms/processor,
-/obj/item/stock_parts/circuitboard/telecomms/processor,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "BOARD Processor Unit";
+	spawn_paths = /obj/item/stock_parts/circuitboard/telecomms/processor
+	},
+/obj/effect/item_spawner{
+	name = "BOARD Processor Unit";
+	spawn_paths = /obj/item/stock_parts/circuitboard/telecomms/processor
+	},
+/obj/effect/item_spawner{
+	name = "BOARD Broken";
+	spawn_paths = /obj/item/stock_parts/circuitboard/broken
+	},
+/obj/effect/item_spawner{
+	name = "BOARD Broken";
+	spawn_paths = /obj/item/stock_parts/circuitboard/broken
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "lLu" = (
@@ -15277,11 +15540,23 @@
 /area/serenity/shelter/entrance_zone)
 "lYH" = (
 /obj/structure/table/glass,
-/obj/item/auto_cpr,
-/obj/item/chest_tube,
-/obj/item/chest_tube,
-/obj/item/intubation_bag,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/item_spawner{
+	name = "MEDICAL Intubation Bag";
+	spawn_paths = /obj/item/intubation_bag
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Decomp Needle";
+	spawn_paths = /obj/item/chest_tube
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Decomp Needle";
+	spawn_paths = /obj/item/chest_tube
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL AutoCPR";
+	spawn_paths = /obj/item/auto_cpr
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "lYO" = (
@@ -16798,7 +17073,6 @@
 /area/serenity/shelter/staircase)
 "ncC" = (
 /obj/structure/table/steel,
-/obj/item/grenade/chem_grenade,
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/armory)
 "ncP" = (
@@ -17409,9 +17683,12 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "nyU" = (
 /obj/structure/rack,
-/obj/item/storage/briefcase/inflatable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Inflatable Barrier Briefcase";
+	spawn_paths = /obj/item/storage/briefcase/inflatable
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "nzJ" = (
@@ -17576,9 +17853,12 @@
 /area/serenity/shelter/engineering/atmos)
 "nIi" = (
 /obj/structure/table/steel,
-/obj/item/flashlight/upgraded,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "LED (strong) flashlight";
+	spawn_paths = /obj/item/flashlight/upgraded
+	},
 /turf/simulated/floor/tiled,
 /area/serenity/shelter/entrance_zone)
 "nIp" = (
@@ -17999,10 +18279,19 @@
 /area/serenity)
 "nWJ" = (
 /obj/structure/table/steel,
-/obj/item/mop,
-/obj/item/chems/spray/cleaner,
-/obj/item/chems/glass/bucket,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Mop";
+	spawn_paths = /obj/item/mop
+	},
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/chems/spray/cleaner;
+	name = "Cleaner Spray"
+	},
+/obj/effect/item_spawner{
+	name = "Bucket";
+	spawn_paths = /obj/item/chems/glass/bucket
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/medbay)
 "nXc" = (
@@ -18446,9 +18735,15 @@
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/senior_engineer)
 "olx" = (
-/obj/item/flashlight/lamp/floodlamp,
-/obj/item/flashlight/lamp/floodlamp,
 /obj/structure/table,
+/obj/effect/item_spawner{
+	name = "FLOOD Lamp";
+	spawn_paths = /obj/item/flashlight/lamp/floodlamp
+	},
+/obj/effect/item_spawner{
+	name = "FLOOD Lamp";
+	spawn_paths = /obj/item/flashlight/lamp/floodlamp
+	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations)
 "omh" = (
@@ -18760,8 +19055,11 @@
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "ows" = (
 /obj/structure/table/steel,
-/obj/item/geiger,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/item_spawner{
+	name = "Geiger Dosimeter";
+	spawn_paths = /obj/item/geiger
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
 "owD" = (
@@ -18934,9 +19232,15 @@
 /area/serenity/shelter/labs/particle_physics)
 "oCQ" = (
 /obj/structure/rack/dark,
-/obj/item/flashlight/upgraded,
-/obj/item/flashlight/flare/glowstick/random,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "LED (strong) flashlight";
+	spawn_paths = /obj/item/flashlight/upgraded
+	},
+/obj/effect/item_spawner{
+	name = "GLOWSTICK Random";
+	spawn_paths = /obj/item/flashlight/flare/glowstick/random
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "oCV" = (
@@ -20184,7 +20488,10 @@
 	},
 /obj/structure/table/steel,
 /obj/structure/sign/poster/shelter_rules/north,
-/obj/item/modular_computer/laptop/preset,
+/obj/effect/item_spawner{
+	name = "Laptop Preset";
+	spawn_paths = /obj/item/modular_computer/laptop/preset
+	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
 "pAo" = (
@@ -20538,10 +20845,16 @@
 "pNw" = (
 /obj/structure/rack/dark,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/item/cell/lithium_array,
-/obj/item/cell/lithium_array,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "CELL Li-Ion ARRAY";
+	spawn_paths = /obj/item/cell/lithium_array
+	},
+/obj/effect/item_spawner{
+	name = "CELL Li-Ion ARRAY";
+	spawn_paths = /obj/item/cell/lithium_array
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "pNG" = (
@@ -21338,10 +21651,16 @@
 /area/serenity/shelter/engineering/electrical)
 "qwQ" = (
 /obj/structure/rack/dark,
-/obj/item/flashlight/upgraded,
-/obj/item/flashlight/flare/glowstick/random,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "LED (strong) flashlight";
+	spawn_paths = /obj/item/flashlight/upgraded
+	},
+/obj/effect/item_spawner{
+	name = "GLOWSTICK Random";
+	spawn_paths = /obj/item/flashlight/flare/glowstick/random
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "qxb" = (
@@ -21462,12 +21781,24 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/item/cell/doublecapacity,
-/obj/item/cell/doublecapacity,
-/obj/item/cell/doublecapacity,
-/obj/item/cell/doublecapacity,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "CELL Li-Ion COUPLE";
+	spawn_paths = /obj/item/cell/doublecapacity
+	},
+/obj/effect/item_spawner{
+	name = "CELL Li-Ion COUPLE";
+	spawn_paths = /obj/item/cell/doublecapacity
+	},
+/obj/effect/item_spawner{
+	name = "CELL Li-Ion COUPLE";
+	spawn_paths = /obj/item/cell/doublecapacity
+	},
+/obj/effect/item_spawner{
+	name = "CELL Li-Ion COUPLE";
+	spawn_paths = /obj/item/cell/doublecapacity
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "qCx" = (
@@ -21927,8 +22258,14 @@
 /area/serenity/shelter/brig/office)
 "qRL" = (
 /obj/structure/rack/dark,
-/obj/item/storage/backpack/dufflebag/med,
-/obj/item/storage/backpack/dufflebag/med,
+/obj/effect/item_spawner{
+	name = "Medical Duffelbag";
+	spawn_paths = /obj/item/storage/backpack/dufflebag/med
+	},
+/obj/effect/item_spawner{
+	name = "Medical Duffelbag";
+	spawn_paths = /obj/item/storage/backpack/dufflebag/med
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "qSc" = (
@@ -21957,8 +22294,8 @@
 /area/serenity/shelter/brig/medbay)
 "qTl" = (
 /obj/structure/rack,
-/obj/item/stack/cable_coil/heavy,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/cable_coil/heavy,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "qTy" = (
@@ -22068,11 +22405,11 @@
 /area/serenity/shelter/engineering/electrical)
 "qWm" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/chems/drinks/jar{
-	pixel_x = 7;
-	pixel_y = 7
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Glass Jar";
+	spawn_paths = /obj/item/chems/drinks/jar
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/habitationdeck/messhall)
 "qWJ" = (
@@ -22410,7 +22747,10 @@
 /obj/structure/window/reinforced,
 /obj/effect/floor_decal/corner/blue/mono,
 /obj/structure/table/glass,
-/obj/item/storage/firstaid/surgery,
+/obj/effect/item_spawner{
+	name = "MEDICAL Surgery Kit";
+	spawn_paths = /obj/item/storage/firstaid/surgery
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "rjn" = (
@@ -22428,7 +22768,6 @@
 "rjr" = (
 /obj/structure/table/steel,
 /obj/effect/decal/cleanable/dirt,
-/obj/random/tool,
 /obj/item/clothing/glasses/prescription,
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/armory)
@@ -24223,9 +24562,15 @@
 /area/serenity)
 "sEn" = (
 /obj/structure/rack,
-/obj/item/twohanded/pipewrench,
-/obj/item/storage/briefcase/inflatable,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Inflatable Barrier Briefcase";
+	spawn_paths = /obj/item/storage/briefcase/inflatable
+	},
+/obj/effect/item_spawner{
+	name = "TOOLS Huge Pipe Wrench";
+	spawn_paths = /obj/item/twohanded/pipewrench
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
 "sET" = (
@@ -24287,8 +24632,11 @@
 "sHv" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/screwdriver,
-/obj/item/stock_parts/circuitboard/broken,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "BOARD Broken";
+	spawn_paths = /obj/item/stock_parts/circuitboard/broken
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
 "sHz" = (
@@ -26256,9 +26604,15 @@
 /area/serenity/shelter/labs/particle_physics)
 "uor" = (
 /obj/structure/rack,
-/obj/item/flashlight/lamp/floodlamp,
-/obj/item/flashlight/lamp/floodlamp,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "FLOOD Lamp";
+	spawn_paths = /obj/item/flashlight/lamp/floodlamp
+	},
+/obj/effect/item_spawner{
+	name = "FLOOD Lamp";
+	spawn_paths = /obj/item/flashlight/lamp/floodlamp
+	},
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/preparation)
 "uoK" = (
@@ -26723,10 +27077,16 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "uIi" = (
 /obj/structure/table/glass,
-/obj/item/thermometer,
-/obj/item/sutures,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Thermometer";
+	spawn_paths = /obj/item/thermometer
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Sutures";
+	spawn_paths = /obj/item/sutures
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -26887,6 +27247,10 @@
 "uPI" = (
 /obj/structure/table,
 /obj/machinery/cardiac_monitor,
+/obj/effect/item_spawner{
+	name = "MEDICAL Sutures";
+	spawn_paths = /obj/item/sutures
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "uPS" = (
@@ -27107,11 +27471,12 @@
 /area/serenity/shelter/labs/genetics)
 "uWw" = (
 /obj/structure/table/steel,
-/obj/item/chems/spray/cleaner,
-/obj/item/chems/spray/cleaner,
-/obj/item/storage/bag/trash,
 /obj/item/storage/box/bodybags,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Trash Bag";
+	spawn_paths = /obj/item/storage/bag/trash
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/medbay)
 "uWB" = (
@@ -27420,10 +27785,16 @@
 	dir = 8
 	},
 /obj/structure/table/steel,
-/obj/item/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/storage/backpack/dufflebag/syndie/ammo,
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Ammo Duffelbag";
+	spawn_paths = /obj/item/storage/backpack/dufflebag/syndie/ammo
+	},
+/obj/effect/item_spawner{
+	name = "Ammo Duffelbag";
+	spawn_paths = /obj/item/storage/backpack/dufflebag/syndie/ammo
+	},
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/armory)
 "vgh" = (
@@ -28149,9 +28520,12 @@
 /area/turbolift/serenity/ro_electrical/a1)
 "vFq" = (
 /obj/structure/rack,
-/obj/item/flashlight/upgraded,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "LED (strong) flashlight";
+	spawn_paths = /obj/item/flashlight/upgraded
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "vFP" = (
@@ -28300,6 +28674,18 @@
 	},
 /turf/exterior/wall,
 /area/serenity)
+"vKi" = (
+/obj/structure/rack,
+/obj/effect/item_spawner{
+	name = "Special Wine";
+	spawn_paths = /obj/item/chems/drinks/bottle/wine
+	},
+/obj/effect/item_spawner{
+	name = "Special Wine";
+	spawn_paths = /obj/item/chems/drinks/bottle/wine
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/messhall)
 "vKj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/wall/r_wall/prepainted,
@@ -29267,8 +29653,11 @@
 /obj/structure/closet/medical_wall/filled{
 	pixel_y = 32
 	},
-/obj/item/storage/firstaid/surgery,
-/obj/item/chems/drinks/bottle/vodka,
+/obj/effect/item_spawner{
+	name = "MEDICAL Surgery Kit";
+	spawn_paths = /obj/item/storage/firstaid/surgery
+	},
+/obj/effect/item_spawner/drinks,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "wyB" = (
@@ -29551,23 +29940,74 @@
 /area/serenity/shelter/habitationdeck/messhall)
 "wJd" = (
 /obj/structure/rack/dark,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/tank/emergency/oxygen/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/mask/breath/medical,
-/obj/item/chest_tube,
-/obj/item/chest_tube,
-/obj/item/chest_tube,
-/obj/item/chest_tube,
-/obj/item/intubation_bag,
-/obj/item/intubation_bag,
-/obj/item/intubation_bag,
+/obj/effect/item_spawner{
+	name = "MEDICAL Intubation Bag";
+	spawn_paths = /obj/item/intubation_bag
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Intubation Bag";
+	spawn_paths = /obj/item/intubation_bag
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Intubation Bag";
+	spawn_paths = /obj/item/intubation_bag
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Decomp Needle";
+	spawn_paths = /obj/item/chest_tube
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Decomp Needle";
+	spawn_paths = /obj/item/chest_tube
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Decomp Needle";
+	spawn_paths = /obj/item/chest_tube
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Decomp Needle";
+	spawn_paths = /obj/item/chest_tube
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Mask";
+	spawn_paths = /obj/item/clothing/mask/breath/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Mask";
+	spawn_paths = /obj/item/clothing/mask/breath/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Mask";
+	spawn_paths = /obj/item/clothing/mask/breath/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Mask";
+	spawn_paths = /obj/item/clothing/mask/breath/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Mask";
+	spawn_paths = /obj/item/clothing/mask/breath/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Emer Oxygen Tank";
+	spawn_paths = /obj/item/tank/emergency/oxygen/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Emer Oxygen Tank";
+	spawn_paths = /obj/item/tank/emergency/oxygen/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Emer Oxygen Tank";
+	spawn_paths = /obj/item/tank/emergency/oxygen/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Emer Oxygen Tank";
+	spawn_paths = /obj/item/tank/emergency/oxygen/medical
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Emer Oxygen Tank";
+	spawn_paths = /obj/item/tank/emergency/oxygen/medical
+	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "wJe" = (
@@ -30525,9 +30965,15 @@
 /area/serenity/shelter/habitationdeck/messhall)
 "xtq" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/mobile_ladder,
-/obj/item/mobile_ladder,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	name = "Mobile Ladder";
+	spawn_paths = /obj/item/mobile_ladder
+	},
+/obj/effect/item_spawner{
+	name = "Mobile Ladder";
+	spawn_paths = /obj/item/mobile_ladder
+	},
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/preparation)
 "xtu" = (
@@ -30657,8 +31103,11 @@
 /area/serenity/shelter/engineering/pumps_b)
 "xyN" = (
 /obj/structure/rack/dark,
-/obj/item/chems/spray/cleaner,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/item_spawner{
+	spawn_paths = /obj/item/chems/spray/cleaner;
+	name = "Cleaner Spray"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "xyS" = (
@@ -80752,7 +81201,7 @@ fJi
 fJi
 vkl
 iGZ
-hFA
+fJi
 sbD
 cup
 kQn
@@ -80951,7 +81400,7 @@ iGZ
 hxg
 spw
 cup
-apy
+fJi
 iGZ
 mEL
 cup
@@ -137071,7 +137520,7 @@ atO
 xpr
 bDI
 uZy
-gDI
+uZy
 jet
 htg
 jTH
@@ -137684,7 +138133,7 @@ jkP
 eCz
 xvx
 asI
-inW
+hFA
 htg
 htg
 htg
@@ -141106,7 +141555,7 @@ jIv
 tNZ
 rlB
 xIV
-ucH
+fUK
 fUK
 hVf
 pDE
@@ -149516,7 +149965,7 @@ xEy
 xEy
 wKv
 gtB
-iPJ
+cOI
 wKv
 lnx
 wKv
@@ -151498,7 +151947,7 @@ xEy
 xEy
 xEy
 tDg
-cQo
+vKi
 kBa
 cQo
 tDg

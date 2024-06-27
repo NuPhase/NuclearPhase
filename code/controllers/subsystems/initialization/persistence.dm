@@ -18,7 +18,32 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/flashlight/lamp,
 										/obj/item/book,
 										/obj/item/stool,
-										/obj/item/pen) //Blacklisted items
+										/obj/item/pen,
+										/obj/item/wrapping_paper,
+										/obj/item/stack/package_wrap,
+										/obj/item/stack/tape_roll/barricade_tape/toilet, //infinite toilet paper
+										/obj/item/stack/material, //for now ---
+										/obj/item/stack/cable_coil,
+										/obj/item/stack/net_cable_coil,
+										/obj/item/chems,
+										/obj/item/co2filter/large,
+										/obj/item/cell/crap,
+										/obj/item/extinguisher,
+										/obj/item/tank/firefighting,
+										/obj/item/chems/condiment,
+										/obj/item/storage/toolbox, //for now ===
+										/obj/item/storage/mirror,
+										/obj/item/storage/box,
+										/obj/item/storage/lockbox/vials,
+										/obj/item/chems/drinks/glass2,
+										/obj/item/chems/drinks/shaker,
+										/obj/random/mre,
+										/obj/item/clothing/, //for now
+										/obj/item/hand_labeler,
+										/obj/item/wrench,
+										/obj/item/sticky_pad,
+										/obj/item/clipboard/steel,
+										/obj/item/towel) //Blacklisted items
 	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
 										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
 
