@@ -301,41 +301,47 @@
 //180-200 mcg/ml. The dose can be much higher, but this is where things likely end. The slightest electric shock can cause a total circulatory collapse.
 //>200 mcg/ml. Survival is extremely unlikely without medication as organ failure begins to set in.
 /mob/living/carbon/human/proc/handle_srec()
-	if(srec_dose > 160 && !has_chemical_effect(CE_SREC)) //Replicate
+	var/inhibition_factor = GET_CHEMICAL_EFFECT(src, CE_SREC) + 1
+	if(srec_dose > 160 && inhibition_factor < 1.1) //Replicate
 		srec_dose *= 1.001
 
 	if(srec_dose > 80)
 		var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
-		var/dose_sqrt = sqrt(srec_dose)
-		cur_heart.cardiac_output_modifiers["SREC"] = 1 - dose_sqrt * 0.003
-		cur_heart.stability_modifiers["SREC"] = -1.25 * dose_sqrt
+		var/dose_sqrt = sqrt(srec_dose) / inhibition_factor
+		cur_heart.cardiac_output_modifiers["SREC"] = 1 - (dose_sqrt * 0.003)
+		cur_heart.stability_modifiers["SREC"] = -1.25 * (dose_sqrt)
 		if(client)
 			change_skin_tone(round(client.prefs.skin_tone * 1 - dose_sqrt * 0.003))
-		to_chat_cooldown(src, SPAN_INFO("Your skin tickles.."), "srectickle", rand(2 MINUTES, 5 MINUTES))
+		to_chat_cooldown(src, SPAN_INFO("Your skin tickles.."), "srectickle", rand(2 MINUTES, 5 MINUTES * inhibition_factor))
 	else
 		return
 	if(srec_dose > 120)
 		if(srec_dose < 160)
 			change_eye_color(COLOR_GRAY)
 		adjustHalLoss(-150)
-		adjust_stamina(srec_dose * -0.05)
-		to_chat_cooldown(src, SPAN_WARNING("You feel weak."), "srecweak", rand(4 MINUTES, 10 MINUTES))
+		adjust_stamina(srec_dose * -0.05 / inhibition_factor)
+		to_chat_cooldown(src, SPAN_WARNING("You feel weak."), "srecweak", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
 	else
 		return
 	if(srec_dose > 140)
-		if(prob(sqrt(srec_dose) * 0.1))
+		if(prob(sqrt(srec_dose) * 0.1 / inhibition_factor))
 			emote("cough")
-		bodytemperature += rand(1.3, 1.4)
-		adjust_immunity(-1)
+		bodytemperature += rand(1.3, 1.4) / inhibition_factor
+		adjust_immunity(-1 / inhibition_factor)
 		if(srec_dose < 160)
-			to_chat_cooldown(src, SPAN_WARNING("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES))
+			to_chat_cooldown(src, SPAN_WARNING("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
 	else
 		return
 	if(srec_dose > 160)
-		adjust_immunity(-10)
+		adjust_immunity(-10 / inhibition_factor)
 		change_eye_color(COLOR_GREEN_GRAY)
 		adjustHalLoss(-400)
-		to_chat_cooldown(src, SPAN_DANGER("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES))
+		to_chat_cooldown(src, SPAN_DANGER("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
+	if(srec_dose > 1000) //we explodeee
+		var/turf/T = get_turf(src)
+		gib()
+		new /obj/effect/crystal_growth(T)
+		new /obj/effect/crystal_wall(T)
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
 	for(var/slot in global.standard_headgear_slots)

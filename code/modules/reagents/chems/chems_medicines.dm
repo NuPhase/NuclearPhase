@@ -280,7 +280,14 @@
 	uid = "SREC_inhibitor"
 	metabolism = 0.005
 	overdose = 50
+	color = "#7700ff"
 
 /decl/material/liquid/srec_inhibitor/affect_blood(mob/living/M, removed, datum/reagents/holder)
-	if(removed > 0.01)
-		M.add_chemical_effect(CE_SREC, 1)
+	var/volume = REAGENT_VOLUME(holder, type)
+	switch(volume)
+		if(2 to 5)
+			M.add_chemical_effect(CE_SREC, 2)
+		if(5 to 15)
+			M.add_chemical_effect(CE_SREC, 3)
+		if(15 to 50)
+			M.add_chemical_effect(CE_SREC, 4)

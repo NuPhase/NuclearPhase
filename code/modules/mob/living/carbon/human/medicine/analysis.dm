@@ -14,9 +14,9 @@
 	var/list/chem_data = blood_data["trace_chem"]
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
 	text += "<center><i>Biochemical Analysis</i></center><br>"
-	text += "Potassium: [round(0 + chem_data[/decl/material/solid/potassium])] (1-3)<br>"
-	text += "Proteins: [round(rand(9, 11), 0.1)] (5-17)<br>"
-	text += "Blood pH: [round(rand(7.35, 7.45), 0.01)] (7.35-7.45)<br>"
+	text += "Potassium: [round(0.3 + chem_data[/decl/material/solid/potassium], 0.1)] (1-3)<br>"
+	text += "Proteins: [round(rand(90, 110)*0.1, 0.1)] (5-17)<br>"
+	text += "Blood pH: [round(rand(735, 745) * 0.01, 0.01)] (7.35-7.45)<br>"
 	return jointext(text, "<br>")
 
 /decl/blood_analysis/blood
@@ -41,8 +41,8 @@
 	var/obj/item/organ/internal/kidneys/kidneys = GET_INTERNAL_ORGAN(H, BP_KIDNEYS)
 	text += "<center><b>Analysis #[rand(1, 999)]</b></center><br>"
 	text += "<center><i>Organ Function Analysis</i></center><br>"
-	text += "Troponin-T: [rand(0, 0.05) + round(heart.damage * 0.3, 0.01)] (0.04<)<br>"
-	text += "Bilirubin: [rand(1.71, 20.5) + round(liver.damage * 0.6, 0.01)] (1.71-20.5)<br>"
+	text += "Troponin-T: [rand(0, 5)*0.01 + round(heart.damage * 0.3, 0.01)] (0.04<)<br>"
+	text += "Bilirubin: [rand(171, 205)*0.01 + round(liver.damage * 0.6, 0.01)] (1.71-20.5)<br>"
 	text += "ACR: [rand(0, 29) + round(kidneys.damage * 1.3, 0.01)] (33<)<br>"
 	return jointext(text, "<br>")
 
@@ -196,6 +196,8 @@
 			resulting_data += "Tissue perfusion is extremely poor.<br>"
 		else
 			resulting_data += "Tissue perfusion is slightly reduced.<br>"
+	else
+		resulting_data += "Tissue perfusion is normal.<br>"
 
 	if(H.get_blood_oxygenation() < 0.7)
 		resulting_data += "Tissue is starved of oxygen.<br>"
@@ -203,6 +205,8 @@
 	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(H, BP_LUNGS)
 	if(L && L.ruptured)
 		resulting_data += "Traumatic pneumothorax.<br>"
+	else
+		resulting_data += "No pneumothorax.<br>"
 
 	resulting_data += "<br>"
 
@@ -215,6 +219,18 @@
 	for(var/obj/item/organ/external/E in H.get_external_organs())
 		if(E.status & ORGAN_ARTERY_CUT)
 			resulting_data += "[capitalize(E.artery_name)] bleeding in \the [E.name].<br>"
+
+	resulting_data += "<br>"
+	if(H.srec_dose > 80)
+		switch(H.srec_dose)
+			if(80 to 140)
+				resulting_data += "SREC infection present.<br>"
+			if(140 to 200)
+				resulting_data += "Developed SREC infection present.<br>"
+			if(200 to INFINITY)
+				resulting_data += "Major SREC infection clusters present!"
+	else
+		resulting_data += "No visible SREC infection detected..<br>"
 
 	return jointext(resulting_data, "<br>")
 
@@ -229,6 +245,8 @@
 	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(H, BP_LUNGS)
 	if(L && L.ruptured)
 		resulting_data += "Traumatic pneumothorax.<br>"
+	else
+		resulting_data += "No pneumothorax.<br>"
 	var/obj/item/organ/internal/heart/our_heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	if(our_heart)
 		resulting_data += "Heart Stroke Volume: [round(H.get_stroke_volume())]ml CO:([round(our_heart.cardiac_output * 100)]%)"
@@ -241,6 +259,14 @@
 				resulting_data += "Acute appendicitis.<br>"
 			if(600 to INFINITY)
 				resulting_data += "Gangrenous appendicitis.<br>"
+
+	resulting_data += "<br>"
+
+	if(H.srec_dose > 20)
+		resulting_data += "SREC infection present.<br>"
+		resulting_data += "Estimate Dose: [round(H.srec_dose + rand(-10, 10))] mcg/ml.<br>"
+	else
+		resulting_data += "No SREC infection detected.<br>"
 
 	resulting_data += "<br>"
 
@@ -286,6 +312,8 @@
 	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(H, BP_LUNGS)
 	if(L && L.ruptured)
 		resulting_data += "Traumatic pneumothorax.<br>"
+	else
+		resulting_data += "No pneumothorax.<br>"
 
 	resulting_data += "<br>"
 

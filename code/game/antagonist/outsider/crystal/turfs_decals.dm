@@ -5,6 +5,7 @@
 	anchored = 1
 	icon = 'icons/turf/mining_decals.dmi'
 	icon_state = "crystal"
+	var/transmissibility = 3
 
 /obj/effect/crystal_growth/Process()
 	try_expand()
@@ -83,7 +84,11 @@
 
 			var/obj/item/shoes = H.get_equipped_item(slot_shoes_str)
 			var/obj/item/suit = H.get_equipped_item(slot_wear_suit_str)
-			if(shoes || (suit && (suit.body_parts_covered & SLOT_FEET)))
+			if(suit && (suit.body_parts_covered & SLOT_FEET))
+				H.srec_dose += transmissibility * suit.permeability_coefficient
+				return
+			else if(shoes)
+				H.srec_dose += transmissibility * shoes.permeability_coefficient
 				return
 
 			to_chat(M, SPAN_DANGER("You step on \the [src]! There is some strange tingling in your feet..."))
@@ -92,13 +97,12 @@
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, picked)
-				var/obj/item/organ/external/chest/infecting = GET_EXTERNAL_ORGAN(H, BP_CHEST)
 				if(affecting)
 					if(BP_IS_PROSTHETIC(affecting))
 						return
 					affecting.take_external_damage(7, 0)
-					if(!length(infecting.ailments))
-						infecting.add_ailment(/datum/ailment/crystal/phase_one)
+					if(H.srec_dose < 100)
+						H.srec_dose += rand(30, 70)
 					H.updatehealth()
 					if(affecting.can_feel_pain())
 						SET_STATUS_MAX(H, STAT_WEAK, 3)
@@ -116,8 +120,8 @@
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
 			var/obj/item/organ/external/chest/affecting = GET_EXTERNAL_ORGAN(H, BP_CHEST)
-			if(!length(affecting.ailments))
-				affecting.add_ailment(/datum/ailment/crystal/phase_one)
+			if(H.srec_dose < 100)
+				H.srec_dose += rand(30, 70)
 			SET_STATUS_MAX(H, STAT_WEAK, 3)
 	. = ..()
 
@@ -142,7 +146,7 @@
 	for(var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
-		L.apply_damage(rand(5, 10), BRUTE, used_weapon = "sharp crystals")
+		L.apply_damage(rand(15, 30), BRUTE, used_weapon = "sharp crystals")
 		L.forceMove(src)
 
 /obj/effect/crystal_wall/Destroy()
