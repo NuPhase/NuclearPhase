@@ -78,7 +78,7 @@
 /decl/aspect/perk/negative/heart_problem/apply(mob/living/carbon/human/holder)
 	. = ..()
 	var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(holder, BP_HEART)
-	cur_heart.damage = cur_heart.max_damage * 0.9
+	cur_heart.damage = cur_heart.max_damage * 0.1
 
 /decl/aspect/perk/negative/heart_failure
 	name = "Heart Failure"
@@ -88,7 +88,7 @@
 /decl/aspect/perk/negative/heart_failure/apply(mob/living/carbon/human/holder)
 	. = ..()
 	var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(holder, BP_HEART)
-	cur_heart.damage = cur_heart.max_damage * 0.7
+	cur_heart.damage = cur_heart.max_damage * 0.3
 
 /decl/aspect/perk/negative/srec_infection
 	name = "SREC Infection"
@@ -109,7 +109,16 @@
 			will likely put an end to you."
 	incompatible_with = list(/decl/aspect/perk/negative/srec_infection)
 	aspect_cost = -8
+	var/list/organ_damage_weights = list(
+		BP_LIVER =   60,
+		BP_BRAIN =   50,
+		BP_EYES =    40,
+		BP_KIDNEYS = 30
+	)
 
 /decl/aspect/perk/negative/srec_infection/medium/apply(mob/living/carbon/human/holder)
 	. = ..()
 	holder.srec_dose = rand(120, 160)
+	for(var/i=1;i<=3;i++)
+		var/obj/item/organ/internal/I = GET_INTERNAL_ORGAN(holder, pickweight(organ_damage_weights))
+		I.damage += I.max_damage * 0.1
