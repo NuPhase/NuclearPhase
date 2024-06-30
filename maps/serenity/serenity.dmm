@@ -2137,10 +2137,7 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
 "bRt" = (
-/obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
-	lock_type = /datum/lock/id_card
-	},
+/obj/structure/door/fire,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
 "bRC" = (
@@ -5633,6 +5630,13 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"eoZ" = (
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/electrical)
 "epq" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/effect/floor_decal/spline/fancy/wood/corner{
@@ -7064,10 +7068,7 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "fBa" = (
-/obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
-	lock_type = /datum/lock/id_card
-	},
+/obj/structure/door/fire,
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/engineering/service_tunnels)
 "fBn" = (
@@ -7464,11 +7465,8 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "fQD" = (
-/obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
-	lock_type = /datum/lock/id_card
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/door/fire,
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/engineering/service_tunnels)
 "fRK" = (
@@ -12456,15 +12454,12 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/engineering/reactor)
 "jwJ" = (
-/obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
-	lock_type = /datum/lock/id_card
-	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/autoset,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/door/fire,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "jwQ" = (
@@ -13289,11 +13284,18 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "keM" = (
-/obj/structure/door/fire,
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card
+	},
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "keV" = (
@@ -13816,14 +13818,11 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "kxM" = (
-/obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
-	lock_type = /datum/lock/id_card
-	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/autoset,
+/obj/structure/door/fire,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "kxW" = (
@@ -15059,7 +15058,7 @@
 /area/serenity/shelter/engineering/reactor_operations/office)
 "ltS" = (
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
+	lock_data = list("ACCESS_ENGINEERING");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/concrete/light_gray,
@@ -17157,10 +17156,7 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "mMr" = (
-/obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
-	lock_type = /datum/lock/id_card
-	},
+/obj/structure/door/fire,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "mMN" = (
@@ -20709,7 +20705,7 @@
 "poJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/water,
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
+	lock_data = list("ACCESS_ENGINEERING");
 	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/concrete,
@@ -20857,7 +20853,9 @@
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "ptg" = (
 /obj/structure/door/sliding{
-	dir = 8
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -29444,7 +29442,7 @@
 "vIB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/water,
 /obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
+	lock_data = list("ACCESS_ENGINEERING");
 	lock_type = /datum/lock/id_card
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -30719,8 +30717,11 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
-/obj/structure/door/fire,
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "wGi" = (
@@ -31246,10 +31247,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
-/obj/structure/door/fire{
-	lock_data = list("ACCESS_VAULT");
-	lock_type = /datum/lock/id_card
-	},
+/obj/structure/door/fire,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "wYx" = (
@@ -32286,11 +32284,14 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "xJO" = (
-/obj/structure/door/fire,
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/autoset,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "xKu" = (
@@ -100411,7 +100412,7 @@ eRu
 eRu
 xbJ
 xbJ
-nqT
+eoZ
 toM
 uwa
 ryp
@@ -100509,7 +100510,7 @@ eRu
 eRu
 iqT
 qZS
-nqT
+eoZ
 mdv
 aNN
 voC
