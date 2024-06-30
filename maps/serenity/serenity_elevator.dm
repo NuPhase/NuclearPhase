@@ -61,8 +61,8 @@
 
 /obj/turbolift_map_holder/serenity/main_staircase
 	depth = 4
-	lift_size_x = 7
-	lift_size_y = 7
+	lift_size_x = 6
+	lift_size_y = 6
 	icon = 'icons/obj/turbolift_preview_7x7.dmi'
 	dir = EAST
 

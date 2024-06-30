@@ -114,7 +114,8 @@
 
 /obj/item/grenade/frag/srec/on_update_icon()
 	. = ..()
-	add_overlay(image('icons/obj/machines/power/fusion.dmi', "emfield_s1"))
+	if(active)
+		add_overlay(image('icons/obj/machines/power/fusion.dmi', "emfield_s1"))
 
 /obj/item/grenade/frag/srec/on_explosion(turf/O)
 	deflagration(O, 1000, 50, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, shock_color = COLOR_LIME)

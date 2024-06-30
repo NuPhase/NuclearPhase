@@ -121,6 +121,8 @@
 			var/mob/living/carbon/human/H = target
 			if(H.srec_dose < 100)
 				H.srec_dose += rand(20, 70)
+			else
+				H.srec_dose *= 1.05
 			SET_STATUS_MAX(H, STAT_WEAK, 3)
 	. = ..()
 
