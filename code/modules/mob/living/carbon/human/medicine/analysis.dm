@@ -185,7 +185,7 @@
 	return jointext(resulting_data, "<br>")
 
 /decl/scanner_analysis/ultrasound/fast
-	name = "EFAST ultrasound"
+	name = "EFAST Ultrasound"
 	description = "A generic ultrasound scan for assessing trauma."
 
 /decl/scanner_analysis/ultrasound/fast/return_analysis(mob/living/carbon/human/H, blood_data)
@@ -235,7 +235,7 @@
 	return jointext(resulting_data, "<br>")
 
 /decl/scanner_analysis/ultrasound/organ
-	name = "organ ultrasound"
+	name = "Organ Ultrasound"
 	description = "An ultrasound scan for diagnosing organ issues."
 	time = 10 SECONDS
 
@@ -324,5 +324,18 @@
 			resulting_data += "Dislocation in \the [E.name].<br>"
 		if(E.status & ORGAN_TENDON_CUT)
 			resulting_data += "Cut tendon in \the [E.name].<br>"
+
+	return jointext(resulting_data, "<br>")
+
+/decl/scanner_analysis/radiation
+	name = "Radiation Screening"
+
+/decl/scanner_analysis/radiation/proc/check_clothing()
+	return TRUE
+
+/decl/scanner_analysis/radiation/return_analysis(mob/living/carbon/human/H, blood_data)
+	var/list/resulting_data = list()
+
+	resulting_data += "Estimated radiation dose: [round(H.radiation)]mSv.<br>"
 
 	return jointext(resulting_data, "<br>")

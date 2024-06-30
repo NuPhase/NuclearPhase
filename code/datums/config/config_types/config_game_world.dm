@@ -31,7 +31,7 @@
 
 /decl/config/num/radiation_decay_rate
 	uid = "radiation_decay_rate"
-	default_value = 1
+	default_value = 3500
 	desc = "How much radiation levels self-reduce by each tick."
 
 /decl/config/num/radiation_resistance_multiplier

@@ -31,7 +31,7 @@
 	for(var/obj/item/item in in_turf)
 		item.throw_at(get_step_away(item, in_turf), item.throw_range, item.throw_speed, in_turf)
 	if(istype(in_turf, /turf/simulated/wall))
-		ADJUST_ATOM_TEMPERATURE(in_turf, power * 5)
+		ADJUST_ATOM_TEMPERATURE(in_turf, power * 20)
 	else
 		in_turf.create_fire(power / 100)
 
@@ -59,7 +59,7 @@
 		var/turf/T = get_step(get_turf(in_turf), dir)
 		if(T.density)
 			continue
-		for(var/obj/machinery/door/D in T)
+		for(var/obj/D in T)
 			if(D.density)
 				continue
 		// Diagonals are longer, that should be reflected in the power falloff

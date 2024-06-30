@@ -102,3 +102,20 @@
 /obj/item/grenade/frag/high_yield/on_explosion(var/turf/O)
 	if(explosion_size)
 		explosion(O, -1, round(explosion_size/2), explosion_size, round(explosion_size/2), 0) //has a chance to blow a hole in the floor
+
+/obj/item/grenade/frag/srec
+	name = "SREC HE grenade"
+	desc = "An illegal and extremely dangerous bomb utilizing SREC antimatter crystals."
+	icon = 'icons/obj/items/grenades/frag_srec.dmi'
+	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment/crystal = 1)
+	w_class = ITEM_SIZE_NORMAL
+	arm_sound = 'sound/effects/3.wav'
+	det_time = 40
+
+/obj/item/grenade/frag/srec/on_update_icon()
+	. = ..()
+	add_overlay(image('icons/obj/machines/power/fusion.dmi', "emfield_s1"))
+
+/obj/item/grenade/frag/srec/on_explosion(turf/O)
+	deflagration(O, 1000, 50, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, shock_color = COLOR_LIME)
+	SSradiation.radiate(O, 50000)

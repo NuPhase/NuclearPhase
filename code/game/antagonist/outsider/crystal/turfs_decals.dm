@@ -112,7 +112,7 @@
 
 /obj/item/projectile/bullet/pellet/fragment/crystal
 	damage = 3
-	irradiate = 5
+	irradiate = 500
 	eyeblur = 1
 
 /obj/item/projectile/bullet/pellet/fragment/crystal/on_hit(atom/target, blocked)
@@ -120,7 +120,7 @@
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
 			if(H.srec_dose < 100)
-				H.srec_dose += rand(30, 70)
+				H.srec_dose += rand(20, 70)
 			SET_STATUS_MAX(H, STAT_WEAK, 3)
 	. = ..()
 
