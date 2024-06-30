@@ -71,9 +71,10 @@
 	lift_floor_label = "2"
 	lift_floor_name = "Laboratories; Reactor Ops."
 
-/area/turbolift/serenity/personnel/a1
-	lift_floor_label = "1"
-	lift_floor_name = "Security"
+/area/turbolift/serenity/personnel/a2/one
+/area/turbolift/serenity/personnel/a2/two
+/area/turbolift/serenity/personnel/a3/one
+/area/turbolift/serenity/personnel/a3/two
 
 /area/turbolift/serenity/main
 	name = "Personnel Elevator"
@@ -85,6 +86,11 @@
 /area/turbolift/serenity/main/a1
 	lift_floor_label = "1"
 	lift_floor_name = "Laboratories; Reactor Ops."
+
+/area/turbolift/serenity/main/a1/one
+/area/turbolift/serenity/main/a1/two
+/area/turbolift/serenity/main/a2/one
+/area/turbolift/serenity/main/a2/two
 
 /area/turbolift/serenity/ro_staircase
 	name = "RO Elevator"
@@ -140,3 +146,17 @@
 /area/turbolift/serenity/entrance/a1
 	lift_floor_label = "1"
 	lift_floor_name = "Entrance Zone"
+
+/area/turbolift/serenity/main_staircase
+	name = "Staircase Elevator"
+
+/area/turbolift/serenity/main_staircase/a4
+	lift_floor_label = "4"
+	lift_floor_name = "Atmospherics"
+/area/turbolift/serenity/main_staircase/a3
+/area/turbolift/serenity/main_staircase/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Cargo Entrance"
+/area/turbolift/serenity/main_staircase/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Cargo Storage; Security"

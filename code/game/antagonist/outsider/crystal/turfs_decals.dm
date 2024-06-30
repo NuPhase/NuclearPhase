@@ -119,7 +119,6 @@
 	if(!blocked)
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
-			var/obj/item/organ/external/chest/affecting = GET_EXTERNAL_ORGAN(H, BP_CHEST)
 			if(H.srec_dose < 100)
 				H.srec_dose += rand(30, 70)
 			SET_STATUS_MAX(H, STAT_WEAK, 3)
