@@ -1,7 +1,6 @@
 /decl/material/liquid/adrenaline
 	name = "adrenaline"
-	lore_text = "Adrenaline is a hormone that was used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
-	mechanics_text = "Increases BPM. Makes resuscitations easier."
+	lore_text = "Increases BPM and heart output. Makes resuscitations easier."
 	taste_description = "rush"
 	metabolism = REM * 2
 	color = "#76319e"
@@ -28,8 +27,7 @@
 
 /decl/material/liquid/noradrenaline
 	name = "noradrenaline"
-	lore_text = "Noradrenaline is a hormone responsible for blood pressure modulation. It was widely used as an injectable drug for the treatment of critically low blood pressure."
-	mechanics_text = "Increases BP. Can wake people up."
+	lore_text = "Increases BP. Wakes people up."
 	taste_description = "sobriety"
 	metabolism = REM * 2
 	color = "#1e3c7e"
@@ -49,7 +47,7 @@
 
 /decl/material/liquid/atropine
 	name = "atropine"
-	lore_text = "Atropine is an extremely potent tachycardic."
+	lore_text = "Rapidly increases BPM."
 	mechanics_text = "Rapidly increases BPM."
 	taste_description = "rush"
 	color = "#ce3f2c"
@@ -66,9 +64,8 @@
 
 /decl/material/liquid/dopamine
 	name = "dopamine"
-	lore_text = "Dopamine is a naturally occuring nervous system stimulant."
-	mechanics_text = "Increases cardiac output."
-	color = "#cea82c"
+	lore_text = "Inreases cardiac output."
+	color = "#ffd448"
 	scannable = 1
 	overdose = 8
 	metabolism = REM * 2
@@ -81,7 +78,7 @@
 
 /decl/material/liquid/nitroglycerin
 	name = "nitroglycerin"
-	mechanics_text = "Reduces cardiac output, decreases heart ischemia"
+	lore_text = "Reduces cardiac output, increases heart oxygen uptake."
 	taste_description = "oil"
 	color = "#ceb02c"
 	scannable = 1
@@ -94,11 +91,11 @@
 /decl/material/liquid/nitroglycerin/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	heart.cardiac_output_modifiers[name] = 1 - removed * 3
-	heart.oxygen_deprivation = max(0, heart.oxygen_deprivation - removed * 2)
+	heart.oxygen_deprivation = max(0, heart.oxygen_deprivation - removed * 5)
 
 /decl/material/solid/betapace
 	name = "betapace"
-	mechanics_text = "Decreases pulse, increases heart stability"
+	lore_text = "Decreases BPM, increases cardiac stability."
 	taste_description = "burning"
 	color = "#353535"
 	scannable = 1
@@ -115,7 +112,7 @@
 
 /decl/material/liquid/dronedarone
 	name = "dronedarone"
-	mechanics_text = "Increases heart stability"
+	lore_text = "Increases cardiac stability."
 	taste_description = "comfort"
 	color = "#321f35"
 	scannable = 1
@@ -131,7 +128,7 @@
 
 /decl/material/liquid/heparin
 	name = "heparin"
-	mechanics_text = "Prevents blood clots"
+	lore_text = "Prevents blood clots."
 	color = "#d6d6d6"
 	scannable = 1
 	overdose = 10
@@ -145,6 +142,7 @@
 
 /decl/material/liquid/adenosine
 	name = "adenosine"
+	lore_text = "Removes weak arrythmias in doses above 3mg."
 	color = "#d6d6d6"
 	scannable = 1
 	overdose = 10

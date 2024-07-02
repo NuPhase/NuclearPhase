@@ -59,6 +59,7 @@
 
 /decl/material/liquid/potassium_iodide
 	name = "potassium iodide"
+	lore_text = "A common radiation protector."
 	taste_description = "metal"
 	color = "#322235"
 	uid = "chem_potassium_iodide"
@@ -67,6 +68,7 @@
 
 /decl/material/liquid/pentenate_calcium_trisodium
 	name = "pentenate calcium trisodium"
+	lore_text = "A strong radiation chelator that removes isotopes from the body."
 	taste_description = "acid"
 	color = "#cecece"
 	uid = "chem_pentenate_calcium_trisodium"
@@ -75,10 +77,11 @@
 
 /decl/material/liquid/pentenate_calcium_trisodium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	H.bloodstr.remove_reagent(/decl/material/solid/metal/plutonium, 1)
-	H.radiation -= 1
+	H.radiation -= 10
 
 /decl/material/solid/sodium_bicarbonate
 	name = "sodium bicarbonate"
+	lore_text = "A special chelator that binds and removes potassium. Useful for treating septic shock."
 	taste_description = "alkaline"
 	color = "#e2e2e2"
 	uid = "sodium_bicarbonate"

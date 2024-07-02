@@ -29,7 +29,7 @@
 	return
 
 /decl/material/solid/static_crystal
-	name = "polycrystal"
+	name = "SREC"
 	uid = "polycrystal"
 	lore_text = "An agressive silicon lifeform crystal. Due to its electrostatic properties it's able to contain antimatter relatively safely. It doesn't contain any right now."
 	default_solid_form = /obj/item/stack/material/gemstone
@@ -48,7 +48,7 @@
 	color = COLOR_LIME
 
 /decl/material/solid/static_crystal/antimatter
-	name = "antimatter polycrystal"
+	name = "SREC-A"
 	uid = "antimatter_polycrystal"
 	combustion_energy = 810801000000
 	neutron_interactions = list(
@@ -72,3 +72,4 @@
 	gas_flags = XGM_GAS_FUEL|XGM_GAS_OXIDIZER
 	fuel_value = 10
 	ignition_point = TCMB
+	molar_mass = 0.004 //twice that of hydrogen

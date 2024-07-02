@@ -12,7 +12,7 @@
 	if(a_intent == I_HURT && istype(over_object) && (isturf(over_object) || isturf(over_object.loc)) && !incapacitated() && istype(gun))
 		gun.set_autofire(over_object, src)
 
-	if(canClick() && !ismob(over_object) || a_intent == I_HELP)
+	if(!canClick() || !ismob(over_object) || a_intent == I_HELP)
 		return TRUE
 	if(!prob(10 * get_skill_value(SKILL_COMBAT)))
 		return TRUE

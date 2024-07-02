@@ -121,7 +121,7 @@
 	var/list/reagent_list = list()
 	for(var/mat_type in reagent_volumes)
 		var/decl/material/mat = GET_DECL(mat_type)
-		reagent_list += list(list("name" = mat.name, "uid" = mat.uid, "category" = mat.drug_category, "amount" = reagent_volumes[mat_type], "rtype" = mat.type))
+		reagent_list += list(list("name" = mat.name, "description" = mat.lore_text, "uid" = mat.uid, "category" = mat.drug_category, "amount" = reagent_volumes[mat_type], "rtype" = mat.type))
 	return reagent_list
 
 /obj/machinery/drug_dispenser/stocked

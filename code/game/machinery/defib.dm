@@ -55,7 +55,7 @@
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
 	heart.pulse = rand(35, 60)
-	heart.cardiac_output_modifiers["defibrillation"] = 1.4
+	heart.cardiac_output_modifiers["defibrillation"] = 3
 	heart.instability = max(heart.instability -= rand(150, 240), 0)
 	for(var/decl/arrythmia/A in heart.arrythmias)
 		if(A.can_be_shocked && prob(95))
@@ -63,7 +63,6 @@
 	shock_charged = FALSE
 	pads.attached.srec_dose *= 1.1
 	log_and_message_admins("used \a [src] to electrocute [key_name(pads.attached)].")
-
 
 /obj/machinery/defibrillator/proc/charge(mob/user)
 	user.visible_message("<span class='notice'>\The [user] charges [src].</span>", "<span class='notice'>You charge the [src].</span>")

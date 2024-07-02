@@ -51,7 +51,7 @@
 	oxygen_amount = Clamp(oxygen_amount, 0, max_oxygen_capacity)
 
 #define PULSE_PRESSURE(stroke_volume) stroke_volume * 0.5714
-#define MCV_PRESSURE(add_mcv) add_mcv * 0.013
+#define MCV_PRESSURE(add_mcv) add_mcv * 0.043
 
 /mob/living/carbon/human/proc/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)

@@ -30,18 +30,21 @@
 
 /decl/material/liquid/antibiotics/penicillin
 	name = "penicillin"
+	lore_text = "A weak but cheap antibiotic."
 	uid = "chem_antibiotics_penicillin"
 	strength = 0.75
 	overdose = 30
 
 /decl/material/liquid/antibiotics/amicile
 	name = "amicile"
+	lore_text = "A run-of-the-mill antibiotic with few side effects."
 	uid = "chem_antibiotics_amicile"
 	strength = 1.4
 	overdose = 6
 
 /decl/material/liquid/antibiotics/ceftriaxone
 	name = "ceftriaxone"
+	lore_text = "A very strong antibiotic with major side effects."
 	uid = "chem_antibiotics_ceftriaxone"
 	strength = 5
 	overdose = 3

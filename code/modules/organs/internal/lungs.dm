@@ -171,12 +171,19 @@
 	if(amount > 10 && lung_rupture_prob)
 		rupture()
 
+/obj/item/organ/internal/lungs/proc/get_breath_efficiency()
+	. = 1
+	. -= damage/max_damage
+	. += owner.lying*0.5
+	. -= oxygen_deprivation / OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD
+	return .
+
 /obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced, var/forced_breath_rate = 0)
 
 	if(!owner)
 		return 1
 
-	if(!breath || (max_damage <= 0) || oxygen_deprivation > 50 && !forced)
+	if(!breath || (max_damage <= 0) && !forced)
 		breath_fail_ratio = 1
 		handle_failed_breath()
 		breath_rate = 0
@@ -198,7 +205,7 @@
 
 	var/inhaling_gas_moles = breath.gas[breath_type]
 	var/inhaling_ratio = inhaling_gas_moles/breath.total_moles
-	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/min_breath_pressure - breath_rate*0.005 - damage/max_damage - (ruptured*0.5) + (owner.lying*0.2)), 0.01, 3)
+	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/min_breath_pressure * get_breath_efficiency()), 0.01, 3)
 	last_breath_efficiency = inhale_efficiency
 
 	// Not enough to breathe
@@ -251,7 +258,7 @@
 
 	if(!failed_breath || forced)
 		//oxygen volume = 1641ml per mole
-		owner.add_oxygen(inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency)
+		owner.add_oxygen(inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency / (ruptured + 1))
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
 	calculate_breath_rate()

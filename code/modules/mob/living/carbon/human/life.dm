@@ -466,7 +466,7 @@
 		switch(pressure_alert)
 			if(-2)
 				pressure_message = "<span class=bigdanger>Your vision slowly becomes pitch red as the blood in your eyes slowly comes out. Air rushes out of your lungs, forcing your mouth open like some sort of a toy. Your saliva evaporates,\
-				 but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
+				but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
 			if(-1)
 				pressure_message = "<span class=danger>You feel the air getting thinner!</span>"
 		to_chat(src, pressure_message)

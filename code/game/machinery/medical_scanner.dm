@@ -25,7 +25,7 @@
 		if(actual_decl.abstract_type == actual_decl.type)
 			continue
 		possible_analysis_decls["[actual_decl.name]"] = actual_decl
-	var/choice = input(user, "Choose an analysis to perform.", "Analysis choice") as null|anything in possible_analysis_decls
+	var/choice = tgui_input_list(user, "Choose an analysis to perform.", "Analysis choice", possible_analysis_decls)
 	var/decl/scanner_analysis/chosen_one = possible_analysis_decls[choice]
 	if(!chosen_one)
 		return
