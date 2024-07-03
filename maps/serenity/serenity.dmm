@@ -1934,12 +1934,8 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "bIr" = (
-/obj/structure/closet/crate/secure/biohazard/alt{
-	anchored = 1;
-	req_access = null
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/white/monotile,
+/obj/structure/bed/roller/hydraulic,
+/turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "bIC" = (
 /obj/effect/catwalk_plated,
@@ -1962,10 +1958,8 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/cargo)
 "bJQ" = (
-/obj/structure/table/glass,
-/obj/machinery/blood_analysis{
-	pixel_y = 10
-	},
+/obj/effect/floor_decal/corner/blue/border,
+/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "bKz" = (
@@ -2267,6 +2261,10 @@
 /area/serenity/shelter/staircase)
 "bWj" = (
 /obj/structure/window/reinforced,
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/masks,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "bWo" = (
@@ -3116,9 +3114,14 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "cBd" = (
-/obj/structure/iv_drip,
-/obj/machinery/alarm,
-/turf/simulated/floor/tiled/white,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/effect/floor_decal/corner/blue/mono,
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/blood_oxygenator,
+/turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "cBk" = (
 /obj/structure/stairs/very_long/north,
@@ -5890,12 +5893,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor)
 "eyT" = (
-/obj/structure/window/reinforced,
 /obj/effect/floor_decal/corner/blue/mono,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/iv_drip,
+/obj/machinery/optable,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "eyW" = (
@@ -6263,8 +6262,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/entrance_zone)
 "eOk" = (
-/obj/machinery/camera{
-	dir = 4
+/obj/structure/table/glass,
+/obj/machinery/centrifuge{
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -11976,7 +11976,6 @@
 "jex" = (
 /obj/structure/window/reinforced,
 /obj/effect/floor_decal/corner/blue/mono,
-/obj/machinery/blood_oxygenator,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "jeL" = (
@@ -12662,8 +12661,8 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "jEY" = (
-/obj/structure/iv_drip,
 /obj/machinery/light/ceiling,
+/obj/structure/bed/chair/wheelchair,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "jFB" = (
@@ -15874,8 +15873,8 @@
 /area/serenity/shelter/entrance_zone)
 "lVV" = (
 /obj/structure/table/glass,
-/obj/machinery/centrifuge{
-	pixel_y = 8
+/obj/machinery/blood_analysis{
+	pixel_y = 10
 	},
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/tiled/white/monotile,
@@ -19728,6 +19727,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
+"oCd" = (
+/obj/effect/floor_decal/corner/blue/mono,
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/lung_ventilator,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/genetics)
 "oCr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
@@ -21044,9 +21049,11 @@
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/chief_engineer)
 "pzm" = (
-/obj/machinery/optable,
-/obj/effect/floor_decal/corner/blue/mono,
-/turf/simulated/floor/tiled/white/monotile,
+/obj/structure/fire_hydrant_manual{
+	pixel_y = 32
+	},
+/obj/structure/iv_drip,
+/turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "pAh" = (
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -23127,10 +23134,7 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/staircase)
 "qYr" = (
-/obj/structure/bed/chair/wheelchair,
-/obj/structure/fire_hydrant_manual{
-	pixel_y = 32
-	},
+/obj/structure/iv_drip,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/labs/genetics)
 "qYu" = (
@@ -23415,13 +23419,12 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity)
 "rjm" = (
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/effect/floor_decal/corner/blue/mono,
 /obj/structure/table/glass,
-/obj/effect/item_spawner{
-	name = "MEDICAL Surgery Kit";
-	spawn_paths = /obj/item/storage/firstaid/surgery
-	},
+/obj/machinery/defibrillator,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "rjn" = (
@@ -29419,11 +29422,12 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "vIg" = (
-/obj/structure/table/glass,
-/obj/machinery/defibrillator,
 /obj/effect/floor_decal/corner/blue/mono,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/table/glass,
+/obj/machinery/cardiac_monitor,
+/obj/effect/item_spawner{
+	name = "MEDICAL Surgery Kit";
+	spawn_paths = /obj/item/storage/firstaid/surgery
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
@@ -30602,6 +30606,11 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
+"wAr" = (
+/obj/machinery/alarm,
+/obj/structure/bed/roller/hydraulic,
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/labs/genetics)
 "wAB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
@@ -30788,8 +30797,9 @@
 /area/serenity/shelter/staircase)
 "wIT" = (
 /obj/effect/floor_decal/corner/blue/mono,
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/operating_robot,
+/obj/machinery/medical_scanner{
+	pixel_x = -10
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "wJa" = (
@@ -31079,13 +31089,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/engineering/pumps_b)
 "wRO" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/masks,
-/obj/item/storage/box/gloves,
 /obj/machinery/button/access{
 	pixel_y = -20
 	},
-/obj/item/storage/box/syringes,
+/obj/structure/closet/crate/secure/biohazard/alt{
+	anchored = 1;
+	req_access = null
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "wSm" = (
@@ -31585,7 +31595,8 @@
 /area/serenity/shelter/brig)
 "xke" = (
 /obj/effect/floor_decal/corner/blue/mono,
-/obj/machinery/lung_ventilator,
+/obj/machinery/operating_robot,
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "xkf" = (
@@ -32002,9 +32013,11 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/particle_physics)
 "xyY" = (
-/obj/structure/table/glass,
-/obj/machinery/cardiac_monitor,
 /obj/effect/floor_decal/corner/blue/mono,
+/obj/structure/iv_drip{
+	pixel_x = -8;
+	pixel_y = -2
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/genetics)
 "xzh" = (
@@ -117933,8 +117946,8 @@ jIJ
 ert
 ert
 aZg
-ert
-ert
+vkd
+nVk
 eOk
 ert
 tUw
@@ -118031,8 +118044,8 @@ cAP
 waT
 cPQ
 ert
-vkd
-nVk
+sZh
+pRX
 lVV
 ert
 lkA
@@ -118126,12 +118139,12 @@ xEy
 tUw
 pnL
 ert
-ert
-ert
-ert
-sZh
-pRX
-bJQ
+cal
+uPF
+uPF
+uPF
+uPF
+gnj
 ert
 lkA
 nRZ
@@ -118224,12 +118237,12 @@ tUw
 tUw
 nZj
 ert
-cal
-uPF
-uPF
-uPF
-uPF
-gnj
+bJQ
+rjm
+mtm
+mtm
+cBd
+fTZ
 ert
 lkA
 xtu
@@ -118326,7 +118339,7 @@ eSN
 vIg
 mtm
 mtm
-eyT
+jex
 fTZ
 vCq
 lkA
@@ -118422,8 +118435,8 @@ ert
 cAP
 pMe
 xke
-mtm
-mtm
+eyT
+oCd
 jex
 prY
 fwB
@@ -118520,9 +118533,9 @@ ert
 ert
 miD
 wIT
-pzm
+mtm
 xyY
-rjm
+jex
 fTZ
 jng
 lkA
@@ -119694,7 +119707,7 @@ wNI
 nVk
 ert
 ert
-ert
+muM
 ert
 ert
 ert
@@ -119792,7 +119805,7 @@ wNI
 nVk
 sCj
 ert
-ert
+muM
 ert
 ert
 ert
@@ -129298,7 +129311,7 @@ xEy
 xEy
 xEy
 xEy
-xEy
+tUw
 tUw
 tUw
 tUw
@@ -129396,8 +129409,8 @@ dsT
 dsT
 dsT
 dsT
-dsT
 tUw
+bIr
 aGd
 nIW
 jkx
@@ -129494,8 +129507,8 @@ rRY
 rRY
 rRY
 rRY
-rRY
 tUw
+bIr
 mIm
 nIW
 jkx
@@ -129592,8 +129605,8 @@ rRY
 rRY
 rRY
 rRY
-rRY
 tUw
+wAr
 aGd
 nIW
 jkx
@@ -129690,9 +129703,9 @@ rRY
 rRY
 rRY
 rRY
-rRY
 tUw
-qYr
+pzm
+gtW
 gtW
 jRw
 kLY
@@ -129700,7 +129713,7 @@ itI
 mkK
 kLY
 lYH
-bIr
+kLY
 kLY
 bqG
 mAO
@@ -129788,9 +129801,9 @@ rRY
 rRY
 rRY
 rRY
-rRY
 tUw
-cBd
+qYr
+gtW
 gtW
 plA
 gtW
@@ -129886,7 +129899,7 @@ biH
 biH
 biH
 dsT
-dsT
+tUw
 tUw
 jEY
 nUn
