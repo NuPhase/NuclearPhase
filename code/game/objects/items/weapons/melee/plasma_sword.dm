@@ -41,10 +41,6 @@
 /obj/item/plasma_sword/get_heat()
 	return 47000
 
-/obj/item/plasma_sword/get_autopsy_descriptors()
-	. = ..()
-	. += "so precise it looks impossible"
-
 /obj/item/plasma_sword/can_embed()
 	return FALSE
 

@@ -175,8 +175,14 @@
 	. = 1
 	. -= damage/max_damage
 	. += owner.lying*0.5
-	. -= oxygen_deprivation / OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD
+	. -= oxygen_deprivation / OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD / 4
 	return .
+
+//How much oxygen do the lungs produce.
+//oxygen volume = 1641ml per mole
+#define OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured) inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency / (ruptured + 1)
+//How much hemoglobin can be saturated every 2 seconds in the body.
+#define MAX_OXYGEN_DELTA(mcv, max_oxygen_content) ((mcv / NORMAL_MCV) / 30) * max_oxygen_content
 
 /obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced, var/forced_breath_rate = 0)
 
@@ -257,8 +263,7 @@
 	var/failed_breath = failed_inhale || failed_exhale
 
 	if(!failed_breath || forced)
-		//oxygen volume = 1641ml per mole
-		owner.add_oxygen(inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency / (ruptured + 1))
+		owner.add_oxygen(min(OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured)), MAX_OXYGEN_DELTA(owner.mcv, owner.normal_oxygen_capacity))
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
 	calculate_breath_rate()
@@ -271,6 +276,9 @@
 	else
 		owner.oxygen_alert = 0
 	return failed_breath
+
+#undef OXYGEN_PRODUCED
+#undef MAX_OXYGEN_DELTA
 
 /obj/item/organ/internal/lungs/proc/get_breathing_sound(obj/item/clothing/mask/mask, efficiency)
 	if(!mask || !(mask.item_flags & ITEM_FLAG_AIRTIGHT))

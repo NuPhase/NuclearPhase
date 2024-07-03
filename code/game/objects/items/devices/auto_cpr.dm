@@ -58,4 +58,4 @@
 	if(!skilled_setup && prob(5))
 		E.fracture()
 	else
-		H.add_mcv = rand(250, 500)
+		H.add_mcv += rand(250, 500)

@@ -64,8 +64,9 @@
 			return PROCESS_KILL
 	else
 		return PROCESS_KILL
-	connected.add_mcv = set_mcv
-	connected.oxygen_amount = Interpolate(connected.oxygen_amount, connected.max_oxygen_capacity, 0.2)
+	playsound(src, 'sound/machines/pump.ogg', 25)
+	connected.add_mcv += set_mcv
+	connected.oxygen_amount = Interpolate(connected.oxygen_amount, connected.max_oxygen_capacity, 0.7)
 	var/obj/item/organ/internal/brain/B = GET_INTERNAL_ORGAN(connected, BP_BRAIN)
 	B.take_internal_damage(0.01)
 	var/obj/item/organ/external/head/head = GET_EXTERNAL_ORGAN(connected, BP_HEAD)

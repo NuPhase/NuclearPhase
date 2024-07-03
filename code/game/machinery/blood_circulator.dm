@@ -53,7 +53,8 @@
 			return PROCESS_KILL
 	else
 		return PROCESS_KILL
-	connected.add_mcv = set_mcv
+	connected.add_mcv += set_mcv
+	playsound(src, 'sound/machines/pump.ogg', 25)
 
 	if(!connected.has_chemical_effect(CE_BLOOD_THINNING)) //blood clotting
 		var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(connected, BP_HEART)

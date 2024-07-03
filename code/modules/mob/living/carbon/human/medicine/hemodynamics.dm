@@ -51,7 +51,7 @@
 	oxygen_amount = Clamp(oxygen_amount, 0, max_oxygen_capacity)
 
 #define PULSE_PRESSURE(stroke_volume) stroke_volume * 0.5714
-#define MCV_PRESSURE(add_mcv) add_mcv * 0.043
+#define MCV_PRESSURE(add_mcv) add_mcv * 0.023
 
 /mob/living/carbon/human/proc/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
@@ -79,8 +79,8 @@
 	var/coeff = get_blood_volume_hemo() * (bpmd * 3.73134328) * get_cardiac_output()
 	var/bpm53 = bpm * coeff * 53.0
 	var/stroke_volume = get_stroke_volume()
-	dyspressure = max(0, Interpolate(dyspressure, (tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53))*get_blood_volume_hemo(), HEMODYNAMICS_INTERPOLATE_FACTOR))
-	syspressure = Clamp(Interpolate(syspressure, dyspressure + PULSE_PRESSURE(stroke_volume) + MCV_PRESSURE(add_mcv), HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
+	dyspressure = max(0, Interpolate(dyspressure, ((tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)) + MCV_PRESSURE(add_mcv*0.7))*get_blood_volume_hemo(), HEMODYNAMICS_INTERPOLATE_FACTOR))
+	syspressure = Clamp(Interpolate(syspressure, dyspressure + PULSE_PRESSURE(stroke_volume) + (MCV_PRESSURE(add_mcv)*get_blood_volume_hemo()), HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
 	dyspressure = min(dyspressure, max(10, syspressure)-7)
 	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 
