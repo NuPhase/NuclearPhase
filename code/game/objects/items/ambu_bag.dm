@@ -5,6 +5,9 @@
 	icon_state = ICON_STATE_WORLD
 	var/pumping = FALSE
 	var/pumping_rate = 20
+	matter = list(
+		/decl/material/solid/plastic = MATTER_AMOUNT_PRIMARY
+	)
 
 /obj/item/intubation_bag/attack(mob/living/M, mob/living/user, target_zone, animate)
 	if(!ishuman(M))

@@ -202,6 +202,10 @@
 	name = "autoinjector (SREC-I)"
 	band_color = COLOR_GREEN
 	starts_with = list(/decl/material/liquid/srec_inhibitor = 10)
+	matter = list(
+		/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT,
+		/decl/material/solid/static_crystal = MATTER_AMOUNT_TRACE
+	)
 
 /obj/item/chems/hypospray/autoinjector/srec/elite
 	name = "autoinjector (SREC-IE)"

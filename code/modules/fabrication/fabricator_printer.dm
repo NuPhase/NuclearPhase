@@ -9,15 +9,16 @@
 	base_type = /obj/machinery/fabricator/printer
 	fabricator_class = FABRICATOR_CLASS_PRINTER
 	base_storage_capacity_mult = 20
-	mat_efficiency = 0.9 //evaporates some material
+	mat_efficiency = 0.95 //evaporates some material
+	pixel_x = -31
+	bound_x = -32
+	bound_width = 96
+	bound_height = 64
 
 /obj/machinery/fabricator/printer/take_materials(obj/item/thing, mob/user)
-
 	if (!istype(thing, /obj/item/stack/material/filament))
 		return
-
 	. = ..()
-	
 
 /obj/machinery/fabricator/printer/try_dump_material(mat_path)
 	if(!mat_path || !stored_material[mat_path])
@@ -31,6 +32,4 @@
 		if(sheet_count >= 1)
 			stored_material[mat_path] -= sheet_count * SHEET_MATERIAL_AMOUNT
 			SSmaterials.create_object(mat_path, get_turf(src), sheet_count, /obj/item/stack/material/filament, /obj/item/stack/material/filament)
-
 	. = ..()
-	
