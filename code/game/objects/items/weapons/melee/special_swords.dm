@@ -50,3 +50,11 @@
 /obj/item/energy_blade/molten_sword/proc/check_loc()
 	if(!istype(loc, /mob) && active)
 		toggle_active()
+
+/obj/item/energy_blade/molten_sword/attack(mob/living/M, mob/living/user, target_zone, animate)
+	. = ..()
+	if(active && isliving(M))
+		var/mob/living/H = M
+		H.adjust_fire_stacks(1)
+		H.IgniteMob()
+		H.bodytemperature += 20

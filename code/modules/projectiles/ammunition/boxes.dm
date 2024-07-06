@@ -151,6 +151,11 @@
 	max_ammo = 15
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/pistol/srec
+	name = "11x25 SREC magazine"
+	desc = "What the fuck did you do???"
+	ammo_type = /obj/item/ammo_casing/caseless/c11x25/srec
+
 /obj/item/ammo_magazine/pistol/oneround
 	initial_ammo = 1
 

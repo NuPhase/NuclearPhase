@@ -256,6 +256,13 @@
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	damage = 20
 	armor_penetration = ARMOR_BALLISTIC_PISTOL
+/obj/item/projectile/bullet/modern/c11x25/srec //same armor penetration, larger damage and higher falloff
+	damage = 50
+	muzzle_type = /obj/effect/projectile/muzzle/gauss
+/obj/item/projectile/bullet/modern/c11x25/srec/launch(atom/target, target_zone, mob/user, params, Angle_override, forced_spread)
+	. = ..()
+	for(var/mob/living/L in view(1, user))
+		L.apply_damage(150, IRRADIATE)
 
 /obj/item/projectile/bullet/modern/c10x77
 	fire_sound = 'sound/weapons/gunshot/sniper.ogg'

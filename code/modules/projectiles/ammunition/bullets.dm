@@ -229,31 +229,39 @@
 
 //For rifles
 /obj/item/ammo_casing/c6p8x51
-	desc = "6.8x51 casing."
+	name = "6.8x51 casing."
 	caliber = "6.8x51"
 	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51
 	icon = 'icons/obj/ammo/casings/rifle.dmi'
 /obj/item/ammo_casing/c6p8x51/ap
-	desc = "6.8x51 AP casing."
+	name = "6.8x51 AP casing."
 	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/ap
 /obj/item/ammo_casing/c6p8x51/fmj
-	desc = "6.8x51 FMJ casing."
+	name = "6.8x51 FMJ casing."
 	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/fmj
 /obj/item/ammo_casing/c6p8x51/hp
-	desc = "6.8x51 HP casing."
+	name = "6.8x51 HP casing."
 	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/hp
 
 /obj/item/ammo_casing/c11x25
-	desc = "11x25 casing."
+	name = "11x25 casing."
 	caliber = "11x25"
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
 /obj/item/ammo_casing/caseless/c11x25
-	desc = "11x25 CL casing."
+	name = "11x25 CL casing."
 	caliber = "11x25"
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
+
+/obj/item/ammo_casing/caseless/c11x25/srec
+	name = "11x25 SREC shell."
+	projectile_type = /obj/item/projectile/bullet/modern/c11x25/srec
+	icon = 'icons/obj/ammo/casings/pistol.dmi'
+	caliber = "11x25"
+	color = COLOR_GUNMETAL
+	bullet_color = COLOR_GUNMETAL
 
 /obj/item/ammo_casing/c10x77
 	name = "10x77-HS special casing"

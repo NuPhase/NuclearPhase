@@ -13,7 +13,7 @@
 	var/pace_sync = FALSE
 	var/pacing = FALSE
 
-	var/obj/item/clothing/suit/electrode_pads/pads = new
+	var/obj/item/clothing/under/electrode_pads/pads = new
 	var/datum/beam/connection_beam
 
 	var/list/options = list()
@@ -195,8 +195,8 @@
 			detach_pads(user)
 
 /obj/machinery/defibrillator/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/clothing/suit/electrode_pads))
-		var/obj/item/clothing/suit/electrode_pads/P = W
+	if(istype(W, /obj/item/clothing/under/electrode_pads))
+		var/obj/item/clothing/under/electrode_pads/P = W
 		if(P == pads)
 			if(ismob(pads.loc))
 				var/mob/M = pads.loc
@@ -219,7 +219,7 @@
 	. = ..()
 
 
-/obj/item/clothing/suit/electrode_pads
+/obj/item/clothing/under/electrode_pads
 	name = "electrode pads"
 	desc = "Special single-use sticky pads used for delivering shocks in an emergency."
 	icon = 'icons/clothing/suit/defib_paddles.dmi'
@@ -227,17 +227,17 @@
 	var/taken_out = FALSE
 	var/mob/living/carbon/human/attached = null
 
-/obj/item/clothing/suit/electrode_pads/equipped(mob/user)
+/obj/item/clothing/under/electrode_pads/equipped(mob/user)
 	..()
 	attached = user
 
-/obj/item/clothing/suit/electrode_pads/dropped(mob/user)
+/obj/item/clothing/under/electrode_pads/dropped(mob/user)
 	..()
 	attached = null
 
-/obj/item/clothing/suit/electrode_pads/attack(mob/living/carbon/human/M, mob/living/user, var/target_zone)
+/obj/item/clothing/under/electrode_pads/attack(mob/living/carbon/human/M, mob/living/user, var/target_zone)
 	if(istype(M) && user.a_intent == I_HELP)
-		var/obj/item/suit = M.get_equipped_item(slot_wear_suit_str)
+		var/obj/item/suit = M.get_equipped_item(slot_w_uniform_str)
 		if(suit)
 			to_chat(user, SPAN_WARNING("Their [suit] is in the way, remove it first!"))
 			return 1
@@ -247,7 +247,7 @@
 			return
 
 		if(user.unEquip(src))
-			if(!M.equip_to_slot_if_possible(src, slot_wear_suit_str, del_on_fail=0, disable_warning=1, redraw_mob=1))
+			if(!M.equip_to_slot_if_possible(src, slot_w_uniform_str, del_on_fail=0, disable_warning=1, redraw_mob=1))
 				user.put_in_active_hand(src)
 			else
 				playsound(get_turf(src), 'sound/machines/defib_SafetyOn.ogg', 50, 0)

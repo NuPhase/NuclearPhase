@@ -79,7 +79,7 @@
 	weight = 1.5
 	jam_chance = 1
 	magazine_type = null
-	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber)
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber, /obj/item/ammo_magazine/pistol/srec) //GOD FORBID
 	ammo_indicator = FALSE
 	waterproof = TRUE
 	fire_delay = 3
