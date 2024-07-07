@@ -4,7 +4,7 @@
 	icon = 'icons/obj/medical_kits.dmi'
 	amount = 5
 	max_amount = 5
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_TINY
 	throw_speed = 4
 	throw_range = 20
 
@@ -340,7 +340,6 @@
 	animal_heal = 7
 	apply_sounds = list('sound/effects/ointment.ogg')
 
-
 /obj/item/stack/medical/advanced/ointment/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
 		return 1
@@ -374,6 +373,7 @@
 	amount = 5
 	max_amount = 5
 	animal_heal = 0
+	w_class = ITEM_SIZE_SMALL
 	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_CHEST, BP_HEAD, BP_GROIN)	//List of organs you can splint, natch. //we're not in the stone age
 	weight = 0.3
 	matter = list(

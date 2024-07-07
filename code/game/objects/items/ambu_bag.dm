@@ -1,5 +1,5 @@
 /obj/item/intubation_bag
-	name = "ambu bag"
+	name = "bag mask"
 	desc = "A pumping bag used in medical environments."
 	icon = 'icons/obj/items/ambu_bag.dmi'
 	icon_state = ICON_STATE_WORLD

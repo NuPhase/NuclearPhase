@@ -266,6 +266,7 @@
 		owner.add_oxygen(min(OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured)), MAX_OXYGEN_DELTA(owner.mcv, owner.normal_oxygen_capacity))
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
+		oxygen_starve(inhaling_ratio * -10)
 	calculate_breath_rate()
 
 	handle_temperature_effects(breath)

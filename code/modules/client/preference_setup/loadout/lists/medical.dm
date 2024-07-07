@@ -23,10 +23,10 @@
 	cost = 20
 
 /decl/loadout_option/medical/military_medkit
-	name = "PMS kit"
-	description = "A box stocked for military first aid."
-	path = /obj/item/storage/box/military_medkit
-	cost = 30
+	name = "IFAK kit"
+	description = "Individual First Aid Kit."
+	path = /obj/item/storage/firstaid/ifak
+	cost = 40
 
 /decl/loadout_option/medical/medkit
 	name = "first aid kit"

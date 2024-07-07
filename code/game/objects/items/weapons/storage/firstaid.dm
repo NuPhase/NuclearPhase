@@ -14,8 +14,9 @@
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
-	max_w_class = ITEM_SIZE_SMALL
-	max_storage_space = DEFAULT_BOX_STORAGE
+	max_w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_LARGE
+	max_storage_space = DEFAULT_LARGEBOX_STORAGE
 	use_sound = 'sound/effects/storage/box.ogg'
 	load_spreading_coefficient = 0.9
 	weight = 1.5
@@ -26,14 +27,18 @@
 
 /obj/item/storage/firstaid/regular
 	icon_state = "firstaid"
-
 	startswith = list(
-		/obj/item/stack/medical/bruise_pack = 1,
-		/obj/item/stack/medical/wound_filler = 1,
-		/obj/item/stack/medical/ointment = 1,
+		/obj/item/stack/medical/bruise_pack = 2,
+		/obj/item/stack/medical/wound_filler = 2,
+		/obj/item/stack/medical/ointment = 2,
 		/obj/item/storage/pill_bottle/betapace,
 		/obj/item/storage/pill_bottle/painkillers,
-		/obj/item/stack/medical/splint
+		/obj/item/storage/pill_bottle/charcoal,
+		/obj/item/stack/medical/splint,
+		/obj/item/chest_tube,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/intubation_bag,
+		/obj/item/tank/emergency/oxygen/medical
 		)
 
 /obj/item/storage/firstaid/handmade
@@ -135,6 +140,25 @@
 		/obj/item/storage/pill_bottle/painkillers,
 		/obj/item/storage/pill_bottle/antibiotics,
 		/obj/item/stack/medical/splint,
+		)
+
+/obj/item/storage/firstaid/ifak
+	name = "IFAK box"
+	desc = "Individual First Aid Kit."
+	icon = 'icons/obj/items/storage/lunchboxes/lunchbox_evil.dmi'
+	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_SMALL
+	slot_flags = SLOT_LOWER_BODY
+	startswith = list(
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/medical/advanced/ointment,
+		/obj/item/stack/medical/splint,
+		/obj/item/chest_tube,
+		/obj/item/knife/combat,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/flashlight/flare/glowstick,
+		/obj/item/storage/pill_bottle/foil_pack/tramadol,
+		/obj/item/storage/pill_bottle/foil_pack/amicile
 		)
 
 /obj/item/storage/firstaid/stab

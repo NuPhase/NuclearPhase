@@ -135,6 +135,7 @@
 
 /obj/item/tank/emergency/oxygen/medical
 	name = "medical oxygen tank"
+	icon = 'icons/obj/items/tanks/tank_emergency_medical.dmi'
 	volume = 5
 	distribute_pressure = ONE_ATMOSPHERE
 

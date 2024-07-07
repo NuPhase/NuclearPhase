@@ -211,7 +211,8 @@
 		/obj/item/holowarrant,
 		/obj/item/magnetic_ammo,
 		/obj/item/binoculars,
-		/obj/item/clothing/gloves
+		/obj/item/clothing/gloves,
+		/obj/item/storage/firstaid/ifak
 		)
 
 /obj/item/storage/belt/security

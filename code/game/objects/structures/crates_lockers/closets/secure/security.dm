@@ -130,7 +130,8 @@
 		/obj/item/hailer,
 		/obj/item/clothing/accessory/storage/vest/black,
 		/obj/item/storage/guncase/service_pistol,
-		/obj/item/flashlight/maglight
+		/obj/item/flashlight/maglight,
+		/obj/item/storage/firstaid/ifak
 	)
 
 /obj/structure/closet/secure_closet/security/cargo/WillContain()
