@@ -148,7 +148,7 @@
 	desc = "A simple painkiller."
 	icon_state = "pill16"
 /obj/item/chems/pill/amicile/initialize_reagents()
-	reagents.add_reagent(/decl/material/liquid/antibiotics/amicile, 50)
+	reagents.add_reagent(/decl/material/liquid/antibiotics/amicile, 10)
 
 /obj/item/chems/pill/fentanyl
 	name = "fentanyl (250mcg)"
