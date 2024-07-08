@@ -405,7 +405,7 @@ meteor_act
 	if(istype(suit))
 		if(damage < suit.minimum_leak_damage)
 			return
-		suit.leakiness = min(suit.leakiness + damage - suit.minimum_leak_damage, 100)
+		suit.adjust_leakiness(-1 * (damage - suit.minimum_leak_damage))
 
 /mob/living/carbon/human/reagent_permeability()
 	var/perm = 0
