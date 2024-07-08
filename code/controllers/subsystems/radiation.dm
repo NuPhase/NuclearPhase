@@ -90,16 +90,10 @@ SUBSYSTEM_DEF(radiation)
 		// Okay, now ray trace to find resistance!
 		var/turf/origin = source.source_turf
 		var/working = source.rad_power
-		var/x = abs(origin.x - T.x)
-		var/y = abs(origin.y - T.y)
-		var/z = abs(origin.z - T.z)
-		var/datum/vector3/vec = new(x, y, z)
-		var/hip = round(vec.get_hipotynuse())
-		var/datum/vector3/norm_vec = vec.copy()
-		for(var/block in 1 to round(hip, 1))
-			norm_vec.normalise()
-			norm_vec.mult(new /datum/vector3(block, block, block))
-			var/turf/blocking = locate(T.x + round(norm_vec.x, 1), T.y + round(norm_vec.y, 1), T.z + round(norm_vec.z))
+		var/datum/point/vector/tracing = new(origin.x, origin.y, origin.z, 0, 0, get_projectile_angle(origin, T))
+		for(var/i=0, i < get_dist(origin, T), i++)
+			var/turf/blocking = tracing.return_turf()
+			tracing.increment()
 			if(!resistance_cache[blocking]) //Only get the resistance if we don't already know it.
 				blocking.calc_rad_resistance()
 			if(blocking.cached_rad_resistance)
