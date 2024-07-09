@@ -14,14 +14,14 @@
 	var/obj/machinery/communications/relay/cur_relay = try_find_relay()
 	playsound(loc, pick('sound/effects/radio1.mp3', 'sound/effects/radio2.mp3'), 20, 0, -1)
 	if(cur_relay && cur_relay.is_functioning())
-		var/quality = get_local_signal_quality(get_turf(user), get_turf(cur_relay), free_penetration, penetration_modifier, cur_relay.receiving_boost)
+		var/quality = get_signal_quality(get_turf(user), get_turf(cur_relay), free_penetration, penetration_modifier, cur_relay.receiving_boost)
 		cur_relay.relay(apply_message_quality(message, quality, user), frequency)
 	else
 		for(var/mob/M in human_mob_list)
 			var/obj/item/communications/receiving_radio = locate(/obj/item/communications) in M.contents
 			if(!receiving_radio)
 				continue
-			var/quality = get_local_signal_quality(get_turf(user), get_turf(M), free_penetration, penetration_modifier, receiving_radio.receiving_boost)
+			var/quality = get_signal_quality(get_turf(user), get_turf(M), free_penetration, penetration_modifier, receiving_radio.receiving_boost)
 			if(!quality)
 				continue
 			receive_comm_message(M, apply_message_quality(message, quality, M), frequency)
