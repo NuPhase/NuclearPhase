@@ -271,7 +271,7 @@
 	if(. || !proximity)
 		return
 	if(!. && proximity && !ismob(A) && can_heat_atom(A))
-		A.handle_external_heating(atom_heat, src, user)
+		A.handle_external_heating(get_heat(), src, user)
 		return TRUE
 	return FALSE
 
