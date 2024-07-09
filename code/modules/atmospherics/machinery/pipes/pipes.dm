@@ -308,24 +308,6 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/simple/visible/yellow
-	color = PIPE_COLOR_YELLOW
-
-/obj/machinery/atmospherics/pipe/simple/visible/cyan
-	color = PIPE_COLOR_CYAN
-
-/obj/machinery/atmospherics/pipe/simple/visible/green
-	color = PIPE_COLOR_GREEN
-
-/obj/machinery/atmospherics/pipe/simple/visible/black
-	color = PIPE_COLOR_BLACK
-
-/obj/machinery/atmospherics/pipe/simple/visible/red
-	color = PIPE_COLOR_RED
-
-/obj/machinery/atmospherics/pipe/simple/visible/blue
-	color = PIPE_COLOR_BLUE
-
 /obj/machinery/atmospherics/pipe/simple/visible/water
 	name = "water pipe"
 	color = PIPE_COLOR_BLUE
@@ -395,23 +377,6 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow
-	color = PIPE_COLOR_YELLOW
-
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan
-	color = PIPE_COLOR_CYAN
-
-/obj/machinery/atmospherics/pipe/simple/hidden/green
-	color = PIPE_COLOR_GREEN
-
-/obj/machinery/atmospherics/pipe/simple/hidden/black
-	color = PIPE_COLOR_BLACK
-
-/obj/machinery/atmospherics/pipe/simple/hidden/red
-	color = PIPE_COLOR_RED
-
-/obj/machinery/atmospherics/pipe/simple/hidden/blue
-	color = PIPE_COLOR_BLUE
 /obj/machinery/atmospherics/pipe/simple/hidden/water
 	name = "water pipe"
 	color = PIPE_COLOR_BLUE
@@ -484,24 +449,6 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow
-	color = PIPE_COLOR_YELLOW
-
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan
-	color = PIPE_COLOR_CYAN
-
-/obj/machinery/atmospherics/pipe/manifold/visible/green
-	color = PIPE_COLOR_GREEN
-
-/obj/machinery/atmospherics/pipe/manifold/visible/black
-	color = PIPE_COLOR_BLACK
-
-/obj/machinery/atmospherics/pipe/manifold/visible/red
-	color = PIPE_COLOR_RED
-
-/obj/machinery/atmospherics/pipe/manifold/visible/blue
-	color = PIPE_COLOR_BLUE
-
 /obj/machinery/atmospherics/pipe/manifold/visible/water
 	name = "water pipe manifold"
 	color = PIPE_COLOR_BLUE
@@ -553,40 +500,6 @@
 	icon_state = "map"
 	level = 1
 	alpha = 128		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers
-	name="Scrubbers pipe manifold"
-	desc = "A manifold composed of scrubbers pipes."
-	icon_state = "map-scrubbers"
-	connect_types = CONNECT_TYPE_SCRUBBER
-	icon_connect_type = "-scrubbers"
-	color = PIPE_COLOR_RED
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply
-	name="Air supply pipe manifold"
-	desc = "A manifold composed of supply pipes."
-	icon_state = "map-supply"
-	connect_types = CONNECT_TYPE_SUPPLY
-	icon_connect_type = "-supply"
-	color = PIPE_COLOR_BLUE
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/yellow
-	color = PIPE_COLOR_YELLOW
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/cyan
-	color = PIPE_COLOR_CYAN
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/green
-	color = PIPE_COLOR_GREEN
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/black
-	color = PIPE_COLOR_BLACK
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/red
-	color = PIPE_COLOR_RED
-
-/obj/machinery/atmospherics/pipe/manifold/hidden/blue
-	color = PIPE_COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/water
 	name = "water pipe manifold"
@@ -658,24 +571,6 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
-/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow
-	color = PIPE_COLOR_YELLOW
-
-/obj/machinery/atmospherics/pipe/manifold4w/visible/cyan
-	color = PIPE_COLOR_CYAN
-
-/obj/machinery/atmospherics/pipe/manifold4w/visible/green
-	color = PIPE_COLOR_GREEN
-
-/obj/machinery/atmospherics/pipe/manifold4w/visible/black
-	color = PIPE_COLOR_BLACK
-
-/obj/machinery/atmospherics/pipe/manifold4w/visible/red
-	color = PIPE_COLOR_RED
-
-/obj/machinery/atmospherics/pipe/manifold4w/visible/blue
-	color = PIPE_COLOR_BLUE
-
 /obj/machinery/atmospherics/pipe/manifold4w/visible/water
 	name = "water pipe manifold"
 	color = PIPE_COLOR_BLUE
@@ -716,24 +611,6 @@
 	icon_state = "map_4way-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
 	icon_connect_type = "-supply"
-	color = PIPE_COLOR_BLUE
-
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow
-	color = PIPE_COLOR_YELLOW
-
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan
-	color = PIPE_COLOR_CYAN
-
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/green
-	color = PIPE_COLOR_GREEN
-
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/black
-	color = PIPE_COLOR_BLACK
-
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/red
-	color = PIPE_COLOR_RED
-
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/blue
 	color = PIPE_COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/water

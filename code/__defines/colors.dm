@@ -111,6 +111,9 @@
 #define	PIPE_COLOR_BLACK       "#292929"
 #define	PIPE_COLOR_ORANGE      "#b95a00"
 #define PIPE_COLOR_WHITE       "#f8f8f8"
+#define PIPE_COLOR_VIOLET      "#7300b6"
+#define PIPE_COLOR_COOLANT_IN  "#af0098"
+#define PIPE_COLOR_COOLANT_OUT "#75003b"
 
 #define	COMMS_COLOR_DEFAULT    "#ff00ff"
 #define	COMMS_COLOR_ENTERTAIN  "#666666"
