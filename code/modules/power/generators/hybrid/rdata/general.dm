@@ -71,7 +71,7 @@
 			var/totalGas_add_string = "Total mass: [round(mixture.get_mass(), 0.01)]kg"
 			. += "[totalGas_add_string]"
 			return
-	return "<span class='warning'>\The chamber has no gases!</span>"
+	return "<span class='warning'>The chamber has no gases!</span>"
 
 /obj/machinery/reactor_monitor/general/proc/chat_report(message, urgency)
 	switch(urgency)

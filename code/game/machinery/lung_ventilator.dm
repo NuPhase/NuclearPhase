@@ -119,7 +119,7 @@
 		return
 	//when there is a breather:
 	if(connected)
-		to_chat(user, "<span class='warning'>\The pump is already in use.</span>")
+		to_chat(user, "<span class='warning'>The pump is already in use.</span>")
 		return
 	//Checking if breather is still valid
 	mask = target.get_equipped_item(slot_wear_mask_str)
