@@ -10789,7 +10789,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3,
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1,
 /turf/simulated/floor/concrete/black,
-/area/serenity)
+/area/serenity/shelter/engineering/service_tunnels)
 "igV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/water{
 	dir = 9
@@ -15071,6 +15071,13 @@
 	},
 /turf/simulated/open,
 /area/serenity)
+"lna" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "lnc" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
@@ -17963,11 +17970,10 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "ngy" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small,
 /turf/simulated/floor/concrete/black,
-/area/serenity)
+/area/serenity/shelter/engineering/service_tunnels)
 "ngB" = (
 /obj/structure/rack/dark,
 /obj/machinery/light{
@@ -20740,15 +20746,19 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "pbq" = (
-/obj/effect/paint_stripe/yellow,
-/obj/machinery/atmospherics/pipe/simple/hidden/ch4_out/layer3{
+/obj/structure/railing/mapped,
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/ch4_in/layer1{
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
 	dir = 4
 	},
-/turf/simulated/wall/concrete/nano,
-/area/serenity)
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/engineering/service_tunnels)
 "pbs" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -25624,7 +25634,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/concrete/gray,
-/area/serenity)
+/area/serenity/shelter/engineering/service_tunnels)
 "sAe" = (
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/breakroom)
@@ -26339,11 +26349,11 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "sZP" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/simulated/floor/concrete/black,
-/area/serenity)
+/area/serenity/shelter/engineering/service_tunnels)
 "tao" = (
 /obj/structure/railing/mapped,
 /obj/structure/railing/mapped{
@@ -27271,7 +27281,7 @@
 	},
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/concrete/gray,
-/area/serenity)
+/area/serenity/shelter/engineering/service_tunnels)
 "tSp" = (
 /obj/structure/coatrack,
 /turf/simulated/floor/tiled/dark/textured/half,
@@ -27886,9 +27896,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/open,
 /area/serenity)
-"upn" = (
-/turf/space,
-/area/serenity/shelter/staircase)
 "upt" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
@@ -28379,6 +28386,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
 	dir = 4
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "uIm" = (
@@ -31887,10 +31895,10 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/cargo)
 "xdX" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
 	dir = 9
 	},
 /turf/simulated/floor/concrete,
@@ -92375,7 +92383,7 @@ dYh
 ofP
 ncz
 pRS
-upn
+ncz
 ncz
 ncz
 ncz
@@ -109907,8 +109915,8 @@ jOg
 dEf
 xPO
 tRW
-qDY
-qDY
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110004,9 +110012,9 @@ vyH
 mXK
 dEf
 xPO
-tRW
-qDY
-qDY
+pbq
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110103,8 +110111,8 @@ mXK
 wXo
 xPO
 tRW
-qDY
-qDY
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110201,8 +110209,8 @@ mXK
 gpm
 xPO
 tRW
-qDY
-qDY
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110299,8 +110307,8 @@ mXK
 gpm
 xPO
 jMm
-qDY
-qDY
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110397,8 +110405,8 @@ dqV
 vdE
 fxw
 jMm
-qDY
-qDY
+sZP
+bhQ
 aIK
 xEy
 xEy
@@ -110495,8 +110503,8 @@ gpm
 vdE
 mJi
 jMm
-qDY
-qDY
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110593,8 +110601,8 @@ gpm
 vdE
 gcy
 jMm
-qDY
-qDY
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110691,8 +110699,8 @@ gpm
 vdE
 fxw
 jMm
-qDY
-qDY
+bhQ
+bhQ
 aIK
 xEy
 xEy
@@ -110789,8 +110797,8 @@ gpm
 gpm
 xPO
 jMm
-qDY
-qDY
+sZP
+bhQ
 aIK
 xEy
 xEy
@@ -110887,8 +110895,8 @@ gpm
 gpm
 xPO
 tRW
-sZP
-sZP
+wZY
+wZY
 aIK
 aIK
 aIK
@@ -111083,8 +111091,8 @@ gux
 dEf
 xPO
 tRW
-ngy
-ngy
+dOk
+dOk
 bhQ
 rLD
 vBO
@@ -111180,9 +111188,9 @@ aXg
 nEW
 dEf
 xPO
-tRW
-qDY
-qDY
+pbq
+bhQ
+bhQ
 bhQ
 rLD
 vBO
@@ -111278,9 +111286,9 @@ xPO
 xPO
 tPT
 xPO
-pbq
-qDY
-qDY
+kXu
+bhQ
+bhQ
 bhQ
 rLD
 nOe
@@ -111480,7 +111488,7 @@ rLD
 rLD
 bhQ
 rLD
-rLD
+ngy
 gpO
 ncz
 ncz
@@ -111574,7 +111582,7 @@ skR
 rDx
 pnz
 bpq
-rLD
+lna
 bhQ
 bhQ
 rLD

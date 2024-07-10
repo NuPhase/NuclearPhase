@@ -4,15 +4,18 @@
 	##Fulltype {								\
 		level = Level;							\
 		color = Color;							\
+		pipe_color = Color;						\
 		layer = EXPOSED_PIPE_LAYER;	   		    \
 	}											\
 	##Fulltype/layer1 {					\
 		connect_types = CONNECT_TYPE_SUPPLY;	\
-		icon_state = Iconbase + "-supply";		\
+		icon_connect_type = "-supply";		\
+		icon_state = Iconbase + "-supply";   \
 	}											\
 	##Fulltype/layer3 {					\
 		connect_types = CONNECT_TYPE_SCRUBBER;	\
-		icon_state = Iconbase + "-scrubbers";	\
+		icon_connect_type = "-scrubbers";	\
+		icon_state = Iconbase + "-scrubbers";  \
 	}
 
 #define HELPER_PARTIAL_NAMED(Fulltype, Iconbase, Name, Color, Level) \
@@ -47,8 +50,8 @@ HELPER(green, PIPE_COLOR_GREEN)
 HELPER(red, PIPE_COLOR_RED)
 HELPER(yellow, PIPE_COLOR_YELLOW)
 
-HELPER_NAMED(scrubbers, "scrubbers pipe", rgb(255, 0, 0))
-HELPER_NAMED(supply, "air supply pipe", rgb(0, 0, 255))
+HELPER_NAMED(scrubbers, "scrubbers pipe", PIPE_COLOR_RED)
+HELPER_NAMED(supply, "air supply pipe", PIPE_COLOR_BLUE)
 HELPER_NAMED(ch4_in, "coolant supply pipe", PIPE_COLOR_COOLANT_IN)
 HELPER_NAMED(ch4_out, "coolant return pipe", PIPE_COLOR_COOLANT_OUT)
 
