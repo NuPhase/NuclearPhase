@@ -63,7 +63,7 @@
 	level = 2
 	//layer = STRUCTURE_LAYER
 	//icon_state = "off"
-	flow_capacity = 300 //kgs
+	flow_capacity = 1200 //kgs
 	power_rating = 210000 //molten metals take a lot of energy to move
 	start_sound = 'sound/machines/pumpstart.ogg'
 	start_length = 470
@@ -95,8 +95,8 @@
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
-	air1.volume = initial_flow_capacity * 5
-	air2.volume = initial_flow_capacity * 2
+	air1.volume = initial_flow_capacity * 10
+	air2.volume = initial_flow_capacity * 4
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()

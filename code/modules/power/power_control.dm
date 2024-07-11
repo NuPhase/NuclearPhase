@@ -55,17 +55,17 @@
 	var/list/sector_transformers_ids = list()
 	for(var/sector_id in list("A", "D"))
 		sector_transformers_ids += "BUS to SEC [sector_id]"
-	for(var/obj/machinery/power/generator/transformer/switchable/our_trans in sector_transformers)
-		if(our_trans.uid in sector_transformers_ids)
-			our_trans.switch_on()
+	for(var/sector_id in sector_transformers_ids)
+		var/obj/machinery/power/generator/transformer/switchable/our_trans = sector_transformers[sector_id]
+		our_trans.switch_on()
 
 /datum/power_control_system/proc/disable_noncritical_transformers()
 	var/list/sector_transformers_ids = list()
 	for(var/sector_id in list("A", "D"))
 		sector_transformers_ids += "BUS to SEC [sector_id]"
-	for(var/obj/machinery/power/generator/transformer/switchable/our_trans in sector_transformers)
-		if(our_trans.uid in sector_transformers_ids)
-			our_trans.switch_off()
+	for(var/sector_id in sector_transformers_ids)
+		var/obj/machinery/power/generator/transformer/switchable/our_trans = sector_transformers[sector_id]
+		our_trans.switch_off()
 
 /datum/power_control_system/proc/switch_mode(new_mode)
 	if(mode == new_mode)

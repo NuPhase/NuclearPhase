@@ -15,7 +15,7 @@
 	var/on = 1
 	var/critical = FALSE
 
-	efficiency = 0.99
+	efficiency = 0.998
 	should_heat = TRUE
 
 	var/off_icon_state

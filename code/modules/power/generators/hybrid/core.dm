@@ -7,7 +7,6 @@
 #define REACTOR_SHIELDING_COEFFICIENT 0.05
 #define REACTOR_MODERATOR_POWER 0.27
 
-#define MAX_MAGNET_DELTA 800000000
 #define MAX_MAGNET_CHARGE 10000000
 
 /obj/machinery/power/hybrid_reactor
@@ -86,7 +85,7 @@
 			containment_field.add_thermal_energy(field_power_consumption * CELLRATE) // magnet waste heat
 		if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
 			var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
-			charge_delta = min(MAX_MAGNET_DELTA, charge_delta) //so we don't drain all power at once
+			charge_delta = min(field_power_consumption*1.5 + 1 MWATT, charge_delta) //so we don't drain all power at once
 			field_battery_charge += charge_delta * CELLRATE
 			use_power_oneoff(charge_delta, EQUIP)
 		if(!superstructure.sound_token)
