@@ -16,6 +16,7 @@
 	maxhealth = 100
 	parts_amount = 2
 	parts_type = /obj/item/stack/material/strut
+	explosion_resistance = 50
 
 	var/painted_color
 	var/broken =    FALSE

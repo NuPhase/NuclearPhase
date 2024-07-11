@@ -14,7 +14,7 @@
 		'icons/turf/walls/metal.dmi' = TRUE
 	)
 	table_icon_base = "wood"
-	explosion_resistance = 2
+	explosion_resistance = 50
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
 	hardness = MAT_VALUE_FLEXIBLE + 10

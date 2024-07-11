@@ -13,6 +13,7 @@ handle_type - either 'null' or handle icon state, stored in handle.dmi
 	door_type = "fire"
 	handle_type = "fire"
 	material = /decl/material/solid/metal/steel
+	explosion_resistance = 300
 
 /obj/structure/door/sliding
 	name = "sliding door"
@@ -24,3 +25,4 @@ handle_type - either 'null' or handle icon state, stored in handle.dmi
 	sliding = TRUE
 	has_window = TRUE
 	opacity = 0
+	explosion_resistance = 200

@@ -266,7 +266,7 @@
 	wall_flags = PAINT_PAINTABLE|PAINT_STRIPABLE|WALL_HAS_EDGES
 	use_reinf_state = null
 	color = "#a8a9b2"
-	explosion_resistance = 25
+	explosion_resistance = 900
 	brute_armor = 8
 	burn_armor = 10
 	hardness = MAT_VALUE_VERY_HARD
@@ -301,7 +301,7 @@
 	icon_reinf = 'icons/turf/walls/reinforced_metal.dmi'
 	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
 	value = 1.5
-	explosion_resistance = 25
+	explosion_resistance = 900
 	hardness = MAT_VALUE_VERY_HARD
 	stack_origin_tech = @'{"materials":2}'
 	hitsound = 'sound/weapons/smash.ogg'
@@ -442,7 +442,7 @@
 	color = "#6c7364"
 	integrity = 1200
 	melting_point = 6000       // Hull plating.
-	explosion_resistance = 200 // Hull plating.
+	explosion_resistance = 900 // Hull plating.
 	hardness = 500
 	weight = MAT_VALUE_VERY_HEAVY
 	wall_support_value = MAT_VALUE_VERY_HEAVY

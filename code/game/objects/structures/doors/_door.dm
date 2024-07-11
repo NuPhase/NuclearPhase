@@ -23,6 +23,7 @@
 	var/frame_type = "default"
 	var/door_type = "default"
 	var/handle_type
+	explosion_resistance = 100
 
 /obj/structure/door/Initialize()
 	. = ..()
@@ -123,9 +124,11 @@
 		return attack_hand(user)
 
 /obj/structure/door/explosion_act(severity)
+	if(density && severity > 100 && severity < 600)
+		open()
+		take_damage(severity / 10)
+		return
 	. = ..()
-	if(!QDELETED(src))
-		take_damage(100 - (severity * 3))
 
 /obj/structure/door/can_repair(var/mob/user)
 	. = ..()

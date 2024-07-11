@@ -15,7 +15,7 @@
 	uncreated_component_parts = null
 	atom_flags = ATOM_FLAG_CHECKS_BORDER
 	opacity = FALSE
-	explosion_resistance = 5
+	explosion_resistance = 200
 	air_properties_vary_with_direction = 1
 	pry_mod = 0.5
 	base_type = /obj/machinery/door/window

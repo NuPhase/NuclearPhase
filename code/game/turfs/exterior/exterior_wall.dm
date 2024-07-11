@@ -20,6 +20,7 @@ var/global/list/natural_walls = list()
 	var/floor_type = /turf/exterior/open_ocean
 	var/ore_type
 	signal_block_coef = 10
+	explosion_resistance = 900
 
 /turf/exterior/wall/examine(mob/user, distance, infix, suffix)
 	. = ..()

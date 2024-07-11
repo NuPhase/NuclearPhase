@@ -11,6 +11,7 @@
 	maxhealth = 100
 	parts_amount = 2
 	parts_type = /obj/item/stack/material/strut
+	explosion_resistance = 200
 
 	var/cover = 50
 	var/prepped_for_fakewall

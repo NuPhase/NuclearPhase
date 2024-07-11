@@ -16,6 +16,7 @@
 	handle_generic_blending = TRUE
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 100
+	explosion_resistance = 100
 
 	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/construction_state = 2
@@ -459,6 +460,7 @@
 	color = GLASS_COLOR
 	set_color = FALSE
 	force_north_dir = TRUE
+	explosion_resistance = 100
 
 /obj/structure/window/basic/full
 	dir = NORTHEAST
@@ -473,6 +475,7 @@
 	name = "borosilicate window"
 	color = GLASS_COLOR_SILICATE
 	material = /decl/material/solid/glass/borosilicate
+	explosion_resistance = 500
 
 /obj/structure/window/borosilicate/full
 	dir = NORTHEAST
@@ -496,6 +499,7 @@
 	reinf_material = /decl/material/solid/metal/steel
 	set_color = FALSE
 	force_north_dir = TRUE
+	explosion_resistance = 300
 
 /obj/structure/window/reinforced/full
 	dir = NORTHEAST

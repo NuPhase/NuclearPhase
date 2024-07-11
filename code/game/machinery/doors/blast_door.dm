@@ -28,7 +28,7 @@
 
 	closed_layer = ABOVE_WINDOW_LAYER
 	dir = NORTH
-	explosion_resistance = 25
+	explosion_resistance = 900
 	atom_flags = ATOM_FLAG_ADJACENT_EXCEPTION
 
 	//Most blast doors are infrequently toggled and sometimes used with regular doors anyways,
@@ -401,7 +401,7 @@
 	close_sound = 'sound/machines/shutters_close.ogg'
 	min_force = 15
 	maxhealth = 500
-	explosion_resistance = 10
+	explosion_resistance = 500
 	pry_mod = 0.55
 	frame_type = /obj/structure/door_assembly/blast/shutter
 

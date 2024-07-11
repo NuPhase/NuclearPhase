@@ -13,6 +13,7 @@
 	material = /decl/material/solid/metal/steel
 	parts_type = /obj/item/stack/material/rods
 	parts_amount = 2
+	explosion_resistance = 50
 
 	var/hatch_open = FALSE
 	var/decl/flooring/tiling/plated_tile

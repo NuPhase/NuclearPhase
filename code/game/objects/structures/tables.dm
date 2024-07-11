@@ -18,6 +18,7 @@
 	material_alteration = MAT_FLAG_ALTERATION_NAME | MAT_FLAG_ALTERATION_DESC
 	parts_amount = 2
 	parts_type = /obj/item/stack/material/strut
+	explosion_resistance = 50
 
 	var/can_flip = TRUE
 	var/is_flipped = FALSE

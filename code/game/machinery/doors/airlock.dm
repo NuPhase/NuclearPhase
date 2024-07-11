@@ -18,7 +18,7 @@ var/global/list/airlock_overlays = list()
 	power_channel = ENVIRON
 	interact_offline = FALSE
 
-	explosion_resistance = 10
+	explosion_resistance = 500
 
 	base_type = /obj/machinery/door/airlock
 	frame_type = /obj/structure/door_assembly
@@ -1024,7 +1024,7 @@ About the new airlock wires panel:
 				set_opacity(0)
 				hitsound = 'sound/effects/Glasshit.ogg'
 				maxhealth = 300
-				explosion_resistance = 5
+				explosion_resistance = 300
 			else
 				door_color = mat.color
 		else

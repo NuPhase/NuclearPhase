@@ -19,6 +19,7 @@
 	maxhealth = 40
 	parts_amount = 2
 	parts_type = /obj/item/stack/material/strut
+	explosion_resistance = 100
 
 	var/paint_color
 	var/stripe_color
