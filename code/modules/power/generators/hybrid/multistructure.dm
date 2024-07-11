@@ -23,7 +23,7 @@
 	qdel(sound_token)
 
 /obj/structure/reactor_superstructure/proc/startsound()
-	sound_token = play_looping_sound(src, sound_id, 'sound/machines/reactorloop.ogg', 100, 15, 5)
+	sound_token = play_looping_sound(src, sound_id, 'sound/machines/reactorloop.ogg', 100, 15, 7)
 
 var/list/global/reactor_ports = list()
 

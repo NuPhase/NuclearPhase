@@ -101,6 +101,8 @@
 	kinetic_energy_delta = kin_total - generator.last_load * 1800
 
 	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
+	if(visual && visual.soundloop)
+		visual.soundloop.volume = round(initial(visual.soundloop.volume) * (rpm / TURBINE_ABNORMAL_RPM))
 
 	if(braking)
 		var/datum/gas_mixture/environment = loc.return_air()
