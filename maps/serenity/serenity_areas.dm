@@ -93,6 +93,7 @@
 /area/serenity/shelter/habitationdeck/crew
 	name = "Crew Quarters"
 	icon_state = "crew_quarters"
+	sound_env = MEDIUM_SOFTFLOOR
 /area/serenity/shelter/habitationdeck/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
@@ -128,13 +129,20 @@
 /area/serenity/shelter/engineering/pumps_a
 	name = "Pump Station A"
 	icon_state = "pumpA"
+	sound_env = LARGE_ENCLOSED
 /area/serenity/shelter/engineering/pumps_b
 	name = "Pump Station B"
 	icon_state = "pumpB"
+	sound_env = LARGE_ENCLOSED
 
 /area/serenity/shelter/engineering/reactor_operations
 	name = "Reactor Operations"
 	icon_state = "hallC1"
+
+/area/serenity/shelter/engineering/reactor_operations/cavern
+	name = "Reactor Operations Cavern"
+	icon_state = "hallC2"
+	sound_env = LARGE_ENCLOSED
 
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring
 	name = "Reactor Control Room"

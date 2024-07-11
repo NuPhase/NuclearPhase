@@ -17,6 +17,7 @@ SUBSYSTEM_DEF(planet)
 		if(!length(A.contents))
 			interpolating_areas -= A
 
+#define TEMPERATURE_INTERPOLATION_MOD 2
 /datum/controller/subsystem/planet/fire(resumed)
 	. = ..()
 	//first of all, handle the heating of areas
@@ -26,8 +27,9 @@ SUBSYSTEM_DEF(planet)
 			continue //yeah we'd like to not heat up a wall
 		var/datum/gas_mixture/environment = T.return_air()
 		var/temperature_delta = using_map.exterior_atmosphere.temperature - environment.temperature
-		environment.temperature += temperature_delta * A.temperature_interpolation_coefficient
+		environment.temperature += temperature_delta * A.temperature_interpolation_coefficient * TEMPERATURE_INTERPOLATION_MOD
 		environment.update_values()
+#undef TEMPERATURE_INTERPOLATION_MOD
 
 	//weather next
 	weather_volatility += weather_volatility_mod

@@ -89,6 +89,8 @@
 			charge_delta = min(MAX_MAGNET_DELTA, charge_delta) //so we don't drain all power at once
 			field_battery_charge += charge_delta * CELLRATE
 			use_power_oneoff(charge_delta, EQUIP)
+		if(!superstructure.sound_token)
+			superstructure.startsound()
 
 	neutron_rate = total_neutrons - last_neutrons
 	energy_rate = (containment_field.temperature - last_temperature) * 0.00008 //kelvin difference to eV difference
