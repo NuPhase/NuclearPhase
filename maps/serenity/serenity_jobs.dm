@@ -22,6 +22,7 @@
 		/datum/job/laboratories/ggs,
 		/datum/job/laboratories/los,
 		/datum/job/laboratories/loa,
+		/datum/job/lieutenant,
 		/datum/job/officer,
 		/datum/job/field_medic
 	)

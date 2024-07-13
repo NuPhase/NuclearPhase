@@ -1,3 +1,94 @@
+/datum/job/lieutenant
+	title = "Lieutenant"
+	department_types = list(/decl/department/security)
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "yourself"
+	selection_color = "#0e5e19"
+	economic_power = 4
+	skill_points = 37
+	access = list(
+		access_security,
+		access_eva,
+		access_sec_doors,
+		access_brig,
+		access_armory,
+		access_heads,
+		access_forensics_lockers,
+		access_morgue,
+		access_maint_tunnels,
+		access_all_personal_lockers,
+		access_research,
+		access_engine,
+		access_mining,
+		access_medical,
+		access_construction,
+		access_mailsorting,
+		access_bridge,
+		access_hos,
+		access_RC_announce,
+		access_keycard_auth,
+		access_gateway,
+		access_external_airlocks
+	)
+	minimal_access = list(
+		access_security,
+		access_eva,
+		access_sec_doors,
+		access_brig,
+		access_armory,
+		access_heads,
+		access_forensics_lockers,
+		access_morgue,
+		access_maint_tunnels,
+		access_all_personal_lockers,
+		access_research,
+		access_engine,
+		access_mining,
+		access_medical,
+		access_construction,
+		access_mailsorting,
+		access_bridge,
+		access_hos,
+		access_RC_announce,
+		access_keycard_auth,
+		access_gateway,
+		access_external_airlocks
+	)
+	minimal_player_age = 7
+	outfit_type = /decl/hierarchy/outfit/job/security/officer
+	allowed_branches = list(
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/army/o1,
+		/datum/mil_rank/army/o2,
+		/datum/mil_rank/army/o3
+		)
+	guestbanned = 1
+	min_skill = list(
+		SKILL_LITERACY  = SKILL_BASIC,
+		SKILL_EVA       = SKILL_BASIC,
+		SKILL_COMBAT    = SKILL_BASIC,
+		SKILL_WEAPONS   = SKILL_ADEPT,
+		SKILL_FORENSICS = SKILL_BASIC
+	)
+	max_skill = list(
+		SKILL_COMBAT    = SKILL_MAX,
+	    SKILL_WEAPONS   = SKILL_MAX,
+	    SKILL_FORENSICS = SKILL_MAX
+	)
+	software_on_spawn = list(
+		/datum/computer_file/program/digitalwarrant,
+		/datum/computer_file/program/camera_monitor
+	)
+	event_categories = list(ASSIGNMENT_SECURITY)
+
+/datum/job/lieutenant/equip(mob/living/carbon/human/H, alt_title, datum/mil_branch/branch, datum/mil_rank/grade)
+	. = ..()
+	var/obj/item/organ/internal/augment/boost/sleep_processor/sp = new
+	sp.AttemptAugmentation(H, BP_HEAD)
+
 /datum/job/officer
 	title = "Trooper"
 	department_types = list(/decl/department/security)
