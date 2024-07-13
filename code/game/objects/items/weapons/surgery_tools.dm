@@ -241,10 +241,14 @@
 	origin_tech = @'{"materials":1,"biotech":3}'
 	w_class = ITEM_SIZE_SMALL
 	material = /decl/material/solid/plastic
+	var/tool_quality = TOOL_QUALITY_DEFAULT
+
+/obj/item/sutures/proc/play_sound(stitch_time, user)
+	return
 
 /obj/item/sutures/Initialize()
 	. = ..()
-	set_extension(src, /datum/extension/tool, list(TOOL_SUTURES = TOOL_QUALITY_DEFAULT))
+	set_extension(src, /datum/extension/tool, list(TOOL_SUTURES = tool_quality))
 
 /obj/item/sutures/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
@@ -264,16 +268,92 @@
 				if(W.wound_type != WOUND_TYPE_STITCHABLE)
 					to_chat(user, SPAN_NOTICE("Stitches are useless here."))
 					break
-				if(!do_mob(user, M, W.damage/5))
+				var/stitch_time = W.damage/5/tool_quality
+				play_sound(stitch_time, user)
+				if(!do_mob(user, M, stitch_time))
 					to_chat(user, SPAN_NOTICE("You must stand still to suture wounds."))
 					break
 
-				if (W.current_stage <= W.max_bleeding_stage)
-					user.visible_message(SPAN_NOTICE("\The [user] stitches \a [W.desc] on [M]'s [affecting.name]."), \
+				user.visible_message(SPAN_NOTICE("\The [user] stitches \a [W.desc] on [M]'s [affecting.name]."), \
 					                              SPAN_NOTICE("You stitch \a [W.desc] on [M]'s [affecting.name]."))
-					W.clamped = TRUE
+				W.clamped = TRUE
 			affecting.update_damages()
 			H.update_bandages(1)
+
+/obj/item/sutures/device
+	name = "wound suturing device"
+	desc = "A high-tech device for quickly patching up wounds."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "stitcher"
+	w_class = ITEM_SIZE_NORMAL
+	tool_quality = TOOL_QUALITY_BEST
+
+/obj/item/sutures/device/play_sound(stitch_time, user)
+	set waitfor = 0
+	playsound(user, 'sound/machines/click.ogg', 70, 1, -2)
+	for(var/i=1, i<8, i++)
+		playsound(user, 'sound/effects/stamp.ogg', 70, 1, -2)
+		sleep(stitch_time/8)
+	playsound(user, 'sound/machines/twobeep.ogg', 50, 1, -2)
+
+// Works as all wound treatment techniques but causes infections and has limited uses
+/obj/item/sutures/device/combat
+	name = "combat suturing device"
+	desc = "A hi-tech combat stitching device. It can close any wound quickly, but leaves behind major scars and infections. Requires periodical refilling."
+	icon_state = "stitcher_combat"
+	var/uses_left = 30
+
+/obj/item/sutures/device/combat/attack(mob/living/carbon/M, mob/user)
+	if (!istype(M))
+		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
+		return 1
+
+	if (istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, user.zone_sel.selecting) //nullchecked by ..()
+		if(affecting.is_clamped())
+			to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been closed."))
+			return 1
+		else
+			M.custom_pain("Your [affecting.name] is being stitched together!",450)
+			playsound(user, 'sound/machines/click.ogg', 70, 1, -2)
+			var/used = 0
+			for(var/datum/wound/W in affecting.wounds)
+				if (W.clamped)
+					continue
+				if(used == uses_left)
+					break
+				if(!do_mob(user, M, W.damage/5))
+					to_chat(user, SPAN_NOTICE("You must stand still to close wounds."))
+					break
+				user.visible_message(SPAN_NOTICE("\The [user] seals \a [W.desc] on [M]'s [affecting.name]."))
+				playsound(user, 'sound/effects/stamp.ogg', 70, 1, -2)
+				W.close()
+				used++
+			affecting.update_damages()
+			if(used == uses_left)
+				if(affecting.is_bandaged())
+					to_chat(user, SPAN_WARNING("\The [src]'s internal container is exhausted."))
+				else
+					to_chat(user, SPAN_WARNING("\The [src] internal container is exhausted, but there are more wounds to close on \the [affecting.name]."))
+			uses_left -= used
+			H.update_bandages(1)
+			playsound(user, 'sound/machines/twobeep.ogg', 50, 1, -2)
+
+/obj/item/sutures/device/combat/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(istype(W, /obj/item/suture_refill))
+		uses_left = initial(uses_left)
+		to_chat(user, SPAN_NOTICE("You refill \the [src]."))
+		qdel(src)
+		playsound(user, 'sound/machines/click.ogg', 70, 1, -2)
+
+/obj/item/suture_refill
+	name = "combat stitcher refill"
+	desc = "A refill package for the combat suturing device."
+	w_class = ITEM_SIZE_SMALL
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "stitcher_refill"
 
 /obj/item/bonesetter
 	name = "bone setter"
