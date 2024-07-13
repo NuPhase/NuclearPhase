@@ -19,8 +19,8 @@
 	/// Whether the mob is performing cpr or not.
 	var/performing_cpr = FALSE
 	var/lastpuke = 0
-	var/nutrition = 300
-	var/hydration = 400
+	var/nutrition = 500
+	var/hydration = 500
 
 	var/obj/item/tank/internal = null//Human/Monkey
 	var/decl/species/species   // Contains environment tolerances and language information, set during New().

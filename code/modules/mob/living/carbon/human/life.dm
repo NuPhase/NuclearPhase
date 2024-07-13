@@ -731,8 +731,8 @@
 						severity += 1
 				severity = min(severity, 7)
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
-				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.5) //we are JACKED on adrenaline
-					if(blood_perfusion < 0.5) //fancy flickering when low on oxygen
+				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.1) //we are JACKED on adrenaline
+					if(blood_perfusion < 0.9) //fancy flickering when low on oxygen
 						add_client_color(/datum/client_color/oxygendeprivation_desat)
 						remove_client_color(/datum/client_color/oxygendeprivation_oversat)
 						spawn(SSmobs.wait * 0.5)
