@@ -92,8 +92,8 @@
 /datum/job/officer
 	title = "Trooper"
 	department_types = list(/decl/department/security)
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Sergeant and Troop Commander"
 	selection_color = "#166320"
 	alt_titles = list("Recruit Trooper")
@@ -153,8 +153,8 @@
 /datum/job/field_medic
 	title = "Field Medic"
 	department_types = list(/decl/department/security)
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the Sergeant and Troop Commander"
 	selection_color = "#166320"
 	economic_power = 4

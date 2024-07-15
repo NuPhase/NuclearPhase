@@ -206,6 +206,9 @@
 	init_shuttles(shuttle_state, map_hash, initialized_areas_by_type)
 	after_load(T.z)
 	if(SSlighting.initialized)
+		for(var/turf/AT in atoms_to_initialise)
+			if(AT.lighting_overlay)
+				AT.lighting_clear_overlay()
 		SSlighting.InitializeTurfs(atoms_to_initialise)	// Hopefully no turfs get placed on new coords by SSatoms.
 
 	log_game("[name] loaded at at [T.x], [T.y], [T.z]")

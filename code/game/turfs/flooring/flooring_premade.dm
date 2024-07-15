@@ -26,10 +26,7 @@
 	exterior_turf = TRUE
 
 /turf/simulated/floor/concrete/surface/return_air()
-	var/datum/gas_mixture/gas
-	gas = new
-	gas.copy_from(using_map.exterior_atmosphere)
-	return gas
+	return using_map.exterior_atmosphere
 
 /turf/simulated/floor/concrete/gray
 	color = COLOR_GRAY
@@ -48,10 +45,7 @@
 	exterior_turf = TRUE
 
 /turf/simulated/floor/concrete/black/surface/return_air()
-	var/datum/gas_mixture/gas
-	gas = new
-	gas.copy_from(using_map.exterior_atmosphere)
-	return gas
+	return using_map.exterior_atmosphere
 
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"

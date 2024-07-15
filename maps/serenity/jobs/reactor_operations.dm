@@ -161,4 +161,4 @@
 	spawn_positions = 10
 	supervisors = "the Reactor Chief Engineer"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/ros
-	skill_points =38
+	skill_points = 38

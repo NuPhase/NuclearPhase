@@ -21,7 +21,7 @@
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
 	slipperiness = 8
-	dirtiness = DIRTINESS_CLEAN
+	dirtiness = DIRTINESS_STERILE
 	turf_touch_threshold = 0.1
 	chilling_point = T0C
 	chilling_products = list(
@@ -158,13 +158,17 @@
 		)
 	)
 
+// Clean water with an imperfect taste
 /decl/material/liquid/water/dirty1
+	codex_name = "raw water"
 	dirty_stage = 1
-	dirtiness = DIRTINESS_NEUTRAL
+	dirtiness = DIRTINESS_CLEAN
 	taste_description = "raw water"
 	uid = "liquid_water_dirty1"
 	color = "#83d7e0"
 
+// Water devoid of harmful contaminants, but has some bacteria
+// Harmless if your immune system is fine, but can cause upset stomach when you drink enough
 /decl/material/liquid/water/dirty2
 	dirty_stage = 2
 	dirtiness = 1
@@ -176,6 +180,8 @@
 	heating_temperature_product = -2
 	heating_products = list(/decl/material/liquid/water = 1)
 
+// Water with some contaminants.
+// Can poison in large quantities
 /decl/material/liquid/water/dirty3
 	dirty_stage = 3
 	dirtiness = 1.5
@@ -184,6 +190,8 @@
 	uid = "liquid_water_dirty3"
 	color = "#507579"
 
+// Water plenty of bacteria and contaminants
+// Can poison in a few cups
 /decl/material/liquid/water/dirty4
 	dirty_stage = 4
 	dirtiness = 2
@@ -192,6 +200,8 @@
 	uid = "liquid_water_dirty4"
 	color = "#9b7d63"
 
+// Water a huge amount of contaminants
+// Get heavy metal poisoning, idiot
 /decl/material/liquid/water/dirty5
 	dirty_stage = 5
 	dirtiness = 3

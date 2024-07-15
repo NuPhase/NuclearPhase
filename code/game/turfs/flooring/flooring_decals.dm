@@ -966,7 +966,7 @@ var/global/list/floor_decals = list()
 	icon_state = "stripe"
 	color = "#d2d53d"
 	detail_overlay = "overstripe"
-	detail_color =  "#c900fb"
+	detail_color =  "#00fb0d"
 
 /obj/effect/floor_decal/industrial/radiation/corner
 	icon_state = "stripecorner"
@@ -1028,6 +1028,7 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/industrial/traffic
 	name = "traffic hazard stripes"
 	icon_state = "stripe"
+	color = "#494935"
 	detail_overlay = "overstripe"
 	detail_color = "#fb9700"
 
