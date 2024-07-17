@@ -7,46 +7,26 @@ SUBSYSTEM_DEF(chat)
 	var/static/list/payload = list()
 
 /datum/controller/subsystem/chat/fire(resumed)
-	for (var/client/C as anything in payload)
-		send_output(C, payload[C], "browseroutput:output")
-		payload -= C
-		if (MC_TICK_CHECK)
+	for(var/key in payload)
+		var/client/client = key
+		var/our_payload = payload[key]
+		our_payload -= key
+		if(client)
+			// Send to tgchat
+			client.tgui_panel?.window.send_message("chat/message", our_payload)
+			// Send to old chat
+			for(var/message in our_payload)
+				direct_output(client, message_to_html(message))
+		if(MC_TICK_CHECK)
 			return
 
-
 /datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
-	if (!target || !message)
+	if(islist(target))
+		for(var/_target in target)
+			var/client/client = CLIENT_FROM_VAR(_target)
+			if(client)
+				LAZYADD(payload[client], list(message))
 		return
-	if (!istext(message))
-		CRASH("to_chat called with invalid input type")
-	if (target == world)
-		target = clients
-	var/original_message = message //Some macros resist parsing elsewhere; strip them here
-	message = replacetext(message, "\improper", "")
-	message = replacetext(message, "\proper", "")
-	if (handle_whitespace)
-		message = replacetext(message, "\n", "<br>")
-		message = replacetext(message, "\t", "[FOURSPACES][FOURSPACES]")
-	if (trailing_newline)
-		message += "<br>"
-	var/twiceEncoded = url_encode(url_encode(message)) // Double encode so that JS can consume utf-8
-	if (islist(target))
-		for(var/I in target)
-			queuePartTwo(I, message, original_message, twiceEncoded)
-	else
-		queuePartTwo(target, message, original_message, twiceEncoded)
-
-
-/datum/controller/subsystem/chat/proc/queuePartTwo(client/C, message, original, encoded)
-	C = resolve_client(C)
-	if (!C)
-		return
-	legacy_chat(C, original)
-	if (!C.prefs || C.get_preference_value(/datum/client_preference/goonchat) != PREF_YES)
-		return
-	if (!C.chatOutput || C.chatOutput.broken)
-		return
-	if (!C.chatOutput.loaded)
-		C.chatOutput.messageQueue += message
-		return
-	payload[C] += encoded
+	var/client/client = CLIENT_FROM_VAR(target)
+	if(client)
+		LAZYADD(payload[client], list(message))

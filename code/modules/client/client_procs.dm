@@ -139,8 +139,8 @@ var/global/list/localhost_addresses = list(
 /client/New(TopicData)
 	TopicData = null							//Prevent calls to client.Topic from connect
 
-	// Load goonchat
-	chatOutput = new(src)
+	// Instantiate tgui panel
+	tgui_panel = new(src)
 
 	switch (connection)
 		if ("seeker", "web") // check for invalid connection type. do nothing if valid
@@ -246,6 +246,11 @@ var/global/list/localhost_addresses = list(
 
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
+
+	// Initialize tgui panel
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	//addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
+	tgui_panel.initialize()
 
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)

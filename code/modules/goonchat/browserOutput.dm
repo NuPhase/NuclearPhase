@@ -206,7 +206,7 @@ var/global/savefile/iconCache = new("data/iconCache.sav")
 
 
 //Global chat procs
-/proc/to_chat_immediate(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
+/*/proc/to_chat_immediate(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
 	if(!target || !message)
 		return
 	if(target == world)
@@ -262,7 +262,7 @@ var/global/savefile/iconCache = new("data/iconCache.sav")
 			return
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		send_output(C, url_encode(url_encode(message)), "browseroutput:output")
-
+*/
 /proc/to_lobby(message, handle_whitespace = TRUE, trailing_newline = TRUE)
 	set waitfor = FALSE
 	var/target = list()
@@ -276,13 +276,13 @@ var/global/savefile/iconCache = new("data/iconCache.sav")
 	SSchat.queue(target, message, handle_whitespace, trailing_newline)
 
 
-/proc/to_chat(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
+/*/proc/to_chat(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
 	set waitfor = FALSE
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
 		to_chat_immediate(target, message, handle_whitespace, trailing_newline)
 		return
 	SSchat.queue(target, message, handle_whitespace, trailing_newline)
-
+*/
 /client
 	var/list/message_cooldown = list()
 
