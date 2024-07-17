@@ -101,8 +101,6 @@
 	kinetic_energy_delta = kin_total - generator.last_load * 1800
 
 	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
-	if(visual && visual.soundloop)
-		visual.soundloop.volume = round(initial(visual.soundloop.volume) * (rpm / TURBINE_ABNORMAL_RPM))
 
 	if(braking)
 		var/datum/gas_mixture/environment = loc.return_air()
@@ -115,8 +113,9 @@
 
 	if(rpm > 800)
 		use_power = POWER_USE_ACTIVE
-		if(!visual.soundloop)
+		if(!visual.sound_token)
 			visual.spool_up()
+		visual.on_rpm_change(rpm)
 	else
 		visual.spool_down()
 		use_power = POWER_USE_IDLE
@@ -138,8 +137,7 @@
 	total_mass_flow = min(total_mass_flow, air1.get_mass())
 
 	//create the internal gas mixture and transfer inlet steam to it
-	var/datum/gas_mixture/air_all = new
-	air_all.volume = air1.volume
+	var/datum/gas_mixture/air_all = new(air1.volume * (feeder_valve_openage + 0.05))
 	pump_passive(air1, air_all, total_mass_flow)
 
 	//logging
@@ -269,15 +267,6 @@
 		turbine.kin_energy -= w //i trust the power controller to not draw more than what's available
 		last_load = w
 
-/datum/composite_sound/turbine
-	start_sound = 'sound/machines/turbine_start.ogg'
-	start_length = 155
-	mid_sounds = list('sound/machines/turbine_mid.ogg'=1)
-	mid_length = 180
-	end_sound = 'sound/machines/turbine_end.ogg'
-	volume = 300
-	sfalloff = 3
-
 /obj/structure/turbine_visual
 	name = "steam turbine"
 	desc = "A gas turbine. Converting pressure into energy since 1884."
@@ -290,11 +279,13 @@
 	density = 1
 	pixel_x = -32
 	pixel_y = -64
-	var/datum/composite_sound/turbine/soundloop
+	var/datum/sound_token/sound_token
+	var/sound_id
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine_stage
 
 /obj/structure/turbine_visual/Initialize()
 	. = ..()
+	sound_id = "[/obj/structure/turbine_visual]_[sequential_id(/obj/structure/turbine_visual)]"
 	turbine_stage = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_turf(loc)
 	turbine_stage.visual = src
 
@@ -308,8 +299,12 @@
 		turbine_stage.braking = FALSE
 	. = ..()
 
+/obj/structure/turbine_visual/proc/on_rpm_change(new_rpm)
+	if(sound_token)
+		sound_token.SetVolume((new_rpm / TURBINE_ABNORMAL_RPM) * 150)
+
 /obj/structure/turbine_visual/proc/spool_up()
-	soundloop = new(list(src), TRUE)
+	sound_token = play_looping_sound(src, sound_id, 'sound/machines/turbine_mid.ogg', 30, 15, 7)
 
 /obj/structure/turbine_visual/proc/spool_down()
-	QDEL_NULL(soundloop)
+	QDEL_NULL(sound_token)

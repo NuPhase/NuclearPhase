@@ -32,8 +32,9 @@
 		)
 	)
 	fission_products = list(
-		/decl/material/solid/metal/depleted_uranium = 0.5,
-		/decl/material/solid/metal/fission_byproduct = 0.45,
+		/decl/material/solid/metal/depleted_uranium = 0.3,
+		/decl/material/solid/metal/nuclear_waste/transuranic = 0.6,
+		/decl/material/solid/metal/nuclear_waste/actinides = 0.05,
 		/decl/material/gas/xenon = 0.05
 	)
 	absorption_products = list(
@@ -78,7 +79,7 @@
 	fission_products = list(
 		/decl/material/solid/metal/plutonium = 0.8,
 		/decl/material/solid/metal/radium = 0.1,
-		/decl/material/gas/xenon = 0.1
+		/decl/material/gas/xenon = 0.05
 	)
 	fission_heat = 35000
 	fission_energy = 81080100000
@@ -148,7 +149,9 @@
 		)
 	)
 	fission_products = list(
-		/decl/material/solid/metal/fission_byproduct = 1
+		/decl/material/solid/metal/nuclear_waste/high_level = 0.85,
+		/decl/material/solid/metal/nuclear_waste/actinides = 0.05,
+		/decl/material/gas/xenon = 0.1
 	)
 	neutron_production = 1200
 	neutron_absorption = 30
@@ -161,41 +164,87 @@
 	var/volume = REAGENT_VOLUME(holder, type)
 	M.apply_damage(2 * volume, IRRADIATE)
 
-// Catch-all for the nasty byproducts of fission reactions.
-/decl/material/solid/metal/fission_byproduct
+// Do not use this type.
+/decl/material/solid/metal/nuclear_waste
 	name = "nuclear waste"
-	uid = "solid_nuclear_waste"
+	uid = "nuclear_waste"
 	lore_text = "A crazy mix of hundreds of isotopes of unreactive nuclear fuel. Extremely radioactive, yet almost useless in reactors."
 	mechanics_text = "Nuclear waste can be processed into various exotic chemicals."
 	taste_description = "heavy metal"
-	radioactivity = 37
-	icon_base = 'icons/turf/walls/stone.dmi'
-	table_icon_base = "stone"
-	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
-	color = "#c5ba1c"
+	color = "#a0600c"
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_NOWHERE // Don't spawn this in plants.
+	icon_base = 'icons/turf/walls/natural.dmi' // So we can have corium
+	table_icon_base = "stone"
+	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
+	dissolves_into = list(
+		/decl/material/solid/metal/radium = 0.5,
+		/decl/material/solid/lithium = 0.5
+	)
+
+// Rich with plutonium and americium, burns quickly in fusion conditions
+/decl/material/solid/metal/nuclear_waste/transuranic
+	name = "transuranic nuclear waste"
+	uid = "nuclear_waste_tu"
+	radioactivity = 37
+	fission_neutrons = 0.2
+	fission_energy = 51080100000
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 9,
+			INTERACTION_SCATTER = 5,
 			INTERACTION_ABSORPTION = 2,
 			INTERACTION_FISSION = 0.00002
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 5,
-			INTERACTION_ABSORPTION = 0.07,
-			INTERACTION_FISSION = 0.6
+			INTERACTION_ABSORPTION = 0.13,
+			INTERACTION_FISSION = 0.15
 		)
 	)
-	dissolves_into = list(
-		/decl/material/solid/metal/radium = 0.5,
-		/decl/material/solid/lithium = 0.5
+	fission_products = list(
+		/decl/material/solid/metal/nuclear_waste/high_level = 0.8
 	)
-	neutron_absorption = 200
-	neutron_production = 100
-	fission_energy = 4000000000
 
-/decl/material/solid/metal/fission_byproduct/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
+// Rich with long lived isotopes that burn slowly in fusion conditions
+/decl/material/solid/metal/nuclear_waste/high_level
+	name = "high level nuclear waste"
+	uid = "nuclear_waste_hl"
+	radioactivity = 42
+	fission_neutrons = 0.01
+	fission_energy = 15080100000
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 3,
+			INTERACTION_ABSORPTION = 4,
+			INTERACTION_FISSION = 0.00001
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 3,
+			INTERACTION_ABSORPTION = 0.17,
+			INTERACTION_FISSION = 0.04
+		)
+	)
+	fission_products = list(
+		/decl/material/solid/metal/nuclear_waste/actinides = 0.8
+	)
+
+// A collection of extremely long half-life isotopes. Can only be completely burned off in a particle accelerator.
+// Bring the nuclear caskets
+/decl/material/solid/metal/nuclear_waste/actinides
+	name = "nuclear actinides"
+	radioactivity = 11
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 1.2,
+			INTERACTION_ABSORPTION = 7
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 1.2,
+			INTERACTION_ABSORPTION = 0.26
+		)
+	)
+
+/decl/material/solid/metal/nuclear_waste/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
 	. = ..()
 	var/volume = REAGENT_VOLUME(holder, type)
 	if(!M.bloodstr.has_reagent(/decl/material/liquid/potassium_iodide, 0.1))

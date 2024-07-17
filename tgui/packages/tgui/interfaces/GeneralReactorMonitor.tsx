@@ -20,6 +20,7 @@ type InputData = {
   chamber_temperature: number;
   containment_consumption: number;
   containment_temperature: number;
+  containment_volume: number;
   containment_charge: number;
   moderator_position: number;
   reflector_position: number;
@@ -102,6 +103,9 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                 </LabeledList.Item>
                 <LabeledList.Item label = "Shield Battery Charge">
                   {data.containment_charge}%
+                </LabeledList.Item>
+                <LabeledList.Item label = "Shield Internal Volume">
+                  {data.containment_volume}m3
                 </LabeledList.Item>
                 <LabeledList.Item label = "Moderator Position">
                   {data.moderator_position*100}%

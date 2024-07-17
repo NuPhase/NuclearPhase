@@ -6,6 +6,7 @@
 #define WATTS_PER_KPA 0.5
 #define REACTOR_SHIELDING_COEFFICIENT 0.05
 #define REACTOR_MODERATOR_POWER 0.27
+#define REACTOR_FIELD_VOLUME 50000
 
 #define MAX_MAGNET_CHARGE 10000000
 
@@ -51,7 +52,7 @@
 
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
-	containment_field = new(50000, 4200)
+	containment_field = new(REACTOR_FIELD_VOLUME, 4500)
 	reactor_components["core"] += src
 	rcontrol.initialize()
 	spawn(1 MINUTE)
@@ -78,7 +79,7 @@
 	SSradiation.radiate(src, total_radiation)
 	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
 
-	if(containment_field.temperature > 1000)
+	if(containment_field.temperature > 4900)
 		if(containment)
 			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA
 			field_battery_charge = max(0, field_battery_charge - field_power_consumption * CELLRATE)
@@ -90,6 +91,9 @@
 			use_power_oneoff(charge_delta, EQUIP)
 		if(!superstructure.sound_token)
 			superstructure.startsound()
+
+	// Adjust the field size based on power consumption if below 200MW.
+	containment_field.volume = Interpolate(containment_field.volume, Clamp((field_power_consumption / 200000000) * REACTOR_FIELD_VOLUME, 2500, REACTOR_FIELD_VOLUME), 0.2)
 
 	neutron_rate = total_neutrons - last_neutrons
 	energy_rate = (containment_field.temperature - last_temperature) * 0.00008 //kelvin difference to eV difference
