@@ -459,3 +459,13 @@
 /area/space/theseus
 	name = "Gas Cloud"
 	forced_ambience = list('sound/ambience/weather/storm_outside.wav')
+
+/area/ship/icarus
+	name = "UN Icarus"
+	icon_state = "icarus_body"
+	has_gravity = FALSE
+	requires_power = 0
+
+/area/ship/icarus/ring
+	has_gravity = TRUE
+	icon_state = "icarus_ring"

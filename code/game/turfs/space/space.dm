@@ -281,3 +281,8 @@
 /turf/pseudospace/typhos_surroundings/Initialize()
 	. = ..()
 	icon_state = "speedspace_ns_[rand(1, 15)]"
+
+/turf/pseudospace/typhos_surroundings/icarus //cursed
+	name = "space"
+	desc = "You constantly rotate on an artificial gravity ring."
+	color = "#222222"
