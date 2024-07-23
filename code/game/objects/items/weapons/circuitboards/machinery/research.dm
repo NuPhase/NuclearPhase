@@ -11,6 +11,20 @@
 		/obj/item/stock_parts/power/apc/buildable = 1
 	)
 
+/obj/item/stock_parts/circuitboard/dna_extractor
+	name = "circuitboard (lysis-isolator)"
+	build_path = /obj/machinery/dna_extractor
+	board_type = "machine"
+	req_components = list(
+							/obj/item/stock_parts/scanning_module = 2,
+							/obj/item/stock_parts/manipulator = 1,
+							/obj/item/stock_parts/micro_laser = 3)
+	additional_spawn_components = list(
+		/obj/item/stock_parts/console_screen = 1,
+		/obj/item/stock_parts/keyboard = 1,
+		/obj/item/stock_parts/power/apc/buildable = 1
+	)
+
 /obj/item/stock_parts/circuitboard/autolathe
 	name = "circuitboard (autolathe)"
 	build_path = /obj/machinery/fabricator
