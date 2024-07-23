@@ -301,6 +301,47 @@
 	icon_state = "research"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
+/area/serenity/maintenance
+	name = "Maintenance"
+	temperature_interpolation_coefficient = 0.002
+	sound_env = SMALL_ENCLOSED
+	var/weight_low = 2
+	var/weight_high = 4
+
+/area/serenity/maintenance/Entered(A)
+	if(!istype(A,/mob/living))	return
+	var/mob/living/L = A
+	if(!istype(L.lastarea, /area/serenity/maintenance))
+		SSmaint_monster.mobs_to_weight[L] = 1
+	. = ..()
+
+/area/serenity/maintenance/Exited(A)
+	if(!istype(A,/mob/living))	return
+	var/mob/living/L = A
+	if(!istype(L.lastarea, /area/serenity/maintenance))
+		SSmaint_monster.mobs_to_weight -= L
+	. = ..()
+
+/area/serenity/maintenance/sublevel_one
+	name = "Sublevel 1"
+	temperature_interpolation_coefficient = 0.0015
+	sound_env = TUNNEL_ENCLOSED
+	weight_low = 4
+	weight_high = 6
+
+/area/serenity/maintenance/sublevel_two
+	name = "Sublevel 2"
+	temperature_interpolation_coefficient = 0.001
+	sound_env = TUNNEL_ENCLOSED
+	weight_low = 6
+	weight_high = 8
+
+/area/serenity/maintenance/sublevel_three
+	name = "Sublevel 3"
+	temperature_interpolation_coefficient = 0.0005
+	sound_env = TUNNEL_ENCLOSED
+	weight_low = 8
+	weight_high = 10
 
 /area/turbolift/e1
 	lift_floor_label = "Tech Operations Lobby"

@@ -57,6 +57,7 @@
 #define SS_PRIORITY_CHAR_SETUP    25   // Writes player preferences to savefiles.
 #define SS_PRIORITY_COMPUTER_NETS 25   // Handles computer network devices hookups
 #define SS_PRIORITY_GARBAGE       20   // Garbage collection.
+#define SS_PRIORITY_MONSTER       15   // Maintenance monster and ambience
 #define SS_PRIORITY_WEATHER       10   // Weather processing.
 #define SS_PRIORITY_BLOB          0    // Blob processing.
 
