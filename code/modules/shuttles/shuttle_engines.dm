@@ -26,7 +26,7 @@
 	icon_state = "platform"
 
 /obj/structure/shuttle/engine/propulsion
-	name = "propulsion"
+	name = "RCS thruster"
 	icon_state = "propulsion"
 	opacity = 1
 
