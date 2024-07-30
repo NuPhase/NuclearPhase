@@ -81,6 +81,8 @@ SUBSYSTEM_DEF(ticker)
 	global.using_map.setup_economy()
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
+	SSdifficulty.Initialize()
+
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()

@@ -152,7 +152,7 @@ var/global/list/end_titles
 
 	titles += "<center>[jointext(staff,"<br>")]</center>"
 	if(goodboys.len)
-		titles += "<center>STAFF'S GOOD BOYS:<br>[english_list(goodboys)]</center><br>"
+		titles += "<center>Endministrators:<br>[english_list(goodboys)]</center><br>"
 
 	var/poem = "<br>On a plane where no one stands,<br>\
 				Where only ash remains of what has been,<br>\

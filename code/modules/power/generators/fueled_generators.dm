@@ -140,6 +140,10 @@
 
 	var/obj/item/tank/oxidizer_tank = null
 	var/obj/item/tank/waste_tank = null
+	failure_chance = 1
+
+/obj/machinery/power/generator/port_gen/liquid/fail_roundstart()
+	stat &= BROKEN
 
 /obj/machinery/power/generator/port_gen/liquid/Initialize()
 	. = ..()
@@ -147,11 +151,16 @@
 
 /obj/machinery/power/generator/port_gen/liquid/physical_attack_hand(user)
 	. = ..()
+	if(IsBroken())
+		return
 	active = !active
 	update_icon()
 
 /obj/machinery/power/generator/port_gen/liquid/examine(mob/user, distance)
 	. = ..()
+	if(IsBroken())
+		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		return
 	to_chat(user, SPAN_NOTICE("The fuel gauge is at [round(reagents.total_volume * 0.001, 0.1)] liters."))
 	if(oxidizer_tank)
 		to_chat(user, SPAN_NOTICE("The oxidizer tank pressure is: [oxidizer_tank.air_contents.return_pressure()]kPa."))
@@ -293,6 +302,8 @@
 
 /obj/machinery/power/generator/port_gen/liquid/diesel/large/roundstart/Initialize()
 	. = ..()
+	if(IsBroken())
+		return
 	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(2200, 14000))
 	active = TRUE
 	update_icon()

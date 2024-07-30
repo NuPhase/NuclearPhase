@@ -6,6 +6,7 @@
 	var/temperature = T20C
 	/// How rapidly does this atom equalize with ambient temperature?
 	var/temperature_coefficient = MAX_TEMPERATURE_COEFFICIENT
+	var/failure_chance = FALSE // Can fail at roundstart, and if so, at which coefficient of probability?
 
 /atom/movable/Entered(var/atom/movable/atom, var/atom/old_loc)
 	. = ..()
@@ -20,7 +21,7 @@
 /turf
 	temperature_coefficient = MIN_TEMPERATURE_COEFFICIENT
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	. = ..()
 	temperature_coefficient = isnull(temperature_coefficient) ? Clamp(MAX_TEMPERATURE_COEFFICIENT - w_class, MIN_TEMPERATURE_COEFFICIENT, MAX_TEMPERATURE_COEFFICIENT) : temperature_coefficient
 	create_matter()
@@ -28,6 +29,8 @@
 		append_some_dirt()
 	if(start_old)
 		make_old(start_dirty)
+	if(mapload && failure_chance)
+		SSdifficulty.difficulty_affected_objs += src
 
 /atom/proc/handle_external_heating(var/adjust_temp, var/obj/item/heated_by, var/mob/user)
 

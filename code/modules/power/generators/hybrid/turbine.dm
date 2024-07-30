@@ -57,6 +57,8 @@
 
 	var/valve_id = ""
 
+	failure_chance = 10
+
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
 	switch(vibration)
 		if(0 to 25)
@@ -71,6 +73,10 @@
 	air1.volume = 30000
 	air2.volume = 7500
 	reactor_components[uid] = src
+
+/obj/machinery/atmospherics/binary/turbinestage/fail_roundstart()
+	rotor_integrity = 100 - (SSticker.mode.difficulty / rand(1,3))
+	shaft_integrity = 100 - (SSticker.mode.difficulty / 2)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(npres, ntemp)
 	if(ntemp > 450)

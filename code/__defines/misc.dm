@@ -308,3 +308,9 @@
 
 #define LEVEL_BELOW_PLATING 1
 #define LEVEL_ABOVE_PLATING 2
+
+// Game difficulty defines. Used in probabilities of equipment breaking and loot spawning.
+#define GAME_DIFFICULTY_EASY 5
+#define GAME_DIFFICULTY_NORMAL 15
+#define GAME_DIFFICULTY_HARD 30
+#define GAME_DIFFICULTY_HELL 60
