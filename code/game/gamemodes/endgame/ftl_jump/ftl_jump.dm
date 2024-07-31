@@ -141,7 +141,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "mfoam"
 	screen_loc = ui_entire_screen
-	color = "#ff9900"
+	color = "#008cff"
 	alpha = 100
 	blend_mode = BLEND_SUBTRACT
 	layer = FULLSCREEN_LAYER

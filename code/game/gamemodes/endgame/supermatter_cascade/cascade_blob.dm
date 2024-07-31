@@ -11,7 +11,7 @@
 	plane = ABOVE_LIGHTING_PLANE
 	layer = SUPERMATTER_WALL_LAYER
 
-	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST,UP,DOWN)
+	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
 
 /turf/unsimulated/wall/cascade/Initialize(mapload, ...)
 	. = ..()

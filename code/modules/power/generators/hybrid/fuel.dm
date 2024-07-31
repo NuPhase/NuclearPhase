@@ -9,6 +9,11 @@
 	var/sealed = FALSE
 	var/list/initial_reagents
 	weight = 12
+	failure_chance = 1
+
+/obj/item/chems/fuel_cell/fail_roundstart()
+	name = "empty [initial(name)]"
+	reagents.remove_any(volume)
 
 /obj/item/chems/fuel_cell/examine(mob/user)
 	. = ..()

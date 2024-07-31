@@ -5,7 +5,7 @@
 	footstep_type = /decl/footsteps/snow
 	possible_states = 13
 	color = "#bdb3c2"
-	dirt_color = "#7a707e"
+	dirt_color = "#4c454e"
 	var/datum/map/mapowner = null
 
 /turf/exterior/surface/explosion_act(severity)

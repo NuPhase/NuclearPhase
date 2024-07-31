@@ -50,6 +50,11 @@
 
 	var/datum/gas_mixture/containment_field
 
+	failure_chance = 10
+
+/obj/machinery/power/hybrid_reactor/fail_roundstart()
+	field_battery_charge = MAX_MAGNET_CHARGE * (100 - SSticker.mode.difficulty) * 0.01
+
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
 	containment_field = new(REACTOR_FIELD_VOLUME, 4500)

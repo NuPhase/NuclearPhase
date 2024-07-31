@@ -263,3 +263,6 @@
 /obj/proc/place_melted_product(list/meltable_materials)
 	. = new /obj/effect/decal/cleanable/molten_item(src)
 	qdel(src)
+
+/obj/proc/fail_roundstart()
+	return

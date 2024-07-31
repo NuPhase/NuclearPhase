@@ -53,6 +53,10 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	var/obj/item/light/lightbulb
 
 	var/current_mode = null
+	failure_chance = 1
+
+/obj/machinery/light/fail_roundstart()
+	broken(TRUE)
 
 /obj/machinery/light/start_ambience()
 	if(on)

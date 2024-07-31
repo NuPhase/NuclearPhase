@@ -27,6 +27,10 @@
 	// Power
 	idle_power_usage = 10
 	active_power_usage = 150
+	failure_chance = 1
+
+/obj/machinery/washing_machine/fail_roundstart()
+	state |= WASHER_STATE_BLOODY
 
 /obj/machinery/washing_machine/Destroy()
 	QDEL_NULL(crayon)

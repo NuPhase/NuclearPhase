@@ -21,6 +21,7 @@
 	var/obj/item/clothing/head/helmet/modern/space/helmet
 
 	stat_immune = 0
+	failure_chance = 1
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	base_type = /obj/machinery/modernsuit_storage
@@ -243,6 +244,9 @@
 	playsound(loc, 'sound/machines/suit_storage_eject.ogg', 50, 0)
 
 	return
+
+/obj/machinery/modernsuit_storage/fail_roundstart()
+	locked = TRUE
 
 /obj/machinery/modernsuit_storage/research_cold/Initialize()
 	. = ..()

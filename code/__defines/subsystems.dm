@@ -54,6 +54,7 @@
 #define SS_INIT_XENOARCH        -10
 #define SS_INIT_MONSTER         -15
 #define SS_INIT_TICKER          -20
+#define SS_INIT_DIFFICULTY      -40
 #define SS_INIT_CHAT            -90
 #define SS_INIT_UNIT_TESTS      -100
 

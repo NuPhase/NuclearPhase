@@ -9,6 +9,7 @@ var/global/list/additional_antag_types = list()
 	var/extended_round_description = "This roundtype should not be spawned, let alone votable. Someone contact a developer and tell them the game's broken again."
 	var/votable = TRUE
 	var/probability = 0
+	var/difficulty = GAME_DIFFICULTY_EASY
 
 	var/required_players = 0                 // Minimum players for round to start if voted in.
 	var/required_enemies = 0                 // Minimum antagonists for round to start.

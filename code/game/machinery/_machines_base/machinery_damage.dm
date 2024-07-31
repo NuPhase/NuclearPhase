@@ -11,7 +11,7 @@
 		else if(damtype == BURN)
 			hitsound = 'sound/items/Welder.ogg'
 		playsound(src, hitsound, 10, 1)
-		
+
 	// Shielding components (armor/fuses) take first hit
 	var/list/shielding = get_all_components_of_type(/obj/item/stock_parts/shielding)
 	for(var/obj/item/stock_parts/shielding/soak in shielding)
@@ -32,7 +32,7 @@
 	victim = get_component_of_type(/obj/item/stock_parts/circuitboard)
 	if(victim)
 		victim.take_damage(amount, damtype)
-	
+
 /obj/machinery/proc/get_damageable_component(var/damage_type)
 	var/list/victims = shuffle(component_parts)
 	if(LAZYLEN(victims))
