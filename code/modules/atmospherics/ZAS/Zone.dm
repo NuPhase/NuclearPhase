@@ -51,7 +51,7 @@ Class Procs:
 	var/list/graphic_add = list()
 	var/list/graphic_remove = list()
 	var/last_air_temperature = TCMB
-	var/condensing = FALSE
+	var/condensing = TRUE
 
 	var/last_movable_calc = 0 //last world.time of movables indexation
 	var/list/movables = list()
@@ -61,6 +61,8 @@ Class Procs:
 	air.temperature = TCMB
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
+	spawn(5 SECONDS)
+		condensing = FALSE
 
 /zone/proc/add(turf/simulated/T)
 #ifdef ZASDBG
@@ -216,13 +218,12 @@ Class Procs:
 			var/turf/flooding = pick(contents)
 			var/condense_amt = min(air.gas[g], rand(10, 1000))
 			if(condense_amt < 1)
-				return
+				continue
 			air.adjust_gas(g, -condense_amt)
 			var/obj/effect/fluid/F = locate() in flooding
 			if(!F) F = new(flooding)
 			var/condense_reagent_amt = condense_amt * mat.molar_volume
 			F.reagents.add_reagent(g, condense_reagent_amt)
-			air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
 			F.temperature = air.temperature
 			F.process_phase_change()
 			#ifdef CONDENSATION_DEBUG
@@ -230,6 +231,23 @@ Class Procs:
 			to_world("Condensed [mat.name]")
 			to_world("Conditions: Temperature: ([air.temperature]) Pressure: ([air.return_pressure()]) Moles: ([air.total_moles])")
 			#endif
+		else if(air.phases[g] == MAT_PHASE_SOLID)
+			for(var/i=0, i < length(contents)*0.1, i++)
+				if(!air.gas[g])
+					break // no more gas to condense
+				var/turf/T = pick(contents)
+				var/obj/effect/decal/cleanable/dirt/spawned_dust = locate() in T
+				if(!spawned_dust)
+					spawned_dust = new(T)
+				var/decl/material/mat = GET_DECL(g)
+				var/condense_amt = min(air.gas[g], rand(min(air.gas[g], 255), 255))
+				if(condense_amt < 1)
+					continue
+				air.adjust_gas(g, -condense_amt)
+				spawned_dust.alpha = min(spawned_dust.alpha + (condense_amt*5), 255)
+				spawned_dust.color = mat.color
+				var/area/A = get_area(T)
+				A.background_radiation += mat.radioactivity * condense_amt * 0.01
 		CHECK_TICK
 	condensing = FALSE
 

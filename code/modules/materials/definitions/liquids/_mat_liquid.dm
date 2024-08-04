@@ -6,6 +6,7 @@
 	molar_mass = 0.018 //water
 	latent_heat = 40650
 	abstract_type = /decl/material/liquid
+	gas_tile_overlay = "vapor"
 
 /decl/material/liquid/Initialize()
 	if(!gas_name)

@@ -107,6 +107,7 @@ steam.start() -- spawns the effect
 /obj/effect/sparks/Initialize()
 	. = ..()
 	QDEL_IN(src, 5 SECONDS)
+	animate(src, alpha = 0, time = 5 SECONDS)
 	playsound(src.loc, "sparks", 100, 1)
 	var/turf/T = src.loc
 	if (isturf(T))
@@ -252,6 +253,10 @@ steam.start() -- spawns the effect
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)
 	return 1
+
+/obj/effect/effect/smoke/bad/mine
+	time_to_live = 3 SECONDS
+	alpha = 110
 
 /obj/effect/effect/smoke/bad/transformer
 	color = COLOR_COPPER //evaporated steel

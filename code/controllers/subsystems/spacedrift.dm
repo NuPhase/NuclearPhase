@@ -2,7 +2,7 @@
 SUBSYSTEM_DEF(spacedrift)
 	name = "Space Drift"
 	priority = SS_PRIORITY_SPACEDRIFT
-	wait = 5
+	wait = 3
 	flags = SS_NO_INIT|SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 

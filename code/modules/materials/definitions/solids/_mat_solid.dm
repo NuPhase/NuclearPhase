@@ -1,9 +1,9 @@
 /decl/material/solid
 	name = null
 	melting_point = 1000
-	boiling_point = 30000
+	boiling_point = 3135
 	molar_mass = 0.232 //iron Fe3O4
-	latent_heat = 349600 //iron
+	latent_heat = 13800 //iron
 	door_icon_base = "stone"
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
@@ -12,6 +12,7 @@
 	abstract_type = /decl/material/solid
 	min_fluid_opacity = 200
 	max_fluid_opacity = 255
+	gas_tile_overlay = "dust"
 
 /decl/material/solid/Initialize()
 	//if(!liquid_name)

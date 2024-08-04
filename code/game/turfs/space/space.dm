@@ -285,4 +285,4 @@
 /turf/pseudospace/typhos_surroundings/icarus //cursed
 	name = "space"
 	desc = "You constantly rotate on an artificial gravity ring."
-	color = "#222222"
+	color = "#111111"
