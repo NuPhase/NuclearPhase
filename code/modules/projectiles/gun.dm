@@ -570,14 +570,13 @@
 /obj/item/gun/proc/toggle_scope(mob/user, var/zoom_amount=2.0)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
-	var/zoom_offset = round(world.view * zoom_amount)
 	var/view_size = round(world.view + zoom_amount)
 
 	if(zoom)
 		unzoom(user)
 		return
 
-	zoom(user, zoom_offset, view_size)
+	zoom(user, 1, view_size, zoom_amount) //zoom's min, max, step
 	if(zoom)
 		accuracy = scoped_accuracy
 		if(user.skill_check(SKILL_WEAPONS, SKILL_PROF))

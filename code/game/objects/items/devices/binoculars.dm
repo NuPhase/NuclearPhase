@@ -12,9 +12,13 @@
 	throw_range = 15
 	throw_speed = 3
 
+	var/minmagnif = 1
+	var/maxmagnif = 10
+	var/magstep = 0.1
+
 
 /obj/item/binoculars/attack_self(mob/user)
 	if(zoom)
 		unzoom(user)
 	else
-		zoom(user)
+		zoom(user, minmagnif, maxmagnif, magstep)

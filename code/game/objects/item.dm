@@ -811,14 +811,17 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(mob/user, var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-	if(!user.client)
+/obj/item/proc/zoom(mob/user, var/minmagnif = 1, var/maxmagnif = 10, var/magstep = 0.1)
+	//user check
+	if (!user)
+		user = usr
+	if (!user.client)
 		return
 	if(zoom)
 		return
 
 	var/devicename = zoomdevicename || name
-
+	//checking if legal
 	var/mob/living/carbon/human/H = user
 	if(user.incapacitated(INCAPACITATION_DISABLED))
 		to_chat(user, SPAN_WARNING("You are unable to focus through the [devicename]."))
@@ -830,26 +833,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, SPAN_WARNING("You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better."))
 		return
 
-	if(user.hud_used.hud_shown)
-		user.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-	user.client.view = viewsize
-	zoom = 1
-
-	var/viewoffset = WORLD_ICON_SIZE * tileoffset
-	switch(user.dir)
-		if (NORTH)
-			user.client.pixel_x = 0
-			user.client.pixel_y = viewoffset
-		if (SOUTH)
-			user.client.pixel_x = 0
-			user.client.pixel_y = -viewoffset
-		if (EAST)
-			user.client.pixel_x = viewoffset
-			user.client.pixel_y = 0
-		if (WEST)
-			user.client.pixel_x = -viewoffset
-			user.client.pixel_y = 0
-
 	user.visible_message("\The [user] peers through [zoomdevicename ? "the [zoomdevicename] of [src]" : "[src]"].")
 
 	events_repository.register(/decl/observ/destroyed, user, src, /obj/item/proc/unzoom)
@@ -859,8 +842,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(isliving(user))
 		events_repository.register(/decl/observ/stat_set, user, src, /obj/item/proc/unzoom)
 
-/obj/item/proc/zoom_drop(var/obj/item/I, var/mob/user)
-	unzoom(user)
+	//creates a new controlling datum
+	var/datum/magnification/zoom_abomination = new(user, minmagnif, maxmagnif, magstep)
+	to_chat(user, SPAN_WARNING("хуйня попыталась создать абоминацию"))
+	zoom_abomination.ui_interact(user)
+	zoom_abomination.wait()
+	if (zoom_abomination.selfdestruct == TRUE)
+		to_chat(user, SPAN_WARNING("хуйня самоуничтожилась"))
+		qdel(zoom_abomination)
+		unzoom(user)
 
 /obj/item/proc/unzoom(var/mob/user)
 	if(!zoom)
@@ -884,6 +874,89 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.client.pixel_y = 0
 	user.client.OnResize()
 	user.visible_message("[zoomdevicename ? "\The [user] looks up from [src]" : "\The [user] lowers [src]"].")
+
+/obj/item/proc/zoom_drop(var/obj/item/I, var/mob/user)
+	unzoom(user)
+
+//this is my zoom kingdom come
+
+/datum/magnification
+	//zoom user
+	var/mob/user
+	//minimum zoom (NO NEGATIVE VALUES, below 1 not recommended)
+	var/minmagnif
+	//maximum zoom
+	var/maxmagnif
+	//zoom knob step
+	var/magstep
+	//current zoom
+	var/magnification
+	//to nuke itself
+	var/selfdestruct = FALSE
+
+/datum/magnification/New(mob/user, minmagnif, maxmagnif, magstep)
+	src.user = user
+	src.minmagnif = minmagnif
+	src.maxmagnif = maxmagnif
+	src.magstep = magstep
+	to_chat(user, SPAN_WARNING("хуйня создалась юзер [user] мин [minmagnif] макс [maxmagnif] степ [magstep]"))
+
+/datum/magnification/proc/wait()
+	while (!selfdestruct && !QDELETED(src))
+		stoplag(1)
+
+/datum/magnification/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	to_chat(user, SPAN_WARNING("уи интеракт юзер [user]"))
+	if(!ui)
+		ui = new(user, src, "Zooming")
+		ui.open()
+		ui.set_autoupdate(1)
+		to_chat(user, SPAN_WARNING("уи открылся"))
+
+/datum/magnification/tgui_data(mob/user)
+	var/list/data = list()
+	data["minmagnif"] = minmagnif
+	data["maxmagnif"] = maxmagnif
+	data["magstep"] = magstep
+	return data
+
+/datum/magnification/tgui_act(action, params)
+	if(action == "zoom")
+		zoom_update(params["entry"])
+		to_chat(user, SPAN_WARNING("уи прокнул"))
+
+/datum/magnification/proc/zoom_update(mob/user, var/magnification = 0)
+	if(user.hud_used.hud_shown)
+		user.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+	user.client.view = 7*(0.75+(magnification*0.25))
+
+	var/viewoffset = WORLD_ICON_SIZE * (magnification-1)*7
+	switch(user.dir)
+		if (NORTH)
+			user.client.pixel_x = 0
+			user.client.pixel_y = viewoffset
+		if (SOUTH)
+			user.client.pixel_x = 0
+			user.client.pixel_y = -viewoffset
+		if (EAST)
+			user.client.pixel_x = viewoffset
+			user.client.pixel_y = 0
+		if (WEST)
+			user.client.pixel_x = -viewoffset
+			user.client.pixel_y = 0
+
+/datum/magnification/ui_close(mob/user)
+	. = ..()
+	selfdestruct = TRUE
+	to_chat(user, SPAN_WARNING("уи взорвался"))
+
+/datum/magnification/Destroy(force, ...)
+	SStgui.close_uis(src)
+	to_chat(user, SPAN_WARNING("уи взорвался насильно"))
+	return ..()
+
+//zoom end
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
