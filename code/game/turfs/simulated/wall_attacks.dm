@@ -146,8 +146,6 @@
 	if(isnull(construction_stage) || !reinf_material)
 
 		var/cut_delay = 60 - material.cut_delay
-		var/dismantle_verb
-		var/dismantle_sound
 		if(IS_WELDER(W))
 
 			if(material && !material.removed_by_welder)
@@ -157,8 +155,6 @@
 			var/obj/item/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
 				return
-			dismantle_verb = "cutting"
-			dismantle_sound = 'sound/items/Welder.ogg'
 			cut_delay *= 0.7
 
 		else if(IS_CROWBAR(W))
@@ -166,9 +162,6 @@
 			if(material && material.removed_by_welder)
 				to_chat(user, SPAN_WARNING("\The [src] is too robust to be dismantled with \the [W]; try a welding tool."))
 				return TRUE
-
-			dismantle_verb = "dismantling"
-			dismantle_sound = 'sound/items/Crowbar.ogg'
 			cut_delay *= 1.2
 
 		else if(W.is_special_cutting_tool())
@@ -176,8 +169,6 @@
 				var/obj/item/gun/energy/plasmacutter/cutter = W
 				if(!cutter.slice(user))
 					return TRUE
-			dismantle_sound = "sparks"
-			dismantle_verb = "slicing"
 			cut_delay *= 0.5
 
 	//Reinforced dismantling.

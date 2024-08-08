@@ -65,7 +65,7 @@
 #define COLOR_PALE_BTL_GREEN   "#57967f"
 #define COLOR_GUNMETAL         "#545c68"
 #define COLOR_WALL_GUNMETAL    "#353a42"
-#define COLOR_STEEL            "#a8b0b2"
+#define COLOR_STEEL            "#505455"
 #define COLOR_MUZZLE_FLASH     "#ffffb2"
 #define COLOR_CHESTNUT         "#996633"
 #define COLOR_COPPER           "#b87333"
@@ -95,22 +95,25 @@
 
 #define COLOR_LIQUID_HELIUM	   "#bd9ae0"
 
-#define COLOR_COLD_SURFACE	   "#74a0ca"
+#define COLOR_COLD_SURFACE	   "#587b9c"
 #define COLOR_SUNRISE_SURFACE1 "#cc0000"
 #define COLOR_SUNRISE_SURFACE2 "#db2e03"
 #define COLOR_SUNRISE_SURFACE3 "#eb5600"
 #define COLOR_SUNRISE_SURFACE4 "#ebac00"
 #define COLOR_HOT_SURFACE	   "#d16500"
 
-#define	PIPE_COLOR_GREY        "#808080"
-#define	PIPE_COLOR_RED         "#cf0000"
-#define	PIPE_COLOR_BLUE        "#0000bd"
-#define	PIPE_COLOR_CYAN        "#00c4c4"
-#define	PIPE_COLOR_GREEN       "#00cf00"
-#define	PIPE_COLOR_YELLOW      "#cea500"
-#define	PIPE_COLOR_BLACK       "#292929"
-#define	PIPE_COLOR_ORANGE      "#b95a00"
+#define	PIPE_COLOR_GREY        "#cfcfcf"
+#define	PIPE_COLOR_RED         "#d44747"
+#define	PIPE_COLOR_BLUE        "#7b7bc4"
+#define	PIPE_COLOR_CYAN        "#7ab9b9"
+#define	PIPE_COLOR_GREEN       "#92d392"
+#define	PIPE_COLOR_YELLOW      "#c7b874"
+#define	PIPE_COLOR_BLACK       "#707070"
+#define	PIPE_COLOR_ORANGE      "#b89779"
 #define PIPE_COLOR_WHITE       "#f8f8f8"
+#define PIPE_COLOR_VIOLET      "#a27cb8"
+#define PIPE_COLOR_COOLANT_IN  "#c26eb7"
+#define PIPE_COLOR_COOLANT_OUT "#77445f"
 
 #define	COMMS_COLOR_DEFAULT    "#ff00ff"
 #define	COMMS_COLOR_ENTERTAIN  "#666666"
@@ -173,20 +176,24 @@
 #define LIGHT_COLOR_GREEN      "#64c864" //Bright but quickly dissipating neon green. rgb(100, 200, 100)
 #define LIGHT_COLOR_BLUE       "#6496fa" //Cold, diluted blue. rgb(100, 150, 250)
 
+#define LIGHT_COLOR_BLUEGREEN  "#7DE1AF" //Light blueish green. rgb(125, 225, 175)
 #define LIGHT_COLOR_CYAN       "#7de1e1" //Diluted cyan. rgb(125, 225, 225)
+#define LIGHT_COLOR_LIGHT_CYAN "#40CEFF" //More-saturated cyan. rgb(64, 206, 255)
+#define LIGHT_COLOR_DARK_BLUE  "#3375f8" //Saturated blue. rgb(51, 117, 248)
 #define LIGHT_COLOR_PINK       "#e17de1" //Diluted, mid-warmth pink. rgb(225, 125, 225)
 #define LIGHT_COLOR_YELLOW     "#e1e17d" //Dimmed yellow, leaning kaki. rgb(225, 225, 125)
 #define LIGHT_COLOR_LYELLOW    "#fffee0" //Mostly used today in regular lamps. rgb(255, 254, 224)
 #define LIGHT_COLOR_BROWN      "#966432" //Clear brown, mostly dim. rgb(150, 100, 50)
 #define LIGHT_COLOR_ORANGE     "#fa9632" //Mostly pure orange. rgb(250, 150, 50)
 #define LIGHT_COLOR_PURPLE     "#a97faa" //Soft purple. rgb(169, 127, 170)
+#define LIGHT_COLOR_LAVENDER   "#9B51FF" //Less-saturated light purple. rgb(155, 81, 255)
 #define LIGHT_COLOR_VIOLET     "#b43cb8" //Deep purple. rgb(180, 60, 184)
 #define LIGHT_COLOR_SCARLET    "#e85656" //Light red. rgb(232, 86, 86)
 #define LIGHT_COLOR_ULTRAVIOLET "#b46aff"
 #define LIGHT_COLOR_MOON "#b7d1f0"
 
 #define FIRE_COLOR_DEFAULT	   "#f8aa00"
-#define MOLTEN_METAL_COLOR	   "#fda54d"
+#define MOLTEN_METAL_COLOR	   "#ffdc13"
 
 //These ones aren't a direct colour like the ones above, because nothing would fit
 #define LIGHT_COLOR_FIRE       "#faa019" //Warm orange color, leaning strongly towards yellow. rgb(250, 160, 25)

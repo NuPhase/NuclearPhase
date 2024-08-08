@@ -144,14 +144,6 @@ var/global/ascii_reset = "[ascii_esc]\[0m"
 /datum/unit_test/proc/subsystems_to_await()
 	return list()
 
-/proc/load_unit_test_changes()
-/*
-	//This takes about 60 seconds to run during unit testing and is only used for the ZAS vacume check on The Asteroid.
-	if(config.generate_map != 1)
-		log_unit_test("Overiding Configuration option for Asteroid Generation to ENABLED")
-		config.generate_map = 1	// The default map requires it, the example config doesn't have this enabled.
- */
-
 /proc/get_test_datums()
 	. = list()
 	for(var/test in subtypesof(/datum/unit_test))

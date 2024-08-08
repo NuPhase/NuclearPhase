@@ -20,6 +20,7 @@ var/global/list/natural_walls = list()
 	var/floor_type = /turf/exterior/open_ocean
 	var/ore_type
 	signal_block_coef = 10
+	explosion_resistance = 900
 
 /turf/exterior/wall/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -220,8 +221,10 @@ var/global/list/natural_walls = list()
 		debris.updateMineralOverlays(1)
 	if(saved_ore_type)
 		var/obj/structure/boulder/nboulder = new /obj/structure/boulder(.)
+		nboulder.material = material
 		nboulder.ore_type = saved_ore_type
 		nboulder.ore_result_amount = rand(20, 100)
+		nboulder.update_icon()
 
 /turf/exterior/wall/proc/get_default_material()
 	. = /decl/material/solid/stone/sandstone

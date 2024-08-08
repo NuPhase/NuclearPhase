@@ -59,7 +59,7 @@
 	)
 
 /obj/structure/closet/secure_closet/hos
-	name = "head of security's locker"
+	name = "commander's locker"
 	req_access = list(access_hos)
 	closet_appearance = /decl/closet_appearance/secure_closet/security/hos
 
@@ -67,11 +67,9 @@
 	return list(
 		new/datum/atom_creator/weighted(list(/obj/item/storage/backpack/security, /obj/item/storage/backpack/satchel/sec)),
 		/obj/item/clothing/head/HoS,
-		/obj/item/clothing/suit/armor/vest/heavy/hos,
-		/obj/item/clothing/under/head_of_security/jensen,
-		/obj/item/clothing/suit/armor/hos/jensen,
-		/obj/item/clothing/suit/armor/pcarrier/tactical,
-		/obj/item/clothing/head/helmet/tactical,
+		/obj/item/clothing/suit/armor/pcarrier/green/infantry,
+		/obj/item/clothing/suit/armor/pcarrier/green/tactical,
+		/obj/item/clothing/head/helmet/tactical/green,
 		/obj/item/communications/pocket_radio,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/stack/tape_roll/barricade_tape/police,
@@ -80,13 +78,13 @@
 		/obj/item/storage/belt/holster/security,
 		/obj/item/flash,
 		/obj/item/baton/loaded,
-		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/storage/guncase/service_pistol,
 		/obj/item/clothing/accessory/storage/holster/waist,
 		/obj/item/flashlight/maglight
 	)
 
 /obj/structure/closet/secure_closet/warden
-	name = "warden's locker"
+	name = "warrant officer's locker"
 	req_access = list(access_armory)
 	closet_appearance = /decl/closet_appearance/secure_closet/security/warden
 
@@ -94,8 +92,9 @@
 	return list(
 		new/datum/atom_creator/weighted(list(/obj/item/storage/backpack/security, /obj/item/storage/backpack/satchel/sec)),
 		new/datum/atom_creator/simple(/obj/item/storage/backpack/dufflebag/sec, 50),
-		/obj/item/clothing/suit/armor/pcarrier/tactical,
-		/obj/item/clothing/head/helmet/tactical,
+		/obj/item/clothing/suit/armor/pcarrier/green/infantry,
+		/obj/item/clothing/suit/armor/pcarrier/green/tactical,
+		/obj/item/clothing/head/helmet/tactical/green,
 		/obj/item/clothing/under/warden,
 		/obj/item/clothing/head/warden,
 		/obj/item/communications/pocket_radio,
@@ -106,12 +105,12 @@
 		/obj/item/storage/belt/holster/security,
 		/obj/item/chems/spray/pepper,
 		/obj/item/baton/loaded,
-		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/storage/guncase/service_pistol,
 		/obj/item/flashlight/maglight
 	)
 
 /obj/structure/closet/secure_closet/security
-	name = "security officer's locker"
+	name = "trooper's locker"
 	req_access = list(access_brig)
 	closet_appearance = /decl/closet_appearance/secure_closet/security
 
@@ -119,7 +118,8 @@
 	return list(
 		new/datum/atom_creator/weighted(list(/obj/item/storage/backpack/security, /obj/item/storage/backpack/satchel/sec)),
 		new/datum/atom_creator/simple(/obj/item/storage/backpack/dufflebag/sec, 50),
-		/obj/item/clothing/head/helmet,
+		/obj/item/clothing/head/helmet/tactical/green,
+		/obj/item/clothing/suit/armor/pcarrier/green/infantry,
 		/obj/item/communications/pocket_radio,
 		/obj/item/storage/belt/holster/security,
 		/obj/item/chems/spray/pepper,
@@ -129,9 +129,9 @@
 		/obj/item/stack/tape_roll/barricade_tape/police,
 		/obj/item/hailer,
 		/obj/item/clothing/accessory/storage/vest/black,
-		/obj/item/gun/projectile/pistol/military_service,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/flashlight/maglight
+		/obj/item/storage/guncase/service_pistol,
+		/obj/item/flashlight/maglight,
+		/obj/item/storage/firstaid/ifak
 	)
 
 /obj/structure/closet/secure_closet/security/cargo/WillContain()
@@ -177,7 +177,7 @@
 		/obj/item/radio/headset/headset_sec,
 		/obj/item/clothing/suit/armor/pcarrier/detective,
 		/obj/item/stack/tape_roll/barricade_tape/police,
-		/obj/item/gun/projectile/pistol/military_service,
+		/obj/item/storage/guncase/service_pistol,
 		/obj/item/clothing/accessory/storage/holster/armpit,
 		/obj/item/chems/drinks/flask/detflask,
 		/obj/item/storage/briefcase/crimekit,

@@ -5,7 +5,6 @@
 	anchored = 1
 	density = 0
 	layer = ABOVE_OBJ_LAYER
-
 	var/datum/turbolift/lift
 
 /obj/structure/lift/set_dir(var/newdir)

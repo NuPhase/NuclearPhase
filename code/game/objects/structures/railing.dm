@@ -9,13 +9,14 @@
 	layer = ABOVE_HUMAN_LAYER
 	climb_speed_mult = 0.25
 	anchored = FALSE
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CHECKS_BORDER | ATOM_FLAG_CLIMBABLE
+	atom_flags = ATOM_FLAG_CHECKS_BORDER | ATOM_FLAG_CLIMBABLE
 	obj_flags = OBJ_FLAG_ROTATABLE | OBJ_FLAG_MOVES_UNSUPPORTED
 	material = DEFAULT_FURNITURE_MATERIAL
 	material_alteration = MAT_FLAG_ALTERATION_ALL
 	maxhealth = 100
 	parts_amount = 2
 	parts_type = /obj/item/stack/material/strut
+	explosion_resistance = 50
 
 	var/painted_color
 	var/broken =    FALSE

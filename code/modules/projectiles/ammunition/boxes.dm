@@ -135,21 +135,26 @@
 	ammo_type = /obj/item/ammo_casing/pistol/small/practice
 
 /obj/item/ammo_magazine/smg/c11x25
-	name = "11x25 SMG magazine"
+	name = "11x25 CL SMG magazine"
 	caliber = "11x25"
-	ammo_type = /obj/item/ammo_casing/c11x25
-	max_ammo = 40
+	ammo_type = /obj/item/ammo_casing/caseless/c11x25
+	max_ammo = 60
 
 /obj/item/ammo_magazine/pistol
-	name = "pistol magazine"
+	name = "11x25 pistol magazine"
 	icon_state = "pistol"
-	origin_tech = "{'combat':2}"
+	origin_tech = @'{"combat":2}'
 	mag_type = MAGAZINE
 	caliber = CALIBER_PISTOL
 	material = /decl/material/solid/metal/steel
-	ammo_type = /obj/item/ammo_casing/pistol
+	ammo_type = /obj/item/ammo_casing/c11x25
 	max_ammo = 15
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/pistol/srec
+	name = "11x25 SREC magazine"
+	desc = "What the fuck did you do???"
+	ammo_type = /obj/item/ammo_casing/caseless/c11x25/srec
 
 /obj/item/ammo_magazine/pistol/oneround
 	initial_ammo = 1
@@ -181,7 +186,7 @@
 /obj/item/ammo_magazine/box/smallpistol
 	name = "ammunition box (pistol, small)"
 	icon_state = "smallpistol"
-	origin_tech = "{'combat':2}"
+	origin_tech = @'{"combat":2}'
 	material = /decl/material/solid/metal/steel
 	caliber = CALIBER_PISTOL_SMALL
 	ammo_type = /obj/item/ammo_casing/pistol/small
@@ -190,7 +195,7 @@
 /obj/item/ammo_magazine/box/pistol
 	name = "ammunition box (pistol)"
 	icon_state = "smallpistol"
-	origin_tech = "{'combat':2}"
+	origin_tech = @'{"combat":2}'
 	caliber = CALIBER_PISTOL
 	material = /decl/material/solid/metal/steel
 	ammo_type = /obj/item/ammo_casing/pistol
@@ -206,7 +211,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol/emp
 	caliber = CALIBER_PISTOL
 	max_ammo = 15
-	origin_tech = "{'combat':2,'magnets':2,'powerstorage':2}"
+	origin_tech = @'{"combat":2,"magnets":2,"powerstorage":2}'
 
 /obj/item/ammo_magazine/box/emp/smallpistol
 	name = "ammunition box (pistol, small, haywire)"
@@ -215,12 +220,12 @@
 	ammo_type = /obj/item/ammo_casing/pistol/small/emp
 	caliber = CALIBER_PISTOL_SMALL
 	max_ammo = 8
-	origin_tech = "{'combat':2,'magnets':2,'powerstorage':2}"
+	origin_tech = @'{"combat":2,"magnets":2,"powerstorage":2}'
 
 /obj/item/ammo_magazine/rifle
 	name = "assault rifle magazine"
 	icon_state = "bullup"
-	origin_tech = "{'combat':2}"
+	origin_tech = @'{"combat":2}'
 	mag_type = MAGAZINE
 	caliber = CALIBER_RIFLE
 	material = /decl/material/solid/metal/steel
@@ -240,16 +245,37 @@
 	caliber = "6.8x51"
 	ammo_type = /obj/item/ammo_casing/c6p8x51
 	max_ammo = 25
-	icon_state = "bullup"
+	icon_state = "assault_rifle"
 	mag_type = MAGAZINE
+/obj/item/ammo_magazine/c6p8x51/ap
+	name = "6.8x51 AP magazine"
+	ammo_type = /obj/item/ammo_casing/c6p8x51/ap
+/obj/item/ammo_magazine/c6p8x51/fmj
+	name = "6.8x51 FMJ magazine"
+	ammo_type = /obj/item/ammo_casing/c6p8x51/fmj
+/obj/item/ammo_magazine/c6p8x51/hp
+	name = "6.8x51 HP magazine"
+	ammo_type = /obj/item/ammo_casing/c6p8x51/hp
 
-/obj/item/ammo_magazine/c10x77
-	name = "10x77-HS special sniper magazine"
-	caliber = "10x77"
-	ammo_type = /obj/item/ammo_casing/c10x77
-	max_ammo = 8
+/obj/item/ammo_magazine/c127x99
+	name = "50 BMG sniper magazine"
+	caliber = CALIBER_ANTI_MATERIEL
+	ammo_type = /obj/item/ammo_casing/shell
+	max_ammo = 5
 	icon_state = "bullup"
 	mag_type = MAGAZINE
+/obj/item/ammo_magazine/c127x99/ap
+	name = "50 BMG AP sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/ap
+/obj/item/ammo_magazine/c127x99/tracer
+	name = "50 BMG Tracer sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/tracer
+/obj/item/ammo_magazine/c127x99/tracer/heavy
+	name = "50 BMG Incendiary sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/tracer/heavy
+/obj/item/ammo_magazine/c127x99/tracer/explosive
+	name = "50 BMG Explosive sniper magazine"
+	ammo_type = /obj/item/ammo_casing/shell/tracer/explosive
 
 /obj/item/ammo_magazine/caps
 	name = "speed loader"

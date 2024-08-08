@@ -35,6 +35,7 @@
 #define SS_INIT_CIRCUIT          8
 #define SS_INIT_GRAPH            7
 #define SS_INIT_OPEN_SPACE       6
+#define SS_INIT_PERSISTENCE      5.5
 #define SS_INIT_ATOMS            5
 #define SS_INIT_CHAR_SETUP       4
 #define SS_INIT_MACHINES         3
@@ -51,7 +52,9 @@
 #define SS_INIT_WEATHER         -7
 #define SS_INIT_ZCOPY           -8
 #define SS_INIT_XENOARCH        -10
+#define SS_INIT_MONSTER         -15
 #define SS_INIT_TICKER          -20
+#define SS_INIT_DIFFICULTY      -40
 #define SS_INIT_CHAT            -90
 #define SS_INIT_UNIT_TESTS      -100
 

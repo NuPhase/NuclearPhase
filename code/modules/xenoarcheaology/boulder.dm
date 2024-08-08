@@ -7,7 +7,7 @@
 	opacity = 1
 	anchored = 1
 	material = /decl/material/solid/stone/sandstone
-	material_alteration = MAT_FLAG_ALTERATION_NAME
+	material_alteration = MAT_FLAG_ALTERATION_ALL
 	var/excavation_level = 0
 	var/datum/artifact_find/artifact_find
 	var/last_act = 0
@@ -54,7 +54,11 @@
 		if(excavation_level >= 200)
 			//failure
 			user.visible_message("<span class='warning'>\The [src] suddenly crumbles away.</span>", "<span class='warning'>\The [src] has disintegrated under your onslaught, any secrets it was holding are long gone.</span>")
-			ore_type = new(loc, ore_result_amount)
+			var/turf/T = get_turf(src)
+			ore_type = new(T, ore_result_amount)
+			var/datum/gas_mixture/environment = T.return_air()
+			environment.adjust_gas(material, ore_result_amount)
+			new /obj/effect/effect/smoke/bad/mine(T)
 			qdel(src)
 			return
 

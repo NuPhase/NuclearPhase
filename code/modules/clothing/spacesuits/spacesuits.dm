@@ -30,7 +30,7 @@
 
 	var/obj/machinery/camera/camera
 	var/tinted = null	//Set to non-null for toggleable tint helmets
-	origin_tech = "{'materials':1}"
+	origin_tech = @'{"materials":1}'
 	material = /decl/material/solid/metal/steel
 
 /obj/item/clothing/head/helmet/space/Destroy()
@@ -129,8 +129,8 @@
 	center_of_mass = null
 	randpixel = 0
 	valid_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA, ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_OVER)
-	origin_tech = "{'materials':3, 'engineering':3}"
 	material = /decl/material/solid/plastic
+	origin_tech = @'{"materials":3, "engineering":3}'
 	matter = list(
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/metal/aluminium = MATTER_AMOUNT_REINFORCEMENT,

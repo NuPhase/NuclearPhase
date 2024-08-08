@@ -9,13 +9,19 @@
 	icon = 'icons/obj/guns/sniper.dmi'
 	w_class = ITEM_SIZE_HUGE
 	force = 10
-	caliber = "10x77"
+	caliber = CALIBER_ANTI_MATERIEL
 	origin_tech = "{'combat':8,'materials':3}"
-	ammo_type = /obj/item/ammo_casing/c10x77
+	ammo_type = /obj/item/ammo_casing/shell
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c10x77
-	allowed_magazines = /obj/item/ammo_magazine/c10x77
+	magazine_type = /obj/item/ammo_magazine/c127x99
+	allowed_magazines = list(
+		/obj/item/ammo_magazine/c127x99,
+		/obj/item/ammo_magazine/c127x99/ap,
+		/obj/item/ammo_magazine/c127x99/tracer,
+		/obj/item/ammo_magazine/c127x99/tracer/heavy,
+		/obj/item/ammo_magazine/c127x99/tracer/explosive
+	)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	accuracy = 15
@@ -30,6 +36,7 @@
 	material = /decl/material/solid/metal/tantalumhafniumcarbide
 	hot_color = COLOR_AMBER
 	muzzle_flash_intensity = 0
+	weight = 14.4
 
 /obj/item/gun/projectile/sniper/ngdmr/update_base_icon()
 	if(ammo_magazine)
@@ -89,3 +96,19 @@
 
 		if(!ear_safety)
 			sound_to(M, 'sound/weapons/flash_ring.ogg')
+
+/obj/item/gun/projectile/bolt_action/sniper
+	name = "HI PTR-7"
+	desc = "A lightweight bolt-action anti-materiel rifle. Lacks in rate of fire, but is relatively easy to carry."
+	icon = 'icons/obj/guns/heavysniper.dmi'
+	force = 10
+	origin_tech = @'{"combat":7,"materials":2,"esoteric":8}'
+	caliber = CALIBER_ANTI_MATERIEL
+	screen_shake = 16 //extra kickback
+	one_hand_penalty = 7
+	accuracy = 6
+	bulk = 8
+	scoped_accuracy = 16 //increased accuracy over the LWAP because only one shot
+	scope_zoom = 2
+	fire_delay = 12
+	weight = 8.9

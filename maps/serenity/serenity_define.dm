@@ -37,9 +37,7 @@
 	reboot_sound = list()
 
 	lobby_tracks = list(
-		/decl/music_track/onewaytolife,
-		/decl/music_track/runningaftermyfate,
-		/decl/music_track/inthedark
+		/decl/music_track/humanshaverights
 	)
 
 	allowed_spawns = list(

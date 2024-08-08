@@ -21,6 +21,7 @@
 	var/stripe_color = "none"
 	var/symbol_color = "none"
 	var/width = 1 // For multi-tile doors
+	explosion_resistance = 150
 
 /obj/structure/door_assembly/Initialize(mapload, _mat, _reinf_mat, _dir)
 	. = ..(mapload, _mat, _reinf_mat)

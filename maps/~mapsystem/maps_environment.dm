@@ -19,7 +19,7 @@
 	exterior_atmosphere.update_values()
 	exterior_atmosphere.check_tile_graphic()
 	if(ispath(weather_system, /decl/state/weather))
-		weather_system = new /obj/abstract/weather_system(null, station_levels[14], weather_system)
+		weather_system = new /obj/abstract/weather_system(null, 31, weather_system)
 		weather_system.water_material = water_material
 		weather_system.ice_material = ice_material
 

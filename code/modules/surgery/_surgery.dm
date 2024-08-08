@@ -121,9 +121,9 @@ var/global/list/surgery_tool_exception_cache = list()
 	return ishuman(target)
 
 // does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
-/decl/surgery_step/proc/begin_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
+/decl/surgery_step/proc/begin_step(mob/living/user, mob/living/target, target_zone, obj/item/tool, autonomous)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
-	if (can_infect && affected)
+	if(!autonomous && can_infect && affected)
 		spread_germs_to_organ(affected, user)
 	if(ishuman(user) && prob(60))
 		var/mob/living/carbon/human/H = user

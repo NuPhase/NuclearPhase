@@ -9,6 +9,7 @@
 	value = 1.5
 	uid = "chem_antibiotics"
 	var/strength = 0.3 //per unit
+	drug_category = DRUG_CATEGORY_ANTIBIOTICS
 
 /decl/material/liquid/antibiotics/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/mob/living/carbon/human/H = M
@@ -25,29 +26,32 @@
 /decl/material/liquid/antibiotics/affect_overdose(mob/living/carbon/human/H, datum/reagents/holder)
 	H.immunity = 0 //crash that
 	var/volume = REAGENT_VOLUME(holder, type)
-	H.custom_pain("You feel your insides burning!", volume * 3)
+	H.custom_pain("You feel your insides burning!", volume * 10)
 
 /decl/material/liquid/antibiotics/penicillin
 	name = "penicillin"
+	lore_text = "A weak but cheap antibiotic."
 	uid = "chem_antibiotics_penicillin"
 	strength = 0.75
 	overdose = 30
 
 /decl/material/liquid/antibiotics/amicile
 	name = "amicile"
+	lore_text = "A run-of-the-mill antibiotic with few side effects."
 	uid = "chem_antibiotics_amicile"
 	strength = 1.4
-	overdose = 6
+	overdose = 15
 
 /decl/material/liquid/antibiotics/ceftriaxone
 	name = "ceftriaxone"
+	lore_text = "A very strong antibiotic with major side effects."
 	uid = "chem_antibiotics_ceftriaxone"
 	strength = 5
 	overdose = 3
 
 /decl/material/liquid/antibiotics/ceftriaxone/affect_blood(mob/living/M, removed, datum/reagents/holder)
 	. = ..()
-	M.adjustToxLoss(0.5)
+	M.adjustToxLoss(10*removed)
 
 /decl/material/liquid/antibiotics/ceftriaxone/affect_overdose(mob/living/carbon/human/H, datum/reagents/holder)
 	. = ..()

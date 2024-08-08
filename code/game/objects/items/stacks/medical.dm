@@ -4,7 +4,7 @@
 	icon = 'icons/obj/medical_kits.dmi'
 	amount = 5
 	max_amount = 5
-	w_class = ITEM_SIZE_SMALL
+	w_class = ITEM_SIZE_TINY
 	throw_speed = 4
 	throw_range = 20
 
@@ -73,11 +73,14 @@
 	singular_name = "bandage length"
 	desc = "Some sterile bandages to wrap around bloody stumps."
 	icon_state = "brutepack"
-	origin_tech = "{'biotech':1}"
+	origin_tech = @'{"biotech":1}'
 	animal_heal = 5
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	amount = 10
 	weight = 0.05
+	matter = list(
+		/decl/material/solid/cloth = MATTER_AMOUNT_PRIMARY
+	)
 
 /obj/item/stack/medical/bruise_pack/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
@@ -142,6 +145,9 @@
 	var/should_disinfect = FALSE
 	var/sterile = FALSE
 	weight = 0.1
+	matter = list(
+		/decl/material/solid/cloth = MATTER_AMOUNT_PRIMARY
+	)
 
 /obj/item/stack/medical/wound_filler/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/chems))
@@ -209,6 +215,10 @@
 	desc = "An elastic substance that can easily fill tricky spaces. Difficult to apply."
 	packing_speed = 0.4
 	sterile = TRUE
+	matter = list(
+		/decl/material/solid/sodium = MATTER_AMOUNT_PRIMARY,
+		/decl/material/solid/potassium = MATTER_AMOUNT_PRIMARY
+	)
 
 /obj/item/stack/medical/wound_filler/hydrofiber
 	name = "roll of hydrofiber dressing"
@@ -219,6 +229,11 @@
 	packing_speed = 1.5
 	sterile = TRUE
 	should_disinfect = TRUE
+	matter = list(
+		/decl/material/solid/cloth = MATTER_AMOUNT_PRIMARY,
+		/decl/material/solid/sodium = MATTER_AMOUNT_REINFORCEMENT,
+		/decl/material/solid/potassium = MATTER_AMOUNT_REINFORCEMENT
+	)
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
@@ -227,9 +242,13 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 1
-	origin_tech = "{'biotech':1}"
+	origin_tech = @'{"biotech":1}'
 	animal_heal = 4
 	apply_sounds = list('sound/effects/ointment.ogg')
+	matter = list(
+		/decl/material/solid/plastic = MATTER_AMOUNT_SECONDARY,
+		/decl/material/liquid/antibiotics/amicile = 30
+	)
 
 /obj/item/stack/medical/ointment/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
@@ -261,7 +280,7 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 0
-	origin_tech = "{'biotech':1}"
+	origin_tech = @'{"biotech":1}'
 	animal_heal = 12
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 	amount = 10
@@ -317,10 +336,9 @@
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 5
-	origin_tech = "{'biotech':1}"
+	origin_tech = @'{"biotech":1}'
 	animal_heal = 7
 	apply_sounds = list('sound/effects/ointment.ogg')
-
 
 /obj/item/stack/medical/advanced/ointment/attack(var/mob/living/carbon/M, var/mob/user)
 	if(..())
@@ -355,8 +373,12 @@
 	amount = 5
 	max_amount = 5
 	animal_heal = 0
+	w_class = ITEM_SIZE_SMALL
 	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_CHEST, BP_HEAD, BP_GROIN)	//List of organs you can splint, natch. //we're not in the stone age
 	weight = 0.3
+	matter = list(
+		/decl/material/solid/plastic = MATTER_AMOUNT_PRIMARY
+	)
 
 /obj/item/stack/medical/splint/check_limb_state(var/mob/user, var/obj/item/organ/external/limb)
 	if(BP_IS_PROSTHETIC(limb))

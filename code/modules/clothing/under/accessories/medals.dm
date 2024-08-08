@@ -24,3 +24,11 @@
 	name = "gold medal"
 	desc = "A simple gold medal."
 	icon = 'icons/clothing/accessories/medals/medal_gold.dmi'
+
+/obj/item/clothing/accessory/medal/silver/united_nations
+	name = "UN service-I medal"
+	desc = "A silver medal awarded to UN officers with more than 3 years of experience."
+
+/obj/item/clothing/accessory/medal/gold/united_nations
+	name = "UN service-II medal"
+	desc = "A silver medal awarded to UN officers with more than 10 years of experience."

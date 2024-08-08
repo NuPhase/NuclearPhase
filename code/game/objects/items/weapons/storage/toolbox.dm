@@ -1,9 +1,8 @@
 /obj/item/storage/toolbox
 	name = "toolbox"
 	desc = "Bright red toolboxes like these are one of the most common sights on any industrial grounds."
-	icon = 'icons/obj/items/storage/toolbox.dmi'
-	icon_state = "red"
-	item_state = "toolbox_red"
+	icon = 'icons/obj/items/storage/toolboxes/toolbox_red.dmi'
+	icon_state = ICON_STATE_WORLD
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	force = 20
 	attack_cooldown = 21
@@ -14,7 +13,7 @@
 	w_class = ITEM_SIZE_LARGE
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_LARGEBOX_STORAGE //enough to hold all starting contents
-	origin_tech = "{'combat':1}"
+	origin_tech = @'{"combat":1}'
 	attack_verb = list("robusted")
 	use_sound = 'sound/effects/storage/toolbox.ogg'
 	load_spreading_coefficient = 0.8 //they are SLIGHTLY easier to carry around
@@ -27,7 +26,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/radio,
 		/obj/item/weldingtool/mini,
-		/obj/item/welder_tank/mini
+		/obj/item/chems/welder_tank/mini
 	)
 
 /obj/item/storage/toolbox/emergency/Initialize()
@@ -39,15 +38,13 @@
 /obj/item/storage/toolbox/mechanical
 	name = "mechanical toolbox"
 	desc = "Bright blue toolboxes like these are one of the most common sights in maintenance corridors on on any industrial grounds."
-	icon_state = "blue"
-	item_state = "toolbox_blue"
 	startswith = list(/obj/item/screwdriver, /obj/item/wrench, /obj/item/weldingtool, /obj/item/crowbar, /obj/item/scanner/gas, /obj/item/wirecutters)
+	icon = 'icons/obj/items/storage/toolboxes/toolbox_blue.dmi'
 
 /obj/item/storage/toolbox/electrical
 	name = "electrical toolbox"
 	desc = "Bright yellow toolboxes like these are one of the most common sights in maintenance corridors on on any industrial grounds."
-	icon_state = "yellow"
-	item_state = "toolbox_yellow"
+	icon = 'icons/obj/items/storage/toolboxes/toolbox_yellow.dmi'
 	startswith = list(/obj/item/screwdriver, /obj/item/wirecutters, /obj/item/t_scanner, /obj/item/crowbar)
 
 /obj/item/storage/toolbox/electrical/Initialize()
@@ -62,17 +59,15 @@
 /obj/item/storage/toolbox/syndicate
 	name = "black and red toolbox"
 	desc = "A toolbox in black, with stylish red trim. This one feels particularly heavy, yet balanced."
-	icon_state = "syndicate"
-	item_state = "toolbox_syndi"
-	origin_tech = "{'combat':1,'esoteric':1}"
+	icon = 'icons/obj/items/storage/toolboxes/toolbox_black_red.dmi'
+	origin_tech = @'{"combat":1,"esoteric":1}'
 	attack_cooldown = 10
 	startswith = list(/obj/item/clothing/gloves/insulated, /obj/item/screwdriver, /obj/item/wrench, /obj/item/weldingtool, /obj/item/crowbar, /obj/item/wirecutters, /obj/item/multitool)
 
 /obj/item/storage/toolbox/repairs
 	name = "electronics toolbox"
 	desc = "A box full of boxes, with electrical machinery parts and tools needed to get them where they're needed."
-	icon_state = "yellow_striped"
-	item_state = "toolbox_yellow"
+	icon = 'icons/obj/items/storage/toolboxes/toolbox_yellow_striped.dmi'
 	startswith = list(
 		/obj/item/stack/cable_coil,
 		/obj/item/screwdriver,

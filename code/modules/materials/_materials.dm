@@ -7,7 +7,7 @@ var/global/list/materials_by_gas_symbol = list()
 	icon_state = "generic"
 	layer = FIRE_LAYER
 	appearance_flags = RESET_COLOR
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	var/decl/material/material
 
 INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
@@ -80,6 +80,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/lore_text
 	var/mechanics_text
 	var/antag_text
+	var/drug_category
 	var/default_solid_form = /obj/item/stack/material/sheet
 
 	var/affect_blood_on_ingest = TRUE
@@ -108,7 +109,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/table_icon_base = "metal"
 	var/table_icon_reinforced = "reinf_metal"
 
-	var/list/stack_origin_tech = "{'materials':1}" // Research level for stacks.
+	var/list/stack_origin_tech = @'{"materials":1}' // Research level for stacks.
 
 	// Attributes
 	/// How rare is this material generally?
@@ -234,7 +235,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/color = COLOR_BEIGE
 	var/color_weight = 1
 	var/fire_color = FIRE_COLOR_DEFAULT
-	var/fire_alpha = 255 //how visible is the fire
+	var/fire_alpha = 200 //how visible is the fire
 	var/cocktail_ingredient
 	var/defoliant
 	var/fruit_descriptor // String added to fruit desc if this chemical is present.
@@ -522,21 +523,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				affectedbook.dat = null
 				to_chat(usr, SPAN_NOTICE("The solution dissolves the ink on the book."))
 
-	if(solvent_power >= MAT_SOLVENT_STRONG && !O.unacidable && (istype(O, /obj/item) || istype(O, /obj/effect/vine)) && (REAGENT_VOLUME(holder, type) > solvent_melt_dose))
-		var/obj/effect/decal/cleanable/molten_item/I = new(O.loc)
-		I.visible_message(SPAN_DANGER("\The [O] dissolves!"))
-		I.desc = "It looks like it was \a [O] some time ago."
-		qdel(O)
+	if(solvent_power >= MAT_SOLVENT_STRONG && (istype(O, /obj/item) || istype(O, /obj/effect/vine)) && (REAGENT_VOLUME(holder, type) > solvent_melt_dose))
+		O.visible_message(SPAN_DANGER("\The [O] dissolves!"))
+		O.handle_melting()
 		holder?.remove_reagent(type, solvent_melt_dose)
-
-	if(dirtiness <= DIRTINESS_STERILE)
-		O.germ_level -= min(REAGENT_VOLUME(holder, type)*20, O.germ_level)
-		O.was_bloodied = null
-
-	if(dirtiness <= DIRTINESS_CLEAN)
-		O.clean_blood()
-
-	if(defoliant && istype(O, /obj/effect/vine))
+	else if(defoliant && istype(O, /obj/effect/vine))
 		qdel(O)
 
 #define FLAMMABLE_LIQUID_DIVISOR 7
@@ -728,7 +719,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 
 /decl/material/proc/affect_overdose(var/mob/living/M, var/datum/reagents/holder) // Overdose effect. Doesn't happen instantly.
 	M.add_chemical_effect(CE_TOXIN, 1)
-	M.adjustToxLoss(REM)
+	M.adjustToxLoss(2.5)
 
 /decl/material/proc/initialize_data(var/newdata) // Called when the reagent is created.
 	if(newdata)
@@ -737,8 +728,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 /decl/material/proc/mix_data(var/datum/reagents/reagents, var/list/newdata, var/amount)
 	. = REAGENT_DATA(reagents, type)
 
-#define EXPLOSION_ENERGY_COEFFICIENT 0.0001 //explosion power per joule of combustion energy
-#define DEFLAG_ENERGY_COEFFICIENT 0.01
+#define EXPLOSION_ENERGY_COEFFICIENT 0.00001 //explosion power per joule of combustion energy
+#define DEFLAG_ENERGY_COEFFICIENT 0.0001
 /decl/material/proc/explosion_act(obj/item/chems/holder, severity)
 	SHOULD_CALL_PARENT(TRUE)
 	. = TRUE
@@ -750,9 +741,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/volume = REAGENT_VOLUME(holder?.reagents, type)
 	var/gas_moles = volume / molar_volume
 	var/oxidizer_moles = environment.get_by_flag(XGM_GAS_OXIDIZER)
+	if(gas_flags & XGM_GAS_OXIDIZER) //we can oxidize ourselves
+		oxidizer_moles += gas_moles
 	var/actually_combusted = min(gas_moles, oxidizer_moles)
 	var/total_energy = actually_combusted * combustion_energy
-	products.adjust_gas(burn_product, gas_moles*0.05, FALSE)
+	if(burn_product)
+		products.adjust_gas(burn_product, gas_moles*0.05, FALSE)
 	products.adjust_gas(type, gas_moles*0.95, FALSE)
 	environment.merge(products)
 	holder.reagents.remove_reagent(type, volume)
@@ -828,7 +822,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				slow_neutrons += scattered_neutrons
 			if(INTERACTION_ABSORPTION)
 				var/absorbed_neutrons = get_nuclear_reaction_rate(container, INTERACTION_ABSORPTION, slow_neutrons, fast_neutrons)
-				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons)
+				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons, container.gas[src.type])
 				fast_neutrons -= absorbed_neutrons * 0.5
 				slow_neutrons -= absorbed_neutrons * 0.5
 				energy_delta += absorbed_neutrons * SLOW_NEUTRON_ENERGY
@@ -844,9 +838,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 				else
 					fast_neutrons -= fission_reactions
 				 container.adjust_gas(src.type, fission_reactions * -1, FALSE)
-				 for(var/waste_type in fission_products)
-				 	container.adjust_gas(waste_type, fission_reactions*fission_products[waste_type], FALSE)
-				fast_neutrons += fission_neutrons
+				for(var/waste_type in fission_products)
+					container.adjust_gas(waste_type, fission_reactions*fission_products[waste_type], FALSE)
+				fast_neutrons += fission_reactions * fission_neutrons
 				energy_delta += fission_reactions * fission_energy
 
 	return list(
@@ -856,12 +850,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	)
 
 /decl/material/proc/get_nuclear_reaction_rate(datum/gas_mixture/container, reaction_type, slow_neutrons, fast_neutrons)
-	var/list/cross_sections_list
-	if(slow_neutrons > fast_neutrons)
-		cross_sections_list = neutron_interactions["slow"]
-	else
-		cross_sections_list = neutron_interactions["fast"]
-	var/actual_cross_section = cross_sections_list[reaction_type]
+	var/interpolation_weight = 0
+	if(slow_neutrons)
+		interpolation_weight = CLAMP01((fast_neutrons / slow_neutrons) * 0.1)
+
+	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
 
 	return ((slow_neutrons + fast_neutrons)/sqrt(container.volume)*2) * actual_cross_section * container.gas[src.type]/container.volume
 

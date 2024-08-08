@@ -27,3 +27,49 @@
 
 /decl/material/solid/metal/aliumium/place_dismantled_girder(var/turf/target, var/decl/material/reinf_material)
 	return
+
+/decl/material/solid/static_crystal
+	name = "SREC"
+	uid = "polycrystal"
+	lore_text = "An agressive silicon lifeform crystal. Due to its electrostatic properties it's able to contain antimatter relatively safely. It doesn't contain any right now."
+	default_solid_form = /obj/item/stack/material/gemstone
+	narcosis = 0.15
+	toxicity = 1.5
+	radioactivity = 50
+	shard_type = SHARD_SHARD
+	shard_can_repair = 0
+	flags = MAT_FLAG_BRITTLE
+	opacity = 0.3
+	integrity = 50
+	destruction_desc = "shatters"
+	weight = MAT_VALUE_VERY_LIGHT
+	hardness = MAT_VALUE_VERY_HARD
+	reflectiveness = MAT_VALUE_VERY_SHINY
+	color = COLOR_LIME
+
+/decl/material/solid/static_crystal/antimatter
+	name = "SREC-A"
+	uid = "antimatter_polycrystal"
+	combustion_energy = 810801000000
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 0.1,
+			INTERACTION_ABSORPTION = 0.1,
+			INTERACTION_FISSION = 5000
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 0.1,
+			INTERACTION_ABSORPTION = 0.1,
+			INTERACTION_FISSION = 10000
+		)
+	)
+	fission_energy = 810801000000
+	fission_products = list(
+		/decl/material/solid/static_crystal = 0.1
+	)
+	fission_neutrons = 250
+	radioactivity = 500
+	gas_flags = XGM_GAS_FUEL|XGM_GAS_OXIDIZER
+	fuel_value = 10
+	ignition_point = TCMB
+	molar_mass = 0.004 //twice that of hydrogen

@@ -41,7 +41,7 @@
 	throw_speed = 4
 	throw_range = 5
 	force = 5
-	origin_tech = "{'combat':1}"
+	origin_tech = @'{"combat":1}'
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 
@@ -129,7 +129,7 @@
 		autofiring_at = fire_at
 		autofiring_by = fire_by
 		if(!autofiring_timer)
-			autofiring_timer = addtimer(CALLBACK(src, .proc/handle_autofire), burst_delay, (TIMER_STOPPABLE | TIMER_LOOP | TIMER_UNIQUE | TIMER_OVERRIDE))
+			autofiring_timer = addtimer(CALLBACK(src, PROC_REF(handle_autofire)), burst_delay, (TIMER_STOPPABLE | TIMER_LOOP | TIMER_UNIQUE | TIMER_OVERRIDE))
 	else
 		clear_autofire()
 
@@ -340,11 +340,11 @@
 	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
 
 //called after successfully firing
-/obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0, var/obj/projectile)
+/obj/item/gun/proc/handle_post_fire(mob/user, atom/target, pointblank=0, reflex=0, obj/projectile)
 	if(fire_anim)
 		flick(fire_anim, src)
 	if(muzzle_flash_intensity)
-		new /obj/effect/effect/smoke/illumination(get_turf(projectile), 1, 2, muzzle_flash_intensity, muzzle_flash_color)
+		new /obj/effect/effect/smoke/illumination(get_turf(user), 1, 2, muzzle_flash_intensity, muzzle_flash_color)
 
 	if(!silenced && check_fire_message_spam("fire"))
 		var/user_message = SPAN_WARNING("You fire \the [src][pointblank ? " point blank":""] at \the [target][reflex ? " by reflex" : ""]!")
@@ -374,18 +374,22 @@
 					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
 				if(8 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
-		else if(!user.can_wield_item(src))
+		else if(!user.can_wield_item(src) || (bulk > 6 && !user.lying))
 			switch(one_hand_penalty)
 				if(4 to 6)
 					if(prob(50)) //don't need to tell them every single time
 						to_chat(user, "<span class='warning'>Your aim wavers slightly.</span>")
 				if(6 to 8)
 					to_chat(user, "<span class='warning'>You have trouble holding \the [src] steady.</span>")
+					ADJ_STATUS(user, STAT_STUN, 2)
 				if(8 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to hold \the [src] steady!</span>")
+					ADJ_STATUS(user, STAT_STUN, 3)
+					if(user.get_skill_value(SKILL_STRENGTH) < SKILL_ADEPT)
+						ADJ_STATUS(user, STAT_WEAK, 2)
 
 	if(screen_shake)
-		shake_camera(user, (burst > 1? burst_delay : fire_delay), screen_shake)
+		directional_recoil(user, screen_shake, Get_Angle(user, target))
 
 	if(combustion)
 		var/turf/curloc = get_turf(src)

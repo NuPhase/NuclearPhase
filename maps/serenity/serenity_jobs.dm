@@ -10,6 +10,7 @@
 		/datum/job/site_operations/ca,
 		/datum/job/site_operations/ss,
 		/datum/job/site_operations/sme,
+		/datum/job/site_operations/janitor,
 		/datum/job/reactor_operations/rod,
 		/datum/job/reactor_operations/road,
 		/datum/job/reactor_operations/rce,
@@ -20,5 +21,8 @@
 		/datum/job/laboratories/pps,
 		/datum/job/laboratories/ggs,
 		/datum/job/laboratories/los,
-		/datum/job/laboratories/loa
+		/datum/job/laboratories/loa,
+		/datum/job/lieutenant,
+		/datum/job/officer,
+		/datum/job/field_medic
 	)

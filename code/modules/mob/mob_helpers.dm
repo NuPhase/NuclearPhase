@@ -350,6 +350,18 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 #undef TILES_PER_SECOND
 
+/proc/directional_recoil(mob/M, strength=1, angle = 0)
+	if(!M || !M.client)
+		return
+	var/client/C = M.client
+	var/client_screenshake = 1
+	strength *= client_screenshake
+	var/recoil_x = -sin(angle)*4*strength + rand(-strength, strength)
+	var/recoil_y = -cos(angle)*4*strength + rand(-strength, strength)
+	animate(C, pixel_x=recoil_x, pixel_y=recoil_y, time=1, easing=SINE_EASING|EASE_OUT, flags=ANIMATION_PARALLEL|ANIMATION_RELATIVE)
+	animate(pixel_x=0, pixel_y=0, time=3, easing=SINE_EASING|EASE_IN) // according to bhjin this works on more recent byond versions
+	// if you havent updated uuh sucks to be you then
+
 /proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list)
 		if (M.real_name == text("[msg]"))
@@ -433,7 +445,7 @@ var/global/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
 	var/turf/sourceturf = get_turf(broadcast_source)
 	for(var/mob/M in targets)
-		if(!sourceturf || (get_z(M) in GetConnectedZlevels(sourceturf.z)))
+		if(!sourceturf || (get_z(M) in SSmapping.get_connected_levels(sourceturf.z)))
 			M.show_message("<span class='info'>[html_icon(icon)] [message]</span>", 1)
 
 /proc/mobs_in_area(var/area/A)

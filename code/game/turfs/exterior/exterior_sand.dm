@@ -4,15 +4,17 @@
 	dirt_color = "#ae9e66"
 	footstep_type = /decl/footsteps/sand
 	icon = 'icons/turf/exterior/sand.dmi'
-	icon_edge_layer = EXT_EDGE_SAND 
+	icon_edge_layer = EXT_EDGE_SAND
 	icon_has_corners = TRUE
 	possible_states = 5
 
 /turf/exterior/sand/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if((temperature > T0C + 1700 && prob(5)) || temperature > T0C + 3000)
-		melt()
+		handle_melting()
+	return ..()
 
-/turf/exterior/sand/melt()
+/turf/exterior/sand/handle_melting(list/meltable_materials)
+	. = ..()
 	if(icon_state != "glass")
 		SetName("molten silica")
 		desc = "A glassed patch of sand."

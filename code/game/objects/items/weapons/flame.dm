@@ -4,11 +4,6 @@
 	var/waterproof = FALSE
 	var/lit = 0
 
-/obj/item/flame/afterattack(var/obj/O, var/mob/user, proximity)
-	..()
-	if(proximity && lit && istype(O))
-		O.HandleObjectHeating(src, user, 700)
-
 /obj/item/flame/proc/extinguish(var/mob/user, var/no_message)
 	lit = 0
 	damtype = BRUTE
@@ -36,7 +31,7 @@
 	var/burnt = 0
 	var/smoketime = 5
 	w_class = ITEM_SIZE_TINY
-	origin_tech = "{'materials':1}"
+	origin_tech = @'{"materials":1}'
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
 	randpixel = 10

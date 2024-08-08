@@ -1,17 +1,71 @@
 /obj/effect/crystal_growth //stepping barefoot will be PUNISHED
 	name = "crystal covered floor"
 	desc = "These crystals are terrifying in their perfect placement patterns."
-	layer = DECAL_LAYER
+	layer = CATWALK_LAYER
 	anchored = 1
 	icon = 'icons/turf/mining_decals.dmi'
 	icon_state = "crystal"
+	var/transmissibility = 3
 
-/obj/effect/crystal_growth/New(loc, ...)
+/obj/effect/crystal_growth/Process()
+	try_expand()
+
+/obj/effect/crystal_growth/Initialize()
 	. = ..()
 	set_light(1, 1, COLOR_LIME)
+	var/area/A = get_area(loc)
+	A.background_radiation += 2.1
+	START_PROCESSING(SSblob, src)
+
+/obj/effect/crystal_growth/Destroy()
+	SSmaterials.create_object(/decl/material/solid/static_crystal, get_turf(src), 3, /obj/item/stack/material/gemstone)
+	. = ..()
+	var/area/A = get_area(loc)
+	A.background_radiation -= 2.1
+	STOP_PROCESSING(SSblob, src)
 
 /obj/effect/crystal_growth/meat
 	desc = "These crystals are terrifying in their perfect placement patterns. There are pieces of flesh lodged inbetween individual shards..."
+
+/obj/effect/crystal_growth/attackby(obj/item/I, mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(src)
+	visible_message(SPAN_WARNING("[user] attacks \the [src] with \the [I]!"))
+	playsound(src, "glasscrack", 50, 1)
+	if(I.force > 10 && prob(I.force))
+		visible_message(SPAN_DANGER("[src] gets shredded to pieces!"))
+		qdel(src)
+	. = ..()
+
+/obj/effect/crystal_growth/proc/expand(var/turf/T)
+	if(!istype(T, /turf/simulated/floor))
+		return
+
+	for(var/obj/machinery/door/D in T) // There can be several - and some of them can be open, locate() is not suitable
+		if(D.density)
+			return
+
+	var/obj/machinery/camera/CA = locate() in T
+	if(CA)
+		CA.take_damage(30)
+		return
+
+	new /obj/effect/crystal_growth(T)
+
+/obj/effect/crystal_growth/proc/try_expand()
+	set waitfor = FALSE
+	sleep(4)
+	var/pushDir = pick(global.cardinal)
+	var/turf/T = get_step(src, pushDir)
+	var/obj/effect/crystal_growth/C = (locate() in T)
+	if(!C)
+		expand(T)
+		return
+
+/obj/effect/crystal_growth/explosion_act(severity)
+	. = ..()
+	if(prob(severity * 0.5))
+		qdel(src)
 
 /obj/effect/crystal_growth/Crossed(atom/movable/AM)
 	..()
@@ -30,7 +84,11 @@
 
 			var/obj/item/shoes = H.get_equipped_item(slot_shoes_str)
 			var/obj/item/suit = H.get_equipped_item(slot_wear_suit_str)
-			if(shoes || (suit && (suit.body_parts_covered & SLOT_FEET)))
+			if(suit && (suit.body_parts_covered & SLOT_FEET))
+				H.srec_dose += transmissibility * suit.permeability_coefficient
+				return
+			else if(shoes)
+				H.srec_dose += transmissibility * shoes.permeability_coefficient
 				return
 
 			to_chat(M, SPAN_DANGER("You step on \the [src]! There is some strange tingling in your feet..."))
@@ -39,13 +97,12 @@
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, picked)
-				var/obj/item/organ/external/chest/infecting = GET_EXTERNAL_ORGAN(H, BP_CHEST)
 				if(affecting)
 					if(BP_IS_PROSTHETIC(affecting))
 						return
 					affecting.take_external_damage(7, 0)
-					if(!length(infecting.ailments))
-						infecting.add_ailment(/datum/ailment/crystal/phase_one)
+					if(H.srec_dose < 100)
+						H.srec_dose += rand(30, 70)
 					H.updatehealth()
 					if(affecting.can_feel_pain())
 						SET_STATUS_MAX(H, STAT_WEAK, 3)
@@ -54,17 +111,18 @@
 			return
 
 /obj/item/projectile/bullet/pellet/fragment/crystal
-	damage = 6
-	irradiate = 5
+	damage = 3
+	irradiate = 500
 	eyeblur = 1
 
 /obj/item/projectile/bullet/pellet/fragment/crystal/on_hit(atom/target, blocked)
 	if(!blocked)
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
-			var/obj/item/organ/external/chest/affecting = GET_EXTERNAL_ORGAN(H, BP_CHEST)
-			if(!length(affecting.ailments))
-				affecting.add_ailment(/datum/ailment/crystal/phase_one)
+			if(H.srec_dose < 100)
+				H.srec_dose += rand(20, 70)
+			else
+				H.srec_dose *= 1.05
 			SET_STATUS_MAX(H, STAT_WEAK, 3)
 	. = ..()
 
@@ -89,10 +147,11 @@
 	for(var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
-		L.apply_damage(rand(5, 10), BRUTE, used_weapon = "sharp crystals")
+		L.apply_damage(rand(15, 30), BRUTE, used_weapon = "sharp crystals")
 		L.forceMove(src)
 
 /obj/effect/crystal_wall/Destroy()
+	SSmaterials.create_object(/decl/material/solid/static_crystal, loc, 7, /obj/item/stack/material/gemstone)
 	for(var/obj/item/I in contents)
 		I.forceMove(loc)
 	for(var/mob/M in contents)

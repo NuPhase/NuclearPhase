@@ -64,7 +64,7 @@
 	icon_state = "preview_glass"
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
-	explosion_resistance = 5
+	explosion_resistance = 300
 	opacity = FALSE
 	glass = TRUE
 
@@ -186,7 +186,7 @@
 
 /obj/machinery/door/airlock/external/glass
 	maxhealth = 300
-	explosion_resistance = 5
+	explosion_resistance = 300
 	opacity = FALSE
 	glass = TRUE
 
@@ -212,7 +212,7 @@
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/secure/door.dmi'
 	fill_file = 'icons/obj/doors/secure/fill_steel.dmi'
-	explosion_resistance = 20
+	explosion_resistance = 900
 	secured_wires = TRUE
 	frame_type = /obj/structure/door_assembly/door_assembly_highsecurity
 	paintable = 0
@@ -233,7 +233,7 @@
 	panel_file = 'icons/obj/doors/hatch/panel.dmi'
 	welded_file = 'icons/obj/doors/hatch/welded.dmi'
 	emag_file = 'icons/obj/doors/hatch/emag.dmi'
-	explosion_resistance = 20
+	explosion_resistance = 700
 	opacity = TRUE
 	frame_type = /obj/structure/door_assembly/door_assembly_hatch
 	paintable = PAINT_STRIPABLE
@@ -250,7 +250,7 @@
 	name = "Vault"
 	icon = 'icons/obj/doors/vault/door.dmi'
 	fill_file = 'icons/obj/doors/vault/fill_steel.dmi'
-	explosion_resistance = 20
+	explosion_resistance = 900
 	opacity = TRUE
 	secured_wires = TRUE
 	frame_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.

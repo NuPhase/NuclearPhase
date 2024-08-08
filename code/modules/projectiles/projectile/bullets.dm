@@ -131,13 +131,17 @@
 	armor_penetration = 0
 	distance_falloff = 0.5 //we're large so falloff is lower
 
+/obj/item/projectile/bullet/shotgun/incendiary/after_move()
+	. = ..()
+	new /obj/effect/fake_fire/dragon_breath(loc)
+
 /obj/item/projectile/bullet/shotgun/incendiary/on_hit(atom/target, blocked)
-	if(..(target, blocked) && isliving(target))
-		var/mob/living/L = target
-		L.adjust_fire_stacks(rand(5,8))
-		L.IgniteMob()
-	else
-		deflagration(get_turf(target), 150, 10, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, shock_color = FIRE_COLOR_DEFAULT)
+	if(..(target, blocked))
+		if(isliving(target))
+			var/mob/living/L = target
+			L.adjust_fire_stacks(rand(5,8))
+			L.IgniteMob()
+	deflagration(get_turf(target), 150, 25, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, shock_color = FIRE_COLOR_DEFAULT)
 
 /obj/item/projectile/bullet/shotgun/riot
 	name = "riot control"
@@ -229,7 +233,7 @@
 
 
 
-/obj/item/projectile/bullet/modern/
+/obj/item/projectile/bullet/modern
 	fire_sound = 'sound/weapons/gunshot/gunshot_strong.ogg'
 	damage = 45
 	armor_penetration = 25
@@ -239,13 +243,26 @@
 
 /obj/item/projectile/bullet/modern/c6p8x51
 	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
-	damage = 55
-	armor_penetration = 30
+	damage = 35
+/obj/item/projectile/bullet/modern/c6p8x51/ap
+	armor_penetration = ARMOR_BALLISTIC_RIFLE
+/obj/item/projectile/bullet/modern/c6p8x51/fmj
+	armor_penetration = ARMOR_BALLISTIC_RESISTANT
+/obj/item/projectile/bullet/modern/c6p8x51/hp
+	armor_penetration = ARMOR_BALLISTIC_SMALL
+	damage = 50
 
 /obj/item/projectile/bullet/modern/c11x25
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	damage = 20
-	armor_penetration = 10
+	armor_penetration = ARMOR_BALLISTIC_PISTOL
+/obj/item/projectile/bullet/modern/c11x25/srec //same armor penetration, larger damage and higher falloff
+	damage = 50
+	muzzle_type = /obj/effect/projectile/muzzle/gauss
+/obj/item/projectile/bullet/modern/c11x25/srec/launch(atom/target, target_zone, mob/user, params, Angle_override, forced_spread)
+	. = ..()
+	for(var/mob/living/L in view(1, user))
+		L.apply_damage(150, IRRADIATE)
 
 /obj/item/projectile/bullet/modern/c10x77
 	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
@@ -255,3 +272,48 @@
 	armor_penetration = 70
 	penetration_modifier = 1.5
 	distance_falloff = 0.5
+
+/obj/item/projectile/bullet/modern/c127x99 //50 BMG
+	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
+	damage = 60
+	stun = 3
+	weaken = 1
+	armor_penetration = ARMOR_BALLISTIC_AP
+	penetration_modifier = 1.5
+	distance_falloff = 0.5
+	agony = 650
+
+/obj/item/projectile/bullet/modern/c127x99/ap
+	armor_penetration = ARMOR_BALLISTIC_HEAVY
+	damage = 50
+
+//light incendiary for setting stuff on fire, etc
+/obj/item/projectile/bullet/modern/c127x99/tracer
+	damage = 50
+	var/fire_stacks = 2
+	armor_penetration = ARMOR_BALLISTIC_RIFLE
+
+/obj/item/projectile/bullet/modern/c127x99/tracer/after_move()
+	. = ..()
+	new /obj/effect/fake_fire/dragon_breath(loc)
+
+/obj/item/projectile/bullet/modern/c127x99/tracer/on_hit(atom/target, blocked)
+	if(..(target, blocked))
+		if(isliving(target))
+			var/mob/living/L = target
+			L.adjust_fire_stacks(fire_stacks)
+			L.IgniteMob()
+
+//heavy incendiary for setting stuff on fire, etc
+/obj/item/projectile/bullet/modern/c127x99/tracer/heavy
+	damage = 45
+	fire_stacks = 10
+
+//explosive round
+/obj/item/projectile/bullet/modern/c127x99/tracer/explosive
+	damage = 90
+	fire_stacks = 5
+
+/obj/item/projectile/bullet/modern/c127x99/tracer/explosive/on_hit(atom/target, blocked)
+	cell_explosion(target, 200, 150, z_transfer = null)
+	. = ..()

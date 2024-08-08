@@ -41,7 +41,7 @@
 /datum/uplink_item/item/services/fake_update_annoncement/New()
 	..()
 	item_cost = round(DEFAULT_TELECRYSTAL_AMOUNT / 2)
-	addtimer(CALLBACK(src, .proc/finalize_announce), 2)
+	addtimer(CALLBACK(src, PROC_REF(finalize_announce)), 2)
 
 /datum/uplink_item/item/services/fake_update_annoncement/proc/finalize_announce()
 	name = "[command_name()] Update Announcement"
@@ -160,7 +160,7 @@
 	service_label = "Ion Storm Announcement"
 
 /obj/item/uplink_service/fake_ion_storm/enable(var/mob/user = usr)
-	ion_storm_announcement(GetConnectedZlevels(get_z(src)))
+	ion_storm_announcement(SSmapping.get_connected_levels(get_z(src)))
 	. = ..()
 
 /*****************
@@ -190,7 +190,7 @@
 
 	if(CanUseTopic(user, global.hands_topic_state) != STATUS_INTERACTIVE)
 		return FALSE
-	command_announcement.Announce(message, title, msg_sanitized = 1, zlevels = GetConnectedZlevels(get_z(src)))
+	command_announcement.Announce(message, title, msg_sanitized = 1, zlevels = SSmapping.get_connected_levels(get_z(src)))
 	return TRUE
 
 /*********************************

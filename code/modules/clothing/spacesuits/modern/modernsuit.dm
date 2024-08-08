@@ -158,6 +158,12 @@
 	. -= leakiness * 0.01
 	return .
 
+/obj/item/clothing/suit/modern/space/proc/adjust_leakiness(amount)
+	leakiness = Clamp(leakiness + amount, 0, 100)
+	if(amount < 0 && leakiness < 1)
+		wearer.playsound_local(wearer, 'sound/effects/alert.ogg', 30, 0)
+		to_chat(wearer, SPAN_WARNING("Suit integrity faltering."))
+
 /obj/item/clothing/suit/modern/space/attackby(obj/item/I, mob/user)
 	. = ..()
 	if(istype(I, /obj/item/stack/tape_roll/suit_sealing))
@@ -230,6 +236,9 @@
 	wearer.pickup_capacity += lifting_strength_boost
 	wearer.update_transform()
 	START_PROCESSING(SSobj, src)
+	user.playsound_local(user, 'sound/effects/scanbeep.ogg', 30, 0)
+	spawn(2 SECONDS)
+		user.playsound_local(user, 'sound/effects/internals.ogg', 70, 0)
 
 /obj/item/clothing/suit/modern/space/dropped(mob/user)
 	. = ..()
@@ -243,7 +252,7 @@
 /obj/item/clothing/suit/modern/space/Process()
 	lifesupportsystem.do_support()
 	if(leakiness)
-		internal_atmosphere.remove_ratio(leakiness * 0.01)
+		internal_atmosphere.remove_ratio(leakiness * 0.003)
 		if(!leak_message_on_cooldown)
 			leak_message_on_cooldown = TRUE
 			spawn(50)

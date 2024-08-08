@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(radiation)
 		current_res_cache = resistance_cache.Copy()
 		listeners = global.living_mob_list_.Copy()
 
+	var/rad_decay_rate = get_config_value(/decl/config/num/radiation_decay_rate)
 	while(current_sources.len)
 		var/datum/radiation_source/S = current_sources[current_sources.len]
 		current_sources.len--
@@ -25,7 +26,7 @@ SUBSYSTEM_DEF(radiation)
 		if(QDELETED(S))
 			sources -= S
 		else if(S.decay)
-			S.update_rad_power(S.rad_power - config.radiation_decay_rate)
+			S.update_rad_power(S.rad_power - rad_decay_rate)
 		if (MC_TICK_CHECK)
 			return
 
@@ -72,8 +73,8 @@ SUBSYSTEM_DEF(radiation)
 		var/datum/radiation_source/source = value
 		if(source.rad_power < .)
 			continue // Already being affected by a stronger source
-		if(source.source_turf.z != T.z)
-			continue // Radiation is not multi-z
+		//if(source.source_turf.z != T.z)
+		//	continue // Radiation is not multi-z
 		if(source.respect_maint)
 			var/area/A = T.loc
 			if(A.area_flags & AREA_FLAG_RAD_SHIELDED)
@@ -86,15 +87,17 @@ SUBSYSTEM_DEF(radiation)
 			. = max(., source.rad_power)
 			continue // No need to ray trace for flat  field
 
-		// Okay, now ray trace to find resistence!
+		// Okay, now ray trace to find resistance!
 		var/turf/origin = source.source_turf
 		var/working = source.rad_power
-		while(origin != T)
-			origin = get_step_towards(origin, T) //Raytracing
-			if(!resistance_cache[origin]) //Only get the resistance if we don't already know it.
-				origin.calc_rad_resistance()
-			if(origin.cached_rad_resistance)
-				working = round((working / (origin.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.1)
+		var/datum/point/vector/tracing = new(origin.x, origin.y, origin.z, 0, 0, get_projectile_angle(origin, T))
+		for(var/i=0, i < get_dist(origin, T), i++)
+			var/turf/blocking = tracing.return_turf()
+			tracing.increment()
+			if(!resistance_cache[blocking]) //Only get the resistance if we don't already know it.
+				blocking.calc_rad_resistance()
+			if(blocking.cached_rad_resistance)
+				working = round((working / (blocking.cached_rad_resistance * get_config_value(/decl/config/num/radiation_resistance_multiplier))), 0.1)
 			if((working <= .) || (working <= RADIATION_THRESHOLD_CUTOFF))
 				break // Already affected by a stronger source (or its zero...)
 		. = max((working / (dist ** 2)), .) //Butchered version of the inverse square law. Works for this purpose

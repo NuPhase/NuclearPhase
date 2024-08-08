@@ -3,10 +3,8 @@
 	if(InStasis() || stat == DEAD)
 		return
 
-	var/obj/item/organ/internal/heart/cH = GET_INTERNAL_ORGAN(src, BP_HEART)
-	var/total_bleeding_modifier = 0.5 //in case we don't have a heart
-	if(cH)
-		get_bleeding_modifier(cH)
+	var/obj/item/organ/internal/liver/cL = GET_INTERNAL_ORGAN(src, BP_LIVER)
+	var/total_bleeding_modifier = get_bleeding_modifier(cL)
 
 	var/total_blood_lost = 0 //how much blood will be removed from the bloodstream
 	var/spray_message_list = list()
@@ -24,19 +22,17 @@
 						if(ishuman(cur_organ.applied_pressure))
 							var/mob/living/carbon/human/H = cur_organ.applied_pressure
 							H.bloody_hands(src, 0)
-						total_blood_lost += W.bleed_amount * 0.2
+						total_blood_lost += W.bleed_amount * 0.2 * total_bleeding_modifier
 					else
-						total_blood_lost += W.bleed_amount
+						total_blood_lost += W.bleed_amount * total_bleeding_modifier
 			if(cur_organ.status & ORGAN_ARTERY_CUT)
-				var/bleed_amount = mcv * cur_organ.arterial_bleed_severity
+				var/bleed_amount = min(mcv, NORMAL_MCV*2) * cur_organ.arterial_bleed_severity
+				bleed_amount = max(0.1, bleed_amount)
 				if(bleed_amount)
 					if(open_wound)
-						total_blood_lost += bleed_amount
 						spray_message_list += "[cur_organ.name]"
 					else
 						vessel.remove_any(bleed_amount)
-
-		total_blood_lost *= total_bleeding_modifier
 
 		if(world.time >= next_blood_squirt && isturf(loc) && length(spray_message_list))
 			var/spray_organ = pick(spray_message_list)
@@ -49,7 +45,7 @@
 
 			next_blood_squirt = world.time + 80
 			var/turf/sprayloc = get_turf(src)
-			total_blood_lost -= drip(CEILING(total_blood_lost/3), sprayloc)
+			total_blood_lost -= drip(NONUNIT_CEILING(total_blood_lost/3, 0.1), sprayloc)
 			if(total_blood_lost > 0)
 				total_blood_lost -= blood_squirt(total_blood_lost, sprayloc)
 				if(total_blood_lost > 0)
@@ -58,8 +54,12 @@
 			drip(total_blood_lost)
 	return total_blood_lost
 
-/mob/living/carbon/human/proc/get_bleeding_modifier(obj/item/organ/internal/heart/H)
-	var/cur_modifier = 1
+/mob/living/carbon/human/proc/get_bleeding_modifier(obj/item/organ/internal/liver/cL)
+	var/cur_modifier = 0.5
 	cur_modifier *= mcv / NORMAL_MCV
-	cur_modifier *= 1 + GET_CHEMICAL_EFFECT(src, CE_BLOOD_THINNING) * 0.5
-	return max(0.01, cur_modifier)
+	cur_modifier *= 1 + GET_CHEMICAL_EFFECT(src, CE_BLOOD_THINNING) * 0.2
+	if(cL)
+		cur_modifier += cL.damage / cL.max_damage
+	else
+		cur_modifier *= 1.7 //you bleed like hell without a liver
+	return Clamp(cur_modifier, 0.5, 2.5)

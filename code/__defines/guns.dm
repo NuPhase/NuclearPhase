@@ -5,8 +5,8 @@
 
 #define CALIBER_PISTOL_LASBULB   "11mm lasbulb"
 
-#define CALIBER_RIFLE            "5x56mm"
-#define CALIBER_ANTI_MATERIEL    "15×99mm"
+#define CALIBER_RIFLE            "6.8x51"
+#define CALIBER_ANTI_MATERIEL    "12.7x99mm"
 
 #define CALIBER_SHOTGUN          "12g"
 #define CALIBER_CAPS             "caps"

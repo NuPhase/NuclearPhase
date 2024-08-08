@@ -150,6 +150,13 @@ var/global/list/all_apcs = list()
 		/obj/item/cell/standard
 	)
 	stock_part_presets = list(/decl/stock_part_preset/terminal_setup)
+	failure_chance = 0.1
+
+/obj/machinery/power/apc/fail_roundstart()
+	if(prob(30))
+		critical_failure(2)
+	else
+		critical_failure(1)
 
 /obj/machinery/power/apc/buildable
 	uncreated_component_parts = null
@@ -219,14 +226,14 @@ var/global/list/all_apcs = list()
 		old_area.power_environ = 0
 		power_alarm.clearAlarm(old_area, src)
 		old_area.power_change()
-		events_repository.unregister(/decl/observ/name_set, old_area, src, .proc/change_area_name)
+		events_repository.unregister(/decl/observ/name_set, old_area, src, PROC_REF(change_area_name))
 	if(new_area)
 		ASSERT(isnull(new_area.apc))
 		ASSERT(isnull(area))
 		new_area.apc = src
 		area = new_area
 		change_area_name(new_area, null, new_area.name)
-		events_repository.register(/decl/observ/name_set, new_area, src, .proc/change_area_name)
+		events_repository.register(/decl/observ/name_set, new_area, src, PROC_REF(change_area_name))
 
 /obj/machinery/power/apc/get_req_access()
 	if(!locked)
@@ -447,6 +454,10 @@ var/global/list/all_apcs = list()
 		return
 	panel_open = TRUE
 	queue_icon_update()
+
+/obj/machinery/power/apc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(exposed_temperature > 700 && !cover_removed)
+		critical_failure(3)
 
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
 	if (istype(construct_state, /decl/machine_construction/wall_frame/panel_closed/hackable/hacking) && (IS_MULTITOOL(W) || IS_WIRECUTTER(W) || istype(W, /obj/item/assembly/signaler)))
@@ -942,6 +953,7 @@ var/global/list/all_apcs = list()
 				sleep(1)
 
 /obj/machinery/power/apc/proc/critical_failure(var/severity = 1)
+	set waitfor = FALSE
 	switch(severity)
 		if(1)
 			overload_lighting()
@@ -961,17 +973,18 @@ var/global/list/all_apcs = list()
 		if(3)
 			visible_message("<span class='danger'>[src]'s screen flashes loads of errors!</span>")
 			overload_lighting()
-			spawn(50)
-				visible_message("<span class='warning'>The [src] gets shredded to pieces by a large explosion!</span>")
-				wires.CutAll()
-				cover_removed = TRUE
-				force_open_panel()
-				var/obj/item/cell = get_cell()
-				qdel(cell)
-				var/turf/T = get_turf(src)
-				explosion(T, 0, 0, 1, 5)
-				new /obj/effect/effect/smoke/illumination(loc, 5, 30, 1, "#ffffff")
-				src.fragmentate(T, 72, 7, list(/obj/item/projectile/bullet/pellet/fragment/flaming = 1))
+			cover_removed = TRUE
+			sleep(50)
+			visible_message("<span class='warning'>The [src] gets shredded to pieces by a large explosion!</span>")
+			wires.CutAll()
+			force_open_panel()
+			var/obj/item/cell = get_cell()
+			qdel(cell)
+			var/turf/T = get_turf(src)
+			new /obj/effect/effect/smoke/illumination(loc, 5, 30, 1, "#ffffff")
+			src.fragmentate(T, 72, 7, list(/obj/item/projectile/bullet/pellet/fragment/flaming = 1))
+			qdel(src)
+			cell_explosion(T, 100, 15)
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
 	switch(val)

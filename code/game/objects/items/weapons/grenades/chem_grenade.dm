@@ -162,6 +162,7 @@
 
 	for(var/obj/item/chems/glass/G in beakers)
 		G.reagents.trans_to_obj(src, G.reagents.total_volume)
+		try_detonate_reagents()
 
 	anchored = TRUE
 	set_invisibility(INVISIBILITY_MAXIMUM)
@@ -196,8 +197,8 @@
 	desc = "An oversized grenade that affects a larger area."
 	icon = 'icons/obj/items/grenades/grenade_large.dmi'
 	allowed_containers = list(/obj/item/chems/glass)
-	origin_tech = "{'combat':3,'materials':3}"
 	affected_area = 4
+	origin_tech = @'{"combat":3,"materials":3}'
 	material = /decl/material/solid/metal/steel
 
 /obj/item/grenade/chem_grenade/metalfoam

@@ -22,7 +22,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/metal/plasteel = MATTER_AMOUNT_TRACE)
-	origin_tech = "{'materials':1,'engineering':1,'combat':1}"
+	origin_tech = @'{"materials":1,"engineering":1,"combat":1}'
 	protects_against_weather = TRUE
 
 /obj/item/clothing/head/helmet/tactical
@@ -31,14 +31,17 @@
 	icon = 'icons/clothing/head/armor/tactical.dmi'
 	armor = list(
 		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BALLISTIC_RIFLE,
+		bullet = ARMOR_BALLISTIC_AP,
 		laser = ARMOR_LASER_HANDGUNS,
 		energy = ARMOR_ENERGY_RESISTANT,
 		bomb = ARMOR_BOMB_PADDED
 		)
 	siemens_coefficient = 0.6
 	material = /decl/material/solid/metal/plasteel
-	origin_tech = "{'materials':2,'engineering':2,'combat':2}"
+	origin_tech = @'{"materials":2,"engineering":2,"combat":2}'
+
+/obj/item/clothing/head/helmet/tactical/green
+	starting_accessories = list(/obj/item/clothing/accessory/armor/helmcover)
 
 /obj/item/clothing/head/helmet/merc
 	name = "combat helmet"
@@ -54,7 +57,7 @@
 	siemens_coefficient = 0.5
 	material = /decl/material/solid/metal/plasteel
 	matter = list(/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_REINFORCEMENT)
-	origin_tech = "{'materials':2,'engineering':2,'combat':2}"
+	origin_tech = @'{"materials":2,"engineering":2,"combat":2}'
 
 /obj/item/clothing/head/helmet/merc/lima_guard
 	name = "heavy guard helmet"
@@ -127,7 +130,7 @@
 		/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_TRACE
 		)
-	origin_tech = "{'materials':3,'engineering':2,'combat':3}"
+	origin_tech = @'{"materials":3,"engineering":2,"combat":3}'
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -145,7 +148,7 @@
 	siemens_coefficient = 0.5
 	material = /decl/material/solid/metal/plasteel
 	matter = list(/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT)
-	origin_tech = "{'materials':4,'engineering':2,'combat':4}"
+	origin_tech = @'{"materials":4,"engineering":2,"combat":4}'
 
 /obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
@@ -164,7 +167,7 @@
 	siemens_coefficient = 1
 	material = /decl/material/solid/metal/plasteel
 	matter = list(/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT)
-	origin_tech = "{'materials':4,'engineering':2,'combat':4}"
+	origin_tech = @'{"materials":4,"engineering":2,"combat":4}'
 
 /obj/item/clothing/head/helmet/gladiator
 	name = "gladiator helmet"

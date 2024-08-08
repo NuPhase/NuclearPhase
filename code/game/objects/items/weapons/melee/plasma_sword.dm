@@ -10,7 +10,7 @@
 	pickup_sound = 'sound/foley/knife1.ogg'
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 	icon_state = ICON_STATE_WORLD
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_NO_BLOOD
+	atom_flags = ATOM_FLAG_NO_BLOOD
 	w_class = ITEM_SIZE_LARGE
 	sharp = 1
 	edge = 1
@@ -40,10 +40,6 @@
 
 /obj/item/plasma_sword/get_heat()
 	return 47000
-
-/obj/item/plasma_sword/get_autopsy_descriptors()
-	. = ..()
-	. += "so precise it looks impossible"
 
 /obj/item/plasma_sword/can_embed()
 	return FALSE

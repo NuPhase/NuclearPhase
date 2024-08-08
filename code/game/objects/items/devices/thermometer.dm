@@ -9,7 +9,7 @@
 
 	if(istype(target, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = target
-		message = "[H]'s body temperature is: [H.bodytemperature - T0C]C|[H.bodytemperature]K."
+		message = "[H]'s body temperature is: [round(H.bodytemperature - T0C, 0.1)]C|[round(H.bodytemperature, 0.1)]K."
 	else if(istype(target, /obj/machinery/atmospherics/unary))
 		var/obj/machinery/atmospherics/unary/U = target
 		message = "[U]'s hull temperature is: [round(U.air_contents.temperature - T0C)]C|[round(U.air_contents.temperature)]K."

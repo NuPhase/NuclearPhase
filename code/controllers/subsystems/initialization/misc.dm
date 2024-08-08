@@ -9,8 +9,8 @@ SUBSYSTEM_DEF(misc)
 	config.generate_map = TRUE
 #endif
 
-	if(config.generate_map)
-		global.using_map.perform_map_generation()
+	//if(config.generate_map)
+	//	global.using_map.perform_map_generation()
 	global.using_map.build_exterior_atmosphere()
 
 	setupgenetics()

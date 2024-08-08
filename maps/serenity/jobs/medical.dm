@@ -70,7 +70,7 @@
 		SKILL_ANATOMY   = SKILL_MAX,
 		SKILL_CHEMISTRY = SKILL_MAX
 	)
-	skill_points = 29
+	skill_points = 34
 	software_on_spawn = list(
 		/datum/computer_file/program/comm,
 		/datum/computer_file/program/suit_sensors,
@@ -135,7 +135,7 @@
 		/datum/computer_file/program/suit_sensors,
 		/datum/computer_file/program/camera_monitor
 	)
-	skill_points = 25
+	skill_points = 27
 	title = "Paramedic"
 	event_categories = list(ASSIGNMENT_MEDICAL)
 
@@ -178,7 +178,7 @@
 		SKILL_ANATOMY	= SKILL_ADEPT,
 		SKILL_CHEMISTRY = SKILL_MAX
 	)
-	skill_points = 16
+	skill_points = 25
 
 /datum/job/intern
 	title = "Medical Intern"
@@ -211,7 +211,7 @@
 		SKILL_ANATOMY	= SKILL_ADEPT,
 		SKILL_CHEMISTRY = SKILL_MAX
 	)
-	skill_points = 12
+	skill_points = 20
 	only_for_whitelisted = FALSE
 
 /datum/job/counselor

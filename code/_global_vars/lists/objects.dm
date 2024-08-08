@@ -15,6 +15,7 @@ var/global/host = null //only here until check @ code\modules\ghosttrap\trap.dm:
 var/global/datum/sun/sun = new
 var/global/datum/universal_state/universe = new
 var/global/datum/reactor_control_system/rcontrol = new
+var/global/datum/power_control_system/pcontrol = new
 
 /// Vowels.
 var/global/list/vowels = list("a","e","i","o","u")

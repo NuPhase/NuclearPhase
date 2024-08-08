@@ -110,7 +110,7 @@
 /obj/machinery/atmospherics/unary/tank/large/decontamination
 	name = "Large Tank (Decontamination)"
 	icon_state = "decontamination"
-	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/solid/metal/fission_byproduct = 0.03)
+	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/solid/metal/nuclear_waste/actinides = 0.0003)
 
 /obj/item/pipe/tank
 	icon = 'icons/obj/atmospherics/stationary_canisters.dmi'

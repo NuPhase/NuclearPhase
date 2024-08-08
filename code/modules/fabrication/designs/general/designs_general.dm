@@ -106,7 +106,7 @@
 	path = /obj/item/stack/material/reinforced/mapped/fiberglass
 	category = "Textiles"
 	fabricator_types = list(
-		FABRICATOR_CLASS_GENERAL,
+		FABRICATOR_CLASS_PRINTER,
 		FABRICATOR_CLASS_TEXTILE
 	)
 
@@ -114,6 +114,19 @@
 	resources = list(
 		/decl/material/solid/glass =   CEILING((SHEET_MATERIAL_AMOUNT * FABRICATOR_EXTRA_COST_FACTOR)/2),
 		/decl/material/solid/plastic = CEILING((SHEET_MATERIAL_AMOUNT * FABRICATOR_EXTRA_COST_FACTOR)/2)
+	)
+
+/datum/fabricator_recipe/graphene
+	path = /obj/item/stack/material/bolt/mapped/graphene
+	category = "Textiles"
+	fabricator_types = list(
+		FABRICATOR_CLASS_GENERAL,
+		FABRICATOR_CLASS_PRINTER
+	)
+
+/datum/fabricator_recipe/graphene/get_resources()
+	resources = list(
+		/decl/material/solid/carbon =  CEILING((SHEET_MATERIAL_AMOUNT * FABRICATOR_EXTRA_COST_FACTOR))
 	)
 
 /datum/fabricator_recipe/struts

@@ -14,7 +14,10 @@ var/global/list/pipe_colors = list(
 	"yellow" = PIPE_COLOR_YELLOW,
 	"black" = PIPE_COLOR_BLACK,
 	"orange" = PIPE_COLOR_ORANGE,
-	"white" = PIPE_COLOR_WHITE)
+	"white" = PIPE_COLOR_WHITE,
+	"violet" = PIPE_COLOR_VIOLET,
+	"ch4-in" = PIPE_COLOR_COOLANT_IN,
+	"ch4-out" = PIPE_COLOR_COOLANT_OUT)
 
 /proc/pipe_color_lookup(var/color)
 	for(var/C in pipe_colors)

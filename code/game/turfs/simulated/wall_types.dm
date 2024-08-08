@@ -60,6 +60,7 @@
 
 /turf/simulated/wall/r_titanium
 	icon_state = "reinforced_solid"
+	color = COLOR_SILVER
 	material = /decl/material/solid/metal/titanium
 	reinf_material = /decl/material/solid/metal/titanium
 

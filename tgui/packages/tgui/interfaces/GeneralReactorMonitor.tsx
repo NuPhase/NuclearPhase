@@ -14,11 +14,13 @@ type InputData = {
   power_load: number;
   thermal_load: number;
   neutron_rate: number;
+  energy_rate: number;
   xray_flux: number;
   radiation: number;
   chamber_temperature: number;
   containment_consumption: number;
   containment_temperature: number;
+  containment_volume: number;
   containment_charge: number;
   moderator_position: number;
   reflector_position: number;
@@ -56,15 +58,28 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                 <LabeledList.Item label = "Neutron Generation Rate">
                   <ProgressBar
                     ranges={{
-                    bad: [1.2, Infinity],
-                    good: [0.95, 1.05],
-                    average: [1.05, 1.2],
-                    teal: [0, 0.95],
+                    bad: [5, Infinity],
+                    good: [-1, 1],
+                    average: [-3, -1],
+                    teal: [-10, -3],
                     }}
-                    minValue = {0}
-                    maxValue = {2}
+                    minValue = {-10}
+                    maxValue = {10}
                     value={data.neutron_rate}>
-                  {data.neutron_rate*100-100}%
+                  {data.neutron_rate}
+                  </ProgressBar>
+                </LabeledList.Item>
+                <LabeledList.Item label = "Temperature Rate">
+                  <ProgressBar
+                    ranges={{
+                    bad: [-Infinity, -2.5],
+                    good: [-0.5, 0.5],
+                    average: [2.5, Infinity],
+                    }}
+                    minValue = {-5}
+                    maxValue = {5}
+                    value={data.energy_rate}>
+                  {data.energy_rate} eV/s ({(data.chamber_temperature*0.00008).toFixed(1)} eV)
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item label = "External Radiation Level">
@@ -84,10 +99,13 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                   {formatSiUnit(data.containment_consumption, 1, "W")}
                 </LabeledList.Item>
                 <LabeledList.Item label = "Shield Temperature">
-                  {formatSiUnit(data.containment_temperature, 1, "K")}
+                  {data.containment_temperature}K
                 </LabeledList.Item>
                 <LabeledList.Item label = "Shield Battery Charge">
                   {data.containment_charge}%
+                </LabeledList.Item>
+                <LabeledList.Item label = "Shield Internal Volume">
+                  {data.containment_volume}m3
                 </LabeledList.Item>
                 <LabeledList.Item label = "Moderator Position">
                   {data.moderator_position*100}%

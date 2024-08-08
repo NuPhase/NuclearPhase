@@ -4,7 +4,7 @@
 	name =          ""
 	icon =          'icons/effects/landmarks.dmi'
 	icon_state =    "x2"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	alpha =         0
 	simulated =     FALSE
 	density =       FALSE

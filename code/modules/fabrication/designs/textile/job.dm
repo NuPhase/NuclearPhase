@@ -7,6 +7,9 @@
 /datum/fabricator_recipe/textiles/job/chefalt
 	path = /obj/item/clothing/suit/chef/classic
 
+/datum/fabricator_recipe/textiles/job/graphene
+	path = /obj/item/clothing/under/graphene
+
 /datum/fabricator_recipe/textiles/job/chaplain_hoodie
 	path = /obj/item/clothing/suit/chaplain_hoodie
 
@@ -114,10 +117,10 @@
 
 /datum/fabricator_recipe/textiles/job/medical/suithospital
 	path = /obj/item/clothing/suit/hospital
-	
+
 /datum/fabricator_recipe/textiles/job/medical/suitmedicalresponder
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
-	
+
 /datum/fabricator_recipe/textiles/job/medical/medicalchestrig
 	path = /obj/item/clothing/suit/storage/medical_chest_rig
 

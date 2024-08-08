@@ -19,7 +19,7 @@
 	var/on = FALSE
 	var/activation_sound = 'sound/effects/flashlight.ogg'
 
-	var/flashlight_range = 6 // range of light when on, can be negative
+	var/flashlight_range = 7 // range of light when on, can be negative
 	var/flashlight_power     // brightness of light when on
 	var/flashlight_flags = 0 // FLASHLIGHT_ bitflags
 
@@ -343,7 +343,7 @@
 
 /obj/item/flashlight/flare/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(proximity && istype(O) && on)
-		O.HandleObjectHeating(src, user, 500)
+		O.handle_external_heating(500, src, user)
 	..()
 
 /obj/item/flashlight/flare/proc/activate(var/mob/user)

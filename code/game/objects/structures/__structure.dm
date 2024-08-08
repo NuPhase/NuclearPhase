@@ -12,6 +12,7 @@
 	var/footstep_type
 	var/mob_offset
 	weight = 20
+	explosion_resistance = 20
 
 /obj/structure/create_matter()
 	..()

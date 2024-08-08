@@ -5,13 +5,16 @@ it needs to create more trails.A beaker could have a steam_trail_follow system s
 would spawn and follow the beaker, even if it is carried or thrown.
 */
 
+/obj/effect //We specifically anchor objects for atmos
+	anchored = TRUE
 
 /obj/effect/effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
+	anchored = FALSE
 
 /datum/effect/effect/system
 	var/number = 3
@@ -99,11 +102,12 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	var/amount = 6.0
 	anchored = 1.0
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 
 /obj/effect/sparks/Initialize()
 	. = ..()
 	QDEL_IN(src, 5 SECONDS)
+	animate(src, alpha = 0, time = 5 SECONDS)
 	playsound(src.loc, "sparks", 100, 1)
 	var/turf/T = src.loc
 	if (isturf(T))
@@ -169,20 +173,23 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke
 	name = "smoke"
-	icon_state = "smoke"
-	opacity = 1
+	opacity = 0
 	anchored = 0.0
-	mouse_opacity = 0
+	layer = ABOVE_HUMAN_LAYER
 	var/amount = 6.0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	var/time_to_live = 100
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
+	icon_state = "gibberish"
 	pixel_x = -32
 	pixel_y = -32
+	alpha = 240
 
 /obj/effect/effect/smoke/Initialize()
 	. = ..()
+	particles = SSparticles.get_particle(/particles/smoke_continuous)
 	QDEL_IN(src, time_to_live)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M)
@@ -247,6 +254,10 @@ steam.start() -- spawns the effect
 		B.damage = (B.damage/2)
 	return 1
 
+/obj/effect/effect/smoke/bad/mine
+	time_to_live = 3 SECONDS
+	alpha = 110
+
 /obj/effect/effect/smoke/bad/transformer
 	color = COLOR_COPPER //evaporated steel
 	time_to_live = 5 SECONDS
@@ -261,7 +272,8 @@ steam.start() -- spawns the effect
 	M.bloodstr.add_reagent(/decl/material/liquid/presyncopics, 0.7)
 
 /obj/effect/effect/smoke/decontamination
-	color = "#ddf8ff"
+	color = "#90cedd"
+	time_to_live = 2 SECONDS
 
 /obj/effect/effect/smoke/decontamination/affect(mob/living/carbon/M)
 	if(!istype(M))

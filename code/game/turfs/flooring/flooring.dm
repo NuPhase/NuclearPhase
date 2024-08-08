@@ -173,7 +173,8 @@
 	build_type = /obj/item/stack/tile/mono
 
 /decl/flooring/tiling/mono/dark
-	color = COLOR_DARK_GRAY
+	color = null
+	icon_base = "monotiledark"
 	build_type = /obj/item/stack/tile/mono/dark
 
 /decl/flooring/tiling/mono/white
@@ -189,12 +190,36 @@
 
 /decl/flooring/tiling/dark
 	desc = "How ominous."
-	color = COLOR_DARK_GRAY
+	icon_base = "dark"
+	color = null
 	build_type = /obj/item/stack/tile/floor_dark
 
 /decl/flooring/tiling/dark/mono
 	icon_base = "monotile"
 	build_type = null
+
+/decl/flooring/tiling/dark/edge
+	icon_base = "dark_edge"
+/decl/flooring/tiling/dark/half
+	icon_base = "dark_half"
+/decl/flooring/tiling/dark/corner
+	icon_base = "dark_corner"
+/decl/flooring/tiling/dark/small
+	icon_base = "dark_small"
+/decl/flooring/tiling/dark/diagonal
+	icon_base = "dark_diagonal"
+/decl/flooring/tiling/dark/herringbone
+	icon_base = "dark_herringbone"
+/decl/flooring/tiling/dark/textured
+	icon_base = "textured_dark"
+/decl/flooring/tiling/dark/textured/edge
+	icon_base = "textured_dark_edge"
+/decl/flooring/tiling/dark/textured/half
+	icon_base = "textured_dark_half"
+/decl/flooring/tiling/dark/textured/corner
+	icon_base = "textured_dark_corner"
+/decl/flooring/tiling/dark/textured/monotile
+	icon_base = "textured_dark_large"
 
 /decl/flooring/tiling/freezer
 	desc = "Don't slip."

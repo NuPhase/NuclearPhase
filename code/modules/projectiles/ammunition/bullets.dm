@@ -132,7 +132,7 @@
 	leaves_residue = 0
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/glass = MATTER_AMOUNT_REINFORCEMENT)
-	origin_tech = "{'combat':3,'materials':3}"
+	origin_tech = @'{"combat":3,"materials":3}'
 
 /obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
 	if(prob(100/severity)) BB = null
@@ -156,23 +156,37 @@
 	projectile_type  = /obj/item/projectile/ion
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/metal/uranium = MATTER_AMOUNT_REINFORCEMENT)
-	origin_tech = "{'combat':4,'materials':3}"
+	origin_tech = @'{"combat":4,"materials":3}'
 
 /obj/item/ammo_casing/shell
-	name = "shell casing"
+	name = "50 BMG casing"
 	desc = "An anti-materiel shell casing."
 	caliber = CALIBER_ANTI_MATERIEL
-	projectile_type = /obj/item/projectile/bullet/rifle/shell
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99
 	material = /decl/material/solid/metal/steel
 	color = COLOR_POLISHED_BRASS
 	icon = 'icons/obj/ammo/casings/anti_materiel.dmi'
 
-/obj/item/ammo_casing/shell/apds
-	name = "\improper APDS shell casing"
-	desc = "An Armour Piercing Discarding Sabot shell."
-	projectile_type = /obj/item/projectile/bullet/rifle/shell/apds
+/obj/item/ammo_casing/shell/ap
+	name = "50 BMG AP casing"
+	marking_color = COLOR_GUNMETAL
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/ap
+
+/obj/item/ammo_casing/shell/tracer
+	name = "50 BMG Tracer casing"
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer
 	bullet_color = COLOR_RED_GRAY
 	marking_color = COLOR_NT_RED
+
+/obj/item/ammo_casing/shell/tracer/heavy
+	name = "50 BMG Incendiary casing"
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer/heavy
+	marking_color = COLOR_ORANGE
+
+/obj/item/ammo_casing/shell/tracer/explosive
+	name = "50 BMG Explosive casing"
+	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer/explosive
+	marking_color = COLOR_RED
 
 /obj/item/ammo_casing/rifle
 	desc = "A military rifle bullet casing."
@@ -213,17 +227,41 @@
 	material = /decl/material/solid/glass
 	matter = list(/decl/material/solid/plastic = MATTER_AMOUNT_REINFORCEMENT)
 
+//For rifles
 /obj/item/ammo_casing/c6p8x51
-	desc = "6.8x51 casing."
+	name = "6.8x51 casing."
 	caliber = "6.8x51"
 	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51
 	icon = 'icons/obj/ammo/casings/rifle.dmi'
+/obj/item/ammo_casing/c6p8x51/ap
+	name = "6.8x51 AP casing."
+	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/ap
+/obj/item/ammo_casing/c6p8x51/fmj
+	name = "6.8x51 FMJ casing."
+	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/fmj
+/obj/item/ammo_casing/c6p8x51/hp
+	name = "6.8x51 HP casing."
+	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/hp
 
 /obj/item/ammo_casing/c11x25
-	desc = "11x25 casing."
+	name = "11x25 casing."
 	caliber = "11x25"
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
+
+/obj/item/ammo_casing/caseless/c11x25
+	name = "11x25 CL casing."
+	caliber = "11x25"
+	projectile_type = /obj/item/projectile/bullet/modern/c11x25
+	icon = 'icons/obj/ammo/casings/pistol.dmi'
+
+/obj/item/ammo_casing/caseless/c11x25/srec
+	name = "11x25 SREC shell."
+	projectile_type = /obj/item/projectile/bullet/modern/c11x25/srec
+	icon = 'icons/obj/ammo/casings/pistol.dmi'
+	caliber = "11x25"
+	color = COLOR_GUNMETAL
+	bullet_color = COLOR_GUNMETAL
 
 /obj/item/ammo_casing/c10x77
 	name = "10x77-HS special casing"

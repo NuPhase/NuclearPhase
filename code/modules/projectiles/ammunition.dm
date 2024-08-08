@@ -41,6 +41,9 @@
 
 	update_icon()
 
+/obj/item/ammo_casing/caseless/expend()
+	qdel(src)
+
 /obj/item/ammo_casing/Crossed(atom/AM)
 	..()
 

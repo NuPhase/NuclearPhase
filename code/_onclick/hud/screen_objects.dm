@@ -26,7 +26,7 @@
 /obj/screen/text
 	icon = null
 	icon_state = null
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	screen_loc = "CENTER-7,CENTER-7"
 	maptext_height = 480
 	maptext_width = 480
@@ -231,6 +231,13 @@
 /obj/screen/intent/on_update_icon()
 	icon_state = "intent_[intent]"
 
+/obj/screen/MouseEntered(location, control, params)
+	if(icon_state == initial(icon_state))
+		return
+	if(!usr.canClick())
+		return 1
+	sound_to(usr, sound('sound/gui/hover.mp3', volume=40))
+
 /obj/screen/Click(location, control, params)
 	if(!usr)	return 1
 	switch(name)
@@ -340,13 +347,10 @@
 				C.select_held_item_slot(name)
 			return TRUE
 
-	switch(name)
-		if("swap")
-			usr.swap_hand()
-		if("hand")
-			usr.swap_hand()
-		else if(usr.attack_ui(slot_id))
-			usr.update_inv_hands(0)
+	if(name == "swap" || name == "hand")
+		usr.swap_hand()
+	else if(usr.attack_ui(slot_id))
+		usr.update_inv_hands(0)
 	return 1
 
 // Character setup stuff

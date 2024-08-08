@@ -401,6 +401,8 @@
 					new item_path(src)
 		update_icon()
 
+	update_weight()
+
 /obj/item/storage/emp_act(severity)
 	if(!istype(src.loc, /mob/living))
 		for(var/obj/O in contents)

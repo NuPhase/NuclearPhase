@@ -7,7 +7,7 @@
 	item_state = "plasticx"
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = "{'esoteric':2}"
+	origin_tech = @'{"esoteric":2}'
 	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10
 	var/atom/target = null
@@ -75,7 +75,7 @@
 	if(!target)
 		target = src
 	if(location)
-		cell_explosion(get_turf(target), 1100, 600, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, explosion_direction)
+		cell_explosion(get_turf(target), 3100, 2500, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, explosion_direction)
 	if(target)
 		target.overlays -= image_overlay
 	qdel(src)

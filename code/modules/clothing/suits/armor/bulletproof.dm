@@ -6,7 +6,7 @@
 	restricted_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA, ACCESSORY_SLOT_ARMOR_A, ACCESSORY_SLOT_ARMOR_L)
 	body_parts_covered = SLOT_UPPER_BODY|SLOT_LOWER_BODY
 	armor = list(
-		melee = ARMOR_MELEE_RESISTANT,
+		melee = ARMOR_MELEE_KNIVES,
 		bullet = ARMOR_BALLISTIC_AP,
 		laser = ARMOR_LASER_SMALL,
 		energy = ARMOR_ENERGY_MINOR,
@@ -19,7 +19,7 @@
 		/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_TRACE
 		)
-	origin_tech = "{'materials':3,'engineering':1,'combat':3}"
+	origin_tech = @'{"materials":3,"engineering":1,"combat":3}'
 
 // no accessory
 /obj/item/clothing/suit/armor/bulletproof/prepared
@@ -43,7 +43,7 @@
 		/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_TRACE
 		)
-	origin_tech = "{'materials':3,'engineering':1,'combat':3}"
+	origin_tech = @'{"materials":3,"engineering":1,"combat":3}'
 
 /obj/item/clothing/accessory/legguards/ballistic
 	name = "ballistic leg guards"
@@ -64,4 +64,4 @@
 		/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_TRACE
 		)
-	origin_tech = "{'materials':3,'engineering':1,'combat':3}"
+	origin_tech = @'{"materials":3,"engineering":1,"combat":3}'

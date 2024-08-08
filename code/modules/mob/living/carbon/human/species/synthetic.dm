@@ -209,7 +209,7 @@ We have a very powerful computer system that allows our neural network to fully 
 		// Please be very careful when calling custom_pain() from within code that relies on pain/trauma values. There's the
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nohalloss = TRUE in these cases!
-		custom_pain("[pick("Pain imitation active")]!", 10, nohalloss = TRUE)
+		custom_pain("[pick("Pain imitation active")]!", 150, nohalloss = TRUE)
 
 	if(a_intent == I_HURT)
 		return
@@ -224,17 +224,17 @@ We have a very powerful computer system that allows our neural network to fully 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
-			custom_pain("[pick("Your pain imitation levels are high")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("Your pain imitation levels are high")]!", 250, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 1)
 
 	if(shock_stage >= 80)
 		if (prob(5))
-			custom_pain("[pick("Your sensors are signaling high levels of painful activity")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("Your sensors are signaling high levels of painful activity")]!", 450, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 1)
 
 	if(shock_stage >= 120)
 		if(!HAS_STATUS(src, STAT_PARA) && prob(2))
-			custom_pain("[pick("Extreme pain mimicing levels reached")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("Extreme pain mimicing levels reached")]!", 750, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 2)
 
 	if(shock_stage == 150)
@@ -260,7 +260,7 @@ We have a very powerful computer system that allows our neural network to fully 
 			SPAN_DANGER("Your [organ.name] sends warning messages as you bump [O] inside."), \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."),       \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."))
-		custom_pain(msg,40,affecting = organ)
+		custom_pain(msg,450,affecting = organ)
 	organ.take_external_damage(rand(1,3) + O.w_class, DAM_EDGE, 0)
 
 /mob/living/carbon/human/synthetic/help_shake_act(mob/living/carbon/M)
@@ -402,7 +402,7 @@ We have a very powerful computer system that allows our neural network to fully 
 	if(mRun in mutations)
 		tally = 0
 
-	return (tally+config.human_delay)
+	return (tally+get_config_value(/decl/config/num/movement_human))
 
 /mob/living/carbon/human/synthetic/handle_environment(datum/gas_mixture/environment)
 
@@ -519,3 +519,45 @@ We have a very powerful computer system that allows our neural network to fully 
 		var/obj/item/organ/external/ext_organ = GET_EXTERNAL_ORGAN(usr, org_tag)
 		ext_organ.masking = FALSE
 		ext_organ.update_icon()
+
+/mob/living/carbon/human/synthetic/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SynthOS", "Synthetic Operating Software")
+		ui.open()
+
+/mob/living/carbon/human/synthetic/tgui_data(mob/user)
+	var/list/data = list(
+		"externalorganlist" = assemble_external_organ_list(),
+		"internalorganlist" = assemble_internal_organ_list(),
+		"body_temperature" = round(bodytemperature, 0.1),
+		"water_consumption" = 17.4, //fixed for now
+		"water_level" = round(hydration / initial(hydration) * 100),
+		"nutrient_level" = round(nutrition / initial(nutrition) * 100)
+	)
+	return data
+
+/mob/living/carbon/human/synthetic/proc/assemble_external_organ_list()
+	var/organ_list = list()
+	for(var/obj/item/organ/O in get_external_organs())
+		var/damage_percentage = 100
+		if(O.damage)
+			damage_percentage = abs(1 - O.damage / O.max_damage) * 100
+		organ_list += list(list("name" = O.name, "damage_percentage" = round(damage_percentage), "is_critical" = O.vital, "dead" = O.is_broken()))
+	return organ_list
+
+/mob/living/carbon/human/synthetic/proc/assemble_internal_organ_list()
+	var/organ_list = list()
+	for(var/obj/item/organ/O in get_internal_organs())
+		var/damage_percentage = 100
+		if(O.damage)
+			damage_percentage = abs(1 - O.damage / O.max_damage) * 100
+		organ_list += list(list("name" = O.name, "damage_percentage" = round(damage_percentage), "is_critical" = O.vital, "dead" = O.is_broken()))
+	return organ_list
+
+/mob/living/carbon/human/synthetic/verb/open_ui()
+	set name = "Open OS Interface"
+	set desc = "Check your status."
+	set category = "Synthetic"
+
+	tgui_interact(usr)

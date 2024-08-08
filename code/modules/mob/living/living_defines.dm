@@ -52,3 +52,5 @@
 	var/next_pain_time = 0
 
 	var/obj/machinery/power/electrocuted_by = null
+
+	var/srec_dose = 0 //concentration of crystals in the body, measured in mcg/ml

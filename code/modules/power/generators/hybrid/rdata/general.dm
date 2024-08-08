@@ -25,12 +25,14 @@
 		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
 		"neutron_rate" = round(rcore.neutron_rate, 0.01),
+		"energy_rate" = round(rcore.energy_rate, 0.01),
 		"xray_flux" = round(rcore.xray_flux, 0.01),
 		"radiation" = round(rcore.last_radiation * 0.01),
 		"chamber_temperature" = core_air.temperature,
 		"containment_consumption" = round(rcore.field_power_consumption),
 		"containment_temperature" = round(rcore.shield_temperature),
 		"containment_charge" = round(rcore.field_battery_charge / MAX_MAGNET_CHARGE * 100, 0.1), //not implemented
+		"containment_volume" = round(rcore.containment_field.volume / 1000, 0.1),
 		"moderator_position" = rcore.moderator_position,
 		"reflector_position" = rcore.reflector_position
 	)
@@ -60,19 +62,17 @@
 
 	if(mixture)
 		var/total_moles = mixture.total_moles
-
 		if (total_moles>0)
-			var/perGas_add_string = ""
 			for(var/mix in mixture.gas)
 				var/percentage = round(mixture.gas[mix]/total_moles * 100, 0.01)
 				if(!percentage)
 					continue
 				var/decl/material/mat = GET_DECL(mix)
-				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string]"
+				. += "[capitalize(mat.gas_name)]: [round(mixture.gas[mix] * mat.molar_mass * 1000, 0.1)]g | [round(mixture.gas[mix] * mat.molar_volume)]ml | [percentage]%"
 			var/totalGas_add_string = "Total mass: [round(mixture.get_mass(), 0.01)]kg"
 			. += "[totalGas_add_string]"
 			return
-	return "<span class='warning'>\The chamber has no gases!</span>"
+	return "<span class='warning'>The chamber has no gases!</span>"
 
 /obj/machinery/reactor_monitor/general/proc/chat_report(message, urgency)
 	switch(urgency)

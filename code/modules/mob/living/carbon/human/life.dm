@@ -3,14 +3,6 @@
 //NOTE: Breathing happens once per FOUR TICKS, unless the last breath fails. In which case it happens once per ONE TICK! So oxyloss healing is done once per 4 ticks while oxyloss damage is applied once per tick!
 #define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
 
-#define HUMAN_CRIT_TIME_CUSHION (10 MINUTES) //approximate time limit to stabilize someone in crit
-#define HUMAN_CRIT_HEALTH_CUSHION (config.health_threshold_crit - config.health_threshold_dead)
-
-//The amount of damage you'll get when in critical condition. We want this to be a HUMAN_CRIT_TIME_CUSHION long deal.
-//There are HUMAN_CRIT_HEALTH_CUSHION hp to get through, so (HUMAN_CRIT_HEALTH_CUSHION/HUMAN_CRIT_TIME_CUSHION) per tick.
-//Breaths however only happen once every MOB_BREATH_DELAY life ticks. The delay between life ticks is set by the mob process.
-#define HUMAN_CRIT_MAX_OXYLOSS ( MOB_BREATH_DELAY * process_schedule_interval("mob") * (HUMAN_CRIT_HEALTH_CUSHION/HUMAN_CRIT_TIME_CUSHION) )
-
 #define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 5 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 12 //Amount of damage applied when your body temperature passes the 1000K point
@@ -230,6 +222,9 @@
 		if(gene.is_active(src))
 			gene.OnMobLife(src)
 
+	if(srec_dose)
+		handle_srec()
+
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
 			set_light(0)
@@ -290,6 +285,63 @@
 				if(radiation > 100000) //exitus letalis
 					cur_heart.instability += 1000
 					cur_brain.take_internal_damage(1)
+
+//An infection by Self-Replicating Electrotrophic Crystals.
+//These silicon-like crystals use electricity for metabolism.
+//The disease progression to the lethal stage may take dozens of years, but any electrical shocks strongly exacerbate it.
+//SREC prevents microperfusion in capillary vessels, disrupting the delivery of oxygen to vital parts of the body.
+//In very high doses it disrupts biochemistry, causing widespread tissue damage with septic shock.
+
+//Our SREC dose is defined in mcg/ml.
+//Infections below below 80 mcg/ml are considered benign and won't show any symptoms.
+//80-120 mcg/ml shows disrupted microperfusion: weakened vision, occasional tickling in the extremities and slight skin paleness.
+//120-140 mcg/ml presents weakness, the eyes lose color, outer limbs get reduced pain sensation. No appetite.
+//140-160 mcg/ml is where flu-like symptoms appear as the immune system responds to hypoperfusion in outer tissues. Heighetened body temp and weakness.
+//160-180 mcg/ml. The immune system is totally inhibited. The eyes develop a greenish tinge and partial paralysis of outer limbs may occur.
+//180-200 mcg/ml. The dose can be much higher, but this is where things likely end. The slightest electric shock can cause a total circulatory collapse.
+//>200 mcg/ml. Survival is extremely unlikely without medication as organ failure begins to set in.
+/mob/living/carbon/human/proc/handle_srec()
+	var/inhibition_factor = GET_CHEMICAL_EFFECT(src, CE_SREC) + 1
+	if(srec_dose > 160 && inhibition_factor < 1.1) //Replicate
+		srec_dose *= 1.001
+
+	if(srec_dose > 80)
+		var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
+		var/dose_sqrt = sqrt(srec_dose) / inhibition_factor
+		cur_heart.cardiac_output_modifiers["SREC"] = 1 - (dose_sqrt * 0.003)
+		cur_heart.stability_modifiers["SREC"] = -1.25 * (dose_sqrt)
+		if(client)
+			change_skin_tone(round(client.prefs.skin_tone * 1 - dose_sqrt * 0.003))
+		to_chat_cooldown(src, SPAN_INFO("Your skin tickles.."), "srectickle", rand(2 MINUTES, 5 MINUTES * inhibition_factor))
+	else
+		return
+	if(srec_dose > 120)
+		if(srec_dose < 160)
+			change_eye_color(COLOR_GRAY)
+		adjustHalLoss(-150)
+		adjust_stamina(srec_dose * -0.05 / inhibition_factor)
+		to_chat_cooldown(src, SPAN_WARNING("You feel weak."), "srecweak", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
+	else
+		return
+	if(srec_dose > 140)
+		if(prob(sqrt(srec_dose) * 0.1 / inhibition_factor))
+			emote("cough")
+		bodytemperature += rand(1.3, 1.4) / inhibition_factor
+		adjust_immunity(-1 / inhibition_factor)
+		if(srec_dose < 160)
+			to_chat_cooldown(src, SPAN_WARNING("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
+	else
+		return
+	if(srec_dose > 160)
+		adjust_immunity(-10 / inhibition_factor)
+		change_eye_color(COLOR_GREEN_GRAY)
+		adjustHalLoss(-400)
+		to_chat_cooldown(src, SPAN_DANGER("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
+	if(srec_dose > 1000) //we explodeee
+		var/turf/T = get_turf(src)
+		gib()
+		new /obj/effect/crystal_growth(T)
+		new /obj/effect/crystal_wall(T)
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
 	for(var/slot in global.standard_headgear_slots)
@@ -414,7 +466,7 @@
 		switch(pressure_alert)
 			if(-2)
 				pressure_message = "<span class=bigdanger>Your vision slowly becomes pitch red as the blood in your eyes slowly comes out. Air rushes out of your lungs, forcing your mouth open like some sort of a toy. Your saliva evaporates,\
-				 but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
+				but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
 			if(-1)
 				pressure_message = "<span class=danger>You feel the air getting thinner!</span>"
 		to_chat(src, pressure_message)
@@ -643,38 +695,44 @@
 		return
 
 	if(stat != DEAD)
-		if(stat == UNCONSCIOUS && health < maxHealth/2)
+		if(stat == UNCONSCIOUS)
 			//Critical damage passage overlay
 			var/severity = 0
-			switch(health - maxHealth/2)
-				if(-20 to -10)			severity = 1
-				if(-30 to -20)			severity = 2
-				if(-40 to -30)			severity = 3
-				if(-50 to -40)			severity = 4
-				if(-60 to -50)			severity = 5
-				if(-70 to -60)			severity = 6
-				if(-80 to -70)			severity = 7
-				if(-90 to -80)			severity = 8
-				if(-95 to -90)			severity = 9
-				if(-INFINITY to -95)	severity = 10
+			var/obj/item/organ/internal/brain/B = GET_INTERNAL_ORGAN(src, BP_BRAIN)
+			switch(B.oxygen_deprivation)
+				if(0 to 2)				severity = 1
+				if(2 to 4)				severity = 2
+				if(4 to 6)				severity = 3
+				if(6 to 8)				severity = 4
+				if(8 to 10)				severity = 5
+				if(10 to 12)			severity = 6
+				if(12 to 14)			severity = 7
+				if(14 to 16)			severity = 8
+				if(16 to 18)			severity = 9
+				if(18 to 20)			severity = 10
 			overlay_fullscreen("crit", /obj/screen/fullscreen/crit, severity)
 		else
 			clear_fullscreen("crit")
 			//Oxygen damage overlay
 			var/blood_perfusion = get_blood_perfusion()
-			if(blood_perfusion < 0.8)
+			if(blood_perfusion < 0.8 || srec_dose > 80)
 				var/severity = 0
 				switch(blood_perfusion)
-					if(0.76 to 0.8)			severity = 1
-					if(0.71 to 0.75)		severity = 2
-					if(0.65 to 0.7)			severity = 3
-					if(0.61 to 0.64)		severity = 4
-					if(0.57 to 0.6)			severity = 5
-					if(0.41 to 0.56)		severity = 6
-					if(0 to 0.4)			severity = 7
+					if(0.8 to 0.92)		severity = 1
+					if(0.7 to 0.8)		severity = 2
+					if(0.65 to 0.7)		severity = 3
+					if(0.6 to 0.65)		severity = 4
+					if(0.55 to 0.6)		severity = 5
+					if(0.5 to 0.55)		severity = 6
+					if(0 to 0.5)		severity = 7
+				if(srec_dose > 80)
+					severity += 1
+					if(srec_dose > 160)
+						severity += 1
+				severity = min(severity, 7)
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
-				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.5) //we are JACKED on adrenaline
-					if(blood_perfusion < 0.5) //fancy flickering when low on oxygen
+				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.1) //we are JACKED on adrenaline
+					if(blood_perfusion < 0.9) //fancy flickering when low on oxygen
 						add_client_color(/datum/client_color/oxygendeprivation_desat)
 						remove_client_color(/datum/client_color/oxygendeprivation_oversat)
 						spawn(SSmobs.wait * 0.5)
@@ -690,7 +748,7 @@
 				remove_client_color(/datum/client_color/oxygendeprivation_desat)
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp + (get_shock() * 0.1)
 		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/severity = 0
@@ -779,26 +837,24 @@
 
 		if(bodytemp)
 			if (!species)
-				switch(bodytemperature) //310.055 optimal body temp
-					if(370 to INFINITY)		bodytemp.icon_state = "temp4"
-					if(350 to 370)			bodytemp.icon_state = "temp3"
-					if(335 to 350)			bodytemp.icon_state = "temp2"
-					if(320 to 335)			bodytemp.icon_state = "temp1"
-					if(300 to 320)			bodytemp.icon_state = "temp0"
-					if(295 to 300)			bodytemp.icon_state = "temp-1"
-					if(280 to 295)			bodytemp.icon_state = "temp-2"
-					if(260 to 280)			bodytemp.icon_state = "temp-3"
-					else					bodytemp.icon_state = "temp-4"
+				switch(bodytemperature) //309.8 optimal body temp
+					if(42 CELSIUS to INFINITY)				bodytemp.icon_state = "temp4"
+					if(40 CELSIUS to 42 CELSIUS)			bodytemp.icon_state = "temp3"
+					if(39 CELSIUS to 40 CELSIUS)			bodytemp.icon_state = "temp2"
+					if(37.5 CELSIUS to 39 CELSIUS)			bodytemp.icon_state = "temp1"
+					if(36 CELSIUS to 37.5 CELSIUS)			bodytemp.icon_state = "temp0"
+					if(35 CELSIUS to 36 CELSIUS)			bodytemp.icon_state = "temp-1"
+					if(34 CELSIUS to 35 CELSIUS)			bodytemp.icon_state = "temp-2"
+					if(32 CELSIUS to 34 CELSIUS)			bodytemp.icon_state = "temp-3"
+					else									bodytemp.icon_state = "temp-4"
 			else
 				//TODO: precalculate all of this stuff when the species datum is created
 				var/base_temperature = species.body_temperature
 				if(base_temperature == null) //some species don't have a set metabolic temperature
 					base_temperature = (getSpeciesOrSynthTemp(HEAT_LEVEL_1) + getSpeciesOrSynthTemp(COLD_LEVEL_1))/2
 
-				var/temp_step
+				var/temp_step = 1.5
 				if (bodytemperature >= base_temperature)
-					temp_step = (getSpeciesOrSynthTemp(HEAT_LEVEL_1) - base_temperature)/4
-
 					if (bodytemperature >= getSpeciesOrSynthTemp(HEAT_LEVEL_1))
 						bodytemp.icon_state = "temp4"
 					else if (bodytemperature >= base_temperature + temp_step*3)
@@ -811,8 +867,6 @@
 						bodytemp.icon_state = "temp0"
 
 				else if (bodytemperature < base_temperature)
-					temp_step = (base_temperature - getSpeciesOrSynthTemp(COLD_LEVEL_1))/4
-
 					if (bodytemperature <= getSpeciesOrSynthTemp(COLD_LEVEL_1))
 						bodytemp.icon_state = "temp-4"
 					else if (bodytemperature <= base_temperature - temp_step*3)
@@ -835,7 +889,7 @@
 		else if (should_have_organ(tag))
 			vomit_score += 45
 	if(has_chemical_effect(CE_TOXIN, 1) || radiation)
-		vomit_score += 0.5 * getToxLoss()
+		vomit_score += 0.2 * getToxLoss()
 	if(has_chemical_effect(CE_ALCOHOL_TOXIC, 1))
 		vomit_score += 10 * GET_CHEMICAL_EFFECT(src, CE_ALCOHOL_TOXIC)
 	if(has_chemical_effect(CE_ALCOHOL, 1))
@@ -882,7 +936,7 @@
 		// Please be very careful when calling custom_pain() from within code that relies on pain/trauma values. There's the
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nohalloss = TRUE in these cases!
-		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 10, nohalloss = TRUE)
+		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 150, nohalloss = TRUE)
 
 	var/obj/item/organ/internal/heart/H = get_organ(BP_HEART)
 	if(shock_stage >= 30)
@@ -898,7 +952,7 @@
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
-			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", 250, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 3)
 		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 20
@@ -906,7 +960,7 @@
 
 	if(shock_stage >= 80)
 		if (prob(5))
-			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", 450, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_WEAK, 5)
 		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 20
@@ -914,7 +968,7 @@
 
 	if(shock_stage >= 120)
 		if(!HAS_STATUS(src, STAT_PARA) && prob(2))
-			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", shock_stage, nohalloss = TRUE)
+			custom_pain("[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!", 750, nohalloss = TRUE)
 			SET_STATUS_MAX(src, STAT_PARA, 5)
 		H.bpm_modifiers["shock"] += 10
 		H.stability_modifiers["shock"] -= 30
@@ -1083,7 +1137,7 @@
 	dyspressure = initial(dyspressure)
 	meanpressure = initial(meanpressure)
 	mcv = initial(mcv)
-	oxygen_amount = max_oxygen_capacity
+	oxygen_amount = normal_oxygen_capacity
 	symptoms.Cut()
 
 /mob/living/carbon/human/reset_view(atom/A)

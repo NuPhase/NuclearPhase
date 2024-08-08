@@ -19,10 +19,12 @@
 	return FALSE
 
 /decl/surgery_step/suture_wounds/begin_step(mob/user, mob/living/target, target_zone, obj/item/tool)
+	var/obj/item/sutures/S = tool
+	S.play_sound(rand(min_duration, max_duration) / S.tool_quality, user)
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] is beginning to close a wound on [target]'s [affected.name] with \the [tool]." , \
 		"You are beginning to close a wound on [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("Your [affected.name] is being stabbed!",1)
+	target.custom_pain("Your [affected.name] is being stabbed!",250)
 	..()
 
 /decl/surgery_step/suture_wounds/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)

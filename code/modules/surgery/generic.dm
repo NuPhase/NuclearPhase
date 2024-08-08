@@ -42,7 +42,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts [access_string] on [target]'s [affected.name] with \the [tool].", \
 	"You start [access_string] on [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.name]!",60, affecting = affected)
+	target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.name]!",600, affecting = affected)
 	playsound(target.loc, 'sound/surgery/scalpel1.ogg', 100, 1, 1)
 	..()
 
@@ -92,7 +92,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts clamping bleeders in [target]'s [affected.name] with \the [tool].", \
 	"You start clamping bleeders in [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("The pain in your [affected.name] is maddening!",40, affecting = affected)
+	target.custom_pain("The pain in your [affected.name] is maddening!",450, affecting = affected)
 	..()
 
 /decl/surgery_step/generic/clamp_bleeders/end_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
@@ -138,7 +138,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("[user] starts to pry open the incision on [target]'s [affected.name] with \the [tool].",	\
 	"You start to pry open the incision on [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("It feels like the skin on your [affected.name] is on fire!",40,affecting = affected)
+	target.custom_pain("It feels like the skin on your [affected.name] is on fire!",450,affecting = affected)
 	playsound(target.loc, 'sound/surgery/retractor1.ogg', 100, 1, 1)
 	..()
 
@@ -188,7 +188,7 @@
 	var/datum/wound/W = affected.get_incision()
 	user.visible_message("[user] is beginning to [cauterize_term][W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool]." , \
 	"You are beginning to [cauterize_term][W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool].")
-	target.custom_pain("Your [affected.name] is being burned!",40,affecting = affected)
+	target.custom_pain("Your [affected.name] is being burned!",450,affecting = affected)
 	playsound(target.loc, 'sound/surgery/cautery1.ogg', 100, 1, 1)
 	..()
 
@@ -255,7 +255,7 @@
 		user.visible_message( \
 			SPAN_DANGER("\The [user] starts hacking at \the [target]'s [affected.name] with \the [tool]!") , \
 			SPAN_DANGER("<FONT size=3>You start hacking at \the [target]'s [affected.amputation_point] with \the [tool]!</FONT>"))
-	target.custom_pain("Your [affected.amputation_point] is being ripped apart!",100,affecting = affected)
+	target.custom_pain("Your [affected.amputation_point] is being ripped apart!",750,affecting = affected)
 	playsound(target.loc, 'sound/surgery/saw.ogg', 100, 1, 1)
 	..()
 

@@ -62,7 +62,7 @@
 			var/obj/item/paper/monitorkey/MK = new(loc)
 			// Will help make emagging the console not so easy to get away with.
 			MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
-			addtimer(CALLBACK(src, /obj/machinery/computer/message_monitor/proc/UnemagConsole), 100*length(linked_server.decryptkey))
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/computer/message_monitor, UnemagConsole)), 100*length(linked_server.decryptkey))
 			message = rebootmsg
 			update_icon()
 			return 1
@@ -240,7 +240,7 @@
 	//Find a server
 	if (href_list["find"])
 		var/list/local_message_servers = list()
-		var/list/local_zs = GetConnectedZlevels(z)
+		var/list/local_zs = SSmapping.get_connected_levels(z)
 		for(var/obj/machinery/network/message_server/MS in SSmachines.machinery)
 			if((MS.z in local_zs) && !(MS.stat & (BROKEN|NOPOWER)))
 				local_message_servers += MS
@@ -288,7 +288,7 @@
 			src.screen = 2
 			update_icon()
 			//Time it takes to bruteforce is dependant on the password length.
-			addtimer(CALLBACK(src, /obj/machinery/computer/message_monitor/proc/BruteForceConsole, usr, linked_server), 100*length(linked_server.decryptkey))
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/computer/message_monitor, BruteForceConsole), usr, linked_server), 100*length(linked_server.decryptkey))
 
 	//Delete the request console log.
 	if (href_list["deleter"])
@@ -328,7 +328,7 @@
 /obj/item/paper/monitorkey/LateInitialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	var/list/our_z = GetConnectedZlevels(T.z)
+	var/list/our_z = SSmapping.get_connected_levels(T.z)
 	for(var/obj/machinery/network/message_server/server in SSmachines.machinery)
 		if((server.z in our_z) && !(server.stat & (BROKEN|NOPOWER)) && !isnull(server.decryptkey))
 			info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>This key is only intended for personnel granted access to the messaging server. Keep it safe.<br>If necessary, change the password to a more secure one."

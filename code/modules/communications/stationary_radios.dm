@@ -27,7 +27,7 @@
 	icon_state = "relay"
 	idle_power_usage = 14300
 	free_penetration = 5
-	penetration_modifier = 1.2
+	penetration_modifier = 0.8 //yes.
 	receiving_boost = 60
 
 /obj/machinery/communications/relay/Initialize()
@@ -40,7 +40,7 @@
 
 /obj/machinery/communications/relay/proc/relay(message, frequency) //yes
 	for(var/obj/machinery/communications/relay/cur_relay in radio_relays)
-		var/quality = get_local_signal_quality(get_turf(src), get_turf(cur_relay), free_penetration, penetration_modifier, cur_relay.receiving_boost)
+		var/quality = get_signal_quality(get_turf(src), get_turf(cur_relay), free_penetration, penetration_modifier, cur_relay.receiving_boost)
 		if(!quality)
 			continue
 		message = apply_message_quality(message, quality)

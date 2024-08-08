@@ -48,6 +48,7 @@
 
 /obj/item/clothing/mask/smokable/fire_act()
 	light(0)
+	return ..()
 
 /obj/item/clothing/mask/smokable/proc/smoke(amount, manual)
 	smoketime -= amount
@@ -101,7 +102,7 @@
 			I = emissive_overlay(icon, "[icon_state]-on")
 		I.appearance_flags |= RESET_COLOR
 		add_overlay(I)
-		
+
 	if(ismob(loc))
 		var/mob/living/M = loc
 		M.update_inv_wear_mask(0)
@@ -321,14 +322,12 @@
 	material = /decl/material/solid/wood
 
 /obj/item/clothing/mask/smokable/cigarette/attackby(var/obj/item/W, var/mob/user)
-	..()
-
 	if(istype(W, /obj/item/energy_blade/sword))
 		var/obj/item/energy_blade/sword/S = W
 		if(S.active)
-			light("<span class='warning'>[user] swings their [W], barely missing their nose. They light their [name] in the process.</span>")
-
-	return
+			light(SPAN_WARNING("[user] swings their [W], barely missing their nose. They light their [name] in the process."))
+			return TRUE
+	return ..()
 
 /obj/item/clothing/mask/smokable/cigarette/attack(mob/living/carbon/human/H, mob/user, def_zone)
 	if(lit && H == user && istype(H))

@@ -430,7 +430,7 @@
 
 	var/dose = LAZYACCESS(M.chem_doses, type)
 	if(dose > 30)
-		M.adjustToxLoss(2 * removed)
+		M.adjustToxLoss(0.2 * removed)
 	if(dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart = GET_INTERNAL_ORGAN(H, BP_HEART)

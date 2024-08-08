@@ -3,7 +3,7 @@
 var/global/list/whitelist = list()
 
 /hook/startup/proc/loadWhitelist()
-	if(config.usewhitelist)
+	if(get_config_value(/decl/config/toggle/usewhitelist))
 		load_whitelist()
 	return 1
 
@@ -20,8 +20,8 @@ var/global/list/whitelist = list()
 var/global/list/alien_whitelist = list()
 
 /hook/startup/proc/loadAlienWhitelist()
-	if(config.usealienwhitelist)
-		if(config.usealienwhitelistSQL)
+	if(get_config_value(/decl/config/toggle/use_alien_whitelist))
+		if(get_config_value(/decl/config/toggle/use_alien_whitelist_sql))
 			if(!load_alienwhitelistSQL())
 				to_world_log("Could not load alienwhitelist via SQL")
 		else
@@ -66,7 +66,7 @@ var/global/list/alien_whitelist = list()
 		var/decl/language/L = species
 		if(L.flags & RESTRICTED)
 			return FALSE
-		if(!config.usealienwhitelist || !(L.flags & WHITELISTED))
+		if(!get_config_value(/decl/config/toggle/use_alien_whitelist))
 			return TRUE
 		return whitelist_lookup(L.name, M.ckey)
 
@@ -74,7 +74,7 @@ var/global/list/alien_whitelist = list()
 		var/decl/species/S = species
 		if(S.spawn_flags & SPECIES_IS_RESTRICTED)
 			return FALSE
-		if(!config.usealienwhitelist || !(S.spawn_flags & SPECIES_IS_WHITELISTED))
+		if(!get_config_value(/decl/config/toggle/use_alien_whitelist) || !(S.spawn_flags & SPECIES_IS_WHITELISTED))
 			return TRUE
 		return whitelist_lookup(S.get_root_species_name(M), M.ckey)
 
@@ -84,7 +84,7 @@ var/global/list/alien_whitelist = list()
 	if(!alien_whitelist)
 		return FALSE
 
-	if(config.usealienwhitelistSQL)
+	if(get_config_value(/decl/config/toggle/use_alien_whitelist_sql))
 		//SQL Whitelist
 		if(!(ckey in alien_whitelist))
 			return FALSE

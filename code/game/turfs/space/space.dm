@@ -33,8 +33,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 	atom_flags |= ATOM_FLAG_INITIALIZED
 
-	if (config.starlight)
-		update_starlight()
+	update_starlight()
 
 	//We might be an edge
 	if(y == world.maxy || forced_dirs & NORTH)
@@ -265,6 +264,25 @@
 	name = "\proper infinity"
 	icon_state = "bluespace"
 
-/turf/space/typhos_surroundings/Initialize()
+/turf/pseudospace/typhos_surroundings
+	name = "gas cloud"
+	color = "#352933"
+	plane = DUST_PLANE
+	icon = 'icons/turf/space.dmi'
+	explosion_resistance = 70
+	icon_state = "speedspace_ns_1"
+	dynamic_lighting = FALSE
+	temperature = 40
+	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	permit_ao = FALSE
+	z_eventually_space = TRUE
+	turf_flags = TURF_FLAG_BACKGROUND
+
+/turf/pseudospace/typhos_surroundings/Initialize()
 	. = ..()
-	toggle_transit(NORTH)
+	icon_state = "speedspace_ns_[rand(1, 15)]"
+
+/turf/pseudospace/typhos_surroundings/icarus //cursed
+	name = "space"
+	desc = "You constantly rotate on an artificial gravity ring."
+	color = "#111111"

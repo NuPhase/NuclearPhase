@@ -12,6 +12,10 @@
 	icon = 'icons/obj/machines/tcomms/hub.dmi'
 	icon_state = "hub"
 
+/obj/structure/telemetry/server_rack/floor
+	icon = 'icons/obj/structures/ship_decor.dmi'
+	icon_state = "floor_server"
+
 /obj/structure/telemetry/server_rack/destroyed
 	desc = "This server rack looks fried from the inside..."
 	show_info = "Nothing to be gathered here. Just heaps and heaps of burnt wiring."

@@ -344,7 +344,7 @@ var/global/const/enterloopsanity = 100
 			M.turf_collision(src, TT.speed)
 			if(LAZYLEN(M.pinned))
 				return
-		addtimer(CALLBACK(src, /turf/proc/bounce_off, AM, TT.init_dir), 2)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/turf, bounce_off), AM, TT.init_dir), 2)
 	else if(isobj(AM))
 		var/obj/structure/ladder/L = locate() in contents
 		if(L)
@@ -505,3 +505,15 @@ var/global/const/enterloopsanity = 100
 		why_cannot_build_cable(user, cable_error)
 		return FALSE
 	return C.turf_place(src, user)
+
+/turf/singularity_act(S, current_size)
+	if(!simulated || is_open())
+		return 0
+	var/base_turf_type = get_base_turf_by_area(src)
+	if(type == base_turf_type)
+		return 0
+	ChangeTurf(base_turf_type)
+	return 2
+
+/turf/proc/resolve_to_actual_turf()
+	return src

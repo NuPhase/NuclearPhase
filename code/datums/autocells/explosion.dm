@@ -139,13 +139,13 @@
 		resistance += max(0, A.explosion_resistance)
 
 	// Blow stuff up
-	INVOKE_ASYNC(in_turf, /atom/proc/explosion_act, power, direction)
+	INVOKE_ASYNC(in_turf, TYPE_PROC_REF(/atom, explosion_act), power, direction)
 	for(var/atom/A in in_turf)
 		if(A in exploded_atoms)
 			continue
 		if(A.gc_destroyed)
 			continue
-		INVOKE_ASYNC(A, /atom/proc/explosion_act, power, direction)
+		INVOKE_ASYNC(A, TYPE_PROC_REF(/atom, explosion_act), power, direction)
 		exploded_atoms += A
 
 	var/reflected = FALSE
@@ -231,12 +231,12 @@ as having entered the turf.
 	if(A.gc_destroyed)
 		return
 
-	INVOKE_ASYNC(A, /atom/proc/explosion_act, power, null)
+	INVOKE_ASYNC(A, TYPE_PROC_REF(/atom, explosion_act), power, null)
 
 // I'll admit most of the code from here on out is basically just copypasta from DOREC
 
 // Spawns a cellular automaton of an explosion
-/proc/cell_explosion(turf/epicenter, power, falloff=1, falloff_shape = EXPLOSION_FALLOFF_SHAPE_LINEAR, direction)
+/proc/cell_explosion(turf/epicenter, power, falloff=1, falloff_shape = EXPLOSION_FALLOFF_SHAPE_LINEAR, direction, z_transfer=UP|DOWN)
 	if(!istype(epicenter))
 		epicenter = get_turf(epicenter)
 
@@ -247,12 +247,37 @@ as having entered the turf.
 
 	msg_admin_attack("Explosion with Power: [power], Falloff: [falloff], Shape: [falloff_shape] in [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]).", epicenter.x, epicenter.y, epicenter.z)
 
-	playsound(epicenter, 'sound/effects/explosionfar.ogg', 100, 1, round(power^2,1))
+	if(power >= get_config_value(/decl/config/num/iterative_explosives_z_threshold))
+		var/turf/above_T = GetAbove(epicenter)
+		var/turf/below_T = GetBelow(epicenter)
+		if((z_transfer & UP) && above_T)
+			if(istype(above_T, /turf/simulated/open))
+				cell_explosion(above_T, power * 0.5, falloff=falloff, z_transfer=UP)
+			else
+				cell_explosion(above_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), falloff=falloff, z_transfer=UP)
+		if((z_transfer & DOWN) && below_T)
+			if(istype(below_T, /turf/simulated/open))
+				cell_explosion(below_T, power * 0.5, falloff=falloff, z_transfer=DOWN)
+			else
+				cell_explosion(below_T, power * get_config_value(/decl/config/num/iterative_explosives_z_multiplier), falloff=falloff, z_transfer=DOWN)
 
-	if(power >= 300) //Make BIG BOOMS
-		playsound(epicenter, "bigboom", 80, 1, max(round(power,1),7))
-	else
-		playsound(epicenter, "explosion", 90, 1, max(round(power,1),7))
+	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
+	// Stereo users will also hear the direction of the explosion!
+	// Calculate far explosion sound range. Only allow the sound effect for heavy/devastating explosions.
+
+	var/far_dist = power * 0.45
+	var/frequency = get_rand_frequency()
+	for(var/mob/M in global.player_list)
+		if(M.z == epicenter.z)
+			var/turf/M_turf = get_turf(M)
+			var/dist = get_dist(M_turf, epicenter)
+			// If inside the blast radius + world.view - 2
+			if(dist <= round(power * 0.2 + world.view - 2, 1))
+				M.playsound_local(epicenter, get_sfx("explosion"), 100, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+			else if(dist <= far_dist)
+				var/far_volume = Clamp(far_dist, 30, 50) // Volume is based on explosion size and dist
+				far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
+				M.playsound_local(epicenter, pick('sound/effects/explosionfar.ogg', 'sound/effects/explosionfar2.ogg', 'sound/effects/explosionfar3.ogg', 'sound/effects/explosionfar4.ogg', 'sound/effects/explosionfar5.ogg', 'sound/effects/explosionfar6.ogg'), far_volume, 1, frequency, falloff = 5)
 
 	var/datum/automata_cell/explosion/E = new /datum/automata_cell/explosion(epicenter)
 	if(power > EXPLOSION_MAX_POWER)

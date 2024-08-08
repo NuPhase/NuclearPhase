@@ -2,7 +2,7 @@
 	name = "advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	icon = 'icons/obj/guns/adv_egun.dmi'
-	origin_tech = "{'combat':3,'materials':5,'powerstorage':3}"
+	origin_tech = @'{"combat":3,"materials":5,"powerstorage":3}'
 	slot_flags = SLOT_LOWER_BODY
 	w_class = ITEM_SIZE_LARGE
 	force = 8 //looks heavier than a pistol
@@ -50,18 +50,6 @@
 			return COLOR_CIVIE_GREEN
 		if(100)
 			return COLOR_LIME
-
-/obj/item/gun/energy/gun/nuclear/on_update_icon()
-	indicator_color = get_charge_color()
-	. = ..()
-	var/list/new_overlays = list()
-
-	var/reactor_icon = fail_counter ? "danger" : "clean"
-	new_overlays += mutable_appearance(icon, "[get_world_inventory_state()]_[reactor_icon]")
-	var/datum/firemode/current_mode = firemodes[sel_mode]
-	new_overlays += mutable_appearance(icon, "[get_world_inventory_state()]_[current_mode.name]")
-
-	overlays += new_overlays
 
 /obj/item/gun/energy/gun/nuclear/add_onmob_charge_meter(image/I)
 	if(check_state_in_icon("[I.icon_state]_charge", I.icon))

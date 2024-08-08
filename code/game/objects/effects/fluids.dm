@@ -5,7 +5,7 @@
 	anchored = 1
 	simulated = 0
 	opacity = 0
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	layer = FLY_LAYER
 	alpha = 0
 	color = COLOR_LIQUID_WATER
@@ -132,12 +132,28 @@
 	var/decl/material/main_reagent = reagents.get_primary_reagent_decl()
 	if(main_reagent) // TODO: weighted alpha from all reagents, not just primary
 		alpha = Clamp(CEILING(255*(reagents.total_volume/FLUID_DEEP)) * main_reagent.opacity, main_reagent.min_fluid_opacity, main_reagent.max_fluid_opacity)
+		var/blur_power = min((reagents.total_volume * 0.00002) * (1 - alpha/255), 4)
+		if(blur_power > 1)
+			add_filter("blur", 1, list("blur", size = round(blur_power)))
+		if(temperature > 500)
+			var/scale = max((temperature - 500) / 1500, 0)
 
-		if(temperature > main_reagent.melting_point && istype(main_reagent, /decl/material/solid/metal))
-			color = MOLTEN_METAL_COLOR
-			if(update_lighting)
-				update_lighting = FALSE
-				set_light(2, 3, color)
+			var/h_r = heat2color_r(temperature)
+			var/h_g = heat2color_g(temperature)
+			var/h_b = heat2color_b(temperature)
+
+			if(temperature < 2000) //scale up overlay until 2000K
+				h_r = 64 + (h_r - 64)*scale
+				h_g = 64 + (h_g - 64)*scale
+				h_b = 64 + (h_b - 64)*scale
+			var/scale_color = rgb(h_r, h_g, h_b)
+			color = scale_color
+			add_filter("glow",1, list(type="drop_shadow", color = scale_color, x = 0, y = 0, offset = 0, size = round(scale)))
+			set_light(min(3, scale*2.5), min(3, scale*2.5), scale_color)
+		else
+			set_light(0)
+		if(main_reagent.solvent_power || temperature > main_reagent.boiling_point * 0.7)
+			add_overlay(image(icon, "bubbles"))
 
 	if(reagents.total_volume <= FLUID_PUDDLE)
 		APPLY_FLUID_OVERLAY("puddle")
@@ -196,7 +212,7 @@ var/global/obj/abstract/flood/flood_object = new
 	var/update_air = FALSE
 	for(var/rtype in reagents.reagent_volumes)
 		var/decl/material/mat = GET_DECL(rtype)
-		var/moles = round((reagents.reagent_volumes[rtype] * vsc.fluid_fire_consuption_rate + 1) / mat.molar_volume)
+		var/moles = round((reagents.reagent_volumes[rtype] * vsc.fluid_fire_consuption_rate + 10) / mat.molar_volume)
 		if(moles > 0)
 			air.adjust_gas_temp(rtype, moles, temperature, FALSE)
 			reagents.remove_reagent(round(moles * mat.molar_volume + 5))

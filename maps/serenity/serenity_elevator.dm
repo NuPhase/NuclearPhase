@@ -1,14 +1,25 @@
 /obj/turbolift_map_holder/serenity/personnel_elevator
-	depth = 3
+	depth = 2
 	lift_size_x = 3
 	lift_size_y = 3
 	icon = 'icons/obj/turbolift_preview_2x2.dmi'
 	dir = EAST
 
 	areas_to_use = list(
-		/area/turbolift/serenity/personnel/a1,
 		/area/turbolift/serenity/personnel/a2,
 		/area/turbolift/serenity/personnel/a3
+		)
+
+/obj/turbolift_map_holder/serenity/personnel_elevator/one
+	areas_to_use = list(
+		/area/turbolift/serenity/personnel/a2/one,
+		/area/turbolift/serenity/personnel/a3/one
+		)
+
+/obj/turbolift_map_holder/serenity/personnel_elevator/two
+	areas_to_use = list(
+		/area/turbolift/serenity/personnel/a2/two,
+		/area/turbolift/serenity/personnel/a3/two
 		)
 
 /obj/turbolift_map_holder/serenity/entrance_elevator
@@ -34,6 +45,30 @@
 	areas_to_use = list(
 		/area/turbolift/serenity/main/a1,
 		/area/turbolift/serenity/main/a2
+		)
+
+/obj/turbolift_map_holder/serenity/main_elevator/one
+	areas_to_use = list(
+		/area/turbolift/serenity/main/a1/one,
+		/area/turbolift/serenity/main/a2/one
+		)
+
+/obj/turbolift_map_holder/serenity/main_elevator/two
+	areas_to_use = list(
+		/area/turbolift/serenity/main/a1/two,
+		/area/turbolift/serenity/main/a2/two
+		)
+
+/obj/turbolift_map_holder/serenity/main_staircase
+	depth = 4
+	lift_size_x = 6
+	lift_size_y = 6
+	icon = 'icons/obj/turbolift_preview_7x7.dmi'
+	dir = EAST
+
+	areas_to_use = list(
+		/area/turbolift/serenity/ro_staircase/a1,
+		/area/turbolift/serenity/ro_staircase/a2
 		)
 
 /obj/turbolift_map_holder/serenity/ro_staircase

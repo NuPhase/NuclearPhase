@@ -15,7 +15,7 @@
 	var/on = 1
 	var/critical = FALSE
 
-	efficiency = 0.96
+	efficiency = 0.998
 	should_heat = TRUE
 
 	var/off_icon_state
@@ -85,6 +85,11 @@
 		update_icon()
 	var/area/A = get_area(loc)
 	A.ambient_objects += src
+	pcontrol.all_transformers += src
+
+/obj/machinery/power/generator/transformer/switchable/Destroy()
+	. = ..()
+	pcontrol.all_transformers -= src
 
 /obj/machinery/power/generator/transformer/switchable/on_update_icon()
 	cut_overlays()
@@ -143,6 +148,24 @@
 	busy = 0
 	return TRUE
 
+/obj/machinery/power/generator/transformer/switchable/proc/switch_on()
+	if(on)
+		return
+	on = TRUE
+	update_icon()
+	playsound(loc, 'sound/machines/transformerswitch.ogg', 50, 1)
+	START_PROCESSING_MACHINE(src, null)
+	start_ambience()
+
+/obj/machinery/power/generator/transformer/switchable/proc/switch_off()
+	if(!on)
+		return
+	on = FALSE
+	update_icon()
+	playsound(loc, 'sound/machines/transformerswitch.ogg', 50, 1)
+	STOP_PROCESSING_MACHINE(src, null)
+	stop_ambience()
+
 /obj/machinery/power/generator/transformer/switchable/proc/trip()
 	if(!on)
 		return
@@ -151,6 +174,7 @@
 	spawn(50)
 		update_locked = 0
 	STOP_PROCESSING_MACHINE(src, null)
+	stop_ambience()
 	spawn(rand(1, 50))
 		playsound(loc, 'sound/machines/power_down2.ogg', 50, 1)
 		spark_at(src, amount = 7, cardinal_only = FALSE)

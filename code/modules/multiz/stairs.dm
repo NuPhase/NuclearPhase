@@ -27,9 +27,6 @@
 	var/turf/target = get_step(GetAbove(A), dir)
 	var/turf/source = get_turf(A)
 	if(myturf.CanZPass(A, UP) && target.Enter(A, src))
-		for(var/mob/M in target)
-			to_chat(A, SPAN_WARNING("Something blocks the path."))
-			return
 		A.forceMove(target)
 		if(isliving(A))
 			var/mob/living/L = A

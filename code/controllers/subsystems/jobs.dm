@@ -38,6 +38,9 @@ SUBSYSTEM_DEF(jobs)
 		var/datum/job/job = get_by_path(jobtype)
 		if(!job)
 			job = new jobtype
+		if(job.abstract_type == job.type)
+			qdel(job)
+			continue
 		primary_job_datums += job
 
 	// Create abstract submap archetype jobs for use in prefs, etc.
@@ -57,7 +60,7 @@ SUBSYSTEM_DEF(jobs)
 				archetype_job_datums |= job
 
 	// Load job configuration (is this even used anymore?)
-	if(job_config_file && config.load_jobs_from_txt)
+	if(job_config_file && get_config_value(/decl/config/toggle/load_jobs_from_txt))
 		var/list/jobEntries = file2list(job_config_file)
 		for(var/job in jobEntries)
 			if(!job)
@@ -179,7 +182,7 @@ SUBSYSTEM_DEF(jobs)
 	if(!job.is_position_available())
 		to_chat(joining, "<span class='warning'>Unfortunately, that job is no longer available.</span>")
 		return FALSE
-	if(!config.enter_allowed)
+	if(!get_config_value(/decl/config/toggle/on/enter_allowed))
 		to_chat(joining, "<span class='warning'>There is an administrative lock on entering the game!</span>")
 		return FALSE
 	if(SSticker.mode && SSticker.mode.station_explosion_in_progress)
@@ -215,7 +218,7 @@ SUBSYSTEM_DEF(jobs)
 			log_and_message_admins("User [spawner] spawned at spawn point with dangerous atmosphere.")
 	return TRUE
 
-/datum/controller/subsystem/jobs/proc/assign_role(var/mob/new_player/player, var/rank, var/latejoin = 0, var/datum/game_mode/mode = SSticker.mode)
+/datum/controller/subsystem/jobs/proc/assign_role(var/mob/new_player/player, var/rank, var/latejoin = 0, var/decl/game_mode/mode = SSticker.mode)
 	if(player && player.mind && rank)
 		var/datum/job/job = get_by_title(rank)
 		if(!job)
@@ -258,7 +261,7 @@ SUBSYSTEM_DEF(jobs)
 			candidates += player
 	return candidates
 
-/datum/controller/subsystem/jobs/proc/give_random_job(var/mob/new_player/player, var/datum/game_mode/mode = SSticker.mode)
+/datum/controller/subsystem/jobs/proc/give_random_job(var/mob/new_player/player, var/decl/game_mode/mode = SSticker.mode)
 	for(var/datum/job/job in shuffle(primary_job_datums))
 		if(!job)
 			continue
@@ -282,7 +285,7 @@ SUBSYSTEM_DEF(jobs)
 			break
 
 ///This proc is called before the level loop of divide_occupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
-/datum/controller/subsystem/jobs/proc/fill_head_position(var/datum/game_mode/mode)
+/datum/controller/subsystem/jobs/proc/fill_head_position(var/decl/game_mode/mode)
 	for(var/level = 1 to 3)
 		for(var/command_position in must_fill_titles)
 			var/datum/job/job = get_by_title(command_position)
@@ -297,16 +300,17 @@ SUBSYSTEM_DEF(jobs)
 				var/age = V.client.prefs.get_character_age()
 				if(age < job.minimum_character_age) // Nope.
 					continue
-				switch(age)
-					if(job.minimum_character_age to (job.minimum_character_age+10))
-						weightedCandidates[V] = 3 // Still a bit young.
-					if((job.minimum_character_age+10) to (job.ideal_character_age-10))
-						weightedCandidates[V] = 6 // Better.
-					if((job.ideal_character_age-10) to (job.ideal_character_age+10))
+				switch(age - job.ideal_character_age)
+					if(-INFINITY to -10)
+						if(age < (job.minimum_character_age+10))
+							weightedCandidates[V] = 3 // Still a bit young.
+						else
+							weightedCandidates[V] = 6 // Better.
+					if(-10 to 10)
 						weightedCandidates[V] = 10 // Great.
-					if((job.ideal_character_age+10) to (job.ideal_character_age+20))
+					if(10 to 20)
 						weightedCandidates[V] = 6 // Still good.
-					if((job.ideal_character_age+20) to INFINITY)
+					if(20 to INFINITY)
 						weightedCandidates[V] = 3 // Geezer.
 					else
 						// If there's ABSOLUTELY NOBODY ELSE
@@ -317,7 +321,7 @@ SUBSYSTEM_DEF(jobs)
 	return 0
 
 ///This proc is called at the start of the level loop of divide_occupations() and will cause head jobs to be checked before any other jobs of the same level
-/datum/controller/subsystem/jobs/proc/CheckHeadPositions(var/level, var/datum/game_mode/mode)
+/datum/controller/subsystem/jobs/proc/CheckHeadPositions(var/level, var/decl/game_mode/mode)
 	for(var/command_position in must_fill_titles)
 		var/datum/job/job = get_by_title(command_position)
 		if(!job)	continue
@@ -330,7 +334,7 @@ SUBSYSTEM_DEF(jobs)
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
  **/
-/datum/controller/subsystem/jobs/proc/divide_occupations(datum/game_mode/mode)
+/datum/controller/subsystem/jobs/proc/divide_occupations(decl/game_mode/mode)
 	if(global.triai)
 		for(var/datum/job/A in primary_job_datums)
 			if(A.title == "AI")
@@ -405,7 +409,7 @@ SUBSYSTEM_DEF(jobs)
 			unassigned_roundstart -= player
 	return TRUE
 
-/datum/controller/subsystem/jobs/proc/attempt_role_assignment(var/mob/new_player/player, var/datum/job/job, var/level, var/datum/game_mode/mode)
+/datum/controller/subsystem/jobs/proc/attempt_role_assignment(var/mob/new_player/player, var/datum/job/job, var/level, var/decl/game_mode/mode)
 	if(!jobban_isbanned(player, job.title) && \
 	 job.player_old_enough(player.client) && \
 	 player.client.prefs.CorrectLevel(job, level) && \
@@ -681,7 +685,7 @@ SUBSYSTEM_DEF(jobs)
 		T.maptext = "<span style=\"[style]\">[copytext_char(text, 1, i)] </span>"
 		sleep(1)
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_location_blurb, src, T), duration)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_location_blurb), src, T), duration)
 
 /proc/fade_location_blurb(client/C, obj/T)
 	animate(T, alpha = 0, time = 5)

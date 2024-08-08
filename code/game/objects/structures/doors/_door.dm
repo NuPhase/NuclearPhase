@@ -16,13 +16,16 @@
 	var/has_window = FALSE
 	var/changing_state = FALSE
 	var/sliding = FALSE //whether the door opens the classic way or slides into the frame
+	var/sliding_direction = -23
 	var/open_sound = 'sound/machines/doors/default_door.ogg'
 	var/icon_base
 	var/door_sound_volume = 50
+	var/autoclose_time = 0 //If set above 0, will automatically close the door in a set amount of time.
 
 	var/frame_type = "default"
 	var/door_type = "default"
 	var/handle_type
+	explosion_resistance = 100
 
 /obj/structure/door/Initialize()
 	. = ..()
@@ -42,7 +45,7 @@
 /obj/structure/door/get_material_health_modifier()
 	. = 10
 
-/obj/structure/door/on_update_icon(var/animate_sliding = FALSE, var/sliding_direction) //sliding direction either takes -1 or 1
+/obj/structure/door/on_update_icon(var/animate_sliding = FALSE)
 	..()
 	cut_overlays()
 	var/list/overlay_list = list()
@@ -55,7 +58,7 @@
 			if(!sliding)
 				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]_open", layer = CLOSED_DOOR_LAYER)
 			else
-				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = OPEN_DOOR_LAYER, pixel_x = -23)
+				overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = "[door_type]", layer = TURF_DETAIL_LAYER, pixel_x = sliding_direction)
 	else
 		if(!(dir == EAST || dir == WEST))
 			overlay_list += image('icons/obj/doors/thin/body.dmi', icon_state = door_type, layer = CLOSED_DOOR_LAYER)
@@ -69,6 +72,8 @@
 	changing_state = FALSE
 
 /obj/structure/door/attack_hand(mob/user)
+	if(changing_state)
+		return
 	return density ? open(user) : close()
 
 /obj/structure/door/proc/close()
@@ -89,14 +94,15 @@
 	if(!can_open(user))
 		lock.failure_open()
 		return FALSE
+	changing_state = TRUE
 	sleep(lock.success_open())
 	playsound(src, open_sound, door_sound_volume, 1)
-
-	changing_state = TRUE
 	sleep(0.4 SECOND)
 	set_density(FALSE)
 	set_opacity(FALSE)
 	post_change_state()
+	if(autoclose_time)
+		addtimer(CALLBACK(src, PROC_REF(close)), autoclose_time)
 	return TRUE
 
 /obj/structure/door/proc/can_open(mob/user)
@@ -122,9 +128,11 @@
 		return attack_hand(user)
 
 /obj/structure/door/explosion_act(severity)
+	if(density && severity > 100 && severity < 600)
+		open()
+		take_damage(severity / 10)
+		return
 	. = ..()
-	if(!QDELETED(src))
-		take_damage(100 - (severity * 3))
 
 /obj/structure/door/can_repair(var/mob/user)
 	. = ..()

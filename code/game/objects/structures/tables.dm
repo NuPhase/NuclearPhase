@@ -8,7 +8,7 @@
 	desc = "It's a table, for putting things on. Or standing on, if you really want to."
 	density = TRUE
 	anchored = TRUE
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
+	atom_flags = ATOM_FLAG_CLIMBABLE
 	layer = TABLE_LAYER
 	throwpass = TRUE
 	mob_offset = 12
@@ -18,6 +18,7 @@
 	material_alteration = MAT_FLAG_ALTERATION_NAME | MAT_FLAG_ALTERATION_DESC
 	parts_amount = 2
 	parts_type = /obj/item/stack/material/strut
+	explosion_resistance = 50
 
 	var/can_flip = TRUE
 	var/is_flipped = FALSE

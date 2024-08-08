@@ -60,6 +60,7 @@
 /area/serenity/Initialize()
 	. = ..()
 	SSplanet.interpolating_areas += src
+	SSpersistence.item_pool_areas += src
 
 /area/serenity/has_gravity()
 	return TRUE
@@ -92,6 +93,7 @@
 /area/serenity/shelter/habitationdeck/crew
 	name = "Crew Quarters"
 	icon_state = "crew_quarters"
+	sound_env = MEDIUM_SOFTFLOOR
 /area/serenity/shelter/habitationdeck/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
@@ -127,13 +129,20 @@
 /area/serenity/shelter/engineering/pumps_a
 	name = "Pump Station A"
 	icon_state = "pumpA"
+	sound_env = LARGE_ENCLOSED
 /area/serenity/shelter/engineering/pumps_b
 	name = "Pump Station B"
 	icon_state = "pumpB"
+	sound_env = LARGE_ENCLOSED
 
 /area/serenity/shelter/engineering/reactor_operations
 	name = "Reactor Operations"
 	icon_state = "hallC1"
+
+/area/serenity/shelter/engineering/reactor_operations/cavern
+	name = "Reactor Operations Cavern"
+	icon_state = "hallC2"
+	sound_env = LARGE_ENCLOSED
 
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring
 	name = "Reactor Control Room"
@@ -162,8 +171,13 @@
 	name = "Heat Exchanger Maintenance"
 	icon_state = "heat_exchanger"
 /area/serenity/shelter/engineering/atmos
-	name = "Fluid Management"
+	name = "Atmospheric Monitoring"
 	icon_state = "atmos"
+/area/serenity/shelter/engineering/atmos/climatecontrol
+	name = "Climate Control"
+/area/serenity/shelter/engineering/atmos/cryogenic
+	name = "Cryogenic Systems"
+
 /area/serenity/shelter/engineering/climatecontrol
 	name = "Climate Control"
 /area/serenity/shelter/engineering/electrical/turbinehall
@@ -240,6 +254,11 @@
 /area/serenity/shelter/labs/particle_physics
 	name = "Particle Physics Laboratory"
 	icon_state = "devlab"
+
+/area/serenity/shelter/labs/particle_physics/particle_accelerator
+	name = "Particle Accelerator Chamber"
+	background_radiation = 1.83
+
 /area/serenity/shelter/labs/genetics
 	name = "General Genetics Laboratory"
 	icon_state = "toxlab"
@@ -282,6 +301,47 @@
 	icon_state = "research"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
+/area/serenity/maintenance
+	name = "Maintenance"
+	temperature_interpolation_coefficient = 0.002
+	sound_env = SMALL_ENCLOSED
+	var/weight_low = 2
+	var/weight_high = 4
+
+/area/serenity/maintenance/Entered(A)
+	if(!istype(A,/mob/living))	return
+	var/mob/living/L = A
+	if(!istype(L.lastarea, /area/serenity/maintenance))
+		SSmaint_monster.mobs_to_weight[L] = 1
+	. = ..()
+
+/area/serenity/maintenance/Exited(A)
+	if(!istype(A,/mob/living))	return
+	var/mob/living/L = A
+	if(!istype(L.lastarea, /area/serenity/maintenance))
+		SSmaint_monster.mobs_to_weight -= L
+	. = ..()
+
+/area/serenity/maintenance/sublevel_one
+	name = "Sublevel 1"
+	temperature_interpolation_coefficient = 0.0015
+	sound_env = TUNNEL_ENCLOSED
+	weight_low = 4
+	weight_high = 6
+
+/area/serenity/maintenance/sublevel_two
+	name = "Sublevel 2"
+	temperature_interpolation_coefficient = 0.001
+	sound_env = TUNNEL_ENCLOSED
+	weight_low = 6
+	weight_high = 8
+
+/area/serenity/maintenance/sublevel_three
+	name = "Sublevel 3"
+	temperature_interpolation_coefficient = 0.0005
+	sound_env = TUNNEL_ENCLOSED
+	weight_low = 8
+	weight_high = 10
 
 /area/turbolift/e1
 	lift_floor_label = "Tech Operations Lobby"
@@ -316,6 +376,10 @@
 /area/surface/location/skyscraper
 
 /area/surface/location/space_center
+
+/area/surface/location/data_center
+	cold_ambience = list('sound/music/thestorycontinues.mp3')
+	requires_power = FALSE
 
 /area/surface/Initialize()
 	. = ..()
@@ -385,3 +449,23 @@
 	area_flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FLAG_IS_BACKGROUND
 	has_gravity = TRUE
 	forced_ambience = list('sound/music/ocean.mp3')
+
+/area/ship/theseus
+	name = "UN Theseus"
+	has_gravity = FALSE
+	forced_ambience = list('sound/ambience/weather/storm_inside.wav')
+	ambience_volume = 10
+
+/area/space/theseus
+	name = "Gas Cloud"
+	forced_ambience = list('sound/ambience/weather/storm_outside.wav')
+
+/area/ship/icarus
+	name = "UN Icarus"
+	icon_state = "icarus_body"
+	has_gravity = FALSE
+	requires_power = 0
+
+/area/ship/icarus/ring
+	has_gravity = TRUE
+	icon_state = "icarus_ring"

@@ -1,5 +1,9 @@
 //Updates the mob's health from organs and mob damage variables
 /mob/living/carbon/human/updatehealth()
+	..()
+	//TODO: fix husking
+	if(stat == DEAD && (maxHealth - getFireLoss()) < get_config_value(/decl/config/num/health_health_threshold_dead))
+		make_husked()
 
 	if(status_flags & GODMODE)
 		health = maxHealth
@@ -8,9 +12,6 @@
 
 	health = maxHealth - getBrainLoss()
 
-	//TODO: fix husking
-	if(((maxHealth - getFireLoss()) < config.health_threshold_dead) && stat == DEAD)
-		make_husked()
 	return
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
@@ -160,18 +161,29 @@
 /mob/living/carbon/human/getToxLoss()
 	if((species.species_flags & SPECIES_FLAG_NO_POISON) || isSynthetic())
 		return 0
+	return blood_toxin_content
+
+/mob/living/carbon/human/setToxLoss(var/amount)
+	if((species.species_flags & SPECIES_FLAG_NO_POISON) || isSynthetic())
+		return 0
+	blood_toxin_content = amount
+
+// TODO: better internal organ damage procs.
+/mob/living/carbon/human/adjustToxLoss(var/amount)
+	if((species.species_flags & SPECIES_FLAG_NO_POISON) || isSynthetic())
+		return 0
+	blood_toxin_content += amount
+	blood_toxin_content = max(0, blood_toxin_content)
+
+/mob/living/carbon/human/getOrganDamage()
+	if((species.species_flags & SPECIES_FLAG_NO_POISON) || isSynthetic())
+		return 0
 	var/amount = 0
 	for(var/obj/item/organ/internal/I in get_internal_organs())
 		amount += I.getToxLoss()
 	return amount
 
-/mob/living/carbon/human/setToxLoss(var/amount)
-	if(!(species.species_flags & SPECIES_FLAG_NO_POISON) && !isSynthetic())
-		adjustToxLoss(getToxLoss()-amount)
-
-// TODO: better internal organ damage procs.
-/mob/living/carbon/human/adjustToxLoss(var/amount)
-
+/mob/living/carbon/human/proc/adjustOrganDamage(var/amount)
 	if((species.species_flags & SPECIES_FLAG_NO_POISON) || isSynthetic())
 		return
 

@@ -120,7 +120,7 @@
 	slot_flags = SLOT_LOWER_BODY
 
 	key_type = /obj/item/clothing/mask/smokable/cigarette
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette = 6)
+	atom_flags = ATOM_FLAG_NO_CHEM_CHANGE | ATOM_FLAG_OPEN_CONTAINER
 
 /obj/item/storage/fancy/cigarettes/Initialize()
 	. = ..()
@@ -269,7 +269,7 @@
 	storage_slots = 7
 
 	key_type = /obj/item/clothing/mask/smokable/cigarette/cigar
-	startswith = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 6)
+	atom_flags = ATOM_FLAG_NO_CHEM_CHANGE
 
 /obj/item/storage/fancy/cigar/Initialize()
 	. = ..()

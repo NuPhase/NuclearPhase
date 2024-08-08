@@ -3,7 +3,7 @@
 	uniform = /obj/item/clothing/under/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses
 	gloves = /obj/item/clothing/gloves/thick
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/jackboots/jungleboots
 	backpack_contents = list(/obj/item/handcuffs = 1)
 	l_pocket = /obj/item/communications/pocket_radio
 
@@ -12,13 +12,13 @@
 	BACKPACK_OVERRIDE_SECURITY
 
 /decl/hierarchy/outfit/job/security/hos
-	name = "Job - Head of security"
+	name = "Job - Troop Commander"
 	uniform = /obj/item/clothing/under/head_of_security
 	pda_type = /obj/item/modular_computer/pda/heads
 	backpack_contents = list(/obj/item/handcuffs = 1)
 
 /decl/hierarchy/outfit/job/security/warden
-	name = "Job - Warden"
+	name = "Job - Warrant Officer"
 	uniform = /obj/item/clothing/under/tactical
 	r_pocket = /obj/item/flash
 	pda_type = /obj/item/modular_computer/pda
@@ -44,12 +44,12 @@
 	suit = /obj/item/clothing/suit/storage/forensics/blue
 
 /decl/hierarchy/outfit/job/security/officer
-	name = "Job - Security Officer"
+	name = "Job - Trooper"
 	uniform = /obj/item/clothing/under/tactical
 	gloves = /obj/item/clothing/gloves/tactical
-	shoes = /obj/item/clothing/shoes/jackboots/tactical
-	head = /obj/item/clothing/head/helmet/tactical
-	suit = /obj/item/clothing/suit/armor/pcarrier/tactical
+	shoes = /obj/item/clothing/shoes/jackboots/jungleboots
+	head = /obj/item/clothing/head/helmet/tactical/green
+	suit = /obj/item/clothing/suit/armor/pcarrier/green/infantry
 	backpack_contents = list(/obj/item/flash=1)
 	r_pocket = /obj/item/handcuffs
 	pda_type = /obj/item/modular_computer/pda

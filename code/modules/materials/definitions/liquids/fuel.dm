@@ -5,7 +5,7 @@
 	lore_text = "A very easy to obtain hydrocarbon."
 	color = "#fda246"
 	gas_tile_overlay = "generic"
-	gas_overlay_limit = 0.5
+	gas_overlay_limit = 7
 	gas_specific_heat = 30
 	molar_mass = 0.012
 	boiling_point = 163 CELSIUS
@@ -35,7 +35,7 @@
 	lore_text = "Biodiesel is a renewable, biodegradable fuel manufactured domestically from vegetable oils, animal fats, or recycled restaurant grease."
 	color = "#ffbb77"
 	gas_tile_overlay = "generic"
-	gas_overlay_limit = 0.5
+	gas_overlay_limit = 7
 	gas_specific_heat = 2.5
 	molar_mass = 0.012
 	boiling_point = 325 CELSIUS

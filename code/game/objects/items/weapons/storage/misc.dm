@@ -169,3 +169,49 @@
 		icon_state = "lollijar"
 	else
 		icon_state = "lollijar_empty"
+
+/obj/item/storage/guncase
+	name = "gun case"
+	desc = "A sturdy storage case for weapons."
+	icon = 'icons/obj/items/storage/guncase.dmi'
+	icon_state = "guncase"
+	w_class = ITEM_SIZE_HUGE
+	max_w_class = ITEM_SIZE_HUGE
+	max_storage_space = DEFAULT_BACKPACK_STORAGE
+	load_spreading_coefficient = 0.7 //they are SLIGHTLY easier to carry around
+	weight = 0.4
+	can_hold = list(/obj/item/gun, /obj/item/ammo_magazine)
+
+/obj/item/storage/guncase/blue
+	icon_state = "guncase_blue"
+
+/obj/item/storage/guncase/on_update_icon()
+	. = ..()
+	if(contents.len)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]_e"
+
+/obj/item/storage/guncase/service_pistol
+	name = "pistol case"
+	max_storage_space = DEFAULT_LARGEBOX_STORAGE
+	startswith = list(
+		/obj/item/gun/projectile/pistol/military_service = 1,
+		/obj/item/ammo_magazine/pistol = 6
+	)
+
+/obj/item/storage/guncase/blue/smg
+	name = "SMG case"
+	startswith = list(
+		/obj/item/gun/projectile/automatic/smg = 1,
+		/obj/item/ammo_magazine/smg/c11x25 = 6
+	)
+
+/obj/item/storage/guncase/blue/assault_rifle
+	name = "rifle case"
+	startswith = list(
+		/obj/item/gun/projectile/automatic/assault_rifle = 1,
+		/obj/item/ammo_magazine/c6p8x51/fmj = 3,
+		/obj/item/ammo_magazine/c6p8x51/ap = 2,
+		/obj/item/ammo_magazine/c6p8x51/hp = 1
+	)

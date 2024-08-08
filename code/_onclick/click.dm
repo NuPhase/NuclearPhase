@@ -160,7 +160,7 @@
 	next_move = max(world.time + timeout, next_move)
 
 /mob/proc/canClick()
-	if(config.no_click_cooldown || next_move <= world.time)
+	if(get_config_value(/decl/config/toggle/no_click_cooldown) || next_move <= world.time)
 		return 1
 	return 0
 
@@ -337,11 +337,11 @@ var/global/list/click_catchers
 /proc/get_click_catchers()
 	if(!global.click_catchers)
 		global.click_catchers = list()
-		var/ox = -(round(config.max_client_view_x*0.5))
-		for(var/i = 0 to config.max_client_view_x)
-			var/oy = -(round(config.max_client_view_y*0.5))
+		var/ox = -(round(get_config_value(/decl/config/num/clients/max_client_view_x)*0.5))
+		for(var/i = 0 to get_config_value(/decl/config/num/clients/max_client_view_x))
+			var/oy = -(round(get_config_value(/decl/config/num/clients/max_client_view_y)*0.5))
 			var/tx = ox + i
-			for(var/j = 0 to config.max_client_view_y)
+			for(var/j = 0 to get_config_value(/decl/config/num/clients/max_client_view_y))
 				var/ty = oy + j
 				var/obj/screen/click_catcher/CC = new
 				CC.screen_loc = "CENTER[tx < 0 ? tx : "+[tx]"],CENTER[ty < 0 ? ty : "+[ty]"]"
@@ -354,7 +354,7 @@ var/global/list/click_catchers
 	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "click_catcher"
 	plane = CLICKCATCHER_PLANE
-	mouse_opacity = 2
+	mouse_opacity = MOUSE_OPACITY_PRIORITY
 	screen_loc = "CENTER-7,CENTER-7"
 	var/x_offset = 0
 	var/y_offset = 0

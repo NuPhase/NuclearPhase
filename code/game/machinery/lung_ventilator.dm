@@ -119,7 +119,7 @@
 		return
 	//when there is a breather:
 	if(connected)
-		to_chat(user, "<span class='warning'>\The pump is already in use.</span>")
+		to_chat(user, "<span class='warning'>The pump is already in use.</span>")
 		return
 	//Checking if breather is still valid
 	mask = target.get_equipped_item(slot_wear_mask_str)
@@ -175,6 +175,7 @@
 		if(pressure_n2o)
 			mixture_holder.air_contents.adjust_gas(/decl/material/gas/nitrous_oxide, MolesForPressure(pressure_n2o))
 		if(pumping && connected)
+			playsound(src, 'sound/machines/pump.ogg', 25)
 			var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(connected, BP_LUNGS)
 			if(!L)
 				return

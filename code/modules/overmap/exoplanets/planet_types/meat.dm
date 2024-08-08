@@ -19,7 +19,8 @@
 	spawn_weight = 10	// meat
 
 /obj/effect/overmap/visitable/sector/exoplanet/meat/generate_map()
-	lightlevel = rand(1,7)/10
+	var/datum/level_data/level_data = zlevels[1]
+	level_data.ambient_light_level = rand(1,7)/10
 	..()
 
 /obj/effect/overmap/visitable/sector/exoplanet/meat/get_target_temperature()
@@ -66,7 +67,7 @@
 	desc = "It's disgustingly soft to the touch. And warm. Too warm."
 	dirt_color = "#c40031"
 	footstep_type = /decl/footsteps/mud
-	
+
 /turf/exterior/water/stomach
 	name = "juices"
 	desc = "Half-digested chunks of vines are floating in the puddle of some liquid."

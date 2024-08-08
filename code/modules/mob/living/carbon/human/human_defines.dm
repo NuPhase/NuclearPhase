@@ -127,6 +127,8 @@
 
 	var/meditating = 0 //0 for not meditating, 1-5 for meditating
 
+	var/blood_toxin_content = 0 //tox damage
+
 /mob/living/carbon/human/proc/get_age()
 	. = LAZYACCESS(appearance_descriptors, "age") || 30
 

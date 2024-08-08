@@ -15,6 +15,7 @@
 	var/armor_penetration = 0
 	var/anchor_fall = FALSE
 	var/holographic = 0 //if the obj is a holographic object spawned by the holodeck
+	var/tmp/directional_offset ///JSON list of directions to x,y offsets to be applied to the object depending on its direction EX: @'{"NORTH":{"x":12,"y":5}, "EAST":{"x":10,"y":50}}'
 
 	var/start_dirty = FALSE	// Shall we add dirt to the object at initialization
 	var/start_old = FALSE //Shall we add random malfunctions at init
@@ -249,3 +250,19 @@
 /decl/interaction_handler/rotate/invoked(atom/target, mob/user, obj/item/prop)
 	var/obj/O = target
 	O.rotate(user)
+
+/obj/handle_melting(list/meltable_materials)
+	. = ..()
+	if(QDELETED(src))
+		return
+	if(reagents?.total_volume)
+		reagents.trans_to(loc, reagents.total_volume)
+	dump_contents()
+	return place_melted_product(meltable_materials)
+
+/obj/proc/place_melted_product(list/meltable_materials)
+	. = new /obj/effect/decal/cleanable/molten_item(src)
+	qdel(src)
+
+/obj/proc/fail_roundstart()
+	return

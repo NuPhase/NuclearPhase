@@ -67,7 +67,7 @@ default behaviour is:
 			return
 
 		now_pushing = 1
-		if (istype(AM, /mob/living))
+		if (isliving(AM))
 			var/mob/living/tmob = AM
 
 			for(var/mob/living/M in range(tmob, 1))
@@ -142,7 +142,6 @@ default behaviour is:
 						G.adjust_position()
 				if(saved_dir)
 					AM.set_dir(saved_dir)
-				step(src, dir)
 				now_pushing = 0
 
 /proc/swap_density_check(var/mob/swapper, var/mob/swapee)

@@ -20,7 +20,7 @@
 	return_damage_max = 5
 	harm_intent_damage = 1
 	natural_armor = list(
-		melee = ARMOR_MELEE_RESISTANT, 
+		melee = ARMOR_MELEE_RESISTANT,
 		bullet = ARMOR_BALLISTIC_PISTOL
 		)
 	ability_cooldown = 2 MINUTES
@@ -51,7 +51,7 @@
 	. = ..()
 	if(!.)
 		return
-	
+
 	if((health > maxHealth / 1.5) && enemies.len && prob(10))
 		if(victim)
 			release_grab()
@@ -78,7 +78,7 @@
 				return
 
 		if(!victim && can_perform_ability(H))
-			events_repository.register(/decl/observ/destroyed, victim, src, .proc/release_grab)
+			events_repository.register(/decl/observ/destroyed, victim, src, PROC_REF(release_grab))
 			victim = H
 			SET_STATUS_MAX(H, STAT_WEAK, grab_duration)
 			SET_STATUS_MAX(H, STAT_STUN, grab_duration)

@@ -6,6 +6,7 @@
 	force = 3 //just plastic
 	w_class = ITEM_SIZE_HUGE //curtains, yeap
 	var/curtain_kind_path = /decl/curtain_kind //path to decl containing the curtain's details
+	explosion_resistance = 30
 
 /obj/item/curtain/Initialize(ml, material_key)
 	. = ..()

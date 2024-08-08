@@ -11,8 +11,7 @@
 
 /obj/item/stack
 	gender = PLURAL
-	origin_tech = "{'materials':1}"
-
+	origin_tech = @'{"materials":1}'
 	var/singular_name
 	var/plural_name
 	var/base_state
@@ -342,7 +341,7 @@
 
 
 /obj/item/stack/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/stack) && can_merge())
+	if (istype(W, /obj/item/stack) && can_merge(src))
 		var/obj/item/stack/S = W
 		. = src.transfer_to(S)
 

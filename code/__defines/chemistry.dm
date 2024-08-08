@@ -45,6 +45,7 @@
 #define CE_GLOWINGEYES    "eyeglow"      // Causes eyes to glow.
 #define CE_PRESSURE		  "pressure"
 #define CE_BLOOD_THINNING "thinning"
+#define CE_SREC           "srec"         // Prevents SREC from growing and slightly improves the symptoms. In high numbers can purge SREC.
 
 #define CE_REGEN_BRUTE   "bruteheal"    // Causes brute damage to regenerate.
 #define CE_REGEN_BURN    "burnheal"     // Causes burn damage to regenerate.

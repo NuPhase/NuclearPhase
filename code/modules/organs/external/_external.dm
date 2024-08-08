@@ -106,7 +106,7 @@
 /obj/item/organ/external/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
 	if(. != INITIALIZE_HINT_QDEL && isnull(pain_disability_threshold))
-		pain_disability_threshold = (max_damage * 0.75)
+		pain_disability_threshold = (max_damage * 6)
 
 /obj/item/organ/external/Destroy()
 	//Update the hierarchy BEFORE clearing all the vars and refs
@@ -164,7 +164,7 @@
 			burn_damage += I.w_class * rand(power, 3*power)
 
 	if(owner && burn_damage)
-		owner.custom_pain("Something inside your [src] burns a [severity < 2 ? "bit" : "lot"]!", power * 15) //robotic organs won't feel it anyway
+		owner.custom_pain("Something inside your [src] burns a [severity < 2 ? "bit" : "lot"]!", power * 150) //robotic organs won't feel it anyway
 		take_external_damage(0, burn_damage, 0, used_weapon = "Hot metal")
 		check_pain_disarm()
 
@@ -614,7 +614,7 @@ This function completely restores a damaged organ to perfect condition.
 		if(prob(CEILING(damage/4)) && sever_tendon())
 			internal_damage = TRUE
 		if(internal_damage)
-			owner.custom_pain("You feel something rip in your [name]!", 50, affecting = src)
+			owner.custom_pain("You feel something rip in your [name]!", 500, affecting = src)
 
 	//Burn damage can cause fluid loss due to blistering and cook-off
 	if((type in list(BURN, LASER)) && (damage > 5 || damage + burn_dam >= 15) && !BP_IS_PROSTHETIC(src))
@@ -622,7 +622,7 @@ This function completely restores a damaged organ to perfect condition.
 		switch(type)
 			if(BURN)  fluid_loss_severity = FLUIDLOSS_WIDE_BURN
 			if(LASER) fluid_loss_severity = FLUIDLOSS_CONC_BURN
-		var/fluid_loss = (damage/(owner.maxHealth - config.health_threshold_dead)) * SPECIES_BLOOD_DEFAULT * fluid_loss_severity
+		var/fluid_loss = (damage/(owner.maxHealth - get_config_value(/decl/config/num/health_health_threshold_dead))) * SPECIES_BLOOD_DEFAULT * fluid_loss_severity
 		owner.remove_blood(fluid_loss)
 
 	// first check whether we can widen an existing wound
@@ -830,7 +830,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
 		heal_amt = heal_amt * wound_update_accuracy
 		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-		heal_amt = heal_amt * config.organ_regeneration_multiplier
+		heal_amt = heal_amt * get_config_value(/decl/config/num/health_organ_regeneration_multiplier)
 		// amount of healing is spread over all the wounds
 		heal_amt = heal_amt / (LAZYLEN(wounds) + 1)
 		// making it look prettier on scanners
@@ -1181,7 +1181,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			I.exposed()
 
 /obj/item/organ/external/proc/fracture()
-	if(!config.bones_can_break)
+	if(!get_config_value(/decl/config/toggle/on/health_bones_can_break))
 		return
 	if(BP_IS_PROSTHETIC(src))
 		return	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
@@ -1216,7 +1216,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/mend_fracture()
 	if(BP_IS_PROSTHETIC(src))
 		return 0	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
-	if(brute_dam > min_broken_damage * config.organ_health_multiplier)
+	if(brute_dam > min_broken_damage * get_config_value(/decl/config/num/health_organ_health_multiplier))
 		return 0	//will just immediately fracture again
 
 	status &= ~ORGAN_BROKEN
@@ -1516,7 +1516,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(brute_dam + force < min_broken_damage/5)	//no papercuts moving bones
 		return
 	if(LAZYLEN(internal_organs) && prob(brute_dam + force))
-		owner.custom_pain("A piece of bone in your [encased ? encased : name] moves painfully!", 50, affecting = src)
+		owner.custom_pain("A piece of bone in your [encased ? encased : name] moves painfully!", 450, affecting = src)
 		var/obj/item/organ/internal/I = pick(internal_organs)
 		I.take_internal_damage(rand(3,5))
 

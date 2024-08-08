@@ -118,12 +118,12 @@
 /obj/item/stock_parts/circuitboard/cryopodcontrol
 	name = "circuit board (Cryogenic Oversight Console)"
 	build_path = /obj/machinery/computer/cryopod
-	origin_tech = "{'programming':3}"
+	origin_tech = @'{"programming":3}'
 
 /obj/item/stock_parts/circuitboard/robotstoragecontrol
 	name = "circuit board (Robotic Storage Console)"
 	build_path = /obj/machinery/computer/cryopod/robot
-	origin_tech = "{'programming':3}"
+	origin_tech = @'{"programming":3}'
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -220,31 +220,8 @@
 	return airtank
 
 /obj/machinery/cryopod/lifepod/proc/launch()
-	launched = 1
-	for(var/d in global.cardinal)
-		var/turf/T = get_step(src,d)
-		var/obj/machinery/door/blast/B = locate() in T
-		if(B && B.density)
-			B.force_open()
-			break
+	return
 
-	var/list/possible_locations = list()
-	var/obj/effect/overmap/visitable/O = global.overmap_sectors["[z]"]
-	if(istype(O))
-		for(var/obj/effect/overmap/visitable/OO in range(O,2))
-			if((OO.sector_flags & OVERMAP_SECTOR_IN_SPACE) || istype(OO,/obj/effect/overmap/visitable/sector/exoplanet))
-				possible_locations |= text2num(level)
-
-	var/newz = get_empty_zlevel(/turf/space)
-	if(possible_locations.len && prob(10))
-		newz = pick(possible_locations)
-	var/turf/nloc = locate(rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE), rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE),newz)
-	if(!isspaceturf(nloc))
-		explosion(nloc, 1, 2, 3)
-	playsound(loc,'sound/effects/rocket.ogg',100)
-	forceMove(nloc)
-
-//Don't use these for in-round leaving
 // don't tell me what to do chinsky
 /obj/machinery/cryopod/lifepod/Process()
 	if(SSevac.evacuation_controller && SSevac.evacuation_controller.state >= EVAC_LAUNCHING)
@@ -267,7 +244,7 @@
 	if(!control_computer)
 		control_computer = locate(/obj/machinery/computer/cryopod) in get_area(src)
 		if(control_computer)
-			events_repository.register(/decl/observ/destroyed, control_computer, src, .proc/clear_control_computer)
+			events_repository.register(/decl/observ/destroyed, control_computer, src, PROC_REF(clear_control_computer))
 	return control_computer
 
 /obj/machinery/cryopod/proc/clear_control_computer()

@@ -105,7 +105,7 @@
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
 
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
+	if(!get_config_value(/decl/config/toggle/use_loyalty_implants) && !override) return // Nuh-uh.
 
 	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
 	L.imp_in = M
@@ -499,12 +499,16 @@
 			stomach.ingested.trans_to_obj(splat, min(15, stomach.ingested.total_volume))
 		handle_additional_vomit_reagents(splat)
 		splat.update_icon()
+	adjustToxLoss(-15)
 
 /mob/living/carbon/human/proc/vomit(var/timevomit = 1, var/level = 3, var/deliberate = FALSE)
 
 	set waitfor = 0
 
 	if(!check_has_mouth() || isSynthetic() || !timevomit || !level || stat == DEAD || lastpuke)
+		return
+
+	if(bloodstr.has_reagent(/decl/material/liquid/metoclopramide, 1))
 		return
 
 	if(deliberate)
@@ -631,7 +635,7 @@
 			SPAN_DANGER("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name] painfully."),       \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name] painfully."))
-		custom_pain(msg,40,affecting = organ)
+		custom_pain(msg,250,affecting = organ)
 	organ.take_external_damage(rand(1,3) + O.w_class, DAM_EDGE, 0)
 
 /mob/living/carbon/human/proc/set_bodytype(var/decl/bodytype/new_bodytype, var/rebuild_body = FALSE)
@@ -1224,8 +1228,8 @@
 		force_active_hand = get_active_held_item_slot()
 	var/obj/item/organ/external/active_hand = GET_EXTERNAL_ORGAN(src, force_active_hand)
 	var/dex_malus = 0
-	if(getBrainLoss() && getBrainLoss() > config.dex_malus_brainloss_threshold) ///brainloss shouldn't instantly cripple you, so the effects only start once past the threshold and escalate from there.
-		dex_malus = round(clamp(round(getBrainLoss()-config.dex_malus_brainloss_threshold)/10, DEXTERITY_NONE, DEXTERITY_FULL))
+	if(getBrainLoss() && getBrainLoss() > get_config_value(/decl/config/num/dex_malus_brainloss_threshold)) ///brainloss shouldn't instantly cripple you, so the effects only start once past the threshold and escalate from there.
+		dex_malus = round(clamp(round(getBrainLoss()-get_config_value(/decl/config/num/dex_malus_brainloss_threshold))/10, DEXTERITY_NONE, DEXTERITY_FULL))
 	if(!active_hand)
 		if(!silent)
 			to_chat(src, SPAN_WARNING("Your hand is missing!"))
@@ -1377,7 +1381,7 @@
 	var/decl/cultural_info/culture = get_cultural_value(TAG_HOMEWORLD) //Installs CERES neuralink into Sirius inhabitants
 	culture.on_spawn(src)
 	update_oxygen_capacities()
-	oxygen_amount = max_oxygen_capacity
+	oxygen_amount = normal_oxygen_capacity
 	calculate_strength_coefficients()
 
 /mob/proc/calculate_strength_coefficients()
@@ -1423,6 +1427,11 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	new_character.key = key
 	limb_mob = new_character
 	SSjobs.equip_ghostrank(new_character, "Explorer", 0)
+	spawn(0)
+		if(new_character.get_preference_value(/datum/client_preference/russian_translation) == PREF_YES)
+			tgui_alert(new_character, "Вы потеряли сознание. Вы либо будете спасены, либо умрете, в случае чего вы сможете возродиться за другого персонажа. Здесь нет призраков, к которым вы привыкли, если вы игрок SS13. Любые формы насилия(гриферство) запрещены и будут строго караться.", "Лимб")
+		else
+			tgui_alert(new_character, "You lost consciousness. You'll either get rescued or die, in which case you can respawn. There are no ghosts like you are used to if you're a SS13 player. Griefing is forbidden here and you will get punished for it.", "Limbo")
 
 /mob/living/carbon/human/proc/retrieve_from_limb(var/forced = FALSE)
 	if(!limb_mob)
@@ -1434,6 +1443,11 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 	qdel(limb_mob)
 	limb_mob = null
 	sound_to(src, sound(null))
+	spawn(0)
+		if(get_preference_value(/datum/client_preference/russian_translation) == PREF_YES)
+			tgui_alert(src, "Вы снова в сознании. Помните, что лучше не использовать метаинформацию, которую вы могли получить в лимбе.", "Limb")
+		else
+			tgui_alert(src, "You're conscious again. Remember that it's best to not use any meta information you may have received in the limbo.", "Limbo")
 
 /mob/living/carbon/human/update_weight()
 	. = ..()

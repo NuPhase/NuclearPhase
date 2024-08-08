@@ -31,6 +31,8 @@
 	leakiness = 100
 	usr.visible_message(SPAN_DANGER("[usr] ejects from the [src], tearing it apart!"))
 	usr.drop_from_inventory(src, usr.loc)
+	var/obj/item/nhelmet = usr.get_equipped_item(slot_head_str)
+	usr.drop_from_inventory(nhelmet)
 	var/turf/T = get_ranged_target_turf(usr, usr.dir, 15)
 	usr.throw_at(T, 15, 3, src)
 

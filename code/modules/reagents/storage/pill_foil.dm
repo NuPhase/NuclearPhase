@@ -62,3 +62,8 @@
 	to_chat(user, SPAN_NOTICE("It has the following pills in it:"))
 	for(var/obj/item/chems/pill/C in pill_positions)
 		to_chat(user, SPAN_NOTICE("[html_icon(C)] [C.name]"))
+
+/obj/item/storage/pill_bottle/foil_pack/tramadol
+	pill_type = /obj/item/chems/pill/painkillers
+/obj/item/storage/pill_bottle/foil_pack/amicile
+	pill_type = /obj/item/chems/pill/amicile

@@ -87,7 +87,7 @@ Proc returns a boolean if successful.
 				damaged_organ.take_internal_damage(organ_damage)
 				var/decl/pronouns/G = target.get_pronouns()
 				to_chat(user, SPAN_DANGER("You stab [target] in the back of [G.his] [stabbed_part.name]!"))
-				H.custom_pain(SPAN_DANGER("<font size='10'>You feel a stabbing pain in the back of your [stabbed_part.name]!</font>")) //Only the stabber and stabbed should know how bad this is.
+				H.custom_pain(SPAN_DANGER("<font size='10'>You feel a stabbing pain in the back of your [stabbed_part.name]!</font>"), 600) //Only the stabber and stabbed should know how bad this is.
 		else
 			target.apply_damage(damage, damage_type, target_zone, DAM_SHARP, src) //Backstabbing. Does extra damage to simple mobs only.
 			to_chat(user, SPAN_DANGER("You stab [target] in the back!"))

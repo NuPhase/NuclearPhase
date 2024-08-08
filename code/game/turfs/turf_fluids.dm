@@ -77,6 +77,11 @@
 		F.reagents.primary_reagent = fluid_type
 		F.temperature = ntemperature
 
+/turf/get_reagent_space()
+	if(!reagents)
+		create_reagents(FLUID_MAX_DEPTH)
+	return ..()
+
 /turf/proc/get_physical_height()
 	return 0
 
@@ -104,6 +109,7 @@
 	if(!other)
 		other = new(target)
 	if(!QDELETED(other) && other.reagents)
+		other.temperature = F.temperature
 		F.reagents.trans_to_holder(other.reagents, min(F.reagents.total_volume, min(FLUID_MAX_DEPTH - other.reagents.total_volume, amount)), defer_update = defer_update)
 		if(defer_update)
 			if(!QDELETED(F.reagents))

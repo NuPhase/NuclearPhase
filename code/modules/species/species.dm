@@ -250,10 +250,10 @@ var/global/const/DEFAULT_SPECIES_HEALTH = 200
 
 	// Order matters, higher pain level should be higher up
 	var/list/pain_emotes_with_pain_level = list(
-		list(/decl/emote/audible/agony) = 100,
-		list(/decl/emote/audible/scream, /decl/emote/audible/whimper, /decl/emote/audible/moan, /decl/emote/audible/cry) = 70,
-		list(/decl/emote/audible/grunt, /decl/emote/audible/groan, /decl/emote/audible/moan) = 40,
-		list(/decl/emote/audible/grunt, /decl/emote/audible/groan) = 10,
+		list(/decl/emote/audible/agony) = 700,
+		list(/decl/emote/audible/scream, /decl/emote/audible/whimper, /decl/emote/audible/moan, /decl/emote/audible/cry) = 400,
+		list(/decl/emote/audible/grunt, /decl/emote/audible/groan, /decl/emote/audible/moan) = 200,
+		list(/decl/emote/audible/grunt, /decl/emote/audible/groan) = 100,
 	)
 
 	var/manual_dexterity = DEXTERITY_FULL
@@ -653,7 +653,7 @@ var/global/const/DEFAULT_SPECIES_HEALTH = 200
 	H.set_fullscreen(GET_STATUS(H, STAT_BLIND) && !H.equipment_prescription, "blind", /obj/screen/fullscreen/blind)
 	H.set_fullscreen(H.stat == UNCONSCIOUS, "blackout", /obj/screen/fullscreen/blackout)
 
-	if(config.welder_vision)
+	if(get_config_value(/decl/config/toggle/on/welder_vision))
 		H.set_fullscreen(H.equipment_tint_total, "welder", /obj/screen/fullscreen/impaired, H.equipment_tint_total)
 	var/how_nearsighted = get_how_nearsighted(H)
 	H.set_fullscreen(how_nearsighted, "nearsighted", /obj/screen/fullscreen/oxy, how_nearsighted)

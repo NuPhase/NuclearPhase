@@ -2,7 +2,7 @@
 	name = "atmoalter"
 	use_power = POWER_USE_OFF
 	construct_state = /decl/machine_construction/default/panel_closed
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
+	atom_flags = ATOM_FLAG_CLIMBABLE
 
 	var/datum/gas_mixture/air_contents = new
 	var/obj/machinery/atmospherics/portables_connector/connected_port
@@ -10,6 +10,9 @@
 	var/volume = 0
 	var/destroyed = 0
 	var/start_pressure = ONE_ATMOSPHERE
+	var/start_temperature = T20C
+	var/contains_fluid = FALSE // whether it should use an alternative calculation
+	var/list/initial_gas //a list of binary ratios
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
 /obj/machinery/portable_atmospherics/get_single_monetary_worth()
@@ -21,8 +24,14 @@
 
 /obj/machinery/portable_atmospherics/Initialize()
 	..()
-	air_contents.volume = volume
-	air_contents.temperature = T20C
+	var/list/initial_gas_list = list()
+	for(var/mat_id in initial_gas)
+		var/decl/material/mat = GET_DECL(mat_id)
+		if(mat.phase_at_temperature(start_temperature, start_pressure) == MAT_PHASE_LIQUID)
+			initial_gas_list[mat_id] = MolesForVolume(mat_id) * initial_gas[mat_id]
+		else
+			initial_gas_list[mat_id] = MolesForPressure(start_pressure) * initial_gas[mat_id]
+	air_contents = new(volume, start_temperature, initial_gas = initial_gas_list)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/portable_atmospherics/Destroy()
@@ -49,11 +58,11 @@
 		/decl/material/gas/nitrogen = N2STANDARD *  MolesForPressure())
 
 /obj/machinery/portable_atmospherics/proc/MolesForPressure(var/target_pressure = start_pressure)
-	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	return (target_pressure * volume) / (R_IDEAL_GAS_EQUATION * start_temperature)
 
 /obj/machinery/portable_atmospherics/proc/MolesForVolume(var/decl/material/mat)
 	mat = GET_DECL(mat)
-	return air_contents.volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass
+	return volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass
 
 /obj/machinery/portable_atmospherics/on_update_icon()
 	return null

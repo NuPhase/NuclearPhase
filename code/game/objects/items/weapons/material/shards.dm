@@ -116,20 +116,17 @@
 
 			to_chat(M, SPAN_DANGER("You step on \the [src]!"))
 
-			var/list/check = list(BP_L_FOOT, BP_R_FOOT)
-			while(check.len)
-				var/picked = pick(check)
-				var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, picked)
-				if(affecting)
-					if(BP_IS_PROSTHETIC(affecting))
-						return
-					affecting.take_external_damage(5, 0)
-					H.updatehealth()
-					if(affecting.can_feel_pain())
-						SET_STATUS_MAX(H, STAT_WEAK, 3)
-					return
-				check -= picked
-			return
+//Prevent the shard from being allowed to shatter
+/obj/item/shard/check_health(var/lastdamage = null, var/lastdamtype = null, var/lastdamflags = 0, var/consumed = FALSE)
+	if(health > 0)
+		return //If invincible, or if we're not dead yet, skip
+	if(lastdamtype == BURN)
+		handle_melting()
+		return
+	physically_destroyed()
+
+/obj/item/shard/shatter(consumed)
+	physically_destroyed()
 
 // Preset types - left here for the code that uses them
 /obj/item/shard/borosilicate

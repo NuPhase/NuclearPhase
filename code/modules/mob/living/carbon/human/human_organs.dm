@@ -9,7 +9,7 @@
 	return E?.name
 
 /mob/living/carbon/human/proc/should_recheck_bad_external_organs()
-	var/damage_this_tick = getToxLoss()
+	var/damage_this_tick = getOrganDamage()
 	for(var/obj/item/organ/external/O in get_external_organs())
 		damage_this_tick += O.burn_dam + O.brute_dam
 
@@ -55,7 +55,7 @@
 			if (!lying && !buckled && world.time - l_move_time < 15)
 			//Moving around with fractured ribs won't do you any good
 				if (prob(10) && !stat && can_feel_pain() && GET_CHEMICAL_EFFECT(src, CE_PAINKILLER) < 50 && E.is_broken() && LAZYLEN(E.internal_organs))
-					custom_pain("Pain jolts through your broken [E.encased ? E.encased : E.name], staggering you!", 50, affecting = E)
+					custom_pain("Pain jolts through your broken [E.encased ? E.encased : E.name], staggering you!", 250, affecting = E)
 					drop_held_items()
 					SET_STATUS_MAX(src, STAT_STUN, 2)
 
@@ -218,7 +218,7 @@
 				null,
 				"You hear someone [emote_scream_alt]!"
 			)
-			custom_pain("The sharp pain in your [E.name] forces you to drop what you were holding in your [grasp_name]!", 30)
+			custom_pain("The sharp pain in your [E.name] forces you to drop what you were holding in your [grasp_name]!", 250)
 		else
 			visible_message("<B>\The [src]</B> drops what they were holding in their [grasp_name]!")
 
@@ -291,7 +291,7 @@
 
 /mob/living/carbon/human/on_lost_organ(var/obj/item/organ/O)
 	if(!(. = ..()))
-		return 
+		return
 	//Move some blood over to the organ
 	if(!BP_IS_PROSTHETIC(O) && O.species && O.reagents?.total_volume < 5)
 		vessel.trans_to(O, 5 - O.reagents.total_volume, 1, 1)

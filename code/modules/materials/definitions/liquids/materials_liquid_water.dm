@@ -21,7 +21,7 @@
 	glass_name = "water"
 	glass_desc = "The father of all refreshments."
 	slipperiness = 8
-	dirtiness = DIRTINESS_CLEAN
+	dirtiness = DIRTINESS_STERILE
 	turf_touch_threshold = 0.1
 	chilling_point = T0C
 	chilling_products = list(
@@ -60,23 +60,23 @@
 		if(2)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 2
-			M.custom_pain("Something is not right with this liquid...", 10)
+			M.custom_pain("Something is not right with this liquid...", 10 * removed)
 		if(3)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 2
 			M.add_chemical_effect(CE_TOXIN, removed * 0.5)
-			M.custom_pain("Drinking this is extremely unpleasant...", 10)
+			M.custom_pain("Drinking this is extremely unpleasant...", 10 * removed)
 		if(4)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 10
 			M.add_chemical_effect(CE_TOXIN, removed)
-			M.custom_pain("This liquid tastes disgusting!", 15)
+			M.custom_pain("This liquid tastes disgusting!", 15 * removed)
 		if(5)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
 			S.germ_level += removed * 10
 			M.add_chemical_effect(CE_TOXIN, removed*2)
 			M.add_chemical_effect(CE_ALCOHOL, removed*5)
-			M.custom_pain("You feel the walls of your esophagus eroding and burning!", 35)
+			M.custom_pain("You feel the walls of your esophagus eroding and burning!", 35 * removed)
 
 	M.adjust_hydration(removed * 10)
 	affect_blood(M, removed, holder)
@@ -147,14 +147,28 @@
 		/decl/material/gas/oxygen = 0.1,
 		/decl/material/gas/hydrogen = 0.4
 	)
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 4,
+			INTERACTION_ABSORPTION = 0.003
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 3,
+			INTERACTION_ABSORPTION = 3.1
+		)
+	)
 
+// Clean water with an imperfect taste
 /decl/material/liquid/water/dirty1
+	codex_name = "raw water"
 	dirty_stage = 1
-	dirtiness = DIRTINESS_NEUTRAL
+	dirtiness = DIRTINESS_CLEAN
 	taste_description = "raw water"
 	uid = "liquid_water_dirty1"
 	color = "#83d7e0"
 
+// Water devoid of harmful contaminants, but has some bacteria
+// Harmless if your immune system is fine, but can cause upset stomach when you drink enough
 /decl/material/liquid/water/dirty2
 	dirty_stage = 2
 	dirtiness = 1
@@ -166,6 +180,8 @@
 	heating_temperature_product = -2
 	heating_products = list(/decl/material/liquid/water = 1)
 
+// Water with some contaminants.
+// Can poison in large quantities
 /decl/material/liquid/water/dirty3
 	dirty_stage = 3
 	dirtiness = 1.5
@@ -174,6 +190,8 @@
 	uid = "liquid_water_dirty3"
 	color = "#507579"
 
+// Water plenty of bacteria and contaminants
+// Can poison in a few cups
 /decl/material/liquid/water/dirty4
 	dirty_stage = 4
 	dirtiness = 2
@@ -182,6 +200,8 @@
 	uid = "liquid_water_dirty4"
 	color = "#9b7d63"
 
+// Water a huge amount of contaminants
+// Get heavy metal poisoning, idiot
 /decl/material/liquid/water/dirty5
 	dirty_stage = 5
 	dirtiness = 3

@@ -127,7 +127,7 @@ var/global/list/known_overmap_sectors
 	return get_filtered_areas(list(/proc/area_belongs_to_zlevels = map_z))
 
 /obj/effect/overmap/visitable/proc/find_z_levels()
-	map_z = GetConnectedZlevels(z)
+	map_z = SSmapping.get_connected_levels(z)
 
 /obj/effect/overmap/visitable/proc/register_z_levels()
 	var/datum/overmap/overmap = global.overmaps_by_z["[z]"]

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/device/auto_cpr.dmi'
 	icon_state = ICON_STATE_WORLD
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = "{'magnets':2,'biotech':2}"
+	origin_tech = @'{"magnets":2,"biotech":2}'
 	slot_flags = SLOT_OVER_BODY
 	var/skilled_setup
 
@@ -58,4 +58,4 @@
 	if(!skilled_setup && prob(5))
 		E.fracture()
 	else
-		H.add_mcv = rand(250, 500)
+		H.add_mcv += rand(250, 500)

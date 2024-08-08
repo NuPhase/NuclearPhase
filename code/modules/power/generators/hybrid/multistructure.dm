@@ -1,9 +1,3 @@
-/datum/composite_sound/reactor
-	mid_sounds = list('sound/machines/reactorloop.ogg'=1)
-	mid_length = 20
-	volume = 50
-	sfalloff = 25
-
 /obj/structure/reactor_superstructure
 	name = "C.C-F.R-1900"
 	desc = "Nuclear Fusion-Fission Reactor hanged on a giant support structure."
@@ -11,17 +5,25 @@
 	layer = ABOVE_HUMAN_LAYER
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
 	icon = 'icons/obj/machines/fusion_reactor.dmi'
+	icon_state = "reactor"
 	pixel_y = -208
 	pixel_x = -208
-	var/datum/composite_sound/reactor/soundloop
+	var/datum/sound_token/sound_token
+	var/sound_id
 
 /obj/structure/reactor_superstructure/Initialize(ml, _mat, _reinf_mat)
 	. = ..()
+	sound_id = "[/obj/structure/reactor_superstructure]_[sequential_id(/obj/structure/reactor_superstructure)]"
 	add_filter("glow", 1, list(type="drop_shadow", x = 0, y = 0, offset = 0, size = 0))
 	reactor_components["superstructure"] = src
+	add_overlay(overlay_image(icon, "control_connector"))
+
+/obj/structure/reactor_superstructure/Destroy()
+	. = ..()
+	qdel(sound_token)
 
 /obj/structure/reactor_superstructure/proc/startsound()
-	soundloop = new(list(src), TRUE)
+	sound_token = play_looping_sound(src, sound_id, 'sound/machines/reactorloop.ogg', 100, 15, 7)
 
 var/list/global/reactor_ports = list()
 

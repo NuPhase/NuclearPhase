@@ -29,7 +29,7 @@
 	var/efficiency = 0.93
 	var/kin_energy = 0
 	var/kin_total = 0 //last kin energy generation
-	var/expansion_ratio = 0.87
+	var/expansion_ratio = 0.44
 	var/volume_ratio = 0.2
 	var/steam_velocity = 0
 	var/pressure_difference = 0
@@ -38,6 +38,14 @@
 	var/braking = FALSE //emergency brakes
 	var/vibration = 0 //0-25 is minor, 25-50 is major, anything above is critical
 
+	//for logging and interfaces
+	var/inlet_temperature = T20C
+	var/exhaust_temperature = T20C
+	var/inlet_pressure = 0
+	var/exhaust_pressure = 0
+	var/real_expansion = 1 //inlet_pressure / exhaust_pressure
+	var/kinetic_energy_delta = 0 // (kin_total - generator.last_load) * 1800
+
 	var/water_level = 0 //0-1. Condensation inside turbine increases water level
 	var/water_grates_open = FALSE
 
@@ -45,8 +53,11 @@
 	var/shaft_integrity = 100
 
 	var/obj/structure/turbine_visual/visual = null
+	var/obj/machinery/power/generator/turbine_generator/generator = null
 
 	var/valve_id = ""
+
+	failure_chance = 10
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
 	switch(vibration)
@@ -63,6 +74,10 @@
 	air2.volume = 7500
 	reactor_components[uid] = src
 
+/obj/machinery/atmospherics/binary/turbinestage/fail_roundstart()
+	rotor_integrity = 100 - (SSticker.mode.difficulty / rand(1,3))
+	shaft_integrity = 100 - (SSticker.mode.difficulty / 2)
+
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(npres, ntemp)
 	if(ntemp > 450)
 		return 3758119 //Hooked to steam table API
@@ -75,47 +90,23 @@
 	. = ..()
 	update_networks()
 
-	if(!air1.temperature || !air2.temperature)
-		return
-
-	var/air1_density = get_density(air1.return_pressure() * 0.001, air1.temperature - 273.15)
-
-	// flow speed
-	// sqrt((2 * (P1 - P2) / rho) + (2 * g * (h1 - h2)))
-	if(feeder_valve_openage)
-		pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
-		steam_velocity = sqrt((2 * pressure_difference / air1_density) + (2 * GRAVITY_CONSTANT))
+	if(air1.total_moles)
+		process_steam()
 	else
+		total_mass_flow = 0
 		steam_velocity = 0
+		kin_total = 0
 
-	//Steam enters at 1.5m diameter, expands to 5.5m. 5.5m diameter > area = 95.03
-	var/nozzle_exit_area = 95.03 * feeder_valve_openage
-	total_mass_flow = nozzle_exit_area*expansion_ratio*0.598*sqrt(steam_velocity * 4.2 * (1-(air2.return_pressure()/air1.return_pressure())**0.23))
+	var/air2_pressure = air2.return_pressure()
+	if(air2_pressure)
+		real_expansion = air1.return_pressure() / air2_pressure
+	else
+		real_expansion = air1.return_pressure() / 0.001
+	real_expansion = min(real_expansion, expansion_ratio)
 
-	var/datum/gas_mixture/air_all = new
-	air_all.volume = air1.volume + air2.volume
+	kinetic_energy_delta = kin_total - generator.last_load * 1800
 
-	pump_passive(air1, air_all, total_mass_flow)
-
-	kin_total = get_specific_enthalpy(air1.return_pressure() * 0.001, air_all.temperature - 273.15) * total_mass_flow
-	kin_total *= expansion_ratio
-	air_all.add_thermal_energy(kin_total * -1)
-	air_all.temperature = max(air_all.temperature, 311)
-
-	if(air_all.temperature < 340)
-		if(water_grates_open)
-			water_level += 0.01
-		else
-			water_level += 0.06
-	else if(water_grates_open)
-		water_level -= 0.05
-	water_level = CLAMP01(water_level)
-
-	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
 	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
-
-	calculate_vibration(air_all)
-	air2.merge(air_all)
 
 	if(braking)
 		var/datum/gas_mixture/environment = loc.return_air()
@@ -128,11 +119,61 @@
 
 	if(rpm > 800)
 		use_power = POWER_USE_ACTIVE
-		if(!visual.soundloop)
+		if(!visual.sound_token)
 			visual.spool_up()
+		visual.on_rpm_change(rpm)
 	else
 		visual.spool_down()
 		use_power = POWER_USE_IDLE
+
+/obj/machinery/atmospherics/binary/turbinestage/proc/process_steam()
+	var/air1_density = get_density(air1.return_pressure() * 0.001, air1.temperature - 273.15)
+
+	//calculate flow velocity
+	// sqrt((2 * (P1 - P2) / rho) + (2 * g * (h1 - h2)))
+	if(feeder_valve_openage)
+		pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
+		steam_velocity = sqrt((2 * pressure_difference / air1_density) + (2 * GRAVITY_CONSTANT))
+	else
+		steam_velocity = 0
+
+	//calculate flow mass
+	//Steam enters at 1.5m diameter, expands to 5.5m. 5.5m diameter > area = 95.03
+	total_mass_flow = feeder_valve_openage*95.03*expansion_ratio*0.598*sqrt(steam_velocity * 4.2 * (1-(air2.return_pressure()/air1.return_pressure())**0.23))
+	total_mass_flow = min(total_mass_flow, air1.get_mass())
+
+	//create the internal gas mixture and transfer inlet steam to it
+	var/datum/gas_mixture/air_all = new(air1.volume * (feeder_valve_openage + 0.05))
+	pump_passive(air1, air_all, total_mass_flow)
+
+	//logging
+	inlet_temperature = air_all.temperature
+	inlet_pressure = air_all.return_pressure()
+
+	//get the kinetic energy received from steam and cool it down
+	kin_total = get_specific_enthalpy(air1.return_pressure() * 0.001, air_all.temperature - 273.15) * total_mass_flow
+	kin_total *= expansion_ratio
+	air_all.add_thermal_energy(kin_total * -1)
+	air_all.temperature = max(air_all.temperature, T0C)
+	air_all.update_values()
+
+	//logging
+	exhaust_temperature = air_all.temperature
+	exhaust_pressure = air_all.return_pressure()
+
+	//let water accumulate inside the turbine if the exhaust steam is too cold
+	if(air_all.temperature < 340)
+		if(water_grates_open)
+			water_level += 0.01
+		else
+			water_level += 0.06
+	else if(water_grates_open)
+		water_level -= 0.05
+	water_level = CLAMP01(water_level)
+
+	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
+	calculate_vibration(air_all)
+	air2.merge(air_all)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_efficiency()
 	efficiency = 0.23
@@ -144,8 +185,8 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	var/tvibration = 0
-	//if(turbine_internals.temperature < 409) //condensing inside of the turbine is incredibly dangerous
-	//	tvibration += total_mass_flow * 0.04
+	if(turbine_internals.phases[/decl/material/liquid/water] == MAT_PHASE_LIQUID) //condensing inside of the turbine is incredibly dangerous
+		tvibration += total_mass_flow * 0.04
 	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
 		tvibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
@@ -212,6 +253,7 @@
 		turbine = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_step(src,dir)
 		if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 			turbine = null
+		turbine.generator = src
 
 /obj/machinery/power/generator/turbine_generator/Process()
 	if(!turbine)
@@ -231,15 +273,6 @@
 		turbine.kin_energy -= w //i trust the power controller to not draw more than what's available
 		last_load = w
 
-/datum/composite_sound/turbine
-	start_sound = 'sound/machines/turbine_start.ogg'
-	start_length = 155
-	mid_sounds = list('sound/machines/turbine_mid.ogg'=1)
-	mid_length = 180
-	end_sound = 'sound/machines/turbine_end.ogg'
-	volume = 300
-	sfalloff = 3
-
 /obj/structure/turbine_visual
 	name = "steam turbine"
 	desc = "A gas turbine. Converting pressure into energy since 1884."
@@ -252,11 +285,13 @@
 	density = 1
 	pixel_x = -32
 	pixel_y = -64
-	var/datum/composite_sound/turbine/soundloop
+	var/datum/sound_token/sound_token
+	var/sound_id
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine_stage
 
 /obj/structure/turbine_visual/Initialize()
 	. = ..()
+	sound_id = "[/obj/structure/turbine_visual]_[sequential_id(/obj/structure/turbine_visual)]"
 	turbine_stage = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_turf(loc)
 	turbine_stage.visual = src
 
@@ -270,8 +305,12 @@
 		turbine_stage.braking = FALSE
 	. = ..()
 
+/obj/structure/turbine_visual/proc/on_rpm_change(new_rpm)
+	if(sound_token)
+		sound_token.SetVolume((new_rpm / TURBINE_ABNORMAL_RPM) * 150)
+
 /obj/structure/turbine_visual/proc/spool_up()
-	soundloop = new(list(src), TRUE)
+	sound_token = play_looping_sound(src, sound_id, 'sound/machines/turbine_mid.ogg', 30, 15, 7)
 
 /obj/structure/turbine_visual/proc/spool_down()
-	QDEL_NULL(soundloop)
+	QDEL_NULL(sound_token)

@@ -23,8 +23,7 @@
 		BRUTE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[BRUTE]'>[getBruteLoss()]</a>
 		FIRE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[BURN]'>[getFireLoss()]</a>
 		TOXIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[TOX]'>[getToxLoss()]</a>
-		OXY:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[OXY]'>[getOxyLoss()]</a>
-		CLONE:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[CLONE]'>[getCloneLoss()]</a>
+		ORGAN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[TOX]'>[getOrganDamage()]</a>
 		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=[BP_BRAIN]'>[getBrainLoss()]</a>
 		</font>
 		"}
@@ -133,9 +132,6 @@
 /datum/proc/VV_secluded()
 	return list()
 
-/datum/configuration/VV_secluded()
-	return vars
-
 // The following vars cannot be edited by anyone
 /datum/proc/VV_static()
 	return list("parent_type")
@@ -182,7 +178,7 @@
 	if(!(var_to_edit in VV_get_variables()))
 		to_chat(user, "<span class='warning'>\The [src] does not have a var '[var_to_edit]'</span>")
 		return FALSE
-	if(var_to_edit in VV_static())
+	if((var_to_edit in VV_static()) || (var_to_edit in VV_hidden()))
 		return FALSE
 	if((var_to_edit in VV_secluded()) && !check_rights(R_ADMIN|R_DEBUG, FALSE, C = user))
 		return FALSE

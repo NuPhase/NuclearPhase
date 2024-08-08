@@ -101,7 +101,7 @@
 /obj/random/toolbox
 	name = "random toolbox"
 	desc = "This is a random toolbox."
-	icon = 'icons/obj/items/storage/toolbox.dmi'
+	icon = 'icons/obj/items/storage/toolboxes/toolbox_blue.dmi'
 	icon_state = "red"
 
 /obj/random/toolbox/spawn_choices()
@@ -777,7 +777,7 @@
 	return list(/obj/item/clothing/suit/storage/hazardvest = 4,
 				/obj/item/clothing/suit/storage/toggle/labcoat = 4,
 				/obj/item/clothing/suit/armor/vest = 4,
-				/obj/item/clothing/suit/armor/pcarrier/tactical = 1,
+				/obj/item/clothing/suit/armor/pcarrier/green/tactical = 1,
 				/obj/item/clothing/suit/armor/vest/heavy = 3,
 				/obj/item/clothing/suit/storage/toggle/bomber = 3,
 				/obj/item/clothing/suit/chef/classic = 3,

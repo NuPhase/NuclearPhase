@@ -10,7 +10,7 @@
 	throwforce = 1
 	throw_speed = 3
 	throw_range = 5
-	origin_tech = "{'biotech':3}"
+	origin_tech = @'{"biotech":3}'
 	attack_verb = list("attacked", "slapped", "whacked")
 	relative_size = 85
 	damage_reduction = 0
@@ -33,7 +33,7 @@
 
 /obj/item/organ/internal/brain/oxygen_starve(amount)
 	. = ..()
-	if(oxygen_deprivation > 10)
+	if(oxygen_deprivation > 20)
 		var/mob/living/carbon/human/H = owner
 		H.send_to_limb()
 
@@ -130,23 +130,24 @@
 		if(owner.should_have_organ(BP_HEART))
 			var/can_heal = damage && damage < max_damage && (damage % damage_threshold_value || GET_CHEMICAL_EFFECT(owner, CE_BRAIN_REGEN) || (!past_damage_threshold(3) && GET_CHEMICAL_EFFECT(owner, CE_STABLE)))
 			switch(owner.get_blood_perfusion())
-				if(0.8 to 1)
+				if(0.9 to 1)
 					if(can_heal)
 						damage = max(damage-1, 0)
-				if(0.6 to 0.79)
+				if(0.7 to 0.9)
+					owner.set_status(STAT_CONFUSE, 20)
+				if(0.5 to 0.7)
+					owner.set_status(STAT_CONFUSE, 20)
+					owner.set_status(STAT_WEAK, 20)
 					if(prob(1))
 						to_chat(owner, "<span class='warning'>You feel [pick("dizzy","woozy","faint")]...</span>")
-				if(0.4 to 0.59)
-					if(!past_damage_threshold(4) && prob(5))
-						to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
-				if(0 to 0.39)
+				if(0 to 0.5)
 					SET_STATUS_MAX(owner, STAT_PARA, 3)
 	..()
 
 /obj/item/organ/internal/brain/take_internal_damage(var/damage, var/silent)
 	set waitfor = 0
 	..()
-	if(damage >= 10) //This probably won't be triggered by oxyloss or mercury. Probably.
+	if(damage >= 25) //This probably won't be triggered by oxyloss or mercury. Probably.
 		var/damage_secondary = damage * 0.20
 		owner.flash_eyes()
 		SET_STATUS_MAX(owner, STAT_BLURRY, damage_secondary)
@@ -154,7 +155,7 @@
 		SET_STATUS_MAX(owner, STAT_PARA, damage_secondary)
 		SET_STATUS_MAX(owner, STAT_WEAK, round(damage, 1))
 		if(prob(30))
-			addtimer(CALLBACK(src, .proc/brain_damage_callback, damage), rand(6, 20) SECONDS, TIMER_UNIQUE)
+			addtimer(CALLBACK(src, PROC_REF(brain_damage_callback), damage), rand(6, 20) SECONDS, TIMER_UNIQUE)
 
 /obj/item/organ/internal/brain/proc/brain_damage_callback(var/damage) //Confuse them as a somewhat uncommon aftershock. Side note: Only here so a spawn isn't used. Also, for the sake of a unique timer.
 	if(!QDELETED(owner))
@@ -181,7 +182,7 @@
 	if(owner.stat)
 		return
 	if(damage > 0 && prob(1))
-		owner.custom_pain("Your head feels numb and painful.",10)
+		owner.custom_pain("Your head feels numb and painful.",150)
 	if(is_bruised() && prob(1) && !HAS_STATUS(owner, STAT_BLURRY))
 		to_chat(owner, "<span class='warning'>It becomes hard to see for some reason.</span>")
 		owner.set_status(STAT_BLURRY, 10)

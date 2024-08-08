@@ -886,7 +886,7 @@ var/global/list/allCasters = list() //Global list that will contain reference to
 				src.scribble = s
 				src.attack_self(user)
 				return TRUE
-			return 
+			return
 	return ..()
 
 ////////////////////////////////////helper procs
@@ -921,9 +921,6 @@ var/global/list/allCasters = list() //Global list that will contain reference to
 		audible_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"[news_call]\"</span>")
 		src.alert = 1
 		src.update_icon()
-		spawn(300)
-			src.alert = 0
-			src.update_icon()
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 75, 1)
 	else
 		audible_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>")

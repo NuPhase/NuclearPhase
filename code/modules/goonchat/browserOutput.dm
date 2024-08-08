@@ -287,6 +287,10 @@ var/global/savefile/iconCache = new("data/iconCache.sav")
 	var/list/message_cooldown = list()
 
 /proc/to_chat_cooldown(client/target, message, id, time, var/forced = FALSE)
+	if(!istype(target))
+		target = resolve_client(target)
+	if(!target)
+		return
 	if(!target.message_cooldown.Find(id))
 		forced = TRUE
 

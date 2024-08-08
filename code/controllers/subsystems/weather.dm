@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(weather)
 
 	var/list/weather_systems = list()
 	var/list/processing_systems
+	var/list/weather_by_z = list()
 
 /datum/controller/subsystem/weather/stat_entry(time)
 	if (PreventUpdateStat(time))

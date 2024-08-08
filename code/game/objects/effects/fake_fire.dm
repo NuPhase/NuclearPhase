@@ -2,17 +2,25 @@
 	blend_mode = BLEND_ADD
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
+	anchored = TRUE
 	layer = FIRE_LAYER
 	var/lifetime = 10 SECONDS //0 for infinite
 	//See Fire.dm (the real one), but in a nutshell:
 	var/firelevel = 0 //Larger the number, worse burns.
 	var/last_temperature = 0 //People with heat protection above this temp will be immune.
 	var/pressure = 0 //Larger the number, worse burns.
+	var/obj/effect/abstract/particle_holder/our_holder = null
 
 /obj/effect/fake_fire/Initialize()
+	if(last_temperature == 0)
+		last_temperature = temperature
 	. = ..()
 	set_light(3, 0.5, color)
+	Process()
 	START_PROCESSING(SSobj,src)
+	if(last_temperature < 15000)
+		our_holder = new(loc, /particles/smoke_continuous/fire)
+		our_holder.alpha = 170
 	if(lifetime)
 		QDEL_IN(src,lifetime)
 
@@ -25,4 +33,13 @@
 
 /obj/effect/fake_fire/Destroy()
 	STOP_PROCESSING(SSobj,src)
+	qdel(our_holder)
 	. = ..()
+
+/obj/effect/fake_fire/dragon_breath
+	icon_state = "1"
+	lifetime = 3
+	firelevel = 5
+	last_temperature = 800
+	pressure = ONE_ATMOSPHERE
+	color = FIRE_COLOR_DEFAULT

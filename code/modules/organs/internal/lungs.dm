@@ -146,7 +146,7 @@
 /obj/item/organ/internal/lungs/proc/rupture()
 	var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
 	if(istype(parent))
-		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 50, affecting = parent)
+		owner.custom_pain("You feel a stabbing pain in your [parent.name]!", 500, affecting = parent)
 	ruptured = TRUE
 
 //exposure to extreme pressures can rupture lungs
@@ -171,12 +171,25 @@
 	if(amount > 10 && lung_rupture_prob)
 		rupture()
 
+/obj/item/organ/internal/lungs/proc/get_breath_efficiency()
+	. = 1
+	. -= damage/max_damage
+	. += owner.lying*0.5
+	. -= oxygen_deprivation / OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD / 4
+	return .
+
+//How much oxygen do the lungs produce.
+//oxygen volume = 1641ml per mole
+#define OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured) inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency / (ruptured + 1)
+//How much hemoglobin can be saturated every 2 seconds in the body.
+#define MAX_OXYGEN_DELTA(mcv, max_oxygen_content) ((mcv / NORMAL_MCV) / 30) * max_oxygen_content
+
 /obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced, var/forced_breath_rate = 0)
 
 	if(!owner)
 		return 1
 
-	if(!breath || (max_damage <= 0) || oxygen_deprivation && !forced)
+	if(!breath || (max_damage <= 0) && !forced)
 		breath_fail_ratio = 1
 		handle_failed_breath()
 		breath_rate = 0
@@ -193,35 +206,23 @@
 		handle_failed_breath()
 		return 1
 
-	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
-	// Lung damage increases the minimum safe pressure.
-	safe_pressure_min *= 1 + rand(1,2) * damage/max_damage
-	if(ruptured)
-		if(!chest_tube)
-			safe_pressure_min *= 1.4 //one lung collapsed
-		else
-			safe_pressure_min *= 1.1 //helps a little
-
-	if(owner.lying)
-		safe_pressure_min *= 0.8
-
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
-	var/inhaling = breath.gas[breath_type]
-	var/inhaling_ratio = inhaling/breath.total_moles
-	var/inhale_efficiency = min(round((inhaling_ratio*breath_pressure)/safe_pressure_min, 0.001), 3)
+	var/inhaling_gas_moles = breath.gas[breath_type]
+	var/inhaling_ratio = inhaling_gas_moles/breath.total_moles
+	var/inhale_efficiency = Clamp(round((inhaling_ratio*breath_pressure)/min_breath_pressure * get_breath_efficiency()), 0.01, 3)
 	last_breath_efficiency = inhale_efficiency
 
 	// Not enough to breathe
-	if(inhale_efficiency < 0.8)
+	if(inhale_efficiency < 0.6)
 		if(prob(20) && active_breathing)
-			if(inhale_efficiency < 0.6)
-				owner.emote("gasp")
-			else if(prob(20))
-				to_chat(owner, SPAN_WARNING("It's hard to breathe..."))
+			owner.emote("gasp")
+		else if(prob(20))
+			to_chat(owner, SPAN_WARNING("It's hard to breathe..."))
+		if(inhale_efficiency < 0.1)
+			failed_inhale = 1
 		breath_fail_ratio = Clamp(0,(1 - inhale_efficiency + breath_fail_ratio)/2,1)
-		failed_inhale = 1
 	else
 		if(breath_fail_ratio && prob(20))
 			to_chat(owner, SPAN_NOTICE("It gets easier to breathe."))
@@ -229,7 +230,7 @@
 
 	owner.oxygen_alert = failed_inhale * 2
 
-	var/inhaled_gas_used = inhaling / 4
+	var/inhaled_gas_used = inhaling_gas_moles / 4
 	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
 
 	owner.toxins_alert = 0 // Reset our toxins alert for now.
@@ -245,12 +246,11 @@
 	// Pass reagents from the gas into our body.
 	// Presumably if you breathe it you have a specialized metabolism for it, so we drop/ignore breath_type. Also avoids
 	// humans processing thousands of units of oxygen over the course of a round.
-	var/ratio = BP_IS_PROSTHETIC(src)? 0.66 : 1
 	for(var/gasname in breath.gas - breath_type)
 		var/decl/material/gas = GET_DECL(gasname)
 		if(gas.gas_metabolically_inert)
 			continue
-		var/reagent_amount = breath.gas[gasname] * gas.molar_volume * ratio
+		var/reagent_amount = breath.gas[gasname] * gas.molar_volume
 		owner.reagents.add_reagent(gasname, reagent_amount)
 		breath.adjust_gas(gasname, -breath.gas[gasname], update = 0) //update after
 
@@ -261,12 +261,13 @@
 
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
+
 	if(!failed_breath || forced)
-		calculate_breath_rate()
-		breath_rate += forced_breath_rate
-		owner.add_oxygen(oxygen_generation * breath_rate * inhale_efficiency)
+		owner.add_oxygen(min(OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured)), MAX_OXYGEN_DELTA(owner.mcv, owner.normal_oxygen_capacity))
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
+		oxygen_starve(inhaling_ratio * -10)
+	calculate_breath_rate()
 
 	handle_temperature_effects(breath)
 	breath.update_values()
@@ -276,6 +277,9 @@
 	else
 		owner.oxygen_alert = 0
 	return failed_breath
+
+#undef OXYGEN_PRODUCED
+#undef MAX_OXYGEN_DELTA
 
 /obj/item/organ/internal/lungs/proc/get_breathing_sound(obj/item/clothing/mask/mask, efficiency)
 	if(!mask || !(mask.item_flags & ITEM_FLAG_AIRTIGHT))
@@ -303,9 +307,11 @@
 		return
 	breath_rate = initial(breath_rate)
 	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
-	breath_rate += min(25, owner.shock_stage * 0.1)
-	var/breath_rate_delta = owner.normal_oxygen_capacity - owner.oxygen_amount
-	breath_rate += breath_rate_delta * 0.14
+	breath_rate += min(18, owner.shock_stage * 0.1)
+	breath_rate -= oxygen_deprivation * 1.65
+	var/breath_rate_deficit = 1 - owner.get_blood_saturation()
+	if(breath_rate_deficit > 0)
+		breath_rate += min(30, (breath_rate_deficit * 100)**1.35)
 	breath_rate = Clamp(breath_rate, 0, 61)
 
 /obj/item/organ/internal/lungs/proc/handle_failed_breath()

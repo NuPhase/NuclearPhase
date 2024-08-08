@@ -15,6 +15,12 @@
 	path = /obj/item/clothing/under/graphene
 	cost = 25
 
+/decl/loadout_option/uniform/united_nations
+	name = "United Nations uniform"
+	description = "U.N. officer's uniform. Very valuable, but purely sentimental."
+	path = /obj/item/clothing/under/united_nations
+	cost = 15
+
 /decl/loadout_option/uniform/shortjumpskirt
 	name = "short jumpskirt, colour select"
 	path = /obj/item/clothing/under/shortjumpskirt

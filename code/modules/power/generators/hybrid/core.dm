@@ -1,13 +1,13 @@
 #define FISSION_RATE 0.01 //General modifier of fission speed
 #define NEUTRON_FLUX_RATE 0.001 //Neutron flux per neutron mole
 #define NEUTRON_MOLE_ENERGY 1000 //J per neutron mole
-#define RADS_PER_NEUTRON 30
+#define RADS_PER_NEUTRON 3
 #define REACTOR_POWER_MODIFIER 10 //Currently unused
 #define WATTS_PER_KPA 0.5
 #define REACTOR_SHIELDING_COEFFICIENT 0.05
 #define REACTOR_MODERATOR_POWER 0.27
+#define REACTOR_FIELD_VOLUME 50000
 
-#define MAX_MAGNET_DELTA 800000000
 #define MAX_MAGNET_CHARGE 10000000
 
 /obj/machinery/power/hybrid_reactor
@@ -23,6 +23,10 @@
 
 	var/xray_flux = 0
 
+	var/last_temperature = T0C
+	var/energy_rate = 0 //eV of temperature
+
+	var/last_neutrons = 0
 	var/neutron_rate = 0
 	var/neutron_moles = 0 //how many moles can we split
 	var/neutrons_absorbed = 0
@@ -46,9 +50,14 @@
 
 	var/datum/gas_mixture/containment_field
 
+	failure_chance = 10
+
+/obj/machinery/power/hybrid_reactor/fail_roundstart()
+	field_battery_charge = MAX_MAGNET_CHARGE * (100 - SSticker.mode.difficulty) * 0.01
+
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
-	containment_field = new(50000, 4200)
+	containment_field = new(REACTOR_FIELD_VOLUME, 4500)
 	reactor_components["core"] += src
 	rcontrol.initialize()
 	spawn(1 MINUTE)
@@ -59,11 +68,9 @@
 	reactor_components["core"] = null
 
 /obj/machinery/power/hybrid_reactor/Process()
-	var/last_neutrons = slow_neutrons + fast_neutrons
-
 	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
-	slow_neutrons = returned_list["slow_neutrons_changed"]
-	fast_neutrons = returned_list["fast_neutrons_changed"]
+	slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
+	fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 
 	handle_control_panels()
 
@@ -72,35 +79,46 @@
 
 	total_neutrons = slow_neutrons + fast_neutrons
 
-	if(last_neutrons)
-		neutron_rate = total_neutrons / last_neutrons
-	else
-		neutron_rate = 1
-
 	var/total_radiation = total_neutrons * RADS_PER_NEUTRON
 	last_radiation = total_radiation
 	SSradiation.radiate(src, total_radiation)
 	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
 
-	if(containment_field.temperature > 1000)
+	if(containment_field.temperature > 4900)
 		if(containment)
 			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA
 			field_battery_charge = max(0, field_battery_charge - field_power_consumption * CELLRATE)
+			containment_field.add_thermal_energy(field_power_consumption * CELLRATE) // magnet waste heat
 		if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
 			var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
-			charge_delta = min(MAX_MAGNET_DELTA, charge_delta) //so we don't drain all power at once
+			charge_delta = min(field_power_consumption*1.5 + 1 MWATT, charge_delta) //so we don't drain all power at once
 			field_battery_charge += charge_delta * CELLRATE
 			use_power_oneoff(charge_delta, EQUIP)
+		if(!superstructure.sound_token)
+			superstructure.startsound()
+
+	// Adjust the field size based on power consumption if below 200MW.
+	containment_field.volume = Interpolate(containment_field.volume, Clamp((field_power_consumption / 200000000) * REACTOR_FIELD_VOLUME, 2500, REACTOR_FIELD_VOLUME), 0.2)
+
+	neutron_rate = total_neutrons - last_neutrons
+	energy_rate = (containment_field.temperature - last_temperature) * 0.00008 //kelvin difference to eV difference
+	last_neutrons = slow_neutrons + fast_neutrons
+	last_temperature = containment_field.temperature
 
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
-	var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
-	var/fast_neutrons_lost = sqrt(fast_neutrons) * (1.001 - reflector_position)
-	slow_neutrons -= slow_neutrons_lost
-	fast_neutrons -= fast_neutrons_lost
+	if(slow_neutrons || fast_neutrons)
+		var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
+		var/fast_neutrons_lost = sqrt(fast_neutrons) * (1.001 - reflector_position)
+		slow_neutrons -= slow_neutrons_lost
+		fast_neutrons -= fast_neutrons_lost
 
-	var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position
-	fast_neutrons -= fast_neutrons_moderated
-	slow_neutrons += fast_neutrons_moderated
+	if(fast_neutrons)
+		var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position
+		fast_neutrons -= fast_neutrons_moderated
+		slow_neutrons += fast_neutrons_moderated
+
+	var/radiative_heat_loss = containment_field.get_mass() * 3 * (containment_field.temperature**0.8) * (1.1 - reflector_position)
+	containment_field.add_thermal_energy(-radiative_heat_loss)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
@@ -113,7 +131,7 @@
 		if(cur_reaction.minimum_temperature > containment_field.temperature)
 			continue
 
-		var/uptake_moles = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant]) / containment_field.volume * cur_reaction.cross_section
+		var/uptake_moles = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant]) / containment_field.volume * cur_reaction.cross_section * (sqrt(containment_field.temperature - cur_reaction.minimum_temperature) * 0.0005)
 		containment_field.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.product, uptake_moles)
@@ -138,12 +156,42 @@
 		QDEL_NULL(SL.evac_alarm)
 
 /obj/machinery/power/hybrid_reactor/proc/start_burning()
+	set waitfor = FALSE
 	var/list/animate_targets = superstructure.get_above_oo() + superstructure
 	for(var/thing in animate_targets)
 		var/atom/movable/AM = thing
-		animate(AM, color = "#ff0000", time = 60 SECONDS, easing = CUBIC_EASING)
-		AM.animate_filter("glow", list(color = "#ff0000", offset=2, size=10, time = 60 SECONDS, easing = CUBIC_EASING))
-		AM.set_light(5, 3, "#ff0000")
+		var/obj/effect/abstract/particle_holder/our_particle_holder = new(AM.loc, /particles/smoke_continuous/fire/reactor)
+		our_particle_holder.alpha = 220
+		var/current_spawn_time = 2 SECONDS
+		var/i
+		for(i=0, i<20, i++)
+			current_spawn_time += 3 SECONDS
+			spawn(current_spawn_time)
+				our_particle_holder.particles.spawning += 2
+		animate(AM, color = list(3.5,0,0,0,0,0,0,0,0), time = 20 SECONDS, easing = CUBIC_EASING|EASE_OUT)
+		AM.animate_filter("glow", list(color = "#ff0000", offset=2, size=10, time = 20 SECONDS, easing = CUBIC_EASING|EASE_OUT))
+		AM.animate_filter("blur", list(size=3, time = 60 SECONDS, easing = CUBIC_EASING))
+		AM.set_light(5, 1, "#ffdddd")
+		spawn(5 SECONDS)
+			AM.set_light(6, 2, "#ffb3b3")
+		spawn(10 SECONDS)
+			AM.set_light(7, 3, "#ff8181")
+		spawn(20 SECONDS)
+			animate(AM, color = list(3.5,0,0,2,0,0,0,0,0), time = 40 SECONDS, easing = CUBIC_EASING|EASE_OUT)
+			AM.animate_filter("glow", list(color = AM.color, time = 40 SECONDS, easing = CUBIC_EASING|EASE_OUT))
+			spawn(5 SECONDS)
+				AM.set_light(8, 5, "#fcac77")
+			spawn(10 SECONDS)
+				AM.set_light(9, 5, "#fcee6f")
+
+/obj/machinery/power/hybrid_reactor/proc/stop_burning()
+	set waitfor = FALSE
+	var/list/animate_targets = superstructure.get_above_oo() + superstructure
+	for(var/thing in animate_targets)
+		var/atom/movable/AM = thing
+		AM.set_light(4, 1, "#fcac77")
+		animate(AM, color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN)
+		AM.animate_filter("glow", list(color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN))
 
 /obj/machinery/power/hybrid_reactor/proc/close_blastdoors()
 

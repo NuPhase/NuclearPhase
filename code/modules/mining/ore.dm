@@ -48,10 +48,10 @@
 		if(user.get_skill_value(SKILL_STRENGTH) < SKILL_ADEPT)
 			to_chat(user, SPAN_WARNING("You are too frail to break up \the [src]. Find someone stronger."))
 			return //fuck femboys
-		playsound(loc, 'sound/foley/metal1.ogg', 60, 1)
+		playsound(loc, 'sound/foley/metal1.ogg', 70, 1)
 		if(!user.do_skilled(amount * 0.55, SKILL_STRENGTH, src))
 			return
-		playsound(loc, 'sound/foley/metal1.ogg', 60, 1)
+		playsound(loc, 'sound/foley/metal1.ogg', 70, 1)
 		crush(0.55)
 
 /obj/item/stack/ore/examine(mob/user, distance)
@@ -81,6 +81,8 @@
 		return 0.25
 	else if(processing_flags & ORE_FLAG_CRUSHED)
 		return 0.05
+	else
+		return 0.01
 
 /obj/item/stack/ore/hematite //straightforward smelting to release oxygen
 	color = "#a52e10"

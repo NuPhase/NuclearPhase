@@ -89,3 +89,6 @@
 	if(drowsy)		apply_effect(drowsy,    DROWSY, blocked)
 	if(agony)		apply_effect(agony,     PAIN, blocked)
 	return TRUE
+
+/mob/living/proc/getOrganDamage()
+	return 0

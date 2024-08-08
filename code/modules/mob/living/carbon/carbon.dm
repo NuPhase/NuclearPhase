@@ -121,6 +121,8 @@
 
 	spark_at(loc, amount=5, cardinal_only = TRUE)
 
+	srec_dose *= 1.1
+
 	return shock_damage
 
 /mob/living/carbon/proc/apply_shock(var/shock_damage, var/def_zone, var/siemens_coeff = 1.0)

@@ -38,14 +38,14 @@
 	for(var/g in gas)
 		total_moles += gas[g]
 		var/decl/material/mat = GET_DECL(g)
-		phases[g] = mat.phase_at_stp()
+		phases[g] = mat.phase_at_temperature(temperature, ONE_ATMOSPHERE)
 		if(phases[g] == MAT_PHASE_GAS)
 			gas_moles += gas[g]
 
 	update_values()
 
 /datum/gas_mixture/proc/get_gas(gasid)
-	if(!gas.len)
+	if(!length(gas))
 		return 0 //if the list is empty BYOND treats it as a non-associative list, which runtimes
 	return gas[gasid] * group_multiplier
 
@@ -202,7 +202,7 @@
 
 //Returns the ideal gas specific entropy of the whole mix. This is the entropy per mole of /mixed/ gas.
 /datum/gas_mixture/proc/specific_entropy()
-	if (!gas.len || total_moles == 0)
+	if (!length(gas) || total_moles == 0)
 		return SPECIFIC_ENTROPY_VACUUM
 
 	. = 0
@@ -231,10 +231,9 @@
 
 	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/decl/material/mat = GET_DECL(gasid)
-	var/molar_mass = mat.get_molar_mass(temperature, return_pressure())
 	var/specific_heat = mat.get_specific_heat(temperature, return_pressure())
 	var/safe_temp = max(temperature, TCMB) // We're about to divide by this.
-	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * safe_temp)) * (molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
+	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * safe_temp)) * (mat.molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
 
 	//alternative, simpler equation
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
@@ -248,7 +247,7 @@
 	gas_moles = 0
 	var/liquid_volume = 0
 	for(var/g in gas)
-		if(gas[g] <= 0)
+		if(gas[g] <= 0 || isnull(g))
 			gas -= g
 		else
 			total_moles += gas[g]
@@ -258,15 +257,21 @@
 				gas_moles += gas[g]
 			else if(phases[g] == MAT_PHASE_LIQUID)
 				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density * 1000
-	available_volume = volume - liquid_volume
 
+	available_volume = max(0.01, volume - liquid_volume)
 
 //Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
 /datum/gas_mixture/proc/return_pressure()
 	if(volume)
-		if(!gas_moles)
+		if(!length(phases))
 			return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
-		return gas_moles * R_IDEAL_GAS_EQUATION * temperature / volume
+		var/total_pressure = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
+		for(var/g in gas)
+			if(!(phases[g] == MAT_PHASE_GAS))
+				var/decl/material/mat = GET_DECL(g)
+				var/temperature_factor = max(0, 1 - (sqrt(max(0, mat.boiling_point - temperature)) * 0.1)) //should be 1 at boiling point and 0 at melting point
+				total_pressure += gas[g] * ONE_ATMOSPHERE * temperature_factor / volume
+		return total_pressure
 	return 0
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
@@ -314,6 +319,8 @@
 /datum/gas_mixture/proc/remove_volume(removed_volume)
 	var/datum/gas_mixture/removed = remove_ratio(removed_volume/(volume*group_multiplier), 1)
 	removed.volume = removed_volume
+	removed.available_volume = removed_volume
+	removed.update_values()
 	return removed
 
 //Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.
@@ -414,13 +421,13 @@
 	. = 0
 
 	//Apply changes
-	if(graphic_add && graphic_add.len)
+	if(graphic_add && length(graphic_add))
 		graphic |= graphic_add
 		. = 1
-	if(graphic_remove && graphic_remove.len)
+	if(graphic_remove && length(graphic_remove))
 		graphic -= graphic_remove
 		. = 1
-	if(graphic.len)
+	if(length(graphic))
 		var/pressure_mod = Clamp(return_pressure() / ONE_ATMOSPHERE, 0, 2)
 		for(var/obj/effect/gas_overlay/O in graphic)
 			var/concentration_mod = Clamp(gas[O.material.type] / total_moles, 0.1, 1)
@@ -463,53 +470,40 @@
 	update_values()
 	return 1
 
+#define IN 1
+#define OUT 2
+#define RATIO_PER_SQRT_KPA_PRESSURE_DIFF 0.035
+/datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles=1, share_size = null, one_way = 0)
+	var/our_pressure = return_pressure()
+	var/other_pressure = other.return_pressure()
+	var/pressure_diff = abs(our_pressure - other_pressure)
 
-//Shares gas with another gas_mixture based on the amount of connecting tiles and a fixed lookup table.
-/datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles, share_size = null, one_way = 0)
-	var/static/list/sharing_lookup_table = list(0.30, 0.40, 0.48, 0.54, 0.60, 0.66)
-	//Shares a specific ratio of gas between mixtures using simple weighted averages.
-	var/ratio = sharing_lookup_table[6]
+	var/flow_direction = IN //IN means air flows into this mixture, OUT means air flows into the 'other' mixture
+	var/share_ratio = Clamp(sqrt(pressure_diff) * RATIO_PER_SQRT_KPA_PRESSURE_DIFF * min(4, connecting_tiles), 0.05, 0.7) //The ratio of the mixtures sharing.
 
-	var/size = max(1, group_multiplier)
-	if(isnull(share_size)) share_size = max(1, other.group_multiplier)
+	if(our_pressure > other_pressure)
+		flow_direction = OUT
 
-	var/full_heat_capacity = heat_capacity()
-	var/s_full_heat_capacity = other.heat_capacity()
-
-	var/list/avg_gas = list()
-
-	for(var/g in gas)
-		avg_gas[g] += gas[g] * size
-
-	for(var/g in other.gas)
-		avg_gas[g] += other.gas[g] * share_size
-
-	for(var/g in avg_gas)
-		avg_gas[g] /= (size + share_size)
-
-	var/temp_avg = 0
-	if(full_heat_capacity + s_full_heat_capacity)
-		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
-
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
-	if(sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
-		ratio = sharing_lookup_table[connecting_tiles]
-	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
-
-	for(var/g in avg_gas)
-		gas[g] = max(0, (gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
-		if(!one_way)
-			other.gas[g] = max(0, (other.gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
-
-	temperature = max(0, (temperature - temp_avg) * (1-ratio) + temp_avg)
-	if(!one_way)
-		other.temperature = max(0, (other.temperature - temp_avg) * (1-ratio) + temp_avg)
-
-	update_values()
-	other.update_values()
+	if(flow_direction == OUT)
+		var/pressure_coeff = R_IDEAL_GAS_EQUATION * temperature / volume //Pressure per mole of gas
+		var/minimum_moles_to_keep = other_pressure / pressure_coeff
+		var/free_moles = total_moles - minimum_moles_to_keep
+		var/moles_to_transfer = free_moles * share_ratio
+		var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
+		other.merge(taken_gas)
+	else
+		var/pressure_coeff = R_IDEAL_GAS_EQUATION * other.temperature / other.volume //Pressure per mole of gas
+		var/minimum_moles_to_keep = our_pressure / pressure_coeff
+		var/free_moles = other.total_moles - minimum_moles_to_keep
+		var/moles_to_transfer = free_moles * share_ratio
+		var/datum/gas_mixture/taken_gas = other.remove(moles_to_transfer)
+		merge(taken_gas)
 
 	return compare(other)
 
+#undef IN
+#undef OUT
+#undef RATIO_PER_SQRT_KPA_PRESSURE_DIFF
 
 //A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.
 /datum/gas_mixture/proc/share_space(datum/gas_mixture/unsim_air)
@@ -598,7 +592,7 @@
 /datum/gas_mixture/proc/get_mass()
 	for(var/g in gas)
 		var/decl/material/mat = GET_DECL(g)
-		. += gas[g] * mat.get_molar_mass(temperature, return_pressure()) * group_multiplier
+		. += gas[g] * mat.molar_mass * group_multiplier
 
 /datum/gas_mixture/proc/specific_mass()
 	var/M = get_total_moles()
@@ -609,6 +603,8 @@
 	var/datum/gas_mixture/removed = remove(return_pressure()*volume_to_return*((R_IDEAL_GAS_EQUATION*temperature)**-1))
 	if(removed)
 		removed.volume = volume_to_return
+		removed.available_volume = volume_to_return
+		removed.update_values()
 	return removed
 
 /datum/gas_mixture/proc/get_taken_volume()

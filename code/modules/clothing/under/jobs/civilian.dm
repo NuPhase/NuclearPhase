@@ -124,3 +124,15 @@
 	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."
 	name = "shaft miner's jumpsuit"
 	icon = 'icons/clothing/under/jumpsuits/jumpsuit_miner.dmi'
+
+/obj/item/clothing/under/united_nations
+	desc = "A jumpsuit of high honor, the symbol of human perseverance."
+	name = "United Nations uniform"
+	icon = 'icons/clothing/under/jumpsuits/jumpsuit_un.dmi'
+	starting_accessories = list(/obj/item/clothing/accessory/armband/bluegold)
+
+/obj/item/clothing/under/united_nations/silver
+	starting_accessories = list(/obj/item/clothing/accessory/armband/bluegold, /obj/item/clothing/accessory/medal/silver/united_nations)
+
+/obj/item/clothing/under/united_nations/gold
+	starting_accessories = list(/obj/item/clothing/accessory/armband/bluegold, /obj/item/clothing/accessory/medal/gold/united_nations)

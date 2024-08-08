@@ -54,7 +54,7 @@ var/global/list/closets = list()
 /obj/structure/closet/LateInitialize(mapload, ...)
 	var/list/will_contain = WillContain()
 	if(will_contain)
-		create_objects_in_loc(src, will_contain)
+		create_objects_in_loc_pooled(src, will_contain)
 
 	if(!opened && mapload) // if closed and it's the map loading phase, relevant items at the crate's loc are put in the contents
 		store_contents()

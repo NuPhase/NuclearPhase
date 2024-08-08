@@ -91,6 +91,7 @@
 	uid = "tnt"
 	ignition_point = 986
 	molar_mass = 0.227
+	default_solid_form = /obj/item/stack/material/cubes
 
 /decl/material/solid/cyclonite
 	name = "cyclonite"
@@ -106,3 +107,4 @@
 	uid = "cyclonite"
 	ignition_point = 477
 	molar_mass = 0.222
+	default_solid_form = /obj/item/stack/material/cubes

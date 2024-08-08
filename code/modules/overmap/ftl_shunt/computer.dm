@@ -67,16 +67,9 @@
 	var/jump_dist = get_dist(linked, locate(x, y, overmap.assigned_z))
 	var/plot_delay_mult
 	var/delay
-	switch(jump_dist)
-		if(1 to linked_core.safe_jump_distance)
-			plot_delay_mult = 1
-		if(linked_core.safe_jump_distance to linked_core.moderate_jump_distance)
-			plot_delay_mult = 1.5
-		if(linked_core.moderate_jump_distance to INFINITY)
-			plot_delay_mult = 2
 
 	delay = clamp(((jump_dist * BASE_PLOT_TIME_PER_TILE) * plot_delay_mult),1, INFINITY)
-	jump_plot_timer = addtimer(CALLBACK(src, .proc/finish_plot, x, y), delay, TIMER_STOPPABLE)
+	jump_plot_timer = addtimer(CALLBACK(src, PROC_REF(finish_plot), x, y), delay, TIMER_STOPPABLE)
 	plotting_jump = TRUE
 	jump_plotted = FALSE
 	return delay
@@ -193,7 +186,7 @@
 			if(linked_core.get_status() != FTL_STATUS_GOOD)
 				to_chat(user, SPAN_WARNING("Superluminal shunt inoperable. Please try again later."))
 				return TOPIC_REFRESH
-			
+
 			var/datum/overmap/overmap = global.overmaps_by_name[overmap_id]
 			var/dist = get_dist(locate(linked_core.shunt_x, linked_core.shunt_y, overmap.assigned_z), get_turf(linked))
 			if(is_jump_unsafe()) //We are above the safe jump distance, give them a warning.

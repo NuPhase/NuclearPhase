@@ -5,9 +5,16 @@
 	sfalloff = 1
 	distance = -3
 
-/datum/composite_sound/alarm_monitor
-	mid_sounds = list('sound/machines/heart_monitor/alarm1.wav'=1)
-	mid_length = 24
+/datum/composite_sound/monitor_light_alarm
+	mid_sounds = list('sound/machines/heart_monitor/light_alarm.mp3'=1)
+	mid_length = 20
+	volume = 50
+	sfalloff = 1
+	distance = -1
+
+/datum/composite_sound/monitor_heavy_alarm
+	mid_sounds = list('sound/machines/heart_monitor/heavy_alarm.mp3'=1)
+	mid_length = 22
 	volume = 60
 	sfalloff = 1
 	distance = -1
@@ -17,7 +24,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/list/to_turn_on = tgui_input_checkboxes(usr, "Select which alarm should be turned on.", "Alarm Config", list("Metronome", "High/Low BP", "High/Low HR", "Low SAT", "AutoECG"), 0)
+	var/list/to_turn_on = tgui_input_checkboxes(usr, "Select which alarm should be turned on.", "Alarm Config", list("Metronome"), 0)
 	if(!to_turn_on)
 		return
 	if("Metronome" in to_turn_on)
@@ -29,22 +36,6 @@
 	else
 		metronome = FALSE
 		QDEL_NULL(pulse_loop)
-	if("High/Low BP" in to_turn_on)
-		bp_alarm = TRUE
-	else
-		bp_alarm = FALSE
-	if("High/Low HR" in to_turn_on)
-		hr_alarm = TRUE
-	else
-		hr_alarm = FALSE
-	if("Low SAT" in to_turn_on)
-		ox_alarm = TRUE
-	else
-		ox_alarm = FALSE
-	if("AutoECG" in to_turn_on)
-		ecg_alarm = TRUE
-	else
-		ecg_alarm = FALSE
 
 /obj/machinery/cardiac_monitor
 	name = "\improper cardiac monitor"
@@ -56,13 +47,18 @@
 	interact_offline = TRUE
 	var/mob/living/carbon/human/attached
 	var/datum/composite_sound/pulse_monitor/pulse_loop = null
-	var/datum/composite_sound/alarm_monitor/alarm_loop = null
+	var/datum/composite_sound/monitor_light_alarm/light_alarm = null
+	var/datum/composite_sound/monitor_heavy_alarm/heavy_alarm = null
 
 	var/metronome = TRUE
-	var/bp_alarm = TRUE
-	var/hr_alarm = TRUE
-	var/ox_alarm = TRUE
-	var/ecg_alarm = FALSE
+	var/muted_until = 0
+
+	//1 - light alarm, 2 - heavy alarm
+	var/pulse_alarm = 0
+	var/oxygen_alarm = 0
+	var/pressure_alarm = 0
+	var/breath_alarm = 0
+	var/heart_alarm = 0 //arrythmias
 
 	var/datum/beam/connection_beam
 
@@ -76,12 +72,15 @@
 		attached = null
 		playsound(src, 'sound/machines/heart_monitor/off.wav', 50, 0)
 		QDEL_NULL(pulse_loop)
-		QDEL_NULL(alarm_loop)
+		QDEL_NULL(light_alarm)
+		QDEL_NULL(heavy_alarm)
 		QDEL_NULL(connection_beam)
 	else if(over_object)
 		if(!ishuman(over_object))
 			return
 		if(!do_after(usr, 30, over_object))
+			return
+		if(attached)
 			return
 		visible_message("\The [usr] connects \the [over_object] up to \the [src].")
 		attached = over_object
@@ -98,14 +97,13 @@
 /obj/machinery/cardiac_monitor/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	attached = null
-	qdel(pulse_loop)
-	qdel(alarm_loop)
+	QDEL_NULL(light_alarm)
+	QDEL_NULL(heavy_alarm)
 	QDEL_NULL(connection_beam)
 	. = ..()
 
 /obj/machinery/cardiac_monitor/on_update_icon()
 	cut_overlays()
-	var/should_alarm = FALSE
 	if(use_power == POWER_USE_OFF)
 		icon_state = "mon"
 		set_light(0)
@@ -117,6 +115,7 @@
 	set_light(l_range = 1, l_power = 0.8, l_color = "#daf9ff")
 	add_overlay(emissive_overlay(icon, "mon-active"))
 	var/obj/item/organ/internal/heart/H = attached.get_organ(BP_HEART, /obj/item/organ/internal/heart)
+	var/obj/item/organ/internal/lungs/L = attached.get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
 
 	if(!H)
 		add_overlay(emissive_overlay(icon, "mon-r"))
@@ -136,29 +135,58 @@
 		add_overlay(emissive_overlay(icon, "mon-Asystole"))
 
 	if(length(H.arrythmias))
-		if(ecg_alarm)
-			should_alarm = TRUE
+		heart_alarm = 1
+		if((GET_DECL(/decl/arrythmia/ventricular_flaunt) in H.arrythmias) || (GET_DECL(/decl/arrythmia/ventricular_fibrillation) in H.arrythmias) || (GET_DECL(/decl/arrythmia/asystole) in H.arrythmias))
+			heart_alarm = 2
+	else
+		heart_alarm = 0
 
-	if(attached.meanpressure < BLOOD_PRESSURE_L2BAD || attached.meanpressure > BLOOD_PRESSURE_H2BAD)
-		add_overlay(emissive_overlay(icon, "mon-y"))
-		if(bp_alarm)
-			should_alarm = TRUE
+	if(attached.meanpressure < BLOOD_PRESSURE_LBAD || attached.meanpressure > BLOOD_PRESSURE_HBAD)
+		pressure_alarm = 1
+		if(attached.meanpressure < BLOOD_PRESSURE_L2BAD || attached.meanpressure > BLOOD_PRESSURE_H2BAD)
+			add_overlay(emissive_overlay(icon, "mon-y"))
+			pressure_alarm = 2
+	else
+		pressure_alarm = 0
 
-	if(H.pulse > 120)
-		add_overlay(emissive_overlay(icon, "mon-r"))
+	if(H.pulse > BPM_HIGH || H.pulse < BPM_LOW)
+		pulse_alarm = 1
+		if(H.pulse > BPM_2HIGH || H.pulse < BPM_2LOW)
+			pulse_alarm = 2
+			add_overlay(emissive_overlay(icon, "mon-r"))
+	else
+		pulse_alarm = 0
 
-	if(attached.get_blood_saturation() < 0.75)
-		add_overlay(emissive_overlay(icon, "mon-c"))
-		if(ox_alarm)
-			should_alarm = TRUE
+	var/displayed_perfusion = CLAMP01(attached.get_blood_saturation() * attached.get_blood_perfusion())
+	if(displayed_perfusion < 0.9)
+		oxygen_alarm = 1
+		if(displayed_perfusion < 0.7)
+			oxygen_alarm = 2
+			add_overlay(emissive_overlay(icon, "mon-c"))
 	else
 		add_overlay(emissive_overlay(icon, "mon-ox"))
+		oxygen_alarm = 0
 
-	if(should_alarm)
-		if(!alarm_loop)
-			alarm_loop = new(list(src), TRUE)
+	if(L.breath_rate > 25 || L.breath_rate < 12)
+		breath_alarm = 1
+		if(L.breath_rate > 40 || L.breath_rate < 5)
+			breath_alarm = 2
 	else
-		QDEL_NULL(alarm_loop)
+		breath_alarm = 0
+
+	var/do_heavy_alarm = pulse_alarm == 2 || oxygen_alarm == 2 || pressure_alarm == 2 || breath_alarm == 2 || heart_alarm == 2
+	if(do_heavy_alarm && world.time > muted_until)
+		if(!heavy_alarm)
+			heavy_alarm = new(list(src), TRUE)
+	else
+		QDEL_NULL(heavy_alarm)
+
+	var/do_light_alarm = pulse_alarm || oxygen_alarm || pressure_alarm || breath_alarm || heart_alarm
+	if(do_light_alarm && world.time > muted_until)
+		if(!light_alarm)
+			light_alarm = new(list(src), TRUE)
+	else
+		QDEL_NULL(light_alarm)
 
 /obj/machinery/cardiac_monitor/Process()
 	if(!attached)
@@ -167,7 +195,8 @@
 		attached = null
 		update_icon()
 		QDEL_NULL(pulse_loop)
-		QDEL_NULL(alarm_loop)
+		QDEL_NULL(light_alarm)
+		QDEL_NULL(heavy_alarm)
 		QDEL_NULL(connection_beam)
 		playsound(src, 'sound/machines/heart_monitor/off.wav', 50, 0)
 		visible_message(SPAN_WARNING("\The [src] announces: \"ECG electrodes disconnected!\""))
@@ -192,6 +221,17 @@
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
+/obj/machinery/cardiac_monitor/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(action == "mute_alarms")
+		muted_until = world.time + 1 MINUTE
+		playsound(loc, "button", 30)
+
+/obj/machinery/cardiac_monitor/tgui_static_data(mob/user)
+	if(!attached)
+		return
+	return list("name" = "[attached]")
+
 /obj/machinery/cardiac_monitor/tgui_data(mob/user)
 	if(!attached)
 		return
@@ -200,11 +240,18 @@
 	var/obj/item/organ/internal/lungs/L = attached.get_organ(BP_LUNGS, /obj/item/organ/internal/lungs)
 
 	var/list/data = list(
-		"name" = "[attached]",
 		"status" = (attached.stat == CONSCIOUS) ? "RESPONSIVE" : "UNRESPONSIVE",
-		"pressure" = "[round(attached.syspressure)]/[round(attached.dyspressure)]",
+		"systolic_pressure" = round(attached.syspressure),
+		"diastolic_pressure" = round(attached.dyspressure),
+		"mean_pressure" = round(attached.meanpressure),
 		"tpvr" = round(attached.tpvr),
-		"mcv" = round(attached.mcv)/1000
+		"mcv" = round(attached.mcv)/1000,
+		"pulse_alarm" = pulse_alarm,
+		"oxygen_alarm" = oxygen_alarm,
+		"pressure_alarm" = pressure_alarm,
+		"breath_alarm" = breath_alarm,
+		"heart_alarm" = heart_alarm,
+		"muted" = world.time < muted_until
 	)
 
 	if(attached.mcv > 800)

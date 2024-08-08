@@ -2,7 +2,7 @@
 	name = null
 	plane = HUD_PLANE
 	layer = UNDER_HUD_LAYER
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	screen_loc = "CENTER,CENTER"
 	icon = 'icons/hud/scanner.dmi'
 	icon_state = "blank"
@@ -87,7 +87,7 @@
 	icon = 'icons/obj/items/device/cataloguer.dmi'
 	icon_state = ICON_STATE_WORLD
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = "{'materials':2, 'programming':3,'magnets':3}"
+	origin_tech = @'{"materials":2, "programming":3,"magnets":3}'
 	force = 0
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	slot_flags = SLOT_LOWER_BODY

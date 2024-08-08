@@ -329,7 +329,7 @@
 /obj/structure/closet/wardrobe/tactical/Initialize()
 	. = ..()
 	new /obj/item/clothing/under/tactical(src)
-	new /obj/item/clothing/suit/armor/pcarrier/tactical(src)
+	new /obj/item/clothing/suit/armor/pcarrier/green/tactical(src)
 	new /obj/item/clothing/head/helmet/tactical(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
 	new /obj/item/storage/belt/holster/security/tactical(src)

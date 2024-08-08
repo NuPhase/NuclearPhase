@@ -7,6 +7,7 @@
 	density = 1
 	anchored = 1
 	maxhealth = 50
+	explosion_resistance = 100
 
 	var/list/loot = list(
 		/obj/item/cell,

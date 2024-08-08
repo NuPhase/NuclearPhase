@@ -40,10 +40,13 @@
 		else if(W.bandaged)
 			this_wound_desc = "bandaged [this_wound_desc]"
 
-		if(W.germ_level > 600)
-			this_wound_desc = "badly infected [this_wound_desc]"
-		else if(W.germ_level > 330)
-			this_wound_desc = "lightly infected [this_wound_desc]"
+		switch(W.germ_level)
+			if(INFECTION_LEVEL_ONE to INFECTION_LEVEL_TWO)
+				this_wound_desc = "lightly infected [this_wound_desc]"
+			if(INFECTION_LEVEL_TWO to INFECTION_LEVEL_THREE)
+				this_wound_desc = "badly infected [this_wound_desc]"
+			if(INFECTION_LEVEL_THREE to INFINITY)
+				this_wound_desc = "decaying [this_wound_desc]"
 
 		if(wound_descriptors[this_wound_desc])
 			wound_descriptors[this_wound_desc] += W.amount
@@ -154,7 +157,7 @@
 
 	if(status & ORGAN_BROKEN)
 		to_chat(user, "<span class='warning'>The [encased ? encased : "bone in the [name]"] moves slightly when you poke it!</span>")
-		owner.custom_pain("Your [name] hurts where it's poked.",40, affecting = src)
+		owner.custom_pain("Your [name] hurts where it's poked.",300, affecting = src)
 	else
 		to_chat(user, "<span class='notice'>The [encased ? encased : "bones in the [name]"] seem to be fine.</span>")
 

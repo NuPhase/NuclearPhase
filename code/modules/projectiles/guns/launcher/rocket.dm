@@ -9,8 +9,8 @@
 	force = 5.0
 	obj_flags =  OBJ_FLAG_CONDUCTIBLE
 	slot_flags = 0
-	origin_tech = "{'combat':8,'materials':5}"
-	fire_sound = 'sound/effects/bang.ogg'
+	origin_tech = @'{"combat":8,"materials":5}'
+	fire_sound = 'sound/weapons/gunshot/rocket.ogg'
 	combustion = 1
 
 	release_force = 15

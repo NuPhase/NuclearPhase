@@ -27,7 +27,7 @@
 	caliber = CALIBER_PISTOL_SMALL
 	silenced = 0
 	fire_delay = 4
-	origin_tech = "{'combat':2,'materials':2,'esoteric':8}"
+	origin_tech = @'{"combat":2,"materials":2,"esoteric":8}'
 	magazine_type = /obj/item/ammo_magazine/pistol/small
 	allowed_magazines = /obj/item/ammo_magazine/pistol/small
 
@@ -79,7 +79,7 @@
 	weight = 1.5
 	jam_chance = 1
 	magazine_type = null
-	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber)
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber, /obj/item/ammo_magazine/pistol/srec) //GOD FORBID
 	ammo_indicator = FALSE
 	waterproof = TRUE
 	fire_delay = 3

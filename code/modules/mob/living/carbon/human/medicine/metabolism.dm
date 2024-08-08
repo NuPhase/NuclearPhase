@@ -9,7 +9,7 @@
 /mob/living/carbon/human/proc/release_adrenaline(amount = 1, make_message = FALSE)
 	if(adrenaline_cooldown)
 		return
-	bloodstr.add_reagent(/decl/material/liquid/adrenaline, amount)
+	bloodstr.add_reagent_max(/decl/material/liquid/adrenaline, amount, 0.5)
 	if(make_message && amount > 2)
 		to_chat(src, SPAN_DANGER(pick(adrenaline_messages)))
 	adrenaline_cooldown = TRUE

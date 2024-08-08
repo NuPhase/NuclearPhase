@@ -6,8 +6,8 @@
 	w_class = ITEM_SIZE_NORMAL
 
 	layer = SIDE_WINDOW_LAYER
-	anchored = 1.0
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CHECKS_BORDER | ATOM_FLAG_CAN_BE_PAINTED
+	anchored = TRUE
+	atom_flags = ATOM_FLAG_CHECKS_BORDER | ATOM_FLAG_CAN_BE_PAINTED
 	obj_flags = OBJ_FLAG_ROTATABLE | OBJ_FLAG_MOVES_UNSUPPORTED
 	alpha = 180
 	material = /decl/material/solid/glass
@@ -16,6 +16,7 @@
 	handle_generic_blending = TRUE
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 100
+	explosion_resistance = 100
 
 	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/construction_state = 2
@@ -459,6 +460,7 @@
 	color = GLASS_COLOR
 	set_color = FALSE
 	force_north_dir = TRUE
+	explosion_resistance = 100
 
 /obj/structure/window/basic/full
 	dir = NORTHEAST
@@ -473,6 +475,7 @@
 	name = "borosilicate window"
 	color = GLASS_COLOR_SILICATE
 	material = /decl/material/solid/glass/borosilicate
+	explosion_resistance = 500
 
 /obj/structure/window/borosilicate/full
 	dir = NORTHEAST
@@ -496,6 +499,7 @@
 	reinf_material = /decl/material/solid/metal/steel
 	set_color = FALSE
 	force_north_dir = TRUE
+	explosion_resistance = 300
 
 /obj/structure/window/reinforced/full
 	dir = NORTHEAST

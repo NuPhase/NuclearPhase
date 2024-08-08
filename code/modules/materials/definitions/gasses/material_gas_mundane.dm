@@ -9,6 +9,7 @@
 	molar_mass = 0.032
 	latent_heat = 3409
 	boiling_point = -183 CELSIUS
+	melting_point = 54.36
 	liquid_density = 1140
 	gas_flags = XGM_GAS_OXIDIZER
 	gas_metabolically_inert = TRUE
@@ -35,6 +36,7 @@
 	molar_mass = 0.004
 	latent_heat = 84.5
 	boiling_point = 4.21
+	melting_point = 0.95
 	liquid_density = 113.9
 	taste_description = "nothing"
 	metabolism = REM * 5
@@ -62,6 +64,7 @@
 	molar_mass = 0.044
 	latent_heat = 15550
 	boiling_point = -78 CELSIUS
+	melting_point = 140 //an arbitrary value since we don't have sublimation yet
 	liquid_density = 1190
 	color = "#272727"
 	metabolism = REM * 5
@@ -131,11 +134,13 @@
 	gas_specific_heat = 30
 	molar_mass = 0.028
 	latent_heat = 6040
-	boiling_point = -192 CELSIUS
+	boiling_point = 82
+	melting_point = 68
 	liquid_density = 790
 	taste_description = "stale air"
 	metabolism = REM * 5 // As with helium.
 	color = "#111111"
+	gas_overlay_limit = 0.5
 
 /decl/material/gas/carbon_monoxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(!istype(M))
@@ -144,25 +149,25 @@
 	var/warning_prob = 10
 	var/dosage = LAZYACCESS(M.chem_doses, type)
 	var/mob/living/carbon/human/H = M
-	if(dosage >= 3)
+	if(dosage >= 0.05)
 		warning_message = pick("extremely dizzy","short of breath","faint","confused")
 		warning_prob = 15
 		M.adjustOxyLoss(10,20)
 		if(istype(H))
 			H.co2_alert = 1
-	else if(dosage >= 1.5)
+	else if(dosage >= 0.015)
 		warning_message = pick("dizzy","short of breath","faint","momentarily confused")
 		M.adjustOxyLoss(3,5)
 		if(istype(H))
 			H.co2_alert = 1
-	else if(dosage >= 0.25)
+	else if(dosage >= 0.0025)
 		warning_message = pick("a little dizzy","short of breath")
 		warning_prob = 10
 		if(istype(H))
 			H.co2_alert = 0
 	else if(istype(H))
 		H.co2_alert = 0
-	H.add_chemical_effect(CE_BREATHLOSS, dosage * -0.05)
+	H.add_chemical_effect(CE_BREATHLOSS, dosage * -50)
 	if(warning_message && prob(warning_prob))
 		to_chat(M, SPAN_WARNING("You feel [warning_message]."))
 
@@ -240,6 +245,7 @@
 	molar_mass = 0.028
 	latent_heat = 5600
 	boiling_point = -195 CELSIUS
+	melting_point = -210 CELSIUS
 	liquid_density = 804.3
 	gas_metabolically_inert = TRUE
 	color = "#ffe7e7"
@@ -282,7 +288,10 @@
 	melting_point = 90
 	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
+	gas_overlay_limit = 2
+	color = "#633a8a"
 	combustion_energy = 890000
+	burn_product = /decl/material/gas/carbon_dioxide
 	fire_color = "#0044ff"
 	fire_alpha = 140
 
@@ -458,10 +467,10 @@
 	lore_text = "A radioactive isotope of hydrogen. Useful as a fusion reactor fuel material."
 	mechanics_text = "Tritium is useable as a fuel in some forms of portable generator. It can also be converted into a fuel rod suitable for a R-UST fusion plant injector by using a fuel compressor. It fuses hotter than deuterium but is correspondingly more unstable."
 	color = "#777777"
-	stack_origin_tech = "{'materials':5}"
 	boiling_point = -233 CELSIUS
 	neutron_absorption = 70
 	liquid_density = 202
+	stack_origin_tech = @'{"materials":5}'
 	value = 0.45
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 
@@ -475,15 +484,11 @@
 	mechanics_text = "Deuterium can be converted into a fuel rod suitable for a R-UST fusion plant injector by using a fuel compressor. It is the most 'basic' fusion fuel."
 	flags = MAT_FLAG_FUSION_FUEL | MAT_FLAG_FISSIBLE
 	color = "#999999"
-	stack_origin_tech = "{'materials':3}"
 	boiling_point = -250 CELSIUS
 	liquid_density = 180
+	stack_origin_tech = @'{"materials":3}'
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
-
-	neutron_interactions = list(
-		INTERACTION_ABSORPTION = 1250
-	)
 	absorption_products = list(
 		/decl/material/gas/hydrogen/tritium = 1
 	)

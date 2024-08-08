@@ -4,7 +4,7 @@
 #define SUIT_PROPULSION_ATTACK_PERCENT 10
 
 #define STATUS_MESSAGE_COOLDOWN 100
-#define KWH_PER_KG_WEIGHT 15
+#define KWH_PER_KG_WEIGHT 1.2
 
 /obj/item/storage/backpack/lifesupportpack
 	name = "life support unit"
@@ -136,6 +136,7 @@
 			atmosphere_filter = W
 			user.drop_from_inventory(W, modules)
 			to_chat(usr, "<span class='notice'>You insert \the [W] into the [src].</span>")
+			playsound(user, 'sound/items/bottle_open.mp3', 60)
 			return
 		else
 			to_chat(usr, "<span class='notice'>\The [src] already has a CO2 filter installed, so you just put it into the backpack!</span>")
@@ -166,12 +167,10 @@
 			if("waste tank port")
 				waste_tank = W
 		user.drop_from_inventory(W, modules)
-		playsound(loc, 'sound/effects/spray3.ogg', 50)
+		playsound(loc, 'sound/effects/spray2.ogg', 50)
 		to_chat(usr, "<span class='notice'>You insert \the [W] into the [tank_to_add].</span>")
 		return
 	. = ..()
-
-
 
 /obj/item/storage/backpack/lifesupportpack/verb/toggle_uptake()
 	set name = "Switch Atmosphere Uptake Valve"
@@ -185,8 +184,10 @@
 	atmosphere_uptake = !atmosphere_uptake
 	if(atmosphere_uptake)
 		to_chat(usr, "<span class='notice'>\The [src] now uses external atmosphere.</span>")
+		user.playsound_local(user, 'sound/effects/rewind.ogg', 50, 0)
 	else
 		to_chat(usr, "<span class='notice'>\The [src] now uses oxygen from the tank in it.</span>")
+		user.playsound_local(user, 'sound/effects/internals.ogg', 50, 0)
 
 /obj/item/storage/backpack/lifesupportpack/verb/change_target_pressure()
 	set name = "Set pressurization target"
@@ -200,6 +201,7 @@
 	var/new_targ_pressure = input(usr, "Set the target pressure for \the [src].", "Pressurization target setting", target_pressure) as null|num
 	target_pressure = Clamp(new_targ_pressure, 0, 15000)
 	to_chat(usr, "<span class='notice'>You've set the target pressure to [target_pressure]kPa.</span>")
+	user.playsound_local(user, 'sound/effects/fastbeep.ogg', 50, 0)
 
 /obj/item/storage/backpack/lifesupportpack/verb/remove_tank()
 	set name = "Remove tank"
@@ -237,7 +239,7 @@
 	removed_tank.canremove = 1
 	usr.drop_from_inventory(removed_tank, src)
 	usr.put_in_hands(removed_tank)
-	playsound(loc, 'sound/effects/spray3.ogg', 50)
+	playsound(loc, 'sound/effects/spray2.ogg', 50)
 
 /obj/item/storage/backpack/lifesupportpack/verb/remove_co2_filter()
 	set name = "Remove CO2 filter"
@@ -282,7 +284,6 @@
 	do_support() //fill it up immediately
 	to_chat(owner.wearer, SPAN_DANGER("INTERNAL ATMOSPHERE PURGED!"))
 	playsound(owner.wearer, 'sound/effects/undock.ogg', 100, 1)
-
 
 /obj/abstract/modules_holder
 	name = "Modules holder unit"

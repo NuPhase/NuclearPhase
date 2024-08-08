@@ -64,8 +64,8 @@
 	)
 
 /obj/item/clothing/under/tactical
-	name = "tactical jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	name = "combat uniform"
+	desc = "A standard combat uniform of the SAF, made from robust fabric to withstand harsh conditions. This one comes in a lovely forest green camo pattern."
 	icon = 'icons/clothing/under/uniform_swat.dmi'
 	armor = list(
 		melee = ARMOR_MELEE_SMALL
@@ -144,7 +144,7 @@
 	siemens_coefficient = 0.8
 	material = /decl/material/solid/leather
 	matter = list(/decl/material/solid/metal/steel = MATTER_AMOUNT_TRACE)
-	origin_tech = "{'materials':1,'engineering':1, 'combat':1}"
+	origin_tech = @'{"materials":1,"engineering":1, "combat":1}'
 
 /obj/item/clothing/head/HoS
 	name = "Head of Security hat"
@@ -173,7 +173,7 @@
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_REINFORCEMENT
 	)
-	origin_tech = "{'materials':3,'engineering':1, 'combat':2}"
+	origin_tech = @'{"materials":3,"engineering":1, "combat":2}'
 
 //Jensen cosplay gear
 /obj/item/clothing/under/head_of_security/jensen
@@ -182,7 +182,7 @@
 	icon = 'icons/clothing/under/jumpsuits/jumpsuit_hos_alt.dmi'
 	siemens_coefficient = 0.6
 	matter = list(/decl/material/solid/metal/steel = MATTER_AMOUNT_TRACE)
-	origin_tech = "{'materials':3,'engineering':1, 'combat':2}"
+	origin_tech = @'{"materials":3,"engineering":1, "combat":2}'
 
 /obj/item/clothing/suit/armor/hos/jensen
 	name = "armored trenchcoat"
@@ -195,4 +195,4 @@
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/gemstone/diamond = MATTER_AMOUNT_REINFORCEMENT
 	)
-	origin_tech = "{'materials':3,'engineering':1, 'combat':2}"
+	origin_tech = @'{"materials":3,"engineering":1, "combat":2}'

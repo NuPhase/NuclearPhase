@@ -8,7 +8,7 @@
 /turf/simulated/floor/concrete
 	name = "concrete"
 	icon = 'icons/turf/exterior/concrete.dmi'
-	icon_state = "0"
+	icon_state = "blurred"
 	footstep_type = /decl/footsteps/concrete
 	var/exterior_turf = FALSE
 
@@ -26,23 +26,26 @@
 	exterior_turf = TRUE
 
 /turf/simulated/floor/concrete/surface/return_air()
-	var/datum/gas_mixture/gas
-	gas = new
-	gas.copy_from(using_map.exterior_atmosphere)
-	return gas
+	return using_map.exterior_atmosphere
 
-/turf/simulated/floor/concrete/road
-	name = "road"
+/turf/simulated/floor/concrete/gray
+	color = COLOR_GRAY
+
+/turf/simulated/floor/concrete/light_gray
+	color = "#bbbbbb"
+
+/turf/simulated/floor/concrete/black
 	color = COLOR_GRAY40
 
-/turf/simulated/floor/concrete/road/surface
+/turf/simulated/floor/concrete/very_black
+	color = COLOR_GRAY20
+
+/turf/simulated/floor/concrete/black/surface
+	name = "road"
 	exterior_turf = TRUE
 
-/turf/simulated/floor/concrete/road/surface/return_air()
-	var/datum/gas_mixture/gas
-	gas = new
-	gas.copy_from(using_map.exterior_atmosphere)
-	return gas
+/turf/simulated/floor/concrete/black/surface/return_air()
+	return using_map.exterior_atmosphere
 
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
@@ -242,26 +245,47 @@
 
 /turf/simulated/floor/tiled/dark/edge
 	icon_state = "dark_edge"
+	initial_flooring = /decl/flooring/tiling/dark/edge
+
 /turf/simulated/floor/tiled/dark/half
 	icon_state = "dark_half"
+	initial_flooring = /decl/flooring/tiling/dark/half
+
 /turf/simulated/floor/tiled/dark/corner
 	icon_state = "dark_corner"
+	initial_flooring = /decl/flooring/tiling/dark/corner
+
 /turf/simulated/floor/tiled/dark/small
 	icon_state = "dark_small"
+	initial_flooring = /decl/flooring/tiling/dark/small
+
 /turf/simulated/floor/tiled/dark/diagonal
 	icon_state = "dark_diagonal"
+	initial_flooring = /decl/flooring/tiling/dark/diagonal
+
 /turf/simulated/floor/tiled/dark/herringbone
 	icon_state = "dark_herringbone"
+	initial_flooring = /decl/flooring/tiling/dark/herringbone
+
 /turf/simulated/floor/tiled/dark/textured
 	icon_state = "textured_dark"
+	initial_flooring = /decl/flooring/tiling/dark/textured
+
 /turf/simulated/floor/tiled/dark/textured/edge
 	icon_state = "textured_dark_edge"
+	initial_flooring = /decl/flooring/tiling/dark/textured/edge
+
 /turf/simulated/floor/tiled/dark/textured/half
 	icon_state = "textured_dark_half"
+	initial_flooring = /decl/flooring/tiling/dark/textured/half
+
 /turf/simulated/floor/tiled/dark/textured/corner
 	icon_state = "textured_dark_corner"
+	initial_flooring = /decl/flooring/tiling/dark/textured/corner
+
 /turf/simulated/floor/tiled/dark/textured/monotile
 	icon_state = "textured_dark_large"
+	initial_flooring = /decl/flooring/tiling/dark/textured/monotile
 
 /turf/simulated/floor/tiled/dark/monotile
 	name = "floor"

@@ -50,7 +50,7 @@ var/global/dmm_suite/preloader/_preloader = new
 	#endif
 	Master.StopLoadingMap()
 
-/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, clear_contents, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, initialized_areas_by_type)
+/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, clear_contents, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, initialized_areas_by_type, level_data_type = /datum/level_data/space)
 	var/tfile = dmm_file//the map file we're creating
 	if(isfile(tfile))
 		tfile = safe_file2text(tfile, FALSE)
@@ -103,7 +103,7 @@ var/global/dmm_suite/preloader/_preloader = new
 			var/ycrd = text2num(dmmRegex.group[4]) + y_offset - 1
 			var/zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
 
-			var/is_connected_to_lower_levels = ARE_Z_CONNECTED(zcrd, z_offset)
+			var/is_connected_to_lower_levels = LEVELS_ARE_Z_CONNECTED(zcrd, z_offset)
 			var/is_on_an_existing_zlevel = zcrd <= world.maxz
 
 			if (is_on_an_existing_zlevel && !is_connected_to_lower_levels)

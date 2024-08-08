@@ -230,7 +230,7 @@
 	lore_text = "A neuroplasticity-assisting compound that helps to lessen damage to neurological tissue after a injury. Can aid in healing brain tissue."
 	taste_description = "bitterness"
 	color = "#ffff66"
-	metabolism = REM * 0.25
+	metabolism = 0.5
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 	flags = IGNORE_MOB_SIZE
@@ -238,6 +238,8 @@
 	uid = "chem_neuroannealer"
 
 /decl/material/liquid/neuroannealer/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
+	if(removed < 0.1)
+		return
 	M.add_chemical_effect(CE_PAINKILLER, 10)
 	M.add_chemical_effect(CE_BRAIN_REGEN, 1)
 	if(ishuman(M))
@@ -271,3 +273,21 @@
 	lore_text = "A mixture of vital electrolytes used to counter starvation and hyponatremia."
 	uid = "electrolytes"
 	metabolism = 0.01
+
+/decl/material/liquid/srec_inhibitor
+	name = "SREC inhibitor"
+	lore_text = "An expensive SREC infection growth inhibitor."
+	uid = "SREC_inhibitor"
+	metabolism = 0.005
+	overdose = 50
+	color = "#7700ff"
+
+/decl/material/liquid/srec_inhibitor/affect_blood(mob/living/M, removed, datum/reagents/holder)
+	var/volume = REAGENT_VOLUME(holder, type)
+	switch(volume)
+		if(2 to 5)
+			M.add_chemical_effect(CE_SREC, 2)
+		if(5 to 15)
+			M.add_chemical_effect(CE_SREC, 3)
+		if(15 to 50)
+			M.add_chemical_effect(CE_SREC, 4)

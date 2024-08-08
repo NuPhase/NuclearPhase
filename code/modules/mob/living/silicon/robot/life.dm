@@ -77,7 +77,7 @@
 	if(src.resting)
 		SET_STATUS_MAX(src, STAT_WEAK, 5)
 
-	if(health < config.health_threshold_dead && src.stat != 2) //die only once
+	if(health < get_config_value(/decl/config/num/health_health_threshold_dead) && src.stat != 2) //die only once
 		death()
 
 	if (src.stat != DEAD) //Alive.
@@ -179,10 +179,6 @@
 						src.healths.icon_state = "health3"
 					if(0 to 50)
 						src.healths.icon_state = "health4"
-					if(config.health_threshold_dead to 0)
-						src.healths.icon_state = "health5"
-					else
-						src.healths.icon_state = "health6"
 		else
 			src.healths.icon_state = "health7"
 
@@ -296,6 +292,9 @@
 	if(on_fire)
 		overlays += image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
 
-/mob/living/silicon/robot/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
-		IgniteMob()
+//Silicons don't gain stacks from hotspots, but hotspots can ignite them
+/mob/living/silicon/increase_fire_stacks(exposed_temperature)
+	return
+
+/mob/living/silicon/can_ignite()
+	return !on_fire

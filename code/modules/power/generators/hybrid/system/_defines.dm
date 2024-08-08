@@ -6,6 +6,7 @@
 #define OPTIMAL_REACTOR_STEAM_TEMP 738
 #define MAX_REACTOR_STEAM_TEMP 1250
 #define OPTIMAL_TURBINE_MASS_FLOW 2500
+#define OPTIMAL_TURBINE_PRESSURE 7100
 
 /datum/reactor_control_system
 	var/name = "'Velocity' Control System"
@@ -41,7 +42,8 @@
 		/decl/material/gas/oxygen,
 		/decl/material/gas/nitrogen,
 		/decl/material/gas/helium,
-		/decl/material/solid/caesium
+		/decl/material/solid/caesium,
+		/decl/material/solid/metal/nuclear_waste/actinides
 	)
 
 	var/laser_marker

@@ -71,7 +71,7 @@
 	heating_point = 100 CELSIUS
 	heating_message = "becomes clear."
 	taste_mult = 1.2
-	metabolism = REM * 0.25
+	metabolism = REM * 5
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 
 /decl/material/liquid/venom/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)

@@ -3,8 +3,8 @@
 	desc = "A hefty plastic panel crate."
 	icon = 'icons/obj/storage/shipping_crates.dmi'
 	icon_state = "densecrate"
-	density = 1
-	atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
+	density = TRUE
+	atom_flags = ATOM_FLAG_CLIMBABLE
 	material = /decl/material/solid/plastic
 
 /obj/structure/largecrate/Initialize()

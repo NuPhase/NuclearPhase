@@ -326,7 +326,7 @@
 
 	face_atom(A)
 
-	if(!isghost(src))
+	if(!isghost(src) && get_config_value(/decl/config/toggle/visible_examine))
 		if((A.loc != src || (A in get_held_items())))
 			var/look_target = "at \the [A]"
 			if(isobj(A.loc))
@@ -732,7 +732,7 @@
 			shock_stage+=20
 			affected.take_external_damage((implant.w_class * 3), 0, DAM_EDGE, "Embedded object extraction")
 			if(!BP_IS_PROSTHETIC(affected) && prob(implant.w_class * 5) && affected.sever_artery()) //I'M SO ANEMIC I COULD JUST -DIE-.
-				custom_pain("Something tears wetly in your [affected.name] as [implant] is pulled free!", 50, affecting = affected)
+				custom_pain("Something tears wetly in your [affected.name] as [implant] is pulled free!", 500, affecting = affected)
 	. = ..()
 
 /mob/proc/yank_out_object()
@@ -1142,7 +1142,7 @@
 		return FALSE
 
 	// Not in a connected z-volume.
-	if(!(N.z in GetConnectedZlevels(T.z)))
+	if(!(N.z in SSmapping.get_connected_levels(T.z)))
 		return FALSE
 
 	// Are they below us?

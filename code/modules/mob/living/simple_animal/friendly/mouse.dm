@@ -52,7 +52,7 @@
 			set_stat(CONSCIOUS)
 			wander = 1
 		else if(prob(5))
-			INVOKE_ASYNC(src, .proc/audible_emote, "snuffles.")
+			INVOKE_ASYNC(src, PROC_REF(audible_emote), "snuffles.")
 
 /mob/living/simple_animal/mouse/Initialize()
 	verbs += /mob/living/proc/ventcrawl

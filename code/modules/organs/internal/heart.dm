@@ -13,8 +13,8 @@
 	damage_reduction = 0.7
 	relative_size = 5
 	max_damage = 45
-	oxygen_consumption = 0.96
-	oxygen_deprivation_tick = 0.7
+	oxygen_consumption = 0.66
+	oxygen_deprivation_tick = 0.3
 	var/open
 	var/external_pump = 0 //simulated beats per minute
 	var/cardiac_output = 1
@@ -57,12 +57,15 @@
 					take_internal_damage(0.5)
 				if(pulse > 220 && prob(5))
 					take_internal_damage(0.5)
+			oxygen_consumption = initial(oxygen_consumption) * (pulse / 60) * cardiac_output
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
 	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 120
+	cardiac_output_modifiers["hypoperfusion"] = min(2 - owner.get_blood_perfusion(), 1.2)
 	bpm_modifiers["ischemia"] = oxygen_deprivation * -2.4
 	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.35, 0, 110)
+	bpm_modifiers["toxins"] = owner.getToxLoss() * -0.15
 	for(var/decl/arrythmia/A in arrythmias)
 		bpm_modifiers[A.name] = A.get_pulse_mod()
 		cardiac_output_modifiers[A.name] = A.cardiac_output_mod
@@ -112,30 +115,41 @@
 					if(A.degrades_into)
 						add_arrythmia(GET_DECL(A.degrades_into))
 
+/obj/item/organ/internal/heart/proc/add_arrythmia_by_type(arr_type) // for testing
+	if(!ispath(arr_type, /decl/arrythmia))
+		return "Wrong type"
+	if(add_arrythmia(GET_DECL(arr_type)))
+		return "Success"
+	else
+		return "Failure"
+
 /obj/item/organ/internal/heart/proc/add_arrythmia(var/decl/arrythmia/A)
 	for(var/decl/arrythmia/existing_A in arrythmias)
 		if(existing_A.severity > A.severity)
-			return
+			return 0
 		else
 			arrythmias -= existing_A
 	A.on_spawn(owner)
 	last_arrythmia_appearance = world.time
 	LAZYDISTINCTADD(arrythmias, A)
+	return 1
 
 /obj/item/organ/internal/heart/proc/remove_arrythmia(var/decl/arrythmia/A)
 	arrythmias -= A
 
 /obj/item/organ/internal/heart/proc/handle_pulse()
+	var/oxygen_deprivation_coef = 1 - oxygen_deprivation / 100
+
 	if(pulse)
-		var/target_pulse = initial(pulse) + sumListAndCutAssoc(bpm_modifiers)
+		var/target_pulse = (initial(pulse) + sumListAndCutAssoc(bpm_modifiers)) * oxygen_deprivation_coef
 		pulse = max(Interpolate(pulse, target_pulse, HEMODYNAMICS_INTERPOLATE_FACTOR), 0)
 		external_pump = 0
 
 	if(!pulse)
 		return
 	var/cardiac_output_pulse_modifier = Clamp(130 / pulse, 0.7, 1)
-	var/cardiac_output_oxygen_modifier = min(1, 1 - oxygen_deprivation / 100)
-	cardiac_output = initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier * cardiac_output_oxygen_modifier
+	var/cardiac_output_oxygen_modifier = min(1, oxygen_deprivation_coef)
+	cardiac_output = min(initial(cardiac_output) * mulListAndCutAssoc(cardiac_output_modifiers) * cardiac_output_pulse_modifier * cardiac_output_oxygen_modifier, 2)
 
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= BPM_AUDIBLE_HEARTRATE || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))

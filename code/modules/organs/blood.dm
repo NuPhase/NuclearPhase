@@ -26,7 +26,7 @@
 		if(amt > 0)
 			vessel.add_reagent(species.blood_reagent, amt, blood_data)
 		else
-			vessel.remove_any(abs(amt))
+			vessel.remove_any(abs(min(amt, MINIMUM_CHEMICAL_VOLUME)))
 	update_oxygen_capacities()
 
 //Resets blood data
@@ -67,7 +67,7 @@
 	if(amt <= 0 || !istype(sprayloc))
 		return
 	var/spraydir = pick(global.alldirs)
-	amt = CEILING(amt/BLOOD_SPRAY_DISTANCE)
+	amt = NONUNIT_CEILING(amt/BLOOD_SPRAY_DISTANCE, 0.1)
 	var/bled = 0
 	spawn(0)
 		for(var/i = 1 to BLOOD_SPRAY_DISTANCE)
@@ -291,4 +291,4 @@
 
 //Percentage of maximum blood volume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately matters for brain
 /mob/living/carbon/human/proc/get_blood_oxygenation()
-	return get_blood_perfusion() * 10
+	return get_blood_perfusion() * 100

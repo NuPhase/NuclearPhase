@@ -17,7 +17,7 @@
 		inflamed++
 		if(prob(5))
 			if(owner.can_feel_pain())
-				owner.custom_pain("You feel a stinging pain in your abdomen!")
+				owner.custom_pain("You feel a stinging pain in your abdomen!", 300)
 				if(owner.can_feel_pain())
 					owner.visible_message("<B>\The [owner]</B> winces slightly.")
 		if(inflamed > 200)
@@ -33,11 +33,10 @@
 		if(inflamed > 600)
 			if(prob(1))
 				if(owner.can_feel_pain())
-					owner.custom_pain("You feel a stinging pain in your abdomen!")
+					owner.custom_pain("You feel a stinging pain in your abdomen!", 800)
 					SET_STATUS_MAX(owner, STAT_WEAK, 10)
 
 				var/obj/item/organ/external/E = GET_EXTERNAL_ORGAN(owner, parent_organ)
 				E.sever_artery()
 				E.germ_level = max(INFECTION_LEVEL_TWO, E.germ_level)
-				owner.adjustToxLoss(25)
-				qdel(src)
+				owner.adjustToxLoss(90)

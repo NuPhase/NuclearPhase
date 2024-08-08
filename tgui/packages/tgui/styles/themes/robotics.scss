@@ -1,0 +1,39 @@
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
+ @use 'sass:color';
+ @use 'sass:meta';
+
+ $robotics: #2a1a31;
+
+ @use '../colors.scss' with (
+   $fg-map-keys: (),
+   $bg-map-keys: (),
+ );
+ @use '../base.scss' with (
+   $color-bg: color.scale($robotics, $lightness: -45%),
+   $color-bg-end: #040516,
+   $color-fg: #37acc9,
+ );
+
+ .theme-robotics {
+   // Components
+   @include meta.load-css('../components/Button.scss', $with: (
+     'color-default': $robotics,
+     'color-transparent-text': #37acc9,
+   ));
+   @include meta.load-css('../components/ProgressBar.scss', $with: (
+     'color-default-fill': $robotics,
+     'background-color': rgba(4, 2, 27, 0.5),
+   ));
+   @include meta.load-css('../components/Section.scss');
+
+   // Layouts
+   @include meta.load-css('../layouts/Layout.scss');
+   @include meta.load-css('../layouts/Window.scss');
+   @include meta.load-css('../layouts/TitleBar.scss', $with: (
+     'background-color': color.scale($robotics, $lightness: -25%),
+   ));
+ }

@@ -23,7 +23,7 @@ var/global/datum/global_hud/hud
 	screen.icon_state = icon_state
 	screen.plane = FULLSCREEN_PLANE
 	screen.layer = FULLSCREEN_LAYER
-	screen.mouse_opacity = 0
+	screen.mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	screen.alpha = 125
 
 	screen.blend_mode = BLEND_MULTIPLY
@@ -32,7 +32,7 @@ var/global/datum/global_hud/hud
 	return screen
 
 /datum/global_hud/New()
-	nvg = setup_overlay("scanline", "#06ff00")
+	nvg = setup_overlay("scanline", "#0092cc")
 	thermal = setup_overlay("scanline", "#ff0000")
 	meson = setup_overlay("scanline", "#9fd800")
 	science = setup_overlay("scanline", "#d600d6")

@@ -8,36 +8,13 @@ Variables:
 	zblockage - how much quality we take away per unit of zdistance
 */
 
-/proc/get_local_signal_quality(atom/sender, atom/receiver, sender_penetration = 2, penetration_modifier = 1, receiver_amplification = 0) //Across a Z-level
+/proc/get_signal_quality(atom/sender, atom/receiver, sender_penetration = 2, penetration_modifier = 1, receiver_amplification = 0) //Across a Z-level
 	var/quality = 100
-	var/x = receiver.x - sender.x
-	var/y = receiver.y - sender.y
 	quality += receiver_amplification
-	var/datum/vector2/vec = new(x, y)
-	var/hip = round(vec.get_hipotynuse())
-	var/datum/vector2/norm_vec = vec.copy()
-	for (var/block in 1 to round(hip, 1))
-		norm_vec.normalise()
-		norm_vec.mult(new /datum/vector2(block, block))
-		var/turf/blocking = locate(sender.x + round(norm_vec.x, 1), sender.y + round(norm_vec.y, 1), sender.z)
+	var/datum/point/vector/tracing = new(sender.x, sender.y, sender.z, 0, 0, get_projectile_angle(sender, receiver))
+	for(var/i=0, i < get_dist(sender, receiver), i++)
+		var/turf/blocking = tracing.return_turf()
+		tracing.increment()
 		if(blocking)
-			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef) * penetration_modifier
-	return max(0, quality)
-
-
-/proc/get_global_signal_quality(atom/sender, atom/receiver, sender_penetration = 2, penetration_modifier = 1, receiver_amplification = 0, zdistance, zblockage) //Across Z-levels
-	var/quality = 100
-	var/x = abs(receiver.x - sender.x)
-	var/y = abs(receiver.y - sender.y)
-	var/z = abs(receiver.z - sender.z)
-	quality += receiver_amplification
-	var/datum/vector3/vec = new(x, y, z)
-	var/hip = round(vec.get_hipotynuse())
-	var/datum/vector3/norm_vec = vec.copy()
-	for (var/block in 1 to round(hip, 1))
-		norm_vec.normalise()
-		norm_vec.mult(new /datum/vector3(block, block, block))
-		var/turf/blocking = locate(sender.x + round(norm_vec.x, 1), sender.y + round(norm_vec.y, 1), sender.z + round(norm_vec.z))
-		if (blocking)
 			quality -= rand(blocking.signal_block_coef/2, blocking.signal_block_coef) * penetration_modifier
 	return max(0, quality)

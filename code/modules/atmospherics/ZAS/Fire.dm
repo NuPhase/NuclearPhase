@@ -50,6 +50,11 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /zone/proc/process_fire()
 	var/datum/gas_mixture/burn_gas = air.remove_ratio(vsc.fire_consuption_rate, fire_tiles.len)
 
+	for(var/turf/T in fire_tiles)
+		if(T.fire && T.fire.burning_fluid)
+			T.fire.burning_fluid.vaporize_fuel(burn_gas)
+			T.fire.burning_fluid.temperature = burn_gas.temperature
+
 	var/firelevel = burn_gas.fire_react(src, fire_tiles, force_burn = 1, no_check = 1)
 
 	air.merge(burn_gas)
@@ -99,7 +104,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	alpha = 0
 	anchored = 1
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 
 	blend_mode = BLEND_ADD
 
@@ -110,6 +115,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
 	var/obj/effect/fluid/burning_fluid = null //if we have one
+	var/obj/effect/abstract/particle_holder/our_holder = null
 
 /obj/fire/on_update_icon()
 	if(burning_fluid)
@@ -151,14 +157,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/datum/gas_mixture/air_contents = my_tile.return_air()
 
-	if(burning_fluid)
-		var/datum/gas_mixture/fluid_mixture = air_contents.remove_ratio(vsc.fluid_fire_consuption_rate)
-		burning_fluid.vaporize_fuel(fluid_mixture)
-		firelevel = fluid_mixture.fire_react(null, 1, 1)
-		burning_fluid.temperature = fluid_mixture.temperature
-		air_contents.merge(fluid_mixture)
-		if(firelevel < 0.01)
-			qdel(src)
+	if(firelevel < 0.1)
+		qdel(src)
 
 	update_icon()
 
@@ -222,6 +222,9 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	SSair.active_hotspots.Add(src)
 	update_icon()
 
+	our_holder = new(loc, /particles/smoke_continuous/fire)
+	our_holder.alpha = 90
+
 /obj/fire/proc/fire_color(var/env_temperature)
 	if(burning_fluid)
 		var/decl/material/main_reagent = burning_fluid.reagents.get_primary_reagent_decl()
@@ -238,6 +241,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		set_light(0)
 		T.fire = null
 	SSair.active_hotspots.Remove(src)
+	qdel(our_holder)
 	. = ..()
 
 /turf/simulated/var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.

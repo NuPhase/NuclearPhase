@@ -4,7 +4,7 @@
 	desc = "Seems to have some unusal strata evident throughout it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "strange"
-	origin_tech = "{'materials':5}"
+	origin_tech = @'{"materials":5}'
 	var/obj/item/inside
 
 /obj/item/ore/strangerock/Initialize(mapload, var/find_type = 0)
@@ -16,7 +16,7 @@
 /obj/item/ore/strangerock/Destroy()
 	QDEL_NULL(inside)
 	. = ..()
-	
+
 /obj/item/ore/strangerock/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/pickaxe/xeno/brush))
 		if(inside)

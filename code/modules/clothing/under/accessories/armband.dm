@@ -38,6 +38,6 @@
 	icon = 'icons/clothing/accessories/armbands/armband_medical_blue.dmi'
 
 /obj/item/clothing/accessory/armband/bluegold
-	name = "peacekeeper armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is blue and gold."
+	name = "UN peacekeeper armband"
+	desc = "An armband most commonly worn by UN officers and volunteers. This one is blue and white."
 	icon = 'icons/clothing/accessories/armbands/armband_sol.dmi'

@@ -5,7 +5,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = @"[50,200,250,500,1000,2000]" //Professional bartender should be able to transfer as much as needed
 	volume = 120
-	center_of_mass = @"{'x':17,'y':10}"
+	center_of_mass = @'{"x":17,"y":10}'
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
 	pour_sound = list('sound/chemistry/pour/bottle1.mp3', 'sound/chemistry/pour/bottle2.mp3', 'sound/chemistry/pour/bottle3.mp3')
 	var/list/shake_sounds = list('sound/chemistry/stir/shaker1.mp3', 'sound/chemistry/stir/shaker2.mp3')
@@ -32,7 +32,7 @@
 	if(reagents && reagents.total_volume)
 		atom_flags &= ~ATOM_FLAG_NO_REACT
 		HANDLE_REACTIONS(reagents)
-		addtimer(CALLBACK(src, .proc/stop_react), SSmaterials.wait)
+		addtimer(CALLBACK(src, PROC_REF(stop_react)), SSmaterials.wait)
 
 /obj/item/chems/drinks/shaker/proc/stop_react()
 	atom_flags |= ATOM_FLAG_NO_REACT

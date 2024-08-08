@@ -8,6 +8,7 @@ var/global/list/floor_decals = list()
 	icon = 'icons/turf/flooring/decals.dmi'
 	layer = DECAL_LAYER
 	appearance_flags = RESET_COLOR
+	alpha = 210
 	var/supplied_dir
 	var/detail_overlay
 	var/detail_color
@@ -965,7 +966,7 @@ var/global/list/floor_decals = list()
 	icon_state = "stripe"
 	color = "#d2d53d"
 	detail_overlay = "overstripe"
-	detail_color =  "#c900fb"
+	detail_color =  "#00fb0d"
 
 /obj/effect/floor_decal/industrial/radiation/corner
 	icon_state = "stripecorner"
@@ -1027,6 +1028,7 @@ var/global/list/floor_decals = list()
 /obj/effect/floor_decal/industrial/traffic
 	name = "traffic hazard stripes"
 	icon_state = "stripe"
+	color = "#494935"
 	detail_overlay = "overstripe"
 	detail_color = "#fb9700"
 
@@ -1440,3 +1442,18 @@ var/global/list/floor_decals = list()
 	icon = 'icons/turf/sector_markup.dmi'
 	icon_state = "a"
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+/obj/effect/floor_decal/ceres_logo
+	name = "CERES logo"
+	icon = 'icons/turf/ceres_logo.dmi'
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+/obj/effect/floor_decal/ai
+	name = "AI presence sign"
+	icon = 'icons/turf/decals.dmi'
+	icon_state = "ai"
+
+/obj/effect/floor_decal/mind_control
+	name = "strange sign"
+	icon = 'icons/turf/decals.dmi'
+	icon_state = "mind_control"

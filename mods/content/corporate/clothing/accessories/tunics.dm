@@ -34,6 +34,6 @@
 	icon = 'mods/content/corporate/icons/clothing/accessories/tunic/tunicblack_heph.dmi'
 
 /obj/item/clothing/accessory/tunic/exec/zeng
-	name = "\improper Zeng-Hu executive tunic"
-	desc = "A fashionable tunic that Zeng-Hu provides to their lab workers."
+	name = "\improper RO executive tunic"
+	desc = "A fashionable tunic that the RO department provides to their executives."
 	icon = 'mods/content/corporate/icons/clothing/accessories/tunic/tunicblack_zeng.dmi'

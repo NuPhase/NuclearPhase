@@ -47,13 +47,6 @@
 	path = /obj/item/storage/box/ammo/sniperammo
 	antag_roles = list(/decl/special_role/mercenary)
 
-/datum/uplink_item/item/ammo/sniperammo/apds
-	name = "Ammobox of APDS Sniper Rounds"
-	desc = "A container of armor piercing rounds for the anti-materiel rifle. Contains 3 rounds."
-	item_cost = 12
-	path = /obj/item/storage/box/ammo/sniperammo/apds
-	antag_roles = list(/decl/special_role/mercenary)
-
 /datum/uplink_item/item/ammo/shotgun_shells
 	name = "Ammobox of Shotgun Shells"
 	desc = "An ammobox with 2 sets of shell holders. Contains 8 buckshot shells total."

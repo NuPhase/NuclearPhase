@@ -119,7 +119,7 @@
 
 		else if(world.time >= next_cramp)
 			next_cramp = world.time + rand(200,800)
-			owner.custom_pain("Your stomach cramps agonizingly!",1)
+			owner.custom_pain("Your stomach cramps agonizingly!",150)
 			owner.vomit()
 
 		var/alcohol_volume = REAGENT_VOLUME(ingested, /decl/material/liquid/ethanol)

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo"
-	origin_tech = "{'materials':4,'biotech':5}"
+	origin_tech = @'{"materials":4,"biotech":5}'
 	amount_per_transfer_from_this = 5
 	unacidable = 1
 	volume = 30
@@ -149,8 +149,8 @@
 	icon_state = "injector"
 	item_state = "autoinjector"
 	amount_per_transfer_from_this = 5
-	volume = 5
-	origin_tech = "{'materials':2,'biotech':2}"
+	volume = 30
+	origin_tech = @'{"materials":2,"biotech":2}'
 	slot_flags = SLOT_LOWER_BODY | SLOT_EARS
 	w_class = ITEM_SIZE_TINY
 	var/list/starts_with = list(/decl/material/liquid/adrenaline = 4, /decl/material/liquid/oxygenated_saline = 1)
@@ -197,6 +197,20 @@
 	name = "autoinjector (anti-rad)"
 	band_color = COLOR_AMBER
 	starts_with = list(/decl/material/liquid/potassium_iodide = 3, /decl/material/liquid/pentenate_calcium_trisodium = 2)
+
+/obj/item/chems/hypospray/autoinjector/srec
+	name = "autoinjector (SREC-I)"
+	band_color = COLOR_GREEN
+	starts_with = list(/decl/material/liquid/srec_inhibitor = 10)
+	matter = list(
+		/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT,
+		/decl/material/solid/static_crystal = MATTER_AMOUNT_TRACE
+	)
+
+/obj/item/chems/hypospray/autoinjector/srec/elite
+	name = "autoinjector (SREC-IE)"
+	band_color = COLOR_LIME
+	starts_with = list(/decl/material/liquid/srec_inhibitor = 10, /decl/material/liquid/neuroannealer = 1, /decl/material/liquid/regenerator = 4, /decl/material/liquid/immunobooster = 5, /decl/material/liquid/dronedarone = 5, /decl/material/liquid/dopamine = 3, /decl/material/liquid/retrovirals = 2)
 
 /obj/item/chems/hypospray/autoinjector/hallucinogenics
 	name = "autoinjector"

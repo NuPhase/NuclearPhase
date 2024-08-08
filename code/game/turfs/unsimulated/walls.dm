@@ -5,6 +5,13 @@
 	opacity = 1
 	density = 1
 
+/turf/unsimulated/map_edge
+	name = "map edge"
+	icon = 'icons/effects/32x32.dmi'
+	icon_state = "000"
+	opacity = 1
+	density = 1
+
 /turf/unsimulated/wall/fakeglass
 	name = "window"
 	icon_state = "fakewindows"

@@ -6,7 +6,8 @@ var/global/list/wall_blend_objects = list(
 	/obj/structure/window/reinforced/polarized/full,
 	/obj/structure/window/shuttle,
 	/obj/structure/window/borosilicate/full,
-	/obj/structure/window/borosilicate_reinforced/full
+	/obj/structure/window/borosilicate_reinforced/full,
+	/obj/structure/door
 )
 var/global/list/wall_noblend_objects = list(
 	/obj/machinery/door/window
@@ -93,7 +94,7 @@ var/global/list/wall_fullblend_objects = list(
 		girder_material = GET_DECL(girder_material)
 
 	. = INITIALIZE_HINT_LATELOAD
-	set_extension(src, /datum/extension/penetration/proc_call, .proc/CheckPenetration)
+	set_extension(src, /datum/extension/penetration/proc_call, PROC_REF(CheckPenetration))
 	START_PROCESSING(SSturf, src) //Used for radiation.
 
 /turf/simulated/wall/LateInitialize(var/ml)
@@ -193,13 +194,16 @@ var/global/list/wall_fullblend_objects = list(
 	. = SPAN_NOTICE("It has had <font color = '[paint_color]'>a coat of paint</font> applied.")
 
 //Damage
-/turf/simulated/wall/melt()
-	if(can_melt())
-		var/turf/simulated/floor/F = ChangeTurf(/turf/simulated/floor/plating)
-		if(istype(F))
-			F.burn_tile()
-			F.icon_state = "wall_thermite"
-			visible_message(SPAN_DANGER("\The [src] spontaneously combusts!"))
+/turf/simulated/wall/handle_melting(list/meltable_materials)
+	. = ..()
+	if(!can_melt())
+		return
+	var/turf/simulated/floor/F = ChangeTurf(/turf/simulated/floor/plating)
+	if(!istype(F))
+		return
+	F.burn_tile()
+	F.icon_state = "wall_thermite"
+	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!"))
 
 /turf/simulated/wall/proc/take_damage(dam)
 	if(dam)
@@ -223,6 +227,7 @@ var/global/list/wall_fullblend_objects = list(
 
 /turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
 	burn(exposed_temperature)
+	return ..()
 
 /turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	temperature = adj_air.temperature
