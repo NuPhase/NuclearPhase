@@ -451,14 +451,23 @@
 	forced_ambience = list('sound/music/ocean.mp3')
 
 /area/ship/theseus
-	name = "UN Theseus"
-	has_gravity = FALSE
+	name = "UN Typhos"
+	has_gravity = TRUE
 	forced_ambience = list('sound/ambience/weather/storm_inside.wav')
 	ambience_volume = 10
+	background_radiation = 211
+	requires_power = 0
+
+/area/ship/theseus/warp_drive
+	background_radiation = 40309
+	forced_ambience = list('sound/ambience/ambidanger4.ogg')
+	ambience_volume = 45
+	lightswitch = FALSE
 
 /area/space/theseus
 	name = "Gas Cloud"
 	forced_ambience = list('sound/ambience/weather/storm_outside.wav')
+	ambience_volume = 60
 
 /area/ship/icarus
 	name = "UN Icarus"

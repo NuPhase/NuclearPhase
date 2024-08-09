@@ -243,7 +243,7 @@
 	lore_text = "An ubiquitous noble gas."
 	gas_specific_heat = 20
 	molar_mass = 0.028
-	latent_heat = 5600
+	latent_heat = 2792
 	boiling_point = -195 CELSIUS
 	melting_point = -210 CELSIUS
 	liquid_density = 804.3
@@ -283,7 +283,7 @@
 	gas_specific_heat = 35.8
 	liquid_specific_heat = 52.9
 	molar_mass = 0.016
-	latent_heat = 25210
+	latent_heat = 8519
 	boiling_point = 111
 	melting_point = 90
 	liquid_density = 415

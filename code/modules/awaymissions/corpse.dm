@@ -36,7 +36,7 @@
 /obj/abstract/landmark/corpse/Initialize()
 	..()
 	if(!species) species = global.using_map.default_species
-	var/species_choice = islist(species) ? pickweight(species) : species 
+	var/species_choice = islist(species) ? pickweight(species) : species
 	new /mob/living/carbon/human/corpse(loc, species_choice, src)
 	return INITIALIZE_HINT_QDEL
 
@@ -141,3 +141,7 @@
 /obj/abstract/landmark/corpse/scientist
 	name = "Scientist"
 	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/scientist)
+
+/obj/abstract/landmark/corpse/typhos/engineer
+	name = "Typhos Engineer"
+	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/typhos_engineer)

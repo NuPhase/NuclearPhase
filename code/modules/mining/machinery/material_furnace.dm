@@ -2,7 +2,7 @@
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "furnace"
 	var/internal_volume = 20
-	var/heat_capacity = 120000
+	var/heat_capacity = 20000
 	anchored = 1
 	density = 1
 
@@ -19,24 +19,41 @@
 	. = ..()
 
 /obj/machinery/atmospherics/unary/furnace/Process()
+	. = ..()
+	process_melting()
+
+/obj/machinery/atmospherics/unary/furnace/proc/process_melting()
+	do_melt(air_contents)
+
+/obj/machinery/atmospherics/unary/furnace/proc/ore_produced(obj/item/stack/ore/chosen_ore, decl/material/chosen_mat, proc_metal)
+	return chosen_ore.amount / chosen_mat.molar_mass * chosen_ore.composition[proc_metal] * chosen_ore.ore_to_slag_ratio() //returns 0
+
+/obj/machinery/atmospherics/unary/furnace/proc/slag_produced(obj/item/stack/ore/chosen_ore, proc_metal)
+	var/decl/material/chosen_mat = GET_DECL(/decl/material/solid/slag)
+	return chosen_ore.amount / chosen_mat.molar_mass * chosen_ore.composition[proc_metal] * (1 - chosen_ore.ore_to_slag_ratio()) // turn it into slag to ore ratio
+
+/obj/machinery/atmospherics/unary/furnace/proc/do_melt(datum/gas_mixture/gasmix)
 	for(var/obj/item/stack/ore/cur_ore in contents)
 		for(var/proc_metal in cur_ore.composition)
 			var/decl/material/cur_mat = GET_DECL(proc_metal)
-			switch(cur_mat.phase_at_temperature(air_contents.temperature, air_contents.return_pressure()))
+			switch(cur_mat.phase_at_temperature(gasmix.temperature, gasmix.return_pressure()))
 				if(MAT_PHASE_GAS)
 					if(length(cur_ore.composition) == 1)
-						air_contents.adjust_gas_temp(proc_metal, cur_ore.amount / cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
+						gasmix.adjust_gas_temp(proc_metal, ore_produced(cur_ore, cur_mat, proc_metal), gasmix.temperature, FALSE)
+						gasmix.adjust_gas_temp(/decl/material/solid/slag, slag_produced(cur_ore, proc_metal), gasmix.temperature, FALSE)
 						cur_ore.composition.Remove(proc_metal)
 				if(MAT_PHASE_LIQUID)
-					air_contents.adjust_gas_temp(proc_metal, cur_ore.amount / cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
+					gasmix.adjust_gas_temp(proc_metal, ore_produced(cur_ore, cur_mat, proc_metal), gasmix.temperature, FALSE)
+					gasmix.adjust_gas_temp(/decl/material/solid/slag, slag_produced(cur_ore, proc_metal), gasmix.temperature, FALSE)
 					cur_ore.composition.Remove(proc_metal)
 				if(MAT_PHASE_SOLID)
 					if(length(cur_ore.composition) == 1)
-						air_contents.adjust_gas_temp(proc_metal, cur_ore.amount / cur_mat.molar_mass * cur_ore.composition[proc_metal], air_contents.temperature)
+						gasmix.adjust_gas_temp(proc_metal, ore_produced(cur_ore, cur_mat, proc_metal), gasmix.temperature, FALSE)
+						gasmix.adjust_gas_temp(/decl/material/solid/slag, slag_produced(cur_ore, proc_metal), gasmix.temperature, FALSE)
 						cur_ore.composition.Remove(proc_metal)
 		if(!length(cur_ore.composition))
 			qdel(cur_ore)
-	air_contents.update_values()
+	gasmix.update_values()
 	update_networks()
 
 /obj/machinery/atmospherics/unary/furnace/proc/heat_up(joules)
@@ -117,17 +134,52 @@
 	name = "arc furnace"
 	desc = "A giant electric furnace."
 	icon = 'icons/obj/machines/arc_furnace.dmi'
-	icon_state = "unloaded-offline"
-	layer = ABOVE_HUMAN_LAYER
+	icon_state = "map"
+	layer = BELOW_OBJ_LAYER
 	var/obj/machinery/atmospherics/unary/furnace/arc/our_furnace
-	bound_x = -64
+	bound_x = -32
 	bound_y = -32
 	bound_width = 96
 	bound_height = 96
-	pixel_x = -80
+	pixel_x = -32
 	pixel_y = -32
 	anchored = TRUE
 	density = TRUE
+
+/obj/structure/arc_furnace_overlay/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	if(!Adjacent(over_object))
+		return
+
+	if(our_furnace.connected_canister)
+		visible_message("[usr] disconnects the canister from \the [src].")
+		playsound(src, 'sound/machines/podopen.ogg', 50)
+		our_furnace.connected_canister.forceMove(usr.loc)
+		our_furnace.connected_canister = null
+	else if(over_object)
+		if(!istype(over_object, /obj/machinery/portable_atmospherics))
+			return
+		if(!do_after(usr, 30, over_object))
+			return
+		if(our_furnace.connected_canister)
+			return
+		our_furnace.connected_canister = over_object
+		our_furnace.connected_canister.forceMove(src)
+		visible_message("[usr] connects a canister to \the [src].")
+		playsound(src, 'sound/machines/podclose.ogg', 50)
+	update_icon()
+
+/obj/structure/arc_furnace_overlay/Initialize(ml, _mat, _reinf_mat)
+	. = ..()
+	icon_state = "bottom"
+
+/obj/structure/arc_furnace_overlay/on_update_icon()
+	overlays.Cut()
+	var/list/overlays_to_add = list()
+	if(our_furnace.connected_canister)
+		overlays_to_add += image(our_furnace.connected_canister.icon, icon_state=our_furnace.connected_canister.icon_state, layer=ABOVE_OBJ_LAYER, pixel_x = 64)
+	overlays_to_add += image(icon, icon_state="top", layer = STRUCTURE_LAYER)
+	add_overlay(overlays_to_add)
 
 /obj/machinery/atmospherics/unary/furnace/arc
 	internal_volume = 3000
@@ -137,19 +189,18 @@
 	active_power_usage = 178 MWATT
 	power_channel = EQUIP
 	var/obj/structure/arc_furnace_overlay/overlay
+	var/obj/machinery/portable_atmospherics/connected_canister
+	var/datum/sound_token/sound_token
 	var/firelevel = 0 //firelevel that is returned on fire_react()
-	var/stability = 0 //0-100, defines how much everything sloshes around
+	var/instability = 0 //0-100, defines how much everything sloshes around
+	var/sound_id
 
 /obj/machinery/atmospherics/unary/furnace/arc/Initialize()
 	. = ..()
 	overlay = new(get_turf(src))
 	overlay.our_furnace = src
-
-/obj/structure/arc_furnace_overlay/on_update_icon()
-	if(length(our_furnace.inserted_electrodes))
-		icon_state = "loaded-offline"
-	else
-		icon_state = "unloaded-offline"
+	overlay.update_icon()
+	sound_id = "[type]_[sequential_id(type)]"
 
 /obj/structure/arc_furnace_overlay/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -173,7 +224,7 @@
 		if(!user.do_skilled(20, SKILL_DEVICES, src))
 			return
 		user.drop_from_inventory(I, src)
-		our_furnace.inserted_electrodes += I
+		our_furnace.inserted_electrodes |= I
 		visible_message(SPAN_NOTICE("[user] inserts an electrode into \the [src]."))
 		update_icon()
 		return
@@ -202,18 +253,47 @@
 		cur_electrode.coke_content = min(100, cur_electrode.coke_content + 0.1)
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/process_stability()
-	stability = 100
+	instability = 100
 	return
+
+/obj/machinery/atmospherics/unary/furnace/arc/power_change()
+	handle_sound()
+
+/obj/machinery/atmospherics/unary/furnace/arc/proc/handle_sound()
+	if(sound_token)
+		if(powered(EQUIP))
+			if(use_power == POWER_USE_ACTIVE)
+				if(sound_token.sound.file == 'sound/machines/arcing_cooling.wav')
+					QDEL_NULL(sound_token)
+					sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_start.ogg', 50, 10)
+				sound_token.SetVolume((get_conductivity_coefficient() / 1) * 70)
+			else
+				if(connected_canister)
+					if(sound_token.sound.file == 'sound/machines/arcing_start.ogg')
+						QDEL_NULL(sound_token)
+						sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_cooling.wav', 50, 6)
+					sound_token.SetVolume((connected_canister.air_contents.temperature / 5000) * 100)
+				else
+					QDEL_NULL(sound_token)
+		else
+			QDEL_NULL(sound_token)
+	else
+		if(powered(EQUIP))
+			if(use_power == POWER_USE_ACTIVE)
+				sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_start.ogg', 50, 10)
+			else
+				sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_cooling.wav', 50, 6)
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/start_arcing()
 	if(!powered(EQUIP) || get_conductivity_coefficient() < MINIMUM_ARCING_CONDUCTIVITY)
 		return
 	update_use_power(POWER_USE_ACTIVE)
-	playsound(src, sound('sound/machines/arcing_start.ogg', channel = sound_channels.long_channel))
+	handle_sound()
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/stop_arcing()
-	stop_client_sounds_on_channel(sound_channels.long_channel) //this is really dumb and stupid and expensive
 	update_use_power(POWER_USE_IDLE)
+	set_light(0)
+	handle_sound()
 
 /obj/machinery/atmospherics/unary/furnace/arc/Process()
 	if(use_power == POWER_USE_IDLE)
@@ -221,8 +301,13 @@
 	. = ..()
 	var/conductivity_coefficient = get_conductivity_coefficient()
 
-	if(!powered(EQUIP) || get_conductivity_coefficient() < MINIMUM_ARCING_CONDUCTIVITY)
+	if(!powered(EQUIP) || get_conductivity_coefficient() < MINIMUM_ARCING_CONDUCTIVITY || !connected_canister)
 		stop_arcing()
+		return
+
+	if(connected_canister.air_contents.temperature > 5000)
+		stop_arcing()
+		return
 
 	firelevel = air_contents.fire_react()
 	var/actually_used_power = nominal_power_usage * conductivity_coefficient
@@ -230,15 +315,51 @@
 	change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
 	lose_electrode_integrity(conductivity_coefficient)
 	process_stability()
+	control_pressure()
 	spark_at(get_turf(pick(oview(2, src))), 3, 0)
 	set_light(rand(4, 7), pick(3, 5), pick("#00b7ff", "#30c4ff", "#53ceff", "#5bd0ff", "#a6e6ff"))
+	handle_sound()
+
+/obj/machinery/atmospherics/unary/furnace/arc/proc/control_pressure()
+	var/pressure_delta = connected_canister.air_contents.return_pressure() - 303
+	if(pressure_delta > 200)
+		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
+		for(var/g in connected_canister.air_contents.gas)
+			if(ispath(g, /decl/material/gas))
+				connected_canister.air_contents.adjust_gas(g, -moles_to_remove)
+				air_contents.adjust_gas(g, moles_to_remove)
+				break
+		playsound(src, 'sound/machines/thruster.ogg', 50)
+	else if(pressure_delta < 50)
+		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
+		connected_canister.air_contents.merge(air_contents.remove(abs(moles_to_remove)))
+
+/obj/machinery/atmospherics/unary/furnace/arc/process_melting()
+	if(connected_canister)
+		do_melt(connected_canister.air_contents)
 
 /obj/machinery/atmospherics/unary/furnace/arc/heat_up(joules)
-	. = ..()
+	connected_canister.air_contents.temperature += joules/(connected_canister.air_contents.heat_capacity() + heat_capacity)
+	temperature = air_contents.temperature
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
 	environment.add_thermal_energy(joules * HEAT_LEAK_COEF)
 
+/obj/machinery/atmospherics/unary/furnace/arc/proc/heat_capacity()
+	. = heat_capacity
+	for(var/obj/item/stack/ore/O in contents)
+		. += O.amount * 450
+	return .
+
+/obj/machinery/atmospherics/unary/furnace/arc/add_ore(var/obj/item/stack/ore/added_ore)
+	var/decl/material/picked_mat = pick(added_ore.composition)
+	picked_mat = GET_DECL(picked_mat)
+	var/internal_heat_capacity = connected_canister.air_contents.heat_capacity()
+	var/ore_heat_capacity = added_ore.amount * picked_mat.molar_mass * picked_mat.solid_specific_heat
+	var/combined_heat_capacity = internal_heat_capacity + ore_heat_capacity
+	var/datum/gas_mixture/environment = loc.return_air()
+	var/combined_energy = environment.temperature * ore_heat_capacity + internal_heat_capacity * connected_canister.air_contents.temperature
+	connected_canister.air_contents.temperature = combined_energy/combined_heat_capacity
 
 #undef MINIMUM_ARCING_CONDUCTIVITY
 #undef HEAT_LEAK_COEF

@@ -1,5 +1,6 @@
 /turf/exterior/wall/random
 	reinf_material = null
+	icon_state = "natural_ore"
 
 /turf/exterior/wall/random/proc/get_weighted_mineral_list()
 	return list(

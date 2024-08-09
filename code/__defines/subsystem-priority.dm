@@ -37,6 +37,7 @@
 #define SS_PRIORITY_GHOST_IMAGES   10  // Updates ghost client images.
 #define SS_PRIORITY_ZCOPY          10  // Builds appearances for Z-Mimic.
 #define SS_PRIORITY_CELLAUTO	   10  // Cellurar Automata(Explosions)
+#define SS_PRIORITY_ORBIT		   10  // Orbit processing
 #define SS_PRIORITY_PROJECTILES    10  // Projectile processing!
 #define SS_PRIORITY_FLUIDS		   5
 

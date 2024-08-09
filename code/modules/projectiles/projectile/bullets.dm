@@ -273,7 +273,7 @@
 	penetration_modifier = 1.5
 	distance_falloff = 0.5
 
-/obj/item/projectile/bullet/modern/c127x99 //50 BMG
+/obj/item/projectile/bullet/modern/c127x99 //.50 BMG
 	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
 	damage = 60
 	stun = 3

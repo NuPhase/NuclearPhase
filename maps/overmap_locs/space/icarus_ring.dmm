@@ -249,6 +249,16 @@
 /obj/machinery/light/navigation/delay3,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus/ring)
+"eX" = (
+/obj/machinery/door/firedoor,
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/floor_decal/floordetail/tiled,
+/obj/effect/overmap_edge{
+	edge_id = "ring1";
+	teleport_to_id = "ring2"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus/ring)
 "fa" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/floor_decal/corner/b_green/border{
@@ -1429,6 +1439,16 @@
 	name = "Gym"
 	},
 /obj/effect/floor_decal/corner/b_green/mono,
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus/ring)
+"PO" = (
+/obj/machinery/door/firedoor,
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/floor_decal/floordetail/tiled,
+/obj/effect/overmap_edge{
+	edge_id = "ring2";
+	teleport_to_id = "ring1"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus/ring)
 "Qk" = (
@@ -5701,7 +5721,7 @@ Ny
 Ny
 Ny
 uo
-Je
+PO
 MI
 MI
 MI
@@ -5887,7 +5907,7 @@ MI
 MI
 MI
 MI
-Je
+eX
 uo
 Ny
 "}
@@ -5903,7 +5923,7 @@ Ny
 Ny
 Ny
 uo
-Je
+PO
 MI
 MI
 MI
@@ -6089,7 +6109,7 @@ MI
 MI
 MI
 MI
-Je
+eX
 uo
 Ny
 "}
@@ -6105,7 +6125,7 @@ Ny
 Ny
 Ny
 uo
-Je
+PO
 MI
 MI
 MI
@@ -6291,7 +6311,7 @@ MI
 MI
 MI
 MI
-Je
+eX
 uo
 Ny
 "}

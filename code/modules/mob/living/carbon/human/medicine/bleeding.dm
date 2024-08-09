@@ -26,7 +26,7 @@
 					else
 						total_blood_lost += W.bleed_amount * total_bleeding_modifier
 			if(cur_organ.status & ORGAN_ARTERY_CUT)
-				var/bleed_amount = min(mcv, NORMAL_MCV*2) * cur_organ.arterial_bleed_severity
+				var/bleed_amount = min(mcv, NORMAL_MCV) * cur_organ.arterial_bleed_severity
 				bleed_amount = max(0.1, bleed_amount)
 				if(bleed_amount)
 					if(open_wound)

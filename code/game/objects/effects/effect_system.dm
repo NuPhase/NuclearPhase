@@ -254,6 +254,10 @@ steam.start() -- spawns the effect
 		B.damage = (B.damage/2)
 	return 1
 
+/obj/effect/effect/smoke/bad/evaporation
+	time_to_live = 2 SECONDS
+	alpha = 50
+
 /obj/effect/effect/smoke/bad/mine
 	time_to_live = 3 SECONDS
 	alpha = 110
