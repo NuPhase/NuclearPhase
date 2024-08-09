@@ -7,7 +7,7 @@
 	frequency = vary && isnull(frequency) ? get_rand_frequency() : frequency // Same frequency for everybody
 
 	var/turf/turf_source = get_turf(source)
-	var/maxdistance = (world.view + extrarange) * 2
+	var/maxdistance = (15 + extrarange) * 2
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/list/listeners = global.player_list
@@ -88,7 +88,7 @@ var/global/const/FALLOFF_SOUNDS = 0.5
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
-		S.volume -= max(distance - (world.view + extrarange), 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
+		S.volume -= max(distance - (15 + extrarange), 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
 
 		if (S.volume <= 0)
 			return //no volume means no sound

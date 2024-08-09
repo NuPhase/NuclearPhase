@@ -13,7 +13,7 @@ Contains helper procs for airflow, called by /connection_group.
 		//Check for things that are in range of the midpoint turfs.
 		var/list/close_turfs
 		for(var/turf/connecting_turf as anything in connecting_turfs)
-			if(get_dist(src, connecting_turf) < world.view)
+			if(get_dist(src, connecting_turf) < 15)
 				LAZYADD(close_turfs, connecting_turf)
 			if(LAZYLEN(close_turfs))
 				airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
