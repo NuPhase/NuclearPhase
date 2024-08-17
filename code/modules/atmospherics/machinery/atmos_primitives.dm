@@ -74,16 +74,14 @@
 
 	if(isnull(transfer_mass))
 		transfer_mass = source_mass
-	var/decl/material/mat = null
-	for(var/g in source.gas) //TODO: MAKE MULTIPLE LIQUIDS PUMPING
-		if(source.phases[g] == MAT_PHASE_LIQUID)
-			mat = GET_DECL(g)
-			break
+	if(!length(source.liquids))
+		return
+	var/decl/material/mat = GET_DECL(pick(source.liquids))
 	if(!mat)
 		return
 	transfer_mass = min(transfer_mass, kgs_rating, sink.available_volume * 0.001 * mat.liquid_density)
 
-	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.liquid_molar_mass)
+	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.gas_molar_mass)
 	if (!removed) //Just in case
 		return -1
 
@@ -101,15 +99,13 @@
 
 	if(isnull(transfer_mass))
 		transfer_mass = source_mass
-	var/decl/material/mat = null
-	for(var/g in source.gas) //TODO: MAKE MULTIPLE LIQUIDS PUMPING
-		if(source.phases[g] == MAT_PHASE_LIQUID)
-			mat = GET_DECL(g)
-			break
+	if(!length(source.liquids))
+		return
+	var/decl/material/mat = GET_DECL(pick(source.liquids))
 	if(!mat)
 		return
 	transfer_mass = min(transfer_mass, sink.available_volume * 0.001 * mat.liquid_density)
-	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.liquid_molar_mass)
+	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.gas_molar_mass)
 	if (!removed) //Just in case
 		return -1
 
@@ -124,7 +120,7 @@
 		transfer_mass = source_mass
 	var/decl/material/mat = null
 	var/transfer_moles = 0
-	for(var/g in source.gas)
+	for(var/g in source.get_fluid(fluid_types = list(MAT_PHASE_LIQUID, MAT_PHASE_GAS)))
 		mat = GET_DECL(g)
 		transfer_moles += transfer_mass / mat.molar_mass
 	if(!transfer_moles)

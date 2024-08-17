@@ -88,15 +88,10 @@
 	gauge_icon = null
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = null
-	starting_pressure = list(/decl/material/gas/helium = 0.2*ONE_ATMOSPHERE)
+	starting_pressure = list(/decl/material/gas/helium = 0.3*ONE_ATMOSPHERE, /decl/material/gas/carbon_dioxide = 500*ONE_ATMOSPHERE)
+	starting_temperature = 145
 	weight = 3
 	volume = 15
-
-/obj/item/tank/firefighting/Initialize()
-	. = ..()
-	var/decl/material/mat = GET_DECL(/decl/material/gas/carbon_dioxide)
-	air_contents.adjust_gas_temp(/decl/material/gas/carbon_dioxide, air_contents.volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass * 0.9, 150)
-	air_contents.update_values()
 
 /obj/item/tank/high_temp_waste
 	name = "HT-HE waste tank"

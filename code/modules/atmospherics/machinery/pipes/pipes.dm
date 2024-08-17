@@ -94,16 +94,22 @@
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
-	var/total_volume = 0
-	var/gotten_temperature = 5
-	var/list/total_gas = list()
+	var/total_volume = 1
+	var/gotten_temperature = T20C
 	var/datum/pipe_network/network_to_check = parent.return_network(src)
+	var/datum/gas_mixture/combined = new
 	for(var/datum/gas_mixture/gasmix in network_to_check.gases)
 		gotten_temperature = gasmix.temperature
 		total_volume += gasmix.volume
 		for(var/g in gasmix.gas)
-			total_gas[g] += gasmix.gas[g]
-	var/datum/gas_mixture/combined = new(total_volume, gotten_temperature, initial_gas = total_gas)
+			combined.gas[g] += gasmix.gas[g]
+		for(var/g in gasmix.liquids)
+			combined.liquids[g] += gasmix.liquids[g]
+		for(var/g in gasmix.solids)
+			combined.solids[g] += gasmix.solids[g]
+	combined.volume = total_volume
+	combined.temperature = gotten_temperature
+	combined.update_values()
 	return combined
 
 /obj/machinery/atmospherics/pipe/build_network()

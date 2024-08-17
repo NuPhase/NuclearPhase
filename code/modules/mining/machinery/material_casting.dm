@@ -105,9 +105,7 @@
 	if(!contained_canister)
 		return
 	var/used_mat
-	for(var/mat in contained_canister.air_contents.gas)
-		if(contained_canister.air_contents.phases[mat] == MAT_PHASE_GAS)
-			continue
+	for(var/mat in contained_canister.air_contents.liquids)
 		used_mat = mat
 	if(!used_mat)
 		return

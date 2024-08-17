@@ -58,7 +58,7 @@ Class Procs:
 
 /zone/New()
 	SSair.add_zone(src)
-	air.temperature = TCMB
+	air.temperature = T20C
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 	spawn(5 SECONDS)
@@ -92,7 +92,7 @@ Class Procs:
 	T.zone = null
 	T.update_graphic(graphic_remove = air.graphic)
 	if(contents.len)
-		air.group_multiplier = contents.len
+		air.group_multiplier = length(contents)
 	else
 		c_invalidate()
 
@@ -140,15 +140,16 @@ Class Procs:
 /zone/proc/add_tile_air(datum/gas_mixture/tile_air)
 	//air.volume += CELL_VOLUME
 	air.group_multiplier = 1
-	air.multiply(contents.len)
-	air.merge(tile_air)
-	air.divide(contents.len+1)
-	air.group_multiplier = contents.len+1
+	air.multiply(length(contents), FALSE)
+	air.merge(tile_air, FALSE)
+	air.divide(length(contents)+1, FALSE)
+	air.group_multiplier = length(contents)+1
+	air.update_values()
 
 /zone/proc/tick()
 
 	// Update fires.
-	if(air.temperature >= FLAMMABLE_GAS_FLASHPOINT && !(src in SSair.active_fire_zones) && air.check_combustibility() && contents.len)
+	if(air.temperature >= FLAMMABLE_GAS_FLASHPOINT && !(src in SSair.active_fire_zones) && air.check_combustibility() && length(contents))
 		var/turf/T = pick(contents)
 		if(istype(T))
 			T.create_fire(vsc.fire_firelevel_multiplier)
@@ -186,69 +187,54 @@ Class Procs:
 //#define CONDENSATION_DEBUG
 
 /zone/proc/handle_condensation()
-	/*set waitfor = FALSE
-	condensing = TRUE
-	for(var/g in air.gas)
-		var/decl/material/mat = GET_DECL(g)
-		if(mat.phase_at_temperature(air.temperature, air.return_pressure()) == MAT_PHASE_LIQUID)
-			var/condensation_area = air.group_multiplier / length(air.gas)
-			while(condensation_area > 0 && length(contents))
-				condensation_area--
-				var/turf/flooding = pick(contents)
-				var/condense_amt = min(air.gas[g], rand(10,30))
-				if(condense_amt < 1)
-					break
-				air.adjust_gas(g, -condense_amt)
-				var/obj/effect/fluid/F = locate() in flooding
-				if(!F) F = new(flooding)
-				var/condense_reagent_amt = condense_amt * mat.molar_volume
-				F.reagents.add_reagent(g, condense_reagent_amt)
-				air.add_thermal_energy(mat.latent_heat / 1000 * condense_amt)
-		CHECK_TICK
-	condensing = FALSE*/
 
 	condensing = TRUE
 	var/area/checking = get_area(pick(contents))
 	if(!checking.should_condense)
 		return //this will stop further condensation processing
 
-	for(var/g in air.gas)
-		if(air.phases[g] == MAT_PHASE_LIQUID)
-			var/decl/material/mat = GET_DECL(g)
+	for(var/g in air.liquids)
+		var/decl/material/mat = GET_DECL(g)
+		var/condense_amt = min(air.liquids[g] * air.group_multiplier)
+		var/reagent_condense_amt = condense_amt * mat.molar_volume
+		if(reagent_condense_amt < FLUID_PUDDLE)
+			break
+		var/condensing_iterations = reagent_condense_amt/FLUID_PUDDLE
+		var/condense_amt_per_iteration = reagent_condense_amt/condensing_iterations
+		for(var/i=0, i < condensing_iterations, i++)
 			var/turf/flooding = pick(contents)
-			var/condense_amt = min(air.gas[g], rand(10, 1000))
-			if(condense_amt < 1)
-				continue
-			air.adjust_gas(g, -condense_amt)
 			var/obj/effect/fluid/F = locate() in flooding
 			if(!F) F = new(flooding)
-			var/condense_reagent_amt = condense_amt * mat.molar_volume
-			F.reagents.add_reagent(g, condense_reagent_amt)
-			F.temperature = air.temperature
+			F.temperature = air.temperature-1
+			F.reagents.add_reagent(g, condense_amt_per_iteration)
 			F.process_phase_change()
-			#ifdef CONDENSATION_DEBUG
-			to_world("******CONDENSATION DEBUG******")
-			to_world("Condensed [mat.name]")
-			to_world("Conditions: Temperature: ([air.temperature]) Pressure: ([air.return_pressure()]) Moles: ([air.total_moles])")
-			#endif
-		else if(air.phases[g] == MAT_PHASE_SOLID)
-			for(var/i=0, i < length(contents)*0.1, i++)
-				if(!air.gas[g])
-					break // no more gas to condense
-				var/turf/T = pick(contents)
-				var/obj/effect/decal/cleanable/dirt/spawned_dust = locate() in T
-				if(!spawned_dust)
-					spawned_dust = new(T)
-				var/decl/material/mat = GET_DECL(g)
-				var/condense_amt = min(air.gas[g], rand(min(air.gas[g], 255), 255))
-				if(condense_amt < 1)
-					continue
-				air.adjust_gas(g, -condense_amt)
-				spawned_dust.alpha = min(spawned_dust.alpha + (condense_amt*5), 255)
-				spawned_dust.color = mat.color
-				var/area/A = get_area(T)
-				A.background_radiation += mat.radioactivity * condense_amt * 0.01
+		#ifdef CONDENSATION_DEBUG
+		to_world("******CONDENSATION DEBUG******")
+		to_world("Condensed [mat.name]")
+		to_world("Conditions: Temperature: ([air.temperature]) Pressure: ([air.return_pressure()]) Moles: ([air.total_moles])")
+		#endif
+		air.liquids[g] = 0
 		CHECK_TICK
+	for(var/g in air.solids)
+		for(var/i=0, i < length(contents)*0.1, i++)
+			if(!air.solids[g])
+				break // no more gas to condense
+			var/turf/T = pick(contents)
+			var/obj/effect/decal/cleanable/dirt/spawned_dust = locate() in T
+			if(!spawned_dust)
+				spawned_dust = new(T)
+			var/decl/material/mat = GET_DECL(g)
+			var/condense_amt = min(air.gas[g], rand(min(air.gas[g], 255), 255))
+			if(condense_amt < 1)
+				break
+			air.adjust_gas(g, -condense_amt)
+			spawned_dust.alpha = min(spawned_dust.alpha + (condense_amt*5), 255)
+			spawned_dust.color = mat.color
+			var/area/A = get_area(T)
+			A.background_radiation += mat.radioactivity * condense_amt * 0.01
+		CHECK_TICK
+		air.solids[g] = 0
+
 	condensing = FALSE
 
 /zone/proc/dbg_data(mob/M)

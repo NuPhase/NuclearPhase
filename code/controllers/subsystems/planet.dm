@@ -17,9 +17,8 @@ SUBSYSTEM_DEF(planet)
 		if(!length(A.contents))
 			interpolating_areas -= A
 
-#define TEMPERATURE_INTERPOLATION_MOD 2
+#define TEMPERATURE_INTERPOLATION_MOD 0.5
 /datum/controller/subsystem/planet/fire(resumed)
-	. = ..()
 	//first of all, handle the heating of areas
 	for(var/area/serenity/A in interpolating_areas)
 		var/turf/T = pick(A.contents)

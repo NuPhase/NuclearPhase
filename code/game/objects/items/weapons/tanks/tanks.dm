@@ -54,6 +54,7 @@ var/global/list/global/tank_gauge_cache = list()
 	var/leaking = 0
 	var/wired = 0
 	var/list/starting_pressure //list in format 'xgm gas id' = 'desired pressure at start'
+	var/starting_temperature = T20C
 	weight = 3
 
 /obj/item/tank/Initialize()
@@ -61,10 +62,10 @@ var/global/list/global/tank_gauge_cache = list()
 	proxyassembly = new /obj/item/tankassemblyproxy(src)
 	proxyassembly.tank = src
 
-	air_contents = new /datum/gas_mixture(volume, T20C)
+	var/list/starting_gas_list = list()
 	for(var/gas in starting_pressure)
-		air_contents.adjust_gas(gas, starting_pressure[gas]*volume/(R_IDEAL_GAS_EQUATION*T20C), 0)
-	air_contents.update_values()
+		starting_gas_list[gas] += starting_pressure[gas]*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents = new /datum/gas_mixture(volume, starting_temperature, initial_gas = starting_gas_list)
 
 	START_PROCESSING(SSobj, src)
 	update_icon(TRUE)

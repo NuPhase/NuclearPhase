@@ -400,12 +400,31 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 /decl/material/proc/products_need_process()
 	return (radioactivity>0) //todo
 
+//#define MAT_PHASE_DEBUG
+
+#ifdef MAT_PHASE_DEBUG
+var/decl/material/boil_mat = null
+/proc/set_boil_mat(mat_type)
+	boil_mat = GET_DECL(mat_type)
+/proc/mat_boil_temp(pressure)
+	if(!boil_mat)
+		return "NO BOIL MAT. Set one through set_boil_mat()"
+	to_world("******MAT PHASE DEBUG******")
+	to_world("Material was: [boil_mat.name]")
+	to_world("---------------------------")
+	to_world("Default boiling point: [boil_mat.boiling_point]K")
+	to_world("Pressure: [pressure]kPa")
+	to_world("Latent heat: [boil_mat.latent_heat]J/mol")
+	to_world("---------------------------")
+	to_world("Pressure Boiling point: [boil_mat.get_boiling_temp(pressure)]K")
+	to_world("---------------------------")
+#endif
 
 //Clausius–Clapeyron relation
 /decl/material/proc/get_boiling_temp(var/pressure = ONE_ATMOSPHERE)
 	if(!pressure)
 		pressure = 0.00001
-	return ((1/boiling_point) - (R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat)**-1
+	return ((1/boiling_point) - ((R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat))**-1
 
 // Returns the phase of the matterial at the given temperature and pressure
 /decl/material/proc/phase_at_temperature(var/temperature = T20C, var/pressure = ONE_ATMOSPHERE)
@@ -424,15 +443,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 			return liquid_specific_heat
 		if(MAT_PHASE_SOLID)
 			return solid_specific_heat
-
-/decl/material/proc/get_molar_mass(temperature, pressure)
-	switch(phase_at_temperature(temperature, pressure))
-		if(MAT_PHASE_GAS)
-			return gas_molar_mass
-		if(MAT_PHASE_LIQUID)
-			return liquid_molar_mass
-		if(MAT_PHASE_SOLID)
-			return solid_molar_mass
 
 // Returns the phase of matter this material is a standard temperature and pressure (20c at one atmosphere)
 /decl/material/proc/phase_at_stp()
