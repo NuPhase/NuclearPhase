@@ -93,7 +93,7 @@
 	for(var/atom/movable/AM as anything in get_contained_external_atoms())
 		AM.fluid_act(fluids)
 
-/turf/proc/remove_fluids(var/amount, var/defer_update)
+/turf/proc/remove_fluids(amount, defer_update)
 	var/obj/effect/fluid/F = locate() in src
 	if(QDELETED(F) || !F.reagents?.total_volume)
 		return
@@ -101,7 +101,7 @@
 	if(defer_update && !QDELETED(F.reagents))
 		SSfluids.holders_to_update[F.reagents] = TRUE
 
-/turf/proc/transfer_fluids_to(var/turf/target, var/amount, var/defer_update)
+/turf/proc/transfer_fluids_to(var/turf/target, amount, defer_update)
 	var/obj/effect/fluid/F = locate() in src
 	if(!F || !F.reagents?.total_volume)
 		return
@@ -116,3 +116,18 @@
 				SSfluids.holders_to_update[F.reagents] = TRUE
 			if(!QDELETED(other.reagents))
 				SSfluids.holders_to_update[other.reagents] = TRUE
+
+		var/obj/effect/overlay/T = new /obj/effect/overlay/space_wind(src)
+		var/ddir = get_dir(src, target)
+		T.dir = ddir
+		T.color = F.color
+		QDEL_IN(T, 10)
+		switch(ddir)
+			if(NORTH)
+				animate(T, pixel_y = 32, 10, easing = SINE_EASING)
+			if(SOUTH)
+				animate(T, pixel_y = -32, 10, easing = SINE_EASING)
+			if(WEST)
+				animate(T, pixel_x = -32, 10, easing = SINE_EASING)
+			if(EAST)
+				animate(T, pixel_x = 32, 10, easing = SINE_EASING)

@@ -40,6 +40,10 @@
 	icon_state = "bluespacify"
 	layer = SUPERMATTER_WALL_LAYER
 
+/obj/effect/overlay/space_wind
+	icon = 'icons/effects/tile_effects.dmi'
+	icon_state = "space_wind"
+
 /obj/effect/overlay/wallrot
 	name = "wallrot"
 	desc = "Ick..."
