@@ -22,7 +22,12 @@
 	screen.severity = severity
 
 	screens[category] = screen
-	screen.transform = null
+	if(screen.screen_loc != ui_entire_screen)
+		var/matrix/M = matrix()
+		M.Scale(client.last_view_x_dim/15, client.last_view_y_dim/15)
+		screen.transform = M
+	else
+		screen.transform = null
 	if(screen && client && (stat != DEAD || screen.allstate))
 		client.screen += screen
 	return screen
@@ -66,7 +71,7 @@
 			screen.transform = null
 			if(screen.screen_loc != ui_entire_screen && largest_bound > 7)
 				var/matrix/M = matrix()
-				M.Scale(CEILING(client.last_view_x_dim/7), CEILING(client.last_view_y_dim/7))
+				M.Scale(client.last_view_x_dim/15, client.last_view_y_dim/15)
 				screen.transform = M
 			client.screen |= screen
 
@@ -136,6 +141,9 @@
 	screen_loc = ui_entire_screen
 	layer = FULLSCREEN_LAYER
 	alpha = 127
+
+/obj/screen/fullscreen/noise/adrenal
+	alpha = 90
 
 /obj/screen/fullscreen/noise/heavy
 	icon_state = "1 heavy"

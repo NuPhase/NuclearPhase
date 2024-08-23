@@ -731,20 +731,22 @@
 				severity = min(severity, 7)
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.1) //we are JACKED on adrenaline
-					if(blood_perfusion < 0.9) //fancy flickering when low on oxygen
-						add_client_color(/datum/client_color/oxygendeprivation_desat)
-						remove_client_color(/datum/client_color/oxygendeprivation_oversat)
-						spawn(SSmobs.wait * 0.5)
-							remove_client_color(/datum/client_color/oxygendeprivation_desat)
-							add_client_color(/datum/client_color/oxygendeprivation_oversat)
-					else
+					if(blood_perfusion < 0.9)
 						add_client_color(/datum/client_color/oxygendeprivation_oversat)
-				else if(blood_perfusion < 0.6)
-					add_client_color(/datum/client_color/oxygendeprivation_desat)
+					else
+						remove_client_color(/datum/client_color/oxygendeprivation_oversat)
+				else
+					if(blood_perfusion < 0.7)
+						add_client_color(/datum/client_color/oxygendeprivation_desat)
 			else
 				clear_fullscreen("oxy")
 				remove_client_color(/datum/client_color/oxygendeprivation_oversat)
 				remove_client_color(/datum/client_color/oxygendeprivation_desat)
+
+		if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.1)
+			overlay_fullscreen("adrenalnoise",/obj/screen/fullscreen/noise/adrenal)
+		else
+			clear_fullscreen("adrenalnoise")
 
 		//Fire and Brute damage overlay (BSSR)
 		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp + (get_shock() * 0.1)
