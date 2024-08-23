@@ -4,13 +4,6 @@ import { Button, Box, Section, RoundGauge, LabeledControls } from "../components
 import { formatSiUnit } from "../format";
 import { Window } from "../layouts";
 
-const formatPressure = value => {
-  if (value < 10000) {
-    return toFixed(value) + ' kPa';
-  }
-  return formatSiUnit(value * 1000, 1, 'Pa');
-};
-
 const formatKg = value => {
   return toFixed(value) + 'kg';
 };
