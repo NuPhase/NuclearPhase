@@ -284,7 +284,7 @@
 	if(heat_capacity <= 0)
 		return 0
 
-	if(calculate_phase_change && GAME_STATE >= RUNLEVEL_GAME && (abs(thermal_energy) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER || forced))
+	if(calculate_phase_change && GAME_STATE >= RUNLEVEL_GAME && (abs(thermal_energy) > 50 || forced))
 		thermal_energy = make_phase_changes(thermal_energy)
 
 	if (thermal_energy < 0)

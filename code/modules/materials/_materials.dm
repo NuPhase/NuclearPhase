@@ -116,36 +116,30 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/exoplanet_rarity = MAT_RARITY_MUNDANE
 	/// Delay in ticks when cutting through this wall.
 	var/cut_delay = 0
-	/// Radiation var. Used in wall and object processing to irradiate surroundings.
+
+	// Physics properties
+	/// mSv/mol, radiation passively emitted by the material.
 	var/radioactivity = 0
 	/// K, point at which the material catches on fire.
 	var/ignition_point
-	/// K, walls will take damage if they're next to a fire hotter than this
-	var/melting_point = 700
 	/// K, point that material will become a gas.
 	var/boiling_point = 3000
+	/// K, point that material will become a liquid.
+	var/melting_point = 700
 	/// J/mol, enthalpy of vaporization
 	var/latent_heat = 7000
-	/// kg/mol,
+	/// J/mol, enthalpy of fusion (solid into liquid). Calculates itself, don't set unless you have an exact value for a specific material.
+	var/fusion_enthalpy
+	/// kg/mol, molar mass of the element
 	var/molar_mass = 0.06
-
-	var/gas_molar_mass
-	var/liquid_molar_mass
-	var/solid_molar_mass
-
-	//j/mol*k
-	var/gas_specific_heat = 20
-	var/liquid_specific_heat = 40
-	var/solid_specific_heat = 30
-
-	//ml/mol
-	//multiply moles by this to get mL. Divide mL by this to get moles.
+	var/gas_molar_mass //placeholder, to be removed
+	/// ml/mol, multiply moles by this to get mL. Divide mL by this to get moles.
 	var/molar_volume
-
-	//J/mol
+	/// j/mol*k, how much joules we need to heat up one mol of material by one degree
+	var/gas_specific_heat = 20
+	/// J/mol
 	var/combustion_energy = 0
-
-	//kg/m3
+	/// kg/m3
 	var/liquid_density = 1000
 	var/solid_density = 1000
 
@@ -335,12 +329,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	. = ..()
 	if(!gas_molar_mass)
 		gas_molar_mass = molar_mass
-		liquid_molar_mass = molar_mass
-		solid_molar_mass = molar_mass
 	molar_volume = molar_mass / liquid_density * 1000000
-	if(!liquid_specific_heat)
-		liquid_specific_heat = gas_specific_heat * 2
-		solid_specific_heat = gas_specific_heat * 1.5
+	if(!fusion_enthalpy) // Approximate it if we don't have an exact value
+		fusion_enthalpy = latent_heat * 0.0325
 	if(!use_name)
 		use_name = name
 	if(!liquid_name)
@@ -434,15 +425,6 @@ var/decl/material/boil_mat = null
 	else if(temperature >= melting_point)
 		return MAT_PHASE_LIQUID
 	return MAT_PHASE_SOLID
-
-/decl/material/proc/get_specific_heat(temperature, pressure)
-	switch(phase_at_temperature(temperature, pressure))
-		if(MAT_PHASE_GAS)
-			return gas_specific_heat
-		if(MAT_PHASE_LIQUID)
-			return liquid_specific_heat
-		if(MAT_PHASE_SOLID)
-			return solid_specific_heat
 
 // Returns the phase of matter this material is a standard temperature and pressure (20c at one atmosphere)
 /decl/material/proc/phase_at_stp()

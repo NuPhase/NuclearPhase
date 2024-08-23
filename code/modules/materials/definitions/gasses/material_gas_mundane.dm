@@ -281,7 +281,6 @@
 	gas_symbol = "CH4"
 	gas_symbol_html = "CH<sub>4</sub>"
 	gas_specific_heat = 35.8
-	liquid_specific_heat = 52.9
 	molar_mass = 0.016
 	latent_heat = 8519
 	boiling_point = 111

@@ -473,8 +473,6 @@
 	latent_heat = 824000
 	boiling_point = 5828
 	molar_mass = 0.183
-	solid_specific_heat = 24.8
-	liquid_specific_heat = 47.3
 
 /decl/material/solid/metal/hafniumcarbide
 	name = "hafnium carbide"
