@@ -64,3 +64,14 @@
 	shoes = /obj/item/clothing/shoes/jackboots/space_suit
 	pda_type = /obj/item/modular_computer/pda/engineering
 	pda_slot = slot_l_store_str
+
+/decl/hierarchy/outfit/job/generic/surface_explorer
+	name = "Surface Explorer"
+	uniform = /obj/item/clothing/under/undersuit
+	suit = /obj/item/clothing/suit/modern/space/research/cold
+	head = /obj/item/clothing/head/helmet/modern/space/research/cold
+	belt = /obj/item/storage/belt/utility
+	l_ear = /obj/item/radio/headset/headset_sci
+	shoes = /obj/item/clothing/shoes/jackboots/space_suit
+	pda_type = /obj/item/modular_computer/pda/science
+	pda_slot = slot_l_store_str

@@ -145,3 +145,11 @@
 /obj/abstract/landmark/corpse/typhos/engineer
 	name = "Typhos Engineer"
 	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/typhos_engineer)
+
+/obj/abstract/landmark/corpse/surface_explorer
+	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/surface_explorer)
+
+/obj/abstract/landmark/corpse/surface_explorer/sarah_mayer
+	name = "Sarah Mayer"
+	spawn_flags = CORPSE_SPAWNER_RANDOM_HAIR_STYLE | CORPSE_SPAWNER_RANDOM_EYE_COLOR
+	gender = FEMALE

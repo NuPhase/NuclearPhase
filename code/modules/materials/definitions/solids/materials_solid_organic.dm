@@ -7,7 +7,7 @@
 	icon_reinf = 'icons/turf/walls/reinforced.dmi'
 	wall_flags = 0
 	use_reinf_state = null
-	color = COLOR_EGGSHELL
+	color = "#f1e3e3"
 	door_icon_base = "plastic"
 	hardness = MAT_VALUE_FLEXIBLE + 10
 	weight = MAT_VALUE_LIGHT

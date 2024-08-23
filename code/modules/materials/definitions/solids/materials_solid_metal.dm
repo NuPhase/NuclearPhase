@@ -210,7 +210,7 @@
 	wall_support_value = MAT_VALUE_HEAVY
 	integrity = 175
 	burn_armor = 10
-	color = "#a5a5a5"
+	color = "#b4c4db"
 	icon_base = 'icons/turf/walls/solid.dmi'
 	icon_reinf = 'icons/turf/walls/reinforced.dmi'
 	wall_flags = PAINT_PAINTABLE|PAINT_STRIPABLE|WALL_HAS_EDGES
@@ -218,6 +218,7 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
 	reflectiveness = MAT_VALUE_MIRRORED
+	table_icon_base = "solid"
 	value = 1.3
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	melting_point = 1800
@@ -232,7 +233,7 @@
 	icon_reinf = 'icons/turf/walls/reinforced.dmi'
 	wall_flags = PAINT_PAINTABLE|PAINT_STRIPABLE|WALL_HAS_EDGES
 	use_reinf_state = null
-	color = "#cccdcc"
+	color = "#c2e8ec"
 	hitsound = 'sound/weapons/smash.ogg'
 	taste_description = "metal"
 	default_solid_form = /obj/item/stack/material/shiny
@@ -265,7 +266,7 @@
 	icon_reinf = 'icons/turf/walls/reinforced.dmi'
 	wall_flags = PAINT_PAINTABLE|PAINT_STRIPABLE|WALL_HAS_EDGES
 	use_reinf_state = null
-	color = "#a8a9b2"
+	color = "#b39696"
 	explosion_resistance = 900
 	brute_armor = 8
 	burn_armor = 10
@@ -297,7 +298,7 @@
 	icon_base = 'icons/turf/walls/metal.dmi'
 	wall_flags = PAINT_PAINTABLE
 	door_icon_base = "metal"
-	color = "#d1e6e3"
+	color = "#b2cac7"
 	icon_reinf = 'icons/turf/walls/reinforced_metal.dmi'
 	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
 	value = 1.5
@@ -338,7 +339,7 @@
 	name = "osmium"
 	uid = "solid_osmium"
 	lore_text = "An extremely hard form of platinum."
-	color = "#9999ff"
+	color = "#6d78b4"
 	stack_origin_tech = @'{"materials":5}'
 	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
 	value = 1.3
@@ -347,7 +348,7 @@
 	name = "platinum"
 	uid = "solid_platinum"
 	lore_text = "A very dense, unreactive, precious metal. Has many industrial uses, particularly as a catalyst."
-	color = "#deddff"
+	color = "#fcffdd"
 	weight = MAT_VALUE_VERY_HEAVY
 	wall_support_value = MAT_VALUE_VERY_HEAVY
 	stack_origin_tech = @'{"materials":2}'
@@ -466,7 +467,7 @@
 	lore_text = "A chemical element, and a strong oxidising agent."
 	weight = MAT_VALUE_VERY_HEAVY
 	taste_mult = 0 //no taste
-	color = "#dcdcdc"
+	color = "#8a91a1"
 	value = 0.5
 	liquid_density = 19250
 	melting_point = 3695
@@ -486,7 +487,7 @@
 	uid = "tantalum_hafnium_carbide"
 	weight = MAT_VALUE_VERY_HEAVY
 	taste_mult = 0 //no taste
-	color = "#a3358b"
+	color = "#3a3138"
 	value = 2
 
 /decl/material/solid/metal/inconel
