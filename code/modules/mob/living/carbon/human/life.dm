@@ -336,7 +336,7 @@
 		adjust_immunity(-10 / inhibition_factor)
 		change_eye_color(COLOR_GREEN_GRAY)
 		adjustHalLoss(-400)
-		to_chat_cooldown(src, SPAN_DANGER("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
+		to_chat_cooldown(src, SPAN_DANGER(pick("Tiny crystals crawl under your skin.", "You feel something churning up inside.")), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
 	if(srec_dose > 1000) //we explodeee
 		var/turf/T = get_turf(src)
 		gib()
@@ -465,8 +465,7 @@
 		var/pressure_message = ""
 		switch(pressure_alert)
 			if(-2)
-				pressure_message = "<span class=bigdanger>Your vision slowly becomes pitch red as the blood in your eyes slowly comes out. Air rushes out of your lungs, forcing your mouth open like some sort of a toy. Your saliva evaporates,\
-				but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
+				pressure_message = "<span class=bigdanger>Your vision becomes crimson red, you're in a vacuum!</span>"
 			if(-1)
 				pressure_message = "<span class=danger>You feel the air getting thinner!</span>"
 		to_chat(src, pressure_message)

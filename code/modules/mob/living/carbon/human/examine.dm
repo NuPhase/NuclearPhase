@@ -217,7 +217,7 @@
 		if(o && o.splinted && o.splinted.loc == o)
 			msg += SPAN_WARNING("[G.He] [G.has] \a [o.splinted] on [G.his] [o.name]!") + "\n"
 
-	if (src.stat)
+	if(stat)
 		msg += SPAN_WARNING("[G.He] [G.is]n't responding to anything around [G.him] and seems to be unconscious.") + "\n"
 		if((stat == DEAD || is_asystole() || src.losebreath) && distance <= 3)
 			msg += SPAN_DANGER("[G.He] [G.does] not appear to be breathing.") + "\n"
@@ -232,7 +232,7 @@
 
 	if(fire_stacks > 0)
 		if(on_fire)
-			msg += "<span class='warning'>[G.He] [G.is] on fire!.</span>\n"
+			msg += "<span class='warning'>[G.He] [G.is] on fire!.</span>\n" //ОН ГОРИТ!!!
 		else
 			msg += "[G.He] is covered in flammable liquid!\n"
 	else if(fire_stacks < 0)
@@ -309,7 +309,7 @@
 				wound_flavor_text[E.name] += "[G.His] [E.name] is dented and swollen!<br>"
 			if(E.status & ORGAN_DEAD)
 				wound_flavor_text[E.name] += "[G.His] [E.name] is irrecoverably damaged!<br>"
-			else if(E.damage >= E.max_damage && E.germ_level >= INFECTION_LEVEL_TWO)
+			else if(E.damage >= E.max_damage && E.germ_level >= INFECTION_LEVEL_THREE) //ОНО ГНИЕТ
 				wound_flavor_text[E.name] += "[G.His] [E.name] is likely beyond saving!<br>"
 
 		for(var/datum/wound/wound in E.wounds)
