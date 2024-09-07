@@ -39,6 +39,8 @@
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = "#138baf"
+	skill_points = 45
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
 	access = list(
 		access_rd,
@@ -87,6 +89,8 @@
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = "#1887a8"
+	skill_points = 40
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
 	access = list(
 		access_rd,
@@ -142,6 +146,7 @@
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 2
 	spawn_positions = 2
+	skill_points = 45
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 	access = list(
 		access_medical,
@@ -169,6 +174,7 @@
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 5
 	spawn_positions = 5
+	skill_points = 40
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 	access = list(
 		access_medical,

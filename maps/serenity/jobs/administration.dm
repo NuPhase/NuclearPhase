@@ -190,6 +190,7 @@
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = "#a51717"
 	outfit_type = /decl/hierarchy/outfit/job/cso
 	access = list(
 		access_security,

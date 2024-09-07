@@ -21,6 +21,7 @@
 	title = "Facility AI Director"
 	head_position = 1
 	supervisors = "the Chief Operations Officer and Chief Security Officer"
+	selection_color = "#a52041"
 	outfit_type = /decl/hierarchy/outfit/job/faid
 	skill_points = 38
 
@@ -28,6 +29,7 @@
 	title = "Chief Architect"
 	head_position = 1
 	supervisors = "the Chief Operations Officer and Reactor Operations Director"
+	selection_color = "#a52041"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
 	skill_points = 35
 
@@ -35,6 +37,7 @@
 	title = "Safety Supervisor"
 	head_position = 1
 	supervisors = "the Chief Operations Officer"
+	selection_color = "#a52041"
 	outfit_type = /decl/hierarchy/outfit/job/sdd
 	skill_points = 35
 	max_skill = list(
