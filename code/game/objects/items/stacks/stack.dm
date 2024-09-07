@@ -18,6 +18,7 @@
 	var/plural_icon_state
 	var/max_icon_state
 	var/amount = 1
+	var/singular_weight = 1 //weight = amount
 	var/list/initial_matter
 	var/matter_multiplier = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
@@ -41,6 +42,7 @@
 		singular_name = "sheet"
 	if(!plural_name)
 		plural_name = "[singular_name]s"
+	weight = singular_weight * amount
 
 /obj/item/stack/Destroy()
 	if(uses_charge)
@@ -193,6 +195,7 @@
 
 /obj/item/stack/proc/update_matter()
 	matter = initial_matter?.Copy()
+	weight = singular_weight * amount
 	create_matter()
 
 /obj/item/stack/proc/use(var/used)
