@@ -415,7 +415,7 @@ var/global/list/skills = list()
 // Category: Research
 
 /decl/hierarchy/skill/research/devices
-	name = "Complex Machinery&Devices"
+	name = "Complex Machinery&Mining"
 	uid =  "skill_devices"
 	desc = "Describes the ability to assemble complex devices, such as computers, circuits, printers, robots or gas tank assemblies (bombs). Note that if a device requires electronics or programming, those skills are also required in addition to this skill."
 	levels = list(

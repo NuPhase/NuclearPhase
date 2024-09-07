@@ -118,3 +118,18 @@
 		/area/turbolift/serenity/reactor/a1,
 		/area/turbolift/serenity/reactor/a2
 		)
+
+/obj/turbolift_map_holder/serenity/mining_elevator
+	depth = 5
+	lift_size_x = 3
+	lift_size_y = 3
+	icon = 'icons/obj/turbolift_preview_2x2.dmi'
+	dir = EAST
+
+	areas_to_use = list(
+		/area/turbolift/serenity/mining/a1,
+		/area/turbolift/serenity/mining/a2,
+		/area/turbolift/serenity/mining/a3,
+		/area/turbolift/serenity/mining/a4,
+		/area/turbolift/serenity/mining/a5
+		)

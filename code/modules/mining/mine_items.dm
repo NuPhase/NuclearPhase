@@ -41,7 +41,7 @@
 	sharp = 0
 
 	var/digspeed = 70 //moving the delay to an item var so R&D can make improved picks. --NEO
-	var/drill_sound = 'sound/weapons/Genhit.ogg'
+	var/drill_sound = 'sound/items/drill.wav'
 	var/drill_verb = "drilling"
 	var/excavation_amount = 200
 	var/build_from_parts = FALSE
@@ -70,7 +70,7 @@
 /obj/item/pickaxe/drill
 	name = "advanced mining drill" // Can dig sand as well!
 	icon = 'icons/obj/items/tool/drills/drill_hand.dmi'
-	digspeed = 100
+	digspeed = 90
 	origin_tech = @'{"materials":2,"powerstorage":3,"engineering":2}'
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"

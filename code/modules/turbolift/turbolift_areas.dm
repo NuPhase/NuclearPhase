@@ -160,3 +160,18 @@
 /area/turbolift/serenity/main_staircase/a1
 	lift_floor_label = "1"
 	lift_floor_name = "Cargo Storage; Security"
+
+/area/turbolift/serenity/mining
+	name = "Personnel Elevator"
+
+/area/turbolift/serenity/mining/a5
+	lift_floor_label = "5"
+	lift_floor_name = "Mining Preparations"
+
+/area/turbolift/serenity/mining/a4
+/area/turbolift/serenity/mining/a3
+/area/turbolift/serenity/mining/a2
+
+/area/turbolift/serenity/mining/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Mining; Ore Processing"

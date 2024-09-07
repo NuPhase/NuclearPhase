@@ -263,6 +263,22 @@
 	name = "General Genetics Laboratory"
 	icon_state = "toxlab"
 
+/area/serenity/shelter/mining
+	name = "Mining Preparations"
+	icon_state = "outpost_mine_main"
+
+/area/serenity/shelter/mining/processing
+	name = "Mining Processing"
+	icon_state = "outpost_mine_west"
+
+/area/serenity/shelter/mining/staircase
+	name = "Mining Staircase"
+	icon_state = "outpost_mine_north"
+
+/area/serenity/shelter/mining/drill
+	name = "Mining Drilling Site"
+	icon_state = "outpost_mine_west"
+
 /area/serenity/shelter/medbay
 	name = "Medbay"
 	icon_state = "medbay3"
