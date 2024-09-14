@@ -22,6 +22,7 @@
 	var/datum/gas_mixture/core_air = rcore.containment_field
 	var/list/data = list(
 		"alarmlist" = assemble_tgui_alarm_list(),
+		"gases" = assemble_tgui_gas_list(core_air),
 		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
 		"neutron_rate" = round(rcore.neutron_rate, 0.01),
@@ -50,6 +51,13 @@
 			is_bold = TRUE
 		alarm_list += list(list("content" = message, "alarm_color" = mcolor, "is_bold" = is_bold))
 	return alarm_list
+
+/obj/machinery/reactor_monitor/general/proc/assemble_tgui_gas_list(datum/gas_mixture/core_air)
+	var/gas_list = list()
+	for(var/g in core_air.gas)
+		var/decl/material/mat = GET_DECL(g)
+		gas_list += list(list("name" = mat.name, "color" = mat.color, "amount" = core_air.gas[g]))
+	return gas_list
 
 /obj/machinery/reactor_monitor/general/examine(mob/user)
 	. = ..()

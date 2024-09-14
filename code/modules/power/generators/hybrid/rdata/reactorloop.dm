@@ -2,14 +2,34 @@
 	name = "reactor loop display"
 	overlaying = "tank"
 
-/obj/machinery/reactor_display/group/reactorloop/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
-	data["var1"] = "F-M HEATEXCHANGER|Pressure:[rcontrol.get_meter_pressure("F-M HEATEXCHANGER")]kPa|Temperature:[rcontrol.get_meter_temperature("F-M HEATEXCHANGER")]K|Mass:[rcontrol.get_meter_mass("F-M HEATEXCHANGER")]KG."
-	data["var2"] = "F-M IN|Pressure:[rcontrol.get_meter_pressure("F-M IN")]kPa|Temperature:[rcontrol.get_meter_temperature("F-M IN")]K|Mass:[rcontrol.get_meter_mass("F-M IN")]KG."
-	data["var3"] = "F-M OUT|Pressure:[rcontrol.get_meter_pressure("F-M OUT")]kPa|Temperature:[rcontrol.get_meter_temperature("F-M OUT")]K|Mass:[rcontrol.get_meter_mass("F-M OUT")]KG."
-	data["var4"] = "REACTOR-M CHAMBER|Pressure:[rcontrol.get_meter_pressure("REACTOR-M CHAMBER")]kPa|Temperature:[rcontrol.get_meter_temperature("REACTOR-M CHAMBER")]K|Mass:[rcontrol.get_meter_mass("REACTOR-M CHAMBER")]KG."
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+/obj/machinery/reactor_display/group/reactorloop/physical_attack_hand(user)
+	. = ..()
+	tgui_interact(user)
+
+/obj/machinery/reactor_display/group/reactorloop/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "reactor_monitor.tmpl", "Digital Monitor", 450, 270)
-		ui.set_initial_data(data)
+		ui = new(user, src, "AtmosMeterList", "Reactor Monitoring")
 		ui.open()
-		ui.set_auto_update(TRUE)
+		ui.set_autoupdate(1)
+
+/obj/machinery/reactor_display/group/reactorloop/tgui_data(mob/user)
+	var/list/data = list(
+		"meterlist" = assemble_tgui_meter_list()
+	)
+	return data
+
+/obj/machinery/reactor_display/group/reactorloop/proc/assemble_tgui_meter_list()
+	var/return_list = list()
+	var/meter_list = list(
+		"F-M EXCHANGER" = "Reactor heat exchanger.",
+		"F-M IN" = "Reactor inlet.",
+		"F-M OUT" = "Reactor outlet."
+	)
+	for(var/meter_id in meter_list)
+		return_list += list(list("name" = meter_id,
+								"description" = meter_list[meter_id],
+								"pressure" = rcontrol.get_meter_pressure(meter_id),
+								"temperature" = rcontrol.get_meter_temperature(meter_id),
+								"mass" = rcontrol.get_meter_mass(meter_id)))
+	return return_list

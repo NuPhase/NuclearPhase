@@ -47,6 +47,9 @@
 	//Diagonal cells have a small delay when branching off from a non-diagonal cell. This helps the explosion look circular
 	var/delay = 0
 
+	var/spread_fluid_type
+	var/temperature = T20C
+
 	// Which direction is the explosion traveling?
 	// Note that this will be null for the epicenter
 	var/direction = null
@@ -127,6 +130,10 @@
 /datum/automata_cell/explosion/proc/setup_new_cell(datum/automata_cell/explosion/E)
 	if(E.shockwave)
 		E.shockwave.alpha = E.power
+		if(temperature > 800)
+			var/target_color = heat2color(temperature)
+			E.shockwave.color = target_color
+			new /obj/effect/effect/smoke/illumination(E.shockwave.loc, 3, 2, 4, target_color)
 	return
 
 /datum/automata_cell/explosion/update_state(list/turf/neighbors)
@@ -137,6 +144,14 @@
 	var/resistance = max(0, in_turf.explosion_resistance)
 	for(var/atom/A in in_turf)
 		resistance += max(0, A.explosion_resistance)
+
+	for(var/obj/item/item in in_turf)
+		item.throw_at(get_step_away(item, in_turf), item.throw_range, item.throw_speed, in_turf)
+	if(temperature > 800)
+		if(istype(in_turf, /turf/simulated/wall))
+			ADJUST_ATOM_TEMPERATURE(in_turf, temperature)
+		else
+			in_turf.create_fire(temperature / 10)
 
 	// Blow stuff up
 	INVOKE_ASYNC(in_turf, TYPE_PROC_REF(/atom, explosion_act), power, direction)
@@ -178,6 +193,9 @@
 			dir_falloff = 0
 
 		var/new_power = power - (power_falloff * dir_falloff)
+		var/new_temperature = temperature
+		if(temperature > T20C)
+			new_temperature *= 0.8
 
 		// Explosion is too weak to continue
 		if(new_power <= 0)
@@ -194,6 +212,7 @@
 		var/datum/automata_cell/explosion/E = propagate(dir)
 		if(E)
 			E.power = new_power
+			E.temperature = new_temperature
 			E.power_falloff = new_falloff
 			E.falloff_shape = falloff_shape
 
@@ -236,7 +255,7 @@ as having entered the turf.
 // I'll admit most of the code from here on out is basically just copypasta from DOREC
 
 // Spawns a cellular automaton of an explosion
-/proc/cell_explosion(turf/epicenter, power, falloff=1, falloff_shape = EXPLOSION_FALLOFF_SHAPE_LINEAR, direction, z_transfer=UP|DOWN)
+/proc/cell_explosion(turf/epicenter, power, falloff=1, falloff_shape = EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, direction, z_transfer=UP|DOWN)
 	if(!istype(epicenter))
 		epicenter = get_turf(epicenter)
 
@@ -289,6 +308,7 @@ as having entered the turf.
 		return
 
 	E.power = power
+	E.temperature = power*3
 	E.power_falloff = falloff
 	E.falloff_shape = falloff_shape
 	E.direction = direction

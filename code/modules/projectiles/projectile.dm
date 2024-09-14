@@ -347,7 +347,7 @@
 		if(shrapnel)
 			shrapnel.forceMove(organ)
 			organ.embed(shrapnel)
-	else if(prob(2 * damage_prob))
+	else if(prob(damage_prob))
 		organ.sever_artery()
 
 	organ.owner.projectile_hit_bloody(src, wound.damage*5, null, organ)

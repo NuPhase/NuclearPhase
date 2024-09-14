@@ -1,3 +1,4 @@
+import { toFixed } from 'common/math';
 import { useBackend} from "../backend";
 import { LabeledList, Box, Section, Flex, ProgressBar } from "../components";
 import { formatSiUnit } from "../format";
@@ -9,7 +10,14 @@ type Alarm = {
   is_bold: boolean;
 }
 
+type Gas = {
+  name: string;
+  color: string;
+  amount: number;
+}
+
 type InputData = {
+  gases: Gas[];
   alarmlist: Alarm[];
   power_load: number;
   thermal_load: number;
@@ -28,6 +36,7 @@ type InputData = {
 
 export const GeneralReactorMonitor = (props: any, context: any) => {
   const { act, data } = useBackend<InputData>(context);
+  const gasMaxAmount = Math.max(1, ...data.gases.map((Gas) => Gas.amount));
   return (
     <Window width = {650} height = {530} theme="ntos">
       <Window.Content>
@@ -113,6 +122,23 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                 <LabeledList.Item label = "Reflector Position">
                   {data.reflector_position*100}%
                 </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Flex.Item>
+          <Flex.Item height={20}>
+            <Section title = " Plasma Spectrometry">
+              <LabeledList>
+                {data.gases.map((Gas) => (
+                    <LabeledList.Item label={Gas.name}>
+                      <ProgressBar
+                        color={Gas.color}
+                        value={Gas.amount}
+                        minValue={0}
+                        maxValue={gasMaxAmount}>
+                        {toFixed(Gas.amount, 2) + '%'}
+                      </ProgressBar>
+                    </LabeledList.Item>
+                ))}
               </LabeledList>
             </Section>
           </Flex.Item>

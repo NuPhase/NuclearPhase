@@ -9,6 +9,7 @@ We have a very powerful computer system that allows our neural network to fully 
 	weight = 95 //even composite materials are very heavy
 	pull_coefficient = 0.2
 	lying_pull_coefficient = 0.9
+	faction = "silicon"
 
 /mob/living/carbon/human/synthetic/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)

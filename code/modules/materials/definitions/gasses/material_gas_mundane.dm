@@ -48,11 +48,12 @@
 	M.add_chemical_effect(CE_SQUEAKY, 1)
 
 /decl/material/gas/helium/isotopethree
-	name = "Helium-3"
+	name = "helium-3"
 	uid = "gas_helium3"
 	gas_symbol = "He3"
 	gas_symbol_html = "<sub>3</sub>He"
 	flags = MAT_FLAG_FUSION_FUEL
+	color = "#f7eccf"
 
 /decl/material/gas/carbon_dioxide
 	name = "carbon dioxide"
@@ -443,7 +444,7 @@
 		/decl/material/liquid/fuel/hydrazine = 1
 	)
 	value = 0.4
-	color = "#cb82fc"
+	color = "#e4baff"
 	fire_color = "#0077ff"
 	fire_alpha = 30
 	neutron_interactions = list(
@@ -465,7 +466,7 @@
 	uid = "gas_tritium"
 	lore_text = "A radioactive isotope of hydrogen. Useful as a fusion reactor fuel material."
 	mechanics_text = "Tritium is useable as a fuel in some forms of portable generator. It can also be converted into a fuel rod suitable for a R-UST fusion plant injector by using a fuel compressor. It fuses hotter than deuterium but is correspondingly more unstable."
-	color = "#777777"
+	color = "#bcffba"
 	boiling_point = -233 CELSIUS
 	neutron_absorption = 70
 	liquid_density = 202
@@ -482,7 +483,7 @@
 	lore_text = "One of the two stable isotopes of hydrogen; also known as heavy hydrogen. Useful as a chemically synthesised fusion reactor fuel material."
 	mechanics_text = "Deuterium can be converted into a fuel rod suitable for a R-UST fusion plant injector by using a fuel compressor. It is the most 'basic' fusion fuel."
 	flags = MAT_FLAG_FUSION_FUEL | MAT_FLAG_FISSIBLE
-	color = "#999999"
+	color = "#ffbaba"
 	boiling_point = -250 CELSIUS
 	liquid_density = 180
 	stack_origin_tech = @'{"materials":3}'

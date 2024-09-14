@@ -115,3 +115,10 @@
 	title = "Horse"
 	result_type = /obj/item/sex_toy/dildo
 	difficulty = 4
+
+/obj/item/handcuffs/leather
+	name = "leather cuffs"
+	icon = 'icons/obj/items/handcuffs_leather.dmi'
+	elastic = TRUE
+	breakouttime = 30 SECONDS
+	cuff_sound = 'sound/weapons/cablecuff.ogg'

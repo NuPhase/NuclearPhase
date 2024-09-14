@@ -62,4 +62,4 @@
 		cur_modifier += cL.damage / cL.max_damage
 	else
 		cur_modifier *= 1.7 //you bleed like hell without a liver
-	return Clamp(cur_modifier, 0.5, 2.5)
+	return Clamp(cur_modifier, 0.2, 2.5)

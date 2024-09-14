@@ -93,7 +93,7 @@
 	var/obj/item/chems/fuel_cell/inserted = null
 	var/sealed = FALSE
 	var/melted = FALSE
-	var/injection_ratio = 0 //0-0.001
+	var/injection_ratio = 0 // grams per second
 
 /obj/machinery/reactor_fuelport/examine(mob/user)
 	. = ..()
@@ -120,12 +120,12 @@
 
 	if(!injection_ratio)
 		return
-	var/removing = inserted.reagents.total_volume * injection_ratio + 0.1
+	var/removing = min(inserted.reagents.total_volume, injection_ratio / (1000 * inserted.reagents.specific_mass()))
 	for(var/moving in inserted.reagents.reagent_volumes)
 		if(moving in rcontrol.unwanted_materials)
 			continue //we don't want that
 		var/decl/material/smat = GET_DECL(moving)
-		reactor.containment_field.adjust_gas(moving, removing / smat.molar_volume)
+		reactor.containment_field.adjust_gas_temp(moving, removing / smat.molar_volume, 5000)
 		inserted.reagents.remove_reagent(moving, removing)
 
 /obj/machinery/reactor_fuelport/Initialize()

@@ -185,8 +185,8 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	var/tvibration = 0
-	if(turbine_internals.liquids[/decl/material/liquid/water] > 100) //condensing inside of the turbine is incredibly dangerous
-		tvibration += total_mass_flow * 0.004 * turbine_internals.liquids[/decl/material/liquid/water]
+	//if(turbine_internals.liquids[/decl/material/liquid/water] > 100) //condensing inside of the turbine is incredibly dangerous
+	//	tvibration += total_mass_flow * 0.004 * turbine_internals.liquids[/decl/material/liquid/water]
 	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
 		tvibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations

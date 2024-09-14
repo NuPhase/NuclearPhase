@@ -496,3 +496,23 @@
 	weight = MAT_VALUE_HEAVY
 	color = "#506680"
 	value = 1.2
+
+/decl/material/solid/metal/beryllium
+	name = "beryllium"
+	uid = "beryllium"
+	lore_text = "A rare, lightweight metal with a pale silver sheen, known for its incredible strength and high melting point."
+	mechanics_text = "Handling beryllium can be dangerous without proper protection, as its dust is toxic."
+	weight = MAT_VALUE_LIGHT
+	color = "#74b986"
+	taste_description = "sticky metal"
+	default_solid_form = /obj/item/stack/material/shiny
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 6,
+			INTERACTION_ABSORPTION = 2
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 6,
+			INTERACTION_ABSORPTION = 0.003
+		)
+	)

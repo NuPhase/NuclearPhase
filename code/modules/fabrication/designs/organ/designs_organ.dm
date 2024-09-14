@@ -1,0 +1,1 @@
+/datum/fabricator_recipe/meat

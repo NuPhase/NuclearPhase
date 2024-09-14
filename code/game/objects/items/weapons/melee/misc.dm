@@ -42,6 +42,14 @@
 	icon_state = "chain"
 	item_state = "whip"
 
+/obj/item/whip/leather
+	name = "leather whip"
+	desc = "Are you some kind of S&M enthusiast?"
+	icon_state = "leather"
+	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+	force = 3
+	hitsound = 'sound/weapons/towelwhip.ogg'
+
 /obj/item/sword/replica/officersword
 	name = "fleet officer's sword"
 	desc = "A polished sword issued to officers of the fleet."

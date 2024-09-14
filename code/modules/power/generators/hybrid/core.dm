@@ -117,7 +117,7 @@
 		fast_neutrons -= fast_neutrons_moderated
 		slow_neutrons += fast_neutrons_moderated
 
-	var/radiative_heat_loss = containment_field.get_mass() * 3 * (containment_field.temperature**0.8) * (1.1 - reflector_position)
+	var/radiative_heat_loss = containment_field.get_mass() * containment_field.temperature * (1.1 - reflector_position)
 	containment_field.add_thermal_energy(-radiative_heat_loss)
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
@@ -131,7 +131,8 @@
 		if(cur_reaction.minimum_temperature > containment_field.temperature)
 			continue
 
-		var/uptake_moles = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant]) / containment_field.volume * cur_reaction.cross_section * (sqrt(containment_field.temperature - cur_reaction.minimum_temperature) * 0.0005)
+		var/minimum_reactant = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant])
+		var/uptake_moles = min(minimum_reactant / (2 + (cur_reaction.s_factor / (containment_field.temperature**0.666))), minimum_reactant)
 		containment_field.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.product, uptake_moles)

@@ -17,9 +17,15 @@
 	scrambledcodes = 1
 	modtype = "Combat"
 	module = /obj/item/robot_module/security/combat
-	spawn_sound = 'sound/mecha/nominalsyndi.ogg'
-	cell = /obj/item/cell/super
+	cell = /obj/item/cell/lithium_array
 	pitch_toggle = 0
+	var/datum/ai/an_robot/our_ai
+	icon = 'icons/mob/robots/robot_ninja.dmi'
+	icon_selected = TRUE
+
+/mob/living/silicon/robot/combat/ai/Initialize()
+	. = ..()
+	our_ai = new(src)
 
 /mob/living/silicon/robot/engineering
 	lawupdate = 0

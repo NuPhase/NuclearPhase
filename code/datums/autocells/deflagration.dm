@@ -1,6 +1,5 @@
 /datum/automata_cell/explosion/deflagration
 	var/shock_color = FIRE_COLOR_DEFAULT
-	var/spread_fluid_type
 
 // If you need to set vars on the new cell other than the basic ones
 /datum/automata_cell/explosion/deflagration/setup_new_cell(datum/automata_cell/explosion/deflagration/E)

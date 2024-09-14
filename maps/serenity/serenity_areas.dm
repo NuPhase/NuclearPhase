@@ -284,6 +284,14 @@
 	icon_state = "medbay3"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
+/area/serenity/shelter/medbay/lobby
+	name = "Medbay Lobby"
+	icon_state = "medbay4"
+
+/area/serenity/shelter/medbay/therapy
+	name = "Medbay Therapy"
+	icon_state = "medbay"
+
 /area/serenity/shelter/medbay/surgery
 	name = "Surgery"
 	icon_state = "surgery"
@@ -292,20 +300,16 @@
 	name = "Medbay Break Room"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/storage
-	name = "Medbay Storage"
+/area/serenity/shelter/medbay/office
+	name = "Medbay Office"
 	icon_state = "medbay"
 
 /area/serenity/shelter/medbay/morgue
 	name = "Morgue"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/intensive_care
-	name = "Intensive Care"
-	icon_state = "medbay2"
-
-/area/serenity/shelter/medbay/chemistry
-	name = "Chemistry"
+/area/serenity/shelter/medbay/genetics
+	name = "Genetics"
 	icon_state = "medbay"
 
 /area/serenity/shelter/factory

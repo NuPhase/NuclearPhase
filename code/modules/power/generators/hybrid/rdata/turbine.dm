@@ -56,10 +56,10 @@
 			rcontrol.turbine2.braking = TRUE
 			return
 		if("tripturb1")
-			rcontrol.turbine1.feeder_valve_openage = 0
+			rcontrol.turbine_trip("OPERATOR REQUEST")
 			return
 		if("tripturb2")
-			rcontrol.turbine2.feeder_valve_openage = 0
+			rcontrol.turbine_trip("OPERATOR REQUEST")
 			return
 		if("turb1adjust")
 			rcontrol.turbine1.feeder_valve_openage = params["entry"] * 0.01

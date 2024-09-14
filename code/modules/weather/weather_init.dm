@@ -16,7 +16,9 @@ INITIALIZE_IMMEDIATE(/obj/abstract/weather_system)
 	weather_system.set_state(initial_weather || /decl/state/weather/calm)
 
 	// Track our affected z-levels.
-	affecting_zs = SSmapping.get_connected_levels(target_z)
+	affecting_zs = list()
+	for(var/obj/O in weather_marks)
+		affecting_zs += O.z
 
 	// If we're post-init, init immediately.
 	if(SSweather.initialized)
