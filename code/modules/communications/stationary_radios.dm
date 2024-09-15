@@ -27,7 +27,7 @@
 	icon_state = "relay"
 	idle_power_usage = 14300
 	free_penetration = 5
-	penetration_modifier = 0.8 //yes.
+	penetration_modifier = 0.5 //yes.
 	receiving_boost = 60
 
 /obj/machinery/communications/relay/Initialize()
