@@ -27,6 +27,7 @@
 		rcore.reflector_position = panel_setting * 0.01
 	else
 		rcore.moderator_position = panel_setting * 0.01
+	rcontrol.make_log("[capitalize(panel_type)] EXPOSURE SWITCHED TO [panel_setting]%.", 1)
 
 /obj/machinery/reactor_button/turn_switch/regvalve/moderator
 	name = "MOD V-GAS"

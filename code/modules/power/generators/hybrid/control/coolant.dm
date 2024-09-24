@@ -49,7 +49,7 @@
 
 /obj/machinery/reactor_button/rswitch/preheat
 	name = "F-PREHEAT"
-	id = "heater"
+	id = "F-COOLANT PREHEAT"
 
 /obj/machinery/reactor_button/rswitch/preheat/do_action(mob/user)
 	. = ..()
@@ -57,9 +57,11 @@
 	if(state == 1)
 		heater.use_power = POWER_USE_IDLE
 		heater.power_rating = heater.max_power_rating
+		rcontrol.make_log("[id] STARTED.", 1)
 	else
 		heater.use_power = POWER_USE_OFF
 		heater.power_rating = 0
+		rcontrol.make_log("[id] STOPPED.", 1)
 
 /obj/machinery/reactor_button/rswitch/preheat/coolant
 	name = "T-COOLANT PREHEAT"
@@ -98,16 +100,20 @@
 	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator1
 	if(state == 1)
 		gen.connected = TRUE
+		rcontrol.make_log("GENERATOR #1 CONNECTED.", 1)
 	else
 		gen.connected = FALSE
+		rcontrol.make_log("GENERATOR #1 DISCONNECTED.", 2)
 
 /obj/machinery/reactor_button/rswitch/generator_connection/second/do_action(mob/user)
 	..()
 	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator2
 	if(state == 1)
 		gen.connected = TRUE
+		rcontrol.make_log("GENERATOR #2 CONNECTED.", 1)
 	else
 		gen.connected = FALSE
+		rcontrol.make_log("GENERATOR #2 DISCONNECTED.", 2)
 
 /obj/machinery/reactor_button/protected/turbine_braking
 	name = "TURB BRAKES"
@@ -119,3 +125,4 @@
 	rcontrol.turbine1.braking = TRUE
 	rcontrol.turbine2.braking = TRUE
 	visible_message(SPAN_WARNING("[user] switches on the emergency brakes on the steam turbines!"))
+	rcontrol.make_log("TURBINE BRAKES ENGAGED.", 3)

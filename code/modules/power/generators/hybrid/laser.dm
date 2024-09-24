@@ -20,7 +20,7 @@
 	use_power = POWER_USE_OFF
 	power_channel = EQUIP
 	idle_power_usage = 10000
-	active_power_usage = 600000
+	active_power_usage = 800000
 	required_interaction_dexterity = DEXTERITY_COMPLEX_TOOLS
 	layer = ABOVE_HUMAN_LAYER
 	var/lasid = ""
@@ -66,7 +66,7 @@
 /obj/machinery/rlaser/Process()
 	if(nmode == NEUTRON_MODE_BOMBARDMENT)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-		R.fast_neutrons += rand(10, 50) //neutron generators are extremely unpredictable and inaccurate
+		R.fast_neutrons += rand(1, 5) //neutron generators are extremely unpredictable and inaccurate
 		use_power_oneoff(70000, EQUIP)
 		SSradiation.radiate(src, 9000)
 	else if(nmode == NEUTRON_MODE_MODERATION)
@@ -104,7 +104,7 @@
 		capacitor_charge = 0
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.receive_power(power * 1000)
-		R.fast_neutrons += 750
+		R.fast_neutrons += 10
 	return
 
 /obj/structure/rlaser_receiver

@@ -13,6 +13,10 @@
 		if(!istype(las, /obj/machinery/rlaser))
 			continue
 		las.armed = state
+		if(las.armed)
+			rcontrol.make_log("LASERS ARMED.", 2)
+		else
+			rcontrol.make_log("LASERS DISARMED.", 1)
 		if(state)
 			las.operating = TRUE
 		else
@@ -41,9 +45,11 @@
 				primed = TRUE
 		if(primed)
 			playsound(src, 'sound/machines/switchbuzzer.ogg', 50)
+			rcontrol.make_log("LASERS PRIMED.", 2)
 		spawn(5 SECONDS)
-			for(var/obj/machinery/reactor_monitor/warnings/mon in rcontrol.announcement_monitors)
+			for(var/obj/machinery/reactor_monitor/general/mon in rcontrol.announcement_monitors)
 				mon.chat_report("LASERS DISCHARGED. TOTAL ENERGY: [watts_to_text(total_energy)]/s*1.4.", 1)
+			rcontrol.make_log("LASERS DISCHARGED. TOTAL ENERGY: [watts_to_text(total_energy)]/s*1.4.", 1)
 			for(var/mob/living/carbon/human/H in human_mob_list)
 				shake_camera(H, 20, 0.9)
 			state = 0
@@ -70,6 +76,7 @@
 			continue
 		las.switch_omode(mode)
 	visible_message(SPAN_WARNING("[user] switches [src] to [mode]!"))
+	rcontrol.make_log("LASER HEATING MODE SWITCHED TO [mode].", 1)
 
 /obj/machinery/reactor_button/lasnmode
 	name = "LAS-NMODE"
@@ -86,3 +93,4 @@
 			continue
 		las.nmode = mode
 	visible_message(SPAN_WARNING("[user] switches [src] to [mode]!"))
+	rcontrol.make_log("LASER NEUTRON MODE SWITCHED TO [mode].", 1)

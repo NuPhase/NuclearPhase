@@ -36,8 +36,8 @@
 	name = "D-T fuel cell"
 	spec_desc = "This fuel cell contains a simple D-T fuel mixture. You are boring."
 	initial_reagents = list(
-		/decl/material/gas/hydrogen/deuterium = 24000,
-		/decl/material/gas/hydrogen/tritium = 11000
+		/decl/material/gas/hydrogen/deuterium = 30000,
+		/decl/material/gas/hydrogen/tritium = 5000
 	)
 
 /obj/item/chems/fuel_cell/lithium
