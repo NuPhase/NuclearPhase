@@ -18,15 +18,16 @@
 	applies_material_colour = TRUE
 	force = 3
 	armor = list(
-		melee = ARMOR_MELEE_RESISTANT, 
-		bullet = ARMOR_BALLISTIC_MINOR, 
-		laser = ARMOR_LASER_MINOR, 
-		energy = ARMOR_ENERGY_MINOR, 
+		melee = ARMOR_MELEE_RESISTANT,
+		bullet = ARMOR_BALLISTIC_MINOR,
+		laser = ARMOR_LASER_MINOR,
+		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_PADDED
 		)
 	siemens_coefficient = 0.7
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
+	temperature_coefficient = CLOTHING_TEMP_COEF_MEDIUM
 	cold_protection = SLOT_FEET
 	body_parts_covered = SLOT_FEET
 	heat_protection = SLOT_FEET
@@ -48,14 +49,15 @@
 	material = /decl/material/solid/leather/synth
 	color = "#d88d4b"
 	armor = list(
-		melee = ARMOR_MELEE_RESISTANT, 
-		laser = ARMOR_LASER_MINOR, 
-		energy = ARMOR_ENERGY_SMALL, 
+		melee = ARMOR_MELEE_RESISTANT,
+		laser = ARMOR_LASER_MINOR,
+		energy = ARMOR_ENERGY_SMALL,
 		bomb = ARMOR_BOMB_PADDED
 		)
 	siemens_coefficient = 0.7
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
+	temperature_coefficient = CLOTHING_TEMP_COEF_MEDIUM
 	body_parts_covered = SLOT_FEET
 	heat_protection = SLOT_FEET
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE

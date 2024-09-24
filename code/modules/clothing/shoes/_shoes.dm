@@ -5,6 +5,7 @@
 	icon = 'icons/clothing/feet/generic_shoes.dmi'
 	gender = PLURAL
 	siemens_coefficient = 0.9
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 	cold_protection = SLOT_FEET
 	body_parts_covered = SLOT_FEET
 	heat_protection = SLOT_FEET

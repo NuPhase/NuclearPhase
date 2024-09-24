@@ -6,6 +6,7 @@
 	desc = "95% Polyester, 5% Spandex!"
 	gender = PLURAL
 	body_parts_covered = SLOT_LOWER_BODY
+	temperature_coefficient = CLOTHING_TEMP_COEF_DEFAULT
 
 /obj/item/clothing/pants/shorts/athletic
 	name = "athletic shorts"

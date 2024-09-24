@@ -18,7 +18,8 @@
 	desc = "A pair of gloves that reach past the elbow. Fancy!"
 	icon = 'icons/clothing/hands/gloves_evening.dmi'
 	color = COLOR_WHITE
-	body_parts_covered = SLOT_ARMS|SLOT_HANDS 
+	body_parts_covered = SLOT_ARMS|SLOT_HANDS
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 
 /obj/item/clothing/gloves/color/grey
 	color = COLOR_GRAY80

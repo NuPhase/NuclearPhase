@@ -4,6 +4,7 @@
 	icon = 'icons/clothing/head/headphones.dmi'
 	icon_state = ICON_STATE_WORLD
 	volume_multiplier = 0.5
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 	body_parts_covered = SLOT_HEAD|SLOT_EARS
 	gender = PLURAL
 	flags_inv = 0
