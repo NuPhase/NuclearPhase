@@ -60,6 +60,7 @@
 	var/is_ghost_role = FALSE
 
 	var/only_for_whitelisted = TRUE
+	var/list/required_whitelists
 
 /datum/job/New()
 

@@ -83,6 +83,7 @@
 		/datum/computer_file/program/camera_monitor
 	)
 	event_categories = list(ASSIGNMENT_SECURITY)
+	required_whitelists = list(/decl/whitelist/security_management)
 
 /datum/job/lieutenant/equip(mob/living/carbon/human/H, alt_title, datum/mil_branch/branch, datum/mil_rank/grade)
 	. = ..()
@@ -207,6 +208,7 @@
 		/datum/computer_file/program/camera_monitor
 	)
 	event_categories = list(ASSIGNMENT_SECURITY)
+	required_whitelists = list(/decl/whitelist/medical_low)
 
 /obj/item/card/id/security
 	name = "identification card"

@@ -24,6 +24,7 @@
 	selection_color = "#a52041"
 	outfit_type = /decl/hierarchy/outfit/job/faid
 	skill_points = 38
+	required_whitelists = list(/decl/whitelist/security_management, /decl/whitelist/engineering_low)
 
 /datum/job/site_operations/ca
 	title = "Chief Architect"
@@ -46,6 +47,7 @@
 	    SKILL_ATMOS        = SKILL_MAX,
 	    SKILL_ENGINES      = SKILL_MAX
 	)
+	required_whitelists = list(/decl/whitelist/command_executive)
 
 /datum/job/site_operations/sme
 	title = "Site Maintenance Engineer"

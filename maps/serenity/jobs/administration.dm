@@ -23,6 +23,7 @@
 		SKILL_LITERACY    = SKILL_ADEPT
 	)
 	skill_points = 45
+	required_whitelists = list(/decl/whitelist/command_ceo)
 
 /datum/job/administration/ceo
 	title = "Chief Executive Officer"
@@ -103,6 +104,7 @@
 		access_keycard_auth,
 		access_gateway
 	)
+	required_whitelists = list(/decl/whitelist/command_ceo)
 
 /datum/job/administration/coo
 	title = "Chief Operations Officer"
@@ -184,6 +186,7 @@
 		access_keycard_auth,
 		access_gateway
 	)
+	required_whitelists = list(/decl/whitelist/command_executive)
 
 /datum/job/administration/cso
 	title = "Chief Security Officer"
@@ -241,6 +244,7 @@
 		access_external_airlocks
 	)
 	skill_points = 37
+	required_whitelists = list(/decl/whitelist/security_management)
 
 /datum/job/administration/sdd
 	title = "Site Deputy Director"
@@ -249,3 +253,4 @@
 	spawn_positions = 1
 	skill_points = 45
 	outfit_type = /decl/hierarchy/outfit/job/sdd
+	required_whitelists = list(/decl/whitelist/command_beginner)

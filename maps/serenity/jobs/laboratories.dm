@@ -83,6 +83,7 @@
 		access_xenoarch,
 		access_network
 	)
+	required_whitelists = list(/decl/whitelist/command_executive, /decl/whitelist/medical_high)
 
 /datum/job/laboratories/load
 	title = "Laboratory Operations Assistant Director"
@@ -133,6 +134,7 @@
 		access_xenoarch,
 		access_network
 	)
+	required_whitelists = list(/decl/whitelist/medical_high)
 
 /datum/job/laboratories/pps
 	title = "Particle Physics Specialist"
@@ -140,6 +142,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	required_whitelists = list(/decl/whitelist/engineering_high)
 
 /datum/job/laboratories/ggs
 	title = "General Genetics Specialist"
@@ -168,6 +171,7 @@
 		access_maint_tunnels,
 		access_external_airlocks
 	)
+	required_whitelists = list(/decl/whitelist/medical_high)
 
 /datum/job/laboratories/los
 	title = "Laboratory Operations Specialist"
@@ -196,6 +200,7 @@
 		access_maint_tunnels,
 		access_external_airlocks
 	)
+	required_whitelists = list(/decl/whitelist/medical_low, /decl/whitelist/engineering_low)
 
 /datum/job/laboratories/loa
 	title = "Laboratory Operations Assistant"
