@@ -350,3 +350,7 @@
 	command = sanitize(command)
 	to_chat(src, "<font size='7' color='red'><b>[command]</b></font>")
 	alert(src, "You have to follow that command. You forget who gave you that command, although you can associate the requested action with said person. This command can(and should) impact the overall behaviour of your character. Example: if your character kills someone because of a command, they will kill with a lot less hesitation in the future.", "Command", "Understood")
+
+/mob/living/carbon/human/proc/carryover_prefs()
+	if(client)
+		client.prefs.copy_to(src)

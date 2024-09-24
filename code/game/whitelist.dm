@@ -67,7 +67,16 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 	return (key in assoclist) ? (value in assoclist[key]) : FALSE
 
 /datum/whitelist/job/check_entry_assoc(var/key, var/value)
-	return (key in assoclist) ? (value in assoclist[key]) : TRUE
+	var/datum/job/job = SSjobs.get_by_path(text2path(key))
+	if(!job.required_whitelists)
+		return TRUE
+	for(var/whitelist_decl_type in job.required_whitelists)
+		whitelist_decl_type = "[whitelist_decl_type]" // path to string
+		if(!(whitelist_decl_type in assoclist))
+			continue
+		if(!(value in assoclist[whitelist_decl_type]))
+			return FALSE
+	return TRUE
 
 /datum/whitelist/Topic(href, href_list, state)
 	if(!check_rights(R_VAREDIT | R_DEBUG))
@@ -238,3 +247,11 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 		is_wl = TRUE
 	. = ..()
 
+/decl/whitelist/medical_low
+/decl/whitelist/medical_high
+/decl/whitelist/engineering_low
+/decl/whitelist/engineering_high
+/decl/whitelist/command_ceo
+/decl/whitelist/command_executive
+/decl/whitelist/command_beginner
+/decl/whitelist/security_management

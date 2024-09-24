@@ -87,6 +87,7 @@
 	toxicity = 1.3
 	burn_product = /decl/material/gas/carbon_dioxide
 	gas_flags = XGM_GAS_FUEL|XGM_GAS_OXIDIZER
+	oxidizer_power = 5
 	combustion_energy = 3291500
 	uid = "tnt"
 	ignition_point = 986
@@ -103,6 +104,7 @@
 	toxicity = 1.1
 	burn_product = /decl/material/gas/carbon_dioxide
 	gas_flags = XGM_GAS_FUEL|XGM_GAS_OXIDIZER
+	oxidizer_power = 7
 	combustion_energy = 4937250
 	uid = "cyclonite"
 	ignition_point = 477

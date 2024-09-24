@@ -207,7 +207,6 @@ Class Procs:
 			if(!F) F = new(flooding)
 			F.temperature = air.temperature-1
 			F.reagents.add_reagent(g, condense_amt_per_iteration)
-			F.process_phase_change()
 		#ifdef CONDENSATION_DEBUG
 		to_world("******CONDENSATION DEBUG******")
 		to_world("Condensed [mat.name]")

@@ -69,7 +69,7 @@
 			if(g != /decl/material/gas/oxygen && g != /decl/material/gas/nitrogen)
 				scrubbing_gas += g
 	. = ..()
-	air_contents.volume = 1500
+	air_contents.volume = 3000
 
 /obj/machinery/atmospherics/unary/vent_scrubber/reset_area(area/old_area, area/new_area)
 	if(old_area == new_area)
@@ -118,12 +118,13 @@
 	if (!LAZYLEN(nodes_to_networks))
 		update_use_power(POWER_USE_OFF)
 	//broadcast_status()
-	if(!use_power || (stat & (NOPOWER|BROKEN)))
-		return 0
 	if(welded)
 		return 0
-
 	var/datum/gas_mixture/environment = loc.return_air()
+	if(!use_power || (stat & (NOPOWER|BROKEN))) // Function as a passive valve if we don't work
+		if(environment.pressure > ONE_ATMOSPHERE*2)
+			pump_gas_passive(src, environment, air_contents)
+		return 0
 
 	var/power_draw = -1
 	var/transfer_moles = 0
@@ -134,6 +135,9 @@
 	else //limit flow rate from turfs
 		transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SCRUBBER_FLOWRATE/environment.volume)	//group_multiplier gets divided out here
 		power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, power_rating)
+		if(environment.pressure > ONE_ATMOSPHERE*1.1)
+			transfer_moles = environment.total_moles * (ONE_ATMOSPHERE / environment.pressure) // how elegant lmao
+			power_draw = pump_gas(src, environment, air_contents, transfer_moles, power_rating)
 
 	if(scrubbing != SCRUBBER_SIPHON && power_draw <= 0)	//99% of all scrubbers
 		//Fucking hibernate because you ain't doing shit.

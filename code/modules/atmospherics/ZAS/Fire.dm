@@ -53,7 +53,6 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	for(var/turf/T in fire_tiles)
 		if(T.fire && T.fire.burning_fluid)
 			T.fire.burning_fluid.vaporize_fuel(burn_gas)
-			T.fire.burning_fluid.temperature = burn_gas.temperature
 
 	var/firelevel = burn_gas.fire_react(src, fire_tiles, force_burn = 1, no_check = 1)
 
@@ -123,27 +122,27 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		switch(firelevel)
 			if(0 to 2)
 				icon_state = "fluid_1"
-				set_light(1, 2, no_update = TRUE)
+				set_light(1, 2, color, no_update = TRUE)
 			if(2 to 4)
 				icon_state = "fluid_2"
-				set_light(4, 2, no_update = TRUE)
+				set_light(4, 2, color, no_update = TRUE)
 			if(4 to 6)
 				icon_state = "fluid_3"
-				set_light(6, 3, no_update = TRUE)
+				set_light(6, 3, color, no_update = TRUE)
 			if(6 to INFINITY)
 				icon_state = "fluid_4"
-				set_light(8, 4, no_update = TRUE)
+				set_light(8, 4, color, no_update = TRUE)
 	else
 		layer = FIRE_LAYER
 		if(firelevel > 6)
 			icon_state = "3"
-			set_light(7, 3, no_update = TRUE)
+			set_light(7, 3, color, no_update = TRUE)
 		else if(firelevel > 2.5)
 			icon_state = "2"
-			set_light(5, 2, no_update = TRUE)
+			set_light(5, 2, color, no_update = TRUE)
 		else
 			icon_state = "1"
-			set_light(3, 1, no_update = TRUE)
+			set_light(3, 1, color, no_update = TRUE)
 
 /obj/fire/Process()
 	. = 1
@@ -204,7 +203,6 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
 
 	animate(src, color = fire_color(air_contents.temperature), 5)
-	set_light(l_color = color)
 
 /obj/fire/Initialize(mapload, fl)
 	. = ..()
@@ -216,7 +214,6 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/datum/gas_mixture/air_contents = loc.return_air()
 	color = fire_color(air_contents.temperature)
-	set_light(3, 0.5, color)
 
 	firelevel = fl
 	SSair.active_hotspots.Add(src)
@@ -314,7 +311,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 			var/decl/material/mat = GET_DECL(g)
 			released_energy += mat.combustion_energy * burned_fuel.gas[g]
 			if(mat.burn_product)
-				adjust_gas(mat.burn_product, burned_fuel.gas[g])
+				adjust_gas(mat.burn_product, burned_fuel.gas[g], FALSE)
 
 		//calculate the energy produced by the reaction and then set the new temperature of the mix
 		temperature = (starting_energy + released_energy) * (heat_capacity()**-1)

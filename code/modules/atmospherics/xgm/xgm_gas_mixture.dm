@@ -175,9 +175,9 @@
 			boiling_point = mat.get_boiling_temp(return_pressure())
 		else
 			boiling_point = mat.boiling_point
-		if(temperature > boiling_point)
+		if(temp > boiling_point)
 			gas[gasid] += moles
-		else if(temperature > mat.melting_point)
+		else if(temp > mat.melting_point)
 			liquids[gasid] += moles
 		else
 			solids[gasid] += moles

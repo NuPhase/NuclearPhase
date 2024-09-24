@@ -12,6 +12,7 @@
 	melting_point = 54.36
 	liquid_density = 1140
 	gas_flags = XGM_GAS_OXIDIZER
+	oxidizer_power = 5
 	gas_metabolically_inert = TRUE
 	value = 0.25
 	color = "#0091a1f8"
@@ -216,6 +217,7 @@
 	gas_tile_overlay = "sleeping_agent"
 	gas_overlay_limit = 1
 	gas_flags = XGM_GAS_OXIDIZER //N2O is a powerful oxidizer
+	oxidizer_power = 7
 	metabolism = REM * 5 // So that low dosages have a chance to build up in the body.
 	value = 0.25
 
@@ -263,6 +265,7 @@
 	boiling_point = -9 CELSIUS
 	liquid_density = 1439
 	gas_flags = XGM_GAS_OXIDIZER
+	oxidizer_power = 6
 
 /decl/material/gas/nitricoxide
 	name = "nitric oxide"
@@ -275,6 +278,7 @@
 	boiling_point = -152 CELSIUS
 	liquid_density = 1269
 	gas_flags = XGM_GAS_OXIDIZER
+	oxidizer_power = 8
 
 /decl/material/gas/methane
 	name = "methane"
@@ -439,7 +443,10 @@
 	liquid_density = 70.516
 	gas_flags = XGM_GAS_FUEL
 	combustion_energy = 285800
+	combustion_activation_energy = 75300
+	oxidizer_to_fuel_ratio = 0.5
 	burn_product = /decl/material/liquid/water
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/liquid/water)
 	dissolves_into = list(
 		/decl/material/liquid/fuel/hydrazine = 1
 	)

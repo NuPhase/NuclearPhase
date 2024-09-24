@@ -67,8 +67,10 @@
 	dir = EAST
 
 	areas_to_use = list(
-		/area/turbolift/serenity/ro_staircase/a1,
-		/area/turbolift/serenity/ro_staircase/a2
+		/area/turbolift/serenity/main_staircase/a1,
+		/area/turbolift/serenity/main_staircase/a2,
+		/area/turbolift/serenity/main_staircase/a3,
+		/area/turbolift/serenity/main_staircase/a4
 		)
 
 /obj/turbolift_map_holder/serenity/ro_staircase

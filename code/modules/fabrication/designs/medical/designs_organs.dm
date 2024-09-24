@@ -1,11 +1,12 @@
-/datum/fabricator_recipe/robotics/organ
+/datum/fabricator_recipe/organ
 	category = "Prosthetic Organs"
 	path = /obj/item/organ/internal/stomach
+	fabricator_types = list(FABRICATOR_CLASS_MEDICAL)
 
-/datum/fabricator_recipe/robotics/organ/get_product_name()
+/datum/fabricator_recipe/organ/get_product_name()
 	. = "prosthetic organ ([..()])"
 
-/datum/fabricator_recipe/robotics/organ/get_resources()
+/datum/fabricator_recipe/organ/get_resources()
 	. = ..()
 	for(var/key in resources)
 		if(!ispath(key, /decl/material/solid))
@@ -18,7 +19,7 @@
 			LAZYSET(resources, /decl/material/solid/metal/steel, meat_amount)
 		LAZYREMOVE(resources, /decl/material/solid/meat)
 
-/datum/fabricator_recipe/robotics/organ/build(turf/location, datum/fabricator_build_order/order)
+/datum/fabricator_recipe/organ/build(turf/location, datum/fabricator_build_order/order)
 	. = ..()
 	var/species = order.get_data("species", global.using_map.default_species)
 	for(var/obj/item/organ/internal/I in .)
@@ -26,17 +27,17 @@
 		I.robotize()
 		I.status |= ORGAN_CUT_AWAY
 
-/datum/fabricator_recipe/robotics/organ/heart
+/datum/fabricator_recipe/organ/heart
 	path = /obj/item/organ/internal/heart
 
-/datum/fabricator_recipe/robotics/organ/liver
+/datum/fabricator_recipe/organ/liver
 	path = /obj/item/organ/internal/liver
 
-/datum/fabricator_recipe/robotics/organ/kidneys
+/datum/fabricator_recipe/organ/kidneys
 	path = /obj/item/organ/internal/kidneys
 
-/datum/fabricator_recipe/robotics/organ/lungs
+/datum/fabricator_recipe/organ/lungs
 	path = /obj/item/organ/internal/lungs
 
-/datum/fabricator_recipe/robotics/organ/eyes
+/datum/fabricator_recipe/organ/eyes
 	path = /obj/item/organ/internal/eyes

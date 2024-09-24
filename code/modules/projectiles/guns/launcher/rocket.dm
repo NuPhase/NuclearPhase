@@ -16,7 +16,9 @@
 	release_force = 15
 	throw_distance = 30
 	var/max_rockets = 1
+	var/reloadable = TRUE
 	var/list/rockets = new/list()
+	weight = 22.4
 
 /obj/item/gun/launcher/rocket/examine(mob/user, distance)
 	. = ..()
@@ -24,7 +26,7 @@
 		to_chat(user, "<span class='notice'>[rockets.len] / [max_rockets] rockets.</span>")
 
 /obj/item/gun/launcher/rocket/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/ammo_casing/rocket))
+	if(istype(I, /obj/item/ammo_casing/rocket) && reloadable)
 		if(rockets.len < max_rockets)
 			if(!user.unEquip(I, src))
 				return
@@ -46,3 +48,13 @@
 /obj/item/gun/launcher/rocket/handle_post_fire(mob/user, atom/target)
 	log_and_message_admins("fired a rocket from a rocket launcher ([src.name]) at [target].")
 	..()
+
+/obj/item/gun/launcher/rocket/armor_piercing
+	name = "MPAT launcher"
+	desc = "A single-use man-portable anti-tank rocket launcher."
+	reloadable = FALSE
+	w_class = ITEM_SIZE_LARGE
+
+/obj/item/gun/launcher/rocket/armor_piercing/Initialize()
+	. = ..()
+	rockets += new /obj/item/missile/armor_piercing

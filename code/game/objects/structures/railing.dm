@@ -25,6 +25,10 @@
 /obj/structure/railing/mapped
 	anchored = TRUE
 
+/obj/structure/railing/mapped/industrial
+	material_alteration = MAT_FLAG_ALTERATION_NAME | MAT_FLAG_ALTERATION_DESC
+	color = "#ffe65c"
+
 /obj/structure/railing/mapped/no_density
 	density = FALSE
 

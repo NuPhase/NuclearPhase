@@ -194,8 +194,11 @@ var/global/const/DRINK_ICON_NOISY = "noise"
 				reagents.splash(user, reagents.total_volume)
 			qdel(src)
 			return
-		user.visible_message("<span class='notice'>[user] gently strikes \the [src] with a spoon, calling the room to attention.</span>")
-		playsound(src, "sound/items/wineglass.ogg", 65, 1)
+		if(has_ice())
+			playsound(user, 'sound/chemistry/stir/stir1.mp3', 50)
+		else
+			playsound(user, pick('sound/chemistry/stir/stir2.mp3', 'sound/chemistry/stir/stir3.mp3'), 50)
+		user.visible_message("<span class='notice'>[user] stirs \the [src] with a spoon.</span>")
 	else return ..()
 
 /obj/item/chems/drinks/glass2/ProcessAtomTemperature()

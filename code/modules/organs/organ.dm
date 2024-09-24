@@ -322,6 +322,7 @@
 	material = GET_DECL(apply_material)
 	matter = null
 	create_matter()
+	update_icon()
 
 /obj/item/organ/attack(var/mob/target, var/mob/user)
 	if(BP_IS_PROSTHETIC(src) || !istype(target) || !istype(user) || (user != target && user.a_intent == I_HELP))

@@ -139,6 +139,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/gas_specific_heat = 20
 	/// J/mol
 	var/combustion_energy = 0
+	var/combustion_activation_energy = 75300
+	var/list/combustion_products // Associative list of Oxidizer = Result
+	var/oxidizer_to_fuel_ratio = 1 // How much moles of oxidizer is consumed per mole of consumed fuel.
+	var/oxidizer_power = 0 // The power of this material as an oxidizer, arbitrary, 1-10
 	/// kg/m3
 	var/liquid_density = 1000
 	var/solid_density = 1000

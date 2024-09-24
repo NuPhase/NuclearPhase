@@ -173,7 +173,7 @@
 			take_internal_damage(0.2, 1)
 		return
 	else if(oxygen_deprivation)
-		oxygen_starve(oxygen_deprivation_tick * -0.5)
+		oxygen_starve(oxygen_deprivation_tick * -2)
 
 /obj/item/organ/internal/proc/handle_regeneration()
 	if(!damage || BP_IS_PROSTHETIC(src) || !owner || GET_CHEMICAL_EFFECT(owner, CE_TOXIN) || owner.is_asystole())
