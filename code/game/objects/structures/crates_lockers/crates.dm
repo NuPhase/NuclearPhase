@@ -95,6 +95,31 @@
 	desc = "A medical crate."
 	closet_appearance = /decl/closet_appearance/crate/medical
 
+/obj/structure/closet/crate/medical/storage
+	name = "medical storage crate"
+
+/obj/structure/closet/crate/medical/storage/WillContain()
+	return list(
+		/obj/item/storage/backpack/medic = 2,
+		/obj/item/storage/backpack/dufflebag/med = 3,
+		/obj/item/storage/backpack/satchel/med = 2,
+		/obj/item/storage/pill_bottle = 3
+	)
+
+/obj/structure/closet/crate/medical/expendables
+	name = "medical expendables crate"
+	closet_appearance = /decl/closet_appearance/crate/medical/oxygen
+
+/obj/structure/closet/crate/medical/expendables/WillContain()
+	return list(
+		/obj/item/stack/medical/bruise_pack = 5,
+		/obj/item/stack/medical/wound_filler = 3,
+		/obj/item/stack/medical/wound_filler/hydrogel = 2,
+		/obj/item/stack/medical/wound_filler/hydrofiber = 1,
+		/obj/item/stack/medical/ointment = 4,
+		/obj/item/storage/box/syringes = 2
+	)
+
 /obj/structure/closet/crate/rcd
 	name = "\improper RCD crate"
 	desc = "A crate with rapid construction device."

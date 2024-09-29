@@ -332,6 +332,12 @@
 		"stripes_horizontal" = COLOR_BLUE_GRAY
 	)
 
+/decl/closet_appearance/secure_closet/medical/consumables
+	extra_decals = list(
+		"circle" = COLOR_NT_RED,
+		"stripes_horizontal" = COLOR_BLUE_GRAY
+	)
+
 /decl/closet_appearance/secure_closet/medical/virology
 	decals = list(
 		"upper_side_vent",

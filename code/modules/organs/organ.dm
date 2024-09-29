@@ -412,6 +412,9 @@
 /obj/item/organ/proc/listen()
 	return
 
+/obj/item/organ/proc/scan(var/advanced = FALSE)
+	return
+
 /obj/item/organ/proc/get_mechanical_assisted_descriptor()
 	return "mechanically-assisted [name]"
 

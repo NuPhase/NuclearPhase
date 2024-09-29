@@ -75,3 +75,11 @@
 	required_reagents = list(/decl/material/liquid/plasticide = 1, /decl/material/liquid/water = 3)
 	result_amount = 5
 	mix_message = "The solution thickens and takes on a glossy sheen."
+
+/decl/chemical_reaction/waste_vitrification
+	name = "Actinide Vitrification"
+	result = /decl/material/solid/metal/nuclear_waste/actinides/vitrified
+	required_reagents = list(/decl/material/solid/metal/nuclear_waste/actinides = 1, /decl/material/solid/silicon = 1)
+	result_amount = 2
+	minimum_temperature = 1400
+	mix_message = "The solution thickens and takes on a glossy sheen."

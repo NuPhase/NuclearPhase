@@ -222,3 +222,43 @@
 		return english_list(rhythmes)
 	else
 		return "Normal Rhythm"
+
+/obj/item/organ/internal/heart/scan(advanced)
+	if(advanced)
+		var/structural_description
+		switch(damage/max_damage)
+			if(0 to 0.1)
+				structural_description = "No structural abnormalities detected."
+			if(0.1 to 0.4)
+				structural_description = "Mild myocardial damage. Localized scarring present."
+			if(0.4 to 0.8)
+				structural_description = "Severe myocardial damage. Widespread structural defects."
+			if(0.8 to 1)
+				structural_description = "Critical cardiac injury. Extensive necrosis or structural failure of the myocardium."
+		var/ischemia_description
+		switch(oxygen_deprivation)
+			if(0 to 10)
+				ischemia_description = "No ischemia"
+			if(10 to 40)
+				ischemia_description = "Localized ischemia"
+			if(40 to INFINITY)
+				ischemia_description = "Widespread ischemic injury"
+		var/flow_description
+		if(pulse)
+			switch(cardiac_output)
+				if(0 to 0.2)
+					flow_description = "minimal blood flow."
+				if(0.2 to 0.5)
+					flow_description = "significantly impaired blood flow."
+				if(0.5 to 0.8)
+					flow_description = "slightly reduced blood flow."
+				if(0.8 to 1)
+					flow_description = "efficient blood flow."
+		else
+			flow_description = "no blood flow."
+		return "[structural_description] [ischemia_description], [flow_description]"
+	else
+		if(damage > max_damage * 0.5)
+			return "Severe cardiac injury."
+		else
+			return "No major cardiac damage."
