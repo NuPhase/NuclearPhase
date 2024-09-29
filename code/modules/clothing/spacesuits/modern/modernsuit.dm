@@ -5,6 +5,7 @@
 	w_class = ITEM_SIZE_LARGE
 	item_flags = ITEM_FLAG_THICKMATERIAL | ITEM_FLAG_AIRTIGHT
 	permeability_coefficient = 0
+	temperature_coefficient = CLOTHING_TEMP_COEF_SPECIAL
 	armor = list(
 		bio = ARMOR_BIO_SHIELDED,
 		rad = ARMOR_RAD_SMALL
@@ -115,6 +116,7 @@
 	w_class = ITEM_SIZE_GARGANTUAN
 	gas_transfer_coefficient = 0
 	permeability_coefficient = 0
+	temperature_coefficient = CLOTHING_TEMP_COEF_SPECIAL
 	item_flags = ITEM_FLAG_THICKMATERIAL
 	body_parts_covered = SLOT_UPPER_BODY|SLOT_LOWER_BODY|SLOT_LEGS|SLOT_FEET|SLOT_ARMS|SLOT_HANDS
 	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/baton,/obj/item/energy_blade/sword,/obj/item/handcuffs)

@@ -12,6 +12,7 @@
 	var/obj/effect/cover_overlay
 	var/datum/sound_token/sound_token
 	var/sound_id
+	var/datum/beam/connection_beam
 
 /obj/machinery/atmospherics/unary/caster/Initialize()
 	. = ..()
@@ -23,6 +24,28 @@
 	cover_overlay.mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	cover_overlay.forceMove(get_turf(src))
 	sound_id = "[/obj/machinery/atmospherics/unary/caster]_[sequential_id(/obj/machinery/atmospherics/unary/caster)]"
+
+/obj/machinery/atmospherics/unary/caster/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	if(!istype(over_object, /obj/machinery/portable_atmospherics))
+		return
+	if(!Adjacent(over_object))
+		return
+
+	if(contained_canister)
+		visible_message("\The [contained_canister] is disconnected from \the [src]")
+		contained_canister = null
+		playsound(src, 'sound/machines/podopen.ogg', 50, 0)
+		QDEL_NULL(connection_beam)
+	else if(over_object)
+		if(!do_after(usr, 30, over_object))
+			return
+		if(contained_canister)
+			return
+		visible_message("\The [usr] connects \the [over_object] to \the [src].")
+		contained_canister = over_object
+		playsound(src, 'sound/machines/podclose.ogg', 50, 0)
+		connection_beam = Beam(contained_canister, "1-full", time = INFINITY, beam_color = COLOR_DARK_ORANGE)
 
 /obj/machinery/atmospherics/unary/caster/physical_attack_hand(user)
 	. = ..()
@@ -99,16 +122,21 @@
 	return
 
 /obj/machinery/atmospherics/unary/caster/proc/eject_canister()
+	if(!contained_canister)
+		return
+	visible_message("\The [contained_canister] is disconnected from \the [src]")
+	contained_canister = null
+	playsound(src, 'sound/machines/podopen.ogg', 50, 0)
+	QDEL_NULL(connection_beam)
 	return
 
 /obj/machinery/atmospherics/unary/caster/proc/try_cast(cast_type)
 	if(!contained_canister)
 		return
 	var/used_mat
-	for(var/mat in contained_canister.air_contents.gas)
-		if(contained_canister.air_contents.phases[mat] == MAT_PHASE_GAS)
-			continue
+	for(var/mat in contained_canister.air_contents.liquids)
 		used_mat = mat
+		break
 	if(!used_mat)
 		return
 	//var/decl/material/mat_datum = GET_DECL(used_mat)

@@ -198,7 +198,7 @@
 			speed = "thready"
 
 	var/regularity = "steady"
-	if(length(arrythmias))
+	if(length(arrythmias) || instability > 50)
 		regularity = "irregular"
 
 	. = "[speed] and [regularity] pulse"

@@ -272,16 +272,15 @@ update_flag
 			environment = holding.air_contents
 		else
 			environment = loc.return_air()
-		for(var/g in air_contents.gas)
-			if(air_contents.phases[g] == MAT_PHASE_LIQUID)
-				var/turf/target = get_turf(src)
-				var/obj/effect/fluid/F = locate() in target
-				var/decl/material/mat = GET_DECL(g)
-				if(!F) F = new(target)
-				var/condense_reagent_amt = air_contents.gas[g] * mat.molar_volume * 0.3 + 0.1
-				F.reagents.add_reagent(g, condense_reagent_amt)
-				F.temperature = air_contents.temperature
-				air_contents.gas.Remove(g)
+		for(var/g in air_contents.liquids)
+			var/turf/target = get_turf(src)
+			var/obj/effect/fluid/F = locate() in target
+			var/decl/material/mat = GET_DECL(g)
+			if(!F) F = new(target)
+			var/condense_reagent_amt = air_contents.gas[g] * mat.molar_volume * 0.3 + 0.1
+			F.reagents.add_reagent(g, condense_reagent_amt)
+			F.temperature = air_contents.temperature
+			air_contents.gas.Remove(g)
 
 		var/env_pressure = environment.return_pressure()
 		var/pressure_delta = release_pressure - env_pressure
@@ -367,6 +366,7 @@ update_flag
 	var/list/data = list(
 		"portConnected" = connected_port ? 1 : 0,
 		"tankPressure" = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0),
+		"tankTemperature" = round(air_contents.temperature),
 		"tankLevel" = round(((air_contents.volume - air_contents.available_volume) / air_contents.volume)*100),
 		"releasePressure" = round(release_pressure ? release_pressure : 0),
 		"valveOpen" = valve_open ? 1 : 0,
@@ -382,6 +382,42 @@ update_flag
 	)
 	if(holding)
 		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
+
+	return data
+
+/obj/machinery/portable_atmospherics/canister/tgui_static_data(mob/user)
+	if(!air_contents.total_moles)
+		return
+	var/closest_boiling_point = 0
+	var/closest_melting_point = 0
+	var/max_boiling_point = T100C
+	var/min_melting_point = 0
+	for(var/g in air_contents.gas)
+		var/decl/material/mat = GET_DECL(g)
+		var/boiling_temp = mat.get_boiling_temp(air_contents.return_pressure())
+		if(boiling_temp > closest_boiling_point)
+			closest_boiling_point = boiling_temp
+	for(var/liquid in air_contents.liquids)
+		var/decl/material/mat = GET_DECL(liquid)
+		var/boiling_temp = mat.get_boiling_temp(air_contents.return_pressure())
+		if(boiling_temp > max_boiling_point)
+			max_boiling_point = boiling_temp
+		if(closest_boiling_point > boiling_temp)
+			closest_boiling_point = boiling_temp
+		if(mat.melting_point > closest_melting_point)
+			closest_melting_point = mat.melting_point
+		if(mat.melting_point < min_melting_point)
+			min_melting_point = mat.melting_point
+	for(var/solid in air_contents.solids)
+		var/decl/material/mat = GET_DECL(solid)
+		if(mat.melting_point < closest_melting_point)
+			closest_melting_point = mat.melting_point
+	var/list/data = list(
+		"closestBoilingPoint" = closest_boiling_point,
+		"closestMeltingPoint" = closest_melting_point,
+		"maxBoilingPoint" = max_boiling_point,
+		"minMeltingPoint" = min_melting_point
+	)
 	return data
 
 /obj/machinery/portable_atmospherics/canister/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)

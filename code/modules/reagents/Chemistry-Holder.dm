@@ -617,3 +617,12 @@ var/global/obj/temp_reagents_holder = new
 			if(istype(C) && !QDELETED(C) && C.mind)
 				var/decl/special_role/godcult = GET_DECL(/decl/special_role/godcultist)
 				godcult.remove_antagonist(C.mind,1)
+
+/datum/reagents/proc/get_mass()
+	for(var/g in reagent_volumes)
+		var/decl/material/mat = GET_DECL(g)
+		. += reagent_volumes[g] / mat.molar_volume * mat.molar_mass
+
+/datum/reagents/proc/specific_mass()
+	if(total_volume)
+		return get_mass()/total_volume

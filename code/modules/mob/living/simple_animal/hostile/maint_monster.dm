@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/maint_monster
+/mob/living/simple_animal/hostile/maint_monster // женщина
 	name = "maintenance monster"
 	desc = "What the hell is this?"
 	icon = 'icons/mob/simple_animal/faithless.dmi'

@@ -12,3 +12,4 @@
 
 /datum/reactor_control_system/proc/report_error(message)
 	do_message("SELFTEST FAIL: [message]", 2)
+	make_log("SELFTEST FAIL: [message].", 2)

@@ -27,11 +27,12 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/under/security
-	name = "security officer's jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	name = "SAF jumpsuit"
+	desc = "A standard deployment uniform of the SAF, made from robust fabric to withstand harsh conditions."
 	icon = 'icons/clothing/under/jumpsuits/jumpsuit_sec.dmi'
 	armor = list(
-		melee = ARMOR_MELEE_SMALL
+		melee = ARMOR_MELEE_SMALL,
+		bullet = ARMOR_BALLISTIC_MINOR
 	)
 	siemens_coefficient = 0.9
 	matter = list(

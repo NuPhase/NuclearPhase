@@ -13,6 +13,10 @@ var/global/list/floor_decals = list()
 	var/detail_overlay
 	var/detail_color
 
+/obj/effect/floor_decal/multitile
+	icon = 'icons/turf/3x3_decals.dmi'
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
 // Have to wait for turfs to set up their flooring, so we can better guess at our layers.
 /obj/effect/floor_decal/Initialize()
 	..()
@@ -1447,6 +1451,18 @@ var/global/list/floor_decals = list()
 	name = "CERES logo"
 	icon = 'icons/turf/ceres_logo.dmi'
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
+
+/obj/effect/floor_decal/multitile/reactor_ops
+	name = "reactor ops"
+	icon_state = "reactor_ops"
+
+/obj/effect/floor_decal/multitile/med_labs
+	name = "med labs"
+	icon_state = "med_labs"
+
+/obj/effect/floor_decal/multitile/med_labs_entrnace
+	name = "med labs entrance"
+	icon_state = "med_labs_entrance"
 
 /obj/effect/floor_decal/ai
 	name = "AI presence sign"

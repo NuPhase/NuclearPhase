@@ -3,6 +3,7 @@
 	desc = "These work gloves are thick and fire-resistant."
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
+	temperature_coefficient = CLOTHING_TEMP_COEF_MEDIUM
 	item_flags = ITEM_FLAG_THICKMATERIAL
 	cold_protection = SLOT_HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
@@ -13,11 +14,11 @@
 	icon_state = ICON_STATE_WORLD
 	force = 5
 	armor = list(
-		melee = ARMOR_MELEE_RESISTANT, 
-		bullet = ARMOR_BALLISTIC_PISTOL, 
+		melee = ARMOR_MELEE_RESISTANT,
+		bullet = ARMOR_BALLISTIC_PISTOL,
 		laser = ARMOR_LASER_HANDGUNS,
-		energy = ARMOR_ENERGY_SMALL, 
-		bomb = ARMOR_BOMB_RESISTANT, 
+		energy = ARMOR_ENERGY_SMALL,
+		bomb = ARMOR_BOMB_RESISTANT,
 		bio = ARMOR_BIO_MINOR)
 	material = /decl/material/solid/leather
 

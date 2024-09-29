@@ -6,7 +6,7 @@
 
 /obj/item/clothing/suit/armor/pcarrier/green/infantry
 	name = "infantry plate carrier"
-	starting_accessories = list(/obj/item/clothing/accessory/armor/plate/medium, /obj/item/clothing/accessory/storage/pouches/green)
+	starting_accessories = list(/obj/item/clothing/accessory/armor/plate/medium, /obj/item/clothing/accessory/storage/pouches)
 
 /obj/item/clothing/suit/armor/pcarrier/green/tactical
 	name = "tactical plate carrier"

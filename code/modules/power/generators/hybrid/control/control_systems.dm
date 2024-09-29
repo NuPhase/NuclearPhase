@@ -36,6 +36,7 @@
 	if(rcore.containment)
 		return
 	rcore.containment = TRUE
+	rcontrol.make_log("CONTAINMENT STARTED.", 1)
 
 /obj/machinery/reactor_button/rswitch/autoscram
 	name = "AUTOSCRAM"
@@ -47,8 +48,10 @@
 	rcontrol.scram_control = state
 	if(state)
 		visible_message(SPAN_NOTICE("[user] turns on automatic SCRAM control."))
+		rcontrol.make_log("AUTOSCRAM ENABLED.", 1)
 	else
 		visible_message(SPAN_WARNING("[user] shuts down automatic SCRAM control."))
+		rcontrol.make_log("AUTOSCRAM DISABLED.", 3)
 
 /obj/machinery/reactor_button/acknowledge_alarms
 	name = "ACKNOWLEDGE ALARMS"
@@ -65,6 +68,7 @@
 /obj/machinery/reactor_button/mute_alarms/do_action(mob/user)
 	..()
 	visible_message(SPAN_WARNING("[user] temporarily disables the control system alarms."))
+	rcontrol.make_log("ALARMS MUTED.", 1)
 	rcontrol.should_alarm = FALSE
 	spawn(2 MINUTE)
 		rcontrol.should_alarm = TRUE

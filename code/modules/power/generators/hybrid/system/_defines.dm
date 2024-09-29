@@ -41,12 +41,12 @@
 	var/list/unwanted_materials = list(
 		/decl/material/gas/oxygen,
 		/decl/material/gas/nitrogen,
-		/decl/material/gas/helium,
 		/decl/material/solid/caesium,
-		/decl/material/solid/metal/nuclear_waste/actinides
+		/decl/material/solid/metal/nuclear_waste/actinides,
+		/decl/material/solid/metal/beryllium
 	)
 
-	var/laser_marker
+	var/obj/laser_marker
 	var/laser_animating = FALSE
 	var/obj/neutron_marker
 
@@ -61,3 +61,13 @@
 		"F-M IN",
 		"F-M OUT"
 	)
+
+	var/list/operation_log = list()
+
+	var/log_timeout = 10 SECONDS
+
+	//world.time of last related log
+	var/last_power_surge_log = 0
+	var/last_vibration_log = 0
+	var/last_temperature_log = 0
+	var/last_pressure_log = 0

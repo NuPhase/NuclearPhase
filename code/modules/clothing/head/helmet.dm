@@ -19,6 +19,7 @@
 	heat_protection = SLOT_HEAD
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
+	temperature_coefficient = CLOTHING_TEMP_COEF_MEDIUM
 	w_class = ITEM_SIZE_NORMAL
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/metal/plasteel = MATTER_AMOUNT_TRACE)

@@ -20,6 +20,7 @@
 			icon_state = "switch3-max"
 	var/obj/machinery/atmospherics/binary/pump/adv/P = rcontrol.reactor_pumps[id]
 	P.update_mode(mode)
+	rcontrol.make_log("PUMP [id] MODE SWITCHED to [mode].", 1)
 
 /obj/machinery/reactor_button/pump/fcp1
 	id = "F-CP 1"

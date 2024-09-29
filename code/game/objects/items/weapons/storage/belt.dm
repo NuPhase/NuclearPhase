@@ -465,7 +465,6 @@
 		/obj/item/inflatable/door
 		)
 
-
 /obj/item/storage/belt/fire_belt/full
 	startswith = list(
 		/obj/item/inflatable,

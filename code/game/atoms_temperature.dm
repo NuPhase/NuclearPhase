@@ -1,5 +1,11 @@
-#define MIN_TEMPERATURE_COEFFICIENT 1
-#define MAX_TEMPERATURE_COEFFICIENT 10
+#define MAX_TEMPERATURE_COEFFICIENT  0.95
+#define CLOTHING_TEMP_COEF_DEFAULT   0.8
+#define CLOTHING_TEMP_COEF_ABOVE_AVG 0.6   // Slightly warm clothing, like jeans and hoodies
+#define CLOTHING_TEMP_COEF_MEDIUM    0.4   // Dense clothing, like armor
+#define CLOTHING_TEMP_COEF_HIGH      0.2   // Clothing like winter coats
+#define CLOTHING_TEMP_COEF_INSULATED 0.05  // Fire suits, rescue suits
+#define CLOTHING_TEMP_COEF_SPECIAL   0.02  // Surface exosuits
+#define MIN_TEMPERATURE_COEFFICIENT  0.01
 
 /atom
 	/// What is this atom's current temperature?
@@ -44,7 +50,7 @@
 		// Update our own heat.
 		var/diff_temp = (adjust_temp - temperature)
 		if(diff_temp >= 0)
-			var/altered_temp = max(temperature + (ATOM_TEMPERATURE_EQUILIBRIUM_CONSTANT * temperature_coefficient * diff_temp), 0)
+			var/altered_temp = diff_temp * temperature_coefficient * ATOM_TEMPERATURE_EQUILIBRIUM_CONSTANT
 			ADJUST_ATOM_TEMPERATURE(src, min(adjust_temp, altered_temp))
 			return TRUE
 
@@ -75,7 +81,7 @@
 	var/old_temp = temperature
 	var/diff_temp = adjust_temp - temperature
 	if(abs(diff_temp) >= ATOM_TEMPERATURE_EQUILIBRIUM_THRESHOLD)
-		var/altered_temp = max(temperature + (ATOM_TEMPERATURE_EQUILIBRIUM_CONSTANT * temperature_coefficient * diff_temp), 0)
+		var/altered_temp = temperature + (diff_temp * temperature_coefficient * ATOM_TEMPERATURE_EQUILIBRIUM_CONSTANT)
 		ADJUST_ATOM_TEMPERATURE(src, (diff_temp > 0) ? min(adjust_temp, altered_temp) : max(adjust_temp, altered_temp))
 	else
 		temperature = adjust_temp

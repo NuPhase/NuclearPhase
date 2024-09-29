@@ -566,3 +566,14 @@
 		/decl/material/liquid/water =           1,
 		/decl/material/liquid/ethanol/whiskey = 1
 	)
+
+/decl/cocktail/mojito
+	name = "Mojito"
+	description = "A classic summer cocktail! It's quick to make with five simple ingredients and flavored with refreshing, minty-fresh goodness."
+	ratios = list(
+		/decl/material/liquid/drink/sodawater =  4,
+		/decl/material/liquid/ethanol/rum =      1,
+		/decl/material/liquid/drink/juice/lime = 1,
+		/decl/material/liquid/nutriment/sugar =  1,
+		/decl/material/liquid/drink/syrup/mint = 1
+	)

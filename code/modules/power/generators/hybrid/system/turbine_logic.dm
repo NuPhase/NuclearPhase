@@ -15,7 +15,7 @@
 			should_trip = TRUE
 			trip_reason = "INTAKE CONDENSATION"
 
-	if(get_meter_pressure("T-M-TURB EX") > ONE_ATMOSPHERE*3) //low vacuum
+	if(get_meter_pressure("T-M-TURB EX") > ONE_ATMOSPHERE*6) //low vacuum
 		should_trip = TRUE
 		trip_reason = "LOW CONDENSER VACUUM"
 
@@ -112,6 +112,7 @@
 
 /datum/reactor_control_system/proc/turbine_trip(reason)
 	do_message("TURBINE TRIP: [reason]", 3)
+	make_log("TURBINE TRIP: [reason].", 3)
 	var/obj/machinery/reactor_button/rswitch/current_switch
 
 	turbine1.feeder_valve_openage = 0

@@ -111,6 +111,7 @@
 	flags_inv = HIDEEARS|BLOCK_HEAD_HAIR
 	cold_protection = SLOT_HEAD | SLOT_EARS
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	temperature_coefficient = CLOTHING_TEMP_COEF_HIGH
 	var/up = FALSE
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user)

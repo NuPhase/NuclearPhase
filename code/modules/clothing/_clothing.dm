@@ -4,6 +4,8 @@
 	material = /decl/material/solid/cloth
 	origin_tech = @'{"materials":1,"engineering":1}'
 
+	temperature_coefficient = CLOTHING_TEMP_COEF_DEFAULT
+
 	var/wizard_garb = 0
 	var/flash_protection = FLASH_PROTECTION_NONE	  // Sets the item's level of flash protection.
 	var/tint = TINT_NONE							  // Sets the item's level of visual impairment tint.

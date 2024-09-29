@@ -1,9 +1,14 @@
 // An associative list.
 // "id" = z
 var/global/list/zlevel_marks = list()
+var/global/list/weather_marks = list()
 
 /proc/get_zlevel_by_id(id)
 	return zlevel_marks[id]
+
+/obj/abstract/landmark/weather_ztag/New(loc, ...)
+	. = ..()
+	weather_marks += src
 
 /obj/abstract/landmark/ztag
 	var/z_id = "CHANGE THIS"

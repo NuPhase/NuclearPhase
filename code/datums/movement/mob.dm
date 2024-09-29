@@ -289,7 +289,7 @@
 	if(!HAS_STATUS(src, STAT_CONFUSE))
 		return
 
-	var/stability = MOVING_DELIBERATELY(src) ? 75 : 25
+	var/stability = MOVING_DELIBERATELY(src) ? 25 : 5
 	if(prob(stability))
 		return
 

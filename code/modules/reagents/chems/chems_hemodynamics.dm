@@ -13,6 +13,7 @@
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_BREATHLOSS, removed * 1100)
+	H.add_chemical_effect(CE_PAINKILLER, removed * 12500)
 	heart.bpm_modifiers[name] = removed * 3900
 	heart.cardiac_output_modifiers[name] = 1 + removed * 5.7
 	if(removed < 0.003)

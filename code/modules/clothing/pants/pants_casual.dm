@@ -2,6 +2,7 @@
 	name = "jeans"
 	desc = "A nondescript pair of tough blue jeans."
 	icon = 'icons/clothing/under/pants/pants_jeans.dmi'
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 
 /obj/item/clothing/pants/casual/classicjeans
 	name = "classic jeans"
@@ -32,6 +33,7 @@
 	name = "track pants"
 	desc = "A pair of track pants, for the athletic."
 	icon = 'icons/clothing/under/pants/pants_track.dmi'
+	temperature_coefficient = CLOTHING_TEMP_COEF_DEFAULT
 
 /obj/item/clothing/pants/casual/track/blue
 	name = "blue track pants"

@@ -18,15 +18,15 @@
 	if(!owner)
 		return
 
-	if (germ_level > INFECTION_LEVEL_ONE)
+	if(germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			to_chat(owner, "<span class='danger'>Your skin itches.</span>")
-	if (germ_level > INFECTION_LEVEL_TWO)
+			to_chat(owner, "<span class='danger'>Your skin itches and turns yellowish.</span>")
+	if(germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()
 
 	//Detox can heal small amounts of damage
-	if (damage < max_damage && !GET_CHEMICAL_EFFECT(owner, CE_TOXIN))
+	if(damage < max_damage && !GET_CHEMICAL_EFFECT(owner, CE_TOXIN))
 		heal_damage(0.2 * GET_CHEMICAL_EFFECT(owner, CE_ANTITOX))
 
 	var/alco = GET_CHEMICAL_EFFECT(owner, CE_ALCOHOL)

@@ -27,17 +27,32 @@
 	switch(nutrition)
 		if(100 to 150)
 			cooldown = 300
-			message = pick("You feel hungry.", "You feel slightly lightheaded.", "You feel a little dizzy...", "It's hard to concentrate...", "Maybe it's time to eat something?")
-		if(50 to 100)
+			message = pick(
+				"You feel a little bit hungry.",
+				"You feel slightly lightheaded.",
+				"Maybe it's time to eat something?",
+				"Your stomach feels empty.",
+				"It'd be nice to have a lunch.")
+		if(50 to 100) // Хочу жрать сука!!!
 			var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
 			cooldown = 200
-			message = pick("You feel weak.", "You're very hungry.", "You feel tired...", "Your stomach cramps in hunger.", "You want to eat something.")
+			message = pick( //АЭЭЭ ДУМАТЬ ПРИХОДИТСЯ
+				"Your stomach feels weak.",
+				"You're very hungry.",
+				"You feel tired, maybe it's time to eat something?",
+				"Your stomach cramps in hunger.",
+				"You want to eat something.")
 			cur_heart.bpm_modifiers["Starvation Mode"] = rand(20, 30)
 			vessel.remove_any(1) //anemia
 		if(0 to 50)
 			var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
 			cooldown = 100
-			message = pick("You REALLY want to eat something!", "You crave food!", "You have to eat!", "You feel your body dying of hunger!")
+			message = pick(
+				"You REALLY want to eat something!",
+				"Your stomach is in pain!",
+				"You crave food!",
+				"You have to eat!",
+				"You feel your body dying of hunger!")
 			vessel.remove_any(2) //anemia
 			cur_heart.bpm_modifiers["Starvation"] = rand(30, 40)
 			add_chemical_effect(CE_PRESSURE, -30)

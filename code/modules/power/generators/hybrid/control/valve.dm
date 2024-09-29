@@ -9,8 +9,10 @@
 	var/obj/machinery/atmospherics/valve/V = rcontrol.reactor_valves[id]
 	if(!state)
 		V.close()
+		rcontrol.make_log("VALVE [id] CLOSED.", 1)
 	else
 		V.open()
+		rcontrol.make_log("VALVE [id] OPENED.", 1)
 
 /obj/machinery/reactor_button/turn_switch/presvalve
 	name = "pressure valve regulator"
@@ -110,6 +112,7 @@
 /obj/machinery/reactor_button/relief_valve/do_action(mob/user)
 	..()
 	if(!working)
+		rcontrol.make_log("RELIEF VALVE [id] ENGAGED.", 2)
 		working = TRUE
 		icon_state = "switch1-on"
 		var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]

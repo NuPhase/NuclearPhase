@@ -30,3 +30,6 @@
 /obj/structure/largecrate/mule
 	name = "MULE crate"
 	icon_state = "mulecrate"
+
+/obj/structure/largecrate/indestructible
+	color = COLOR_RED_GRAY

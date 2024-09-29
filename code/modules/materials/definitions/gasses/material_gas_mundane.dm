@@ -12,6 +12,7 @@
 	melting_point = 54.36
 	liquid_density = 1140
 	gas_flags = XGM_GAS_OXIDIZER
+	oxidizer_power = 5
 	gas_metabolically_inert = TRUE
 	value = 0.25
 	color = "#0091a1f8"
@@ -48,11 +49,12 @@
 	M.add_chemical_effect(CE_SQUEAKY, 1)
 
 /decl/material/gas/helium/isotopethree
-	name = "Helium-3"
+	name = "helium-3"
 	uid = "gas_helium3"
 	gas_symbol = "He3"
 	gas_symbol_html = "<sub>3</sub>He"
 	flags = MAT_FLAG_FUSION_FUEL
+	color = "#f7eccf"
 
 /decl/material/gas/carbon_dioxide
 	name = "carbon dioxide"
@@ -215,6 +217,7 @@
 	gas_tile_overlay = "sleeping_agent"
 	gas_overlay_limit = 1
 	gas_flags = XGM_GAS_OXIDIZER //N2O is a powerful oxidizer
+	oxidizer_power = 7
 	metabolism = REM * 5 // So that low dosages have a chance to build up in the body.
 	value = 0.25
 
@@ -243,7 +246,7 @@
 	lore_text = "An ubiquitous noble gas."
 	gas_specific_heat = 20
 	molar_mass = 0.028
-	latent_heat = 5600
+	latent_heat = 2792
 	boiling_point = -195 CELSIUS
 	melting_point = -210 CELSIUS
 	liquid_density = 804.3
@@ -262,6 +265,7 @@
 	boiling_point = -9 CELSIUS
 	liquid_density = 1439
 	gas_flags = XGM_GAS_OXIDIZER
+	oxidizer_power = 6
 
 /decl/material/gas/nitricoxide
 	name = "nitric oxide"
@@ -274,6 +278,7 @@
 	boiling_point = -152 CELSIUS
 	liquid_density = 1269
 	gas_flags = XGM_GAS_OXIDIZER
+	oxidizer_power = 8
 
 /decl/material/gas/methane
 	name = "methane"
@@ -281,9 +286,8 @@
 	gas_symbol = "CH4"
 	gas_symbol_html = "CH<sub>4</sub>"
 	gas_specific_heat = 35.8
-	liquid_specific_heat = 52.9
 	molar_mass = 0.016
-	latent_heat = 25210
+	latent_heat = 8519
 	boiling_point = 111
 	melting_point = 90
 	liquid_density = 415
@@ -439,12 +443,15 @@
 	liquid_density = 70.516
 	gas_flags = XGM_GAS_FUEL
 	combustion_energy = 285800
+	combustion_activation_energy = 75300
+	oxidizer_to_fuel_ratio = 0.5
 	burn_product = /decl/material/liquid/water
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/liquid/water)
 	dissolves_into = list(
 		/decl/material/liquid/fuel/hydrazine = 1
 	)
 	value = 0.4
-	color = "#cb82fc"
+	color = "#e4baff"
 	fire_color = "#0077ff"
 	fire_alpha = 30
 	neutron_interactions = list(
@@ -466,7 +473,7 @@
 	uid = "gas_tritium"
 	lore_text = "A radioactive isotope of hydrogen. Useful as a fusion reactor fuel material."
 	mechanics_text = "Tritium is useable as a fuel in some forms of portable generator. It can also be converted into a fuel rod suitable for a R-UST fusion plant injector by using a fuel compressor. It fuses hotter than deuterium but is correspondingly more unstable."
-	color = "#777777"
+	color = "#bcffba"
 	boiling_point = -233 CELSIUS
 	neutron_absorption = 70
 	liquid_density = 202
@@ -483,7 +490,7 @@
 	lore_text = "One of the two stable isotopes of hydrogen; also known as heavy hydrogen. Useful as a chemically synthesised fusion reactor fuel material."
 	mechanics_text = "Deuterium can be converted into a fuel rod suitable for a R-UST fusion plant injector by using a fuel compressor. It is the most 'basic' fusion fuel."
 	flags = MAT_FLAG_FUSION_FUEL | MAT_FLAG_FISSIBLE
-	color = "#999999"
+	color = "#ffbaba"
 	boiling_point = -250 CELSIUS
 	liquid_density = 180
 	stack_origin_tech = @'{"materials":3}'

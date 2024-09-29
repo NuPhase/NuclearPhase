@@ -20,11 +20,8 @@
 	var/slowdown_held = 3
 	var/slowdown_worn = 2
 	firemodes = list(
-		list(mode_name="semi auto",      burst=1,    fire_delay=null, use_launcher=null, one_hand_penalty=8,  burst_accuracy=null,            dispersion=null, autofire_enabled=0),
-		list(mode_name="3-round bursts", burst=3,    fire_delay=1, use_launcher=null, one_hand_penalty=9,  burst_accuracy=null,   		  dispersion=null, autofire_enabled=0),
-		list(mode_name="full auto",      burst=1,    fire_delay=0,    burst_delay=1,     use_launcher=null,   one_hand_penalty=7,             burst_accuracy =null, dispersion=null, autofire_enabled=1)
+		list(mode_name="semi auto",      burst=1,    fire_delay=5 SECONDS, use_launcher=null, one_hand_penalty=8,  burst_accuracy=null,            dispersion=null, autofire_enabled=0)
 	)
-	var/use_launcher = 0
 
 /obj/item/gun/magnetic/railgun/Initialize()
 	LAZYSET(slowdown_per_slot, BP_L_HAND,        slowdown_held)

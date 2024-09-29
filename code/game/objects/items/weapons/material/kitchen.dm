@@ -79,6 +79,11 @@
 /obj/item/kitchen/utensil/spoon/plastic
 	material = /decl/material/solid/plastic
 
+/obj/item/kitchen/utensil/spoon/bar
+	name = "bar spoon"
+	icon_state = "spoon_bar"
+	material = /decl/material/solid/metal/stainlesssteel
+
 /obj/item/kitchen/utensil/spork
 	name = "spork"
 	desc = "It's a spork. It's much like a fork, but much blunter."

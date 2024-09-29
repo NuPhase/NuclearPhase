@@ -6,6 +6,7 @@
 	color = COLOR_RED_GRAY
 	item_flags = ITEM_FLAG_THICKMATERIAL | ITEM_FLAG_PADDED
 	material = /decl/material/solid/leather
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 
 /obj/item/clothing/gloves/boxing/green
 	color = COLOR_GREEN_GRAY

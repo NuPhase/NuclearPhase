@@ -14,6 +14,7 @@
 	randpixel = 7
 	w_class = ITEM_SIZE_NORMAL
 	max_amount = 100
+	singular_weight = 0.25
 	icon = 'icons/obj/tiles.dmi'
 	matter_multiplier = 0.15
 	force = 1

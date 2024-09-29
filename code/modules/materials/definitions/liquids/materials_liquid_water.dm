@@ -7,7 +7,6 @@
 	gas_tile_overlay = "generic"
 	gas_overlay_limit = 0.5
 	gas_specific_heat = 36.5
-	liquid_specific_heat = 75.6
 	molar_mass = 0.018
 	boiling_point = 100 CELSIUS
 	melting_point = 0 CELSIUS

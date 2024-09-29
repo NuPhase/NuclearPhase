@@ -11,12 +11,21 @@ const formatPressure = value => {
   return formatSiUnit(value * 1000, 1, 'Pa');
 };
 
+const formatTemperature = value => {
+  return toFixed(value) + ' K';
+};
+
 export const Canister = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     portConnected,
     tankPressure,
     tankLevel,
+    tankTemperature,
+    closestBoilingPoint,
+    closestMeltingPoint,
+    maxBoilingPoint,
+    minMeltingPoint,
     releasePressure,
     defaultReleasePressure,
     minReleasePressure,
@@ -32,7 +41,7 @@ export const Canister = (props, context) => {
   } = data;
   return (
     <Window
-      width={350}
+      width={375}
       height={275}>
       <Window.Content>
         <Flex direction="column" height="100%">
@@ -88,6 +97,20 @@ export const Canister = (props, context) => {
                       "bad": [0, 20],
                     }}
                     />
+                </LabeledControls.Item>
+                <LabeledControls.Item
+                  minWidth="66px">
+                  <RoundGauge
+                    size={2}
+                    value={tankTemperature}
+                    minValue={minMeltingPoint}
+                    maxValue={maxBoilingPoint}
+                    ranges={{
+                      "red": [closestBoilingPoint-5, closestBoilingPoint+5],
+                      "yellow": [closestMeltingPoint-5, closestMeltingPoint+5],
+                      "blue": [minMeltingPoint, minMeltingPoint+5],
+                    }}
+                    format={formatTemperature} />
                 </LabeledControls.Item>
                 <LabeledControls.Item label="Regulator">
                   <Box

@@ -77,6 +77,12 @@ By design, d1 is the smallest direction and d2 is the highest
 	icon = 'icons/obj/power_cond_heavy.dmi'
 	color = null
 
+/obj/structure/cable/superconductor
+	name = "superconductor cable"
+	resistance = 0
+	icon = 'icons/obj/power_cond_heavy.dmi'
+	color = COLOR_LUMINOL
+
 /obj/structure/cable/Initialize(var/ml)
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
 	. = ..(ml)

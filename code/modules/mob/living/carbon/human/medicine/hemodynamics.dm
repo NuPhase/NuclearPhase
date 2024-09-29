@@ -1,3 +1,13 @@
+/*
+***** ИСТОКИ НУФАЗЫ                                                 ИСТОКИ НУФАЗЫ *****
+* На третий день бог создал гемодинамическую систему медицины нуфазы;
+* И велел бог никогда не осквернять код медицины бинарной логикой и выражениями rand();
+* Храни веру всяк сюда входящий, сохрани рассудок перед страшнейшими [REDACTED].
+***** ИСТОКИ НУФАЗЫ                                                 ИСТОКИ НУФАЗЫ *****
+
+{P.S. молиться на адрес 1650, avenue Cedar Montreal, Quebec H3G 1A4}
+*/
+
 /mob/living/carbon/human
 	var/bpm = 60
 	var/metabolic_coefficient = 1 //TODO: CALCULATE THIS
@@ -80,8 +90,8 @@
 	var/bpm53 = bpm * coeff * 53.0
 	var/stroke_volume = get_stroke_volume()
 	dyspressure = max(0, Interpolate(dyspressure, ((tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)) + MCV_PRESSURE(add_mcv*0.7))*get_blood_volume_hemo(), HEMODYNAMICS_INTERPOLATE_FACTOR))
-	syspressure = Clamp(Interpolate(syspressure, dyspressure + PULSE_PRESSURE(stroke_volume) + (MCV_PRESSURE(add_mcv)*get_blood_volume_hemo()), HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 413)
-	dyspressure = min(dyspressure, max(10, syspressure)-7)
+	syspressure = Clamp(Interpolate(syspressure, dyspressure + PULSE_PRESSURE(stroke_volume) + (MCV_PRESSURE(add_mcv)*get_blood_volume_hemo()), HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 433)
+	dyspressure = min(dyspressure, max(10, syspressure)-8) // static pressure loss
 	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 
 	mcv = Clamp(((bpm * stroke_volume) + (add_mcv * get_blood_volume_hemo())), 0, 32000)
@@ -107,3 +117,5 @@
 	if(syspressure < 30)
 		return "0/0"
 	return "[round(syspressure) + rand(-10, 10)]/[round(dyspressure) + rand(-10, 10)]"
+
+// УРОВЕНЬ ПРОЙДЕН!!!

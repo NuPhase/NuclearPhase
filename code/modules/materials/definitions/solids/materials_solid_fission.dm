@@ -11,7 +11,7 @@
 	wall_flags = 0
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
-	color = "#dae90d"
+	color = "#aee90d"
 	weight = MAT_VALUE_VERY_HEAVY
 	stack_origin_tech = "{'materials':5}"
 	reflectiveness = MAT_VALUE_MATTE
@@ -58,6 +58,7 @@
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
+	color = "#dae90d"
 	value = 1.5
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 
@@ -99,7 +100,7 @@
 	icon_base = 'icons/turf/walls/stone.dmi'
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
-	color = "#404c53"
+	color = "#3c6075"
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	neutron_interactions = list(
@@ -171,7 +172,7 @@
 	lore_text = "A crazy mix of hundreds of isotopes of unreactive nuclear fuel. Extremely radioactive, yet almost useless in reactors."
 	mechanics_text = "Nuclear waste can be processed into various exotic chemicals."
 	taste_description = "heavy metal"
-	color = "#a0600c"
+	color = "#bb771e"
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_NOWHERE // Don't spawn this in plants.
 	icon_base = 'icons/turf/walls/natural.dmi' // So we can have corium
@@ -189,6 +190,7 @@
 	radioactivity = 37
 	fission_neutrons = 0.2
 	fission_energy = 51080100000
+	color = "#d8881e"
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 5,
@@ -212,6 +214,7 @@
 	radioactivity = 42
 	fission_neutrons = 0.01
 	fission_energy = 15080100000
+	color = "#704d1f"
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 3,
@@ -233,6 +236,7 @@
 /decl/material/solid/metal/nuclear_waste/actinides
 	name = "nuclear actinides"
 	radioactivity = 11
+	color = "#4b371e"
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 1.2,

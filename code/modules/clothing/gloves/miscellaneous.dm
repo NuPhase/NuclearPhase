@@ -9,6 +9,7 @@
 	color = COLOR_YELLOW
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 	icon_state = ICON_STATE_WORLD
 	material = /decl/material/solid/plastic //TODO: rubber
 	matter = list(/decl/material/solid/cloth = MATTER_AMOUNT_REINFORCEMENT)
@@ -29,6 +30,7 @@
 	color = COLOR_BROWN_ORANGE
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 	cold_protection = SLOT_HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = SLOT_HANDS
@@ -42,9 +44,10 @@
 	force = 5
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
+	temperature_coefficient = CLOTHING_TEMP_COEF_MEDIUM
 	armor = list(
-		melee = ARMOR_MELEE_KNIVES, 
-		bullet = ARMOR_BALLISTIC_MINOR, 
+		melee = ARMOR_MELEE_KNIVES,
+		bullet = ARMOR_BALLISTIC_MINOR,
 		laser = ARMOR_LASER_MINOR
 		)
 	material = /decl/material/solid/cloth
@@ -58,13 +61,14 @@
 	w_class = ITEM_SIZE_NORMAL
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.03
+	temperature_coefficient = CLOTHING_TEMP_COEF_MEDIUM
 	material = /decl/material/solid/cloth
 	matter = list(/decl/material/solid/plastic = MATTER_AMOUNT_REINFORCEMENT)
 	armor = list(
-		melee = ARMOR_MELEE_RESISTANT, 
-		bullet = ARMOR_BALLISTIC_MINOR, 
-		laser = ARMOR_LASER_SMALL, 
-		energy = ARMOR_ENERGY_SMALL, 
+		melee = ARMOR_MELEE_RESISTANT,
+		bullet = ARMOR_BALLISTIC_MINOR,
+		laser = ARMOR_LASER_SMALL,
+		energy = ARMOR_ENERGY_SMALL,
 		bomb = ARMOR_BOMB_PADDED
 		)
 
@@ -76,6 +80,7 @@
 	siemens_coefficient = 0.50
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
+	temperature_coefficient = CLOTHING_TEMP_COEF_INSULATED
 	item_flags = ITEM_FLAG_THICKMATERIAL
 	body_parts_covered = SLOT_HANDS
 	cold_protection = SLOT_HANDS

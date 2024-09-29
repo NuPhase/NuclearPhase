@@ -9,6 +9,7 @@ We have a very powerful computer system that allows our neural network to fully 
 	weight = 95 //even composite materials are very heavy
 	pull_coefficient = 0.2
 	lying_pull_coefficient = 0.9
+	faction = "silicon"
 
 /mob/living/carbon/human/synthetic/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
@@ -136,7 +137,7 @@ We have a very powerful computer system that allows our neural network to fully 
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(get_shock() >= species.total_health  && a_intent != I_HURT)
+		if(get_shock() >= 1000  && a_intent != I_HURT)
 			if(!stat)
 				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
 				src.visible_message("<B>[src]</B> [species.halloss_message]")

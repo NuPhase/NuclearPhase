@@ -2,9 +2,9 @@
 	name = "table frame"
 	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "plain_preview"
-	color = COLOR_OFF_WHITE
-	material = DEFAULT_FURNITURE_MATERIAL
-	reinf_material = DEFAULT_FURNITURE_MATERIAL
+	color = "#f1e3e3"
+	material = /decl/material/solid/plastic
+	reinf_material = /decl/material/solid/plastic
 	desc = "It's a table, for putting things on. Or standing on, if you really want to."
 	density = TRUE
 	anchored = TRUE
@@ -632,8 +632,18 @@
 
 /obj/structure/table/steel
 	icon_state = "plain_preview"
-	color = COLOR_GRAY40
+	color = COLOR_STEEL
 	reinf_material = /decl/material/solid/metal/steel
+
+/obj/structure/table/aluminium
+	icon_state = "plain_preview"
+	reinf_material = /decl/material/solid/metal/aluminium
+	color = "#c2e8ec"
+
+/obj/structure/table/stainless_steel //sterile
+	icon_state = "solid_preview"
+	reinf_material = /decl/material/solid/metal/stainlesssteel
+	color = "#b4c4db"
 
 /obj/structure/table/marble
 	icon_state = "stone_preview"
@@ -642,15 +652,22 @@
 
 /obj/structure/table/reinforced
 	icon_state = "reinf_preview"
-	color = COLOR_OFF_WHITE
+	color = "#f1e3e3"
 	additional_reinf_material = /decl/material/solid/metal/steel
 
 /obj/structure/table/steel_reinforced
 	icon_state = "reinf_preview"
-	color = COLOR_GRAY40
+	color = COLOR_STEEL
 	material =                  /decl/material/solid/metal/steel
 	reinf_material =            /decl/material/solid/metal/steel
 	additional_reinf_material = /decl/material/solid/metal/steel
+
+/obj/structure/table/aluminium_reinforced
+	icon_state = "reinf_preview"
+	color = "#c2e8ec"
+	material =                  /decl/material/solid/metal/aluminium
+	reinf_material =            /decl/material/solid/metal/aluminium
+	additional_reinf_material = /decl/material/solid/metal/aluminium
 
 /obj/structure/table/gamblingtable
 	icon_state = "gamble_preview"

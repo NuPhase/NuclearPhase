@@ -5,11 +5,13 @@
 		if(REACTOR_CONTROL_MODE_MANUAL)
 			mode = REACTOR_CONTROL_MODE_MANUAL
 			do_message("MANUAL CONTROL ENGAGED", 1)
+			make_log("MANUAL CONTROL ENGAGED.", 2)
 			return 1
 		if(REACTOR_CONTROL_MODE_SEMIAUTO)
 			if(semiautocontrol_available)
 				mode = REACTOR_CONTROL_MODE_SEMIAUTO
 				do_message("SEMI-AUTO CONTROL ENGAGED", 1)
+				make_log("SEMI-AUTO CONTROL ENGAGED.", 1)
 				return 1
 			else
 				return 0
@@ -17,6 +19,7 @@
 			if(autocontrol_available)
 				mode = REACTOR_CONTROL_MODE_AUTO
 				do_message("FULL-AUTO CONTROL ENGAGED", 1)
+				make_log("FULL-AUTO CONTROL ENGAGED.", 1)
 				return 1
 			else
 				return 0

@@ -168,14 +168,25 @@
 /obj/item/missile
 	icon = 'icons/obj/items/grenades/missile.dmi'
 	icon_state = ICON_STATE_WORLD
+	w_class = ITEM_SIZE_LARGE
 	var/primed = null
 	throwforce = 15
 
 /obj/item/missile/throw_impact(atom/hit_atom)
 	..()
 	if(primed)
-		cell_explosion(get_turf(hit_atom), 400, 100, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, z_transfer = null)
-		qdel(src)
+		produce_explosion(hit_atom)
+
+/obj/item/missile/proc/produce_explosion(atom/hit_atom)
+	cell_explosion(get_turf(hit_atom), 400, 100, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, z_transfer = null)
+	qdel(src)
+
+/obj/item/missile/armor_piercing
+	throwforce = 500
+
+/obj/item/missile/armor_piercing/produce_explosion(atom/hit_atom)
+	cell_explosion(get_turf(hit_atom), 600, 500, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, z_transfer = null)
+	qdel(src)
 
 /obj/item/projectile/hotgas
 	name = "gas vent"

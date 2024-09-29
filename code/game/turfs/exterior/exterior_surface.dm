@@ -85,48 +85,35 @@
 			if(prob(15))
 				overlays += image('icons/turf/snow.dmi', "cracks", dir = pick(cardinal))
 
-/turf/exterior/surface/open
-	name = "open space"
-	icon = 'icons/turf/space.dmi'
-	icon_state = ""
-	density = 0
-	pathweight = 100000
-	z_flags = ZM_MIMIC_DEFAULTS | ZM_MIMIC_OVERWRITE | ZM_MIMIC_NO_AO | ZM_ALLOW_ATMOS
-	turf_flags = TURF_FLAG_BACKGROUND
-	icon_edge_layer = -1
+/turf/exterior/surface/lake
+	name = "condensed gas"
+	icon = 'icons/turf/exterior/water.dmi'
+	color = COLOR_PALE_PURPLE_GRAY
+	icon_has_corners = TRUE
+	icon_edge_layer = EXT_EDGE_WATER
+	movement_delay = 2
+	possible_states = 0
+	footstep_type = /decl/footsteps/water
 
-/turf/exterior/surface/open/flooded
-	name = "open water"
-	flooded = TRUE
-
-/turf/exterior/surface/open/Entered(var/atom/movable/mover, var/atom/oldloc)
+/turf/exterior/surface/lake/Entered(mob/living/carbon/C)
 	..()
-	mover.fall(oldloc)
+	if(!ismob(C) && !isitem(C))
+		return
+	playsound(src, 'sound/chemistry/bufferadd.ogg', 30)
+	new /obj/effect/effect/smoke/bad/evaporation(src)
+	if(!iscarbon(C))
+		return
+	playsound(src, 'sound/effects/watersplash.ogg', 40)
+	C.set_status(STAT_BLURRY, 5)
+	SET_STATUS_MAX(C, STAT_WEAK, 2)
+	var/temp_adj = 0
+	var/thermal_protection = max(0, C.get_cold_protection(mapowner.exterior_atmosphere.temperature) - 0.5) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+	if(thermal_protection < 1)
+		temp_adj = (1-thermal_protection) * ((mapowner.exterior_atmosphere.temperature - C.bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
+	C.bodytemperature += between(-100, temp_adj, 500)
 
-/turf/exterior/surface/open/hitby(var/atom/movable/AM)
-	..()
-	if(!QDELETED(AM))
-		AM.fall()
-
-/turf/exterior/surface/open/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	if(distance <= 2)
-		var/depth = 1
-		for(var/turf/T = GetBelow(src); (istype(T) && T.is_open()); T = GetBelow(T))
-			depth += 1
-		to_chat(user, "It is about [depth] level\s deep.")
-
-/turf/exterior/surface/open/is_open()
-	return TRUE
-
-/turf/exterior/surface/open/attackby(obj/item/C, mob/user)
-	return shared_open_turf_attackby(src, C, user)
-
-/turf/exterior/open/attack_hand(mob/user)
-	return shared_open_turf_attackhand(src, user)
-
-/turf/exterior/surface/open/cannot_build_cable()
-	return 0
+/turf/exterior/surface/lake/is_flooded(lying_mob, absolute)
+	. = absolute ? ..() : lying_mob
 
 /turf/simulated/open/exterior
 	name = "canyon"

@@ -39,6 +39,8 @@
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = "#138baf"
+	skill_points = 45
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
 	access = list(
 		access_rd,
@@ -81,12 +83,15 @@
 		access_xenoarch,
 		access_network
 	)
+	required_whitelists = list(/decl/whitelist/command_executive, /decl/whitelist/medical_high)
 
 /datum/job/laboratories/load
 	title = "Laboratory Operations Assistant Director"
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = "#1887a8"
+	skill_points = 40
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
 	access = list(
 		access_rd,
@@ -129,6 +134,7 @@
 		access_xenoarch,
 		access_network
 	)
+	required_whitelists = list(/decl/whitelist/medical_high)
 
 /datum/job/laboratories/pps
 	title = "Particle Physics Specialist"
@@ -136,12 +142,14 @@
 	total_positions = 3
 	spawn_positions = 3
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	required_whitelists = list(/decl/whitelist/engineering_high)
 
 /datum/job/laboratories/ggs
 	title = "General Genetics Specialist"
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 2
 	spawn_positions = 2
+	skill_points = 45
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 	access = list(
 		access_medical,
@@ -163,12 +171,14 @@
 		access_maint_tunnels,
 		access_external_airlocks
 	)
+	required_whitelists = list(/decl/whitelist/medical_high)
 
 /datum/job/laboratories/los
 	title = "Laboratory Operations Specialist"
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 5
 	spawn_positions = 5
+	skill_points = 40
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 	access = list(
 		access_medical,
@@ -190,6 +200,7 @@
 		access_maint_tunnels,
 		access_external_airlocks
 	)
+	required_whitelists = list(/decl/whitelist/medical_low, /decl/whitelist/engineering_low)
 
 /datum/job/laboratories/loa
 	title = "Laboratory Operations Assistant"

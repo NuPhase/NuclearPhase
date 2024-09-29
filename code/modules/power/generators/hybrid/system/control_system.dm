@@ -5,6 +5,7 @@
 	generator2 = reactor_components["generator2"]
 	if(!turbine1 || !turbine2)
 		spawn(50)
+			make_log("START OF LOG.", 1)
 			initialize()
 
 /datum/reactor_control_system/proc/control()
@@ -62,8 +63,10 @@
 	if(current_switch && current_switch.state)
 		do_message("TURBINES ON BYPASS", 1)
 
-	if((generator1.connected && generator1.last_load < 50000) || (generator2.connected && generator2.last_load < 50000))
-		do_message("FULL LOAD REJECTION", 3)
+	if(generator1.connected && generator1.last_load < 50000)
+		do_message("GENERATOR #1 FULL LOAD REJECTION", 3)
+	if(generator2.connected && generator2.last_load < 50000)
+		do_message("GENERATOR #2 FULL LOAD REJECTION", 3)
 
 	if(turbine1.braking)
 		do_message("TURBINE #1 BRAKING ACTION", 2)
@@ -94,23 +97,35 @@
 			do_message("CRITICAL VIBRATION IN TURBINE #2", 3)
 			remove_message("EXCESSIVE VIBRATION IN TURBINE #2")
 			remove_message("HIGH VIBRATION IN TURBINE #2")
+	if(world.time + log_timeout > last_vibration_log)
+		if(turbine1.vibration > 10)
+			make_log("EXCESS TURBINE #1 VIBRATION: [round(turbine1.vibration, 0.1)]mm/s.", 2)
+			last_vibration_log = world.time
+		if(turbine2.vibration > 10)
+			make_log("EXCESS TURBINE #2 VIBRATION: [round(turbine2.vibration, 0.1)]mm/s.", 2)
+			last_vibration_log = world.time
 
-	if(get_meter_temperature("REACTOR-M CHAMBER") > 4200)
-		do_message("REACTOR HEATEXCHANGER OVERHEAT", 2)
-		pressure_temperature_should_alarm = TRUE
 	if(get_meter_temperature("T-M-TURB IN") > MAX_REACTOR_STEAM_TEMP)
 		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
+		if(world.time + log_timeout > last_temperature_log)
+			make_log("TURBINE HEATEXCHANGER OVERHEAT.")
 	if(get_meter_temperature("T-M-TURB EX") > 380 && !(current_switch && current_switch.state))
 		do_message("TURBINE CONDENSER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
+		if(world.time + log_timeout > last_temperature_log)
+			make_log("TURBINE CONDENSER OVERHEAT.")
 
 	if(get_meter_pressure("T-M-TURB IN") > 8500)
 		do_message("STEAM DRUM OVERPRESSURE", 2)
 		pressure_temperature_should_alarm = TRUE
+		if(world.time + log_timeout > last_pressure_log)
+			make_log("STEAM DRUM OVERPRESSURE.")
 	if(get_meter_pressure("T-M-TURB EX") > 1000)
-		do_message("HOTWELL OVERPRESSURE", 2)
+		do_message("CONDENSER OVERPRESSURE", 2)
 		pressure_temperature_should_alarm = TRUE
+		if(world.time + log_timeout > last_pressure_log)
+			make_log("CONDENSER OVERPRESSURE.")
 
 	if(get_pump_flow_rate("F-CP 1") < 50)
 		do_message("REACTOR LOOP PUMP #1 MASS FLOW < 25KG/S", 1)
@@ -122,7 +137,7 @@
 		do_message("TURBINE LOOP PUMP #2 MASS FLOW < 50KG/S", 1)
 
 	if(get_meter_temperature("T-M-TURB EX") > 390 && !(current_switch && current_switch.state))
-		do_message("VAPOR IN HOTWELL LOOP", 2)
+		do_message("VAPOR IN CONDENSER", 2)
 
 /datum/reactor_control_system/proc/auto_control()
 	if(current_running_program)
@@ -133,7 +148,8 @@
 	return
 
 /datum/reactor_control_system/proc/scram(cause)
-	do_message("SCRAM: [capitalize(cause)]", 3)
+	do_message("SCRAM: [capitalize(cause)].", 3)
+	make_log("SCRAM: [capitalize(cause)].", 3)
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
 	var/obj/machinery/reactor_button/rswitch/current_switch
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
@@ -162,7 +178,8 @@
 	R.moderator_position = 0
 
 /datum/reactor_control_system/proc/containment_shutdown(emergency=FALSE)
-	do_message("PRIMARY CONTAINMENT SHUTDOWN", 3)
+	do_message("CONTAINMENT SHUTDOWN", 3)
+	make_log("CONTAINMENT SHUTDOWN.", 3)
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 	R.containment = FALSE
 	if(emergency)
@@ -178,6 +195,7 @@
 			QDEL_NULL(SL.purge_alarm)
 
 /datum/reactor_control_system/proc/purge()
+	make_log("REACTOR CHAMBER PURGED.", 3)
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	playsound(rcore.superstructure, 'sound/effects/purge.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
 	var/turf/T = get_turf(rcore)
@@ -232,6 +250,7 @@
 	return 0
 
 /datum/reactor_control_system/proc/perform_laser_ignition()
+	make_log("LASER IGNITION.", 1)
 	if(laser_animating)
 		return
 	laser_animating = TRUE

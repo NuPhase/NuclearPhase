@@ -8,6 +8,10 @@
 	name = "spoon, aluminium"
 	path = /obj/item/kitchen/utensil/spoon
 
+/datum/fabricator_recipe/cutlery/spoon_bar
+	name = "bar spoon"
+	path = /obj/item/kitchen/utensil/spoon/bar
+
 /datum/fabricator_recipe/cutlery/spork_aluminium
 	name = "spork, aluminium"
 	path = /obj/item/kitchen/utensil/spork

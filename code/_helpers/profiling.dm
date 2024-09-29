@@ -96,6 +96,8 @@
 
 	to_file(file("[global.log_directory]/[filename]"), output.Join("\n"))
 
+//#define TRACY_PROFILE
+
 // Only enable this if you have a local copy of the byond-tracy DLL.
 // DO NOT commit the DLL to the repo.
 #ifdef TRACY_PROFILE

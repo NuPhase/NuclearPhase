@@ -158,7 +158,6 @@
 				return TRUE
 			return !can_float()
 
-
 	return TRUE
 
 /obj/can_fall(var/anchor_bypass = FALSE, var/turf/location_override = loc)

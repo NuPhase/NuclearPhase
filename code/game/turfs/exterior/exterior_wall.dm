@@ -213,6 +213,7 @@ var/global/list/natural_walls = list()
 
 /turf/exterior/wall/proc/dismantle_wall()
 	var/saved_ore_type = ore_type
+	var/saved_material = material
 	destroy_artifacts(null, INFINITY)
 	. = ChangeTurf(floor_type || get_base_turf_by_area(src))
 	if(istype(., /turf/simulated/floor/asteroid))
@@ -221,7 +222,7 @@ var/global/list/natural_walls = list()
 		debris.updateMineralOverlays(1)
 	if(saved_ore_type)
 		var/obj/structure/boulder/nboulder = new /obj/structure/boulder(.)
-		nboulder.material = material
+		nboulder.material = saved_material
 		nboulder.ore_type = saved_ore_type
 		nboulder.ore_result_amount = rand(20, 100)
 		nboulder.update_icon()

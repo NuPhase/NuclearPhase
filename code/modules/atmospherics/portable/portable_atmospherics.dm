@@ -27,10 +27,10 @@
 	var/list/initial_gas_list = list()
 	for(var/mat_id in initial_gas)
 		var/decl/material/mat = GET_DECL(mat_id)
-		if(mat.phase_at_temperature(start_temperature, start_pressure) == MAT_PHASE_LIQUID)
-			initial_gas_list[mat_id] = MolesForVolume(mat_id) * initial_gas[mat_id]
-		else
+		if(mat.phase_at_temperature(start_temperature, start_pressure) == MAT_PHASE_GAS)
 			initial_gas_list[mat_id] = MolesForPressure(start_pressure) * initial_gas[mat_id]
+		else
+			initial_gas_list[mat_id] = MolesForVolume(mat_id) * initial_gas[mat_id]
 	air_contents = new(volume, start_temperature, initial_gas = initial_gas_list)
 	return INITIALIZE_HINT_LATELOAD
 
@@ -62,7 +62,7 @@
 
 /obj/machinery/portable_atmospherics/proc/MolesForVolume(var/decl/material/mat)
 	mat = GET_DECL(mat)
-	return volume * 0.001 * mat.liquid_density / mat.liquid_molar_mass
+	return volume * 0.001 * mat.liquid_density / mat.gas_molar_mass
 
 /obj/machinery/portable_atmospherics/on_update_icon()
 	return null

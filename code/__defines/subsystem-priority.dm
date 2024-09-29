@@ -18,6 +18,7 @@
 #define SS_PRIORITY_THROWING       75  // Throwing calculation and constant checks
 #define SS_PRIORITY_MATERIALS      60  // Multi-tick chemical reactions.
 #define SS_PRIORITY_LIGHTING       50  // Queued lighting engine updates.
+#define SS_PRIORITY_SOUND		   50  // Sound processing.
 #define SS_PRIORITY_SPACEDRIFT     40  // Drifting things.
 #define SS_PRIORITY_INPUT          20  // Input things.
 #define SS_PRIORITY_ICON_UPDATE    20  // Queued icon updates. Mostly used by APCs and tables.
@@ -29,6 +30,7 @@
 #define SS_PRIORITY_TEMPERATURE    20  // Cooling and heating of atoms.
 #define SS_PRIORITY_RADIATION      20  // Radiation processing and cache updates.
 #define SS_PRIORITY_OPEN_SPACE     20  // Open turf updates.
+#define SS_PRIORITY_REACTIONS      20  // Chemical and nuclear reactions.
 #define SS_PRIORITY_AIRFLOW        15  // Object movement from ZAS airflow.
 #define SS_PRIORITY_VOTE           10  // Vote management.
 #define SS_PRIORITY_INACTIVITY     10  // Idle kicking.
@@ -37,6 +39,7 @@
 #define SS_PRIORITY_GHOST_IMAGES   10  // Updates ghost client images.
 #define SS_PRIORITY_ZCOPY          10  // Builds appearances for Z-Mimic.
 #define SS_PRIORITY_CELLAUTO	   10  // Cellurar Automata(Explosions)
+#define SS_PRIORITY_ORBIT		   10  // Orbit processing
 #define SS_PRIORITY_PROJECTILES    10  // Projectile processing!
 #define SS_PRIORITY_FLUIDS		   5
 

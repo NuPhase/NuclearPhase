@@ -7,6 +7,7 @@
 	icon_state = ICON_STATE_WORLD
 	icon = 'icons/clothing/hands/gloves_generic.dmi'
 	siemens_coefficient = 0.75
+	temperature_coefficient = CLOTHING_TEMP_COEF_DEFAULT
 	max_heat_protection_temperature = 318
 	min_cold_protection_temperature = T0C
 	body_parts_covered = SLOT_HANDS

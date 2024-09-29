@@ -1,12 +1,13 @@
 #define FISSION_RATE 0.01 //General modifier of fission speed
 #define NEUTRON_FLUX_RATE 0.001 //Neutron flux per neutron mole
 #define NEUTRON_MOLE_ENERGY 1000 //J per neutron mole
-#define RADS_PER_NEUTRON 3
+#define RADS_PER_NEUTRON 125
 #define REACTOR_POWER_MODIFIER 10 //Currently unused
 #define WATTS_PER_KPA 0.5
-#define REACTOR_SHIELDING_COEFFICIENT 0.05
+#define REACTOR_SHIELDING_DIVISOR 20
 #define REACTOR_MODERATOR_POWER 0.27
 #define REACTOR_FIELD_VOLUME 50000
+#define ELM_DURATION 3
 
 #define MAX_MAGNET_CHARGE 10000000
 
@@ -17,55 +18,98 @@
 	density = 1
 	anchored = 1
 
-	var/slow_neutrons = 0
-	var/fast_neutrons = 0
-	var/total_neutrons = 0
-
-	var/xray_flux = 0
-
-	var/last_temperature = T0C
-	var/energy_rate = 0 //eV of temperature
-
-	var/last_neutrons = 0
-	var/neutron_rate = 0
-	var/neutron_moles = 0 //how many moles can we split
-	var/neutrons_absorbed = 0
-
+	// DEPRECATED
 	var/meltdown = FALSE
 	var/was_shut_down = FALSE
 	var/shutdown_failure = FALSE
-	var/last_radiation = 0
+	var/neutron_moles = 0 //how many moles can we split
+	// DEPRECATED
 
-	var/containment = TRUE
-	var/magnets_quenched = FALSE // needs manual reset
-	var/field_power_consumption = 0
-	var/shield_temperature = 36
+	// These are coefficients 0-1
+	var/blanket_integrity =   1 // Integrity of the protective blanket. Lowered by ionizing radiation and ELMs. Affects heat and radiation leakage. Easily replacable.
+	var/divertor_integrity =  1 // Integrity of the filtering system. Lowered by ELMs or over time by filtering. Affects filtering effectiveness. Easily replacable, but very radioactive.
+	var/magnet_integrity =    1 // Integrity of the magnets. Lowered by overheating. Affects plasma stability and power consumption. Very expensive to repair.
+	var/structure_integrity = 1 // Integrity of the entire reactor structure. Lowered in very extreme conditions, A.K.A. during a meltdown. Isn't persistent, can't be repaired.
+	// Divertor failure will cause the fuel cells to weld into place and start injecting fuel. That's the main condition for triggering a meltdown.
+
+	// Plasma instability data. Instability increases heat loss and can damage the reactor.
+	var/plasma_instability = 0 // A measure of turbulence in the plasma. The probability of an ELM is calculated with prob(plasma_instability * 0.1) if instability is greater than 30.
+	var/elm_ticks = 0 // How long did an Edge Localized Mode(ELM) already persist(maximum time is defined by ELM_DURATION in ticks).
+
+	// Containment data
+	var/containment = TRUE // Whether the containment is active in the first place. Often disabled after full purges.
+	var/magnets_quenched = FALSE // Whether the magnets overheated. Needs manual resetting.
+	var/field_power_consumption = 0 // How much power the containment is requiring per tick.
+	var/shield_temperature = 36 // Actual temperature of the magnets.
 	var/field_battery_charge = MAX_MAGNET_CHARGE
-	var/field_charging = FALSE // whether we soak power
+	var/field_charging = FALSE // Whether we pull power to charge the batteries.
+	var/balancing_magnet_power = 0 // Power fed to the balancing magnets. They lower the plasma instability. 0-70MW. Can also be used for heating.
 
-	var/moderator_position = 0.15 //0-1. 1 means it scatters most of the neutrons.
+	// Reaction data
+	var/last_radiation = 0
+	var/last_neutrons = 0
+	var/neutron_rate = 0 // The rate of change of neutrons.
+	var/slow_neutrons = 0
+	var/fast_neutrons = 0
+	var/total_neutrons = 0
+	var/neutrons_absorbed = 0
+	var/xray_flux = 0 // A direct measure of fusion speed.
+	var/last_temperature = T0C
+	var/energy_rate = 0 // The rate of change in neutrons. eV/tick
+
+	var/moderator_position = 0 //0-1. 1 means it scatters most of the neutrons.
 	var/reflector_position = 1 //0-1. 1 means it reflects most of the neutrons.
 
 	var/obj/structure/reactor_superstructure/superstructure
-
 	var/datum/gas_mixture/containment_field
 
 	failure_chance = 10
 
 /obj/machinery/power/hybrid_reactor/fail_roundstart()
-	field_battery_charge = MAX_MAGNET_CHARGE * (100 - SSticker.mode.difficulty) * 0.01
+	field_battery_charge = MAX_MAGNET_CHARGE * (100 - SSticker.mode.difficulty) * 0.01 * magnet_integrity
 
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
+	blanket_integrity = rand(70, 100) * 0.01
+	divertor_integrity = rand(80, 100) * 0.01
+	magnet_integrity = rand(90, 100) * 0.01
 	containment_field = new(REACTOR_FIELD_VOLUME, 4500)
 	reactor_components["core"] += src
 	rcontrol.initialize()
 	spawn(1 MINUTE)
 		superstructure = reactor_components["superstructure"]
+	return INITIALIZE_HINT_NORMAL
 
 /obj/machinery/power/hybrid_reactor/Destroy()
 	. = ..()
 	reactor_components["core"] = null
+
+#define ELM_HEAT_LOSS_COEF 0.95
+#define ELM_HEAT_DAMAGE_DIVISOR 75000000
+/obj/machinery/power/hybrid_reactor/proc/start_edge_localized_mode()
+	rcontrol.do_message("EDGE LOCALIZED MODE EVENT", 3)
+	rcontrol.make_log("ELM REGISTERED.", 3)
+	plasma_instability *= 2
+	containment_field.temperature *= ELM_HEAT_LOSS_COEF
+	elm_ticks += 1
+	return
+
+/obj/machinery/power/hybrid_reactor/proc/process_edge_localized_mode()
+	plasma_instability *= 1.15
+	containment_field.temperature *= ELM_HEAT_LOSS_COEF
+	var/component_damage = containment_field.temperature / ELM_HEAT_DAMAGE_DIVISOR
+	damage_blanket(component_damage * 1.5)
+	damage_divertor(component_damage)
+	elm_ticks += 1
+	if(elm_ticks > ELM_DURATION)
+		end_edge_localized_mode()
+	return
+
+/obj/machinery/power/hybrid_reactor/proc/end_edge_localized_mode()
+	plasma_instability *= 0.5
+	elm_ticks = 0
+	return
+#undef ELM_HEAT_LOSS_COEF
 
 /obj/machinery/power/hybrid_reactor/Process()
 	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
@@ -74,21 +118,22 @@
 
 	handle_control_panels()
 
-	xray_flux = 0
 	process_fusion(containment_field)
+	process_plasma_instability()
 
 	total_neutrons = slow_neutrons + fast_neutrons
 
 	var/total_radiation = total_neutrons * RADS_PER_NEUTRON
+	var/panel_multiplier = 2 - reflector_position
 	last_radiation = total_radiation
-	SSradiation.radiate(src, total_radiation)
-	SSradiation.radiate(superstructure, total_radiation * REACTOR_SHIELDING_COEFFICIENT)
+	SSradiation.radiate(src, panel_multiplier * total_radiation)
+	SSradiation.radiate(superstructure, panel_multiplier * total_radiation / (1 + (REACTOR_SHIELDING_DIVISOR * blanket_integrity)))
 
 	if(containment_field.temperature > 4900)
 		if(containment)
-			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA
-			field_battery_charge = max(0, field_battery_charge - field_power_consumption * CELLRATE)
-			containment_field.add_thermal_energy(field_power_consumption * CELLRATE) // magnet waste heat
+			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA * (2 - magnet_integrity)
+			field_battery_charge = max(0, field_battery_charge - (field_power_consumption + balancing_magnet_power) * CELLRATE)
+			containment_field.add_thermal_energy((field_power_consumption + balancing_magnet_power) * CELLRATE) // magnet waste heat
 		if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
 			var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
 			charge_delta = min(field_power_consumption*1.5 + 1 MWATT, charge_delta) //so we don't drain all power at once
@@ -105,6 +150,7 @@
 	last_neutrons = slow_neutrons + fast_neutrons
 	last_temperature = containment_field.temperature
 
+#define RADIATIVE_LOSS_K 10700
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	if(slow_neutrons || fast_neutrons)
 		var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
@@ -113,14 +159,16 @@
 		fast_neutrons -= fast_neutrons_lost
 
 	if(fast_neutrons)
-		var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position
+		var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position * blanket_integrity
 		fast_neutrons -= fast_neutrons_moderated
 		slow_neutrons += fast_neutrons_moderated
 
-	var/radiative_heat_loss = containment_field.get_mass() * 3 * (containment_field.temperature**0.8) * (1.1 - reflector_position)
+	var/radiative_heat_loss = (containment_field.get_mass() * sqrt(containment_field.temperature) * RADIATIVE_LOSS_K * (containment_field.volume*0.01)) * (1.1 - reflector_position)
 	containment_field.add_thermal_energy(-radiative_heat_loss)
+#undef RADIATIVE_LOSS_K
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
+	xray_flux = 0
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
 		var/decl/thermonuclear_reaction/cur_reaction = GET_DECL(cur_reaction_type)
 
@@ -131,13 +179,29 @@
 		if(cur_reaction.minimum_temperature > containment_field.temperature)
 			continue
 
-		var/uptake_moles = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant]) / containment_field.volume * cur_reaction.cross_section * (sqrt(containment_field.temperature - cur_reaction.minimum_temperature) * 0.0005)
+		var/minimum_reactant = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant])
+		var/uptake_moles = min(minimum_reactant / (1 + (cur_reaction.s_factor / (containment_field.temperature**0.666))), minimum_reactant)
 		containment_field.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
-		containment_field.adjust_gas(cur_reaction.product, uptake_moles)
+		var/decl/material/first_reactant = GET_DECL(cur_reaction.first_reactant)
+		var/decl/material/second_reactant = GET_DECL(cur_reaction.second_reactant)
+		var/decl/material/product = GET_DECL(cur_reaction.product)
+		var/resulting_mass = (uptake_moles * 0.5 * first_reactant.molar_mass) + (uptake_moles * 0.5 * second_reactant.molar_mass)
+		containment_field.adjust_gas(cur_reaction.product, resulting_mass / product.molar_mass)
 		containment_field.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
-		xray_flux += uptake_moles * 1.74
+		xray_flux += uptake_moles * 174
+	plasma_instability += xray_flux
+
+#define PASSIVE_INSTABILITY_DECAY 0.15 // coefficient
+/obj/machinery/power/hybrid_reactor/proc/process_plasma_instability()
+	if(plasma_instability > 30 && !elm_ticks && prob(plasma_instability * 0.1))
+		start_edge_localized_mode()
+	if(elm_ticks)
+		process_edge_localized_mode()
+	var/instability_removed = (plasma_instability * (balancing_magnet_power / 70000000) * magnet_integrity) + (plasma_instability * PASSIVE_INSTABILITY_DECAY)
+	plasma_instability = max(0, plasma_instability - instability_removed)
+#undef PASSIVE_INSTABILITY_DECAY
 
 /obj/machinery/power/hybrid_reactor/proc/receive_power(power) //in watts
 	containment_field.add_thermal_energy(power)
@@ -193,9 +257,23 @@
 		animate(AM, color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN)
 		AM.animate_filter("glow", list(color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN))
 
+/obj/machinery/power/hybrid_reactor/proc/damage_blanket(amount)
+	blanket_integrity = Clamp(blanket_integrity - amount * 0.01 * (blanket_integrity + 0.1), 0, 1)
+
+/obj/machinery/power/hybrid_reactor/proc/damage_divertor(amount)
+	divertor_integrity = Clamp(divertor_integrity - amount * 0.01 * (divertor_integrity + 0.1), 0, 1)
+
+/obj/machinery/power/hybrid_reactor/proc/damage_magnets(amount)
+	magnet_integrity = Clamp(magnet_integrity - amount * 0.01 * (magnet_integrity + 0.1), 0, 1)
+
+/obj/machinery/power/hybrid_reactor/proc/damage_structure(amount)
+	structure_integrity = Clamp(structure_integrity - amount * 0.01 * (structure_integrity + 0.1), 0, 1)
+
 /obj/machinery/power/hybrid_reactor/proc/close_blastdoors()
+	return
 
 /obj/machinery/power/hybrid_reactor/proc/launch_fuel_cells()
+	return
 
 /obj/machinery/power/hybrid_reactor/proc/close_radlocks()
 	for(var/obj/machinery/door/blast/regular/radlock/cur_radlock in rcontrol.radlocks)

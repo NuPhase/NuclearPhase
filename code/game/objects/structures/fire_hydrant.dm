@@ -72,7 +72,7 @@
 
 
 /obj/structure/fire_hydrant_manual
-	name = "fire hydrant"
+	name = "CO2 fire hydrant"
 	desc = "A cryogenic fire hydrant. This one is manual and requires tank restocking."
 	icon =  'icons/obj/storage/bases/wall.dmi'
 	icon_state = "base"
@@ -125,5 +125,100 @@
 		stored_tank = O
 		playsound(loc, 'sound/effects/spray3.ogg', 50)
 		to_chat(usr, "<span class='notice'>You insert \the [stored_tank] into the [src].</span>")
+		return
+	. = ..()
+
+
+
+
+
+/obj/item/hydrant_hose
+	name = "fire hose"
+	icon = 'icons/obj/items/tool/welders/welder_arc.dmi'
+	icon_state = ICON_STATE_WORLD
+	w_class = ITEM_SIZE_HUGE
+	var/obj/structure/fire_hydrant_auto/hydrant = null
+	weight = 3
+	var/last_use = 1.0
+
+/obj/item/hydrant_hose/Process()
+	if(get_dist(src, hydrant) > 15)
+		var/mob/living/curloc = loc
+		if(ismob(curloc))
+			visible_message(SPAN_WARNING("The [src] slips back into the [hydrant], it was pulled too far!"))
+			curloc.drop_from_inventory(src, hydrant)
+			hydrant.hose_taken = FALSE
+			STOP_PROCESSING(SSobj, src)
+
+/obj/item/hydrant_hose/attack(var/mob/living/M, var/mob/user)
+	if(user.a_intent == I_HELP)
+		if((world.time < src.last_use + 20)) // We still catch help intent to not randomly attack people
+			return
+
+		src.last_use = world.time
+		var/datum/reagents/newreg = new(60, src)
+		newreg.add_reagent(/decl/material/liquid/water, 6000)
+		reagents.splash(M, 60)
+		qdel(reagents)
+		user.visible_message(SPAN_NOTICE("\The [user] sprays \the [M] with \the [src]."))
+		playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
+
+		return 1 // No afterattack
+	return ..()
+
+/obj/item/hydrant_hose/afterattack(var/atom/target, var/mob/user, var/flag)
+	if(istype(target,/obj/structure/fire_hydrant_manual))
+		return
+	if (world.time < src.last_use + 10)
+		return
+	src.last_use = world.time
+	playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
+	addtimer(CALLBACK(src, .proc/do_spray, target), 0)
+
+/obj/item/hydrant_hose/proc/do_spray(var/atom/Target)
+	var/turf/T = get_turf(Target)
+	var/per_particle = 2000
+	for(var/a = 1 to 3)
+		var/obj/effect/effect/water/W = new /obj/effect/effect/water(get_turf(src))
+		W.create_reagents(per_particle)
+		W.reagents.add_reagent(/decl/material/liquid/water, per_particle)
+		W.set_color()
+		W.set_up(T, 5, 2)
+
+/obj/structure/fire_hydrant_auto
+	name = "fire hydrant"
+	desc = "A foam fire hydrant. This one is autonomous and works on a battery supply."
+	icon =  'icons/obj/structures/floor_hydrant.dmi'
+	icon_state = "closed"
+	density = 0
+	anchored = 1
+	var/obj/item/hydrant_hose/hose = new
+	var/hose_taken = FALSE
+	material = /decl/material/solid/metal/tungsten
+
+/obj/structure/fire_hydrant_auto/Initialize(ml, _mat, _reinf_mat)
+	. = ..()
+	hose.hydrant = src
+
+/obj/structure/fire_hydrant_auto/attack_hand(mob/user)
+	. = ..()
+	if(!hose_taken)
+		user.put_in_hands(hose)
+		hose_taken = TRUE
+		playsound(src.loc, 'sound/machines/podopen.ogg', 50, 0)
+		START_PROCESSING(SSobj, hose)
+		flick("opening", src)
+		icon_state = "open"
+		return
+
+/obj/structure/fire_hydrant_auto/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/hydrant_hose))
+		user.drop_from_inventory(O, src)
+		hose_taken = FALSE
+		to_chat(user, "<span class='notice'>You place \the [O] in [src].</span>")
+		playsound(src.loc, 'sound/machines/podclose.ogg', 50, 0)
+		STOP_PROCESSING(SSobj, hose)
+		flick("closing", src)
+		icon_state = "closed"
 		return
 	. = ..()

@@ -544,6 +544,10 @@
 	name = "Bowl2"
 	icon_state = "hair_bowlcut2"
 
+/decl/sprite_accessory/hair/pirate
+	name = "Pirate"
+	icon_state = "hair_pirate"
+
 /decl/sprite_accessory/hair/thinning
 	name = "Thinning"
 	icon_state = "hair_thinning"

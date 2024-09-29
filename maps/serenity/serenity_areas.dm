@@ -61,6 +61,7 @@
 	. = ..()
 	SSplanet.interpolating_areas += src
 	SSpersistence.item_pool_areas += src
+	START_PROCESSING(SSsound, src)
 
 /area/serenity/has_gravity()
 	return TRUE
@@ -263,10 +264,34 @@
 	name = "General Genetics Laboratory"
 	icon_state = "toxlab"
 
+/area/serenity/shelter/mining
+	name = "Mining Preparations"
+	icon_state = "outpost_mine_main"
+
+/area/serenity/shelter/mining/processing
+	name = "Mining Processing"
+	icon_state = "outpost_mine_west"
+
+/area/serenity/shelter/mining/staircase
+	name = "Mining Staircase"
+	icon_state = "outpost_mine_north"
+
+/area/serenity/shelter/mining/drill
+	name = "Mining Drilling Site"
+	icon_state = "outpost_mine_west"
+
 /area/serenity/shelter/medbay
 	name = "Medbay"
 	icon_state = "medbay3"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
+
+/area/serenity/shelter/medbay/lobby
+	name = "Medbay Lobby"
+	icon_state = "medbay4"
+
+/area/serenity/shelter/medbay/therapy
+	name = "Medbay Therapy"
+	icon_state = "medbay"
 
 /area/serenity/shelter/medbay/surgery
 	name = "Surgery"
@@ -276,20 +301,16 @@
 	name = "Medbay Break Room"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/storage
-	name = "Medbay Storage"
+/area/serenity/shelter/medbay/office
+	name = "Medbay Office"
 	icon_state = "medbay"
 
 /area/serenity/shelter/medbay/morgue
 	name = "Morgue"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/intensive_care
-	name = "Intensive Care"
-	icon_state = "medbay2"
-
-/area/serenity/shelter/medbay/chemistry
-	name = "Chemistry"
+/area/serenity/shelter/medbay/genetics
+	name = "Genetics"
 	icon_state = "medbay"
 
 /area/serenity/shelter/factory
@@ -451,14 +472,23 @@
 	forced_ambience = list('sound/music/ocean.mp3')
 
 /area/ship/theseus
-	name = "UN Theseus"
-	has_gravity = FALSE
+	name = "UN Typhos"
+	has_gravity = TRUE
 	forced_ambience = list('sound/ambience/weather/storm_inside.wav')
 	ambience_volume = 10
+	background_radiation = 211
+	requires_power = 0
+
+/area/ship/theseus/warp_drive
+	background_radiation = 40309
+	forced_ambience = list('sound/ambience/ambidanger4.ogg')
+	ambience_volume = 45
+	lightswitch = FALSE
 
 /area/space/theseus
 	name = "Gas Cloud"
 	forced_ambience = list('sound/ambience/weather/storm_outside.wav')
+	ambience_volume = 60
 
 /area/ship/icarus
 	name = "UN Icarus"

@@ -36,3 +36,4 @@
 	. = ..()
 	update_icon()
 	fluid_update(TRUE)
+	add_vis_contents(src, global.flood_object)

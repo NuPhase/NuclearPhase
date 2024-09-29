@@ -5,9 +5,10 @@
 	var/list/liquids = list()
 	var/list/solids = list()
 
-	var/list/phases = list()
 	//Temperature in Kelvin of this gas mix.
 	var/temperature = T20C
+	var/pressure = ONE_ATMOSPHERE
+	var/heat_capacity = 0
 
 	//Sum of all the gas moles in this mix.  Updated by update_values()
 	var/total_moles = 0
@@ -32,17 +33,75 @@
 	temperature = _temperature
 	group_multiplier = _group_multiplier
 	if(initial_gas)
-		gas = initial_gas
-
-	// This section prevents roundstart flashing of liquids into gas
-	for(var/g in gas)
-		total_moles += gas[g]
-		var/decl/material/mat = GET_DECL(g)
-		phases[g] = mat.phase_at_temperature(temperature, ONE_ATMOSPHERE)
-		if(phases[g] == MAT_PHASE_GAS)
-			gas_moles += gas[g]
-
+		for(var/g in initial_gas)
+			var/decl/material/mat = GET_DECL(g)
+			if(temperature > mat.boiling_point)
+				gas[g] = initial_gas[g]
+			else if(temperature > mat.melting_point)
+				liquids[g] = initial_gas[g]
+			else
+				solids[g] = initial_gas[g]
 	update_values()
+
+// Returns a list of specified fluid states.
+// if gasid isn't specified, returns a list of all gases with specified states
+// fluid_types can be a list or a single define.
+/datum/gas_mixture/proc/get_fluid(gasid, list/fluid_types)
+	var/list/returned_list = list()
+	if(islist(fluid_types))
+		for(var/ftype in fluid_types)
+			if(gasid)
+				switch(ftype)
+					if(MAT_PHASE_GAS)
+						returned_list[gasid] += gas[gasid]
+					if(MAT_PHASE_LIQUID)
+						returned_list[gasid] += liquids[gasid]
+					if(MAT_PHASE_SOLID)
+						returned_list[gasid] += solids[gasid]
+			else
+				switch(ftype)
+					if(MAT_PHASE_GAS)
+						for(var/g in gas)
+							returned_list[g] += gas[g]
+					if(MAT_PHASE_LIQUID)
+						for(var/g in liquids)
+							returned_list[g] += liquids[g]
+					if(MAT_PHASE_SOLID)
+						for(var/g in solids)
+							returned_list[g] += solids[g]
+	else if(fluid_types) // a single define
+		if(gasid)
+			switch(fluid_types)
+				if(MAT_PHASE_GAS)
+					returned_list[gasid] += gas[gasid]
+				if(MAT_PHASE_LIQUID)
+					returned_list[gasid] += liquids[gasid]
+				if(MAT_PHASE_SOLID)
+					returned_list[gasid] += solids[gasid]
+		else
+			switch(fluid_types)
+				if(MAT_PHASE_GAS)
+					for(var/g in gas)
+						returned_list[g] += gas[g]
+				if(MAT_PHASE_LIQUID)
+					for(var/g in liquids)
+						returned_list[g] += liquids[g]
+				if(MAT_PHASE_SOLID)
+					for(var/g in solids)
+						returned_list[g] += solids[g]
+	else // no specified filter, collect everything
+		if(gasid)
+			returned_list[gasid] += gas[gasid]
+			returned_list[gasid] += liquids[gasid]
+			returned_list[gasid] += solids[gasid]
+		else
+			for(var/g in gas)
+				returned_list[g] += gas[g]
+			for(var/g in liquids)
+				returned_list[g] += liquids[g]
+			for(var/g in solids)
+				returned_list[g] += solids[g]
+	return returned_list
 
 /datum/gas_mixture/proc/get_gas(gasid)
 	if(!length(gas))
@@ -52,41 +111,82 @@
 /datum/gas_mixture/proc/get_total_moles()
 	return total_moles * group_multiplier
 
+/datum/gas_mixture/proc/remove_gas(gasid, moles)
+	moles = abs(moles) // we pass negative values too
+	if(gas[gasid])
+		var/removed_moles = min(moles, gas[gasid])
+		gas[gasid] -= removed_moles
+		moles -= removed_moles
+	if(moles > 0)
+		if(liquids[gasid])
+			var/removed_moles = min(moles, liquids[gasid])
+			liquids[gasid] -= removed_moles
+			moles -= removed_moles
+		if(moles > 0 && solids[gasid])
+			solids[gasid] -= moles
+
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
-/datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
+/datum/gas_mixture/proc/adjust_gas(gasid, moles, update = TRUE, calculate_phase_change = TRUE)
 	if(moles == 0)
 		return
 
-	if (group_multiplier != 1)
-		gas[gasid] += moles/group_multiplier
+	var/decl/material/mat = GET_DECL(gasid)
+	if(group_multiplier != 1)
+		moles = moles/group_multiplier
+
+	if(moles > 0)
+		var/boiling_point
+		if(calculate_phase_change && GAME_STATE >= RUNLEVEL_GAME)
+			boiling_point = mat.get_boiling_temp(return_pressure())
+		else
+			boiling_point = mat.boiling_point
+		if(temperature > boiling_point)
+			gas[gasid] += moles
+		else if(temperature > mat.melting_point)
+			liquids[gasid] += moles
+		else
+			solids[gasid] += moles
 	else
-		gas[gasid] += moles
+		remove_gas(gasid, moles)
 
 	if(update)
 		update_values()
 
-
 //Same as adjust_gas(), but takes a temperature which is mixed in with the gas.
-/datum/gas_mixture/proc/adjust_gas_temp(gasid, moles, temp, update = 1)
+/datum/gas_mixture/proc/adjust_gas_temp(gasid, moles, temp, update = TRUE, calculate_phase_change = TRUE)
 	if(moles == 0)
 		return
 
+	var/decl/material/mat = GET_DECL(gasid)
 	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity()
-		var/decl/material/mat = GET_DECL(gasid)
-		var/giver_heat_capacity = mat.get_specific_heat(temperature, return_pressure()) * moles
+		var/giver_heat_capacity = mat.gas_specific_heat * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (temp * giver_heat_capacity + temperature * self_heat_capacity) / combined_heat_capacity
+			add_thermal_energy(0, TRUE, TRUE) // Allow for phase changes to happen
 
-	if (group_multiplier != 1)
-		gas[gasid] += moles/group_multiplier
-	else
+	if(group_multiplier != 1)
+		moles = moles/group_multiplier
+
+	if(moles > 0)
+		var/boiling_point
+		if(calculate_phase_change && GAME_STATE >= RUNLEVEL_GAME)
+			boiling_point = mat.get_boiling_temp(return_pressure())
+		else
+			boiling_point = mat.boiling_point
+		if(temp > boiling_point)
+			gas[gasid] += moles
+		else if(temp > mat.melting_point)
+			liquids[gasid] += moles
+		else
+			solids[gasid] += moles
 		gas[gasid] += moles
+	else
+		remove_gas(gasid, moles)
 
 	if(update)
 		update_values()
-
 
 //Variadic version of adjust_gas().  Takes any number of gas and mole pairs and applies them.
 /datum/gas_mixture/proc/adjust_multi()
@@ -110,7 +210,7 @@
 
 //Merges all the gas from another mixture into this one.  Respects group_multipliers and adjusts temperature correctly.
 //Does not modify giver in any way.
-/datum/gas_mixture/proc/merge(const/datum/gas_mixture/giver)
+/datum/gas_mixture/proc/merge(const/datum/gas_mixture/giver, update=TRUE)
 	if(!giver)
 		return
 
@@ -120,15 +220,19 @@
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (giver.temperature*giver_heat_capacity + temperature*self_heat_capacity)/combined_heat_capacity
+			add_thermal_energy(0, TRUE, TRUE) // Allow for phase changes to happen
 
 	if((group_multiplier != 1)||(giver.group_multiplier != 1))
-		for(var/g in giver.gas)
-			gas[g] += giver.gas[g] * giver.group_multiplier / group_multiplier
+		var/list/all_fluid = giver.get_fluid()
+		for(var/g in all_fluid)
+			adjust_gas(g, all_fluid[g] * giver.group_multiplier, update, update)
 	else
-		for(var/g in giver.gas)
-			gas[g] += giver.gas[g]
+		var/list/all_fluid = giver.get_fluid()
+		for(var/g in all_fluid)
+			adjust_gas(g, all_fluid[g], update, update)
 
-	update_values()
+	if(update)
+		update_values()
 
 // Used to equalize the mixture between two zones before sleeping an edge.
 /datum/gas_mixture/proc/equalize(datum/gas_mixture/sharer)
@@ -155,33 +259,33 @@
 
 	return 1
 
-
 //Returns the heat capacity of the gas mix based on the specific heat of the gases.
 /datum/gas_mixture/proc/heat_capacity()
-	. = 0
-	for(var/g in gas)
+	if(!heat_capacity)
+		cache_heat_capacity()
+	return heat_capacity
+
+/datum/gas_mixture/proc/cache_heat_capacity()
+	heat_capacity = 0
+	var/list/all_fluid = get_fluid()
+	for(var/g in all_fluid)
 		var/decl/material/mat = GET_DECL(g)
 		if(!mat)
 			return
-		switch(phases[g])
-			if(MAT_PHASE_GAS)
-				. += mat.gas_specific_heat * gas[g]
-			if(MAT_PHASE_LIQUID)
-				. += mat.liquid_specific_heat * gas[g]
-			if(MAT_PHASE_SOLID)
-				. += mat.solid_specific_heat * gas[g]
-	. *= max(1, group_multiplier)
-
+		heat_capacity += mat.gas_specific_heat * all_fluid[g]
+	heat_capacity *= max(1, group_multiplier)
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
-/datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy, var/calculate_phase_change = TRUE)
+/datum/gas_mixture/proc/add_thermal_energy(thermal_energy=0, calculate_phase_change=TRUE, forced=FALSE)
 
 	if (total_moles == 0)
 		return 0
 
-	var/heat_capacity = heat_capacity()
 	if(heat_capacity <= 0)
 		return 0
+
+	if(calculate_phase_change && GAME_STATE >= RUNLEVEL_GAME && (abs(thermal_energy) > 50 || forced))
+		thermal_energy = make_phase_changes(thermal_energy)
 
 	if (thermal_energy < 0)
 		if (temperature < TCMB)
@@ -206,8 +310,9 @@
 		return SPECIFIC_ENTROPY_VACUUM
 
 	. = 0
-	for(var/g in gas)
-		. += gas[g] * specific_entropy_gas(g)
+	var/list/all_fluid = get_fluid()
+	for(var/g in all_fluid)
+		. += all_fluid[g] * specific_entropy_gas(g, all_fluid)
 	. /= total_moles
 
 
@@ -225,15 +330,15 @@
 /datum/gas_mixture/proc/get_decl_for_rust(var/gasid) // shitty shit
 	return GET_DECL(gasid)
 
-/datum/gas_mixture/proc/specific_entropy_gas(var/gasid)
-	if (!(gasid in gas) || gas[gasid] == 0)
+/datum/gas_mixture/proc/specific_entropy_gas(var/gasid, var/list/all_fluid)
+	if (!(gasid in all_fluid) || all_fluid[gasid] == 0)
 		return SPECIFIC_ENTROPY_VACUUM	//that gas isn't here
 
 	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/decl/material/mat = GET_DECL(gasid)
-	var/specific_heat = mat.get_specific_heat(temperature, return_pressure())
+	var/specific_heat = mat.gas_specific_heat
 	var/safe_temp = max(temperature, TCMB) // We're about to divide by this.
-	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gas[gasid] * safe_temp)) * (mat.molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
+	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(all_fluid[gasid] * safe_temp)) * (mat.molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
 
 	//alternative, simpler equation
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
@@ -241,38 +346,50 @@
 
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
-	phases.Cut()
-	var/saved_pressure = return_pressure()
 	total_moles = 0
 	gas_moles = 0
 	var/liquid_volume = 0
+	prune_empty_values()
+	var/list/all_fluid = get_fluid()
+	for(var/g in all_fluid)
+		total_moles += all_fluid[g]
+	for(var/g in liquids)
+		var/decl/material/mat = GET_DECL(g)
+		liquid_volume += liquids[g] * mat.molar_mass / mat.liquid_density * 1000
+	for(var/g in gas)
+		gas_moles += gas[g]
+	available_volume = max(0.01, volume - liquid_volume)
+	cache_heat_capacity()
+	cache_pressure()
+
+/datum/gas_mixture/proc/prune_empty_values()
 	for(var/g in gas)
 		if(gas[g] <= 0 || isnull(g))
 			gas -= g
-		else
-			total_moles += gas[g]
-			var/decl/material/mat = GET_DECL(g)
-			phases[g] = mat.phase_at_temperature(temperature, saved_pressure)
-			if(phases[g] == MAT_PHASE_GAS)
-				gas_moles += gas[g]
-			else if(phases[g] == MAT_PHASE_LIQUID)
-				liquid_volume += gas[g] * mat.molar_mass / mat.liquid_density * 1000
+	for(var/g in liquids)
+		if(liquids[g] <= 0 || isnull(g))
+			liquids -= g
+	for(var/g in solids)
+		if(solids[g] <= 0 || isnull(g))
+			solids -= g
 
-	available_volume = max(0.01, volume - liquid_volume)
-
-//Returns the pressure of the gas mix.  Only accurate if there have been no gas modifications since update_values() has been called.
+//Returns the pressure of the gas mix.
 /datum/gas_mixture/proc/return_pressure()
+	return pressure
+
+//Only accurate if there have been no gas modifications since update_values() has been called.
+/datum/gas_mixture/proc/cache_pressure()
+	var/pressure_to_cache = 0
 	if(volume)
-		if(!length(phases))
-			return total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
-		var/total_pressure = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
-		for(var/g in gas)
-			if(!(phases[g] == MAT_PHASE_GAS))
-				var/decl/material/mat = GET_DECL(g)
-				var/temperature_factor = max(0, 1 - (sqrt(max(0, mat.boiling_point - temperature)) * 0.1)) //should be 1 at boiling point and 0 at melting point
-				total_pressure += gas[g] * ONE_ATMOSPHERE * temperature_factor / volume
-		return total_pressure
-	return 0
+		if(gas_moles)
+			pressure_to_cache = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
+		else
+			pressure_to_cache = total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
+		for(var/g in liquids)
+			var/decl/material/mat = GET_DECL(g)
+			var/temperature_factor = (temperature - mat.melting_point) / mat.boiling_point //should be 1 at boiling point and 0 at melting point
+			pressure_to_cache += liquids[g] * ONE_ATMOSPHERE * temperature_factor / volume
+	pressure = pressure_to_cache
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
@@ -280,13 +397,15 @@
 	if(amount <= 0)
 		return null
 
-	var/datum/gas_mixture/removed = new
+	var/list/removed_gas_list = list()
+	var/list/all_fluid = get_fluid()
 
-	for(var/g in gas)
-		removed.gas[g] = QUANTIZE((gas[g] / total_moles) * amount)
-		gas[g] -= removed.gas[g] / group_multiplier
+	for(var/g in all_fluid)
+		removed_gas_list[g] = QUANTIZE((all_fluid[g] / total_moles) * amount)
+		adjust_gas(g, -removed_gas_list[g], FALSE)
 
-	removed.temperature = temperature
+	var/datum/gas_mixture/removed = new(_volume = volume, _temperature = temperature, initial_gas = removed_gas_list)
+
 	update_values()
 	removed.update_values()
 
@@ -301,15 +420,15 @@
 
 	ratio = min(ratio, 1)
 
-	var/datum/gas_mixture/removed = new
-	removed.group_multiplier = out_group_multiplier
+	var/list/removed_gas_list = list()
+	var/list/all_fluid = get_fluid()
 
-	for(var/g in gas)
-		removed.gas[g] = (gas[g] * ratio * group_multiplier / out_group_multiplier)
-		gas[g] = gas[g] * (1 - ratio)
+	for(var/g in all_fluid)
+		removed_gas_list[g] = (all_fluid[g] * ratio * group_multiplier / out_group_multiplier)
+		adjust_gas(g, -removed_gas_list[g])
 
-	removed.temperature = temperature
-	removed.volume = volume * group_multiplier / out_group_multiplier
+	var/datum/gas_mixture/removed = new(_volume = volume * group_multiplier / out_group_multiplier, _temperature = temperature, _group_multiplier = out_group_multiplier, initial_gas = removed_gas_list)
+
 	update_values()
 	removed.update_values()
 
@@ -437,37 +556,48 @@
 
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.
 /datum/gas_mixture/proc/add(datum/gas_mixture/right_side)
-	for(var/g in right_side.gas)
-		gas[g] += right_side.gas[g]
+	var/list/all_fluid = right_side.get_fluid()
+	for(var/g in all_fluid)
+		gas[g] += all_fluid[g]
 
 	update_values()
 	return 1
 
-
 //Simpler version of remove(), adjusts gas amounts directly and doesn't account for group_multiplier.
 /datum/gas_mixture/proc/subtract(datum/gas_mixture/right_side)
-	for(var/g in right_side.gas)
-		gas[g] -= right_side.gas[g]
+	var/list/all_fluid = right_side.get_fluid()
+	for(var/g in all_fluid)
+		remove_gas(g, all_fluid[g])
 
 	update_values()
 	return 1
 
 
 //Multiply all gas amounts by a factor.
-/datum/gas_mixture/proc/multiply(factor)
+/datum/gas_mixture/proc/multiply(factor, update=TRUE)
 	for(var/g in gas)
 		gas[g] *= factor
+	for(var/g in liquids)
+		liquids[g] *= factor
+	for(var/g in solids)
+		solids[g] *= factor
 
-	update_values()
+	if(update)
+		update_values()
 	return 1
 
 
 //Divide all gas amounts by a factor.
-/datum/gas_mixture/proc/divide(factor)
+/datum/gas_mixture/proc/divide(factor, update=TRUE)
 	for(var/g in gas)
 		gas[g] /= factor
+	for(var/g in liquids)
+		liquids[g] /= factor
+	for(var/g in solids)
+		solids[g] /= factor
 
-	update_values()
+	if(update)
+		update_values()
 	return 1
 
 #define IN 1
@@ -517,6 +647,8 @@
 	var/total_heat_capacity = 0
 
 	var/list/total_gas = list()
+	var/list/total_liquids = list()
+	var/list/total_solids = list()
 	for(var/datum/gas_mixture/gasmix in gases)
 		total_volume += gasmix.volume
 		var/temp_heatcap = gasmix.heat_capacity()
@@ -524,75 +656,42 @@
 		total_heat_capacity += temp_heatcap
 		for(var/g in gasmix.gas)
 			total_gas[g] += gasmix.gas[g]
+		for(var/g in gasmix.liquids)
+			total_liquids[g] += gasmix.liquids[g]
+		for(var/g in gasmix.solids)
+			total_solids[g] += gasmix.solids[g]
 
 	if(total_volume > 0)
-		var/datum/gas_mixture/combined = new(total_volume)
-		combined.gas = total_gas
-
-		//Calculate temperature
+		var/resulting_temperature = T20C
 		if(total_heat_capacity > 0)
-			combined.temperature = total_thermal_energy / total_heat_capacity
+			resulting_temperature = total_thermal_energy / total_heat_capacity
+		var/datum/gas_mixture/combined = new(total_volume, resulting_temperature)
+		combined.gas = total_gas
+		combined.liquids = total_liquids
+		combined.solids = total_solids
+
 		combined.update_values()
 
 		//Allow for reactions
 		combined.fire_react()
 
-		//Average out the gases
-		for(var/g in combined.gas)
-			combined.gas[g] /= total_volume
+		combined.divide(total_volume)
 
 		//Update individual gas_mixtures
 		for(var/datum/gas_mixture/gasmix in gases)
 			gasmix.gas = combined.gas.Copy()
-			gasmix.temperature = combined.temperature
-			gasmix.multiply(gasmix.volume)
-
-	return 1
-
-/proc/equalize_strictly_gases(list/datum/gas_mixture/gases) //equalizes ONLY gases
-	//Calculate totals from individual components
-	var/total_volume = 0
-	var/total_thermal_energy = 0
-	var/total_heat_capacity = 0
-
-	var/list/total_gas = list()
-	for(var/datum/gas_mixture/gasmix in gases)
-		total_volume += gasmix.available_volume
-		var/temp_heatcap = gasmix.heat_capacity()
-		total_thermal_energy += gasmix.temperature * temp_heatcap
-		total_heat_capacity += temp_heatcap
-		for(var/g in gasmix.gas)
-			if(gasmix.phases[g] == MAT_PHASE_GAS)
-				total_gas[g] += gasmix.gas[g]
-
-	if(total_volume > 0)
-		var/datum/gas_mixture/combined = new(total_volume)
-		combined.gas = total_gas
-
-		//Calculate temperature
-		if(total_heat_capacity > 0)
-			combined.temperature = total_thermal_energy / total_heat_capacity
-		combined.update_values()
-
-		//Allow for reactions
-		combined.fire_react()
-
-		//Average out the gases
-		for(var/g in combined.gas)
-			combined.gas[g] /= total_volume
-
-		//Update individual gas_mixtures
-		for(var/datum/gas_mixture/gasmix in gases)
-			gasmix.gas = combined.gas.Copy()
+			gasmix.liquids = combined.liquids.Copy()
+			gasmix.solids = combined.solids.Copy()
 			gasmix.temperature = combined.temperature
 			gasmix.multiply(gasmix.volume)
 
 	return 1
 
 /datum/gas_mixture/proc/get_mass()
-	for(var/g in gas)
+	var/list/all_fluid = get_fluid()
+	for(var/g in all_fluid)
 		var/decl/material/mat = GET_DECL(g)
-		. += gas[g] * mat.molar_mass * group_multiplier
+		. += all_fluid[g] * mat.molar_mass * group_multiplier
 
 /datum/gas_mixture/proc/specific_mass()
 	var/M = get_total_moles()
@@ -612,7 +711,8 @@
 
 /datum/gas_mixture/proc/handle_nuclear_reactions(slow_neutrons, fast_neutrons)
 	var/energy_delta = 0
-	for(var/g in gas)
+	var/list/all_fluid = get_fluid()
+	for(var/g in all_fluid)
 		var/decl/material/mat = GET_DECL(g)
 		if(!mat.neutron_interactions)
 			continue
@@ -626,3 +726,7 @@
 		"slow_neutrons_changed" = slow_neutrons,
 		"fast_neutrons_changed" = fast_neutrons
 	)
+
+// catherine was here
+// CGM v1
+// 07.08.24 - 16.08.24

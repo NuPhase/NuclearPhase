@@ -10,19 +10,21 @@
 
 /obj/structure/reagent_dispensers/barrel/update_icon()
 	. = ..()
-	overlays.Cut()
+	cut_overlays()
 	if(open)
 		if(!reagents.total_volume)
 			if(contained)
 				icon_state = "barrel_open_empty_human"
 				return
-		icon_state = "barrel_open_empty"
+			else
+				icon_state = "barrel_open_empty"
+			return
 		var/overlay_state = "barrel_open"
 		if(contained)
-			icon_state = "barrel_open_human"
+			overlay_state = "barrel_open_human"
 		var/image/fluid_overlay = image(icon, icon_state = overlay_state)
 		fluid_overlay.color = reagents.get_color()
-		overlays += fluid_overlay
+		add_overlay(fluid_overlay)
 	else
 		icon_state = "barrel_closed"
 

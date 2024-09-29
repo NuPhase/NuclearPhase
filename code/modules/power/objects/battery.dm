@@ -67,7 +67,7 @@
 	desc = "Lithium-Ion batteries are still cheap and practical in our day and age. Even with appearance of new and more dense batteries, lithium-ion ones still reign supreme in cost. This one looks sketchy."
 	max_capacity = 120000
 	voltage = 4400
-	amperage = 700
+	amperage = 1400
 	efficiency = 0.8
 	var/punctured = FALSE
 

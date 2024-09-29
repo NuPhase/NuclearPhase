@@ -336,7 +336,7 @@
 		adjust_immunity(-10 / inhibition_factor)
 		change_eye_color(COLOR_GREEN_GRAY)
 		adjustHalLoss(-400)
-		to_chat_cooldown(src, SPAN_DANGER("You feel very sick."), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
+		to_chat_cooldown(src, SPAN_DANGER(pick("Tiny crystals crawl under your skin.", "You feel something churning up inside.")), "srecsick", rand(4 MINUTES, 10 MINUTES * inhibition_factor))
 	if(srec_dose > 1000) //we explodeee
 		var/turf/T = get_turf(src)
 		gib()
@@ -363,6 +363,38 @@
 	else
 		failed_last_breath = L.handle_breath(breath) //if breath is null or vacuum, the lungs will handle it for us
 	return !failed_last_breath
+
+#define DEFAULT_HUMAN_INSULATION_COEF 0.2
+#define BURN_DAMAGE_FACTOR (1 - DEFAULT_HUMAN_INSULATION_COEF)
+#define BURN_DAMAGE_INSULATION_DIVISOR 300 // this much burn damage will cause us to completely lose skin insulation
+/mob/living/carbon/human/proc/get_insulation_coef()
+	return min(MAX_TEMPERATURE_COEFFICIENT, DEFAULT_HUMAN_INSULATION_COEF + (getFireLoss() / BURN_DAMAGE_INSULATION_DIVISOR * BURN_DAMAGE_FACTOR))
+
+#undef DEFAULT_HUMAN_INSULATION_COEF
+#undef BURN_DAMAGE_FACTOR
+#undef BURN_DAMAGE_INSULATION_DIVISOR
+
+/mob/living/carbon/human/proc/get_adjusted_environment_temp(datum/gas_mixture/environment)
+	var/body_covered_coef = 0 // coefficient representing the percentage of body covered with clothing
+	var/clothing_count = 0
+	var/clothing_temp_sum = 0
+	var/protection_bitflag = 0
+	for(var/slot in global.standard_clothing_slots)
+		var/obj/item/clothing/C = get_equipped_item(slot)
+		if(istype(C))
+			clothing_count++
+			clothing_temp_sum += C.temperature
+			protection_bitflag |= C.cold_protection
+			if(C.accessories.len)
+				for(var/obj/item/clothing/accessory/A in C.accessories)
+					protection_bitflag |= A.cold_protection
+	body_covered_coef = get_thermal_protection(protection_bitflag)
+
+	if(!body_covered_coef || !clothing_count)
+		return environment.temperature
+
+	var/average_clothing_temperature = clothing_temp_sum / clothing_count
+	return Interpolate(environment.temperature, average_clothing_temperature, body_covered_coef)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 
@@ -404,18 +436,8 @@
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-		var/temp_adj = 0
-		if(loc_temp < bodytemperature)			//Place is colder than we are
-			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
-		else if (loc_temp > bodytemperature)			//Place is hotter than we are
-			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
-
-		//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
-		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
+		var/temp_diff = get_adjusted_environment_temp(environment) - bodytemperature
+		bodytemperature += get_insulation_coef() * temp_diff
 
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= getSpeciesOrSynthTemp(HEAT_LEVEL_1))
@@ -465,8 +487,7 @@
 		var/pressure_message = ""
 		switch(pressure_alert)
 			if(-2)
-				pressure_message = "<span class=bigdanger>Your vision slowly becomes pitch red as the blood in your eyes slowly comes out. Air rushes out of your lungs, forcing your mouth open like some sort of a toy. Your saliva evaporates,\
-				but it's nothing compared to massive amounts of gaseous stomach acid that just escaped out of your throat. You are going to die!</span>"
+				pressure_message = "<span class=bigdanger>Your vision becomes crimson red, you're in a vacuum!</span>"
 			if(-1)
 				pressure_message = "<span class=danger>You feel the air getting thinner!</span>"
 		to_chat(src, pressure_message)
@@ -732,20 +753,22 @@
 				severity = min(severity, 7)
 				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 				if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.1) //we are JACKED on adrenaline
-					if(blood_perfusion < 0.9) //fancy flickering when low on oxygen
-						add_client_color(/datum/client_color/oxygendeprivation_desat)
-						remove_client_color(/datum/client_color/oxygendeprivation_oversat)
-						spawn(SSmobs.wait * 0.5)
-							remove_client_color(/datum/client_color/oxygendeprivation_desat)
-							add_client_color(/datum/client_color/oxygendeprivation_oversat)
-					else
+					if(blood_perfusion < 0.9)
 						add_client_color(/datum/client_color/oxygendeprivation_oversat)
-				else if(blood_perfusion < 0.6)
-					add_client_color(/datum/client_color/oxygendeprivation_desat)
+					else
+						remove_client_color(/datum/client_color/oxygendeprivation_oversat)
+				else
+					if(blood_perfusion < 0.7)
+						add_client_color(/datum/client_color/oxygendeprivation_desat)
 			else
 				clear_fullscreen("oxy")
 				remove_client_color(/datum/client_color/oxygendeprivation_oversat)
 				remove_client_color(/datum/client_color/oxygendeprivation_desat)
+
+		if(REAGENT_VOLUME(bloodstr, /decl/material/liquid/adrenaline) > 0.1)
+			overlay_fullscreen("adrenalnoise",/obj/screen/fullscreen/noise/adrenal)
+		else
+			clear_fullscreen("adrenalnoise")
 
 		//Fire and Brute damage overlay (BSSR)
 		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp + (get_shock() * 0.1)
@@ -904,7 +927,7 @@
 			playsound_local(src,pick(global.scarySounds),50, 1, -1)
 
 	var/area/A = get_area(src)
-	if(client && world.time >= client.played + 600)
+	if(client && world.time >= client.played + A.ambience_cooldown)
 		A.play_ambience(src)
 	if(stat == UNCONSCIOUS && world.time - l_move_time < 5 && prob(10))
 		to_chat(src,"<span class='notice'>You feel like you're [pick("moving","flying","floating","falling","hovering")].</span>")

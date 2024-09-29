@@ -51,6 +51,7 @@
 	title = "Reactor Operations Director"
 	head_position = 1
 	supervisors = "the CEO"
+	selection_color = "#d5d82d"
 	outfit_type = /decl/hierarchy/outfit/job/rod
 	access = list(
 		access_engine,
@@ -93,11 +94,13 @@
 		access_ai_upload
 	)
 	skill_points = 43
+	required_whitelists = list(/decl/whitelist/command_executive, /decl/whitelist/engineering_high)
 
 /datum/job/reactor_operations/road
 	title = "Reactor Operations Assistant Director"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
+	selection_color = "#d5d82d"
 	outfit_type = /decl/hierarchy/outfit/job/rod/assistant
 	access = list(
 		access_engine,
@@ -140,20 +143,25 @@
 		access_ai_upload
 	)
 	skill_points = 40
+	required_whitelists = list(/decl/whitelist/engineering_high)
 
 /datum/job/reactor_operations/rce
 	title = "Reactor Chief Engineer"
 	head_position = 1
-	supervisors = "the Reactor Operations Director"
+	supervisors = "the Reactor Operations Director or their assistant"
+	selection_color = "#c8ca2a"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
 	skill_points = 43
+	required_whitelists = list(/decl/whitelist/engineering_high)
 
 /datum/job/reactor_operations/rmd
 	title = "Reactor Maintenance Director"
 	head_position = 1
-	supervisors = "the Reactor Operations Director"
+	supervisors = "the Reactor Operations Director or their assistant"
+	selection_color = "#c8ca2a"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/rmd
 	skill_points = 40
+	required_whitelists = list(/decl/whitelist/engineering_low)
 
 /datum/job/reactor_operations/ros
 	title = "Reactor Operations Specialist"
@@ -162,3 +170,4 @@
 	supervisors = "the Reactor Chief Engineer"
 	outfit_type = /decl/hierarchy/outfit/job/engineering/ros
 	skill_points = 38
+	required_whitelists = list(/decl/whitelist/engineering_low)
