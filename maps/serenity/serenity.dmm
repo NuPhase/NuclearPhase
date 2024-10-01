@@ -4595,6 +4595,7 @@
 	name = "MEDICAL Thermometer";
 	spawn_paths = /obj/item/thermometer
 	},
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "cWy" = (
@@ -4928,7 +4929,13 @@
 /area/serenity)
 "dkL" = (
 /obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/structure/closet/medical_wall/filled{
+	pixel_y = 32
+	},
+/obj/effect/item_spawner{
+	name = "MEDICAL Surgery Kit";
+	spawn_paths = /obj/item/storage/firstaid/surgery
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "dkM" = (
@@ -12476,6 +12483,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/pumps_a)
+"hVK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/water,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "hVM" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/microwave,
@@ -13457,6 +13468,14 @@
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
+"iCv" = (
+/obj/structure/table/steel,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/modular/preset/security{
+	pixel_y = 12
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "iCw" = (
 /obj/machinery/door/blast/regular{
 	id_tag = "lab_c_in"
@@ -15270,6 +15289,14 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/it_operations)
+"jGU" = (
+/obj/structure/table/steel,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/modular/preset/security{
+	pixel_y = 12
+	},
+/turf/simulated/floor/tiled/dark/herringbone,
+/area/serenity/shelter/brig/prison)
 "jHr" = (
 /obj/effect/floor_decal/industrial/fire{
 	dir = 4
@@ -15985,6 +16012,14 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"kfp" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/computer/modular/preset/security{
+	dir = 1;
+	pixel_y = 6
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/office)
 "kfC" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/water,
 /obj/structure/cable/blue{
@@ -20405,6 +20440,12 @@
 "mzW" = (
 /obj/structure/cable/blue{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/cap/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/cap/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
@@ -26995,6 +27036,10 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/entrance_zone)
+"qBT" = (
+/obj/machinery/atmospherics/pipe/cap/hidden,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "qCb" = (
 /obj/machinery/power/apc/high{
 	dir = 1
@@ -32614,6 +32659,7 @@
 "uan" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/canister/water/tall,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "uar" = (
@@ -36755,14 +36801,9 @@
 /area/serenity/shelter/medbay/office)
 "wxl" = (
 /obj/structure/table,
-/obj/structure/closet/medical_wall/filled{
-	pixel_y = 32
+/obj/machinery/computer/modular/preset/security{
+	pixel_y = 12
 	},
-/obj/effect/item_spawner{
-	name = "MEDICAL Surgery Kit";
-	spawn_paths = /obj/item/storage/firstaid/surgery
-	},
-/obj/effect/item_spawner/drinks,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "wxV" = (
@@ -79777,7 +79818,7 @@ wCP
 wwf
 ukl
 hXL
-oLA
+jGU
 ewN
 ukl
 bmM
@@ -97131,7 +97172,7 @@ uZV
 cOG
 uZV
 cik
-fJY
+kfp
 xMU
 xmJ
 vir
@@ -97232,7 +97273,7 @@ uZV
 rQF
 xMU
 eDc
-mfB
+iCv
 mfB
 lGr
 qwc
@@ -97619,7 +97660,7 @@ kSQ
 xMU
 uZV
 cik
-fJY
+kfp
 cWk
 yjS
 xMU
@@ -135008,7 +135049,7 @@ bFW
 puU
 puU
 puU
-puU
+hVK
 puU
 vBR
 puU
@@ -135505,7 +135546,7 @@ puU
 djl
 djl
 djl
-puU
+qBT
 uHw
 hxG
 meT
