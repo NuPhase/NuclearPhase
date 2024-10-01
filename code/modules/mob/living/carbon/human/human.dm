@@ -928,7 +928,7 @@
 	if(bpm >= PULSE_MAX_BPM)
 		return method ? ">[PULSE_MAX_BPM]" : "extremely weak and fast, patient's artery feels like a thread"
 
-	return "[method ? bpm : bpm + rand(-10, 10)]"
+	return "[round(method ? bpm : bpm + rand(-10, 10))]"
 // output for machines ^	 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ output for people
 
 /mob/living/carbon/human/proc/pulse()

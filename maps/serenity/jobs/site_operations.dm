@@ -152,7 +152,6 @@
 	access = list(
 		access_cargo
 	)
-	minimal_access = list(access_kitchen)
 	alt_titles = list("Logistician", "Logistics Specialist", "Logistics Coordinator")
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 	allowed_branches = list(

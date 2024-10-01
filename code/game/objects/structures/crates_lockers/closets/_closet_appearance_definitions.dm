@@ -604,6 +604,17 @@
 		"crate_stripe_right" = COLOR_YELLOW_GRAY
 	)
 
+/decl/closet_appearance/crate/secure/srec
+	color = COLOR_TITANIUM
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_SREC,
+		"crate_stripe_right" = COLOR_SREC,
+		"crate_reticle" = COLOR_SREC_ACTIVE
+	)
+
 // Large crates.
 /decl/closet_appearance/large_crate
 	base_icon =  'icons/obj/storage/bases/large_crate.dmi'

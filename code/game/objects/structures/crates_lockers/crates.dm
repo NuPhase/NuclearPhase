@@ -312,3 +312,11 @@
 
 /obj/structure/closet/crate/uranium/WillContain()
 	return list(/obj/item/stack/material/puck/mapped/uranium/ten = 5)
+
+/obj/structure/closet/crate/secure/srec
+	name = "SREC crate"
+	desc = "A heavy crate with a lock on it."
+	closet_appearance = /decl/closet_appearance/crate/secure/srec
+
+/obj/structure/closet/crate/secure/srec/WillContain()
+	return list(/obj/item/stack/material/gemstone/mapped/srec/five = 5)
