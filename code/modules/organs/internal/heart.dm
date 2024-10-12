@@ -61,7 +61,9 @@
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
-	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 120
+	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 80
+	if(1 > owner.get_blood_saturation())
+		bpm_modifiers["hypoxia"] = min((1 - owner.get_blood_saturation()) * 250, 80)
 	cardiac_output_modifiers["hypoperfusion"] = min(2 - owner.get_blood_perfusion(), 1.2)
 	bpm_modifiers["ischemia"] = oxygen_deprivation * -2.4
 	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.35, 0, 110)
@@ -74,13 +76,13 @@
 	var/ninstability = 0
 
 	if(owner.mcv > 10000)
-		ninstability += 20
+		ninstability += (owner.mcv - 8000) * 0.003
 	if(owner.mcv < 400)
 		ninstability += 60
-	if(owner.get_blood_perfusion() < 0.5)
-		ninstability += 20
-	if(cardiac_output < 0.5)
-		ninstability += 20
+	if(owner.blood_perfusion < 0.7)
+		ninstability += (0.7 - owner.blood_perfusion) * 70
+	if(cardiac_output < 0.8)
+		ninstability += (0.8 - cardiac_output) * 100
 	if(owner.tpvr > 280)
 		ninstability += 20
 

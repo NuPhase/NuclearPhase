@@ -988,9 +988,9 @@
 
 /mob/living/carbon/human/get_breath_volume()
 	. = ..()
-	var/obj/item/organ/internal/heart/H = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	if(H && !H.open)
-		. *= (!BP_IS_PROSTHETIC(H)) ? pulse()/PULSE_NORM : 1.5
+	var/obj/item/organ/internal/lungs/L = GET_INTERNAL_ORGAN(src, BP_LUNGS)
+	if(L)
+		return (L.tidal_volume * L.breath_rate) / 30000
 
 /mob/living/carbon/human/need_breathe()
 	if(!(mNobreath in mutations) && species.breathing_organ && should_have_organ(species.breathing_organ))

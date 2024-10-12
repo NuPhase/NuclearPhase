@@ -62,6 +62,8 @@
 	var/last_breath_efficiency = 1
 	var/datum/composite_sound/breath_sound/soundloop
 
+	var/tidal_volume = 500 // Volume of air inhaled per breath. Changes with fitness skill.
+
 /obj/item/organ/internal/lungs/Destroy()
 	. = ..()
 	qdel(soundloop)
@@ -75,7 +77,10 @@
 	soundloop = new(_output_atoms=list(src), _our_lungs=src)
 	if(ishuman(owner))
 		spawn(50) //ugly workaround, lungs don't have post initialize proc
-			oxygen_generation += owner.get_skill_value(SKILL_FITNESS) * 0.06
+			update_tidal_volume()
+
+/obj/item/organ/internal/lungs/proc/update_tidal_volume()
+	tidal_volume = initial(tidal_volume) * owner.get_skill_value(SKILL_FITNESS)
 
 /obj/item/organ/internal/lungs/proc/can_drown()
 	return (is_broken() || !has_gills)
@@ -173,12 +178,11 @@
 
 /obj/item/organ/internal/lungs/proc/get_breath_efficiency()
 	. = 1
-	. -= damage/max_damage
-	. += owner.lying*0.5
 	. -= oxygen_deprivation / OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD / 4
 	return .
 
-//How much oxygen do the lungs produce.
+//How much oxygen do the lungs absorb
+#define OXYGEN_ABSORPTION(damage, max_damage) (1 - damage / max_damage) * 0.25
 //oxygen volume = 1641ml per mole
 #define OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured) inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency / (ruptured + 1)
 //How much hemoglobin can be saturated every 2 seconds in the body.
@@ -263,7 +267,7 @@
 	var/failed_breath = failed_inhale || failed_exhale
 
 	if(!failed_breath || forced)
-		owner.add_oxygen(min(OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured)), MAX_OXYGEN_DELTA(owner.mcv, owner.normal_oxygen_capacity))
+		owner.add_oxygen(min(OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured) * OXYGEN_ABSORPTION(damage, max_damage), MAX_OXYGEN_DELTA(owner.mcv, owner.normal_oxygen_capacity)))
 		last_successful_breath = world.time
 		owner.adjustOxyLoss(-5 * inhale_efficiency)
 		oxygen_starve(inhaling_ratio * -10)
@@ -278,6 +282,7 @@
 		owner.oxygen_alert = 0
 	return failed_breath
 
+#undef OXYGEN_ABSORPTION
 #undef OXYGEN_PRODUCED
 #undef MAX_OXYGEN_DELTA
 

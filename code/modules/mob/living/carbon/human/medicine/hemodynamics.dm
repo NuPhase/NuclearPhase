@@ -115,12 +115,21 @@
 #undef PULSE_PRESSURE
 #undef MCV_PRESSURE
 
+// in ml/min
+#define BLOOD_OXYGEN_CONTENT(oxygen_amount, blood_amount) oxygen_amount / blood_amount
+#define OXYGEN_DELIVERY(cardiac_output, oxygen_amount, blood_amount) (cardiac_output * BLOOD_OXYGEN_CONTENT(oxygen_amount, blood_amount))
+#define OXYGEN_AVAILABLE(cardiac_output, oxygen_amount, blood_amount) (0.35 * OXYGEN_DELIVERY(cardiac_output, oxygen_amount, blood_amount))
+
 /mob/living/carbon/human/proc/consume_oxygen(amount)
-	var/available_oxygen = oxygen_amount * get_blood_perfusion()
-	if(available_oxygen > amount * OXYGEN_DELTA_DIVISOR)
+	var/available_oxygen = OXYGEN_AVAILABLE(mcv, oxygen_amount, vessel.total_volume) / 30
+	if(available_oxygen > amount)
 		oxygen_amount -= amount
 		return 1
 	return 0
+
+#undef BLOOD_OXYGEN_CONTENT
+#undef OXYGEN_DELIVERY
+#undef OXYGEN_AVAILABLE
 
 /mob/living/carbon/human/proc/add_oxygen(amount)
 	oxygen_amount = Clamp(oxygen_amount + amount, 0, max_oxygen_capacity)
