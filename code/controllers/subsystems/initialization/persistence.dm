@@ -31,18 +31,16 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/extinguisher,
 										/obj/item/tank/firefighting,
 										/obj/item/chems/condiment,
-										/obj/item/storage/toolbox, //for now ===
 										/obj/item/storage/mirror,
-										/obj/item/storage/box,
 										/obj/item/storage/lockbox/vials,
 										/obj/item/chems/drinks/glass2,
 										/obj/item/chems/drinks/shaker,
 										/obj/random/mre,
-										/obj/item/clothing/, //for now
+										/obj/item/clothing, //for now
 										/obj/item/hand_labeler,
 										/obj/item/wrench,
 										/obj/item/sticky_pad,
-										/obj/item/clipboard/steel,
+										/obj/item/clipboard,
 										/obj/item/towel) //Blacklisted items
 	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
 										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
@@ -131,21 +129,30 @@ SUBSYSTEM_DEF(persistence)
 	text2file(text_to_write, ITEM_POOL_PATH)
 
 /datum/controller/subsystem/persistence/proc/collect_item_pool()
-	var/list/fucking_chonker_return_list = list()
+	var/list/return_list = list()
 	for(var/area/A in item_pool_areas)
 		for(var/obj/item/I in A.contents)
-			if(istype(I.loc, /obj/machinery)) //Machinery components shouldn't be saved
-				continue
-			for(var/b_type in item_pool_blacklist)
-				if(istype(I, b_type))
-					continue
-			if(I.anchored) //Mines, etc
-				continue
-			fucking_chonker_return_list += I.type
+			try_pool_item(I, return_list)
+			for(var/obj/item/IC in I.contents)
+				try_pool_item(IC, return_list)
+				for(var/obj/item/ICC in IC.contents)
+					try_pool_item(ICC, return_list)
+
 		for(var/obj/structure/closet/C in A.contents)
 			for(var/obj/item/I in C.contents)
-				for(var/b_type in item_pool_blacklist)
-					if(istype(I, b_type))
-						continue
-				fucking_chonker_return_list += I.type
-	return fucking_chonker_return_list
+				try_pool_item(I, return_list)
+				for(var/obj/item/IC in I.contents)
+					try_pool_item(IC, return_list)
+					for(var/obj/item/ICC in IC.contents)
+						try_pool_item(ICC, return_list)
+	return return_list
+
+/datum/controller/subsystem/persistence/proc/try_pool_item(obj/item/I, list/return_list)
+	if(istype(I.loc, /obj/machinery)) //Machinery components shouldn't be saved
+		return
+	if(I.anchored) //Mines, etc
+		return
+	for(var/b_type in item_pool_blacklist)
+		if(istype(I, b_type))
+			return
+	return_list += I.type
