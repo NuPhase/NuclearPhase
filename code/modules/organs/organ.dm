@@ -504,7 +504,6 @@ var/global/list/ailment_reference_cache = list()
 		if(!(status & ORGAN_CUT_AWAY)) //Don't run ailments if we're still detached
 			for(var/datum/ailment/ailment in ailments)
 				ailment.begin_ailment_event()
-		update_skill_effects()
 	else if(affected)
 		forceMove(affected) //When installed in a limb with no owner
 	return src

@@ -1383,6 +1383,8 @@
 	update_oxygen_capacities()
 	oxygen_amount = normal_oxygen_capacity
 	calculate_strength_coefficients()
+	for(var/obj/item/organ/internal/I in internal_organs)
+		I.update_skill_effects()
 
 /mob/proc/calculate_strength_coefficients()
 	pickup_capacity = initial(pickup_capacity)
