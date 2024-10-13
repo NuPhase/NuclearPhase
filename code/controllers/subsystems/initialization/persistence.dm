@@ -25,6 +25,7 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/stack/material, //for now ---
 										/obj/item/stack/cable_coil,
 										/obj/item/stack/net_cable_coil,
+										/obj/item/stock_parts,
 										/obj/item/chems,
 										/obj/item/co2filter/large,
 										/obj/item/cell/crap,
@@ -42,8 +43,15 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/hand_labeler,
 										/obj/item/wrench,
 										/obj/item/sticky_pad,
+<<<<<<< Updated upstream
 										/obj/item/clipboard/steel,
 										/obj/item/towel) //Blacklisted items
+=======
+										/obj/item/clipboard,
+										/obj/item/towel,
+										/obj/item/storage/internal, //wtf
+										/obj/item/ammo_casing) //Blacklisted items
+>>>>>>> Stashed changes
 	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
 										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
 
