@@ -70,17 +70,16 @@
 
 /obj/item/organ/internal/lungs/rejuvenate(ignore_prosthetic_prefs)
 	. = ..()
-	ruptured = FALSE
+	QDEL_NULL(chest_tube)
+	breath_rate = initial(breath_rate)
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
 	soundloop = new(_output_atoms=list(src), _our_lungs=src)
-	if(ishuman(owner))
-		spawn(50) //ugly workaround, lungs don't have post initialize proc
-			update_tidal_volume()
 
-/obj/item/organ/internal/lungs/proc/update_tidal_volume()
-	tidal_volume = initial(tidal_volume) * owner.get_skill_value(SKILL_FITNESS)
+/obj/item/organ/internal/lungs/update_skill_effects()
+	if(owner)
+		tidal_volume = initial(tidal_volume) * owner.get_skill_value(SKILL_FITNESS)
 
 /obj/item/organ/internal/lungs/proc/can_drown()
 	return (is_broken() || !has_gills)

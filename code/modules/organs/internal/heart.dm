@@ -25,6 +25,11 @@
 	var/list/stability_modifiers = list()
 	var/last_arrythmia_appearance //world time
 
+/obj/item/organ/internal/heart/rejuvenate(ignore_prosthetic_prefs)
+	. = ..()
+	instability = 0
+	cardiac_output = 1
+
 /obj/item/organ/internal/heart/die()
 	. = ..()
 	pulse = 0
