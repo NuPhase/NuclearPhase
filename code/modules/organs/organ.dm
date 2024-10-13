@@ -53,6 +53,9 @@
 /obj/item/organ/proc/update_health()
 	return
 
+/obj/item/organ/proc/update_skill_effects()
+	return
+
 /obj/item/organ/proc/is_broken()
 	return (damage >= min_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN))
 
@@ -501,6 +504,7 @@ var/global/list/ailment_reference_cache = list()
 		if(!(status & ORGAN_CUT_AWAY)) //Don't run ailments if we're still detached
 			for(var/datum/ailment/ailment in ailments)
 				ailment.begin_ailment_event()
+		update_skill_effects()
 	else if(affected)
 		forceMove(affected) //When installed in a limb with no owner
 	return src
