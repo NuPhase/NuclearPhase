@@ -20,6 +20,7 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/stool,
 										/obj/item/pen,
 										/obj/item/wrapping_paper,
+										/obj/item/stock_parts,
 										/obj/item/stack/package_wrap,
 										/obj/item/stack/tape_roll/barricade_tape/toilet, //infinite toilet paper
 										/obj/item/stack/material, //for now ---
@@ -41,6 +42,8 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/wrench,
 										/obj/item/sticky_pad,
 										/obj/item/clipboard,
+										/obj/item/ammo_casing,
+										/obj/item/storage/internal, //how
 										/obj/item/towel) //Blacklisted items
 	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
 										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
