@@ -12,6 +12,8 @@
 	var/weakref/weak_attached
 	///besides the item we're also sometimes attached to other stuff! (items held emitting particles on a mob)
 	var/weakref/weak_additional
+	// are our particles unique and not fetched from a global repo?
+	var/unique_particles = FALSE
 
 /obj/effect/abstract/particle_holder/Initialize(mapload, particle_path = null)
 	. = ..()
@@ -19,8 +21,15 @@
 		log_error("particle holder was created with no loc!")
 		return INITIALIZE_HINT_QDEL
 	weak_attached = weakref(loc)
-	particles = SSparticles.get_particle(particle_path)
+	if(unique_particles)
+		create_particles(particle_path)
+	else
+		particles = SSparticles.get_particle(particle_path)
 	update_visual_contents(loc)
+
+/obj/effect/abstract/particle_holder/proc/create_particles(particle_path)
+	particles = new particle_path
+	return
 
 /obj/effect/abstract/particle_holder/Destroy(force)
 	var/atom/movable/attached = weak_attached.resolve()
@@ -31,6 +40,8 @@
 		attached.vis_contents -= src
 	if(additional_attached)
 		additional_attached.vis_contents -= src
+	if(unique_particles)
+		qdel(particles)
 	return ..()
 
 ///signal called when parent is moved
@@ -55,3 +66,10 @@
 		particle_mob.vis_contents += src
 	//readd to ourselves
 	attached_to.vis_contents |= src
+
+/obj/effect/abstract/particle_holder/temporary/Initialize(mapload, particle_path, lifetime)
+	. = ..()
+	QDEL_IN(src, lifetime)
+
+/obj/effect/abstract/particle_holder/temporary/unique
+	unique_particles = TRUE

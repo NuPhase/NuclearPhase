@@ -618,14 +618,14 @@
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * temperature / volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = other_pressure / pressure_coeff
 		var/free_moles = total_moles - minimum_moles_to_keep
-		var/moles_to_transfer = free_moles * share_ratio
+		var/moles_to_transfer = free_moles * share_ratio * group_multiplier
 		var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
 		other.merge(taken_gas)
 	else
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * other.temperature / other.volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = our_pressure / pressure_coeff
 		var/free_moles = other.total_moles - minimum_moles_to_keep
-		var/moles_to_transfer = free_moles * share_ratio
+		var/moles_to_transfer = free_moles * share_ratio * other.group_multiplier
 		var/datum/gas_mixture/taken_gas = other.remove(moles_to_transfer)
 		merge(taken_gas)
 

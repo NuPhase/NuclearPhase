@@ -132,9 +132,10 @@ Class Procs:
 		erase()
 		return
 
+	var/differential = A.air.return_pressure() - B.air.return_pressure()
+
 	var/equiv = A.air.share_ratio(B.air, coefficient)
 
-	var/differential = A.air.return_pressure() - B.air.return_pressure()
 	if(abs(differential) >= vsc.airflow_lightest_pressure)
 		var/list/attracted
 		var/list/repelled
@@ -147,6 +148,19 @@ Class Procs:
 
 		flow(attracted, abs(differential), 0)
 		flow(repelled, abs(differential), 1)
+		/*if(abs(differential) >= vsc.airflow_dense_pressure)
+			var/turf/T = pick(connecting_turfs)
+			if(T)
+				playsound(T, pick('sound/effects/explosionfar3.ogg', 'sound/effects/explosionfar4.ogg'), 100)
+				var/flow_to_object
+				if(differential > 0)
+					flow_to_object = pick(B.contents)
+				else
+					flow_to_object = pick(A.contents)
+				var/flow_angle = Get_Angle(T, flow_to_object)
+				var/speed_coef = abs(differential)/(ONE_ATMOSPHERE*0.33)
+				var/obj/effect/abstract/particle_holder/temporary/unique/ph = new(T, /particles/smoke_airflow, 2.5 SECONDS)
+				ph.particles.velocity = list(speed_coef*cos(flow_angle), speed_coef*sin(flow_angle))*/
 
 	if(equiv)
 		if(direct)
