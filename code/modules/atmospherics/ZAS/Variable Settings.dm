@@ -13,27 +13,27 @@ var/global/vs_control/vsc = new
 	var/IgnitionLevel = 0.5
 	var/IgnitionLevel_DESC = "Determines point at which fire can ignite"
 
-	var/airflow_lightest_pressure = 5
+	var/airflow_lightest_pressure = 20
 	var/airflow_lightest_pressure_NAME = "Airflow - Small Movement Threshold %"
 	var/airflow_lightest_pressure_DESC = "Percent of 1 Atm. at which items with the small weight classes will move."
 
-	var/airflow_light_pressure = 10
+	var/airflow_light_pressure = 35
 	var/airflow_light_pressure_NAME = "Airflow - Medium Movement Threshold %"
 	var/airflow_light_pressure_DESC = "Percent of 1 Atm. at which items with the medium weight classes will move."
 
-	var/airflow_medium_pressure = 15
+	var/airflow_medium_pressure = 50
 	var/airflow_medium_pressure_NAME = "Airflow - Heavy Movement Threshold %"
 	var/airflow_medium_pressure_DESC = "Percent of 1 Atm. at which items with the largest weight classes will move."
 
-	var/airflow_heavy_pressure = 30
+	var/airflow_heavy_pressure = 85
 	var/airflow_heavy_pressure_NAME = "Airflow - Mob Movement Threshold %"
 	var/airflow_heavy_pressure_DESC = "Percent of 1 Atm. at which mobs will move."
 
-	var/airflow_dense_pressure = 40
+	var/airflow_dense_pressure = 150
 	var/airflow_dense_pressure_NAME = "Airflow - Dense Movement Threshold %"
 	var/airflow_dense_pressure_DESC = "Percent of 1 Atm. at which items with canisters and closets will move."
 
-	var/airflow_stun_pressure = 40
+	var/airflow_stun_pressure = 180
 	var/airflow_stun_pressure_NAME = "Airflow - Mob Stunning Threshold %"
 	var/airflow_stun_pressure_DESC = "Percent of 1 Atm. at which mobs will be stunned by airflow."
 
@@ -45,7 +45,7 @@ var/global/vs_control/vsc = new
 	var/airflow_stun_NAME = "Airflow Impact - Stunning"
 	var/airflow_stun_DESC = "How much a mob is stunned when hit by an object."
 
-	var/airflow_damage = 15
+	var/airflow_damage = 7
 	var/airflow_damage_NAME = "Airflow Impact - Damage"
 	var/airflow_damage_DESC = "Damage from airflow impacts."
 

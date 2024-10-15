@@ -5,8 +5,6 @@ Contains helper procs for airflow, called by /connection_group.
 	if(last_airflow > world.time - vsc.airflow_delay || airflow_speed)
 		return FALSE
 
-	//differential /= (1 + get_dist(src, pick(connecting_turfs)))
-
 	// Knock mobs etc over.
 	. = handle_airflow_stun(differential)
 
@@ -21,24 +19,16 @@ Contains helper procs for airflow, called by /connection_group.
 				airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
 
 				if(repelled)
-					RepelAirflowDest(differential*3)
+					RepelAirflowDest(differential/5)
 				else
-					GotoAirflowDest(differential*2)
+					GotoAirflowDest(differential/10)
 
 /atom/movable/proc/handle_airflow_stun(var/differential)
 	return
 
 /mob/var/tmp/last_airflow_stun = 0
 /mob/handle_airflow_stun(var/differential)
-	if(stat == DEAD || (status_flags & GODMODE))
-		return FALSE
-	if(differential > vsc.airflow_lightest_pressure)
-		playsound_local(src, 'sound/effects/space_wind.ogg', 50, 1)
-	else
-		return FALSE
-	if(differential > vsc.airflow_medium_pressure)
-		shake_camera(src, 20, differential / ONE_ATMOSPHERE)
-	if(differential < vsc.airflow_stun_pressure)
+	if(differential < vsc.airflow_stun_pressure || stat == DEAD || (status_flags & GODMODE))
 		return FALSE
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)
 		return FALSE
@@ -50,10 +40,7 @@ Contains helper procs for airflow, called by /connection_group.
 		return FALSE
 	if(!lying)
 		to_chat(src, SPAN_DANGER("The sudden rush of air knocks you over!"))
-		playsound_local(src, 'sound/ambience/weather/sonic_boom.wav', 50, 1)
-		playsound_local(src, 'sound/ambience/weather/decompression.wav', 50)
-		apply_damage(differential, BRUTE, damage_flags = DAM_DISPERSED | DAM_EXPLODE)
-	SET_STATUS_MAX(src, STAT_WEAK, 7 - get_skill_value(SKILL_AGILITY))
+	SET_STATUS_MAX(src, STAT_WEAK, 6 - get_skill_value(SKILL_AGILITY))
 	last_airflow_stun = world.time
 	return TRUE
 

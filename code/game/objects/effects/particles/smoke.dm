@@ -43,26 +43,3 @@
 	fade = 40
 	fadein = 25
 	friction = 0.1
-
-
-
-/*/particles/smoke_airflow
-	icon = 'icons/effects/96x96.dmi'
-	icon_state = "smoke3"
-	width = 256
-	height = 256
-	count = 128
-	spawning = 8
-	lifespan = 10
-	fade = 2
-	fadein = 2
-	position = generator(GEN_SQUARE, list(-24,-24), list(24,24))
-	gradient = list(COLOR_GRAY80, COLOR_WHITE)
-	color = generator(GEN_NUM, 0.25, 0.75)
-	color_change = generator(GEN_NUM, 0.08, 0.07)
-	spin = generator(GEN_NUM, -5, 5)
-	rotation = generator(GEN_NUM, -45, 45)
-	scale = 0.5
-	grow = 0.1
-	friction = 0.1
-	is_global = FALSE*/

@@ -82,10 +82,9 @@ PROCESSING_SUBSYSTEM_DEF(airflow)
 
 		if(target.airflow_speed > 5)
 			var/turf/T = get_ranged_target_turf(target, get_dir(target, get_step(target, target.airflow_dest)), target.airflow_speed)
-			target.throw_at(T, target.airflow_speed, target.airflow_speed)
+			target.throw_at(T, target.airflow_speed, max(1, 5 - target.weight*0.1))
 		else
-			walk_to(target, target.airflow_dest, 0, 8 - target.airflow_speed)
-			//step_towards(target, target.airflow_dest)
+			step_towards(target, target.airflow_dest)
 
 		if (ismob(target))
 			var/mob/M = target
