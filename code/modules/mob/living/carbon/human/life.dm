@@ -914,8 +914,9 @@
 			vomit_score += I.damage
 		else if (should_have_organ(tag))
 			vomit_score += 45
-	if(has_chemical_effect(CE_TOXIN, 1) || radiation)
-		vomit_score += 0.2 * getToxLoss()
+	var/toxloss = getToxLoss()
+	if(toxloss > 100)
+		vomit_score += 0.15 * toxloss
 	if(has_chemical_effect(CE_ALCOHOL_TOXIC, 1))
 		vomit_score += 10 * GET_CHEMICAL_EFFECT(src, CE_ALCOHOL_TOXIC)
 	if(has_chemical_effect(CE_ALCOHOL, 1))
