@@ -29,10 +29,10 @@
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
-		access_emergency_storage
-		access_ai_upload
-		access_robotics
-		access_network
+		access_emergency_storage,
+		access_ai_upload,
+		access_robotics,
+		access_network,
 		access_tcomsat
 	)
 	minimal_access = list(
@@ -41,10 +41,10 @@
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
-		access_emergency_storage
-		access_ai_upload
-		access_robotics
-		access_network
+		access_emergency_storage,
+		access_ai_upload,
+		access_robotics,
+		access_network,
 		access_tcomsat
 	)
 	skill_points = 38
@@ -62,7 +62,7 @@
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
-		access_emergency_storage
+		access_emergency_storage,
 		access_engine_equip
 	)
 	minimal_access = list(
@@ -71,7 +71,7 @@
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
-		access_emergency_storage
+		access_emergency_storage,
 		access_engine_equip
 	)
 	skill_points = 35
@@ -82,13 +82,13 @@
 	supervisors = "the Chief Operations Officer"
 	selection_color = "#a52041"
 	outfit_type = /decl/hierarchy/outfit/job/sdd
-		access = list(
+	access = list(
 		access_eva,
 		access_tech_storage,
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
-		access_emergency_storage
+		access_emergency_storage,
 		access_engine_equip
 	)
 	minimal_access = list(
@@ -97,7 +97,7 @@
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
-		access_emergency_storage
+		access_emergency_storage,
 		access_engine_equip
 	)
 	skill_points = 35
