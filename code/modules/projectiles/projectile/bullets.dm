@@ -79,7 +79,7 @@
 	penetration_modifier = 1.5
 
 /obj/item/projectile/bullet/pistol/holdout
-	damage = 40
+	damage = 20
 	penetration_modifier = 1.2
 	distance_falloff = 2
 
@@ -241,6 +241,19 @@
 	penetrating = 1
 	distance_falloff = 1.5
 
+/obj/item/projectile/bullet/modern/snapdragon
+	fire_sound = 'sound/weapons/gunshot/laserbulb.ogg'
+	icon_state = "bullet1"
+	damage_type = BURN
+	damage_flags = DAM_LASER
+	damage = 20
+	eyeblur = 2
+	agony = 150
+	armor_penetration = ARMOR_LASER_SMALL
+	embed = FALSE
+	penetrating = FALSE
+	impact_sounds = list(BULLET_IMPACT_MEAT = SOUNDS_LASER_MEAT, BULLET_IMPACT_METAL = SOUNDS_LASER_METAL)
+
 /obj/item/projectile/bullet/modern/c6p8x51
 	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
 	damage = 35
@@ -254,7 +267,7 @@
 
 /obj/item/projectile/bullet/modern/c11x25
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
-	damage = 20
+	damage = 35
 	armor_penetration = ARMOR_BALLISTIC_PISTOL
 /obj/item/projectile/bullet/modern/c11x25/srec //same armor penetration, larger damage and higher falloff
 	damage = 50

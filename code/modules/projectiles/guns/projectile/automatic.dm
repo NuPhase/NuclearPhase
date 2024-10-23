@@ -75,3 +75,40 @@
 			icon_state = "[get_world_inventory_state()]-empty"
 	else
 		icon_state = get_world_inventory_state()
+
+/obj/item/gun/projectile/automatic/snapdragon
+	name = "snapdragon rifle"
+	desc = "An unique, non-lethal takedown rifle. It fires flamamble gel projectiles at high speeds that stick to surfaces and can easily take down lightly-armored targets."
+	icon = 'icons/obj/guns/snapdragon_rifle.dmi'
+	pixel_x = -10
+	w_class = ITEM_SIZE_HUGE
+	force = 10
+	caliber = CALIBER_RIFLE_SNAPDRAGON
+	ammo_type = /obj/item/ammo_casing/caseless/snapdragon
+	slot_flags = SLOT_BACK
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/snapdragon
+	allowed_magazines = list(/obj/item/ammo_magazine/snapdragon)
+	auto_eject = 1
+	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	accuracy = 2
+	accuracy_power = 7
+	one_hand_penalty = 4
+	bulk = GUN_BULK_RIFLE
+	fire_delay = 2
+	burst_delay = 2
+	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
+	mag_remove_sound = 'sound/weapons/guns/interaction/batrifle_magout.ogg'
+	material = /decl/material/solid/metal/steel
+	firemodes = list(
+		list(mode_name="semi auto",      burst=1,    fire_delay=2, one_hand_penalty=4,  burst_accuracy=null,            dispersion=null),
+		list(mode_name="full auto",      burst=1,    fire_delay=0.8,    burst_delay=-2,     one_hand_penalty=5,             autofire_enabled=1)
+	)
+	weight = 3.6
+	muzzle_flash_intensity = 8
+
+/obj/item/gun/projectile/automatic/snapdragon/update_base_icon()
+	if(ammo_magazine)
+		icon_state = "[get_world_inventory_state()]-loaded"
+	else
+		icon_state = "[get_world_inventory_state()]-empty"

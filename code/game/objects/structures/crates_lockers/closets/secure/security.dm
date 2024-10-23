@@ -79,6 +79,7 @@
 		/obj/item/flash,
 		/obj/item/baton/loaded,
 		/obj/item/storage/guncase/service_pistol,
+		/obj/item/storage/guncase/small_pistol,
 		/obj/item/clothing/accessory/storage/holster/waist,
 		/obj/item/flashlight/maglight
 	)
@@ -106,6 +107,7 @@
 		/obj/item/chems/spray/pepper,
 		/obj/item/baton/loaded,
 		/obj/item/storage/guncase/service_pistol,
+		/obj/item/storage/guncase/small_pistol,
 		/obj/item/flashlight/maglight
 	)
 
@@ -130,6 +132,7 @@
 		/obj/item/hailer,
 		/obj/item/clothing/accessory/storage/vest/black,
 		/obj/item/storage/guncase/service_pistol,
+		/obj/item/storage/guncase/small_pistol,
 		/obj/item/flashlight/maglight,
 		/obj/item/storage/firstaid/ifak
 	)
@@ -178,6 +181,7 @@
 		/obj/item/clothing/suit/armor/pcarrier/detective,
 		/obj/item/stack/tape_roll/barricade_tape/police,
 		/obj/item/storage/guncase/service_pistol,
+		/obj/item/storage/guncase/small_pistol,
 		/obj/item/clothing/accessory/storage/holster/armpit,
 		/obj/item/chems/drinks/flask/detflask,
 		/obj/item/storage/briefcase/crimekit,

@@ -83,7 +83,7 @@
 		/obj/item/storage/guncase/blue/assault_rifle,
 		/obj/item/storage/guncase/blue/assault_rifle,
 		/obj/item/storage/guncase/blue/assault_rifle,
-		/obj/item/storage/guncase/blue/assault_rifle,
+		/obj/item/storage/guncase/blue/snapdragon,
 		/obj/item/storage/box/ammo/rifle_fmj,
 		/obj/item/storage/box/ammo/rifle_fmj,
 		/obj/item/storage/box/ammo/rifle_ap,

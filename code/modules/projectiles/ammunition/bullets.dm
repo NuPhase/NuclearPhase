@@ -263,6 +263,15 @@
 	color = COLOR_GUNMETAL
 	bullet_color = COLOR_GUNMETAL
 
+/obj/item/ammo_casing/caseless/snapdragon
+	caliber = CALIBER_RIFLE_SNAPDRAGON
+	projectile_type = /obj/item/projectile/bullet/modern/snapdragon
+	icon = 'icons/obj/ammo/casings/lasbulb.dmi'
+	color = COLOR_GOLD
+	bullet_color = "#c7e710"
+	material = /decl/material/solid/cyclonite
+	matter = list(/decl/material/solid/plastic = MATTER_AMOUNT_REINFORCEMENT)
+
 /obj/item/ammo_casing/c10x77
 	name = "10x77-HS special casing"
 	desc = "A heavy sniper bullet covered in a thin layer of carbon-carbon alloy."

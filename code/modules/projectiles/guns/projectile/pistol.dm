@@ -76,7 +76,7 @@
 	desc = "Cryogenic Expander Firearm. It's a pistol that can use both conventional and cryogenic ammunition. It has a compact cryogenic unit built into its hand grip, allowing it to cool its magazine down."
 	icon = 'icons/obj/guns/gyropistol.dmi'
 	w_class = ITEM_SIZE_NORMAL
-	weight = 1.5
+	weight = 2.3
 	jam_chance = 1
 	magazine_type = null
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber, /obj/item/ammo_magazine/pistol/srec) //GOD FORBID
@@ -95,6 +95,19 @@
 
 /obj/item/gun/projectile/pistol/military_service/loadout
 	magazine_type = /obj/item/ammo_magazine/pistol/oneround
+
+/obj/item/gun/projectile/pistol/low_caliber
+	name = "VPS-V3"
+	desc = "A simple lower-caliber pistol with a large firing delay."
+	icon = 'icons/obj/guns/simplepistol.dmi'
+	w_class = ITEM_SIZE_NORMAL
+	caliber = CALIBER_PISTOL_SMALL
+	weight = 1
+	magazine_type = null
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol/small)
+	ammo_indicator = FALSE
+	fire_delay = 5
+	muzzle_flash_intensity = 5
 
 /obj/item/gun/projectile/pistol/gyro_rocket
 	name = "REF-V4"

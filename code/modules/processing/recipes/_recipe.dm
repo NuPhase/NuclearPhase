@@ -8,6 +8,7 @@
 	var/list/required_gas // in moles
 
 	var/item_result_type
+	var/item_result_amount = 1
 
 	var/processing_type = PROCESSING_CLASS_ASSEMBLER
 	var/recipe_time = 5
@@ -54,4 +55,5 @@
 			parent.remove_gas(consumed_gas_type, required_gas[consumed_gas_type])
 
 /decl/processing_recipe/proc/produce_result(obj/machinery/processor/parent)
-	parent.add_item(new item_result_type)
+	for(var/amount in 1 to item_result_amount)
+		parent.add_item(new item_result_type)

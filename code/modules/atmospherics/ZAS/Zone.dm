@@ -195,13 +195,13 @@ Class Procs:
 
 	for(var/g in air.liquids)
 		var/decl/material/mat = GET_DECL(g)
-		var/condense_amt = min(air.liquids[g] * air.group_multiplier)
+		var/condense_amt = air.liquids[g] * air.group_multiplier
 		var/reagent_condense_amt = condense_amt * mat.molar_volume
 		if(reagent_condense_amt < FLUID_PUDDLE)
 			break
 		var/condensing_iterations = reagent_condense_amt/FLUID_PUDDLE
 		var/condense_amt_per_iteration = reagent_condense_amt/condensing_iterations
-		for(var/i=0, i < condensing_iterations, i++)
+		for(var/i=0, i <= condensing_iterations, i++)
 			var/turf/flooding = pick(contents)
 			var/obj/effect/fluid/F = locate() in flooding
 			if(!F) F = new(flooding)

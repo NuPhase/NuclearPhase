@@ -167,6 +167,14 @@
 		/decl/material/solid/metal/titanium =   CEILING((SHEET_MATERIAL_AMOUNT * FABRICATOR_EXTRA_COST_FACTOR)),
 	)
 
+/datum/fabricator_recipe/carbon_composite
+	path = /obj/item/crafting_component/carbon_composite
+	build_time = 120 SECONDS
+
+/datum/fabricator_recipe/carbon_fiber
+	path = /obj/item/crafting_component/carbon_fiber_roll
+	build_time = 40 SECONDS
+
 /datum/fabricator_recipe/umbrella
 	path = /obj/item/umbrella
 

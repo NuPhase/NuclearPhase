@@ -18,11 +18,11 @@
 
 	exterior_atmos_temp = 14
 	exterior_atmos_composition = list(
-		/decl/material/gas/hydrogen = 200,
-		/decl/material/gas/helium = 700,
-		/decl/material/gas/carbon_dioxide = 400,
-		/decl/material/gas/carbon_monoxide = 100,
-		/decl/material/gas/nitrogen = 150
+		/decl/material/gas/hydrogen = 0.2,
+		/decl/material/gas/helium = 5,
+		/decl/material/gas/carbon_dioxide = 1.8,
+		/decl/material/gas/carbon_monoxide = 1,
+		/decl/material/gas/nitrogen = 2
 	)
 	lightlevel = 1
 	weather_system = /decl/state/weather/snow/heavy

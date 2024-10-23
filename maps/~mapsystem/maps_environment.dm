@@ -1,5 +1,5 @@
 /datum/map
-	var/datum/gas_mixture/exterior_atmosphere
+	var/datum/gas_mixture/surface/exterior_atmosphere
 	var/exterior_atmos_temp = T20C
 	var/list/exterior_atmos_composition = list(
 		/decl/material/gas/oxygen = O2STANDARD,

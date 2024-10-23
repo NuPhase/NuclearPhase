@@ -6,6 +6,7 @@
 #define CALIBER_PISTOL_LASBULB   "11mm lasbulb"
 
 #define CALIBER_RIFLE            "6.8x51"
+#define CALIBER_RIFLE_SNAPDRAGON "5.56mm"
 #define CALIBER_ANTI_MATERIEL    "12.7x99mm"
 
 #define CALIBER_SHOTGUN          "12g"

@@ -193,11 +193,19 @@
 		icon_state = "[initial(icon_state)]_e"
 
 /obj/item/storage/guncase/service_pistol
-	name = "pistol case"
+	name = "CEF pistol case"
 	max_storage_space = DEFAULT_LARGEBOX_STORAGE
 	startswith = list(
 		/obj/item/gun/projectile/pistol/military_service = 1,
 		/obj/item/ammo_magazine/pistol = 6
+	)
+
+/obj/item/storage/guncase/small_pistol
+	name = "VPS pistol case"
+	max_storage_space = DEFAULT_LARGEBOX_STORAGE
+	startswith = list(
+		/obj/item/gun/projectile/pistol/low_caliber = 1,
+		/obj/item/ammo_magazine/pistol/small = 6
 	)
 
 /obj/item/storage/guncase/blue/smg
@@ -208,10 +216,17 @@
 	)
 
 /obj/item/storage/guncase/blue/assault_rifle
-	name = "rifle case"
+	name = "assault rifle case"
 	startswith = list(
 		/obj/item/gun/projectile/automatic/assault_rifle = 1,
 		/obj/item/ammo_magazine/c6p8x51/fmj = 3,
 		/obj/item/ammo_magazine/c6p8x51/ap = 2,
 		/obj/item/ammo_magazine/c6p8x51/hp = 1
+	)
+
+/obj/item/storage/guncase/blue/snapdragon
+	name = "snapdragon rifle case"
+	startswith = list(
+		/obj/item/gun/projectile/automatic/snapdragon = 1,
+		/obj/item/ammo_magazine/snapdragon = 4
 	)

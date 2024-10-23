@@ -257,6 +257,14 @@
 	name = "6.8x51 HP magazine"
 	ammo_type = /obj/item/ammo_casing/c6p8x51/hp
 
+/obj/item/ammo_magazine/snapdragon
+	name = "snapdragon rifle magazine"
+	caliber = CALIBER_RIFLE_SNAPDRAGON
+	ammo_type = /obj/item/ammo_casing/caseless/snapdragon
+	max_ammo = 30
+	icon_state = "bullup"
+	mag_type = MAGAZINE
+
 /obj/item/ammo_magazine/c127x99
 	name = "50 BMG sniper magazine"
 	caliber = CALIBER_ANTI_MATERIEL

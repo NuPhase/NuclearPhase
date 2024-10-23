@@ -103,6 +103,7 @@
 #define COLOR_SUNRISE_SURFACE2 "#db2e03"
 #define COLOR_SUNRISE_SURFACE3 "#eb5600"
 #define COLOR_SUNRISE_SURFACE4 "#ebac00"
+#define COLOR_SUNRISE_SURFACE5 "#ccb77d"
 #define COLOR_HOT_SURFACE	   "#d16500"
 
 #define	PIPE_COLOR_GREY        "#cfcfcf"

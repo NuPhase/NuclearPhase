@@ -248,6 +248,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		T.fire = null
 	SSair.active_hotspots.Remove(src)
 	qdel(our_holder)
+	burning_fluid = null
 	. = ..()
 
 /turf/simulated/var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
