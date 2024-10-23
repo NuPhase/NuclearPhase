@@ -112,7 +112,7 @@
 	name = "beanbag"
 	damage = 25
 	damage_flags = 0
-	agony = 60
+	agony = 600
 	embed = 0
 	armor_penetration = 0
 	stun = 3
@@ -150,7 +150,7 @@
 	damage_flags = DAM_BULLET
 	damage = 5
 	eyeblur = 5
-	agony = 200
+	agony = 700
 	armor_penetration = 0
 
 /obj/item/projectile/bullet/shotgun/riot/on_hit(atom/target, blocked)
