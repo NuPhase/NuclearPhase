@@ -24,24 +24,13 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/stack/package_wrap,
 										/obj/item/stack/tape_roll/barricade_tape/toilet, //infinite toilet paper
 										/obj/item/stack/material, //for now ---
-										/obj/item/stack/cable_coil,
 										/obj/item/stack/net_cable_coil,
-										/obj/item/chems,
-										/obj/item/co2filter/large,
 										/obj/item/cell/crap,
-										/obj/item/extinguisher,
 										/obj/item/tank/firefighting,
 										/obj/item/chems/condiment,
 										/obj/item/storage/mirror,
 										/obj/item/storage/lockbox/vials,
-										/obj/item/chems/drinks/glass2,
-										/obj/item/chems/drinks/shaker,
 										/obj/random/mre,
-										/obj/item/clothing, //for now
-										/obj/item/hand_labeler,
-										/obj/item/wrench,
-										/obj/item/sticky_pad,
-										/obj/item/clipboard,
 										/obj/item/ammo_casing,
 										/obj/item/storage/internal, //how
 										/obj/item/towel) //Blacklisted items
