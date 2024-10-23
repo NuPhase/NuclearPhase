@@ -4,6 +4,7 @@
 /decl/loadout_option/clothing
 	category = /decl/loadout_category/clothing
 	slot = slot_tie_str
+	cost = 6
 
 /decl/loadout_option/clothing/flannel
 	name = "flannel (colorable)"

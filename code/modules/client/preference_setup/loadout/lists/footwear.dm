@@ -13,7 +13,7 @@
 /decl/loadout_option/shoes/boots
 	name = "boot selection"
 	path = /obj/item/clothing/shoes
-	cost = 2
+	cost = 10
 
 /decl/loadout_option/shoes/boots/get_gear_tweak_options()
 	. = ..()

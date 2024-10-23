@@ -12,9 +12,9 @@
 
 /decl/loadout_option/food/coffee
 	name = "coffee packet"
-	description = "A tea packet from the old times. Worth two fortune nowadays."
+	description = "A tea packet from the old times. Worth two fortunes nowadays."
 	path = /obj/item/chems/condiment/small/packet/coffee
-	cost = 15
+	cost = 12
 
 /decl/loadout_option/food/clean_water
 	name = "purified water bottle"
@@ -33,3 +33,20 @@
 	description = "Contains a premade water cleaning mix. Can clean up to a liter of liquid."
 	path = /obj/item/chems/condiment/small/packet/waterpurifier
 	cost = 25
+
+/decl/loadout_option/food/lunchbox
+	name = "filled lunchbox selection"
+	path = /obj/item/storage/lunchbox/filled
+	cost = 40
+
+/decl/loadout_option/food/lunchbox/get_gear_tweak_options()
+	. = ..()
+	LAZYINITLIST(.[/datum/gear_tweak/path])
+	.[/datum/gear_tweak/path] |= list(
+		"default" =        /obj/item/storage/lunchbox/filled,
+		"heart" =          /obj/item/storage/lunchbox/heart/filled,
+		"cat" =  		   /obj/item/storage/lunchbox/cat/filled,
+		"mars" =      	   /obj/item/storage/lunchbox/mars/filled,
+		"cti" =    		   /obj/item/storage/lunchbox/cti/filled,
+		"black&red" = 	   /obj/item/storage/lunchbox/syndicate/filled
+	)

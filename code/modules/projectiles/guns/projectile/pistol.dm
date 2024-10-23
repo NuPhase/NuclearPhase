@@ -109,6 +109,9 @@
 	fire_delay = 5
 	muzzle_flash_intensity = 5
 
+/obj/item/gun/projectile/pistol/low_caliber/loadout
+	magazine_type = /obj/item/ammo_magazine/pistol/small
+
 /obj/item/gun/projectile/pistol/gyro_rocket
 	name = "REF-V4"
 	desc = "Rocket Expander Firearm."

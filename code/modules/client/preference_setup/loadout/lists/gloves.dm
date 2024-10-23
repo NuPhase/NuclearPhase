@@ -1,8 +1,8 @@
 /decl/loadout_category/hands
 	name = "Handwear"
-	
+
 /decl/loadout_option/gloves
-	cost = 2
+	cost = 4
 	slot = slot_gloves_str
 	category = /decl/loadout_category/hands
 
@@ -19,7 +19,7 @@
 /decl/loadout_option/ring
 	name = "ring"
 	path = /obj/item/clothing/ring
-	cost = 2
+	cost = 7
 
 /decl/loadout_option/ring/get_gear_tweak_options()
 	. = ..()

@@ -11,8 +11,8 @@
 	cost = 15
 
 /decl/loadout_option/medical/cotton
-	name = "cotton balls"
-	description = "A pack of surgical cotton balls. Can be used to pack puncture wounds."
+	name = "expansive cotton"
+	description = "A pack of expansive cotton balls. Can be used to pack puncture wounds."
 	path = /obj/item/stack/medical/wound_filler
 	cost = 15
 
@@ -38,10 +38,10 @@
 	name = "SREC inhibitor autoinjector"
 	description = "A simple SREC-I autoinjector."
 	path = /obj/item/chems/hypospray/autoinjector/srec
-	cost = 15
+	cost = 30
 
 /decl/loadout_option/medical/srec/elite
 	name = "elite SREC inhibitor autoinjector"
 	description = "A SREC-IE autoinjector with a complex mixture of medication inside. Negates some symptoms of SREC."
 	path = /obj/item/chems/hypospray/autoinjector/srec
-	cost = 15
+	cost = 50

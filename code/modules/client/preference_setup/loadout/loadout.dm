@@ -127,7 +127,7 @@ var/global/list/gear_datums = list()
 	. += "<a href='?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font> </b><a href='?src=\ref[src];next_slot=1'>\>\></a>"
 
 	if(max_gear_cost < INFINITY)
-		. += "<b><font color = '[fcolor]'>[pref.total_loadout_cost]/[max_gear_cost]</font> loadout points spent.</b>"
+		. += "<b><font color = '[fcolor]'>[pref.total_loadout_cost]c/[max_gear_cost]c</font> stored credits spent.</b>"
 
 	. += "<a href='?src=\ref[src];clear_loadout=1'>Clear Loadout</a>"
 	. += "<a href='?src=\ref[src];toggle_hiding=1'>[hide_unavailable_gear ? "Show all" : "Hide unavailable"]</a></center></td></tr>"
@@ -340,7 +340,7 @@ var/global/list/gear_datums = list()
 	var/name                              // Name/index. Must be unique.
 	var/description                       // Description of this gear. If left blank will default to the description of the pathed item.
 	var/path                              // Path of item.
-	var/cost = 5                          // Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
+	var/cost = 5                          // Number of credits used.
 	var/slot                              // Slot to equip to.
 	var/list/allowed_roles                // Roles that can spawn with this item.
 	var/list/allowed_branches             // Service branches that can spawn with it.

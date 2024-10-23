@@ -87,8 +87,8 @@
 
 /decl/config/num/max_gear_cost
 	uid = "max_gear_cost"
-	default_value = 100
-	desc = "How many loadout points are available. Use 0 to disable loadout, and any negative number to indicate infinite points."
+	default_value = 120
+	desc = "How many loadout credits does the player get after persistence wipes. Use 0 to disable loadout, and any negative number to indicate infinite points."
 
 /decl/config/num/max_gear_cost/sanitize_value()
 	..()
