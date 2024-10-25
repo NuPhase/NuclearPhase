@@ -753,6 +753,9 @@
 "aCT" = (
 /obj/effect/floor_decal/corner/white/line,
 /obj/machinery/door/firedoor/autoset,
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "aDv" = (
@@ -13745,11 +13748,10 @@
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/habitationdeck/kitchen)
 "ihX" = (
-/obj/effect/floor_decal/corner/white/line{
-	dir = 1
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/open,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "ihY" = (
 /obj/structure/rack/dark,
@@ -16004,6 +16006,9 @@
 /obj/machinery/door/firedoor/autoset,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/door/fire,
+/obj/structure/cable/heavy{
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "jwQ" = (
@@ -19597,6 +19602,15 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"lwJ" = (
+/obj/machinery/power/apc/hyper{
+	dir = 4
+	},
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/entrance_zone)
 "lwV" = (
 /obj/effect/floor_decal/corner/blue/three_quarters{
 	dir = 4
@@ -26584,6 +26598,12 @@
 	},
 /turf/simulated/floor/asteroid,
 /area/serenity/shelter/engineering/electrical)
+"pfm" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/entrance_zone)
 "pfu" = (
 /obj/structure/table/steel,
 /obj/item/chems/drinks/glass2/coffeecup/black,
@@ -36353,6 +36373,13 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"uQb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/entrance_zone)
 "uQc" = (
 /obj/structure/bookcase,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -36443,6 +36470,14 @@
 "uTl" = (
 /turf/simulated/floor/concrete/black/surface,
 /area/surface)
+"uTp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fire_sprinkler,
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/entrance_zone)
 "uTC" = (
 /obj/machinery/photocopier,
 /obj/effect/decal/cleanable/dirt,
@@ -140356,15 +140391,15 @@ atO
 xIe
 tuh
 tuh
-tuh
-tuh
-tuh
+lwJ
+ihX
+ihX
 aCT
-uqc
-uqc
-fQU
-kDH
-kDH
+uQb
+uQb
+uTp
+pfm
+pfm
 jwJ
 gLh
 gLh
@@ -149453,7 +149488,7 @@ ebJ
 ebJ
 ebJ
 kDH
-ihX
+kKp
 uqc
 qUe
 kDH
