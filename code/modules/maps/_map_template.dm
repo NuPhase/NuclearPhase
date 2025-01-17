@@ -138,12 +138,14 @@
 		SSmapping.player_levels |= z_index // TODO: make maps handle this with /obj/abstract/level_data
 
 	//initialize things that are normally initialized after map load
+	Master.StartLoadingMap()
 	init_atoms(atoms_to_initialise)
 	init_shuttles(shuttle_state, map_hash, initialized_areas_by_type)
 	after_load()
 	for(var/z_index = bounds[MAP_MINZ] to bounds[MAP_MAXZ])
-		if(SSlighting.initialized)
-			SSlighting.InitializeZlev(z_index)
+		var/datum/level_data/level = SSmapping.levels_by_z[z_index]
+		level.after_template_load(src)
+	Master.StopLoadingMap()
 	log_game("Z-level [name] loaded at [x],[y],[world.maxz]")
 	loaded++
 
@@ -177,14 +179,11 @@
 	global._preloader.current_map_hash = null
 
 	//initialize things that are normally initialized after map load
+	Master.StartLoadingMap()
 	init_atoms(atoms_to_initialise)
 	init_shuttles(shuttle_state, map_hash, initialized_areas_by_type)
 	after_load(T.z)
-	if(SSlighting.initialized)
-		for(var/turf/AT in atoms_to_initialise)
-			if(AT.lighting_overlay)
-				AT.lighting_clear_overlay()
-		SSlighting.InitializeTurfs(atoms_to_initialise)	// Hopefully no turfs get placed on new coords by SSatoms.
+	Master.StopLoadingMap()
 
 	log_game("[name] loaded at at [T.x], [T.y], [T.z]")
 	loaded++
