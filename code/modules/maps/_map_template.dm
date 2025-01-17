@@ -8,8 +8,9 @@
 	var/list/mappaths = null
 	var/loaded = 0 // Times loaded this round
 	var/list/shuttles_to_initialise = list()
-	var/list/subtemplates_to_spawn
-	var/base_turf_for_zs = null
+	///Sub-templates to spawn on this template if any. Ruins and sites and etc..
+	var/list/subtemplates_to_spawn = list()
+	///Percent of chances to end up onto a level from this template by spacewalking between space z-levels.
 	var/accessibility_weight = 0
 	var/template_flags = TEMPLATE_FLAG_ALLOW_DUPLICATES
 	var/modify_tag_vars = TRUE // Will modify tag vars so that duplicate templates are handled properly. May have compatibility issues with legacy maps (esp. with ferry shuttles).
@@ -54,46 +55,20 @@
 	if (SSatoms.atom_init_stage == INITIALIZATION_INSSATOMS)
 		return // let proper initialisation handle it later
 
-	var/list/turf/turfs = list()
-	var/list/obj/machinery/atmospherics/atmos_machines = list()
-	var/list/obj/machinery/machines = list()
-	var/list/obj/structure/cable/cables = list()
-
-	for(var/atom/A in atoms)
-		if(isturf(A))
-			turfs += A
-		if(istype(A, /obj/structure/cable))
-			cables += A
-		if(istype(A, /obj/machinery/atmospherics))
-			atmos_machines += A
-		if(istype(A, /obj/machinery))
-			machines += A
-		if(istype(A, /obj/abstract/landmark/map_load_mark))
-			LAZYADD(subtemplates_to_spawn, A)
-
-	var/notsuspended
-	if(!SSmachines.suspended)
-		SSmachines.suspend()
-		notsuspended = TRUE
-
 	SSatoms.InitializeAtoms() // The atoms should have been getting queued there. This flushes the queue.
 
-	SSmachines.setup_powernets_for_cables(cables)
-	SSmachines.setup_atmos_machinery(atmos_machines)
-	if(notsuspended)
-		SSmachines.wake()
+	for(var/obj/abstract/landmark/map_load_mark/landmark in atoms)
+		subtemplates_to_spawn += landmark
 
-	for (var/i in machines)
-		var/obj/machinery/machine = i
-		machine.power_change()
+	// fun fact: these already filter for us, so it's pointless to sort
+	SSmachines.setup_powernets_for_cables(atoms)
+	SSmachines.setup_atmos_machinery(atoms)
 
-	for (var/i in turfs)
-		var/turf/T = i
-		T.post_change()
+	for (var/turf/T in atoms)
 		if(template_flags & TEMPLATE_FLAG_NO_RUINS)
 			T.turf_flags |= TURF_FLAG_NORUINS
 		if(template_flags & TEMPLATE_FLAG_NO_RADS)
-			qdel(SSradiation.sources_assoc[i])
+			qdel(SSradiation.sources_assoc[T])
 		if(istype(T,/turf/simulated))
 			var/turf/simulated/sim = T
 			sim.update_air_properties()
@@ -158,8 +133,6 @@
 	for (var/z_index = bounds[MAP_MINZ]; z_index <= bounds[MAP_MAXZ]; z_index++)
 		if (accessibility_weight)
 			SSmapping.accessible_z_levels[num2text(z_index)] = accessibility_weight
-		if (base_turf_for_zs)
-			global.using_map.base_turf_by_z[num2text(z_index)] = base_turf_for_zs
 		SSmapping.player_levels |= z_index // TODO: make maps handle this with /obj/abstract/level_data
 
 	//initialize things that are normally initialized after map load
@@ -220,7 +193,7 @@
 	for(var/obj/abstract/landmark/map_load_mark/mark as anything in subtemplates_to_spawn)
 		subtemplates_to_spawn -= mark
 		mark.load_subtemplate()
-		if(!QDELETED(mark))
+		if(!QDELETED(mark)) // for if the tile that lands on the landmark is a no-op tile
 			qdel(mark)
 	subtemplates_to_spawn = null
 
