@@ -690,7 +690,7 @@
 				embedded_flag = 0
 
 		if(syspressure > 140)
-			add_symptom(/decl/medical_symptom/headache)
+			to_chat_cooldown(src, pick(SPAN_WARNING("You feel blood pulsing in your temples."), SPAN_WARNING("Your head hurts with a pulsating headache."), SPAN_WARNING("You feel pressure in your eyes.")), "pressure_headache", 30 SECONDS)
 
 		//Resting
 		var/status_relief_modifier = resting * 5 + meditating

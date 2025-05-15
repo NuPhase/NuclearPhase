@@ -1,6 +1,11 @@
+#define ALARM_COOLDOWN 5
+
 /obj/machinery/reactor_monitor/general
 	name = "general stats monitor"
 	program_overlay = "warnings"
+	var/last_alarm_1 = 0
+	var/last_alarm_2 = 0
+	var/last_alarm_3 = 0
 
 /obj/machinery/reactor_monitor/general/Initialize()
 	. = ..()
@@ -86,10 +91,21 @@
 	switch(urgency)
 		if(1)
 			loc.visible_message("[src] declares: [SPAN_NOTICE(message)].")
+			if(last_alarm_1 + ALARM_COOLDOWN < world.time)
+				playsound(src, 'sound/effects/alarms/ann_soft.ogg', 60, 0)
+				last_alarm_1 = world.time
 		if(2)
 			loc.visible_message("[src] beeps: [SPAN_WARNING(message)].")
+			if(last_alarm_2 + ALARM_COOLDOWN < world.time)
+				playsound(src, 'sound/effects/alarms/ann_med.ogg', 60, 0)
+				last_alarm_2 = world.time
+				radio_announce("Reactor Operations team presence requested in the control room.", rcontrol.name, "Engineering")
 		if(3)
 			loc.visible_message("[src] buzzes: [SPAN_DANGER(message)]!")
+			if(last_alarm_3 + ALARM_COOLDOWN < world.time)
+				playsound(src, 'sound/effects/alarms/ann_crit.ogg', 60, 0)
+				last_alarm_3 = world.time
+				radio_announce("REACTOR ALERT: [message].", rcontrol.name, "Engineering")
 
 /obj/machinery/reactor_monitor/containment
 	name = "containment monitoring computer"

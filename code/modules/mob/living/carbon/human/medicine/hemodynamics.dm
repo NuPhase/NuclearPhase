@@ -14,7 +14,7 @@
 	var/syspressure = 120
 	var/dyspressure = 80
 	var/meanpressure = 100
-	var/mcv = NORMAL_MCV //Minute Circulation Volume
+	var/mcv = DEFAULT_MCV //Minute Circulation Volume
 	var/tpvr = 279 //Total Peripherial Vascular Resistance
 	var/max_oxygen_capacity = 1450
 	var/normal_oxygen_capacity = 1040

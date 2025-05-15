@@ -123,7 +123,7 @@
 
 	total_neutrons = slow_neutrons + fast_neutrons
 
-	var/total_radiation = total_neutrons * RADS_PER_NEUTRON
+	var/total_radiation = (total_neutrons * RADS_PER_NEUTRON) + xray_flux * RADS_PER_NEUTRON
 	var/panel_multiplier = 2 - reflector_position
 	last_radiation = total_radiation
 	SSradiation.radiate(src, panel_multiplier * total_radiation)
@@ -180,7 +180,13 @@
 			continue
 
 		var/minimum_reactant = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant])
-		var/uptake_moles = min(minimum_reactant / (1 + (cur_reaction.s_factor / (containment_field.temperature**0.666))), minimum_reactant)
+		var/temp_factor = (containment_field.temperature - cur_reaction.minimum_temperature) / (cur_reaction.minimum_temperature/cur_reaction.s_factor)
+		var/damp_factor = 0.82 * temp_factor**2.1
+		var/instability_factor = ((0.05/(0.4*cur_reaction.s_factor)) * sin(1000*cur_reaction.s_factor*temp_factor) * cos(300*cur_reaction.s_factor*temp_factor)) + (0.18/cur_reaction.s_factor)
+		var/uptake_moles = (temp_factor**2 - damp_factor + instability_factor) * minimum_reactant * REACTOR_REACTIVITY_MULT
+		uptake_moles = min(uptake_moles, minimum_reactant)
+		if(uptake_moles < 0)
+			continue
 		containment_field.adjust_gas(cur_reaction.first_reactant, uptake_moles*-0.5, FALSE)
 		containment_field.adjust_gas(cur_reaction.second_reactant, uptake_moles*-0.5, FALSE)
 		var/decl/material/first_reactant = GET_DECL(cur_reaction.first_reactant)
@@ -190,7 +196,7 @@
 		containment_field.adjust_gas(cur_reaction.product, resulting_mass / product.molar_mass)
 		containment_field.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
-		xray_flux += uptake_moles * 174
+		xray_flux += uptake_moles * 17400
 	plasma_instability += xray_flux
 
 #define PASSIVE_INSTABILITY_DECAY 0.15 // coefficient

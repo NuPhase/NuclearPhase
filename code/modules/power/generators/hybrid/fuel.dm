@@ -93,7 +93,7 @@
 	var/obj/item/chems/fuel_cell/inserted = null
 	var/sealed = FALSE
 	var/melted = FALSE
-	var/injection_ratio = 0 // grams per second
+	var/injection_ratio = 0 // milligrams per second
 
 /obj/machinery/reactor_fuelport/examine(mob/user)
 	. = ..()
@@ -120,7 +120,7 @@
 
 	if(!injection_ratio)
 		return
-	var/removing = min(inserted.reagents.total_volume, injection_ratio / (1000 * inserted.reagents.specific_mass()))
+	var/removing = min(inserted.reagents.total_volume, injection_ratio / (1000000 * inserted.reagents.specific_mass()))
 	for(var/moving in inserted.reagents.reagent_volumes)
 		if(moving in rcontrol.unwanted_materials)
 			continue //we don't want that

@@ -3,9 +3,10 @@
 
 /obj/machinery/reactor_button/fuel/do_action(mob/user)
 	. = ..()
-	var/injection_setting = tgui_input_number(user, "Select a new injection speed in grams per second.", "Fuel Injection Speed", min_value = 0, max_value = 10)
+	var/injection_setting = tgui_input_number(user, "Select a new injection speed in milligrams per second.", "Fuel Injection Speed", min_value = 0, max_value = 1000)
 	if(isnull(injection_setting))
 		return
+	rcontrol.make_log("FUEL INJECTION RATE SET TO [injection_setting]mg/s.", 1)
 	var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
 	for(var/id_to_check in ids_to_check)
 		var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]

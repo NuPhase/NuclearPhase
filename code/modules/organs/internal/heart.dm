@@ -9,7 +9,7 @@
 	prosthetic_icon = "heart-prosthetic"
 	var/pulse = 60
 	var/heartbeat = 0
-	var/beat_sound = 'sound/effects/singlebeat.ogg'
+	var/beat_sound = 'sound/effects/heartbeat.mp3'
 	damage_reduction = 0.7
 	relative_size = 5
 	max_damage = 45
@@ -19,6 +19,7 @@
 	var/external_pump = 0 //simulated beats per minute
 	var/cardiac_output = 1
 	var/instability = 0
+	var/cardiac_stress = 0
 	var/list/arrythmias = list()
 	var/list/cardiac_output_modifiers = list()
 	var/list/bpm_modifiers = list()
@@ -98,11 +99,13 @@
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
 	instability = max(Interpolate(instability, ninstability, 0.1), 0)
 
+	cardiac_stress = Clamp(cardiac_stress + (instability * 0.1) - 1, 0, 100)
+
 /obj/item/organ/internal/heart/proc/apply_instability()
 	if(instability > 10)
 		if(!pulse)
 			add_arrythmia(GET_DECL(/decl/arrythmia/asystole))
-		if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && prob(instability * 0.15))
+		if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && prob(cardiac_stress*0.1))
 			for(var/req_A in SSmobs.arrythmias_sorted_list)
 				var/decl/arrythmia/A = GET_DECL(req_A)
 				if(A in arrythmias)
@@ -160,18 +163,16 @@
 
 /obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= BPM_AUDIBLE_HEARTRATE || owner.shock_stage >= 10 || is_below_sound_pressure(get_turf(owner)))
-		//PULSE_THREADY - maximum value for pulse, currently it 5.
-		//High pulse value corresponds to a fast rate of heartbeat.
-		//Divided by 2, otherwise it is too slow.
-		var/rate = (BPM_AUDIBLE_HEARTRATE - pulse)/2
-		if(owner.has_chemical_effect(CE_PULSE, 30))
-			heartbeat++
-
-		if(heartbeat >= rate)
-			heartbeat = 0
-			sound_to(owner, sound(beat_sound,0,0,0,50))
-		else
-			heartbeat++
+		var/beats = round(pulse/30)
+		var/instability_factor = 0.3*instability
+		var/time_per_beat = 20/beats
+		for(var/i = 1 to beats)
+			var/volume = (rand(-instability_factor, instability_factor) + 30) * cardiac_output
+			volume = min(volume, 100)
+			if(volume < 1)
+				continue
+			spawn((i-1)*time_per_beat)
+				sound_to(owner, sound(beat_sound,0,0,0,volume))
 
 /obj/item/organ/internal/heart/proc/is_working()
 	if(!is_usable())

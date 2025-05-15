@@ -198,9 +198,7 @@
 	make_log("REACTOR CHAMBER PURGED.", 3)
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	playsound(rcore.superstructure, 'sound/effects/purge.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
-	var/turf/T = get_turf(rcore)
-	var/datum/gas_mixture/coreenvironment = T.return_air()
-	var/datum/gas_mixture/total_mixture = coreenvironment.remove_ratio(0.8)
+	var/datum/gas_mixture/total_mixture = rcore.containment_field.remove_ratio(0.9)
 	var/turf/sT = get_turf(rcore.superstructure)
 	var/datum/gas_mixture/senvironment = sT.return_air()
 	senvironment.merge(total_mixture.remove_ratio(0.05))
