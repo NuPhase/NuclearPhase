@@ -137,7 +137,7 @@
 	reagents.add_reagent(/decl/material/liquid/nanoblood/saline, volume * 0.85)
 
 /obj/item/chems/ivbag/antibiotics
-	name = "topical antibiotics infusion pack"
+	name = "weak antibiotics infusion pack"
 	additional_examine_info = "96% saline|4% amicile."
 	volume = 800
 

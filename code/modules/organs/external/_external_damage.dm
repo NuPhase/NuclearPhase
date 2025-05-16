@@ -52,7 +52,7 @@
 		if((limb_flags & ORGAN_FLAG_CAN_AMPUTATE) && get_config_value(/decl/config/toggle/on/health_limbs_can_break))
 			var/total_damage = brute_dam + burn_dam + brute + burn + spillover
 			var/threshold = max_damage * get_config_value(/decl/config/num/health_organ_health_multiplier)
-			if(total_damage > threshold)
+			if(total_damage > threshold && (brute > min_broken_damage || burn > min_broken_damage))
 				if(attempt_dismemberment(pure_brute, burn, sharp, edge, used_weapon, spillover, total_damage > threshold*6, override_droplimb = override_droplimb))
 					return
 

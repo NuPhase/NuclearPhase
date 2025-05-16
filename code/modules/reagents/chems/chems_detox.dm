@@ -89,8 +89,7 @@
 	drug_category = DRUG_CATEGORY_TOX
 
 /decl/material/solid/sodium_bicarbonate/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
-	var/volume = REAGENT_VOLUME(holder, type)
-	H.bloodstr.remove_reagent(/decl/material/solid/potassium, volume * 0.7)
+	H.bloodstr.remove_reagent(/decl/material/solid/potassium, removed)
 
 /decl/material/liquid/metoclopramide
 	name = "metoclopramide"

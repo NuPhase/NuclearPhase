@@ -84,13 +84,6 @@
 			)
 
 	adding += new /obj/screen/ai_button(null,
-			ui_ai_call_shuttle,
-			"Call Shuttle",
-			"call_shuttle",
-			/mob/living/silicon/ai/proc/ai_call_shuttle
-			)
-
-	adding += new /obj/screen/ai_button(null,
 			ui_ai_up,
 			"Move Upwards",
 			"ai_up",
