@@ -56,7 +56,7 @@ var/global/obj/temp_reagents_holder = new
 	total_volume = 0
 	primary_reagent = null
 	for(var/R in reagent_volumes)
-		var/vol = reagent_volumes[R]
+		var/vol = CHEMS_QUANTIZE(reagent_volumes[R])
 		if(vol < MINIMUM_CHEMICAL_VOLUME)
 			clear_reagent(R, defer_update = TRUE, force = TRUE) // defer_update is important to avoid infinite recursion
 		else
@@ -193,7 +193,7 @@ var/global/obj/temp_reagents_holder = new
 //Adds [amount] of [reagent_type] with [data] to this datum.
 //It's good practice to defer update when you add multiple reagents for optimisation purposes.
 /datum/reagents/proc/add_reagent(reagent_type, amount, data = null, safety = 0, defer_update = FALSE)
-	amount = NONUNIT_FLOOR(min(amount, REAGENTS_FREE_SPACE(src)), MINIMUM_CHEMICAL_VOLUME)
+	amount = CHEMS_QUANTIZE(min(amount, REAGENTS_FREE_SPACE(src)))
 	if(amount <= 0)
 		return FALSE
 
@@ -221,7 +221,7 @@ var/global/obj/temp_reagents_holder = new
 	return TRUE
 
 /datum/reagents/proc/remove_reagent(var/reagent_type, var/amount, var/safety = 0, var/defer_update = FALSE)
-	amount = NONUNIT_FLOOR(amount, MINIMUM_CHEMICAL_VOLUME)
+	amount = CHEMS_QUANTIZE(amount)
 	if(!isnum(amount) || amount <= 0 || REAGENT_VOLUME(src, reagent_type) <= 0)
 		return FALSE
 	reagent_volumes[reagent_type] -= amount
@@ -307,7 +307,7 @@ var/global/obj/temp_reagents_holder = new
 		clear_reagents()
 		return
 
-	var/removing = clamp(NONUNIT_FLOOR(amount, MINIMUM_CHEMICAL_VOLUME), 0, total_volume) // not ideal but something is making total_volume become NaN
+	var/removing = clamp(CHEMS_QUANTIZE(amount), 0, total_volume) // not ideal but something is making total_volume become NaN
 	if(!removing || total_volume <= 0)
 		. = 0
 		clear_reagents()
@@ -320,7 +320,7 @@ var/global/obj/temp_reagents_holder = new
 	while(removing >= MINIMUM_CHEMICAL_VOLUME && total_volume >= MINIMUM_CHEMICAL_VOLUME && !failed_remove)
 		failed_remove = TRUE
 		for(var/current in reagent_volumes)
-			var/removing_amt = min(NONUNIT_FLOOR(REAGENT_VOLUME(src, current) * part, MINIMUM_CHEMICAL_VOLUME), removing)
+			var/removing_amt = min(CHEMS_QUANTIZE(REAGENT_VOLUME(src, current) * part), removing)
 			if(removing_amt <= 0)
 				continue
 			failed_remove = FALSE
@@ -346,11 +346,21 @@ var/global/obj/temp_reagents_holder = new
 	var/part = amount / total_volume
 	. = 0
 	for(var/rtype in reagent_volumes)
-		var/amount_to_transfer = NONUNIT_FLOOR(REAGENT_VOLUME(src, rtype) * part, MINIMUM_CHEMICAL_VOLUME)
+		var/amount_to_transfer = CHEMS_QUANTIZE(REAGENT_VOLUME(src, rtype) * part)
 		target.add_reagent(rtype, amount_to_transfer * multiplier, REAGENT_DATA(src, rtype), TRUE, TRUE) // We don't react until everything is in place
 		. += amount_to_transfer
 		if(!copy)
 			remove_reagent(rtype, amount_to_transfer, TRUE, TRUE)
+
+	// Due to rounding, we may have taken less than we wanted.
+	// If we're up short, add the remainder taken from the primary reagent.
+	// If we're skipping the primary reagent we just don't do this step.
+	if(. < amount && primary_reagent && REAGENT_VOLUME(src, primary_reagent) > 0)
+		var/remainder = min(REAGENT_VOLUME(src, primary_reagent), CHEMS_QUANTIZE(amount - .))
+		target.add_reagent(primary_reagent, remainder * multiplier, REAGENT_DATA(src, primary_reagent), TRUE, TRUE)
+		. += remainder
+		if(!copy)
+			remove_reagent(primary_reagent, remainder, TRUE, TRUE)
 
 	if(!defer_update)
 		target.handle_update(safety)

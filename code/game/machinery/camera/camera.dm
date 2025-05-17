@@ -21,7 +21,7 @@
 	var/motion_sensor = FALSE
 	var/list/motionTargets = list()
 	var/detectTime = 0
-	var/alarm_delay = 100 // Don't forget, there's another 10 seconds in queueAlarm()
+	var/alarm_delay = 10 // Don't forget, there's another 10 seconds in queueAlarm()
 
 	var/number = 1
 	var/c_tag = null

@@ -25,6 +25,7 @@ export const MaintenanceReactorMonitor = (props: any, context: any) => {
           <Flex.Item height={40}>
             <Section title = "Message Log"
               fill
+              scrollable
               backgroundColor="black">
               {data.loglist.map(Log => (
                 <Box

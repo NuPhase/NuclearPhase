@@ -244,6 +244,15 @@
 /obj/structure/door/sliding/opaque/mirrored,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/it_operations)
+"aiL" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers/layer3,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/entrance_zone)
 "ajk" = (
 /obj/effect/floor_decal/corner/lightgrey/full,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3{
@@ -696,6 +705,9 @@
 "aBd" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "aBg" = (
@@ -712,6 +724,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"aBJ" = (
+/obj/machinery/camera/network/medbay{
+	dir = 4
+	},
+/turf/simulated/floor/wood/maple,
+/area/serenity/shelter/medbay/break_room)
 "aCb" = (
 /obj/structure/railing/mapped,
 /obj/structure/largecrate,
@@ -1429,6 +1447,12 @@
 /obj/structure/flora/pottedplant/tall,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
+"aYH" = (
+/obj/machinery/camera/network/cargo{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/textured/edge,
+/area/serenity/shelter/habitationdeck/messhall)
 "aYL" = (
 /obj/effect/fake_fluid,
 /turf/exterior/surface,
@@ -1799,6 +1823,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"bkh" = (
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/habitationdeck/freezer)
+"bki" = (
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/entrance_zone)
 "bkl" = (
 /obj/structure/handrail{
 	dir = 1
@@ -1892,6 +1928,9 @@
 "bmu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
@@ -2091,6 +2130,7 @@
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
+/obj/machinery/camera/network/cargo,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "btB" = (
@@ -2168,6 +2208,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/engineering/pumps_b)
+"bvW" = (
+/obj/machinery/camera/network/public{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/entrance_zone)
 "bvY" = (
 /obj/structure/reactor_table{
 	pixel_y = 6
@@ -3550,6 +3596,10 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/mining/staircase)
+"ckG" = (
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/cargo)
 "cla" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/white/monotile,
@@ -3661,6 +3711,13 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
+"cmQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "cmS" = (
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/dark/textured/half,
@@ -3749,6 +3806,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/green,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
+"cpO" = (
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/cargo)
 "cpP" = (
 /obj/machinery/embedded_controller/radio/decontamination_airlock{
 	pixel_y = 24;
@@ -4294,6 +4357,14 @@
 /obj/structure/coatrack,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"cDP" = (
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/half{
+	dir = 1
+	},
+/area/serenity/shelter/brig)
 "cDQ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/water{
 	dir = 8
@@ -4901,6 +4972,15 @@
 	dir = 1
 	},
 /area/serenity/shelter/habitationdeck/messhall)
+"cWB" = (
+/obj/effect/floor_decal/corner/white/line{
+	dir = 1
+	},
+/obj/machinery/camera/network/public{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/entrance_zone)
 "cWD" = (
 /obj/structure/rack/dark,
 /obj/random/junk,
@@ -4916,6 +4996,9 @@
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "cXt" = (
@@ -4942,6 +5025,9 @@
 "cXS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations/cavern)
 "cYl" = (
@@ -5088,6 +5174,10 @@
 	},
 /turf/simulated/floor/carpet/blue2,
 /area/serenity/shelter/habitationdeck/messhall)
+"dcQ" = (
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/entrance_zone)
 "dda" = (
 /obj/structure/stairs/very_long,
 /obj/structure/railing/mapped{
@@ -5165,6 +5255,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/habitationdeck/crew)
+"dfI" = (
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/cargo)
 "dgb" = (
 /obj/structure/wall_frame/standard,
 /obj/structure/window/reinforced/full,
@@ -5306,6 +5402,9 @@
 /obj/structure/closet,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/research{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/serenity/shelter/entrance_zone)
 "dkU" = (
@@ -5606,6 +5705,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/herringbone,
 /area/serenity/shelter/brig/prison)
+"duo" = (
+/obj/structure/bed/chair/armchair/black{
+	dir = 8
+	},
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/entrance_zone)
 "dut" = (
 /obj/structure/sign/directions/infirmary{
 	dir = 2;
@@ -6063,6 +6171,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
+"dJl" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "dJy" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -6261,6 +6375,12 @@
 /obj/machinery/communications/relay,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
+"dOL" = (
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "dPg" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -6719,6 +6839,9 @@
 /area/serenity/shelter/brig/breakroom)
 "ebY" = (
 /obj/effect/floor_decal/spline/plain/grey,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "ecb" = (
@@ -7025,6 +7148,16 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
+"ehI" = (
+/obj/machinery/light/ceiling{
+	dir = 4;
+	pixel_y = 17
+	},
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/office)
 "eie" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -7200,6 +7333,7 @@
 "emZ" = (
 /obj/structure/bed/sofa/l/blue,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig)
 "ena" = (
@@ -7275,6 +7409,12 @@
 /obj/structure/ladder,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/mining)
+"epA" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "epJ" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/white/monotile,
@@ -7354,6 +7494,9 @@
 /area/serenity/shelter/entrance_zone)
 "esj" = (
 /obj/structure/bed/sofa/l/black,
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/textured/edge{
 	dir = 1
 	},
@@ -7762,6 +7905,14 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/therapy)
+"eDQ" = (
+/obj/structure/railing/mapped,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/reactor)
 "eDV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/ceiling{
@@ -8062,6 +8213,12 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
+"eMU" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations)
 "eMX" = (
 /obj/effect/floor_decal/carpet/purple,
 /obj/effect/floor_decal/carpet/purple{
@@ -8596,6 +8753,13 @@
 /obj/structure/fire_hydrant_auto,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"fel" = (
+/obj/effect/floor_decal/corner/white/mono,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/engineering/reactor_operations)
 "feU" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -8625,6 +8789,13 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"ffo" = (
+/obj/structure/rack/dark,
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/habitationdeck/freezer)
 "ffy" = (
 /obj/machinery/button/blast_door{
 	dir = 8;
@@ -8823,6 +8994,9 @@
 /obj/item/clothing/mask/gas/half,
 /obj/item/clothing/mask/gas/half,
 /obj/item/clothing/mask/gas/half,
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "fmH" = (
@@ -8947,6 +9121,12 @@
 /obj/structure/fire_sprinkler,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/brig/office)
+"fqZ" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/reactor_operations)
 "frb" = (
 /obj/structure/reagent_dispensers/barrel/water,
 /obj/effect/floor_decal/corner/red/line,
@@ -9046,6 +9226,12 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
+"fvl" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/engineering/pumps_b)
 "fvy" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
@@ -9870,6 +10056,13 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"fWr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "fWx" = (
 /obj/structure/telemetry/server_rack,
 /obj/machinery/light/ceiling{
@@ -10256,6 +10449,12 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"ghk" = (
+/obj/machinery/camera/network/medbay{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/therapy)
 "ghp" = (
 /obj/structure/flora/pottedplant/minitree,
 /obj/machinery/light/neon,
@@ -10436,6 +10635,9 @@
 /area/serenity/shelter/habitationdeck/crew)
 "gkX" = (
 /obj/structure/rack/dark,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/pumps_a)
 "glf" = (
@@ -10994,6 +11196,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers/layer3,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"gxw" = (
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "gyu" = (
 /obj/structure/table/reinforced,
 /obj/structure/flora/pottedplant/deskfern,
@@ -11025,6 +11231,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"gzv" = (
+/obj/effect/floor_decal/industrial/traffic{
+	dir = 8
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/entrance_zone)
 "gzA" = (
 /turf/simulated/floor/plating,
 /area/serenity)
@@ -11129,6 +11344,13 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
+"gCD" = (
+/obj/structure/catwalk,
+/obj/machinery/camera/network/public{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/serenity/shelter/staircase)
 "gCM" = (
 /obj/structure/door/sliding{
 	dir = 8;
@@ -11171,6 +11393,10 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations)
+"gDT" = (
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "gEu" = (
 /obj/structure/table/woodentable/mahogany,
 /obj/item/paper_bin,
@@ -11428,6 +11654,12 @@
 /obj/structure/railing/mapped,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"gLa" = (
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity/shelter/cargo)
 "gLh" = (
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
@@ -11750,6 +11982,10 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
+"gVO" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/electrical)
 "gWe" = (
 /obj/structure/table/steel,
 /obj/item/paper_bin,
@@ -12738,6 +12974,13 @@
 	},
 /turf/simulated/floor/tiled/dark/herringbone,
 /area/serenity/shelter/brig/barracks)
+"hzx" = (
+/obj/effect/floor_decal/corner/yellow/line{
+	dir = 1
+	},
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "hzz" = (
 /obj/machinery/door/airlock/hatch/maintenance{
 	name = "Heat Exchanger"
@@ -13105,6 +13348,9 @@
 /area/serenity/shelter/habitationdeck/crew)
 "hNf" = (
 /obj/structure/bed,
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/brig/medbay)
 "hNs" = (
@@ -13292,6 +13538,9 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
 "hUr" = (
@@ -13749,12 +13998,11 @@
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/habitationdeck/kitchen)
 "ihX" = (
-/obj/effect/floor_decal/corner/white/line{
-	dir = 1
+/obj/machinery/camera/network/engineering{
+	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/open,
-/area/serenity/shelter/entrance_zone)
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/electrical)
 "ihY" = (
 /obj/structure/rack/dark,
 /turf/simulated/floor/tiled/white/monotile,
@@ -13872,6 +14120,9 @@
 	flow_capacity = 216;
 	name = "T-FEEDWATER CP-MAKEUP";
 	uid = "T-FEEDWATER CP-MAKEUP"
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 8
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
@@ -14602,6 +14853,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
+"iIu" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig)
 "iIC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 5
@@ -14634,6 +14892,9 @@
 /area/serenity/shelter/entrance_zone)
 "iIS" = (
 /obj/structure/fire_hydrant_auto,
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig)
 "iIW" = (
@@ -14681,6 +14942,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"iKb" = (
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/small,
+/area/serenity/shelter/brig/preparation)
 "iKf" = (
 /obj/structure/catwalk,
 /obj/machinery/door/airlock/external/bolted{
@@ -14689,6 +14956,13 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/entrance_zone)
+"iKg" = (
+/obj/machinery/lung_ventilator,
+/obj/machinery/camera/network/medbay{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/therapy)
 "iKj" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -15268,6 +15542,12 @@
 	},
 /turf/simulated/floor/carpet/blue2,
 /area/serenity/shelter/habitationdeck/crew)
+"iZA" = (
+/obj/machinery/camera/network/research{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "iZC" = (
 /obj/structure/sign/warning/secure_area{
 	pixel_y = 32
@@ -15520,6 +15800,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
+"jhN" = (
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/entrance_zone)
 "jhU" = (
 /obj/effect/floor_decal/corner/yellow/border,
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
@@ -15621,8 +15905,13 @@
 "jlp" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/syringes,
+/obj/machinery/camera/network/medbay,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/surgery)
+"jlw" = (
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/entrance_zone)
 "jlE" = (
 /obj/effect/floor_decal/industrial/fire/fulltile,
 /obj/structure/closet/firecloset,
@@ -16719,6 +17008,9 @@
 /obj/machinery/rotating_alarm/reactor{
 	dir = 4
 	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "jPm" = (
@@ -16887,6 +17179,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/entrance_zone)
+"jUu" = (
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "jUB" = (
 /obj/structure/flora/pottedplant/tall,
 /obj/effect/decal/cleanable/dirt,
@@ -16903,6 +17201,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/habitationdeck/crew)
+"jVS" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/serenity/shelter/engineering/pumps_a)
 "jVY" = (
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/habitationdeck/crew)
@@ -17384,6 +17688,12 @@
 	},
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/armory)
+"kjC" = (
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/preparation)
 "kjN" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -17680,6 +17990,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_grid,
 /area/serenity/shelter/brig/prison)
+"krh" = (
+/obj/effect/floor_decal/corner/red/line{
+	dir = 8
+	},
+/obj/machinery/camera/network/research{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "kry" = (
 /obj/effect/paint_stripe/white,
 /turf/simulated/wall/concrete/nano,
@@ -18140,6 +18459,9 @@
 /obj/effect/floor_decal/corner/grey/bordercorner{
 	dir = 8
 	},
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "kFw" = (
@@ -18183,6 +18505,12 @@
 "kGQ" = (
 /obj/machinery/modernsuit_storage/research_cold,
 /turf/simulated/floor/tiled,
+/area/serenity/shelter/entrance_zone)
+"kGU" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
 "kHb" = (
 /obj/structure/bed/chair/armchair/black{
@@ -18290,6 +18618,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations)
+"kJm" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "kJx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /obj/machinery/light/ceiling{
@@ -18359,6 +18693,14 @@
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/mining/processing)
+"kLQ" = (
+/obj/machinery/atmospherics/binary/decontaminator,
+/obj/effect/floor_decal/corner/grey/borderfull,
+/obj/machinery/camera/network/medbay{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/lobby)
 "kLY" = (
 /obj/structure/table/steel,
 /obj/item/storage/box/cups,
@@ -18451,6 +18793,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/yellow/line,
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "kOy" = (
@@ -18936,6 +19281,10 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/it_operations/server)
+"ldi" = (
+/obj/machinery/camera/network/medbay,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/genetics)
 "ldv" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped,
@@ -19074,6 +19423,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
+"lgs" = (
+/obj/machinery/camera/network/public{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "lgt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -19169,6 +19524,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/medbay/lobby)
+"lkb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/office)
 "lkd" = (
 /obj/machinery/door/blast/regular{
 	id_tag = "atmos_decont_exterior"
@@ -19249,6 +19611,12 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"lmG" = (
+/obj/machinery/camera/network/public{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "lmI" = (
 /obj/machinery/atmospherics/pipe/simple/visible/water{
 	dir = 9
@@ -19920,6 +20288,10 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay)
+"lDE" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/open,
+/area/serenity/shelter/engineering/pumps_a)
 "lDF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply/layer1,
@@ -19996,6 +20368,13 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig)
+"lFj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/entrance_zone)
 "lFC" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -20140,6 +20519,15 @@
 "lIm" = (
 /turf/simulated/floor/carpet/purple,
 /area/serenity/shelter/habitationdeck/crew)
+"lJo" = (
+/obj/structure/table/steel,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/reactor_operations)
 "lJR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -20298,6 +20686,12 @@
 	},
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/habitationdeck/crew)
+"lND" = (
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "lOd" = (
 /obj/structure/bed/sofa/l/black,
 /turf/simulated/floor/tiled/dark/textured,
@@ -20536,6 +20930,19 @@
 	dir = 4
 	},
 /turf/simulated/floor/concrete/black,
+/area/serenity/shelter/entrance_zone)
+"lUL" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers/layer3,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/entrance_zone)
 "lUX" = (
 /obj/effect/floor_decal/corner/grey/bordercorner{
@@ -21060,6 +21467,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig)
+"mhX" = (
+/obj/structure/cart,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/electrical)
 "mhY" = (
 /obj/effect/floor_decal/corner/grey/border,
 /turf/simulated/floor/tiled/white/monotile,
@@ -21506,6 +21920,12 @@
 	},
 /turf/simulated/floor/carpet/red,
 /area/serenity/shelter/habitationdeck/crew)
+"mpL" = (
+/obj/machinery/camera/network/cargo{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/cargo)
 "mpM" = (
 /obj/structure/door/sliding,
 /obj/effect/paint_stripe/blue,
@@ -21519,6 +21939,7 @@
 /obj/item/pen,
 /obj/machinery/rotating_alarm/reactor/control_room,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "mqn" = (
@@ -21727,6 +22148,9 @@
 /obj/effect/floor_decal/corner/red/bordercorner{
 	dir = 4
 	},
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "muc" = (
@@ -21919,6 +22343,12 @@
 	dir = 1
 	},
 /area/serenity/shelter/engineering/reactor_operations)
+"mAr" = (
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "mAx" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -22447,6 +22877,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
+"mUY" = (
+/obj/machinery/camera/network/public{
+	dir = 1
+	},
+/turf/simulated/open,
+/area/serenity/shelter/staircase)
 "mVc" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/chems/drinks/glass2/coffeecup/pawn,
@@ -22599,6 +23035,12 @@
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/genetics)
+"mYV" = (
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "mYZ" = (
 /obj/structure/railing/mapped{
 	dir = 4
@@ -23116,6 +23558,24 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/entrance_zone)
+"nmn" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
+"nmt" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "nmX" = (
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
@@ -23485,6 +23945,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"nyB" = (
+/obj/effect/floor_decal/corner/lightgrey/full,
+/obj/effect/floor_decal/corner/grey{
+	dir = 5
+	},
+/obj/structure/table/marble,
+/obj/machinery/cooker/oven{
+	pixel_y = -6
+	},
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/tiled/white,
+/area/serenity/shelter/habitationdeck/kitchen)
 "nyD" = (
 /obj/structure/bed/sofa/m/black{
 	dir = 1
@@ -23603,6 +24075,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
+"nBP" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "nBY" = (
 /obj/structure/wall_frame/standard,
 /obj/structure/window/reinforced/full,
@@ -23668,6 +24144,13 @@
 "nDA" = (
 /turf/simulated/floor/concrete/black,
 /area/turbolift/serenity/reactor/a1)
+"nEh" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "nEz" = (
 /obj/machinery/dehumidifier,
 /obj/machinery/light{
@@ -24673,6 +25156,12 @@
 /obj/machinery/gibber,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/freezer)
+"oeL" = (
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/cargo)
 "oeQ" = (
 /obj/structure/door/fire{
 	dir = 8
@@ -24736,6 +25225,9 @@
 "ofT" = (
 /obj/structure/closet/crate/paper_refill,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "ogf" = (
@@ -24854,6 +25346,15 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
+"ojm" = (
+/obj/effect/floor_decal/corner/yellow/line{
+	dir = 8
+	},
+/obj/machinery/camera/network/public{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "ojF" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
@@ -25107,6 +25608,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/reactor)
+"opf" = (
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/serenity/shelter/entrance_zone)
 "opl" = (
 /obj/structure/bed/chair/armchair/teal{
 	dir = 4
@@ -25132,6 +25639,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"opz" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "oqo" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /turf/simulated/floor/tiled/white/monotile,
@@ -25214,6 +25727,9 @@
 /obj/structure/bed/sofa/r/black,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/textured/edge{
 	dir = 1
 	},
@@ -25235,6 +25751,9 @@
 "ost" = (
 /obj/structure/rack/dark,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "osu" = (
@@ -25551,6 +26070,9 @@
 /obj/structure/table/woodentable/walnut,
 /obj/item/paper_bin,
 /obj/item/pen/retractable,
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/textured/corner{
 	dir = 1
 	},
@@ -25820,6 +26342,12 @@
 	dir = 1
 	},
 /area/serenity/shelter/habitationdeck/crew)
+"oJq" = (
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/entrance_zone)
 "oJS" = (
 /obj/structure/table,
 /obj/item/pen,
@@ -25991,6 +26519,10 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/armory)
+"oOv" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "oOA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -26626,6 +27158,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/medbay)
+"pgn" = (
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/serenity/shelter/cargo)
 "pgL" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 4
@@ -26781,6 +27319,10 @@
 /obj/effect/item_spawner/trash,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/habitationdeck/messhall)
+"pmr" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/reactor)
 "pmC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -27396,6 +27938,9 @@
 	dir = 9
 	},
 /obj/structure/catwalk,
+/obj/machinery/camera/network/public{
+	dir = 1
+	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "pCu" = (
@@ -27718,6 +28263,7 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "pMe" = (
 /obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/camera/network/medbay,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay)
 "pMj" = (
@@ -27850,6 +28396,13 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
+"pPi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "pPA" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
@@ -27920,6 +28473,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
+"pSg" = (
+/obj/machinery/camera/network/public{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/edge{
+	dir = 4
+	},
+/area/serenity/shelter/entrance_zone)
 "pSr" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-8"
@@ -28180,6 +28741,12 @@
 	},
 /turf/simulated/floor/carpet/orange,
 /area/serenity/shelter/habitationdeck/crew)
+"pZl" = (
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "pZr" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -28429,6 +28996,13 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
+"qkB" = (
+/obj/structure/catwalk,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations/cavern)
 "qkV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/edge{
@@ -28517,6 +29091,12 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
+"qoK" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "qoW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
@@ -28755,6 +29335,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/pumps_b)
+"qvb" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "qvn" = (
 /obj/structure/railing/mapped{
 	dir = 8
@@ -28807,6 +29393,7 @@
 	pixel_x = -10;
 	pixel_y = 24
 	},
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "qwq" = (
@@ -29115,6 +29702,12 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations/cavern)
+"qGs" = (
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/armory)
 "qGu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /obj/effect/decal/cleanable/dirt,
@@ -29191,6 +29784,12 @@
 	},
 /turf/simulated/floor/carpet/red,
 /area/serenity/shelter/habitationdeck/crew)
+"qIc" = (
+/obj/effect/paint_stripe/white,
+/obj/structure/wall_frame/standard,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "qJa" = (
 /obj/structure/sign/watercloset{
 	dir = 1;
@@ -29243,6 +29842,15 @@
 /obj/structure/reagent_dispensers/barrel/water,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/mining/processing)
+"qKw" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/office)
 "qKz" = (
 /obj/structure/railing/mapped,
 /turf/simulated/floor/concrete/light_gray,
@@ -29373,6 +29981,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
+"qNE" = (
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/serenity/shelter/cargo)
 "qNJ" = (
 /obj/structure/stairs/very_long/north,
 /obj/structure/railing/mapped{
@@ -29397,6 +30011,19 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
+"qOu" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity)
+"qOO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/entrance_zone)
 "qOT" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped{
@@ -29718,6 +30345,10 @@
 /obj/structure/door/fire,
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/reactor_operations)
+"qWd" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "qWm" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/decal/cleanable/dirt,
@@ -30251,7 +30882,7 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "rkA" = (
-/obj/machinery/camera{
+/obj/machinery/camera/network/public{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
@@ -30302,6 +30933,15 @@
 /obj/structure/fire_sprinkler,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/mining/staircase)
+"rmZ" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/pumps_b)
 "rnd" = (
 /obj/structure/table/woodentable_reinforced/walnut,
 /obj/machinery/media/jukebox{
@@ -30649,6 +31289,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/pumps_a)
+"rvY" = (
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 4
+	},
+/obj/machinery/camera/network/engineering,
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations/cavern)
 "rwe" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/concrete/gray,
@@ -30855,6 +31502,12 @@
 /obj/machinery/atmospherics/pipe/zpipe/down,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"rCP" = (
+/obj/machinery/camera/network/mining{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/mining)
 "rDk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
@@ -31239,6 +31892,9 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "rNc" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/engineering/pumps_b)
 "rNf" = (
@@ -31826,6 +32482,10 @@
 /obj/item/paper,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/preparation)
+"sec" = (
+/obj/machinery/camera/network/security,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/prison)
 "seB" = (
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/atmos)
@@ -32101,6 +32761,9 @@
 "snJ" = (
 /obj/structure/table/woodentable/walnut,
 /obj/machinery/chemical_dispenser/bar_coffee/full,
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/textured/corner,
 /area/serenity/shelter/habitationdeck/crew)
 "soh" = (
@@ -32333,6 +32996,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations)
+"suX" = (
+/obj/machinery/camera/network/security{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/small,
+/area/serenity/shelter/brig/armory)
 "svf" = (
 /obj/structure/railing/mapped{
 	dir = 8
@@ -32508,6 +33177,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"szs" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations/office)
 "szE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/violet{
 	dir = 4
@@ -33774,6 +34449,12 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical)
+"tou" = (
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/office)
 "toH" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -34174,6 +34855,16 @@
 /obj/effect/paint,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical)
+"tCn" = (
+/obj/effect/floor_decal/corner/grey/borderfull,
+/obj/machinery/atmospherics/binary/decontaminator{
+	dir = 1
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "tCw" = (
 /obj/structure/table/steel,
 /obj/structure/fire_hydrant_manual{
@@ -34596,6 +35287,13 @@
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/pumps_b)
+"tPX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/public{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/entrance_zone)
 "tQG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -34765,6 +35463,9 @@
 /obj/machinery/rotating_alarm/reactor{
 	dir = 4
 	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "tVE" = (
@@ -34916,6 +35617,12 @@
 /obj/effect/decal/cleanable/plant_bits,
 /turf/simulated/floor/carpet/red,
 /area/serenity/shelter/habitationdeck/crew)
+"tYP" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/electrical)
 "tZd" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -34966,6 +35673,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"tZY" = (
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/cargo)
 "uan" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/effect/decal/cleanable/dirt,
@@ -35113,6 +35826,15 @@
 	dir = 2
 	},
 /turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/entrance_zone)
+"uea" = (
+/obj/structure/rack/dark,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
 "ueu" = (
 /obj/effect/floor_decal/carpet/purple{
@@ -35428,6 +36150,13 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/habitationdeck/crew)
+"umB" = (
+/obj/effect/floor_decal/corner/lightgrey/mono,
+/obj/machinery/camera/network/medbay{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/therapy)
 "umE" = (
 /obj/effect/paint_stripe/blue,
 /obj/effect/paint,
@@ -35733,6 +36462,23 @@
 	dir = 8
 	},
 /area/serenity/shelter/habitationdeck/messhall)
+"uwa" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/water,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/reactor_operations)
+"uwg" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/camera/network/public{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "uwv" = (
 /obj/structure/table/steel,
 /obj/item/pen/retractable/red,
@@ -36078,6 +36824,11 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"uHV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "uHX" = (
 /obj/structure/table/steel,
 /obj/machinery/light{
@@ -36149,6 +36900,17 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
+"uJi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3{
+	dir = 4
+	},
+/obj/machinery/camera/network/public,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "uJj" = (
 /obj/structure/window/reinforced,
 /obj/machinery/reactor_server,
@@ -37028,6 +37790,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"vhp" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "vhq" = (
 /obj/structure/closet/crate/trashcart,
 /obj/effect/decal/cleanable/dirt,
@@ -37220,6 +37988,12 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/entrance_zone)
+"vlK" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor)
 "vlT" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped,
@@ -37597,6 +38371,13 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/supply,
 /turf/simulated/open,
 /area/serenity/shelter/staircase)
+"vxn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig)
 "vxY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 6
@@ -37717,6 +38498,11 @@
 /obj/structure/railing/mapped,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"vBP" = (
+/obj/structure/rack,
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/cargo)
 "vBR" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -37845,6 +38631,12 @@
 /obj/machinery/network/mainframe/files,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/it_operations/server)
+"vEN" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/pumps_b)
 "vES" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -38270,11 +39062,20 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"vSk" = (
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig)
 "vSl" = (
 /obj/structure/table/stainless_steel,
 /obj/item/storage/box/syringes,
 /obj/effect/floor_decal/corner/yellow/line{
 	dir = 8
+	},
+/obj/machinery/camera/network/research{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
@@ -39048,6 +39849,13 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/mining/processing)
+"wqb" = (
+/obj/structure/closet/radiation,
+/obj/machinery/camera/network/medbay{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/entrance_zone)
 "wqo" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -39825,6 +40633,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"wLy" = (
+/obj/machinery/camera/network/cargo{
+	dir = 1
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/cargo)
 "wLL" = (
 /obj/machinery/atmospherics/pipe/zpipe/down/steam{
 	dir = 1
@@ -40307,6 +41121,18 @@
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"wYT" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers/layer3,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/entrance_zone)
 "wZd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
@@ -40620,6 +41446,9 @@
 	dir = 4;
 	pixel_x = -32
 	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
 "xgd" = (
@@ -40644,6 +41473,12 @@
 /obj/structure/catwalk,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"xgH" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "xgL" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 10
@@ -40691,6 +41526,9 @@
 /obj/effect/floor_decal/corner/yellow/line,
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 1
+	},
+/obj/machinery/camera/network/public{
+	dir = 8
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
@@ -40972,6 +41810,13 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/breakroom)
+"xpf" = (
+/obj/effect/floor_decal/corner/yellow/bordercorner,
+/obj/machinery/camera/network/public{
+	dir = 8
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "xpg" = (
 /obj/structure/filingcabinet{
 	density = 0;
@@ -41019,6 +41864,13 @@
 /obj/structure/door/sliding,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
+"xqa" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-8"
+	},
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical)
 "xqf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /obj/machinery/meter{
@@ -41271,6 +42123,12 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/brig)
+"xyr" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/reactor_operations)
 "xyt" = (
 /obj/machinery/light,
 /turf/simulated/floor/concrete,
@@ -41476,6 +42334,16 @@
 /obj/structure/window/basic/full,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
+"xDy" = (
+/obj/machinery/atmospherics/binary/decontaminator{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/grey/borderfull,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/reactor)
 "xDB" = (
 /turf/unsimulated/map_edge,
 /area/surface)
@@ -41702,6 +42570,13 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
+"xJt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/public{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/entrance_zone)
 "xJv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -42305,6 +43180,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"ycQ" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "ydo" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -42398,6 +43279,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"yfQ" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical)
 "yfV" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -42448,6 +43339,12 @@
 /obj/machinery/drainage_pump,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/mining/drill)
+"yhH" = (
+/obj/machinery/camera/network/security{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig)
 "yhI" = (
 /obj/structure/railing/mapped{
 	dir = 8
@@ -82382,7 +83279,7 @@ xEy
 xEy
 xEy
 bmM
-llZ
+sec
 kAc
 llZ
 llZ
@@ -82392,7 +83289,7 @@ mzk
 llZ
 llZ
 kAc
-byD
+vxn
 kze
 gNa
 ngC
@@ -89936,7 +90833,7 @@ gFe
 rjr
 vdL
 rMO
-xdk
+suX
 xdk
 uTS
 xdk
@@ -91012,7 +91909,7 @@ vgt
 mga
 iRh
 mga
-aVM
+qGs
 dkU
 iyd
 iRh
@@ -91399,7 +92296,7 @@ tBn
 uDo
 wmp
 cvz
-vgt
+iKb
 tui
 uWk
 wmp
@@ -91711,7 +92608,7 @@ mIn
 kdj
 dYh
 trh
-dYh
+vSk
 fGP
 xEy
 "}
@@ -91798,7 +92695,7 @@ cup
 nEP
 aih
 eMi
-aih
+kjC
 aih
 eMi
 aih
@@ -91982,7 +92879,7 @@ iGZ
 iGZ
 iGZ
 iGZ
-iGZ
+jUu
 czf
 hxg
 spw
@@ -93951,7 +94848,7 @@ aIK
 dIv
 obh
 obh
-obh
+qNE
 obh
 obh
 obh
@@ -94841,7 +95738,7 @@ prw
 prw
 prw
 twf
-prw
+cpO
 prw
 prw
 dIv
@@ -95037,7 +95934,7 @@ prw
 prw
 ecL
 rVV
-rVV
+dfI
 rVV
 rVV
 ltS
@@ -95521,7 +96418,7 @@ xEy
 xEy
 xEy
 dIv
-kyP
+vBP
 sYC
 cqY
 gNy
@@ -95825,7 +96722,7 @@ cGd
 rVV
 nWi
 kQh
-kQh
+tZY
 mfP
 kQh
 mfP
@@ -96109,7 +97006,7 @@ xEy
 xEy
 xEy
 dIv
-kyP
+vBP
 sYC
 cqY
 gNy
@@ -96697,7 +97594,7 @@ xEy
 xEy
 xEy
 dIv
-kyP
+vBP
 sYC
 cqY
 gNy
@@ -100238,7 +101135,7 @@ xMU
 xmJ
 lPt
 vel
-xmJ
+tou
 qwc
 xEy
 "}
@@ -100513,10 +101410,10 @@ bcE
 hge
 dYh
 mQH
-ofP
+iIu
 fRK
 ugA
-cOG
+ehI
 pZG
 cOG
 xMU
@@ -100623,7 +101520,7 @@ kSQ
 qwc
 ewC
 uZV
-pci
+lkb
 uZV
 qwc
 qwc
@@ -100909,7 +101806,7 @@ fRK
 fRK
 cXt
 kFA
-fKg
+cDP
 ogf
 fKg
 gIu
@@ -100987,7 +101884,7 @@ dsW
 uaU
 sVH
 bcE
-ikt
+qWd
 hXS
 mbA
 uNr
@@ -101001,7 +101898,7 @@ dsW
 dsW
 bcE
 gEX
-dYh
+yhH
 dYh
 ott
 fRK
@@ -101402,7 +102299,7 @@ ncz
 ncz
 abq
 ncz
-ncz
+lgs
 ncz
 rjc
 phI
@@ -102192,7 +103089,7 @@ sxW
 phI
 wIs
 mRO
-ncz
+lmG
 gpO
 xEy
 xEy
@@ -102953,7 +103850,7 @@ fbt
 wSY
 fbt
 aDC
-aEW
+pPi
 ikt
 aEW
 aEW
@@ -103068,7 +103965,7 @@ ncz
 ncz
 ncz
 phI
-wIs
+uwg
 dIv
 wHf
 prw
@@ -103369,7 +104266,7 @@ qtR
 dQY
 kGq
 rVV
-rVV
+dfI
 rVV
 rVV
 rVV
@@ -103554,7 +104451,7 @@ xeh
 aIK
 aIK
 dIv
-rVV
+ckG
 rVV
 cGd
 rVV
@@ -104546,7 +105443,7 @@ rVV
 rVV
 rVV
 rVV
-rVV
+oeL
 rVV
 jOs
 pXx
@@ -109087,7 +109984,7 @@ wfl
 ciV
 hUG
 jCV
-hUG
+krh
 ciV
 wfl
 rXa
@@ -109310,7 +110207,7 @@ nrw
 hak
 hul
 yiB
-eCZ
+ihX
 eCZ
 ame
 xEy
@@ -109577,7 +110474,7 @@ xEy
 wfl
 svV
 iGr
-puU
+iZA
 svV
 vdB
 rpF
@@ -109608,7 +110505,7 @@ eCZ
 eCZ
 xMj
 sZc
-edq
+nmn
 edq
 xzX
 hza
@@ -109623,7 +110520,7 @@ ouz
 hAf
 uHS
 aEW
-ikt
+dJl
 aEW
 csg
 xEy
@@ -109789,7 +110686,7 @@ xVp
 lRG
 pFA
 xIv
-tgI
+xqa
 rOS
 dXp
 dXp
@@ -110291,7 +111188,7 @@ mlQ
 msK
 nLB
 eCZ
-eCZ
+tYP
 xMj
 jme
 cHJ
@@ -110476,7 +111373,7 @@ eCZ
 eCZ
 aOV
 uEL
-jvZ
+mhX
 jvZ
 eCZ
 eCZ
@@ -111069,7 +111966,7 @@ wKn
 lEH
 tkJ
 tkJ
-tkJ
+yfQ
 fyv
 uhC
 uhC
@@ -111750,7 +112647,7 @@ bVp
 bVp
 bVp
 bHq
-eCZ
+gVO
 eaQ
 eCZ
 eaQ
@@ -111978,7 +112875,7 @@ qUP
 aUf
 aEW
 csg
-sDL
+nEh
 sDL
 qYc
 eoA
@@ -112189,7 +113086,7 @@ sxW
 tMx
 sxW
 miF
-miF
+mUY
 gpO
 dIv
 dIv
@@ -112548,7 +113445,7 @@ sJZ
 hjX
 qJe
 aEW
-aEW
+pPi
 aEW
 aEW
 aEW
@@ -112563,7 +113460,7 @@ mmQ
 ikt
 aEW
 ikt
-aEW
+pPi
 eVA
 bgo
 ncz
@@ -112876,7 +113773,7 @@ rVV
 rVV
 rVV
 rVV
-rVV
+wLy
 dIv
 prw
 cdV
@@ -112963,7 +113860,7 @@ ray
 aIK
 aIK
 gpO
-ncz
+gxw
 ncz
 ncz
 ncz
@@ -113364,7 +114261,7 @@ dIv
 rqk
 jRr
 ftR
-jRr
+pgn
 hls
 dIv
 sRT
@@ -113467,7 +114364,7 @@ nat
 dIv
 cnh
 prw
-prw
+mpL
 dIv
 xEy
 xEy
@@ -114007,7 +114904,7 @@ iMw
 lqD
 iHn
 jtD
-iHn
+xDy
 gnN
 iHn
 jtD
@@ -114442,7 +115339,7 @@ dIv
 ssy
 eko
 eko
-jRr
+gLa
 jRr
 qGW
 dIv
@@ -114588,7 +115485,7 @@ oAs
 bUS
 iig
 xeh
-xeh
+vlK
 jIT
 dio
 iig
@@ -114699,7 +115596,7 @@ hgN
 hus
 aIK
 aIK
-ray
+pmr
 ray
 cYy
 xeh
@@ -114882,7 +115779,7 @@ nqc
 nqc
 ikb
 ikb
-ikb
+fel
 hus
 auJ
 auJ
@@ -115300,7 +116197,7 @@ jao
 vgp
 ray
 vyY
-kCC
+eDQ
 iig
 xeh
 xeh
@@ -118104,13 +119001,13 @@ wfl
 xEy
 wfl
 djl
-puU
+iZA
 aEZ
 puU
 aEZ
 wfl
 djl
-puU
+iZA
 aEZ
 puU
 aEZ
@@ -118802,7 +119699,7 @@ xEe
 puU
 oxP
 puU
-puU
+lND
 gjo
 puU
 djl
@@ -118916,7 +119813,7 @@ kDy
 tpg
 wPI
 sEn
-qqM
+rmZ
 xIo
 sHv
 xPO
@@ -119021,7 +119918,7 @@ uxL
 hJz
 mXK
 mXK
-mXK
+fvl
 mXK
 mXK
 jOg
@@ -119799,7 +120696,7 @@ vHO
 jOS
 hqN
 nIZ
-nIZ
+vEN
 mkS
 ivX
 dhH
@@ -119887,7 +120784,7 @@ goM
 lSR
 gIe
 ivf
-gpU
+qoK
 gpU
 gpU
 oGe
@@ -120314,7 +121211,7 @@ cUg
 cDy
 uEc
 vNt
-vNt
+gCD
 vNt
 vNt
 vNt
@@ -120558,7 +121455,7 @@ pUh
 pUh
 cvJ
 ppA
-iRY
+rvY
 bVp
 bVp
 bVp
@@ -120618,7 +121515,7 @@ miF
 vdb
 mRO
 ncz
-ncz
+lmG
 gpO
 xEy
 xEy
@@ -120696,7 +121593,7 @@ rDx
 pnz
 bpq
 lna
-bhQ
+xgH
 bhQ
 rLD
 rLD
@@ -121270,7 +122167,7 @@ jXt
 hMu
 nNk
 luE
-itQ
+hzx
 bhQ
 kdL
 grC
@@ -121388,7 +122285,7 @@ xEy
 xEy
 gpO
 ncz
-ncz
+mAr
 pRh
 eoA
 eoA
@@ -121696,7 +122593,7 @@ miF
 miF
 sxW
 bZs
-ncz
+lmG
 gpO
 xEy
 xEy
@@ -121950,7 +122847,7 @@ qLs
 qqH
 uFd
 bhQ
-bhQ
+vhp
 luE
 aIK
 aIK
@@ -122137,7 +123034,7 @@ bzK
 vWT
 xTs
 bzK
-bzK
+qkB
 mEX
 phE
 phE
@@ -122228,10 +123125,10 @@ iRY
 bVp
 lwv
 bzK
-kry
-kry
-kry
-kry
+qIc
+qIc
+qIc
+qIc
 kry
 lmF
 dUg
@@ -122326,7 +123223,7 @@ iRY
 bVp
 lwv
 bzK
-kry
+qIc
 fLm
 tZC
 uqA
@@ -122424,7 +123321,7 @@ iRY
 bVp
 lwv
 oxO
-kry
+qIc
 eyf
 cVl
 cVl
@@ -122522,7 +123419,7 @@ ghA
 bVp
 lwv
 bzK
-kry
+qIc
 vid
 cVl
 gvx
@@ -122533,7 +123430,7 @@ vtD
 sZv
 sZv
 eCI
-oBu
+pZl
 cJL
 nwd
 nwd
@@ -122620,7 +123517,7 @@ bVp
 bVp
 lwv
 bzK
-kry
+qIc
 sOd
 cVl
 cVl
@@ -122818,7 +123715,7 @@ lJS
 pDp
 paS
 vTL
-cVl
+qvb
 woz
 xmh
 hxi
@@ -123509,7 +124406,7 @@ ePj
 cVl
 gvx
 cVl
-oBu
+ycQ
 oBu
 oBu
 fSM
@@ -123929,7 +124826,7 @@ jIT
 tVT
 xWW
 xeh
-xeh
+vlK
 xeh
 xeh
 xeh
@@ -123994,7 +124891,7 @@ xEy
 xEy
 xEy
 xAU
-cVl
+oOv
 gvx
 kry
 kry
@@ -124593,7 +125490,7 @@ pcB
 pyk
 oGR
 qtG
-oGR
+epA
 oGR
 oGR
 pDS
@@ -125865,7 +126762,7 @@ xEy
 aIK
 azs
 azs
-azs
+qOu
 azs
 aIK
 iFg
@@ -128401,7 +129298,7 @@ vtZ
 rAD
 mxb
 dkg
-bjT
+szs
 moa
 rws
 pvC
@@ -128798,7 +129695,7 @@ llr
 aPy
 ucR
 cit
-rMH
+qKw
 xDK
 nlf
 nlf
@@ -128912,7 +129809,7 @@ xSQ
 xSQ
 xSQ
 xSQ
-xSQ
+fqZ
 dtu
 xEy
 hus
@@ -130907,7 +131804,7 @@ ncz
 ncz
 puQ
 ncz
-ncz
+mAr
 ncz
 tRi
 mAx
@@ -131096,7 +131993,7 @@ eEo
 ncz
 ncz
 ncz
-bVX
+xpf
 ikX
 ikX
 ikX
@@ -131320,7 +132217,7 @@ xEy
 xEy
 xEy
 biH
-rRY
+lDE
 rRY
 rRY
 rRY
@@ -132123,7 +133020,7 @@ hus
 cZc
 nuv
 hUu
-lGD
+kJm
 hus
 hus
 nAm
@@ -132532,7 +133429,7 @@ iRI
 kTv
 cVl
 cVl
-cVl
+opz
 kBj
 kHt
 kHt
@@ -132816,7 +133713,7 @@ lGD
 kqj
 lGD
 lGD
-gtb
+cmQ
 lGD
 lGD
 lGD
@@ -133512,7 +134409,7 @@ cVl
 kTv
 cVl
 gvx
-gvx
+fWr
 lnE
 kHt
 kHt
@@ -137122,7 +138019,7 @@ gAV
 gAV
 gGT
 uiv
-arZ
+aBJ
 qRL
 pzm
 qAQ
@@ -137332,7 +138229,7 @@ ujg
 wfl
 wfl
 cxr
-qRn
+rCP
 qRn
 qRn
 fBe
@@ -137819,7 +138716,7 @@ puU
 puU
 puU
 vBR
-puU
+mYV
 wfl
 akl
 fCl
@@ -138086,7 +138983,7 @@ xEy
 xEy
 xEy
 xmZ
-mYa
+ldi
 rtM
 oQz
 blY
@@ -138403,7 +139300,7 @@ umF
 ugJ
 wFg
 puU
-puU
+iZA
 wfl
 imU
 vBR
@@ -138585,7 +139482,7 @@ oMg
 liT
 duV
 srX
-duV
+ghk
 aGd
 nTI
 duV
@@ -138607,7 +139504,7 @@ kSZ
 puU
 puU
 ejN
-puU
+mYV
 hus
 bXs
 smT
@@ -138807,7 +139704,7 @@ puU
 hus
 nUS
 vjH
-fuS
+lJo
 lir
 xSQ
 gdU
@@ -138817,7 +139714,7 @@ iHx
 vIB
 iHx
 shu
-kPF
+uwa
 iwN
 oTk
 lir
@@ -138972,7 +139869,7 @@ jKr
 mIm
 qxb
 oyf
-tiH
+umB
 tiH
 tiH
 lCo
@@ -138992,10 +139889,10 @@ bZH
 kfC
 kUw
 dFB
-kQj
+kLQ
 xfL
 euf
-pWO
+wqb
 pWO
 cla
 htg
@@ -139653,7 +140550,7 @@ gzA
 biH
 oag
 oag
-oag
+jVS
 kpY
 fqb
 kIU
@@ -139666,7 +140563,7 @@ eSl
 qxk
 wqo
 nUn
-eMr
+iKg
 xzD
 liT
 klT
@@ -139791,7 +140688,7 @@ dVb
 dBq
 vxf
 lwI
-dVb
+tCn
 nXP
 xEy
 xEy
@@ -139898,7 +140795,7 @@ gLh
 gLh
 gLh
 gLh
-xgf
+lFj
 cam
 kQV
 jIO
@@ -139910,7 +140807,7 @@ aEH
 jIO
 jIO
 aEH
-aEH
+aiL
 sXC
 nsz
 hxh
@@ -140108,7 +141005,7 @@ qZU
 gLh
 xgf
 gpO
-wIs
+nmt
 eYD
 miF
 miF
@@ -140121,7 +141018,7 @@ miF
 sxW
 cDf
 tVF
-tVF
+ojm
 gpO
 qDY
 qDY
@@ -140161,7 +141058,7 @@ kDH
 tQL
 tQL
 kDH
-qca
+cWB
 tuh
 tuh
 atO
@@ -140174,7 +141071,7 @@ tuh
 vtt
 tmr
 fBv
-tuh
+rkA
 tuh
 atO
 tuh
@@ -140475,7 +141372,7 @@ htg
 htg
 pgO
 lDS
-kic
+uea
 rGW
 frz
 emp
@@ -141144,7 +142041,7 @@ cDF
 hus
 kVc
 pao
-pao
+eMU
 mBo
 mrI
 uTC
@@ -141529,7 +142426,7 @@ xEy
 xEy
 xEy
 hus
-lGD
+nBP
 umR
 gAG
 lGD
@@ -142225,7 +143122,7 @@ pao
 mBo
 dRi
 lGD
-lGD
+xyr
 arx
 lGD
 lGD
@@ -146540,7 +147437,7 @@ uHo
 uZy
 htg
 uZy
-uHo
+pSg
 uHo
 htg
 kDH
@@ -147420,7 +148317,7 @@ htg
 htg
 htg
 hpr
-uHo
+pSg
 uHo
 ozc
 kDH
@@ -148095,7 +148992,7 @@ xEy
 xEy
 xEy
 htg
-uZy
+jlw
 bDI
 bDI
 uZy
@@ -148600,7 +149497,7 @@ uZy
 rDt
 bDI
 uZy
-uZy
+bvW
 bDI
 rDt
 uZy
@@ -149077,7 +149974,7 @@ xEy
 xEy
 htg
 uXI
-tuh
+oJq
 tuh
 tuh
 tuh
@@ -149233,7 +150130,7 @@ htg
 htg
 htg
 htg
-ryy
+jhN
 abQ
 gMr
 gMr
@@ -149303,7 +150200,7 @@ yfV
 yfV
 wYs
 wnj
-wnj
+wYT
 wnj
 wnj
 wnj
@@ -149313,7 +150210,7 @@ tZi
 wnj
 wnj
 jHU
-jHU
+lUL
 jHU
 jHU
 jHU
@@ -149468,12 +150365,12 @@ ebJ
 ebJ
 ebJ
 kDH
-ihX
+kKp
 uqc
 qUe
 kDH
 qca
-tuh
+oJq
 epZ
 tuh
 tuh
@@ -149486,7 +150383,7 @@ aOA
 mHz
 mHz
 tuh
-atO
+qOO
 tuh
 xDb
 sRK
@@ -149605,7 +150502,7 @@ eID
 xDx
 sWa
 mhH
-upt
+kGU
 fap
 upt
 mhH
@@ -149814,7 +150711,7 @@ teu
 ryy
 ryy
 ryy
-ryy
+bki
 ryy
 ryy
 ryy
@@ -150268,7 +151165,7 @@ urb
 htg
 fPu
 uZy
-pEA
+duo
 kHb
 eNe
 htg
@@ -151146,7 +152043,7 @@ tOp
 tOp
 bRu
 fiW
-kXG
+nyB
 lXR
 nAQ
 rLH
@@ -151241,7 +152138,7 @@ xEy
 fiW
 oyH
 tOp
-tOp
+bkh
 oeF
 fiW
 gqt
@@ -151437,7 +152334,7 @@ xEy
 fiW
 xnA
 tOp
-ihY
+ffo
 ihY
 fiW
 nzn
@@ -152128,7 +153025,7 @@ ltC
 nhD
 xJA
 wKv
-cbt
+uHV
 cbt
 oaX
 dVI
@@ -152422,7 +153319,7 @@ gzo
 xoj
 bPX
 wKv
-cbt
+uHV
 kkP
 mfw
 mfw
@@ -152610,7 +153507,7 @@ vfT
 uOF
 gCt
 wKv
-kkP
+gDT
 oAb
 cbt
 cbt
@@ -152830,7 +153727,7 @@ fXa
 nDr
 xHx
 gGK
-ecR
+aYH
 oHG
 xeh
 xeh
@@ -154376,7 +155273,7 @@ smR
 wKv
 kkP
 kkP
-kkP
+dOL
 kkP
 kkP
 uTc
@@ -154584,7 +155481,7 @@ wKv
 wKv
 wKv
 wKv
-rEV
+uJi
 gbO
 jMG
 wKv
@@ -165673,7 +166570,7 @@ gZu
 aVT
 oRR
 oNs
-oRR
+gzv
 tGo
 smI
 vDB
@@ -166257,7 +167154,7 @@ nvg
 jTY
 pdS
 jkl
-cHO
+tPX
 htg
 bfK
 kDj
@@ -166935,7 +167832,7 @@ gMr
 gMr
 xgf
 tsi
-xgf
+xJt
 gLh
 xgf
 gLh
@@ -167623,11 +168520,11 @@ htg
 oSK
 lCW
 oSK
-biM
+opf
 biM
 iIa
 htg
-gLh
+dcQ
 xgf
 htg
 htg

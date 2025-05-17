@@ -578,7 +578,7 @@ var/decl/material/boil_mat = null
 			affect_overdose(M, holder)
 
 	//determine the metabolism rate
-	var/removed = (REAGENT_VOLUME(holder, type) * metabolism) + 0.00001
+	var/removed = (REAGENT_VOLUME(holder, type) * metabolism) + 0.0001
 	if(ingest_met && (metabolism_class == CHEM_INGEST))
 		removed = ingest_met
 	if(touch_met && (metabolism_class == CHEM_TOUCH))

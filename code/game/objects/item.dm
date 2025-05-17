@@ -311,9 +311,18 @@
 
 		to_chat(user, SPAN_WARNING("You are not dexterous enough to pick up \the [src]."))
 		return
-	if(weight > user.pickup_capacity)
-		to_chat(user, SPAN_WARNING("You can't pick up [src], it's too heavy for you!"))
+	if(weight > user.pickup_capacity * 3)
+		user.visible_message(SPAN_NOTICE("[user] tries to pick up \the [src], but it doesn't even budge."), SPAN_WARNING("You can't pick up [src], it's way too heavy for you!"))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		return
+	if(weight > user.pickup_capacity)
+		var/pickup_delay = weight * 0.47
+		if(!do_after(user, pickup_delay, src))
+			user.visible_message(SPAN_WARNING("[user] fails to lift up \the [src]."), SPAN_WARNING("You fail to lift up \the [src]."))
+			user.emote("groan")
+			return
+		user.visible_message(SPAN_NOTICE("[user] struggles to lift up \the [src]."), SPAN_WARNING("You struggle to lift up \the [src]."))
+		user.emote("groan")
 
 	var/old_loc = loc
 	pickup(user)

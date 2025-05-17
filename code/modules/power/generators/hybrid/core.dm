@@ -3,7 +3,7 @@
 #define NEUTRON_MOLE_ENERGY 1000 //J per neutron mole
 #define RADS_PER_NEUTRON 125
 #define REACTOR_POWER_MODIFIER 10 //Currently unused
-#define WATTS_PER_KPA 0.5
+#define WATTS_PER_KPA 5
 #define REACTOR_SHIELDING_DIVISOR 20
 #define REACTOR_MODERATOR_POWER 0.27
 #define REACTOR_FIELD_VOLUME 50000
@@ -197,7 +197,7 @@
 		containment_field.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
 		xray_flux += uptake_moles * 17400
-	plasma_instability += xray_flux
+	plasma_instability += xray_flux * 0.01
 
 #define PASSIVE_INSTABILITY_DECAY 0.15 // coefficient
 /obj/machinery/power/hybrid_reactor/proc/process_plasma_instability()

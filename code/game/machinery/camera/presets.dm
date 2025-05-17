@@ -1,3 +1,6 @@
+/obj/machinery/camera/network/public
+	preset_channels = list(CAMERA_CHANNEL_PUBLIC)
+
 /obj/machinery/camera/network/engineering
 	preset_channels = list(CAMERA_CAMERA_CHANNEL_ENGINEERING)
 	initial_access = list(access_engine)
