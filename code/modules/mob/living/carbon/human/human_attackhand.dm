@@ -88,6 +88,11 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		to_chat(user, SPAN_DANGER("They are missing that limb!"))
 		return TRUE
 
+	var/attacker_skill = user.get_skill_value(SKILL_COMBAT)
+	var/defender_skill = get_skill_value(SKILL_COMBAT)
+
+	var/block_chance = (15 * defender_skill) - (5 * attacker_skill)
+
 	switch(src.a_intent)
 		if(I_HELP)
 			// We didn't see this coming, so we get the full blow
@@ -95,7 +100,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 			accurate = 1
 		if(I_HURT, I_GRAB)
 			// We're in a fighting stance, there's a chance we block
-			if(MayMove() && src!=H && prob(20))
+			if(MayMove() && src!=H && prob(block_chance))
 				block = 1
 
 	if (LAZYLEN(user.grabbed_by))
@@ -149,7 +154,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 		var/datum/gas_mixture/gm = H.msuit.lifesupportsystem.activate_propulsion(SUIT_PROPULSION_ATTACK_PERCENT)
 		if(gm.temperature > 400)
 			attack_message = "<span class='combatbold'>[H]</span> <span class='combat'>activates their suit propulsion system right before [src]'s [affecting.name] and burns it severely!</span>"
-			rand_damage += gm.temperature * 0.01 //TODO: CALCULATE THIS
+			rand_damage += gm.temperature * 0.001 //TODO: CALCULATE THIS
 		else
 			attack_message = "<span class='combatbold'>[H]</span> <span class='combat'>activates their suit propulsion system right before [src]'s [affecting.name]!</span>"
 		if(hit_zone == BP_L_LEG || hit_zone == BP_R_LEG)

@@ -18,7 +18,7 @@
 	var/tpvr = 279 //Total Peripherial Vascular Resistance
 	var/max_oxygen_capacity = 1450
 	var/normal_oxygen_capacity = 1040
-	var/oxygen_amount = 120
+	var/oxygen_amount = 1200
 	var/add_mcv = 0
 	var/blood_perfusion = 1
 	var/systemic_oxygen_saturation = 1 // 0-1, basically reversed oxygen deprivation but for the entire body

@@ -54,9 +54,10 @@
 	pads.attached.apply_damage(rand(5, 10), BURN, BP_CHEST)
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
-	heart.pulse = rand(35, 60)
+	heart.pulse = rand(15, 40)
 	heart.cardiac_output_modifiers["defibrillation"] = 3
-	heart.instability = max(heart.instability -= rand(150, 240), 0)
+	heart.instability = max(heart.instability - rand(150, 240), 0)
+	heart.cardiac_stress = max(heart.cardiac_stress - rand(50, 100))
 	for(var/decl/arrythmia/A in heart.arrythmias)
 		if(A.can_be_shocked && prob(95))
 			heart.arrythmias.Remove(A)
@@ -93,6 +94,7 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
 	heart.pulse = rand(55, 65)
 	heart.instability = max(heart.instability -= rand(70, 170), 0)
+	heart.cardiac_stress = max(heart.cardiac_stress - rand(20, 50))
 	shock_charged = FALSE
 	pads.attached.srec_dose *= 1.1
 	for(var/decl/arrythmia/A in heart.arrythmias)

@@ -1077,6 +1077,8 @@
 		shock_stage = min(shock_stage, 40)
 		heart.pulse = rand(10, 15)
 		heart.arrythmias.Remove(GET_DECL(/decl/arrythmia/asystole))
+		heart.instability = max(heart.instability - rand(10, 20), 0)
+		heart.cardiac_stress = max(heart.cardiac_stress - rand(10, 20), 0)
 		heart.handle_pulse()
 		return TRUE
 

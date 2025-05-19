@@ -6,7 +6,6 @@
 	base_parry_chance = 75
 	melee_accuracy_bonus = 15
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	material = /decl/material/solid/metal/titanium
 	pickup_sound = 'sound/foley/knife1.ogg'
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 	icon_state = ICON_STATE_WORLD
@@ -15,20 +14,18 @@
 	edge = 1
 	max_force = 35
 	force = 35
-	armor_penetration = 35
-	attack_cooldown = 1
-	attack_verb = list("slashed", "sliced", "torn", "ripped", "diced", "cut")
-	weight = 2.5
+	armor_penetration = ARMOR_MELEE_MAJOR
+	attack_cooldown = 10
+	attack_verb = list("slashed", "sliced", "torn", "ripped", "cut")
+	weight = 6
 
 /obj/item/composite_sword/can_embed()
 	return FALSE
 
 /obj/item/composite_sword/Initialize(ml, material_key)
 	. = ..()
-	set_extension(src, /datum/extension/tool, list(TOOL_SAW = TOOL_QUALITY_MEDIOCRE))
+	set_extension(src, /datum/extension/tool, list(TOOL_SAW = TOOL_QUALITY_BAD))
 	force = max_force
-
-
 
 /obj/item/energy_blade/molten_sword
 	name = "powered ninjato"
@@ -40,8 +37,9 @@
 	max_force = 25
 	force = 25
 	active_force = 40
-	armor_penetration = ARMOR_MELEE_RESISTANT
-	active_armour_pen = ARMOR_MELEE_MAJOR
+	armor_penetration = ARMOR_MELEE_KNIVES
+	active_armour_pen = ARMOR_MELEE_RESISTANT
+	weight = 2.5
 
 /obj/item/energy_blade/molten_sword/dropped(var/mob/user)
 	..()
