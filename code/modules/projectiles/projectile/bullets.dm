@@ -73,7 +73,7 @@
 	distance_falloff = 3
 
 /obj/item/projectile/bullet/pistol/cryogenic
-	fire_sound = 'sound/weapons/gunshot/sniper.ogg' //we pack POWER
+	fire_sound = 'sound/weapons/gunshot/m82.ogg' //we pack POWER
 	damage = 65
 	distance_falloff = 3
 	penetration_modifier = 1.5
@@ -169,7 +169,7 @@
 	distance_falloff = 1.5
 
 /obj/item/projectile/bullet/rifle/shell
-	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
+	fire_sound = 'sound/weapons/gunshot/m82.ogg'
 	damage = 80
 	stun = 3
 	weaken = 3
@@ -278,7 +278,7 @@
 		L.apply_damage(150, IRRADIATE)
 
 /obj/item/projectile/bullet/modern/c10x77
-	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
+	fire_sound = 'sound/weapons/gunshot/m82.ogg'
 	damage = 90
 	stun = 3
 	weaken = 3
@@ -287,7 +287,7 @@
 	distance_falloff = 0.5
 
 /obj/item/projectile/bullet/modern/c127x99 //.50 BMG
-	fire_sound = 'sound/weapons/gunshot/sniper.ogg'
+	fire_sound = 'sound/weapons/gunshot/m82.ogg'
 	damage = 60
 	stun = 3
 	weaken = 1

@@ -55,7 +55,7 @@
 
 /decl/material/solid/static_crystal/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
 	. = ..()
-	M.srec_dose += removed*1.3
+	M.srec_dose += removed*13
 
 /decl/material/solid/static_crystal/inhibited
 	name = "inhibited SREC"

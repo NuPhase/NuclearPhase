@@ -304,6 +304,10 @@
 	name = "Medbay Therapy"
 	icon_state = "medbay"
 
+/area/serenity/shelter/medbay/shift_director
+	name = "Medbay Shift Director"
+	icon_state = "medbay4"
+
 /area/serenity/shelter/medbay/surgery
 	name = "Surgery"
 	icon_state = "surgery"
@@ -339,6 +343,7 @@
 	sound_env = SMALL_ENCLOSED
 	var/weight_low = 2
 	var/weight_high = 4
+	requires_power = FALSE
 
 /area/serenity/maintenance/Entered(A)
 	if(!istype(A,/mob/living))	return
@@ -374,6 +379,12 @@
 	sound_env = TUNNEL_ENCLOSED
 	weight_low = 8
 	weight_high = 10
+
+/area/serenity/maintenance/safezone
+	name = "Hobo Safezone"
+	weight_low = -2
+	weight_high = -10
+	sound_env = STANDARD_STATION
 
 /area/turbolift/e1
 	lift_floor_label = "Tech Operations Lobby"

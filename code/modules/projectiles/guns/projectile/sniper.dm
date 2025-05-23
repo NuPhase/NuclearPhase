@@ -112,3 +112,40 @@
 	scope_zoom = 2
 	fire_delay = 12
 	weight = 8.9
+
+/obj/item/gun/projectile/sniper/semiauto
+	name = "AMR GEN-1"
+	desc = "A semi-automatic sniper rifle. Chambered in 50BMG."
+	icon = 'icons/obj/guns/m82.dmi'
+	w_class = ITEM_SIZE_HUGE
+	force = 10
+	caliber = CALIBER_ANTI_MATERIEL
+	origin_tech = "{'combat':8,'materials':3}"
+	ammo_type = /obj/item/ammo_casing/shell
+	slot_flags = SLOT_BACK
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/c127x99
+	allowed_magazines = list(
+		/obj/item/ammo_magazine/c127x99,
+		/obj/item/ammo_magazine/c127x99/ap,
+		/obj/item/ammo_magazine/c127x99/tracer,
+		/obj/item/ammo_magazine/c127x99/tracer/heavy,
+		/obj/item/ammo_magazine/c127x99/tracer/explosive
+	)
+	auto_eject = 0
+	accuracy = 5
+	accuracy_power = 7
+	scoped_accuracy = 30
+	scope_zoom = 1.5
+	one_hand_penalty = 8
+	bulk = 8
+	fire_delay = 40
+	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
+	mag_remove_sound = 'sound/weapons/guns/interaction/batrifle_magout.ogg'
+	weight = 14.4
+
+/obj/item/gun/projectile/sniper/semiauto/update_base_icon()
+	if(ammo_magazine)
+		icon_state = "[get_world_inventory_state()]-loaded"
+	else
+		icon_state = get_world_inventory_state()

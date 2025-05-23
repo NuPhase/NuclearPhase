@@ -56,11 +56,13 @@
 	connected.add_mcv += set_mcv
 	playsound(src, 'sound/machines/pump.ogg', 25)
 
+	var/toxicloss = 0.01
 	if(!connected.has_chemical_effect(CE_BLOOD_THINNING)) //blood clotting
 		var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(connected, BP_HEART)
 		if(H)
 			H.stability_modifiers["ABCS clotting"] = set_mcv * 0.005 * -1
-	connected.adjustToxLoss(0.01)
+		toxicloss = 1
+	connected.adjustToxLoss(toxicloss)
 	connected.adjust_immunity(-1)
 	if(prob(0.1)) //spontaneus blood vessel damage
 		connected.take_overall_damage(15)

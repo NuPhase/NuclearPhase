@@ -388,7 +388,7 @@
 	status |= ORGAN_DISLOCATED
 	if(owner)
 		if(can_feel_pain())
-			add_pain(20)
+			add_pain(700)
 			owner.apply_effect(5, STUN)
 		owner.verbs |= /mob/living/carbon/human/proc/undislocate
 
@@ -399,7 +399,7 @@
 	status &= (~ORGAN_DISLOCATED)
 	if(owner)
 		if(!skip_pain && can_feel_pain())
-			add_pain(20)
+			add_pain(700)
 			owner.apply_effect(2, STUN)
 
 		//check to see if we still need the verb
@@ -1006,7 +1006,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"<span class='moderate'><b>[organ_msgs[2]]</b></span>", \
 			"<span class='danger'>[organ_msgs[3]]</span>")
 
-	add_pain(60)
+	add_pain(900)
 	if(!clean)
 		owner.shock_stage += min_broken_damage
 

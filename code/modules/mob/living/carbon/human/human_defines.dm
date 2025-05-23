@@ -118,8 +118,7 @@
 
 	var/list/moods = list()
 
-	var/list/symptoms = list()
-	var/next_symptom_message = 0
+	var/list/health_conditions = list()
 
 	var/tmp/next_blood_squirt = 0
 

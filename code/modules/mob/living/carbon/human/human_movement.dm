@@ -166,7 +166,7 @@
 			if(crutches)
 				crutches--
 			else
-				E.add_pain(10)
+				E.add_pain(300)
 
 /mob/living/carbon/human/can_sprint()
 	return (get_stamina() > 0)

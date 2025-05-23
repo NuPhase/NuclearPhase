@@ -682,7 +682,6 @@ var/decl/material/boil_mat = null
 				var/mob/living/carbon/human/H = M
 				var/to_affect = pick(BP_L_FOOT, BP_R_FOOT)
 				var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, to_affect)
-				H.add_symptom(/decl/medical_symptom/irritation, to_affect)
 				to_chat(H, SPAN_WARNING("Your [affecting.name] starts to hurt from the liquid!"))
 		if(MAT_SOLVENT_STRONG to INFINITY)
 			if(removed >= solvent_melt_dose)

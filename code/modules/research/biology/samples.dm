@@ -10,7 +10,7 @@
 	name = "organic matter"
 	w_class = ITEM_SIZE_SMALL
 
-	var/mob/dna_owner = null
+	var/weakref/dna_owner = null
 	var/dna_quality = 0 //0-100
 	var/dna_contamination = 0 //0-100
 	weight = 0.1

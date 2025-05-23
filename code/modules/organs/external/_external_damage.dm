@@ -52,7 +52,7 @@
 		if((limb_flags & ORGAN_FLAG_CAN_AMPUTATE) && get_config_value(/decl/config/toggle/on/health_limbs_can_break))
 			var/total_damage = brute_dam + burn_dam + brute + burn + spillover
 			var/threshold = max_damage * get_config_value(/decl/config/num/health_organ_health_multiplier)
-			if(total_damage > threshold && (brute > min_broken_damage || burn > min_broken_damage))
+			if(total_damage > threshold && (pure_brute > min_broken_damage || burn > min_broken_damage))
 				if(attempt_dismemberment(pure_brute, burn, sharp, edge, used_weapon, spillover, total_damage > threshold*6, override_droplimb = override_droplimb))
 					return
 
@@ -93,7 +93,7 @@
 			createwound(BURN, burn)
 
 	//Initial pain spike
-	add_pain(0.6*burn + 0.4*brute)
+	add_pain(18*burn + 15*brute)
 
 	//Disturb treated burns
 	if(brute > 5)
@@ -105,7 +105,7 @@
 				disturbed += W.damage
 		if(disturbed)
 			to_chat(owner,"<span class='warning'>Ow! Your burns were disturbed.</span>")
-			add_pain(0.5*disturbed)
+			add_pain(20*disturbed)
 
 	//If there are still hurties to dispense
 	if (spillover)
@@ -277,7 +277,7 @@
 		if(amount <= 0)
 			return
 	pain = max(0,min(max_damage,pain+amount))
-	if(owner && ((amount > 15 && prob(20)) || (amount > 30 && prob(60))))
+	if(owner && ((amount > 300 && prob(20)) || (amount > 500 && prob(60))))
 		owner.emote("scream")
 	return pain-last_pain
 

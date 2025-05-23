@@ -248,7 +248,7 @@ var/list/female_strength_skill_damage = list(-5, -1, 1, 3, 4)
 	if(prob(1 + 3 * (SKILL_EXPERT - pumping_skill)))
 		if(chest)
 			chest.fracture()
-	chest.add_pain(7)
+	chest.add_pain(400)
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 
 	add_mcv = rand(150, 200) * pumping_skill

@@ -366,13 +366,12 @@
 
 /obj/item/chems/syringe/drugs
 	name = "syringe (drugs)"
-	desc = "Contains aggressive drugs meant for torture."
+	desc = "A suspicious syringe, filled to the half with a strange fluid. Its needle seems used."
 
 /obj/item/chems/syringe/drugs/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/psychoactives, 5)
 	reagents.add_reagent(/decl/material/liquid/hallucinogenics, 5)
-	reagents.add_reagent(/decl/material/liquid/presyncopics, 5)
+	reagents.add_reagent(/decl/material/solid/static_crystal, 10)
 	mode = SYRINGE_INJECT
 	update_icon()
 
@@ -382,7 +381,7 @@
 
 /obj/item/chems/syringe/steroid/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/adrenaline, 5)
+	reagents.add_reagent(/decl/material/liquid/adrenaline, 2)
 	reagents.add_reagent(/decl/material/liquid/amphetamines, 10)
 
 

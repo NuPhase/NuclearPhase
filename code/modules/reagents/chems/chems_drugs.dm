@@ -96,7 +96,7 @@
 	taste_description = "bitterness"
 	taste_mult = 0.4
 	color = "#60a584"
-	metabolism = REM * 0.5
+	metabolism = REM * 5
 	overdose = REAGENTS_OVERDOSE
 	value = 2
 	narcosis = 7
@@ -114,7 +114,7 @@
 	lore_text = "A mix of powerful hallucinogens, they can cause fatal effects in users."
 	taste_description = "sourness"
 	color = "#b31008"
-	metabolism = REM * 0.25
+	metabolism = REM * 5
 	overdose = REAGENTS_OVERDOSE
 	value = 2
 	uid = "chem_hallucinogenics"
@@ -263,9 +263,22 @@
 
 /decl/material/liquid/opium/on_leaving_metabolism(atom/parent, metabolism_class)
 	. = ..()
-	var/mob/M = parent
-	spawn(60 SECONDS)
-		to_chat(M, SPAN_BOLD("You suddenly want more [name]..."))
+	var/mob/living/carbon/C = parent
+	var/addiction_potential = C.chem_doses[type] * addictiveness
+	switch(addiction_potential)
+		if(0 to 25)
+			to_chat(C, SPAN_BOLD("The warm, fuzzy feelings subside as [name]'s effects stop."))
+		if(25 to 75)
+			to_chat(C, SPAN_PHOBIA("The world slowly fades to grey as [name] leaves your system..."))
+			ADJ_STATUS(C, STAT_STUTTER, 30)
+			ADJ_STATUS(C, STAT_CONFUSE, 5)
+		if(75 to INFINITY)
+			C.custom_pain(SPAN_PHOBIA("All the bad things in the world abruptly crash down at you. You need more [name]! MORE!"), 800, 1)
+			ADJ_STATUS(C, STAT_STUTTER, 100)
+			ADJ_STATUS(C, STAT_SLUR, 200)
+			ADJ_STATUS(C, STAT_JITTER, 30)
+			ADJ_STATUS(C, STAT_BLURRY, 10)
+			ADJ_STATUS(C, STAT_CONFUSE, 10)
 
 /decl/material/liquid/opium/proc/isboozed(var/mob/living/carbon/M)
 	. = 0
@@ -283,7 +296,7 @@
 /decl/material/liquid/opium/tramadol
 	name = "tramadol"
 	lore_text = "A linear painkiller."
-	addictiveness = 5
+	addictiveness = 1.4
 	painkill_magnitude = 110000
 	overdose = 70
 	uid = "chem_tramadol"
@@ -315,7 +328,7 @@
 /decl/material/liquid/opium/fentanyl
 	name = "fentanyl"
 	lore_text = "An extremely strong painkiller."
-	addictiveness = 3
+	addictiveness = 30
 	painkill_magnitude = 1740000
 	overdose = 3 //can't drink fentanyl in ohio
 	uid = "chem_fentanyl"

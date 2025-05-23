@@ -4,7 +4,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "container"
 	//Can only contain one of these
-	var/mob/dna_owner = null
+	var/weakref/dna_owner = null
 	var/decl/dna_pattern/installed_pattern = null
 
 	var/dna_quality = 0 //0-100.

@@ -54,7 +54,7 @@
 	playsound(src, 'sound/machines/pump.ogg', 25)
 	var/obj/item/organ/external/E = GET_EXTERNAL_ORGAN(H, BP_CHEST)
 	to_chat_cooldown(H, "<span class='danger'>Your [E] is compressed painfully!</span>", "autocpr", time = 50)
-	E.add_pain(5)
+	E.add_pain(300)
 	if(!skilled_setup && prob(5))
 		E.fracture()
 	else

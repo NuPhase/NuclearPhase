@@ -104,6 +104,9 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	base_type = /obj/machinery/light/small
 	frame_type = /obj/item/frame/light/small
 
+/obj/machinery/light/small/old
+	light_type = /obj/item/light/bulb/old
+
 /obj/machinery/light/small/emergency
 	light_type = /obj/item/light/bulb/red
 
@@ -634,6 +637,11 @@ var/global/datum/composite_sound/light/light_soundloop = new
 /obj/item/light/throw_impact(atom/hit_atom)
 	..()
 	shatter()
+
+/obj/item/light/bulb/old
+	name = "old light bulb"
+	broken_chance = 30
+	b_power = 0.5
 
 /obj/item/light/bulb/fire
 	name = "fire bulb"

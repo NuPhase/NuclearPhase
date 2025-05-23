@@ -74,7 +74,7 @@
 
 	var/obj/item/organ/O = target.get_organ(LAZYACCESS(global.surgeries_in_progress["\ref[target]"], target_zone))
 	if(O)
-		O.germ_level = min(INFECTION_LEVEL_ONE, O.germ_level * 0.4)
+		O.germ_level = min(INFECTION_LEVEL_ONE, O.germ_level * 0.3)
 
 /decl/surgery_step/necrotic/tissue/fail_step(mob/living/user, mob/living/target, target_zone, obj/item/tool)
 	var/obj/item/organ/affected = target.get_organ(target_zone)
