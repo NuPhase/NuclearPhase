@@ -24,6 +24,7 @@
 /obj/structure/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/structure/bed/chair/office/dark,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
 "abd" = (
@@ -1051,7 +1052,11 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
-/obj/structure/door/fire,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_ENGINEERING");
+	lock_type = /datum/lock/id_card;
+	name = "generator room"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
 "aJF" = (
@@ -1990,9 +1995,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/camera/network/medbay{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
 "bmH" = (
@@ -2193,6 +2195,10 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/camera/network/cargo,
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "btB" = (
@@ -2995,7 +3001,10 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
 "bRt" = (
-/obj/structure/door/fire,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
 "bRu" = (
@@ -6334,6 +6343,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/alarm{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
 "dJl" = (
@@ -6342,6 +6354,12 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"dJp" = (
+/obj/machinery/camera/network/medbay{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/lobby)
 "dJy" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -6796,6 +6814,10 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
+/obj/structure/sign/directions/engineering{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "dVA" = (
@@ -7818,11 +7840,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/it_operations)
 "euf" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /mob/living/simple_animal/robot{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -8572,6 +8594,24 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"eOS" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/access{
+	pixel_y = 32;
+	pixel_x = -6
+	},
+/obj/machinery/button/blast_door{
+	dir = 2;
+	id_tag = "medbay_lockdown";
+	name = "Medbay Lockdown";
+	pixel_x = 8;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/entrance_zone)
 "ePj" = (
 /obj/structure/railing/mapped,
 /obj/effect/floor_decal/industrial/fire{
@@ -9076,14 +9116,13 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/freezer)
 "ffy" = (
-/obj/machinery/button/blast_door{
-	dir = 8;
-	id_tag = "medbay_lockdown";
-	name = "Medbay Lockdown";
-	pixel_x = 22
+/obj/structure/rack,
+/obj/machinery/flasher{
+	pixel_y = 32;
+	id_tag = "medflash"
 	},
 /turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/medbay)
+/area/serenity/shelter/medbay/lobby)
 "ffK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3,
@@ -9348,6 +9387,9 @@
 /obj/effect/item_spawner{
 	name = "MEDICAL Mask";
 	spawn_paths = /obj/item/clothing/mask/breath/medical
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
@@ -10225,16 +10267,13 @@
 /turf/simulated/floor/carpet/magenta,
 /area/serenity/shelter/habitationdeck/crew)
 "fRG" = (
-/obj/structure/sign/directions/security{
-	dir = 2;
-	pixel_x = 32;
-	pixel_y = -32
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_y = -20
 	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
-/turf/simulated/floor/concrete/gray,
-/area/serenity/shelter/staircase)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "fRK" = (
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/brig)
@@ -10593,6 +10632,12 @@
 /obj/effect/paint_stripe/blue,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical)
+"gbG" = (
+/obj/structure/sign/directions/evac{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "gbO" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -11175,9 +11220,12 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/pumps_a)
 "goJ" = (
-/obj/structure/door/fire,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/catwalk,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/entrance_zone)
 "goM" = (
@@ -11517,6 +11565,8 @@
 /area/serenity/shelter/medbay/lobby)
 "gww" = (
 /obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card;
 	dir = 8
 	},
 /turf/simulated/floor/concrete/light_gray,
@@ -12088,6 +12138,12 @@
 "gNB" = (
 /turf/simulated/open,
 /area/serenity/shelter/habitationdeck/crew)
+"gNC" = (
+/obj/structure/sign/directions/engineering{
+	pixel_y = -20
+	},
+/turf/simulated/open,
+/area/serenity/shelter/entrance_zone)
 "gNF" = (
 /obj/machinery/light/neon{
 	dir = 8
@@ -12211,6 +12267,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
+"gQh" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "gQz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/water{
 	dir = 6
@@ -13035,6 +13098,12 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
+"hqi" = (
+/obj/structure/wall_frame/standard,
+/obj/structure/window/reinforced/full,
+/obj/effect/paint_stripe/red,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/lobby)
 "hql" = (
 /obj/turbolift_map_holder/serenity/personnel_elevator/one,
 /turf/simulated/open,
@@ -13093,6 +13162,10 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/directions/engineering{
+	dir = 1;
+	pixel_y = 32
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "hsk" = (
@@ -13742,6 +13815,12 @@
 "hLC" = (
 /turf/simulated/floor/carpet/purple,
 /area/serenity/shelter/engineering/reactor_operations)
+"hLE" = (
+/obj/structure/wall_frame/standard,
+/obj/structure/window/reinforced/full,
+/obj/effect/paint_stripe/red,
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/entrance_zone)
 "hMf" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -14130,10 +14209,13 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "hXI" = (
-/obj/structure/door/fire,
-/obj/machinery/door/blast/shutters/open{
-	id_tag = "exitlockdown";
-	name = "Exit Lockdown"
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card
+	},
+/obj/machinery/door/blast/shutters{
+	id_tag = "shelter_exit_lockdown";
+	name = "Shelter Exit Lockdown"
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -15556,7 +15638,7 @@
 "iLt" = (
 /obj/structure/sign/directions/security{
 	dir = 8;
-	pixel_y = -32
+	pixel_y = -20
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
@@ -16535,11 +16617,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
 "jng" = (
-/obj/machinery/alarm{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/medbay/lobby)
+/obj/effect/paint_stripe/red,
+/turf/simulated/wall/concrete/nano,
+/area/serenity)
 "jnr" = (
 /obj/machinery/light{
 	dir = 8
@@ -17353,6 +17433,10 @@
 	dir = 9
 	},
 /obj/structure/table/steel,
+/obj/machinery/computer/modular/preset/medical{
+	pixel_y = 4;
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
 "jIO" = (
@@ -17385,14 +17469,12 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig)
 "jJI" = (
-/obj/machinery/light/ceiling{
-	dir = 4
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/directions/evac{
+	pixel_y = 32
 	},
-/obj/structure/cable/blue{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/medbay/lobby)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "jJR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -17497,6 +17579,22 @@
 /obj/structure/bookcase,
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/habitationdeck/crew)
+"jMO" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/directions/infirmary{
+	dir = 1;
+	pixel_y = 34
+	},
+/obj/structure/sign/directions/engineering{
+	pixel_y = 28
+	},
+/obj/structure/sign/directions/security{
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/entrance_zone)
 "jMW" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -17769,7 +17867,8 @@
 /area/serenity/shelter/entrance_zone)
 "jTN" = (
 /obj/machinery/door/airlock/double/glass/medical{
-	initial_access = list("ACCESS_MEDICAL")
+	initial_access = list("ACCESS_MEDICAL");
+	name = "Intensive Therapy"
 	},
 /obj/machinery/door/blast/shutters/open{
 	dir = 1;
@@ -17925,20 +18024,10 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations)
 "jYA" = (
-/obj/structure/door/sliding/opaque{
-	dir = 8;
-	lock_data = list("ACCESS_MEDICAL");
-	lock_type = /datum/lock/id_card
-	},
-/obj/machinery/door/blast/shutters/open{
-	dir = 4;
-	id_tag = "medbay_lockdown";
-	name = "Medbay Lockdown"
-	},
 /obj/structure/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/autoset{
+/obj/machinery/light/ceiling{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white/monotile,
@@ -18111,6 +18200,12 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical)
+"keR" = (
+/obj/structure/sign/warning/science{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay)
 "keV" = (
 /obj/machinery/rlaser{
 	lasid = "laser_charlie"
@@ -18149,6 +18244,16 @@
 /area/serenity/shelter/habitationdeck/crew)
 "kfY" = (
 /obj/structure/table/steel,
+/obj/machinery/button/flasher{
+	dir = 8;
+	pixel_y = 12;
+	id_tag = "medflash"
+	},
+/obj/machinery/button/alternate/door{
+	dir = 8;
+	name = "Medbay Access";
+	id_tag = "medentry"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
 "kgn" = (
@@ -18451,6 +18556,14 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/directions/infirmary{
+	dir = 8;
+	pixel_y = 32
+	},
+/obj/structure/sign/directions/engineering{
+	dir = 8;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "kmG" = (
@@ -19295,12 +19408,12 @@
 /turf/simulated/open,
 /area/serenity/maintenance/safezone)
 "kKj" = (
-/obj/machinery/light/ceiling,
-/obj/structure/cable/blue{
-	icon_state = "1-2"
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_y = -20
 	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/medbay)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "kKn" = (
 /obj/effect/floor_decal/carpet/blue2{
 	dir = 8
@@ -19503,6 +19616,10 @@
 "kPk" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
@@ -19709,6 +19826,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/structure/table/steel,
+/obj/machinery/camera/network/medbay{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
@@ -21353,11 +21474,11 @@
 	icon_state = "2-8"
 	},
 /obj/structure/closet/firecloset,
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/button/access{
 	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
@@ -21414,6 +21535,15 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"lNX" = (
+/obj/structure/door/sliding/opaque{
+	dir = 2;
+	lock_data = list("ACCESS_MEDICAL");
+	lock_type = /datum/lock/id_card;
+	name = "Medical Office"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/office)
 "lOd" = (
 /obj/structure/bed/sofa/l/black,
 /turf/simulated/floor/tiled/dark/textured,
@@ -21575,9 +21705,9 @@
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/senior_engineer)
 "lRQ" = (
-/obj/machinery/door/blast/shutters/open{
-	id_tag = "exitlockdown";
-	name = "Exit Lockdown"
+/obj/machinery/door/blast/shutters{
+	id_tag = "shelter_exit_lockdown";
+	name = "Shelter Exit Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/entrance_zone)
@@ -21958,12 +22088,15 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/cargo)
 "mcN" = (
-/obj/structure/door/fire,
-/obj/machinery/door/blast/shutters/open{
-	id_tag = "exitlockdown";
-	name = "Exit Lockdown"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card
+	},
+/obj/machinery/door/blast/shutters{
+	id_tag = "shelter_exit_lockdown";
+	name = "Shelter Exit Lockdown"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "mcP" = (
@@ -21991,13 +22124,9 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/pumps_a)
 "mdF" = (
-/obj/structure/table/steel,
-/obj/structure/sign/directions/engineering{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/simulated/floor/concrete/gray,
-/area/serenity/shelter/staircase)
+/obj/effect/paint_stripe/red,
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/medbay/lobby)
 "mdJ" = (
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/concrete/light_gray,
@@ -22230,9 +22359,6 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/therapy)
 "miD" = (
-/obj/machinery/light/ceiling{
-	dir = 4
-	},
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
@@ -23368,6 +23494,12 @@
 /obj/structure/cable/blue{
 	icon_state = "1-8"
 	},
+/obj/machinery/button/blast_door{
+	dir = 4;
+	id_tag = "medbay_lockdown";
+	name = "Medbay Lockdown";
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
 "mGt" = (
@@ -23510,7 +23642,10 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/engineering/electrical)
 "mMr" = (
-/obj/structure/door/fire,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "mMH" = (
@@ -23521,6 +23656,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/messhall)
+"mMM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "mMN" = (
 /obj/structure/stairs/very_long/north,
 /turf/simulated/floor/concrete/gray,
@@ -23657,9 +23801,12 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/maintenance/sublevel_one)
 "mSN" = (
-/obj/machinery/alarm{
-	dir = 8
+/obj/machinery/door/blast/shutters/open{
+	dir = 1;
+	id_tag = "medbay_lockdown";
+	name = "Medbay Lockdown"
 	},
+/obj/machinery/door/firedoor/autoset,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay)
 "mSX" = (
@@ -25018,6 +25165,13 @@
 "nDA" = (
 /turf/simulated/floor/concrete/black,
 /area/turbolift/serenity/reactor/a1)
+"nEg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/directions/evac{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "nEh" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -25066,6 +25220,20 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/maintenance/sublevel_one)
+"nFK" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/directions/infirmary{
+	dir = 8;
+	pixel_y = 32
+	},
+/obj/structure/sign/directions/engineering{
+	dir = 8;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/entrance_zone)
 "nGv" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8
@@ -25478,6 +25646,14 @@
 "nPv" = (
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/it_operations)
+"nPK" = (
+/obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/westleft{
+	initial_access = list("ACCESS_MEDICAL")
+	},
+/obj/structure/table/aluminium_reinforced,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/office)
 "nQp" = (
 /obj/structure/table/woodentable/walnut,
 /obj/item/flashlight/lamp/green,
@@ -26275,7 +26451,7 @@
 /obj/structure/table/steel,
 /obj/machinery/button/blast_door{
 	dir = 8;
-	id_tag = "exitlockdown";
+	id_tag = "shelter_exit_lockdown";
 	name = "Exit Lockdown"
 	},
 /turf/simulated/floor/tiled/dark/textured,
@@ -32276,7 +32452,7 @@
 /obj/structure/sign/directions/security{
 	dir = 2;
 	pixel_x = 32;
-	pixel_y = -32
+	pixel_y = -20
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/entrance_zone)
@@ -34573,7 +34749,7 @@
 /obj/structure/sign/directions/engineering{
 	dir = 8;
 	pixel_x = -32;
-	pixel_y = 5
+	pixel_y = -8
 	},
 /obj/machinery/door/firedoor/autoset,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -34827,6 +35003,23 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/staircase)
+"sQR" = (
+/obj/structure/cable/blue{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/double/glass/medical{
+	initial_access = list("ACCESS_MEDICAL");
+	name = "Medbay";
+	id_tag = "medentry"
+	},
+/obj/machinery/door/blast/shutters/open{
+	dir = 1;
+	id_tag = "medbay_lockdown";
+	name = "Medbay Lockdown"
+	},
+/obj/machinery/door/firedoor/autoset,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay)
 "sRb" = (
 /obj/structure/rack,
 /obj/item/storage/briefcase/inflatable,
@@ -34922,11 +35115,8 @@
 /area/serenity/shelter/habitationdeck/crew)
 "sTO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/power/apc{
-	dir = 1
-	},
 /obj/structure/cable/blue{
-	icon_state = "0-4"
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay)
@@ -35834,6 +36024,15 @@
 /obj/structure/curtain/open/privacy,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations)
+"twM" = (
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/obj/structure/cable/blue{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay)
 "twP" = (
 /obj/structure/closet/crate/secure/biohazard/alt{
 	anchored = 1;
@@ -38116,6 +38315,10 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
+/obj/structure/sign/directions/engineering{
+	dir = 1;
+	pixel_x = 32
+	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "uJB" = (
@@ -38745,21 +38948,17 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "vbD" = (
-/obj/structure/door/sliding/opaque{
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/fire/fulltile,
+/obj/structure/closet/firecloset,
+/obj/structure/sign/directions/evac{
 	dir = 8;
-	lock_data = list("ACCESS_MEDICAL");
-	lock_type = /datum/lock/id_card
+	pixel_y = 32
 	},
-/obj/machinery/door/blast/shutters/open{
-	dir = 4;
-	id_tag = "medbay_lockdown";
-	name = "Medbay Lockdown"
-	},
-/obj/machinery/door/firedoor/autoset{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/medbay/lobby)
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/habitationdeck/crew)
 "vbI" = (
 /obj/effect/floor_decal/carpet{
 	dir = 4
@@ -38771,7 +38970,6 @@
 /turf/simulated/floor/carpet,
 /area/serenity/shelter/entrance_zone)
 "vbK" = (
-/obj/structure/door/fire,
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
@@ -38780,6 +38978,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers/layer3,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/entrance_zone)
 "vcF" = (
@@ -39292,14 +39494,16 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "vog" = (
-/obj/structure/door/fire{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/door/fire{
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
@@ -40298,11 +40502,13 @@
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/door/sliding{
-	dir = 8
+	dir = 8;
+	lock_data = list("ACCESS_SECURITY");
+	lock_type = /datum/lock/id_card
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "vTl" = (
@@ -40418,6 +40624,14 @@
 /obj/structure/catwalk,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations/cavern)
+"vWZ" = (
+/obj/structure/sign/directions/infirmary{
+	dir = 1;
+	pixel_x = 32;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/entrance_zone)
 "vXy" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/chemical_dispenser/bar_coffee/full,
@@ -40970,6 +41184,13 @@
 "wnN" = (
 /turf/unsimulated/map_edge,
 /area/serenity/shelter/mining/drill)
+"wnS" = (
+/obj/structure/sign/directions/security{
+	dir = 2;
+	pixel_y = -20
+	},
+/turf/simulated/open,
+/area/serenity/shelter/staircase)
 "wod" = (
 /obj/structure/catwalk,
 /obj/structure/cable/heavy{
@@ -41777,10 +41998,6 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/mining/processing)
 "wIT" = (
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_x = 22
-	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
 "wJa" = (
@@ -42097,6 +42314,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"wSA" = (
+/obj/effect/paint_stripe/red,
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/entrance_zone)
 "wSB" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42328,9 +42549,12 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
-/obj/structure/door/fire,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3,
+/obj/structure/door/fire{
+	lock_data = list("ACCESS_MAINT");
+	lock_type = /datum/lock/id_card
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "wYx" = (
@@ -42770,6 +42994,11 @@
 	},
 /obj/machinery/camera/network/public{
 	dir = 8
+	},
+/obj/structure/sign/directions/security{
+	dir = 2;
+	pixel_x = 32;
+	pixel_y = -32
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
@@ -43423,15 +43652,14 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/mining/drill)
 "xyY" = (
-/obj/structure/door/sliding/opaque{
-	dir = 8;
-	lock_data = list("ACCESS_MEDICAL");
-	lock_type = /datum/lock/id_card;
-	name = "Medical Office"
-	},
 /obj/structure/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/westright{
+	initial_access = list("ACCESS_MEDICAL")
+	},
+/obj/structure/table/aluminium_reinforced,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/office)
 "xzh" = (
@@ -132848,7 +133076,7 @@ ncz
 ncz
 tMx
 miF
-miF
+wnS
 gpO
 xEy
 xEy
@@ -133422,7 +133650,7 @@ rLD
 bhQ
 bhQ
 xEO
-mdF
+sVI
 ncz
 ncz
 gpO
@@ -140037,7 +140265,7 @@ mag
 wzl
 tGq
 fDZ
-sLR
+lNX
 hax
 kPk
 xJg
@@ -140135,7 +140363,7 @@ mvh
 wzl
 giU
 lMz
-sLR
+bFW
 gyK
 cal
 wTs
@@ -140329,14 +140557,14 @@ gsF
 msm
 vmn
 gsF
-uNj
+twM
 gnj
 sLR
 odZ
 kfY
 wIT
 tTO
-kfY
+odZ
 bFW
 puU
 puU
@@ -140429,10 +140657,10 @@ uNj
 olU
 sTO
 xke
-sLR
-sLR
-sLR
 bFW
+sLR
+sLR
+nPK
 xyY
 bFW
 bFW
@@ -140524,12 +140752,12 @@ hMl
 hMl
 jHE
 hMl
-hMl
+uNj
 dpg
 bYu
+sQR
 uhn
 uhn
-kKj
 akR
 tpY
 umF
@@ -140623,11 +140851,11 @@ uNj
 ehP
 ehP
 umF
-uNj
+keR
 gnj
 mSN
-ffy
-giU
+uNj
+uNj
 lDB
 uNj
 umF
@@ -140724,10 +140952,10 @@ liT
 qag
 rYM
 liT
-asx
-asx
+ffy
+mZY
 jYA
-vbD
+mZY
 asx
 ugJ
 puU
@@ -140823,9 +141051,9 @@ duV
 ciI
 liT
 egf
-jng
-plN
 mZY
+oCp
+dJp
 asx
 ert
 kSZ
@@ -140922,7 +141150,7 @@ vsV
 liT
 wOY
 mZY
-jJI
+plN
 mZY
 asx
 enk
@@ -141020,7 +141248,7 @@ aNQ
 jTN
 mZY
 mZY
-oCp
+plN
 dJg
 asx
 kiB
@@ -141216,7 +141444,7 @@ lzp
 liT
 wRO
 nLm
-plN
+jYA
 bmu
 cQg
 bZH
@@ -141608,7 +141836,7 @@ jvX
 pVw
 kLY
 mZY
-mZY
+xov
 vIz
 qYF
 mZh
@@ -141711,11 +141939,11 @@ fnx
 asx
 asx
 asx
-asx
-asx
-asx
-asx
-htg
+mdF
+hqi
+hqi
+mdF
+wSA
 qFV
 oKP
 oqs
@@ -141804,16 +142032,16 @@ jvX
 pVw
 mZY
 mZY
-xov
+mZY
 xcQ
 asx
 aIK
 aIK
-aIK
-iMF
+jng
+eOS
 uZy
 wun
-xUd
+hLE
 mlA
 nmh
 tuh
@@ -141907,11 +142135,11 @@ qPO
 asx
 aIK
 aIK
-aIK
+jng
 vAz
 uZy
 uZy
-xUd
+hLE
 tuh
 tmr
 tuh
@@ -142005,11 +142233,11 @@ asx
 asx
 aIK
 aIK
-aIK
+jng
 vhv
 gEV
 mfY
-xUd
+hLE
 tuh
 tmr
 tuh
@@ -142103,11 +142331,11 @@ aIK
 aIK
 aIK
 aIK
-aIK
+jng
 xpg
 kig
 sFR
-xUd
+hLE
 atO
 eOg
 atO
@@ -142201,11 +142429,11 @@ aIK
 aIK
 aIK
 aIK
-aIK
+jng
 uiZ
 lcs
 fVm
-htg
+wSA
 xul
 mlB
 tuh
@@ -142299,11 +142527,11 @@ htg
 htg
 htg
 htg
-htg
+wSA
 vog
-htg
-htg
-htg
+wSA
+wSA
+wSA
 puX
 gky
 puX
@@ -142643,7 +142871,7 @@ gTQ
 gTQ
 gTQ
 gTQ
-fRG
+gTQ
 uJm
 wfq
 gru
@@ -151565,7 +151793,7 @@ cHr
 ryy
 abQ
 gMr
-gMr
+gNC
 htg
 xEy
 xEy
@@ -151706,7 +151934,7 @@ kDH
 qca
 oJq
 epZ
-tuh
+vWZ
 tuh
 tuh
 tuh
@@ -151914,8 +152142,8 @@ uZy
 uZy
 uZy
 uZy
-uZy
-rGq
+htg
+jMO
 llF
 tuh
 oat
@@ -152012,7 +152240,7 @@ uZy
 qVl
 txs
 uZy
-uZy
+htg
 rGq
 bOk
 kmi
@@ -152110,7 +152338,7 @@ ecW
 uZy
 tbG
 bDI
-bDI
+poh
 rGq
 llF
 atO
@@ -152208,7 +152436,7 @@ uZy
 cri
 tvr
 bDI
-uZy
+htg
 xDb
 wyC
 tuh
@@ -152601,7 +152829,7 @@ htg
 htg
 htg
 htg
-rGq
+nFK
 wyC
 tuh
 oHG
@@ -155037,7 +155265,7 @@ pUr
 fkU
 uuR
 wKv
-kkP
+gbG
 rVy
 cbt
 cbt
@@ -155049,7 +155277,7 @@ cbt
 oAb
 cbt
 cbt
-cbt
+nEg
 cbt
 kkP
 jhG
@@ -156213,7 +156441,7 @@ xVA
 ygw
 wDZ
 wKv
-kkP
+gQh
 rVy
 cbt
 wKv
@@ -156227,7 +156455,7 @@ cVr
 mAR
 ozY
 wKv
-oAb
+mMM
 rVy
 kkP
 wKv
@@ -164162,7 +164390,7 @@ wKv
 wKv
 wKv
 wKv
-hqY
+vbD
 hqY
 lxK
 oAb
@@ -164446,7 +164674,7 @@ gbO
 nQz
 tnx
 wKv
-cbt
+jJI
 hTR
 kkP
 kkP
@@ -164854,7 +165082,7 @@ hwi
 tzH
 kkP
 hTR
-kkP
+kKj
 wKv
 pGv
 kTM
@@ -165720,7 +165948,7 @@ wKv
 wKv
 wKv
 wKv
-oAb
+mMM
 hTR
 cbt
 tna
@@ -166420,7 +166648,7 @@ gbO
 wKv
 kkP
 hTR
-cbt
+fRG
 wKv
 gbO
 fvM
