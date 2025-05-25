@@ -76,6 +76,7 @@
 	scannable = 1
 	injectable = 1
 	uid = "chem_nutriment_glucose"
+	drug_category = DRUG_CATEGORY_MISC
 
 /decl/material/liquid/nutriment/bread
 	name = "bread"

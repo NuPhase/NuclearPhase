@@ -63,7 +63,7 @@
 			H.stability_modifiers["ABCS clotting"] = set_mcv * 0.005 * -1
 		toxicloss = 1
 	connected.adjustToxLoss(toxicloss)
-	connected.adjust_immunity(-1)
+	connected.adjust_immunity(-toxicloss)
 	if(prob(0.1)) //spontaneus blood vessel damage
 		connected.take_overall_damage(15)
 

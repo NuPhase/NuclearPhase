@@ -23,7 +23,7 @@
 	)
 
 	var/vials_in_storage = 25
-	var/syringes_in_storage = 10
+	var/syringes_in_storage = 30
 	var/iv_packs_in_storage = 4
 
 	var/dosage = 0.5 //0.01 - 1
@@ -41,7 +41,13 @@
 	. = ..()
 
 /obj/machinery/drug_dispenser/proc/put_in_storage(obj/item/I, mob/user)
-	user.drop_from_inventory(I, loc)
+	switch(I.type)
+		if(/obj/item/chems/syringe)
+			syringes_in_storage++
+		if(/obj/item/chems/glass/beaker/vial)
+			syringes_in_storage++
+		if(/obj/item/chems/ivbag)
+			iv_packs_in_storage++
 	if(I.reagents)
 		for(var/mat_type in I.reagents.reagent_volumes)
 			reagent_volumes[mat_type] += I.reagents.reagent_volumes[mat_type]
@@ -134,7 +140,8 @@
 		/decl/material/liquid/antibiotics/amicile = 54,
 		/decl/material/liquid/antibiotics/ceftriaxone = 42,
 		/decl/material/liquid/opium/morphine = 44,
-		/decl/material/liquid/opium/fentanyl = 51,
+		/decl/material/liquid/opium/fentanyl = 13,
+		/decl/material/liquid/opium = 80,
 		/decl/material/liquid/ethanol = 720,
 		/decl/material/liquid/nitroglycerin = 182,
 		/decl/material/liquid/potassium_iodide = 409,
@@ -146,5 +153,6 @@
 		/decl/material/liquid/metoclopramide = 146,
 		/decl/material/liquid/naloxone = 42,
 		/decl/material/liquid/dronedarone = 33,
-		/decl/material/solid/betapace = 96
+		/decl/material/solid/betapace = 96,
+		/decl/material/liquid/nutriment/glucose = 130
 	)

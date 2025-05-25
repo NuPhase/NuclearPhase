@@ -57,6 +57,14 @@
 			pref.f_style = accessory
 			break
 
+	// Get g_style type.
+	all_sprite_accessories = decls_repository.get_decls_of_subtype(/decl/sprite_accessory/hair_gradient)
+	for(var/accessory in all_sprite_accessories)
+		var/decl/sprite_accessory/sprite = all_sprite_accessories[accessory]
+		if(sprite.name == pref.g_style)
+			pref.g_style = accessory
+			break
+
 	// Get markings type.
 	all_sprite_accessories = decls_repository.get_decls_of_subtype(/decl/sprite_accessory/marking)
 	for(var/marking in pref.body_markings)

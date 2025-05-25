@@ -97,11 +97,11 @@
 		if(!network)
 			to_chat(usr, SPAN_WARNING("Network error."))
 			return
+		active_record = new/datum/computer_file/report/crew_record()
+		global.all_crew_records.Add(active_record)
 		if(!network.store_file(active_record, MF_ROLE_CREW_RECORDS))
 			to_chat(usr, SPAN_WARNING("You may not have access to generate new crew records, or there may not be a crew record mainframe active on the network."))
 			return
-		active_record = new/datum/computer_file/report/crew_record()
-		global.all_crew_records.Add(active_record)
 		return 1
 	if(href_list["print_active"])
 		if(!active_record)
