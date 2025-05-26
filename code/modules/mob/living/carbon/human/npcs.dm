@@ -44,6 +44,30 @@
 /mob/living/carbon/human/blank/ssd_check()
 	return FALSE
 
+/mob/living/carbon/human/shelter_npc
+	var/list/possible_outfits = list(/decl/hierarchy/outfit/job/cargo/cargo_tech)
+
+/mob/living/carbon/human/shelter_npc/Initialize(mapload, species_name, datum/dna/new_dna)
+	. = ..(mapload, SPECIES_HUMAN)
+	randomize_gender()
+	var/decl/pronouns/new_pronouns = get_pronouns_by_gender(get_sex())
+	pronouns = new_pronouns
+	var/new_bodytype = species.get_bodytype_by_pronouns(new_pronouns)
+	set_bodytype(new_bodytype)
+	randomize_skin_tone()
+	randomize_hair_style()
+	randomize_facial_hair_style()
+	randomize_eye_color()
+	var/decl/cultural_info/culture = get_cultural_value(TAG_CULTURE)
+	SetName(src, culture.get_random_name(gender))
+	real_name = name
+	var/decl/hierarchy/outfit/corpse_outfit = outfit_by_type(pickweight(possible_outfits))
+	corpse_outfit.equip(src)
+	update_icon()
+
+/mob/living/carbon/human/shelter_npc/ssd_check()
+	return FALSE
+
 /mob/living/carbon/human/limb/handle_regular_hud_updates()
 	if(hud_updateflag) // update our mob's hud overlays, AKA what others see flaoting above our head
 		handle_hud_list()
