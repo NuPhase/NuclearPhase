@@ -90,6 +90,7 @@
 			var/true_reagent_type = text2path(params["reagent_type"])
 			if(!true_reagent_type)
 				return
+			var/decl/material/dispense_reagent = GET_DECL(true_reagent_type)
 			var/obj/item/chems/dispense_object = new dispense_type(get_turf(src))
 			available_saline = min(available_saline, dispense_object.volume)
 			var/reagent_to_dispense = available_saline * dosage
@@ -99,6 +100,7 @@
 			dispense_object.reagents.add_reagent(/decl/material/liquid/nanoblood/saline, available_saline)
 			reagent_volumes[/decl/material/liquid/nanoblood/saline] -= available_saline
 			reagent_volumes[true_reagent_type] -= reagent_to_dispense
+			dispense_object.name = "[dispense_object.name] ([dispense_reagent.name] [dosage]mg/ml)"
 			dispense_object.update_icon()
 			prune_reagents()
 			return TRUE

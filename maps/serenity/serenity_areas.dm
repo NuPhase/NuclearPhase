@@ -304,6 +304,10 @@
 	name = "Medbay Therapy"
 	icon_state = "medbay"
 
+/area/serenity/shelter/medbay/ward
+	name = "Medbay Patient Ward"
+	icon_state = "medbay4"
+
 /area/serenity/shelter/medbay/shift_director
 	name = "Medbay Shift Director"
 	icon_state = "medbay4"

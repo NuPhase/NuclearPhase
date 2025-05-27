@@ -291,3 +291,8 @@
 			M.add_chemical_effect(CE_SREC, 3)
 		if(15 to 50)
 			M.add_chemical_effect(CE_SREC, 4)
+
+/decl/material/liquid/neuroreparin
+	name = "neuroreparin"
+	uid = "SREC_inhibitor"
+	metabolism = 0.01

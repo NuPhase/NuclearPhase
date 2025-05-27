@@ -234,7 +234,7 @@
 	name = "opium"
 	lore_text = "Unrefined substance extracted from opium poppy flowers."
 	color = "#ccccff"
-	metabolism = REM * 0.1
+	metabolism = REM * 0.2
 	overdose = 60
 	uid = "chem_opium"
 	var/addictiveness = 10 //addiction gained per unit consumed
@@ -247,7 +247,7 @@
 		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
-	SET_STATUS_MAX(H, STAT_DRUGGY, 15)
+	SET_STATUS_MAX(H, STAT_DRUGGY, 5)
 	heart.bpm_modifiers[name] = removed * -3000
 	var/boozed = isboozed(H)
 	if(boozed)
@@ -256,10 +256,15 @@
 
 /decl/material/liquid/opium/affect_overdose(mob/living/carbon/human/H, datum/reagents/holder)
 	. = ..()
-	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 4))
+	var/dose = LAZYACCESS(H.chem_doses, type)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, dose))
 		return
-	H.add_chemical_effect(CE_BREATHLOSS, -15)
-	ADJ_STATUS(H, STAT_DIZZY,  3)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	ADJ_STATUS(H, STAT_DIZZY, 3)
+	ADJ_STATUS(H, STAT_SLUR, 3)
+	ADJ_STATUS(H, STAT_BLURRY, 3)
+	SET_STATUS_MAX(H, STAT_DRUGGY, 15)
+	heart.bpm_modifiers[name] = dose * -10
 
 /decl/material/liquid/opium/on_leaving_metabolism(atom/parent, metabolism_class)
 	. = ..()
@@ -303,23 +308,27 @@
 	ingest_met = 0.1
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
-	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, removed))
 		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	heart.bpm_modifiers[name] = removed * -100
+	heart.bpm_modifiers[name] = removed * -200
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
+	H.add_chemical_effect(CE_PRESSURE, -250 * removed)
+	H.add_chemical_effect(CE_BREATHLOSS, -100 * removed)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
 		H.add_chemical_effect(CE_BREATHLOSS, -1 * boozed)
 
 /decl/material/liquid/opium/tramadol/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder)
-	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, removed))
 		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/dose = LAZYACCESS(H.chem_doses, type)
-	heart.bpm_modifiers[name] = dose * -0.1
+	heart.bpm_modifiers[name] = dose * -0.4
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose * metabolism)
+	H.add_chemical_effect(CE_PRESSURE, -0.5 * dose)
+	H.add_chemical_effect(CE_BREATHLOSS, -0.2 * dose)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
@@ -335,20 +344,24 @@
 	ingest_met = 0.1
 
 /decl/material/liquid/opium/fentanyl/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
-	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, removed))
 		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	heart.bpm_modifiers[name] = removed * -50000
+	heart.bpm_modifiers[name] = removed * -4000
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
-	H.add_chemical_effect(CE_PRESSURE, -30000 * removed)
-	H.add_chemical_effect(CE_BREATHLOSS, -10000 * removed)
+	H.add_chemical_effect(CE_PRESSURE, -3500 * removed)
+	H.add_chemical_effect(CE_BREATHLOSS, -3500 * removed)
+	if(removed > 0.001)
+		SET_STATUS_MAX(H, STAT_DROWSY, removed * 3000)
+		if(removed > 0.004)
+			SET_STATUS_MAX(H, STAT_ASLEEP, 5)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 2)
 		H.add_chemical_effect(CE_BREATHLOSS, -3 * boozed)
 
 /decl/material/liquid/opium/fentanyl/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder)
-	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, removed))
 		return
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	var/dose = LAZYACCESS(H.chem_doses, type)
@@ -402,7 +415,7 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	heart.bpm_modifiers[name] = removed * -700
 	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * removed)
-	SET_STATUS_MAX(H, STAT_DRUGGY, 15)
+	SET_STATUS_MAX(H, STAT_DRUGGY, 5)
 	var/boozed = isboozed(H)
 	if(boozed)
 		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
