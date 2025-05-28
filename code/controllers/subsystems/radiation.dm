@@ -73,13 +73,12 @@ SUBSYSTEM_DEF(radiation)
 		var/datum/radiation_source/source = value
 		if(source.rad_power < .)
 			continue // Already being affected by a stronger source
-		//if(source.source_turf.z != T.z)
-		//	continue // Radiation is not multi-z
+		if(!SSmapping.are_connected_levels(source.source_turf.z, T.z))
+			continue
 		if(source.respect_maint)
 			var/area/A = T.loc
 			if(A.area_flags & AREA_FLAG_RAD_SHIELDED)
 				continue // In shielded area
-
 		var/dist = get_dist(source.source_turf, T)
 		if(dist > source.range)
 			continue // Too far to possibly affect

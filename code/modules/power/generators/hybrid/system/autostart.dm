@@ -20,18 +20,20 @@
 
 	var/obj/machinery/atmospherics/binary/pump/adv/P
 	P = rcontrol.reactor_pumps["T-CP 1"]
+	P.update_mode(REACTOR_PUMP_MODE_MAX)
 	P.rpm = REACTOR_PUMP_RPM_MAX
-	P.mode = REACTOR_PUMP_MODE_MAX
 	P = rcontrol.reactor_pumps["T-CP 2"]
+	P.update_mode(REACTOR_PUMP_MODE_MAX)
 	P.rpm = REACTOR_PUMP_RPM_MAX
-	P.mode = REACTOR_PUMP_MODE_MAX
+
 	P.air2.adjust_gas_temp(/decl/material/liquid/water, 800000, 350) //add wotah to the loop
+
 	P = rcontrol.reactor_pumps["F-CP 1"]
+	P.update_mode(REACTOR_PUMP_MODE_MAX)
 	P.rpm = REACTOR_PUMP_RPM_MAX
-	P.mode = REACTOR_PUMP_MODE_MAX
 	P = rcontrol.reactor_pumps["F-CP 2"]
+	P.update_mode(REACTOR_PUMP_MODE_MAX)
 	P.rpm = REACTOR_PUMP_RPM_MAX
-	P.mode = REACTOR_PUMP_MODE_MAX
 
 	var/obj/machinery/reactor_button/current_button
 	current_button = reactor_buttons["T-CP 1"]
@@ -40,10 +42,10 @@
 	current_button.icon_state = "switch3-max"
 
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 100, 0)
-	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 30, 0)
-	R.containment_field.adjust_gas(/decl/material/gas/xenon, 30)
-	R.containment_field.temperature = 95 MEGAKELVIN
+	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 10, 0)
+	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 5, 0)
+	R.containment_field.adjust_gas(/decl/material/gas/xenon, 1)
+	R.containment_field.temperature = 105 MEGAKELVIN
 	R.fast_neutrons = 70
 	R.moderator_position = 0.05
 
