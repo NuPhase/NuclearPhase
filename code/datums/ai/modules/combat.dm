@@ -7,4 +7,6 @@
 	var/engagement_distance = 6
 
 /decl/ai_module/combat/ranged/process(datum/ai/parent)
+	parent.attack_ranged(parent.mob_target)
+	. = ..()
 	return TRUE

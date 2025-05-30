@@ -140,6 +140,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/c11x25
 	max_ammo = 60
 
+/obj/item/ammo_magazine/smg/c11x25/robot
+	max_ammo = 180
+
 /obj/item/ammo_magazine/pistol
 	name = "11x25 pistol magazine"
 	icon_state = "pistol"
@@ -264,6 +267,9 @@
 	max_ammo = 30
 	icon_state = "bullup"
 	mag_type = MAGAZINE
+
+/obj/item/ammo_magazine/snapdragon/robot
+	max_ammo = 180
 
 /obj/item/ammo_magazine/c127x99
 	name = "50 BMG sniper magazine"

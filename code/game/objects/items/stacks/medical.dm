@@ -80,7 +80,7 @@
 	amount = 10
 	weight = 0.05
 	matter = list(
-		/decl/material/solid/cloth = MATTER_AMOUNT_PRIMARY
+		/decl/material/solid/cloth = MATTER_AMOUNT_TRACE
 	)
 
 /obj/item/stack/medical/bruise_pack/attack(var/mob/living/carbon/M, var/mob/user)
@@ -147,7 +147,7 @@
 	var/sterile = FALSE
 	weight = 0.1
 	matter = list(
-		/decl/material/solid/cloth = MATTER_AMOUNT_PRIMARY
+		/decl/material/solid/cloth = MATTER_AMOUNT_TRACE
 	)
 
 /obj/item/stack/medical/wound_filler/attackby(obj/item/W, mob/user)
@@ -217,8 +217,8 @@
 	packing_speed = 0.4
 	sterile = TRUE
 	matter = list(
-		/decl/material/solid/sodium = MATTER_AMOUNT_PRIMARY,
-		/decl/material/solid/potassium = MATTER_AMOUNT_PRIMARY
+		/decl/material/solid/sodium = MATTER_AMOUNT_TRACE,
+		/decl/material/solid/potassium = MATTER_AMOUNT_TRACE
 	)
 
 /obj/item/stack/medical/wound_filler/hydrofiber
@@ -231,9 +231,9 @@
 	sterile = TRUE
 	should_disinfect = TRUE
 	matter = list(
-		/decl/material/solid/cloth = MATTER_AMOUNT_PRIMARY,
-		/decl/material/solid/sodium = MATTER_AMOUNT_REINFORCEMENT,
-		/decl/material/solid/potassium = MATTER_AMOUNT_REINFORCEMENT
+		/decl/material/solid/cloth = MATTER_AMOUNT_TRACE,
+		/decl/material/solid/sodium = MATTER_AMOUNT_TRACE,
+		/decl/material/solid/potassium = MATTER_AMOUNT_TRACE
 	)
 
 /obj/item/stack/medical/ointment
@@ -247,7 +247,7 @@
 	animal_heal = 4
 	apply_sounds = list('sound/effects/ointment.ogg')
 	matter = list(
-		/decl/material/solid/plastic = MATTER_AMOUNT_SECONDARY
+		/decl/material/solid/plastic = MATTER_AMOUNT_TRACE
 	)
 
 /obj/item/stack/medical/ointment/attack(var/mob/living/carbon/M, var/mob/user)
@@ -377,7 +377,7 @@
 	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_CHEST, BP_HEAD, BP_GROIN)	//List of organs you can splint, natch. //we're not in the stone age
 	weight = 0.3
 	matter = list(
-		/decl/material/solid/plastic = MATTER_AMOUNT_PRIMARY
+		/decl/material/solid/plastic = MATTER_AMOUNT_TRACE
 	)
 
 /obj/item/stack/medical/splint/check_limb_state(var/mob/user, var/obj/item/organ/external/limb)

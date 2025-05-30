@@ -1,5 +1,3 @@
-var/global/list/combat_drones = list()
-
 /mob/living/simple_animal/robot
 	name = "Combat Drone"
 	real_name = "Drone"
@@ -38,33 +36,72 @@ var/global/list/combat_drones = list()
 	drag_capacity = 240
 	anchored = TRUE
 	a_intent = I_HURT
+	default_pixel_x = -9
+	default_pixel_y = -9
+	pixel_x = -9
+	pixel_y = -9
+
+	var/obj/item/gun/projectile/automatic/snapdragon/robot/nonlethal_rifle
+	var/obj/item/gun/projectile/automatic/smg/robot/lethal_rifle
+
+/mob/living/simple_animal/robot/has_dexterity(dex_level)
+	. = dex_level <= DEXTERITY_WEAPONS
 
 /mob/living/simple_animal/robot/Initialize()
 	. = ..()
-	combat_drones += src
+	fcontrol.combat_drones += src
+	nonlethal_rifle = new(src)
+	nonlethal_rifle.safety_state = FALSE
+	nonlethal_rifle.sel_mode = 2
+	nonlethal_rifle.burst = 5
+	lethal_rifle = new(src)
+	lethal_rifle.safety_state = FALSE
+	lethal_rifle.sel_mode = 2
+	lethal_rifle.burst = 5
 
 /mob/living/simple_animal/robot/Destroy()
 	. = ..()
-	combat_drones -= src
+	fcontrol.combat_drones -= src
+	QDEL_NULL(nonlethal_rifle)
+	QDEL_NULL(lethal_rifle)
 
 /mob/living/simple_animal/robot/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(!our_ai)
-		to_chat(user, SPAN_NOTICE("It is inactive and anchored to the floor."))
+		to_chat(user, SPAN_NOTICE("It is inactive, and it's legs are dug into the floor."))
+
+/mob/living/simple_animal/robot/death(gibbed, deathmessage, show_dead_message)
+	. = ..()
+	QDEL_NULL(our_ai)
+	cell_explosion(get_turf(src), 300, 60)
+	qdel(src)
 
 /obj/item/natural_weapon/robot
-	name = "composite blade"
-	attack_verb = list("slashed", "diced")
+	name = "twin-blade scissors"
+	attack_verb = list("slashed", "split")
 	damtype = BRUTE
-	force = 25
+	force = 15
+	sharp = TRUE
+	edge = TRUE
+	hitsound = 'sound/weapons/rapidslice.ogg'
 
 /mob/living/simple_animal/robot/proc/activate()
+	if(our_ai)
+		return
 	our_ai = new(src)
 	anchored = FALSE
+	update_icon()
+	playsound(src, 'sound/effects/alarms/robot_powerup.ogg', 50, 1)
+
+/mob/living/simple_animal/robot/proc/deactivate()
+	if(!our_ai)
+		return
+	QDEL_NULL(our_ai)
+	anchored = TRUE
 	update_icon()
 
 /mob/living/simple_animal/robot/on_update_icon()
 	. = ..()
 	cut_overlays()
 	if(our_ai && icon_state == ICON_STATE_WORLD)
-		add_overlay(image(icon, icon_state = "world-eyes"))
+		add_overlay(emissive_overlay(icon, "lights"))

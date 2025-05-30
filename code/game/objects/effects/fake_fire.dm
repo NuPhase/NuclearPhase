@@ -43,3 +43,8 @@
 	last_temperature = 800
 	pressure = ONE_ATMOSPHERE
 	color = FIRE_COLOR_DEFAULT
+
+/obj/effect/fake_fire/dragon_breath/bot
+	lifetime = 20
+	color = COLOR_RED
+	alpha = 50

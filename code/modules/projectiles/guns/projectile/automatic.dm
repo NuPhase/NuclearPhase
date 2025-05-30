@@ -10,7 +10,7 @@
 	slot_flags = SLOT_LOWER_BODY|SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/caseless/c11x25
 	load_method = MAGAZINE
-	magazine_type = null
+	magazine_type = /obj/item/ammo_magazine/smg/c11x25
 	allowed_magazines = /obj/item/ammo_magazine/smg/c11x25
 	accuracy_power = 7
 	one_hand_penalty = 2
@@ -31,6 +31,9 @@
 	)
 	weight = 1.4
 	muzzle_flash_intensity = 4
+
+/obj/item/gun/projectile/automatic/smg/robot
+	magazine_type = /obj/item/ammo_magazine/smg/c11x25/robot
 
 /obj/item/gun/projectile/automatic/assault_rifle
 	name = "assault rifle"
@@ -89,8 +92,6 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/snapdragon
 	allowed_magazines = list(/obj/item/ammo_magazine/snapdragon)
-	auto_eject = 1
-	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	accuracy = 2
 	accuracy_power = 7
 	one_hand_penalty = 4
@@ -102,10 +103,14 @@
 	material = /decl/material/solid/metal/steel
 	firemodes = list(
 		list(mode_name="semi auto",      burst=1,    fire_delay=2, one_hand_penalty=4,  burst_accuracy=null,            dispersion=null),
+		list(mode_name="short bursts",   burst=5, fire_delay=2, one_hand_penalty=3, dispersion=null),
 		list(mode_name="full auto",      burst=1,    fire_delay=0.8,    burst_delay=-2,     one_hand_penalty=5,             autofire_enabled=1)
 	)
 	weight = 3.6
 	muzzle_flash_intensity = 8
+
+/obj/item/gun/projectile/automatic/snapdragon/robot
+	magazine_type = /obj/item/ammo_magazine/snapdragon/robot
 
 /obj/item/gun/projectile/automatic/snapdragon/update_base_icon()
 	if(ammo_magazine)

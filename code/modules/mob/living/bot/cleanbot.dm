@@ -1,8 +1,8 @@
 /mob/living/bot/cleanbot
-	name = "Cleanbot"
-	desc = "A little cleaning robot, he looks so excited!"
+	name = "robot vacuum"
+	desc = "An utilitarian cleaning robot. It's hull is made of durable black plastic."
 	icon = 'icons/mob/bot/cleanbot.dmi'
-	icon_state = "cleanbot0"
+	icon_state = "off"
 	req_access = list(list(access_janitor, access_robotics))
 	botcard_access = list(access_janitor, access_maint_tunnels)
 
@@ -15,14 +15,14 @@
 	var/blood = 1
 	var/list/target_types = list()
 
+/mob/living/bot/cleanbot/FireBurn(firelevel, last_temperature, pressure)
+	return 0
+
 /mob/living/bot/cleanbot/Initialize()
 	. = ..()
 	get_targets()
 
 /mob/living/bot/cleanbot/handleIdle()
-	if(!screwloose && !oddbutton && prob(5))
-		visible_message("\The [src] makes an excited beeping booping sound!")
-
 	if(screwloose && prob(5)) // Make a mess
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
@@ -36,8 +36,14 @@
 		spawn(600)
 			ignore_list -= g
 
+	if(emagged)
+		new /obj/effect/fake_fire/dragon_breath/bot(loc)
+		var/datum/gas_mixture/expulsion = new
+		expulsion.adjust_gas_temp(/decl/material/gas/nitrodioxide, 1, 200 CELSIUS)
+		loc.assume_air()
+
 /mob/living/bot/cleanbot/lookForTargets()
-	for(var/obj/effect/decal/cleanable/D in view(world.view + 1, src))
+	for(var/obj/effect/decal/cleanable/D in view(15, src))
 		if(confirmTarget(D))
 			target = D
 			playsound(src, 'sound/machines/boop1.ogg', 30)
@@ -85,12 +91,6 @@
 /mob/living/bot/cleanbot/explode()
 	on = 0
 	visible_message("<span class='danger'>[src] blows apart!</span>")
-	var/turf/Tsec = get_turf(src)
-
-	new /obj/item/chems/glass/bucket(Tsec)
-	new /obj/item/assembly/prox_sensor(Tsec)
-	if(prob(50))
-		new /obj/item/robot_parts/l_arm(Tsec)
 
 	spark_at(src, cardinal_only = TRUE)
 	qdel(src)
@@ -98,10 +98,12 @@
 
 /mob/living/bot/cleanbot/on_update_icon()
 	..()
-	if(busy)
-		icon_state = "cleanbot-c"
+	if(on)
+		icon_state = "on"
+		if(emagged)
+			icon_state = "defective"
 	else
-		icon_state = "cleanbot[on]"
+		icon_state = "off"
 
 /mob/living/bot/cleanbot/GetInteractTitle()
 	. = "<head><title>Cleanbot controls</title></head>"

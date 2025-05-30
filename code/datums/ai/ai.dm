@@ -33,12 +33,16 @@ Abilities:
 	var/move_to_delay = 3 //delay for the automated movement.
 	var/motion_overriden = FALSE
 
+	var/list/target_list = list() // weakref list
 	var/list/processing_modules = list() //Sorted from first to last in execution. Don't suck BBQ
 	var/mob/mob_target // An actual mob target to attack
 	var/atom/target // A target to walk to
 	var/last_seen_mob = 0 // world.time of last mob being assigned to target
 
 	var/faction = "AI" // FF faction
+
+/datum/ai/proc/add_target(mob/target)
+	target_list += weakref(target)
 
 /datum/ai/New(var/mob/living/target_body)
 	body = target_body
@@ -94,7 +98,9 @@ Abilities:
 	walk_to(body, target, 1, move_to_delay)
 
 /datum/ai/proc/attack(atom/A)
-	to_world("AI attacked [A].")
+	return
+
+/datum/ai/proc/attack_ranged(atom/A)
 	return
 
 /datum/ai/proc/idle()
