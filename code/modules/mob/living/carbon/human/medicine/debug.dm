@@ -10,3 +10,9 @@
 	to_chat(user, "Blood Perfusion: [get_blood_perfusion() * 100]%")
 	to_chat(user, "Blood Volume: [get_blood_volume_hemo() * 100]%")
 	return
+
+/mob/living/carbon/human/proc/write_hemo_log()
+	if(!real_name || real_name == "unknown")
+		return
+	var/our_file = file("[global.log_directory]/hemo_logs/[real_name].log")
+	to_file(our_file, "BPM: [round(bpm)]\tSYS/DYS(MAP): [round(syspressure)]/[round(dyspressure)]([round(meanpressure)])\tSAT/PERF: [round(oxygen_amount / normal_oxygen_capacity, 0.01)]/[round(blood_perfusion, 0.01)]\tTPVR: [round(tpvr)]\tMCV: [round(mcv)] \n")

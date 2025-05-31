@@ -112,6 +112,8 @@
 	mcv = Clamp(((bpm * stroke_volume) + (add_mcv * get_blood_volume_hemo())), 0, 32000)
 	add_mcv = 0
 
+	write_hemo_log()
+
 #undef PULSE_PRESSURE
 #undef MCV_PRESSURE
 
