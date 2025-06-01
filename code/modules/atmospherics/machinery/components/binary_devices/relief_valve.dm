@@ -23,6 +23,10 @@
 	var/open_pressure = MAX_TANK_PRESSURE
 	var/close_pressure = MAX_TANK_PRESSURE*0.75
 
+/obj/machinery/atmospherics/binary/relief_valve/examine(mob/user)
+	. = ..()
+	to_chat(user, SPAN_NOTICE("It opens at [open_pressure]kPa and closes at [close_pressure]kPa."))
+
 /obj/machinery/atmospherics/binary/relief_valve/Initialize()
 	. = ..()
 	if(starting_volume)

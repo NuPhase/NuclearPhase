@@ -5122,10 +5122,9 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/it_operations/server)
 "cUY" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/ch4_out{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out{
+	dir = 4
 	},
-/obj/machinery/meter,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
 "cVl" = (
@@ -8032,11 +8031,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/it_operations/server)
 "ewp" = (
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 1;
-	flow_capacity = 300
-	},
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/ch4_in{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white/monotile,
@@ -8567,6 +8565,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"eLz" = (
+/obj/machinery/atmospherics/binary/relief_valve{
+	starting_volume = 2000
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "eLL" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/chems/food/meat/beef,
@@ -11301,6 +11305,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"glY" = (
+/obj/machinery/atmospherics/binary/relief_valve{
+	dir = 1;
+	open_pressure = 7000;
+	close_pressure = 2000;
+	starting_volume = 2000
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "glZ" = (
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/medbay/shift_director)
@@ -12415,6 +12428,13 @@
 	dir = 8
 	},
 /area/serenity/shelter/habitationdeck/crew)
+"gNP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "gNU" = (
 /obj/structure/railing/mapped,
 /obj/machinery/atmospherics/pipe/simple/visible/water{
@@ -13408,6 +13428,12 @@
 /obj/structure/fire_sprinkler,
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/preparation)
+"hru" = (
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "hrN" = (
 /obj/structure/door/fire,
 /obj/effect/decal/cleanable/dirt,
@@ -17088,6 +17114,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"jpZ" = (
+/obj/machinery/door/airlock/atmos{
+	name = "CH4 Distribution"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "jqA" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -17981,12 +18016,14 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/serenity/shelter/brig/prison)
 "jOx" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
+/obj/effect/floor_decal/corner/grey/mono,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
-/obj/machinery/door/airlock/atmos{
-	name = "CH4 Distribution"
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
 	},
+/obj/machinery/portable_atmospherics/canister/liquid_methane,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
 "jOB" = (
@@ -21176,11 +21213,11 @@
 "lxl" = (
 /obj/effect/floor_decal/corner/grey/mono,
 /obj/effect/floor_decal/industrial/warning{
-	dir = 5
+	dir = 9
 	},
-/obj/machinery/portable_atmospherics/canister/liquid_methane,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8;
+	name = "Surface Discharge Line"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
@@ -25592,9 +25629,12 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "nEz" = (
-/obj/machinery/dehumidifier,
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/effect/floor_decal/corner/grey/mono,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
@@ -26792,8 +26832,8 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "ogB" = (
-/obj/machinery/atmospherics/binary/pump/high_power/on/max_pressure{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/visible/ch4_out{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
@@ -27154,6 +27194,17 @@
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/it_operations/server)
+"oon" = (
+/obj/effect/floor_decal/corner/grey/mono,
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 4;
+	name = "Surface Discharge Line"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "oos" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 5
@@ -28147,6 +28198,10 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/pumps_b)
+"oPG" = (
+/obj/machinery/atmospherics/binary/pump/adv/large/on,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "oPH" = (
 /obj/structure/closet/crate/secure/weapon,
 /turf/simulated/floor/tiled/dark/textured,
@@ -28318,6 +28373,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"oSE" = (
+/obj/machinery/atmospherics/binary/pump/high_power/on/max_pressure,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "oSK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/modernsuit_storage/research_hot,
@@ -28704,10 +28763,12 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
 "pdA" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
-	dir = 1
+/obj/machinery/atmospherics/binary/relief_valve{
+	dir = 4;
+	open_pressure = 5000;
+	close_pressure = 4000;
+	starting_volume = 2000
 	},
-/obj/machinery/meter,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
 "pdS" = (
@@ -29864,10 +29925,9 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
 "pLs" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
+/obj/machinery/atmospherics/binary/pump/adv/large{
+	dir = 1
 	},
-/obj/machinery/meter,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
 "pLu" = (
@@ -29971,9 +30031,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/freezer)
 "pNw" = (
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 2;
-	flow_capacity = 300
+/obj/machinery/atmospherics/pipe/manifold/visible/ch4_in{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
@@ -30271,12 +30330,8 @@
 	},
 /area/serenity/shelter/habitationdeck/crew)
 "pVs" = (
-/obj/effect/floor_decal/corner/grey/mono,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
@@ -35098,6 +35153,13 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"sAY" = (
+/obj/machinery/dehumidifier,
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "sAZ" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/machinery/papershredder,
@@ -42467,6 +42529,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/therapy)
+"wxu" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/ch4_out{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "wxV" = (
 /obj/machinery/light/ceiling,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -43561,8 +43629,10 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
 "xbO" = (
-/obj/machinery/light{
-	dir = 4
+/obj/effect/floor_decal/corner/grey/mono,
+/obj/machinery/atmospherics/binary/cryocooler{
+	dir = 1;
+	target_temperature = 86
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
@@ -43966,6 +44036,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
+"xjc" = (
+/obj/machinery/atmospherics/binary/pump/adv/large/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "xji" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -140912,8 +140988,8 @@ pRP
 mgw
 nHi
 ewp
+xjc
 sFV
-abd
 abd
 abd
 rcH
@@ -141009,9 +141085,9 @@ emo
 tFm
 aeU
 pEc
-pEc
+pNw
 pLs
-pEc
+jDd
 pEc
 pEc
 pEc
@@ -141106,10 +141182,10 @@ rdW
 jKC
 tFm
 cUY
-pNw
-abd
-qEL
-oos
+pEc
+hru
+eLz
+jDd
 pEc
 pEc
 pEc
@@ -141204,12 +141280,12 @@ rdW
 jKC
 tFm
 ogB
-fiE
-slO
-wcm
-taL
-pEc
-pEc
+wxu
+oPG
+abd
+qEL
+abd
+oos
 pEc
 pEc
 pEc
@@ -141303,11 +141379,11 @@ jKC
 tFm
 pdA
 pVs
-oUI
-qwH
-jDd
-pEc
-pEc
+oSE
+lxl
+jOx
+wcm
+taL
 pEc
 pEc
 pEc
@@ -141399,13 +141475,13 @@ jKC
 rdW
 jKC
 tFm
-ogB
-lxl
-oWj
-kxb
-taL
-pEc
-pEc
+viF
+wGO
+glY
+oon
+xbO
+qwH
+jDd
 pEc
 pEc
 pEc
@@ -141501,11 +141577,11 @@ ndl
 lsU
 lsU
 nEz
-taL
-pEc
-pEc
-pEc
-xbO
+oWj
+kxb
+sAY
+gNP
+oos
 pEc
 lsU
 xEy
@@ -141599,12 +141675,12 @@ cOK
 pEc
 lsU
 lsU
-jOx
+wmG
+wmG
+lsU
+lsU
+jpZ
 plp
-lsU
-lsU
-lsU
-lsU
 lsU
 xEy
 "}
@@ -141697,11 +141773,11 @@ wcm
 czo
 iwq
 abd
+abd
+abd
+abd
+abd
 rcH
-pEc
-pEc
-pEc
-pEc
 pEc
 lsU
 xEy

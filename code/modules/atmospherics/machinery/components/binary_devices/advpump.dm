@@ -10,12 +10,12 @@
 	icon_state = "map_off"
 	level = 2
 
-	name = "advanced rotary pump"
-	desc = "A special pump designed to pump fluids. Works poorly with gases."
+	name = "small rotary pump"
+	desc = "A small pump designed to pump fluids. Works poorly with gases. Rated for 5MPa."
 
 	use_power = POWER_USE_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
-	power_rating = 30000
+	power_rating = 50000
 	power_channel = EQUIP
 	identifier = "AFP"
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
@@ -26,6 +26,10 @@
 	var/mode = REACTOR_PUMP_MODE_OFF
 	var/rpm = 0
 	var/target_rpm = 0
+	var/max_pressure = 5000
+	var/start_speed_coeff = 0.8
+
+	var/map_on = FALSE // Should this pump start itself on roundstart?
 
 	var/sound_id
 	var/playing_sound = FALSE
@@ -35,26 +39,51 @@
 	var/running_sound = 'sound/machines/small_pump_loop.wav'
 	var/running_length = 49
 
+	var/initial_volume = 200
+
 /obj/machinery/atmospherics/binary/pump/adv/on
 	icon_state = "map_on"
+	map_on = TRUE
 
-/obj/machinery/atmospherics/binary/pump/adv/on/Initialize()
-	. = ..()
-	mode = REACTOR_PUMP_MODE_IDLE
-	target_rpm = REACTOR_PUMP_RPM_SAFE
-	rpm = REACTOR_PUMP_RPM_SAFE
-	use_power = POWER_USE_IDLE
-	playing_sound = TRUE
-	sound_token = play_looping_sound(src, sound_id, running_sound, 80, 10, 3)
+/obj/machinery/atmospherics/binary/pump/adv/medium
+	name = "rotodynamic pump"
+	desc = "A medium pump designed to pump fluids. Works poorly with gases. Rated for 15MPa."
+	flow_capacity = 100
+	max_pressure = 15000
+	start_speed_coeff = 0.4
+	power_rating = 500000
+	running_sound = 'sound/machines/pumploop.ogg'
+	running_length = 41
+
+/obj/machinery/atmospherics/binary/pump/adv/medium/on
+	icon_state = "map_on"
+	map_on = TRUE
+
+/obj/machinery/atmospherics/binary/pump/adv/large
+	name = "multistage centrifugal pump"
+	desc = "A complex, large pump designed to pump fluids. Works poorly with gases. Rated for 40MPa, can easily overpressure a line without a relief valve."
+	flow_capacity = 300
+	max_pressure = 40000
+	start_speed_coeff = 0.15
+	power_rating = 1500000
+	start_sound = 'sound/machines/pumpstart.ogg'
+	start_length = 460
+	running_sound = 'sound/machines/pumprunning.ogg'
+	running_length = 75
+
+/obj/machinery/atmospherics/binary/pump/adv/large/on
+	icon_state = "map_on"
+	map_on = TRUE
 
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
 	flow_capacity = 1500 //kgs
 	power_rating = 140000 //fucking chonker
 	start_sound = 'sound/machines/pumpstart.ogg'
-	start_length = 470
+	start_length = 460
 	running_sound = 'sound/machines/pumprunning.ogg'
 	running_length = 75
+	start_speed_coeff = 0.1
 
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
 	name = "molten metal pump"
@@ -66,9 +95,10 @@
 	flow_capacity = 1200 //kgs
 	power_rating = 210000 //molten metals take a lot of energy to move
 	start_sound = 'sound/machines/pumpstart.ogg'
-	start_length = 470
+	start_length = 460
 	running_sound = 'sound/machines/pumprunning.ogg'
 	running_length = 75
+	start_speed_coeff = 0.1
 
 /obj/machinery/atmospherics/binary/pump/adv/on_update_icon()
 	if(stat & NOPOWER)
@@ -83,11 +113,16 @@
 		if(REACTOR_PUMP_MODE_OFF)
 			target_rpm = 0
 			QDEL_NULL(sound_token)
+			change_volume(initial_volume)
 		if(REACTOR_PUMP_MODE_IDLE)
 			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.4
 		if(REACTOR_PUMP_MODE_MAX)
 			target_rpm = REACTOR_PUMP_RPM_SAFE
 	mode = new_mode
+
+/obj/machinery/atmospherics/binary/pump/adv/proc/change_volume(new_volume)
+	air1.volume = new_volume
+	air2.volume = new_volume
 
 /obj/machinery/atmospherics/binary/pump/adv/Initialize()
 	. = ..()
@@ -95,8 +130,15 @@
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
-	air1.volume = initial_flow_capacity * 10
-	air2.volume = initial_flow_capacity * 4
+	initial_volume = initial_flow_capacity * 5
+	change_volume(initial_volume)
+	if(map_on)
+		mode = REACTOR_PUMP_MODE_IDLE
+		target_rpm = REACTOR_PUMP_RPM_SAFE
+		rpm = REACTOR_PUMP_RPM_SAFE
+		use_power = POWER_USE_IDLE
+		playing_sound = TRUE
+		sound_token = play_looping_sound(src, sound_id, running_sound, 80, 10, 3)
 
 /obj/machinery/atmospherics/binary/pump/adv/Destroy()
 	. = ..()
@@ -159,6 +201,9 @@
 	var/power_draw = -1
 	var/air1_mass = air1.get_mass()
 	var/mass_transfer = max(air1_mass, flow_capacity)
+
+	// Emulate vacuum suction
+	change_volume(Clamp((3 - (air1_mass / flow_capacity * 2)), 1, 3) * initial_volume)
 
 	power_draw = pump_fluid(src, air1, air2, mass_transfer, flow_capacity, power_rating)
 	last_mass_flow = min(air1_mass, flow_capacity)

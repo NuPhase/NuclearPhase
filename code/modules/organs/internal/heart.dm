@@ -67,11 +67,15 @@
 	..()
 
 /obj/item/organ/internal/heart/proc/get_modifiers()
+	if(owner.get_blood_saturation() < 1)
+		bpm_modifiers["hypoxia"] = min((1 - owner.get_blood_saturation()) * 270, 80)
 	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 80
-	if(1 > owner.get_blood_saturation())
-		bpm_modifiers["hypoxia"] = min((1 - owner.get_blood_saturation()) * 250, 80)
-	cardiac_output_modifiers["hypoperfusion"] = min(2 - owner.get_blood_perfusion(), 1.2)
-	bpm_modifiers["ischemia"] = oxygen_deprivation * -2.4
+	bpm_modifiers["ischemia"] = oxygen_deprivation * 0.3
+
+	cardiac_output_modifiers["ischemia"] = 1 - (oxygen_deprivation * -0.005)
+
+	bpm_modifiers["damage"] = damage * -1.5
+
 	bpm_modifiers["shock"] = clamp(owner.shock_stage * 0.35, 0, 110)
 	bpm_modifiers["toxins"] = owner.getToxLoss() * -0.15
 	for(var/decl/arrythmia/A in arrythmias)
@@ -81,25 +85,17 @@
 /obj/item/organ/internal/heart/proc/calculate_instability()
 	var/ninstability = 0
 
-	if(owner.mcv > 10000)
-		ninstability += (owner.mcv - 8000) * 0.003
 	if(owner.mcv < 400)
 		ninstability += 60
-	if(owner.blood_perfusion < 0.7)
-		ninstability += (0.7 - owner.blood_perfusion) * 70
-	if(cardiac_output < 0.8)
-		ninstability += (0.8 - cardiac_output) * 100
-	if(owner.tpvr > 280)
-		ninstability += 20
 
 	var/pulse_over_norm = max(pulse - 110, 0)
 	ninstability += pulse_over_norm * 0.5
 	ninstability += damage * 0.3
-	ninstability += oxygen_deprivation * 0.25
+	ninstability += oxygen_deprivation
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
 	instability = max(Interpolate(instability, ninstability, 0.1), 0)
 
-	cardiac_stress = Clamp(cardiac_stress + (instability * 0.1) - 1, 0, 100)
+	cardiac_stress = Clamp(cardiac_stress + (instability * 0.05) - 1, 0, 100)
 
 /obj/item/organ/internal/heart/proc/apply_instability()
 	if(instability > 10)

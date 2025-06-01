@@ -19,6 +19,7 @@
 	var/max_oxygen_capacity = 1450
 	var/normal_oxygen_capacity = 1040
 	var/oxygen_amount = 1200
+	var/oxygen_demand = 0
 	var/add_mcv = 0
 	var/blood_perfusion = 1
 	var/systemic_oxygen_saturation = 1 // 0-1, basically reversed oxygen deprivation but for the entire body
@@ -57,12 +58,12 @@
 	blood_perfusion = Interpolate(blood_perfusion, CLAMP01(MCV_COEF(mcv, metabolic_coefficient) * oxygen_amount/1200 * meanpressure / NORMAL_MEAN_PRESSURE), HEMODYNAMICS_INTERPOLATE_FACTOR)
 
 #undef MCV_COEF
-#define VENOUS_RETURN_COEF(dyspressure) min(1.7, dyspressure / 80)
+#define VENOUS_RETURN_COEF(dyspressure) min(2, dyspressure / 80)
 #define AFTERLOAD_COEF(syspressure) max(0.6, syspressure / 120)
 
 /mob/living/carbon/human/proc/get_stroke_volume()
 	//blood volume, preload, afterload, cardiac contractility
-	var/stroke_volume_coeff = get_blood_volume_hemo() * VENOUS_RETURN_COEF(dyspressure) * AFTERLOAD_COEF(syspressure) * get_cardiac_output()
+	var/stroke_volume_coeff = get_blood_volume_hemo() * VENOUS_RETURN_COEF(dyspressure) * get_cardiac_output() / AFTERLOAD_COEF(syspressure)
 	return NORMAL_STROKE_VOLUME * stroke_volume_coeff
 
 #undef VENOUS_RETURN_COEF

@@ -15,4 +15,4 @@
 	if(!real_name || real_name == "unknown")
 		return
 	var/our_file = file("[global.log_directory]/hemo_logs/[real_name].log")
-	to_file(our_file, "BPM: [round(bpm)]\tSYS/DYS(MAP): [round(syspressure)]/[round(dyspressure)]([round(meanpressure)])\tSAT/PERF: [round(oxygen_amount / normal_oxygen_capacity, 0.01)]/[round(blood_perfusion, 0.01)]\tTPVR: [round(tpvr)]\tMCV: [round(mcv)] \n")
+	to_file(our_file, "BPM: [round(bpm)]\tSYS/DYS(MAP): [round(syspressure)]/[round(dyspressure)]([round(meanpressure)])\tSAT/PERF: [round(oxygen_amount / normal_oxygen_capacity, 0.01)]/[round(blood_perfusion, 0.01)]\tTPVR: [round(tpvr)]\tMCV: [round(mcv)]")

@@ -183,9 +183,9 @@
 //How much oxygen do the lungs absorb
 #define OXYGEN_ABSORPTION(damage, max_damage) (1 - damage / max_damage) * 0.25
 //oxygen volume = 1641ml per mole
-#define OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured) inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency / (ruptured + 1)
+#define OXYGEN_PRODUCED(inhaling_gas_moles, breath_rate, inhale_efficiency, ruptured) ((inhaling_gas_moles * 1641 * breath_rate * inhale_efficiency / (ruptured + 1)) - (0.015 * breath_rate**2))
 //How much hemoglobin can be saturated every 2 seconds in the body.
-#define MAX_OXYGEN_DELTA(mcv, max_oxygen_content) ((mcv / NORMAL_MCV) / 30) * max_oxygen_content
+#define MAX_OXYGEN_DELTA(mcv, max_oxygen_content) (((mcv / NORMAL_MCV) * max_oxygen_content) / 30)
 
 /obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath, var/forced, var/forced_breath_rate = 0)
 

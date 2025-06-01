@@ -19,7 +19,7 @@
 #define MIN_TOXIN_DAMAGE 1
 #define MAX_TOXIN_DAMAGE 10
 
-#define STD_BREATH_VOLUME      0.08 // Liters in a normal breath. //Fuck you ~Pl3asejust3ndmypain
+#define STD_BREATH_VOLUME      0.5 // Liters in a normal breath. //Fuck you ~Pl3asejust3ndmypain
 
 #define HUMAN_HEAT_CAPACITY 280000 //J/K For 80kg person
 
