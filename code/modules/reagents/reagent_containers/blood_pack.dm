@@ -5,7 +5,7 @@
 	startswith = list(/obj/item/chems/ivbag = 7)
 
 /obj/item/chems/ivbag
-	name = "\improper IV bag"
+	name = "IV bag"
 	desc = "Flexible bag for IV injectors."
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "empty"
