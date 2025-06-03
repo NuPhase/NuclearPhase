@@ -1,11 +1,13 @@
-/obj/machinery/lung_ventilator
+/obj/machinery/medical/lung_ventilator
 	name = "lung ventilator"
 	desc = "A complex device made for providing oxygen and anaesthesia to a patient in ICU."
 	icon = 'icons/obj/structures/iv_drip.dmi'
-	icon_state = "ecmo-off"
-	density = 1
+	icon_state = "vent-off"
 	active_power_usage = 400
-	var/mob/living/carbon/human/connected = null
+
+	required_skill_type = SKILL_MEDICAL
+	required_skill_level = SKILL_BASIC
+	connection_time = 10 SECONDS
 
 	var/obj/item/tank/emergency/oxygen/medical/mixture_holder
 	var/obj/item/clothing/mask/breath/medical/contained
@@ -16,37 +18,25 @@
 	var/pumping = FALSE //whether we force air into the patient's lungs
 	var/pump_rate = 15
 
-	var/datum/beam/connection_beam
-
-/obj/machinery/lung_ventilator/Destroy()
+/obj/machinery/medical/lung_ventilator/Initialize()
 	. = ..()
-	QDEL_NULL(connection_beam)
-
-/obj/machinery/lung_ventilator/Initialize()
-	. = ..()
-	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	mixture_holder = new
 	mixture_holder.air_contents.volume = STD_BREATH_VOLUME * 15
 	mixture_holder.air_contents.remove(mixture_holder.air_contents.total_moles)
 	contained = new
 
-/obj/machinery/lung_ventilator/examine(mob/user)
-	. = ..()
-	if(connected)
-		to_chat(user, SPAN_NOTICE("[src] is connected to [connected]."))
-
-/obj/machinery/lung_ventilator/physical_attack_hand(mob/user)
+/obj/machinery/medical/lung_ventilator/physical_attack_hand(mob/user)
 	tgui_interact(user)
 	return TRUE
 
-/obj/machinery/lung_ventilator/tgui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/medical/lung_ventilator/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "LungVentilator", "Lung Ventilator")
 		ui.open()
 		ui.set_autoupdate(1)
 
-/obj/machinery/lung_ventilator/tgui_data(mob/user)
+/obj/machinery/medical/lung_ventilator/tgui_data(mob/user)
 	var/total_pressure = pressure_o2 + pressure_n2 + pressure_n2o
 	var/list/data = list(
 		"pressure_o2" = pressure_o2,
@@ -59,7 +49,7 @@
 	)
 	return data
 
-/obj/machinery/lung_ventilator/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/medical/lung_ventilator/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	switch(action)
 		if("toggle")
@@ -67,10 +57,10 @@
 			if(!operating)
 				visible_message(SPAN_WARNING("[src] shuts down."))
 				pumping = FALSE
-				icon_state = "ecmo-off"
+				icon_state = "vent-off"
 				connected.internal = null
 			else
-				icon_state = "ecmo-on"
+				icon_state = "vent-on"
 				set_internals(connected)
 			return TRUE
 		if("ventilation")
@@ -95,77 +85,46 @@
 			pump_rate = params["entry"]
 			return TRUE
 
-/obj/machinery/lung_ventilator/proc/can_apply_to_target(var/mob/living/carbon/human/target, mob/user)
-	if(!user)
-		user = target
-	// Check target validity
+/obj/machinery/medical/lung_ventilator/can_connect(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(!GET_EXTERNAL_ORGAN(target, BP_HEAD))
-		to_chat(user, "<span class='warning'>\The [target] doesn't have a head.</span>")
-		return
+		return "\The [target] doesn't have a head."
 	if(!target.check_has_mouth())
-		to_chat(user, "<span class='warning'>\The [target] doesn't have a mouth.</span>")
-		return
+		return "\The [target] doesn't have a mouth."
 
 	var/obj/item/mask = target.get_equipped_item(slot_wear_mask_str)
 	if(mask && target != connected)
-		to_chat(user, "<span class='warning'>\The [target] is already wearing a mask.</span>")
-		return
+		return "\The [target] is already wearing a mask."
 	var/obj/item/head = target.get_equipped_item(slot_head_str)
 	if(head && (head.body_parts_covered & SLOT_FACE))
-		to_chat(user, "<span class='warning'>Remove their [head] first.</span>")
-		return
-	if(!Adjacent(target))
-		to_chat(user, "<span class='warning'>Please stay close to \the [src].</span>")
-		return
-	//when there is a breather:
-	if(connected)
-		to_chat(user, "<span class='warning'>The pump is already in use.</span>")
-		return
-	//Checking if breather is still valid
+		return "Remove their [head] first."
+
 	mask = target.get_equipped_item(slot_wear_mask_str)
 	if(target == connected && (!mask || mask != contained))
-		to_chat(user, "<span class='warning'>\The [target] is not using the supplied mask.</span>")
-		return
-	return 1
+		return "\The [target] is not using the supplied mask."
+	return ..()
 
-/obj/machinery/lung_ventilator/proc/disconnect(var/forceful = FALSE)
-	if(!forceful)
-		visible_message(SPAN_NOTICE("The [src]'s mask slips back into its storage."))
-	QDEL_NULL(connection_beam)
-	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
+/obj/machinery/medical/lung_ventilator/disconnect(mob/living/carbon/human/user)
 	mixture_holder.forceMove(src)
 	connected.drop_from_inventory(contained, src)
-	connected = null
+	. = ..()
 
-/obj/machinery/lung_ventilator/proc/connect(mob/living/carbon/human/to_connect, mob/user)
-	connected = to_connect
-	visible_message(SPAN_NOTICE("[connected] gets connected to the [src]."))
+/obj/machinery/medical/lung_ventilator/connect(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
 	contained.dropInto(connected.loc)
 	connected.equip_to_slot(contained, slot_wear_mask_str)
 	mixture_holder.forceMove(connected)
 	if(operating)
 		set_internals(connected)
-	START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
-	connection_beam = Beam(connected, "1-full", time = INFINITY, beam_color = COLOR_BLUE_LIGHT)
 
-/obj/machinery/lung_ventilator/handle_mouse_drop(atom/over, mob/user)
-	if(connected)
-		disconnect(FALSE)
-		return TRUE
-	if(ishuman(over) && can_apply_to_target(over, user))
-		connect(over, user)
-		return TRUE
-	. = ..()
-
-/obj/machinery/lung_ventilator/proc/MolesForPressure(var/target_pressure = ONE_ATMOSPHERE)
+/obj/machinery/medical/lung_ventilator/proc/MolesForPressure(var/target_pressure = ONE_ATMOSPHERE)
 	return (target_pressure * mixture_holder.air_contents.volume) / (R_IDEAL_GAS_EQUATION * T20C)
 
-/obj/machinery/lung_ventilator/proc/set_internals(var/mob/living/carbon/C)
+/obj/machinery/medical/lung_ventilator/proc/set_internals(var/mob/living/carbon/C)
 	if(C && istype(C))
 		if(!C.internal && mixture_holder)
 			connected.set_internals(mixture_holder)
 
-/obj/machinery/lung_ventilator/Process()
+/obj/machinery/medical/lung_ventilator/Process()
 	if(operating)
 		mixture_holder.air_contents.remove(mixture_holder.air_contents.total_moles)
 		if(pressure_o2)

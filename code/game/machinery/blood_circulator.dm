@@ -1,58 +1,40 @@
-/obj/machinery/blood_circulator
+/obj/machinery/medical/blood_circulator
 	name = "ABCS unit"
 	desc = "Artificial Blood Circulation System. Requires an open chest cavity for connection."
 	icon = 'icons/obj/structures/iv_drip.dmi'
 	icon_state = "abcs-off"
-	density = 1
-	active_power_usage = 200
-	var/mob/living/carbon/human/connected = null
-	var/set_mcv = 3200
 
-/obj/machinery/blood_circulator/Initialize()
-	. = ..()
-	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
+	required_skill_type = SKILL_ANATOMY
+	required_skill_level = SKILL_ADEPT
+	connection_time = 30 SECONDS
 
-/obj/machinery/blood_circulator/examine(mob/user)
+	var/set_mcv = DEFAULT_MCV
+
+/obj/machinery/medical/blood_circulator/examine(mob/user)
 	. = ..()
 	to_chat(user, SPAN_NOTICE("[src] is circulating [set_mcv]ml of blood per minute."))
 
-/obj/machinery/blood_circulator/physical_attack_hand(user)
+/obj/machinery/medical/blood_circulator/physical_attack_hand(user)
 	. = ..()
-	var/new_mcv = input(user, "Select the pumping capacity of the [src] in milliliters per minute", "MCV setting", initial(set_mcv)) as null|num
-	if(new_mcv)
-		set_mcv = Clamp(new_mcv, 0, 12000)
+	var/new_mcv = tgui_input_number(user, "Select the pumping capacity of the [src] in milliliters per minute", "MCV Setting", initial(set_mcv), max_value = 12000, min_value = 0)
+	set_mcv = Clamp(new_mcv, 0, 12000)
 
-/obj/machinery/blood_circulator/proc/disconnect(var/forceful = FALSE)
-	if(!forceful)
-		visible_message(SPAN_NOTICE("[connected] gets disconnected from [src]."))
-	else
-		visible_message("The tubes of the [src] get ripped out of [connected]!")
-		connected.apply_damage(20, BRUTE, BP_CHEST, damage_flags=DAM_SHARP)
-	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
+/obj/machinery/medical/blood_circulator/disconnect(mob/living/carbon/human/user)
 	connected.add_mcv = 0
-	connected = null
 	icon_state = "abcs-off"
+	. = ..()
 
-/obj/machinery/blood_circulator/proc/connect(mob/living/carbon/human/to_connect, mob/user)
-	var/obj/item/organ/external/chest = GET_EXTERNAL_ORGAN(to_connect, BP_CHEST)
+/obj/machinery/medical/blood_circulator/can_connect(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	var/obj/item/organ/external/chest = GET_EXTERNAL_ORGAN(target, BP_CHEST)
 	if(!chest.how_open())
-		to_chat(user, SPAN_WARNING("You can't access [to_connect]'s coronary channels without cutting them open first!"))
-		return
-	connected = to_connect
-	visible_message(SPAN_NOTICE("[connected] gets connected to [src]."))
-	spawn(2 SECONDS)
-		if(connected)
-			visible_message(SPAN_NOTICE("[src] slowly whirs up."))
-			icon_state = "abcs-on"
-			START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
+		return "You can't connect \the [src] without having surgical access to [target]'s chest."
+	return ..()
 
-/obj/machinery/blood_circulator/Process()
-	if(connected)
-		if(!Adjacent(connected))
-			disconnect(TRUE)
-			return PROCESS_KILL
-	else
-		return PROCESS_KILL
+/obj/machinery/medical/blood_circulator/connect(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	. = ..()
+	icon_state = "abcs-on"
+
+/obj/machinery/medical/blood_circulator/Process()
 	connected.add_mcv += set_mcv
 	playsound(src, 'sound/machines/pump.ogg', 25)
 
@@ -66,12 +48,3 @@
 	connected.adjust_immunity(-toxicloss)
 	if(prob(0.1)) //spontaneus blood vessel damage
 		connected.take_overall_damage(15)
-
-/obj/machinery/blood_circulator/handle_mouse_drop(atom/over, mob/user)
-	if(connected)
-		disconnect(FALSE)
-		return TRUE
-	if(ishuman(over))
-		connect(over, user)
-		return TRUE
-	. = ..()
