@@ -9,13 +9,13 @@
 	required_skill_level = SKILL_ADEPT
 	connection_time = 20 SECONDS
 
-/obj/machinery/medical/blood_oxygenator/disconnect(mob/living/carbon/human/user)
+/obj/machinery/medical/blood_purifier/disconnect(mob/living/carbon/human/user)
 	icon_state = "abcs-off"
 	. = ..()
 
-/obj/machinery/medical/blood_oxygenator/connect(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/obj/machinery/medical/blood_purifier/connect(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
 	icon_state = "abcs-on"
 
-/obj/machinery/medical/blood_oxygenator/Process()
+/obj/machinery/medical/blood_purifier/Process()
 	connected.bloodstr.remove_any(1)
