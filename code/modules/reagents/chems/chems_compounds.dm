@@ -244,7 +244,7 @@
 	color = "#eeddcc"
 	scannable = 1
 	overdose = REAGENTS_OVERDOSE
-	metabolism = REM*2
+	metabolism = REM*10
 	exoplanet_rarity = MAT_RARITY_NOWHERE
 	uid = "chem_lactate"
 

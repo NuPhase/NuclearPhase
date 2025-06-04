@@ -7,7 +7,7 @@
 	var/stomach_capacity
 	var/datum/reagents/metabolism/ingested
 	var/next_cramp = 0
-	oxygen_consumption = 0.4
+	oxygen_consumption = 1.0
 
 /obj/item/organ/internal/stomach/Destroy()
 	QDEL_NULL(ingested)

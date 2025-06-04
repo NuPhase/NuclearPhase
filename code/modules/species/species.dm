@@ -260,7 +260,7 @@ var/global/const/DEFAULT_SPECIES_HEALTH = 200
 
 	var/datum/ai/ai						// Type abused. Define with path and will automagically create. Determines behaviour for clientless mobs. This will override mob AIs.
 
-	var/exertion_emote_chance =    5
+	var/exertion_emote_chance =    2
 	var/exertion_effect_chance =   0
 	var/exertion_hydration_scale = 0
 	var/exertion_nutrition_scale = 0

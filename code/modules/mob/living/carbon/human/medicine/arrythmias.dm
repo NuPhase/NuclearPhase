@@ -25,7 +25,6 @@
 		return can_appear
 	return FALSE
 
-
 /decl/arrythmia/atrial_flaunt
 	name = "Atrial Flaunt"
 	cardiac_output_mod = 0.95
@@ -47,10 +46,18 @@
 /decl/arrythmia/atrial_fibrillation/get_pulse_mod()
 	return rand(20, 70)
 
+/decl/arrythmia/bradycardia
+	name = "Bradycardia"
+	cardiac_output_mod = 0.85
+	required_instability = 30
+	severity = 1
+
+/decl/arrythmia/bradycardia/get_pulse_mod()
+	return rand(-30, -50)
 
 /decl/arrythmia/tachycardia
 	name = "Tachycardia"
-	cardiac_output_mod = 0.9
+	cardiac_output_mod = 1
 	required_instability = 15
 	evolves_into = /decl/arrythmia/paroxysmal_tachycardia
 	severity = 1
@@ -103,11 +110,11 @@
 
 /decl/arrythmia/ventricular_fibrillation
 	name = "Ventricular Fibrillation"
-	cardiac_output_mod = 0.001
+	cardiac_output_mod = 0.01
 	required_instability = 70
 	degrades_into = /decl/arrythmia/ventricular_flaunt
 	evolves_into = /decl/arrythmia/asystole
-	evolve_time = 1 MINUTE
+	evolve_time = 3 MINUTE
 	can_be_shocked = TRUE
 	can_appear = FALSE
 	severity = 6

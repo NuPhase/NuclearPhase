@@ -13,7 +13,7 @@
 	damage_reduction = 0.7
 	relative_size = 5
 	max_damage = 45
-	oxygen_consumption = 0.66
+	oxygen_consumption = 1.0
 	oxygen_deprivation_tick = 0.3
 	var/open
 	var/external_pump = 0 //simulated beats per minute
@@ -72,7 +72,7 @@
 	bpm_modifiers["hypoperfusion"] = (1 - owner.get_blood_perfusion()) * 80
 	bpm_modifiers["ischemia"] = oxygen_deprivation * 0.3
 
-	cardiac_output_modifiers["ischemia"] = 1 - (oxygen_deprivation * -0.005)
+	cardiac_output_modifiers["ischemia"] = 1 - (oxygen_deprivation * 0.005)
 
 	bpm_modifiers["damage"] = damage * -1.5
 
@@ -92,6 +92,7 @@
 	ninstability += pulse_over_norm * 0.5
 	ninstability += damage * 0.3
 	ninstability += oxygen_deprivation
+	ninstability += (1 - owner.get_blood_saturation()) * 50
 	ninstability -= sumListAndCutAssoc(stability_modifiers)
 	instability = max(Interpolate(instability, ninstability, 0.1), 0)
 
@@ -99,7 +100,7 @@
 
 /obj/item/organ/internal/heart/proc/apply_instability()
 	if(instability > 10)
-		if(!pulse)
+		if(pulse < 5)
 			add_arrythmia(GET_DECL(/decl/arrythmia/asystole))
 		if(last_arrythmia_appearance + ARRYTHMIAS_GRACE_PERIOD < world.time && prob(cardiac_stress*0.1))
 			for(var/req_A in SSmobs.arrythmias_sorted_list)

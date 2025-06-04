@@ -56,7 +56,7 @@
 	var/SA_sleep_min = 5
 	var/last_successful_breath
 	var/breath_fail_ratio // How badly they failed a breath. Higher is worse.
-	oxygen_consumption = 1.83
+	oxygen_consumption = 0.5
 	var/oxygen_generation = 0.57 // default per breath
 	var/breath_rate = 16 //per minute
 	var/last_breath_efficiency = 1

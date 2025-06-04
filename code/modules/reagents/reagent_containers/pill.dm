@@ -100,7 +100,7 @@
 	name = "charcoal pill"
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill1"
-/obj/item/chems/pill/antitox/initialize_reagents()
+/obj/item/chems/pill/charcoal/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/antitoxins/charcoal, 50)
 
 /obj/item/chems/pill/bromide

@@ -19,7 +19,8 @@
 	var/max_oxygen_capacity = 1450
 	var/normal_oxygen_capacity = 1040
 	var/oxygen_amount = 1200
-	var/oxygen_demand = 0
+	var/available_oxygen = 100 // The amount of oxygen available to organs in the current tick.
+	var/oxygen_demand = 0 // The amount of oxygen consumed in the last tick
 	var/add_mcv = 0
 	var/blood_perfusion = 1
 	var/systemic_oxygen_saturation = 1 // 0-1, basically reversed oxygen deprivation but for the entire body
@@ -58,6 +59,7 @@
 	blood_perfusion = Interpolate(blood_perfusion, CLAMP01(MCV_COEF(mcv, metabolic_coefficient) * oxygen_amount/1200 * meanpressure / NORMAL_MEAN_PRESSURE), HEMODYNAMICS_INTERPOLATE_FACTOR)
 
 #undef MCV_COEF
+
 #define VENOUS_RETURN_COEF(dyspressure) min(2, dyspressure / 80)
 #define AFTERLOAD_COEF(syspressure) max(0.6, syspressure / 120)
 
@@ -114,6 +116,7 @@
 	add_mcv = 0
 
 	write_hemo_log()
+	update_available_oxygen()
 
 #undef PULSE_PRESSURE
 #undef MCV_PRESSURE
@@ -123,16 +126,21 @@
 #define OXYGEN_DELIVERY(cardiac_output, oxygen_amount, blood_amount) (cardiac_output * BLOOD_OXYGEN_CONTENT(oxygen_amount, blood_amount))
 #define OXYGEN_AVAILABLE(cardiac_output, oxygen_amount, blood_amount) (0.35 * OXYGEN_DELIVERY(cardiac_output, oxygen_amount, blood_amount))
 
-/mob/living/carbon/human/proc/consume_oxygen(amount)
-	var/available_oxygen = OXYGEN_AVAILABLE(mcv, oxygen_amount, vessel.total_volume) / 30
-	if(available_oxygen > amount)
-		oxygen_amount -= amount
-		return 1
-	return 0
+/mob/living/carbon/human/proc/update_available_oxygen()
+	available_oxygen = OXYGEN_AVAILABLE(mcv, oxygen_amount, vessel.total_volume) / 30
+	oxygen_demand = 0
 
 #undef BLOOD_OXYGEN_CONTENT
 #undef OXYGEN_DELIVERY
 #undef OXYGEN_AVAILABLE
+
+/mob/living/carbon/human/proc/consume_oxygen(amount)
+	if(available_oxygen > amount)
+		oxygen_amount -= amount
+		available_oxygen -= amount
+		oxygen_demand += amount
+		return 1
+	return 0
 
 /mob/living/carbon/human/proc/add_oxygen(amount)
 	oxygen_amount = Clamp(oxygen_amount + amount, 0, max_oxygen_capacity)

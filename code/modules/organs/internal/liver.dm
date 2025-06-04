@@ -10,7 +10,7 @@
 	min_broken_damage = 45
 	max_damage = 70
 	relative_size = 60
-	oxygen_consumption = 1.7
+	oxygen_consumption = 2.6
 
 /obj/item/organ/internal/liver/Process()
 

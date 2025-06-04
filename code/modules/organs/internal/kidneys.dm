@@ -9,7 +9,7 @@
 	min_broken_damage = 45
 	max_damage = 70
 	relative_size = 10
-	oxygen_consumption = 0.6
+	oxygen_consumption = 1.8
 	oxygen_deprivation_tick = 0.2
 
 /obj/item/organ/internal/kidneys/Process()
