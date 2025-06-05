@@ -95,6 +95,7 @@
 	if(stat)
 		retrieve_from_limb()
 		update_skin(1)
+		playsound_local(null, 'sound/effects/bells.ogg', 100, is_global=TRUE)
 	if(client && client.is_afk())
 		if(old_stat == UNCONSCIOUS && stat == CONSCIOUS)
 			playsound_local(null, 'sound/effects/bells.ogg', 100, is_global=TRUE)

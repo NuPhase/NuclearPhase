@@ -18,6 +18,7 @@
 	var/open
 	var/external_pump = 0 //simulated beats per minute
 	var/cardiac_output = 1
+	var/contractility_modifier = 1 // For traits
 	var/instability = 0
 	var/cardiac_stress = 0
 	var/list/arrythmias = list()
@@ -46,7 +47,7 @@
 		if(BP_IS_PROSTHETIC(src))
 			pulse = 0
 			if(is_usable())
-				cardiac_output = initial(cardiac_output) - damage * 0.01
+				cardiac_output = (initial(cardiac_output) - damage * 0.01) * contractility_modifier
 			else
 				cardiac_output = 0
 		else

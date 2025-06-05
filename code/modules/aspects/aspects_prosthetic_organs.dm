@@ -2,7 +2,7 @@
 	name = "Prosthetic Heart"
 	aspect_flags = ASPECTS_PHYSICAL
 	desc = "You have a synthetic heart."
-	aspect_cost = 1
+	aspect_cost = 3
 	category = "Prosthetic Organs"
 	sort_value = 2
 	var/apply_to_organ = BP_HEART
@@ -34,23 +34,28 @@
 		/decl/aspect/handicap/colourblind/tritanopia,
 		/decl/aspect/handicap/colourblind/achromatopsia
 	)
+	aspect_cost = 2
 
 /decl/aspect/prosthetic_organ/kidneys
 	name = "Prosthetic Kidneys"
 	desc = "You have synthetic kidneys."
 	apply_to_organ = BP_KIDNEYS
+	aspect_cost = 1
 
 /decl/aspect/prosthetic_organ/liver
 	name = "Prosthetic Liver"
 	desc = "You have a literal iron liver."
 	apply_to_organ = BP_LIVER
+	aspect_cost = 3
 
 /decl/aspect/prosthetic_organ/lungs
 	name = "Prosthetic Lungs"
 	desc = "You have synthetic lungs."
 	apply_to_organ = BP_LUNGS
+	aspect_cost = 2
 
 /decl/aspect/prosthetic_organ/stomach
 	name = "Prosthetic Stomach"
 	desc = "You have a literal iron stomach."
 	apply_to_organ = BP_STOMACH
+	aspect_cost = 1

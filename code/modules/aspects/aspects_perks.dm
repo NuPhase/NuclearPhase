@@ -70,6 +70,16 @@
 	name = "Master Engineer"
 	desc = "You are very vocal about your skill with machinery."
 
+/decl/aspect/perk/positive/strong_heart
+	name = "Strong Heart"
+	desc = "Your heart is strong and resilient."
+	aspect_cost = 4
+
+/decl/aspect/perk/positive/strong_heart/apply(mob/living/carbon/human/holder)
+	. = ..()
+	var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(holder, BP_HEART)
+	cur_heart.contractility_modifier = 1.2
+
 /decl/aspect/perk/negative/heart_problem
 	name = "Weak Heart"
 	desc = "Your heart is weak."

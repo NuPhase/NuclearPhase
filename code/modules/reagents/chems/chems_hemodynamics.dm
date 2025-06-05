@@ -14,13 +14,17 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_BREATHLOSS, removed * 1100)
 	H.add_chemical_effect(CE_PAINKILLER, removed * 12500)
-	heart.bpm_modifiers[name] = removed * 3900
-	heart.cardiac_output_modifiers[name] = 1 + removed * 5.7
 	if(removed < 0.003)
 		H.add_chemical_effect(CE_PRESSURE, removed * -700)
 	else
 		H.add_chemical_effect(CE_PRESSURE, removed * 400)
-	heart.stability_modifiers[name] = removed * 3000
+	if(removed > 0.005)
+		ADJ_STATUS(H, STAT_ASLEEP, removed * -10)
+		ADJ_STATUS(H, STAT_JITTER, removed * 1000)
+	if(heart)
+		heart.stability_modifiers[name] = removed * 3000
+		heart.bpm_modifiers[name] = removed * 3900
+		heart.cardiac_output_modifiers[name] = 1 + removed * 5.7
 
 /decl/material/liquid/adrenaline/affect_overdose(var/mob/living/carbon/human/H, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)

@@ -16,6 +16,7 @@
 	var/oxygen_consumption = 0 //per 2 seconds. 12.7 is available every 2 seconds in a body
 	var/oxygen_deprivation = 0
 	var/oxygen_deprivation_tick = 0.6
+	var/oxygen_deprivation_damage = 0.2
 
 /obj/item/organ/internal/proc/oxygen_starve(amount)
 	oxygen_deprivation = Clamp(oxygen_deprivation + amount, 0, 100)
@@ -23,7 +24,7 @@
 /obj/item/organ/internal/Initialize(mapload, material_key, datum/dna/given_dna)
 	if(!alive_icon)
 		alive_icon = initial(icon_state)
-	damage_reduction = 0.1 + (relative_size * 0.01)
+	damage_reduction = 0.1 + (relative_size * 0.001)
 	. = ..()
 
 /obj/item/organ/internal/set_species(species_name)
@@ -170,7 +171,7 @@
 	if(!owner?.consume_oxygen(oxygen_consumption))
 		oxygen_starve(oxygen_deprivation_tick)
 		if(oxygen_deprivation > OXYGEN_DEPRIVATION_DAMAGE_THRESHOLD)
-			take_internal_damage(0.2, 1)
+			take_internal_damage(oxygen_deprivation_damage, 1)
 		return
 	else if(oxygen_deprivation)
 		oxygen_starve(oxygen_deprivation_tick * -2)

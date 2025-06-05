@@ -23,10 +23,11 @@
 	var/healed_threshold = 1
 	var/oxygen_reserve = 6
 	oxygen_consumption = 2.0
-	max_damage = 160
-	min_broken_damage = 90
+	max_damage = 80
+	min_broken_damage = 60
 	min_bruised_damage = 30
 	oxygen_deprivation_tick = 1
+	oxygen_deprivation_damage = 0.2
 
 /obj/item/organ/internal/brain/getToxLoss()
 	return 0
@@ -148,7 +149,7 @@
 	set waitfor = 0
 	..()
 	if(damage >= 25) //This probably won't be triggered by oxyloss or mercury. Probably.
-		var/damage_secondary = damage * 0.20
+		var/damage_secondary = damage * 0.5
 		owner.flash_eyes()
 		SET_STATUS_MAX(owner, STAT_BLURRY, damage_secondary)
 		SET_STATUS_MAX(owner, STAT_CONFUSE, damage_secondary * 2)

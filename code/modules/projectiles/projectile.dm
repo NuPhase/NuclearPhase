@@ -341,7 +341,7 @@
 	if(!can_embed() || (organ.species.species_flags & SPECIES_FLAG_NO_EMBED))
 		return
 	//Embed or sever artery
-	var/damage_prob = 0.5 * wound.damage * penetration_modifier
+	var/damage_prob = 0.2 * wound.damage * penetration_modifier
 	if(prob(damage_prob))
 		var/obj/item/shrapnel = get_shrapnel()
 		if(shrapnel)

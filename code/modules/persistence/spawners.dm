@@ -18,7 +18,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/item_spawner/LateInitialize()
-	. = ..()
 	spawn(100 - priority)
 		var/list_to_spawn = list()
 		if(islist(spawn_paths))
