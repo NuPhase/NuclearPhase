@@ -151,7 +151,7 @@
 	caliber = CALIBER_PISTOL
 	material = /decl/material/solid/metal/steel
 	ammo_type = /obj/item/ammo_casing/c11x25
-	max_ammo = 15
+	max_ammo = 10
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/pistol/srec
@@ -177,11 +177,12 @@
 	max_ammo = 8
 
 /obj/item/ammo_magazine/pistol/small
+	name = "5mm pistol magazine"
 	icon_state = "holdout"
 	material = /decl/material/solid/metal/steel
 	caliber = CALIBER_PISTOL_SMALL
 	ammo_type = /obj/item/ammo_casing/pistol/small
-	max_ammo = 8
+	max_ammo = 15
 
 /obj/item/ammo_magazine/pistol/small/empty
 	initial_ammo = 0

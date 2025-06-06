@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(persistence)
 		loaded_item_pool = list()
 		var/list/extracted_list = file2list(ITEM_POOL_PATH, ", ") //This is a list of STRING but we need PATH
 		for(var/string in extracted_list)
-			loaded_item_pool += text2path(string)
+			loaded_item_pool[text2path(string)] += 1
 
 /datum/controller/subsystem/persistence/Shutdown()
 	var/list/all_persistence_datums = decls_repository.get_decls_of_subtype(/decl/persistence_handler)
@@ -148,3 +148,18 @@ SUBSYSTEM_DEF(persistence)
 		if(istype(I, b_type))
 			return
 	return_list += I.type
+
+// Returns the amount of items of that type in the pool, FALSE if there aren't any
+/datum/controller/subsystem/persistence/proc/has_item(item_type)
+	if(item_type in loaded_item_pool)
+		return loaded_item_pool[item_type]
+	return FALSE
+
+// Returns TRUE if there is an item of that type, and removes it from the pool. Returns FALSE if the item is missing
+/datum/controller/subsystem/persistence/proc/take_item(item_type)
+	if(item_type in loaded_item_pool)
+		loaded_item_pool[item_type] -= 1
+		if(loaded_item_pool[item_type] < 1)
+			loaded_item_pool -= item_type
+		return TRUE
+	return FALSE

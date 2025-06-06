@@ -399,9 +399,8 @@
 						new item_path(arglist(argsl))
 					continue
 				for(var/i in 1 to qty)
-					if(item_path in SSpersistence.loaded_item_pool)
+					if(SSpersistence.take_item(item_path))
 						new item_path(arglist(argsl))
-						SSpersistence.loaded_item_pool -= item_path
 					else
 						continue
 			else
@@ -410,9 +409,8 @@
 						new item_path(src)
 					continue
 				for(var/i in 1 to (isnull(data)? 1 : data))
-					if(item_path in SSpersistence.loaded_item_pool)
+					if(SSpersistence.take_item(item_path))
 						new item_path(src)
-						SSpersistence.loaded_item_pool -= item_path
 					else
 						continue
 

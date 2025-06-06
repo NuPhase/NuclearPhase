@@ -69,7 +69,7 @@
 
 /obj/item/projectile/bullet/pistol
 	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg'
-	damage = 45
+	damage = 55
 	distance_falloff = 3
 
 /obj/item/projectile/bullet/pistol/cryogenic
@@ -79,8 +79,8 @@
 	penetration_modifier = 1.5
 
 /obj/item/projectile/bullet/pistol/holdout
-	damage = 20
-	penetration_modifier = 1.2
+	damage = 30
+	penetration_modifier = 0.5
 	distance_falloff = 2
 
 /obj/item/projectile/bullet/pistol/strong

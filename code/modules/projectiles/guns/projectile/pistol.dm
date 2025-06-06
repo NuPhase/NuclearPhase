@@ -82,13 +82,13 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber, /obj/item/ammo_magazine/pistol/srec) //GOD FORBID
 	ammo_indicator = FALSE
 	waterproof = TRUE
-	fire_delay = 3
+	fire_delay = 5
 	muzzle_flash_intensity = 5
 
 /obj/item/gun/projectile/pistol/military_service/load_ammo(obj/item/A, mob/user)
 	. = ..()
 	if(istype(A, /obj/item/ammo_magazine/pistol))
-		fire_delay = 3
+		fire_delay = 5
 	else if(istype(A, /obj/item/ammo_magazine/pistol/cryogenic))
 		fire_delay = 10
 		to_chat(user, SPAN_NOTICE("This technology isn't trusted around here, the barrel might overheat... It packs a punch, though."))
@@ -106,7 +106,7 @@
 	magazine_type = null
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol/small)
 	ammo_indicator = FALSE
-	fire_delay = 5
+	fire_delay = 2
 	muzzle_flash_intensity = 5
 
 /obj/item/gun/projectile/pistol/low_caliber/loadout

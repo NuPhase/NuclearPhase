@@ -19,10 +19,11 @@
 		create_objects_in_loc(loc, atom_paths)
 		return
 	for(var/atom_path in atom_paths)
-		if(atom_path in SSpersistence.loaded_item_pool)
-			for(var/i = 1 to max(1, atom_paths[atom_path]))
+		var/item_count = SSpersistence.has_item(atom_path)
+		if(item_count)
+			for(var/i = 1 to Clamp(atom_paths[atom_path], 1, item_count))
 				create_objects_in_loc(loc, atom_path)
-			SSpersistence.loaded_item_pool -= atom_path
+				SSpersistence.take_item(atom_path)
 
 /datum/atom_creator/proc/create(var/loc)
 	return

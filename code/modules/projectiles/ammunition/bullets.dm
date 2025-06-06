@@ -230,7 +230,7 @@
 //For rifles
 /obj/item/ammo_casing/c6p8x51
 	name = "6.8x51 casing."
-	caliber = "6.8x51"
+	caliber = CALIBER_RIFLE
 	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51
 	icon = 'icons/obj/ammo/casings/rifle.dmi'
 /obj/item/ammo_casing/c6p8x51/ap
@@ -245,13 +245,13 @@
 
 /obj/item/ammo_casing/c11x25
 	name = "11x25 casing."
-	caliber = "11x25"
+	caliber = CALIBER_PISTOL
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
 /obj/item/ammo_casing/caseless/c11x25
 	name = "11x25 CL casing."
-	caliber = "11x25"
+	caliber = CALIBER_PISTOL
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
@@ -259,7 +259,7 @@
 	name = "11x25 SREC shell."
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25/srec
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
-	caliber = "11x25"
+	caliber = CALIBER_PISTOL
 	color = COLOR_GUNMETAL
 	bullet_color = COLOR_GUNMETAL
 
