@@ -20,7 +20,7 @@
 		H.add_chemical_effect(CE_PRESSURE, removed * 400)
 	if(removed > 0.005)
 		ADJ_STATUS(H, STAT_ASLEEP, removed * -10)
-		ADJ_STATUS(H, STAT_JITTER, removed * 1000)
+		SET_STATUS_MAX(H, STAT_JITTER, removed * 1000)
 	if(heart)
 		heart.stability_modifiers[name] = removed * 3000
 		heart.bpm_modifiers[name] = removed * 3900

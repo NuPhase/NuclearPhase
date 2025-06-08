@@ -303,7 +303,7 @@
 
 /obj/machinery/power/hybrid_reactor/proc/produce_explosion()
 	var/turf/T = superstructure.loc
-	cell_explosion(get_turf(superstructure), 2000, 20)
+	cell_explosion(get_turf(superstructure), 5000, 20)
 	var/list/our_mobs = mobs_on_main_map()
 	for(var/mob/living/carbon/human/H in our_mobs)
 		H.playsound_local(H.loc, 'sound/effects/explosion_huge.ogg', 20, 0)
