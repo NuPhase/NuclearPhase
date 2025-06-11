@@ -14,6 +14,7 @@
 	reflectiveness = MAT_VALUE_SHINY
 	melting_point = 1873
 	boiling_point = 5000
+	dissolves_in = MAT_SOLVENT_SUPER
 	ignition_point = null
 	weight = MAT_VALUE_VERY_LIGHT
 	brute_armor = 1

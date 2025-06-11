@@ -246,3 +246,11 @@
 /obj/item/chems/glass/beaker/vial/naloxone
 	name = "naloxone ampoule"
 	initial_reagents = list(/decl/material/liquid/naloxone = 15)
+
+/obj/item/chems/glass/beaker/vial/penicillium
+	name = "penicillium mold vial"
+	initial_reagents = list(/decl/material/solid/bacteria/penicillium = 25)
+
+/obj/item/chems/glass/beaker/vial/tyrosine
+	name = "tyrosine bacteria vial"
+	initial_reagents = list(/decl/material/solid/bacteria/tyrosine = 5)

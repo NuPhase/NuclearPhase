@@ -9,7 +9,7 @@
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	item_flags = ITEM_FLAG_HOLLOW
 	possible_transfer_amounts = null
-	amount_per_transfer_from_this = 5
+	amount_per_transfer_from_this = 50
 	randpixel = 6
 	volume = 250
 
@@ -129,7 +129,7 @@
 	w_class = ITEM_SIZE_HUGE
 	force = 14
 	throwforce = 10
-	amount_per_transfer_from_this = 20
+	amount_per_transfer_from_this = 80
 	possible_transfer_amounts = null
 	volume = 450
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
@@ -251,7 +251,7 @@
 	desc = "An elegant teapot. It simply oozes class."
 	icon_state = "teapot"
 	item_state = "teapot"
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 100
 	volume = 1200
 	center_of_mass = @'{"x":17,"y":7}'
 	material = /decl/material/solid/stone/ceramic
@@ -261,7 +261,7 @@
 	desc = "A stainless steel insulated pitcher. Everyone's best friend in the morning."
 	icon_state = "pitcher"
 	volume = 1200
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 100
 	center_of_mass = @'{"x":16,"y":9}'
 	filling_states = @"[15,30,50,70,85,100]"
 	base_icon = "pitcher"

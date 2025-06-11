@@ -224,7 +224,7 @@
 /obj/machinery/cardiac_monitor/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(action == "mute_alarms")
-		muted_until = world.time + 1 MINUTE
+		muted_until = world.time + 2 MINUTES
 		playsound(loc, "button", 30)
 
 /obj/machinery/cardiac_monitor/tgui_static_data(mob/user)

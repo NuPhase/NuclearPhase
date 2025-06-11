@@ -278,7 +278,7 @@
 	name = "SREC inhibitor"
 	lore_text = "An expensive SREC infection growth inhibitor. Works by locally blocking nervous system signals near crystal formations."
 	uid = "SREC_inhibitor"
-	metabolism = 0.005
+	metabolism = 0.0015
 	overdose = 50
 	color = "#7700ff"
 
@@ -294,5 +294,5 @@
 
 /decl/material/liquid/neuroreparin
 	name = "neuroreparin"
-	uid = "SREC_inhibitor"
+	uid = "neuroreparin"
 	metabolism = 0.01

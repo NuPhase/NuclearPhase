@@ -220,16 +220,20 @@
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (giver.temperature*giver_heat_capacity + temperature*self_heat_capacity)/combined_heat_capacity
-			add_thermal_energy(0, TRUE, TRUE) // Allow for phase changes to happen
 
 	if((group_multiplier != 1)||(giver.group_multiplier != 1))
 		var/list/all_fluid = giver.get_fluid()
 		for(var/g in all_fluid)
 			adjust_gas(g, all_fluid[g] * giver.group_multiplier, update, update)
 	else
-		var/list/all_fluid = giver.get_fluid()
-		for(var/g in all_fluid)
-			adjust_gas(g, all_fluid[g], update, update)
+		for(var/g in giver.gas)
+			gas[g] += giver.gas[g]
+		for(var/g in giver.liquids)
+			liquids[g] += giver.liquids[g]
+		for(var/g in giver.solids)
+			solids[g] += giver.solids[g]
+
+	add_thermal_energy(0, TRUE, TRUE) // Allow for phase changes to happen
 
 	if(update)
 		update_values()
@@ -358,7 +362,7 @@
 		liquid_volume += liquids[g] * mat.molar_mass / mat.liquid_density * 1000
 	for(var/g in gas)
 		gas_moles += gas[g]
-	available_volume = max(0.01, volume - liquid_volume)
+	available_volume = max(0.1, volume - liquid_volume)
 	cache_heat_capacity()
 	cache_pressure()
 
@@ -389,22 +393,56 @@
 			var/decl/material/mat = GET_DECL(g)
 			var/temperature_factor = (temperature - mat.melting_point) / mat.boiling_point //should be 1 at boiling point and 0 at melting point
 			pressure_to_cache += liquids[g] * ONE_ATMOSPHERE * temperature_factor / volume
+	ASSERT(pressure_to_cache >= 0)
 	pressure = pressure_to_cache
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
+	ASSERT(amount >= 0)
 	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
 	if(amount <= 0)
 		return null
 
+	var/list/new_gas = list()
+	var/list/new_liquids = list()
+	var/list/new_solids = list()
+
+	var/list/all_fluid = get_fluid()
+	for(var/g in all_fluid)
+		var/moles_left_to_remove = QUANTIZE((all_fluid[g] / total_moles) * amount)
+		var/moles_taken
+		if(solids[g])
+			moles_taken = min(solids[g], moles_left_to_remove)
+			solids[g] -= moles_taken/group_multiplier
+			moles_left_to_remove -= moles_taken
+			new_solids[g] = moles_taken
+		if(0 >= moles_left_to_remove)
+			continue
+		if(liquids[g])
+			moles_taken = min(liquids[g], moles_left_to_remove)
+			liquids[g] -= moles_taken/group_multiplier
+			moles_left_to_remove -= moles_taken
+			new_liquids[g] = moles_taken
+		if(0 >= moles_left_to_remove)
+			continue
+		moles_taken = min(gas[g], moles_left_to_remove)
+		gas[g] -= moles_taken/group_multiplier
+		moles_left_to_remove -= moles_taken
+		new_gas[g] = moles_taken
+		ASSERT(moles_left_to_remove <= ATMOS_PRECISION)
+
+/*
 	var/list/removed_gas_list = list()
 	var/list/all_fluid = get_fluid()
 
 	for(var/g in all_fluid)
 		removed_gas_list[g] = QUANTIZE((all_fluid[g] / total_moles) * amount)
 		adjust_gas(g, -removed_gas_list[g], FALSE)
-
-	var/datum/gas_mixture/removed = new(_volume = volume, _temperature = temperature, initial_gas = removed_gas_list)
+*/
+	var/datum/gas_mixture/removed = new(_volume = volume, _temperature = temperature)
+	removed.gas = new_gas
+	removed.liquids = new_liquids
+	removed.solids = new_solids
 
 	update_values()
 	removed.update_values()

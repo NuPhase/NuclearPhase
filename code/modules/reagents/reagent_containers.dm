@@ -4,6 +4,7 @@
 	icon = 'icons/obj/items/chem/container.dmi'
 	icon_state = null
 	w_class = ITEM_SIZE_SMALL
+	temperature_coefficient = 0.5
 
 	var/base_name
 	var/amount_per_transfer_from_this = 50
@@ -36,7 +37,25 @@
 			newname = "[newname] of [R.get_presentation_name(src)]"
 		if(newname != name)
 			SetName(newname)
+	try_offgas()
 	update_icon()
+
+// Gas can't stay inside open containers
+/obj/item/chems/proc/try_offgas()
+	if(!ATOM_IS_OPEN_CONTAINER(src))
+		return // We're sealed
+	var/offgassed = FALSE
+	for(var/reagent_type in reagents.reagent_volumes)
+		if(!ispath(reagent_type, /decl/material/gas))
+			continue
+		var/amount = reagents.reagent_volumes[reagent_type]
+		reagents.remove_reagent(reagent_type, amount)
+		var/decl/material/mat = GET_DECL(reagent_type)
+		var/turf/T = get_turf(src)
+		T.assume_gas(reagent_type, amount/mat.molar_volume, temperature)
+		offgassed = TRUE
+	if(offgassed)
+		playsound(src, 'sound/chemistry/heatdam.ogg', 20)
 
 /obj/item/chems/verb/set_amount_per_transfer_from_this()
 	set name = "Set Transfer Amount"

@@ -3,7 +3,7 @@
 	desc = "A tank containing water."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 100
 	possible_transfer_amounts = @"[10,25,50,100]"
 	initial_capacity = 350000
 	initial_reagent_types = list(/decl/material/liquid/water = 1)
@@ -32,7 +32,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	initial_capacity = 300000
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 100
 	initial_reagent_types = list(/decl/material/liquid/fuel = 1)
 	atom_flags = ATOM_FLAG_CLIMBABLE
 	movable_flags = MOVABLE_FLAG_WHEELED
@@ -124,7 +124,7 @@
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses cool water to drink."
-	amount_per_transfer_from_this = 5
+	amount_per_transfer_from_this = 50
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
@@ -162,7 +162,7 @@
 	desc = "A beer keg."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 100
 	initial_reagent_types = list(/decl/material/liquid/ethanol/beer = 1)
 	atom_flags = ATOM_FLAG_CLIMBABLE
 
@@ -171,7 +171,7 @@
 	desc = "A dispenser of acid for industrial processes."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "acidtank"
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 100
 	anchored = 1
 	initial_reagent_types = list(/decl/material/liquid/acid = 1)
 

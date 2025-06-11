@@ -897,15 +897,16 @@
 
 
 /mob/living/carbon/human/can_stand_overridden()
+	if(msuit && msuit.lifesupportsystem.battery.charge)
+		return TRUE
 	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
 		// Actually missing a leg will screw you up. Everything else can be compensated for.
 		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))
 			var/obj/item/organ/affecting = GET_EXTERNAL_ORGAN(src, limbcheck)
 			if(!affecting)
-				return 0
-		return 1
-	return 0
-
+				return FALSE
+		return TRUE
+	return FALSE
 
 // Similar to get_pulse, but returns only integer numbers instead of text.
 /mob/living/carbon/human/proc/get_pulse_as_number()

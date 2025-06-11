@@ -17,7 +17,7 @@
 /mob/living/proc/custom_pain(var/message, var/power, var/force, var/obj/item/organ/external/affecting, var/nohalloss)
 	set waitfor = FALSE
 	if(!message || stat || !can_feel_pain() || has_chemical_effect(CE_PAINKILLER, power))
-		return
+		return FALSE
 	power -= GET_CHEMICAL_EFFECT(src, CE_PAINKILLER)	//Take the edge off.
 	var/decl/bodytype/bodytype = get_bodytype()
 	if(bodytype)
@@ -42,15 +42,21 @@
 		else
 			to_chat(src, "<span class='warning'>[message]</span>")
 	next_pain_time = world.time + max(30 SECONDS - power, 10 SECONDS)
+	return power
 
 /mob/living/carbon/custom_pain(var/message, var/power, var/force, var/obj/item/organ/external/affecting, var/nohalloss)
 	. = ..()
 	if(.)
 		var/force_emote = species.get_pain_emote(src, power)
-		if(force_emote && prob(power))
+		if(force_emote && prob(power * 0.1))
 			var/decl/emote/use_emote = usable_emotes[force_emote]
 			if(!(use_emote.message_type == AUDIBLE_MESSAGE &&HAS_STATUS(src, STAT_SILENCE)))
 				emote(force_emote)
+
+/mob/living/carbon/human/custom_pain(var/message, var/power, var/force, var/obj/item/organ/external/affecting, var/nohalloss)
+	. = ..()
+	if(.)
+		release_adrenaline(power * 0.001)
 
 /mob/living/carbon/human/proc/handle_pain()
 	if(stat)
@@ -69,7 +75,7 @@
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
 			damaged_organ = E
 			maxdam = dam
-	if(damaged_organ && has_chemical_effect(CE_PAINKILLER, maxdam))
+	if(damaged_organ && !has_chemical_effect(CE_PAINKILLER, maxdam))
 		if(maxdam > 10 &&HAS_STATUS(src, STAT_PARA))
 			ADJ_STATUS(src, STAT_PARA, -(round(maxdam/10)))
 		if(maxdam > 50 && prob(maxdam / 5))
@@ -84,6 +90,7 @@
 			if(91 to 10000)
 				msg = "OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!"
 		custom_pain(msg, maxdam, prob(10), damaged_organ, TRUE)
+		release_adrenaline(maxdam * 0.0001, FALSE)
 	// Damage to internal organs hurts a lot.
 	for(var/obj/item/organ/internal/I in get_internal_organs())
 		if(prob(1) && !((I.status & ORGAN_DEAD) || BP_IS_PROSTHETIC(I)) && I.damage > 5)

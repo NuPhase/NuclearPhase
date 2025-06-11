@@ -13,7 +13,7 @@
 	density =    TRUE
 	anchored =   TRUE
 	idle_power_usage = 0
-	active_power_usage = 1400
+	active_power_usage = 3000
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0

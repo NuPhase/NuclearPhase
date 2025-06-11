@@ -49,6 +49,12 @@
 	spawn_reagent = /decl/material/liquid/acid
 /obj/item/chems/chem_disp_cartridge/tungsten
 	spawn_reagent = /decl/material/solid/metal/tungsten
+/obj/item/chems/chem_disp_cartridge/small/diborane
+	spawn_reagent = /decl/material/gas/diborane
+/obj/item/chems/chem_disp_cartridge/small/nitricoxide
+	spawn_reagent = /decl/material/gas/nitricoxide
+/obj/item/chems/chem_disp_cartridge/medium/nitricacid
+	spawn_reagent = /decl/material/liquid/acid/nitric
 
 // Bar, alcoholic
 /obj/item/chems/chem_disp_cartridge/beer

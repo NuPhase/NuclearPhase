@@ -29,6 +29,16 @@
 	melting_point = -30 CELSIUS
 	molar_mass = 0.036
 
+/decl/material/liquid/acid/nitric
+	name = "nitric acid"
+	uid = "liquid_nitric_acid"
+	lore_text = "A very corrosive acid made from air."
+	color = "#c48870"
+	solvent_power = MAT_SOLVENT_STRONG
+	solvent_melt_dose = 48
+	solvent_max_damage = 30
+	value = 1.5
+
 /decl/material/liquid/acid/boric
 	name = "boric acid"
 	uid = "boric_acid"

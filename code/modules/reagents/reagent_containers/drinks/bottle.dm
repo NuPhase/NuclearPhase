@@ -3,7 +3,7 @@
 //Bottles now weaken and break when smashed on people's heads. - Giacom
 
 /obj/item/chems/drinks/bottle
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 50
 	volume = 1000
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	force = 5

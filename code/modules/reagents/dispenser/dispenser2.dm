@@ -110,9 +110,6 @@
 			to_chat(user, "<span class='warning'>This machine only accepts beakers!</span>")
 			return TRUE
 
-		if(!ATOM_IS_OPEN_CONTAINER(RC))
-			to_chat(user, "<span class='warning'>You don't see how \the [src] could dispense reagents into \the [RC].</span>")
-			return TRUE
 		if(!user.unEquip(RC, src))
 			return TRUE
 		set_container(RC)
@@ -180,7 +177,7 @@
 
 	if(href_list["dispense"])
 		var/label = href_list["dispense"]
-		if(cartridges[label] && container && ATOM_IS_OPEN_CONTAINER(container))
+		if(cartridges[label] && container)
 			var/obj/item/chems/chem_disp_cartridge/C = cartridges[label]
 			var/mult = 1 + (-0.5 + round(rand(), 0.1))*(user.skill_fail_chance(core_skill, 0.3, SKILL_ADEPT))
 			C.reagents.trans_to(container, amount*mult)

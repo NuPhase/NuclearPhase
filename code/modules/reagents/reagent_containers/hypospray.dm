@@ -201,7 +201,8 @@
 /obj/item/chems/hypospray/autoinjector/srec
 	name = "autoinjector (SREC-I)"
 	band_color = COLOR_GREEN
-	starts_with = list(/decl/material/liquid/srec_inhibitor = 10)
+	starts_with = list(/decl/material/liquid/srec_inhibitor = 30)
+	amount_per_transfer_from_this = 10
 	matter = list(
 		/decl/material/solid/fiberglass = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/static_crystal = MATTER_AMOUNT_TRACE

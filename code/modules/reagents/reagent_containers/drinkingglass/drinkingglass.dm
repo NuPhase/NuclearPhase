@@ -26,8 +26,8 @@ var/global/const/DRINK_ICON_NOISY = "noise"
 
 	center_of_mass =@'{"x":16,"y":9}'
 
-	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = @"[5,10,15,30]"
+	amount_per_transfer_from_this = 50
+	possible_transfer_amounts = @"[10,15,30,50]"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	show_reagent_name = TRUE
 	temperature_coefficient = 4

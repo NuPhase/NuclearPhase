@@ -350,7 +350,7 @@
 				to_chat(src, SPAN_DANGER("Your [E.name] is being lacerated from within!"))
 				if(E.can_feel_pain())
 					emote("scream")
-				if(prob(25))
+				if(prob(5))
 					for(var/i = 1 to rand(3,5))
 						new /obj/item/shard(get_turf(E), /decl/material/solid/static_crystal)
 					E.dismember(0, DISMEMBER_METHOD_BLUNT)

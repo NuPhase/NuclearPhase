@@ -4,8 +4,8 @@
 	w_class = ITEM_SIZE_TINY
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "rag"
-	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = @"[5]"
+	amount_per_transfer_from_this = 50
+	possible_transfer_amounts = @"[50]"
 	volume = 10
 	can_be_placed_into = null
 	item_flags = ITEM_FLAG_NO_BLUDGEON

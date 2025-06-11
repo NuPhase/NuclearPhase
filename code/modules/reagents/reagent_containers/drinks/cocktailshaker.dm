@@ -2,9 +2,9 @@
 	name = "shaker"
 	desc = "A three piece Cobbler-style shaker. Used to mix, cool, and strain drinks."
 	icon_state = "shaker"
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 100
 	possible_transfer_amounts = @"[50,200,250,500,1000,2000]" //Professional bartender should be able to transfer as much as needed
-	volume = 120
+	volume = 1000
 	center_of_mass = @'{"x":17,"y":10}'
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
 	pour_sound = list('sound/chemistry/pour/bottle1.mp3', 'sound/chemistry/pour/bottle2.mp3', 'sound/chemistry/pour/bottle3.mp3')

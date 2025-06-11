@@ -88,7 +88,7 @@
 		else
 			container.visible_message(SPAN_NOTICE("[html_icon(container)] [mix_message]"))
 		if(reaction_sound)
-			playsound(T || container, reaction_sound, 80, 1)
+			playsound(T || container, reaction_sound, 40, 1)
 
 //obtains any special data that will be provided to the reaction products
 //this is called just before reactants are removed.

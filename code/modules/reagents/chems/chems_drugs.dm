@@ -241,6 +241,8 @@
 	var/painkill_magnitude = 130000
 	var/effective_dose = 1
 	drug_category = DRUG_CATEGORY_PAIN_SLEEP
+	heating_products = list(/decl/material/liquid/benzylfentanyl = 0.03, /decl/chemical_reaction/norfentanyl = 0.04, /decl/material/liquid/piperidone = 0.13, /decl/material/liquid/sulfuric_morphine = 0.2, /decl/material/solid/carbon = 0.52)
+	heating_point = 700 CELSIUS
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))
@@ -305,7 +307,6 @@
 	painkill_magnitude = 110000
 	overdose = 70
 	uid = "chem_tramadol"
-	ingest_met = 0.1
 
 /decl/material/liquid/opium/tramadol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, removed))
@@ -341,7 +342,6 @@
 	painkill_magnitude = 1740000
 	overdose = 3 //can't drink fentanyl in ohio
 	uid = "chem_fentanyl"
-	ingest_met = 0.1
 
 /decl/material/liquid/opium/fentanyl/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, removed))
@@ -393,14 +393,6 @@
 	name = "tianeptine"
 	lore_text = "An addictive and effective antidepressant."
 	uid = "chem_tianeptine"
-
-/decl/material/liquid/sulfuric_morphine
-	name = "sulfuric morphine"
-	lore_text = "Morphine with a lot of sulfuric acid traces in it."
-	heating_products = list(/decl/material/liquid/opium/morphine = 1, /decl/material/solid/sulfur = 1)
-	heating_message = "All sulphuric acid evaporates, leaving a mess of purple liquid and yellow powder."
-	heating_point = 140 CELSIUS
-	uid = "chem_sulfuricmorphine"
 
 /decl/material/liquid/opium/morphine
 	name = "morphine"

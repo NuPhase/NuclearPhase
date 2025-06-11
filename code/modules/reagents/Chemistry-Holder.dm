@@ -64,7 +64,7 @@ var/global/obj/temp_reagents_holder = new
 			if(!primary_reagent || reagent_volumes[primary_reagent] < vol)
 				primary_reagent = R
 	if(total_volume > maximum_volume)
-		remove_any(maximum_volume - total_volume)
+		remove_any(total_volume - maximum_volume)
 
 #define BASAL_REACTION_RATE 50
 
@@ -131,7 +131,7 @@ var/global/obj/temp_reagents_holder = new
 				if(replace_message)
 					location.visible_message("<span class='notice'>[html_icon(location)] [replace_message]</span>")
 				if(replace_sound)
-					playsound(location, replace_sound, 80, 1)
+					playsound(location, replace_sound, 40, 1)
 
 		else // Otherwise, collect all possible reactions.
 			eligible_reactions |= SSmaterials.chemical_reactions_by_id[R.type]

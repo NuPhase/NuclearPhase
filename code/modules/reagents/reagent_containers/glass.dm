@@ -7,7 +7,7 @@
 	desc = ""
 	icon_state = "null"
 	item_state = "null"
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 60
 	possible_transfer_amounts = @"[5,10,15,25,30,60]"
 	volume = 150
 	w_class = ITEM_SIZE_SMALL

@@ -111,3 +111,18 @@
 	result_amount = 10
 	minimum_temperature = T0C
 	mix_message = "The solution bubbles and gets thicker."
+
+/decl/chemical_reaction/sabatier
+	name = "Sabatier Reaction"
+	result = /decl/material/gas/methane
+	required_reagents = list(/decl/material/solid/carbon = 1, /decl/material/gas/hydrogen = 4)
+	catalysts = list(/decl/material/solid/metal/osmium = 10)
+	result_amount = 1
+	minimum_temperature = 300 CELSIUS
+	thermal_product = 10
+
+/decl/chemical_reaction/saline
+	name = "Saline Solution"
+	result = /decl/material/liquid/nanoblood/saline
+	required_reagents = list(/decl/material/solid/sodiumchloride = 0.9, /decl/material/liquid/water = 100)
+	result_amount = 100
