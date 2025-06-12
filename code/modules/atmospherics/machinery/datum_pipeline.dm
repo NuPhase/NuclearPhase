@@ -242,6 +242,7 @@
 			modeled_location.zone.air.temperature += sharer_temperature_delta/modeled_location.zone.air.group_multiplier
 		else
 			modeled_location.air.temperature += sharer_temperature_delta
+		air.add_thermal_energy(0, TRUE, TRUE)
 
 	else if(istype(target, /turf/exterior) && !target.blocks_air)
 		var/turf/exterior/modeled_location = target

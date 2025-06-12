@@ -13,6 +13,10 @@
 	return istype(O)
 
 /obj/item/scanner/reagent/scan(obj/O, mob/user)
+	if(istype(O, /obj/machinery/reagent_temperature))
+		var/obj/machinery/reagent_temperature/thingie = O
+		if(thingie.container)
+			O = thingie.container
 	scan_data = reagent_scan_results(O, details)
 	scan_data = jointext(scan_data, "<br>")
 	user.show_message(SPAN_NOTICE(scan_data))

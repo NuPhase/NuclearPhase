@@ -1680,12 +1680,12 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/maintenance/sublevel_one)
 "bcr" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_cryo{
 	dir = 1;
 	wanted_temperature = 308;
-	initial_volume = 2000
+	initial_volume = 5000
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "bcE" = (
@@ -4855,6 +4855,9 @@
 /obj/structure/sign/warning/caution{
 	pixel_y = 32
 	},
+/obj/structure/cart{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "cLu" = (
@@ -6059,6 +6062,16 @@
 /obj/effect/paint_stripe/black,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations)
+"dtx" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical)
 "dty" = (
 /obj/machinery/alarm,
 /obj/effect/floor_decal/corner/yellow/line{
@@ -19537,8 +19550,10 @@
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/visible/blue{
+	dir = 8
+	},
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/blue,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
 "kxb" = (
@@ -20838,7 +20853,7 @@
 /obj/effect/paint,
 /obj/machinery/atmospherics/binary/pump/adv/on{
 	dir = 4;
-	flow_capacity = 150
+	flow_capacity = 900
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical)
@@ -27477,10 +27492,13 @@
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
-/obj/structure/catwalk,
 /obj/machinery/light/ceiling{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 4
+	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
 "olD" = (
@@ -29244,7 +29262,7 @@
 "pff" = (
 /obj/machinery/atmospherics/binary/pump/adv/on{
 	dir = 8;
-	flow_capacity = 150
+	flow_capacity = 900
 	},
 /turf/simulated/floor/asteroid,
 /area/serenity/shelter/engineering/electrical)
@@ -32482,11 +32500,11 @@
 /area/serenity/maintenance/safezone)
 "qSm" = (
 /obj/effect/floor_decal/industrial/warning/dust,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_atmos{
 	wanted_temperature = 308;
-	initial_volume = 2000
+	initial_volume = 5000
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "qSs" = (
@@ -33814,13 +33832,13 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "rBC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_cryo{
 	dir = 1;
 	wanted_temperature = 308;
-	initial_volume = 2000
+	initial_volume = 5000
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "rBM" = (
@@ -35560,6 +35578,11 @@
 /obj/effect/paint_stripe/blue,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical)
+"sxV" = (
+/obj/machinery/light/ceiling,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "sxW" = (
 /obj/structure/railing/mapped,
 /turf/simulated/open,
@@ -38149,6 +38172,10 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"tVZ" = (
+/obj/structure/reagent_dispensers/barrel/sulphuric_acid,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "tWr" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/monotile,
@@ -38352,6 +38379,15 @@
 /obj/structure/door/fire,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"uaD" = (
+/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_cryo{
+	dir = 1;
+	wanted_temperature = 308;
+	initial_volume = 5000
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/electrical)
 "uaU" = (
 /obj/machinery/floodlight,
 /obj/effect/decal/cleanable/dirt,
@@ -41191,6 +41227,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations)
+"vwF" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/blue{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical)
 "vwO" = (
 /obj/turbolift_map_holder/serenity/main_staircase,
 /turf/simulated/open,
@@ -41315,7 +41358,7 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_atmos{
 	wanted_temperature = 308;
-	initial_volume = 2000
+	initial_volume = 5000
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
@@ -41741,13 +41784,13 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
 "vLg" = (
-/obj/structure/catwalk,
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
 "vLn" = (
@@ -42691,13 +42734,16 @@
 /turf/simulated/open,
 /area/serenity/shelter/staircase)
 "wod" = (
-/obj/structure/catwalk,
 /obj/structure/cable/heavy{
 	icon_state = "1-8"
 	},
 /obj/machinery/light/ceiling{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4
+	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
 "woe" = (
@@ -42932,6 +42978,16 @@
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/entrance_zone)
+"wsl" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical)
 "wsn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/visible{
@@ -43744,6 +43800,10 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
+"wNH" = (
+/obj/structure/reagent_dispensers/barrel/cornoil,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs)
 "wNI" = (
 /obj/structure/morgue{
 	dir = 8
@@ -43900,7 +43960,11 @@
 /obj/structure/cable/heavy{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/dark/textured/monotile,
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 9
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
 "wSm" = (
 /obj/structure/railing/mapped{
@@ -115539,7 +115603,7 @@ mqz
 lgo
 uAJ
 lJy
-eaQ
+wsl
 sxB
 fsO
 eCZ
@@ -115637,7 +115701,7 @@ mTg
 aAl
 dXY
 wFy
-eaQ
+dtx
 sxB
 hKp
 eCZ
@@ -115735,7 +115799,7 @@ kKZ
 hnA
 dXY
 wFy
-eaQ
+dtx
 sxB
 qXK
 eCZ
@@ -115833,7 +115897,7 @@ pSV
 wTJ
 pwy
 wFy
-eaQ
+dtx
 sxB
 btN
 eCZ
@@ -115930,8 +115994,8 @@ eaQ
 eCZ
 eaQ
 eCZ
-pPb
-eaQ
+wFy
+dtx
 dRs
 eCZ
 bRR
@@ -116126,8 +116190,8 @@ eaQ
 eCZ
 eaQ
 eCZ
-dNS
-eCZ
+pPb
+pPb
 bHq
 mtk
 cSM
@@ -116224,7 +116288,7 @@ tMM
 pSV
 tMM
 pwy
-dNS
+vwF
 wSf
 xub
 jlN
@@ -116711,7 +116775,7 @@ bVp
 vVY
 pff
 qPo
-bcr
+uaD
 vAP
 tMK
 fvy
@@ -123444,9 +123508,9 @@ alc
 puU
 puU
 djl
-alc
+sxV
 puU
-rQb
+tVZ
 wfl
 uwO
 daK
@@ -123544,7 +123608,7 @@ puU
 djl
 puU
 puU
-puU
+rQb
 wfl
 afB
 uck
@@ -123637,12 +123701,12 @@ xEy
 wfl
 puU
 puU
-puU
-puU
+rQb
+rQb
 vIx
 puU
 xEe
-puU
+wNH
 wfl
 eKK
 cGH

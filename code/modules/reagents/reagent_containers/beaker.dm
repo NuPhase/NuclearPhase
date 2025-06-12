@@ -11,6 +11,8 @@
 	material_force_multiplier = 0.25
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	show_reagent_name = TRUE
+	volume = 200
+	temperature_coefficient = 0.7
 	var/lid_color = COLOR_BEASTY_BROWN
 
 /obj/item/chems/glass/beaker/Initialize()
@@ -72,8 +74,8 @@
 	desc = "A large beaker."
 	icon = 'icons/obj/items/chem/beakers/large.dmi'
 	center_of_mass = @'{"x":16,"y":10}'
-	volume = 400
-	amount_per_transfer_from_this = 10
+	volume = 800
+	amount_per_transfer_from_this = 50
 	possible_transfer_amounts = @"[5,10,15,25,30,60,120]"
 	material_force_multiplier = 0.5
 	w_class = ITEM_SIZE_LARGE
@@ -83,8 +85,8 @@
 	desc = "A large mixing bowl."
 	icon = 'icons/obj/items/chem/mixingbowl.dmi'
 	center_of_mass = @'{"x":16,"y":10}'
-	volume = 180
-	amount_per_transfer_from_this = 10
+	volume = 2000
+	amount_per_transfer_from_this = 100
 	possible_transfer_amounts = @"[5,10,15,25,30,60,180]"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	unacidable = 0
@@ -153,7 +155,6 @@
 	center_of_mass = @'{"x":15,"y":8}'
 	possible_transfer_amounts = @"[5,10,15,30]"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
-	temperature_coefficient = 1
 	material = /decl/material/solid/metal/steel
 	applies_material_name = FALSE
 	applies_material_colour = FALSE

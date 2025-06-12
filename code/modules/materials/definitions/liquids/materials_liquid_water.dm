@@ -177,7 +177,8 @@
 	color = "#65a3aa"
 	heating_point = 100 CELSIUS
 	heating_temperature_product = -2
-	heating_products = list(/decl/material/liquid/water = 1)
+	heating_products = list(/decl/material/liquid/water/dirty1 = 1)
+	reactivity_coefficient = 0.5
 
 // Water with some contaminants.
 // Can poison in large quantities

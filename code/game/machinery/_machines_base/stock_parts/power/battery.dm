@@ -4,7 +4,7 @@
 	icon_state = "battery0"
 	var/obj/item/cell/cell
 	var/charge_channel = ENVIRON  // The channel it attempts to charge from.
-	var/charge_rate = 5           // This is in battery units, per tick.
+	var/charge_rate = 1           // This is in battery units, per tick.
 	var/can_charge = TRUE
 	var/charge_wait_counter = 3  // How many ticks we wait until we start charging after charging becomes an option.
 	var/last_cell_charge  = 0     // Used for UI stuff.
@@ -220,7 +220,7 @@
 /obj/item/stock_parts/power/battery/buildable/turbo
 	name = "battery backup (rapid)"
 	desc = "The Xcharge state-of-the-art battery backup claims to charge over ten times as fast as its competitors."
-	charge_rate = 5
+	charge_rate = 2
 	material = /decl/material/solid/metal/steel
 	matter = list(
 		/decl/material/solid/metal/aluminium = MATTER_AMOUNT_REINFORCEMENT,

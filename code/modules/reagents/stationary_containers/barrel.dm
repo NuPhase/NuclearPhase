@@ -5,8 +5,16 @@
 	icon_state = "barrel_closed"
 	initial_capacity = 200000
 	atom_flags = ATOM_FLAG_CLIMBABLE
+	color = COLOR_GRAY
 	var/open = FALSE
 	var/mob/contained = null
+
+/obj/structure/reagent_dispensers/barrel/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O, /obj/item/chems))
+		var/obj/item/chems/R = O
+		R.standard_pour_into(src,user)
+		return
+	..()
 
 /obj/structure/reagent_dispensers/barrel/update_icon()
 	. = ..()
@@ -46,7 +54,7 @@
 
 /obj/structure/reagent_dispensers/barrel/attack_hand(mob/user)
 	. = ..()
-	if(contained)
+	if(contained && open)
 		user.visible_message(SPAN_DANGER("[user] starts pulling [contained] out of \the [src]!"))
 		if(!do_after(user, 50, src))
 			return
@@ -73,4 +81,13 @@
 	update_icon()
 
 /obj/structure/reagent_dispensers/barrel/water
-	initial_reagent_types = list(/decl/material/liquid/water = 1)
+	initial_reagent_types = list(/decl/material/liquid/water = 0.8)
+	color = COLOR_PALE_BLUE_GRAY
+
+/obj/structure/reagent_dispensers/barrel/sulphuric_acid
+	initial_reagent_types = list(/decl/material/liquid/acid = 0.8)
+	color = COLOR_PALE_ORANGE
+
+/obj/structure/reagent_dispensers/barrel/cornoil
+	initial_reagent_types = list(/decl/material/liquid/nutriment/cornoil = 0.3)
+	color = COLOR_PALE_GREEN_GRAY

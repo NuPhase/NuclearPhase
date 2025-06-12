@@ -7,18 +7,19 @@
 	connect_types = CONNECT_TYPE_HE
 	interact_offline = TRUE //Needs to be set so that pipes don't say they lack power in their description
 	var/initialize_directions_he
-	var/surface = 2	//surface area in m^2
+	var/surface = 8	//surface area in m^2
 	var/icon_temperature = T20C //stop small changes in temperature causing an icon refresh
 	build_icon_state = "he"
 	atom_flags = 0 // no painting
 	appearance_flags = KEEP_TOGETHER
 
-	minimum_temperature_difference = 20
-	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	minimum_temperature_difference = 10
+	thermal_conductivity = 0.8
 
 	maximum_pressure = 360*ONE_ATMOSPHERE
 	fatigue_pressure = 300*ONE_ATMOSPHERE
 	alert_pressure = 360*ONE_ATMOSPHERE
+	volume = ATMOS_DEFAULT_VOLUME_PIPE * 4
 
 	can_buckle = 1
 	buckle_lying = 1
@@ -66,7 +67,7 @@
 				var/datum/gas_mixture/environment = pipe_turf.return_air()
 				environment_temperature = environment.temperature
 			if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
-				parent.temperature_interact(pipe_turf, ATMOS_DEFAULT_VOLUME_PIPE * surface, thermal_conductivity)
+				parent.temperature_interact(pipe_turf, volume * surface, thermal_conductivity)
 		else if(istype(loc, /turf/space))
 			parent.radiate_heat_to_space(surface, 1)
 

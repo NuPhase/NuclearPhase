@@ -14,6 +14,7 @@
 	//a reminder that watts are amperage*voltage
 
 /obj/machinery/power/generator/battery/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	. = ..()
 	if(exposed_temperature > 800)
 		burst()
 
@@ -86,8 +87,9 @@
 	name = "lithium-ion battery" //hard to manufacture
 	desc = "Lithium-Ion batteries are still cheap and practical in our day and age. Even with appearance of new and more dense batteries, lithium-ion ones still reign supreme in cost."
 	max_capacity = 267000
-	voltage = 400
-	amperage = 750
+	capacity = 267000
+	voltage = 4400
+	amperage = 1400
 	efficiency = 0.9
 
 /obj/machinery/power/generator/battery/quantum //1270Wh/l capacity, found in a sus document. 800l volume

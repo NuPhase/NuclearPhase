@@ -66,10 +66,12 @@ var/global/obj/temp_reagents_holder = new
 	if(total_volume > maximum_volume)
 		remove_any(total_volume - maximum_volume)
 
-#define BASAL_REACTION_RATE 50
+#define BASAL_REACTION_RATE 0.000001
 
 /datum/reagents/proc/get_reaction_speed_coef(var/decl/material/R, minimum_temperature, absolute_temperature) // a coefficient
-	return min(0.01, 1 - (1 / (1 + abs(minimum_temperature - absolute_temperature))))
+	var/c_mod = BASAL_REACTION_RATE
+	var/t_diff = abs(absolute_temperature - minimum_temperature)
+	return (R.reactivity_coefficient + ((t_diff**2) * c_mod))
 
 /datum/reagents/proc/process_reactions()
 
@@ -120,7 +122,7 @@ var/global/obj/temp_reagents_holder = new
 
 		// If it is, handle replacing it with the decay product.
 		if(replace_self_with)
-			var/replace_amount = REAGENT_VOLUME(src, R.type) * get_reaction_speed_coef(R, abs(replace_temperature), temperature) + 1
+			var/replace_amount = REAGENT_VOLUME(src, R.type) * get_reaction_speed_coef(R, abs(replace_temperature), temperature) + 0.01
 			remove_reagent(R.type, replace_amount)
 			for(var/product in replace_self_with)
 				add_reagent(product, replace_self_with[product] * replace_amount)
@@ -375,14 +377,14 @@ var/global/obj/temp_reagents_holder = new
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/defer_update = FALSE)
+/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/defer_update = FALSE, var/ignore_closed = FALSE)
 	touch(target) //First, handle mere touch effects
 
 	if(ismob(target))
 		return splash_mob(target, amount, copy, defer_update = defer_update)
 	if(isturf(target))
 		return trans_to_turf(target, amount, multiplier, copy, defer_update = defer_update)
-	if(isobj(target) && ATOM_IS_OPEN_CONTAINER(target))
+	if(isobj(target) && (ATOM_IS_OPEN_CONTAINER(target) || ignore_closed))
 		return trans_to_obj(target, amount, multiplier, copy, defer_update = defer_update)
 	return 0
 

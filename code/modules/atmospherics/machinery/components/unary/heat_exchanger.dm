@@ -147,6 +147,8 @@
 		var/new_temperature = combined_energy/combined_heat_capacity
 		air_contents.temperature = new_temperature
 		partner.air_contents.temperature = new_temperature
+		air_contents.add_thermal_energy(0, TRUE, TRUE)
+		partner.air_contents.add_thermal_energy(0, TRUE, TRUE)
 
 
 	if(abs(old_temperature-air_contents.temperature) > 1)
@@ -177,7 +179,8 @@
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_atmos
 	heating = FALSE
-	wanted_temperature = T20C
+	wanted_temperature = T0C
+	initial_volume = 8000
 
 /obj/machinery/atmospherics/unary/heat_exchanger/adaptive/climate_cryo
 	engaged = FALSE

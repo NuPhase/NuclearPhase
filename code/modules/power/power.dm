@@ -62,7 +62,7 @@
 
 /obj/machinery/power/proc/surplus()
 	if(powernet)
-		return powernet.lavailable-powernet.ldemand
+		return powernet.max_power-powernet.demand
 	else
 		return 0
 /obj/machinery/power/proc/add_avail(var/amount)

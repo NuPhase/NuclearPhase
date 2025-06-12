@@ -22,7 +22,7 @@
 	dirtiness = DIRTINESS_NEUTRAL
 	turf_touch_threshold = 0.1
 	liquid_density = 875
-	combustion_chamber_fuel_value = 8.4 MJ
+	combustion_chamber_fuel_value = 40000
 	fuel_value = 2
 	gas_flags = XGM_GAS_FUEL
 	combustion_energy = 537600
@@ -55,7 +55,7 @@
 	dirtiness = DIRTINESS_NEUTRAL
 	turf_touch_threshold = 0.1
 	liquid_density = 885
-	combustion_chamber_fuel_value = 6.3 MJ
+	combustion_chamber_fuel_value = 35000 // per ml
 	fuel_value = 1.8
 	gas_flags = XGM_GAS_FUEL
 	combustion_energy = 517600

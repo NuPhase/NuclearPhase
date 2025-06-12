@@ -222,6 +222,7 @@
 	value = 1.3
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	melting_point = 1800
+	dissolves_in = MAT_SOLVENT_SUPER
 
 /decl/material/solid/metal/aluminium
 	name = "aluminium"

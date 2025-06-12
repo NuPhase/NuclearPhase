@@ -39,7 +39,7 @@
 	if(!sound_id)
 		sound_id = "[type]_[sequential_id(/obj/machinery/power/generator/port_gen)]"
 	if(active && HasFuel() && !IsBroken())
-		var/volume = 10 + 15*power_output
+		var/volume = 30 + 15*power_output
 		if(!sound_token)
 
 			sound_token = play_looping_sound(src, sound_id, working_sound, volume = volume)
@@ -138,6 +138,7 @@
 	power_gen = 20000
 	power_output = 3
 	working_sound = 'sound/machines/engine.ogg'
+	efficiency = 0.98
 
 	var/obj/item/tank/oxidizer_tank = null
 	var/obj/item/tank/waste_tank = null
@@ -197,28 +198,30 @@
 		audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
 		return
 
-	var/required_fuel_moles = POWER2HEAT(power_requirement) / mat.combustion_chamber_fuel_value
+	var/required_fuel_ml = (power_requirement / mat.combustion_chamber_fuel_value) / efficiency
 	if(closed_cycle)
 		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
-		burn_mixture.adjust_gas(mat.type, required_fuel_moles * mat.molar_volume)
-		burn_mixture.merge(oxidizer_tank.air_contents.remove(required_fuel_moles * 2))
-		burn_mixture.fire_react(null, TRUE, TRUE)
+		burn_mixture.adjust_gas(mat.type, (required_fuel_ml / mat.molar_volume) * 0.05, FALSE)
+		burn_mixture.adjust_gas(mat.burn_product, (required_fuel_ml / mat.molar_volume) * 0.95, FALSE)
+		oxidizer_tank.air_contents.remove_by_flag(XGM_GAS_OXIDIZER, required_fuel_ml / mat.molar_volume)
+		burn_mixture.add_thermal_energy(mat.combustion_chamber_fuel_value * required_fuel_ml * (1-efficiency))
 		waste_tank.air_contents.merge(burn_mixture)
 	else
 		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
-		burn_mixture.adjust_gas(mat.type, required_fuel_moles)
-		burn_mixture.merge(environment.remove(required_fuel_moles * 10))
-		burn_mixture.fire_react(null, TRUE, TRUE)
+		burn_mixture.adjust_gas(mat.type, (required_fuel_ml / mat.molar_volume) * 0.05)
+		burn_mixture.adjust_gas(mat.burn_product, (required_fuel_ml / mat.molar_volume) * 0.95, FALSE)
+		environment.remove_by_flag(XGM_GAS_OXIDIZER, required_fuel_ml / mat.molar_volume)
+		burn_mixture.add_thermal_energy(mat.combustion_chamber_fuel_value * required_fuel_ml * (1-efficiency))
 		environment.merge(burn_mixture)
-	actual_fuel_consumption = required_fuel_moles * mat.molar_volume
-	reagents.remove_reagent(mat.type, actual_fuel_consumption)
-	environment.add_thermal_energy(POWER2HEAT(power_requirement) * (1 - efficiency))
+	reagents.remove_reagent(mat.type, required_fuel_ml)
+	actual_fuel_consumption = required_fuel_ml
 	update_sound()
 
 /obj/machinery/power/generator/port_gen/liquid/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/chems))
 		var/obj/item/chems/C = W
 		W.reagents.trans_to_obj(src, C.amount_per_transfer_from_this)
+		return
 	if(istype(W, /obj/item/tank))
 		var/needed_tanks = list()
 		if(!oxidizer_tank)
@@ -272,7 +275,7 @@
 /obj/machinery/power/generator/port_gen/liquid/diesel
 	name = "diesel generator"
 	allowed_fuels = list(/decl/material/liquid/diesel, /decl/material/liquid/biodiesel)
-	power_gen = 40000
+	power_gen = 50000
 	weight = 30
 
 /obj/machinery/power/generator/port_gen/liquid/diesel/large
@@ -298,14 +301,14 @@
 	. = ..()
 	if(!active)
 		return
-	to_chat(user, SPAN_NOTICE("It consumes about [round(actual_fuel_consumption HOUR * 0.001, 0.1)] liters of fuel per hour."))
+	to_chat(user, SPAN_NOTICE("It consumes about [round(actual_fuel_consumption * 3600 * 0.001, 0.1)] liters of fuel per hour."))
 	to_chat(user, SPAN_NOTICE("It currently outputs [watts_to_text(round(last_power_output), 10)]."))
 
 /obj/machinery/power/generator/port_gen/liquid/diesel/large/roundstart/Initialize()
 	. = ..()
 	if(IsBroken())
 		return
-	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(2200, 14000))
+	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(2200, 44000))
 	active = TRUE
 	update_icon()
 

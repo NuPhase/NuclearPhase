@@ -429,7 +429,8 @@
 		gas[g] -= moles_taken/group_multiplier
 		moles_left_to_remove -= moles_taken
 		new_gas[g] = moles_taken
-		ASSERT(moles_left_to_remove <= ATMOS_PRECISION)
+		if(moles_left_to_remove >= ATMOS_PRECISION)
+			log_error("Fluid loss in gas_mixture/remove()")
 
 /*
 	var/list/removed_gas_list = list()

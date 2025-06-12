@@ -26,8 +26,10 @@
 	var/last_losses = 0
 	var/ldemand = 0
 	var/demand = 0 // W
-	var/lavailable = 0 //...the current available power in the powernet
+	var/lavailable = 0 // The sum of all power that generators currently provide
 	var/available = 0 // W
+	var/max_power = 0 // The sum of power that all generators on the network can provide
+	var/battery_demand = 0 // How much power can batteries draw to charge
 
 /datum/powernet/proc/add_power(a, v)
 	if((voltage - 0.1) >= v)
@@ -61,7 +63,7 @@
 //Returns the amount of excess power (before refunding to SMESs) from last tick.
 //This is for machines that might adjust their power consumption using this data.
 /datum/powernet/proc/last_surplus()
-	return max(lavailable - ldemand, 0)
+	return max(max_power - ldemand, 0)
 
 /datum/powernet/proc/draw_power(w)
 	demand += w
@@ -71,65 +73,84 @@
 	return !cables.len && !nodes.len
 
 /datum/powernet/proc/handle_generators()
-	var/list/sorted = list() // unperformance shit
+	var/list/generators = list()
+	var/list/batteries = list()
+
+	max_power = 0
 	for(var/obj/machinery/power/generator/G in nodes)
-		if(G.available_power())
-			sorted[G] = G.available_power()
+		var/free_power = G.available_power()
+		max_power += free_power
+		if(istype(G, /obj/machinery/power/generator/battery))
+			batteries[G] = free_power
+			continue
+		if(free_power)
+			generators[G] = free_power
+
 	for(var/obj/machinery/power/generator/transformer/transf in nodes)
-		if(transf.available() > transf.connected.available())
-			transf.powernet.ldemand += transf.connected.powernet.ldemand + transf.connected.powernet.last_losses
+		if(!transf.should_transfer_demand)
+			demand += transf.connected.powernet.demand + transf.connected.powernet.last_losses
 
-	if(sorted.len > 1)
-		sorted = sortAssoc(sorted)
-		var/tcoef = (sorted.len / (sorted.len-1))
+	if(length(generators) > 1)
+		var/power_to_draw = demand + losses + 15000 + battery_demand
+		var/generators_to_draw = length(generators)
+		var/power_per_generator = power_to_draw/generators_to_draw
+		var/interp_coef = 1/generators_to_draw
 
-		var/tosuck = ldemand + losses + 15000
-		for(var/A in sorted)
-			var/obj/machinery/power/generator/G = A
-			var/np = tosuck / sorted.len
-			var/ap = sorted[A]
-			var/v = G.get_voltage()
-
-			if((voltage - 0.1) >= v || ap < 1)
-				tosuck += np * tcoef
-				continue
-
-			newvoltage = v
-			if(ap >= np)
-				G.on_power_drain(np)
+		for(var/obj/machinery/power/generator/G in generators)
+			generators_to_draw--
+			var/power_available = G.available_power()
+			var/actually_drawn = min(power_per_generator, power_available)
+			G.on_power_drain(actually_drawn)
+			var/power_debt = power_per_generator - actually_drawn
+			if(generators_to_draw > 0) // We're not the last one
+				power_per_generator += power_debt/generators_to_draw
+			available += actually_drawn
+			if(newvoltage == 0)
+				newvoltage = G.get_voltage()
 			else
-				tosuck += (np - ap) * tcoef
-				if(ap)
-					G.on_power_drain(ap)
-			available += ap
-	else if(sorted.len)
-		var/obj/machinery/power/generator/G = sorted[1]
-		var/ap = sorted[G]
-		var/v = G.get_voltage()
+				newvoltage = Interpolate(voltage, G.get_voltage(), interp_coef)
+	else if(length(generators))
+		var/obj/machinery/power/generator/G = generators[1]
+		var/power_to_draw = demand + losses + 15000 + battery_demand
+		var/power_available = G.available_power()
+		var/actually_drawn = min(power_to_draw, power_available)
+		G.on_power_drain(actually_drawn)
+		available += actually_drawn
+		newvoltage = G.get_voltage()
 
-		if((voltage - 0.1) >= v || ap < 1)
-			return
-		newvoltage = v
-		available += ap
-		G.on_power_drain(min(ap, ldemand))
+	if(!length(batteries)) // NO BATTERIES??
+		return
+	if(demand > (available - battery_demand)) // We still don't have enough power, UNLEASH BATTERIES
+		var/deficit = demand - available
+		var/actually_drawn = discharge_batteries(batteries, deficit)
+		available += actually_drawn
+	else // We've got excess
+		var/excess = available - demand
+		charge_batteries(batteries, excess)
+
+/datum/powernet/proc/discharge_batteries(list/batteries, power_demand)
+	var/power_per_battery = power_demand/length(batteries)
+	var/actually_drawn = 0
+	for(var/obj/machinery/power/generator/battery/B in batteries)
+		var/available_power = B.available_power()
+		if(!available_power)
+			continue
+		B.on_power_drain(power_per_battery)
+		actually_drawn += power_per_battery
+	return actually_drawn
+
+/datum/powernet/proc/charge_batteries(list/batteries, power_excess)
+	var/divided_power = (power_excess / length(batteries)) * CELLRATE
+
+	for(var/obj/machinery/power/generator/battery/cur_bat in batteries)
+		cur_bat.capacity = min(cur_bat.max_capacity, cur_bat.capacity + divided_power)
 
 /datum/powernet/proc/handle_batteries()
-	var/list/batteries = list()
+	battery_demand = 0
 	for(var/obj/machinery/power/generator/battery/cur_bat in nodes)
-		batteries += cur_bat
-	if(!length(batteries))
-		return
-
-	var/actually_available = lavailable
-	for(var/obj/machinery/power/generator/battery/cur_bat in batteries)
-		actually_available -= cur_bat.available_power()
-
-	var/net_excess = actually_available - ldemand
-	var/divided_power = net_excess / length(batteries)
-
-	if(net_excess > 0) // we got spare power and can charge
-		for(var/obj/machinery/power/generator/battery/cur_bat in batteries)
-			cur_bat.capacity = min(cur_bat.max_capacity, cur_bat.capacity + divided_power)
+		if(cur_bat.capacity >= cur_bat.max_capacity)
+			continue // fully charged
+		battery_demand += cur_bat.voltage * cur_bat.amperage
 
 //remove a cable from the current powernet
 //if the powernet is then empty, delete it
@@ -190,11 +211,11 @@
 		var/turf/T = get_turf(C)
 		var/datum/gas_mixture/environment = T.return_air()
 		var/used = draw_power(POWERNET_HEAT(src, C.resistance) / coef) * cables.len
-		environment.add_thermal_energy(POWER2HEAT(used))
+		environment.add_thermal_energy(used)
 		losses += used
 
-	handle_generators()
 	handle_batteries()
+	handle_generators()
 
 	netexcess = lavailable - load()
 
@@ -226,13 +247,7 @@
 		return between(0, (lavailable / load()) * 100, 100)
 
 /datum/powernet/proc/get_electrocute_damage()
-	switch(ldemand)
-		if(1000000 to INFINITY)
-			return ldemand * 0.00001
-		if(10000 to 1000000)
-			return ldemand * 0.0001
-		if(0 to 10000)
-			return ldemand * 0.003
+	return sqrt(lavailable * (voltage/1000))
 
 ////////////////////////////////////////////////
 // Misc.

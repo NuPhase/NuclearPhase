@@ -10,7 +10,7 @@
 	density = 1
 	var/coef = 2
 	var/obj/machinery/power/generator/transformer/connected = null
-	var/max_cap = 2500000 //w
+	var/max_cap = 25000000 //w
 	var/should_transfer_demand = FALSE
 	var/on = 1
 	var/critical = FALSE
@@ -33,6 +33,7 @@
 
 /obj/machinery/power/generator/transformer/large
 	icon_state = "transformer_back"
+	should_transfer_demand = TRUE
 
 /obj/machinery/power/generator/transformer/Process()
 	if(connected)

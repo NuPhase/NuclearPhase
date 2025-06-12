@@ -265,7 +265,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/list/electrolysis_products
 	var/electrolysis_difficulty = 1
 
-	var/reactivity_coefficient = 0.25 //explosions, chemical reactions, etc
+	var/reactivity_coefficient = 0.05 //explosions, chemical reactions, etc
 
 	var/heating_point
 	var/heating_temperature_product = 0
@@ -519,7 +519,11 @@ var/decl/material/boil_mat = null
 				affectedbook.dat = null
 				to_chat(usr, SPAN_NOTICE("The solution dissolves the ink on the book."))
 
-	if(solvent_power >= MAT_SOLVENT_STRONG && (istype(O, /obj/item) || istype(O, /obj/effect/vine)) && (REAGENT_VOLUME(holder, type) > solvent_melt_dose))
+	var/required_solvent_power = MAT_SOLVENT_STRONG
+	var/decl/material/mat = O.get_material()
+	if(mat)
+		required_solvent_power = mat.dissolves_in
+	if(solvent_power >= required_solvent_power && (istype(O, /obj/item) || istype(O, /obj/effect/vine)) && (REAGENT_VOLUME(holder, type) > solvent_melt_dose))
 		O.visible_message(SPAN_DANGER("\The [O] dissolves!"))
 		O.handle_melting()
 		holder?.remove_reagent(type, solvent_melt_dose)

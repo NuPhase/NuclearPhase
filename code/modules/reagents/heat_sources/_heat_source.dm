@@ -17,6 +17,7 @@
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0
+	temperature_coefficient = 0.8
 
 	var/image/glow_icon
 	var/image/beaker_icon
@@ -36,7 +37,7 @@
 	icon_state = "coldplate"
 	heater_mode =      HEATER_MODE_COOL
 	max_temperature =  30 CELSIUS
-	min_temperature =  -100 CELSIUS
+	min_temperature =  -170 CELSIUS
 
 /obj/machinery/reagent_temperature/Initialize()
 	target_temperature = min_temperature
@@ -69,6 +70,7 @@
 		if(temperature != last_temperature)
 			if(container)
 				QUEUE_TEMPERATURE_ATOMS(container)
+				HANDLE_REACTIONS(container.reagents)
 			queue_icon_update()
 		return TRUE // Don't kill this processing loop unless we're not powered.
 	. = ..()
