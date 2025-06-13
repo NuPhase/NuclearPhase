@@ -1,4 +1,5 @@
 #define ITEM_POOL_PATH "data/item_pool.txt"
+#define FLUID_POOL_PATH "data/fluid_pool.txt"
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
@@ -36,6 +37,7 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/towel) //Blacklisted items
 	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
 										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
+	var/list/fluid_pool = null
 
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
@@ -59,6 +61,18 @@ SUBSYSTEM_DEF(persistence)
 		var/list/extracted_list = file2list(ITEM_POOL_PATH, ", ") //This is a list of STRING but we need PATH
 		for(var/string in extracted_list)
 			loaded_item_pool[text2path(string)] += 1
+	fluid_pool = list()
+	if(fexists(FLUID_POOL_PATH))
+		var/list/entries = file2list(FLUID_POOL_PATH)
+		for(var/entry in entries)
+			if(!entry)
+				continue
+			entry = trim(entry)
+			if(!length(entry))
+				continue
+			var/list/data = splittext(entry, "=")
+			var/path = replacetext(data[1], " ", "")
+			fluid_pool[text2path(path)] = text2num(data[2])
 
 /datum/controller/subsystem/persistence/Shutdown()
 	var/list/all_persistence_datums = decls_repository.get_decls_of_subtype(/decl/persistence_handler)
@@ -115,10 +129,22 @@ SUBSYSTEM_DEF(persistence)
 	popup.set_content(jointext(dat, null))
 	popup.open()
 
+/datum/controller/subsystem/persistence/proc/collect_object_fluids(obj/O)
+	if(!O.reagents)
+		return
+	for(var/reagent_type in O.reagents.reagent_volumes)
+		fluid_pool[reagent_type] += O.reagents.reagent_volumes[reagent_type]
+
 /datum/controller/subsystem/persistence/proc/make_item_pool()
 	var/text_to_write = jointext(collect_item_pool(), ", ")
 	fdel(ITEM_POOL_PATH)
 	text2file(text_to_write, ITEM_POOL_PATH)
+
+	var/list/reagent_pool_text_list = list()
+	fdel(FLUID_POOL_PATH)
+	for(var/reagent_type in fluid_pool)
+		reagent_pool_text_list += "[reagent_type] = [fluid_pool[reagent_type]]"
+	text2file(jointext(reagent_pool_text_list, "\n"), FLUID_POOL_PATH)
 
 /datum/controller/subsystem/persistence/proc/collect_item_pool()
 	var/list/return_list = list()
@@ -137,9 +163,13 @@ SUBSYSTEM_DEF(persistence)
 					try_pool_item(IC, return_list)
 					for(var/obj/item/ICC in IC.contents)
 						try_pool_item(ICC, return_list)
+
+		for(var/obj/structure/reagent_dispensers/D in A.contents)
+			collect_object_fluids(D)
+
 	return return_list
 
-/datum/controller/subsystem/persistence/proc/try_pool_item(obj/item/I, list/return_list)
+/datum/controller/subsystem/persistence/proc/try_pool_item(obj/I, list/return_list)
 	if(istype(I.loc, /obj/machinery)) //Machinery components shouldn't be saved
 		return
 	if(I.anchored) //Mines, etc
@@ -148,6 +178,7 @@ SUBSYSTEM_DEF(persistence)
 		if(istype(I, b_type))
 			return
 	return_list += I.type
+	collect_object_fluids(I)
 
 // Returns the amount of items of that type in the pool, FALSE if there aren't any
 /datum/controller/subsystem/persistence/proc/has_item(item_type)

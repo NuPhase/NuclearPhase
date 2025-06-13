@@ -52,7 +52,8 @@
 		close()
 
 	if(opened)
-		pump_gas_passive(src, air1, air2)
+		if(pump_gas_passive(src, air1, air2) != -1)
+			update_networks()
 
 /obj/machinery/atmospherics/binary/relief_valve/proc/open()
 	if(opened)
