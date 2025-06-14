@@ -52,7 +52,7 @@
 	var/obj/item/organ/internal/liver/liver = GET_INTERNAL_ORGAN(H, BP_LIVER)
 	var/obj/item/organ/internal/kidneys/kidneys = GET_INTERNAL_ORGAN(H, BP_KIDNEYS)
 	value_table += get_blood_analysis_line("Erythrocytes", round((rand(444, 500)*0.01)*H.get_blood_volume_hemo(), 0.01), "10*12/l", "4.44-5.61")
-	value_table += get_blood_analysis_line("Potassium", round(0.3 + chem_data[/decl/material/solid/potassium], 0.1), "mg/ml", "1-3")
+	value_table += get_blood_analysis_line("Potassium", round(0.3 + chem_data[/decl/material/solid/potassium], 0.1), "mg/ml", "0.1-3.0")
 	value_table += get_blood_analysis_line("Proteins", round(rand(90, 110)*0.1, 0.1), "mcg/ml", "9-11")
 	value_table += get_blood_analysis_line("pH", round(rand(735, 745) * 0.01, 0.01), "", "7.35-7.45")
 	value_table += get_blood_analysis_line("Hematocrit", round(rand(400, 494) * 0.1, 0.01), "%", "40.0-49.4")
