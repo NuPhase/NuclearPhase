@@ -79,6 +79,8 @@
 #define MAT_RARITY_UNCOMMON 10
 #define MAT_RARITY_MUNDANE  20
 
+#define MAT_DENSITY_DEFAULT 1000.1337
+
 #define DRUG_CATEGORY_MISC "Misc"
 #define DRUG_CATEGORY_ANTIBIOTICS "Antibiotics"
 #define DRUG_CATEGORY_PAIN_SLEEP "Analgesics&Anesthetics"

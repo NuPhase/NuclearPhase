@@ -3,9 +3,9 @@
 	initialize_directions = SOUTH|NORTH|WEST
 	use_power = POWER_USE_OFF
 
-	var/datum/gas_mixture/air1
-	var/datum/gas_mixture/air2
-	var/datum/gas_mixture/air3
+	var/datum/gas_mixture/node/air1
+	var/datum/gas_mixture/node/air2
+	var/datum/gas_mixture/node/air3
 
 	pipe_class = PIPE_CLASS_TRINARY
 	connect_dir_type = SOUTH | NORTH | WEST

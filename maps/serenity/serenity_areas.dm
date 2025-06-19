@@ -178,6 +178,8 @@
 	name = "Climate Control"
 /area/serenity/shelter/engineering/atmos/cryogenic
 	name = "Cryogenic Systems"
+/area/serenity/shelter/engineering/atmos/processing
+	name = "Fluid Processing"
 
 /area/serenity/shelter/engineering/climatecontrol
 	name = "Climate Control"

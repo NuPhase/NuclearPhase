@@ -38,6 +38,7 @@
 	var/start_length = 0
 	var/running_sound = 'sound/machines/small_pump_loop.wav'
 	var/running_length = 49
+	var/sound_volume = 40 // at max flow
 
 	var/initial_volume = 200
 
@@ -54,6 +55,7 @@
 	power_rating = 500000
 	running_sound = 'sound/machines/pumploop.ogg'
 	running_length = 41
+	sound_volume = 60
 
 /obj/machinery/atmospherics/binary/pump/adv/medium/on
 	icon_state = "map_on"
@@ -70,6 +72,7 @@
 	start_length = 460
 	running_sound = 'sound/machines/pumprunning.ogg'
 	running_length = 75
+	sound_volume = 80
 
 /obj/machinery/atmospherics/binary/pump/adv/large/on
 	icon_state = "map_on"
@@ -78,12 +81,13 @@
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
 	flow_capacity = 1500 //kgs
-	power_rating = 140000 //fucking chonker
+	power_rating = 15000000
 	start_sound = 'sound/machines/pumpstart.ogg'
 	start_length = 460
 	running_sound = 'sound/machines/pumprunning.ogg'
 	running_length = 75
 	start_speed_coeff = 0.1
+	sound_volume = 100
 
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
 	name = "molten metal pump"
@@ -93,12 +97,13 @@
 	//layer = STRUCTURE_LAYER
 	//icon_state = "off"
 	flow_capacity = 1200 //kgs
-	power_rating = 210000 //molten metals take a lot of energy to move
+	power_rating = 15000000
 	start_sound = 'sound/machines/pumpstart.ogg'
 	start_length = 460
 	running_sound = 'sound/machines/pumprunning.ogg'
 	running_length = 75
 	start_speed_coeff = 0.1
+	sound_volume = 80
 
 /obj/machinery/atmospherics/binary/pump/adv/on_update_icon()
 	if(stat & NOPOWER)
@@ -113,16 +118,18 @@
 		if(REACTOR_PUMP_MODE_OFF)
 			target_rpm = 0
 			QDEL_NULL(sound_token)
-			change_volume(initial_volume)
+			air1.suction_moles = 0
 		if(REACTOR_PUMP_MODE_IDLE)
-			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.4
+			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.3
 		if(REACTOR_PUMP_MODE_MAX)
 			target_rpm = REACTOR_PUMP_RPM_SAFE
 	mode = new_mode
 
-/obj/machinery/atmospherics/binary/pump/adv/proc/change_volume(new_volume)
-	air1.volume = new_volume
-	air2.volume = new_volume
+/obj/machinery/atmospherics/binary/pump/adv/proc/change_volume(new_volume, change_input = TRUE, change_output = TRUE)
+	if(change_input)
+		air1.volume = new_volume
+	if(change_output)
+		air2.volume = new_volume
 
 /obj/machinery/atmospherics/binary/pump/adv/Initialize()
 	. = ..()
@@ -130,12 +137,10 @@
 	if(uid)
 		rcontrol.reactor_pumps[uid] = src
 	initial_flow_capacity = flow_capacity
-	initial_volume = initial_flow_capacity * 5
+	initial_volume = initial_flow_capacity + ATMOS_DEFAULT_VOLUME_PUMP
 	change_volume(initial_volume)
 	if(map_on)
-		mode = REACTOR_PUMP_MODE_IDLE
-		target_rpm = REACTOR_PUMP_RPM_SAFE
-		rpm = REACTOR_PUMP_RPM_SAFE
+		update_mode(REACTOR_PUMP_MODE_MAX)
 		use_power = POWER_USE_IDLE
 		playing_sound = TRUE
 		sound_token = play_looping_sound(src, sound_id, running_sound, 80, 10, 3)
@@ -179,7 +184,7 @@
 	last_mass_flow = 0
 
 	if(powered(EQUIP))
-		rpm = round(Interpolate(rpm, target_rpm, 0.15))
+		rpm = round(Interpolate(rpm, target_rpm, start_speed_coeff))
 	else
 		rpm = round(Interpolate(rpm, 0, 0.2))
 
@@ -187,13 +192,15 @@
 		QDEL_NULL(sound_token)
 		icon_state = "map_off"
 		playing_sound = FALSE
+		air1.suction_moles = 0
+		change_volume(initial_volume)
 		return
 	else if(!playing_sound)
 		playing_sound = TRUE
 		if(start_sound)
-			playsound(src, start_sound, 100, 0, 7)
+			playsound(src, start_sound, 80, 0, 7)
 		spawn(start_length)
-			sound_token = play_looping_sound(src, sound_id, running_sound, 80, 10, 5)
+			sound_token = play_looping_sound(src, sound_id, running_sound, sound_volume, 10, 5)
 		icon_state = "on"
 
 	flow_capacity = initial_flow_capacity * (rpm / REACTOR_PUMP_RPM_SAFE)
@@ -203,10 +210,21 @@
 	var/mass_transfer = max(air1_mass, flow_capacity)
 
 	// Emulate vacuum suction
-	change_volume(Clamp((3 - (air1_mass / flow_capacity * 2)), 1, 3) * initial_volume)
+	var/deficit = flow_capacity - air1_mass
+	if(deficit > 0)
+		var/molar_mass = air1.specific_mass()
+		if(!molar_mass)
+			molar_mass = 0.06
+		air1.suction_moles = deficit / molar_mass
 
 	power_draw = pump_fluid(src, air1, air2, mass_transfer, flow_capacity, power_rating)
 	last_mass_flow = min(air1_mass, flow_capacity)
+
+	var/flow_coefficient = last_mass_flow / initial_flow_capacity
+
+	change_volume(initial_volume * (flow_coefficient * 3), FALSE, TRUE)
+	if(sound_token)
+		sound_token.SetVolume(max(sound_volume * 0.1, sound_volume * flow_coefficient))
 
 	update_networks()
 

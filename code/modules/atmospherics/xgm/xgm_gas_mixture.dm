@@ -10,6 +10,8 @@
 	var/pressure = ONE_ATMOSPHERE
 	var/heat_capacity = 0
 
+	var/suction_moles = 0
+
 	//Sum of all the gas moles in this mix.  Updated by update_values()
 	var/total_moles = 0
 	var/gas_moles = 0
@@ -353,6 +355,7 @@
 	total_moles = 0
 	gas_moles = 0
 	var/liquid_volume = 0
+	var/solid_volume = 0
 	prune_empty_values()
 	var/list/all_fluid = get_fluid()
 	for(var/g in all_fluid)
@@ -360,9 +363,12 @@
 	for(var/g in liquids)
 		var/decl/material/mat = GET_DECL(g)
 		liquid_volume += liquids[g] * mat.molar_mass / mat.liquid_density * 1000
+	for(var/g in solids)
+		var/decl/material/mat = GET_DECL(g)
+		liquid_volume += solids[g] * mat.molar_mass / mat.solid_density * 1000
 	for(var/g in gas)
 		gas_moles += gas[g]
-	available_volume = max(0.1, volume - liquid_volume)
+	available_volume = max(volume * 0.01, volume - liquid_volume - solid_volume)
 	cache_heat_capacity()
 	cache_pressure()
 
@@ -393,8 +399,8 @@
 			var/decl/material/mat = GET_DECL(g)
 			var/temperature_factor = (temperature - mat.melting_point) / mat.boiling_point //should be 1 at boiling point and 0 at melting point
 			pressure_to_cache += liquids[g] * ONE_ATMOSPHERE * temperature_factor / volume
+	pressure = max(pressure_to_cache, 0)
 	ASSERT(pressure_to_cache >= 0)
-	pressure = pressure_to_cache
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
@@ -726,11 +732,91 @@
 
 	return 1
 
+// Combines and redistributes gas in a list.
+/proc/equalize_gases_vacuum(list/datum/gas_mixture/gases)
+	var/combined_volume = 0
+	var/combined_energy = 0
+	var/combined_heat_capacity = 0
+	var/combined_moles = 0
+	var/combined_suction = 0
+
+	var/list/combined_gas = list()
+	var/list/combined_liquids = list()
+	var/list/combined_solids = list()
+
+	for(var/datum/gas_mixture/gasmix in gases)
+		var/temp_heatcap = gasmix.heat_capacity()
+		combined_volume += gasmix.volume
+		combined_energy += temp_heatcap * gasmix.temperature
+		combined_heat_capacity += temp_heatcap
+		combined_moles += gasmix.total_moles
+		combined_suction += gasmix.suction_moles
+		for(var/g in gasmix.gas)
+			combined_gas[g] += gasmix.gas[g]
+		for(var/g in gasmix.liquids)
+			combined_liquids[g] += gasmix.liquids[g]
+		for(var/g in gasmix.solids)
+			combined_solids[g] += gasmix.solids[g]
+
+	if(combined_volume <= 0)
+		return
+
+	if(combined_suction >= combined_moles)
+		combined_suction = combined_moles * 0.5
+
+	var/resulting_temperature = T20C
+	if(combined_heat_capacity > 0)
+		resulting_temperature = combined_energy / combined_heat_capacity
+	var/average_pressure = (combined_moles - combined_suction) * R_IDEAL_GAS_EQUATION * resulting_temperature / combined_volume
+
+	var/datum/gas_mixture/combined = new(combined_volume, resulting_temperature)
+	combined.gas = combined_gas
+	combined.liquids = combined_liquids
+	combined.solids = combined_solids
+
+	combined.update_values()
+	combined.fire_react()
+
+	for(var/datum/gas_mixture/gasmix in gases)
+		var/moles_for_pressure = (average_pressure * gasmix.volume) / (R_IDEAL_GAS_EQUATION * resulting_temperature)
+		var/moles_to_transfer = moles_for_pressure + gasmix.suction_moles
+		gasmix.gas = list()
+		gasmix.liquids = list()
+		gasmix.solids = list()
+		gasmix.merge(combined.remove(moles_to_transfer))
+	return 1
+
 /datum/gas_mixture/proc/get_mass()
 	var/list/all_fluid = get_fluid()
 	for(var/g in all_fluid)
 		var/decl/material/mat = GET_DECL(g)
 		. += all_fluid[g] * mat.molar_mass * group_multiplier
+
+// Returns the average density of all materials in this fluidmix in kg/m^3
+/datum/gas_mixture/proc/get_density()
+	var/total_mass = 0
+	var/total_volume = 0
+	for(var/g in gas)
+		var/decl/material/mat = GET_DECL(g)
+		var/ind_mass = gas[g] * mat.molar_mass
+		var/ind_volume = ind_mass / 1
+		total_mass += ind_mass
+		total_volume += ind_volume
+	for(var/g in liquids)
+		var/decl/material/mat = GET_DECL(g)
+		var/ind_mass = liquids[g] * mat.molar_mass
+		var/ind_volume = ind_mass / mat.liquid_density
+		total_mass += ind_mass
+		total_volume += ind_volume
+	for(var/g in solids)
+		var/decl/material/mat = GET_DECL(g)
+		var/ind_mass = solids[g] * mat.molar_mass
+		var/ind_volume = ind_mass / mat.solid_density
+		total_mass += ind_mass
+		total_volume += ind_volume
+	if(!total_volume)
+		return 0
+	return total_mass/total_volume
 
 /datum/gas_mixture/proc/specific_mass()
 	var/M = get_total_moles()

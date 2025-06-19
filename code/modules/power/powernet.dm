@@ -87,11 +87,14 @@
 			generators[G] = free_power
 
 	for(var/obj/machinery/power/generator/transformer/transf in nodes)
-		if(!transf.should_transfer_demand)
-			demand += transf.connected.powernet.demand + transf.connected.powernet.last_losses
+		if(transf.should_transfer_demand)
+			var/transferred_demand = demand + losses
+			transf.connected.powernet.demand += transferred_demand
+
+	var/projected_demand = (max(ldemand, demand) * 1.05) + battery_demand // 5% operational reserve
 
 	if(length(generators) > 1)
-		var/power_to_draw = demand + losses + 15000 + battery_demand
+		var/power_to_draw = projected_demand
 		var/generators_to_draw = length(generators)
 		var/power_per_generator = power_to_draw/generators_to_draw
 		var/interp_coef = 1/generators_to_draw
@@ -111,7 +114,7 @@
 				newvoltage = Interpolate(voltage, G.get_voltage(), interp_coef)
 	else if(length(generators))
 		var/obj/machinery/power/generator/G = generators[1]
-		var/power_to_draw = demand + losses + 15000 + battery_demand
+		var/power_to_draw = projected_demand
 		var/power_available = G.available_power()
 		var/actually_drawn = min(power_to_draw, power_available)
 		G.on_power_drain(actually_drawn)
@@ -120,8 +123,8 @@
 
 	if(!length(batteries)) // NO BATTERIES??
 		return
-	if(demand > (available - battery_demand)) // We still don't have enough power, UNLEASH BATTERIES
-		var/deficit = demand - available
+	if((projected_demand - battery_demand) > (available - battery_demand)) // We still don't have enough power, UNLEASH BATTERIES
+		var/deficit = (projected_demand - battery_demand) - (available - battery_demand)
 		var/actually_drawn = discharge_batteries(batteries, deficit)
 		available += actually_drawn
 	else // We've got excess
@@ -196,7 +199,6 @@
 // Triggers warning for certain amount of ticks
 /datum/powernet/proc/trigger_warning(var/duration_ticks = 20)
 	problem = max(duration_ticks, problem)
-
 
 //handles the power changes in the powernet
 //called every ticks by the powernet controller

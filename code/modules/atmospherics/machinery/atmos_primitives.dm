@@ -74,18 +74,20 @@
 
 	if(isnull(transfer_mass))
 		transfer_mass = source_mass
-	if(!length(source.liquids))
-		return
-	var/decl/material/mat = GET_DECL(pick(source.liquids))
-	if(!mat)
-		return
-	transfer_mass = min(transfer_mass, kgs_rating, sink.available_volume * 0.001 * mat.liquid_density)
+	var/source_density = source.get_density()
+	var/source_specific_mass = source.specific_mass()
+	if(!source_density || !source_specific_mass)
+		return -1
 
-	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.gas_molar_mass)
+	var/power_per_kg = (100000 * (1/source_density) / efficiency)
+
+	transfer_mass = min(npower_rating/power_per_kg, transfer_mass, kgs_rating, sink.available_volume * 0.001 * source_density)
+
+	var/datum/gas_mixture/removed = source.remove(transfer_mass / source_specific_mass)
 	if (!removed) //Just in case
 		return -1
 
-	var/power_draw = (100000 * (transfer_mass/mat.liquid_density) / efficiency)
+	var/power_draw = transfer_mass * power_per_kg
 
 	sink.merge(removed)
 

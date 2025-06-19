@@ -4,7 +4,7 @@
 
 	layer = ABOVE_TILE_LAYER
 
-	var/datum/gas_mixture/air_contents
+	var/datum/gas_mixture/node/air_contents
 	pipe_class = PIPE_CLASS_UNARY
 
 	// code sharing between scrubbers and vents
@@ -34,7 +34,7 @@
 /obj/machinery/atmospherics/unary/physically_destroyed()
 	if(loc && air_contents)
 		loc.assume_air(air_contents)
-	. = ..()	
+	. = ..()
 
 /obj/machinery/atmospherics/unary/dismantle()
 	if(loc && air_contents)

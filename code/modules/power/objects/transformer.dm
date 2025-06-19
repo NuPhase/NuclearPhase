@@ -50,7 +50,7 @@
 /obj/machinery/power/generator/transformer/available_power()
 	if(!powernet || !connected.powernet || !connected.on)
 		return 0
-	return min(max_cap, connected.available())
+	return min(max_cap, connected.powernet.last_surplus())
 
 /obj/machinery/power/generator/transformer/on_power_drain(w)
 	if(!powernet || !connected.powernet)

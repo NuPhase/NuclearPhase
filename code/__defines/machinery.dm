@@ -84,8 +84,8 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 /*
  *	Atmospherics Machinery.
 */
-#define MAX_SIPHON_FLOWRATE   7000 // L/s. This can be used to balance how fast a room is siphoned. Anything higher than CELL_VOLUME has no effect.
-#define MAX_SCRUBBER_FLOWRATE 2500  // L/s. Max flow rate when scrubbing from a turf.
+#define MAX_SIPHON_FLOWRATE   10000 // L/s. This can be used to balance how fast a room is siphoned. Anything higher than CELL_VOLUME has no effect.
+#define MAX_SCRUBBER_FLOWRATE 5000  // L/s. Max flow rate when scrubbing from a turf.
 
 // These balance how easy or hard it is to create huge pressure gradients with pumps and filters.
 // Lower values means it takes longer to create large pressures differences.
@@ -99,7 +99,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 
 // The flow rate/effectiveness of various atmos devices is limited by their internal volume,
 // so for many atmos devices these will control maximum flow rates in L/s.
-#define ATMOS_DEFAULT_VOLUME_PUMP   200 // Liters.
+#define ATMOS_DEFAULT_VOLUME_PUMP   5000 // Liters.
 #define ATMOS_DEFAULT_VOLUME_FILTER 500 // L.
 #define ATMOS_DEFAULT_VOLUME_MIXER  500 // L.
 #define ATMOS_DEFAULT_VOLUME_PIPE   78.54  // L. A pipe is 20cm in diameter.

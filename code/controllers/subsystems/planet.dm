@@ -36,4 +36,6 @@ SUBSYSTEM_DEF(planet)
 			using_map.weather_system.lightning_strike()
 			weather_volatility -= 3
 	using_map.weather_system.favorable_wind_speed = clamp(27 * weather_volatility, 0, 370)
+
+
 #undef TEMPERATURE_INTERPOLATION_MOD

@@ -16,7 +16,7 @@
 
 	base_floor_type = /turf/exterior/wall/ice
 
-	exterior_atmos_temp = 14
+	exterior_atmos_temp = 17
 	exterior_atmos_composition = list(
 		/decl/material/gas/hydrogen = 0.2,
 		/decl/material/gas/helium = 5,

@@ -95,7 +95,7 @@
 /obj/item/paper/proc/show_content(mob/user, forceshow)
 	var/show_info = user.handle_reading_literacy(user, info, FALSE, (forceshow || get_dist(src, user) <= 1))
 	if(show_info)
-		show_browser(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[show_info][stamps]</BODY></HTML>", "window=[name]")
+		show_browser(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[show_info][stamps]</BODY></HTML>", "window=[name];size=480x800")
 		onclose(user, "[name]")
 
 /obj/item/paper/verb/rename()

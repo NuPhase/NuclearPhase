@@ -144,8 +144,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/oxidizer_to_fuel_ratio = 1 // How much moles of oxidizer is consumed per mole of consumed fuel.
 	var/oxidizer_power = 0 // The power of this material as an oxidizer, arbitrary, 1-10
 	/// kg/m3
-	var/liquid_density = 1000
-	var/solid_density = 1000
+	var/liquid_density = MAT_DENSITY_DEFAULT
+	var/solid_density = MAT_DENSITY_DEFAULT
 
 	/// Brute damage to a wall is divided by this value if the wall is reinforced by this material.
 	var/brute_armor = 2
@@ -336,6 +336,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	molar_volume = molar_mass / liquid_density * 1000000
 	if(!fusion_enthalpy) // Approximate it if we don't have an exact value
 		fusion_enthalpy = latent_heat * 0.0325
+	if(solid_density == MAT_DENSITY_DEFAULT)
+		solid_density = liquid_density * 1.05
 	if(!use_name)
 		use_name = name
 	if(!liquid_name)
