@@ -21,7 +21,13 @@ If d1 = 0 and d2 = dir, it's a O-X cable, getting from the center of the tile to
 If d1 = dir1 and d2 = dir2, it's a full X-X cable, getting from dir1 to dir2
 By design, d1 is the smallest direction and d2 is the highest
 */
-#define CABLE_1MM_RESISTANCE 0.002 OHM
+
+// Copper
+#define CABLE_1MM_RESISTANCE  0.0428
+#define CABLE_1CM_RESISTANCE  0.000428
+#define CABLE_2CM_RESISTANCE  0.000107
+#define CABLE_10CM_RESISTANCE 0.00000428
+
 /obj/structure/cable
 	name = "power cable"
 	desc = "A flexible cable for power transfer."
@@ -38,7 +44,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/datum/powernet/powernet
 	var/obj/machinery/power/breakerbox/breaker_box
 
-	var/resistance = CABLE_1MM_RESISTANCE / 1000 // 10 cm
+	var/resistance = CABLE_2CM_RESISTANCE
 
 /obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
 
@@ -73,7 +79,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/heavy
 	name = "heavy-duty cable"
-	resistance = CABLE_1MM_RESISTANCE / 5000 // 50 cm
+	resistance = CABLE_10CM_RESISTANCE
 	icon = 'icons/obj/power_cond_heavy.dmi'
 	color = null
 
@@ -847,6 +853,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	name = "heavy cable coil"
 	desc = "A coil of 50cm thick cable."
 	place_type = /obj/structure/cable/heavy
+	color = null
 
 /obj/item/stack/cable_coil/yellow
 	color = COLOR_AMBER

@@ -153,3 +153,12 @@
 	name = "Sarah Mayer"
 	spawn_flags = CORPSE_SPAWNER_RANDOM_HAIR_STYLE | CORPSE_SPAWNER_RANDOM_EYE_COLOR
 	gender = FEMALE
+
+/obj/abstract/landmark/corpse/maint
+	name = "Exiled"
+
+/obj/abstract/landmark/corpse/maint/randomize_appearance(mob/living/carbon/human/M, species_choice)
+	. = ..()
+	M.remove_blood(4000)
+	M.adjustOrganDamage(500)
+	M.take_overall_damage(600, 200, 1)

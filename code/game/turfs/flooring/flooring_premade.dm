@@ -305,6 +305,9 @@
 	icon_state = "monotile"
 	initial_flooring = /decl/flooring/tiling/mono/white
 
+/turf/simulated/floor/tiled/white/monotile/hydroponics
+	initial_gas = list(/decl/material/gas/nitrogen = MOLES_N2STANDARD, /decl/material/gas/carbon_dioxide = MOLES_O2STANDARD)
+
 /turf/simulated/floor/tiled/monofloor
 	name = "floor"
 	icon_state = "steel_monofloor"

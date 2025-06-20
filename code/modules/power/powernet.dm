@@ -207,12 +207,11 @@
 
 	if(problem > 0)
 		problem = max(problem - 1, 0)
-	var/coef = min(1, 0.8 + cables.len * 0.045)
 	if(voltage)
 		var/obj/structure/cable/C = pick(cables)
 		var/turf/T = get_turf(C)
 		var/datum/gas_mixture/environment = T.return_air()
-		var/used = draw_power(POWERNET_HEAT(src, C.resistance) / coef) * cables.len
+		var/used = draw_power(POWERNET_HEAT(src, C.resistance)) * cables.len
 		environment.add_thermal_energy(used)
 		losses += used
 

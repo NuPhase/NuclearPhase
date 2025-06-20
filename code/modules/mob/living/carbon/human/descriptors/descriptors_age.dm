@@ -5,7 +5,7 @@
 		"a toddler" =      3,
 		"a child" =        7,
 		"a teenager" =    13,
-		"a young adult" = 17,
+		"a young adult" = 18,
 		"an adult" =      25,
 		"middle-aged" =   40,
 		"aging" =         55,
@@ -59,7 +59,7 @@
 /datum/appearance_descriptor/age/get_min_chargen_value()
 	var/age_key = standalone_value_descriptors[chargen_min_index]
 	return standalone_value_descriptors[age_key]
-	
+
 /datum/appearance_descriptor/age/get_max_chargen_value()
 	var/age_key = standalone_value_descriptors[min(length(standalone_value_descriptors), chargen_max_index+1)]
 	. = standalone_value_descriptors[age_key]-1

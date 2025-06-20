@@ -40,6 +40,11 @@
 		/decl/material/gas/hydrogen/tritium = 5000
 	)
 
+/obj/item/chems/fuel_cell/deuterium_tritium/spent
+	initial_reagents = list(
+		/decl/material/gas/helium = 11666
+	)
+
 /obj/item/chems/fuel_cell/lithium
 	name = "Li-6 fuel cell"
 	spec_desc = "This fuel cell contains an isotope of lithium that can breed into tritium."
@@ -67,6 +72,15 @@
 	initial_reagents = list(
 		/decl/material/solid/metal/uranium = 2000,
 		/decl/material/solid/metal/plutonium = 700
+	)
+
+/obj/item/chems/fuel_cell/fissionclassic/spent
+	initial_reagents = list(
+		/decl/material/solid/metal/depleted_uranium = 600,
+		/decl/material/solid/metal/nuclear_waste/actinides = 822.1,
+		/decl/material/solid/metal/nuclear_waste/high_level = 778.5,
+		/decl/material/gas/xenon = 153,
+		/decl/material/solid/caesium = 153
 	)
 
 /obj/item/chems/fuel_cell/fissionbreeder

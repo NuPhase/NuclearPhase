@@ -1028,7 +1028,7 @@ var/global/floorIsLava = 0
 		for(var/checktype in types_missing_icons)
 			to_chat(usr, checktype)
 
-/datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
+/datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds, amount as num)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
@@ -1038,7 +1038,7 @@ var/global/floorIsLava = 0
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
 	var/datum/seed/S = SSplants.seeds[seedtype]
-	S.harvest(usr,0,0,1)
+	S.harvest(usr,0,0,amount)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
 /datum/admins/proc/spawn_custom_item()

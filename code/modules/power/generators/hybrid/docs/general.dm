@@ -27,7 +27,7 @@ kgs - kg per second<BR>\
 
 /obj/item/clipboard/reactor
 	name = "personal reactor operations clipboard"
-	var/list/new_papers = list(/obj/item/paper/reactor/general, /obj/item/paper/reactor/coldstart, /obj/item/paper/reactor/coldstartauto, /obj/item/paper/reactor/reignition, /obj/item/paper/reactor/fueling_shutdown, /obj/item/paper/reactor/full_shutdown)
+	var/list/new_papers = list(/obj/item/paper/reactor/general, /obj/item/paper/reactor/coldstart, /obj/item/paper/reactor/coldstartauto, /obj/item/paper/reactor/reignition, /obj/item/paper/reactor/fueling_shutdown, /obj/item/paper/reactor/full_shutdown, /obj/item/paper/reactor/training_prep)
 
 /obj/item/clipboard/reactor/Initialize()
 	for(var/P in new_papers)

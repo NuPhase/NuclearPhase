@@ -261,5 +261,5 @@
 /decl/material/solid/metal/nuclear_waste/actinides/vitrified
 	name = "vitrified nuclear waste"
 	lore_text = "High-actinide nuclear waste that has been made into a glass."
-	radioactivity = 0.6
+	radioactivity = 0.3
 	color = "#2c2823"

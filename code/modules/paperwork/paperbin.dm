@@ -11,7 +11,7 @@
 	layer = BELOW_OBJ_LAYER
 	var/amount = 30					//How much paper is in the bin.
 	var/list/papers = new/list()	//List of papers put in the bin for reference.
-
+	var/paper_type = /obj/item/paper
 
 /obj/item/paper_bin/handle_mouse_drop(atom/over, mob/user)
 	if((loc == user || in_range(src, user)) && user.get_empty_hand_slot())
@@ -43,7 +43,7 @@
 			papers.Remove(P)
 		else
 			if(response == "Regular")
-				P = new /obj/item/paper
+				P = new paper_type
 				if(global.current_holiday?.name == "April Fool's Day")
 					if(prob(30))
 						P.info = "<font face=\"[P.crayonfont]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>"
@@ -100,3 +100,13 @@
 		icon_state = "paper_bin0"
 	else
 		icon_state = "paper_bin1"
+
+
+
+/obj/item/paper_bin/form
+	name = "blood donation consent forms"
+	paper_type = /obj/item/paper/form/blood_donation
+
+/obj/item/paper_bin/form/discharge
+	name = "patient discharge forms"
+	paper_type = /obj/item/paper/form/discharge
