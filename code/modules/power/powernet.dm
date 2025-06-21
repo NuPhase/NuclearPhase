@@ -211,7 +211,7 @@
 		var/obj/structure/cable/C = pick(cables)
 		var/turf/T = get_turf(C)
 		var/datum/gas_mixture/environment = T.return_air()
-		var/used = draw_power(POWERNET_HEAT(src, C.resistance)) * cables.len
+		var/used = draw_power(POWERNET_HEAT(src, (C.resistance * cables.len)))
 		environment.add_thermal_energy(used)
 		losses += used
 

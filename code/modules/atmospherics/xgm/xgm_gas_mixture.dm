@@ -371,6 +371,9 @@
 	available_volume = max(volume * 0.01, volume - liquid_volume - solid_volume)
 	cache_heat_capacity()
 	cache_pressure()
+	if(temperature < 0)
+		PRINT_STACK_TRACE("Negative temperature in update_values()")
+		temperature = TCMB
 
 /datum/gas_mixture/proc/prune_empty_values()
 	for(var/g in gas)
@@ -397,14 +400,17 @@
 			pressure_to_cache = total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
 		for(var/g in liquids)
 			var/decl/material/mat = GET_DECL(g)
-			var/temperature_factor = (temperature - mat.melting_point) / mat.boiling_point //should be 1 at boiling point and 0 at melting point
+			var/temperature_factor = max((temperature - mat.melting_point) / mat.boiling_point, 0) //should be 1 at boiling point and 0 at melting point
 			pressure_to_cache += liquids[g] * ONE_ATMOSPHERE * temperature_factor / volume
 	pressure = max(pressure_to_cache, 0)
-	ASSERT(pressure_to_cache >= 0)
+	if(pressure_to_cache < 0)
+		PRINT_STACK_TRACE("Negative pressure result in cache_pressure()")
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove(amount)
-	ASSERT(amount >= 0)
+	if(amount < 0)
+		PRINT_STACK_TRACE("Negative value supplied to remove()")
+		return
 	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
 	if(amount <= 0)
 		return null
@@ -436,7 +442,7 @@
 		moles_left_to_remove -= moles_taken
 		new_gas[g] = moles_taken
 		if(moles_left_to_remove >= ATMOS_PRECISION)
-			log_error("Fluid loss in gas_mixture/remove()")
+			PRINT_STACK_TRACE("Fluid loss in gas_mixture/remove()")
 
 /*
 	var/list/removed_gas_list = list()
@@ -460,6 +466,7 @@
 //Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_ratio(ratio, out_group_multiplier = 1)
 	if(ratio <= 0)
+		PRINT_STACK_TRACE("Negative value supplied to remove_ratio()")
 		return null
 	out_group_multiplier = between(1, out_group_multiplier, group_multiplier)
 
@@ -487,11 +494,13 @@
 	removed.update_values()
 	return removed
 
-//Removes moles from the gas mixture, limited by a given flag.  Returns a gax_mixture containing the removed air.
+//Removes moles from the gas mixture, limited by a given flag.  Returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_by_flag(flag, amount, mat_flag = FALSE)
 	var/datum/gas_mixture/removed = new
 
 	if(!flag || amount <= 0)
+		if(amount < 0)
+			PRINT_STACK_TRACE("Negative value supplied to remove_by_flag()")
 		return removed
 
 	var/sum = 0
@@ -662,14 +671,14 @@
 	if(flow_direction == OUT)
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * temperature / volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = other_pressure / pressure_coeff
-		var/free_moles = total_moles - minimum_moles_to_keep
+		var/free_moles = (total_moles * group_multiplier) - minimum_moles_to_keep
 		var/moles_to_transfer = free_moles * share_ratio
 		var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
 		other.merge(taken_gas)
 	else
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * other.temperature / other.volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = our_pressure / pressure_coeff
-		var/free_moles = other.total_moles - minimum_moles_to_keep
+		var/free_moles = (other.total_moles * other.group_multiplier) - minimum_moles_to_keep
 		var/moles_to_transfer = free_moles * share_ratio
 		var/datum/gas_mixture/taken_gas = other.remove(moles_to_transfer)
 		merge(taken_gas)

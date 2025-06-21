@@ -24,4 +24,5 @@
 			var/temperature_factor = (temperature - mat.melting_point) / mat.boiling_point //should be 1 at boiling point and 0 at melting point
 			pressure_to_cache += liquids[g] * ONE_ATMOSPHERE * temperature_factor / volume
 	pressure = max(pressure_to_cache, 0)
-	ASSERT(pressure_to_cache >= 0)
+	if(pressure_to_cache < 0)
+		PRINT_STACK_TRACE("Negative pressure result in cache_pressure()")

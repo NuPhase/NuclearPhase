@@ -77,5 +77,16 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 
 /obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam
 	heating = TRUE
-	wanted_temperature = 1130
+	wanted_temperature = 1430
 	volume = 60000
+
+/obj/machinery/atmospherics/binary/heat_exchanger/condenser_cryo
+	heating = TRUE
+	wanted_temperature = 400
+	volume = 60000
+
+/obj/machinery/atmospherics/binary/heat_exchanger/condenser_steam
+	heating = FALSE
+	minimum_temperature = 60 CELSIUS
+	volume = 60000
+	engaged = FALSE

@@ -48,8 +48,8 @@
 	icon_state = "alarm0"
 	anchored = 1
 	idle_power_usage = 80
-	active_power_usage = 45000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
-	power_channel = ENVIRON
+	active_power_usage = 15000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
+	power_channel = EQUIP
 	initial_access = list(list(access_atmospherics, access_engine_equip))
 	clicksound = "button"
 	clickvol = 30

@@ -53,8 +53,8 @@
 
 /obj/item/paper/form/blood_donation/filled/Initialize(mapload, text, title, list/md)
 	var/list/possible_patient_names = list(
-		"Casey Rodrigez", "Eddie Hall", "Mia FLeurant", "Samuel Panibratov",
-		"Sol Daud", "Bartholomew Edwards", "Ashley Jefferson", "Iuda Bergson"
+		"Casey Rodrigez", "Eddie Hall", "Mia FLeurant", "Samuel Panibratow",
+		"Sol Daud", "Bartholomew Edwards", "Ashley Jefferson", "Iuda Bergson", "Kollum Kille Katzman"
 	)
 	var/list/possible_doctor_names = list(
 		"Aeon Vantablack", "Naomi Vexler", "Bartholomew Edwards", "Mia FLeaurant"

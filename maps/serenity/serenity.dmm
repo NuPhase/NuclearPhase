@@ -1806,11 +1806,8 @@
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "bcH" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 6
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -2340,6 +2337,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/magenta,
 /area/serenity/shelter/habitationdeck/crew)
+"bqe" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "bql" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
@@ -2950,8 +2953,11 @@
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical)
 "bHw" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 4
+	},
+/obj/machinery/meter{
+	uid = "T-M-TURB IN"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -3279,11 +3285,8 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/habitationdeck/messhall)
 "bQY" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 1
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/turf/simulated/wall/concrete,
+/area/serenity/maintenance/sublevel_two)
 "bRi" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -3794,11 +3797,12 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "cdl" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
+/obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/meter{
+	uid = "T-M-COOLANT"
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "cdz" = (
@@ -5094,12 +5098,13 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/habitationdeck/messhall)
 "cIC" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/liquid_methane{
-	volume = 7000
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/structure/rack,
+/obj/item/storage/box/ammo/pistol,
+/obj/item/storage/box/ammo/pistol,
+/obj/item/storage/box/ammo/pistol,
+/obj/item/storage/box/ammo/pistol,
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "cIT" = (
 /obj/effect/floor_decal/corner/white/line,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -5251,10 +5256,8 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "cNg" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/steam{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "cNq" = (
@@ -9416,7 +9419,9 @@
 /turf/simulated/floor/carpet/purple,
 /area/serenity/shelter/engineering/reactor_operations)
 "eMP" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/obj/machinery/atmospherics/pipe/manifold/visible/red{
+	dir = 8
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "eMS" = (
@@ -9769,13 +9774,10 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "eVD" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 4;
-	starting_volume = 12500;
-	uid = "T-COOLANT V-IN";
-	set_flow_rate = 12500
+/obj/machinery/atmospherics/pipe/zpipe/up/steam{
+	dir = 1
 	},
-/turf/simulated/floor/concrete,
+/turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "eVR" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
@@ -9802,6 +9804,12 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "eWs" = (
 /obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
+	dir = 5
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "eWU" = (
@@ -10387,12 +10395,10 @@
 	},
 /area/serenity/shelter/brig)
 "fnu" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	alert_pressure = 170225.3;
-	fatigue_pressure = 170225.3;
-	name = "HP duct"
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 10
 	},
-/turf/simulated/floor/concrete,
+/turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "fnw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -10761,11 +10767,10 @@
 	},
 /area/serenity/shelter/habitationdeck/crew)
 "fzW" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 6
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/machinery/atmospherics/valve/shutoff,
+/obj/structure/catwalk,
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "fAm" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/light_gray,
@@ -11944,8 +11949,11 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "geQ" = (
-/obj/machinery/atmospherics/binary/pump/high_power/on/max_pressure{
-	dir = 1
+/obj/machinery/atmospherics/unary/heater/reactor{
+	dir = 4;
+	max_power_rating = 1500000;
+	set_temperature = 293.15;
+	uid = "T-COOLANT PREHEAT"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -12959,8 +12967,8 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "gAK" = (
-/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_steam{
-	dir = 1
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -15226,6 +15234,13 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
+"hKj" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/liquid_methane,
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "hKm" = (
 /obj/structure/window/reinforced/full,
 /turf/simulated/open,
@@ -15716,11 +15731,11 @@
 /turf/simulated/floor/tiled/dark/herringbone,
 /area/serenity/shelter/brig/prison)
 "hXS" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
-	dir = 6
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 1;
+	starting_volume = 12500;
+	uid = "T-COOLANT V-IN";
+	set_flow_rate = 12500
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -15773,6 +15788,7 @@
 /obj/item/clothing/accessory/armband,
 /obj/item/clothing/accessory/armband,
 /obj/item/clothing/accessory/armband,
+/obj/structure/sign/poster/military_rules/north,
 /turf/simulated/floor/tiled/dark/small,
 /area/serenity/shelter/brig/armory)
 "hZd" = (
@@ -15845,10 +15861,9 @@
 /turf/simulated/floor/tiled/dark/textured/edge,
 /area/serenity/shelter/habitationdeck/crew)
 "ibz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/military_rules/north,
-/turf/simulated/floor/tiled/dark/small,
-/area/serenity/shelter/brig/armory)
+/obj/structure/door/sliding/opaque/mirrored,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "ibF" = (
 /obj/effect/floor_decal/corner/black/mono,
 /obj/effect/decal/cleanable/dirt,
@@ -16536,11 +16551,13 @@
 "iuh" = (
 /obj/structure/railing/mapped,
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1,
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3,
-/obj/structure/catwalk,
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 6
+	},
+/obj/structure/catwalk,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "iux" = (
@@ -16701,7 +16718,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1,
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3,
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 5
+	},
 /obj/structure/catwalk,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
@@ -17901,8 +17920,8 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
 "jap" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 10
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -18617,6 +18636,12 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
+"jsq" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "jsC" = (
 /obj/structure/bed/sofa/r/blue,
 /obj/effect/decal/cleanable/dirt,
@@ -19691,7 +19716,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "jSe" = (
-/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_cryo,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/liquid_methane,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "jSj" = (
@@ -19958,10 +19986,7 @@
 /turf/simulated/floor/plating,
 /area/serenity/shelter/brig)
 "jYP" = (
-/obj/structure/door/sliding{
-	lock_data = list("ACCESS_SECURITY");
-	lock_type = /datum/lock/id_card
-	},
+/obj/structure/door/sliding,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/breakroom)
 "jYV" = (
@@ -19984,9 +20009,10 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "jZr" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 10
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "jZR" = (
@@ -22614,6 +22640,13 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
+"lpU" = (
+/obj/machinery/light,
+/obj/structure/target_stake,
+/obj/item/target,
+/obj/effect/floor_decal/industrial/hatch/red,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "lqc" = (
 /obj/structure/cable/superconductor{
 	icon_state = "4-8"
@@ -23087,10 +23120,10 @@
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/habitationdeck/kitchen)
 "lAv" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 4
-	},
 /obj/structure/railing/mapped,
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 5
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "lAx" = (
@@ -24891,15 +24924,9 @@
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
 "moV" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
-	},
-/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_steam{
-	dir = 1;
-	initial_volume = 9000
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/structure/rack,
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "moX" = (
 /obj/structure/reactor_table{
 	pixel_y = 6
@@ -26002,6 +26029,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
+"mOD" = (
+/obj/structure/rack,
+/obj/item/storage/box/ammo/rifle_fmj,
+/obj/item/storage/box/ammo/rifle_fmj,
+/obj/item/storage/box/ammo/rifle_fmj,
+/obj/item/storage/box/ammo/rifle_fmj,
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "mOG" = (
 /obj/structure/bed/chair/armchair/teal{
 	dir = 4
@@ -26046,7 +26081,13 @@
 /turf/simulated/floor/plating,
 /area/serenity)
 "mQE" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan,
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 2;
+	regulate_mode = 1;
+	starting_volume = 15000;
+	uid = "T-COOLANT V-OUT";
+	set_flow_rate = 25000
+	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "mQH" = (
@@ -26856,6 +26897,13 @@
 "nkh" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"nkl" = (
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "nkm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply/layer1{
@@ -28384,8 +28432,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay)
 "nVx" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
+/obj/machinery/atmospherics/binary/heat_exchanger/condenser_cryo{
+	dir = 1
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -28835,10 +28883,14 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig)
 "ofA" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1,
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3,
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/structure/rack,
+/obj/item/storage/box/ammo/blanks,
+/obj/item/storage/box/ammo/blanks,
+/obj/item/storage/box/ammo/blanks,
+/obj/item/storage/box/ammo/blanks,
+/obj/item/storage/box/ammo/blanks,
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "ofF" = (
 /obj/machinery/door/blast/shutters{
 	name = "Ventilation Tunnel";
@@ -29411,8 +29463,8 @@
 	tag_north = 1;
 	tag_south = 2;
 	tag_west_con = 0.21;
-	tag_north_con = 0.789;
-	tag_east_con = 0.001
+	tag_north_con = 0.78;
+	tag_east_con = 0.01
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
@@ -30974,12 +31026,8 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "pcx" = (
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/turf/simulated/wall/concrete,
+/area/serenity/shelter/brig/breakroom)
 "pcy" = (
 /obj/effect/floor_decal/carpet/purple{
 	dir = 8
@@ -32808,11 +32856,12 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "pXn" = (
-/obj/machinery/atmospherics/unary/heat_exchanger/adaptive/condenser_cryo{
-	initial_volume = 9000
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 10
 	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/structure/catwalk,
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "pXx" = (
 /obj/structure/sign/warning/fire{
 	dir = 8;
@@ -34708,9 +34757,11 @@
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/reactor_operations)
 "qWd" = (
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "qWm" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/decal/cleanable/dirt,
@@ -35504,11 +35555,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/cargo)
 "rqn" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 9
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/machinery/light,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "rqp" = (
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
 	dir = 5
@@ -36197,13 +36246,10 @@
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/habitationdeck/kitchen)
 "rIJ" = (
-/obj/machinery/atmospherics/unary/heater/reactor{
-	dir = 8;
-	max_power_rating = 1500000;
-	set_temperature = 293.15;
-	uid = "T-COOLANT PREHEAT"
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 5
 	},
-/turf/simulated/floor/concrete,
+/turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "rIL" = (
 /obj/structure/table/steel,
@@ -37105,12 +37151,8 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
 "sfd" = (
-/obj/machinery/atmospherics/binary/relief_valve{
-	dir = 1;
-	starting_volume = 10000
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "sfm" = (
 /obj/structure/bed/chair/armchair/black{
 	dir = 1
@@ -38690,8 +38732,8 @@
 /area/serenity/shelter/entrance_zone)
 "sVl" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam,
-/obj/machinery/meter{
-	uid = "T-M-TURB IN"
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -39743,13 +39785,10 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "tzf" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1,
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3,
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/structure/door/highsec,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "tzz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 4;
@@ -40698,8 +40737,9 @@
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/it_operations/faid)
 "tYz" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 8
+/obj/structure/railing/mapped,
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 4
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -42314,12 +42354,12 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay)
 "uNr" = (
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 2;
-	flow_capacity = 300
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/corner/red/line{
+	dir = 4
 	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "uNw" = (
 /obj/machinery/atmospherics/pipe/cap/visible{
 	dir = 4
@@ -43171,6 +43211,9 @@
 /obj/structure/railing/mapped,
 /obj/structure/cable/heavy{
 	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
+	dir = 9
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/concrete/gray,
@@ -44629,11 +44672,11 @@
 /turf/simulated/floor/carpet/red,
 /area/serenity/shelter/habitationdeck/crew)
 "vRX" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
-	dir = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
-	dir = 5
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
+	dir = 4
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -44753,6 +44796,10 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
+"vWb" = (
+/obj/structure/door/sliding/opaque,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "vWg" = (
 /obj/structure/stairs/long/west,
 /obj/structure/railing/mapped,
@@ -45413,15 +45460,11 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "wnr" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 8;
-	regulate_mode = 1;
-	starting_volume = 15000;
-	uid = "T-COOLANT V-OUT";
-	set_flow_rate = 25000
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/structure/target_stake,
+/obj/item/target,
+/obj/effect/floor_decal/industrial/hatch/red,
+/turf/simulated/floor/tiled/dark/monotile,
+/area/serenity/shelter/brig/breakroom)
 "wnx" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/supply{
 	dir = 4
@@ -46149,8 +46192,11 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "wBD" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
+	},
+/obj/machinery/meter{
+	uid = "T-M-COOLANT"
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -46966,6 +47012,9 @@
 /obj/structure/cable/white{
 	icon_state = "16-0"
 	},
+/obj/machinery/network/relay/long_range{
+	initial_network_id = "serenityglobal"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig)
 "wVI" = (
@@ -47030,12 +47079,9 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/maintenance/sublevel_one)
 "wXF" = (
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 4;
-	flow_capacity = 150
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/machinery/light,
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/brig/breakroom)
 "wXJ" = (
 /obj/structure/bed/chair/office/comfy/teal{
 	dir = 8
@@ -47955,10 +48001,7 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical)
 "xqf" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/machinery/meter{
-	uid = "T-M-COOLANT"
-	},
+/obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "xqn" = (
@@ -48401,7 +48444,7 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/atmos)
 "xBm" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/steam{
+/obj/machinery/atmospherics/binary/heat_exchanger/condenser_steam{
 	dir = 1
 	},
 /turf/simulated/floor/concrete,
@@ -97076,9 +97119,9 @@ xEy
 xEy
 xEy
 xEy
-mga
-mga
-mga
+xEy
+xEy
+cup
 mga
 mga
 mga
@@ -97155,12 +97198,6 @@ xEy
 xEy
 xEy
 xEy
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
 xEy
 xEy
 xEy
@@ -97174,9 +97211,15 @@ xEy
 xEy
 xEy
 xEy
-mga
-iRh
-mga
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+cup
 gFe
 rjr
 vdL
@@ -97253,12 +97296,6 @@ xEy
 xEy
 xEy
 xEy
-jDB
-fhd
-rdf
-rdf
-rdf
-jDB
 xEy
 xEy
 xEy
@@ -97272,9 +97309,15 @@ xEy
 xEy
 xEy
 xEy
-mga
-iRh
-mga
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+cup
 ncC
 lqW
 gsZ
@@ -97351,12 +97394,6 @@ xEy
 xEy
 xEy
 xEy
-jDB
-rdf
-rdf
-rdf
-rdf
-jDB
 xEy
 xEy
 xEy
@@ -97370,9 +97407,15 @@ xEy
 xEy
 xEy
 xEy
-mga
-iRh
-mga
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+cup
 hdf
 xdk
 thJ
@@ -97449,12 +97492,6 @@ xEy
 xEy
 xEy
 xEy
-jDB
-fhd
-rdf
-rdf
-fhd
-jDB
 xEy
 xEy
 xEy
@@ -97468,9 +97505,15 @@ xEy
 xEy
 xEy
 xEy
-mga
-iRh
-mga
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+cup
 qqT
 owD
 oAh
@@ -97547,28 +97590,28 @@ jDB
 jDB
 jDB
 jDB
-jDB
-jDB
-rdf
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-mga
-iRh
-mga
+cup
+cup
+cup
+cup
+cup
+cup
+cup
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+cup
 kSe
 aqR
 bWu
@@ -97645,29 +97688,29 @@ jDB
 fhd
 fhd
 fhd
-fhd
-rdf
-fhd
-fhd
-fhd
-fhd
-rdf
-rdf
-rdf
-rdf
-fhd
-fhd
-rdf
-rdf
-rdf
-rdf
-rdf
-fhd
-fhd
-mga
-iRh
-mga
-ibz
+cup
+mOD
+sfd
+ofA
+sfd
+sfd
+cup
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+cup
+gsZ
 igK
 xdk
 xdk
@@ -97743,28 +97786,28 @@ fhd
 fhd
 fhd
 fhd
-rdf
-rdf
-rdf
-rdf
-rdf
-rdf
-rdf
-fhd
-fhd
-rdf
-rdf
-rdf
-rdf
-fhd
-rdf
-fhd
-rdf
-rdf
-rdf
-mga
-iRh
-mga
+pcx
+cIC
+sfd
+moV
+sfd
+sfd
+cup
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+xEy
+cup
 hYV
 xdk
 xdk
@@ -97841,12 +97884,12 @@ rdf
 fhd
 rdf
 rdf
-rdf
-rdf
-rdf
-rdf
-rdf
-fhd
+pcx
+jsq
+sfd
+sfd
+sfd
+wXF
 cup
 cup
 cup
@@ -97858,11 +97901,11 @@ cup
 cup
 cup
 cup
-rdf
-rdf
-mga
-iRh
-mga
+cup
+cup
+cup
+cup
+cup
 txE
 hEA
 kjv
@@ -97919,8 +97962,8 @@ jDB
 jDB
 jDB
 jDB
-tMr
-tMr
+bQY
+bQY
 jDB
 jDB
 jDB
@@ -97938,14 +97981,14 @@ jDB
 jDB
 fhd
 rdf
-fhd
-fhd
-rdf
-rdf
-rdf
-fhd
 fhd
 cup
+sfd
+sfd
+sfd
+sfd
+sfd
+vWb
 iGZ
 iGZ
 cup
@@ -97956,10 +97999,10 @@ cup
 fLU
 fLU
 cup
-rdf
-rdf
+wmp
+wmp
 mga
-iRh
+mga
 mga
 mga
 mga
@@ -98037,13 +98080,13 @@ jDB
 rdf
 rdf
 fhd
-fhd
-fhd
-rdf
-fhd
-fhd
-fhd
 cup
+sfd
+sfd
+sfd
+sfd
+sfd
+ibz
 iGZ
 sOo
 rul
@@ -98134,13 +98177,13 @@ xEy
 jDB
 rdf
 fhd
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
+fhd
+cup
+uNr
+uNr
+cup
+uNr
+uNr
 cup
 iGZ
 bqs
@@ -98232,13 +98275,13 @@ xEy
 jDB
 rdf
 fhd
-jDB
-rdf
-rdf
 fhd
-fhd
-rdf
-fhd
+cup
+iGZ
+iGZ
+iGZ
+iGZ
+iGZ
 cup
 iGZ
 iGZ
@@ -98330,14 +98373,14 @@ xEy
 jDB
 rdf
 rdf
-jDB
-rdf
-rdf
-rdf
-rdf
-rdf
 fhd
 cup
+iGZ
+iGZ
+iGZ
+iGZ
+iGZ
+tzf
 iGZ
 iGZ
 uDo
@@ -98428,13 +98471,13 @@ xEy
 jDB
 rdf
 rdf
-jDB
 fhd
-rdf
-rdf
-rdf
-rdf
-fhd
+cup
+qWd
+iGZ
+iGZ
+iGZ
+rqn
 cup
 ycm
 jOI
@@ -98527,12 +98570,12 @@ jDB
 rdf
 rdf
 rdf
-rdf
-rdf
-rdf
-rdf
-fhd
-fhd
+cup
+iGZ
+iGZ
+iGZ
+wnr
+iGZ
 cup
 iGZ
 iGZ
@@ -98625,12 +98668,12 @@ jDB
 rdf
 rdf
 rdf
-fhd
-fhd
-rdf
-rdf
-rdf
-fhd
+pcx
+wnr
+iGZ
+iGZ
+iGZ
+iGZ
 cup
 pTh
 iGZ
@@ -98722,13 +98765,13 @@ fhd
 jDB
 fhd
 rdf
-jDB
 fhd
-rdf
-rdf
-rdf
-rdf
-fhd
+pcx
+iGZ
+iGZ
+wnr
+iGZ
+iGZ
 cup
 pTh
 iGZ
@@ -98820,13 +98863,13 @@ rdf
 rdf
 fhd
 rdf
-jDB
-rdf
-rdf
-rdf
-rdf
 fhd
-fhd
+cup
+qWd
+iGZ
+iGZ
+iGZ
+lpU
 cup
 pTh
 sOo
@@ -98918,13 +98961,13 @@ fhd
 jDB
 fhd
 rdf
-jDB
 fhd
-rdf
-rdf
-fhd
-fhd
-fhd
+cup
+iGZ
+wnr
+iGZ
+iGZ
+iGZ
 cup
 pTh
 iGZ
@@ -99017,12 +99060,12 @@ jDB
 rdf
 rdf
 jDB
-jDB
-jDB
-jDB
-jDB
-jDB
-jDB
+cup
+cup
+cup
+cup
+cup
+cup
 cup
 cup
 cup
@@ -107358,8 +107401,8 @@ eVA
 aEW
 aEW
 eVA
-hRy
-puY
+niU
+ikt
 ikt
 ikt
 bcE
@@ -107456,8 +107499,8 @@ bcE
 bcE
 bcE
 bcE
-bcE
 niU
+ikt
 ikt
 ikt
 iTx
@@ -107546,16 +107589,16 @@ ikt
 aEW
 sVH
 bcE
-ikt
-ikt
-ikt
-ikt
-ikt
-ikt
-ikt
-ikt
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
 bcE
 niU
+ikt
 ikt
 ikt
 bcE
@@ -107644,16 +107687,16 @@ ikt
 aEW
 sVH
 bcE
-ikt
-ikt
-ikt
+bcE
 ikt
 ikt
 ikt
 ikt
 ikt
 bcE
-sVH
+bcE
+niU
+aEW
 ikt
 aEW
 bcE
@@ -107742,16 +107785,16 @@ ikt
 ikt
 niU
 bcE
-ikt
-ikt
-ikt
-cIC
-tYz
-eMP
-eMP
-jZr
 bcE
-cdl
+ikt
+ikt
+ikt
+ikt
+ikt
+bcE
+bcE
+niU
+eVA
 ikt
 aEW
 bcE
@@ -107840,16 +107883,16 @@ ikt
 ikt
 niU
 bcE
-ikt
-fzW
-eMP
-geQ
-mQE
-ikt
-ikt
-nVx
 bcE
-sVH
+ikt
+ikt
+ikt
+ikt
+ikt
+bcE
+bcE
+niU
+aEW
 ikt
 ikt
 bcE
@@ -107938,16 +107981,16 @@ ikt
 aEW
 niU
 bcE
-ikt
-bQY
-eMP
-sfd
-mQE
-ikt
-ikt
-nVx
 bcE
-sVH
+ikt
+ikt
+ikt
+ikt
+ikt
+bcE
+bcE
+niU
+aEW
 ikt
 ikt
 bcE
@@ -108036,16 +108079,16 @@ ikt
 ikt
 niU
 bcE
-ikt
-bHw
-ikt
-ikt
-nVx
-ikt
-ikt
-nVx
 bcE
-sVH
+ikt
+ikt
+ikt
+ikt
+ikt
+bcE
+bcE
+niU
+aEW
 ikt
 aEW
 bcE
@@ -108134,16 +108177,16 @@ ikt
 aEW
 niU
 bcE
-ikt
-qQO
-ikt
-ikt
-nVx
-ikt
-ikt
-nVx
 bcE
-sVH
+ikt
+ikt
+ikt
+ikt
+ikt
+bcE
+bcE
+niU
+aEW
 ikt
 aEW
 bcE
@@ -108232,16 +108275,16 @@ dsW
 uaU
 sVH
 bcE
-qWd
-hXS
-mbA
-uNr
-mQE
-ikt
-ikt
-wXF
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
 bcE
 niU
+ikt
 dsW
 dsW
 bcE
@@ -108330,16 +108373,16 @@ bcE
 bcE
 niU
 bcE
-ikt
-wAB
-ikt
-bNr
-moV
-pXn
-jap
-fnu
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
 bcE
 niU
+ikt
 bcE
 bcE
 bcE
@@ -108427,17 +108470,17 @@ lyr
 eAx
 jaG
 niU
+ikt
 bcE
-ikt
-wAB
-ikt
-niU
-wnr
-ikt
-rIJ
-eVD
 bcE
-lAv
+bNr
+sCh
+sCh
+nkl
+sCh
+sCh
+bjZ
+lyr
 eAx
 eAx
 bcE
@@ -108525,16 +108568,16 @@ lyr
 ikt
 lyr
 niU
+ikt
 bcE
-ikt
-wAB
-ikt
+bcE
 niU
-wBD
+bcH
+xqf
 xqf
 eMP
 mQE
-bcE
+mbA
 lAv
 ikt
 ikt
@@ -108623,17 +108666,17 @@ lyr
 ikt
 lyr
 niU
-bcE
 ikt
-wAB
-ikt
-hRy
-doe
-gAK
-jSe
-mQE
 bcE
-lAv
+bcE
+niU
+bqe
+ikt
+ikt
+hKj
+ikt
+ikt
+tYz
 ikt
 ikt
 bcE
@@ -108721,17 +108764,17 @@ ikt
 ikt
 ikt
 niU
+ikt
 bcE
-ikt
-wAB
-ikt
-ikt
-xBm
-gAK
-jSe
-mQE
 bcE
 niU
+cdl
+ikt
+geQ
+jSe
+ikt
+ikt
+qQO
 ikt
 ikt
 bcE
@@ -108819,18 +108862,18 @@ czp
 ikt
 ikt
 niU
+ikt
 bcE
-ikt
-wAB
-ikt
-ikt
-xBm
-gAK
-jSe
-mQE
 bcE
 niU
-ikt
+jap
+nVx
+gAK
+wBD
+hXS
+mbA
+jZr
+vJR
 eWs
 bcE
 ofP
@@ -108917,19 +108960,19 @@ ikt
 ikt
 ikt
 niU
+ikt
 bcE
-ikt
-wAB
-ikt
-ikt
+bcE
+hRy
+sCh
 xBm
-gAK
-jSe
-mQE
-bcE
-niU
+sVl
+sCh
+sCh
+sCh
+puY
 ikt
-ikt
+vRX
 bcE
 fRK
 fRK
@@ -109016,18 +109059,18 @@ ikt
 ikt
 niU
 bcE
-ikt
-wAB
-ikt
-ikt
-xBm
-gAK
-jSe
-mQE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
 bcE
 niU
 ikt
-ikt
+vRX
 bcE
 xEy
 xEy
@@ -109114,18 +109157,18 @@ ikt
 ikt
 niU
 bcE
-ikt
-wAB
-ikt
-ikt
-xBm
-gAK
-jSe
-rqn
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
+bcE
 bcE
 niU
 ikt
-ikt
+vRX
 bcE
 xEy
 xEy
@@ -109210,19 +109253,19 @@ bcE
 ikt
 ikt
 ikt
-niU
+bHw
+bcE
 bcE
 ikt
-bcH
-vJR
-vJR
-tzf
-vJR
-vJR
-vJR
-ofA
-tzf
-vJR
+ikt
+ikt
+ikt
+ikt
+ikt
+bcE
+bcE
+niU
+ikt
 vRX
 bcE
 xEy
@@ -109310,14 +109353,14 @@ ikt
 ikt
 niU
 bcE
+bcE
 ikt
 ikt
 ikt
 ikt
-niU
 ikt
 ikt
-ikt
+bcE
 bcE
 niU
 ikt
@@ -109408,14 +109451,14 @@ ikt
 ikt
 niU
 bcE
-ikt
+bcE
 bNr
 pel
 kFw
-ncP
 sCh
 sCh
 sCh
+iYW
 iYW
 ncP
 puY
@@ -109506,14 +109549,14 @@ ikt
 ikt
 hRy
 iYW
-sVl
+iYW
 ncP
 doe
 sCh
 sCh
 sCh
 sCh
-puY
+rIJ
 bcE
 ikt
 uIp
@@ -109604,14 +109647,14 @@ ikt
 ikt
 ikt
 bcE
-ikt
-ikt
-hRy
-mha
-ikt
-ikt
-ikt
-hRy
+bcE
+bcE
+fnu
+eVD
+bcE
+bcE
+bcE
+fnu
 iYW
 mha
 niU
@@ -109903,7 +109946,7 @@ dUf
 ikt
 ikt
 ikt
-pcx
+aEW
 ikt
 uEw
 ikt
@@ -119322,7 +119365,7 @@ rXF
 vJR
 umE
 ixp
-xWu
+fzW
 iuh
 aTF
 vWL
@@ -119419,8 +119462,8 @@ qUP
 aUf
 ikt
 qNT
-cUg
-cUg
+pXn
+fzW
 vgn
 vls
 sxW

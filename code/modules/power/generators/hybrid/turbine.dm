@@ -80,7 +80,7 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(npres, ntemp)
 	if(ntemp > 450)
-		return 3758119 //Hooked to steam table API
+		return 4127119 //Hooked to steam table API
 	return 40000
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/get_density(npres, ntemp)
