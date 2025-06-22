@@ -400,7 +400,7 @@
 			pressure_to_cache = total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
 		for(var/g in liquids)
 			var/decl/material/mat = GET_DECL(g)
-			var/temperature_factor = max((temperature - mat.melting_point) / mat.boiling_point, 0) //should be 1 at boiling point and 0 at melting point
+			var/temperature_factor = max((temperature - mat.melting_point) / mat.boiling_point, 0.1) //should be 1 at boiling point and 0 at melting point
 			pressure_to_cache += liquids[g] * ONE_ATMOSPHERE * temperature_factor / volume
 	pressure = max(pressure_to_cache, 0)
 	if(pressure_to_cache < 0)
@@ -668,7 +668,15 @@
 	if(our_pressure > other_pressure)
 		flow_direction = OUT
 
+	// We calculate pressure_coeff, then look how many moles we need to leave in the donor mixture to keep the pressure from falling below the lowest
+	// of the two. The rest goes into the recipient mixture, multiplied by share_ratio
+
 	if(flow_direction == OUT)
+		if(one_way) // Just bring the pressure to the required point to equalize
+			var/pressure_per_mole = R_IDEAL_GAS_EQUATION * temperature / volume
+			var/moles_to_transfer = pressure_diff / pressure_per_mole * share_ratio
+			var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
+			other.merge(taken_gas)
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * temperature / volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = other_pressure / pressure_coeff
 		var/free_moles = (total_moles * group_multiplier) - minimum_moles_to_keep
@@ -676,6 +684,12 @@
 		var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
 		other.merge(taken_gas)
 	else
+		if(one_way) // Just bring the pressure to the required point to equalize
+			var/pressure_per_mole = R_IDEAL_GAS_EQUATION * temperature / volume
+			var/moles_to_transfer = pressure_diff / pressure_per_mole
+			var/datum/gas_mixture/taken_gas = other.remove(moles_to_transfer)
+			merge(taken_gas)
+			return compare(other)
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * other.temperature / other.volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = our_pressure / pressure_coeff
 		var/free_moles = (other.total_moles * other.group_multiplier) - minimum_moles_to_keep

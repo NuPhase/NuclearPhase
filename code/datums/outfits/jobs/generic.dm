@@ -51,17 +51,33 @@
 	head = /obj/item/clothing/head/chefhat
 	pda_type = /obj/item/modular_computer/pda
 
-/decl/hierarchy/outfit/job/generic/typhos_engineer
+/decl/hierarchy/outfit/job/generic/typhos
+	name = "Typhos Crewman"
+	uniform = /obj/item/clothing/under/united_nations/silver
+	belt = /obj/item/storage/belt/general
+	shoes = /obj/item/clothing/shoes/jackboots
+	pda_type = /obj/item/modular_computer/tablet/lease/typhos
+	pda_slot = slot_l_store_str
+	id_slot = slot_wear_id_str
+	id_type = /obj/item/card/id/engineering/burned
+
+/decl/hierarchy/outfit/job/generic/typhos/command
+	name = "Typhos Bridge Staff"
+	uniform = /obj/item/clothing/under/united_nations/gold
+	belt = /obj/item/storage/belt/security
+	shoes = /obj/item/clothing/shoes/dress
+	pda_type = /obj/item/modular_computer/tablet/lease/typhos
+	pda_slot = slot_l_store_str
+	id_slot = slot_wear_id_str
+	id_type = /obj/item/card/id/engineering/burned
+
+/decl/hierarchy/outfit/job/generic/typhos/engineer
 	name = "Typhos Engineer"
 	uniform = /obj/item/clothing/under/undersuit
 	suit = /obj/item/clothing/suit/modern/space/unf
 	head = /obj/item/clothing/head/helmet/modern/space/unf
-	r_pocket = /obj/item/t_scanner
 	belt = /obj/item/storage/belt/utility/full
-	l_ear = /obj/item/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/jackboots/space_suit
-	pda_type = /obj/item/modular_computer/pda/engineering
-	pda_slot = slot_l_store_str
 
 /decl/hierarchy/outfit/job/generic/surface_explorer
 	name = "Surface Explorer"
@@ -69,7 +85,6 @@
 	suit = /obj/item/clothing/suit/modern/space/research/cold
 	head = /obj/item/clothing/head/helmet/modern/space/research/cold
 	belt = /obj/item/storage/belt/utility
-	l_ear = /obj/item/radio/headset/headset_sci
 	shoes = /obj/item/clothing/shoes/jackboots/space_suit
 	pda_type = /obj/item/modular_computer/pda/science
 	pda_slot = slot_l_store_str

@@ -142,9 +142,30 @@
 	name = "Scientist"
 	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/scientist)
 
+/obj/abstract/landmark/corpse/typhos
+	name = "Typhos Crewman"
+	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/typhos)
+	spawn_flags = CORPSE_SPAWNER_RANDOM_HAIR_STYLE | CORPSE_SPAWNER_RANDOM_EYE_COLOR
+
+/obj/abstract/landmark/corpse/typhos/randomize_appearance(mob/living/carbon/human/M, species_choice)
+	. = ..()
+	M.remove_blood(4000)
+	M.adjustOrganDamage(500)
+	M.take_overall_damage(0, rand(50, 500), 1)
+	M.apply_damage(rand(50000, 150000), IRRADIATE, armor_pen = 100)
+
 /obj/abstract/landmark/corpse/typhos/engineer
 	name = "Typhos Engineer"
-	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/typhos_engineer)
+	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/typhos/engineer)
+	gender = FEMALE
+
+/obj/abstract/landmark/corpse/typhos/command
+	name = "Typhos Bridge Staff"
+	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/typhos/command)
+
+/obj/abstract/landmark/corpse/icarus
+	name = "Typhos Engineer"
+	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/typhos/engineer)
 
 /obj/abstract/landmark/corpse/surface_explorer
 	corpse_outfits = list(/decl/hierarchy/outfit/job/generic/surface_explorer)

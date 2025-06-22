@@ -114,6 +114,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/coo
 	access = list(
 		access_security,
+		access_armory,
 		access_sec_doors,
 		access_brig,
 		access_forensics_lockers,
@@ -151,6 +152,7 @@
 	)
 	minimal_access = list(
 		access_security,
+		access_armory,
 		access_sec_doors,
 		access_brig,
 		access_forensics_lockers,

@@ -76,6 +76,12 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
+"cF" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
 "cI" = (
 /obj/structure/wall_frame/titanium,
 /obj/effect/paint_stripe/yellow,
@@ -151,6 +157,12 @@
 /obj/structure/shuttle/engine/router,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
+"fK" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
 "gt" = (
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
@@ -181,13 +193,22 @@
 /obj/effect/floor_decal/industrial/outline/orange,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
+"gS" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
 "hc" = (
 /obj/structure/lattice,
 /obj/machinery/light/small,
 /turf/space,
 /area/ship/icarus)
 "hU" = (
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/shuttle/black,
 /area/ship/icarus)
 "hW" = (
 /obj/machinery/door/firedoor/border,
@@ -244,6 +265,13 @@
 	},
 /turf/space,
 /area/space)
+"jP" = (
+/obj/machinery/light/ceiling,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
 "ke" = (
 /obj/structure/lattice,
 /turf/space,
@@ -264,6 +292,17 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"kK" = (
+/obj/machinery/light/ceiling{
+	dir = 4
+	},
+/obj/abstract/landmark/scorcher,
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"kR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/shuttle/black,
 /area/ship/icarus)
 "kT" = (
 /obj/effect/floor_decal/industrial/hatch,
@@ -504,10 +543,16 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
 "ub" = (
-/obj/structure/lattice,
-/obj/abstract/landmark/icarus_tag,
-/turf/space,
-/area/space)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/overmap_edge{
+	edge_id = "icarus_body";
+	teleport_to_id = "icarus_ring";
+	icon = 'icons/obj/structures/ladders.dmi';
+	icon_state = "ladder01";
+	color = null
+	},
+/turf/simulated/floor/plating,
+/area/ship/icarus)
 "un" = (
 /obj/item/ore/strangerock,
 /turf/simulated/floor/tiled/white/monotile,
@@ -523,6 +568,12 @@
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"vi" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
@@ -563,6 +614,10 @@
 /obj/structure/window/reinforced/full,
 /obj/effect/paint_stripe/black,
 /turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"zb" = (
+/obj/abstract/landmark/scorcher,
+/turf/simulated/floor/shuttle/black,
 /area/ship/icarus)
 "zm" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel,
@@ -688,6 +743,9 @@
 /obj/machinery/atmospherics/pipe/cap/visible/fuel,
 /turf/space,
 /area/space)
+"DH" = (
+/turf/simulated/floor/plating,
+/area/ship/icarus)
 "DL" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/visible/fuel,
@@ -696,6 +754,12 @@
 "DY" = (
 /obj/effect/paint_stripe/yellow,
 /turf/simulated/wall/r_titanium,
+/area/ship/icarus)
+"EE" = (
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
 "EY" = (
 /obj/effect/floor_decal/industrial/loading{
@@ -739,6 +803,12 @@
 /obj/effect/paint_stripe/blue,
 /turf/simulated/wall/r_titanium,
 /area/ship/icarus)
+"Gs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/ship/icarus)
 "Gx" = (
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8
@@ -762,6 +832,11 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"HC" = (
+/obj/abstract/landmark/scorcher,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/shuttle/black,
 /area/ship/icarus)
 "HG" = (
 /obj/machinery/light/ceiling,
@@ -992,12 +1067,21 @@
 /obj/effect/floor_decal/corner/grey/bordercorner,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
+"Rw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/ship/icarus)
 "RH" = (
 /obj/effect/floor_decal/corner/black/bordercorner{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
+"RP" = (
+/obj/abstract/landmark/icarus_tag,
+/turf/space,
+/area/space)
 "Sd" = (
 /obj/effect/floor_decal/corner/grey/bordercorner{
 	dir = 8
@@ -1010,6 +1094,10 @@
 "Sh" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"Si" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
 /area/ship/icarus)
 "SC" = (
 /obj/structure/lattice,
@@ -1096,6 +1184,14 @@
 /area/ship/icarus)
 "Vz" = (
 /obj/structure/warp_drive_pylon,
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"VB" = (
+/obj/abstract/landmark/scorcher,
+/turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus)
+"VM" = (
+/obj/machinery/door/airlock/external,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus)
 "VR" = (
@@ -1813,7 +1909,7 @@ ke
 ke
 ke
 Ci
-Ci
+RP
 Ci
 Ci
 Ci
@@ -2357,7 +2453,7 @@ ke
 kl
 Ci
 Ci
-ub
+ke
 Ci
 Ci
 Ci
@@ -2476,8 +2572,8 @@ AA
 af
 af
 AA
-af
-af
+VM
+VM
 AA
 cb
 kl
@@ -2602,8 +2698,8 @@ AA
 af
 af
 AA
-af
-af
+VM
+VM
 AA
 iT
 gt
@@ -2640,13 +2736,13 @@ Dw
 Gn
 gt
 gt
-gt
-gt
-gt
-gt
-gt
-gt
-gt
+fK
+cF
+cF
+gS
+cF
+cF
+vi
 gt
 gt
 Gn
@@ -3062,9 +3158,9 @@ rP
 EY
 AA
 hU
-hU
-hU
-hU
+Si
+HC
+HC
 hU
 AA
 Jt
@@ -3103,11 +3199,11 @@ IL
 gt
 ZB
 AA
-hU
-hU
-hU
-hU
-hU
+HC
+Gs
+Si
+Si
+DH
 AA
 Po
 gt
@@ -3145,11 +3241,11 @@ Mz
 HG
 KU
 AA
-hU
-hU
-hU
-hU
-hU
+HC
+Si
+kR
+Si
+Si
 AA
 vA
 HG
@@ -3188,9 +3284,9 @@ gt
 ZB
 AA
 hU
-hU
-hU
-hU
+Si
+Rw
+HC
 hU
 AA
 vA
@@ -3229,11 +3325,11 @@ rC
 gt
 ZB
 AA
-hU
-hU
-hU
-hU
-hU
+Si
+kR
+zb
+zb
+ub
 AA
 pf
 gt
@@ -3274,7 +3370,7 @@ AA
 AA
 PO
 PO
-PO
+DH
 AA
 AA
 Te
@@ -3314,8 +3410,8 @@ XZ
 gt
 HZ
 gt
-gt
-gt
+VB
+VB
 gt
 gt
 Jc
@@ -3357,8 +3453,8 @@ gt
 HZ
 gt
 gt
-zK
-gt
+kK
+VB
 gt
 Jc
 gt
@@ -3400,7 +3496,7 @@ HZ
 gt
 gt
 gt
-gt
+VB
 uE
 Jc
 gt
@@ -6422,9 +6518,9 @@ Ci
 Ci
 Ci
 aW
-gt
-HG
-gt
+EE
+jP
+EE
 aW
 Ci
 Ci
@@ -6464,9 +6560,9 @@ ke
 ke
 AA
 AA
-ad
-ad
-ad
+tD
+tD
+tD
 AA
 AA
 ke

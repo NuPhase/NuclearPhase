@@ -272,11 +272,12 @@
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
 	ASSERT(parent)
 	parent.temporarily_store_fluids()
-	src.visible_message("<span class='danger'>\The [src] bursts!</span>");
+	visible_message("<span class='danger'>\The [src] bursts!</span>");
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1,0, src.loc, 0)
 	smoke.start()
+	log_and_message_admins("Gas pipe rupture.", location = get_turf(src))
 	qdel(src)
 
 /obj/machinery/atmospherics/pipe/simple/on_update_icon(var/safety = 0)

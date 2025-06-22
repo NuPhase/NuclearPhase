@@ -249,6 +249,20 @@
 /obj/machinery/light/navigation/delay3,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus/ring)
+"eW" = (
+/obj/structure/catwalk,
+/obj/structure/railing/mapped/industrial{
+	dir = 8
+	},
+/obj/effect/overmap_edge{
+	edge_id = "icarus_ring";
+	teleport_to_id = "icarus_body";
+	icon = 'icons/obj/structures/ladders.dmi';
+	icon_state = "ladder01";
+	color = null
+	},
+/turf/simulated/floor/reinforced/void,
+/area/ship/icarus/ring)
 "eX" = (
 /obj/machinery/door/firedoor,
 /obj/effect/floor_decal/industrial/warning,
@@ -762,6 +776,9 @@
 /obj/structure/table/marble,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus/ring)
+"qS" = (
+/turf/simulated/floor/tiled/dark/textured,
+/area/ship/icarus/ring)
 "rk" = (
 /obj/effect/floor_decal/corner/lightgrey/mono,
 /obj/structure/bed/chair/rounded/black{
@@ -997,7 +1014,7 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus/ring)
 "yD" = (
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/wall/elevator,
 /area/ship/icarus/ring)
 "zp" = (
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -1195,6 +1212,10 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus/ring)
+"Ha" = (
+/obj/structure/railing/mapped/industrial,
+/turf/simulated/floor/reinforced/void,
+/area/ship/icarus/ring)
 "HJ" = (
 /obj/effect/floor_decal/corner/white/mono,
 /obj/effect/floor_decal/industrial/hatch/blue,
@@ -1356,6 +1377,13 @@
 "Ny" = (
 /turf/pseudospace/typhos_surroundings/icarus,
 /area/space)
+"NB" = (
+/obj/structure/catwalk,
+/obj/structure/railing/mapped/industrial{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/void,
+/area/ship/icarus/ring)
 "NH" = (
 /obj/effect/floor_decal/corner/black/mono,
 /obj/effect/floor_decal/corner/blue/border{
@@ -1573,6 +1601,9 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ship/icarus/ring)
+"SE" = (
+/turf/simulated/floor/reinforced/void,
+/area/ship/icarus/ring)
 "SF" = (
 /obj/effect/floor_decal/corner/b_green/mono,
 /obj/structure/window/reinforced/tinted{
@@ -1668,6 +1699,10 @@
 	},
 /obj/machinery/light/navigation,
 /turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus/ring)
+"UK" = (
+/obj/machinery/door/airlock/lift,
+/turf/simulated/floor/tiled/dark/textured,
 /area/ship/icarus/ring)
 "UN" = (
 /obj/effect/floor_decal/corner/grey/border,
@@ -1804,6 +1839,12 @@
 	name = "MAIN HYDRO"
 	},
 /turf/simulated/floor/tiled/white/monotile,
+/area/ship/icarus/ring)
+"Yd" = (
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured,
 /area/ship/icarus/ring)
 "Yf" = (
 /obj/effect/floor_decal/corner/white/mono,
@@ -4600,11 +4641,11 @@ Tt
 mi
 mr
 uo
-yD
-yD
-yD
-yD
-yD
+SE
+SE
+SE
+SE
+SE
 uo
 MI
 uo
@@ -4802,11 +4843,11 @@ Fp
 Fp
 mr
 uo
-yD
-yD
-yD
-yD
-yD
+SE
+SE
+SE
+SE
+SE
 uo
 MI
 uo
@@ -5004,11 +5045,11 @@ Fp
 SG
 ck
 uo
-yD
-yD
-yD
-yD
-yD
+SE
+SE
+SE
+SE
+SE
 uo
 MI
 uo
@@ -5206,11 +5247,11 @@ Tt
 bp
 oy
 uo
-yD
-yD
-yD
-yD
-yD
+SE
+SE
+SE
+SE
+SE
 uo
 MI
 uo
@@ -5408,11 +5449,11 @@ mr
 ZT
 fK
 uo
-yD
-yD
-yD
-yD
-yD
+Ha
+NB
+NB
+NB
+eW
 uo
 MI
 uo
@@ -6419,9 +6460,9 @@ uo
 uo
 uo
 uo
-DU
-DU
-DU
+UK
+UK
+UK
 uo
 uo
 uo
@@ -6621,9 +6662,9 @@ lf
 mq
 uo
 yD
-yD
-yD
-yD
+UK
+UK
+UK
 yD
 uo
 MI
@@ -6823,9 +6864,9 @@ mi
 mr
 uo
 yD
-yD
-yD
-yD
+qS
+qS
+qS
 yD
 uo
 MI
@@ -7025,9 +7066,9 @@ Fp
 mr
 uo
 yD
-yD
-yD
-yD
+qS
+qS
+qS
 yD
 uo
 MI
@@ -7227,9 +7268,9 @@ SG
 ck
 uo
 yD
-yD
-yD
-yD
+qS
+Yd
+qS
 yD
 uo
 MI

@@ -90,6 +90,12 @@
 /obj/item/card/id/engineering/Process()
 	acquired_dose += SSradiation.get_rads_at_turf(get_turf(src)) / 3600
 
+/obj/item/card/id/engineering/burned
+	name = "UN-SAF identification card"
+	desc = "A card issued to \[REDACTED\]."
+	acquired_dose = 100000
+	detail_color = COLOR_BLUE_LIGHT
+
 /obj/item/card/id/engineering/head
 	name = "identification card"
 	desc = "A card which represents creativity and ingenuity."

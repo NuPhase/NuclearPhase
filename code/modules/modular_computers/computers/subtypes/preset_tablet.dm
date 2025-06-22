@@ -53,3 +53,12 @@
 		/datum/computer_file/program/records,
 		/datum/computer_file/program/wordprocessor
 	)
+
+/obj/item/modular_computer/tablet/lease/typhos
+	default_programs = list(
+		/datum/computer_file/program/reports,
+		/datum/computer_file/program/email_client,
+		/datum/computer_file/program/wordprocessor,
+		/datum/computer_file/program/chatclient,
+		/datum/computer_file/program/filemanager
+	)

@@ -74,3 +74,5 @@
 				overlay_fullscreen("radnoise",/obj/screen/fullscreen/noise)
 		else
 			clear_fullscreen("radnoise")
+	else
+		clear_fullscreen("radnoise")

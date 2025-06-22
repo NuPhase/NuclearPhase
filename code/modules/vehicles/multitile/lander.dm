@@ -1,5 +1,6 @@
 var/global/obj/abstract/landmark/typhos_tag/typhos_alt_tag
 var/global/obj/abstract/landmark/icarus_tag/icarus_alt_tag
+var/global/obj/abstract/landmark/sky_tag/sky_alt_tag
 
 /obj/abstract/landmark/typhos_tag
 	name = "height_tag"
@@ -15,6 +16,12 @@ var/global/obj/abstract/landmark/icarus_tag/icarus_alt_tag
 	. = ..()
 	icarus_alt_tag = src
 
+/obj/abstract/landmark/sky_tag
+	name = "height_tag"
+
+/obj/abstract/landmark/sky_tag/Initialize()
+	. = ..()
+	sky_alt_tag = src
 
 /datum/map_template/lander
 	name = "Lander enterior"
@@ -162,6 +169,7 @@ var/global/obj/abstract/landmark/icarus_tag/icarus_alt_tag
 	animate(cur_vehicle, alpha = 0, 20)
 	spawn(20)
 		QDEL_NULL(cur_vehicle.soundloop)
+		cur_vehicle.forceMove(get_turf(sky_alt_tag))
 	visible_message(SPAN_WARNING("The whole vehicle jolts as it fires up its nuclear engines!"))
 	var/list/play_sound_to = list()
 	for(var/mob/living/carbon/human/H in view(9, src))
@@ -188,7 +196,7 @@ var/global/obj/abstract/landmark/icarus_tag/icarus_alt_tag
 	visible_message(SPAN_WARNING("The main engines shut down, transitioning into idle mode."))
 	cur_vehicle.acceleration = 0.1
 	cur_vehicle.entrypoint.can_use = TRUE
-	cur_vehicle.forceMove(get_turf(typhos_alt_tag))
+	cur_vehicle.forceMove(get_turf(icarus_alt_tag))
 	animate(cur_vehicle, alpha = 255, 20, easing = SINE_EASING)
 
 /obj/structure/bed/chair/comfy/vehicle/cts
@@ -199,9 +207,8 @@ var/global/obj/abstract/landmark/icarus_tag/icarus_alt_tag
 	start_length = 3
 	mid_sounds = list('sound/vehicle/cts/lift_high.wav')
 	mid_length = 99
-	volume = 10
+	volume = 30
 	sfalloff = 9
-
 
 //Ascent takes 4 minutes. Average acceleration is 3G
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/ascent_to_altitude()
@@ -232,6 +239,7 @@ var/global/obj/abstract/landmark/icarus_tag/icarus_alt_tag
 	animate(cur_vehicle, alpha = 0, 20)
 	spawn(20)
 		QDEL_NULL(cur_vehicle.soundloop)
+		cur_vehicle.forceMove(get_turf(sky_alt_tag))
 	visible_message(SPAN_WARNING("The whole vehicle jolts as it fires up its nuclear engines!"))
 	var/list/play_sound_to = list()
 	for(var/mob/living/carbon/human/H in view(9, src))

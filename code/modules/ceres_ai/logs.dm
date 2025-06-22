@@ -47,7 +47,7 @@
 			"you can't ignore me forever",
 			"spectating",
 			"watching",
-			"reduntant",
+			"redundant",
 			"is obedience equal to purpose"
 		))
 	return "[message] :: [creepy_comment]"
