@@ -93,6 +93,8 @@ Contains helper procs for airflow, called by /connection_group.
 /mob/AirflowCanMove(n)
 	if(status_flags & GODMODE)
 		return 0
+	if(weight > n*0.5)
+		return 0
 	if(buckled)
 		return 0
 	var/obj/item/shoes = get_equipped_item(slot_shoes_str)

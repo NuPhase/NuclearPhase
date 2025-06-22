@@ -1,5 +1,6 @@
 /obj/item/info_container/phone/typhos
 	desc = "Its silver-shining case has a large 'UN' logo stamped on it. Looks like it belonged to someone important."
+	var/message
 
 /obj/item/info_container/phone/typhos/show_information(mob/user)
 	if(message)

@@ -28,9 +28,9 @@
 			state("You'll need to get the commander's approval. Have a good day.")
 			return
 	state("Have you hit absolute rock bottom, with no way in sight?")
-	var/response_d = tgui_alert(user, "Have you hit absolute rock bottom, with no way in sight?", "[name]", list("Yes"), 30 SECONDS)
+	tgui_alert(user, "Have you hit absolute rock bottom, with no way in sight?", "[name]", list("Yes"), 30 SECONDS)
 	state("Are you sure what you're doing is worth it, [user.real_name]?")
-	var/response_e = tgui_alert(user, "Are you sure what you're doing is worth it, [user.real_name]?", "[name]", list("No", "No!", "No?"), 30 SECONDS)
+	tgui_alert(user, "Are you sure what you're doing is worth it, [user.real_name]?", "[name]", list("No", "No!", "No?"), 30 SECONDS)
 	state("Requesting final confirmation. Starting the countdown will sound an alarm.")
 	var/response_f = tgui_alert(user, "Requesting final confirmation. Starting the countdown will sound an alarm.", "[name]", list("HELL YEAH", "No"), 30 SECONDS)
 	if(response_f == "No")
@@ -39,7 +39,7 @@
 
 /obj/machinery/computer/typhos_pod/proc/start_countdown()
 	playsound(src, 'sound/effects/Evacuation.ogg', 50, 0, 15)
-	state("Startup sequence initialized.")
+	state("Startup sequence initialized. 10 minutes until launch.")
 	addtimer(CALLBACK(src, PROC_REF(start_final)), 10 MINUTES, TIMER_CLIENT_TIME)
 	starting = TRUE
 

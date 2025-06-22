@@ -11,6 +11,15 @@
 /datum/gas_mixture/surface/merge(datum/gas_mixture/giver, update)
 	return
 
+/datum/gas_mixture/surface/remove(amount)
+	var/list/cached_gas = gas
+	var/list/cached_liquids = liquids
+	var/list/cached_solids = solids
+	. = ..()
+	gas = cached_gas
+	liquids = cached_liquids
+	solids = cached_solids
+
 // For machinery utilizing suction_moles
 /datum/gas_mixture/node/cache_pressure()
 	var/pressure_to_cache = 0
