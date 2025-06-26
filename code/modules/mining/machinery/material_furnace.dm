@@ -203,7 +203,7 @@
 	icon_state = "bottom"
 
 /obj/structure/arc_furnace_overlay/on_update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(our_furnace.connected_canister)
 		overlays_to_add += image(our_furnace.connected_canister.icon, icon_state=our_furnace.connected_canister.icon_state, layer=ABOVE_OBJ_LAYER, pixel_x = 64)
@@ -290,6 +290,11 @@
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/process_stability()
 	instability = 100
+	if(connected_canister.air_contents.pressure > MAX_TANK_PRESSURE)
+		var/turf/T = get_turf(src)
+		cell_explosion(T, 100, 0.1, z_transfer = null, temperature = connected_canister.air_contents.temperature)
+		T.add_fluid(/decl/material/solid/slag, connected_canister.air_contents.total_moles * 20, ntemperature = connected_canister.air_contents.temperature)
+		connected_canister.air_contents.remove_ratio(0.99)
 	return
 
 /obj/machinery/atmospherics/unary/furnace/arc/power_change()
@@ -364,6 +369,7 @@
 	var/pressure_delta = connected_canister.air_contents.return_pressure() - 303
 	if(pressure_delta > 200)
 		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
+		moles_to_remove = min(moles_to_remove, connected_canister.air_contents.gas_moles * 0.5)
 		for(var/g in connected_canister.air_contents.gas)
 			if(ispath(g, /decl/material/gas))
 				connected_canister.air_contents.adjust_gas(g, -moles_to_remove)
@@ -388,7 +394,7 @@
 /obj/machinery/atmospherics/unary/furnace/arc/proc/heat_capacity()
 	. = heat_capacity
 	for(var/obj/item/stack/ore/O in contents)
-		. += O.amount * 450
+		. += O.amount * 1000
 	return .
 
 /obj/machinery/atmospherics/unary/furnace/arc/add_ore(var/obj/item/stack/ore/added_ore)

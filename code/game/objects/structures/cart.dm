@@ -10,7 +10,7 @@
 	weight = 10
 	var/haswheels = FALSE
 	var/atom/movable/load = null
-	var/max_weight = 270
+	var/max_weight = 700
 
 /obj/structure/cart/Move()
 	. = ..()
@@ -161,7 +161,7 @@
 	cargo.reset_plane_and_layer()
 
 /obj/structure/cart/proc/set_pull_coef()
-	pull_coefficient = (haswheels ? 0.2 : 1)
+	pull_coefficient = (haswheels ? 0.05 : 1)
 
 /obj/structure/cart/proc/unload(var/mob/user, var/direction)
 	if(istype(load, /datum/vehicle_dummy_load))

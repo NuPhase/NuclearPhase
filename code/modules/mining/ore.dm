@@ -12,7 +12,7 @@
 	melee_accuracy_bonus = -20
 	throw_speed = 5
 	throw_range = 20
-	max_amount = 150 //150kg in one item, should be okay
+	max_amount = 500 //500kg in one item, should be okay
 	weight = 1
 	var/processing_flags
 	var/true_mineral_name = "" //only visible to geologists
@@ -26,9 +26,12 @@
 
 /obj/item/stack/ore/MouseDrop(atom/over)
 	. = ..()
+	var/mob/user = usr
 	if(istype(over, /obj/machinery/material_processing))
 		var/obj/machinery/material_processing/over_processor = over
 		if(over_processor.processing_stack)
+			return
+		if(!user.do_skilled(50, SKILL_DEVICES, over_processor))
 			return
 		over_processor.processing_stack = src
 		forceMove(over_processor)
@@ -37,7 +40,7 @@
 	if(istype(over, /obj/structure/arc_furnace_overlay))
 		var/obj/structure/arc_furnace_overlay/over_furnace = over
 		over_furnace.our_furnace.add_ore(src)
-		forceMove(over_furnace)
+		forceMove(over_furnace.our_furnace)
 		return
 
 /obj/item/stack/ore/copy_from(obj/item/stack/ore/other)
@@ -59,6 +62,8 @@
 			return //fuck femboys
 		playsound(loc, 'sound/foley/metal1.ogg', 70, 1)
 		if(!user.do_skilled(amount * 0.55, SKILL_STRENGTH, src))
+			return
+		if(processing_flags & ORE_FLAG_CRUSHED)
 			return
 		playsound(loc, 'sound/foley/metal1.ogg', 70, 1)
 		crush(0.5)
@@ -114,7 +119,8 @@
 	true_mineral_name = "chalcopyrite"
 	composition = list(
 		/decl/material/solid/metal/iron = 0.35,
-		/decl/material/solid/copper_sulfide = 0.65
+		/decl/material/solid/copper_sulfide = 0.6,
+		/decl/material/gas/oxygen = 0.05
 	)
 	material = /decl/material/solid/chalcopyrite
 
@@ -147,7 +153,7 @@
 	material = /decl/material/solid/graphite
 
 /obj/item/stack/ore/pyrothane
-	color = "#8a5d2b"
+	color = "#ffaf54"
 	true_mineral_name = "pyrothane"
 	composition = list(
 		/decl/material/solid/metal/iron = 0.03,
@@ -162,4 +168,4 @@
 		/decl/material/gas/methane = 0.19
 
 	)
-	material = /decl/material/solid/graphite
+	material = /decl/material/gas/methane

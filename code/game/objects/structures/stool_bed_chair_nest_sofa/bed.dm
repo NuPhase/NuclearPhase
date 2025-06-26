@@ -146,13 +146,13 @@
 	var/obj/item/chems/beaker
 	var/iv_attached = 0
 	var/iv_stand = TRUE
-	pull_coefficient = 0.4
+	pull_coefficient = 0.1
 	weight = 8
 
 /obj/structure/bed/roller/hydraulic //cannot be rolled, but is easy to pull around
 	name = "hydraulic stretcher"
 	desc = "This stretcher is outfitted with hydraulics and braking systems, making it easy to move it. You can't fold it."
-	pull_coefficient = 0.05
+	pull_coefficient = 0.01
 	item_form_type = null
 	weight = 15
 

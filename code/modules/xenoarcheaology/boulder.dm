@@ -55,7 +55,7 @@
 			//failure
 			user.visible_message("<span class='warning'>\The [src] suddenly crumbles away.</span>", "<span class='warning'>\The [src] has disintegrated under your onslaught, any secrets it was holding are long gone.</span>")
 			var/turf/T = get_turf(src)
-			ore_type = new(T, ore_result_amount)
+			new ore_type(T, ore_result_amount)
 			var/datum/gas_mixture/environment = T.return_air()
 			environment.adjust_gas(material, ore_result_amount)
 			new /obj/effect/effect/smoke/bad/mine(T)
