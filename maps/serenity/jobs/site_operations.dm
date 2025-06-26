@@ -49,6 +49,12 @@
 	)
 	skill_points = 38
 	required_whitelists = list(/decl/whitelist/security_management, /decl/whitelist/engineering_low)
+	description = "You are the mastermind behind the facility's IT systems."
+	goals = list(
+		"Make sure the facility network runs smoothly.",
+		"Prevent network intrusions.",
+		"Repair robots."
+	)
 
 /datum/job/site_operations/ca
 	title = "Chief Architect"
@@ -119,6 +125,7 @@
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
+		access_engine,
 		access_emergency_storage
 	)
 	minimal_access = list(
@@ -127,6 +134,7 @@
 		access_maint_tunnels,
 		access_external_airlocks,
 		access_construction,
+		access_engine,
 		access_emergency_storage
 	)
 	skill_points = 35
@@ -138,6 +146,12 @@
 	    SKILL_STRENGTH = SKILL_BASIC,
 		SKILL_ELECTRICAL = SKILL_BASIC,
 		SKILL_ATMOS = SKILL_BASIC
+	)
+	description = "You are the backbone of the facility's technical systems."
+	goals = list(
+		"Repair broken equipment and machinery.",
+		"Coordinate with the Reactor Operations team.",
+		"Assist other departments when no other work is available."
 	)
 
 /datum/job/site_operations/janitor
@@ -178,6 +192,11 @@
 	event_categories = list(ASSIGNMENT_JANITOR)
 	skill_points = 22
 	only_for_whitelisted = FALSE
+	description = "You clean stuff."
+	goals = list(
+		"Make sure critical departments(medbay, kitchen, laboratories) stay clean.",
+		"Talk with personnel about cleanliness culture."
+	)
 
 /datum/job/site_operations/chef
 	title = "Provision Specialist"
@@ -204,6 +223,11 @@
 	    SKILL_CHEMISTRY = SKILL_BASIC
 	)
 	skill_points = 27
+	goals = list(
+		"Cook food.",
+		"Grow plants.",
+		"Serve drinks at the bar."
+	)
 
 /datum/job/site_operations/logistician
 	title = "Logistics Officer"
@@ -228,3 +252,9 @@
 		SKILL_DEVICES = SKILL_BASIC
 	)
 	skill_points = 27
+	description = "You suply the facility with necessary resources."
+	goals = list(
+		"Coordinate the laboratory staff on what needs to be produced.",
+		"Handle supply requests from departments.",
+		"Keep track of the current resource deficits in the shelter."
+	)

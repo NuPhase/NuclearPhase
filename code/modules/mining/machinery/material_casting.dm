@@ -133,16 +133,8 @@
 /obj/machinery/atmospherics/unary/caster/proc/try_cast(cast_type)
 	if(!contained_canister)
 		return
-	var/used_mat
-	for(var/mat in contained_canister.air_contents.liquids)
-		used_mat = mat
-		break
-	if(!used_mat)
-		return
-	//var/decl/material/mat_datum = GET_DECL(used_mat)
-	var/total_available_mass = contained_canister.air_contents.get_mass()
-	if(12 > total_available_mass)
-		return
-	var/moles_to_remove = total_available_mass / contained_canister.air_contents.specific_mass()
-	contained_canister.air_contents.remove(moles_to_remove)
-	SSmaterials.create_object(used_mat, get_turf(src), total_available_mass / 12, cast_type)
+	for(var/mat_type in contained_canister.air_contents.liquids)
+		var/decl/material/mat = GET_DECL(mat_type)
+		var/casted_volume = mat.molar_volume * contained_canister.air_contents.liquids[mat_type]
+		contained_canister.air_contents.liquids[mat_type] = 0
+		SSmaterials.create_object(mat_type, get_turf(src), casted_volume / SHEET_MATERIAL_AMOUNT, cast_type)

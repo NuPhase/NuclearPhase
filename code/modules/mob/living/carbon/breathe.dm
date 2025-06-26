@@ -1,6 +1,6 @@
 //Common breathing procs
 
-#define MOB_BREATH_DELAY 2
+#define MOB_BREATH_DELAY 1
 
 //Start of a breath chain, calls breathe()
 /mob/living/carbon/handle_breathing()

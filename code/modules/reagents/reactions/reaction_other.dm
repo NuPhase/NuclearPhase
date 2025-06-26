@@ -126,3 +126,17 @@
 	result = /decl/material/liquid/nanoblood/saline
 	required_reagents = list(/decl/material/solid/sodiumchloride = 0.9, /decl/material/liquid/water = 100)
 	result_amount = 100
+
+/decl/chemical_reaction/anthraquinone
+	name = "Anthraquinone"
+	result = /decl/material/liquid/anthraquinone
+	required_reagents = list(/decl/material/liquid/tar = 1, /decl/material/liquid/water = 10, /decl/material/gas/oxygen = 10)
+	result_amount = 0.8
+	reaction_sound = 'sound/chemistry/bufferadd.ogg'
+
+/decl/chemical_reaction/hydrogen_peroxide
+	name = "Hydrogen Peroxide"
+	result = /decl/material/liquid/acid/hydrogen_peroxide
+	required_reagents = list(/decl/material/gas/hydrogen = 550, /decl/material/gas/oxygen = 550)
+	catalysts = list(/decl/material/liquid/anthraquinone = 10, /decl/material/solid/metal/beryllium = 10)
+	result_amount = 1

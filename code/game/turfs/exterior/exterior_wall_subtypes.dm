@@ -5,7 +5,10 @@
 /turf/exterior/wall/random/proc/get_weighted_mineral_list()
 	return list(
 		/obj/item/stack/ore/hematite = /decl/material/solid/hematite,
-		/obj/item/stack/ore/chalcopyrite = /decl/material/solid/chalcopyrite
+		/obj/item/stack/ore/chalcopyrite = /decl/material/solid/chalcopyrite,
+		/obj/item/stack/ore/amorphous_carbon = /decl/material/solid/carbon,
+		/obj/item/stack/ore/graphite = /decl/material/solid/graphite,
+		/obj/item/stack/ore/pyrothane = /decl/material/solid/graphite,
 	)
 
 /turf/exterior/wall/random/Initialize()

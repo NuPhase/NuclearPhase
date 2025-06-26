@@ -98,6 +98,7 @@ var/global/list/natural_walls = list()
 		if(!istype(target_turf) || !isnull(target_turf.reinf_material))
 			continue
 		target_turf.set_material(target_turf.material, reinf_material)
+		target_turf.ore_type = ore_type
 		target_turf.spread_deposit()
 
 /turf/exterior/wall/attackby(obj/item/W, mob/user, click_params)

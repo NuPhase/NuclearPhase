@@ -189,6 +189,12 @@
 		access_gateway
 	)
 	required_whitelists = list(/decl/whitelist/command_executive)
+	description = "You are responsible for keeping the human cogs of the shelter running. Make sure that the shelter never sleeps."
+	goals = list(
+		"Communicate with departments to make sure their needs are met.",
+		"Direct the shelter personnel towards achieving current priority goals.",
+		"Manage paperwork and formal requests."
+	)
 
 /datum/job/administration/cso
 	title = "Chief Security Officer"
@@ -247,6 +253,11 @@
 	)
 	skill_points = 37
 	required_whitelists = list(/decl/whitelist/security_management)
+	description = "You are the former chief of security of the shelter. Your primary role is in handling civil disagreements and disputes."
+	goals = list(
+		"Resolve personnel and department conflicts where possible.",
+		"Make sure the military personnel doesn't abuse their power."
+	)
 
 /datum/job/administration/sdd
 	title = "Site Deputy Director"
@@ -330,3 +341,8 @@
 	)
 	outfit_type = /decl/hierarchy/outfit/job/sdd
 	required_whitelists = list(/decl/whitelist/command_beginner)
+	description = "You are responsible for keeping communication between departments going."
+	goals = list(
+		"Communicate with the logistics personnel to make sure they know the needs of other departments.",
+		"Make sure one department's requests reach another."
+	)

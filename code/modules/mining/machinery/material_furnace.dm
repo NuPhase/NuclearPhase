@@ -138,9 +138,8 @@
 	layer = BELOW_OBJ_LAYER
 	var/obj/machinery/atmospherics/unary/furnace/arc/our_furnace
 	bound_x = -32
-	bound_y = -32
 	bound_width = 96
-	bound_height = 96
+	bound_height = 64
 	pixel_x = -32
 	pixel_y = -32
 	anchored = TRUE
@@ -279,7 +278,9 @@
 	var/mole_sum = 0
 	for(var/g in solid_mats)
 		mole_sum += solid_mats[g]
-	var/solid_factor = mole_sum / connected_canister.air_contents.total_moles * 0.5
+	var/solid_factor = 1
+	if(connected_canister.air_contents.total_moles)
+		solid_factor = mole_sum / connected_canister.air_contents.total_moles * 0.5
 	return (coef_sum / length(inserted_electrodes)) - solid_factor
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/lose_electrode_integrity(conduction_coefficient)
@@ -346,9 +347,11 @@
 		stop_arcing()
 		return
 
+	var/total_heat_capacity = connected_canister.air_contents.heat_capacity()
+
 	firelevel = air_contents.fire_react()
-	var/actually_used_power = nominal_power_usage * conductivity_coefficient
-	heat_up(actually_used_power * CELLRATE)
+	var/actually_used_power = min(nominal_power_usage * conductivity_coefficient, total_heat_capacity * rand(50, 100) * conductivity_coefficient)
+	heat_up(actually_used_power)
 	change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
 	lose_electrode_integrity(conductivity_coefficient)
 	process_stability()

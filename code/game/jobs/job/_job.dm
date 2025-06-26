@@ -12,6 +12,7 @@
 	var/must_fill = FALSE                     // If set to 1 this job will be have priority over other job preferences. Do not reccommend on jobs with more that one position.
 	var/not_random_selectable = FALSE         // If set to 1 this job will not be selected when a player asks for a random job.
 	var/description                           // If set, returns a static description. To add dynamic text, overwrite this proc, call parent aka . = ..() and then . += "extra text" on the line after that.
+	var/list/goals							  // If set, returns a list of goals for the specific role.
 	var/list/event_categories                 // A set of tags used to check jobs for suitability for things like random event selection.
 	var/skip_loadout_preview = FALSE          // Whether or not the job should render loadout items in char preview.
 	var/supervisors = null                    // Supervisors, who this person answers to directly
@@ -368,6 +369,36 @@
 /datum/job/proc/get_description_blurb()
 	return description
 
+/datum/job/proc/show_job_description(mob/user)
+	var/dat = list()
+
+	dat += "<p style='background-color: [selection_color]'><br><br><p>"
+
+	if(LAZYLEN(department_types) && primary_department)
+		var/decl/department/dept = SSjobs.get_department_by_type(primary_department)
+		if(dept)
+			dat += "<b>Department:</b> [dept.name]."
+		if(head_position)
+			dat += "You are in charge of this department."
+
+	dat += "You answer to <b>[supervisors]</b> normally."
+	dat += ""
+
+	var/description = get_description_blurb()
+	if(description)
+		dat += html_encode(description)
+
+	dat += ""
+
+	if(goals)
+		dat += "Your common tasks:"
+		for(var/cur_goal in goals)
+			dat += "- [cur_goal]"
+
+	var/datum/browser/popup = new(user, "Job Info", "[capitalize(title)]", 430, 520, src)
+	popup.set_content(jointext(dat,"<br>"))
+	popup.open()
+
 /datum/job/proc/get_job_icon()
 	if(!SSjobs.job_icons[title])
 		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
@@ -489,6 +520,7 @@
 	return
 
 /datum/job/proc/do_spawn_special(var/mob/living/character, var/mob/new_player/new_player_mob, var/latejoin = FALSE)
+	show_job_description(character)
 	return FALSE
 
 /datum/job/proc/get_occupations_tab_sort_score()

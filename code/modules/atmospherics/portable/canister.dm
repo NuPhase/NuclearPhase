@@ -70,6 +70,14 @@
 	can_label = 0
 	initial_gas = list(/decl/material/gas/hydrogen = 1)
 
+/obj/machinery/portable_atmospherics/canister/argon
+	name = "\improper Canister \[Ar\]"
+	icon_state = "redws"
+	canister_color = "redws"
+	can_label = 0
+	initial_gas = list(/decl/material/gas/argon = 1)
+	start_pressure = ONE_ATMOSPHERE
+
 /obj/machinery/portable_atmospherics/canister/water
 	name = "\improper Canister: \[Water\]"
 	icon_state = "water"

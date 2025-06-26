@@ -27,6 +27,11 @@
 		/decl/material/solid/ice = 1
 	)
 	liquid_density = 997
+
+	electrolysis_products = list(/decl/material/gas/hydrogen = 0.666667, /decl/material/gas/oxygen = 0.333333)
+	electrolysis_difficulty = 2
+	electrolysis_energy = 285830
+
 	var/dirty_stage = 0 //0-5
 
 /decl/material/liquid/water/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
@@ -55,24 +60,24 @@
 	switch(dirty_stage)
 		if(1)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
-			S.germ_level += removed
+			S.germ_level += removed * 0.05
 		if(2)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
-			S.germ_level += removed * 2
+			S.germ_level += removed * 0.2
 			M.custom_pain("Something is not right with this liquid...", 10 * removed)
 		if(3)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
-			S.germ_level += removed * 2
+			S.germ_level += removed * 0.8
 			M.add_chemical_effect(CE_TOXIN, removed * 0.5)
 			M.custom_pain("Drinking this is extremely unpleasant...", 10 * removed)
 		if(4)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
-			S.germ_level += removed * 10
+			S.germ_level += removed * 3.2
 			M.add_chemical_effect(CE_TOXIN, removed)
 			M.custom_pain("This liquid tastes disgusting!", 15 * removed)
 		if(5)
 			var/obj/item/organ/internal/stomach/S = GET_INTERNAL_ORGAN(M, BP_STOMACH)
-			S.germ_level += removed * 10
+			S.germ_level += removed * 12.8
 			M.add_chemical_effect(CE_TOXIN, removed*2)
 			M.add_chemical_effect(CE_ALCOHOL, removed*5)
 			M.custom_pain("You feel the walls of your esophagus eroding and burning!", 35 * removed)

@@ -50,7 +50,7 @@
 		// Update our own heat.
 		var/diff_temp = (adjust_temp - temperature)
 		if(diff_temp >= 0)
-			var/altered_temp = diff_temp * temperature_coefficient * ATOM_TEMPERATURE_EQUILIBRIUM_CONSTANT
+			var/altered_temp = temperature + (diff_temp * temperature_coefficient * ATOM_TEMPERATURE_EQUILIBRIUM_CONSTANT)
 			ADJUST_ATOM_TEMPERATURE(src, min(adjust_temp, altered_temp))
 			return TRUE
 

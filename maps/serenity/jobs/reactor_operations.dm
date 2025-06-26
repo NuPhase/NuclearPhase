@@ -102,6 +102,12 @@
 	)
 	skill_points = 43
 	required_whitelists = list(/decl/whitelist/command_executive, /decl/whitelist/engineering_high)
+	description = "You are the literal head of the shelter's engineering team. Your responsibilities are in making sure the shelter keeps running in perfect order."
+	goals = list(
+		"Assign your subordinates to important tasks.",
+		"Make sure the reactor stays operational.",
+		"Handle requests from other departmemnts and coordinate your staff."
+	)
 
 /datum/job/reactor_operations/road
 	title = "Reactor Operations Assistant Director"
@@ -151,6 +157,13 @@
 	)
 	skill_points = 40
 	required_whitelists = list(/decl/whitelist/engineering_high)
+	description = "You are the second head of the shelter's engineering team. You're responsible for assisting the director in running the RO team, and replacing them when absent."
+	goals = list(
+		"Assist the Reactor Operations Director",
+		"Assign your subordinates to important tasks.",
+		"Make sure the reactor stays operational.",
+		"Handle requests from other departmemnts and coordinate your staff."
+	)
 
 /datum/job/reactor_operations/rce
 	title = "Reactor Chief Engineer"
@@ -160,6 +173,11 @@
 	outfit_type = /decl/hierarchy/outfit/job/engineering/chief_engineer
 	skill_points = 43
 	required_whitelists = list(/decl/whitelist/engineering_high)
+	description = "You are the first shoulder of the Reactor Operations team. You're responsible for keeping the 'software' side of the department running. Your subordinates control the reactor, the power grid and make sure everything is calibrated to work efficiently and safely."
+	goals = list(
+		"Coordinate with the Reactor Maintenance Director to keep the reactor running.",
+		"Direct your subordinates to operate engineering systems: the reactor, electrical and climate control."
+	)
 
 /datum/job/reactor_operations/rmd
 	title = "Reactor Maintenance Director"
@@ -169,6 +187,12 @@
 	outfit_type = /decl/hierarchy/outfit/job/engineering/rmd
 	skill_points = 40
 	required_whitelists = list(/decl/whitelist/engineering_low)
+	description = "You are the second shoulder of the Reactor Operations team. You're responsible for keeping the 'hardware' side of the department running. Your subordinates repair machinery, fix leaks and power outages, as well as other complex technical issues."
+	goals = list(
+		"Coordinate with the Reactor Chief Engineer to keep the reactor running.",
+		"Direct your subordinates to maintain engineering systems: the reactor, electrical and climate control.",
+		"Handle requests from the shelter to direct your repair crews."
+	)
 
 /datum/job/reactor_operations/ros
 	title = "Reactor Operations Specialist"
@@ -178,3 +202,10 @@
 	outfit_type = /decl/hierarchy/outfit/job/engineering/ros
 	skill_points = 38
 	required_whitelists = list(/decl/whitelist/engineering_low)
+	description = "You are one of many legs of the Reactor Operations team. You operate the facility's systems."
+	goals = list(
+		"Keep the reactor running.",
+		"Refuel the backup diesel generators.",
+		"Communicate with Site Maintenance Technicians about ongoing technical issues.",
+		"Handle service outage requests."
+	)

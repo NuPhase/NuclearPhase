@@ -80,6 +80,17 @@
 	starting_pressure = list(/decl/material/gas/hydrogen = 5*ONE_ATMOSPHERE*0.33, /decl/material/gas/oxygen = 5*ONE_ATMOSPHERE*0.67)
 	weight = 4
 
+/obj/item/tank/hydrogen_peroxide
+	name = "hydrogen peroxide tank"
+	desc = "Contains a powerful and dense oxidizer. 90% hydrogen peroxide, 10% water."
+	icon = 'icons/obj/items/tanks/tank_greyscaled.dmi'
+	color = "#91cdf0"
+	gauge_icon = null
+	obj_flags = OBJ_FLAG_CONDUCTIBLE
+	slot_flags = null
+	starting_pressure = list(/decl/material/liquid/acid/hydrogen_peroxide = 900*ONE_ATMOSPHERE, /decl/material/liquid/water = 100*ONE_ATMOSPHERE, /decl/material/gas/helium = 0.3*ONE_ATMOSPHERE)
+	weight = 4
+
 /obj/item/tank/waste
 	name = "waste tank"
 	desc = "Contains biological waste and scrubbed CO2."

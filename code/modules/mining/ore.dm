@@ -80,6 +80,7 @@
 
 /obj/item/stack/ore/proc/crush(efficiency=1)
 	processing_flags |= ORE_FLAG_CRUSHED
+	icon = 'icons/obj/ore.dmi'
 	icon_state = "dust"
 	amount *= efficiency
 
@@ -119,11 +120,46 @@
 
 // Carbon-bearing minerals
 
-/obj/item/stack/ore/coal
-	color = "#5f5f5f"
-	true_mineral_name = "coal"
+// High surface area carbon. Explosive.
+/obj/item/stack/ore/amorphous_carbon
+	color = "#4b4b4b"
+	true_mineral_name = "amorphous carbon"
 	composition = list(
-		/decl/material/solid/graphite = 0.95,
-		/decl/material/gas/oxygen = 0.05
+		/decl/material/solid/carbon = 0.965,
+		/decl/material/solid/quartz = 0.004,
+		/decl/material/solid/bauxite = 0.001,
+		/decl/material/solid/magnetite = 0.015,
+		/decl/material/solid/hematite = 0.005,
+		/decl/material/solid/gemstone/diamond = 0.01
+	)
+	material = /decl/material/solid/carbon
+
+/obj/item/stack/ore/graphite
+	color = "#1b1b1b"
+	true_mineral_name = "graphite"
+	composition = list(
+		/decl/material/solid/carbon = 0.13,
+		/decl/material/solid/densegraphite = 0.67,
+		/decl/material/solid/graphite = 0.15,
+		/decl/material/solid/quartz = 0.03,
+		/decl/material/solid/clay = 0.02
+	)
+	material = /decl/material/solid/graphite
+
+/obj/item/stack/ore/pyrothane
+	color = "#8a5d2b"
+	true_mineral_name = "pyrothane"
+	composition = list(
+		/decl/material/solid/metal/iron = 0.03,
+		/decl/material/solid/metal/chromium = 0.007,
+		/decl/material/solid/metal/radium = 0.001,
+		/decl/material/solid/metal/gold = 0.002,
+		/decl/material/liquid/diesel = 0.42,
+		/decl/material/liquid/water/dirty5 = 0.06,
+		/decl/material/liquid/tar = 0.21,
+		/decl/material/liquid/acetone = 0.04,
+		/decl/material/solid/copper_sulfide = 0.04,
+		/decl/material/gas/methane = 0.19
+
 	)
 	material = /decl/material/solid/graphite

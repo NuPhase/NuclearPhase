@@ -386,15 +386,21 @@
 		failed_last_breath = L.handle_breath(breath) //if breath is null or vacuum, the lungs will handle it for us
 	return !failed_last_breath
 
-#define DEFAULT_HUMAN_INSULATION_COEF 0.2
+#define DEFAULT_HUMAN_INSULATION_COEF 0.02
 #define BURN_DAMAGE_FACTOR (1 - DEFAULT_HUMAN_INSULATION_COEF)
-#define BURN_DAMAGE_INSULATION_DIVISOR 300 // this much burn damage will cause us to completely lose skin insulation
+#define BURN_DAMAGE_INSULATION_DIVISOR 600 // this much burn damage will cause us to completely lose skin insulation
 /mob/living/carbon/human/proc/get_insulation_coef()
 	return min(MAX_TEMPERATURE_COEFFICIENT, DEFAULT_HUMAN_INSULATION_COEF + (getFireLoss() / BURN_DAMAGE_INSULATION_DIVISOR * BURN_DAMAGE_FACTOR))
 
 #undef DEFAULT_HUMAN_INSULATION_COEF
 #undef BURN_DAMAGE_FACTOR
 #undef BURN_DAMAGE_INSULATION_DIVISOR
+
+/mob/living/carbon/human/proc/heat_clothing()
+	for(var/slot in global.standard_clothing_slots)
+		var/obj/item/clothing/C = get_equipped_item(slot)
+		if(istype(C))
+			C.temperature += species.passive_temp_gain
 
 /mob/living/carbon/human/proc/get_adjusted_environment_temp(datum/gas_mixture/environment)
 	var/body_covered_coef = 0 // coefficient representing the percentage of body covered with clothing
@@ -406,10 +412,10 @@
 		if(istype(C))
 			clothing_count++
 			clothing_temp_sum += C.temperature
-			protection_bitflag |= C.cold_protection
+			protection_bitflag |= C.body_parts_covered
 			if(C.accessories.len)
 				for(var/obj/item/clothing/accessory/A in C.accessories)
-					protection_bitflag |= A.cold_protection
+					protection_bitflag |= A.body_parts_covered
 	body_covered_coef = get_thermal_protection(protection_bitflag)
 
 	if(!body_covered_coef || !clothing_count)
@@ -449,17 +455,20 @@
 			var/temperature_gain = heat_gain/HUMAN_HEAT_CAPACITY
 			bodytemperature += temperature_gain //temperature_gain will often be negative
 
+	heat_clothing()
+
 	var/relative_density = (environment.total_moles/environment.volume) / (MOLES_CELLSTANDARD/CELL_VOLUME)
 	if(relative_density > 0.02) //don't bother if we are in vacuum or near-vacuum
 		var/loc_temp = environment.temperature
 
-		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1 && species.body_temperature)
+		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 5 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1 && species.body_temperature)
 			pressure_alert = 0
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
 		var/temp_diff = get_adjusted_environment_temp(environment) - bodytemperature
-		bodytemperature += get_insulation_coef() * temp_diff
+		var/insulation_coef = get_insulation_coef()
+		bodytemperature += insulation_coef * temp_diff
 
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= getSpeciesOrSynthTemp(HEAT_LEVEL_1))
@@ -529,24 +538,23 @@
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
-	if (abs(body_temperature_difference) < 0.5)
+	if (abs(body_temperature_difference) < 0.1)
 		return //fuck this precision
 
 	if (on_fire)
 		return //too busy for pesky metabolic regulation
 
-	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
-		var/nut_remove = 10 * DEFAULT_HUNGER_FACTOR
-		if(nutrition >= nut_remove) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			adjust_nutrition(-nut_remove)
-			bodytemperature += max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
-	else if(species.cold_level_1 <= bodytemperature && bodytemperature <= species.heat_level_1)
-		bodytemperature += body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR
-	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
-		var/hyd_remove = 10 * DEFAULT_THIRST_FACTOR
-		if(hydration >= hyd_remove)
-			adjust_hydration(-hyd_remove)
-			bodytemperature += min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)
+	if(body_temperature_difference < -5)
+		add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] is covered in sweat."), DESCRIPTOR_DIRTINESS)
+
+	var/old_bodytemp = bodytemperature
+	bodytemperature = Interpolate(bodytemperature, 310.15, 0.5 / abs(body_temperature_difference))
+
+	var/actual_change = old_bodytemp - bodytemperature
+	if(actual_change > 0) // Cooled
+		adjust_hydration(-(abs(actual_change) * DEFAULT_THIRST_FACTOR))
+	else
+		adjust_nutrition(-(abs(actual_change) * DEFAULT_HUNGER_FACTOR))
 
 	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, SLOT_UPPER_BODY, SLOT_LOWER_BODY, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.

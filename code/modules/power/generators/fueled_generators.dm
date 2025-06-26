@@ -130,7 +130,7 @@
 /obj/machinery/power/generator/port_gen/liquid
 	name = "portable liquid generator"
 	desc = "A power generator that runs on liquids."
-	var/tank_volume = 1000 //in ml
+	var/tank_volume = 5000 //in ml
 	var/closed_cycle = FALSE //whether this generator runs in closed cycle or not. If not, it will use oxidizer and spew waste into the environment.
 	var/list/decl/material/allowed_fuels = list()
 	var/combustion_chamber_volume = 2 //basically means fuel consumption
@@ -196,6 +196,16 @@
 	else if(!oxidizer_tank || !waste_tank || !oxidizer_tank.air_contents.gas)
 		gen_shutdown()
 		audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
+		var/has_oxidizer = FALSE
+		for(var/g in oxidizer_tank.air_contents.get_fluid())
+			var/decl/material/ox_mat = GET_DECL(g)
+			if(ox_mat.gas_flags & XGM_GAS_OXIDIZER)
+				has_oxidizer = TRUE
+				break
+		if(!has_oxidizer)
+			gen_shutdown()
+			audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
+			return
 		return
 
 	var/required_fuel_ml = (power_requirement / mat.combustion_chamber_fuel_value) / efficiency

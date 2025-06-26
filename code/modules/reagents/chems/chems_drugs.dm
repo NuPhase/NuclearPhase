@@ -436,3 +436,24 @@
 /decl/material/liquid/opium/morphine/diamorphine/dirty/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	. = ..()
 	H.adjustToxLoss(removed*5)
+
+
+// Provokes a sleep-like state, akin to a lucid dream. Causes hallucinations: seeing shadows of people, being able to hear thoughts of others.
+// Leaves a person very suggestible to neural link implants, and won't work without them.
+/decl/material/liquid/synchronicity
+	name = "synchronicity"
+	lore_text = "The echoes of the past coincide and resonate with the future."
+	color = "#e100ff"
+	metabolism = REM*0.1
+	overdose = 20
+	uid = "chem_synchronicity"
+	euphoriant = 20
+	taste_description = "lucid dreams"
+	taste_mult = 3
+	glass_special = list(DRINK_FIZZ, DRINK_VAPOR)
+	glass_icon = DRINK_ICON_NOISY
+	glass_name = "dreaming current"
+	glass_desc = "It stares at you."
+	scent_descriptor = SCENT_DESC_FRAGRANCE
+	scent_intensity = /decl/scent_intensity
+	scent = "ozone and burnt wiring"

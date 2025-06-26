@@ -72,6 +72,7 @@
 	. = ..()
 	QDEL_NULL(chest_tube)
 	breath_rate = initial(breath_rate)
+	ruptured = FALSE
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
@@ -306,8 +307,7 @@
 			return 'sound/voice/breath/mask_breathing.wav'
 
 /obj/item/organ/internal/lungs/proc/calculate_breath_rate()
-	if(!last_int_pressure)
-		breath_rate = 0
+	if(breath_rate == 0 && oxygen_deprivation) // If we stopped breathing, don't start breathing again on our own
 		return
 	breath_rate = initial(breath_rate)
 	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)

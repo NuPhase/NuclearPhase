@@ -117,6 +117,16 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	. = ..()
 	reactor_floodlights += src
 
+// BEGIN MOOD LIGHTS
+
+/obj/machinery/light/mood
+	light_type = /obj/item/light/tube/mood
+
+/obj/machinery/light/mood/blue
+	light_type = /obj/item/light/tube/mood/blue
+
+// END MOOD LIGHTS
+
 /obj/machinery/light/spot
 	name = "spotlight"
 	desc = "A more robust socket for light tubes that demand more power."
@@ -594,6 +604,14 @@ var/global/datum/composite_sound/light/light_soundloop = new
 
 /obj/item/light/tube/neon
 	b_color = LIGHT_COLOR_PURPLE
+
+/obj/item/light/tube/mood
+	name = "mood light tube"
+	b_range = 7
+
+/obj/item/light/tube/mood/blue
+	b_color = LIGHT_COLOR_MOOD_BLUE
+
 /obj/item/light/tube/large
 	w_class = ITEM_SIZE_SMALL
 	name = "large light tube"

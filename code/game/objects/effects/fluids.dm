@@ -9,6 +9,7 @@
 	layer = FLY_LAYER
 	alpha = 0
 	color = COLOR_LIQUID_WATER
+	atom_flags = ATOM_FLAG_NO_REACT | ATOM_FLAG_NO_PHASE_CHANGE
 
 	var/last_flow_strength = 0
 	var/last_flow_dir = 0

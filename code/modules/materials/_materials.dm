@@ -262,8 +262,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/list/chilling_products
 	var/bypass_cooling_products_for_root_type
 
-	var/list/electrolysis_products
-	var/electrolysis_difficulty = 1
+	var/list/electrolysis_products // Products of one mole splitting
+	var/electrolysis_difficulty = 1 // The speed of electrolysis
+	var/electrolysis_energy // The amount of energy needed to split one mole
 
 	var/reactivity_coefficient = 0.05 //explosions, chemical reactions, etc
 
@@ -417,11 +418,19 @@ var/decl/material/boil_mat = null
 	to_world("---------------------------")
 #endif
 
+#define MAX_BOILING_POINT 100000
+
 //Clausius–Clapeyron relation
 /decl/material/proc/get_boiling_temp(var/pressure = ONE_ATMOSPHERE)
 	if(!pressure)
 		pressure = 0.00001
-	return ((1/boiling_point) - ((R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat))**-1
+	var/denominator = (1/boiling_point) - ((R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat)
+	if(denominator <= 0)
+		return MAX_BOILING_POINT
+	else
+		return (1 / denominator)
+
+#undef MAX_BOILING_POINT
 
 // Returns the phase of the matterial at the given temperature and pressure
 /decl/material/proc/phase_at_temperature(var/temperature = T20C, var/pressure = ONE_ATMOSPHERE)

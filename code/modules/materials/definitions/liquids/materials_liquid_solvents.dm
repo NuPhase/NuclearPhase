@@ -49,6 +49,27 @@
 	solvent_max_damage = 5
 	value = 1.5
 
+/decl/material/liquid/acid/hydrogen_peroxide
+	name = "hydrogen peroxide"
+	uid = "hydrogen_peroxide"
+	lore_text = "A very weak acid. It is used as an oxidizer, bleaching agent, and antiseptic, usually as a dilute solution (3%-6% by weight) in water for consumer use and in higher concentrations for industrial use. Concentrated hydrogen peroxide, or 'high-test peroxide', decomposes explosively when heated and has been used as both a monopropellant and an oxidizer in rocketry."
+	color = "#c9edf0"
+	solvent_power = MAT_SOLVENT_MILD
+	solvent_melt_dose = 120
+	solvent_max_damage = 5
+	liquid_density = 1450
+	melting_point = 272.72
+	boiling_point = 423.3
+	molar_mass = 0.034014
+	gas_specific_heat = 98
+	gas_flags = XGM_GAS_OXIDIZER
+	oxidizer_power = 6
+	heating_point = 40 CELSIUS
+	heating_sound = 'sound/chemistry/bufferadd.ogg'
+	heating_products = list(/decl/material/liquid/water = 0.77, /decl/material/gas/oxygen = 521)
+	heating_temperature_product = 100
+	reactivity_coefficient = 0.01
+
 /decl/material/liquid/acid/polyacid
 	name = "polytrinic acid"
 	uid = "liquid_polytrinic_acid"

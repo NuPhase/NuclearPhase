@@ -8,14 +8,6 @@
 	hidden_from_codex = TRUE
 	reflectiveness = MAT_VALUE_DULL
 	wall_support_value = MAT_VALUE_LIGHT
-	dissolves_into = list(
-		/decl/material/solid/sand =    0.5,
-		/decl/material/solid/metal/iron =      0.2,
-		/decl/material/solid/metal/aluminium = 0.05,
-		/decl/material/solid/phosphorus =      0.05,
-		/decl/material/gas/sulfur_dioxide =    0.05,
-		/decl/material/gas/carbon_dioxide =    0.05
-	)
 	value = 0.1
 	default_solid_form = /obj/item/stack/material/lump
 	exoplanet_rarity = MAT_RARITY_NOWHERE
@@ -30,3 +22,12 @@
 		/decl/material/gas/sulfur_dioxide =    0.05,
 		/decl/material/gas/carbon_dioxide =    0.05
 	)
+
+	molar_mass = 0.05414
+	gas_specific_heat = 40.2
+
+	liquid_density = 2160
+	solid_density = 2560
+
+	melting_point = 1512 CELSIUS
+	boiling_point = 2228 CELSIUS

@@ -598,3 +598,4 @@
 		/decl/material/solid/metal/copper = 0.5,
 		/decl/material/solid/sulfur = 0.5
 	)
+	electrolysis_energy = 158000

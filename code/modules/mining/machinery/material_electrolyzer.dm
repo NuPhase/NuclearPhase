@@ -29,23 +29,28 @@
 
 	var/power_usage_multiplier = 1
 	var/did_electrolyze = FALSE
+
 	for(var/fluid in air_contents.solids)
 		power_usage_multiplier += 0.1 //i don't see any active electrochemical reactions occuring in solid materials
+	for(var/fluid in air_contents.gas)
+		power_usage_multiplier += 0.2 //what the fuck do gases do in a liquid container? Fuck you.
+
 	for(var/fluid in air_contents.liquids)
 		var/decl/material/mat = GET_DECL(fluid)
 		if(!mat.electrolysis_products)
 			power_usage_multiplier += 0.1
 		else
+			var/electrolyzed_amount = min(air_contents.liquids[fluid], (initial(active_power_usage) / mat.electrolysis_energy) / mat.electrolysis_difficulty)
 			for(var/product in mat.electrolysis_products)
-				var/decl/material/prod_mat = GET_DECL(product)
-				var/produce_amount = (air_contents.gas[fluid] + 1) * prod_mat.electrolysis_difficulty * 0.1
-				air_contents.adjust_gas_temp(product, produce_amount, air_contents.temperature)
-				air_contents.adjust_gas(fluid, !produce_amount)
+				air_contents.adjust_gas(product, mat.electrolysis_products[product] * electrolyzed_amount, FALSE)
+			air_contents.liquids[fluid] -= electrolyzed_amount
+			air_contents.add_thermal_energy(electrolyzed_amount * mat.electrolysis_energy)
+			air_contents.update_values()
 			did_electrolyze = TRUE
-	for(var/fluid in air_contents.gas)
-		power_usage_multiplier += 0.2 //what the fuck do gases do in a liquid container? Fuck you.
+			active_power_usage = electrolyzed_amount * mat.electrolysis_energy
+			break
+
 	if(did_electrolyze)
-		active_power_usage = initial(active_power_usage) * power_usage_multiplier
 		use_power = POWER_USE_ACTIVE
 	else
 		use_power = POWER_USE_IDLE

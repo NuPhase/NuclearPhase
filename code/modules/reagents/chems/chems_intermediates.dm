@@ -36,3 +36,14 @@
 	lore_text = "A very important amino acid in biology."
 	uid = "chem_tyrosine"
 	molar_mass = 0.181191
+
+/decl/material/liquid/anthraquinone
+	name = "anthraquinone"
+	uid = "anthraquinone"
+	lore_text = "An aromatic organic compound."
+	color = "#e6cd7d"
+	liquid_density = 1438
+	solid_density = 1438
+	melting_point = 558
+	boiling_point = 650
+	molar_mass = 0.0208

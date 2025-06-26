@@ -312,3 +312,22 @@
 	name = "Santa's suit"
 	desc = "Festive!"
 	icon = 'icons/clothing/suit/santa.dmi'
+
+
+/obj/item/clothing/suit/custom/aeon_coat
+	name = "windbreaker coat"
+	desc = "A chiefly crafted black windbreaker coat with contrasting white strips running along its length. A small note glued to the inside of its collar reads: \"With love, from Nyx\". It looks like it can withstand a lot of wind for sure."
+	icon = 'icons/clothing/suit/labcoat/aeon.dmi'
+	siemens_coefficient = 0.7
+	material = /decl/material/solid/graphene_cloth
+	armor = list(
+		melee = ARMOR_MELEE_SMALL,
+		bullet = ARMOR_BALLISTIC_SMALL,
+		laser = ARMOR_LASER_MINOR,
+		energy = ARMOR_ENERGY_SMALL,
+		bio = ARMOR_BIO_SMALL,
+		rad = ARMOR_RAD_MINOR
+	)
+	ironed_state = WRINKLES_NONE
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
+	protects_against_weather = TRUE
