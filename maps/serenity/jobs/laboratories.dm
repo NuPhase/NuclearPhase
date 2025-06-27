@@ -115,7 +115,6 @@
 		SKILL_CHEMISTRY = SKILL_ADEPT,
 		SKILL_DEVICES = SKILL_ADEPT
 	)
-	minimum_character_age = 30
 
 /datum/job/laboratories/load
 	title = "Laboratory Operations Assistant Director"
@@ -177,7 +176,6 @@
 		SKILL_CHEMISTRY = SKILL_ADEPT,
 		SKILL_DEVICES = SKILL_BASIC
 	)
-	minimum_character_age = 22
 
 /datum/job/laboratories/pps
 	title = "Particle Physics Specialist"

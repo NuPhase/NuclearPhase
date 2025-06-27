@@ -42,7 +42,7 @@
 		singular_name = "sheet"
 	if(!plural_name)
 		plural_name = "[singular_name]s"
-	weight = singular_weight * amount
+	weight = singular_weight * src.amount
 
 /obj/item/stack/Destroy()
 	if(uses_charge)
