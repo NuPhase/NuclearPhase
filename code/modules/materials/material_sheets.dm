@@ -31,7 +31,10 @@
 		obj_flags |= OBJ_FLAG_CONDUCTIBLE
 	else
 		obj_flags &= (~OBJ_FLAG_CONDUCTIBLE)
-	//Sound setup
+	// density setup
+	singular_weight = material.solid_density * 0.000001 * SHEET_MATERIAL_AMOUNT
+	weight = singular_weight * amount
+	// Sound setup
 	if(material.sound_manipulate)
 		pickup_sound = material.sound_manipulate
 	if(material.sound_dropped)
@@ -48,6 +51,7 @@
 	return material
 
 /obj/item/stack/material/update_matter()
+	weight = singular_weight * amount
 	create_matter()
 
 /obj/item/stack/material/create_matter()

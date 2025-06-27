@@ -143,6 +143,8 @@
 	metabolism = REM * 5 // As with helium.
 	color = "#111111"
 	gas_overlay_limit = 0.5
+	combustion_activation_energy = 150000
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
 
 /decl/material/gas/carbon_monoxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(!istype(M))
@@ -443,7 +445,7 @@
 	liquid_density = 70.516
 	gas_flags = XGM_GAS_FUEL
 	combustion_energy = 285800
-	combustion_activation_energy = 75300
+	combustion_activation_energy = 180000
 	oxidizer_to_fuel_ratio = 0.5
 	burn_product = /decl/material/liquid/water
 	combustion_products = list(/decl/material/gas/oxygen = /decl/material/liquid/water, /decl/material/gas/chlorine = /decl/material/liquid/acid/hydrochloric)

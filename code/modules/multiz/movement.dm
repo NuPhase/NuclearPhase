@@ -159,6 +159,14 @@
 			if(!(below.get_fluid_depth() >= 0.95 * FLUID_MAX_DEPTH)) //No salmon skipping up a stream of falling water
 				return TRUE
 			return !can_float()
+	else
+		var/turf/T = get_turf(src)
+		var/turf/below = GetBelow(T)
+		//We cannot sink if we can swim
+		if(T.get_fluid_depth() >= FLUID_DEEP && (below == loc))
+			if(!(below.get_fluid_depth() >= 0.95 * FLUID_MAX_DEPTH)) //No salmon skipping up a stream of falling water
+				return TRUE
+			return !can_float()
 
 	return TRUE
 

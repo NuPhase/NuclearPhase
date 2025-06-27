@@ -26,7 +26,7 @@
 	fuel_value = 2
 	gas_flags = XGM_GAS_FUEL
 	combustion_energy = 537600
-	combustion_activation_energy = 48500
+	combustion_activation_energy = 100000
 	oxidizer_to_fuel_ratio = 12.5
 	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
 	burn_product = /decl/material/gas/carbon_monoxide
@@ -59,7 +59,7 @@
 	fuel_value = 1.8
 	gas_flags = XGM_GAS_FUEL
 	combustion_energy = 517600
-	combustion_activation_energy = 58600
+	combustion_activation_energy = 100000
 	oxidizer_to_fuel_ratio = 3
 	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
 	burn_product = /decl/material/gas/carbon_dioxide

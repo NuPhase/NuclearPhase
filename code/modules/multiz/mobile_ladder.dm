@@ -27,7 +27,7 @@
 		else if(target.contains_dense_objects())
 			to_chat(user, SPAN_WARNING("Objects below block \the [src] from deploying!"))
 			return FALSE
-		else if(T.CanZPass(T, DOWN))
+		else if(!T.CanZPass(T, DOWN))
 			to_chat(user, SPAN_WARNING("You can't find anything to support \the [src] on!"))
 			return FALSE
 	else if (T.is_floor())
@@ -84,6 +84,7 @@
 	draw_shadow = FALSE
 	tool_interaction_flags = 0
 	material_alteration = 0
+	weight = 8
 
 /obj/structure/ladder/mobile/verb/fold_ladder()
 	set name = "Fold Ladder"

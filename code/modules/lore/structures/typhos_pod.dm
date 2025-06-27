@@ -36,6 +36,7 @@
 	if(response_f == "No")
 		state("Have a good day.")
 		return
+	start_countdown()
 
 /obj/machinery/computer/typhos_pod/proc/start_countdown()
 	playsound(src, 'sound/effects/Evacuation.ogg', 50, 0, 15)

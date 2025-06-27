@@ -12,7 +12,7 @@
 	melee_accuracy_bonus = -20
 	throw_speed = 5
 	throw_range = 20
-	max_amount = 500 //500kg in one item, should be okay
+	max_amount = 800 //800kg in one item, should be okay
 	weight = 1
 	var/processing_flags
 	var/true_mineral_name = "" //only visible to geologists

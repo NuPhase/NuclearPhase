@@ -510,6 +510,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	singular_name = "length"
 	throwforce = 0
 	w_class = ITEM_SIZE_NORMAL
+	singular_weight = 0.15
 	throw_speed = 2
 	throw_range = 5
 	material = /decl/material/solid/metal/copper

@@ -1,4 +1,4 @@
-#define SHEET_MATERIAL_AMOUNT 2000
+#define SHEET_MATERIAL_AMOUNT 200
 #define SHEET_UNIT "<small>cm<sup>3</sup></small>"
 
 #define REAGENT_WORTH_MULTIPLIER  1 //0.01

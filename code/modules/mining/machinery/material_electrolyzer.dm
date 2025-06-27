@@ -4,7 +4,7 @@
 	icon_state = "extractor"
 	anchored = 1
 	density = 1
-	active_power_usage = 90000 //electrolyzing molten metals is tough, to say the least. Bound to get A LOT worse.
+	active_power_usage = 1000000
 	idle_power_usage = 5000 //KEEP DAH BASIN COOL GODDAMN
 	use_power = POWER_USE_OFF
 	uncreated_component_parts = null
