@@ -41,3 +41,6 @@
 
 /obj/item/paper/random_note/note_7
 	info = "I feel broken. Nothing's left for me here, or anywhere else on that GOD DAMN HELLHOLE OF A PLANET!"
+
+/obj/item/paper/random_note/note_8
+	info = "I'm so damn fe-<BR>Is there even a reason to stay alive? I feel so damn empty, so damn drained, uncapable of emotion yet suffering.<BR>I need a reason to stop the bleeding. To keep on going. At least I can be useful until I finally decide to end it. Tried a few times already, but failed. I really wish I could just let go. Just fucking let go. <BR><BR>This looks so awful to read. I can't even vent without feeling like an emotionless bitch :)"

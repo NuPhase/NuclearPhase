@@ -1,11 +1,11 @@
 /obj/machinery/atmospherics/unary/electrolyzer
 	name = "industrial electrolyzer"
-	icon = 'icons/obj/machines/mining_machines.dmi'
-	icon_state = "extractor"
+	icon = 'icons/obj/atmospherics/components/unary/electrolyzer.dmi'
+	icon_state = "off"
 	anchored = 1
 	density = 1
 	active_power_usage = 1000000
-	idle_power_usage = 5000 //KEEP DAH BASIN COOL GODDAMN
+	idle_power_usage = 1000 //KEEP DAH BASIN COOL GODDAMN
 	use_power = POWER_USE_OFF
 	uncreated_component_parts = null
 	interact_offline = TRUE
@@ -20,12 +20,26 @@
 		visible_message(SPAN_NOTICE("[user] switches \the [src] off."))
 		STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 		use_power = POWER_USE_OFF
+		update_icon()
 	else
 		visible_message(SPAN_NOTICE("[user] switches \the [src] on."))
 		START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
+		use_power = POWER_USE_IDLE
+		update_icon()
+
+/obj/machinery/atmospherics/unary/electrolyzer/on_update_icon()
+	cut_overlays()
+	if(use_power == POWER_USE_ACTIVE)
+		icon_state = "on"
+		add_overlay(emissive_overlay(icon, "lights"))
+	else
+		icon_state = "off"
 
 /obj/machinery/atmospherics/unary/electrolyzer/Process()
 	..()
+
+	if(use_power == POWER_USE_OFF)
+		return
 
 	var/power_usage_multiplier = 1
 	var/did_electrolyze = FALSE

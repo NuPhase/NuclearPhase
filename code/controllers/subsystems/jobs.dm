@@ -583,7 +583,6 @@ SUBSYSTEM_DEF(jobs)
 		return
 
 	var/datum/job/job = get_by_title(rank)
-	var/list/spawn_in_storage
 
 	if(job)
 		if(H.client)
@@ -598,7 +597,6 @@ SUBSYSTEM_DEF(jobs)
 		//Equip job items.
 		job.equip(H, H.mind ? H.mind.role_alt_title : "", H.char_branch, H.char_rank)
 		job.apply_fingerprints(H)
-		spawn_in_storage = equip_custom_loadout(H, job)
 		job.setup_account(H)
 	else
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
@@ -617,20 +615,7 @@ SUBSYSTEM_DEF(jobs)
 		job.post_equip_rank(other_mob, alt_title || rank)
 		return other_mob
 
-	if(spawn_in_storage)
-		for(var/decl/loadout_option/G in spawn_in_storage)
-			G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()[G.name])
-
 	to_chat(H, "<font size = 3><B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B></font>")
-
-	if(job.supervisors)
-		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
-
-	if(H.has_headset_in_ears())
-		to_chat(H, "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>")
-
-	if(job.req_admin_notify)
-		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 
 	if(H.needs_wheelchair())
 		equip_wheelchair(H)

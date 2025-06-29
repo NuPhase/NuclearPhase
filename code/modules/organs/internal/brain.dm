@@ -34,9 +34,11 @@
 
 /obj/item/organ/internal/brain/oxygen_starve(amount)
 	. = ..()
+	var/mob/living/carbon/human/H = owner
 	if(oxygen_deprivation > 20)
-		var/mob/living/carbon/human/H = owner
 		H.send_to_limb()
+	else
+		H.retrieve_from_limb()
 
 /obj/item/organ/internal/brain/set_species(species_name)
 	. = ..()
