@@ -43,6 +43,32 @@
 
 	return 1
 
+/decl/chemical_reaction/proc/can_happen_moles(list/moles, energy, temperature)
+	//check that all the required reagents are present
+	if(!has_all_moles(moles, required_reagents))
+		return FALSE
+
+	//check that all the required catalysts are present in the required amount
+	if(!has_all_moles(moles, catalysts))
+		return FALSE
+
+	//check that none of the inhibitors are present in the required amount
+	//if(holder.has_any_reagent(inhibitors))
+	//	return FALSE
+
+	if(energy < activation_energy || temperature < minimum_temperature || temperature > maximum_temperature)
+		return FALSE
+
+	return TRUE
+
+/decl/chemical_reaction/proc/has_all_moles(list/moles, list/required)
+	if(length(moles) < length(required))
+		return FALSE
+	for(var/check in required)
+		if(moles[check] < required[check])
+			return FALSE
+	return TRUE
+
 /decl/chemical_reaction/proc/on_reaction(var/datum/reagents/holder, var/created_volume, var/reaction_flags)
 	var/atom/location = holder.get_reaction_loc()
 	if(thermal_product && location && ATOM_SHOULD_TEMPERATURE_ENQUEUE(location))
@@ -57,8 +83,14 @@
 /decl/chemical_reaction/proc/get_reaction_flags(var/datum/reagents/holder)
 	return 0
 
-/decl/chemical_reaction/proc/process(var/datum/reagents/holder, var/limit)
+/decl/chemical_reaction/proc/process(var/datum/reagents/holder, var/limit, temperature)
 	var/data = send_data(holder)
+
+	var/reactivity_sum = 0
+	for(var/reactant in required_reagents)
+		var/decl/material/mat = GET_DECL(reactant)
+		reactivity_sum += mat.reactivity_coefficient
+	limit = limit / holder.get_reaction_speed_coef(null, minimum_temperature, temperature, reactivity_sum/length(required_reagents))
 
 	var/reaction_volume = holder.maximum_volume
 	for(var/reactant in required_reagents)

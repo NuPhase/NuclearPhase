@@ -241,7 +241,7 @@
 	var/painkill_magnitude = 130000
 	var/effective_dose = 1
 	drug_category = DRUG_CATEGORY_PAIN_SLEEP
-	heating_products = list(/decl/material/liquid/benzylfentanyl = 0.03, /decl/chemical_reaction/norfentanyl = 0.04, /decl/material/liquid/piperidone = 0.13, /decl/material/liquid/sulfuric_morphine = 0.2, /decl/material/solid/carbon = 0.52)
+	heating_products = list(/decl/material/liquid/benzylfentanyl = 0.03, /decl/material/liquid/norfentanyl = 0.04, /decl/material/liquid/piperidone = 0.13, /decl/material/liquid/sulfuric_morphine = 0.2, /decl/material/solid/carbon = 0.52)
 	heating_point = 700 CELSIUS
 
 /decl/material/liquid/opium/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)

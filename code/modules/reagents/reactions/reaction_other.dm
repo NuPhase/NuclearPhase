@@ -119,7 +119,7 @@
 	catalysts = list(/decl/material/solid/metal/osmium = 10)
 	result_amount = 1
 	minimum_temperature = 300 CELSIUS
-	thermal_product = 10
+	thermal_product = 299 CELSIUS
 
 /decl/chemical_reaction/saline
 	name = "Saline Solution"

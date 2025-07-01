@@ -66,6 +66,8 @@
 			INTERACTION_ABSORPTION = 0.00001
 		)
 	)
+	melting_point = 3823
+	boiling_point = 5100
 
 /decl/material/solid/carbon/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/datum/reagents/ingested = M.get_ingested_reagents()

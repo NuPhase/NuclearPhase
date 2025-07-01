@@ -16,14 +16,13 @@
 	icon_state = "satchel"
 	slot_flags = SLOT_LOWER_BODY
 	max_storage_space = 200
-	max_w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_LARGE
 	w_class = ITEM_SIZE_LARGE
-	can_hold = list(/obj/item/ore)
+	can_hold = list(/obj/item/stack/ore)
 	allow_quick_gather = TRUE
 	allow_quick_empty = TRUE
 	use_to_pickup = TRUE
 	material = /decl/material/solid/leather
-
 
 // -----------------------------
 //          Evidence bag

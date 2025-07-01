@@ -39,9 +39,12 @@
 			switch(cur_mat.phase_at_temperature(gasmix.temperature, gasmix.return_pressure()))
 				if(MAT_PHASE_GAS)
 					if(length(cur_ore.composition) == 1)
-						gasmix.gas[proc_metal] += ore_produced(cur_ore, cur_mat, proc_metal)
-						gasmix.solids[/decl/material/solid/slag] += slag_produced(cur_ore, proc_metal)
-						cur_ore.composition.Remove(proc_metal)
+						var/evap_coef = min(cur_ore.composition[proc_metal] * 0.1 + 0.01, cur_ore.composition[proc_metal])
+						gasmix.gas[proc_metal] += ore_produced(cur_ore, cur_mat, proc_metal) * evap_coef
+						gasmix.solids[/decl/material/solid/slag] += slag_produced(cur_ore, proc_metal) * evap_coef
+						cur_ore.composition[proc_metal] -= evap_coef
+						if(cur_ore.composition[proc_metal] <= 0)
+							cur_ore.composition.Remove(proc_metal)
 				if(MAT_PHASE_LIQUID)
 					gasmix.solids[proc_metal] += ore_produced(cur_ore, cur_mat, proc_metal)
 					gasmix.solids[/decl/material/solid/slag] += slag_produced(cur_ore, proc_metal)
@@ -69,8 +72,6 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 	var/combined_energy = environment.temperature * ore_heat_capacity + internal_heat_capacity * air_contents.temperature
 	air_contents.temperature = combined_energy/combined_heat_capacity
-
-
 
 //Electrodes lose integrity when used in an EBF
 //Electrodes increase their coke content when used in an EBF
@@ -145,6 +146,11 @@
 	anchored = TRUE
 	density = TRUE
 
+/obj/structure/arc_furnace_overlay/return_air()
+	if(our_furnace.connected_canister)
+		return our_furnace.connected_canister.air_contents
+	return null
+
 /obj/structure/arc_furnace_overlay/attack_hand(mob/user)
 	. = ..()
 	tgui_interact(user)
@@ -154,10 +160,16 @@
 	if(!ui)
 		ui = new(user, src, "ArcFurnace", "Arc Furnace")
 		ui.open()
+		ui.set_autoupdate(TRUE)
 
 /obj/structure/arc_furnace_overlay/tgui_data(mob/user)
+	var/total_mass = 0
+	for(var/obj/item/stack/ore/cur_ore in our_furnace.contents)
+		total_mass += cur_ore.amount
+	if(our_furnace.connected_canister)
+		total_mass += our_furnace.connected_canister.air_contents.get_mass()
 	return list("has_canister" = our_furnace.connected_canister,
-				"canister_content_mass" = (our_furnace.connected_canister ? our_furnace.connected_canister.air_contents.get_mass() : 0),
+				"canister_content_mass" = total_mass,
 				"canister_content_temperature" = (our_furnace.connected_canister ? our_furnace.connected_canister.air_contents.temperature : T20C),
 				"canister_content_pressure" = (our_furnace.connected_canister ? our_furnace.connected_canister.air_contents.pressure : 0),
 				"canister_content_fluidlevel" = round(our_furnace.connected_canister ? (1-(our_furnace.connected_canister.air_contents.available_volume/our_furnace.connected_canister.air_contents.volume))*100 : 0),
@@ -213,9 +225,9 @@
 /obj/machinery/atmospherics/unary/furnace/arc
 	internal_volume = 3000
 	var/list/inserted_electrodes = list()
-	var/nominal_power_usage = 178 MWATT
+	var/nominal_power_usage = 108 MWATT
 	idle_power_usage = 50 KWATT
-	active_power_usage = 178 MWATT
+	active_power_usage = 108 MWATT
 	power_channel = EQUIP
 	var/obj/structure/arc_furnace_overlay/overlay
 	var/obj/machinery/portable_atmospherics/connected_canister
@@ -233,10 +245,10 @@
 
 /obj/structure/arc_furnace_overlay/attackby(obj/item/I, mob/user)
 	. = ..()
-	if(our_furnace.use_power == POWER_USE_ACTIVE)
-		electrocute_mob(user, get_area(src), our_furnace)
-		return
 	if(IS_WRENCH(I))
+		if(our_furnace.use_power == POWER_USE_ACTIVE)
+			electrocute_mob(user, get_area(src), our_furnace)
+			return
 		if(!length(our_furnace.inserted_electrodes))
 			to_chat(user, SPAN_NOTICE("\The [src] doesn't have any electrodes installed."))
 			return
@@ -289,8 +301,9 @@
 		cur_electrode.coke_content = min(100, cur_electrode.coke_content + 0.1)
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/process_stability()
-	instability = 100
-	if(connected_canister.air_contents.pressure > MAX_TANK_PRESSURE)
+	var/ninstability = instability * 0.5
+	ninstability += (connected_canister.air_contents.pressure / MAX_TANK_PRESSURE) * 10
+	if(connected_canister.air_contents.pressure > MAX_TANK_PRESSURE && instability >= 100)
 		var/turf/T = get_turf(src)
 		cell_explosion(T, 100, 0.1, z_transfer = null, temperature = connected_canister.air_contents.temperature)
 		T.add_fluid(/decl/material/solid/slag, connected_canister.air_contents.total_moles * 20, ntemperature = connected_canister.air_contents.temperature)
@@ -337,6 +350,9 @@
 	handle_sound()
 
 /obj/machinery/atmospherics/unary/furnace/arc/Process()
+	if(connected_canister)
+		control_pressure()
+
 	if(use_power == POWER_USE_IDLE)
 		return
 	. = ..()
@@ -355,12 +371,11 @@
 	var/total_heat_capacity = connected_canister.air_contents.heat_capacity()
 
 	firelevel = air_contents.fire_react()
-	var/actually_used_power = min(nominal_power_usage * conductivity_coefficient, total_heat_capacity * rand(50, 100) * conductivity_coefficient)
+	var/actually_used_power = min(nominal_power_usage * conductivity_coefficient, total_heat_capacity * rand(10, 50) * conductivity_coefficient)
 	heat_up(actually_used_power)
 	change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
 	lose_electrode_integrity(conductivity_coefficient)
 	process_stability()
-	control_pressure()
 	spark_at(get_turf(pick(oview(2, src))), 3, 0)
 	set_light(rand(4, 7), pick(3, 5), pick("#00b7ff", "#30c4ff", "#53ceff", "#5bd0ff", "#a6e6ff"))
 	handle_sound()
@@ -369,7 +384,7 @@
 	var/pressure_delta = connected_canister.air_contents.return_pressure() - 303
 	if(pressure_delta > 200)
 		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
-		moles_to_remove = min(moles_to_remove, connected_canister.air_contents.gas_moles * 0.5)
+		moles_to_remove = min(moles_to_remove, connected_canister.air_contents.gas_moles * 0.7)
 		for(var/g in connected_canister.air_contents.gas)
 			if(ispath(g, /decl/material/gas))
 				connected_canister.air_contents.adjust_gas(g, -moles_to_remove)

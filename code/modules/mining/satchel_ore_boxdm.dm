@@ -7,16 +7,17 @@
 	name = "ore box"
 	desc = "A heavy box used for storing ore."
 	density = 1
+	pull_coefficient = 0.005
 	var/last_update = 0
 	var/list/stored_ore = list()
 
 /obj/structure/ore_box/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/ore))
+	if (istype(W, /obj/item/stack/ore))
 		user.unEquip(W, src)
 	else if (istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		S.hide_from(usr)
-		for(var/obj/item/ore/O in S.contents)
+		for(var/obj/item/stack/ore/O in S.contents)
 			S.remove_from_storage(O, src, 1) //This will move the item to this item's contents
 		S.finish_bulk_removal()
 		to_chat(user, "<span class='notice'>You empty the satchel into the box.</span>")
@@ -27,12 +28,11 @@
 
 	stored_ore = list()
 
-	for(var/obj/item/ore/O in contents)
-
-		if(stored_ore[O.name])
-			stored_ore[O.name]++
+	for(var/obj/item/stack/ore/O in contents)
+		if(stored_ore[O.true_mineral_name])
+			stored_ore[O.true_mineral_name] += O.amount
 		else
-			stored_ore[O.name] = 1
+			stored_ore[O.true_mineral_name] = O.amount
 
 /obj/structure/ore_box/examine(mob/user)
 	. = ..()
@@ -56,7 +56,7 @@
 
 	to_chat(user, "It holds:")
 	for(var/ore in stored_ore)
-		to_chat(user, "- [stored_ore[ore]] [ore]")
+		to_chat(user, "- [stored_ore[ore]]kg of [ore]")
 	return
 
 
@@ -82,7 +82,7 @@
 		to_chat(usr, "<span class='warning'>The ore box is empty</span>")
 		return
 
-	for (var/obj/item/ore/O in contents)
+	for (var/obj/item/stack/ore/O in contents)
 		O.dropInto(loc)
 	to_chat(usr, "<span class='notice'>You empty the ore box</span>")
 

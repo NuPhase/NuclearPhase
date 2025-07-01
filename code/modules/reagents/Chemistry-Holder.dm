@@ -68,10 +68,15 @@ var/global/obj/temp_reagents_holder = new
 
 #define BASAL_REACTION_RATE 0.000001
 
-/datum/reagents/proc/get_reaction_speed_coef(var/decl/material/R, minimum_temperature, absolute_temperature) // a coefficient
+/datum/reagents/proc/get_reaction_speed_coef(var/decl/material/R, minimum_temperature, absolute_temperature, reactivity_coefficient) // a coefficient
 	var/c_mod = BASAL_REACTION_RATE
 	var/t_diff = abs(absolute_temperature - minimum_temperature)
-	return (R.reactivity_coefficient + ((t_diff**2) * c_mod))
+	var/act_coef
+	if(reactivity_coefficient)
+		act_coef = reactivity_coefficient
+	else
+		act_coef = R.reactivity_coefficient
+	return min(act_coef + ((t_diff**2) * c_mod), 1)
 
 /datum/reagents/proc/process_reactions()
 
@@ -165,7 +170,7 @@ var/global/obj/temp_reagents_holder = new
 
 	for(var/thing in active_reactions)
 		var/decl/chemical_reaction/C = thing
-		C.process(src, active_reactions[C])
+		C.process(src, active_reactions[C], temperature)
 
 	for(var/thing in active_reactions)
 		var/decl/chemical_reaction/C = thing

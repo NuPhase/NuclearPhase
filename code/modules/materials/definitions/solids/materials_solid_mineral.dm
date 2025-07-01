@@ -60,6 +60,12 @@
 	dissolves_into = list(
 		/decl/material/solid/carbon = 1
 	)
+	melting_point = 3823
+	boiling_point = 5100
+	heating_point = 3970
+	heating_products = list(
+		/decl/material/solid/carbon = 1
+	)
 
 /decl/material/solid/quartz
 	name = "quartz"
@@ -362,6 +368,7 @@
 	name = "dense graphite"
 	uid = "solid_dense_graphite"
 	color = "#2c2c2c"
+	heating_point = 3970
 	heating_products = list(
 		/decl/material/solid/gemstone/diamond = 0.02,
 		/decl/material/solid/carbon = 0.98
@@ -384,6 +391,8 @@
 		/decl/material/liquid/acetone = 0.4,
 		/decl/material/solid/gemstone/diamond = 0.1
 	)
+	melting_point = 3823
+	boiling_point = 5100
 
 /decl/material/solid/cassiterite
 	name = "cassiterite"
@@ -599,3 +608,5 @@
 		/decl/material/solid/sulfur = 0.5
 	)
 	electrolysis_energy = 158000
+	melting_point = 1400
+	boiling_point = 2835

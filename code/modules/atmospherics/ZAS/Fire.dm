@@ -56,10 +56,9 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		if(T.fire && T.fire.burning_fluid)
 			T.fire.burning_fluid.vaporize_fuel(burn_gas)
 
-	var/list/reacted_list = SSreactions.process_reactions(burn_gas.gas, burn_gas.temperature, burn_gas.heat_capacity(), burn_gas.pressure, burn_gas.volume)
-	burn_gas.gas = reacted_list[1]
-	burn_gas.temperature = reacted_list[2]
-	var/firelevel = (burn_gas.temperature - reacted_list[3]) * FIRELEVEL_PER_T_DELTA
+	var/old_temperature = burn_gas.temperature
+	SSreactions.process_gasmix(burn_gas)
+	var/firelevel = (burn_gas.temperature - old_temperature) * FIRELEVEL_PER_T_DELTA
 
 	air.merge(burn_gas)
 
@@ -79,8 +78,6 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	if(!fire_tiles.len)
 		SSair.active_fire_zones.Remove(src)
-
-#undef FIRELEVEL_PER_T_DELTA
 
 /turf/proc/create_fire(fl)
 	return 0
@@ -259,80 +256,15 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 //Returns the firelevel
 /datum/gas_mixture/proc/fire_react(zone/zone, force_burn, no_check = 0)
 	. = 0
-	if((temperature > FLAMMABLE_GAS_MINIMUM_BURN_TEMPERATURE || force_burn) && (no_check ||check_recombustibility()))
+	var/old_temperature = temperature
 
-		#ifdef FIREDBG
-		log_debug("***************** FIREDBG *****************")
-		log_debug("Burning [zone? zone.name : "zoneless gas_mixture"]!")
-		#endif
+	SSreactions.process_gasmix(src)
 
-		var/total_fuel = 0
-		var/total_oxidizers = 0
+	var/firelevel = (temperature - old_temperature) * FIRELEVEL_PER_T_DELTA
 
-		//*** Get the fuel and oxidizer amounts
-		for(var/g in gas)
-			var/decl/material/mat = GET_DECL(g)
-			if(mat.gas_flags & XGM_GAS_FUEL)
-				total_fuel += gas[g]
-			if(mat.gas_flags & XGM_GAS_OXIDIZER)
-				total_oxidizers += gas[g]
-		total_fuel *= group_multiplier
-		total_oxidizers *= group_multiplier
+	update_values()
 
-		if(total_fuel <= 0.005 && !force_burn)
-			return 0
-
-		//*** Determine how fast the fire burns
-
-		//get the current thermal energy of the gas mix
-		//this must be taken here to prevent the addition or deletion of energy by a changing heat capacity
-		var/starting_energy = temperature * heat_capacity()
-
-		//determine how far the reaction can progress
-		var/reaction_limit = min(total_oxidizers*(FIRE_REACTION_FUEL_AMOUNT/FIRE_REACTION_OXIDIZER_AMOUNT), total_fuel) //stoichiometric limit
-
-		//vapour fuels are extremely volatile! The reaction progress is a percentage of the total fuel (similar to old zburn).)
-		var/firelevel = calculate_firelevel(total_fuel, total_oxidizers, reaction_limit, volume*group_multiplier)
-		var/min_burn = 0.30*volume*group_multiplier/CELL_VOLUME //in moles - so that fires with very small gas concentrations burn out fast
-		var/total_reaction_progress = min(max(min_burn, firelevel*total_fuel)*FIRE_GAS_BURNRATE_MULT, total_fuel)
-		var/used_fuel = min(total_reaction_progress, reaction_limit)
-		var/used_oxidizers = used_fuel*(FIRE_REACTION_OXIDIZER_AMOUNT/FIRE_REACTION_FUEL_AMOUNT)
-
-		#ifdef FIREDBG
-		log_debug("total_fuel = [total_fuel], total_oxidizers = [total_oxidizers]")
-		log_debug("fuel_area = [fuel_area], total_fuel = [total_fuel], reaction_limit = [reaction_limit]")
-		log_debug("firelevel -> [firelevel]")
-		log_debug("total_reaction_progress = [total_reaction_progress]")
-		log_debug("used_fuel = [used_fuel], used_oxidizers = [used_oxidizers]; ")
-		#endif
-
-		//if the reaction is progressing too slow then it isn't self-sustaining anymore and burns out
-		if(zone && (!total_fuel || used_fuel <= FIRE_GAS_MIN_BURNRATE*zone.contents.len) && !force_burn)
-			return 0
-
-		//*** Remove fuel and oxidizer, add carbon dioxide and heat
-		//remove and add gasses as calculated
-		used_fuel = min(used_fuel, total_fuel)
-		//remove_by_flag() and adjust_gas() handle the group_multiplier for us.
-		remove_by_flag(XGM_GAS_OXIDIZER, used_oxidizers)
-		var/released_energy = 0
-		var/datum/gas_mixture/burned_fuel = remove_by_flag(XGM_GAS_FUEL, used_fuel)
-		for(var/g in burned_fuel.gas)
-			var/decl/material/mat = GET_DECL(g)
-			released_energy += mat.combustion_energy * burned_fuel.gas[g]
-			if(mat.burn_product)
-				adjust_gas(mat.burn_product, burned_fuel.gas[g], FALSE)
-
-		//calculate the energy produced by the reaction and then set the new temperature of the mix
-		temperature = (starting_energy + released_energy) * (heat_capacity()**-1)
-		update_values()
-
-		#ifdef FIREDBG
-		log_debug("used_fuel = [used_fuel]; total = [used_fuel]")
-		log_debug("new temperature = [temperature]; new pressure = [return_pressure()]")
-		#endif
-
-		return firelevel
+	return firelevel
 
 /datum/gas_mixture/proc/check_recombustibility()
 	. = 0

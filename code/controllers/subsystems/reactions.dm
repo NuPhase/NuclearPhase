@@ -1,3 +1,5 @@
+var/global/obj/reactions_reagents_holder = new
+
 SUBSYSTEM_DEF(reactions)
 	name = "Reactions"
 	wait = 2 SECONDS
@@ -5,6 +7,20 @@ SUBSYSTEM_DEF(reactions)
 	flags = SS_NO_INIT | SS_NO_FIRE
 
 	var/list/fusion_reactions = list()
+
+/datum/controller/subsystem/reactions/proc/process_gasmix(datum/gas_mixture/gasmix)
+	if(length(gasmix.gas))
+		var/list/reacted_list = process_reactions(gasmix.gas, gasmix.temperature, null, gasmix.pressure, gasmix.volume)
+		gasmix.gas = reacted_list[1]
+		gasmix.temperature = reacted_list[2]
+	if(length(gasmix.liquids))
+		var/list/reacted_list = process_reactions(gasmix.liquids, gasmix.temperature, null, gasmix.pressure, gasmix.volume)
+		gasmix.liquids = reacted_list[1]
+		gasmix.temperature = reacted_list[2]
+	if(length(gasmix.solids))
+		var/list/reacted_list = process_reactions(gasmix.solids, gasmix.temperature, null, gasmix.pressure, gasmix.volume)
+		gasmix.solids = reacted_list[1]
+		gasmix.temperature = reacted_list[2]
 
 /datum/controller/subsystem/reactions/proc/process_reactions(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
 	var/has_fuel = FALSE
@@ -21,6 +37,10 @@ SUBSYSTEM_DEF(reactions)
 		for(var/g in moles)
 			var/decl/material/mat = GET_DECL(g)
 			heat_capacity += moles[g] * mat.gas_specific_heat
+
+	var/list/chem_return_list = process_reaction_chem(moles, temperature, heat_capacity, pressure, volume)
+	moles = chem_return_list[1]
+	temperature = chem_return_list[2]
 
 	// Process combustion
 	if(has_fuel && has_oxidizer)
@@ -44,6 +64,20 @@ SUBSYSTEM_DEF(reactions)
 
 #undef PRE_EXPONENTIAL_FACTOR
 
+/datum/controller/subsystem/reactions/proc/process_reaction_chem(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
+	reactions_reagents_holder.temperature = temperature
+	var/datum/reagents/temp_holder = new((volume*1000)*(pressure/ONE_ATMOSPHERE), reactions_reagents_holder)
+	for(var/mat_type in moles)
+		var/decl/material/mat = GET_DECL(mat_type)
+		LAZYSET(temp_holder.reagent_volumes, mat_type, moles[mat_type] * mat.molar_volume)
+	temp_holder.update_total()
+	temp_holder.process_reactions()
+	moles.Cut()
+	for(var/mat_type in temp_holder.reagent_volumes)
+		var/decl/material/mat = GET_DECL(mat_type)
+		moles[mat_type] = temp_holder.reagent_volumes[mat_type] / mat.molar_volume
+	return list(moles, reactions_reagents_holder.temperature)
+
 /datum/controller/subsystem/reactions/proc/process_reaction_oxidation(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
 	var/list/oxidizers = list()
 	var/list/oxidizers_by_power = list()
@@ -53,7 +87,7 @@ SUBSYSTEM_DEF(reactions)
 	for(var/g in moles)
 		total_moles += moles[g]
 		var/decl/material/mat = GET_DECL(g)
-		if(mat.combustion_energy)
+		if(mat.combustion_energy && mat.combustion_products)
 			fuels[g] = moles[g]
 		if(mat.oxidizer_power)
 			oxidizers_by_power[g] = mat.oxidizer_power
@@ -94,5 +128,13 @@ SUBSYSTEM_DEF(reactions)
 
 	return list(moles, temperature, heat_capacity, pressure)
 
-/datum/controller/subsystem/reactions/proc/test_combustion(temperature=1150)
-	return process_reactions(list(/decl/material/gas/hydrogen = 60, /decl/material/gas/oxygen = 30), temperature, 6600, volume = 1000)
+/datum/controller/subsystem/reactions/proc/test_combustion(mob/user)
+	to_chat(user, "--------------------")
+	for(var/i=1, i<20, i++)
+		var/list/react_result = process_reactions(list(/decl/material/gas/hydrogen = 60, /decl/material/gas/oxygen = 30), 100*i, 6600, volume = 1000)
+		to_chat(user, "T: [100*i] ===> T: [round(react_result[2], 0.1)] H: [round(react_result[1][/decl/material/gas/hydrogen], 0.1)] O: [round(react_result[1][/decl/material/gas/oxygen], 0.1)]")
+	to_chat(user, "--------------------")
+	for(var/i=1, i<20, i++)
+		var/list/react_result = process_reactions(list(/decl/material/gas/hydrogen = 300/i, /decl/material/gas/oxygen = 30), 3500, 6600, volume = 1000)
+		to_chat(user, "T: 3500 ===> T: [round(react_result[2], 0.1)] H: [round(react_result[1][/decl/material/gas/hydrogen], 0.1)] O: [round(react_result[1][/decl/material/gas/oxygen], 0.1)]")
+	to_chat(user, "--------------------")

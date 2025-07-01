@@ -225,7 +225,7 @@ var/global/list/natural_walls = list()
 		var/obj/structure/boulder/nboulder = new /obj/structure/boulder(.)
 		nboulder.material = saved_material
 		nboulder.ore_type = saved_ore_type
-		nboulder.ore_result_amount = rand(20, 100)
+		nboulder.ore_result_amount = rand(10, 1000)
 		nboulder.update_icon()
 
 /turf/exterior/wall/proc/get_default_material()

@@ -119,7 +119,6 @@
 	result = /decl/material/liquid/piperidone
 	required_reagents = list(/decl/material/liquid/pentaborane = 1, /decl/material/gas/nitricoxide = 1)
 	result_amount = 1
-	thermal_product = 35
 
 /decl/chemical_reaction/norfentanyl
 	name = "Norfentanyl Synthesis"

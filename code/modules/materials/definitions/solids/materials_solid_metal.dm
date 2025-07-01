@@ -166,6 +166,7 @@
 		/decl/material/solid/carbon = 0.02
 	)
 	default_solid_form = /obj/item/stack/material/sheet
+	melting_point = 1710
 
 /decl/material/solid/metal/steel/generate_recipes(var/reinforce_material)
 	. = ..()
@@ -295,6 +296,7 @@
 	burn_armor = 8
 	integrity = 200
 	melting_point = 1940
+	boiling_point = 3560
 	weight = MAT_VALUE_LIGHT
 	icon_base = 'icons/turf/walls/metal.dmi'
 	wall_flags = PAINT_PAINTABLE

@@ -122,7 +122,7 @@
 	required_reagents = list(/decl/material/liquid/nutriment/rice = 1, /decl/material/liquid/water = 1.5)
 	result_amount = 1.3
 	mix_message = "The rice boils and cooks."
-	thermal_product = 0.2
+	thermal_product = 84 CELSIUS
 	minimum_temperature = 85 CELSIUS
 	hidden_from_codex = TRUE
 
@@ -133,6 +133,6 @@
 	inhibitors = list(/decl/material/liquid/water)
 	result_amount = 0.9
 	mix_message = "The rice burns."
-	thermal_product = 0.1
-	minimum_temperature = 86 CELSIUS
+	thermal_product = 95 CELSIUS
+	minimum_temperature = 100 CELSIUS
 	hidden_from_codex = TRUE

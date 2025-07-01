@@ -164,16 +164,21 @@
 
 // Clean water with an imperfect taste
 /decl/material/liquid/water/dirty1
-	codex_name = "raw water"
+	name = "tap water"
+	glass_name = "tap water"
+	codex_name = "tap water"
 	dirty_stage = 1
 	dirtiness = DIRTINESS_CLEAN
-	taste_description = "raw water"
+	taste_description = "tap water"
 	uid = "liquid_water_dirty1"
 	color = "#83d7e0"
 
 // Water devoid of harmful contaminants, but has some bacteria
 // Harmless if your immune system is fine, but can cause upset stomach when you drink enough
 /decl/material/liquid/water/dirty2
+	name = "murky water"
+	glass_name = "murky water"
+	codex_name = "murky water"
 	dirty_stage = 2
 	dirtiness = 1
 	taste_description = "water with a weird aftertaste"

@@ -13,16 +13,41 @@
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 800 //800kg in one item, should be okay
-	weight = 1
+	amount = 100
+	weight = 100
 	var/processing_flags
 	var/true_mineral_name = "" //only visible to geologists
 	var/list/composition //associative list of binary ratios
+
+	// Represents the difficulty of processing this ore.
+	var/yield_divisor = 1
+	/* Some common values, representing the amount of useful product at the qualities(10% / 50% / 100%):
+		0.1    - (90% / 98% / 99%) - Amorphous Carbon, Ice, Sulfur
+		0.5    - (66% / 90% / 95%) - Graphite, Bauxite, Cryolite
+		1.0    - (50% / 83% / 90%) - Chalcopyrite, Pyrothane, Ilmenite, Sphalerite
+		2.0    - (33% / 70% / 83%) - Hematite, Cyanopyrite
+		3.0    - (25% / 62% / 76%) - Galena, Magnetite
+		4.0    - (20% / 55% / 70%) - Crystalline Copper, Vanadinite
+		5.0    - (16% / 50% / 66%) - Monazite, Xenotime, Cassiterite
+		10.0   - (9%  / 33% / 50%) - Uraninite, Pitchblende, Columbite
+		20.0   - (5%  / 20% / 33%) - Rare Metals, Gold
+		50.0   - (1%  / 10% / 16%)
+		100.0  - (1%  / 5%  / 10%)
+
+	*/
 /*
 	var/list/composition = list(
 		var/decl/material/someshit = 0.3,
 		var/decl/material/somepiss = 0.7
 	)
 */
+
+/obj/item/stack/ore/copy_from(obj/item/stack/ore/other)
+	. = ..()
+	icon = other.icon
+	icon_state = other.icon_state
+	processing_flags = other.processing_flags
+	composition = other.composition
 
 /obj/item/stack/ore/MouseDrop(atom/over)
 	. = ..()
@@ -90,16 +115,18 @@
 	amount *= efficiency
 
 /obj/item/stack/ore/proc/ore_to_slag_ratio()
+	var/quality = 0.01
 	if(processing_flags & ORE_FLAG_SEPARATED_BEST)
-		return 0.95
+		quality = 10
 	else if(processing_flags & ORE_FLAG_SEPARATED_GOOD)
-		return 0.75
+		quality = 5
 	else if(processing_flags & ORE_FLAG_SEPARATED_CRUDE)
-		return 0.25
+		quality = 1
 	else if(processing_flags & ORE_FLAG_CRUSHED)
-		return 0.05
-	else
-		return 0.01
+		quality = 0.05
+
+	var/actual_ratio = quality / (quality + yield_divisor)
+	return actual_ratio
 
 // Iron-bearing minerals
 
@@ -110,7 +137,17 @@
 		/decl/material/solid/metal/iron = 0.7,
 		/decl/material/gas/oxygen = 0.3
 	)
+	yield_divisor = 2
 	material = /decl/material/solid/hematite
+
+/obj/item/stack/ore/magnetite
+	color = "#53575f"
+	true_mineral_name = "magnetite"
+	composition = list(
+		/decl/material/solid/magnetite = 1
+	)
+	yield_divisor = 3
+	material = /decl/material/solid/magnetite
 
 // Copper-bearing minerals
 
@@ -122,13 +159,23 @@
 		/decl/material/solid/copper_sulfide = 0.6,
 		/decl/material/gas/oxygen = 0.05
 	)
+	yield_divisor = 1
 	material = /decl/material/solid/chalcopyrite
+
+/obj/item/stack/ore/copper
+	color = "#ffd271"
+	true_mineral_name = "crystalline copper"
+	composition = list(
+		/decl/material/solid/metal/copper = 1
+	)
+	yield_divisor = 4
+	material = /decl/material/solid/metal/copper
 
 // Carbon-bearing minerals
 
 // High surface area carbon. Explosive.
 /obj/item/stack/ore/amorphous_carbon
-	color = "#4b4b4b"
+	color = "#666666"
 	true_mineral_name = "amorphous carbon"
 	composition = list(
 		/decl/material/solid/carbon = 0.965,
@@ -138,10 +185,11 @@
 		/decl/material/solid/hematite = 0.005,
 		/decl/material/solid/gemstone/diamond = 0.01
 	)
+	yield_divisor = 0.1
 	material = /decl/material/solid/carbon
 
 /obj/item/stack/ore/graphite
-	color = "#1b1b1b"
+	color = "#272727"
 	true_mineral_name = "graphite"
 	composition = list(
 		/decl/material/solid/carbon = 0.13,
@@ -150,6 +198,7 @@
 		/decl/material/solid/quartz = 0.03,
 		/decl/material/solid/clay = 0.02
 	)
+	yield_divisor = 0.5
 	material = /decl/material/solid/graphite
 
 /obj/item/stack/ore/pyrothane
@@ -166,6 +215,81 @@
 		/decl/material/liquid/acetone = 0.04,
 		/decl/material/solid/copper_sulfide = 0.04,
 		/decl/material/gas/methane = 0.19
-
 	)
+	yield_divisor = 1
 	material = /decl/material/gas/methane
+
+// Other minerals
+
+/obj/item/stack/ore/sulfur
+	color = "#fffc54"
+	true_mineral_name = "sulfur"
+	composition = list(
+		/decl/material/solid/sulfur = 0.95,
+		/decl/material/gas/sulfur_dioxide = 0.05
+	)
+	yield_divisor = 0.1
+	material = /decl/material/solid/sulfur
+
+/obj/item/stack/ore/bauxite
+	color = "#ebb932"
+	true_mineral_name = "bauxite"
+	composition = list(
+		/decl/material/solid/bauxite = 0.99,
+		/decl/material/gas/oxygen = 0.01
+	)
+	yield_divisor = 0.5
+	material = /decl/material/solid/bauxite
+
+/obj/item/stack/ore/ilmenite
+	color = "#69566d"
+	true_mineral_name = "ilmenite"
+	composition = list(
+		/decl/material/solid/metal/iron = 0.2,
+		/decl/material/solid/metal/titanium = 0.2,
+		/decl/material/gas/oxygen = 0.6
+	)
+	yield_divisor = 1
+	material = /decl/material/solid/metal/titanium
+
+/obj/item/stack/ore/sphalerite
+	color = "#d3d3d3"
+	true_mineral_name = "sphalerite"
+	composition = list(
+		/decl/material/solid/metal/zinc = 0.5,
+		/decl/material/solid/sulfur = 0.5
+	)
+	yield_divisor = 1
+	material = /decl/material/solid/metal/zinc
+
+/obj/item/stack/ore/cyanopyrite
+	color = "#70cbdb"
+	true_mineral_name = "cyanopyrite"
+	composition = list(
+		/decl/material/liquid/cyanide = 0.33,
+		/decl/material/solid/metal/iron = 0.34,
+		/decl/material/solid/sulfur = 0.33
+	)
+	yield_divisor = 2
+	material = /decl/material/liquid/cyanide
+
+/obj/item/stack/ore/galena
+	color = "#8b6a9e"
+	true_mineral_name = "galena"
+	composition = list(
+		/decl/material/solid/metal/lead = 0.5,
+		/decl/material/solid/sulfur = 0.5
+	)
+	yield_divisor = 3
+	material = /decl/material/solid/metal/lead
+
+/obj/item/stack/ore/gold
+	color = "#ffd549"
+	true_mineral_name = "gold"
+	composition = list(
+		/decl/material/solid/metal/gold = 0.7,
+		/decl/material/solid/quartz = 0.2,
+		/decl/material/solid/sulfur = 0.1
+	)
+	yield_divisor = 20
+	material = /decl/material/solid/metal/gold
