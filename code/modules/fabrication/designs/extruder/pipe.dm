@@ -15,7 +15,7 @@
 
 /decl/extruder_recipe/pipe/hafnium_carbide
 	name = "HfC Straight Pipe"
-	input_material = /decl/material/solid/metal/hafniumcarbide
+	input_material = /decl/material/solid/stone/ceramic/hafniumcarbide
 	input_amount = 10200
 	minimum_skill = SKILL_ADEPT
 	output_construction_type = /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide

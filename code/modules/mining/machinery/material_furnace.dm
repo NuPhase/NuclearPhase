@@ -185,28 +185,27 @@
 		if("stop")
 			our_furnace.stop_arcing()
 
-/obj/structure/arc_furnace_overlay/MouseDrop(over_object, src_location, over_location)
+/obj/structure/arc_furnace_overlay/receive_mouse_drop(atom/dropping, mob/living/user)
 	. = ..()
-	if(!Adjacent(over_object))
+	if(!Adjacent(dropping))
 		return
 	if(our_furnace.use_power == POWER_USE_ACTIVE)
 		return
-
 	if(our_furnace.connected_canister)
-		visible_message("[usr] disconnects the canister from \the [src].")
+		visible_message("[user] disconnects the canister from \the [src].")
 		playsound(src, 'sound/machines/podopen.ogg', 50)
-		our_furnace.connected_canister.forceMove(usr.loc)
+		our_furnace.connected_canister.forceMove(user.loc)
 		our_furnace.connected_canister = null
-	else if(over_object)
-		if(!istype(over_object, /obj/machinery/portable_atmospherics))
+	else if(dropping)
+		if(!istype(dropping, /obj/machinery/portable_atmospherics))
 			return
-		if(!do_after(usr, 30, over_object))
+		if(!do_after(user, 30, dropping))
 			return
 		if(our_furnace.connected_canister)
 			return
-		our_furnace.connected_canister = over_object
+		our_furnace.connected_canister = dropping
 		our_furnace.connected_canister.forceMove(src)
-		visible_message("[usr] connects a canister to \the [src].")
+		visible_message("[user] connects a canister to \the [src].")
 		playsound(src, 'sound/machines/podclose.ogg', 50)
 	update_icon()
 
@@ -218,7 +217,7 @@
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(our_furnace.connected_canister)
-		overlays_to_add += image(our_furnace.connected_canister.icon, icon_state=our_furnace.connected_canister.icon_state, layer=ABOVE_OBJ_LAYER, pixel_x = 64)
+		overlays_to_add += image(our_furnace.connected_canister.icon, icon_state=our_furnace.connected_canister.icon_state, layer=ABOVE_OBJ_LAYER, pixel_x = 56)
 	overlays_to_add += image(icon, icon_state="top", layer = STRUCTURE_LAYER)
 	add_overlay(overlays_to_add)
 

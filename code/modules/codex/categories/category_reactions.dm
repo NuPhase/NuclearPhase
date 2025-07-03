@@ -62,6 +62,8 @@
 			mechanics_text += "<br>The reaction will not occur if the temperature is above [reaction.maximum_temperature]K."
 		if(reaction.minimum_temperature > 0)
 			mechanics_text += "<br>The reaction will not occur if the temperature is below [reaction.minimum_temperature]K."
+		if(reaction.minimum_pressure)
+			mechanics_text += "<br>The reaction will not occur if the pressure is below [reaction.minimum_pressure]kPa."
 
 		var/reaction_name = produces || lowertext(reaction.name)
 		if(produces)

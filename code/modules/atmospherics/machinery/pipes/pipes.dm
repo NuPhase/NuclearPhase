@@ -341,7 +341,7 @@
 	fatigue_pressure = 80*ONE_ATMOSPHERE
 	alert_pressure = 70*ONE_ATMOSPHERE
 	matter = list(
-		/decl/material/solid/metal/hafniumcarbide = 10200 //calculated for a 2m 160 liter pipe
+		/decl/material/solid/stone/ceramic/hafniumcarbide = 10200 //calculated for a 2m 160 liter pipe
 	)
 
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated //inconel prevents corrosion at high pressures and temperatures
@@ -353,7 +353,7 @@
 	fatigue_pressure = 350*ONE_ATMOSPHERE*100
 	alert_pressure = 350*ONE_ATMOSPHERE*100
 	matter = list(
-		/decl/material/solid/metal/hafniumcarbide = 10200, //calculated for a 2m 160 liter pipe
+		/decl/material/solid/stone/ceramic/hafniumcarbide = 10200, //calculated for a 2m 160 liter pipe
 		/decl/material/solid/metal/inconel = 2500 //some wrapping
 	)
 
@@ -480,7 +480,7 @@
 	fatigue_pressure = 80*ONE_ATMOSPHERE
 	alert_pressure = 70*ONE_ATMOSPHERE
 	matter = list(
-		/decl/material/solid/metal/hafniumcarbide = 12200
+		/decl/material/solid/stone/ceramic/hafniumcarbide = 12200
 	)
 
 /obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated
@@ -492,7 +492,7 @@
 	fatigue_pressure = 350*ONE_ATMOSPHERE
 	alert_pressure = 350*ONE_ATMOSPHERE
 	matter = list(
-		/decl/material/solid/metal/hafniumcarbide = 12200,
+		/decl/material/solid/stone/ceramic/hafniumcarbide = 12200,
 		/decl/material/solid/metal/inconel = 3000
 	)
 

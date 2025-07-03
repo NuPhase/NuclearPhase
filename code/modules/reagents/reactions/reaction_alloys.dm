@@ -67,3 +67,27 @@
 		/decl/material/solid/metal/chromium = 1
 	)
 	result_amount = 10
+
+/decl/chemical_reaction/alloy/hafniumcarbide
+	name = "Hafnium Carbide"
+	result = /decl/material/solid/stone/ceramic/hafniumcarbide
+	required_reagents = list(
+		/decl/material/solid/carbon = 1,
+		/decl/material/solid/metal/rare_metals = 1
+	)
+	catalysts = list(/decl/material/gas/argon = 1)
+	inhibitors = list(/decl/material/gas/nitrogen = 1)
+	result_amount = 1
+	minimum_temperature = 2400
+
+/decl/chemical_reaction/alloy/hafniumcarbonitride
+	name = "Hafnium Carbonitride"
+	result = /decl/material/solid/stone/ceramic/hafniumcarbonitride
+	required_reagents = list(
+		/decl/material/gas/nitrogen = 1,
+		/decl/material/solid/carbon = 1,
+		/decl/material/solid/metal/rare_metals = 1
+	)
+	result_amount = 1
+	minimum_temperature = 2400
+	minimum_pressure = 25000

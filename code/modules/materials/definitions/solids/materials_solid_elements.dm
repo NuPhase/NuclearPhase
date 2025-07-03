@@ -68,6 +68,10 @@
 	)
 	melting_point = 3823
 	boiling_point = 5100
+	combustion_energy = 393500
+	combustion_activation_energy = 150000
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
+	oxidizer_to_fuel_ratio = 2
 
 /decl/material/solid/carbon/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/datum/reagents/ingested = M.get_ingested_reagents()

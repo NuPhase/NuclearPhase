@@ -520,8 +520,12 @@
 	gas_symbol_html = "WF<sub>6</sub>"
 	color = "#999999"
 	molar_mass = 0.297
+	liquid_density = 13100
 	gas_specific_heat = 100
 	melting_point = 275
 	boiling_point = 290
 	neutron_absorption = 6000
 	toxicity = 15
+	dissolves_in = MAT_SOLVENT_MILD
+	dissolves_into = list(/decl/material/solid/metal/tungsten = 0.142857, /decl/material/liquid/acid/hydrofluoric = 0.857143)
+	reactivity_coefficient = 0.1

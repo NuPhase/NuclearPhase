@@ -10,7 +10,7 @@
 	weight = 10
 	var/haswheels = FALSE
 	var/atom/movable/load = null
-	var/max_weight = 700
+	var/max_weight = 1000
 
 /obj/structure/cart/Move()
 	. = ..()

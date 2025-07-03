@@ -29,6 +29,22 @@
 	melting_point = -30 CELSIUS
 	molar_mass = 0.036
 
+/decl/material/liquid/acid/hydrofluoric
+	name = "hydrofluoric acid"
+	uid = "liquid_hydrofluoric_acid"
+	lore_text = "An extremely corrosive acid with the molecular formula HF."
+	taste_description = "osteoporosis"
+	color = "#b2fff634"
+	solvent_power = MAT_SOLVENT_STRONG+3
+	solvent_melt_dose = 20
+	solvent_max_damage = 10
+	value = 1.5
+	boiling_point = 19.5 CELSIUS
+	melting_point = -30 CELSIUS
+	molar_mass = 0.02
+	liquid_density = 999
+	toxicity = 5
+
 /decl/material/liquid/acid/nitric
 	name = "nitric acid"
 	uid = "liquid_nitric_acid"
@@ -66,7 +82,7 @@
 	oxidizer_power = 6
 	heating_point = 40 CELSIUS
 	heating_sound = 'sound/chemistry/bufferadd.ogg'
-	heating_products = list(/decl/material/liquid/water = 0.77, /decl/material/gas/oxygen = 521)
+	heating_products = list(/decl/material/liquid/water = 0.77, /decl/material/gas/oxygen = 0.598)
 	heating_temperature_product = 100
 	reactivity_coefficient = 0.01
 

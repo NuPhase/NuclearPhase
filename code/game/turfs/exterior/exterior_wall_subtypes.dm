@@ -17,7 +17,8 @@
 		/obj/item/stack/ore/sphalerite = /decl/material/solid/metal/zinc,
 		/obj/item/stack/ore/cyanopyrite = /decl/material/liquid/cyanide,
 		/obj/item/stack/ore/galena = /decl/material/solid/metal/lead,
-		/obj/item/stack/ore/gold = /decl/material/solid/metal/gold
+		/obj/item/stack/ore/gold = /decl/material/solid/metal/gold,
+		/obj/item/stack/ore/wolfurine = /decl/material/solid/metal/tungsten
 	)
 
 /turf/exterior/wall/random/Initialize()

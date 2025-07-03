@@ -33,7 +33,7 @@
 	fire_delay = 40
 	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
 	mag_remove_sound = 'sound/weapons/guns/interaction/batrifle_magout.ogg'
-	material = /decl/material/solid/metal/tantalumhafniumcarbide
+	material = /decl/material/solid/stone/ceramic/hafniumcarbonitride
 	hot_color = COLOR_AMBER
 	muzzle_flash_intensity = 0
 	weight = 14.4

@@ -2,7 +2,8 @@
 	name = "ore chunk"
 	desc = "Unpurified chunks of rock with minerals in it. This isn't some game from 2011, right?"
 	icon = 'icons/obj/materials.dmi'
-	icon_state = "ore"
+	icon_state = "ore-max"
+	base_state = "ore"
 	plural_icon_state = "ore-mult"
 	max_icon_state = "ore-max"
 	singular_name = "ore chunk"
@@ -96,7 +97,13 @@
 /obj/item/stack/ore/examine(mob/user, distance)
 	. = ..()
 	if(user.get_skill_value(SKILL_DEVICES) > SKILL_NONE)
-		to_chat(user, "You recognize the ore as [SPAN_BOLD(true_mineral_name)].")
+		to_chat(user, "You recognize the ore as [SPAN_BOLD(true_mineral_name)]. It smelts into:")
+		for(var/comp_part in composition)
+			var/decl/material/mat = GET_DECL(comp_part)
+			if(istype(mat, /decl/material/gas))
+				to_chat(user, "[mat.name] - [round(composition[comp_part] * 100, 0.001)]% LAST")
+				continue
+			to_chat(user, "[mat.name] - [round(composition[comp_part] * 100, 0.001)]% at [mat.melting_point]K")
 	if(processing_flags & ORE_FLAG_CRUSHED)
 		to_chat(user, "It was crushed to dust.")
 		if(processing_flags & ORE_FLAG_SEPARATED_BEST)
@@ -235,8 +242,9 @@
 	color = "#ebb932"
 	true_mineral_name = "bauxite"
 	composition = list(
-		/decl/material/solid/bauxite = 0.99,
-		/decl/material/gas/oxygen = 0.01
+		/decl/material/solid/bauxite = 0.98,
+		/decl/material/gas/oxygen = 0.01,
+		/decl/material/solid/metal/rare_metals = 0.01
 	)
 	yield_divisor = 0.5
 	material = /decl/material/solid/bauxite
@@ -245,9 +253,10 @@
 	color = "#69566d"
 	true_mineral_name = "ilmenite"
 	composition = list(
-		/decl/material/solid/metal/iron = 0.2,
+		/decl/material/solid/metal/iron = 0.19,
 		/decl/material/solid/metal/titanium = 0.2,
-		/decl/material/gas/oxygen = 0.6
+		/decl/material/gas/oxygen = 0.6,
+		/decl/material/solid/metal/rare_metals = 0.01
 	)
 	yield_divisor = 1
 	material = /decl/material/solid/metal/titanium
@@ -293,3 +302,14 @@
 	)
 	yield_divisor = 20
 	material = /decl/material/solid/metal/gold
+
+/obj/item/stack/ore/wolfurine
+	color = "#404a4b"
+	true_mineral_name = "wolfurine"
+	composition = list(
+		/decl/material/solid/metal/tungsten = 0.166667,
+		/decl/material/gas/tungstenhexafluoride = 0.5,
+		/decl/material/solid/silicon = 0.333333
+	)
+	yield_divisor = 10
+	material = /decl/material/solid/metal/tungsten

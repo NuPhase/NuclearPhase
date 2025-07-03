@@ -6,7 +6,7 @@
 	for(var/thing in SSmaterials.materials)
 		var/decl/material/mat = thing
 		if(!mat.hidden_from_codex && !mat.is_abstract())
-			var/new_lore_text = initial(mat.lore_text) 
+			var/new_lore_text = initial(mat.lore_text)
 			if(mat.taste_description)
 				new_lore_text = "[new_lore_text]<br>It apparently tastes of [mat.taste_description]."
 			var/list/material_info = list(mat.mechanics_text)
@@ -38,8 +38,10 @@
 				material_info += "</ul>"
 
 			material_info += "<br>This substance has the following properties in standard temperature and pressure:<ul>"
-			material_info += "<li>Its melting point is [mat.melting_point] K.</li>"
-			material_info += "<li>Its boiling point is [mat.boiling_point] K.</li>"
+			material_info += "<li>Its melting point  is [mat.melting_point] K.</li>"
+			material_info += "<li>Its boiling point  is [mat.boiling_point] K.</li>"
+			material_info += "<li>Its solid density  is [round(mat.solid_density, 0.1)] kg/m3.</li>"
+			material_info += "<li>Its liquid density is [round(mat.liquid_density, 0.1)] kg/m3.</li>"
 			if(mat.solvent_power > MAT_SOLVENT_NONE)
 				if(mat.solvent_power <= MAT_SOLVENT_MILD)
 					material_info += "<li>It is a mild solvent.</li>"
@@ -64,11 +66,6 @@
 				material_info += "<li>It can be dissolved with [solvent_needed] solvent, producing [english_list(chems)].</li>"
 			if(mat.radioactivity)
 				material_info += "<li>It is radioactive.</li>"
-			if(mat.flags & MAT_FLAG_FUSION_FUEL)
-				material_info += "<li>It can be used in a fusion reaction.</li>"
-			if(mat.ore_compresses_to && mat.ore_compresses_to != mat.type)
-				var/decl/material/M = GET_DECL(mat.ore_compresses_to)
-				material_info += "<li>It can be compressed into [M.solid_name].</li>"
 			if(length(mat.heating_products))
 				var/list/heat_prod = list()
 				for(var/mtype in mat.heating_products)
@@ -90,15 +87,13 @@
 			gas_info+= "<li>It has a molar mass of [mat.molar_mass] kg/mol.</li>"
 			if(mat.gas_flags & XGM_GAS_FUEL)
 				gas_info+= "<li>It is flammable.</li>"
-				if(mat.burn_product)
-					var/decl/material/firemat = GET_DECL(mat.burn_product)
-					gas_info+= "<li>It produces [firemat.gas_name] when burned.</li>"
+				if(mat.combustion_products)
+					var/decl/material/firemat = GET_DECL(mat.combustion_products[/decl/material/gas/oxygen])
+					gas_info+= "<li>It produces [firemat.gas_name] when burned in oxygen.</li>"
 			if(mat.gas_flags & XGM_GAS_OXIDIZER)
 				gas_info+= "<li>It is an oxidizer, required to sustain fire.</li>"
 			if(mat.gas_flags & XGM_GAS_CONTAMINANT)
 				gas_info+= "<li>It contaminates exposed clothing with residue.</li>"
-			if(mat.flags & MAT_FLAG_FUSION_FUEL)
-				gas_info+= "<li>It can be used as fuel in a fusion reaction.</li>"
 			if(!isnull(mat.gas_condensation_point) && mat.gas_condensation_point < INFINITY)
 				gas_info += "<li>It condenses at [mat.gas_condensation_point] K.</li>"
 			material_info += "</ul>"

@@ -17,6 +17,7 @@
 
 	var/activation_energy = 0 // At which energy does the reaction begin to happen?
 	var/thermal_delta // How much of an energy change happens per reaction
+	var/minimum_pressure
 
 /decl/chemical_reaction/Initialize()
 	. = ..()
@@ -39,6 +40,9 @@
 	var/atom/location = holder.get_reaction_loc()
 	var/temperature = location?.temperature || T20C
 	if(temperature < minimum_temperature || temperature > maximum_temperature)
+		return 0
+
+	if(minimum_pressure && minimum_pressure > holder.get_pressure())
 		return 0
 
 	return 1

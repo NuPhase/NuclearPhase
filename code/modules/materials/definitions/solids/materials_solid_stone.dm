@@ -38,6 +38,39 @@
 	uid = "solid_ceramic"
 	lore_text = "A hard substance produced by firing clay in a kiln."
 	color = COLOR_OFF_WHITE
+	dissolves_into = null
+	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
+	flags = MAT_FLAG_BRITTLE
+
+// SUPERCERAMICS START
+
+/decl/material/solid/stone/ceramic/hafniumcarbide
+	name = "hafnium carbide"
+	uid = "hafnium_carbide"
+	weight = MAT_VALUE_VERY_HEAVY
+	hardness = MAT_VALUE_HARD
+	color = "#303030"
+	liquid_density = 10370
+	solid_density = 12200
+	melting_point = 4231
+	boiling_point = 6000
+	integrity = 50
+	molar_mass = 0.19050
+
+/decl/material/solid/stone/ceramic/hafniumcarbonitride
+	name = "hafnium carbonitride"
+	uid = "hafnium_carbonitride"
+	weight = MAT_VALUE_VERY_HEAVY
+	hardness = MAT_VALUE_HARD
+	color = "#202020"
+	liquid_density = 11112
+	solid_density = 13073
+	melting_point = 4380
+	boiling_point = 6000
+	integrity = 30
+	molar_mass = 0.204
+
+// SUPERCERAMICS END
 
 /decl/material/solid/stone/marble
 	name = "marble"

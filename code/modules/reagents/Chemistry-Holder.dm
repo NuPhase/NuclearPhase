@@ -41,6 +41,9 @@ var/global/obj/temp_reagents_holder = new
 /datum/reagents/proc/get_reaction_loc()
 	return my_atom
 
+/datum/reagents/proc/get_pressure()
+	return ONE_ATMOSPHERE
+
 /datum/reagents/proc/get_primary_reagent_name(var/codex = FALSE) // Returns the name of the reagent with the biggest volume.
 	var/decl/material/reagent = get_primary_reagent_decl()
 	if(reagent)

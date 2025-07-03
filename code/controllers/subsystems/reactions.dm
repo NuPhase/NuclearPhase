@@ -9,6 +9,24 @@ SUBSYSTEM_DEF(reactions)
 	var/list/fusion_reactions = list()
 
 /datum/controller/subsystem/reactions/proc/process_gasmix(datum/gas_mixture/gasmix)
+	var/list/all_fluid = gasmix.get_fluid()
+
+	var/list/react_list = process_reactions(all_fluid.Copy(), gasmix.temperature, gasmix.heat_capacity(), gasmix.pressure, gasmix.volume)
+	var/list/result_fluid = react_list[1]
+
+	var/list/combined_list = result_fluid.Copy()
+	combined_list.Add(all_fluid.Copy())
+
+	for(var/f_type in combined_list)
+		if(result_fluid[f_type] == all_fluid[f_type]) // no change
+			continue
+		var/difference = result_fluid[f_type] - all_fluid[f_type]
+		gasmix.adjust_gas(f_type, difference, FALSE)
+
+	gasmix.temperature = react_list[2]
+	gasmix.update_values()
+
+	/*
 	if(length(gasmix.gas))
 		var/list/reacted_list = process_reactions(gasmix.gas, gasmix.temperature, null, gasmix.pressure, gasmix.volume)
 		gasmix.gas = reacted_list[1]
@@ -21,6 +39,7 @@ SUBSYSTEM_DEF(reactions)
 		var/list/reacted_list = process_reactions(gasmix.solids, gasmix.temperature, null, gasmix.pressure, gasmix.volume)
 		gasmix.solids = reacted_list[1]
 		gasmix.temperature = reacted_list[2]
+	*/
 
 /datum/controller/subsystem/reactions/proc/process_reactions(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
 	var/has_fuel = FALSE

@@ -301,7 +301,7 @@
 	icon_base = 'icons/turf/walls/metal.dmi'
 	wall_flags = PAINT_PAINTABLE
 	door_icon_base = "metal"
-	color = "#b2cac7"
+	color = "#a0b3b4"
 	icon_reinf = 'icons/turf/walls/reinforced_metal.dmi'
 	construction_difficulty = MAT_VALUE_VERY_HARD_DIY
 	value = 1.5
@@ -478,21 +478,6 @@
 	boiling_point = 5828
 	molar_mass = 0.183
 
-/decl/material/solid/metal/hafniumcarbide
-	name = "hafnium carbide"
-	uid = "hafmium_carbide"
-	weight = MAT_VALUE_VERY_HEAVY
-	color = "#303030"
-	value = 1.5
-
-/decl/material/solid/metal/tantalumhafniumcarbide
-	name = "tantalum hafnium carbide"
-	uid = "tantalum_hafnium_carbide"
-	weight = MAT_VALUE_VERY_HEAVY
-	taste_mult = 0 //no taste
-	color = "#3a3138"
-	value = 2
-
 /decl/material/solid/metal/inconel
 	name = "inconel"
 	uid = "inconel"
@@ -519,3 +504,11 @@
 			INTERACTION_ABSORPTION = 0.003
 		)
 	)
+
+/decl/material/solid/metal/rare_metals
+	name = "rare metals"
+	uid = "rare_metals"
+	lore_text = "A mixture of many, many rare metals."
+	weight = MAT_VALUE_VERY_LIGHT
+	hardness = MAT_VALUE_FLEXIBLE
+	color = "#af6161"
