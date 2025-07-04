@@ -87,7 +87,7 @@
 /obj/item/organ/external/head/take_external_damage(brute, burn, damage_flags, used_weapon, override_droplimb)
 	. = ..()
 	if (!(status & ORGAN_DISFIGURED))
-		if (brute_dam > 40)
+		if (brute_dam > 100)
 			if (prob(50))
 				disfigure(BRUTE)
 		if (burn_dam > 40)
