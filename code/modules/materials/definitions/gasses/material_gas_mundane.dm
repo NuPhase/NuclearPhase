@@ -225,20 +225,20 @@
 
 /decl/material/gas/nitrous_oxide/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/dosage = LAZYACCESS(M.chem_doses, type)
-	if(dosage >= 7)
+	if(dosage >= 70)
 		SET_STATUS_MAX(M, STAT_ASLEEP, 3)
 		SET_STATUS_MAX(M, STAT_DIZZY, 3)
 		SET_STATUS_MAX(M, STAT_CONFUSE, 3)
-	if(dosage >= 3)
+	if(dosage >= 30)
 		SET_STATUS_MAX(M, STAT_PARA, 1)
 		SET_STATUS_MAX(M, STAT_DROWSY, 3)
 		SET_STATUS_MAX(M, STAT_SLUR, 3)
 	if(prob(20))
 		M.emote(pick("giggle", "laugh"))
-	M.add_chemical_effect(CE_PULSE, dosage * -0.15)
-	M.add_chemical_effect(CE_PRESSURE, dosage * -5)
+	M.add_chemical_effect(CE_PULSE, dosage * -0.015)
+	M.add_chemical_effect(CE_PRESSURE, dosage * -0.5)
 	var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(M, BP_HEART)
-	H.cardiac_output_modifiers[name] = 1 - dosage * 0.0004
+	H.cardiac_output_modifiers[name] = 1 - dosage * 0.00004
 
 /decl/material/gas/nitrogen
 	name = "nitrogen"

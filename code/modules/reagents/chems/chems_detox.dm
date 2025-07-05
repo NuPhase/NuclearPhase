@@ -97,7 +97,7 @@
 	color = "#e2e2e2"
 	uid = "metoclopramide"
 	overdose = 15
-	metabolism = REM*2
+	metabolism = REM*0.1
 	drug_category = DRUG_CATEGORY_TOX
 
 /decl/material/liquid/naloxone

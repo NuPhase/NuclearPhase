@@ -8,13 +8,25 @@
 /datum/gas_mixture/surface/adjust_gas(gasid, moles, update, calculate_phase_change)
 	return
 
+/datum/gas_mixture/surface/adjust_gas_temp(gasid, moles, temp, update, calculate_phase_change)
+	return
+
+/datum/gas_mixture/surface/remove_ratio(ratio, out_group_multiplier)
+	var/list/cached_gas = gas.Copy()
+	var/list/cached_liquids = liquids.Copy()
+	var/list/cached_solids = solids.Copy()
+	. = ..()
+	gas = cached_gas
+	liquids = cached_liquids
+	solids = cached_solids
+
 /datum/gas_mixture/surface/merge(datum/gas_mixture/giver, update)
 	return
 
 /datum/gas_mixture/surface/remove(amount)
-	var/list/cached_gas = gas
-	var/list/cached_liquids = liquids
-	var/list/cached_solids = solids
+	var/list/cached_gas = gas.Copy()
+	var/list/cached_liquids = liquids.Copy()
+	var/list/cached_solids = solids.Copy()
 	. = ..()
 	gas = cached_gas
 	liquids = cached_liquids

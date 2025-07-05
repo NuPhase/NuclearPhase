@@ -268,6 +268,8 @@
 		visible_message(SPAN_NOTICE("[user] inserts an electrode into \the [src]."))
 		update_icon()
 		return
+	if(istype(I, /obj/item/stack/material))
+		our_furnace.add_mat_stack(I)
 	our_furnace.attackby(I, user)
 
 /obj/structure/arc_furnace_overlay/examine(mob/user)
@@ -385,10 +387,9 @@
 		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
 		moles_to_remove = min(moles_to_remove, connected_canister.air_contents.gas_moles * 0.7)
 		for(var/g in connected_canister.air_contents.gas)
-			if(ispath(g, /decl/material/gas))
-				connected_canister.air_contents.adjust_gas(g, -moles_to_remove)
-				air_contents.adjust_gas(g, moles_to_remove)
-				break
+			connected_canister.air_contents.adjust_gas(g, -moles_to_remove)
+			air_contents.adjust_gas(g, moles_to_remove)
+			break
 		playsound(src, 'sound/machines/thruster.ogg', 70)
 	else if(pressure_delta < 50)
 		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
@@ -404,6 +405,9 @@
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
 	environment.add_thermal_energy(joules * HEAT_LEAK_COEF)
+
+/obj/machinery/atmospherics/unary/furnace/arc/proc/add_mat_stack(obj/item/stack/material/mat_stack)
+	mat_stack_to_gas(mat_stack, connected_canister.air_contents)
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/heat_capacity()
 	. = heat_capacity

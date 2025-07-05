@@ -801,17 +801,17 @@
 			clear_fullscreen("adrenalnoise")
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp + (get_shock() * 0.1)
+		var/hurtdamage = getHalLoss() - GET_CHEMICAL_EFFECT(src, CE_PAINKILLER)
 		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
-		if(hurtdamage)
+		if(hurtdamage > 0)
 			var/severity = 0
 			switch(hurtdamage)
-				if(10 to 40)		severity = 1
-				if(40 to 70)		severity = 2
-				if(70 to 100)		severity = 3
-				if(100 to 150)		severity = 4
-				if(150 to 250)		severity = 5
-				if(250 to INFINITY)	severity = 6
+				if(100 to 300)		severity = 1
+				if(300 to 500)		severity = 2
+				if(500 to 666)		severity = 3
+				if(666 to 833)		severity = 4
+				if(833 to 1000)		severity = 5
+				if(1000 to INFINITY)	severity = 6
 			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
@@ -822,14 +822,11 @@
 			healths_ma.icon_state = "blank"
 			healths_ma.overlays = null
 
-			if(has_chemical_effect(CE_PAINKILLER, 100))
+			if(has_chemical_effect(CE_PAINKILLER, 600))
 				healths_ma.icon_state = "health_numb"
 			else
 				// Generate a by-limb health display.
 				var/no_damage = 1
-				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
-				if(can_feel_pain())
-					trauma_val = max(shock_stage,get_shock())/700
 				// Collect and apply the images all at once to avoid appearance churn.
 				var/list/health_images = list()
 				for(var/obj/item/organ/external/E in get_external_organs())
@@ -842,14 +839,14 @@
 					health_images += image('icons/hud/screen1_health.dmi',"burning")
 
 				// Show a general pain/crit indicator if needed.
-				if(is_asystole())
+				var/oxysat = get_blood_saturation()
+				if(blood_perfusion < 0.8)
 					health_images += image('icons/hud/screen1_health.dmi',"hardcrit")
-				else if(trauma_val)
-					if(can_feel_pain())
-						if(trauma_val > 0.7)
-							health_images += image('icons/hud/screen1_health.dmi',"softcrit")
-						if(trauma_val >= 1)
-							health_images += image('icons/hud/screen1_health.dmi',"hardcrit")
+				else if(oxysat < 0.8)
+					if(oxysat > 0.5)
+						health_images += image('icons/hud/screen1_health.dmi',"softcrit")
+					else
+						health_images += image('icons/hud/screen1_health.dmi',"hardcrit")
 				else if(no_damage)
 					health_images += image('icons/hud/screen1_health.dmi',"fullhealth")
 				healths_ma.overlays += health_images

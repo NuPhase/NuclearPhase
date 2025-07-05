@@ -176,6 +176,9 @@ var/global/list/DIR2DEGREES = list(
 	var/obj/screen/compass/comp
 	var/turf/old_turf = null
 
+	var/list/required_components = list()
+	var/list/installed_components = list()
+
 /obj/multitile_vehicle/proc/set_bound_box()
 	density = !active
 

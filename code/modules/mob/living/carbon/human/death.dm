@@ -29,7 +29,7 @@
 
 	if(stat == DEAD) return
 
-	send_to_limb()
+	ghostize()
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
@@ -63,6 +63,10 @@
 	mcv = 0
 	tpvr = initial(tpvr)
 	oxygen_amount = 0
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(src, BP_HEART)
+	if(heart)
+		heart.pulse = 0
+		heart.damage = heart.max_damage
 
 /mob/living/carbon/human/proc/is_husked()
 	return (MUTATION_HUSK in mutations)

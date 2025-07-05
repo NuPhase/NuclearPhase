@@ -88,8 +88,9 @@
 	gauge_icon = null
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
 	slot_flags = null
-	starting_pressure = list(/decl/material/liquid/acid/hydrogen_peroxide = 100*ONE_ATMOSPHERE, /decl/material/liquid/water = 1*ONE_ATMOSPHERE, /decl/material/gas/helium = 0.3*ONE_ATMOSPHERE)
+	starting_pressure = list(/decl/material/liquid/acid/hydrogen_peroxide = 900*ONE_ATMOSPHERE, /decl/material/liquid/water = 1*ONE_ATMOSPHERE, /decl/material/gas/helium = 0.3*ONE_ATMOSPHERE)
 	weight = 4
+	volume = 100
 
 /obj/item/tank/waste
 	name = "waste tank"

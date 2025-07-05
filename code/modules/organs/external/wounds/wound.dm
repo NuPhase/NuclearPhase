@@ -158,6 +158,7 @@
 
 /datum/wound/proc/bandage()
 	bandaged = 1
+	germ_attaining_speed *= 0.1
 
 /datum/wound/proc/pack(is_sterile = FALSE, should_disinfect = FALSE)
 	packed = 1
@@ -168,9 +169,12 @@
 
 /datum/wound/proc/salve()
 	salved = 1
+	germ_attaining_speed *= 0.01
 
 /datum/wound/proc/disinfect()
 	disinfected = 1
+	germ_attaining_speed *= 0.1
+	germ_level *= 0.01
 
 // heal the given amount of damage, and if the given amount of damage was more
 // than what needed to be healed, return how much heal was left

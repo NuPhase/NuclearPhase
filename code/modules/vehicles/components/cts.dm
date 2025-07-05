@@ -4,12 +4,16 @@
 	icon = 'icons/obj/vehicle/components/cts.dmi'
 	icon_state = "diverters"
 	w_class = ITEM_SIZE_GARGANTUAN
+	weight = 30
+	comp_type = VC_FLAPS
 
 /obj/item/vehicle_component/propellant_pump
 	name = "CTS main propellant pump"
 	desc = "This hefty electric pump can pump up to 400kg of fuel per second, although you won't need as much."
 	icon = 'icons/obj/vehicle/components/cts.dmi'
 	w_class = ITEM_SIZE_LARGE
+	weight = 20
+	comp_type = VC_PUMP
 
 /obj/item/vehicle_component/reference_unit
 	name = "CTS orbital reference unit"
@@ -18,3 +22,5 @@
 	icon_state = "computer"
 	var/is_updated = FALSE
 	w_class = ITEM_SIZE_LARGE
+	weight = 3
+	comp_type = VC_COMPUTER

@@ -55,7 +55,7 @@
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 	var/strength_mod = (M.GetTraitLevel(/decl/trait/malus/ethanol) * 2.5) || 1
 
-	var/effective_dose = LAZYACCESS(M.chem_doses, type) * strength_mod * (1 + REAGENT_VOLUME(holder, type)/60) //drinking a LOT will make you go down faster
+	var/effective_dose = LAZYACCESS(M.chem_doses, type) * strength_mod * (1 + REAGENT_VOLUME(holder, type)/1000) //drinking a LOT will make you go down faster
 	if(effective_dose >= strength) // Early warning
 		ADJ_STATUS(M, STAT_DIZZY, 6) // It is decreased at the speed of 3 per tick
 	if(effective_dose >= strength * 2) // Slurring

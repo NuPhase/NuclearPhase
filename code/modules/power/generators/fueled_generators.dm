@@ -132,6 +132,7 @@
 	desc = "A power generator that runs on liquids."
 	var/tank_volume = 5000 //in ml
 	var/closed_cycle = FALSE //whether this generator runs in closed cycle or not. If not, it will use oxidizer and spew waste into the environment.
+	var/needs_waste_tank = TRUE // Is a waste tank required in closed cycle?
 	var/list/decl/material/allowed_fuels = list()
 	var/combustion_chamber_volume = 2 //basically means fuel consumption
 	var/actual_fuel_consumption = 0 //per process
@@ -193,7 +194,7 @@
 			gen_shutdown()
 			audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
 			return
-	else if(!oxidizer_tank || !waste_tank || !oxidizer_tank.air_contents.gas)
+	else if(!oxidizer_tank || (needs_waste_tank && !waste_tank) || !oxidizer_tank.air_contents.gas)
 		gen_shutdown()
 		audible_message(SPAN_WARNING("[src] sputters and shuts down, it cannot sustain combustion!"))
 		var/has_oxidizer = FALSE
@@ -215,7 +216,10 @@
 		burn_mixture.adjust_gas(mat.burn_product, (required_fuel_ml / mat.molar_volume) * 0.95, FALSE)
 		oxidizer_tank.air_contents.remove_by_flag(XGM_GAS_OXIDIZER, required_fuel_ml / mat.molar_volume)
 		burn_mixture.add_thermal_energy(mat.combustion_chamber_fuel_value * required_fuel_ml * (1-efficiency))
-		waste_tank.air_contents.merge(burn_mixture)
+		if(needs_waste_tank)
+			waste_tank.air_contents.merge(burn_mixture)
+		else
+			environment.merge(burn_mixture)
 	else
 		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
 		burn_mixture.adjust_gas(mat.type, (required_fuel_ml / mat.molar_volume) * 0.05)
@@ -236,7 +240,7 @@
 		var/needed_tanks = list()
 		if(!oxidizer_tank)
 			needed_tanks += "oxidizer"
-		if(!waste_tank)
+		if(!waste_tank && needs_waste_tank)
 			needed_tanks += "waste"
 		var/choice = input(user, "Which tank to add?", "tank choice") in needed_tanks
 		if(!choice)
@@ -301,7 +305,13 @@
 	power_output = 10
 	output_voltage = 4400
 	weight = 370
+	closed_cycle = TRUE
+	needs_waste_tank = FALSE
 	var/last_power_output = 0
+
+/obj/machinery/power/generator/port_gen/liquid/diesel/large/Initialize()
+	. = ..()
+	oxidizer_tank = new /obj/item/tank/hydrogen_peroxide
 
 /obj/machinery/power/generator/port_gen/liquid/diesel/large/on_power_drain(w)
 	. = ..()

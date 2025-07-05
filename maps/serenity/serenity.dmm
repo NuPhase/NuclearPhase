@@ -1591,12 +1591,12 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "aWT" = (
-/obj/machinery/door/blast/regular{
-	id_tag = "atmos_decont_exterior";
-	dir = 4
-	},
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/regular/open{
+	id_tag = "atmos_decont_interior";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -7909,14 +7909,14 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations)
 "ecd" = (
-/obj/machinery/door/blast/regular{
-	id_tag = "atmos_decont_exterior"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 6
 	},
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/blast/regular/open{
+	id_tag = "atmos_decont_interior"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos)
@@ -12680,7 +12680,7 @@
 	},
 /obj/machinery/atmospherics/binary/pump/high_power/on/max_pressure{
 	dir = 1;
-	target_pressure = 4500
+	target_pressure = 2000
 	},
 /obj/effect/floor_decal/industrial/outline/orange,
 /turf/simulated/floor/tiled/white/monotile,
@@ -22551,10 +22551,10 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/brig/office)
 "lkd" = (
-/obj/machinery/door/blast/regular{
-	id_tag = "atmos_decont_exterior"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
+/obj/machinery/door/blast/regular/open{
+	id_tag = "atmos_decont_interior"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos)
 "lkf" = (
@@ -45314,13 +45314,6 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
-"weo" = (
-/obj/machinery/door/blast/regular{
-	id_tag = "atmos_decont_exterior";
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/monotile,
-/area/serenity/shelter/engineering/atmos)
 "weq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -49319,7 +49312,9 @@
 "xQt" = (
 /obj/machinery/atmospherics/binary/relief_valve{
 	dir = 1;
-	starting_volume = 25000
+	starting_volume = 25000;
+	open_pressure = 9000;
+	close_pressure = 5000
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/white/monotile,
@@ -136665,7 +136660,7 @@ pvg
 seB
 seB
 aWT
-weo
+gCl
 seB
 seB
 wKA
