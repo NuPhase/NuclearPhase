@@ -63,6 +63,16 @@
 	if(current_switch && current_switch.state)
 		do_message("TURBINES ON BYPASS", 1)
 
+	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
+	current_gate = reactor_valves["T-COOLANT V-IN"]
+	if(!current_gate.unlocked)
+		do_message("T-COOLANT V-IN CLOSED", 2)
+	if(current_gate.air1.pressure < ONE_ATMOSPHERE * 10)
+		do_message("LOW COOLANT SUPPLY", 2)
+	current_gate = reactor_valves["T-COOLANT V-OUT"]
+	if(!current_gate.unlocked)
+		do_message("T-COOLANT V-OUT CLOSED", 2)
+
 	if(generator1.connected && generator1.last_load < 50000)
 		do_message("GENERATOR #1 FULL LOAD REJECTION", 3)
 	if(generator2.connected && generator2.last_load < 50000)
@@ -136,7 +146,7 @@
 	if(get_pump_flow_rate("T-CP 2") < 50)
 		do_message("TURBINE LOOP PUMP #2 MASS FLOW < 50KG/S", 1)
 
-	if(get_meter_temperature("T-M-TURB EX") > 390 && !(current_switch && current_switch.state))
+	if(get_meter_temperature("T-M-TURB EX") > 450 && !(current_switch && current_switch.state))
 		do_message("VAPOR IN CONDENSER", 2)
 
 /datum/reactor_control_system/proc/auto_control()

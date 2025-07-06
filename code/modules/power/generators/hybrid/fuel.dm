@@ -6,10 +6,34 @@
 	w_class = ITEM_SIZE_LARGE
 	volume = 35000
 	var/spec_desc = ""
-	var/sealed = FALSE
+	var/sealed = TRUE
 	var/list/initial_reagents
 	weight = 12
 	failure_chance = 1
+
+/obj/item/chems/fuel_cell/get_mechanics_info()
+	return "It can be opened with a power drill. Be careful, as it will weaken its radiation shielding. Can contain dangerous isotopes inside."
+
+/obj/item/chems/fuel_cell/attackby(obj/item/W, mob/user)
+	if(IS_WRENCH(W))
+		if(sealed)
+			if(W.get_tool_quality(TOOL_WRENCH) < TOOL_QUALITY_DECENT)
+				to_chat(user, SPAN_WARNING("\The [W] is too weak to open the fuel cell."))
+				return
+			visible_message(SPAN_DANGER("[user] unseals \the [src]!"))
+			sealed = FALSE
+			atom_flags = ATOM_FLAG_OPEN_CONTAINER
+			try_offgas()
+		else
+			to_chat(user, SPAN_NOTICE("You seal \the [src]."))
+			sealed = TRUE
+			atom_flags = null
+	. = ..()
+
+/obj/item/chems/fuel_cell/throw_impact(atom/hit_atom)
+	. = ..()
+	if(ATOM_IS_OPEN_CONTAINER(src))
+		reagents.splash(hit_atom, rand(reagents.total_volume*0.25,reagents.total_volume), min_spill = 1000, max_spill = volume)
 
 /obj/item/chems/fuel_cell/fail_roundstart()
 	name = "empty [initial(name)]"
@@ -145,6 +169,12 @@
 /obj/machinery/reactor_fuelport/Initialize()
 	. = ..()
 	reactor_components[uid] = src
+	var/cell_type = pick(
+		/obj/item/chems/fuel_cell/fissionclassic/spent,
+		/obj/item/chems/fuel_cell/deuterium_tritium/spent,
+		/obj/item/chems/fuel_cell/deuterium_tritium/spent)
+	inserted = new cell_type
+	sealed = TRUE
 
 /obj/machinery/reactor_fuelport/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/chems/fuel_cell))

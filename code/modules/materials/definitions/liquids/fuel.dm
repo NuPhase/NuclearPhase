@@ -36,7 +36,7 @@
 	uid = "biodiesel"
 	solid_name = "biodiesel gel"
 	lore_text = "Biodiesel is a renewable, biodegradable fuel manufactured domestically from vegetable oils, animal fats, or recycled restaurant grease."
-	color = "#ffbb77"
+	color = "#e6b381"
 	gas_tile_overlay = "generic"
 	gas_overlay_limit = 7
 	gas_specific_heat = 2.5

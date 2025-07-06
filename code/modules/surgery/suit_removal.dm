@@ -77,6 +77,7 @@
 		return FALSE
 	if(tool.get_tool_quality(TOOL_SCREWDRIVER) < TOOL_QUALITY_GOOD)
 		to_chat(user, SPAN_WARNING("\The [tool] is too weak to take out these bolts."))
+		return FALSE
 	var/obj/item/clothing/suit/modern/space/msuit = target.get_equipped_item(slot_wear_suit_str)
 	return (target_zone == BP_CHEST) && istype(msuit)
 

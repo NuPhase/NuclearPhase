@@ -44,9 +44,9 @@
 	icon_state = "newweldtank"
 
 /obj/structure/reagent_dispensers/fueltank/newtank/diesel
-	name = "diesel tank"
-	desc = "Contains low-quality diesel."
-	initial_reagent_types = list(/decl/material/liquid/diesel = 1)
+	name = "biodiesel tank"
+	desc = "Contains low-quality biodiesel."
+	initial_reagent_types = list(/decl/material/liquid/biodiesel = 1)
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()

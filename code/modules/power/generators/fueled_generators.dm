@@ -144,6 +144,21 @@
 	var/obj/item/tank/oxidizer_tank = null
 	var/obj/item/tank/waste_tank = null
 	failure_chance = 1
+	var/button_sound = 'sound/machines/quiet_beep.ogg'
+	var/alarm_sound = 'sound/effects/alarms/buzzer.mp3'
+	var/start_sound = 'sound/items/ignition.ogg'
+
+/obj/machinery/power/generator/port_gen/liquid/gen_shutdown()
+	. = ..()
+	playsound(src, alarm_sound, 70, 1)
+
+/obj/machinery/power/generator/port_gen/liquid/receive_mouse_drop(atom/dropping, mob/living/user)
+	. = ..()
+	if(istype(dropping, /obj/structure/reagent_dispensers))
+		var/actually_transferred = dropping.reagents.trans_to_holder(reagents, tank_volume)
+		playsound(src, 'sound/chemistry/pour/jerry_can.mp3', 80, 0)
+		user.visible_message(SPAN_NOTICE("[user] fills \the [src] from \the [dropping]."), SPAN_NOTICE("You fill \the [src] with [round(actually_transferred*0.001)]L from \the [dropping]."))
+		return
 
 /obj/machinery/power/generator/port_gen/liquid/fail_roundstart()
 	stat &= BROKEN
@@ -158,6 +173,8 @@
 		return
 	active = !active
 	update_icon()
+	if(active)
+		playsound(src, start_sound, 60)
 
 /obj/machinery/power/generator/port_gen/liquid/examine(mob/user, distance)
 	. = ..()
@@ -298,7 +315,7 @@
 	power_gen = 3000000 //3MW
 	icon = 'icons/obj/machines/diesel_generator.dmi'
 	icon_state = "large"
-	tank_volume = 60000 //60 liters
+	tank_volume = 120000 //120 liters
 	combustion_chamber_volume = 20
 	anchored = TRUE
 	density = 0
@@ -328,7 +345,7 @@
 	. = ..()
 	if(IsBroken())
 		return
-	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(2200, 44000))
+	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(tank_volume*0.1, tank_volume))
 	active = TRUE
 	update_icon()
 
