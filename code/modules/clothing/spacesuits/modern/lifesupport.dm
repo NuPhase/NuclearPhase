@@ -34,6 +34,7 @@
 
 	var/obj/item/cell/battery = null
 	var/battery_type = /obj/item/cell/doublecapacity
+	var/filter_type = /obj/item/co2filter/regenerative
 	canremove = FALSE
 
 /obj/item/storage/backpack/lifesupportpack/Initialize()
@@ -48,7 +49,7 @@
 	propulsion_tank.forceMove(modules)
 	waste_tank.forceMove(modules)
 	battery.forceMove(modules)
-	var/obj/item/co2filter/newfilter = new /obj/item/co2filter
+	var/obj/item/co2filter/newfilter = filter_type
 	newfilter.forceMove(src)
 	newfilter.on_enter_storage(src)
 
@@ -187,6 +188,8 @@
 		user.playsound_local(user, 'sound/effects/rewind.ogg', 50, 0)
 	else
 		to_chat(usr, "<span class='notice'>\The [src] now uses oxygen from the tank in it.</span>")
+		owner.internal_atmosphere.remove(owner.internal_atmosphere.total_moles)
+		do_support()
 		user.playsound_local(user, 'sound/effects/internals.ogg', 50, 0)
 
 /obj/item/storage/backpack/lifesupportpack/verb/change_target_pressure()

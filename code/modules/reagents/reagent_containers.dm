@@ -44,7 +44,7 @@
 /obj/item/chems/proc/try_offgas()
 	if(!ATOM_IS_OPEN_CONTAINER(src))
 		return // We're sealed
-	var/offgassed = FALSE
+	var/offgassed = 0
 	for(var/reagent_type in reagents.reagent_volumes)
 		if(!ispath(reagent_type, /decl/material/gas))
 			continue
@@ -53,9 +53,9 @@
 		var/decl/material/mat = GET_DECL(reagent_type)
 		var/turf/T = get_turf(src)
 		T.assume_gas(reagent_type, amount/mat.molar_volume, temperature)
-		offgassed = TRUE
+		offgassed = amount
 	if(offgassed)
-		playsound(src, 'sound/chemistry/heatdam.ogg', 20)
+		playsound(src, 'sound/chemistry/heatdam.ogg', min(offgassed, 80))
 
 /obj/item/chems/verb/set_amount_per_transfer_from_this()
 	set name = "Set Transfer Amount"

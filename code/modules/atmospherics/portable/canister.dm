@@ -21,9 +21,10 @@
 	var/can_label = 1
 	start_pressure = 12 * ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
-	volume = 700
+	volume = 1100
 	interact_offline = 1 // Allows this to be used when not in powered area.
 	var/update_flag = 0
+	var/can_explode = TRUE
 	weight = 61
 
 /obj/machinery/portable_atmospherics/canister/Initialize(mapload, material)
@@ -240,12 +241,14 @@ update_flag
 	return ..()
 
 /obj/machinery/portable_atmospherics/canister/proc/healthcheck()
-	if(destroyed)
+	if(destroyed && can_explode)
 		return 1
 
 	if (src.health <= 10)
 		var/atom/location = src.loc
 		location.assume_air(air_contents)
+		if(air_contents.return_pressure() > ONE_ATMOSPHERE*2)
+			cell_explosion(get_turf(loc), sqrt(air_contents.return_pressure())*2, temperature = air_contents.temperature)
 
 		src.destroyed = 1
 		playsound(src.loc, 'sound/effects/tank_rupture.wav', 10, 1, -3)
@@ -303,12 +306,18 @@ update_flag
 				if(holding)
 					holding.queue_icon_update()
 
-	if(air_contents.return_pressure() < 1)
+	var/our_pressure = air_contents.return_pressure()
+
+	if(our_pressure < 1)
 		can_label = 1
 	else
 		can_label = 0
 
 	air_contents.fire_react()
+
+	if(our_pressure > MAX_TANK_PRESSURE)
+		health -= our_pressure/MAX_TANK_PRESSURE
+		healthcheck()
 
 /obj/machinery/portable_atmospherics/canister/proc/return_temperature()
 	var/datum/gas_mixture/GM = src.return_air()
@@ -524,6 +533,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane/central
 	volume = 1767146 //7.5m sphere
+	can_explode = FALSE
 
 /obj/machinery/portable_atmospherics/canister/methyl_bromide
 	name = "\improper Canister \[CH3Br\]"

@@ -104,7 +104,7 @@
 		real_expansion = air1.return_pressure() / 0.001
 	real_expansion = min(real_expansion, expansion_ratio)
 
-	kinetic_energy_delta = kin_total - generator.last_load * 1800
+	kinetic_energy_delta = kin_total - generator.last_load
 
 	rpm = sqrt(2 * kin_energy / TURBINE_MOMENT_OF_INERTIA) * 60 / 6.2831
 

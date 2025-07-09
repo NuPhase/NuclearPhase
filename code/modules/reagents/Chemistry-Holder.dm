@@ -196,9 +196,11 @@ var/global/obj/temp_reagents_holder = new
 
 //The same as 'add_reagent' except it checks the amount of reagent currently present in this datum.
 /datum/reagents/proc/add_reagent_max(reagent_type, amount, max_amount, data = null, safety = 0, defer_update = FALSE)
-	if(REAGENT_VOLUME(src, reagent_type) > max_amount)
+	var/cur_volume = REAGENT_VOLUME(src, reagent_type)
+	if(cur_volume > max_amount)
 		return FALSE
-	return add_reagent(reagent_type, amount, data, safety, defer_update)
+	var/actually_added = min(max_amount - cur_volume, amount)
+	return add_reagent(reagent_type, actually_added, data, safety, defer_update)
 
 //Adds [amount] of [reagent_type] with [data] to this datum.
 //It's good practice to defer update when you add multiple reagents for optimisation purposes.

@@ -269,7 +269,7 @@
 
 	else return 1
 
-/obj/machinery/atmospherics/pipe/simple/proc/burst()
+/obj/machinery/atmospherics/pipe/simple/proc/burst(iterations=1)
 	ASSERT(parent)
 	parent.temporarily_store_fluids()
 	visible_message("<span class='danger'>\The [src] bursts!</span>");
@@ -278,6 +278,24 @@
 	smoke.set_up(1,0, src.loc, 0)
 	smoke.start()
 	log_and_message_admins("Gas pipe rupture.", location = get_turf(src))
+	leaking = TRUE
+
+	var/pressure = parent.air.return_pressure()
+	if(pressure < ONE_ATMOSPHERE * 5)
+		qdel(src)
+		return
+
+	for(var/dir in cardinal)
+		var/turf/T = get_step(src, dir)
+		var/obj/machinery/atmospherics/pipe/simple/neighbor = locate() in T
+		if(!neighbor || neighbor.leaking)
+			continue
+		if(prob((2*sqrt(pressure))/iterations))
+			neighbor.burst(iterations + 1)
+
+	var/turf/our_turf = get_turf(src)
+	cell_explosion(our_turf, sqrt(pressure), temperature = parent.air.temperature)
+
 	qdel(src)
 
 /obj/machinery/atmospherics/pipe/simple/on_update_icon(var/safety = 0)

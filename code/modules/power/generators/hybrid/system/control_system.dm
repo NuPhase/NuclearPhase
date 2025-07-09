@@ -120,7 +120,7 @@
 		pressure_temperature_should_alarm = TRUE
 		if(world.time + log_timeout > last_temperature_log)
 			make_log("TURBINE HEATEXCHANGER OVERHEAT.")
-	if(get_meter_temperature("T-M-TURB EX") > 380 && !(current_switch && current_switch.state))
+	if(get_meter_temperature("T-M-TURB EX") > 500 && !(current_switch && current_switch.state))
 		do_message("TURBINE CONDENSER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
 		if(world.time + log_timeout > last_temperature_log)
@@ -146,7 +146,7 @@
 	if(get_pump_flow_rate("T-CP 2") < 50)
 		do_message("TURBINE LOOP PUMP #2 MASS FLOW < 50KG/S", 1)
 
-	if(get_meter_temperature("T-M-TURB EX") > 450 && !(current_switch && current_switch.state))
+	if(get_meter_temperature("T-M-TURB EX") > 450 && get_meter_pressure("T-M-TURB EX") > 200 && !(current_switch && current_switch.state))
 		do_message("VAPOR IN CONDENSER", 2)
 
 /datum/reactor_control_system/proc/auto_control()

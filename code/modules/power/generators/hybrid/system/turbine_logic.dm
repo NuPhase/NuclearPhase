@@ -46,7 +46,7 @@
 				governor_adjustment -= 0.15
 			else
 				governor_adjustment += 0.15
-			turbine1.feeder_valve_openage = CLAMP01(turbine1.feeder_valve_openage + governor_adjustment)
+			turbine1.feeder_valve_openage = CLAMP01(governor_adjustment)
 			current_switch = reactor_buttons["turbine1"]
 			current_switch.update_icon(turbine1.feeder_valve_openage)
 
@@ -57,7 +57,7 @@
 				governor_adjustment -= 0.15
 			else
 				governor_adjustment += 0.15
-			turbine2.feeder_valve_openage = CLAMP01(turbine2.feeder_valve_openage + governor_adjustment)
+			turbine2.feeder_valve_openage = CLAMP01(governor_adjustment)
 			current_switch = reactor_buttons["turbine2"]
 			current_switch.update_icon(turbine2.feeder_valve_openage)
 	else
@@ -85,15 +85,15 @@
 	//control the expansion so we get the ideal temperature at the exhaust
 	if(turbine1.feeder_valve_openage > 0)
 		if(turbine1.exhaust_temperature < IDEAL_EXHAUST_TEMP)
-			turbine1.expansion_ratio += 0.002
+			turbine1.expansion_ratio += 0.01
 		else if(turbine1.exhaust_temperature > IDEAL_EXHAUST_TEMP)
-			turbine1.expansion_ratio -= 0.002
+			turbine1.expansion_ratio -= 0.01
 		turbine1.expansion_ratio = Clamp(turbine1.expansion_ratio, 0.15, 0.87)
 	if(turbine2.feeder_valve_openage > 0)
 		if(turbine2.exhaust_temperature < IDEAL_EXHAUST_TEMP)
-			turbine2.expansion_ratio += 0.002
+			turbine2.expansion_ratio += 0.01
 		else if(turbine2.exhaust_temperature > IDEAL_EXHAUST_TEMP)
-			turbine2.expansion_ratio -= 0.002
+			turbine2.expansion_ratio -= 0.01
 		turbine2.expansion_ratio = Clamp(turbine2.expansion_ratio, 0.15, 0.87)
 
 /datum/reactor_control_system/proc/control_cooling()

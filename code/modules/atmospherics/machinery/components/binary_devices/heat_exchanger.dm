@@ -30,6 +30,7 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 /obj/machinery/atmospherics/binary/heat_exchanger/Initialize()
 	. = ..()
 	air1.volume = volume
+	air1.suction_moles = volume
 	air2.volume = volume
 	for(var/sdir in global.cardinal)
 		connected = locate(/obj/machinery/atmospherics/binary/heat_exchanger) in get_step(src,sdir)
@@ -37,29 +38,41 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 			break
 
 /obj/machinery/atmospherics/binary/heat_exchanger/Process()
-	build_network()
+	. = ..()
+
 	if(!connected || !air1.total_moles || !engaged)
 		return
 
-	//Individual heat capacities
+	if(heating)
+		if(connected.air1.temperature < wanted_temperature)
+			return FALSE
+	else
+		if(connected.air1.temperature > wanted_temperature)
+			return FALSE
+
 	var/our_heat_capacity = air1.heat_capacity()
 	var/their_heat_capacity = connected.air1.heat_capacity()
 
-	//How much energy we have for heat transfer
-	var/available_transfer_energy = (their_heat_capacity * connected.air1.temperature) - (their_heat_capacity * connected.minimum_temperature)
-
-	//How much moles can we actually exchange and transfer
 	var/temperature_delta = wanted_temperature - air1.temperature
-	var/energy_per_mole = temperature_delta * (our_heat_capacity / air1.total_moles)
-	var/required_energy = air1.total_moles * energy_per_mole
-	var/spent_energy = min(available_transfer_energy, required_energy)
-	var/moles_to_transfer = spent_energy / energy_per_mole
+	var/required_energy_delta = temperature_delta * our_heat_capacity
 
-	//Actually transfer the fluid and add/remove heat
-	air2.merge(air1.remove(moles_to_transfer))
-	air2.temperature = wanted_temperature
-	connected.air2.merge(connected.air1.remove(moles_to_transfer))
-	connected.air2.temperature = connected.minimum_temperature
+	var/available_energy_delta = (connected.air1.temperature - wanted_temperature) * their_heat_capacity
+
+	var/actual_energy_delta
+	if(heating)
+		actual_energy_delta = min(available_energy_delta, required_energy_delta)
+	else
+		actual_energy_delta = max(available_energy_delta, required_energy_delta)
+
+	//var/moles_to_transfer = abs(actual_energy_delta) / max(our_heat_capacity, their_heat_capacity)
+
+	air2.merge(air1.remove(abs((actual_energy_delta / our_heat_capacity) * temperature_delta)))
+	air2.add_thermal_energy(actual_energy_delta)
+
+	connected.air2.merge(connected.air1.remove(abs((actual_energy_delta / their_heat_capacity) * temperature_delta)))
+	connected.air2.add_thermal_energy(actual_energy_delta * -1)
+
+	update_networks()
 
 	return 1
 

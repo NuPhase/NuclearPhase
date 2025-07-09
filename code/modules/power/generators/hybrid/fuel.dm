@@ -3,7 +3,7 @@
 	desc = "An unique container for fuel with built-in divertors for filtering."
 	icon = 'icons/obj/fuel_rods.dmi'
 	icon_state = "cell"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	volume = 35000
 	var/spec_desc = ""
 	var/sealed = TRUE
