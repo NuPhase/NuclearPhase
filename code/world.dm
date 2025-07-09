@@ -1,5 +1,7 @@
 #define WORLD_ICON_SIZE 32
 
+//#define DEBUG_ENVIRONMENT // If defined, only loads the testing map.
+
 //This file is just for the necessary /world definition
 //Try looking in game/world.dm
 

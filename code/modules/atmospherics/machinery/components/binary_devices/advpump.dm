@@ -207,7 +207,7 @@
 
 	var/power_draw = -1
 	var/air1_mass = air1.get_mass()
-	var/mass_transfer = max(air1_mass, flow_capacity)
+	var/mass_transfer = min(air1_mass, flow_capacity)
 
 	// Emulate vacuum suction
 	var/deficit = flow_capacity - air1_mass

@@ -44,12 +44,12 @@
 	waste_tank = new /obj/item/tank/waste
 	battery = new battery_type
 	modules = new /obj/abstract/modules_holder
-	atmosphere_filter = new /obj/item/co2filter/large
+	atmosphere_filter = new filter_type
 	oxygen_tank.forceMove(modules)
 	propulsion_tank.forceMove(modules)
 	waste_tank.forceMove(modules)
 	battery.forceMove(modules)
-	var/obj/item/co2filter/newfilter = filter_type
+	var/obj/item/co2filter/newfilter = new filter_type
 	newfilter.forceMove(src)
 	newfilter.on_enter_storage(src)
 

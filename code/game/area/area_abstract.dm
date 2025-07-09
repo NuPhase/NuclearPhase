@@ -1,5 +1,6 @@
 /area/hallway
 	name = "hallway"
+	requires_power = 0
 
 /area/maintenance
 	area_flags = AREA_FLAG_RAD_SHIELDED

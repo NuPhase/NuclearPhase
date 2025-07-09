@@ -241,7 +241,7 @@ update_flag
 	return ..()
 
 /obj/machinery/portable_atmospherics/canister/proc/healthcheck()
-	if(destroyed && can_explode)
+	if(destroyed || !can_explode)
 		return 1
 
 	if (src.health <= 10)

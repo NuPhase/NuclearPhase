@@ -25,10 +25,24 @@
 #include "serenity_shuttles.dm"
 #include "serenity_unit_testing.dm"
 
+#ifndef DEBUG_ENVIRONMENT
+
 #include "serenity.dmm"
+#include "..\overmap\roadsegment.dmm"
+#include "..\overmap_locs\datacenter.dmm"
+#include "..\overmap_locs\demolished_skyscraper.dmm"
+#include "..\overmap_locs\space_center.dmm"
+#include "..\overmap_locs\space\icarus_body.dmm"
+#include "..\overmap_locs\space\icarus_ring.dmm"
+#include "..\overmap_locs\space\typhos.dmm"
+
+#endif
+
 #include "ghost_skyscraper.dmm"
 #include "limb.dmm"
 
 #include "../../mods/content/mouse_highlights/_mouse_highlight.dme"
 
+#ifndef DEBUG_ENVIRONMENT
 #define USING_MAP_DATUM /datum/map/serenity
+#endif
