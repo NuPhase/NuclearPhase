@@ -157,6 +157,8 @@
 		var/list/chg = list("N","C","F")
 
 		for(var/obj/machinery/power/apc/A in L)
+			if(!A.area)
+				continue
 			var/list/APC_entry = list()
 			APC_entry["breaker"] = A.operating
 			APC_entry["failure"] = A.failure_timer
@@ -183,13 +185,13 @@
 			// Add load of this APC to total APC load calculation
 			total_apc_load += A.lastused_total
 	data["apc_data"] = APC_data
-	data["total_avail"] = reading_to_text(max(powernet.lavailable, 0))
+	data["total_avail"] = reading_to_text(max(powernet.max_power, 0))
 	data["total_used_apc"] = reading_to_text(max(total_apc_load, 0))
 	data["total_used_other"] = reading_to_text(max(powernet.viewload - total_apc_load, 0))
 	data["total_used_all"] = reading_to_text(max(powernet.viewload, 0))
-	// Prevents runtimes when lavailable is 0 (division by zero)
-	if(powernet.lavailable)
-		data["load_percentage"] = round((powernet.viewload / powernet.lavailable) * 100)
+	// Prevents runtimes when max_power is 0 (division by zero)
+	if(powernet.max_power)
+		data["load_percentage"] = round((powernet.viewload / powernet.max_power) * 100)
 	else
 		data["load_percentage"] = 100
 	data["alarm"] = powernet.problem ? 1 : 0

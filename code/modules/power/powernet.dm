@@ -86,11 +86,6 @@
 		if(free_power)
 			generators[G] = free_power
 
-	for(var/obj/machinery/power/generator/transformer/transf in nodes)
-		if(transf.should_transfer_demand)
-			var/transferred_demand = demand + losses
-			transf.connected.powernet.demand += transferred_demand
-
 	var/projected_demand = (max(ldemand, demand) * 1.05) + battery_demand // 5% operational reserve
 
 	if(length(generators) > 1)

@@ -222,7 +222,7 @@
 
 	var/flow_coefficient = last_mass_flow / initial_flow_capacity
 
-	change_volume(initial_volume * (flow_coefficient * 3), FALSE, TRUE)
+	change_volume(max(initial_volume, initial_volume * (flow_coefficient * 3)), FALSE, TRUE)
 	if(sound_token)
 		sound_token.SetVolume(max(sound_volume * 0.1, sound_volume * flow_coefficient))
 

@@ -48,7 +48,7 @@
 	return connected.powernet.voltage * coef
 
 /obj/machinery/power/generator/transformer/available_power()
-	if(!powernet || !connected.powernet || !connected.on)
+	if(!should_transfer_demand || !powernet || !connected.powernet || !connected.on)
 		return 0
 	return min(max_cap, connected.powernet.last_surplus())
 
