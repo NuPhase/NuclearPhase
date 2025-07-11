@@ -53,8 +53,27 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 	var/our_heat_capacity = air1.heat_capacity()
 	var/their_heat_capacity = connected.air1.heat_capacity()
 
+	if(!their_heat_capacity || !our_heat_capacity)
+		return FALSE
+
+	// Account for latent heat
+	var/latent_heat_energy = 0
+	var/latent_heat_capacity = 0
+	var/list/all_fluid = air1.get_fluid()
+	if(heating)
+		for(var/f_type in all_fluid)
+			var/decl/material/mat = GET_DECL(f_type)
+			if(air1.temperature < mat.boiling_point && wanted_temperature > mat.boiling_point)
+				latent_heat_energy += all_fluid[f_type] * mat.latent_heat
+	else
+		for(var/f_type in all_fluid)
+			var/decl/material/mat = GET_DECL(f_type)
+			if(air1.temperature > mat.boiling_point && wanted_temperature < mat.boiling_point)
+				latent_heat_energy -= all_fluid[f_type] * mat.latent_heat
+	latent_heat_capacity = latent_heat_energy / air1.total_moles
+
 	var/temperature_delta = wanted_temperature - air1.temperature
-	var/required_energy_delta = temperature_delta * our_heat_capacity
+	var/required_energy_delta = (temperature_delta * our_heat_capacity) + latent_heat_energy
 
 	var/available_energy_delta = (connected.air1.temperature - wanted_temperature) * their_heat_capacity
 
@@ -66,7 +85,9 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 
 	//var/moles_to_transfer = abs(actual_energy_delta) / max(our_heat_capacity, their_heat_capacity)
 
-	air2.merge(air1.remove(abs((actual_energy_delta / our_heat_capacity) * temperature_delta)))
+	var/energy_per_mole = ((our_heat_capacity/air1.total_moles) * temperature_delta) + latent_heat_capacity
+
+	air2.merge(air1.remove(abs(actual_energy_delta/energy_per_mole)))
 	air2.add_thermal_energy(actual_energy_delta)
 
 	connected.air2.merge(connected.air1.remove(abs((actual_energy_delta / their_heat_capacity) * temperature_delta)))

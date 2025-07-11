@@ -16,6 +16,8 @@
 	rich_material_weight = 37
 	heating_point = T20C + 10 // Above room temperature, to avoid drinks melting.
 	uid = "solid_ice"
+	liquid_density = 997
+	molar_mass = 0.018
 
 /decl/material/solid/ice/Initialize()
 	if(!liquid_name)
@@ -27,7 +29,7 @@
 	if(!ore_name)
 		ore_name = solid_name
 	. = ..()
-	
+
 /decl/material/solid/ice/aspium
 	name = "aspium"
 	codex_name = null
@@ -126,7 +128,7 @@
 	heating_products = list(PATH = 0.2, /decl/material/liquid/water = 0.8); \
 	. = ..();                                                               \
 }                                                                           \
-/decl/material/solid/ice/hydrate/##NAME 
+/decl/material/solid/ice/hydrate/##NAME
 
 #define DECLARE_HYDRATE_DNAME(NAME, DISPLAY_NAME) DECLARE_HYDRATE_DNAME_PATH(/decl/material/gas/##NAME, NAME, DISPLAY_NAME)
 #define DECLARE_HYDRATE(NAME) DECLARE_HYDRATE_DNAME(NAME, #NAME)

@@ -21,6 +21,7 @@
 	..()
 	if(air_contents.pressure < fluid_pressure)
 		air_contents.adjust_gas_temp(fluid_type, (fluid_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * fluid_temperature), fluid_temperature)
+	update_networks()
 
 /obj/machinery/atmospherics/unary/debug/infinite_outlet/water
 	fluid_type = /decl/material/liquid/water
@@ -44,3 +45,32 @@
 /obj/machinery/atmospherics/unary/debug/infinite_sink/Process()
 	..()
 	air_contents.remove_ratio(1)
+	update_networks()
+
+/obj/machinery/atmospherics/unary/debug/infinite_temp
+	icon = 'icons/obj/atmospherics/components/unary/cold_sink.dmi'
+	icon_state = "intact_off"
+
+	name = "infinite temperature adjuster"
+	uncreated_component_parts = null
+	frame_type = /obj/item/pipe
+	construct_state = /decl/machine_construction/pipe
+	interact_offline = TRUE
+	var/desired_temperature = T20C
+
+/obj/machinery/atmospherics/unary/debug/infinite_temp/very_hot
+	desired_temperature = 1450
+
+/obj/machinery/atmospherics/unary/debug/infinite_temp/very_cold
+	desired_temperature = 80
+
+/obj/machinery/atmospherics/unary/debug/infinite_temp/on_update_icon()
+	if(LAZYLEN(nodes_to_networks))
+		icon_state = "intact_off"
+	else
+		icon_state = "exposed"
+
+/obj/machinery/atmospherics/unary/debug/infinite_temp/Process()
+	..()
+	air_contents.temperature = desired_temperature
+	update_networks()

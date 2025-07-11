@@ -183,7 +183,6 @@
 			liquids[gasid] += moles
 		else
 			solids[gasid] += moles
-		gas[gasid] += moles
 	else
 		remove_gas(gasid, moles)
 
@@ -806,6 +805,9 @@
 		gasmix.gas = list()
 		gasmix.liquids = list()
 		gasmix.solids = list()
+		gasmix.heat_capacity = 0
+		gasmix.total_moles = 0
+		gasmix.gas_moles = 0
 		gasmix.merge(combined.remove(moles_to_transfer))
 	return 1
 

@@ -10,12 +10,18 @@ SUBSYSTEM_DEF(reactions)
 
 /datum/controller/subsystem/reactions/proc/process_gasmix(datum/gas_mixture/gasmix)
 	var/list/all_fluid = gasmix.get_fluid()
+	if(!length(all_fluid))
+		return
 
 	var/list/react_list = process_reactions(all_fluid.Copy(), gasmix.temperature, gasmix.heat_capacity(), gasmix.pressure, gasmix.volume)
 	var/list/result_fluid = react_list[1]
 
 	var/list/combined_list = result_fluid.Copy()
-	combined_list.Add(all_fluid.Copy())
+
+	for(var/f_type in all_fluid)
+		if((f_type in combined_list))
+			continue
+		combined_list.Add(f_type)
 
 	for(var/f_type in combined_list)
 		if(result_fluid[f_type] == all_fluid[f_type]) // no change
@@ -85,7 +91,7 @@ SUBSYSTEM_DEF(reactions)
 
 /datum/controller/subsystem/reactions/proc/process_reaction_chem(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
 	reactions_reagents_holder.temperature = temperature
-	var/datum/reagents/temp_holder = new((volume*1000)*(pressure/ONE_ATMOSPHERE), reactions_reagents_holder)
+	var/datum/reagents/temp_holder = new(10000000000000, reactions_reagents_holder)
 	for(var/mat_type in moles)
 		var/decl/material/mat = GET_DECL(mat_type)
 		LAZYSET(temp_holder.reagent_volumes, mat_type, moles[mat_type] * mat.molar_volume)

@@ -385,12 +385,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/therapy)
-"alA" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/paper_bin,
-/obj/item/pen/retractable,
-/turf/simulated/floor/tiled/dark/textured,
-/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "alK" = (
 /obj/structure/barricade,
 /obj/effect/decal/cleanable/dirt,
@@ -1146,18 +1140,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
-"aIW" = (
-/obj/machinery/reactor_button/rswitch/generator_connection/first{
-	pixel_x = -3;
-	pixel_y = 8
-	},
-/obj/machinery/reactor_button/rswitch/generator_connection/second{
-	pixel_x = 4;
-	pixel_y = 8
-	},
-/obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/engineering/electrical)
 "aJm" = (
 /obj/structure/cable/heavy{
 	icon_state = "2-8"
@@ -3053,12 +3035,6 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/cargo)
-"bJm" = (
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/engineering/electrical)
 "bJn" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -8950,17 +8926,12 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
 "eyW" = (
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
+/obj/structure/table/steel_reinforced,
+/obj/machinery/computer/modular/preset/engineering{
+	pixel_y = 16
 	},
-/obj/structure/cable/heavy{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/sensor{
-	id_tag = "Sector A"
-	},
-/turf/simulated/floor/concrete/black,
-/area/serenity/shelter/engineering/electrical)
+/turf/simulated/floor/tiled/dark/textured,
+/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "ezo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
@@ -8995,10 +8966,17 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
 "eAT" = (
-/obj/structure/closet/firecloset,
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/serenity/shelter/engineering/reactor_operations/cavern)
+/obj/machinery/reactor_button/rswitch/generator_connection/first{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/machinery/reactor_button/rswitch/generator_connection/second{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/electrical)
 "eBf" = (
 /obj/machinery/door/window/southright,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -10713,6 +10691,14 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"fuV" = (
+/obj/structure/closet/firecloset,
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations/cavern)
 "fvi" = (
 /obj/structure/closet/medical_wall/filled{
 	pixel_y = 32
@@ -10759,6 +10745,16 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
+"fwu" = (
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations/cavern)
 "fwB" = (
 /obj/structure/bed/chair/comfy/blue{
 	dir = 8
@@ -12958,6 +12954,18 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/lobby)
+"gwo" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/heavy{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/sensor{
+	id_tag = "Sector C"
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/electrical)
 "gww" = (
 /obj/structure/door/fire{
 	lock_data = list("ACCESS_MAINT");
@@ -15195,6 +15203,18 @@
 /obj/structure/door/fire,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"hEx" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	id_tag = "Sector A"
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/electrical)
 "hEA" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -19332,6 +19352,14 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/maintenance/sublevel_one)
+"jFA" = (
+/obj/effect/paint,
+/obj/effect/paint_stripe/blue,
+/obj/structure/cable/heavy{
+	icon_state = "1-4"
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/electrical)
 "jFB" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/effect/decal/cleanable/dirt,
@@ -19446,15 +19474,9 @@
 /area/serenity/shelter/engineering/electrical)
 "jHS" = (
 /obj/structure/cable/heavy{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/structure/cable/heavy{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/sensor{
-	id_tag = "Sector C"
-	},
-/turf/simulated/floor/concrete/black,
+/turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical)
 "jHU" = (
 /obj/structure/cable/heavy{
@@ -29107,12 +29129,9 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/maintenance/sublevel_one)
 "ofN" = (
-/obj/machinery/door/blast/shutters{
-	name = "Reactor Chamber Lockdown";
-	id_tag = "reactor_chamber_lockdown"
-	},
-/turf/simulated/floor/concrete/black,
-/area/serenity/shelter/engineering/reactor)
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/turf/simulated/floor/plating,
+/area/serenity)
 "ofO" = (
 /obj/structure/table,
 /obj/item/book/skill/medical/medicine/basic,
@@ -29134,12 +29153,16 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "ofV" = (
-/obj/effect/paint,
-/obj/effect/paint_stripe/blue,
 /obj/structure/cable/heavy{
-	icon_state = "1-4"
+	icon_state = "1-2"
 	},
-/turf/simulated/wall/concrete/nano,
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	id_tag = "Sector B"
+	},
+/turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical)
 "ogf" = (
 /obj/machinery/firealarm{
@@ -32274,6 +32297,18 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"pDP" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	id_tag = "Sector E"
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/electrical)
 "pDS" = (
 /obj/structure/flora/pottedplant/large,
 /obj/machinery/rotating_alarm/reactor{
@@ -34669,15 +34704,9 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/entrance_zone)
 "qOT" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/railing/mapped{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/serenity/shelter/engineering/reactor_operations/cavern)
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/electrical)
 "qPi" = (
 /obj/structure/door/fire{
 	lock_data = list("ACCESS_ENGINEERING");
@@ -35328,10 +35357,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels)
-"rdb" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/engineering/electrical)
 "rdc" = (
 /obj/structure/door/fire{
 	dir = 8;
@@ -35658,7 +35683,7 @@
 /area/serenity/shelter/entrance_zone)
 "rkH" = (
 /obj/machinery/atmospherics/pipe/zpipe/down/steam,
-/turf/exterior/wall,
+/turf/simulated/open,
 /area/serenity)
 "rld" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
@@ -38373,6 +38398,11 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/pumps_b)
+"sEy" = (
+/obj/structure/closet/firecloset,
+/obj/structure/catwalk,
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations/cavern)
 "sET" = (
 /obj/structure/door/sliding{
 	dir = 8
@@ -39006,10 +39036,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/sensor{
-	id_tag = "Sector E"
+	id_tag = "Sector D"
 	},
-/turf/simulated/floor/concrete/black,
-/area/serenity/shelter/engineering/electrical)
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "sUQ" = (
 /obj/structure/reagent_dispensers/watertank/newtank,
 /obj/effect/decal/cleanable/dirt,
@@ -39238,9 +39268,8 @@
 /area/serenity/maintenance/sublevel_three)
 "sZv" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/computer/modular/preset/engineering{
-	pixel_y = 16
-	},
+/obj/item/paper_bin,
+/obj/item/pen/retractable,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "sZP" = (
@@ -42647,7 +42676,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/steam{
 	dir = 1
 	},
-/turf/exterior/wall,
+/turf/simulated/open,
 /area/serenity)
 "uLB" = (
 /obj/effect/floor_decal/carpet/green{
@@ -43718,16 +43747,12 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "vje" = (
-/obj/structure/catwalk,
-/obj/structure/railing/mapped{
-	dir = 8
+/obj/machinery/door/blast/shutters{
+	name = "Reactor Chamber Lockdown";
+	id_tag = "reactor_chamber_lockdown"
 	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/lattice,
-/turf/simulated/open,
-/area/serenity/shelter/engineering/reactor_operations/cavern)
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/reactor)
 "vjH" = (
 /obj/machinery/light{
 	dir = 4
@@ -44497,6 +44522,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/entrance_zone)
+"vDC" = (
+/obj/structure/catwalk,
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor_operations/cavern)
 "vDO" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -45111,14 +45147,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
-"vUT" = (
-/obj/structure/closet/firecloset,
-/obj/structure/railing/mapped{
-	dir = 8
-	},
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/serenity/shelter/engineering/reactor_operations/cavern)
 "vUW" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 5
@@ -45170,18 +45198,6 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/cargo)
-"vWn" = (
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/heavy{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/sensor{
-	id_tag = "Sector D"
-	},
-/turf/simulated/floor/concrete/gray,
-/area/serenity/shelter/engineering/electrical/turbinehall)
 "vWC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3{
 	dir = 5
@@ -45599,18 +45615,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor_operations)
-"wgU" = (
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/heavy{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/sensor{
-	id_tag = "Sector B"
-	},
-/turf/simulated/floor/concrete/black,
-/area/serenity/shelter/engineering/electrical)
 "wgX" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -45825,7 +45829,7 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "wnf" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/steam,
-/turf/exterior/wall,
+/turf/simulated/floor/plating,
 /area/serenity)
 "wni" = (
 /obj/structure/cable/heavy{
@@ -47911,7 +47915,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/open,
 /area/serenity)
 "xhr" = (
 /obj/structure/cable/blue{
@@ -116792,7 +116796,7 @@ fIP
 fIP
 bIC
 oCB
-vWn
+sUM
 xvF
 fIP
 fIP
@@ -116982,7 +116986,7 @@ gZv
 rOS
 dXp
 fnH
-jHS
+gwo
 bHq
 uEy
 lKW
@@ -117081,7 +117085,7 @@ rOS
 dXp
 fnH
 fwh
-ofV
+jFA
 bHq
 bHq
 hns
@@ -117374,7 +117378,7 @@ gZv
 iKj
 uTJ
 fwh
-wgU
+ofV
 xIv
 bPz
 oNg
@@ -117570,7 +117574,7 @@ wni
 bzg
 exk
 exk
-sUM
+pDP
 xIv
 bPz
 nrw
@@ -117766,7 +117770,7 @@ wni
 vlz
 dXp
 exk
-eyW
+hEx
 xIv
 ngf
 lvT
@@ -119048,7 +119052,7 @@ sxB
 fsO
 bMx
 eCZ
-aIW
+eAT
 xMj
 jBQ
 qUP
@@ -119146,7 +119150,7 @@ sxB
 hKp
 hrN
 eCZ
-rdb
+qOT
 xMj
 lyr
 qUP
@@ -119531,7 +119535,7 @@ eCZ
 hRP
 kWj
 tWH
-bJm
+jHS
 vLg
 wod
 bHq
@@ -120102,7 +120106,7 @@ bVp
 bVp
 dDY
 lwv
-vUT
+fuV
 bzK
 cjJ
 bVp
@@ -120200,7 +120204,7 @@ bVp
 bVp
 dDY
 lwv
-eAT
+sEy
 bzK
 cjJ
 bVp
@@ -120301,13 +120305,13 @@ umS
 bzK
 bzK
 bzK
-qOT
+fwu
 umS
 uTj
 umS
 umS
 umS
-vje
+vDC
 umS
 bzK
 ghg
@@ -121774,7 +121778,7 @@ lwv
 vaZ
 oAs
 lDU
-ofN
+vje
 byy
 qSc
 byy
@@ -121970,7 +121974,7 @@ nRh
 oAs
 oAs
 lDU
-ofN
+vje
 ray
 vyY
 ray
@@ -122068,7 +122072,7 @@ lwv
 bql
 oAs
 lDU
-ofN
+vje
 ygI
 ygI
 ygI
@@ -130209,8 +130213,8 @@ cVl
 pmC
 cVl
 vtD
+eyW
 sZv
-alA
 eCI
 pZl
 cJL
@@ -130280,8 +130284,8 @@ xEy
 xEy
 xEy
 wnf
-eOd
-eOd
+ofN
+ofN
 eOd
 eOd
 eOd
@@ -130377,9 +130381,9 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
+gzA
+gzA
+gzA
 xEy
 xEy
 xEy
@@ -139690,7 +139694,7 @@ xEy
 xEy
 rkH
 uKY
-xEy
+kHt
 xEy
 xEy
 xEy
@@ -139786,9 +139790,9 @@ xEy
 xEy
 xEy
 xEy
-xEy
-xEy
-xEy
+kHt
+kHt
+kHt
 xEy
 xEy
 xEy
@@ -149195,7 +149199,7 @@ xEy
 xEy
 xEy
 xEy
-gzA
+kHt
 kHt
 kHt
 xEy

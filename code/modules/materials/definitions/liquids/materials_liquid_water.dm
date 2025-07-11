@@ -22,10 +22,6 @@
 	slipperiness = 8
 	dirtiness = DIRTINESS_STERILE
 	turf_touch_threshold = 0.1
-	chilling_point = T0C
-	chilling_products = list(
-		/decl/material/solid/ice = 1
-	)
 	liquid_density = 997
 
 	electrolysis_products = list(/decl/material/gas/hydrogen = 0.666667, /decl/material/gas/oxygen = 0.333333)

@@ -7,9 +7,7 @@
 		'maps/testing/testing_lobby.png'
 	)
 
-	lobby_tracks = list(
-		/decl/music_track/absconditus
-	)
+	lobby_tracks = list()
 
 	allowed_spawns = list(
 		/decl/spawnpoint/arrivals
