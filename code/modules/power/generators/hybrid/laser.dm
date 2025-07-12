@@ -103,7 +103,7 @@
 			playsound(src, 'sound/machines/power_down2.ogg', 100, FALSE, 50, 15, ignore_walls = TRUE)
 		capacitor_charge = 0
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-		R.receive_power(power * 1000)
+		R.receive_power(power)
 		R.fast_neutrons += 10
 	return
 

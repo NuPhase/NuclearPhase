@@ -70,8 +70,8 @@
 
 /obj/machinery/atmospherics/binary/turbinestage/Initialize()
 	. = ..()
-	air1.volume = 30000
-	air2.volume = 7500
+	air1.volume = 120000
+	air2.volume = 120000
 	reactor_components[uid] = src
 
 /obj/machinery/atmospherics/binary/turbinestage/fail_roundstart()
@@ -140,6 +140,11 @@
 	//calculate flow mass
 	//Steam enters at 1.5m diameter, expands to 5.5m. 5.5m diameter > area = 95.03
 	total_mass_flow = feeder_valve_openage*95.03*expansion_ratio*0.598*sqrt(steam_velocity * 4.2 * (1-(air2.return_pressure()/air1.return_pressure())**0.23))
+	var/mass_difference = total_mass_flow - air1.get_mass()
+	if(mass_difference > 0)
+		air1.suction_moles = mass_difference / air1.specific_mass()
+	else
+		air1.suction_moles = 0
 	total_mass_flow = min(total_mass_flow, air1.get_mass())
 
 	//create the internal gas mixture and transfer inlet steam to it
@@ -148,14 +153,13 @@
 
 	//logging
 	inlet_temperature = air_all.temperature
-	inlet_pressure = air_all.return_pressure()
+	inlet_pressure = air1.return_pressure()
 
 	//get the kinetic energy received from steam and cool it down
-	kin_total = get_specific_enthalpy(air1.return_pressure() * 0.001, air_all.temperature - 273.15) * total_mass_flow
-	kin_total *= expansion_ratio
-	air_all.add_thermal_energy(kin_total * -1)
-	air_all.temperature = max(air_all.temperature, T0C)
-	air_all.update_values()
+	var/end_temperature = max(inlet_temperature * expansion_ratio, 390)
+	var/temp_delta = inlet_temperature - end_temperature
+	kin_total = (air_all.heat_capacity() * temp_delta) * efficiency
+	air_all.temperature = end_temperature
 
 	//logging
 	exhaust_temperature = air_all.temperature
@@ -171,7 +175,7 @@
 		water_level -= 0.05
 	water_level = CLAMP01(water_level)
 
-	kin_energy += kin_total * efficiency * (rotor_integrity * 0.01)
+	kin_energy += kin_total * (rotor_integrity * 0.01)
 	calculate_vibration(air_all)
 	air2.merge(air_all)
 

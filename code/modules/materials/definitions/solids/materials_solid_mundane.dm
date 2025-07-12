@@ -1,11 +1,11 @@
 /decl/material/solid/slag
 	name = "slag"
+	lore_text = "A crazy mix of various metals, minerals and ceramics. A result of poor alloying."
 	uid = "solid_slag"
 	color = "#5c5a3d"
 	ore_name = "slag"
 	ore_desc = "Someone messed up..."
 	ore_icon_overlay = "lump"
-	hidden_from_codex = TRUE
 	reflectiveness = MAT_VALUE_DULL
 	wall_support_value = MAT_VALUE_LIGHT
 	construction_difficulty = MAT_VALUE_HARD_DIY

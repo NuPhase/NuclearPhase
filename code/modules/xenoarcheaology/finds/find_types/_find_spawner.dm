@@ -51,3 +51,12 @@
 		/decl/archaeological_find/gun,
 		/decl/archaeological_find/laser
 	)
+
+// Melted remains in the city
+/obj/item/archaeological_find/surface
+	possible_finds = list(
+		/decl/archaeological_find/material,
+		/decl/archaeological_find/parts,
+		/decl/archaeological_find/remains,
+		/decl/archaeological_find/remains/robot
+	)

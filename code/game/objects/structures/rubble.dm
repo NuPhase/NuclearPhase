@@ -107,3 +107,10 @@
 		/obj/item/archaeological_find/blade,
 		/obj/item/archaeological_find/gun
 	)
+
+/obj/structure/rubble/surface
+	name = "pile of melted rubble"
+	loot = list(
+		/obj/item/archaeological_find/surface
+	)
+	emptyprob = 80

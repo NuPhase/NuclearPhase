@@ -540,6 +540,20 @@
 	dir = NORTHEAST
 	icon_state = "rwindow_full"
 
+/obj/structure/window/surface_slag
+	name = "silica-slag mound"
+	desc = "A horrific, tall and transparent amalgamation of building materials."
+	alpha = 200
+	material = /decl/material/solid/slag
+	color = "#5c5a3d"
+	maxhealth = 200
+	weight = 500
+	atmos_canpass = CANPASS_NEVER
+	dir = NORTHEAST
+	icon_state = "rwindow_full"
+	set_color = TRUE
+	force_north_dir = FALSE
+
 /obj/structure/window/proc/toggle()
 	if(!polarized)
 		return

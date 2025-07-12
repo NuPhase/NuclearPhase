@@ -88,10 +88,10 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 	var/energy_per_mole = ((our_heat_capacity/air1.total_moles) * temperature_delta) + latent_heat_capacity
 
 	air2.merge(air1.remove(abs(actual_energy_delta/energy_per_mole)))
-	air2.add_thermal_energy(actual_energy_delta)
+	air2.add_thermal_energy(actual_energy_delta, boiling_coef = 0.999)
 
 	connected.air2.merge(connected.air1.remove(abs((actual_energy_delta / their_heat_capacity) * temperature_delta)))
-	connected.air2.add_thermal_energy(actual_energy_delta * -1)
+	connected.air2.add_thermal_energy(actual_energy_delta * -1, boiling_coef = 0.999)
 
 	update_networks()
 

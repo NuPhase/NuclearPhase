@@ -6083,6 +6083,13 @@
 /obj/effect/floor_decal/carpet/blue,
 /turf/simulated/floor/carpet/blue2,
 /area/serenity/shelter/medbay/break_room)
+"dho" = (
+/obj/machinery/atmospherics/binary/relief_valve{
+	starting_volume = 5000;
+	open_pressure = 18000
+	},
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "dhH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 10
@@ -7857,6 +7864,15 @@
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/medbay)
+"eaK" = (
+/obj/machinery/airlock_sensor{
+	pixel_y = 32;
+	pixel_x = -24;
+	id_tag = "mainairlockexts";
+	tag = "mainairlockexts"
+	},
+/turf/exterior/surface,
+/area/serenity/shelter/entrance_zone)
 "eaN" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/fuel_assembly/plutonium,
@@ -16373,7 +16389,7 @@
 	dir = 8;
 	use_power = 1
 	},
-/turf/simulated/floor/concrete/black/surface,
+/turf/exterior/surface,
 /area/serenity/shelter/entrance_zone)
 "ilm" = (
 /turf/simulated/wall/concrete/nano,
@@ -17061,6 +17077,11 @@
 /obj/item/scanner/autopsy,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/genetics)
+"iAK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/exterior/surface,
+/area/serenity/shelter/entrance_zone)
 "iAR" = (
 /obj/item/stack/material/sheet/mapped/steel/five,
 /turf/simulated/floor/concrete/gray,
@@ -25714,6 +25735,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/brig/prison)
+"mzv" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/exterior/surface,
+/area/serenity/shelter/entrance_zone)
 "mzB" = (
 /obj/structure/closet/secure_closet/cargotech,
 /turf/simulated/floor/tiled/monotile,
@@ -25862,7 +25887,7 @@
 	dir = 4;
 	use_power = 1
 	},
-/turf/simulated/floor/concrete/black/surface,
+/turf/exterior/surface,
 /area/serenity/shelter/entrance_zone)
 "mCW" = (
 /obj/structure/cable/heavy{
@@ -41102,9 +41127,7 @@
 /area/serenity/shelter/it_operations/faid)
 "tYz" = (
 /obj/structure/railing/mapped,
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/visible/ch4_out/layer3,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
 "tYK" = (
@@ -48734,7 +48757,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/buildable{
 	dir = 8
 	},
-/turf/simulated/floor/concrete/black/surface,
+/turf/exterior/surface,
 /area/serenity/shelter/entrance_zone)
 "xzv" = (
 /obj/structure/railing/mapped,
@@ -49389,17 +49412,11 @@
 	dir = 4;
 	use_power = 1
 	},
-/obj/machinery/airlock_sensor{
-	pixel_y = 32;
-	pixel_x = -24;
-	id_tag = "mainairlockexts";
-	tag = "mainairlockexts"
-	},
 /obj/machinery/button/access/interior{
 	id_tag = "mainairlock";
 	pixel_x = -22
 	},
-/turf/simulated/floor/concrete/black/surface,
+/turf/exterior/surface,
 /area/serenity/shelter/entrance_zone)
 "xOC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -108969,7 +108986,7 @@ bcE
 niU
 bcH
 xqf
-xqf
+eMP
 eMP
 mQE
 mbA
@@ -109067,10 +109084,10 @@ bcE
 niU
 bqe
 ikt
-ikt
 hKj
-ikt
-ikt
+jap
+dho
+mbA
 tYz
 ikt
 ikt
@@ -173462,10 +173479,10 @@ oZE
 bmH
 wsn
 xsi
-kOA
+iAK
 war
-uTl
-uTl
+hEY
+hEY
 uTl
 hXX
 hXX
@@ -173560,9 +173577,9 @@ gmD
 sbs
 war
 kOA
-kOA
-war
-uTl
+iAK
+mzv
+hEY
 uTl
 hXX
 cNW
@@ -173956,7 +173973,7 @@ bfK
 kAe
 fgv
 jgB
-hEY
+eaK
 hEY
 hEY
 hEY

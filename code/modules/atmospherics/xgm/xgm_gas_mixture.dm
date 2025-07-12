@@ -281,7 +281,7 @@
 	heat_capacity *= max(1, group_multiplier)
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
-/datum/gas_mixture/proc/add_thermal_energy(thermal_energy=0, calculate_phase_change=TRUE, forced=FALSE)
+/datum/gas_mixture/proc/add_thermal_energy(thermal_energy=0, calculate_phase_change=TRUE, forced=FALSE, boiling_coef = BOILING_RATE_COEF)
 
 	if (total_moles == 0)
 		return 0
@@ -290,7 +290,7 @@
 		return 0
 
 	if(calculate_phase_change && GAME_STATE >= RUNLEVEL_GAME && (abs(thermal_energy) > 50 || forced))
-		thermal_energy = make_phase_changes(thermal_energy)
+		thermal_energy = make_phase_changes(thermal_energy, boiling_coef)
 
 	if (thermal_energy < 0)
 		if (temperature < TCMB)

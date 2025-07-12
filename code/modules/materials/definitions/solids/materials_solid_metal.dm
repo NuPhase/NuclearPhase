@@ -511,4 +511,12 @@
 	lore_text = "A mixture of many, many rare metals."
 	weight = MAT_VALUE_VERY_LIGHT
 	hardness = MAT_VALUE_FLEXIBLE
+	reflectiveness = MAT_VALUE_SHINY
+	default_solid_form = /obj/item/stack/material/shiny
 	color = "#af6161"
+	liquid_density = 2800
+	solid_density = 2989
+	latent_heat = 332700
+	gas_specific_heat = 25.52
+	melting_point = 1814
+	boiling_point = 3109
