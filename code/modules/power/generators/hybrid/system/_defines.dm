@@ -65,7 +65,7 @@
 
 	var/list/operation_log = list()
 
-	var/log_timeout = 10 SECONDS
+	var/log_timeout = 30 SECONDS
 
 	//world.time of last related log
 	var/last_power_surge_log = 0

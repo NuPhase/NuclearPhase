@@ -477,6 +477,7 @@
 	latent_heat = 824000
 	boiling_point = 5828
 	molar_mass = 0.183
+	gas_specific_heat = 24.8
 
 /decl/material/solid/metal/inconel
 	name = "inconel"

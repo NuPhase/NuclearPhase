@@ -25,6 +25,23 @@
 	sound_manipulate = 'sound/foley/paperpickup2.ogg'
 	sound_dropped = 'sound/foley/paperpickup1.ogg'
 
+/decl/material/solid/plastic/polybenzimidazole
+	name = "polybenzimidazole"
+	uid = "polybenzimidazole"
+	lore_text = "An incredible insulation and fire protection material."
+	flags = MAT_FLAG_BRITTLE | MAT_FLAG_UNMELTABLE
+	color = "#fff06b"
+	hardness = MAT_VALUE_RIGID - 10
+	melting_point = 10000
+	boiling_point = 100000
+	construction_difficulty = MAT_VALUE_HARD_DIY
+	heating_point = 1173.15
+	heating_message = null
+	heating_sound = null
+	heating_products = list(/decl/material/solid/plastic=1, /decl/material/gas/carbon_monoxide=1)
+	reactivity_coefficient = 0.0001
+	solid_density = 1300
+
 /decl/material/solid/plastic/generate_recipes(var/reinforce_material)
 	. = ..()
 	if(reinforce_material)	//recipes below don't support composite materials
