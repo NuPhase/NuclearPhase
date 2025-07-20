@@ -1,6 +1,9 @@
-/obj/machinery/chemical_reactor
+/obj/machinery/reagent_temperature/reactor
 	name = "chemical reactor"
-	desc = "A machine that allows easy manipulation of its contents."
-	var/obj/item/chems/inserted_vessel
-	var/set_temperature = T20C
-	var/set_pressure
+	desc = "A machine that can keep its contents at a specific temperature."
+	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon_state = "xenoarch_harvester"
+	active_power_usage = 50000
+	max_temperature = 2910 CELSIUS
+	min_temperature = 77
+	permitted_types = list(/obj/item/chems/glass/beaker/vessel)

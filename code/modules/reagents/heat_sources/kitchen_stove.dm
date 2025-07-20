@@ -3,7 +3,7 @@
 	desc = "A simple inductive tabletop stove."
 	icon = 'icons/obj/cooking_machines.dmi'
 	icon_state = "stove_off"
-	active_power_usage = 8200
+	active_power_usage = 20000
 	max_temperature = 160 CELSIUS
 	min_temperature = 95 CELSIUS
 	permitted_types = list(/obj/item/chems)

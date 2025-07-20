@@ -127,14 +127,15 @@
 /obj/item/chems/glass/beaker/vessel
 	name = "chemical reactor vessel"
 	desc = "A large, corrosion-resistant vessel."
-	icon = 'icons/obj/items/chem/beakers/advanced.dmi'
+	icon = 'icons/obj/items/chem/chem_vessel.dmi'
+	icon_state = "vessel"
 	volume = 5000
 	amount_per_transfer_from_this = 100
 	possible_transfer_amounts = @"[100,250,500,1000,2000,4000,5000]"
 	applies_material_colour = FALSE
 	applies_material_name = FALSE
 	material = /decl/material/solid/metal/stainlesssteel
-	temperature_coefficient = 0.05
+	//temperature_coefficient = 0.05
 	w_class = ITEM_SIZE_LARGE
 	atom_flags = null
 	weight = 7

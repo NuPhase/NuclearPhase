@@ -13,7 +13,7 @@
 	density =    TRUE
 	anchored =   TRUE
 	idle_power_usage = 0
-	active_power_usage = 3000
+	active_power_usage = 15000
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0
@@ -25,8 +25,8 @@
 
 	var/heater_mode =          HEATER_MODE_HEAT
 	var/list/permitted_types = list(/obj/item/chems/glass)
-	var/max_temperature =      310 CELSIUS
-	var/min_temperature =      40  CELSIUS
+	var/max_temperature =      380 CELSIUS
+	var/min_temperature =      36  CELSIUS
 	var/last_temperature
 	var/target_temperature
 	var/obj/item/container

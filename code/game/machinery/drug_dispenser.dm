@@ -28,6 +28,12 @@
 
 	var/dosage = 0.5 //0.01 - 1
 
+/obj/machinery/drug_dispenser/Initialize()
+	. = ..()
+	for(var/reagent_type in reagent_volumes)
+		reagent_volumes[reagent_type] = SSpersistence.take_reagent(reagent_type, reagent_volumes[reagent_type])
+	prune_reagents()
+
 /obj/machinery/drug_dispenser/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/chems/syringe))
 		put_in_storage(I, user)
@@ -134,21 +140,21 @@
 
 /obj/machinery/drug_dispenser/stocked
 	reagent_volumes = list(
-		/decl/material/liquid/nanoblood/saline = 40000,
+		/decl/material/liquid/nanoblood/saline = 80000,
 		/decl/material/liquid/adrenaline = 117,
 		/decl/material/liquid/noradrenaline = 174,
-		/decl/material/liquid/atropine = 47, // Via hydroponics
-		/decl/material/liquid/antibiotics/penicillin = 196, // Via cultivation
-		/decl/material/liquid/antibiotics/amicile = 54,
-		/decl/material/liquid/antibiotics/ceftriaxone = 42,
-		/decl/material/liquid/opium/morphine = 44,
-		/decl/material/liquid/opium/fentanyl = 13,
-		/decl/material/liquid/opium = 80,
+		/decl/material/liquid/atropine = 47,
+		/decl/material/liquid/antibiotics/penicillin = 296,
+		/decl/material/liquid/antibiotics/amicile = 102,
+		/decl/material/liquid/antibiotics/ceftriaxone = 82,
+		/decl/material/liquid/opium/morphine = 144,
+		/decl/material/liquid/opium/fentanyl = 63.1,
+		/decl/material/liquid/opium = 800,
 		/decl/material/liquid/ethanol = 720,
 		/decl/material/liquid/nitroglycerin = 182,
 		/decl/material/liquid/potassium_iodide = 409,
 		/decl/material/liquid/pentenate_calcium_trisodium = 45,
-		/decl/material/liquid/propofol = 88,
+		/decl/material/liquid/propofol = 880,
 		/decl/material/liquid/suxamethonium = 34,
 		/decl/material/liquid/heparin = 94,
 		/decl/material/liquid/adenosine = 56,

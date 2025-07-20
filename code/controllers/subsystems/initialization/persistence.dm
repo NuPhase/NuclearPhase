@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/item_pool_areas = list() //Areas which should be used when creating an item pool
 	var/list/item_pool_blacklist = list(/obj/item/paper,
 										/obj/item/paper_bin,
+										/obj/item/chems/chem_disp_cartridge,
 										/obj/item/toy,
 										/obj/item/kitchen,
 										/obj/item/flashlight/lamp,
@@ -61,8 +62,8 @@ SUBSYSTEM_DEF(persistence)
 		var/list/extracted_list = file2list(ITEM_POOL_PATH, ", ") //This is a list of STRING but we need PATH
 		for(var/string in extracted_list)
 			loaded_item_pool[text2path(string)] += 1
-	fluid_pool = list()
 	if(fexists(FLUID_POOL_PATH))
+		fluid_pool = list()
 		var/list/entries = file2list(FLUID_POOL_PATH)
 		for(var/entry in entries)
 			if(!entry)
@@ -136,6 +137,7 @@ SUBSYSTEM_DEF(persistence)
 		fluid_pool[reagent_type] += O.reagents.reagent_volumes[reagent_type]
 
 /datum/controller/subsystem/persistence/proc/make_item_pool()
+	LAZYINITLIST(fluid_pool)
 	var/text_to_write = jointext(collect_item_pool(), ", ")
 	fdel(ITEM_POOL_PATH)
 	text2file(text_to_write, ITEM_POOL_PATH)
@@ -167,6 +169,10 @@ SUBSYSTEM_DEF(persistence)
 		for(var/obj/structure/reagent_dispensers/D in A.contents)
 			collect_object_fluids(D)
 
+		for(var/obj/machinery/drug_dispenser/D in A.contents)
+			for(var/reagent_type in D.reagent_volumes)
+				fluid_pool[reagent_type] += D.reagent_volumes[reagent_type]
+
 	return return_list
 
 /datum/controller/subsystem/persistence/proc/try_pool_item(obj/I, list/return_list)
@@ -194,3 +200,17 @@ SUBSYSTEM_DEF(persistence)
 			loaded_item_pool -= item_type
 		return TRUE
 	return FALSE
+
+// Returns the amount removed if there is a reagent of that type, and removes it from the pool. Returns 0 if the item is missing
+/datum/controller/subsystem/persistence/proc/take_reagent(rtype, amount)
+	if(!fluid_pool)
+		return amount
+	if(rtype in fluid_pool)
+		if(fluid_pool[rtype] >= amount)
+			fluid_pool[rtype] -= amount
+			return amount
+		else if(fluid_pool[rtype] > 0)
+			var/return_amount = fluid_pool[rtype]
+			fluid_pool -= rtype
+			return return_amount
+	return 0
