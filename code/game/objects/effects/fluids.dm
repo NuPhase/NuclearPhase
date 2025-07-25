@@ -44,6 +44,21 @@
 			temp_adj = (1-thermal_protection) * ((temperature - C.bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 	C.bodytemperature += between(-100, temp_adj*reagents.total_volume/FLUID_DEEP, 500)
 
+	if(reagents.total_volume > FLUID_PUDDLE)
+		var/message
+		switch(temperature)
+			if(30 CELSIUS to 40 CELSIUS)
+				message = SPAN_ERP("The fluid is pleasantly warm.")
+			if(40 CELSIUS to 80 CELSIUS)
+				message = SPAN_WARNING("The fluid is scalding hot!")
+			if(80 CELSIUS to INFINITY)
+				C.custom_pain("The fluid burns you!", temperature)
+		if(message)
+			to_chat_cooldown(C, message, "fluidwade", 20 SECONDS)
+
+	if(temperature > T100C)
+		C.fire_act(exposed_temperature = temperature)
+
 	//if(reagents.total_volume > FLUID_SHALLOW) //do not slip in deep fluid
 	//	return
 	// skillcheck for slipping
@@ -103,6 +118,10 @@
 		var/decl/material/mat = GET_DECL(reagent_type)
 		total_radioactivity += mat.radioactivity * reagents.reagent_volumes[reagent_type]
 	SSradiation.radiate(src, total_radioactivity)
+	if(temperature > 1000)
+		var/turf/simulated/floor/T = get_turf(src)
+		if(istype(T, /turf/simulated/floor))
+			T.burn_tile()
 
 /obj/effect/fluid/Destroy()
 	ADD_ACTIVE_FLUID(src)
@@ -146,7 +165,7 @@
 				h_b = 64 + (h_b - 64)*scale
 			var/scale_color = rgb(h_r, h_g, h_b)
 			color = scale_color
-			add_filter("glow",1, list(type="drop_shadow", color = scale_color, x = 0, y = 0, offset = 0, size = round(scale)))
+			add_filter("glow",1, list(type="drop_shadow", color = scale_color, x = 0, y = 0, offset = 4, size = round(scale), blend_mode = BLEND_ADD))
 			set_light(min(3, scale*2.5), min(3, scale*2.5), scale_color)
 		else if(light_power)
 			set_light(0)
@@ -221,6 +240,21 @@ var/global/obj/abstract/flood/flood_object = new
 	if(update_air)
 		air.update_values()
 		return TRUE
+	return FALSE
+
+/obj/effect/fluid/proc/evaporate()
+	if(!length(reagents?.reagent_volumes))
+		return
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/environment = T.return_air()
+	for(var/rtype in reagents.reagent_volumes)
+		var/decl/material/mat = GET_DECL(rtype)
+		var/moles_to_add = min(reagents.reagent_volumes[rtype], 10) / mat.molar_volume
+		if(moles_to_add > 0)
+			environment.adjust_gas_temp(rtype, moles_to_add, temperature, FALSE)
+			reagents.remove_reagent(rtype, round(moles_to_add * mat.molar_volume))
+	if(!reagents.total_volume)
+		qdel(src)
 	return FALSE
 
 /obj/effect/fluid/proc/is_combustible()

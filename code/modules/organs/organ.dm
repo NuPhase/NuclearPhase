@@ -168,6 +168,9 @@
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
+		if(!owner)
+			return
+		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.3, 50)
 		return
 	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
 	if(is_preserved())
@@ -253,7 +256,7 @@
 	if(germ_level > INFECTION_LEVEL_FOUR)
 		if(prob(3))	//about once every 30 seconds
 			take_general_damage(1,silent=prob(30))
-		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.1)
+		owner.bloodstr.add_reagent_max(/decl/material/solid/potassium, 0.1, germ_level/INFECTION_LEVEL_ONE)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of

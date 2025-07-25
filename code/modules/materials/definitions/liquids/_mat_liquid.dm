@@ -7,6 +7,7 @@
 	latent_heat = 40650
 	abstract_type = /decl/material/liquid
 	gas_tile_overlay = "vapor"
+	gas_overlay_limit = 0.05
 
 /decl/material/liquid/Initialize()
 	if(!gas_name)

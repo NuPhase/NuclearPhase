@@ -798,7 +798,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(germ_level > INFECTION_LEVEL_FOUR)
 		if (prob(3))	//about once every 30 seconds
 			take_general_damage(1,silent=prob(30))
-		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.3)
+		owner.bloodstr.add_reagent(/decl/material/solid/potassium, 0.3, germ_level/INFECTION_LEVEL_ONE)
 
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /obj/item/organ/external/proc/update_wounds()

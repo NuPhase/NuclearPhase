@@ -268,6 +268,8 @@
 	liquid_density = 1439
 	gas_flags = XGM_GAS_OXIDIZER
 	oxidizer_power = 6
+	toxicity = 3000
+	gas_overlay_limit = 0.1
 
 /decl/material/gas/nitricoxide
 	name = "nitric oxide"
@@ -281,6 +283,7 @@
 	liquid_density = 1269
 	gas_flags = XGM_GAS_OXIDIZER
 	oxidizer_power = 8
+	gas_overlay_limit = 0.1
 
 /decl/material/gas/methane
 	name = "methane"
@@ -529,3 +532,4 @@
 	dissolves_in = MAT_SOLVENT_MILD
 	dissolves_into = list(/decl/material/solid/metal/tungsten = 0.142857, /decl/material/liquid/acid/hydrofluoric = 0.857143)
 	reactivity_coefficient = 0.1
+	gas_overlay_limit = 0.1

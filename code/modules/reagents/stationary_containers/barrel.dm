@@ -8,6 +8,13 @@
 	color = COLOR_GRAY
 	var/open = FALSE
 	var/mob/contained = null
+	var/funnel = FALSE
+
+/obj/structure/reagent_dispensers/barrel/can_fill()
+	return !funnel
+
+/obj/structure/reagent_dispensers/barrel/get_mechanics_info()
+	return "You can toggle its cover and its funnel by right clicking it. It can only be filled when it has a funnel installed."
 
 /obj/structure/reagent_dispensers/barrel/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/chems))
@@ -80,6 +87,19 @@
 		open = TRUE
 	update_icon()
 
+/obj/structure/reagent_dispensers/barrel/verb/toggle_funnel()
+	set name = "Toggle Funnel"
+	set category = "Object"
+	set src in view(1)
+
+	if(funnel)
+		usr.visible_message(SPAN_NOTICE("[usr] puts a funnel on [src]"))
+		funnel = FALSE
+	else
+		usr.visible_message(SPAN_NOTICE("[usr] removes the funnel from [src]"))
+		funnel = TRUE
+	update_icon()
+
 /obj/structure/reagent_dispensers/barrel/water
 	initial_reagent_types = list(/decl/material/liquid/water = 0.8)
 	color = COLOR_PALE_BLUE_GRAY
@@ -89,5 +109,5 @@
 	color = COLOR_PALE_ORANGE
 
 /obj/structure/reagent_dispensers/barrel/cornoil
-	initial_reagent_types = list(/decl/material/liquid/nutriment/cornoil = 0.3)
+	initial_reagent_types = list(/decl/material/liquid/nutriment/cornoil = 0.6)
 	color = COLOR_PALE_GREEN_GRAY

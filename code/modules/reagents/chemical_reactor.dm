@@ -7,3 +7,4 @@
 	max_temperature = 2910 CELSIUS
 	min_temperature = 77
 	permitted_types = list(/obj/item/chems/glass/beaker/vessel)
+	interact_offline = TRUE

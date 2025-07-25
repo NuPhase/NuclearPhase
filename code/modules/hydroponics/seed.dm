@@ -27,7 +27,7 @@
 	var/splat_type = /obj/effect/decal/cleanable/fruit_smudge // Graffiti decal.
 	var/product_type = /obj/item/chems/food/grown
 	var/force_layer
-	var/req_CO2_moles    = 0.2// Moles of CO2 required for photosynthesis.
+	var/req_CO2_moles    = 0.02// Moles of CO2 required for photosynthesis.
 	var/hydrotray_only
 	var/base_seed_value = 5 // Used when generating price.
 	var/scannable_result

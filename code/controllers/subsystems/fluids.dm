@@ -127,8 +127,8 @@ SUBSYSTEM_DEF(fluids)
 			continue
 
 		// Evaporation: todo, move liquid into current_turf.zone air contents if applicable.
-		if(current_depth <= FLUID_MINIMUM_TRANSFER && prob(15))
-			current_turf.remove_fluids(min(current_depth, 1), defer_update = TRUE)
+		if(current_depth <= FLUID_PUDDLE)
+			current_fluid.evaporate()
 		if(current_depth <= FLUID_QDEL_POINT)
 			qdel(current_fluid)
 			continue

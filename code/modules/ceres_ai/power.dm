@@ -1,10 +1,10 @@
 /datum/facility_ai/proc/add_server(obj/machinery/ai_server/target)
 	servers += target
-	check_all_servers()
+	computational_power = check_all_servers()
 
 /datum/facility_ai/proc/remove_server(obj/machinery/ai_server/target)
 	servers -= target
-	check_all_servers()
+	computational_power = check_all_servers()
 
 // Returns the server corruption ratio (0-1)
 /datum/facility_ai/proc/get_server_corruption(obj/machinery/ai_server/target)
@@ -22,4 +22,4 @@
 		server_corruption += target.corruption / length(servers)
 		if(check_server(target))
 			working_servers++
-	return working_servers
+	return working_servers * COMP_POWER_PER_SERVER

@@ -35,7 +35,7 @@
 	lore_text = "An extremely corrosive acid with the molecular formula HF."
 	taste_description = "osteoporosis"
 	color = "#b2fff634"
-	solvent_power = MAT_SOLVENT_STRONG+3
+	solvent_power = MAT_SOLVENT_STRONG+4
 	solvent_melt_dose = 20
 	solvent_max_damage = 10
 	value = 1.5
@@ -49,11 +49,24 @@
 	name = "nitric acid"
 	uid = "liquid_nitric_acid"
 	lore_text = "A very corrosive acid made from air."
-	color = "#c48870"
-	solvent_power = MAT_SOLVENT_STRONG
+	color = "#ffe7dd"
+	solvent_power = MAT_SOLVENT_STRONG+3
 	solvent_melt_dose = 48
 	solvent_max_damage = 30
-	value = 1.5
+	boiling_point = 82.6 CELSIUS
+	melting_point = -41.59 CELSIUS
+	molar_mass = 0.063012
+	liquid_density = 1513
+	toxicity = 5
+	reactivity_coefficient = 0.001
+	heating_point = 40 CELSIUS
+	heating_message = "exudes a caustic orange smoke."
+	heating_sound = null
+	heating_products = list(
+		/decl/material/gas/oxygen = 0.142857,
+		/decl/material/liquid/water = 0.285714,
+		/decl/material/gas/nitrodioxide = 0.571428
+	)
 
 /decl/material/liquid/acid/boric
 	name = "boric acid"

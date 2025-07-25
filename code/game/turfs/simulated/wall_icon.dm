@@ -137,6 +137,7 @@
 		add_overlay(I)
 		if(paint_color)
 			I = image(icon, "paint[wall_connections[i]]", dir = BITFLAG(i-1))
+			I.blend_mode = BLEND_ADD
 			I.color = paint_color
 			add_overlay(I)
 		if(stripe_color)

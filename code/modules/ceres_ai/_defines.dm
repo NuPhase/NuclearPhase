@@ -27,12 +27,17 @@
 #define AGRO_LEVEL_HIGH 2 // Combat drones are active, and using lethal weapons at all times
 #define AGRO_LEVEL_MAX  3 // All drones are active and attacking with lethal weapons
 
+#define COMP_POWER_PER_SERVER 1.743
+
 /datum/facility_ai
 	var/name = NORMAL_NAME
 	var/id
 
 	var/corruption_level = 0
 	var/server_corruption = 0
+
+	var/computational_power = 0
+	var/computational_need = list() // /decl/computation_type = amount
 
 	var/list/logs = list()
 

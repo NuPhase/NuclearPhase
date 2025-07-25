@@ -13,6 +13,7 @@
 	min_fluid_opacity = 200
 	max_fluid_opacity = 255
 	gas_tile_overlay = "dust"
+	gas_overlay_limit = 0.001
 	liquid_density = 6980
 
 /decl/material/solid/Initialize()

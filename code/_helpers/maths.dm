@@ -146,7 +146,7 @@
 	x = x * v.x
 	y = y * v.y
 
-/datum/vector2/proc/lerp(var/target, var/weight)
+/datum/vector2/proc/lerpe(var/target, var/weight)
 	x = Interpolate(x, target, weight)
 	y = Interpolate(y, target, weight)
 
@@ -193,7 +193,7 @@
 	y = y * v.y
 	z = z * v.z
 
-/datum/vector3/proc/lerp(var/target, var/weight)
+/datum/vector3/proc/lerpe(var/target, var/weight)
 	x = Interpolate(x, target, weight)
 	y = Interpolate(y, target, weight)
 	z = Interpolate(z, target, weight)

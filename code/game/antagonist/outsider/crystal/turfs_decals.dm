@@ -35,7 +35,7 @@
 	user.do_attack_animation(src)
 	visible_message(SPAN_WARNING("[user] attacks \the [src] with \the [I]!"))
 	playsound(src, "glasscrack", 50, 1)
-	if(I.force > 10 && prob(I.force))
+	if(I.force > 10 && prob(I.force * 5))
 		visible_message(SPAN_DANGER("[src] gets shredded to pieces!"))
 		qdel(src)
 	. = ..()
@@ -115,7 +115,7 @@
 
 /obj/item/projectile/bullet/pellet/fragment/crystal
 	damage = 3
-	irradiate = 500
+	irradiate = 50
 	eyeblur = 1
 
 /obj/item/projectile/bullet/pellet/fragment/crystal/on_hit(atom/target, blocked)
@@ -125,7 +125,7 @@
 			if(H.srec_dose < 100)
 				H.srec_dose += rand(20, 70)
 			else
-				H.srec_dose *= 1.05
+				H.srec_dose *= 1.01
 			SET_STATUS_MAX(H, STAT_WEAK, 3)
 	. = ..()
 
@@ -143,6 +143,9 @@
 	icon = 'icons/turf/mining_decals.dmi'
 	icon_state = "crystal_wall"
 	color = COLOR_SREC
+
+/obj/effect/crystal_wall/eye
+	name = "spiky crystal wall"
 
 /obj/effect/crystal_wall/New(loc, ...)
 	. = ..()

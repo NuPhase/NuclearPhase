@@ -257,7 +257,10 @@
 	var/tox_dam = 0
 	for(var/obj/item/organ/internal/I in internal_organs)
 		tox_dam += I.getToxLoss()
-	return pain + lasting_pain + 0.3 * tox_dam + 0.5 * get_genetic_damage()
+	var/germ_factor = 0
+	if(germ_level > INFECTION_LEVEL_ONE)
+		germ_factor = (germ_level / INFECTION_LEVEL_FOUR) * 500
+	return pain + lasting_pain + germ_factor + 0.3 * tox_dam + 0.5 * get_genetic_damage()
 
 /obj/item/organ/external/proc/remove_pain(var/amount)
 	if(!can_feel_pain())

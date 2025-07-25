@@ -108,5 +108,6 @@ STACK_SUBTYPES(plastic,        "plastic",                       solid/plastic,  
 STACK_SUBTYPES(aluminium,      "aluminium",                     solid/metal/aluminium,      filament,      null)
 
 STACK_SUBTYPES(titanium,       "titanium",                      solid/metal/titanium,       strut,      null)
+STACK_SUBTYPES(potash, "potash",               solid/potash, cubes,      null)
 
 #undef STACK_SUBTYPES

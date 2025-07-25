@@ -223,7 +223,7 @@ Class Procs:
 			if(!spawned_dust)
 				spawned_dust = new(T)
 			var/decl/material/mat = GET_DECL(g)
-			var/condense_amt = min(air.gas[g], rand(min(air.gas[g], 255), 255))
+			var/condense_amt = min(air.solids[g], (air.solids[g] * 0.01) + 0.0001)
 			if(condense_amt < 1)
 				break
 			air.adjust_gas(g, -condense_amt)

@@ -363,7 +363,7 @@
 		var/turf/T = get_turf(src)
 		gib()
 		new /obj/effect/crystal_growth/meat(T)
-		new /obj/effect/crystal_wall(T)
+		new /mob/living/crystal_hivemind(T)
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
 	for(var/slot in global.standard_headgear_slots)

@@ -26,7 +26,7 @@
 
 #define CELSIUS + T0C
 
-#define ATMOS_PRECISION 0.0001
+#define ATMOS_PRECISION 0.00000001
 #define QUANTIZE(variable) (round(variable, ATMOS_PRECISION))
 
 #define INFINITY	1e31 // 1.#INF cannot be stored in JSON, which creates issues, so we use 1e31 instead.

@@ -578,13 +578,14 @@
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
+	var/list/all_fluid = get_fluid()
 	for(var/obj/effect/gas_overlay/O in graphic)
-		if(gas[O.material.type] <= O.material.gas_overlay_limit)
+		if(all_fluid[O.material.type] <= O.material.gas_overlay_limit)
 			LAZYADD(graphic_remove, O)
-	for(var/g in gas)
+	for(var/g in all_fluid)
 		//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 		var/decl/material/mat = GET_DECL(g)
-		if(!isnull(mat.gas_overlay_limit) && gas[g] > mat.gas_overlay_limit)
+		if(!isnull(mat.gas_overlay_limit) && all_fluid[g] > mat.gas_overlay_limit)
 			if(!LAZYACCESS(tile_overlay_cache, g))
 				LAZYSET(tile_overlay_cache, g, new /obj/effect/gas_overlay(null, g))
 			var/tile_overlay = tile_overlay_cache[g]
@@ -602,8 +603,13 @@
 	if(length(graphic))
 		var/pressure_mod = Clamp(return_pressure() / ONE_ATMOSPHERE, 0, 2)
 		for(var/obj/effect/gas_overlay/O in graphic)
-			var/concentration_mod = Clamp(gas[O.material.type] / total_moles, 0.1, 1)
-			var/new_alpha = min(230, round(pressure_mod * concentration_mod * 180, 5))
+			var/phase_mod = 1
+			if(istype(O.material, /decl/material/liquid))
+				phase_mod = 2
+			else if(istype(O.material, /decl/material/solid))
+				phase_mod = 15
+			var/concentration_mod = Clamp(all_fluid[O.material.type] / total_moles, 0.1, 1)
+			var/new_alpha = min(230, round(pressure_mod * concentration_mod * phase_mod * 180, 5))
 			if(new_alpha != O.alpha)
 				O.update_alpha_animation(new_alpha)
 

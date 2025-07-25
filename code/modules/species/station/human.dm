@@ -37,6 +37,12 @@
 
 	gluttonous = MOB_SIZE_TINY
 
+	poison_types = list(/decl/material/gas/chlorine = TRUE,
+						/decl/material/gas/carbon_monoxide = TRUE,
+						/decl/material/gas/methyl_bromide = TRUE,
+						/decl/material/gas/nitrodioxide = TRUE,
+						/decl/material/gas/tungstenhexafluoride)
+
 /decl/species/human/get_root_species_name(var/mob/living/carbon/human/H)
 	return SPECIES_HUMAN
 

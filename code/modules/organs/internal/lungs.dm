@@ -250,13 +250,14 @@
 	// Pass reagents from the gas into our body.
 	// Presumably if you breathe it you have a specialized metabolism for it, so we drop/ignore breath_type. Also avoids
 	// humans processing thousands of units of oxygen over the course of a round.
-	for(var/gasname in breath.gas - breath_type)
+	var/list/all_fluid = breath.get_fluid()
+	for(var/gasname in all_fluid - breath_type)
 		var/decl/material/gas = GET_DECL(gasname)
 		if(gas.gas_metabolically_inert)
 			continue
-		var/reagent_amount = breath.gas[gasname] * gas.molar_volume
+		var/reagent_amount = all_fluid[gasname] * gas.molar_volume
 		owner.reagents.add_reagent(gasname, reagent_amount)
-		breath.adjust_gas(gasname, -breath.gas[gasname], update = 0) //update after
+		breath.adjust_gas(gasname, -all_fluid[gasname], update = 0) //update after
 
 	// Moved after reagent injection so we don't instantly poison ourselves with CO2 or whatever.
 	var/obj/item/clothing/mask/mask = owner.get_equipped_item(slot_wear_mask_str)
@@ -331,17 +332,11 @@
 	// Hot air hurts :(
 
 	if(breath.temperature > species.heat_level_1)
-		var/damage = (breath.temperature - species.heat_level_1) * 0.02
-		if(damage > 5)
-			owner.apply_damage(damage*0.1, BURN, BP_HEAD, used_weapon = "Excessive Heat")
-		take_internal_damage(damage, TRUE)
+		breath_rate *= 0.25
 		owner.fire_alert = 1
 
 	if(breath.temperature < species.cold_level_1)
-		var/damage = (species.heat_level_1 - breath.temperature) * 0.01
-		if(damage > 5)
-			owner.apply_damage(damage*0.1, BURN, BP_HEAD, used_weapon = "Excessive Cold")
-		take_internal_damage(damage, TRUE)
+		breath_rate *= 0.25
 		owner.fire_alert = 2
 
 		//breathing in hot/cold air also heats/cools you a bit

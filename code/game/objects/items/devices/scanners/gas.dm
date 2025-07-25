@@ -61,7 +61,7 @@
 			var/perGas_add_string = ""
 			var/list/all_fluid = mixture.get_fluid()
 			for(var/mix in all_fluid)
-				var/percentage = round(all_fluid[mix]/total_moles * 100, 0.01)
+				var/percentage = round(all_fluid[mix]/total_moles * 100, 0.001)
 				var/mix_moles = mixture.gas[mix] + mixture.liquids[mix] + mixture.solids[mix]
 				if(!percentage)
 					continue

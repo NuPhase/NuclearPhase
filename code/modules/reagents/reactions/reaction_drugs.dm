@@ -4,6 +4,15 @@
 	required_reagents = list(/decl/material/liquid/acid = 1, /decl/material/liquid/acid/hydrochloric = 1, /decl/material/solid/potassium = 1)
 	result_amount = 3
 
+/decl/chemical_reaction/nitric_acid
+	name = "Nitric acid"
+	result = /decl/material/liquid/acid/nitric
+	required_reagents = list(/decl/material/gas/nitrodioxide = 2, /decl/material/liquid/water = 1)
+	result_amount = 1
+	mix_message = "The orange vapors condense into the vapors."
+	reaction_sound = null
+	maximum_temperature = 40 CELSIUS
+
 /decl/chemical_reaction/presyncopics
 	name = "Presyncopics"
 	result = /decl/material/liquid/presyncopics
@@ -196,4 +205,4 @@
 	name = "Potassium Iodide Synthesis"
 	result = /decl/material/liquid/potassium_iodide
 	required_reagents = list(/decl/material/solid/potassium = 1, /decl/material/solid/iodine = 2)
-	result_amount = 3
+	result_amount = 1

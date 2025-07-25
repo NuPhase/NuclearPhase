@@ -27,6 +27,9 @@
 /obj/structure/reagent_dispensers/is_pressurized_fluid_source()
 	return TRUE
 
+/obj/structure/reagent_dispensers/proc/can_fill()
+	return TRUE
+
 /obj/structure/reagent_dispensers/proc/leak()
 	var/turf/T = get_turf(src)
 	if(reagents && T)

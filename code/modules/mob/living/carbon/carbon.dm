@@ -403,6 +403,8 @@
 	nutrition = Clamp(amt, 0, initial(nutrition))
 
 /mob/living/carbon/adjust_nutrition(var/amt)
+	if(ssd_check() && 0 > amt && nutrition < 150)
+		return // We don't want SSD people to starve to death
 	set_nutrition(nutrition + amt)
 
 /mob/living/carbon/proc/set_hydration(var/amt)

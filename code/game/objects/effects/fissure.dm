@@ -8,7 +8,7 @@
 
 	var/datum/effect/effect/system/steam_spread/steam
 
-	var/emission_amount = 120
+	var/emission_amount = 1200
 	var/emission_temperature = T20C
 	var/fluid_type
 
@@ -34,7 +34,7 @@
 		fluid_type = /decl/material/liquid/water/dirty1
 		release_steam()
 	else
-		fluid_type = /decl/material/liquid/water/dirty2
+		fluid_type = /decl/material/liquid/water/dirty3
 	release_water()
 
 /obj/effect/fissure/proc/release_water()

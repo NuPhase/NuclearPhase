@@ -814,7 +814,7 @@
 	name = "corn"
 	seed_name = "corn"
 	display_name = "ears of corn"
-	chems = list(/decl/material/liquid/nutriment = list(1,10), /decl/material/liquid/nutriment/cornoil = list(1,10))
+	chems = list(/decl/material/liquid/nutriment = list(1,10), /decl/material/liquid/nutriment/cornoil = list(1,300))
 	kitchen_tag = "corn"
 	trash_type = /obj/item/corncob
 
@@ -1293,10 +1293,10 @@
 	display_name = "algae patch"
 	chems = list(
 		/decl/material/liquid/nutriment = list(2,12),
-		/decl/material/liquid/bromide = list(3,8)
+		/decl/material/solid/iodine = list(1,8)
 	)
 	kitchen_tag = "algae"
-	exude_gasses = list(/decl/material/gas/methyl_bromide = 3)
+	exude_gasses = list(/decl/material/gas/methyl_bromide = 0.1)
 
 /datum/seed/algae/New()
 	..()
@@ -1311,7 +1311,7 @@
 	set_trait(TRAIT_PLANT_ICON,"algae")
 	set_trait(TRAIT_IDEAL_LIGHT, 6)
 	set_trait(TRAIT_WATER_CONSUMPTION, 6)
-	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
+	set_trait(TRAIT_REQUIRES_NUTRIENTS, 0)
 
 /datum/seed/algae/bruisegrass
 	name = "bruisegrass"
