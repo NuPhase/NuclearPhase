@@ -482,19 +482,28 @@
 		use(1)
 
 
-/*
+
 /obj/item/stack/medical/synth_spares
-	name = "synthetic spare parts"
-	singular_name = "spare part"
-	desc = "Some spare parts for sneaky shelter synths."
-	icon_state = "brutepack"
-	origin_tech = "{'biotech':1}"
-	animal_heal = 5
+	name = "synthetic repair kits"
+	singular_name = "repair kit"
+	desc = "A spare repair kit for sneaky shelter synths."
+	icon_state = "resin-pack"
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	amount = 3
-	weight = 0.15
+	weight = 0.45
+	singular_weight = 0.15
+	w_class = ITEM_SIZE_NORMAL
 	var/can_heal_above_damage = 0 //minimum damage for use
-	var/can_heal_below_damage = 0 //maximum damage for use
+	var/can_heal_below_damage = 50 //maximum damage for use
+
+/obj/item/stack/medical/synth_spares/check_limb_state(var/mob/user, var/obj/item/organ/external/limb)
+	. = FALSE
+	if(BP_IS_CRYSTAL(limb))
+		to_chat(user, SPAN_WARNING("You cannot use \the [src] to treat a crystalline limb."))
+	else if(!BP_IS_PROSTHETIC(limb))
+		to_chat(user, SPAN_WARNING("You cannot use \the [src] to treat an organic limb."))
+	else
+		. = TRUE
 
 /obj/item/stack/medical/synth_spares/proc/can_apply(var/mob/living/carbon/M, var/mob/user)
 	var/mob/living/carbon/human/H = M
@@ -510,8 +519,8 @@
 	if(!can_apply(M, user))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/carbon/human/synthetic))
+		var/mob/living/carbon/human/synthetic/H = M
 		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, user.zone_sel.selecting) //nullchecked by ..()
 		user.visible_message(SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."), \
 				             SPAN_NOTICE("You start treating [M]'s [affecting.name]."))
@@ -522,4 +531,4 @@
 			used++
 		affecting.damage = can_heal_above_damage
 		affecting.update_damages()
-		use(used)*/
+		use(used)

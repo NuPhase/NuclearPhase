@@ -3,6 +3,7 @@
 	roleplay_summary = "You are a synthetic made by United Nations and were used to spy on important people. You were sealed in the shelter together with normal human beings. You have to conceal what you really are, and terminate any witnesses."
 	primitive_form = SPECIES_HUMAN
 	spawn_flags = SPECIES_IS_RESTRICTED
+	species_flags = SPECIES_FLAG_SYNTHETIC
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE_NORMAL | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR | SPECIES_FLAG_NO_SCAN | SPECIES_FLAG_NO_POISON
 	exertion_reagent_path = /decl/material/liquid/water //watercooled
 	unarmed_attacks = list(/decl/natural_attack/stomp, /decl/natural_attack/kick, /decl/natural_attack/punch, /decl/natural_attack/bite)
@@ -75,6 +76,8 @@
 	genitals = TRUE
 	anus = FALSE
 	virginity = FALSE //yoba
+
+	vision_flags = SEE_MOBS
 
 	has_limbs = list(
 		BP_CHEST =  list("path" = /obj/item/organ/external/chest/synthetic),

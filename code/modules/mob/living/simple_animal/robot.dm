@@ -44,12 +44,36 @@
 	var/obj/item/gun/projectile/automatic/snapdragon/robot/nonlethal_rifle
 	var/obj/item/gun/projectile/automatic/smg/robot/lethal_rifle
 
+/mob/living/simple_animal/robot/default_help_interaction(mob/user)
+	. = ..()
+	if(istype(user, /mob/living/carbon/human/synthetic))
+		if(our_ai)
+			deactivate()
+		else
+			activate()
+		user.visible_message(SPAN_NOTICE("[user] pets \the [src] and it politely obeys."))
+		return
+	user.visible_message(SPAN_NOTICE("[user] pets \the [src], but nothing interesting happens."))
+
+/mob/living/simple_animal/robot/MouseDrop(atom/over)
+	var/mob/user = usr
+	if(!istype(user, /mob/living/carbon/human/synthetic))
+		return
+	if(!our_ai)
+		return
+	user.visible_message(SPAN_NOTICE("[user] directs \the [src] towards \the [over]."))
+	our_ai.target = over
+	if(ismob(over))
+		our_ai.mob_target = over
+		our_ai.last_seen_mob = world.time
+	. = ..()
+
 /mob/living/simple_animal/robot/has_dexterity(dex_level)
 	. = dex_level <= DEXTERITY_WEAPONS
 
 /mob/living/simple_animal/robot/Initialize()
 	. = ..()
-	fcontrol.combat_drones += src
+	fcontrol.add_drone(src)
 	nonlethal_rifle = new(src)
 	nonlethal_rifle.safety_state = FALSE
 	nonlethal_rifle.sel_mode = 2
@@ -61,7 +85,7 @@
 
 /mob/living/simple_animal/robot/Destroy()
 	. = ..()
-	fcontrol.combat_drones -= src
+	fcontrol.remove_drone(src)
 	QDEL_NULL(nonlethal_rifle)
 	QDEL_NULL(lethal_rifle)
 

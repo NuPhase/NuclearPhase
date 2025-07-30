@@ -248,7 +248,7 @@
 	damage_flags = DAM_LASER
 	damage = 20
 	eyeblur = 2
-	agony = 150
+	agony = 450
 	armor_penetration = ARMOR_LASER_SMALL
 	embed = FALSE
 	penetrating = FALSE

@@ -7,6 +7,8 @@
 		if(L == parent.mob_target)
 			parent.last_seen_mob = world.time
 			return TRUE
+		if(L.incapacitated(INCAPACITATION_UNRESISTING))
+			continue
 		parent.mob_target = L
 		parent.last_seen_mob = world.time
 		return TRUE
@@ -20,6 +22,8 @@
 			return TRUE
 		if(L.faction == parent.faction)
 			continue
+		if(L.incapacitated(INCAPACITATION_UNRESISTING))
+			continue
 		parent.mob_target = L
 		parent.last_seen_mob = world.time
 	return TRUE
@@ -32,6 +36,8 @@
 			parent.last_seen_mob = world.time
 			return TRUE
 		if(!(weakref(L) in parent.target_list))
+			continue
+		if(L.incapacitated(INCAPACITATION_UNRESISTING))
 			continue
 		parent.mob_target = L
 		parent.last_seen_mob = world.time
