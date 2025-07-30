@@ -67,6 +67,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 	return (key in assoclist) ? (value in assoclist[key]) : FALSE
 
 /datum/whitelist/job/check_entry_assoc(var/key, var/value)
+	return TRUE
 	var/datum/job/job = SSjobs.get_by_path(text2path(key))
 	if(!job.required_whitelists)
 		return TRUE
@@ -239,6 +240,8 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 
 /client/New()
 	show_lore_entry()
+	is_wl = TRUE
+	/*
 	var/datum/whitelist/wl = get_global_connect_whitelist()
 	if(!wl.check_entry(ckey(key)))
 		src << link("https://discord.gg/pHTN8dBDN8")
@@ -246,6 +249,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 		show_browser(src, "Вас нет в вайтлисте. Вам будет доступна только одна роль, почти не покрывающая широкий геймплей нашего сервера. Для получения доступа к остальным ролям зайдите в наш дискорд сервер(https://discord.gg/d9qmWD7w35) и пройдите верификацию. Приятной смерти.", "window=whitelisted;size=900x480")
 	else //хуй был тут
 		is_wl = TRUE
+	*/
 	. = ..()
 
 /client/proc/show_lore_entry()
