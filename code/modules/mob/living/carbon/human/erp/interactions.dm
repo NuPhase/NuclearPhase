@@ -6,7 +6,6 @@
 #define FUCK_COOLDOWN_DEFAULT 7
 
 /mob/living/carbon/human/receive_mouse_drop(mob/M as mob, mob/user as mob)
-	return
 	if(M == src || src == usr || M != usr)		return
 	if(usr.restrained())		return
 
