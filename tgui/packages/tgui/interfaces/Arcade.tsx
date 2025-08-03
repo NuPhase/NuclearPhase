@@ -1,5 +1,5 @@
 import { useBackend } from "../backend";
-import { Button, Flex } from "../components";
+import { Button, Flex } from 'tgui-core/components';
 import { Window } from "../layouts";
 
 interface Enemy {

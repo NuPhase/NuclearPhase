@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { Section,Button, NoticeBox, Table, NumberInput, Tooltip, Box } from "../components";
+import { Section,Button, NoticeBox, Table, NumberInput, Tooltip, Box } from 'tgui-core/components';
 import { Window } from "../layouts";
 
 type Reagent = {

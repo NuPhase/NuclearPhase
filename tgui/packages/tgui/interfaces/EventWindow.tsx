@@ -7,10 +7,10 @@ import {
   Modal,
   Section,
   Stack,
-} from "../components";
+} from 'tgui-core/components';
 import { Window } from "../layouts";
 import { useBackend } from "../backend";
-import { round } from "common/math";
+import { round } from "tgui-core/math";
 
 export type Option = {
   id: string;

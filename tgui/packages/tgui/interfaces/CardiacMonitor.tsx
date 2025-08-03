@@ -1,5 +1,5 @@
 import { useBackend } from "../backend";
-import { AnimatedNumber, Blink, Box, LabeledList, Section, Flex, Button} from "../components";
+import { AnimatedNumber, Blink, Box, LabeledList, Section, Flex, Button} from 'tgui-core/components';
 import { Window } from "../layouts";
 
 type InputData = {

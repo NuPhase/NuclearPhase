@@ -1,7 +1,7 @@
-import { toFixed } from 'common/math';
+import { toFixed } from 'tgui-core/math';
 import { useBackend} from "../backend";
-import { LabeledList, Box, Section, Flex, ProgressBar } from "../components";
-import { formatSiUnit } from "../format";
+import { LabeledList, Box, Section, Flex, ProgressBar } from 'tgui-core/components';
+import { formatSiUnit } from "tgui-core/format";
 import { Window } from "../layouts";
 
 type Alarm = {

@@ -1,5 +1,5 @@
 import { useBackend} from "../backend";
-import { LabeledList, Box, Section, Flex, ProgressBar, BlockQuote } from "../components";
+import { LabeledList, Box, Section, Flex, ProgressBar, BlockQuote } from 'tgui-core/components';
 import { Window } from "../layouts";
 
 type Log = {

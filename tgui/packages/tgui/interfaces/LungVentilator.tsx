@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { LabeledList, ProgressBar, Tabs, Slider, Button, Section, Knob} from "../components";
+import { LabeledList, ProgressBar, Tabs, Slider, Button, Section, Knob} from 'tgui-core/components';
 import { Window } from "../layouts";
 
 type InputData = {

@@ -1,235 +1,302 @@
-import { useBackend, useLocalState } from "../backend";
 import {
-  AnimatedNumber,
   Box,
   Button,
-  Divider,
-  Flex,
-  Input,
+  Collapsible,
+  Icon,
+  LabeledList,
+  ProgressBar,
   Section,
   Stack,
-  Table,
-} from "../components";
-import { GameIcon } from "../components/GameIcon";
-import { Window } from "../layouts";
+  Tooltip,
+} from 'tgui-core/components';
+import { type BooleanLike, classes } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
-interface Material {
-  name: string;
-  count: number;
-  capacity: number | null;
-  icon: string;
-}
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
+import { DesignBrowser } from './Fabrication/DesignBrowser';
+import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
+import type { Design, MaterialMap } from './Fabrication/Types';
+import type { Material } from './Fabrication/Types';
 
-interface Category {
-  selected: string;
-  total: string[];
-}
-
-interface Recipe {
-  name: string;
-  index: number;
-  category: string;
-  // eslint-disable-next-line camelcase
-  can_make: boolean;
-  hidden: boolean;
-  required: Material[];
-  multipliers: string[];
-  icon: string;
-}
-
-interface InputData {
-  storage: Material[];
-  category: Category;
-  recipes: Recipe[];
-}
-
-const MAX_PER_PAGE = 15;
-
-const numberWithinRange = (min: number, n: number, max: number) =>
-  Math.min(Math.max(n, min), max);
-
-const paginator = (recipes: Recipe[], context: any) => {
-  const [currentPage, setCurrentPage] = useLocalState(
-    context,
-    "currentPage",
-    1
-  );
-  const totalPages = Math.ceil(recipes.length / MAX_PER_PAGE);
-
-  return (
-    <Stack width="100%" justify="space-between">
-      <Stack.Item>
-        <Button.Segmented
-          icon="fast-backward"
-          onClick={() => setCurrentPage(1)}
-        />
-        <Button.Segmented
-          icon="step-backward"
-          onClick={() =>
-            setCurrentPage(numberWithinRange(1, currentPage - 1, totalPages))
-          }
-        />
-      </Stack.Item>
-      <Stack.Item>
-        {currentPage} / {totalPages}
-      </Stack.Item>
-      <Stack.Item>
-        <Button.Segmented
-          icon="step-forward"
-          onClick={() =>
-            setCurrentPage(numberWithinRange(1, currentPage + 1, totalPages))
-          }
-        />
-        <Button.Segmented
-          icon="fast-forward"
-          onClick={() => setCurrentPage(totalPages)}
-        />
-      </Stack.Item>
-    </Stack>
-  );
+type AutolatheDesign = Design & {
+  customMaterials: BooleanLike;
 };
 
-export const Autolathe = (props: any, context: any) => {
-  const { act, data, getTheme } = useBackend<InputData>(context);
-  const [searchQuery, setSearchQuery] = useLocalState(
-    context,
-    "searchQuery",
-    null
-  );
-  const [currentPage, setCurrentPage] = useLocalState(
-    context,
-    "currentPage",
-    1
-  );
-  let found: Recipe[] = data.recipes;
+type AutolatheData = {
+  materials: Material[];
+  materialtotal: number;
+  materialsmax: number;
+  SHEET_MATERIAL_AMOUNT: number;
+  designs: AutolatheDesign[];
+  active: BooleanLike;
+};
 
-  if (searchQuery !== null) {
-    found = data.recipes.filter(
-      (recipe, _) => recipe.name.search(searchQuery) >= 0
-    );
+export const Autolathe = (props) => {
+  const { data } = useBackend<AutolatheData>();
+  const {
+    materialtotal,
+    materialsmax,
+    materials,
+    designs,
+    active,
+    SHEET_MATERIAL_AMOUNT,
+  } = data;
+
+  const filteredMaterials = materials.filter((material) => material.amount > 0);
+
+  const availableMaterials: MaterialMap = {};
+
+  for (const material of filteredMaterials) {
+    availableMaterials[material.name] = material.amount;
   }
 
   return (
-    <Window theme={getTheme("primer")} width="427" height="600">
-      <Window.Content scrollable>
-        <Section className="Materials" title="Materials">
-          <Flex justify="space-around" align="center">
-            {data.storage.map((material, i) => {
-              return (
-                <Flex.Item key={i}>
-                  <GameIcon html={material.icon} />
-                  {material.name}{" "}
-                  <AnimatedNumber
-                    format={(value: number) =>
-                      Math.round(value).toLocaleString()
-                    }
-                    value={material.count}
-                  />
-                  /{material.capacity.toLocaleString()}
-                </Flex.Item>
-              );
-            })}
-          </Flex>
-        </Section>
-        <Section className="Designs" title="Printable Designs">
-          <Input
-            placeholder="Search"
-            fluid
-            onInput={(e: any) => {
-              setCurrentPage(1);
-              return setSearchQuery(e.target.value);
-            }}
-          />
-          <Divider />
-          <Flex bold wrap justify="flex-start" align="center">
-            Filters:
-            {data.category.total.map((category, i) => {
-              return (
-                <Flex.Item key={i}>
-                  <Button.Label
-                    selected={data.category.selected === category}
-                    content={category}
-                    onClick={() => {
-                      setCurrentPage(1);
-                      return act("change_category", { category: category });
+    <Window title="Autolathe" width={670} height={600}>
+      <Window.Content>
+        <Stack vertical fill>
+          <Stack.Item>
+            <Section title="Total Materials">
+              <LabeledList>
+                <LabeledList.Item label="Total Materials">
+                  <ProgressBar
+                    value={materialtotal}
+                    minValue={0}
+                    maxValue={materialsmax}
+                    ranges={{
+                      good: [materialsmax * 0.85, materialsmax],
+                      average: [materialsmax * 0.25, materialsmax * 0.85],
+                      bad: [0, materialsmax * 0.25],
                     }}
-                  />
-                </Flex.Item>
-              );
-            })}
-          </Flex>
-          <Divider />
-          {paginator(found, context)}
-          <Divider />
-          <Table>
-            <Table.Row>
-              <Table.Cell textAlign="center" bold>
-                Name
-              </Table.Cell>
-              <Table.Cell textAlign="center" bold>
-                Required
-              </Table.Cell>
-            </Table.Row>
-            {found
-              .slice(
-                (currentPage - 1) * MAX_PER_PAGE,
-                currentPage * MAX_PER_PAGE
-              )
-              .map((recipe, i) => {
-                if (searchQuery !== null) {
-                  const found = recipe.name.search(searchQuery);
-                  if (found < 0) {
-                    return null;
-                  }
-                }
-
-                return (
-                  <Table.Row className="candystripe" key={i}>
-                    <Table.Cell>
-                      <GameIcon html={recipe.icon} />
-                      <Button.Link
-                        content={recipe.name}
-                        disabled={!recipe.can_make}
-                        onClick={() =>
-                          act("make", { make: recipe.index, multiplier: 1 })
-                        }
-                      />
-                      {recipe.multipliers.length > 0 ? (
-                        <Box ml="0.2rem" mb="0.5rem">
-                          {recipe.multipliers.map((mult, k) => {
-                            return (
-                              <Button.Segmented
-                                key={k}
-                                content={"x" + mult}
-                                onClick={() =>
-                                  act("make", {
-                                    make: recipe.index,
-                                    multiplier: mult,
-                                  })
-                                }
-                              />
-                            );
-                          })}
-                        </Box>
-                      ) : null}
-                    </Table.Cell>
-                    <Table.Cell>
-                      {recipe.required.map((material, i) => {
-                        return (
-                          <div key={i}>
-                            {material.name +
-                              " " +
-                              material.count.toLocaleString()}
-                          </div>
-                        );
-                      })}
-                    </Table.Cell>
-                  </Table.Row>
-                );
-              })}
-          </Table>
-        </Section>
+                  >
+                    {materialtotal / SHEET_MATERIAL_AMOUNT +
+                      '/' +
+                      materialsmax / SHEET_MATERIAL_AMOUNT +
+                      ' sheets'}
+                  </ProgressBar>
+                </LabeledList.Item>
+                <LabeledList.Item>
+                  {filteredMaterials.length > 0 && (
+                    <Collapsible title="Materials">
+                      <LabeledList>
+                        {filteredMaterials.map((material) => (
+                          <LabeledList.Item
+                            key={material.name}
+                            label={capitalize(material.name)}
+                          >
+                            <ProgressBar
+                              style={{
+                                transform: 'scaleX(-1) scaleY(1)',
+                              }}
+                              value={materialsmax - material.amount}
+                              maxValue={materialsmax}
+                              backgroundColor={material.color}
+                              color="black"
+                            >
+                              <div style={{ transform: 'scaleX(-1)' }}>
+                                {material.amount / SHEET_MATERIAL_AMOUNT +
+                                  ' sheets'}
+                              </div>
+                            </ProgressBar>
+                          </LabeledList.Item>
+                        ))}
+                      </LabeledList>
+                    </Collapsible>
+                  )}
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <DesignBrowser
+              busy={!!active}
+              designs={designs}
+              availableMaterials={availableMaterials}
+              buildRecipeElement={(
+                design,
+                availableMaterials,
+                _onPrintDesign,
+              ) => (
+                <AutolatheRecipe
+                  design={design}
+                  SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+                  availableMaterials={availableMaterials}
+                />
+              )}
+            />
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
+  );
+};
+
+type PrintButtonProps = {
+  design: Design;
+  quantity: number;
+  availableMaterials: MaterialMap;
+  SHEET_MATERIAL_AMOUNT: number;
+  maxmult: number;
+};
+
+const PrintButton = (props: PrintButtonProps) => {
+  const { act } = useBackend<AutolatheData>();
+  const {
+    design,
+    quantity,
+    availableMaterials,
+    SHEET_MATERIAL_AMOUNT,
+    maxmult,
+  } = props;
+
+  const canPrint = maxmult >= quantity;
+  return (
+    <Tooltip
+      content={
+        <MaterialCostSequence
+          design={design}
+          amount={quantity}
+          SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+          available={availableMaterials}
+        />
+      }
+    >
+      <div
+        className={classes([
+          'FabricatorRecipe__Button',
+          !canPrint && 'FabricatorRecipe__Button--disabled',
+        ])}
+        color={'transparent'}
+        onClick={() =>
+          canPrint && act('make', { id: design.id, multiplier: quantity })
+        }
+      >
+        &times;{quantity}
+      </div>
+    </Tooltip>
+  );
+};
+
+type AutolatheRecipeProps = {
+  design: AutolatheDesign;
+  availableMaterials: MaterialMap;
+  SHEET_MATERIAL_AMOUNT: number;
+};
+
+const AutolatheRecipe = (props: AutolatheRecipeProps) => {
+  const { act } = useBackend<AutolatheData>();
+  const { design, availableMaterials, SHEET_MATERIAL_AMOUNT } = props;
+
+  let maxmult = 0;
+  if (design.customMaterials) {
+    const largest_mat =
+      Object.entries(availableMaterials).reduce(
+        (accumulator: number, [material, amount]) => {
+          return Math.max(accumulator, amount);
+        },
+        0,
+      ) || 0;
+
+    if (largest_mat > 0) {
+      maxmult = Object.entries(design.cost).reduce(
+        (accumulator: number, [material, required]) => {
+          return Math.min(accumulator, largest_mat / required);
+        },
+        Infinity,
+      );
+    } else {
+      maxmult = 0;
+    }
+  } else {
+    maxmult = Object.entries(design.cost).reduce(
+      (accumulator: number, [material, required]) => {
+        return Math.min(
+          accumulator,
+          (availableMaterials[material] || 0) / required,
+        );
+      },
+      Infinity,
+    );
+  }
+  maxmult = Math.min(Math.floor(maxmult), 50);
+  const canPrint = maxmult > 0;
+
+  return (
+    <div className="FabricatorRecipe">
+      <Tooltip content={design.desc} position="right">
+        <div
+          className={classes([
+            'FabricatorRecipe__Button',
+            'FabricatorRecipe__Button--icon',
+            !canPrint && 'FabricatorRecipe__Button--disabled',
+          ])}
+        >
+          <Icon name="question-circle" />
+        </div>
+      </Tooltip>
+      <Tooltip
+        content={
+          <MaterialCostSequence
+            design={design}
+            amount={1}
+            SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+            available={availableMaterials}
+          />
+        }
+      >
+        <div
+          className={classes([
+            'FabricatorRecipe__Title',
+            !canPrint && 'FabricatorRecipe__Title--disabled',
+          ])}
+          onClick={() =>
+            canPrint && act('make', { id: design.id, multiplier: 1 })
+          }
+        >
+          <div className="FabricatorRecipe__Icon">
+            <Box
+              width={'32px'}
+              height={'32px'}
+              className={classes(['design32x32', design.icon])}
+            />
+          </div>
+          <div className="FabricatorRecipe__Label">{design.name}</div>
+        </div>
+      </Tooltip>
+
+      <PrintButton
+        design={design}
+        quantity={5}
+        SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+        availableMaterials={availableMaterials}
+        maxmult={maxmult}
+      />
+
+      <PrintButton
+        design={design}
+        quantity={10}
+        SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+        availableMaterials={availableMaterials}
+        maxmult={maxmult}
+      />
+
+      <div
+        className={classes([
+          'FabricatorRecipe__Button',
+          !canPrint && 'FabricatorRecipe__Button--disabled',
+        ])}
+      >
+        <Button.Input
+          color="transparent"
+          buttonText={`[Max: ${maxmult}]`}
+          onCommit={(value) =>
+            act('make', {
+              id: design.id,
+              multiplier: value,
+            })
+          }
+        />
+      </div>
+    </div>
   );
 };

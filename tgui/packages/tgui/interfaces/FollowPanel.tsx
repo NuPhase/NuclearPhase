@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from "../backend";
-import { Divider, Flex, Input, Section, Table, Button } from "../components";
-import { ButtonCheckbox } from "../components/Button";
+import { Divider, Flex, Input, Section, Table, Button } from 'tgui-core/components';
+import { ButtonCheckbox } from "tgui-core/components/Button";
 import { Window } from "../layouts";
 
 type Target = {

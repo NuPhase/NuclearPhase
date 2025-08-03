@@ -1,6 +1,6 @@
-import { clamp, toFixed } from "../../common/math";
+import { clamp, toFixed } from "../../tgui-core/math";
 import { useBackend } from "../backend";
-import { Button, Section, NumberInput, Flex } from "../components";
+import { Button, Section, NumberInput, Flex } from 'tgui-core/components';
 import { Window } from "../layouts";
 
 export const Signaler = (props, context) => {
