@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from "../backend";
-import { LabeledList, Button, ProgressBar, NoticeBox, Section, Divider, NumberInput, Flex } from "../components";
-import { formatSiUnit } from "../format";
+import { LabeledList, Button, ProgressBar, NoticeBox, Section, Divider, NumberInput, Flex } from 'tgui-core/components';
+import { formatSiUnit } from "tgui-core/format";
 import { Window } from "../layouts";
 
 type InputData = {

@@ -1,4 +1,4 @@
-import { round } from "common/math";
+import { round } from "tgui-core/math";
 import { useBackend, useLocalState } from "../backend";
 import {
   Button,
@@ -7,7 +7,7 @@ import {
   LabeledList,
   Section,
   Stack,
-} from "../components";
+} from 'tgui-core/components';
 import { Window } from "../layouts";
 import { Event } from "./EventWindow";
 

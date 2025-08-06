@@ -80,8 +80,7 @@
 	if(!window.is_ready())
 		window.initialize(
 			fancy = user.get_preference_value(/datum/client_preference/tgui_style) == PREF_FANCY,
-			assets = list(
-				get_asset_datum(/datum/asset/simple/tgui_common),
+			assets = list(,
 				get_asset_datum(/datum/asset/simple/tgui),
 				get_asset_datum(/datum/asset/simple/fontawesome)
 			))
@@ -172,7 +171,10 @@
 	json_data["config"] = list(
 		"title" = title,
 		"status" = status,
-		"interface" = interface,
+		"interface" = list(
+			"name" = interface,
+			"layout" = "list",
+		),
 		"theme" = user.get_preference_value(/datum/client_preference/tgui_theme),
 		"window" = list(
 			"key" = window_key,

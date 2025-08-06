@@ -1,5 +1,5 @@
 import { useBackend, useSharedState } from '../backend';
-import { Flex, Section, Tabs, Box, BlockQuote, Dimmer, LabeledList, ProgressBar } from '../components';
+import { Flex, Section, Tabs, Box, BlockQuote, Dimmer, LabeledList, ProgressBar } from 'tgui-core/components';
 import { Window } from "../layouts";
 
 export const SynthOS = (props: any, context: any) => {

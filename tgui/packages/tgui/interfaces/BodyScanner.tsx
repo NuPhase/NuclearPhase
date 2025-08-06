@@ -9,9 +9,9 @@ import {
   Flex,
   LabeledList,
   Divider,
-} from "../components";
+} from 'tgui-core/components';
 import { Window } from "../layouts";
-import { formatSiUnit } from "../format";
+import { formatSiUnit } from "tgui-core/format";
 
 interface Organ {
   name: string;

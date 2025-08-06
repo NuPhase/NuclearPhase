@@ -1,5 +1,5 @@
 import { useBackend } from "../backend";
-import { Button, Section, Flex, NoticeBox, Box } from "../components";
+import { Button, Section, Flex, NoticeBox, Box } from 'tgui-core/components';
 import { Window } from "../layouts";
 
 export const Teleporter = (props, context) => {

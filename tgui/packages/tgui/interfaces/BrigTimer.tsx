@@ -1,93 +1,71 @@
-import { useBackend } from "../backend";
-import { Button, Stack, Section, NumberInput } from "../components";
-import { Window } from "../layouts";
+import { Button, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
-interface Flash {
-  status: number;
-}
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
 
-interface InputData {
-  timing: number;
-  releasetime: number;
-  timetoset: number;
-  timeleft: number;
-  flashes: Flash[];
-}
+type Data = {
+  timing: BooleanLike;
+  minutes: number;
+  seconds: number;
+  flash_charging: BooleanLike;
+};
 
-export const BrigTimer = (props: any, context: any) => {
-  const { act, data } = useBackend<InputData>(context);
-  const flashCharging: boolean =
-    data.flashes.filter((flash, _) => !flash.status).length > 0;
-
+export const BrigTimer = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { timing, minutes, seconds, flash_charging } = data;
   return (
-    <Window width={300} height={140}>
-      <Window.Content fitted>
+    <Window width={300} height={138}>
+      <Window.Content scrollable>
         <Section
           title="Cell Timer"
-          fill
           buttons={
             <>
               <Button
                 icon="clock-o"
-                content={data.timing ? "Stop" : "Start"}
-                selected={data.timing}
-                onClick={() => act(data.timing ? "stop" : "start")}
+                content={timing ? 'Stop' : 'Start'}
+                selected={timing}
+                onClick={() => act(timing ? 'stop' : 'start')}
               />
               <Button
                 icon="lightbulb-o"
-                content={flashCharging ? "Recharging" : "Flash"}
-                disabled={flashCharging}
-                onClick={() => act("flash")}
+                content={flash_charging ? 'Recharging' : 'Flash'}
+                disabled={flash_charging}
+                onClick={() => act('flash')}
               />
             </>
           }
         >
-          <Stack vertical align={"center"}>
-            <Stack.Item>
-              <Button
-                icon="fast-backward"
-                onClick={() => act("time", { adjust: -(600 * 5) })}
-              />
-              <Button
-                icon="backward"
-                onClick={() => act("time", { adjust: -600 })}
-              />{" "}
-              <NumberInput
-                minValue={0}
-                maxValue={60}
-                unit="Minutes"
-                value={data.timetoset / 600}
-                onChange={(e: any, value: number) =>
-                  act("time", { adjust: -data.timetoset + value * 600 })
-                }
-              />{" "}
-              <Button
-                icon="forward"
-                onClick={() => act("time", { adjust: 600 })}
-              />
-              <Button
-                icon="fast-forward"
-                onClick={() => act("time", { adjust: 600 * 5 })}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                icon="hourglass-start"
-                content="Short"
-                onClick={() => act("time", { preset: "short" })}
-              />
-              <Button
-                icon="hourglass-start"
-                content="Medium"
-                onClick={() => act("time", { preset: "medium" })}
-              />
-              <Button
-                icon="hourglass-start"
-                content="Long"
-                onClick={() => act("time", { preset: "long" })}
-              />
-            </Stack.Item>
-          </Stack>
+          <Button
+            icon="fast-backward"
+            onClick={() => act('time', { adjust: -600 })}
+          />
+          <Button
+            icon="backward"
+            onClick={() => act('time', { adjust: -100 })}
+          />{' '}
+          {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}{' '}
+          <Button icon="forward" onClick={() => act('time', { adjust: 100 })} />
+          <Button
+            icon="fast-forward"
+            onClick={() => act('time', { adjust: 600 })}
+          />
+          <br />
+          <Button
+            icon="hourglass-start"
+            content="Short"
+            onClick={() => act('preset', { preset: 'short' })}
+          />
+          <Button
+            icon="hourglass-start"
+            content="Medium"
+            onClick={() => act('preset', { preset: 'medium' })}
+          />
+          <Button
+            icon="hourglass-start"
+            content="Long"
+            onClick={() => act('preset', { preset: 'long' })}
+          />
         </Section>
       </Window.Content>
     </Window>

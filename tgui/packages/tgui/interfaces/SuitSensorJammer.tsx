@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { useBackend } from "../backend";
 import { Window } from "../layouts";
-import { Button, Section, ProgressBar, LabeledList } from "../components";
+import { Button, Section, ProgressBar, LabeledList } from 'tgui-core/components';
 
 interface Method {
   name: string;

@@ -1,19 +1,9 @@
-## NPM Stuff
+## NPM garbage
 node_modules
 *.log
 
-## Yarn Garbage
-/.pnp.*
-/.yarn/*
-!/.yarn/releases
-!/.yarn/plugins
-!/.yarn/sdks
-!/.yarn/versions
-!/.yarn/lock.yml
-
 ## Build artifacts
-/public/.tmp/
-
-## Previously ignored locations that are kept to avoid confusing git
-## while transitioning to a new project structure.
-/packages/tgui/public/**
+/public/**/*
+!/public/*.html
+!/public/ntos-error.min.css
+!/public/helpers.min.js
