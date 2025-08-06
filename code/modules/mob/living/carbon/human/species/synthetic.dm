@@ -43,6 +43,9 @@ We have a very powerful computer system that allows our neural network to fully 
 
 	UpdateAppearance() //Apply dna appearance to mob, causes DNA to change because filler values are regenerated
 
+	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] skin looks unnaturally clean."), DESCRIPTOR_CLEAN)
+	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] smells like fresh plastic."), DESCRIPTOR_TRAIT)
+
 /mob/living/carbon/human/synthetic/set_species(var/new_species_name, var/new_bodytype = null)
 	var/new_species = GET_DECL(/decl/species/human/synth)
 	if(!new_species)

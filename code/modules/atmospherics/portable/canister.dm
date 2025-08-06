@@ -528,7 +528,7 @@ update_flag
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/methane = 0.95, /decl/material/gas/helium = 0.05)
+	initial_gas = list(/decl/material/gas/methane = 0.9, /decl/material/gas/helium = 0.01)
 	start_temperature = 93
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane/central

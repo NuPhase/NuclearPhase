@@ -137,7 +137,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/Initialize()
 	. = ..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
+	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2
 
 /obj/machinery/atmospherics/unary/vent_pump/on_update_icon()
 	var/visible_directions = build_device_underlays()

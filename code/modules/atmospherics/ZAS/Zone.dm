@@ -169,7 +169,7 @@ Class Procs:
 			CHECK_TICK
 
 	// Update movables list
-	if(last_movable_calc < world.time + 6 SECONDS)
+	if(last_movable_calc + 10 SECONDS < world.time)
 		INVOKE_ASYNC(src, PROC_REF(cache_movables))
 
 	// Handle condensation from the air.

@@ -44,7 +44,7 @@
 	var/inlet_pressure = 0
 	var/exhaust_pressure = 0
 	var/real_expansion = 1 //inlet_pressure / exhaust_pressure
-	var/kinetic_energy_delta = 0 // (kin_total - generator.last_load) * 1800
+	var/kinetic_energy_delta = 0 // (kin_total - generator.last_load) * 3600
 
 	var/water_level = 0 //0-1. Condensation inside turbine increases water level
 	var/water_grates_open = FALSE

@@ -179,6 +179,8 @@
 				req_distance = 3
 			if(DESCRIPTOR_HAIR)
 				req_distance = 2
+			if(DESCRIPTOR_TRAIT)
+				req_distance = 1
 		if(distance < req_distance)
 			msg += "[cmsg]\n"
 

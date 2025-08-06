@@ -2,15 +2,18 @@
 	name = "cryogenic cooling unit"
 	desc = "A piece of heavy machinery that practically abuses thermodynamical states to move heat from one end into another."
 	var/target_temperature = T20C
-	var/default_efficiency = 2.5
-	var/actual_efficiency = 2.5
+	var/default_efficiency = 4
+	var/actual_efficiency = 4
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 1500
-	power_rating = 1500000
+	power_rating = 500000
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
-	icon = 'icons/obj/atmospherics/components/binary/pump.dmi'
-	icon_state = "map_off"
+	icon = 'icons/obj/machines/96x96.dmi'
+	icon_state = "cryocooler-off"
 	level = 2
+	pixel_x = -32
+	pixel_y = -32
+	uncreated_component_parts = null
 
 /obj/machinery/atmospherics/binary/cryocooler/examine(mob/user)
 	. = ..()
@@ -18,6 +21,9 @@
 	to_chat(user, SPAN_NOTICE("Efficiency: [round(actual_efficiency * 100)]%"))
 	to_chat(user, SPAN_NOTICE("Power draw: [watts_to_text(last_power_draw)]"))
 	to_chat(user, SPAN_NOTICE("-----------------------"))
+
+/obj/machinery/atmospherics/binary/cryocooler/RefreshParts()
+	power_rating = initial(power_rating) * total_component_rating_of_type(/obj/item/stock_parts/engine)
 
 /obj/machinery/atmospherics/binary/cryocooler/Initialize()
 	. = ..()

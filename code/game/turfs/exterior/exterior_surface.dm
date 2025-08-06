@@ -1,5 +1,6 @@
 /turf/exterior/surface
-	name = "surface"
+	name = "snow"
+	desc = "Intermixed layers of frozen gas."
 	icon = 'icons/turf/exterior/snow.dmi'
 	icon_edge_layer = EXT_EDGE_SNOW
 	footstep_type = /decl/footsteps/snow
@@ -7,6 +8,16 @@
 	color = "#bdb3c2"
 	dirt_color = "#4c454e"
 	var/datum/map/mapowner = null
+
+	var/day_icon = 'icons/turf/exterior/volcanic.dmi'
+	var/day_icon_state = "0"
+	var/day_states = 0 // possible states
+	var/day_color = null
+	var/day_dirt_color = COLOR_GRAY20
+	var/day_edge_layer = EXT_EDGE_VOLCANIC
+	var/day_footstep = /decl/footsteps/asteroid
+	var/day_name = "cracked ground"
+	var/day_desc = "Cracked rocky ground."
 
 /turf/exterior/surface/explosion_act(severity)
 	return
@@ -145,3 +156,44 @@
 	if(ishuman(O))
 		var/mob/living/carbon/human/H = O
 		H.dust()
+
+
+
+/turf/exterior/surface/sand
+	name = "frosted sand"
+	icon = 'icons/turf/exterior/shrouded.dmi'
+	desc = "Sand that has been packed in to solid earth."
+	dirt_color = "#3e3960"
+	possible_states = 8
+	color = null
+
+	day_icon = 'icons/turf/exterior/sand.dmi'
+	day_icon_state = "glass"
+	day_states = 0
+	day_color = null
+	day_dirt_color = "#ae9e66"
+	day_edge_layer = -1
+	day_footstep = /decl/footsteps/sand
+	day_name = "glassed sand"
+	day_desc = "Sand that has been melted into glass."
+
+/turf/exterior/surface/ice
+	name = "powder ice"
+	icon = 'icons/turf/exterior/snow.dmi'
+	desc = "Dense ice granules with lots of impurities in them."
+	dirt_color = "#f5f4ff"
+	icon_state = "permafrost"
+	icon_edge_layer = -1
+	footstep_type = /decl/footsteps/asteroid
+	possible_states = 0
+	color = null
+
+	day_icon = 'icons/turf/exterior/dirt.dmi'
+	day_icon_state = "0"
+	day_states = 0
+	day_color = null
+	day_dirt_color = "#383118"
+	day_edge_layer = -1
+	day_footstep = /decl/footsteps/asteroid
+	day_name = "melted clay ceramic"
+	day_desc = "Clay that has been turned into ceramic by the heat."

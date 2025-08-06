@@ -3,9 +3,12 @@
 	round_description = "A default game type with few threats."
 	extended_round_description = "Most of the equipment is perfectly functioning. Harmful random events occur less frequently."
 	uid = "dynamic_easy"
-	required_players = 5
 	probability = 1
+	votable = TRUE
 	difficulty = GAME_DIFFICULTY_EASY
+	associated_antags = list(
+		/decl/special_role/traitor
+	)
 
 /decl/game_mode/dynamic/normal
 	name = "Dynamic (Normal)"
@@ -13,7 +16,10 @@
 	extended_round_description = "Some of the equipment is malfunctioning. Harmful random events occur at a normal pace."
 	uid = "dynamic_normal"
 	difficulty = GAME_DIFFICULTY_NORMAL
-	required_players = 15
+	associated_antags = list(
+		/decl/special_role/traitor,
+		/decl/special_role/provocateur
+	)
 
 /decl/game_mode/dynamic/hard
 	name = "Dynamic (Hard)"
@@ -21,7 +27,11 @@
 	extended_round_description = "The shelter is in a poor state. Harmful random events occur more frequently."
 	uid = "dynamic_hard"
 	difficulty = GAME_DIFFICULTY_HARD
-	required_players = 30
+	associated_antags = list(
+		/decl/special_role/traitor,
+		/decl/special_role/provocateur,
+		/decl/special_role/renegade
+	)
 
 /decl/game_mode/dynamic/hell
 	name = "Dynamic (Hell)"
@@ -29,4 +39,9 @@
 	extended_round_description = "The shelter is almost nonfunctional. Harmful random events occur very frequently."
 	uid = "dynamic_hell"
 	difficulty = GAME_DIFFICULTY_HELL
-	required_players = 40
+	associated_antags = list(
+		/decl/special_role/traitor,
+		/decl/special_role/provocateur,
+		/decl/special_role/renegade,
+		/decl/special_role/mercenary
+	)

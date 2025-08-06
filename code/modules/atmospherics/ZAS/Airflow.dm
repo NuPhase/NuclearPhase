@@ -165,7 +165,7 @@ Contains helper procs for airflow, called by /connection_group.
 
 /zone/proc/cache_movables()
 	movables.Cut()
-	for(var/turf/T in contents)
+	for(var/turf/simulated/T in contents)
 		for(var/atom/movable/A in T)
 			if(!A.simulated || A.anchored)
 				continue
