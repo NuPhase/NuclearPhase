@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(skybox)
 	var/skybox_icon = 'icons/skybox/skybox.dmi' //Path to our background. Lets us use anything we damn well please. Skyboxes need to be 736x736
 	var/background_icon = "cascade"
 	var/use_stars = TRUE
-	var/use_overmap_details = TRUE
+	var/use_overmap_details = FALSE
 	var/star_path = 'icons/skybox/skybox.dmi'
 	var/star_state = "stars"
 
@@ -132,6 +132,42 @@ SUBSYSTEM_DEF(skybox)
 					overmap.overlays += other.get_skybox_representation()
 			overmap.appearance_flags = PIXEL_SCALE | RESET_COLOR
 			res.overlays += overmap
+	else
+		var/image/planet = image('icons/skybox/planet.dmi', "")
+
+		var/image/pbase = image('icons/skybox/planet.dmi', "base")
+		pbase.color = "#d49560"
+		planet.overlays += pbase
+
+		var/image/water = image('icons/skybox/planet.dmi', "water")
+		water.color = "#515763"
+		water.appearance_flags = PIXEL_SCALE
+		water.transform = water.transform.Turn(30)
+		planet.overlays += water
+
+		var/image/clouds = image('icons/skybox/planet.dmi', "weak_clouds")
+		clouds.overlays += image('icons/skybox/planet.dmi', "clouds")
+		clouds.color = "#b8c6dd"
+		planet.overlays += clouds
+
+		var/image/atmo = image('icons/skybox/planet.dmi', "atmoring")
+		planet.underlays += atmo
+
+		var/image/shadow = image('icons/skybox/planet.dmi', "shadow")
+		shadow.color = "#3c98c2"
+		shadow.blend_mode = BLEND_MULTIPLY
+		planet.overlays += shadow
+
+		var/image/light = image('icons/skybox/planet.dmi', "lightrim")
+		planet.overlays += light
+
+		var/image/ruins = image('icons/skybox/planet.dmi', "ruins")
+		planet.overlays += ruins
+
+		planet.pixel_y = 200
+		planet.pixel_x = 96
+		planet.appearance_flags = RESET_COLOR
+		res.overlays += planet
 
 	for(var/datum/event/E in SSevent.active_events)
 		if(E.has_skybox_image && E.isRunning && (z in E.affecting_z))

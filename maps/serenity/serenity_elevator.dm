@@ -175,3 +175,27 @@
 		/area/turbolift/serenity/charlie/a1,
 		/area/turbolift/serenity/charlie/a2
 		)
+
+/obj/turbolift_map_holder/serenity/med_staff_elevator
+	depth = 2
+	lift_size_x = 5
+	lift_size_y = 4
+	icon = 'icons/obj/turbolift_preview_3x3.dmi'
+	dir = EAST
+
+	areas_to_use = list(
+		/area/turbolift/serenity/med_staff/a1,
+		/area/turbolift/serenity/med_staff/a2
+		)
+
+/obj/turbolift_map_holder/serenity/med_public_elevator
+	depth = 2
+	lift_size_x = 3
+	lift_size_y = 4
+	icon = 'icons/obj/turbolift_preview_2x2.dmi'
+	dir = SOUTH
+
+	areas_to_use = list(
+		/area/turbolift/serenity/med_public/a1,
+		/area/turbolift/serenity/med_public/a2
+		)

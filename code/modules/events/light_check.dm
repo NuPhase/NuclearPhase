@@ -1,5 +1,5 @@
 /datum/event/light_check	//NOTE: Times are measured in master controller ticks!
-	announceWhen		= 5
+	startWhen		= 5
 
 /datum/event/light_check/start()
 	for(var/obj/machinery/light/L in SSmachines.machinery)

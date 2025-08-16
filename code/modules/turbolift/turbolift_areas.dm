@@ -199,3 +199,27 @@
 /area/turbolift/serenity/charlie/a2
 	lift_floor_label = "2"
 	lift_floor_name = "Main Laboratories"
+
+
+/area/turbolift/serenity/med_staff
+	name = "Personnel Elevator"
+
+/area/turbolift/serenity/med_staff/a1
+	lift_floor_label = "2"
+	lift_floor_name = "Medbay Floor 2"
+
+/area/turbolift/serenity/med_staff/a2
+	lift_floor_label = "3"
+	lift_floor_name = "Medbay Exit"
+
+
+/area/turbolift/serenity/med_public
+	name = "Personnel Elevator"
+
+/area/turbolift/serenity/med_public/a1
+	lift_floor_label = "1"
+	lift_floor_name = "Medbay Floor 1"
+
+/area/turbolift/serenity/med_public/a2
+	lift_floor_label = "2"
+	lift_floor_name = "Medbay Exit"

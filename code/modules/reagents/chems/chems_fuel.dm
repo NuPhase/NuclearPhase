@@ -41,15 +41,16 @@
 	fire_color = "#1ef002"
 	fire_alpha = 220
 	toxicity = 8
-	burn_product = /decl/material/liquid/acid/boric
 	gas_flags = XGM_GAS_FUEL
-	combustion_energy = 428440
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	uid = "pentaborane"
 	glass_name = "fiery death"
 	glass_desc = "If you see this, you are probably already engulfed in green flames."
 	value = 1.5
-	ignition_point = 305
+	combustion_energy = 8704000
+	combustion_activation_energy = 21800
+	oxidizer_to_fuel_ratio = 6
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/liquid/acid/boric)
 
 /decl/material/liquid/pentaborane/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder) //stomach temperature is enough, WE COMBUST
 	. = ..()
@@ -67,15 +68,16 @@
 	fire_color = "#cbee8a"
 	fire_alpha = 140
 	toxicity = 4
-	burn_product = /decl/material/liquid/acid/boric
 	heating_products = list(/decl/material/liquid/pentaborane = 0.7, /decl/material/solid/boron = 0.3)
 	heating_point = 470
 	gas_flags = XGM_GAS_FUEL
-	combustion_energy = 87900
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	uid = "diborane"
 	value = 1.3
-	ignition_point = 346
+	combustion_energy = 2167000
+	combustion_activation_energy = 26000
+	oxidizer_to_fuel_ratio = 3
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/liquid/acid/boric)
 
 /decl/material/solid/trinitrotoluene
 	name = "trinitrotoluene"

@@ -7,7 +7,7 @@
 	var/electrical_storm_moderate_sound
 	var/electrical_storm_major_sound
 
-	var/grid_check_message = "Abnormal activity detected in the %STATION_NAME%'s power system."
+	var/grid_check_message = "Abnormal activity detected in the %STATION_NAME%'s power system. Rebooting for self-checks."
 	var/grid_check_sound
 
 	var/grid_restored_message = "Station power to the %STATION_NAME% will be restored at this time. We apologize for the inconvenience."

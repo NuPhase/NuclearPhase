@@ -36,7 +36,7 @@
 	icon_state = "ecmo-on"
 
 /obj/machinery/medical/blood_oxygenator/Process()
-	connected.add_mcv += set_mcv
+	connected.add_mcv += set_mcv * 0.5
 	playsound(src, 'sound/machines/pump.ogg', 25)
 
 	var/toxicloss = 0.01

@@ -295,44 +295,81 @@
 
 /area/serenity/shelter/medbay
 	name = "Medbay"
-	icon_state = "medbay3"
+	icon_state = "medbay"
 	temperature_interpolation_coefficient = 0.001 //deep and insulated
 
-/area/serenity/shelter/medbay/lobby
-	name = "Medbay Lobby"
+/area/serenity/shelter/medbay/floor2/admissions
+	name = "Medbay Admissions"
+	icon_state = "medbay2"
+
+/area/serenity/shelter/medbay/floor2/admission_office
+	name = "Medbay Admission Office"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor2/procedure_room
+	name = "Medbay Procedure Room"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor2/diagnostics_room
+	name = "Medbay Diagnostics Room"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor2/scrub_room
+	name = "Medbay Scrub Room"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor2/icu
+	name = "Medbay ICU(Intensive Care Unit)"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/therapy
-	name = "Medbay Therapy"
-	icon_state = "medbay"
+/area/serenity/shelter/medbay/floor2/storage
+	name = "Medbay ICU Storage"
+	icon_state = "medbay3"
 
-/area/serenity/shelter/medbay/ward
-	name = "Medbay Patient Ward"
+/area/serenity/shelter/medbay/floor2/surgery_prep
+	name = "Medbay Surgery Preparations"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor2/surgery_one
+	name = "Medbay Surgery #1"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/shift_director
-	name = "Medbay Shift Director"
+/area/serenity/shelter/medbay/floor2/surgery_two
+	name = "Medbay Surgery #2"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/surgery
-	name = "Surgery"
-	icon_state = "surgery"
+/area/serenity/shelter/medbay/floor2/ward
+	name = "Medbay Ward"
+	icon_state = "medbay2"
 
-/area/serenity/shelter/medbay/break_room
+/area/serenity/shelter/medbay/floor2/ward/kitchen
+	name = "Medbay Ward Kitchen"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor2/ward/gym
+	name = "Medbay Ward Gym"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor2/laboratory
+	name = "Medbay Laboratory"
+	icon_state = "medbay4"
+
+/area/serenity/shelter/medbay/floor3/break_room
 	name = "Medbay Break Room"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/office
-	name = "Medbay Office"
-	icon_state = "medbay"
-
-/area/serenity/shelter/medbay/morgue
-	name = "Morgue"
+/area/serenity/shelter/medbay/floor3/shift_director_office
+	name = "Medbay Shift Director Office"
 	icon_state = "medbay4"
 
-/area/serenity/shelter/medbay/genetics
-	name = "Genetics"
-	icon_state = "medbay"
+/area/serenity/shelter/medbay/floor3/psychiatrist_office
+	name = "Medbay Psychiatrist Office"
+	icon_state = "medbay3"
+
+/area/serenity/shelter/medbay/floor3/study_room
+	name = "Medbay Study Room"
+	icon_state = "medbay3"
+
 
 /area/serenity/shelter/factory
 	name = "Factory"
