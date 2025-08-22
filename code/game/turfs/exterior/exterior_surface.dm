@@ -73,6 +73,33 @@
 /turf/exterior/surface/return_air()
 	return mapowner.exterior_atmosphere
 
+/turf/exterior/surface/proc/transition(var/day = FALSE)
+	if(day)
+		icon = day_icon
+		icon_state = day_icon_state
+		possible_states = day_states
+		color = day_color
+		dirt_color = day_dirt_color
+		icon_edge_layer = day_edge_layer
+		footstep_type = day_footstep
+		name = day_name
+		desc = day_desc
+	else
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+		possible_states = initial(possible_states)
+		color = initial(color)
+		dirt_color = initial(dirt_color)
+		icon_edge_layer = initial(icon_edge_layer)
+		footstep_type = initial(footstep_type)
+		name = initial(name)
+		desc = initial(desc)
+
+	if(possible_states > 0)
+		icon_state = "[rand(0, possible_states)]"
+
+	update_icon()
+
 /turf/exterior/surface/proc/switch_cracks(var/remove_cracks = FALSE) //i shat myself
 	if(remove_cracks)
 		overlays.Cut()

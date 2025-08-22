@@ -85,9 +85,9 @@
 	desc = "A large mixing bowl."
 	icon = 'icons/obj/items/chem/mixingbowl.dmi'
 	center_of_mass = @'{"x":16,"y":10}'
-	volume = 2000
-	amount_per_transfer_from_this = 100
-	possible_transfer_amounts = @"[5,10,15,25,30,60,180]"
+	volume = 5000
+	amount_per_transfer_from_this = 500
+	possible_transfer_amounts = @"[50,100,250,500,1000,2500,5000]"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	unacidable = 0
 	material = /decl/material/solid/metal/steel

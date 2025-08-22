@@ -41,14 +41,14 @@
 
 /obj/item/clothing/head/helmet/modern/space/research/hot
 	name = "HROCS-0.8V helmet"
-	desc = "Cold Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely hot environments and shield its occupant from powerful winds."
+	desc = "Heat Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely hot environments and shield its occupant from powerful winds."
 	min_cold_protection_temperature = HOT_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HOT_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	weight = 20
 
 /obj/item/clothing/suit/modern/space/research/hot
 	name = "HROCS-0.8V suit"
-	desc = "Cold Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely hot environments and shield its occupant from powerful winds."
+	desc = "Heat Resistant Occupant Concealment Suit is an engineering masterpiece, designed to withstand extremely hot environments and shield its occupant from powerful winds."
 	min_cold_protection_temperature = HOT_PRESSURE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HOT_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	weight = 70

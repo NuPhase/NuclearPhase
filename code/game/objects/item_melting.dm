@@ -2,7 +2,6 @@
 	. = ..()
 	if(QDELETED(src))
 		return
-	return // TODO: FIX THE CLOTHES MELTING
 
 	// Check if this is meltable at all.
 	var/list/meltable_materials

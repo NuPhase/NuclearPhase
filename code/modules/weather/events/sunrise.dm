@@ -81,13 +81,7 @@
 		shake_camera(H, 40, 0.75)
 	for(var/turf/exterior/surface/T in surface_turfs)
 		T.set_ambient_light(COLOR_SUNRISE_SURFACE4, 3)
-		T.icon = 'icons/turf/exterior/volcanic.dmi'
-		T.possible_states = 0
-		T.icon_state = "[rand(0, T.possible_states)]"
-		T.dirt_color = COLOR_GRAY20
-		T.icon_edge_layer = EXT_EDGE_VOLCANIC
-		T.update_icon()
-		T.footstep_type = /decl/footsteps/asteroid
+		T.transition(TRUE)
 		T.switch_cracks(TRUE)
 
 /datum/weather_event/sunrise/proc/timer_four()

@@ -323,3 +323,11 @@
 
 /obj/item/clothing/proc/check_limb_support(var/mob/living/carbon/human/user)
 	return FALSE
+
+// We increase our temperature_coefficient, simulating burning insulation. When we reach MAX_TEMPERATURE_COEFFICIENT, we actually melt
+/obj/item/clothing/handle_melting(list/meltable_materials)
+	SHOULD_CALL_PARENT(FALSE)
+	. = null
+	if(temperature_coefficient >= MAX_TEMPERATURE_COEFFICIENT)
+		return ..() // melt
+	temperature_coefficient += 0.01

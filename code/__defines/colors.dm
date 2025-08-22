@@ -104,6 +104,9 @@
 #define COLOR_SUNRISE_SURFACE3 "#eb5600"
 #define COLOR_SUNRISE_SURFACE4 "#ebac00"
 #define COLOR_SUNRISE_SURFACE5 "#ccb77d"
+#define COLOR_SUNSET_SURFACE1  "#b45270"
+#define COLOR_SUNSET_SURFACE2  "#7c3771"
+#define COLOR_SUNSET_SURFACE3  "#273f53"
 #define COLOR_HOT_SURFACE	   "#d16500"
 
 #define	PIPE_COLOR_GREY        "#cfcfcf"
@@ -209,7 +212,8 @@
 #define LIGHT_COLOR_EMERGENCY  "#ff3232" //Red color used by emergency lighting. rgb(255, 50, 50)
 
 // Between halogen and true colors
-#define LIGHT_COLOR_MOOD_BLUE "#bcdafc"
+#define LIGHT_COLOR_MOOD_BLUE    "#bcdafc"
+#define LIGHT_COLOR_MOOD_BIODOME "#5b6b7e"
 
 #define COLOR_DARKMODE_BACKGROUND "#202020"
 #define COLOR_DARKMODE_DARKBACKGROUND "#171717"

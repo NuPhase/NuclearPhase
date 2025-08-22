@@ -265,6 +265,20 @@
 /area/serenity/shelter/labs
 	name = "Laboratories"
 	icon_state = "research"
+
+/area/serenity/shelter/labs/biodome
+	name = "Biodome"
+	icon_state = "devlab"
+	temperature_interpolation_coefficient = 0.001
+
+/area/serenity/shelter/labs/biolab_annex
+	name = "Biolaboratory Annex"
+	icon_state = "devlab"
+
+/area/serenity/shelter/labs/biolab
+	name = "Biolaboratory"
+	icon_state = "devlab"
+
 /area/serenity/shelter/labs/particle_physics
 	name = "Particle Physics Laboratory"
 	icon_state = "devlab"

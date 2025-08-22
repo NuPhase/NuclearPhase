@@ -6,6 +6,8 @@
 #define NEUTRON_MODE_MODERATION   "MODERATION"
 #define NEUTRON_MODE_OFF		  "OFF"
 
+#define LASER_MAX_CHARGE 900
+
 /obj/machinery/rlaser
 	name = "industrial laser"
 	desc = "A huge, hefty piece of optics machinery."
@@ -20,7 +22,7 @@
 	use_power = POWER_USE_OFF
 	power_channel = EQUIP
 	idle_power_usage = 10000
-	active_power_usage = 800000
+	active_power_usage = 1600000
 	required_interaction_dexterity = DEXTERITY_COMPLEX_TOOLS
 	layer = ABOVE_HUMAN_LAYER
 	var/lasid = ""
@@ -51,7 +53,7 @@
 		if(LASER_MODE_IMPULSE)
 			use_power = POWER_USE_IDLE
 		if(LASER_MODE_CONTINUOUS)
-			use_power = POWER_USE_IDLE
+			use_power = POWER_USE_ACTIVE
 	omode = nomode
 
 /obj/machinery/rlaser/proc/switch_nmode(nnmode)
@@ -71,12 +73,12 @@
 		SSradiation.radiate(src, 9000)
 	else if(nmode == NEUTRON_MODE_MODERATION)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-		if(R.total_neutrons < 5000)
+		if(R.total_neutrons < 500)
 			R.fast_neutrons += rand(5, 10)
 
 	if(omode == LASER_MODE_IGNITION)
 		capacitor_charge += 1
-		capacitor_charge = Clamp(capacitor_charge, 1, 150)
+		capacitor_charge = Clamp(capacitor_charge, 1, LASER_MAX_CHARGE)
 	else if(omode == LASER_MODE_CONTINUOUS)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.receive_power(active_power_usage)

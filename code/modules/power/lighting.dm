@@ -84,6 +84,9 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	pixel_y = 12
 	alpha = 170
 
+/obj/machinery/light/ceiling/biodome
+	light_type = /obj/item/light/tube/mood/biodome
+
 /obj/machinery/light/ceiling/Initialize(mapload, d, populate_parts)
 	. = ..()
 	pixel_y = 12
@@ -611,6 +614,11 @@ var/global/datum/composite_sound/light/light_soundloop = new
 
 /obj/item/light/tube/mood/blue
 	b_color = LIGHT_COLOR_MOOD_BLUE
+
+/obj/item/light/tube/mood/biodome
+	b_color = LIGHT_COLOR_MOOD_BIODOME
+	b_power = 4
+	b_range = 12
 
 /obj/item/light/tube/large
 	w_class = ITEM_SIZE_SMALL

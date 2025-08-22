@@ -306,7 +306,7 @@
 	ninstability += (connected_canister.air_contents.pressure / MAX_TANK_PRESSURE) * 10
 	if(connected_canister.air_contents.pressure > MAX_TANK_PRESSURE && instability >= 100)
 		var/turf/T = get_turf(src)
-		cell_explosion(T, 100, 0.1, z_transfer = null, temperature = connected_canister.air_contents.temperature)
+		cell_explosion(T, 50, 0.1, z_transfer = null, temperature = connected_canister.air_contents.temperature)
 		T.add_fluid(/decl/material/solid/slag, connected_canister.air_contents.total_moles * 20, ntemperature = connected_canister.air_contents.temperature)
 		connected_canister.air_contents.remove_ratio(0.99)
 	return
