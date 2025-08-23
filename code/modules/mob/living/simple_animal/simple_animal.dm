@@ -9,7 +9,6 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 
-	meat_type = /obj/item/chems/food/meat
 	meat_amount = 3
 	bone_material = /decl/material/solid/bone
 	bone_amount = 5
