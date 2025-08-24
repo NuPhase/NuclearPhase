@@ -100,6 +100,13 @@
 /obj/item/projectile/bullet/pistol/rubber/holdout
 	agony = 20
 
+/obj/item/projectile/bullet/pistol/electrode
+	name = "shock bullet"
+	agony = 400
+	damage = 2
+	damage_type = BURN
+	eyeblur = 1//Some feedback that you've been hit
+
 /* shotgun projectiles */
 
 /obj/item/projectile/bullet/shotgun

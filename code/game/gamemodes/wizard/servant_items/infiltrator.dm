@@ -6,8 +6,8 @@
 	markings_icon = "band"
 	markings_color = COLOR_DARK_GRAY
 	armor = list(
-		melee = ARMOR_MELEE_MINOR, 
-		bullet = ARMOR_BALLISTIC_MINOR, 
+		melee = ARMOR_MELEE_MINOR,
+		bullet = ARMOR_BALLISTIC_MINOR,
 		laser = ARMOR_LASER_MINOR,
 		energy = ARMOR_ENERGY_MINOR
 		)
@@ -18,8 +18,8 @@
 	desc = "The clothes of an impeccable diplomat. Or perhaps a businessman. Let's not consider the horrors that might arise if it belongs to a lawyer."
 	icon = 'icons/clothing/suit/wizard/servant/inf_suit.dmi'
 	armor = list(
-		melee = ARMOR_MELEE_MINOR, 
-		bullet = ARMOR_BALLISTIC_PISTOL, 
+		melee = ARMOR_MELEE_MINOR,
+		bullet = ARMOR_BALLISTIC_PISTOL,
 		laser = ARMOR_LASER_MINOR,
 		energy = ARMOR_ENERGY_MINOR
 		)
@@ -28,6 +28,12 @@
 	name = "formal outfit"
 	desc = "A white dress shirt and navy pants. Snazzy."
 	icon = 'icons/clothing/under/formal.dmi'
+	bodytype_equip_flags = BODY_FLAG_HUMANOID
+
+/obj/item/clothing/under/mcw
+	name = "MCW uniform"
+	desc = "A uniform of Ministry of Civilian Welfare. Blue skies for all."
+	icon = 'icons/clothing/under/jumpsuits/jumpsuit_exec.dmi'
 	bodytype_equip_flags = BODY_FLAG_HUMANOID
 
 /obj/item/clothing/shoes/dress/infilshoes

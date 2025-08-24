@@ -221,7 +221,7 @@
 	if(target.melted)
 		to_chat(user, SPAN_WARNING("\The [target] locking mechanisms are melted shut, you'll have to cut through them!"))
 		return
-	if(!do_after(user, 5 SECONDS, target))
+	if(!do_after(user, 3 SECONDS, target))
 		return
 	playsound(target.loc, 'sound/machines/fuelportunlock.ogg', 50)
 	target.sealed = FALSE
@@ -235,7 +235,7 @@
 	if(!target.inserted)
 		to_chat(user, SPAN_WARNING("\The [target] doesn't have a fuel cell in it!"))
 		return
-	if(!do_after(user, 2 SECONDS, target))
+	if(!do_after(user, 1 SECONDS, target))
 		return
 	playsound(target.loc, 'sound/machines/fuelportlock.ogg', 50)
 	target.sealed = TRUE
@@ -254,7 +254,7 @@
 	if(target.sealed)
 		to_chat(user, SPAN_WARNING("\The [target] is locked!"))
 		return
-	if(!do_after(user, 3 SECONDS, target))
+	if(!do_after(user, 2 SECONDS, target))
 		return
 	user.put_in_hands(target.inserted)
 	target.inserted = null

@@ -306,7 +306,7 @@
 		flush_message_queue()
 	// Pass message to UI that requested the lock
 	if(locked && locked_by)
-		var/prevent_default = locked_by._on_message(type, payload, href_list)
+		var/prevent_default = locked_by.on_message(type, payload, href_list)
 		if(prevent_default)
 			return
 	// Pass message to the subscriber

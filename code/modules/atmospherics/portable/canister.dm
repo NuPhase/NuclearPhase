@@ -52,6 +52,7 @@
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/prechilled
 	name = "\improper Canister: \[N2 (Cooling)\]"
+	start_temperature = 60
 
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "\improper Canister: \[O2\]"
@@ -528,7 +529,7 @@ update_flag
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/methane = 0.9, /decl/material/gas/helium = 0.01)
+	initial_gas = list(/decl/material/gas/methane = 0.99, /decl/material/gas/helium = 0.001)
 	start_temperature = 93
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane/central

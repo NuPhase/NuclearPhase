@@ -8,7 +8,7 @@
 
 /decl/hierarchy/outfit/job/coo
 	name = "Job - Chief Operations Officer"
-	uniform = /obj/item/clothing/under/lawyer/infil
+	uniform = /obj/item/clothing/under/mcw
 	shoes = /obj/item/clothing/shoes/dress/infilshoes
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/pda/heads

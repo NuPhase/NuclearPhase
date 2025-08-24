@@ -32,8 +32,8 @@ type InputData = {
   temperature: number;
 }
 
-export const FluidPump = (props: any, context: any) => {
-  const { act, data } = useBackend<InputData>(context);
+export const FluidPump = (props: any) => {
+  const { act, data } = useBackend<InputData>();
   return (
     <Window width = {250} height = {300} theme="engineering">
       <Window.Content>

@@ -25,8 +25,8 @@ type TurbineData = {
   valve_position: number;
 }
 
-export const TurbineMonitor = (props: any, context: any) => {
-  const { act, data } = useBackend<InputData>(context);
+export const TurbineMonitor = (props: any) => {
+  const { act, data } = useBackend<InputData>();
   return (
     <Window width={570} height={570} theme = "ntos">
       <Window.Content fitted>

@@ -1,129 +1,140 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Icon,
-  Knob,
-  LabeledControls,
-  LabeledList,
-  RoundGauge,
-  Section,
-  Tooltip,
-} from 'tgui-core/components';
-import { formatSiUnit } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
-import type { BooleanLike } from 'tgui-core/react';
-
 import { useBackend } from '../backend';
+import { Box, Button, Flex, Icon, Knob, LabeledControls, LabeledList, RoundGauge, Section, Tooltip } from 'tgui-core/components';
+import { formatSiUnit } from 'tgui-core/format';
 import { Window } from '../layouts';
 
-const formatPressure = (value: number) => {
+const formatPressure = value => {
   if (value < 10000) {
-    return `${toFixed(value)} kPa`;
+    return toFixed(value) + ' kPa';
   }
   return formatSiUnit(value * 1000, 1, 'Pa');
 };
 
-type HoldingTank = {
-  name: string;
-  tankPressure: number;
+const formatTemperature = value => {
+  return toFixed(value) + ' K';
 };
 
-type Data = {
-  portConnected: BooleanLike;
+type InputData = {
+  portConnected: boolean;
   tankPressure: number;
+  tankLevel: number;
+  tankTemperature: number;
+  closestBoilingPoint: number;
+  closestMeltingPoint: number;
+  maxBoilingPoint: number;
+  minMeltingPoint: number;
   releasePressure: number;
   defaultReleasePressure: number;
   minReleasePressure: number;
   maxReleasePressure: number;
-  hasHypernobCrystal: BooleanLike;
-  cellCharge: number;
   pressureLimit: number;
-  valveOpen: BooleanLike;
-  holdingTank: HoldingTank;
+  valveOpen: boolean;
+  isPrototype: boolean;
+  hasHoldingTank: boolean;
+  holdingTank: holdingTank;
   holdingTankLeakPressure: number;
   holdingTankFragPressure: number;
-  shielding: BooleanLike;
-  reactionSuppressionEnabled: BooleanLike;
-};
+  restricted: boolean;
+}
+
+type holdingTank = {
+  name: string;
+  tankPressure: number;
+}
 
 export const Canister = (props) => {
-  const { act, data } = useBackend<Data>();
-  const {
-    shielding,
-    holdingTank,
-    pressureLimit,
-    valveOpen,
-    tankPressure,
-    releasePressure,
-    defaultReleasePressure,
-    minReleasePressure,
-    maxReleasePressure,
-    portConnected,
-    cellCharge,
-    hasHypernobCrystal,
-    reactionSuppressionEnabled,
-    holdingTankFragPressure,
-    holdingTankLeakPressure,
-  } = data;
-
+  const { act, data } = useBackend<InputData>();
   return (
-    <Window width={350} height={335}>
+    <Window
+      width={375}
+      height={275}>
       <Window.Content>
         <Flex direction="column" height="100%">
           <Flex.Item mb={1}>
             <Section
               title="Canister"
-              buttons={
+              buttons={(
                 <>
-                  <Button
-                    icon={shielding ? 'power-off' : 'times'}
-                    content={shielding ? 'Shielding-ON' : 'Shielding-OFF'}
-                    selected={shielding}
-                    onClick={() => act('shielding')}
-                  />
+                  {!!data.isPrototype && (
+                    <Button
+                      mr={1}
+                      icon={data.restricted ? 'lock' : 'unlock'}
+                      color="caution"
+                      content={data.restricted
+                        ? 'Engineering'
+                        : 'Public'}
+                      onClick={() => act('restricted')} />
+                  )}
                   <Button
                     icon="pencil-alt"
                     content="Relabel"
-                    onClick={() => act('relabel')}
-                  />
-                  <Button icon="palette" onClick={() => act('recolor')} />
+                    onClick={() => act('relabel')} />
                 </>
-              }
-            >
+              )}>
               <LabeledControls>
-                <LabeledControls.Item minWidth="66px" label="Pressure">
+                <LabeledControls.Item
+                  minWidth="66px"
+                  label="Pressure">
                   <RoundGauge
-                    size={1.75}
-                    value={tankPressure}
+                    size={2}
+                    value={data.tankPressure}
                     minValue={0}
-                    maxValue={pressureLimit}
-                    alertAfter={pressureLimit * 0.7}
+                    maxValue={data.pressureLimit}
+                    alertAfter={data.pressureLimit * 0.70}
                     ranges={{
-                      good: [0, pressureLimit * 0.7],
-                      average: [pressureLimit * 0.7, pressureLimit * 0.85],
-                      bad: [pressureLimit * 0.85, pressureLimit],
+                      "good": [0, data.pressureLimit * 0.70],
+                      "average": [data.pressureLimit * 0.70, data.pressureLimit * 0.85],
+                      "bad": [data.pressureLimit * 0.85, data.pressureLimit],
                     }}
-                    format={formatPressure}
-                  />
+                    format={formatPressure} />
+                </LabeledControls.Item>
+                <LabeledControls.Item
+                  minWidth="66px"
+                  label="Fluid Level">
+                  <RoundGauge
+                    size={2}
+                    value={data.tankLevel}
+                    minValue={0}
+                    maxValue={100}
+                    ranges={{
+                      "good": [50, 100],
+                      "average": [20, 50],
+                      "bad": [0, 20],
+                    }}
+                    />
+                </LabeledControls.Item>
+                <LabeledControls.Item
+                  label=""
+                  minWidth="66px">
+                  <RoundGauge
+                    size={2}
+                    value={data.tankTemperature}
+                    minValue={data.minMeltingPoint}
+                    maxValue={data.maxBoilingPoint}
+                    ranges={{
+                      "red": [data.closestBoilingPoint-5, data.closestBoilingPoint+5],
+                      "yellow": [data.closestMeltingPoint-5, data.closestMeltingPoint+5],
+                      "blue": [data.minMeltingPoint, data.minMeltingPoint+5],
+                    }}
+                    format={formatTemperature} />
                 </LabeledControls.Item>
                 <LabeledControls.Item label="Regulator">
-                  <Box position="relative" left="-8px">
+                  <Box
+                    position="relative"
+                    left="-8px">
                     <Knob
                       size={1.25}
-                      color={!!valveOpen && 'yellow'}
-                      value={releasePressure}
+                      color={!!data.valveOpen && 'yellow'}
+                      value={data.releasePressure}
                       unit="kPa"
-                      minValue={minReleasePressure}
-                      maxValue={maxReleasePressure}
+                      minValue={data.minReleasePressure}
+                      maxValue={data.maxReleasePressure}
                       step={5}
                       stepPixelSize={1}
-                      onChange={(e, value) =>
-                        act('pressure', {
-                          pressure: value,
-                        })
-                      }
-                    />
+                      onDrag={(e, value) => act('pressure', {
+                        pressure: value,
+                      })} />
                     <Button
                       fluid
                       position="absolute"
@@ -131,12 +142,9 @@ export const Canister = (props) => {
                       right="-20px"
                       color="transparent"
                       icon="fast-forward"
-                      onClick={() =>
-                        act('pressure', {
-                          pressure: maxReleasePressure,
-                        })
-                      }
-                    />
+                      onClick={() => act('pressure', {
+                        pressure: data.maxReleasePressure,
+                      })} />
                     <Button
                       fluid
                       position="absolute"
@@ -144,12 +152,9 @@ export const Canister = (props) => {
                       right="-20px"
                       color="transparent"
                       icon="undo"
-                      onClick={() =>
-                        act('pressure', {
-                          pressure: defaultReleasePressure,
-                        })
-                      }
-                    />
+                      onClick={() => act('pressure', {
+                        pressure: data.defaultReleasePressure,
+                      })} />
                   </Box>
                 </LabeledControls.Item>
                 <LabeledControls.Item label="Valve">
@@ -158,93 +163,69 @@ export const Canister = (props) => {
                     width="50px"
                     lineHeight={2}
                     fontSize="11px"
-                    color={
-                      valveOpen ? (holdingTank ? 'caution' : 'danger') : null
-                    }
-                    content={valveOpen ? 'Open' : 'Closed'}
-                    onClick={() => act('valve')}
-                  />
+                    color={data.valveOpen
+                      ? (data.hasHoldingTank ? 'caution' : 'danger')
+                      : null}
+                    content={data.valveOpen ? 'Open' : 'Closed'}
+                    onClick={() => act('valve')} />
                 </LabeledControls.Item>
-                <LabeledControls.Item mr={1} label="Port">
+                <LabeledControls.Item
+                  mr={1}
+                  label="Port">
                   <Tooltip
-                    content={portConnected ? 'Connected' : 'Disconnected'}
+                    content={data.portConnected
+                      ? 'Connected'
+                      : 'Disconnected'}
                     position="top"
                   >
                     <Box position="relative">
                       <Icon
                         size={1.25}
-                        name={portConnected ? 'plug' : 'times'}
-                        color={portConnected ? 'good' : 'bad'}
-                      />
+                        name={data.portConnected ? 'plug' : 'times'}
+                        color={data.portConnected ? 'good' : 'bad'} />
                     </Box>
                   </Tooltip>
                 </LabeledControls.Item>
               </LabeledControls>
-            </Section>
-            <Section>
-              <LabeledList>
-                <LabeledList.Item label="Cell Charge">
-                  {cellCharge > 0 ? `${cellCharge}%` : 'Missing Cell'}
-                </LabeledList.Item>
-                {!!hasHypernobCrystal && (
-                  <LabeledList.Item label="Reaction Suppression">
-                    <Button
-                      icon={reactionSuppressionEnabled ? 'snowflake' : 'times'}
-                      content={
-                        reactionSuppressionEnabled ? 'Enabled' : 'Disabled'
-                      }
-                      selected={reactionSuppressionEnabled}
-                      onClick={() => act('reaction_suppression')}
-                    />
-                  </LabeledList.Item>
-                )}
-              </LabeledList>
             </Section>
           </Flex.Item>
           <Flex.Item grow={1}>
             <Section
               height="100%"
               title="Holding Tank"
-              buttons={
-                !!holdingTank && (
-                  <Button
-                    icon="eject"
-                    color={valveOpen && 'danger'}
-                    content="Eject"
-                    onClick={() => act('eject')}
-                  />
-                )
-              }
-            >
-              {!!holdingTank && (
+              buttons={!!data.hasHoldingTank && (
+                <Button
+                  icon="eject"
+                  color={data.valveOpen && 'danger'}
+                  content="Eject"
+                  onClick={() => act('eject')} />
+              )}>
+              {!!data.hasHoldingTank && (
                 <LabeledList>
                   <LabeledList.Item label="Label">
-                    {holdingTank.name}
+                    {data.holdingTank.name}
                   </LabeledList.Item>
                   <LabeledList.Item label="Pressure">
                     <RoundGauge
-                      value={holdingTank.tankPressure}
+                      value={data.holdingTank.tankPressure}
                       minValue={0}
-                      maxValue={holdingTankFragPressure * 1.15}
-                      alertAfter={holdingTankLeakPressure}
+                      maxValue={data.holdingTankFragPressure * 1.15}
+                      alertAfter={data.holdingTankLeakPressure}
                       ranges={{
-                        good: [0, holdingTankLeakPressure],
-                        average: [
-                          holdingTankLeakPressure,
-                          holdingTankFragPressure,
-                        ],
-                        bad: [
-                          holdingTankFragPressure,
-                          holdingTankFragPressure * 1.15,
-                        ],
+                        "good": [0, data.holdingTankLeakPressure],
+                        "average": [data.holdingTankLeakPressure, data.holdingTankFragPressure],
+                        "bad": [data.holdingTankFragPressure, data.holdingTankFragPressure * 1.15],
                       }}
                       format={formatPressure}
-                      size={1.75}
-                    />
+                      size={1.75} />
                   </LabeledList.Item>
                 </LabeledList>
               )}
-              {!holdingTank && <Box color="average">No Holding Tank</Box>}
+              {!data.hasHoldingTank && (
+                <Box color="average">
+                  No Holding Tank
+                </Box>
+              )}
             </Section>
           </Flex.Item>
         </Flex>

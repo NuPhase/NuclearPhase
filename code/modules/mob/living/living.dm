@@ -252,28 +252,28 @@ default behaviour is:
 	return 0
 
 /mob/living/proc/adjustToxLoss(var/amount)
-	adjustBruteLoss(amount * 0.5)
+	adjustBruteLoss(amount * 0.1)
 
 /mob/living/proc/setToxLoss(var/amount)
-	adjustBruteLoss((amount * 0.5)-getBruteLoss())
+	adjustBruteLoss((amount * 0.1)-getBruteLoss())
 
 /mob/living/proc/getFireLoss()
 	return
 
 /mob/living/proc/adjustFireLoss(var/amount)
-	adjustBruteLoss(amount * 0.5)
+	adjustBruteLoss(amount * 0.1)
 
 /mob/living/proc/setFireLoss(var/amount)
-	adjustBruteLoss((amount * 0.5)-getBruteLoss())
+	adjustBruteLoss((amount * 0.1)-getBruteLoss())
 
 /mob/living/proc/getHalLoss()
 	return 0
 
 /mob/living/proc/adjustHalLoss(var/amount)
-	adjustBruteLoss(amount * 0.5)
+	adjustBruteLoss(amount * 0.1)
 
 /mob/living/proc/setHalLoss(var/amount)
-	adjustBruteLoss((amount * 0.5)-getBruteLoss())
+	adjustBruteLoss((amount * 0.1)-getBruteLoss())
 
 /mob/living/proc/getBrainLoss()
 	return 0

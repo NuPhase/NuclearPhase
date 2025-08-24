@@ -187,6 +187,10 @@
 /obj/item/ammo_magazine/pistol/small/empty
 	initial_ammo = 0
 
+/obj/item/ammo_magazine/pistol/small/shock
+	name = "5mm shock pistol magazine"
+	ammo_type = /obj/item/ammo_casing/pistol/small/shock
+
 /obj/item/ammo_magazine/box/smallpistol
 	name = "ammunition box (pistol, small)"
 	icon_state = "smallpistol"

@@ -6,7 +6,7 @@
 	anchored = TRUE
 	layer = TURF_LAYER + 0.01
 	var/spawn_ticks = 0
-	var/spawn_period = 20
+	var/spawn_period = 40
 	var/max_spawns = 15
 	var/spawns = 0
 	var/list/spawn_types = list(/mob/living/simple_animal/hostile/darkwater/hunter)
@@ -65,13 +65,13 @@
 	icon = 'icons/mob/simple_animal/oceanborn_hunter.dmi'
 	maxHealth = 160
 	health = 160
-	natural_weapon = /obj/item/natural_weapon/claws
+	natural_weapon = /obj/item/natural_weapon/claws/strong
 	break_stuff_probability = 10
 	destroy_surroundings = 1
 	skin_material = /decl/material/solid/skin/fish/purple
 	meat_type = /obj/item/chems/food/meat/syntiflesh
 	glowing_eyes = TRUE
-	speed = -2
+	speed = -3
 	natural_armor = list(
 		melee = ARMOR_MELEE_KNIVES,
 		bullet = ARMOR_BALLISTIC_SMALL,
@@ -79,3 +79,8 @@
 		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_MINOR
 	)
+
+/mob/living/simple_animal/hostile/darkwater/hunter/death(gibbed, deathmessage, show_dead_message)
+	. = ..()
+	if(health < -10) // overkill
+		gib()

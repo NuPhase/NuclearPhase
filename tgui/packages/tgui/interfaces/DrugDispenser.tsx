@@ -20,10 +20,10 @@ type InputData = {
   dosage: number;
 }
 
-export const DrugDispenser = (props: any, context: any) => {
-  const { act, data } = useBackend<InputData>(context);
-  const [selectedCategory, setSelectedCategory] = useLocalState(context, "category", null);
-  const [dispense_type, setDispenseType] = useLocalState(context, "dispense_type", null);
+export const DrugDispenser = (props: any) => {
+  const { act, data } = useBackend<InputData>();
+  const [selectedCategory, setSelectedCategory] = useLocalState("category", null);
+  const [dispense_type, setDispenseType] = useLocalState("dispense_type", null);
 
   const getDrugs = () => {
     if (!selectedCategory) {

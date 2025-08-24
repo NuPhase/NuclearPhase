@@ -238,7 +238,7 @@
 	return prev_status != status
 
 /// Callback for handling incoming tgui messages.
-/datum/tgui/proc/_on_message(type, list/payload, list/href_list)
+/datum/tgui/proc/on_message(type, list/payload, list/href_list)
 	// Pass act type messages to ui_act
 	if(type && copytext(type, 1, 5) == "act/")
 		var/act_type = copytext(type, 5)
@@ -251,7 +251,8 @@
 		return FALSE
 	switch(type)
 		if("ready")
-			send_full_update()
+			if(initialized)
+				send_full_update()
 			initialized = TRUE
 		if("pingReply")
 			initialized = TRUE

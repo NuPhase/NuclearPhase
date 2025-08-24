@@ -22,8 +22,8 @@ type InputData = {
   muted: boolean;
 }
 
-export const CardiacMonitor = (props: any, context: any) => {
-  const { act, data } = useBackend<InputData>(context);
+export const CardiacMonitor = (props: any) => {
+  const { act, data } = useBackend<InputData>();
   return (
     <Window width={800} height={715}>
       <Window.Content>

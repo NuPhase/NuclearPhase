@@ -510,6 +510,10 @@
 /obj/effect/paint_stripe/white,
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"anA" = (
+/obj/machinery/atmospherics/unary/tank/large/diesel,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "anD" = (
 /obj/structure/door/fire,
 /obj/item/stack/material/plank/mapped/wood/five,
@@ -1137,9 +1141,12 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "aFO" = (
-/obj/machinery/door/window/northright,
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/engineering/electrical)
+/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "aFS" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/chems/drinks/glass2/coffeecup/pawn,
@@ -3831,6 +3838,10 @@
 /obj/item/pen/retractable,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"bQG" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "bQO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -5875,7 +5886,7 @@
 	dir = 1
 	},
 /obj/structure/cable/blue{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/medbay/floor2/ward)
@@ -13802,6 +13813,7 @@
 "gup" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/item/seeds/wheatseed,
+/obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
 "guw" = (
@@ -15342,6 +15354,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"hcQ" = (
+/obj/machinery/portable_atmospherics/hydroponics/large,
+/obj/item/seeds/cornseed,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/biolab_annex)
 "hdb" = (
 /obj/structure/sign/warning/engineering_access{
 	dir = 8;
@@ -18850,14 +18870,8 @@
 /turf/simulated/open,
 /area/serenity/maintenance/sublevel_one)
 "iPs" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/cable/heavy{
-	icon_state = "2-4"
-	},
-/obj/structure/catwalk,
-/turf/simulated/open,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "iPv" = (
 /obj/effect/decal/cleanable/dirt,
@@ -20056,7 +20070,9 @@
 /obj/structure/cable{
 	icon_state = "16-0"
 	},
-/obj/structure/cable/blue,
+/obj/structure/cable/blue{
+	icon_state = "0-8"
+	},
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
 	dir = 1
 	},
@@ -25146,7 +25162,7 @@
 	},
 /obj/machinery/power/apc,
 /obj/structure/cable/blue{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/ward/kitchen)
@@ -26990,11 +27006,15 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
 "mOx" = (
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/engineering/electrical)
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/mask/gas/half,
+/obj/item/clothing/mask/gas/half,
+/obj/item/clothing/mask/gas/half,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "mOA" = (
 /obj/structure/table/woodentable/walnut,
 /obj/effect/decal/cleanable/dirt,
@@ -28078,6 +28098,9 @@
 /obj/item/seeds/wheatseed,
 /obj/machinery/light/ceiling{
 	dir = 4
+	},
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
@@ -29331,6 +29354,9 @@
 "nQn" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/item/seeds/tomatoseed,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
 "nQD" = (
@@ -32844,6 +32870,7 @@
 "puF" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/item/seeds/cotton,
+/obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
 "puJ" = (
@@ -39636,6 +39663,13 @@
 /obj/item/chems/condiment/small/sugar,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"srP" = (
+/obj/structure/railing/mapped{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/fueltank/newtank/diesel,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels)
 "srR" = (
 /obj/structure/bed/chair/armchair/black{
 	dir = 4
@@ -41103,6 +41137,9 @@
 "tfm" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/item/seeds/poppyseed,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
 "tfq" = (
@@ -43889,7 +43926,7 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/medbay/floor3/shift_director_office)
@@ -44686,6 +44723,7 @@
 "uON" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/item/seeds/soyaseed,
+/obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
 "uOP" = (
@@ -45469,7 +45507,7 @@
 	dir = 1
 	},
 /obj/structure/cable/blue{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/icu)
@@ -46085,9 +46123,11 @@
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/entrance_zone)
 "vzn" = (
-/obj/machinery/door/window/northleft,
-/turf/simulated/floor/tiled/dark/textured/monotile,
-/area/serenity/shelter/engineering/electrical)
+/obj/machinery/portable_atmospherics/hydroponics/large,
+/obj/item/seeds/tomatoseed,
+/obj/machinery/atmospherics/portables_connector,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/labs/biolab_annex)
 "vzq" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/effect/floor_decal/industrial/outline/red,
@@ -46559,6 +46599,9 @@
 "vJJ" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/item/seeds/grapeseed,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
 "vJK" = (
@@ -46951,7 +46994,7 @@
 	dir = 1
 	},
 /obj/structure/cable/blue{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_prep)
@@ -48865,6 +48908,7 @@
 "wJI" = (
 /obj/machinery/portable_atmospherics/hydroponics/large,
 /obj/item/seeds/cornseed,
+/obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
 "wJK" = (
@@ -49127,7 +49171,7 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/storage)
@@ -49638,6 +49682,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/catwalk,
+/obj/machinery/light/small,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
 "xbA" = (
@@ -49799,7 +49844,9 @@
 /area/surface)
 "xeU" = (
 /obj/machinery/power/apc,
-/obj/structure/cable/blue,
+/obj/structure/cable/blue{
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biodome)
 "xff" = (
@@ -286201,13 +286248,13 @@ aan
 ezt
 izf
 pnN
-vND
-vND
-vND
-vND
-vND
-vND
-vND
+qMP
+qMP
+qMP
+qMP
+qMP
+qMP
+qMP
 bXk
 bXk
 bXk
@@ -286395,13 +286442,13 @@ mBL
 aan
 dpm
 pnN
-vND
-vND
-vND
-vND
-vND
-vND
-vND
+oSN
+mtq
+oSN
+bZu
+bQG
+mtq
+iPs
 bXk
 jvm
 hOK
@@ -286589,13 +286636,13 @@ qos
 aan
 bKy
 pnN
-vND
-vND
-vND
-vND
-vND
-vND
-vND
+oSN
+anA
+oSN
+bZu
+aFO
+oSN
+iPs
 bXk
 jvm
 cwa
@@ -286783,13 +286830,13 @@ fJE
 qdq
 cup
 pnN
-vND
-vND
-vND
-vND
-vND
-vND
-vND
+oSN
+oSN
+oSN
+oSN
+oSN
+oSN
+mOx
 bXk
 jvm
 cwa
@@ -286977,13 +287024,13 @@ oTP
 xvy
 pnN
 pnN
-qMP
-qMP
-qMP
-qMP
-qMP
-qMP
-qMP
+srP
+lbs
+lbs
+lbs
+lbs
+oSN
+oSN
 bXk
 jvm
 iVL
@@ -287176,7 +287223,7 @@ moC
 vqF
 oSN
 oSN
-iPs
+shw
 nfD
 bXk
 jvm
@@ -291646,7 +291693,7 @@ uKp
 dqY
 qAs
 nEq
-mOx
+uKp
 kaG
 qKK
 bXk
@@ -291846,8 +291893,8 @@ fPi
 bXk
 ewf
 eFJ
-aFO
-ffp
+uKp
+uKp
 jsh
 afO
 lxf
@@ -292039,8 +292086,8 @@ iBA
 vZl
 gbS
 uyQ
-uKp
-vzn
+ffp
+ffp
 ffp
 jsh
 vNg
@@ -397353,9 +397400,9 @@ eRy
 eRy
 dev
 nQn
-nQn
+vzn
 qBT
-wJI
+hcQ
 wJI
 qBT
 vJJ
@@ -398131,7 +398178,7 @@ rCN
 tfm
 uON
 xFV
-wJI
+hcQ
 wJI
 mSQ
 nog

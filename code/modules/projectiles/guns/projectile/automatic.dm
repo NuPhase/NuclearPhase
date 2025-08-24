@@ -117,3 +117,33 @@
 		icon_state = "[get_world_inventory_state()]-loaded"
 	else
 		icon_state = "[get_world_inventory_state()]-empty"
+
+
+// infri custom
+/obj/item/gun/projectile/automatic/shock_smg
+	name = "handcrafted shock SMG"
+	desc = "A well-crafted SMG. It looks like a heavily modified TEC-9."
+	icon = 'icons/obj/guns/shock_smg.dmi'
+	icon_state = ICON_STATE_WORLD
+	w_class = ITEM_SIZE_NORMAL
+	caliber = CALIBER_PISTOL_SMALL
+	slot_flags = SLOT_LOWER_BODY
+	ammo_type = /obj/item/ammo_casing/pistol/small
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/pistol/small
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol/small, /obj/item/ammo_magazine/pistol/small/shock)
+	accuracy_power = 7
+	one_hand_penalty = 2
+	bulk = -1
+	fire_sound = 'sound/weapons/gunshot/gunshot.ogg'
+	material = /decl/material/solid/metal/steel
+
+	fire_delay = 2
+	firemodes = list(
+		list(mode_name="semi auto",      burst=1, fire_delay=1.5, one_hand_penalty=2, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=1.5, one_hand_penalty=3,       dispersion=list(0.0, 1.6, 2.4, 2.4)),
+		list(mode_name="short bursts",   burst=5, fire_delay=1.5, one_hand_penalty=3, dispersion=list(1.6, 1.6, 2.0, 2.0, 2.4)),
+		list(mode_name="full auto",      burst=1, fire_delay=0,    burst_delay=0,      one_hand_penalty=4, autofire_enabled=1)
+	)
+	weight = 1.2
+	muzzle_flash_intensity = 4

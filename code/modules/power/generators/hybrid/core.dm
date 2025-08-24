@@ -18,12 +18,11 @@
 	density = 1
 	anchored = 1
 
-	// DEPRECATED
-	var/meltdown = FALSE
-	var/was_shut_down = FALSE
+	// Meltdown stuff
+	var/meltdown_state = FALSE // On-off, to prevent some actions
+	var/pulled_cells = 0 // How much cells did we pull?
+	var/was_shut_down = FALSE // Did we succesfully pull out all 3 cells?
 	var/shutdown_failure = FALSE
-	var/neutron_moles = 0 //how many moles can we split
-	// DEPRECATED
 
 	// These are coefficients 0-1
 	var/blanket_integrity =   1 // Integrity of the protective blanket. Lowered by ionizing radiation and ELMs. Affects heat and radiation leakage. Easily replacable.
@@ -129,18 +128,7 @@
 	SSradiation.radiate(src, panel_multiplier * total_radiation)
 	SSradiation.radiate(superstructure, panel_multiplier * total_radiation / (1 + (REACTOR_SHIELDING_DIVISOR * blanket_integrity)))
 
-	if(containment_field.temperature > 4900)
-		if(containment)
-			field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA * (2 - magnet_integrity)
-			field_battery_charge = max(0, field_battery_charge - (field_power_consumption + balancing_magnet_power) * CELLRATE)
-			containment_field.add_thermal_energy((field_power_consumption + balancing_magnet_power) * CELLRATE) // magnet waste heat
-		if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
-			var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
-			charge_delta = min(field_power_consumption*1.5 + 1 MWATT, charge_delta) //so we don't drain all power at once
-			field_battery_charge += charge_delta * CELLRATE
-			use_power_oneoff(charge_delta, EQUIP)
-		if(!superstructure.sound_token)
-			superstructure.startsound()
+	handle_magnets()
 
 	// Adjust the field size based on power consumption if below 200MW.
 	containment_field.volume = Interpolate(containment_field.volume, Clamp((field_power_consumption / 200000000) * REACTOR_FIELD_VOLUME, 2500, REACTOR_FIELD_VOLUME), 0.2)
@@ -149,6 +137,26 @@
 	energy_rate = (containment_field.temperature - last_temperature) * 0.00008 //kelvin difference to eV difference
 	last_neutrons = slow_neutrons + fast_neutrons
 	last_temperature = containment_field.temperature
+
+/obj/machinery/power/hybrid_reactor/proc/handle_magnets()
+	if(containment_field.temperature < 4900)
+		return
+
+	if(containment)
+		field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA * (2 - magnet_integrity)
+		field_battery_charge = max(0, field_battery_charge - (field_power_consumption + balancing_magnet_power) * CELLRATE)
+		containment_field.add_thermal_energy((field_power_consumption + balancing_magnet_power) * CELLRATE) // magnet waste heat
+	if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
+		var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
+		charge_delta = min(field_power_consumption*1.5 + 1 MWATT, charge_delta) //so we don't drain all power at once
+		field_battery_charge += charge_delta * CELLRATE
+		use_power_oneoff(charge_delta, EQUIP)
+	if(!superstructure.sound_token)
+		superstructure.startsound()
+
+	if(field_battery_charge == 0) // Ran out, MELTDOWN
+		meltdown_state = TRUE
+
 
 #define RADIATIVE_LOSS_K 10700
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
@@ -324,7 +332,6 @@
 		scr_deflagration.trigger()
 
 /obj/machinery/power/hybrid_reactor/proc/meltdown()
-	meltdown = TRUE
 	rcontrol.do_message("MAJOR SENSOR DAMAGE IN REACTOR UNIT", 3)
 	sleep(10 SECONDS)
 	rcontrol.do_message("MAJOR WIRING AND SENSOR DAMAGE IN REACTOR UNIT", 3)

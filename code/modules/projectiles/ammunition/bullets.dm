@@ -55,6 +55,11 @@
 	bullet_color = COLOR_ACID_CYAN
 	marking_color = COLOR_LUMINOL
 
+/obj/item/ammo_casing/pistol/small/shock
+	name = "shock round"
+	desc = "A small bullet casing fitten with a shock generator for incapacitation."
+	projectile_type = /obj/item/projectile/bullet/pistol/electrode
+
 /obj/item/ammo_casing/pistol/magnum
 	desc = "A high-power pistol bullet casing."
 	caliber = CALIBER_PISTOL_MAGNUM
