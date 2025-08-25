@@ -184,27 +184,25 @@ var/global/list/DIR2DEGREES = list(
 
 /obj/multitile_vehicle/Initialize()
 	. = ..()
+	uid = "[type]_[sequential_id(type)]"
 	spawn(0)
 		var/datum/map_template/templ = SSmapping.get_template(interior_template)
 		var/turf/place = templ.load_interior_level()
 
 		STOP_PROCESSING(SSobj, src)
 		global.vehicles += src
-		entrypoint = interior_entrypoints[uid][global.vehicles.Find(src)]
-		entrypoint.vehicle = src
+
+		for(var/obj/effect/interior_entrypoint/vehicle/nentrypoint in range(5, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
+			entrypoint = nentrypoint
+			entrypoint.vehicle = src
+
 		if(!templ.pilot_seat_offset)
 			return
 
 		for(var/obj/structure/bed/chair/comfy/vehicle/pilotseat in view(2, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
 			if(pilotseat)
 				pilotseat.vehicle = src
-
-		if(ignition_switch_offset)
-			ignition = new(locate(place.x-templ.width+ignition_switch_offset["x"], place.y-templ.height+ignition_switch_offset["y"], place.z))
-			ignition.vehicle = src
-			ignition.icon_rotation = 270 // насрал и мне даже не стыдно
-			ignition.pixel_x = -6
-			ignition.pixel_y = -4
+				break
 
 		comp = new(null)
 		move_vector = new()
@@ -283,12 +281,11 @@ var/global/list/DIR2DEGREES = list(
 /obj/effect/interior_entrypoint/New(loc, ...)
 	. = ..()
 	if(uid)
-		check_and_place_if_list_dosnt_have_entry(interior_entrypoints, uid)
-		interior_entrypoints[uid] += src
+		interior_entrypoints[uid] = src
 
 /obj/effect/interior_entrypoint/Destroy()
 	if(uid)
-		interior_entrypoints[uid] -= src
+		interior_entrypoints -= uid
 	. = ..()
 
 /obj/effect/interior_entrypoint/vehicle
