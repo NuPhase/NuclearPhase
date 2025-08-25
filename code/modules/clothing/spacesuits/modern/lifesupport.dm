@@ -288,6 +288,31 @@
 	to_chat(owner.wearer, SPAN_DANGER("INTERNAL ATMOSPHERE PURGED!"))
 	playsound(owner.wearer, 'sound/effects/undock.ogg', 100, 1)
 
+/obj/item/storage/backpack/lifesupportpack/verb/scan_internal()
+	set name = "Scan Internal Atmosphere"
+	set category = "Life Support"
+	set src in usr
+
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
+	var/scan_data = atmosanalyzer_scan(owner, owner.internal_atmosphere)
+	scan_data = jointext(scan_data, "<br>")
+	user.show_message(SPAN_NOTICE(scan_data))
+
+/obj/item/storage/backpack/lifesupportpack/verb/scan_external()
+	set name = "Scan External Atmosphere"
+	set category = "Life Support"
+	set src in usr
+
+	var/mob/user = usr
+	if(istype(user) && user.incapacitated())
+		return
+	var/turf/simulated/T = get_turf(src)
+	var/scan_data = atmosanalyzer_scan(T, T.return_air())
+	scan_data = jointext(scan_data, "<br>")
+	user.show_message(SPAN_NOTICE(scan_data))
+
 /obj/abstract/modules_holder
 	name = "Modules holder unit"
 
