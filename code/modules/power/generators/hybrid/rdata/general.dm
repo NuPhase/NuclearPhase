@@ -99,13 +99,11 @@
 			if(last_alarm_2 + ALARM_COOLDOWN < world.time)
 				playsound(src, 'sound/effects/alarms/ann_med.ogg', 60, 0)
 				last_alarm_2 = world.time
-				radio_announce("Reactor Operations team presence requested in the control room.", rcontrol.name, "Engineering")
 		if(3)
 			loc.visible_message("[src] buzzes: [SPAN_DANGER(message)]!")
 			if(last_alarm_3 + ALARM_COOLDOWN < world.time)
 				playsound(src, 'sound/effects/alarms/ann_crit.ogg', 60, 0)
 				last_alarm_3 = world.time
-				radio_announce("REACTOR ALERT: [message].", rcontrol.name, "Engineering")
 
 /obj/machinery/reactor_monitor/containment
 	name = "containment monitoring computer"

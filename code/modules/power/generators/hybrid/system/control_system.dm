@@ -219,6 +219,11 @@
 	all_messages[message] = urgency
 	for(var/obj/machinery/reactor_monitor/general/mon in announcement_monitors)
 		mon.chat_report(message, urgency)
+	switch(urgency)
+		if(2)
+			radio_announce("Reactor Operations team presence requested in the control room.", name, "Engineering")
+		if(3)
+			radio_announce("REACTOR ALERT: [message].", name, "Engineering")
 
 /datum/reactor_control_system/proc/has_message(message)
 	var/msg = all_messages[message]
