@@ -198,15 +198,16 @@ var/global/world_topic_last = world.timeofday
 				D.associate(global.ckey_directory[ckey])
 
 /world/proc/update_status()
-	var/s = "<b>\[RU/EN\] [station_name()]</b>"
+	var/s = "<b>\[RU/EN\] \[MRP\] NuclearPhase</b>"
 
 	var/discordurl = get_config_value(/decl/config/text/discordurl)
 	if(discordurl)
 		s += " (<a href=\"[discordurl]\">Discord</a>)"
 
-	var/config_server_name = get_config_value(/decl/config/text/server_name)
-	if(config_server_name)
-		s = "<b>[config_server_name]</b> &#8212; [s]"
+	s += "A unique hard sci-fi experience. Very little pseudoscience and no technobabbling."
+	s += "Welcoming to new players who aren't afraid to try a completely different style."
+	s += "Completely reworked medical, engineering and physics."
+	s += "Play sessions on friday, saturday and sunday. Join our Discord!"
 
 	var/list/features = list()
 
@@ -214,17 +215,6 @@ var/global/world_topic_last = world.timeofday
 		features += SSticker.master_mode
 	else
 		features += "<b>STARTING</b>"
-
-	if (!get_config_value(/decl/config/toggle/on/enter_allowed))
-		features += "closed"
-
-	features += get_config_value(/decl/config/toggle/on/abandon_allowed) ? "respawn" : "no respawn"
-
-	if (get_config_value(/decl/config/toggle/vote_mode))
-		features += "vote"
-
-	if (get_config_value(/decl/config/toggle/on/allow_ai))
-		features += "AI allowed"
 
 	var/n = 0
 	for (var/mob/M in global.player_list)
