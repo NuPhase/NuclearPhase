@@ -45,7 +45,7 @@
 /obj/item/whip/leather
 	name = "leather whip"
 	desc = "Are you some kind of S&M enthusiast?"
-	icon_state = "leather"
+	icon_state = "tailwhip"
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	force = 3
 	hitsound = 'sound/weapons/towelwhip.ogg'

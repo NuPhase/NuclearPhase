@@ -4,6 +4,7 @@
 	desc = "A huge titanium sword. It's weight can be a considerable disadvantage and it may require considerate skill to wield it. Laser sharpened."
 	icon = 'icons/obj/items/weapon/swords/composite.dmi'
 	base_parry_chance = 75
+	parry_sound = 'sound/weapons/rapidslice.ogg'
 	melee_accuracy_bonus = 15
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	pickup_sound = 'sound/foley/knife1.ogg'
@@ -18,6 +19,8 @@
 	attack_cooldown = 10
 	attack_verb = list("slashed", "sliced", "torn", "ripped", "cut")
 	weight = 6
+	slot_flags = SLOT_BACK
+	material = /decl/material/solid/metal/titanium
 
 /obj/item/composite_sword/can_embed()
 	return FALSE
@@ -33,6 +36,7 @@
 	icon = 'icons/obj/items/weapon/e_nsword.dmi'
 	w_class = ITEM_SIZE_LARGE
 	active_parry_chance = 30
+	parry_sound = 'sound/weapons/rapidslice.ogg'
 	lighting_color = LIGHT_COLOR_ORANGE
 	max_force = 25
 	force = 25
@@ -40,6 +44,7 @@
 	armor_penetration = ARMOR_MELEE_KNIVES
 	active_armour_pen = ARMOR_MELEE_RESISTANT
 	weight = 2.5
+	material = /decl/material/solid/metal/tungsten
 
 /obj/item/energy_blade/molten_sword/dropped(var/mob/user)
 	..()

@@ -13,12 +13,13 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	base_parry_chance = 50
+	parry_sound = 'sound/weapons/rapidslice.ogg'
 	melee_accuracy_bonus = 10
 	material = /decl/material/solid/metal/steel
 	applies_material_colour = TRUE
 	applies_material_name = TRUE
 
-	pickup_sound = 'sound/foley/knife1.ogg' 
+	pickup_sound = 'sound/foley/knife1.ogg'
 	drop_sound = 'sound/foley/knifedrop3.ogg'
 
 	var/draw_handle
@@ -33,7 +34,7 @@
 		attack_verb = list("attacked", "smashed", "jabbed", "smacked", "prodded", "bonked")
 		hitsound = "chop"
 	. = ..()
-	
+
 /obj/item/sword/on_update_icon()
 	. = ..()
 	if(applies_material_colour)

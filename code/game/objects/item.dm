@@ -60,6 +60,7 @@
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/base_parry_chance	// Will allow weapon to parry melee attacks if non-zero
+	var/parry_sound = 'sound/weapons/punchmiss.ogg'
 
 	var/use_alt_layer = FALSE // Use the slot's alternative layer when rendering on a mob
 
@@ -637,7 +638,7 @@ var/global/list/slot_flags_enumeration = list(
 	if(parry_chance)
 		if(default_parry_check(user, attacker, damage_source) && prob(parry_chance))
 			user.visible_message(SPAN_DANGER("\The [user] parries [attack_text] with \the [src]!"))
-			playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+			playsound(user.loc, parry_sound, 50, 1)
 			on_parry(damage_source)
 			return 1
 	return 0
