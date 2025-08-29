@@ -157,6 +157,13 @@
 /obj/item/chems/pill/fentanyl/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/opium/fentanyl, 0.25)
 
+/obj/item/chems/pill/oxycodone
+	name = "oxycodone (20mg)"
+	desc = "An opioid painkiller. It stronger than morphine by a factor of 1.5."
+	icon_state = "pill3"
+/obj/item/chems/pill/oxycodone/initialize_reagents()
+	reagents.add_reagent(/decl/material/liquid/opium/oxycodone, 20)
+
 /obj/item/chems/pill/antitoxins
 	name = "antitoxins (15u)"
 	desc = "A broad-spectrum anti-toxin."

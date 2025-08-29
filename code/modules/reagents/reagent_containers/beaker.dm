@@ -175,6 +175,7 @@
 	applies_material_name = FALSE
 	applies_material_colour = FALSE
 	lid_color = COLOR_GRAY40
+	volume = 500
 
 // Hack around reagent temp changes.
 /obj/item/chems/glass/beaker/insulated/ProcessAtomTemperature()
@@ -185,7 +186,7 @@
 	icon = 'icons/obj/items/chem/beakers/insulated_large.dmi'
 	matter = list(/decl/material/solid/plastic = MATTER_AMOUNT_REINFORCEMENT)
 	center_of_mass = @'{"x":16,"y":10}'
-	volume = 120
+	volume = 2000
 
 /obj/item/chems/glass/beaker/sulphuric/Initialize()
 	. = ..()

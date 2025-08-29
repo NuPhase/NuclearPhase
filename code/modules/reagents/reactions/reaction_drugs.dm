@@ -123,6 +123,14 @@
 	mix_message = "The morphine binds to the sulfuric acid with a hiss."
 	result_amount = 3
 
+/decl/chemical_reaction/oxycodone
+	name = "Oxycodone Synthesis"
+	result = /decl/material/liquid/opium/oxycodone
+	required_reagents = list(/decl/material/liquid/opium/codeine = 3, /decl/material/liquid/acid/hydrogen_peroxide = 1, /decl/material/liquid/water = 1)
+	catalysts = list(/decl/material/solid/metal/chromium = 50, /decl/material/liquid/acid/hydrochloric = 10)
+	result_amount = 3
+	minimum_temperature = 35 CELSIUS
+
 /decl/chemical_reaction/piperidone
 	name = "4-Piperidone Synthesis"
 	result = /decl/material/liquid/piperidone

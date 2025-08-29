@@ -381,6 +381,33 @@
 	painkill_magnitude = 40000
 	uid = "chem_codeine"
 
+/decl/material/liquid/opium/oxycodone
+	name = "oxycodone"
+	lore_text = "An extremely strong painkiller. Can only be taken by mouth."
+	addictiveness = 30
+	painkill_magnitude = 435000
+	overdose = 80
+	uid = "chem_oxycodone"
+
+/decl/material/liquid/opium/oxycodone/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	return
+
+/decl/material/liquid/opium/oxycodone/affect_ingest(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, removed))
+		return
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	var/dose = LAZYACCESS(H.chem_doses, type)
+	if(dose > 10)
+		SET_STATUS_MAX(H, STAT_DRUGGY, 5)
+	heart.bpm_modifiers[name] = dose * -0.1
+	H.add_chemical_effect(CE_PAINKILLER, painkill_magnitude * dose * metabolism)
+	H.add_chemical_effect(CE_PRESSURE, -0.4 * dose)
+	H.add_chemical_effect(CE_BREATHLOSS, -0.04 * dose)
+	var/boozed = isboozed(H)
+	if(boozed)
+		H.add_chemical_effect(CE_ALCOHOL_TOXIC, 2)
+		H.add_chemical_effect(CE_BREATHLOSS, -3 * boozed)
+
 /decl/material/liquid/opium/codeine/desomorphine
 	name = "desomorphine"
 	lore_text = "An addictive painkiller with a very short window of action."
@@ -400,6 +427,8 @@
 	uid = "chem_morphine"
 	effective_dose = 1
 	overdose = 18
+	heating_products = list(/decl/material/liquid/opium/codeine = 0.6)
+	heating_point = 100 CELSIUS
 
 /decl/material/liquid/opium/morphine/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	if(H.bloodstr.has_reagent(/decl/material/liquid/naloxone, 1))

@@ -27,7 +27,7 @@
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
 	var/sloppy = 1 //Whether reagents will not be fully purified (sloppy = 1) or there will be reagent loss (sloppy = 0) on reagent add.
-	var/reagent_limit = 120
+	var/reagent_limit = 1000
 	var/bottle_label_color = COLOR_WHITE
 	var/bottle_lid_color = COLOR_OFF_WHITE
 
@@ -68,7 +68,7 @@
 		to_chat(user, SPAN_NOTICE("You add the pill bottle into the dispenser slot!"))
 		updateUsrDialog()
 		return TRUE
-	
+
 	return ..()
 
 /obj/machinery/chem_master/Topic(href, href_list, state)

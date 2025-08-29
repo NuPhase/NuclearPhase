@@ -96,7 +96,7 @@
 	heating_point = 40 CELSIUS
 	heating_sound = 'sound/chemistry/bufferadd.ogg'
 	heating_products = list(/decl/material/liquid/water = 0.77, /decl/material/gas/oxygen = 0.598)
-	heating_temperature_product = 100
+	heating_temperature_product = 1
 	reactivity_coefficient = 0.01
 
 /decl/material/liquid/acid/polyacid

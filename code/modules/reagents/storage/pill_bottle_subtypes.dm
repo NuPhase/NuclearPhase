@@ -73,6 +73,13 @@
 	startswith = list(/obj/item/chems/pill/fentanyl = 21)
 	wrapper_color = COLOR_RED
 
+/obj/item/storage/pill_bottle/oxycodone
+	name = "pill bottle (oxycodone)"
+	desc = "Dosed in 20mg."
+
+	startswith = list(/obj/item/chems/pill/oxycodone = 21)
+	wrapper_color = COLOR_RED
+
 /obj/item/storage/pill_bottle/handmade
 	name = "pill bottle (handmade)"
 	startswith = list(/obj/item/chems/pill/betapace = 2, /obj/item/chems/pill/charcoal = 5)
