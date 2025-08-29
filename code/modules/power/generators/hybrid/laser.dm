@@ -1,6 +1,7 @@
 #define LASER_MODE_IGNITION   "IGNITION"
 #define LASER_MODE_IMPULSE    "IMPULSE"
 #define LASER_MODE_CONTINUOUS "CONTINUOUS"
+#define LASER_MODE_OFF "OFF"
 
 #define NEUTRON_MODE_BOMBARDMENT  "BOMBARDMENT"
 #define NEUTRON_MODE_MODERATION   "MODERATION"
@@ -9,10 +10,12 @@
 #define LASER_MAX_CHARGE 900
 
 /obj/machinery/rlaser
-	name = "industrial laser"
-	desc = "A huge, hefty piece of optics machinery."
+	name = "laser control unit"
+	desc = "A control system for one of the six heavy industrial lasers."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "smes"
 	anchored = TRUE
-	density = FALSE
+	density = TRUE
 	var/omode = LASER_MODE_IMPULSE
 	var/nmode = NEUTRON_MODE_OFF
 	var/operating = FALSE
@@ -25,11 +28,17 @@
 	active_power_usage = 1600000
 	required_interaction_dexterity = DEXTERITY_COMPLEX_TOOLS
 	layer = ABOVE_HUMAN_LAYER
+	construct_state = /decl/machine_construction/default/panel_closed
+	uncreated_component_parts = null
 	var/lasid = ""
 
 /obj/machinery/rlaser/Initialize()
 	. = ..()
-	reactor_components[lasid] += src
+	reactor_components[lasid] = src
+
+/obj/machinery/rlaser/Destroy()
+	. = ..()
+	reactor_components -= lasid
 
 /obj/machinery/rlaser/examine(mob/user)
 	. = ..()
@@ -45,15 +54,18 @@
 		to_chat(user, omessage)
 	if(operating && nmode == NEUTRON_MODE_BOMBARDMENT)
 		to_chat(user, "A faint blue glow can be seen erupting from its nozzle...")
+	to_chat(user, SPAN_NOTICE("Its ignition flywheel is charged to [round(capacitor_charge/LASER_MAX_CHARGE*100)]%"))
 
 /obj/machinery/rlaser/proc/switch_omode(nomode)
 	switch(nomode)
 		if(LASER_MODE_IGNITION)
-			use_power = POWER_USE_ACTIVE
+			update_use_power(POWER_USE_ACTIVE)
 		if(LASER_MODE_IMPULSE)
-			use_power = POWER_USE_IDLE
+			update_use_power(POWER_USE_IDLE)
 		if(LASER_MODE_CONTINUOUS)
-			use_power = POWER_USE_ACTIVE
+			update_use_power(POWER_USE_ACTIVE)
+		if(LASER_MODE_OFF)
+			update_use_power(POWER_USE_OFF)
 	omode = nomode
 
 /obj/machinery/rlaser/proc/switch_nmode(nnmode)
@@ -66,6 +78,8 @@
 	nmode = nnmode
 
 /obj/machinery/rlaser/Process()
+	if(!powered(EQUIP))
+		return
 	if(nmode == NEUTRON_MODE_BOMBARDMENT)
 		var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 		R.fast_neutrons += rand(1, 5) //neutron generators are extremely unpredictable and inaccurate

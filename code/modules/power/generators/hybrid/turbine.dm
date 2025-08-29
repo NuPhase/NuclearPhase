@@ -199,6 +199,7 @@
 		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.12
 	tvibration += water_level * 0.7
 	tvibration += total_mass_flow * 0.005
+	tvibration += (1 - (rotor_integrity/100)) * rpm * 0.01
 	vibration = Interpolate(vibration, tvibration, 0.1)
 
 /obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects()
@@ -235,12 +236,11 @@
 	icon_state = "motor"
 	anchored = 1
 	density = 1
-	obj_flags = OBJ_FLAG_ANCHORABLE | OBJ_FLAG_ROTATABLE
 
 	var/obj/machinery/atmospherics/binary/turbinestage/turbine
 
 	uncreated_component_parts = null
-	construct_state = /decl/machine_construction/default/panel_closed
+	construct_state = /decl/machine_construction/noninteractive
 	var/connected = FALSE
 	var/last_load = 0
 	var/voltage = 35200 //4400x8

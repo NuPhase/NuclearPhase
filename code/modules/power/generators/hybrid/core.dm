@@ -20,9 +20,12 @@
 
 	// Meltdown stuff
 	var/meltdown_state = FALSE // On-off, to prevent some actions
-	var/pulled_cells = 0 // How much cells did we pull?
+	var/pulled_cells = 0 // How many cells did we pull?
 	var/was_shut_down = FALSE // Did we succesfully pull out all 3 cells?
 	var/shutdown_failure = FALSE
+	var/burning = FALSE
+	var/ann_name
+	var/ann_count = 0
 
 	// These are coefficients 0-1
 	var/blanket_integrity =   1 // Integrity of the protective blanket. Lowered by ionizing radiation and ELMs. Affects heat and radiation leakage. Easily replacable.
@@ -130,6 +133,9 @@
 
 	handle_magnets()
 
+	if(meltdown_state)
+		process_meltdown()
+
 	// Adjust the field size based on power consumption if below 200MW.
 	containment_field.volume = Interpolate(containment_field.volume, Clamp((field_power_consumption / 200000000) * REACTOR_FIELD_VOLUME, 2500, REACTOR_FIELD_VOLUME), 0.2)
 
@@ -154,8 +160,9 @@
 	if(!superstructure.sound_token)
 		superstructure.startsound()
 
-	if(field_battery_charge == 0) // Ran out, MELTDOWN
+	if(!meltdown_state && field_battery_charge == 0) // Ran out, MELTDOWN
 		meltdown_state = TRUE
+		start_meltdown()
 
 
 #define RADIATIVE_LOSS_K 10700
@@ -217,6 +224,86 @@
 	plasma_instability = max(0, plasma_instability - instability_removed)
 #undef PASSIVE_INSTABILITY_DECAY
 
+/obj/machinery/power/hybrid_reactor/proc/start_meltdown()
+	ann_name = "[pick(first_names_male)] [pick(last_names)]"
+	rcontrol.do_message("CONTAINMENT POWER LOSS", 3)
+	spawn(50)
+		var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)
+		security_state.stored_security_level = security_state.current_security_level
+		security_state.set_security_level(GET_DECL(/decl/security_level/default/code_amber))
+		prime_alarms()
+		rcontrol.do_message("THERMOELECTRIC GENERATION START", 3)
+	spawn(100)
+		rcontrol.do_message("PURGE ATTEMPT UNSUCCESSFUL", 3)
+
+/obj/machinery/power/hybrid_reactor/proc/process_meltdown()
+	damage_structure(0.25)
+	process_meltdown_messages()
+	process_meltdown_visuals()
+
+/obj/machinery/power/hybrid_reactor/proc/process_meltdown_visuals()
+	switch(structure_integrity)
+		if(0 to 0.45) // burn baby burn
+			if(!burning)
+				start_burning()
+
+/obj/machinery/power/hybrid_reactor/proc/process_meltdown_messages()
+	set waitfor = 0
+	switch(ann_count)
+		if(0)
+			if(structure_integrity < 0.9)
+				rcontrol.do_message("REACTION MONITORING SYSTEM FAILURE. CONTAINMENT STATUS UNKNOWN.", 3)
+				ann_count = 1
+				activate_alarms()
+		if(1)
+			if(structure_integrity < 0.8)
+				rcontrol.do_message("CONTAINMENT PRESSURE LEAKS DETECTED. ANALYZING OPTIONS.", 3)
+				ann_count = 2
+		if(2)
+			if(structure_integrity < 0.7)
+				rcontrol.do_message("THE WINDOW TO REPAIR THE PURGE SYSTEM WILL CLOSE IN: ■■■■■■■■■■")
+				ann_count = 3
+		if(3)
+			if(structure_integrity < 0.5)
+				rcontrol.do_message("CONTROLS IRRESPONSIVE. PURGE SYSTEM COMPROMISED.")
+				spawn(50)
+					rcontrol.do_message("PRIMARY CONTROL NODE FAILURE. CONTAINMENT LOSS IMMINENT.")
+				ann_count = 4
+		if(4)
+			if(structure_integrity < 0.45)
+				rcontrol.do_message("FUEL INJECTION FAILURE. THERMAL RUNAWAY IN PROGRESS.")
+				ann_count = 5
+				sleep(50)
+				radio_announce("ATTENTION ALL REACTOR OPERATIONS PERSONNEL.", ann_name)
+				sleep(30)
+				radio_announce("THIS IS OUR LAST CHANCE TO PREVENT THE UNCONTROLLABLE DETONATION OF THE H.S.S.R.", ann_name)
+				sleep(50)
+				radio_announce("CLIMB UP THE REACTOR UNIT, AND EJECT ALL FUEL CELLS WITHIN 5 SECONDS OF EACH OTHER.", ann_name)
+				sleep(30)
+				radio_announce("TO INVOKE A REACTION STALL AND STOP THE THERMAL RUNAWAY. YOU HAVE A MINUTE, GOOD LUCK.", ann_name)
+				for(var/mob/living/carbon/human/H in human_mob_list)
+					if(istype(H.job, /datum/job/reactor_operations))
+						H.playsound_local(H, 'sound/music/howmuchmorecanyoulose.ogg', 50, 0)
+						to_chat(H, SPAN_ERPBOLD("And in times like these, it's up to you to decide: How much more can you lose?"))
+		if(5)
+			if(structure_integrity < 0.3)
+				ann_count = 6
+				rcontrol.do_message("PRESSURE CONTROL INEFFECTIVE. PRESSURE ABOVE DESIGN LIMITS.")
+				sleep(10)
+				rcontrol.do_message("INTEGRITY MONITORING SYSTEM FAILURE. CANNOT PREDICT REACTOR DETONATION.")
+				sleep(50)
+				radio_announce("SITEWIDE RADIATION INTERLOCKS WILL CLOSE IN: 1 MINUTE.", rcontrol.name)
+				addtimer(CALLBACK(src, PROC_REF(close_radlocks)), 1 MINUTE)
+				sleep(10)
+				radio_announce("BLAST DOORS CLOSING IN: 2 MINUTES.", rcontrol.name)
+				addtimer(CALLBACK(src, PROC_REF(close_blastdoors)), 2 MINUTES)
+
+/obj/machinery/power/hybrid_reactor/proc/stop_meltdown()
+	rcontrol.do_message("SUCCESSFUL REACTOR SHUTDOWN", 3)
+	var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)
+	security_state.stored_security_level = security_state.current_security_level
+	security_state.set_security_level(security_state.high_security_level)
+
 /obj/machinery/power/hybrid_reactor/proc/receive_power(power) //in watts
 	containment_field.add_thermal_energy(power)
 	return
@@ -235,20 +322,22 @@
 
 /obj/machinery/power/hybrid_reactor/proc/start_burning()
 	set waitfor = FALSE
+	burning = TRUE
 	var/list/animate_targets = superstructure.get_above_oo() + superstructure
 	for(var/thing in animate_targets)
 		var/atom/movable/AM = thing
 		var/obj/effect/abstract/particle_holder/our_particle_holder = new(AM.loc, /particles/smoke_continuous/fire/reactor)
+		our_particle_holder.pixel_x = 200
+		our_particle_holder.pixel_y = 120
 		our_particle_holder.alpha = 220
-		var/current_spawn_time = 2 SECONDS
-		var/i
-		for(i=0, i<20, i++)
+		var/current_spawn_time = 2 SECOND
+		for(var/i=0, i<20, i++)
 			current_spawn_time += 3 SECONDS
 			spawn(current_spawn_time)
 				our_particle_holder.particles.spawning += 2
 		animate(AM, color = list(3.5,0,0,0,0,0,0,0,0), time = 20 SECONDS, easing = CUBIC_EASING|EASE_OUT)
-		AM.animate_filter("glow", list(color = "#ff0000", offset=2, size=10, time = 20 SECONDS, easing = CUBIC_EASING|EASE_OUT))
-		AM.animate_filter("blur", list(size=3, time = 60 SECONDS, easing = CUBIC_EASING))
+		AM.animate_filter("glow", list(color = "#ff0000", offset=2, size=10, time = 20 SECONDS, easing = CUBIC_EASING|EASE_OUT, flags = ANIMATION_PARALLEL))
+		AM.animate_filter("blur", list(size=3, time = 60 SECONDS, easing = CUBIC_EASING, flags = ANIMATION_PARALLEL))
 		AM.set_light(5, 1, "#ffdddd")
 		spawn(5 SECONDS)
 			AM.set_light(6, 2, "#ffb3b3")
@@ -256,7 +345,7 @@
 			AM.set_light(7, 3, "#ff8181")
 		spawn(20 SECONDS)
 			animate(AM, color = list(3.5,0,0,2,0,0,0,0,0), time = 40 SECONDS, easing = CUBIC_EASING|EASE_OUT)
-			AM.animate_filter("glow", list(color = AM.color, time = 40 SECONDS, easing = CUBIC_EASING|EASE_OUT))
+			AM.animate_filter("glow", list(color = AM.color, time = 40 SECONDS, easing = CUBIC_EASING|EASE_OUT, flags = ANIMATION_PARALLEL))
 			spawn(5 SECONDS)
 				AM.set_light(8, 5, "#fcac77")
 			spawn(10 SECONDS)
@@ -264,12 +353,13 @@
 
 /obj/machinery/power/hybrid_reactor/proc/stop_burning()
 	set waitfor = FALSE
+	burning = TRUE
 	var/list/animate_targets = superstructure.get_above_oo() + superstructure
 	for(var/thing in animate_targets)
 		var/atom/movable/AM = thing
 		AM.set_light(4, 1, "#fcac77")
 		animate(AM, color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN)
-		AM.animate_filter("glow", list(color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN))
+		AM.animate_filter("glow", list(color = null, time = 20 SECONDS, easing = CUBIC_EASING|EASE_IN, flags = ANIMATION_PARALLEL))
 
 /obj/machinery/power/hybrid_reactor/proc/damage_blanket(amount)
 	blanket_integrity = Clamp(blanket_integrity - amount * 0.01 * (blanket_integrity + 0.1), 0, 1)

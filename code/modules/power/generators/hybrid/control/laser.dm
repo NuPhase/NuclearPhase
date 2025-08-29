@@ -67,7 +67,7 @@
 
 /obj/machinery/reactor_button/lasomode/do_action(mob/user)
 	..()
-	var/mode = tgui_input_list(user, "Select a new laser operation mode", "LASER-OMODE", list(LASER_MODE_CONTINUOUS, LASER_MODE_IGNITION, LASER_MODE_IMPULSE))
+	var/mode = tgui_input_list(user, "Select a new laser operation mode", "LASER-OMODE", list(LASER_MODE_CONTINUOUS, LASER_MODE_IGNITION, LASER_MODE_IMPULSE, LASER_MODE_OFF))
 	if(!mode)
 		return
 	for(var/tag in reactor_components)

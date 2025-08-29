@@ -165,3 +165,36 @@
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/manipulator = 2
 		)
+
+/obj/item/stock_parts/circuitboard/rlaser
+	name = "circuitboard (reactor laser controller)"
+	build_path = /obj/machinery/rlaser
+	board_type = "machine"
+	req_components = list(
+							/obj/item/stock_parts/scanning_module/adv = 2,
+							/obj/item/stock_parts/micro_laser/ultra = 5,
+							/obj/item/stock_parts/console_screen = 1,
+							/obj/item/stock_parts/engine/superconducting = 1,
+							/obj/item/stock_parts/shielding/heat = 2,
+							/obj/item/stack/cable_coil = 120
+							)
+
+/obj/item/stock_parts/circuitboard/transformer
+	name = "circuitboard (transformer)"
+	build_path = /obj/machinery/power/generator/transformer
+	board_type = "machine"
+	req_components = list(
+							/obj/item/stock_parts/capacitor = 2,
+							/obj/item/stack/cable_coil = 30
+							)
+
+/obj/item/stock_parts/circuitboard/transformer/switchable
+	name = "circuitboard (switchable transformer)"
+	build_path = /obj/machinery/power/generator/transformer/switchable
+	board_type = "machine"
+	req_components = list(
+							/obj/item/stock_parts/capacitor = 2,
+							/obj/item/stock_parts/scanning_module = 1,
+							/obj/item/stock_parts/console_screen = 1,
+							/obj/item/stack/cable_coil = 30
+							)

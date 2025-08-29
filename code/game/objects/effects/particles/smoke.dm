@@ -37,7 +37,6 @@
 	scale = 2.7
 	grow = 0.05
 	count = 3000
-	is_global = FALSE
 	spawning = 5
 	lifespan = 100
 	fade = 40

@@ -11,6 +11,15 @@
 	weight = 12
 	failure_chance = 1
 
+/obj/item/chems/fuel_cell/afterattack(obj/target, mob/user, proximity)
+	if(!proximity) return
+
+	if(standard_dispenser_refill(user, target))
+		return
+	if(standard_pour_into(user, target))
+		return
+	return ..()
+
 /obj/item/chems/fuel_cell/get_mechanics_info()
 	return "It can be opened with a power drill. Be careful, as it will weaken its radiation shielding. Can contain dangerous isotopes inside."
 

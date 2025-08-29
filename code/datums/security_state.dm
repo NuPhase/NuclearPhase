@@ -248,6 +248,22 @@
 	up_description = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
 	down_description = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
 
+/decl/security_level/default/code_amber
+	name = "code amber"
+
+	light_range = 4
+	light_power = 2
+	light_color_alarm = COLOR_ORANGE
+	light_color_status_display = COLOR_ORANGE
+
+	overlay_alarm = "alarm_red"
+	overlay_status_display = "status_display_red"
+
+	alarm_appearance = /datum/alarm_appearance/delta
+
+	up_description = "A sitewide amber evacuation order has been placed. THIS IS NOT A DRILL. All non-RO personnel should immediately evacuate to the closest safezone or a blast shelter. DO NOT evacuate to the surface. THIS IS NOT A DRILL."
+	down_description = "The sitewide evacuation is recalled."
+
 /decl/security_level/default/code_delta
 	name = "code delta"
 
