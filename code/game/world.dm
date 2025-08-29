@@ -204,10 +204,8 @@ var/global/world_topic_last = world.timeofday
 	if(discordurl)
 		s += " (<a href=\"[discordurl]\">Discord</a>)"
 
-	s += "A unique hard sci-fi experience. Very little pseudoscience and no technobabbling."
-	s += "Welcoming to new players who aren't afraid to try a completely different style."
-	s += "Completely reworked medical, engineering and physics."
-	s += "Play sessions on friday, saturday and sunday. Join our Discord!"
+	s += "A unique hard sci-fi experience. No pseudoscience. "
+	s += "Welcoming to new players who aren't afraid to try a completely different style. "
 
 	var/list/features = list()
 

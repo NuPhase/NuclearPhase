@@ -24,6 +24,14 @@
 
 	var/datum/composite_sound/transformer/soundloop = null
 
+/obj/machinery/power/generator/transformer/examine(mob/user)
+	. = ..()
+	if(coef > 1)
+		to_chat(user, SPAN_INFO("It will increase the opposite voltage by a factor of [round(coef, 0.001)]."))
+	else
+		to_chat(user, SPAN_INFO("It will decrease the opposite voltage by a factor of [round(1 / coef, 0.001)]."))
+	to_chat(user, SPAN_INFO("It's rated to transfer [watts_to_text(max_cap)]."))
+
 /obj/machinery/power/generator/transformer/start_ambience()
 	if(!soundloop && on)
 		soundloop = new(list(src), TRUE)
