@@ -54,14 +54,15 @@ export const DrugDispenser = (props: any) => {
           IV Pack</Button>
           Dosage:
           <NumberInput
-            animated = {1}
+            animated = {true}
             value = {data.dosage}
             unit = "mg/ml"
             minValue = {0.01}
             maxValue = {1}
             step = {0.01}
             stepPixelSize = {3}
-            onChange = {(_, value) => act('change_dosage', { new_dosage: value })}>
+            onChange={(value) => act('change_dosage', { new_dosage: value, })}
+            >
           </NumberInput>
         </Section>
         <Section title="Categories">

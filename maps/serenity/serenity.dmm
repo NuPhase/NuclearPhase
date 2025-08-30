@@ -1806,7 +1806,8 @@
 "aTH" = (
 /obj/structure/door/sliding{
 	dir = 8;
-	lock_type = /datum/lock/keypad
+	lock_type = /datum/lock/keypad;
+	name = "RO Assistant Director"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -11524,14 +11525,15 @@
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical)
 "fqS" = (
-/obj/structure/cable/blue{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
 /obj/structure/closet/wardrobe/medic_white,
+/obj/structure/cable/blue,
+/obj/machinery/power/apc{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/scrub_room)
 "frb" = (
@@ -17984,7 +17986,8 @@
 "ipQ" = (
 /obj/structure/door/sliding{
 	dir = 8;
-	lock_type = /datum/lock/keypad
+	lock_type = /datum/lock/keypad;
+	name = "RO Director"
 	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/chief_engineer)
@@ -20066,17 +20069,15 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/entrance_zone)
 "jtl" = (
-/obj/structure/cable{
-	icon_state = "16-0"
-	},
-/obj/structure/cable/blue{
-	icon_state = "0-8"
-	},
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/zpipe/up/supply{
 	dir = 1
+	},
+/obj/structure/cable/blue,
+/obj/structure/cable{
+	icon_state = "16-0"
 	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity)
@@ -20765,12 +20766,12 @@
 /area/serenity/shelter/brig)
 "jKd" = (
 /obj/structure/table/steel,
-/obj/machinery/computer{
-	dir = 1;
-	pixel_y = 6
-	},
 /obj/effect/floor_decal/spline/plain/grey{
 	dir = 10
+	},
+/obj/machinery/computer/modular/preset/engineering{
+	dir = 1;
+	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
@@ -24879,11 +24880,11 @@
 /area/serenity/shelter/habitationdeck/crew)
 "lQa" = (
 /obj/structure/table/steel,
-/obj/machinery/computer{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/modular/preset/engineering{
 	dir = 1;
 	pixel_y = 6
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/senior_engineer)
 "lQb" = (
@@ -26779,6 +26780,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
+/obj/structure/bed/sofa/r/yellow,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/chief_engineer)
 "mIH" = (
@@ -29340,10 +29342,10 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2)
 "nPX" = (
-/obj/structure/bed/chair,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/structure/bed/sofa/l/yellow,
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/chief_engineer)
 "nPZ" = (
@@ -31191,15 +31193,14 @@
 /area/serenity/shelter/habitationdeck/crew)
 "oFU" = (
 /obj/structure/table/steel,
-/obj/machinery/computer{
-	dir = 8;
-	pixel_y = 16
-	},
 /obj/effect/floor_decal/spline/plain/grey{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/modular/preset/engineering{
+	pixel_y = 16
+	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "oGd" = (
@@ -32116,6 +32117,9 @@
 /obj/structure/table/steel,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/modular/preset/cardslot/command{
+	pixel_y = 16
+	},
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/engineering/reactor_operations/office/chief_engineer)
 "pbz" = (
@@ -34209,12 +34213,6 @@
 /turf/simulated/floor/carpet/blue2,
 /area/serenity/shelter/habitationdeck/messhall)
 "pXm" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable/blue{
-	icon_state = "0-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -35348,12 +35346,11 @@
 /area/surface)
 "qwm" = (
 /obj/structure/table/steel,
-/obj/machinery/computer{
-	dir = 8;
-	pixel_y = 16
-	},
 /obj/effect/floor_decal/spline/plain/grey{
 	dir = 9
+	},
+/obj/machinery/computer/modular/preset/engineering{
+	pixel_y = 16
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
@@ -38202,10 +38199,6 @@
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "rJY" = (
 /obj/structure/table/steel,
-/obj/machinery/computer{
-	pixel_x = -8;
-	pixel_y = 16
-	},
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
@@ -38343,11 +38336,11 @@
 /area/serenity/shelter/entrance_zone)
 "rMX" = (
 /obj/structure/table/steel,
-/obj/machinery/computer{
+/obj/effect/floor_decal/spline/plain/grey,
+/obj/machinery/computer/modular/preset/engineering{
 	dir = 1;
 	pixel_y = 6
 	},
-/obj/effect/floor_decal/spline/plain/grey,
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/engineering/reactor_operations/office)
 "rMZ" = (

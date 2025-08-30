@@ -40,6 +40,7 @@
 	value = 1.5
 	uid = "chem_suxamethonium"
 	molar_mass = 0.3613
+	drug_category = DRUG_CATEGORY_PAIN_SLEEP
 
 /decl/material/liquid/suxamethonium/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/threshold = 2

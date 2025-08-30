@@ -3,7 +3,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "babbler"
 	desc = "A speaker containing a prerecorded message."
-	density = TRUE
+	density = FALSE
 	anchored = TRUE
 	unacidable = TRUE
 	var/babble_message

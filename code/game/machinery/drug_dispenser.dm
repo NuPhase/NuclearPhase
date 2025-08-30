@@ -112,7 +112,7 @@
 			return TRUE
 
 		if("change_dosage")
-			dosage = params["new_dosage"]
+			dosage = Clamp(params["new_dosage"], 0.01, 1)
 			return TRUE
 
 /obj/machinery/drug_dispenser/tgui_interact(mob/user, datum/tgui/ui)
