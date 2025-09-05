@@ -9,6 +9,7 @@
 	hitsound = 'sound/weapons/towelwhip.ogg'
 	desc = "A set of identifying documents."
 	var/info
+	var/weapon_permit = "None"
 
 /obj/item/passport/proc/set_info(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -22,7 +23,7 @@
 		fingerprint = md5(H.dna.uni_identity)
 
 	var/decl/pronouns/G = H.get_pronouns(ignore_coverings = TRUE)
-	info = "\icon[src] [src]:\nName: [H.real_name]\nSpecies: [H.get_species_name()]\nGender: [capitalize(G.name)]\nAge: [H.get_age()]\nPlace of Birth: [pob]\nFingerprint: [fingerprint]"
+	info = "\icon[src] [src]:\nName: [H.real_name]\nSpecies: [H.get_species_name()]\nGender: [capitalize(G.name)]\nAge: [H.get_age()]\nPlace of Birth: [pob]\nFingerprint: [fingerprint]\nWeapon Permits: [weapon_permit]"
 
 /obj/item/passport/attack_self(mob/user)
 	user.visible_message(
