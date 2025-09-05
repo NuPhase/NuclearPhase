@@ -127,7 +127,7 @@ var/global/list/all_gps_units = list()
 
 	var/list/adding_sites
 	if(long_range)
-		adding_sites = (global.using_map.station_levels|global.using_map.contact_levels|global.using_map.player_levels)
+		adding_sites = (SSmapping.station_levels|SSmapping.contact_levels|SSmapping.player_levels)
 	else
 		adding_sites = SSmapping.get_connected_levels(origin.z)
 
@@ -255,7 +255,7 @@ var/global/list/all_gps_units = list()
 
 	var/z_level_detection
 	if(long_range)
-		z_level_detection = (global.using_map.station_levels|global.using_map.contact_levels|global.using_map.player_levels)
+		z_level_detection = (SSmapping.station_levels|SSmapping.contact_levels|SSmapping.player_levels)
 	else
 		z_level_detection = SSmapping.get_connected_levels(curr.z)
 	.["z_level_detection"] = z_level_detection

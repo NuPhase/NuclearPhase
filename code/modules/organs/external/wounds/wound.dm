@@ -8,7 +8,7 @@
 	var/desc = "wound"         // description of the wound. default in case something borks
 	var/damage = 0             // amount of damage this wound causes
 	var/bleed_timer = 0        // ticks of bleeding left.
-	var/bleed_threshold = 30   // Above this amount wounds you will need to treat the wound to stop bleeding, regardless of bleed_timer
+	var/bleed_threshold = 50   // Above this amount wounds you will need to treat the wound to stop bleeding, regardless of bleed_timer
 	var/bleed_amount = 0
 	var/min_damage = 0         // amount of damage the current wound type requires(less means we need to apply the next healing stage)
 	var/bandaged = 0           // is the wound bandaged?

@@ -23,9 +23,9 @@
 		goast.mouse_opacity = MOUSE_OPACITY_UNCLICKABLE	//can't let you click that Dave
 		goast.set_invisibility(SEE_INVISIBLE_LIVING)
 		goast.alpha = 255
-	old_accessible_z_levels = global.using_map.accessible_z_levels.Copy()
+	old_accessible_z_levels = SSmapping.accessible_z_levels.Copy()
 	for(var/z in affected_levels)
-		global.using_map.accessible_z_levels -= "[z]" //not accessible during the jump
+		SSmapping.accessible_z_levels -= "[z]" //not accessible during the jump
 
 /datum/universal_state/jump/OnExit()
 	for(var/mob/M in duplicated)
@@ -33,7 +33,7 @@
 			clear_duplicated(M)
 
 	duplicated.Cut()
-	global.using_map.accessible_z_levels = old_accessible_z_levels
+	SSmapping.accessible_z_levels = old_accessible_z_levels
 	old_accessible_z_levels = null
 
 /datum/universal_state/jump/OnPlayerLatejoin(var/mob/living/M)

@@ -164,7 +164,7 @@
 
 /obj/machinery/atmospherics/omni/filter/proc/mode_send_switch(var/datum/omni_port/P)
 	if(P.filtering)
-		var/decl/material/gas/G = GET_DECL(P.filtering)
+		var/decl/material/gas/G = P.filtering
 		return G.gas_symbol
 
 /obj/machinery/atmospherics/omni/filter/Topic(href, href_list)

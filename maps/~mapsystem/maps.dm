@@ -26,12 +26,6 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	// TODO: move all the lobby stuff onto this handler.
 	var/lobby_handler = /decl/lobby_handler
 
-	var/list/station_levels = list() // Z-levels the station exists on
-	var/list/admin_levels =   list() // Z-levels for admin functionality (Centcom, shuttle transit, etc)
-	var/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
-	var/list/player_levels =  list() // Z-levels a character can typically reach
-	var/list/sealed_levels =  list() // Z-levels that don't allow random transit at edge
-
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
 
 	var/list/base_turf_by_z = list() // Custom base turf by Z-level. Defaults to world.turf for unlisted Z-levels
@@ -52,7 +46,7 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
 	var/dock_name     = "THE PirateBay"
-	var/boss_name     = "Captain Roger"
+	var/boss_name     = "AAS"
 	var/boss_short    = "Cap'"
 	var/company_name  = "BadMan"
 	var/company_short = "BM"
@@ -198,9 +192,6 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 		allowed_spawns -= spawn_type
 		allowed_spawns += GET_DECL(spawn_type)
 
-	if(!map_levels)
-		map_levels = station_levels.Copy()
-
 	if(!LAZYLEN(planet_size))
 		planet_size = list(world.maxx, world.maxy)
 
@@ -277,7 +268,7 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 // By default transition randomly to another zlevel
 /datum/map/proc/get_transit_zlevel(var/current_z_level)
-	var/list/candidates = global.using_map.accessible_z_levels.Copy()
+	var/list/candidates = SSmapping.accessible_z_levels.Copy()
 	candidates.Remove(num2text(current_z_level))
 
 	if(!candidates.len)

@@ -135,13 +135,13 @@ var/global/list/known_overmap_sectors
 		for(var/zlevel in map_z)
 			global.overmap_sectors["[zlevel]"] = src
 
-	global.using_map.player_levels |= map_z
+	SSmapping.player_levels |= map_z
 	if(!(sector_flags & OVERMAP_SECTOR_IN_SPACE))
-		global.using_map.sealed_levels |= map_z
+		SSmapping.sealed_levels |= map_z
 	if(sector_flags & OVERMAP_SECTOR_BASE)
-		global.using_map.station_levels |= map_z
-		global.using_map.contact_levels |= map_z
-		global.using_map.map_levels |= map_z
+		SSmapping.station_levels |= map_z
+		SSmapping.contact_levels |= map_z
+		SSmapping.accessible_z_levels |= map_z
 
 //Helper for init.
 /obj/effect/overmap/visitable/proc/check_ownership(obj/object)
