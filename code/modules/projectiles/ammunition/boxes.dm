@@ -182,7 +182,7 @@
 	material = /decl/material/solid/metal/steel
 	caliber = CALIBER_PISTOL_SMALL
 	ammo_type = /obj/item/ammo_casing/pistol/small
-	max_ammo = 15
+	max_ammo = 30
 
 /obj/item/ammo_magazine/pistol/small/empty
 	initial_ammo = 0

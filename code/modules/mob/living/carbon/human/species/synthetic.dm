@@ -340,6 +340,7 @@ We have a very powerful computer system that allows our neural network to fully 
 		. += 1
 	if(skill_check(SKILL_WEAPONS, SKILL_PROF))
 		. += 2
+	. -= max((50 - (world.time - last_move)) * 0.1, -1) // Moving makes accuracy shit
 
 /mob/living/carbon/human/synthetic/get_movement_delay(travel_dir)
 	var/tally = 0

@@ -255,6 +255,10 @@
 		var/damage = min(W.force*1.5, 20)*damage_mod
 		affecting.apply_damage(damage, W.damtype, BP_HEAD, damage_flags, armor_pen = 100, used_weapon=W)
 		total_damage += damage
+	ADJ_STATUS(affecting, STAT_WEAK, total_damage)
+	var/obj/item/organ/internal/lungs/victim_lungs = GET_INTERNAL_ORGAN(affecting, BP_LUNGS)
+	if(victim_lungs)
+		victim_lungs.rupture()
 
 	if(total_damage)
 		user.visible_message("<span class='danger'>\The [user] slit [affecting]'s throat open with \the [W]!</span>")

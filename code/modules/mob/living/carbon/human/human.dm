@@ -1122,6 +1122,7 @@
 		. += 1
 	if(skill_check(SKILL_WEAPONS, SKILL_PROF))
 		. += 2
+	. -= max((50 - (world.time - last_move)) * 0.05, -1) // Moving makes accuracy shit
 
 /mob/living/carbon/human/can_drown()
 	var/obj/item/clothing/mask/mask = get_equipped_item(slot_wear_mask_str)
