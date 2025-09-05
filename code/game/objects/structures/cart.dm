@@ -12,6 +12,12 @@
 	var/atom/movable/load = null
 	var/max_weight = 1000
 
+/obj/structure/cart/heavyduty
+	name = "heavy duty cart"
+	desc = "A heavy cart for moving very heavy stuff."
+	color = COLOR_RED_LIGHT
+	max_weight = 15000
+
 /obj/structure/cart/Move()
 	. = ..()
 	if(load && !istype(load, /datum/vehicle_dummy_load))
@@ -161,7 +167,7 @@
 	cargo.reset_plane_and_layer()
 
 /obj/structure/cart/proc/set_pull_coef()
-	pull_coefficient = (haswheels ? 0.05 : 1)
+	pull_coefficient = (haswheels ? 0.005 : 1)
 
 /obj/structure/cart/proc/unload(var/mob/user, var/direction)
 	if(istype(load, /datum/vehicle_dummy_load))

@@ -28,7 +28,7 @@
 	..()
 
 /obj/item/chems/make_old()
-	reagents.remove_any(rand(0, 100))
+	reagents.remove_any(rand(0, 1000))
 	reagents.add_reagent(/decl/material/liquid/water/dirty3, rand(0,100))
 	..()
 

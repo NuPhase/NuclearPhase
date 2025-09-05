@@ -297,7 +297,7 @@
 	true_mineral_name = "gold"
 	composition = list(
 		/decl/material/solid/metal/gold = 0.7,
-		/decl/material/solid/quartz = 0.2,
+		/decl/material/solid/metal/chromium = 0.2,
 		/decl/material/solid/sulfur = 0.1
 	)
 	yield_divisor = 20

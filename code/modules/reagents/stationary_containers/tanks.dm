@@ -48,6 +48,11 @@
 	desc = "Contains low-quality biodiesel."
 	initial_reagent_types = list(/decl/material/liquid/biodiesel = 1)
 
+/obj/structure/reagent_dispensers/fueltank/newtank/methanol
+	name = "methanol tank"
+	desc = "Contains methanol."
+	initial_reagent_types = list(/decl/material/liquid/methanol = 1)
+
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()
 	if(rig)

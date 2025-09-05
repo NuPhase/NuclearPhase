@@ -11,9 +11,10 @@
 	load_offset_x = 0
 	buckle_pixel_shift = list("x" = 0, "y" = 0, "z" = 7)
 
-	var/car_limit = 3		//how many cars an engine can pull before performance degrades
+	var/car_limit = 5		//how many cars an engine can pull before performance degrades
 	charge_use = 1 KILOWATTS
 	active_engines = 1
+	weight = 100
 	var/obj/item/key/cargo_train/key
 
 /obj/item/key/cargo_train
@@ -42,7 +43,7 @@
 //-------------------------------------------
 /obj/vehicle/train/cargo/engine/Initialize()
 	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell = new /obj/item/cell/lithium_array(src)
 	key = new(src)
 	var/image/I = new(icon = icon, icon_state = "cargo_engine_overlay")
 	I.plane = plane

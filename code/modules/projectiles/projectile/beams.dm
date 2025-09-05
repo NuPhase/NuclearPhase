@@ -138,18 +138,18 @@
 
 /obj/item/projectile/beam/plasma_discharge
 	name = "plasma trail"
-	damage = 500
+	damage = 1000
 	irradiate = 400
 	agony = 60
 	armor_penetration = 100
 	distance_falloff = 0.1
 	penetration_modifier = 1
-	penetrating = 20
 	hitchance_mod = 100
 	muzzle_type = /obj/effect/projectile/muzzle/plasma
 	tracer_type = /obj/effect/projectile/tracer/plasma
 	impact_type = /obj/effect/projectile/impact/plasma
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+	distance_falloff = 0
 
 /obj/item/projectile/beam/plasma_discharge/on_hit(var/atom/target, var/blocked = 0)
 	if(isturf(target))
@@ -157,6 +157,10 @@
 	if(ismob(target))
 		target.explosion_act(1)
 	..()
+
+/obj/item/projectile/beam/plasma_discharge/on_impact(atom/A)
+	. = ..()
+	cell_explosion(get_turf(A), 1000, 500, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, z_transfer = null, temperature = 50000)
 
 /obj/item/projectile/beam/emitter
 	name = "emitter beam"

@@ -69,3 +69,16 @@
 							/obj/item/stack/cable_coil = 20,
 							/obj/item/stock_parts/micro_laser/ultra = 2
 							)
+
+/obj/item/stock_parts/circuitboard/marauder
+	name = "circuitboard (MARAUDER)"
+	build_path = /obj/machinery/emitter/marauder
+	board_type = "machine"
+	origin_tech = @'{"powerstorage":4,"engineering":4}'
+	additional_spawn_components = list(
+		/obj/item/stock_parts/power/apc = 1
+	)
+	req_components = list(
+							/obj/item/stack/cable_coil = 20,
+							/obj/item/stock_parts/micro_laser/ultra = 2
+							)
