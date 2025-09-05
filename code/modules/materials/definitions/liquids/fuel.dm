@@ -63,3 +63,29 @@
 	oxidizer_to_fuel_ratio = 3
 	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
 	burn_product = /decl/material/gas/carbon_dioxide
+
+/decl/material/liquid/methanol
+	name = "methanol"
+	uid = "methanol"
+	solid_name = "frozen methanol"
+	color = "#ffffff57"
+	gas_tile_overlay = "generic"
+	gas_overlay_limit = 7
+	gas_specific_heat = 30
+	molar_mass = 0.032042
+	boiling_point = 337.8
+	melting_point = 175.6
+	latent_heat = 5000
+	gas_symbol_html = "CH<sub>3<sub>OH"
+	gas_symbol = "CH3OH"
+	taste_description = "wrong kind of alcohol"
+	glass_name = "alcohol"
+	liquid_density = 792
+	combustion_chamber_fuel_value = 18000
+	fuel_value = 2
+	gas_flags = XGM_GAS_FUEL
+	combustion_energy = 725700
+	combustion_activation_energy = 200000
+	oxidizer_to_fuel_ratio = 12.5
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
+	burn_product = /decl/material/gas/carbon_dioxide

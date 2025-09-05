@@ -1,5 +1,5 @@
 /obj/item/chems/fuel_cell
-	name = "fuel cell"
+	name = "blank fuel cell"
 	desc = "An unique container for fuel with built-in divertors for filtering."
 	icon = 'icons/obj/fuel_rods.dmi'
 	icon_state = "cell"

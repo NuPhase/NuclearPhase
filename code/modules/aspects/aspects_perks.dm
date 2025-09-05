@@ -132,7 +132,6 @@
 	var/list/organ_damage_weights = list(
 		BP_LIVER =   60,
 		BP_BRAIN =   50,
-		BP_EYES =    40,
 		BP_KIDNEYS = 30
 	)
 

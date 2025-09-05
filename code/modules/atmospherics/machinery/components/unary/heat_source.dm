@@ -126,7 +126,7 @@
 
 /obj/machinery/atmospherics/unary/heater/reactor
 	max_power_rating = 500000
-	set_temperature = 3600
+	set_temperature = 4200
 
 /obj/machinery/atmospherics/unary/heater/reactor/Initialize()
 	. = ..()

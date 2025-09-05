@@ -23,6 +23,7 @@
 	var/pulled_cells = 0 // How many cells did we pull?
 	var/was_shut_down = FALSE // Did we succesfully pull out all 3 cells?
 	var/shutdown_failure = FALSE
+	var/point_of_no_return = FALSE
 	var/burning = FALSE
 	var/ann_name
 	var/ann_count = 0
@@ -152,6 +153,8 @@
 		field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA * (2 - magnet_integrity)
 		field_battery_charge = max(0, field_battery_charge - (field_power_consumption + balancing_magnet_power) * CELLRATE)
 		containment_field.add_thermal_energy((field_power_consumption + balancing_magnet_power) * CELLRATE) // magnet waste heat
+	else
+		vent()
 	if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
 		var/charge_delta = (MAX_MAGNET_CHARGE - field_battery_charge)/CELLRATE
 		charge_delta = min(field_power_consumption*1.5 + 1 MWATT, charge_delta) //so we don't drain all power at once
@@ -224,6 +227,26 @@
 	plasma_instability = max(0, plasma_instability - instability_removed)
 #undef PASSIVE_INSTABILITY_DECAY
 
+/obj/machinery/power/hybrid_reactor/proc/update_fuel_status()
+	if(!containment)
+		return
+	var/compromised = FALSE
+	var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
+	for(var/id_to_check in ids_to_check)
+		var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]
+		if(!fuelport.sealed)
+			compromised = TRUE
+
+	if(compromised)
+		rcontrol.do_message("CONTAINMENT SHUTDOWN: FUEL PORTS NOT SEALED", 3)
+		containment = FALSE
+
+// Exchange gas with the external atmosphere.
+/obj/machinery/power/hybrid_reactor/proc/vent()
+	var/turf/T = get_turf(superstructure)
+	var/datum/gas_mixture/environment = T.return_air()
+	environment.share_ratio(containment_field, 0.1)
+
 /obj/machinery/power/hybrid_reactor/proc/start_meltdown()
 	ann_name = "[pick(first_names_male)] [pick(last_names)]"
 	rcontrol.do_message("CONTAINMENT POWER LOSS", 3)
@@ -240,6 +263,8 @@
 	damage_structure(0.25)
 	process_meltdown_messages()
 	process_meltdown_visuals()
+	if(!point_of_no_return && field_battery_charge > 1)
+		stop_meltdown()
 
 /obj/machinery/power/hybrid_reactor/proc/process_meltdown_visuals()
 	switch(structure_integrity)
@@ -266,6 +291,11 @@
 		if(3)
 			if(structure_integrity < 0.5)
 				rcontrol.do_message("CONTROLS IRRESPONSIVE. PURGE SYSTEM COMPROMISED.")
+				point_of_no_return = TRUE
+				var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
+				for(var/id_to_check in ids_to_check)
+					var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]
+					fuelport.melted = TRUE
 				spawn(50)
 					rcontrol.do_message("PRIMARY CONTROL NODE FAILURE. CONTAINMENT LOSS IMMINENT.")
 				ann_count = 4
@@ -299,6 +329,8 @@
 				addtimer(CALLBACK(src, PROC_REF(close_blastdoors)), 2 MINUTES)
 
 /obj/machinery/power/hybrid_reactor/proc/stop_meltdown()
+	meltdown_state = FALSE
+	point_of_no_return = FALSE
 	rcontrol.do_message("SUCCESSFUL REACTOR SHUTDOWN", 3)
 	var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)
 	security_state.stored_security_level = security_state.current_security_level

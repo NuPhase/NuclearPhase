@@ -199,3 +199,22 @@
 		/area/turbolift/serenity/med_public/a1,
 		/area/turbolift/serenity/med_public/a2
 		)
+
+// Essentially a bare platform that moves up and down.
+/obj/turbolift_map_holder/serenity/cargo
+	depth = 2
+	lift_size_x = 4
+	lift_size_y = 4
+	door_type =     null
+	wall_type =     null
+	firedoor_type = null
+	light_type =    null
+	floor_type =  /turf/simulated/floor/tiled/steel_grid
+	button_type = /obj/structure/lift/button/standalone
+	panel_type =  /obj/structure/lift/panel/standalone
+	areas_to_use = list(
+		/area/turbolift/serenity/cargo/a1,
+		/area/turbolift/serenity/cargo/a2
+	)
+	floor_departure_sound = 'sound/effects/lift_heavy_start.ogg'
+	floor_arrival_sound =   'sound/effects/lift_heavy_stop.ogg'

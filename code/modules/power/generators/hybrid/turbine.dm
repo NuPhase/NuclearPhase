@@ -182,7 +182,7 @@
 /obj/machinery/atmospherics/binary/turbinestage/proc/calculate_efficiency()
 	efficiency = 0.23
 	if(water_grates_open)
-		efficiency -= 0.25
+		efficiency -= 0.15
 	efficiency -= vibration * 0.005
 	efficiency += rpm * 0.00025
 	efficiency = Clamp(efficiency, 0.23, initial(efficiency))

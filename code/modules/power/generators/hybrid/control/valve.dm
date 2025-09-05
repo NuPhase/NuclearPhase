@@ -118,6 +118,11 @@
 		var/obj/machinery/atmospherics/binary/passive_gate/current_valve = rcontrol.reactor_valves[id]
 		var/memorized_pressure_setting = current_valve.target_pressure
 		current_valve.target_pressure = 0
+		if(current_valve.air1.pressure > 5000)
+			for(var/mob/living/carbon/human/H in human_mob_list)
+				if(get_dist(H.loc, current_valve.loc) < 50)
+					shake_camera(H, 55, 0.05)
+					to_chat(H, SPAN_WARNING("The ground vibrates subtly..."))
 		spawn(5 SECONDS)
 			current_valve.target_pressure = memorized_pressure_setting
 			working = FALSE

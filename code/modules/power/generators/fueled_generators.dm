@@ -229,8 +229,8 @@
 	var/required_fuel_ml = (power_requirement / mat.combustion_chamber_fuel_value) / efficiency
 	if(closed_cycle)
 		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
-		burn_mixture.adjust_gas(mat.type, (required_fuel_ml / mat.molar_volume) * 0.05, FALSE)
-		burn_mixture.adjust_gas(mat.burn_product, (required_fuel_ml / mat.molar_volume) * 0.95, FALSE)
+		burn_mixture.adjust_gas(mat.type, (required_fuel_ml / mat.molar_volume) * 0.01, FALSE)
+		burn_mixture.adjust_gas(mat.burn_product, (required_fuel_ml / mat.molar_volume) * 0.99, FALSE)
 		oxidizer_tank.air_contents.remove_by_flag(XGM_GAS_OXIDIZER, required_fuel_ml / mat.molar_volume)
 		burn_mixture.add_thermal_energy(mat.combustion_chamber_fuel_value * required_fuel_ml * (1-efficiency))
 		if(needs_waste_tank)
@@ -239,8 +239,8 @@
 			environment.merge(burn_mixture)
 	else
 		var/datum/gas_mixture/burn_mixture = new(combustion_chamber_volume)
-		burn_mixture.adjust_gas(mat.type, (required_fuel_ml / mat.molar_volume) * 0.05)
-		burn_mixture.adjust_gas(mat.burn_product, (required_fuel_ml / mat.molar_volume) * 0.95, FALSE)
+		burn_mixture.adjust_gas(mat.type, (required_fuel_ml / mat.molar_volume) * 0.01)
+		burn_mixture.adjust_gas(mat.burn_product, (required_fuel_ml / mat.molar_volume) * 0.99, FALSE)
 		environment.remove_by_flag(XGM_GAS_OXIDIZER, required_fuel_ml / mat.molar_volume)
 		burn_mixture.add_thermal_energy(mat.combustion_chamber_fuel_value * required_fuel_ml * (1-efficiency))
 		environment.merge(burn_mixture)
@@ -305,7 +305,7 @@
 
 /obj/machinery/power/generator/port_gen/liquid/diesel
 	name = "diesel generator"
-	allowed_fuels = list(/decl/material/liquid/diesel, /decl/material/liquid/biodiesel)
+	allowed_fuels = list(/decl/material/liquid/diesel, /decl/material/liquid/biodiesel, /decl/material/liquid/methanol)
 	power_gen = 50000
 	weight = 30
 
@@ -345,7 +345,7 @@
 	. = ..()
 	if(IsBroken())
 		return
-	reagents.add_reagent(/decl/material/liquid/biodiesel, rand(tank_volume*0.1, tank_volume))
+	reagents.add_reagent(/decl/material/liquid/methanol, rand(tank_volume*0.1, tank_volume))
 	active = TRUE
 	update_icon()
 

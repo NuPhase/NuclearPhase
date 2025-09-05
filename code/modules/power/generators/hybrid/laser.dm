@@ -25,7 +25,7 @@
 	use_power = POWER_USE_OFF
 	power_channel = EQUIP
 	idle_power_usage = 10000
-	active_power_usage = 1600000
+	active_power_usage = 800000
 	required_interaction_dexterity = DEXTERITY_COMPLEX_TOOLS
 	layer = ABOVE_HUMAN_LAYER
 	construct_state = /decl/machine_construction/default/panel_closed
