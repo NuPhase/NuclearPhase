@@ -22,6 +22,14 @@
 	slot_flags = SLOT_BACK
 	material = /decl/material/solid/metal/titanium
 
+// needs polishing in a laser cutter
+/obj/item/composite_sword/unpolished
+	name = "dull composite sword"
+	desc = "A huge titanium sword. It's weight can be a considerable disadvantage and it may require considerate skill to wield it. It is very dull."
+	max_force = 15
+	force = 15
+	armor_penetration = ARMOR_MELEE_SMALL
+
 /obj/item/composite_sword/can_embed()
 	return FALSE
 

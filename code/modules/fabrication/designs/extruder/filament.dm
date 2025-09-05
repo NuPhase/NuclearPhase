@@ -1,7 +1,7 @@
 /decl/extruder_recipe/filament
 	name = "Steel Filament"
 	input_material = /decl/material/solid/metal/steel
-	input_amount = 20000
+	input_amount = SHEET_MATERIAL_AMOUNT*10
 	output_item = /obj/item/stack/material/filament/steel/ten
 	output_amount = 1
 	temperature_step = 5
@@ -27,3 +27,8 @@
 	name = "Inconel Filament"
 	input_material = /decl/material/solid/metal/inconel
 	output_item = /obj/item/stack/material/filament/inconel/ten
+
+/decl/extruder_recipe/filament/carbon
+	name = "Carbon Filament"
+	input_material = /decl/material/solid/carbon
+	output_item = /obj/item/stack/material/filament/carbon/ten

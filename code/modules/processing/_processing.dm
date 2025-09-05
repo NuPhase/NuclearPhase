@@ -7,8 +7,6 @@
 	active_power_usage = 2000
 	clicksound = "keyboard"
 	clickvol = 30
-	uncreated_component_parts = null
-	stat_immune = 0
 	base_type =       /obj/machinery/processor
 	construct_state = /decl/machine_construction/default/panel_closed
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
@@ -68,7 +66,7 @@
 			to_chat(user, SPAN_NOTICE("There is already a gas tank in \the [src]."))
 			return TRUE
 		connected_tank = I
-		I.forceMove(src)
+		user.drop_from_inventory(I, src)
 		return TRUE
 	if(reagent_container_volume && istype(I, /obj/item/chems))
 		var/obj/item/chems/C = I
@@ -79,7 +77,7 @@
 		return TRUE
 	else
 		add_item(I)
-		I.forceMove(src)
+		user.drop_from_inventory(I, src)
 	. = ..()
 
 /obj/machinery/processor/proc/update_recipe_cache()
@@ -97,8 +95,8 @@
 		if(!selected_recipe.can_happen(src))
 			to_chat(user, SPAN_NOTICE("Prerequisites for the selected operation not met. The recipe needs:"))
 			for(var/item_path in selected_recipe.required_items)
-				var/obj/item/I = GET_DECL(item_path)
-				to_chat(user, SPAN_NOTICE(I.name))
+				var/obj/item/item_pathed = item_path
+				to_chat(user, SPAN_NOTICE(item_pathed::name))
 			for(var/reagent_path in selected_recipe.required_reagents)
 				var/decl/material/mat = GET_DECL(reagent_path)
 				to_chat(user, "[selected_recipe.required_reagents[reagent_path]]ml [SPAN_NOTICE(mat.name)]")

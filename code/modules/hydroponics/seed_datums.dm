@@ -814,7 +814,7 @@
 	name = "corn"
 	seed_name = "corn"
 	display_name = "ears of corn"
-	chems = list(/decl/material/liquid/nutriment = list(1,10), /decl/material/liquid/nutriment/cornoil = list(1,300))
+	chems = list(/decl/material/liquid/nutriment/cornoil = list(1,0.05))
 	kitchen_tag = "corn"
 	trash_type = /obj/item/corncob
 
@@ -822,7 +822,7 @@
 	..()
 	set_trait(TRAIT_MATURATION,8)
 	set_trait(TRAIT_PRODUCTION,6)
-	set_trait(TRAIT_YIELD,3)
+	set_trait(TRAIT_YIELD,5)
 	set_trait(TRAIT_POTENCY,20)
 	set_trait(TRAIT_PRODUCT_ICON,"corn")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#fff23b")

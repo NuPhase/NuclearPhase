@@ -371,15 +371,24 @@
 
 /obj/item/stack/material/filament/steel/ten
 	material = /decl/material/solid/metal/steel
+	amount = 10
 
 /obj/item/stack/material/filament/plastic/ten
 	material = /decl/material/solid/plastic
+	amount = 10
 
 /obj/item/stack/material/filament/aluminium/ten
 	material = /decl/material/solid/metal/aluminium
+	amount = 10
 
 /obj/item/stack/material/filament/fiberglass/ten
 	material = /decl/material/solid/fiberglass
+	amount = 10
 
 /obj/item/stack/material/filament/inconel/ten
 	material = /decl/material/solid/metal/inconel
+	amount = 10
+
+/obj/item/stack/material/filament/carbon/ten
+	material = /decl/material/solid/carbon
+	amount = 10

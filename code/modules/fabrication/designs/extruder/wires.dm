@@ -1,7 +1,7 @@
 /decl/extruder_recipe/copper_cable_small
 	name = "10cmx500cm Copper Cable"
 	input_material = /decl/material/solid/metal/copper
-	input_amount = 8000
+	input_amount = SHEET_MATERIAL_AMOUNT*4
 	output_item = /obj/item/stack/cable_coil
 	output_amount = 1
 	minimum_skill = SKILL_BASIC
@@ -13,7 +13,7 @@
 /decl/extruder_recipe/copper_cable_large //expensive as fuck
 	name = "50cmx500cm Copper Cable"
 	input_material = /decl/material/solid/metal/copper
-	input_amount = 30000
+	input_amount = SHEET_MATERIAL_AMOUNT*20
 	output_item = /obj/item/stack/cable_coil/heavy
 	output_amount = 1
 	minimum_skill = SKILL_ADEPT

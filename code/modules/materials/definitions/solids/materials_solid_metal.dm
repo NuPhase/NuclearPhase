@@ -482,9 +482,15 @@
 /decl/material/solid/metal/inconel
 	name = "inconel"
 	uid = "inconel"
-	weight = MAT_VALUE_HEAVY
-	color = "#506680"
+	color = "#7197c5"
 	value = 1.2
+	weight = MAT_VALUE_HEAVY
+	hardness = MAT_VALUE_HARD
+	construction_difficulty = MAT_VALUE_HARD_DIY
+	dissolves_in = MAT_SOLVENT_SUPER
+	melting_point = 2575
+	boiling_point = 3000
+	solid_density = 8200
 
 /decl/material/solid/metal/beryllium
 	name = "beryllium"

@@ -12,3 +12,12 @@
 	required_reagents = list(/decl/material/liquid/nutriment/cornoil = 5, /decl/material/liquid/ethanol = 1)
 	catalysts = list(/decl/material/solid/potash = 10)
 	result_amount = 5
+
+/decl/chemical_reaction/methanol
+	name = "Methanol"
+	result = /decl/material/liquid/methanol
+	required_reagents = list(/decl/material/gas/carbon_monoxide = 35.5, /decl/material/gas/hydrogen = 57)
+	catalysts = list(/decl/material/solid/metal/copper = 10)
+	result_amount = 1
+	minimum_temperature = 543
+	minimum_pressure = 5000

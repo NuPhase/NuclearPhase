@@ -28,6 +28,22 @@
 	weight = 0.2
 	w_class = ITEM_SIZE_NORMAL
 
+// Rod + cable
+/obj/item/crafting_component/motor_shaft
+	name = "motor shaft"
+	desc = "A simple wound motor shaft."
+	icon_state = "motor_shaft"
+	weight = 0.2
+	w_class = ITEM_SIZE_NORMAL
+
+// Steel in an extruder
+/obj/item/crafting_component/motor_case
+	name = "motor case"
+	desc = "A simple motor case."
+	icon_state = "motor_case"
+	weight = 0.5
+	w_class = ITEM_SIZE_NORMAL
+
 // Genetic muscle + wetware interface
 /obj/item/crafting_component/biomech_muscle
 	name = "biomechanical muscle batch"
@@ -89,3 +105,106 @@
 	desc = "A computer that uses living neurons. Disgusting for some, but it's very compact and efficient."
 	weight = 0.1
 	w_class = ITEM_SIZE_SMALL
+
+
+// GENERALIZED COMPONENTS
+/obj/item/crafting_component/miniature_components
+	name = "miniaturized components"
+	desc = "Very small, power-dense mechanical components."
+	weight = 0.1
+	w_class = ITEM_SIZE_SMALL
+	material = /decl/material/solid/plastic
+
+/obj/item/crafting_component/components
+	name = "mechanical components"
+	desc = "General use mechanical components."
+	weight = 0.4
+	w_class = ITEM_SIZE_NORMAL
+	material = /decl/material/solid/metal/aluminium
+
+/obj/item/crafting_component/industrial_components
+	name = "industrial components"
+	desc = "Extremely heavy-duty components. Used in the most powerful of machinery."
+	weight = 2
+	w_class = ITEM_SIZE_LARGE
+	material = /decl/material/solid/metal/steel
+
+/obj/item/crafting_component/aerospace_components
+	name = "aerospace components"
+	desc = "Heavy-duty, lightweight mechanical components. Used for the most demanding applications."
+	weight = 0.5
+	w_class = ITEM_SIZE_NORMAL
+	material = /decl/material/solid/metal/stainlesssteel
+
+
+// MILL BLOCKS
+/obj/item/crafting_component/mill_block_basic
+	name = "basic machining block"
+	desc = "General use steel block for machining."
+	icon_state = "mill_cube"
+	color = COLOR_GUNMETAL
+	weight = 5
+	w_class = ITEM_SIZE_NORMAL
+	material = /decl/material/solid/metal/stainlesssteel
+	matter = list(/decl/material/solid/metal/stainlesssteel = MATTER_AMOUNT_PRIMARY*5)
+
+/obj/item/crafting_component/mill_block_super
+	name = "superalloy machining block"
+	desc = "Superalloy block for heavy-duty machining."
+	icon_state = "mill_cube"
+	color = COLOR_POLISHED_BRASS
+	weight = 5
+	w_class = ITEM_SIZE_NORMAL
+	material = /decl/material/solid/metal/rare_metals
+	matter = list(
+					/decl/material/solid/metal/rare_metals = MATTER_AMOUNT_PRIMARY*2,
+					/decl/material/solid/metal/iron = MATTER_AMOUNT_PRIMARY,
+					/decl/material/solid/metal/chromium = MATTER_AMOUNT_PRIMARY,
+					/decl/material/solid/metal/aluminium = MATTER_AMOUNT_SECONDARY,
+					/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT,
+					/decl/material/solid/metal/tungsten = MATTER_AMOUNT_REINFORCEMENT,
+					/decl/material/solid/carbon = MATTER_AMOUNT_TRACE)
+
+/obj/item/crafting_component/mill_block_super_supersized
+	name = "supersized superalloy machining block"
+	desc = "Superalloy block for heavy-duty machining."
+	icon_state = "mill_cube_super"
+	color = COLOR_POLISHED_BRASS
+	weight = 4000
+	w_class = ITEM_SIZE_HUGE
+	material = /decl/material/solid/metal/rare_metals
+	matter = list(
+					/decl/material/solid/metal/rare_metals = MATTER_AMOUNT_PRIMARY*2*800,
+					/decl/material/solid/metal/iron = MATTER_AMOUNT_PRIMARY*800,
+					/decl/material/solid/metal/chromium = MATTER_AMOUNT_PRIMARY*800,
+					/decl/material/solid/metal/aluminium = MATTER_AMOUNT_SECONDARY*800,
+					/decl/material/solid/metal/titanium = MATTER_AMOUNT_REINFORCEMENT*800,
+					/decl/material/solid/metal/tungsten = MATTER_AMOUNT_REINFORCEMENT*800,
+					/decl/material/solid/carbon = MATTER_AMOUNT_TRACE*800)
+
+// TURBINES
+// 4 supersized superalloy blocks. Restored 6% of the turbine integrity
+/obj/item/crafting_component/turbine_blades
+	name = "turbine blade pack"
+	icon_state = "turb_blades"
+	desc = "A pack of 64 heavy-duty turbine blades. Can't be used on its own. A single blade weighs 55kg."
+	weight = 3520
+	w_class = ITEM_SIZE_LARGE
+	material = /decl/material/solid/metal/rare_metals
+
+// 4 turbine blade packs. Restores 25% of the turbine integrity
+/obj/item/crafting_component/turbine_rotor
+	name = "HP turbine rotor"
+	desc = "An assembled turbine rotor with 256 blades in it."
+	icon_state = "turbine_hp"
+	weight = 14080
+	w_class = ITEM_SIZE_HUGE
+	material = /decl/material/solid/metal/rare_metals
+
+// 4 HP turbine rotors. Restores 100% of the turbine integrity
+/obj/item/crafting_component/turbine_rotor_huge
+	name = "LP turbine rotor"
+	desc = "An assembled turbine rotor with 1024 blades in it. Someone messed up big time to need this thing replaced."
+	weight = 56320
+	w_class = ITEM_SIZE_GARGANTUAN
+	material = /decl/material/solid/metal/rare_metals

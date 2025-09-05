@@ -23,6 +23,18 @@
 	result_amount = 100
 	minimum_temperature = 1710
 
+/decl/chemical_reaction/alloy/inconel
+	name = "Inconel Alloy"
+	result = /decl/material/solid/metal/inconel
+	required_reagents = list(
+		/decl/material/solid/metal/rare_metals = 75,
+		/decl/material/solid/metal/chromium = 14,
+		/decl/material/solid/metal/iron = 10,
+		/decl/material/solid/metal/copper = 1
+	)
+	result_amount = 100
+	minimum_temperature = 2400
+
 /decl/chemical_reaction/alloy/bronze
 	name = "Bronze Alloy"
 	result = /decl/material/solid/metal/bronze

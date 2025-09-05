@@ -25,5 +25,6 @@
 	material = /decl/material/solid/fiberglass
 
 /obj/item/stack/material/blankets/inconel
+	name = "inconel blankets"
 	desc = "Inconel blankets are famous for their resistance to oxidation. They are often found on rocket engines and high-temperature pipes."
 	material = /decl/material/solid/metal/inconel

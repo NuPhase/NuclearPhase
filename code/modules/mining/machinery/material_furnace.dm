@@ -372,7 +372,7 @@
 	var/total_heat_capacity = connected_canister.air_contents.heat_capacity()
 
 	firelevel = air_contents.fire_react()
-	var/actually_used_power = min(nominal_power_usage * conductivity_coefficient, total_heat_capacity * rand(10, 50) * conductivity_coefficient)
+	var/actually_used_power = min(nominal_power_usage * conductivity_coefficient, total_heat_capacity * rand(50, 100) * conductivity_coefficient)
 	heat_up(actually_used_power)
 	change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
 	lose_electrode_integrity(conductivity_coefficient)

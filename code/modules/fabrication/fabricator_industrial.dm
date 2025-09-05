@@ -8,5 +8,5 @@
 	active_power_usage = 5000
 	base_type = /obj/machinery/fabricator/industrial
 	fabricator_class = FABRICATOR_CLASS_INDUSTRIAL
-	base_storage_capacity_mult = 100
+	base_storage_capacity_mult = 1600
 	output_dir = EAST

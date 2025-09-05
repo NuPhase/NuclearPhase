@@ -198,3 +198,19 @@
 							/obj/item/stock_parts/console_screen = 1,
 							/obj/item/stack/cable_coil = 30
 							)
+
+/obj/item/stock_parts/circuitboard/lgenerator
+	name = "circuitboard (industrial diesel generator)"
+	build_path = /obj/machinery/power/generator/port_gen/liquid/diesel/large
+	board_type = "machine"
+	req_components = list(
+							/obj/item/crafting_component/turbine_rotor = 1,
+							/obj/item/crafting_component/industrial_components = 4,
+							/obj/item/stock_parts/engine/large = 1,
+							/obj/item/stock_parts/capacitor = 4,
+							/obj/item/stock_parts/shielding/heat = 1,
+							/obj/item/stack/cable_coil = 30
+							)
+	additional_spawn_components = list(
+		/obj/item/stock_parts/console_screen = 1
+	)

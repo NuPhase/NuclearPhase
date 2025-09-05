@@ -10,5 +10,5 @@
 	max_items = 1
 	has_tank_slot = TRUE
 	initial_tank_path = /obj/item/tank/xenon
-	processing_class = PROCESSING_CLASS_CUTTER
+	processing_class = PROCESSING_CLASS_ENGRAVER
 	reagent_container_volume = 5000

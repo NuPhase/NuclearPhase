@@ -32,3 +32,11 @@
 	required_gas = list(/decl/material/gas/xenon = 1)
 	item_result_type = /obj/item/crafting_component/cpu_chip
 	item_result_amount = 4
+
+/decl/processing_recipe/cutter/make_turbine_blades
+	name = "Make Turbine Blades"
+	required_items = list(/obj/item/crafting_component/mill_block_super_supersized)
+	required_gas = list(/decl/material/gas/xenon = 1)
+	item_result_type = /obj/item/crafting_component/turbine_blades
+	item_result_amount = 1
+	recipe_time = 30
