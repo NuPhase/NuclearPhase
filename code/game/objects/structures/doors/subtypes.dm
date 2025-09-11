@@ -25,6 +25,7 @@ handle_type - either 'null' or handle icon state, stored in handle.dmi
 	material = /decl/material/solid/metal/titanium
 	explosion_resistance = 700
 	autoclose_time = 4 SECONDS
+	can_be_pried = FALSE
 
 /obj/structure/door/sliding
 	name = "sliding door"

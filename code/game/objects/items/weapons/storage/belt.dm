@@ -103,6 +103,8 @@
 	can_hold = list(
 		///obj/item/combitool,
 		/obj/item/crowbar,
+		/obj/item/hydraulic_cutter,
+		/obj/item/power_drill,
 		/obj/item/screwdriver,
 		/obj/item/weldingtool,
 		/obj/item/wirecutters,

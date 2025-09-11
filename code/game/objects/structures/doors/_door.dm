@@ -22,6 +22,8 @@
 	var/door_sound_volume = 50
 	var/autoclose_time = 0 //If set above 0, will automatically close the door in a set amount of time.
 
+	var/can_be_pried = TRUE // Can it be opened with a powerful crowbar?
+
 	var/frame_type = "default"
 	var/door_type = "default"
 	var/handle_type
@@ -91,7 +93,7 @@
 
 /obj/structure/door/proc/open(mob/user)
 	set waitfor = 0
-	if(!can_open(user))
+	if(user && !can_open(user))
 		lock.failure_open()
 		return FALSE
 	changing_state = TRUE
@@ -146,6 +148,18 @@
 	if((user.a_intent == I_HURT && I.force) || istype(I, /obj/item/stack/material))
 		return ..()
 
+	if(IS_CROWBAR(I))
+		if(!can_be_pried || !density)
+			return TRUE
+		if(I.get_tool_quality(TOOL_CROWBAR) < TOOL_QUALITY_GOOD)
+			to_chat(user, SPAN_WARNING("\The [I] is not powerful enough to force open \the [src]."))
+			return TRUE
+		user.visible_message(SPAN_DANGER("[user] is trying to force \the [src] open!"))
+		if(!I.do_tool_interaction(TOOL_CROWBAR, user, src, 50, "forcing open", "forcing open", "fails to open", check_skill = SKILL_STRENGTH, check_skill_threshold = SKILL_PROF, check_skill_prob = 25))
+			return TRUE
+		open()
+		return TRUE
+
 	if(lock)
 		if(istype(I, /obj/item/key))
 			if(!lock.toggle(I))
@@ -166,7 +180,7 @@
 		return
 
 	if(density)
-		open()
+		open(user)
 	else
 		close()
 

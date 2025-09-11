@@ -11,6 +11,7 @@
 	center_of_mass = @'{"x":17,"y":16}'
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	drop_sound = 'sound/foley/bardrop1.ogg'
+	weight = 5
 
 /obj/item/hydraulic_cutter/on_update_icon()
 	. = ..()
