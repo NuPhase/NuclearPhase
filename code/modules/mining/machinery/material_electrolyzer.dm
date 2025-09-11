@@ -14,6 +14,12 @@
 	. = ..()
 	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 
+/obj/machinery/atmospherics/unary/electrolyzer/on/Initialize()
+	. = ..()
+	START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
+	use_power = POWER_USE_IDLE
+	update_icon()
+
 /obj/machinery/atmospherics/unary/electrolyzer/attack_hand(mob/user)
 	. = ..()
 	if(use_power)

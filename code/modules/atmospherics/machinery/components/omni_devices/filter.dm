@@ -33,7 +33,7 @@
 		var/list/all_materials = decls_repository.get_decls_of_subtype(/decl/material)
 		for(var/mat_type in all_materials)
 			var/decl/material/mat = all_materials[mat_type]
-			if(!mat.hidden_from_codex && !mat.is_abstract() && !isnull(mat.boiling_point) && mat.boiling_point < T20C)
+			if(!mat.hidden_from_codex && !mat.is_abstract())
 				gas_decls_by_symbol_cache[mat.gas_symbol] = mat.type
 
 	rebuild_filtering_list()
@@ -261,7 +261,7 @@
 	filtering_outputs.Cut()
 	for(var/datum/omni_port/P in ports)
 		filtering_outputs[P.filtering] = P.air
-		for(var/mat_type in P.air?.gas)
+		for(var/mat_type in P.air?.get_fluid())
 			var/decl/material/mat = GET_DECL(mat_type)
 			gas_decls_by_symbol_cache[mat.gas_symbol] = mat.type
 

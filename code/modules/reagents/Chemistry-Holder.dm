@@ -650,3 +650,11 @@ var/global/obj/temp_reagents_holder = new
 /datum/reagents/proc/specific_mass()
 	if(total_volume)
 		return get_mass()/total_volume
+
+
+
+/datum/reagents/pressurized
+	var/pressure = ONE_ATMOSPHERE
+
+/datum/reagents/pressurized/get_pressure()
+	return pressure

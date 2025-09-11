@@ -70,6 +70,12 @@
 	liquid_density = 1190
 	color = "#272727"
 	metabolism = REM * 5
+	electrolysis_difficulty = 1
+	electrolysis_products = list(
+		/decl/material/gas/carbon_monoxide = 1,
+		/decl/material/gas/oxygen = 0.5
+	)
+	electrolysis_energy = 257000
 
 /decl/material/gas/carbon_dioxide/affect_blood(mob/living/M, removed, datum/reagents/holder)
 	if(!istype(M))

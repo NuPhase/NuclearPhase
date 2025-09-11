@@ -94,7 +94,8 @@ SUBSYSTEM_DEF(reactions)
 
 /datum/controller/subsystem/reactions/proc/process_reaction_chem(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
 	reactions_reagents_holder.temperature = temperature
-	var/datum/reagents/temp_holder = new(10000000000000, reactions_reagents_holder)
+	var/datum/reagents/pressurized/temp_holder = new(10000000000000, reactions_reagents_holder)
+	temp_holder.pressure = pressure
 	for(var/mat_type in moles)
 		var/decl/material/mat = GET_DECL(mat_type)
 		LAZYSET(temp_holder.reagent_volumes, mat_type, moles[mat_type] * mat.molar_volume)

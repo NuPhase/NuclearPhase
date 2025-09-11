@@ -51,28 +51,28 @@
 			if(NORTH)
 				new_port.mode = tag_north
 				if(new_port.mode == ATM_FILTER)
-					new_port.filtering = decls_repository.get_decl_by_id(tag_filter_gas_north)
+					new_port.filtering = decls_repository.get_decl_path_by_id(tag_filter_gas_north)
 				if(tag_north >= 3 && tag_north < 8)
 					new_port.filtering = handle_legacy_gas_filtering(tag_north)
 					new_port.mode = ATM_FILTER
 			if(SOUTH)
 				new_port.mode = tag_south
 				if(new_port.mode == ATM_FILTER)
-					new_port.filtering = decls_repository.get_decl_by_id(tag_filter_gas_south)
+					new_port.filtering = decls_repository.get_decl_path_by_id(tag_filter_gas_south)
 				if(tag_south >= 3 && tag_south < 8)
 					new_port.filtering = handle_legacy_gas_filtering(tag_south)
 					new_port.mode = ATM_FILTER
 			if(EAST)
 				new_port.mode = tag_east
 				if(new_port.mode == ATM_FILTER)
-					new_port.filtering = decls_repository.get_decl_by_id(tag_filter_gas_east)
+					new_port.filtering = decls_repository.get_decl_path_by_id(tag_filter_gas_east)
 				if(tag_east >= 3 && tag_east < 8)
 					new_port.filtering = handle_legacy_gas_filtering(tag_east)
 					new_port.mode = ATM_FILTER
 			if(WEST)
 				new_port.mode = tag_west
 				if(new_port.mode == ATM_FILTER)
-					new_port.filtering = decls_repository.get_decl_by_id(tag_filter_gas_west)
+					new_port.filtering = decls_repository.get_decl_path_by_id(tag_filter_gas_west)
 				if(tag_west >= 3 && tag_west < 8)
 					new_port.filtering = handle_legacy_gas_filtering(tag_west)
 					new_port.mode = ATM_FILTER

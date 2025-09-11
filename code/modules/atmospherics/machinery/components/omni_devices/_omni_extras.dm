@@ -23,7 +23,7 @@
 	var/datum/gas_mixture/air
 	var/list/nodes // lazy list of nodes
 	var/datum/pipe_network/network
-	var/decl/material/gas/filtering //Our filtering gas, if any.
+	var/decl/material/filtering //Our filtering gas, if any.
 
 /datum/omni_port/New(var/obj/machinery/atmospherics/omni/M, var/direction = NORTH)
 	..()
