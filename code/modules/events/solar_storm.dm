@@ -36,13 +36,12 @@
 	if(isnull(base_solar_gen_rate)) base_solar_gen_rate = solar_gen_rate
 	solar_gen_rate = mult * base_solar_gen_rate
 
-
 /datum/event/solar_storm/start() //They're almost certainly dead if they're outside, so make a show for them
 	for(var/mob/living/carbon/human/H in surface_mobs)
 		to_chat(H, "<span class=bigdanger>Everything around you suddenly lights up, like a million lights in a dark living room. It starts to grow hot, you see flashes in your eyes, it can't be good...</span>")
 	adjust_solar_output(5)
 	for(var/area/A in surface_areas)
-		A.background_radiation = 473.9
+		A.background_radiation = rand(300000, 500000)
 
 /datum/event/solar_storm/tick()
 	if(activeFor % rad_interval == 0)
