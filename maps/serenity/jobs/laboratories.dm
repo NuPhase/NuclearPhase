@@ -41,7 +41,7 @@
 	)
 
 /datum/job/laboratories/lod
-	title = "Laboratory Operations Director"
+	title = "LO Director"
 	supervisors = "the CEO"
 	total_positions = 1
 	spawn_positions = 1
@@ -117,7 +117,7 @@
 	)
 
 /datum/job/laboratories/load
-	title = "Laboratory Operations Assistant Director"
+	title = "LO Assistant Director"
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 1
 	spawn_positions = 1
@@ -233,12 +233,19 @@
 	)
 
 /datum/job/laboratories/ggs
-	title = "General Genetics Specialist"
+	title = "LO Genetics Specialist"
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 2
 	spawn_positions = 2
 	skill_points = 45
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	alt_titles = list(
+		"LO Emergency Physician",
+		"LO ICU Expert",
+		"LO Anaesthesiologist",
+		"LO General Surgeon",
+		"LO Therapist"
+	)
 	access = list(
 		access_medical,
 		access_medical_equip,
@@ -284,12 +291,20 @@
 	)
 
 /datum/job/laboratories/los
-	title = "Laboratory Operations Specialist"
+	title = "LO Specialist"
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 5
 	spawn_positions = 5
 	skill_points = 40
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	alt_titles = list(
+		"LO Surface Scout",
+		"LO Manufacturing Specialist",
+		"LO Chemistry Specialist",
+		"LO Medical Resident",
+		"LO Medical Doctor",
+		"LO	Research Specialist"
+	)
 	access = list(
 		access_medical,
 		access_medical_equip,
@@ -334,11 +349,17 @@
 	)
 
 /datum/job/laboratories/loa
-	title = "Laboratory Operations Assistant"
+	title = "LO Assistant"
 	supervisors = "the Laboratory Operations Director"
 	total_positions = 3
 	spawn_positions = 3
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
+	alt_titles = list(
+		"LO Medical Intern",
+		"LO Medical Nurse",
+		"LO Candidate",
+		"LO ICU Nurse"
+	)
 	access = list(
 		access_medical,
 		access_medical_equip,
