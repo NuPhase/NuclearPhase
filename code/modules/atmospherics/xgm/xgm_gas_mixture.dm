@@ -370,6 +370,7 @@
 	available_volume = max(volume * 0.01, volume - liquid_volume - solid_volume)
 	cache_heat_capacity()
 	cache_pressure()
+	add_thermal_energy(0, TRUE, TRUE)
 	if(temperature < 0)
 		PRINT_STACK_TRACE("Negative temperature in update_values()")
 		temperature = TCMB
@@ -406,7 +407,7 @@
 		PRINT_STACK_TRACE("Negative pressure result in cache_pressure()")
 
 //Removes moles from the gas mixture and returns a gas_mixture containing the removed air.
-/datum/gas_mixture/proc/remove(amount)
+/datum/gas_mixture/proc/remove(amount, update = TRUE)
 	if(amount < 0)
 		PRINT_STACK_TRACE("Negative value supplied to remove()")
 		return
@@ -456,8 +457,9 @@
 	removed.liquids = new_liquids
 	removed.solids = new_solids
 
-	update_values()
-	removed.update_values()
+	if(update)
+		update_values()
+		removed.update_values()
 
 	return removed
 

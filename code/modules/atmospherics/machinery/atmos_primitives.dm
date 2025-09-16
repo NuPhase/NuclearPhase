@@ -83,7 +83,7 @@
 
 	transfer_mass = min(npower_rating/power_per_kg, transfer_mass, kgs_rating, sink.available_volume * 0.001 * source_density)
 
-	var/datum/gas_mixture/removed = source.remove(transfer_mass / source_specific_mass)
+	var/datum/gas_mixture/removed = source.remove(transfer_mass / source_specific_mass, FALSE)
 	if (!removed) //Just in case
 		return -1
 
@@ -106,7 +106,7 @@
 	if(!mat)
 		return
 	transfer_mass = min(transfer_mass, sink.available_volume * 0.001 * mat.liquid_density)
-	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.gas_molar_mass)
+	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.gas_molar_mass, FALSE)
 	if (!removed) //Just in case
 		return -1
 
@@ -126,7 +126,7 @@
 		transfer_moles += transfer_mass / mat.molar_mass
 	if(!transfer_moles)
 		return
-	var/datum/gas_mixture/removed = source.remove(transfer_moles)
+	var/datum/gas_mixture/removed = source.remove(transfer_moles, FALSE)
 	if (!removed) //Just in case
 		return -1
 
@@ -159,7 +159,7 @@
 		var/obj/machinery/portable_atmospherics/P = M
 		P.last_flow_rate = (transfer_moles/source.total_moles)*source.volume //group_multiplier gets divided out here
 
-	var/datum/gas_mixture/removed = source.remove(transfer_moles)
+	var/datum/gas_mixture/removed = source.remove(transfer_moles, FALSE)
 	if(!removed) //Just in case
 		return -1
 	sink.merge(removed)

@@ -8,42 +8,43 @@ macro "default"
 		name = "SHIFT+UP"
 		command = ".winset :map.right-click=true"
 
+
 menu "menu"
-	elem
+	elem 
 		name = "&File"
 		command = ""
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Save screenshot\tF2"
 		command = ".auto"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Save screenshot as..."
 		command = ".screenshot"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = ""
 		command = ""
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Reconnect"
 		command = ".reconnect"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Check ping"
 		command = ".ping"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Quit"
 		command = ".quit"
 		category = "&File"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Size"
 		command = ""
 		saved-params = "is-checked"
@@ -83,7 +84,7 @@ menu "menu"
 		can-check = true
 		group = "size"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Scaling"
 		command = ""
 		saved-params = "is-checked"
@@ -116,37 +117,43 @@ menu "menu"
 		can-check = true
 		group = "scale"
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Help"
 		command = ""
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Admin help\tF1"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
+
 
 window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
 		pos = 281,0
 		size = 640x440
-		anchor1 = none
-		anchor2 = none
-		is-default = true
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		background-color = #000000
+		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
 		on-size = "OnResize"
 		is-maximized = true
-		icon = 'icons\\ss13_64.png'
 		macro = "default"
 		menu = "menu"
+		outer-size = 1936x1096
+		outer-pos = -8,-8
+		inner-size = 1920x1018
+		inner-pos = 8,51
+		screen-size = 1920x1080
 	elem "split"
 		type = CHILD
 		pos = 3,0
 		size = 640x440
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		right = "rpane"
 		is-vert = true
@@ -154,16 +161,17 @@ window "mainwindow"
 		type = BROWSER
 		pos = 0,0
 		size = 200x200
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		is-visible = false
 		saved-params = ""
 	elem "tooltip"
 		type = BROWSER
 		pos = 0,0
 		size = 999x999
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		background-color = none
 		is-visible = false
 		saved-params = ""
@@ -171,10 +179,11 @@ window "mainwindow"
 window "mapwindow"
 	elem "mapwindow"
 		type = MAIN
-		pos = 281,0
-		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		pos = 291,0
+		size = 672x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -182,10 +191,15 @@ window "mapwindow"
 		can-minimize = false
 		can-resize = false
 		is-pane = true
+		outer-size = 686x494
+		outer-pos = 291,0
+		inner-size = 672x480
+		inner-pos = 7,7
+		screen-size = 1920x1080
 	elem "map"
 		type = MAP
 		pos = 0,0
-		size = 640x480
+		size = 672x480
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = "Arial Rounded MT Bold,Arial Black,Arial,sans-serif"
@@ -197,9 +211,10 @@ window "mapwindow"
 	elem "lobbybrowser"
 		type = BROWSER
 		pos = 0,0
-		size = 640x480
+		size = 672x480
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		is-visible = false
 		is-disabled = true
 		saved-params = ""
@@ -208,7 +223,7 @@ window "mapwindow"
 		pos = 0,464
 		size = 280x16
 		anchor1 = 0,100
-		anchor2 = none
+		anchor2 = -1,-1
 		text-color = #ffffff
 		background-color = #222222
 		is-visible = false
@@ -220,10 +235,10 @@ window "mapwindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 281,-30
+		pos = 291,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
@@ -233,6 +248,9 @@ window "outputwindow"
 		can-resize = false
 		is-pane = true
 		outer-size = 654x494
+		outer-pos = 291,0
+		inner-pos = 7,7
+		screen-size = 1920x1080
 	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
@@ -252,21 +270,10 @@ window "outputwindow"
 		saved-params = "max-lines"
 		style = ".system {color:#ff0000;}"
 		max-lines = 0
-	elem "saybutton"
-		type = BUTTON
-		pos = 600,460
-		size = 40x20
-		anchor1 = 100,100
-		anchor2 = none
-		background-color = none
-		saved-params = "is-checked"
-		text = "Chat"
-		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
-		button-type = pushbox
 	elem "input"
 		type = INPUT
-		pos = 1,460
-		size = 600x20
+		pos = 1,464
+		size = 639x16
 		anchor1 = 0,100
 		anchor2 = 100,100
 		background-color = #d3b5b5
@@ -277,18 +284,25 @@ window "outputwindow"
 window "rpane"
 	elem "rpane"
 		type = MAIN
-		pos = 281,0
-		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		pos = 291,3
+		size = 640x477
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+		outer-size = 656x535
+		outer-pos = 291,3
+		inner-size = 640x477
+		inner-pos = 8,31
+		screen-size = 1920x1080
 	elem "rpanewindow"
 		type = CHILD
 		pos = 0,0
-		size = 640x474
+		size = 640x471
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
@@ -296,8 +310,9 @@ window "rpane"
 		type = BUTTON
 		pos = 580,0
 		size = 60x15
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "is-checked"
 		text = "Bug Report"
 		command = "Bug-Report"
@@ -305,38 +320,20 @@ window "rpane"
 		type = BUTTON
 		pos = 205,0
 		size = 60x15
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
-		group = "rpanemode"
-	elem "Lore"
-		type = BUTTON
-		pos = 265,0
-		size = 60x15
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Lore"
-		command = "Lore"
-		group = "rpanemode"
-	elem "wikib"
-		type = BUTTON
-		pos = 325,0
-		size = 60x15
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Wiki"
-		command = "wiki"
 		group = "rpanemode"
 	elem "textb"
 		type = BUTTON
 		pos = 0,0
 		size = 60x15
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Text"
@@ -348,8 +345,9 @@ window "rpane"
 		type = BUTTON
 		pos = 60,0
 		size = 60x15
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Info"
@@ -360,24 +358,30 @@ window "rpane"
 window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
-		pos = 281,0
-		size = 1000x800
-		anchor1 = none
-		anchor2 = none
+		pos = 0,0
+		size = 1200x1000
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
+		outer-size = 1216x1039
+		inner-size = 1200x1000
+		inner-pos = 8,31
+		screen-size = 1920x1080
 	elem "preferences_browser"
 		type = BROWSER
 		pos = 0,0
-		size = 800x800
+		size = 960x1000
 		anchor1 = 0,0
 		anchor2 = 80,100
+		background-color = none
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP
-		pos = 800,0
-		size = 200x800
+		pos = 960,0
+		size = 240x1000
 		anchor1 = 80,0
 		anchor2 = 100,100
 		right-click = true
@@ -386,13 +390,18 @@ window "preferences_window"
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
-		pos = 281,0
+		pos = 291,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Info"
 		is-pane = true
+		outer-size = 656x538
+		outer-pos = 291,0
+		inner-pos = 8,31
+		screen-size = 1920x1080
 	elem "info"
 		type = INFO
 		pos = 0,0
@@ -402,6 +411,7 @@ window "infowindow"
 		is-default = true
 		saved-params = ""
 		highlight-color = #00aa00
+		tab-background-color = none
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 

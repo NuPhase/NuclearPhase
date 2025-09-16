@@ -300,7 +300,7 @@
 	molar_mass = 0.016
 	latent_heat = 8519
 	boiling_point = 111
-	melting_point = 90
+	melting_point = 86
 	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
 	gas_overlay_limit = 2

@@ -21,7 +21,7 @@
 	var/on = 0
 	var/set_temperature = T0C + 20	//K
 	var/active = 0
-	var/heating_power = 40 KILOWATTS
+	var/heating_power = 50 KILOWATTS
 
 /obj/machinery/space_heater/on_update_icon(var/rebuild_overlay = 0)
 	if(!on)

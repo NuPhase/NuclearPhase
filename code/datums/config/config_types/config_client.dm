@@ -18,12 +18,12 @@
 
 /decl/config/num/clients/lock_client_view_x
 	uid = "lock_client_view_x"
-	default_value = 0
+	default_value = 21
 	desc = "Uncomment and set to an integer to lock the automatic client view scaling on the X axis."
 
 /decl/config/num/clients/lock_client_view_y
 	uid = "lock_client_view_y"
-	default_value = 0
+	default_value = 15
 	desc = "Uncomment and set to an integer to lock the automatic client view scaling on the Y axis."
 
 /decl/config/num/clients/max_client_view_x

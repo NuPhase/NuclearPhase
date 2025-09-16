@@ -384,6 +384,42 @@
 	name = "Medbay Study Room"
 	icon_state = "medbay3"
 
+/area/serenity/shelter/admin/annex
+	name = "Administration Annex"
+	icon_state = "bridge_hallway"
+
+/area/serenity/shelter/admin/servers
+	name = "Administration Servers"
+	icon_state = "dk_yellow"
+
+/area/serenity/shelter/admin/meeting
+	name = "Administration Meeting Room"
+	icon_state = "bridge_meeting"
+
+/area/serenity/shelter/admin/security
+	name = "Administration Security"
+	icon_state = "security"
+
+/area/serenity/shelter/admin/head_hall
+	name = "Administration Heads"
+	icon_state = "bridge_hallway"
+
+/area/serenity/shelter/admin/operations_hq
+	name = "Administration Operations HQ"
+	icon_state = "bridge"
+
+/area/serenity/shelter/admin/operations_lod
+	name = "Administration LOD Office"
+	icon_state = "bridge"
+
+/area/serenity/shelter/admin/operations_rod
+	name = "Administration ROD Office"
+	icon_state = "bridge"
+
+/area/serenity/shelter/admin/operations_cso
+	name = "Administration CSO Office"
+	icon_state = "bridge"
+
 
 /area/serenity/shelter/factory
 	name = "Factory"

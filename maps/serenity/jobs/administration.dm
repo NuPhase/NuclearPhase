@@ -261,7 +261,7 @@
 
 /datum/job/administration/sdd
 	title = "Site Deputy Director"
-	supervisors = "the CEO"
+	supervisors = "the COO"
 	total_positions = 1
 	spawn_positions = 1
 	skill_points = 45
