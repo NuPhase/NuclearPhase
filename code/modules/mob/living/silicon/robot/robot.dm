@@ -286,12 +286,7 @@
 	if(prefix)
 		modtype = prefix
 
-	if(istype(mmi, /obj/item/organ/internal/posibrain))
-		braintype = "Robot"
-	else if(istype(mmi, /obj/item/mmi/digital/robot))
-		braintype = "Drone"
-	else
-		braintype = "Cyborg"
+	braintype = "Drone"
 
 	var/changed_name = ""
 	if(custom_name)

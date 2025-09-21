@@ -61,7 +61,7 @@
 
 /mob/living/silicon/robot/proc/power_down()
 	if (has_power)
-		visible_message("[src] beeps stridently as it begins to run on emergency backup power!", SPAN_WARNING("You beep stridently as you begin to run on emergency backup power!"))
+		audible_message("[src] beeps stridently as it begins to run on emergency backup power!", SPAN_WARNING("You beep stridently as you begin to run on emergency backup power!"))
 		has_power = 0
 		set_stat(UNCONSCIOUS)
 	if(lights_on) // Light is on but there is no power!
@@ -71,7 +71,7 @@
 /mob/living/silicon/robot/handle_regular_status_updates()
 	updatehealth()
 
-	if(HAS_STATUS(src, STAT_ASLEEP))
+	if(HAS_STATUS(src, STAT_ASLEEP) || ssd_check())
 		SET_STATUS_MAX(src, STAT_PARA, 3)
 
 	if(src.resting)
