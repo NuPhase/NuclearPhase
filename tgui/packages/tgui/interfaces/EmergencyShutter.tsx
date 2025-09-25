@@ -19,8 +19,8 @@ type InputData = {
   danger: boolean;
 }
 
-export const EmergencyShutter = (props: any, context: any) => {
-  const { act, data } = useBackend<InputData>(context);
+export const EmergencyShutter = (props: any) => {
+  const { act, data } = useBackend<InputData>();
   return (
     <Window width = {300} height = {285}>
       <Window.Content>
@@ -42,7 +42,7 @@ export const EmergencyShutter = (props: any, context: any) => {
           title = "Shutter Control">
           {!data.danger ? null : <NoticeBox danger textAlign = "center">Opening this airlock may result in injury!</NoticeBox>}
           <Button.Confirm
-            confirmContent = ""
+            confirmContent = "OPEN"
             confirmColor = "red"
             mx = {10}
             textAlign = "center"

@@ -45,6 +45,9 @@
 		/obj/item/storage/fancy/egg_box = 4
 	)
 
+/obj/structure/closet/secure_closet/freezer/fridge/empty/WillContain()
+	return null
+
 /obj/structure/closet/secure_closet/freezer/money
 	name = "secure locker"
 	icon = 'icons/obj/storage/fridge.dmi'

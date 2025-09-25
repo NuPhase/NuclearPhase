@@ -95,6 +95,7 @@
 		access_external_airlocks,
 		access_construction,
 		access_emergency_storage,
+		access_engine,
 		access_engine_equip
 	)
 	minimal_access = list(
@@ -104,6 +105,7 @@
 		access_external_airlocks,
 		access_construction,
 		access_emergency_storage,
+		access_engine,
 		access_engine_equip
 	)
 	skill_points = 35
@@ -126,7 +128,8 @@
 		access_external_airlocks,
 		access_construction,
 		access_engine,
-		access_emergency_storage
+		access_emergency_storage,
+		access_lab_alpha
 	)
 	minimal_access = list(
 		access_eva,
@@ -135,7 +138,8 @@
 		access_external_airlocks,
 		access_construction,
 		access_engine,
-		access_emergency_storage
+		access_emergency_storage,
+		access_lab_alpha
 	)
 	skill_points = 35
 	min_skill = list(
@@ -234,7 +238,11 @@
 	total_positions = 3
 	spawn_positions = 3
 	access = list(
-		access_cargo
+		access_cargo,
+		access_engine,
+		access_medical,
+		access_lab_alpha,
+		access_mining
 	)
 	alt_titles = list("Logistician", "Logistics Specialist", "Logistics Coordinator")
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
