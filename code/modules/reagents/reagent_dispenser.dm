@@ -72,7 +72,7 @@
 		if(LAZYLEN(reagents?.reagent_volumes))
 			for(var/rtype in reagents.reagent_volumes)
 				var/decl/material/R = GET_DECL(rtype)
-				to_chat(user, SPAN_NOTICE("[REAGENT_VOLUME(reagents, rtype)] units of [R.name]"))
+				to_chat(user, SPAN_NOTICE("[REAGENT_VOLUME(reagents, rtype)]ml of [R.name]"))
 		else
 			to_chat(user, SPAN_NOTICE("Nothing."))
 

@@ -134,7 +134,7 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = 1
-	initial_capacity = 500
+	initial_capacity = 20000
 	initial_reagent_types = list(/decl/material/liquid/water = 1)
 	tool_interaction_flags = (TOOL_INTERACTION_ANCHOR | TOOL_INTERACTION_DECONSTRUCT)
 	var/cups = 12

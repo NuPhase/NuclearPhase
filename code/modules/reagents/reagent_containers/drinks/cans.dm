@@ -17,7 +17,7 @@
 
 /obj/item/chems/drinks/cans/cola/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/cola, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/cola, 400)
 
 /obj/item/chems/drinks/cans/waterbottle
 	name = "bottled water"
@@ -32,7 +32,7 @@
 
 /obj/item/chems/drinks/cans/waterbottle/Initialize()
 	. = ..()
-	reagents.add_reagent(initial_reagent, 30)
+	reagents.add_reagent(initial_reagent, 400)
 
 /obj/item/chems/drinks/cans/waterbottle/open(mob/user)
 	playsound(loc,'sound/items/bottle_open.mp3', rand(10,50), 1)
@@ -47,7 +47,7 @@
 
 /obj/item/chems/drinks/cans/space_mountain_wind/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/citrussoda, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/citrussoda, 400)
 
 /obj/item/chems/drinks/cans/thirteenloko
 	name = "\improper Thirteen Loko"
@@ -57,7 +57,7 @@
 
 /obj/item/chems/drinks/cans/thirteenloko/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/ethanol/thirteenloko, 30)
+	reagents.add_reagent(/decl/material/liquid/ethanol/thirteenloko, 400)
 
 /obj/item/chems/drinks/cans/dr_gibb
 	name = "\improper Dr. Gibb"
@@ -67,7 +67,7 @@
 
 /obj/item/chems/drinks/cans/dr_gibb/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/cherrycola, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/cherrycola, 400)
 
 /obj/item/chems/drinks/cans/starkist
 	name = "\improper Star-Kist"
@@ -77,7 +77,7 @@
 
 /obj/item/chems/drinks/cans/starkist/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/orangecola, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/orangecola, 400)
 
 /obj/item/chems/drinks/cans/space_up
 	name = "\improper Space-Up"
@@ -87,7 +87,7 @@
 
 /obj/item/chems/drinks/cans/space_up/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/lemonade, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/lemonade, 400)
 
 /obj/item/chems/drinks/cans/lemon_lime
 	name = "\improper Lemon-Lime"
@@ -97,7 +97,7 @@
 
 /obj/item/chems/drinks/cans/lemon_lime/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/lemon_lime, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/lemon_lime, 400)
 
 /obj/item/chems/drinks/cans/iced_tea
 	name = "\improper Vrisk Serket Iced Tea"
@@ -107,8 +107,8 @@
 
 /obj/item/chems/drinks/cans/iced_tea/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/tea/black, 25)
-	reagents.add_reagent(/decl/material/solid/ice, 5)
+	reagents.add_reagent(/decl/material/liquid/drink/tea/black, 350)
+	reagents.add_reagent(/decl/material/solid/ice, 50)
 
 /obj/item/chems/drinks/cans/grape_juice
 	name = "\improper Grapel Juice"
@@ -118,7 +118,7 @@
 
 /obj/item/chems/drinks/cans/grape_juice/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/juice/grape, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/juice/grape, 400)
 
 /obj/item/chems/drinks/cans/tonic
 	name = "\improper T-Borg's Tonic Water"
@@ -128,7 +128,7 @@
 
 /obj/item/chems/drinks/cans/tonic/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/tonic, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/tonic, 400)
 
 /obj/item/chems/drinks/cans/sodawater
 	name = "soda water"
@@ -138,7 +138,7 @@
 
 /obj/item/chems/drinks/cans/sodawater/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/sodawater, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/sodawater, 400)
 
 /obj/item/chems/drinks/cans/beastenergy
 	name = "Beast Energy"
@@ -156,7 +156,7 @@
 
 /obj/item/chems/drinks/cans/speer/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/ethanol/beer/good, 30)
+	reagents.add_reagent(/decl/material/liquid/ethanol/beer/good, 400)
 
 /obj/item/chems/drinks/cans/ale
 	name = "\improper Magm-Ale"
@@ -166,4 +166,4 @@
 
 /obj/item/chems/drinks/cans/ale/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/ethanol/ale, 30)
+	reagents.add_reagent(/decl/material/liquid/ethanol/ale, 400)

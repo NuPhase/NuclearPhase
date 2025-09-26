@@ -18,12 +18,12 @@
 
 /obj/structure/janitorialcart/Initialize()
 	. = ..()
-	create_reagents(180)
+	create_reagents(3000)
 
 /obj/structure/janitorialcart/examine(mob/user, distance)
 	. = ..()
 	if(distance <= 1)
-		to_chat(user, "[src] [html_icon(src)] contains [reagents.total_volume] unit\s of liquid!")
+		to_chat(user, "[src] [html_icon(src)] contains [reagents.total_volume]ml of liquid!")
 
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)

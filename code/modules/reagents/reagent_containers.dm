@@ -110,7 +110,7 @@
 		return 1
 
 	var/trans = target.reagents.trans_to_obj(src, target:amount_per_transfer_from_this)
-	to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
+	to_chat(user, "<span class='notice'>You fill [src] with [trans]ml of the contents of [target].</span>")
 	return 1
 
 /obj/item/chems/proc/standard_splash_mob(var/mob/user, var/mob/target) // This goes into afterattack
@@ -224,7 +224,7 @@
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src, pick(pour_sound), 50, 1)
-	to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to \the [target].  \The [src] now contains [src.reagents.total_volume] units.</span>")
+	to_chat(user, "<span class='notice'>You transfer [trans]ml of the solution to \the [target].  \The [src] now contains [src.reagents.total_volume]ml.</span>")
 	return 1
 
 /obj/item/chems/do_surgery(mob/living/carbon/M, mob/living/user)

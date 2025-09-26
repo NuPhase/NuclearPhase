@@ -11,7 +11,7 @@
 	possible_transfer_amounts = null
 	amount_per_transfer_from_this = 50
 	randpixel = 6
-	volume = 250
+	volume = 400
 
 	var/filling_states   // List of percentages full that have icons
 	var/base_icon = null // Base icon name for fill states
@@ -179,7 +179,7 @@
 
 /obj/item/chems/drinks/milk/smallcarton/chocolate/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/milk/chocolate, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/milk/chocolate, 300)
 
 
 /obj/item/chems/drinks/coffee
@@ -190,7 +190,7 @@
 
 /obj/item/chems/drinks/coffee/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/coffee, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/coffee, 400)
 
 /obj/item/chems/drinks/ice
 	name = "cup of ice"
@@ -200,7 +200,7 @@
 
 /obj/item/chems/drinks/ice/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/solid/ice, 30)
+	reagents.add_reagent(/decl/material/solid/ice, 400)
 
 /obj/item/chems/drinks/h_chocolate
 	name = "cup of hot cocoa"
@@ -211,7 +211,7 @@
 
 /obj/item/chems/drinks/h_chocolate/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/hot_coco, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/hot_coco, 400)
 
 /obj/item/chems/drinks/dry_ramen
 	name = "cup ramen"
@@ -222,7 +222,7 @@
 
 /obj/item/chems/drinks/dry_ramen/Initialize()
 	. = ..()
-	reagents.add_reagent(/decl/material/liquid/drink/dry_ramen, 30)
+	reagents.add_reagent(/decl/material/liquid/drink/dry_ramen, 400)
 
 
 /obj/item/chems/drinks/sillycup
