@@ -258,7 +258,7 @@
 					flow_description = "significantly impaired blood flow."
 				if(0.5 to 0.8)
 					flow_description = "slightly reduced blood flow."
-				if(0.8 to 1)
+				if(0.8 to INFINITY)
 					flow_description = "efficient blood flow."
 		else
 			flow_description = "no blood flow."
