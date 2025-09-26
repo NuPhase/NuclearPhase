@@ -332,6 +332,8 @@
 	meltdown_state = FALSE
 	point_of_no_return = FALSE
 	rcontrol.do_message("SUCCESSFUL REACTOR SHUTDOWN", 3)
+	stop_alarms()
+	stop_burning()
 	var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)
 	security_state.stored_security_level = security_state.current_security_level
 	security_state.set_security_level(security_state.high_security_level)
