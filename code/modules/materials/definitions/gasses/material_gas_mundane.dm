@@ -5,7 +5,7 @@
 	gas_symbol_html = "O<sub>2</sub>"
 	lore_text = "An ubiquitous oxidizing agent."
 	flags = MAT_FLAG_FUSION_FUEL
-	gas_specific_heat = 20
+	gas_specific_heat = 29.38
 	molar_mass = 0.032
 	latent_heat = 3409
 	boiling_point = -183 CELSIUS
@@ -252,7 +252,7 @@
 	gas_symbol = "N2"
 	gas_symbol_html = "N<sub>2</sub>"
 	lore_text = "An ubiquitous noble gas."
-	gas_specific_heat = 20
+	gas_specific_heat = 29.12
 	molar_mass = 0.028
 	latent_heat = 2792
 	boiling_point = -195 CELSIUS
@@ -289,7 +289,7 @@
 	liquid_density = 1269
 	gas_flags = XGM_GAS_OXIDIZER
 	oxidizer_power = 8
-	gas_overlay_limit = 0.1
+	gas_overlay_limit = 0.01
 
 /decl/material/gas/methane
 	name = "methane"

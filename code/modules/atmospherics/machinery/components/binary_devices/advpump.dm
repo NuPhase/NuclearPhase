@@ -96,7 +96,7 @@
 	level = 2
 	//layer = STRUCTURE_LAYER
 	//icon_state = "off"
-	flow_capacity = 1200 //kgs
+	flow_capacity = 4800 //kgs
 	power_rating = 15000000
 	start_sound = 'sound/machines/pumpstart.ogg'
 	start_length = 460

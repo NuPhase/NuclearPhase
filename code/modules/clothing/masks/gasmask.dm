@@ -16,15 +16,23 @@
 		)
 	filtered_gases = list(
 		/decl/material/gas/nitrous_oxide,
+		/decl/material/gas/nitrodioxide,
+		/decl/material/gas/nitricoxide,
+		/decl/material/gas/sulfur_dioxide,
 		/decl/material/gas/chlorine,
 		/decl/material/gas/ammonia,
 		/decl/material/gas/carbon_monoxide,
 		/decl/material/gas/methyl_bromide,
-		/decl/material/gas/methane
+		/decl/material/liquid/acetone,
+		/decl/material/liquid/methanol,
+		/decl/material/solid/metal/nuclear_waste/transuranic,
+		/decl/material/solid/metal/nuclear_waste/high_level,
+		/decl/material/solid/metal/nuclear_waste/actinides,
+		/decl/material/solid/metal/nuclear_waste/actinides/vitrified
 	)
 	var/clogged
 	var/filter_water
-	var/gas_filter_strength = 1			//For gas mask filters
+	var/gas_filter_strength = 0.99			//For gas mask filters
 
 
 /obj/item/clothing/mask/gas/examine(mob/user)
@@ -70,6 +78,8 @@
 		laser = ARMOR_LASER_MINOR,
 		bio = ARMOR_BIO_RESISTANT
 		)
+	gas_filter_strength = 0.999
+
 
 //In scaling order of utility and seriousness
 
@@ -99,6 +109,7 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon = 'icons/clothing/mask/gas_mask_swat.dmi'
 	siemens_coefficient = 0.7
+	gas_filter_strength = 0.999
 	body_parts_covered = SLOT_FACE|SLOT_EYES
 	armor = list(
 		melee = ARMOR_MELEE_SMALL,
@@ -118,6 +129,7 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon = 'icons/clothing/mask/gas_mask_swat.dmi'
 	siemens_coefficient = 0.7
+	gas_filter_strength = 0.999
 	armor = list(
 		melee = ARMOR_MELEE_SMALL,
 		bullet = ARMOR_BALLISTIC_SMALL,
@@ -150,6 +162,7 @@
 	armor = list(
 		bio = ARMOR_BIO_SHIELDED
 		)
+	gas_filter_strength = 0.9
 	body_parts_covered = SLOT_HEAD|SLOT_FACE|SLOT_EYES
 	material = /decl/material/solid/cloth
 	origin_tech = @'{"materials":1,"engineering":2}'
@@ -191,5 +204,6 @@
 	desc = "A compact CO2 scrubber and breathing apparatus that draws oxygen from water."
 	icon = 'icons/clothing/mask/gas_mask_half.dmi'
 	filter_water = TRUE
+	gas_filter_strength = 0.9
 	body_parts_covered = SLOT_FACE
 	w_class = ITEM_SIZE_SMALL
