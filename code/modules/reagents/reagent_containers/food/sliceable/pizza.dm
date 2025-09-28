@@ -14,7 +14,7 @@
 	slices_num = 6
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, "cheese" = 15)
-	nutriment_amt = 35
+	nutriment_amt = 300
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -43,7 +43,7 @@
 	slices_num = 6
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, "cheese" = 15)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -72,7 +72,7 @@
 	slices_num = 6
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, "cheese" = 5, "mushroom" = 10)
-	nutriment_amt = 35
+	nutriment_amt = 300
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -100,7 +100,7 @@
 	slices_num = 6
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, "cheese" = 5, "eggplant" = 5, "carrot" = 5, "corn" = 5)
-	nutriment_amt = 25
+	nutriment_amt = 250
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 

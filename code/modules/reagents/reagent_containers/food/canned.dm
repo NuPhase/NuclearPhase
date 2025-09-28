@@ -97,7 +97,7 @@
 	trash = /obj/item/trash/beans
 	filling_color = "#ff6633"
 	nutriment_desc = list("beans" = 1)
-	nutriment_amt = 12
+	nutriment_amt = 86
 
 /obj/item/chems/food/can/tomato
 	name = "tomato soup"
@@ -141,7 +141,7 @@
 	trash = /obj/item/trash/fishegg
 	filling_color = "#000000"
 	nutriment_desc = list("fish" = 1, "salt" = 1)
-	nutriment_amt = 6
+	nutriment_amt = 48
 
 /obj/item/chems/food/can/caviar/true
 	name = "canned caviar"
@@ -150,7 +150,7 @@
 	trash = /obj/item/trash/carpegg
 	filling_color = "#330066"
 	nutriment_desc = list("fish" = 1, "salt" = 1, "numbing sensation" = 1)
-	nutriment_amt = 6
+	nutriment_amt = 48
 
 /obj/item/chems/food/caviar/true/Initialize()
 	. = ..()

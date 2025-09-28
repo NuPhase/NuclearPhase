@@ -5,7 +5,7 @@
 	desc = "they're all inedible and potentially dangerous items"
 	center_of_mass = @'{"x":15,"y":12}'
 	nutriment_desc = list("rot" = 5, "mold" = 5)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 3
 	filling_color = "#336b42"
 

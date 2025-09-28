@@ -4,7 +4,7 @@
 	desc = "We all love tofu."
 	filling_color = "#fffee0"
 	center_of_mass = @'{"x":17,"y":10}'
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_desc = list("tofu" = 3, "softness" = 3)
 	bitesize = 3
 
@@ -20,7 +20,7 @@
 	filling_color = "#c4bf76"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("slime" = 2, "soy" = 2)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 2
 
 /obj/item/chems/food/tofukabob
@@ -31,7 +31,7 @@
 	filling_color = "#fffee0"
 	center_of_mass = @'{"x":17,"y":15}'
 	nutriment_desc = list("tofu" = 3, "metal" = 1)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 2
 
 /obj/item/chems/food/tofurkey
@@ -40,7 +40,7 @@
 	icon_state = "tofurkey"
 	filling_color = "#fffee0"
 	center_of_mass = @'{"x":16,"y":8}'
-	nutriment_amt = 12
+	nutriment_amt = 96
 	nutriment_desc = list("turkey" = 3, "tofu" = 5, "softness" = 4)
 	bitesize = 3
 
@@ -51,5 +51,5 @@
 	trash = /obj/item/trash/plate
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("soy" = 4, "tomato" = 4)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 2

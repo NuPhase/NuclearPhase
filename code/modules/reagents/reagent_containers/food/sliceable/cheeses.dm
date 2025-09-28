@@ -7,7 +7,7 @@
 	filling_color = "#fff700"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cheese" = 10)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 
 /obj/item/chems/food/sliceable/cheesewheel/Initialize()

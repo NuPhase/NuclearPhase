@@ -6,7 +6,7 @@
 	bitesize = 2
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("dough" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
 // Dough + rolling pin = flat dough
@@ -42,7 +42,7 @@
 	bitesize = 2
 	center_of_mass = @'{"x":17,"y":19}'
 	nutriment_desc = list("dough" = 1)
-	nutriment_amt = 1
+	nutriment_amt = 8
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
 /obj/item/chems/food/bun
@@ -53,7 +53,7 @@
 	bitesize = 2
 	center_of_mass = @'{"x":16,"y":12}'
 	nutriment_desc = list("bun" = 4)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	nutriment_type = /decl/material/liquid/nutriment/bread
 	attack_products = list(
 		/obj/item/chems/food/meatball = /obj/item/chems/food/burger,
@@ -78,5 +78,5 @@
 	bitesize = 2
 	center_of_mass = @'{"x":16,"y":8}'
 	nutriment_desc = list("bun" = 8)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	nutriment_type = /decl/material/liquid/nutriment/bread

@@ -43,7 +43,7 @@
 	.=..()
 	if(nutriment_amt)
 		reagents.add_reagent(nutriment_type, nutriment_amt, nutriment_desc)
-	amount_per_transfer_from_this = bitesize
+	amount_per_transfer_from_this = bitesize*8
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/chems/food/proc/On_Consume(var/mob/M)
@@ -246,7 +246,7 @@
 	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
 	bitecount++
 	if(reagents && user.reagents)
-		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
+		reagents.trans_to_mob(user, bitesize*8, CHEM_INGEST)
 	spawn(5)
 		if(!src && !user.client)
 			user.custom_emote(1,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")

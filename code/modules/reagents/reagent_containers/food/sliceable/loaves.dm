@@ -7,7 +7,7 @@
 	filling_color = "#ff7575"
 	center_of_mass = @'{"x":19,"y":9}'
 	nutriment_desc = list("bread" = 10)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -37,7 +37,7 @@
 	filling_color = "#8aff75"
 	center_of_mass = @'{"x":16,"y":9}'
 	nutriment_desc = list("bread" = 10)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -67,7 +67,7 @@
 	filling_color = "#ede5ad"
 	center_of_mass = @'{"x":16,"y":9}'
 	nutriment_desc = list("bread" = 10)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -97,7 +97,7 @@
 	filling_color = "#f7ffe0"
 	center_of_mass = @'{"x":16,"y":9}'
 	nutriment_desc = list("tofu" = 10)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -123,7 +123,7 @@
 	filling_color = "#ffe396"
 	center_of_mass = @'{"x":16,"y":9}'
 	nutriment_desc = list("bread" = 6)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -149,7 +149,7 @@
 	filling_color = "#fff896"
 	center_of_mass = @'{"x":16,"y":9}'
 	nutriment_desc = list("bread" = 6, "cream" = 3, "cheese" = 3)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 

@@ -23,7 +23,7 @@
 	filling_color = "#fff2ff"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("buns" = 3, "spookiness" = 3)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 2
 
 /obj/item/chems/food/human
@@ -49,7 +49,7 @@
 	icon_state = "cheeseburger"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("cheese" = 2, "bun" = 2)
-	nutriment_amt = 2
+	nutriment_amt = 16
 
 /obj/item/chems/food/cheeseburger/Initialize()
 	. = ..()
@@ -63,7 +63,7 @@
 	filling_color = "#d63c3c"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("bun" = 2)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 2
 
 /obj/item/chems/food/burger/Initialize()
@@ -78,7 +78,7 @@
 	filling_color = "#d63c3c"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("bun" = 2)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 2
 
 /obj/item/chems/food/hamburger/Initialize()
@@ -104,7 +104,7 @@
 	filling_color = "#fffee0"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("bun" = 2, "pseudo-soy meat" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 2
 
 /obj/item/chems/food/roburger
@@ -114,7 +114,7 @@
 	filling_color = COLOR_GRAY80
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("bun" = 2, "metal" = 3)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 2
 
 /obj/item/chems/food/roburger/Initialize()
@@ -154,7 +154,7 @@
 	filling_color = "#ff00ff"
 	center_of_mass = @'{"x":17,"y":12}'
 	nutriment_desc = list("bun" = 2, "clown shoe" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 2
 
 /obj/item/chems/food/mimeburger
@@ -164,7 +164,7 @@
 	filling_color = "#ffffff"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("bun" = 2, "mime paint" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 2
 
 /obj/item/chems/food/spellburger
@@ -173,7 +173,7 @@
 	icon_state = "spellburger"
 	filling_color = "#d505ff"
 	nutriment_desc = list("magic" = 3, "buns" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 2
 
 /obj/item/chems/food/bigbiteburger
@@ -183,7 +183,7 @@
 	filling_color = "#e3d681"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("buns" = 4)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	bitesize = 3
 
 /obj/item/chems/food/bigbiteburger/Initialize()
@@ -197,7 +197,7 @@
 	filling_color = "#b572ab"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("buns" = 5)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/jellyburger/cherry/Initialize()
@@ -211,7 +211,7 @@
 	filling_color = "#cca26a"
 	center_of_mass = @'{"x":16,"y":3}'
 	nutriment_desc = list("buns" = 25)
-	nutriment_amt = 25
+	nutriment_amt = 200
 	bitesize = 10
 
 /obj/item/chems/food/superbiteburger/Initialize()

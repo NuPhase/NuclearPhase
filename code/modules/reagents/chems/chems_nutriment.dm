@@ -10,7 +10,7 @@
 	fruit_descriptor = "nutritious"
 	uid = "chem_nutriment"
 
-	var/nutriment_factor = 10 // Per unit
+	var/nutriment_factor = 1 // Per unit
 	var/hydration_factor = 0 // Per unit
 	var/injectable = 0
 
@@ -117,7 +117,7 @@
 	name = "honey"
 	lore_text = "A golden yellow syrup, loaded with sugary sweetness."
 	taste_description = "sweetness"
-	nutriment_factor = 20
+	nutriment_factor = 2
 	color = "#ffff00"
 	fruit_descriptor = "rich"
 	uid = "chem_nutriment_honey"

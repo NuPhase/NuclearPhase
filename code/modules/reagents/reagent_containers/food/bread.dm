@@ -10,7 +10,7 @@
 	filling_color = "#d9be29"
 	center_of_mass = @'{"x":16,"y":4}'
 	nutriment_desc = list("bread" = 3, "cheese" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_type = /decl/material/liquid/nutriment/bread
 	bitesize = 2
 
@@ -26,7 +26,7 @@
 	filling_color = "#d9be29"
 	center_of_mass = @'{"x":16,"y":4}'
 	nutriment_desc = list("toasted bread" = 3, "cheese" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_type = /decl/material/liquid/nutriment/bread
 	bitesize = 2
 
@@ -42,7 +42,7 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#d9be29"
 	nutriment_desc = list("toasted bread" = 3, "cheese" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -57,7 +57,7 @@
 	filling_color = "#e3d796"
 	center_of_mass = @'{"x":18,"y":12}'
 	nutriment_desc = list("long bread" = 6)
-	nutriment_amt = 6
+	nutriment_amt = 24
 	bitesize = 3
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -74,7 +74,7 @@
 	filling_color = "#b572ab"
 	center_of_mass = @'{"x":16,"y":8}'
 	nutriment_desc = list("toasted bread" = 2)
-	nutriment_amt = 1
+	nutriment_amt = 8
 	bitesize = 3
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -90,7 +90,7 @@
 	filling_color = "#9e3a78"
 	center_of_mass = @'{"x":16,"y":8}'
 	nutriment_desc = list("bread" = 2)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 3
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -105,7 +105,7 @@
 	filling_color = "#dbcc9a"
 	center_of_mass = @'{"x":15,"y":12}'
 	nutriment_desc = list("sourness" = 2, "bread" = 2)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 3
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -116,7 +116,7 @@
 	filling_color = "#dbcc9a"
 	center_of_mass = @'{"x":15,"y":12}'
 	nutriment_desc = list("sourness" = 2, "bread" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 4
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -128,5 +128,5 @@
 	bitesize = 2
 	center_of_mass = @'{"x":16,"y":16}'
 	nutriment_desc = list("bread" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_type = /decl/material/liquid/nutriment/bread

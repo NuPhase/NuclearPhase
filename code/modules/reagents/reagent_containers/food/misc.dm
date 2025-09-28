@@ -17,7 +17,7 @@
 	icon_state = "stuffing"
 	filling_color = "#c9ac83"
 	center_of_mass = @'{"x":16,"y":10}'
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_desc = list("dryness" = 2, "bread" = 2)
 	bitesize = 1
 
@@ -29,7 +29,7 @@
 	filling_color = "#fffad4"
 	center_of_mass = @'{"x":16,"y":8}'
 	nutriment_desc = list("popcorn" = 3)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 0.1
 
 /obj/item/chems/food/loadedbakedpotato
@@ -39,7 +39,7 @@
 	filling_color = "#9c7a68"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("baked potato" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 2
 
 /obj/item/chems/food/loadedbakedpotato/Initialize()
@@ -54,7 +54,7 @@
 	filling_color = "#42b873"
 	center_of_mass = @'{"x":16,"y":8}'
 	nutriment_desc = list("mushroom" = 5, "rainbow" = 1)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 3
 
 /obj/item/chems/food/spacylibertyduff/Initialize()
@@ -69,7 +69,7 @@
 	filling_color = "#ed0758"
 	center_of_mass = @'{"x":16,"y":5}'
 	nutriment_desc = list("jelly" = 3, "mushroom" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 3
 
 /obj/item/chems/food/amanitajelly/Initialize()
@@ -85,7 +85,7 @@
 	filling_color = "#a36a1f"
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("tortilla" = 3, "corn" = 3)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 4
 
 /obj/item/chems/food/enchiladas/Initialize()
@@ -116,7 +116,7 @@
 	filling_color = "#f21873"
 	center_of_mass = @'{"x":15,"y":13}'
 	nutriment_desc = list("apple" = 3, "caramel" = 3, "sweetness" = 2)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 3
 
 /obj/item/chems/food/mint
@@ -138,7 +138,7 @@
 	filling_color = "#cfb4c4"
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("mushroom" = 4)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/plumphelmetbiscuit/Initialize()
@@ -157,7 +157,7 @@
 	filling_color = "#ffff00"
 	center_of_mass = @'{"x":16,"y":18}'
 	nutriment_desc = list("apple" = 8)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 3
 
 /obj/item/chems/food/appletart/Initialize()
@@ -172,7 +172,7 @@
 	center_of_mass = @'{"x":17,"y":6}'
 	nutriment_desc = list("salt" = 1, "cracker" = 2)
 	w_class = ITEM_SIZE_TINY
-	nutriment_amt = 1
+	nutriment_amt = 8
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
 ///////////////////////////////////////////
@@ -186,7 +186,7 @@
 	bitesize = 3
 	center_of_mass = @'{"x":21,"y":12}'
 	nutriment_desc = list("cheese" = 2,"taco shell" = 2)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
 /obj/item/chems/food/taco/Initialize()

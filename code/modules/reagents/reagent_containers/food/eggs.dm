@@ -9,7 +9,7 @@
 	filling_color = "#fdffd1"
 	volume = 10
 	center_of_mass = @'{"x":16,"y":13}'
-	nutriment_amt = 3
+	nutriment_amt = 25
 	nutriment_type = /decl/material/liquid/nutriment/protein/egg
 
 /obj/item/chems/food/egg/afterattack(obj/O, mob/user, proximity)

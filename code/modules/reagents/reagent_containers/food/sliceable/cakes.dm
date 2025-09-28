@@ -7,7 +7,7 @@
 	filling_color = "#ffd675"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "carrot" = 15)
-	nutriment_amt = 25
+	nutriment_amt = 200
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
@@ -37,7 +37,7 @@
 	filling_color = "#e6aedb"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "slime" = 15)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
@@ -68,7 +68,7 @@
 	filling_color = "#faf7af"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "cream" = 10, "cheese" = 15)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 
 /obj/item/chems/food/sliceable/cheesecake/Initialize()
@@ -97,7 +97,7 @@
 	filling_color = "#f7edd5"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "vanilla" = 15)
-	nutriment_amt = 20
+	nutriment_amt = 180
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
 /obj/item/chems/food/slice/plaincake
@@ -122,7 +122,7 @@
 	filling_color = "#fada8e"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "orange" = 15)
-	nutriment_amt = 20
+	nutriment_amt = 160
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
 /obj/item/chems/food/slice/orangecake
@@ -147,7 +147,7 @@
 	filling_color = "#cbfa8e"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "lime" = 15)
-	nutriment_amt = 20
+	nutriment_amt = 160
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
 /obj/item/chems/food/slice/limecake
@@ -172,7 +172,7 @@
 	filling_color = "#fafa8e"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "lemon" = 15)
-	nutriment_amt = 20
+	nutriment_amt = 160
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
 /obj/item/chems/food/slice/lemoncake
@@ -197,7 +197,7 @@
 	filling_color = "#805930"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "chocolate" = 15)
-	nutriment_amt = 20
+	nutriment_amt = 160
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
 /obj/item/chems/food/slice/chocolatecake
@@ -222,7 +222,7 @@
 	filling_color = "#ffd6d6"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10)
-	nutriment_amt = 20
+	nutriment_amt = 160
 	bitesize = 3
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
@@ -252,7 +252,7 @@
 	filling_color = "#ebf5b8"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("cake" = 10, "sweetness" = 10, "apple" = 15)
-	nutriment_amt = 15
+	nutriment_amt = 120
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
 /obj/item/chems/food/slice/applecake
@@ -277,7 +277,7 @@
 	filling_color = "#f5b951"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("pie" = 5, "cream" = 5, "pumpkin" = 5)
-	nutriment_amt = 15
+	nutriment_amt = 130
 
 /obj/item/chems/food/slice/pumpkinpie
 	name = "pumpkin pie slice"

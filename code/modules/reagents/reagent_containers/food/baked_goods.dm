@@ -9,7 +9,7 @@
 	filling_color = "#e0cf9b"
 	center_of_mass = @'{"x":17,"y":4}'
 	nutriment_desc = list("sweetness" = 3, "muffin" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 2
 
 /obj/item/chems/food/bananapie
@@ -20,7 +20,7 @@
 	filling_color = "#fbffb8"
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("pie" = 3, "cream" = 2)
-	nutriment_amt = 4
+	nutriment_amt = 24
 	bitesize = 3
 
 /obj/item/chems/food/pie/Initialize()
@@ -40,7 +40,7 @@
 	trash = /obj/item/trash/plate
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("sweetness" = 2, "pie" = 3)
-	nutriment_amt = 4
+	nutriment_amt = 24
 	bitesize = 3
 
 /obj/item/chems/food/berryclafoutis/Initialize()
@@ -55,7 +55,7 @@
 	filling_color = "#e6deb5"
 	center_of_mass = @'{"x":15,"y":11}'
 	nutriment_desc = list("waffle" = 8)
-	nutriment_amt = 8
+	nutriment_amt = 24
 	bitesize = 2
 
 /obj/item/chems/food/rofflewaffles
@@ -66,7 +66,7 @@
 	filling_color = "#ff00f7"
 	center_of_mass = @'{"x":15,"y":11}'
 	nutriment_desc = list("waffle" = 7, "sweetness" = 1)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 4
 
 /obj/item/chems/food/rofflewaffles/Initialize()
@@ -80,7 +80,7 @@
 	trash = /obj/item/trash/plate
 	center_of_mass = @'{"x":15,"y":11}'
 	nutriment_desc = list("pancake" = 8)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 2
 
 /obj/item/chems/food/pancakesblu
@@ -90,7 +90,7 @@
 	trash = /obj/item/trash/plate
 	center_of_mass = @'{"x":15,"y":11}'
 	nutriment_desc = list("pancake" = 8)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 2
 
 /obj/item/chems/food/eggplantparm
@@ -101,7 +101,7 @@
 	filling_color = "#4d2f5e"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("cheese" = 3, "eggplant" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 2
 
 /obj/item/chems/food/soylentgreen
@@ -125,7 +125,7 @@
 	filling_color = "#e6fa61"
 	center_of_mass = @'{"x":15,"y":11}'
 	nutriment_desc = list("some sort of protein" = 10)//seasoned vERY well.
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 
 /obj/item/chems/food/meatpie
@@ -149,7 +149,7 @@
 	filling_color = "#fffee0"
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("tofu" = 2, "pie" = 8)
-	nutriment_amt = 10
+	nutriment_amt = 80
 	bitesize = 2
 
 /obj/item/chems/food/amanita_pie
@@ -159,7 +159,7 @@
 	filling_color = "#ffcccc"
 	center_of_mass = @'{"x":17,"y":9}'
 	nutriment_desc = list("sweetness" = 3, "mushroom" = 3, "pie" = 2)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 3
 
 /obj/item/chems/food/amanita_pie/Initialize()
@@ -174,7 +174,7 @@
 	filling_color = "#b8279b"
 	center_of_mass = @'{"x":17,"y":9}'
 	nutriment_desc = list("heartiness" = 2, "mushroom" = 3, "pie" = 3)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 2
 
 /obj/item/chems/food/plump_pie/Initialize()
@@ -205,7 +205,7 @@
 	filling_color = "#916e36"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("poppy seeds" = 2, "pretzel" = 3)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/applepie
@@ -215,7 +215,7 @@
 	filling_color = "#e0edc5"
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("sweetness" = 2, "apple" = 2, "pie" = 2)
-	nutriment_amt = 4
+	nutriment_amt = 24
 	bitesize = 3
 
 /obj/item/chems/food/cherrypie
@@ -225,7 +225,7 @@
 	filling_color = "#ff525a"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("sweetness" = 2, "cherry" = 2, "pie" = 2)
-	nutriment_amt = 4
+	nutriment_amt = 24
 	bitesize = 3
 
 /obj/item/chems/food/fortunecookie
@@ -235,5 +235,5 @@
 	filling_color = "#e8e79e"
 	center_of_mass = @'{"x":15,"y":14}'
 	nutriment_desc = list("fortune cookie" = 2)
-	nutriment_amt = 3
+	nutriment_amt = 20
 	bitesize = 2

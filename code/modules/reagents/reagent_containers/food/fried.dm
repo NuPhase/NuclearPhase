@@ -12,7 +12,7 @@
 	filling_color = "#eddd00"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("fried onions" = 5)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/fries
@@ -23,7 +23,7 @@
 	filling_color = "#eddd00"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("fresh fries" = 4)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	bitesize = 2
 
 /obj/item/chems/food/rawsticks
@@ -34,7 +34,7 @@
 	bitesize = 2
 	center_of_mass = @'{"x":16,"y":12}'
 	nutriment_desc = list("raw potato" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 
 /obj/item/chems/food/cheesyfries
 	name = "cheesy fries"
@@ -44,7 +44,7 @@
 	filling_color = "#eddd00"
 	center_of_mass = @'{"x":16,"y":11}'
 	nutriment_desc = list("fresh fries" = 3, "cheese" = 3)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	bitesize = 2
 
 /obj/item/chems/food/cheesyfries/Initialize()

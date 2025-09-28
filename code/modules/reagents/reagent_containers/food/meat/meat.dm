@@ -94,7 +94,7 @@
 	filling_color = "#7a3d11"
 	center_of_mass = @'{"x":16,"y":13}'
 	nutriment_desc = list("onion" = 2, "mushroom" = 2)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	bitesize = 3
 	material = /decl/material/solid/meat
 
@@ -109,7 +109,7 @@
 	icon_state = "tomatomeat"
 	filling_color = "#db0000"
 	center_of_mass = @'{"x":17,"y":16}'
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_desc = list("raw" = 2, "tomato" = 3)
 	bitesize = 6
 

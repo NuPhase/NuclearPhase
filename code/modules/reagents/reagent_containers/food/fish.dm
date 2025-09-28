@@ -5,7 +5,7 @@
 	filling_color = "#ffdefe"
 	center_of_mass = @'{"x":17,"y":13}'
 	bitesize = 6
-	nutriment_amt = 6
+	nutriment_amt = 48
 	nutriment_type = /decl/material/liquid/nutriment/protein
 	var/fish_type = "fish"
 

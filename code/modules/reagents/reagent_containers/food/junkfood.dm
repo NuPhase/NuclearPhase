@@ -20,7 +20,7 @@
 	filling_color = "#343834"
 	center_of_mass = @'{"x":15,"y":4}'
 	nutriment_desc = list("raisins" = 6)
-	nutriment_amt = 6
+	nutriment_amt = 48
 
 /obj/item/chems/food/spacetwinkie
 	name = "eclair"
@@ -42,7 +42,7 @@
 	filling_color = "#ffa305"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("cheese" = 5, "chips" = 2)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	bitesize = 2
 
 /obj/item/chems/food/syndicake
@@ -52,7 +52,7 @@
 	filling_color = "#ff5d05"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("sweetness" = 3, "cake" = 1)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	trash = /obj/item/trash/syndi_cakes
 	bitesize = 3
 
@@ -70,7 +70,7 @@
 	filling_color = "#825d26"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("nuts" = 1)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 0.5
 
 /obj/item/chems/food/semki
@@ -81,7 +81,7 @@
 	filling_color = "#68645d"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("sunflower seeds" = 1)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 0.5
 
 /obj/item/chems/food/squid
@@ -92,7 +92,7 @@
 	filling_color = "#c0a9d7"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("fish" = 1, "salt" = 1)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 1
 
 /obj/item/chems/food/squid/Initialize()
@@ -107,7 +107,7 @@
 	filling_color = "#c6b17f"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("bread" = 1, "salt" = 1)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 1
 	nutriment_type = /decl/material/liquid/nutriment/bread
 
@@ -119,7 +119,7 @@
 	filling_color = "#e0bcbc"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("fat" = 1, "salt" = 1)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 2
 
 /obj/item/chems/food/salo/Initialize()
@@ -134,7 +134,7 @@
 	filling_color = "#c8a5bb"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("fish" = 1, "salt" = 1)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 1
 
 /obj/item/chems/food/driedfish/Initialize()
@@ -149,7 +149,7 @@
 	filling_color = "#a8a8a8"
 	center_of_mass = @'{"x":16,"y":15}'
 	nutriment_desc = list("chalk" = 6)
-	nutriment_amt = 20
+	nutriment_amt = 160
 	bitesize = 4
 
 /obj/item/chems/food/liquidfood/Initialize()
@@ -177,7 +177,7 @@
 	filling_color = "#a66829"
 	center_of_mass = @'{"x":17,"y":16}'
 	nutriment_desc = list("bread" = 2, "sweetness" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	nutriment_type = /decl/material/liquid/nutriment/bread
 	bitesize = 2
 
@@ -188,7 +188,7 @@
 	trash = /obj/item/trash/candy
 	filling_color = "#7d5f46"
 	center_of_mass = @'{"x":15,"y":15}'
-	nutriment_amt = 1
+	nutriment_amt = 8
 	nutriment_desc = list("candy" = 1)
 	bitesize = 2
 
@@ -227,7 +227,7 @@
 	icon_state = "candy_corn"
 	filling_color = "#fffcb0"
 	center_of_mass = @'{"x":14,"y":10}'
-	nutriment_amt = 4
+	nutriment_amt = 32
 	nutriment_desc = list("candy corn" = 4)
 	bitesize = 2
 
@@ -243,7 +243,7 @@
 	trash = /obj/item/trash/chips
 	filling_color = "#e8c31e"
 	center_of_mass = @'{"x":15,"y":15}'
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_desc = list("salt" = 1, "chips" = 2)
 	bitesize = 1
 	nutriment_type = /decl/material/liquid/nutriment/bread
@@ -254,7 +254,7 @@
 	icon_state = "cookie"
 	filling_color = "#dbc94f"
 	center_of_mass = @'{"x":17,"y":18}'
-	nutriment_amt = 5
+	nutriment_amt = 40
 	nutriment_desc = list("sweetness" = 3, "cookie" = 2)
 	w_class = ITEM_SIZE_TINY
 	bitesize = 1
@@ -266,7 +266,7 @@
 	icon_state = "chocolatebar"
 	filling_color = "#7d5f46"
 	center_of_mass = @'{"x":15,"y":15}'
-	nutriment_amt = 2
+	nutriment_amt = 16
 	nutriment_desc = list("chocolate" = 5)
 	bitesize = 2
 
@@ -281,7 +281,7 @@
 	icon_state = "chocolateegg"
 	filling_color = "#7d5f46"
 	center_of_mass = @'{"x":16,"y":13}'
-	nutriment_amt = 3
+	nutriment_amt = 24
 	nutriment_desc = list("chocolate" = 5)
 	bitesize = 2
 
@@ -297,7 +297,7 @@
 	filling_color = "#d9c386"
 	center_of_mass = @'{"x":19,"y":16}'
 	nutriment_desc = list("sweetness", "donut")
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 3
 	nutriment_type = /decl/material/liquid/nutriment/bread
 	var/overlay_state = "box-donut1"
@@ -315,7 +315,7 @@
 	name = "chaos donut"
 	desc = "Like life, it never quite tastes the same."
 	filling_color = "#ed11e6"
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 10
 
 /obj/item/chems/food/donut/chaos/proc/get_random_fillings()
@@ -342,7 +342,7 @@
 	icon_state = "jdonut1"
 	filling_color = "#ed1169"
 	center_of_mass = @'{"x":16,"y":11}'
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 5
 	nutriment_type = /decl/material/liquid/nutriment/bread
 	donut_state = "jdonut"
@@ -360,7 +360,7 @@
 	filling_color = "#ffffff"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("sweet" = 4, "vanilla" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
@@ -388,7 +388,7 @@
 	filling_color = "#2556b0"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("salt" = 4, "ocean" = 1, "seagull" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/saturn
@@ -399,7 +399,7 @@
 	filling_color = "#dca319"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("salt" = 4, "peanut" = 2,  "wood?" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/jupiter
@@ -410,7 +410,7 @@
 	filling_color = "#dc1919"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("jelly?" = 5)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/pluto
@@ -421,7 +421,7 @@
 	filling_color = "#ffffff"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("chalk" = 4, "sadness" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/mars
@@ -432,7 +432,7 @@
 	filling_color = "#d2c63f"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("eggs" = 4, "potato" = 4, "mustard" = 2)
-	nutriment_amt = 8
+	nutriment_amt = 64
 	bitesize = 2
 
 /obj/item/chems/food/venus
@@ -443,7 +443,7 @@
 	filling_color = "#d2c63f"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("heat" = 4, "burning" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 	nutriment_type = /decl/material/liquid/nutriment/bread/cake
 
@@ -459,7 +459,7 @@
 	filling_color = "#3f7dd2"
 	center_of_mass = @'{"x":15,"y":9}'
 	nutriment_desc = list("fizz" = 3, "sweet?" = 1, "shrapnel" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/oort/Initialize()
@@ -473,7 +473,7 @@
 	icon_state = "ricecake"
 	desc = "A snack food made from balled up rice."
 	nutriment_desc = list("rice" = 3, "sweet" = 1, "seaweed" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/pokey
@@ -481,7 +481,7 @@
 	icon_state = "pokeys"
 	desc = "A bundle of chocolate coated biscuit sticks. Not as exciting as they seem."
 	nutriment_desc = list("chocolate" = 1, "biscuit" = 2, "cardboard" = 2)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/weebonuts
@@ -490,7 +490,7 @@
 	trash = /obj/item/trash/weebonuts
 	desc = "A bag of spicy nuts. Goes well with beer!"
 	nutriment_desc = list("nuts" = 4, "spicy!" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/weebonuts/Initialize()
@@ -503,7 +503,7 @@
 	trash = /obj/item/trash/stick
 	desc = "A chocolate and sprinkles coated banana. On a stick."
 	nutriment_desc = list("banana" = 3, "chocolate" = 1, "wax?" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/chocobanana/Initialize()
@@ -516,7 +516,7 @@
 	trash = /obj/item/trash/stick
 	desc = "Food dyed rice dumplings on a stick."
 	nutriment_desc = list("rice" = 4, "topping?" = 1)
-	nutriment_amt = 5
+	nutriment_amt = 40
 	bitesize = 2
 
 /obj/item/chems/food/donkpocket/sinpocket
@@ -552,7 +552,7 @@
 	filling_color = "#dedeab"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("heartiness" = 1, "dough" = 2)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	var/warm = 0
 	var/list/heated_reagents = list(/decl/material/liquid/regenerator = 5)
 

@@ -18,7 +18,7 @@
 	filling_color = "#e9adff"
 	center_of_mass = @'{"x":12,"y":5}'
 	nutriment_desc = list("toasted bread" = 3)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 3
 
 /obj/item/chems/food/cubancarp/Initialize()
@@ -33,7 +33,7 @@
 	filling_color = "#e3d796"
 	center_of_mass = @'{"x":16,"y":16}'
 	nutriment_desc = list("salt" = 1, "chips" = 2, "fish" = 2)
-	nutriment_amt = 3
+	nutriment_amt = 24
 	bitesize = 3
 
 /obj/item/chems/food/fishandchips/Initialize()

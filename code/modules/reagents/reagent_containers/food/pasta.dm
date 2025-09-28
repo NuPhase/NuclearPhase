@@ -9,7 +9,7 @@
 	filling_color = "#eddd00"
 	center_of_mass = @'{"x":16,"y":16}'
 	nutriment_desc = list("noodles" = 2)
-	nutriment_amt = 1
+	nutriment_amt = 8
 	bitesize = 1
 
 /obj/item/chems/food/boiledspagetti
@@ -20,7 +20,7 @@
 	filling_color = "#fcee81"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("noodles" = 2)
-	nutriment_amt = 2
+	nutriment_amt = 16
 	bitesize = 2
 
 /obj/item/chems/food/pastatomato
@@ -31,7 +31,7 @@
 	filling_color = "#de4545"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("tomato" = 3, "noodles" = 3)
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 4
 
 /obj/item/chems/food/pastatomato/Initialize()
@@ -45,7 +45,7 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#535e66"
 	center_of_mass = @'{"x":16,"y":10}'
-	nutriment_amt = 6
+	nutriment_amt = 48
 	bitesize = 4
 
 /obj/item/chems/food/nanopasta/Initialize()
@@ -60,7 +60,7 @@
 	filling_color = "#de4545"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("noodles" = 4)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	bitesize = 2
 
 /obj/item/chems/food/meatballspagetti/Initialize()
@@ -74,7 +74,7 @@
 	filling_color = "#de4545"
 	center_of_mass = @'{"x":16,"y":10}'
 	nutriment_desc = list("noodles" = 4)
-	nutriment_amt = 4
+	nutriment_amt = 32
 	bitesize = 2
 
 /obj/item/chems/food/spesslaw/Initialize()
