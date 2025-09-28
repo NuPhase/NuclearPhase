@@ -195,6 +195,25 @@
 /datum/powernet/proc/trigger_warning(var/duration_ticks = 20)
 	problem = max(duration_ticks, problem)
 
+/datum/powernet/proc/apply_resistive_heating()
+	var/list/processed_zones = list()
+	for(var/obj/machinery/power/M in nodes)
+		var/turf/simulated/T = get_turf(M)
+		if(T.zone in processed_zones)
+			continue // Already processed that one
+		processed_zones += T.zone
+
+	// That's cringe, would have to average it later. One tiny cable in a chain of thicc ones would cause MAYHEM
+	var/obj/structure/cable/C = pick(cables)
+
+	var/resistive_heat = draw_power(POWERNET_HEAT(src, (C.resistance * length(cables))))
+	var/power_per_zone = resistive_heat / length(processed_zones)
+
+	for(var/zone/cur_zone in processed_zones)
+		cur_zone.air.add_thermal_energy(power_per_zone, FALSE)
+
+	losses += resistive_heat
+
 //handles the power changes in the powernet
 //called every ticks by the powernet controller
 /datum/powernet/proc/reset()
@@ -203,12 +222,7 @@
 	if(problem > 0)
 		problem = max(problem - 1, 0)
 	if(voltage)
-		var/obj/structure/cable/C = pick(cables)
-		var/turf/T = get_turf(C)
-		var/datum/gas_mixture/environment = T.return_air()
-		var/used = draw_power(0.0001 * POWERNET_HEAT(src, (C.resistance * cables.len)))
-		environment.add_thermal_energy(used)
-		losses += used
+		apply_resistive_heating()
 
 	handle_batteries()
 	handle_generators()
