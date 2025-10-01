@@ -62,8 +62,12 @@ var/list/global/reactor_ports = list()
 	var/obj/machinery/power/hybrid_reactor/core = reactor_components["core"]
 	var/datum/gas_mixture/coregas = core.containment_field
 	if(coregas.temperature > target_temperature) //we consoom
+		var/latent_heat_energy = 0
+		for(var/f_type in air_contents.solids)
+			var/decl/material/mat = GET_DECL(f_type)
+			latent_heat_energy += air_contents.solids[f_type] * mat.latent_heat
 		var/temperature_delta = target_temperature - air_contents.temperature
-		var/required_energy = air_contents.heat_capacity() * temperature_delta
+		var/required_energy = (air_contents.heat_capacity() * temperature_delta) + latent_heat_energy
 		coregas.add_thermal_energy(required_energy * -1)
 		air_contents.add_thermal_energy(required_energy)
 

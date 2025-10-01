@@ -79,7 +79,7 @@ var/global/list/hygiene_props = list()
 			var/adding = min(flood_amt-F?.reagents.total_volume, rand(300,500)*clogged)
 			if(adding > 0)
 				if(!F) F = new(T)
-				F.reagents.add_reagent(/decl/material/liquid/water/dirty4, adding)
+				F.reagents.add_reagent(/decl/material/liquid/water/dirty3, adding)
 
 /obj/structure/hygiene/proc/drain()
 	if(!can_drain) return

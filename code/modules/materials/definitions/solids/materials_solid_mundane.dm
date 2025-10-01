@@ -21,7 +21,7 @@
 	dissolves_in = MAT_SOLVENT_STRONG
 	dissolves_into = list(
 		/decl/material/solid/sand =    0.2,
-		/decl/material/liquid/water/dirty5 = 0.5,
+		/decl/material/liquid/water/dirty4 = 0.5,
 		/decl/material/solid/metal/iron =      0.1,
 		/decl/material/solid/metal/aluminium = 0.05,
 		/decl/material/solid/phosphorus =      0.05,

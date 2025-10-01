@@ -7857,6 +7857,13 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/maintenance/sublevel_one)
+"dGR" = (
+/obj/structure/hygiene/sink/kitchen{
+	dir = 4;
+	pixel_x = -20
+	},
+/turf/simulated/floor/tiled/white/monotile/hydroponics,
+/area/serenity/shelter/habitationdeck/kitchen)
 "dGS" = (
 /obj/machinery/medical/blood_purifier,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -9080,6 +9087,9 @@
 	dir = 4
 	},
 /obj/structure/fire_hydrant_auto,
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
 "eiX" = (
@@ -9132,13 +9142,6 @@
 /area/serenity/shelter/habitationdeck/messhall)
 "ekm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/chems/glass/bucket,
-/obj/structure/cable/blue{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/blue{
-	icon_state = "1-8"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
 "ekr" = (
@@ -11230,6 +11233,12 @@
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/atmos)
+"ffY" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/medbay/floor3)
 "fge" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -11287,6 +11296,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_prep)
+"fgM" = (
+/obj/structure/cable/heavy{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/floor3)
 "fgT" = (
 /obj/machinery/door/firedoor/border{
 	dir = 8
@@ -15505,6 +15520,9 @@
 /obj/structure/cable/blue{
 	icon_state = "1-4"
 	},
+/obj/structure/cable/blue{
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor3)
 "hbx" = (
@@ -17626,6 +17644,12 @@
 	},
 /turf/simulated/floor/carpet/magenta,
 /area/serenity/shelter/habitationdeck/crew)
+"iej" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/medbay/floor3)
 "ieu" = (
 /obj/structure/railing/mapped,
 /obj/effect/decal/cleanable/dirt,
@@ -19453,12 +19477,12 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "iUQ" = (
-/obj/structure/cable/blue{
-	icon_state = "1-2"
-	},
 /obj/structure/door/fire{
 	lock_data = list("ACCESS_MAINT");
 	lock_type = /datum/lock/id_card
+	},
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/medbay/floor3)
@@ -21704,9 +21728,11 @@
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
 "kaH" = (
-/obj/machinery/power/breakerbox/activated,
 /obj/structure/cable/blue{
-	icon_state = "4-8"
+	icon_state = "0-8"
+	},
+/obj/machinery/power/generator/transformer/large{
+	coef = 0.209091
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/medbay/floor3)
@@ -22453,10 +22479,6 @@
 /area/serenity/shelter/engineering/service_tunnels)
 "ktC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/blue{
-	icon_state = "1-8"
-	},
-/obj/item/wrench,
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
@@ -26805,6 +26827,9 @@
 /obj/machinery/door/blast/regular/open{
 	id_tag = "lab_decont_interior"
 	},
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
 "mxa" = (
@@ -27902,10 +27927,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/railing/mapped{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/fueltank/newtank/diesel,
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
 "mZY" = (
@@ -29278,7 +29299,7 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/maintenance/sublevel_three)
 "nFO" = (
-/obj/structure/reagent_dispensers/watertank/newtank,
+/obj/structure/reagent_dispensers/barrel/water,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/freezer)
 "nGe" = (
@@ -30372,10 +30393,10 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "obl" = (
-/obj/structure/cable/blue{
+/obj/machinery/light/ceiling,
+/obj/structure/cable/heavy{
 	icon_state = "4-8"
 	},
-/obj/machinery/light/ceiling,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor3)
 "obo" = (
@@ -35536,10 +35557,10 @@
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/cargo)
 "qlA" = (
-/obj/structure/cable/blue{
-	icon_state = "2-8"
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor3)
 "qlF" = (
 /obj/effect/floor_decal/industrial/fire/fulltile,
@@ -35930,6 +35951,18 @@
 /obj/item/pen/retractable,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"quP" = (
+/obj/structure/cable/blue{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/blue{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	id_tag = "Laboratories"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/medbay/floor3)
 "quU" = (
 /obj/structure/closet/l3closet/security,
 /obj/effect/decal/cleanable/dirt,
@@ -37716,6 +37749,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/habitationdeck/crew)
+"rho" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/medbay/floor3)
 "rhu" = (
 /obj/effect/fluid_mapped,
 /turf/simulated/floor/concrete/black,
@@ -38478,6 +38517,9 @@
 /area/serenity/shelter/habitationdeck/crew)
 "ryh" = (
 /obj/machinery/door/firedoor/autoset,
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor3)
 "ryn" = (
@@ -42061,7 +42103,7 @@
 /obj/effect/floor_decal/corner/grey{
 	dir = 9
 	},
-/obj/structure/closet/crate/trashcart,
+/obj/structure/reagent_dispensers/barrel/water,
 /turf/simulated/floor/tiled/white,
 /area/serenity/shelter/habitationdeck/kitchen)
 "tjf" = (
@@ -42542,6 +42584,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_prep)
 "ttz" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
 /obj/structure/cable/heavy{
 	icon_state = "2-8"
 	},
@@ -44056,6 +44101,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/habitationdeck/crew)
+"ueM" = (
+/obj/structure/cable/heavy{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/medbay/floor3)
 "ueY" = (
 /obj/effect/floor_decal/carpet/blue{
 	dir = 4
@@ -44762,14 +44813,6 @@
 "uvj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/blue{
-	icon_state = "0-4"
-	},
-/obj/item/tank/high_temp_waste,
-/obj/item/tank/hydrogen_peroxide,
-/obj/machinery/power/generator/port_gen/liquid/diesel{
-	closed_cycle = 1
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
 "uvl" = (
@@ -45863,10 +45906,10 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
 "uXx" = (
-/obj/structure/cable/blue{
-	icon_state = "2-4"
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white/monotile,
+/turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/medbay/floor3)
 "uXB" = (
 /obj/machinery/light/small,
@@ -46381,6 +46424,18 @@
 /obj/item/flashlight,
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/maintenance/sublevel_two)
+"viT" = (
+/obj/structure/rack/dark,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/obj/item/chems/condiment/small/packet/waterpurifier,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/habitationdeck/freezer)
 "viZ" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/closet/secure_closet/freezer/fridge/empty,
@@ -46541,7 +46596,7 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations/cavern)
 "vnB" = (
-/obj/structure/cable/blue{
+/obj/structure/cable/heavy{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/white/monotile,
@@ -47985,6 +48040,9 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
 "wae" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/labs/particle_physics/particle_accelerator)
 "waq" = (
@@ -48575,7 +48633,7 @@
 /area/serenity/shelter/medbay/floor3/break_room)
 "wkt" = (
 /turf/simulated/floor/plating,
-/area/space)
+/area/serenity/shelter/engineering/service_tunnels)
 "wkJ" = (
 /obj/machinery/light/ceiling{
 	dir = 4
@@ -50445,6 +50503,18 @@
 /obj/machinery/camera/network/public,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
+"xaw" = (
+/obj/machinery/power/generator/transformer/switchable/on/large{
+	coef = 10;
+	dir = 1;
+	max_cap = 0;
+	name = "SECTOR C to LAB"
+	},
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/medbay/floor3)
 "xaI" = (
 /obj/structure/cable/heavy{
 	icon_state = "2-8"
@@ -53044,9 +53114,6 @@
 "yhN" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
-	},
-/obj/structure/cable/blue{
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -402313,7 +402380,7 @@ ski
 ski
 bZR
 hbv
-uXx
+ski
 fil
 ski
 ski
@@ -402701,22 +402768,22 @@ tBQ
 tBQ
 riS
 tzw
-kwE
-tBQ
-tBQ
-tBQ
+fgM
+qlA
+qlA
+qlA
 ryh
-tBQ
-tBQ
-tBQ
-tBQ
-tBQ
-tBQ
-tBQ
-tBQ
-tBQ
+qlA
+qlA
+qlA
+qlA
+qlA
+qlA
+qlA
+qlA
+qlA
 mwV
-sSS
+gIJ
 wae
 eiW
 ttz
@@ -402895,7 +402962,7 @@ riS
 riS
 riS
 lbm
-kwE
+rho
 tBQ
 tBQ
 tBQ
@@ -403283,7 +403350,7 @@ efh
 gAn
 bhY
 gfF
-kwE
+rho
 tBQ
 tBQ
 pnz
@@ -403474,9 +403541,9 @@ luM
 drs
 dwC
 niW
-ngY
+ueM
 iUQ
-ski
+qlA
 vnB
 cUZ
 xzd
@@ -403668,7 +403735,7 @@ xLT
 vGD
 vGD
 niW
-niW
+iej
 riS
 riS
 riS
@@ -403860,9 +403927,9 @@ vUl
 riS
 ngY
 gAn
-gAn
+quP
 cdO
-niW
+iej
 riS
 vND
 vND
@@ -404053,10 +404120,10 @@ xao
 wnM
 riS
 kaH
-vGD
-vGD
-vGD
-niW
+xaw
+uXx
+uXx
+ffY
 riS
 vND
 vND
@@ -404246,11 +404313,11 @@ vUl
 vUl
 vUl
 riS
-qlA
-gAn
-gAn
-gAn
-cdO
+vGD
+vGD
+vGD
+vGD
+vGD
 riS
 vND
 wWF
@@ -441909,7 +441976,7 @@ vdz
 fGK
 uDS
 fGK
-fGK
+dGR
 fGK
 hgi
 uTS
@@ -445975,7 +446042,7 @@ gAN
 nFO
 frS
 frS
-vIg
+viT
 vIg
 gAN
 lfl

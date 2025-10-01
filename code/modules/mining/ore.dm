@@ -217,7 +217,7 @@
 		/decl/material/solid/metal/radium = 0.001,
 		/decl/material/solid/metal/gold = 0.002,
 		/decl/material/liquid/diesel = 0.42,
-		/decl/material/liquid/water/dirty5 = 0.06,
+		/decl/material/liquid/water/dirty4 = 0.06,
 		/decl/material/liquid/tar = 0.21,
 		/decl/material/liquid/acetone = 0.04,
 		/decl/material/solid/copper_sulfide = 0.04,

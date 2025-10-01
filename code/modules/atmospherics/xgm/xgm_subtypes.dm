@@ -37,13 +37,16 @@
 	var/pressure_to_cache = 0
 	if(volume)
 		if(gas_moles)
-			pressure_to_cache = (gas_moles - suction_moles) * R_IDEAL_GAS_EQUATION * temperature / available_volume
+			var/actually_suctioned = gas_moles - min(suction_moles, gas_moles * 0.9)
+			pressure_to_cache = actually_suctioned * R_IDEAL_GAS_EQUATION * temperature / available_volume
 		else
-			pressure_to_cache = (total_moles - suction_moles) * R_IDEAL_GAS_EQUATION * temperature / volume
+			var/actually_suctioned = total_moles - min(suction_moles, total_moles * 0.9)
+			pressure_to_cache = actually_suctioned * R_IDEAL_GAS_EQUATION * temperature / volume
+		var/list/all_fluid = get_fluid()
 		for(var/g in liquids)
 			var/decl/material/mat = GET_DECL(g)
-			var/temperature_factor = (temperature - mat.melting_point) / mat.boiling_point //should be 1 at boiling point and 0 at melting point
-			pressure_to_cache += liquids[g] * ONE_ATMOSPHERE * temperature_factor / volume
+			var/temperature_factor = Clamp(((temperature - mat.melting_point) / (mat.boiling_point - mat.melting_point))**2, 0.1, 1)
+			pressure_to_cache += ONE_ATMOSPHERE * temperature_factor * (liquids[g]/all_fluid[g])
 	pressure = max(pressure_to_cache, 0)
 	if(pressure_to_cache < 0)
 		PRINT_STACK_TRACE("Negative pressure result in cache_pressure()")

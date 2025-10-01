@@ -34,7 +34,7 @@
 		fluid_type = /decl/material/liquid/water/dirty1
 		release_steam()
 	else
-		fluid_type = /decl/material/liquid/water/dirty3
+		fluid_type = /decl/material/liquid/water/dirty2
 	release_water()
 
 /obj/effect/fissure/proc/release_water()

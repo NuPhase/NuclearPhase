@@ -19,7 +19,7 @@
 
 /decl/chemical_reaction/recipe/cafe/water_purification_one
 	name = "Water Purification"
-	required_reagents = list(/decl/material/liquid/water/dirty1 = 10, /decl/material/solid/water_purifier_first = 1)
+	required_reagents = list(/decl/material/liquid/water/dirty1 = 10, /decl/material/solid/water_purifier_first = 0.1)
 	result = /decl/material/liquid/water
 	result_amount = 10
 	maximum_temperature = INFINITY

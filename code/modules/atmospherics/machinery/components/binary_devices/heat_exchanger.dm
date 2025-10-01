@@ -72,6 +72,21 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 				latent_heat_energy -= all_fluid[f_type] * mat.latent_heat
 	latent_heat_capacity = latent_heat_energy / air1.total_moles
 
+	var/connected_latent_heat_energy = 0
+	var/connected_latent_heat_capacity = 0
+	var/list/connected_fluid = connected.air1.get_fluid()
+	if(heating)
+		for(var/f_type in connected_fluid)
+			var/decl/material/mat = GET_DECL(f_type)
+			if(connected.air1.temperature < mat.boiling_point && wanted_temperature > mat.boiling_point)
+				connected_latent_heat_energy += connected_fluid[f_type] * mat.latent_heat
+	else
+		for(var/f_type in connected_fluid)
+			var/decl/material/mat = GET_DECL(f_type)
+			if(connected.air1.temperature > mat.boiling_point && wanted_temperature < mat.boiling_point)
+				connected_latent_heat_energy -= connected_fluid[f_type] * mat.latent_heat
+	connected_latent_heat_capacity = connected_latent_heat_energy / connected.air1.total_moles
+
 	var/temperature_delta = wanted_temperature - air1.temperature
 	var/required_energy_delta = (temperature_delta * our_heat_capacity) + latent_heat_energy
 
@@ -86,11 +101,12 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 	//var/moles_to_transfer = abs(actual_energy_delta) / max(our_heat_capacity, their_heat_capacity)
 
 	var/energy_per_mole = ((our_heat_capacity/air1.total_moles) * temperature_delta) + latent_heat_capacity
+	var/energy_per_mole_conn = ((their_heat_capacity/connected.air1.total_moles) * (wanted_temperature - connected.air1.temperature)) + connected_latent_heat_capacity
 
 	air2.merge(air1.remove(abs(actual_energy_delta/energy_per_mole)))
 	air2.add_thermal_energy(actual_energy_delta, boiling_coef = 0.999)
 
-	connected.air2.merge(connected.air1.remove(abs((actual_energy_delta / their_heat_capacity) * temperature_delta)))
+	connected.air2.merge(connected.air1.remove(abs(actual_energy_delta/energy_per_mole_conn)))
 	connected.air2.add_thermal_energy(actual_energy_delta * -1, boiling_coef = 0.999)
 
 	update_networks()

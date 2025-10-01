@@ -58,7 +58,7 @@
 			cur_heart.bpm_modifiers["Starvation"] = rand(30, 40)
 			add_chemical_effect(CE_PRESSURE, -30)
 			var/datum/reagents/ingested = get_ingested_reagents()
-			if(ingested.has_reagent(/decl/material/liquid/nutriment, 15) && !ingested.has_reagent(/decl/material/liquid/electrolytes, 0.1)) //refeeding syndrome
+			if(ingested.has_reagent(/decl/material/liquid/nutriment, 15) && !bloodstr.has_reagent(/decl/material/liquid/electrolytes, 0.1)) //refeeding syndrome
 				cur_heart.stability_modifiers["Refeeding Syndrome"] = -25
 				cur_heart.bpm_modifiers["Refeeding Syndrome"] = -60
 				add_chemical_effect(CE_PRESSURE, -50)

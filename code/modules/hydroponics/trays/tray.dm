@@ -57,7 +57,8 @@
 		/decl/material/liquid/acid/hydrochloric =   1.5,
 		/decl/material/liquid/acid/polyacid =       3,
 		/decl/material/liquid/weedkiller =          3,
-		/decl/material/solid/metal/radium =         2
+		/decl/material/solid/metal/radium =         2,
+		/decl/material/liquid/water/dirty4 = 		1
 	)
 	var/static/list/nutrient_reagents = list(
 		/decl/material/liquid/drink/milk =          0.1,
@@ -88,12 +89,14 @@
 	)
 	var/static/list/water_reagents = list(
 		/decl/material/liquid/water =               1,
+		/decl/material/liquid/water/dirty1 =		1,
+		/decl/material/liquid/water/dirty2 =		1,
+		/decl/material/liquid/water/dirty3 =		0.7,
 		/decl/material/liquid/adminordrazine =      1,
 		/decl/material/liquid/drink/milk =          0.9,
 		/decl/material/liquid/ethanol/beer =        0.7,
 		/decl/material/liquid/fuel/hydrazine =     -2,
 		/decl/material/solid/phosphorus =          -0.5,
-		/decl/material/liquid/water =               1,
 		/decl/material/liquid/drink/sodawater =     1
 	)
 

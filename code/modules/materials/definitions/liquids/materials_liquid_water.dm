@@ -186,32 +186,22 @@
 	heating_products = list(/decl/material/liquid/water/dirty1 = 1)
 	reactivity_coefficient = 0.5
 
-// Water with some contaminants.
-// Can poison in large quantities
-/decl/material/liquid/water/dirty3
-	dirty_stage = 3
-	dirtiness = 1.5
-	taste_description = "water from a dirty lake"
-	taste_mult = 1.5
-	uid = "liquid_water_dirty3"
-	color = "#507579"
-
 // Water plenty of bacteria and contaminants
 // Can poison in a few cups
-/decl/material/liquid/water/dirty4
+/decl/material/liquid/water/dirty3
 	dirty_stage = 4
 	dirtiness = 2
 	taste_description = "swamp water"
 	taste_mult = 2
-	uid = "liquid_water_dirty4"
+	uid = "liquid_water_dirty3"
 	color = "#9b7d63"
 
 // Water a huge amount of contaminants
 // Get heavy metal poisoning, idiot
-/decl/material/liquid/water/dirty5
+/decl/material/liquid/water/dirty4
 	dirty_stage = 5
 	dirtiness = 3
 	taste_description = "heavily contaminated water"
 	taste_mult = 3
-	uid = "liquid_water_dirty5"
+	uid = "liquid_water_dirty4"
 	color = "#74441d"

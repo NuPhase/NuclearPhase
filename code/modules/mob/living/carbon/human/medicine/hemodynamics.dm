@@ -74,7 +74,7 @@
 /mob/living/carbon/human/proc/update_oxygen_capacities()
 	normal_oxygen_capacity = round(vessel.total_volume * 0.2) + get_skill_value(SKILL_FITNESS) * 130 //1 liter of blood can contain 200ml of oxygen + spleen storage
 	max_oxygen_capacity = normal_oxygen_capacity * 1.1
-	oxygen_amount = Clamp(oxygen_amount, 0, max_oxygen_capacity)
+	oxygen_amount = clamp(oxygen_amount, 0, max_oxygen_capacity)
 
 #define PULSE_PRESSURE(stroke_volume) stroke_volume * 0.5714
 #define MCV_PRESSURE(add_mcv) add_mcv * 0.023
@@ -101,18 +101,18 @@
 	tpvr += LAZYACCESS0(chem_effects, CE_PRESSURE) //medication effects
 	tpvr -= getToxLoss() * 0.203 //toxicity dilates vessels
 	tpvr *= systemic_oxygen_saturation //vasoconstriction depends on muscles, muscles need oxygen
-	tpvr = Clamp(tpvr, TPVR_MIN, TPVR_MAX) //static friction and elasticity flatline
+	tpvr = clamp(tpvr, TPVR_MIN, TPVR_MAX) //static friction and elasticity flatline
 
 	var/bpmd = ccp * 0.109 + 0.159
 	var/coeff = get_blood_volume_hemo() * (bpmd * 3.73134328) * get_cardiac_output()
 	var/bpm53 = bpm * coeff * 53.0
 	var/stroke_volume = get_stroke_volume()
 	dyspressure = max(0, Interpolate(dyspressure, ((tpvr * (2180 + bpm53))/(metabolic_coefficient * (17820 - bpm53)) + MCV_PRESSURE(add_mcv*0.7))*get_blood_volume_hemo(), HEMODYNAMICS_INTERPOLATE_FACTOR))
-	syspressure = Clamp(Interpolate(syspressure, dyspressure + PULSE_PRESSURE(stroke_volume) + (MCV_PRESSURE(add_mcv)*get_blood_volume_hemo()), HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 433)
+	syspressure = clamp(Interpolate(syspressure, dyspressure + PULSE_PRESSURE(stroke_volume) + (MCV_PRESSURE(add_mcv)*get_blood_volume_hemo()), HEMODYNAMICS_INTERPOLATE_FACTOR), 0, 433)
 	dyspressure = min(dyspressure, max(10, syspressure)-8) // static pressure loss
 	meanpressure = dyspressure + (syspressure - dyspressure) * 0.33
 
-	mcv = Clamp(((bpm * stroke_volume) + (add_mcv * get_blood_volume_hemo())), 0, 32000)
+	mcv = clamp(((bpm * stroke_volume) + (add_mcv * get_blood_volume_hemo())), 0, 32000)
 	add_mcv = 0
 
 	write_hemo_log()
@@ -143,7 +143,7 @@
 	return 0
 
 /mob/living/carbon/human/proc/add_oxygen(amount)
-	oxygen_amount = Clamp(oxygen_amount + amount, 0, max_oxygen_capacity)
+	oxygen_amount = clamp(oxygen_amount + amount, 0, max_oxygen_capacity)
 	if(oxygen_amount < normal_oxygen_capacity - 10)
 		return 0
 	return 1

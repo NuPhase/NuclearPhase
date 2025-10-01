@@ -16,7 +16,7 @@
 	icon = 'icons/obj/items/tanks/tank_blue.dmi'
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	starting_pressure = list(/decl/material/gas/oxygen = 6*ONE_ATMOSPHERE)
-	volume = 8
+	volume = 50
 	weight = 2.5
 
 /obj/item/tank/oxygen/yellow
@@ -39,7 +39,7 @@
 	desc = "Mixed anyone?"
 	icon = 'icons/obj/items/tanks/tank_blue.dmi'
 	starting_pressure = list(/decl/material/gas/oxygen = 6*ONE_ATMOSPHERE*O2STANDARD, /decl/material/gas/nitrogen = 6*ONE_ATMOSPHERE*N2STANDARD)
-	volume = 8
+	volume = 50
 
 /*
  * Hydrogen

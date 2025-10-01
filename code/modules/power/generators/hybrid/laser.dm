@@ -21,7 +21,7 @@
 	var/operating = FALSE
 	var/armed = FALSE
 	var/primed = FALSE
-	var/capacitor_charge = 0
+	var/capacitor_charge = LASER_MAX_CHARGE*0.5
 	use_power = POWER_USE_OFF
 	power_channel = EQUIP
 	idle_power_usage = 10000
