@@ -205,6 +205,8 @@
 
 	// That's cringe, would have to average it later. One tiny cable in a chain of thicc ones would cause MAYHEM
 	var/obj/structure/cable/C = pick(cables)
+	if(C.resistance == 0)
+		return
 
 	var/resistive_heat = draw_power(POWERNET_HEAT(src, (C.resistance * length(cables))) * 0.00001)
 	var/power_per_zone = resistive_heat / length(processed_zones)
