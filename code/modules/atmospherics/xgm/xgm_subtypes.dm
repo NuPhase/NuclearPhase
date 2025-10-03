@@ -37,11 +37,9 @@
 	var/pressure_to_cache = 0
 	if(volume)
 		if(gas_moles)
-			var/actually_suctioned = gas_moles - min(suction_moles, gas_moles * 0.9)
-			pressure_to_cache = actually_suctioned * R_IDEAL_GAS_EQUATION * temperature / available_volume
+			pressure_to_cache = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
 		else
-			var/actually_suctioned = total_moles - min(suction_moles, total_moles * 0.9)
-			pressure_to_cache = actually_suctioned * R_IDEAL_GAS_EQUATION * temperature / volume
+			pressure_to_cache = total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
 		var/list/all_fluid = get_fluid()
 		for(var/g in liquids)
 			var/decl/material/mat = GET_DECL(g)

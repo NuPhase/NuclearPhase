@@ -832,7 +832,8 @@ var/decl/material/boil_mat = null
 				slow_neutrons += scattered_neutrons
 			if(INTERACTION_ABSORPTION)
 				var/absorbed_neutrons = get_nuclear_reaction_rate(container, INTERACTION_ABSORPTION, slow_neutrons, fast_neutrons)
-				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons, container.gas[src.type])
+				var/list/all_fluid = container.get_fluid()
+				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons, all_fluid[src.type])
 				fast_neutrons -= absorbed_neutrons * 0.5
 				slow_neutrons -= absorbed_neutrons * 0.5
 				energy_delta += absorbed_neutrons * SLOW_NEUTRON_ENERGY
@@ -842,7 +843,8 @@ var/decl/material/boil_mat = null
 						container.adjust_gas(abs_type, absorbed_neutrons * absorption_products[abs_type], FALSE)
 			if(INTERACTION_FISSION)
 				var/fission_reactions = get_nuclear_reaction_rate(container, INTERACTION_FISSION, slow_neutrons, fast_neutrons)
-				fission_reactions = min(container.gas[src.type], fission_reactions)
+				var/list/all_fluid = container.get_fluid()
+				fission_reactions = min(all_fluid[src.type], fission_reactions)
 				if(slow_neutrons > fast_neutrons)
 					slow_neutrons -= fission_reactions
 				else
@@ -866,6 +868,7 @@ var/decl/material/boil_mat = null
 
 	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
 
-	return ((slow_neutrons + fast_neutrons)/sqrt(container.volume)*2) * actual_cross_section * container.gas[src.type]/container.volume
+	var/list/all_fluid = container.get_fluid()
+	return ((slow_neutrons + fast_neutrons)/sqrt(container.volume)*2) * actual_cross_section * all_fluid[src.type]/container.volume
 
 #undef SLOW_NEUTRON_ENERGY

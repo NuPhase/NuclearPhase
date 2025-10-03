@@ -10,6 +10,7 @@
 
 	atom_flags = ATOM_FLAG_CLIMBABLE
 	movable_flags = MOVABLE_FLAG_WHEELED
+	pull_coefficient = 0.01
 	clicksound = "switch"
 
 	light_power = 0.5

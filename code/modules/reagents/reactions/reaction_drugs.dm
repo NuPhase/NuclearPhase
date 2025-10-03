@@ -131,6 +131,12 @@
 	result_amount = 3
 	minimum_temperature = 35 CELSIUS
 
+/decl/chemical_reaction/desomorphine
+	name = "Desomorphine Synthesis"
+	result = /decl/material/liquid/opium/codeine/desomorphine
+	required_reagents = list(/decl/material/liquid/opium/codeine = 3, /decl/material/liquid/ethanol = 1, /decl/material/solid/iodine = 1, /decl/material/liquid/acid/hydrochloric = 1)
+	result_amount = 3
+
 /decl/chemical_reaction/piperidone
 	name = "4-Piperidone Synthesis"
 	result = /decl/material/liquid/piperidone

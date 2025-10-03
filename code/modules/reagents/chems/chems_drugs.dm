@@ -412,6 +412,7 @@
 	name = "desomorphine"
 	lore_text = "An addictive painkiller with a very short window of action."
 	effective_dose = 0.5
+	addictiveness = 100
 	painkill_magnitude = 220000
 	overdose = 14
 	uid = "chem_desomorphine"

@@ -104,10 +104,18 @@
 			S.start()
 	holder.clear_reagents()
 
-/decl/chemical_reaction/srec_inhibitor
-	name = "SREC Inhibitor"
+/decl/chemical_reaction/srec_inhibitor_one
+	name = "SREC Inhibitor I"
 	result = /decl/material/liquid/srec_inhibitor
 	required_reagents = list(/decl/material/solid/static_crystal/inhibited = 1, /decl/material/liquid/separated_blood = 10)
+	result_amount = 10
+	minimum_temperature = T0C
+	mix_message = "The solution bubbles and gets thicker."
+
+/decl/chemical_reaction/srec_inhibitor_two
+	name = "SREC Inhibitor II"
+	result = /decl/material/liquid/srec_inhibitor
+	required_reagents = list(/decl/material/solid/static_crystal/inhibited = 0.1, /decl/material/liquid/opium/codeine/desomorphine = 0.1, /decl/material/liquid/suxamethonium = 0.1, /decl/material/liquid/noradrenaline = 0.1, /decl/material/liquid/water = 10)
 	result_amount = 10
 	minimum_temperature = T0C
 	mix_message = "The solution bubbles and gets thicker."
@@ -139,4 +147,10 @@
 	result = /decl/material/liquid/acid/hydrogen_peroxide
 	required_reagents = list(/decl/material/gas/hydrogen = 550, /decl/material/gas/oxygen = 550)
 	catalysts = list(/decl/material/liquid/anthraquinone = 10, /decl/material/solid/metal/beryllium = 10)
+	result_amount = 1
+
+/decl/chemical_reaction/water_purifier
+	name = "Water Purifying Compound"
+	result = /decl/material/solid/water_purifier_first
+	required_reagents = list(/decl/material/gas/chlorine = 1, /decl/material/solid/potash = 2)
 	result_amount = 1
