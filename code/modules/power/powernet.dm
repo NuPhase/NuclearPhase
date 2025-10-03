@@ -208,7 +208,14 @@
 	if(C.resistance == 0)
 		return
 
-	var/resistive_heat = draw_power(POWERNET_HEAT(src, (C.resistance * length(cables))) * 0.00001)
+	var/resistive_heat = min(POWERNET_HEAT(src, (C.resistance * length(cables))), max_power)
+
+	if(resistive_heat > max_power * 0.5)
+		WARNING("Anomalous resistive heat. V: [round(voltage)].")
+		return
+
+	resistive_heat = draw_power(resistive_heat)
+
 	var/power_per_zone = resistive_heat / length(processed_zones)
 
 	for(var/zone/cur_zone in processed_zones)

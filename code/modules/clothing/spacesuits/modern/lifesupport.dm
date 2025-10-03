@@ -6,6 +6,8 @@
 #define STATUS_MESSAGE_COOLDOWN 100
 #define KWH_PER_KG_WEIGHT 1.2
 
+#define HEATING_PER_KG 5.5
+
 /obj/item/storage/backpack/lifesupportpack
 	name = "life support unit"
 	icon = 'icons/obj/items/storage/backpack/backpack_ert.dmi'
@@ -110,6 +112,10 @@
 			power_draw += pump_gas(src, oxygen_tank.air_contents, owner.internal_atmosphere, transfer_moles)
 
 	power_draw += owner.weight * KWH_PER_KG_WEIGHT
+
+	if(abs(owner.temperature - T20C) > 1)
+		power_draw += owner.weight * HEATING_PER_KG
+		Interpolate(owner.temperature, T20C, 0.1)
 
 	battery.drain_power(0, 0, power_draw)
 
@@ -323,3 +329,4 @@
 	create_reagents(12000)
 
 #undef KWH_PER_KG_WEIGHT
+#undef HEATING_PER_KG
