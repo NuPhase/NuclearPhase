@@ -108,6 +108,10 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"fh" = (
+/obj/structure/reagent_dispensers/watertank/newtank,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "fI" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan/layer3{
 	dir = 9
@@ -155,6 +159,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"ie" = (
+/obj/item/chems/glass/beaker/large,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "ip" = (
 /obj/machinery/processor/cutter,
 /turf/simulated/floor/tiled/monotile,
@@ -198,6 +206,16 @@
 /obj/item/stack/ore/pyrothane,
 /obj/item/stack/ore/pyrothane,
 /turf/simulated/floor/tiled/white/monotile,
+/area/hallway)
+"jV" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/generator/transformer{
+	dir = 4;
+	should_transfer_demand = 1
+	},
+/turf/simulated/floor/plating,
 /area/hallway)
 "kh" = (
 /obj/item/stack/ore/hematite,
@@ -243,6 +261,13 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"lC" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "lN" = (
 /obj/machinery/light/spot,
 /turf/simulated/floor/tiled/monotile,
@@ -263,6 +288,16 @@
 /obj/item/chems/syringe,
 /obj/item/chems/syringe,
 /turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"mA" = (
+/obj/structure/cable/superconductor{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/generator/transformer{
+	dir = 4;
+	should_transfer_demand = 1
+	},
+/turf/simulated/floor/plating,
 /area/hallway)
 "mS" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
@@ -417,6 +452,17 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"sa" = (
+/obj/machinery/power/generator/turbine_generator{
+	dir = 8;
+	icon = 'icons/obj/engine/turbine_generator.dmi';
+	icon_state = "offline";
+	pixel_x = -256;
+	pixel_y = -64;
+	uid = "generator1"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "sT" = (
 /obj/structure/rack,
 /obj/item/intubation_bag,
@@ -455,6 +501,13 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"tK" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/generator/debug_items/infinite_generator,
+/turf/simulated/floor/plating,
+/area/hallway)
 "tV" = (
 /obj/item/stack/ore/galena,
 /obj/item/stack/ore/galena,
@@ -481,6 +534,15 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"vm" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/generator/transformer{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
 /area/hallway)
 "vu" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
@@ -524,15 +586,19 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "wF" = (
-/obj/machinery/power/generator/debug_items/infinite_generator,
-/obj/structure/cable/heavy{
+/obj/structure/cable/superconductor{
 	icon_state = "0-8"
 	},
+/obj/machinery/power/generator/debug_items/infinite_generator,
 /turf/simulated/floor/plating,
 /area/hallway)
 "wP" = (
 /obj/structure/rack,
 /turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"xb" = (
+/obj/machinery/multitile/steam_turbine,
+/turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
 "xq" = (
 /obj/abstract/level_data_spawner/main_level,
@@ -605,6 +671,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Ab" = (
+/obj/structure/reagent_dispensers/barrel/water,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "Al" = (
 /obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten{
 	dir = 1
@@ -635,6 +705,12 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Bs" = (
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"BA" = (
+/obj/machinery/atmospherics/unary/debug/infinite_sink{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "CB" = (
@@ -703,6 +779,15 @@
 /obj/machinery/processor/engraver,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Ex" = (
+/obj/structure/cable/superconductor{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/generator/transformer{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "Ey" = (
 /obj/machinery/atmospherics/unary/debug/infinite_outlet{
 	dir = 1;
@@ -768,6 +853,12 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Hv" = (
+/obj/structure/cable/superconductor{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "HT" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
@@ -789,6 +880,12 @@
 /area/hallway)
 "In" = (
 /obj/machinery/medical/blood_purifier,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"Iq" = (
+/obj/machinery/atmospherics/unary/reagent_outlet{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Iv" = (
@@ -851,6 +948,13 @@
 /obj/item/stack/ore/cyanopyrite,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
+"JW" = (
+/obj/item/chems/glass/beaker/bowl,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"Kj" = (
+/turf/simulated/floor/plating,
+/area/hallway)
 "Kk" = (
 /obj/item/stack/material/bolt/mapped/cloth/fifty,
 /obj/item/stack/material/bolt/mapped/cloth/fifty,
@@ -895,6 +999,15 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"LI" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/debug_items/infinite_cable_powersink{
+	power_usage_rate = 1000000
+	},
+/turf/simulated/floor/plating,
 /area/hallway)
 "LR" = (
 /obj/machinery/atmospherics/omni/filter{
@@ -957,6 +1070,12 @@
 /obj/machinery/power/hybrid_reactor,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"OD" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "OH" = (
 /obj/machinery/atmospherics/omni/filter{
 	tag_north = 8;
@@ -1000,6 +1119,13 @@
 /obj/item/stack/material/puck/mapped/carbon/forty,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Pv" = (
+/obj/machinery/atmospherics/unary/debug/infinite_outlet/water{
+	dir = 1;
+	fluid_temperature = 1150
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "Px" = (
 /obj/machinery/atmospherics/omni/filter{
 	tag_north = 2;
@@ -1029,9 +1155,26 @@
 /obj/item/stack/material/strut/mapped/steel/thirty,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Qz" = (
+/obj/structure/cable/superconductor{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/debug_items/infinite_cable_powersink{
+	power_usage_rate = 1000000
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "Rd" = (
 /obj/machinery/portable_atmospherics/canister/argon,
 /turf/simulated/floor/tiled/white/monotile,
+/area/hallway)
+"Re" = (
+/obj/machinery/atmospherics/unary/debug/infinite_outlet/water{
+	dir = 1;
+	fluid_type = /decl/material/gas/methane;
+	fluid_temperature = 93
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Rt" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -1070,6 +1213,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"SD" = (
+/obj/machinery/linear_accelerator,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "SQ" = (
 /obj/item/arc_electrode/ultrahigh_quality,
 /obj/item/arc_electrode/ultrahigh_quality,
@@ -1097,6 +1244,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Ug" = (
+/obj/structure/reagent_dispensers/barrel,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "Uh" = (
 /obj/item/stack/ore/amorphous_carbon,
 /obj/item/stack/ore/amorphous_carbon,
@@ -1111,6 +1262,12 @@
 /obj/machinery/light/spot,
 /obj/abstract/landmark/latejoin,
 /turf/simulated/floor/tiled/dark,
+/area/hallway)
+"VO" = (
+/obj/machinery/atmospherics/binary/pump/adv/large/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "VR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
@@ -1135,6 +1292,10 @@
 /area/hallway)
 "VW" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on/max_pressure,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"VZ" = (
+/obj/machinery/atmospherics/unary/reagent_inlet,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Wj" = (
@@ -1371,17 +1532,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
 Bs
 Bs
 Bs
@@ -1421,21 +1582,21 @@ da
 mS
 Zo
 Bs
+tl
+VO
+Re
 Bs
-Bs
-Bs
-Bs
-Bs
+EM
 yn
-Bs
-yn
-Bs
-yn
-Bs
-yn
-Bs
+Kj
 ZZ
-Bs
+Kj
+LI
+Kj
+Qz
+Kj
+Kj
+EM
 Bs
 iH
 Bs
@@ -1479,17 +1640,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Xy
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 Oi
@@ -1533,17 +1694,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Jr
-Bs
-Jr
-Bs
-Jr
-Bs
-Jr
-Bs
+Kj
 Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 lj
@@ -1587,17 +1748,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 WM
-Bs
-WM
-Bs
-WM
-Bs
-WM
-Bs
+Kj
 Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Ej
 Bs
@@ -1641,17 +1802,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Xy
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 Bs
@@ -1695,17 +1856,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Jr
-Bs
-Jr
-Bs
-Jr
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 Bs
@@ -1749,17 +1910,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 WM
-Bs
-WM
-Bs
-WM
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Mo
 Bs
 Bs
@@ -1803,17 +1964,17 @@ Zo
 Bs
 Bs
 Bs
-Bs
+EM
 Xy
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 XO
@@ -1857,17 +2018,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Jr
-Bs
+Kj
 Jr
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+jV
+Kj
+mA
+Kj
+Kj
+EM
 Bs
 Bs
 gV
@@ -1911,17 +2072,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 WM
-Bs
+Kj
 WM
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+vm
+Kj
+Ex
+Kj
+Kj
+EM
 Bs
 Bs
 rn
@@ -1965,17 +2126,17 @@ Zo
 Ts
 Bs
 Bs
-Bs
+EM
 Xy
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Ts
 Bs
 Bs
@@ -2019,17 +2180,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Jr
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 Bs
@@ -2040,7 +2201,7 @@ LR
 pO
 Bs
 Bs
-Bs
+SD
 Bs
 Bs
 Bs
@@ -2073,17 +2234,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 WM
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 Bs
@@ -2127,17 +2288,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Xy
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 Bs
@@ -2181,17 +2342,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
+EM
 Xy
-Bs
+Kj
 Xy
-Bs
-Xy
-Bs
-Xy
-Bs
-Xy
-Bs
+Kj
+OD
+Kj
+Hv
+Kj
+Kj
+EM
 Bs
 Bs
 Bs
@@ -2235,17 +2396,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
-wF
-Bs
-wF
-Bs
-wF
-Bs
-wF
-Bs
+EM
 pj
-Bs
+Kj
+pj
+Kj
+tK
+Kj
+wF
+Kj
+Kj
+EM
 Bs
 Bs
 Bs
@@ -2289,17 +2450,17 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
+EM
 Bs
 Bs
 Bs
@@ -2340,10 +2501,10 @@ Bs
 XE
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
+Ug
+Ab
+ie
+JW
 Bs
 Bs
 Bs
@@ -2394,11 +2555,11 @@ Bs
 mV
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+VZ
+Us
+yu
+Us
+Iq
 Bs
 Bs
 Bs
@@ -2450,7 +2611,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+kj
 Bs
 Bs
 Bs
@@ -2932,10 +3093,10 @@ kj
 Bs
 ci
 Bs
-Bs
-Bs
-Bs
-Bs
+fh
+VZ
+Us
+lC
 Bs
 Bs
 Bs
@@ -3076,7 +3237,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+xb
 Bs
 Bs
 Bs
@@ -3130,7 +3291,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+sa
 Bs
 Bs
 Bs
@@ -3724,9 +3885,9 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
+Us
+Us
+Pv
 Bs
 Bs
 Bs
@@ -3831,7 +3992,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+Rt
 Bs
 Bs
 Bs
@@ -3885,7 +4046,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+BA
 Bs
 Bs
 Bs
