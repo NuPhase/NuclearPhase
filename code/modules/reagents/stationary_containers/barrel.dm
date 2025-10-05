@@ -11,7 +11,7 @@
 	var/funnel = FALSE
 
 /obj/structure/reagent_dispensers/barrel/can_fill()
-	return !funnel
+	return funnel
 
 /obj/structure/reagent_dispensers/barrel/get_mechanics_info()
 	return "You can toggle its cover and its funnel by right clicking it. It can only be filled when it has a funnel installed."
@@ -93,10 +93,10 @@
 	set src in view(1)
 
 	if(funnel)
-		usr.visible_message(SPAN_NOTICE("[usr] puts a funnel on [src]"))
+		usr.visible_message(SPAN_NOTICE("[usr] removes the funnel from [src]"))
 		funnel = FALSE
 	else
-		usr.visible_message(SPAN_NOTICE("[usr] removes the funnel from [src]"))
+		usr.visible_message(SPAN_NOTICE("[usr] puts a funnel on [src]"))
 		funnel = TRUE
 	update_icon()
 

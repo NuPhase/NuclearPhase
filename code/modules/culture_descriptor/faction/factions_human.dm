@@ -8,21 +8,20 @@
 	description = "The United Nations, referred to informally as the UN, is an intergovernmental organization whose stated purposes are to maintain international peace and security, develop friendly relations among nations, achieve international cooperation, and serve as a centre for harmonizing the actions of nations. It served to lead the efforts in colonizing interstellar space."
 	subversive_potential = 30
 
-/decl/cultural_info/faction/ceres
-	name = "CERES"
-	description = "You were a low-level employee at the CERES megacorporation, an industrial giant engaged in research and production in the fields of cybernetics and neurotechnology. As the sole owner of neural feedback technology, CERES holds a complete monopoly in this field, potentially having more economic potential than the United Nations. A lot of people hate you, some praise you like a deity. Be careful."
-	subversive_potential = 5
-
 /decl/cultural_info/faction/wehs
 	name = "WEHS"
-	description = "Worlds Established Healthcare System. The largest healthcare provider in all three star systems."
+	description = "Worlds Established Healthcare System. A private medical corporation providing elite medical services within the Sirius system."
 	subversive_potential = 10
 
 /decl/cultural_info/faction/wma
 	name = "WMA"
-	description = "Weaponry and Munition Association is a weaponry provider in the Sirius system. In the past, it was one of the main participants in the Battle of New Tokyo."
+	description = "This organization is the primary manufacturer of weapons. They develop and produce weapons used throughout the system. Their monopoly was globally displaced after the Revolution of New Tokyo."
 	subversive_potential = 15
 
 /decl/cultural_info/faction/saf
 	name = "SAF"
-	description = "Sirius Armed Forces is a governmental organization that ensures the security of Sirius inhabitants. SAF provided immense support during the initial hours of the catastrophe, allowing the shelters to be built or retrofitted."
+	description = "In the past, this was a purely military organization responsible for stability in the Sirius system. \
+					After the New Tokyo Revolution, which led to numerous losses, the CPM was forced to integrate into the SAF, and the organization itself significantly increased its staff. \
+					The SAF is one of the most modern armies in the world. \
+					Large-scale mechanization and autonomous units have made it possible to reduce the density of human personnel to one soldier per seven hundred people. \
+					SAF provided immense support during the initial hours of the catastrophe, allowing the shelters to be built or retrofitted."

@@ -129,7 +129,7 @@ var/global/const/MAP_HAS_RANK = 2		//Rank system, also togglable
 
 	var/list/available_cultural_info = list(
 		TAG_HOMEWORLD = list(/decl/cultural_info/location/sol, /decl/cultural_info/location/alpha_centauri, /decl/cultural_info/location/sirius),
-		TAG_FACTION =   list(/decl/cultural_info/faction/other, /decl/cultural_info/faction/united_nations, /decl/cultural_info/faction/ceres, /decl/cultural_info/faction/wehs, /decl/cultural_info/faction/wma, /decl/cultural_info/faction/saf),
+		TAG_FACTION =   list(/decl/cultural_info/faction/other, /decl/cultural_info/faction/united_nations, /decl/cultural_info/faction/wehs, /decl/cultural_info/faction/wma, /decl/cultural_info/faction/saf),
 		TAG_CULTURE =   list(/decl/cultural_info/culture/human),
 		TAG_RELIGION =  list(/decl/cultural_info/religion/other)
 	)

@@ -98,7 +98,7 @@
 		SetName("[get_base_name()] ([label_text])")
 
 /obj/item/chems/proc/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target) // This goes into afterattack
-	if(!istype(target) || !target.can_fill())
+	if(!istype(target) || target.can_fill())
 		return 0
 
 	if(!target.reagents || !target.reagents.total_volume)

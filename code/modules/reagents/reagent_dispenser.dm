@@ -28,7 +28,7 @@
 	return TRUE
 
 /obj/structure/reagent_dispensers/proc/can_fill()
-	return TRUE
+	return FALSE
 
 /obj/structure/reagent_dispensers/proc/leak()
 	var/turf/T = get_turf(src)

@@ -40,18 +40,20 @@
 /decl/hierarchy/outfit/mercenary
 	name = "Spec Ops - Mercenary"
 	uniform = /obj/item/clothing/under/syndicate
+	suit = /obj/item/clothing/suit/armor/pcarrier/merc
+	head = /obj/item/clothing/head/helmet/merc
 	shoes = /obj/item/clothing/shoes/jackboots/swat/combat
-	l_ear = /obj/item/radio/headset/syndicate/alt
 	belt = /obj/item/storage/belt/holster/security
 	glasses = /obj/item/clothing/glasses/sunglasses
 	gloves = /obj/item/clothing/gloves/thick/swat
 	l_pocket = /obj/item/chems/pill/cyanide
+	r_pocket = /obj/item/communications/pocket_radio
 
 	id_slot = slot_wear_id_str
 	id_type = /obj/item/card/id/syndicate
 	id_pda_assignment = "Mercenary"
 
-	backpack_contents = list(/obj/item/clothing/suit/space/void/merc/prepared = 1, /obj/item/clothing/mask/gas/syndicate = 1)
+	backpack_contents = list(/obj/item/clothing/mask/gas/syndicate = 1, /obj/item/gun/projectile/automatic/smg = 1, /obj/item/ammo_magazine/smg/c11x25 = 2, /obj/item/gun/projectile/pistol/military_service = 1, /obj/item/ammo_magazine/pistol/srec = 2)
 
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_RESET_EQUIPMENT
 

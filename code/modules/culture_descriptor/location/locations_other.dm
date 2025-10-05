@@ -27,4 +27,4 @@
 	installed_implant.implanted = TRUE
 	installed_implant.part = head
 	LAZYADD(head.implants, installed_implant)
-	H.StoreMemory("You've had a CERES neural link implant installed.", /decl/memory_options/system)
+	H.StoreMemory("You've had a neural link implant installed.", /decl/memory_options/system)
