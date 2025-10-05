@@ -210,7 +210,7 @@
 
 	var/resistive_heat = min(POWERNET_HEAT(src, (C.resistance * length(cables))), max_power)
 
-	if(resistive_heat > max_power * 0.5)
+	if(resistive_heat > max_power * 0.2)
 		WARNING("Anomalous resistive heat. V: [round(voltage)].")
 		return
 
