@@ -65,12 +65,12 @@
 
 	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
 	current_gate = reactor_valves["T-COOLANT V-IN"]
-	if(!current_gate.unlocked)
+	if(current_gate && !current_gate.unlocked)
 		do_message("T-COOLANT V-IN CLOSED", 2)
-	if(current_gate.air1.pressure < ONE_ATMOSPHERE * 10)
+	if(current_gate && current_gate.air1.pressure < ONE_ATMOSPHERE * 10)
 		do_message("LOW COOLANT SUPPLY", 2)
 	current_gate = reactor_valves["T-COOLANT V-OUT"]
-	if(!current_gate.unlocked)
+	if(current_gate && !current_gate.unlocked)
 		do_message("T-COOLANT V-OUT CLOSED", 2)
 
 	if(generator1.connected && generator1.last_load < 50000)

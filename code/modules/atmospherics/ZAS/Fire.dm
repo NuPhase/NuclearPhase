@@ -266,6 +266,9 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	SSreactions.process_gasmix(src)
 
+	if(old_temperature > temperature)
+		return 0
+
 	var/firelevel = sqrt(temperature - old_temperature) * FIRELEVEL_PER_T_DELTA
 
 	update_values()

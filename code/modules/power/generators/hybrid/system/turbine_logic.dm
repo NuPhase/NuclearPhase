@@ -99,16 +99,18 @@
 /datum/reactor_control_system/proc/control_cooling()
 	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
 	current_gate = reactor_valves["T-COOLANT V-IN"]
-	if(get_meter_temperature("T-M-TURB EX") > 360)
-		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
-	else
-		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
+	if(current_gate)
+		if(get_meter_temperature("T-M-TURB EX") > 360)
+			current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
+		else
+			current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
 
 	current_gate = reactor_valves["T-COOLANT V-OUT"]
-	if(get_meter_temperature("T-M-COOLANT") > 320 || get_meter_pressure("T-M-COOLANT") > 9000 || get_meter_temperature("T-M-TURB EX") > 360)
-		current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
-	else
-		current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
+	if(current_gate)
+		if(get_meter_temperature("T-M-COOLANT") > 320 || get_meter_pressure("T-M-COOLANT") > 9000 || get_meter_temperature("T-M-TURB EX") > 360)
+			current_gate.target_pressure = max(1000, current_gate.target_pressure -= 100)
+		else
+			current_gate.target_pressure = min(15000, current_gate.target_pressure += 100)
 
 /datum/reactor_control_system/proc/turbine_trip(reason)
 	do_message("TURBINE TRIP: [reason]", 3)

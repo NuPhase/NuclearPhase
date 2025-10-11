@@ -231,27 +231,20 @@
 		if(target_temperature < T0C + MIN_TEMPERATURE)
 			target_temperature = T0C + MIN_TEMPERATURE
 
-		var/datum/gas_mixture/gas
-		gas = environment.remove(0.25*environment.total_moles)
-		if(gas)
+		if(environment.temperature <= target_temperature)	//gas heating
+			var/energy_used = min(environment.get_thermal_energy_change(target_temperature) , active_power_usage)
+			environment.add_thermal_energy(energy_used)
+		else	//gas cooling
+			var/heat_transfer = min(abs(environment.get_thermal_energy_change(target_temperature)), active_power_usage)
 
-			if (gas.temperature <= target_temperature)	//gas heating
-				var/energy_used = min( gas.get_thermal_energy_change(target_temperature) , active_power_usage)
+			//Assume the heat is being pumped into the hull which is fixed at 20 C
+			//none of this is really proper thermodynamics but whatever
 
-				gas.add_thermal_energy(energy_used)
-			else	//gas cooling
-				var/heat_transfer = min(abs(gas.get_thermal_energy_change(target_temperature)), active_power_usage)
+			var/cop = environment.temperature/T20C	//coefficient of performance -> power used = heat_transfer/cop
 
-				//Assume the heat is being pumped into the hull which is fixed at 20 C
-				//none of this is really proper thermodynamics but whatever
+			heat_transfer = min(heat_transfer, cop * active_power_usage)	//this ensures that we don't use more than active_power_usage amount of power
 
-				var/cop = gas.temperature/T20C	//coefficient of performance -> power used = heat_transfer/cop
-
-				heat_transfer = min(heat_transfer, cop * active_power_usage)	//this ensures that we don't use more than active_power_usage amount of power
-
-				heat_transfer = -gas.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
-
-			environment.merge(gas)
+			heat_transfer = -environment.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
 
 /obj/machinery/alarm/proc/overall_danger_level(var/datum/gas_mixture/environment)
 	var/partial_pressure = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume

@@ -214,6 +214,8 @@
 	icon_state = "bottom"
 
 /obj/structure/arc_furnace_overlay/on_update_icon()
+	if(!our_furnace)
+		return
 	cut_overlays()
 	var/list/overlays_to_add = list()
 	if(our_furnace.connected_canister)

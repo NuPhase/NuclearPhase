@@ -11,8 +11,8 @@
 #endif
 
 /hook/startup/proc/extatmos_init()
-	call(EXTATM_LOCATION, "auxtools_init")()
+	call_ext(EXTATM_LOCATION, "auxtools_init")()
 	world.log << "ExtAtmos attached!!!"
 
 /hook/shutdown/proc/extatmos_shutdown()
-	call(EXTATM_LOCATION, "auxtools_shutdown")()
+	call_ext(EXTATM_LOCATION, "auxtools_shutdown")()

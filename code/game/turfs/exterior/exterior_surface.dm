@@ -71,7 +71,7 @@
 		clear_ambient_light()
 
 /turf/exterior/surface/return_air()
-	return mapowner.exterior_atmosphere
+	return global.using_map.exterior_atmosphere
 
 /turf/exterior/surface/proc/transition(var/day = FALSE)
 	if(day)

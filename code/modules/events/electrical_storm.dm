@@ -127,7 +127,7 @@
 						H.flash_eyes()
 						to_chat(H, SPAN_DANGER("You're briefly blinded by an electrical discharge!"))
 
-			playsound(T.loc, pick(lightning_sounds), 100, 1, world.view * 4, frequency = get_rand_frequency())
+			playsound(T.loc, pick(lightning_sounds), 100, 1, 15 * 4, frequency = get_rand_frequency())
 
 	//If we are affecting a movable overmap object, bounce it around a little. This will either increase the speed the ship is moving at, or change the heading. It is more likely to increase the speed.
 	var/obj/effect/overmap/visitable/ship/S

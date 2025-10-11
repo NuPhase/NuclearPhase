@@ -308,7 +308,7 @@
 			return 'sound/voice/breath/mask_breathing.wav'
 
 /obj/item/organ/internal/lungs/proc/calculate_breath_rate()
-	if(breath_rate == 0 && oxygen_deprivation) // If we stopped breathing, don't start breathing again on our own
+	if(breath_rate == 0 && oxygen_deprivation > 20) // If we stopped breathing, don't start breathing again on our own
 		return
 	breath_rate = initial(breath_rate)
 	breath_rate += GET_CHEMICAL_EFFECT(owner, CE_BREATHLOSS)
