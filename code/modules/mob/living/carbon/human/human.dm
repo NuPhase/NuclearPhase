@@ -123,6 +123,14 @@
 					return 1
 	return 0
 
+/mob/living/carbon/human/proc/is_mind_implanted(mob/living/carbon/human/M)
+	for(var/L in M.contents)
+		if(istype(L, /obj/item/implant/neural_link))
+			for(var/obj/item/organ/external/O in M.get_external_organs())
+				if(L in O.implants)
+					return 1
+	return 0
+
 /mob/living/carbon/human/restrained()
 	if(get_equipped_item(slot_handcuffed_str))
 		return 1

@@ -116,6 +116,9 @@ var/global/datum/composite_sound/light/light_soundloop = new
 /obj/machinery/light/small/red
 	light_type = /obj/item/light/bulb/red
 
+/obj/machinery/light/small/orange
+	light_type = /obj/item/light/bulb/orange
+
 /obj/machinery/light/small/red/reactor/Initialize(mapload, d, populate_parts)
 	. = ..()
 	reactor_floodlights += src
@@ -654,6 +657,11 @@ var/global/datum/composite_sound/light/light_soundloop = new
 /obj/item/light/bulb/red
 	color = LIGHT_COLOR_RED
 	b_color = LIGHT_COLOR_RED
+
+/obj/item/light/bulb/orange
+	color = LIGHT_COLOR_ORANGE
+	b_color = LIGHT_COLOR_ORANGE
+	b_power = 1.2
 
 /obj/item/light/bulb/red/readylight
 	lighting_modes = list(

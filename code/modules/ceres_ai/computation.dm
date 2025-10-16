@@ -7,7 +7,6 @@
 /decl/computation_type
 	var/name
 	var/description
-	var/setting = 0 // amount of computational power demanded
 	var/computation_score = COMPUTATION_SCORE_MIN
 	var/computation_score_divisor = 1 // Higher = harder
 

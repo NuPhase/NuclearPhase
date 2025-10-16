@@ -82,3 +82,14 @@
 			<*>6. Не давай пищу/воду/таблетки, только сообщи и жди прибытия медиков.<BR>\
 			</list>\
 			"
+
+/obj/item/paper/guide/facility_ai
+	name = "facility AI note"
+	info = "What's actually insane is that we're using something we don't fully understand.<BR> \
+			The code of the SCS core is massive, with literal millions of lines.<BR> \
+			Redundant calls. Unreadable structure. Constant callbacks to an address that doesn't exist.<BR> \
+			It's way more than a simple facility control AI, but its current form was severely lobotomized ever since it was disconnected from the global network.<BR> \
+			I think we may find what we're looking for where the signals actually point to.<BR> \
+			They're routed through the main government data center, but are actually going elsewhere.<BR> \
+			There's a small building connected to an underground tunnel on highway 23.<BR> \
+			The answer is there.<BR>"

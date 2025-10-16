@@ -15,11 +15,11 @@
 /datum/facility_ai/proc/engage_drones()
 	for(var/mob/living/simple_animal/robot/drone)
 		drone.activate()
+		drone.our_ai.target_list = targets.Copy()
 
 /datum/facility_ai/proc/disengage_drones()
 	for(var/mob/living/simple_animal/robot/drone)
 		drone.deactivate()
-
 
 /datum/facility_ai/proc/add_drone(var/mob/living/simple_animal/robot/drone)
 	combat_drones += drone
