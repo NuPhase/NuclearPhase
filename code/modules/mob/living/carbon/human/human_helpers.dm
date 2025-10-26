@@ -354,3 +354,10 @@
 /mob/living/carbon/human/proc/carryover_prefs()
 	if(client)
 		client.prefs.copy_to(src)
+
+/mob/living/carbon/human/regenerate_voice()
+	var/datum/appearance_descriptor/age = LAZYACCESS(species.appearance_descriptors, "age")
+	var/custom_addition
+	if(custom_voice_flavor)
+		custom_addition = ", [custom_voice_flavor]"
+	voice_flavor = "[age.get_standalone_value_descriptor(get_age())] [gender][custom_addition]"

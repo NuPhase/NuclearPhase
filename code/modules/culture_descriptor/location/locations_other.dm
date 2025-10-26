@@ -5,6 +5,7 @@
 	capital = "Mars(Formerly Earth)"
 	ruling_body = "Unknown"
 	economic_power = 2
+	distance = 0
 
 /decl/cultural_info/location/alpha_centauri
 	name = "Alpha Centauri"
@@ -12,6 +13,7 @@
 	capital = "Proxima B"
 	ruling_body = "United Nations"
 	economic_power = 5
+	distance = 4.3
 
 /decl/cultural_info/location/sirius
 	name = "Sirius"
@@ -19,6 +21,7 @@
 	capital = "New Tokyo"
 	ruling_body = "United Nations"
 	economic_power = 3
+	distance = 8.6
 
 /decl/cultural_info/location/sirius/on_spawn(mob/living/carbon/human/H)
 	var/obj/item/organ/external/head = GET_EXTERNAL_ORGAN(H, BP_HEAD)

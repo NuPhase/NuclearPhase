@@ -1,3 +1,48 @@
+/decl/material/solid/uranium_tetrafluoride
+	name = "uranium tetrafluoride"
+	uid = "uranium_tetrafluoride"
+	flags = MAT_FLAG_FISSIBLE
+	color = "#799b78"
+	default_solid_form = /obj/item/stack/material/cubes
+
+	molar_mass = 0.31402
+	liquid_density = 7000
+	solid_density = 6700
+	melting_point = 1309
+	boiling_point = 1690
+
+	toxicity = 1
+	solvent_power = MAT_SOLVENT_STRONG
+	solvent_melt_dose = 20
+	solvent_max_damage = 10
+
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 30,
+			INTERACTION_ABSORPTION = 99,
+			INTERACTION_FISSION = 583
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 30,
+			INTERACTION_ABSORPTION = 0.09,
+			INTERACTION_FISSION = 1
+		)
+	)
+
+	fission_products = list(
+		/decl/material/solid/metal/depleted_uranium = 0.3,
+		/decl/material/solid/metal/nuclear_waste/transuranic = 0.6,
+		/decl/material/solid/metal/nuclear_waste/actinides = 0.05,
+		/decl/material/liquid/acid/hydrofluoric = 0.2,
+		/decl/material/gas/xenon = 0.05
+	)
+	absorption_products = list(
+		/decl/material/solid/metal/neptunium = 1
+	)
+
+	fission_energy = 21080100000.0
+	fission_neutrons = 2.45
+
 /decl/material/solid/metal/uranium
 	name = "uranium 235"
 	codex_name = "elemental uranium"
@@ -74,9 +119,6 @@
 			INTERACTION_FISSION = 0.3
 		)
 	)
-	absorption_products = list(
-		/decl/material/solid/metal/plutonium = 0.8
-	)
 	fission_products = list(
 		/decl/material/solid/metal/plutonium = 0.8,
 		/decl/material/solid/metal/radium = 0.1,
@@ -87,7 +129,6 @@
 	fission_neutrons = 0.001
 	neutron_absorption = 950
 	neutron_production = 900
-
 
 /decl/material/solid/metal/neptunium // Np-237.
 	name = "neptunium"

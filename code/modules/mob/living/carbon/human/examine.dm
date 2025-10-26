@@ -445,6 +445,15 @@
 	var/decl/pronouns/G = get_pronouns()
 	pose = sanitize(input(usr, "This is [src]. [G.He]...", "Pose", null)  as text)
 
+/mob/living/carbon/human/verb/voice_flavor()
+	set name = "Set Voice Flavor"
+	set desc = "Sets a custom flavor for your voice. Has to be a noun, for example 'throaty' or 'playful'."
+	set category = "IC"
+
+	var/decl/pronouns/G = get_pronouns()
+	custom_voice_flavor = sanitize(input(usr, "This is [src]. [G.His] voice is...", "Voice Flavor", null)  as text, 10)
+	regenerate_voice()
+
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."

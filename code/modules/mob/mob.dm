@@ -65,7 +65,11 @@
 	var/ai_type = get_ai_type()
 	if(ai_type)
 		ai = new ai_type(src)
+	regenerate_voice()
 	START_PROCESSING(SSmobs, src)
+
+/mob/proc/regenerate_voice()
+	voice_flavor = "[custom_voice_flavor]"
 
 /mob/proc/get_ai_type()
 	if (ispath(ai))

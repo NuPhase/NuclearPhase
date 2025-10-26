@@ -82,6 +82,10 @@
 	var/next_move = null
 	var/real_name = null
 
+	// The first var is generated and updated, the second is set by the player
+	var/voice_flavor = null // [age flavor] [gender], [optional flavor] | Example: "Young male, playful"
+	var/custom_voice_flavor = null
+
 	var/resting =    0
 	var/lying =      0
 

@@ -38,19 +38,19 @@
 	. = ..()
 	radio_relays -= src
 
-/obj/machinery/communications/relay/proc/relay(message, frequency) //yes
+/obj/machinery/communications/relay/proc/relay(message, frequency, flavor) //yes
 	for(var/obj/machinery/communications/relay/cur_relay in radio_relays)
 		var/quality = get_signal_quality(get_turf(src), get_turf(cur_relay), free_penetration, penetration_modifier, cur_relay.receiving_boost)
 		if(!quality)
 			continue
 		message = apply_message_quality(message, quality)
-		cur_relay.receive_relay(message, frequency)
+		cur_relay.receive_relay(message, frequency, flavor)
 
-/obj/machinery/communications/relay/proc/receive_relay(message, frequency)
+/obj/machinery/communications/relay/proc/receive_relay(message, frequency, flavor)
 	for(var/mob/M in human_mob_list)
 		if(M.z != src.z)
 			continue
 		var/obj/item/communications/receiving_radio = locate(/obj/item/communications) in M.contents
 		if(!receiving_radio)
 			continue
-		receive_comm_message(M, message, frequency)
+		receive_comm_message(M, message, frequency, flavor)

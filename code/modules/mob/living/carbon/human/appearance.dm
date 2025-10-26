@@ -41,6 +41,7 @@
 		reset_hair()
 		update_body()
 		update_dna()
+	regenerate_voice()
 
 /mob/living/carbon/human/proc/randomize_gender()
 	var/decl/pronouns/pronouns = pick(species.available_pronouns)

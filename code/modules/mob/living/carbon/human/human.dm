@@ -1397,6 +1397,7 @@
 	calculate_strength_coefficients()
 	for(var/obj/item/organ/internal/I in internal_organs)
 		I.update_skill_effects()
+	regenerate_voice()
 
 /mob/proc/calculate_strength_coefficients()
 	pickup_capacity = initial(pickup_capacity)
