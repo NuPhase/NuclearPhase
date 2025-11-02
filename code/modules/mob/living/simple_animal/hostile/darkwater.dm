@@ -9,7 +9,7 @@
 	var/spawn_period = 40
 	var/max_spawns = 15
 	var/spawns = 0
-	var/list/spawn_types = list(/mob/living/simple_animal/hostile/darkwater/hunter)
+	var/list/spawn_types = list(/mob/living/simple_animal/hostile/darkwater/hunter, /mob/living/simple_animal/hostile/darkwater/scout, /mob/living/simple_animal/hostile/darkwater/scout, /mob/living/simple_animal/hostile/darkwater/scout)
 
 /obj/effect/oceanborn_burrow/attackby(obj/item/I, mob/user)
 	if(IS_SHOVEL(I))
@@ -54,9 +54,50 @@
 	faction = "darkwater"
 	harm_intent_damage = 10
 	natural_weapon = /obj/item/natural_weapon/claws
-	light_color = "#4b248b"
+	light_color = "#9b8fe0"
 
 	bleed_colour = "#cba5eb"
+
+// A smaller, more agile scout. Walks around and sabotages stuff, but can be easily killed with melee.
+/mob/living/simple_animal/hostile/darkwater/scout
+	name = "oceanborn scirmisher"
+	desc = "A grotesque creature, born from the darkness. This one looks really weak but agile."
+	icon = 'icons/mob/simple_animal/shantak_alt.dmi'
+	maxHealth = 50
+	health = 50
+	natural_weapon = /obj/item/natural_weapon/bite
+	break_stuff_probability = 90
+	turns_per_move = 5
+	pass_flags = PASS_FLAG_TABLE
+	destroy_surroundings = 1
+	skin_material = /decl/material/solid/skin/fish/purple
+	meat_type = /obj/item/chems/food/meat/syntiflesh
+	speed = 1
+	move_to_delay = 3
+	natural_armor = list(
+		melee = ARMOR_MELEE_MINOR,
+		bullet = ARMOR_BALLISTIC_PISTOL,
+		laser = ARMOR_LASER_HANDGUNS,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_MINOR
+	)
+	alpha = 210
+
+/mob/living/simple_animal/hostile/darkwater/scout/Life()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(stance == HOSTILE_STANCE_IDLE)
+		//chance to skitter madly away
+		if(prob(25))
+			stop_automated_movement = 1
+			walk_to(src, pick(orange(20, src)), 1, move_to_delay)
+			addtimer(CALLBACK(src, .proc/disable_stop_automated_movement), 5 SECONDS)
+
+/mob/living/simple_animal/hostile/darkwater/scout/proc/disable_stop_automated_movement()
+	stop_automated_movement = 0
+	walk(src,0)
+	kick_stance()
 
 // The main tank.
 /mob/living/simple_animal/hostile/darkwater/hunter
