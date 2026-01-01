@@ -364,6 +364,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	global.materials_by_gas_symbol[gas_symbol] = type
 	generate_armor_values()
 
+	global.cached_specific_heat[type] = gas_specific_heat
+	global.cached_molar_mass[type] = molar_mass
+	global.cached_liquid_volume_coefficient[type] = molar_mass/liquid_density
+	global.cached_solid_volume_coefficient[type] = molar_mass/solid_density
+
 	var/list/cocktails = decls_repository.get_decls_of_subtype(/decl/cocktail)
 	for(var/ctype in cocktails)
 		var/decl/cocktail/cocktail = cocktails[ctype]

@@ -9,8 +9,8 @@
 
 	var/holy = 0
 
-	// Initial air contents (in moles)
-	var/list/initial_gas
+	/// Either a mapping of material decls to mol amounts, or a reserved initial gas define like GAS_STANDARD_AIRMIX.
+	var/alist/initial_gas
 
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05

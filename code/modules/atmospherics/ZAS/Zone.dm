@@ -193,51 +193,52 @@ Class Procs:
 		return //this will stop further condensation processing
 
 	var/turf_count = length(contents)
-	for(var/g in air.liquids)
-		var/decl/material/mat = GET_DECL(g)
-		var/condense_amt = air.liquids[g] * air.group_multiplier
+	for(var/liquid, liquid_amount in air.liquids)
+		var/decl/material/mat = GET_DECL(liquid)
+		var/condense_amt = liquid_amount * air.group_multiplier
 		var/reagent_condense_amt = condense_amt * mat.molar_volume
 		if(reagent_condense_amt < FLUID_EVAPORATION_CAP * turf_count)
 			continue
 		var/condense_amt_per_iteration = reagent_condense_amt/turf_count
 		for(var/turf/flooding in contents)
-			flooding.add_fluid(g, condense_amt_per_iteration, ntemperature = air.temperature)
+			flooding.add_fluid(liquid, condense_amt_per_iteration, ntemperature = air.temperature)
 		#ifdef CONDENSATION_DEBUG
 		to_world("******CONDENSATION DEBUG******")
 		to_world("Condensed [mat.name]")
 		to_world("Conditions: Temperature: ([air.temperature]) Pressure: ([air.return_pressure()]) Moles: ([air.total_moles])")
 		#endif
-		air.liquids[g] = 0
+		air.liquids[liquid] = 0
 		CHECK_TICK
-	for(var/g in air.solids)
-		if((air.solids[g] / air.total_moles) < 0.0001)
+	for(var/solid, solid_amount in air.solids)
+		if((solid_amount / air.total_moles) < 0.0001)
 			continue
 		for(var/i=0, i < length(contents)*0.1, i++)
-			if(!air.solids[g])
+			// cannot use solid_amount here because we modify it in adjust_gas
+			if(!air.solids[solid])
 				break // no more gas to condense
 			var/turf/T = pick(contents)
 			var/obj/effect/decal/cleanable/dirt/spawned_dust = locate() in T
 			if(!spawned_dust)
 				spawned_dust = new(T)
-			var/decl/material/mat = GET_DECL(g)
-			var/condense_amt = min(air.solids[g], (air.solids[g] * 0.01) + 0.0001)
+			var/decl/material/mat = GET_DECL(solid)
+			var/condense_amt = min(air.solids[solid], (air.solids[solid] * 0.01) + 0.0001)
 			if(condense_amt < 1)
 				break
-			air.adjust_gas(g, -condense_amt)
+			air.adjust_gas(solid, -condense_amt)
 			spawned_dust.alpha = min(spawned_dust.alpha + (condense_amt*5), 255)
 			spawned_dust.color = mat.color
 			var/area/A = get_area(T)
 			A.background_radiation += mat.radioactivity * condense_amt * 0.01
-		air.solids[g] = 0
+		air.solids[solid] = 0
 		CHECK_TICK
 
 	condensing = FALSE
 
 /zone/proc/dbg_data(mob/M)
 	to_chat(M, name)
-	for(var/g in air.gas)
-		var/decl/material/mat = GET_DECL(g)
-		to_chat(M, "[capitalize(mat.gas_name)]: [air.gas[g]]")
+	for(var/gas_type, gas_amount in air.gas)
+		var/decl/material/mat = GET_DECL(gas_type)
+		to_chat(M, "[capitalize(mat.gas_name)]: [gas_amount]")
 	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]°K ([air.temperature - T0C]°C)")
 	to_chat(M, "O2 per N2: [(air.gas[/decl/material/gas/nitrogen] ? air.gas[/decl/material/gas/oxygen]/air.gas[/decl/material/gas/nitrogen] : "N/A")] Moles: [air.total_moles]")
 	to_chat(M, "Simulated: [contents.len] ([air.group_multiplier])")

@@ -2,7 +2,7 @@
 	name = "ground"
 	icon = 'icons/turf/exterior/barren.dmi'
 	icon_edge_layer = EXT_EDGE_BARREN
-	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2STANDARD, /decl/material/gas/nitrogen = MOLES_N2STANDARD)
+	initial_gas = GAS_STANDARD_AIRMIX
 
 /turf/exterior/barren/return_air()
 	if(!air)

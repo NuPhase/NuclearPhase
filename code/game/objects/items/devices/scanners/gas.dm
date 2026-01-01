@@ -60,15 +60,14 @@
 
 			var/perGas_add_string = ""
 			var/list/all_fluid = mixture.get_fluid()
-			for(var/mix in all_fluid)
-				var/percentage = round(all_fluid[mix]/total_moles * 100, 0.001)
-				var/mix_moles = mixture.gas[mix] + mixture.liquids[mix] + mixture.solids[mix]
+			for(var/gas_type, mix_moles in all_fluid)
+				var/percentage = round(mix_moles/total_moles * 100, 0.001)
 				if(!percentage)
 					continue
-				var/decl/material/mat = GET_DECL(mix)
+				var/decl/material/mat = GET_DECL(gas_type)
 				switch(mode)
 					if(MV_MODE)
-						perGas_add_string = ", Moles: [round(all_fluid[mix], 0.01)]"
+						perGas_add_string = ", Moles: [round(mix_moles, 0.01)]"
 					if(MAT_TRAIT_MODE)
 						var/list/traits = list()
 						if(mat.gas_flags & XGM_GAS_FUEL)
@@ -80,7 +79,7 @@
 						if(mat.flags & MAT_FLAG_FUSION_FUEL)
 							traits += "can be used to fuel fusion reaction"
 						perGas_add_string = "\n\tSpecific heat: [mat.gas_specific_heat] J/(mol*K), Molar mass: [mat.molar_mass] kg/mol.[traits.len ? "\n\tThis gas [english_list(traits)]" : ""]"
-				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string] | Gas: [round(mixture.gas[mix]/mix_moles*100)]% | Liquid: [round(mixture.liquids[mix]/mix_moles*100)]% | Solid: [round(mixture.solids[mix]/mix_moles*100)]%"
+				. += "[capitalize(mat.gas_name)]: [percentage]%[perGas_add_string] | Gas: [round(mixture.gas[gas_type]/mix_moles*100)]% | Liquid: [round(mixture.liquids[gas_type]/mix_moles*100)]% | Solid: [round(mixture.solids[gas_type]/mix_moles*100)]%"
 			var/totalGas_add_string = ""
 			if(mode == MV_MODE)
 				totalGas_add_string = ", Total weight: [round(mixture.get_mass(), 0.01)]kg, Free Volume: [mixture.available_volume]L"

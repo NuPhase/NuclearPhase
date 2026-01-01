@@ -56,7 +56,7 @@
 		S.exude_gasses -= badgas
 	if(length(atmosphere?.gas))
 		if(S.consume_gasses)
-			S.consume_gasses = list(pick(atmosphere.gas)) // ensure that if the plant consumes a gas, the atmosphere will have it
+			S.consume_gasses = list(apick(atmosphere.gas)) // ensure that if the plant consumes a gas, the atmosphere will have it
 		for(var/g in atmosphere.gas)
 			var/decl/material/mat = GET_DECL(g)
 			if(mat.gas_flags & XGM_GAS_CONTAMINANT)

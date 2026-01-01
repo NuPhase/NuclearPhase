@@ -1,9 +1,15 @@
+// These variables are used to speed up certain calculations by using dot products.
+var/global/alist/cached_specific_heat = alist()
+var/global/alist/cached_molar_mass = alist()
+var/global/alist/cached_liquid_volume_coefficient = alist()
+var/global/alist/cached_solid_volume_coefficient = alist()
+
 /datum/gas_mixture
 	//Associative list of gas moles.
 	//Gases with 0 moles are not tracked and are pruned by update_values()
-	var/list/gas = list()
-	var/list/liquids = list()
-	var/list/solids = list()
+	var/alist/gas = alist()
+	var/alist/liquids = alist()
+	var/alist/solids = alist()
 
 	//Temperature in Kelvin of this gas mix.
 	var/temperature = T20C
@@ -50,61 +56,62 @@
 // if gasid isn't specified, returns a list of all gases with specified states
 // fluid_types can be a list or a single define or null.
 /datum/gas_mixture/proc/get_fluid(gasid, list/fluid_types)
-	var/list/returned_list = list()
 	if(islist(fluid_types))
+		. = alist()
 		for(var/ftype in fluid_types)
 			if(gasid)
 				switch(ftype)
 					if(MAT_PHASE_GAS)
-						returned_list[gasid] += gas[gasid]
+						.[gasid] += gas[gasid]
 					if(MAT_PHASE_LIQUID)
-						returned_list[gasid] += liquids[gasid]
+						.[gasid] += liquids[gasid]
 					if(MAT_PHASE_SOLID)
-						returned_list[gasid] += solids[gasid]
+						.[gasid] += solids[gasid]
 			else
 				switch(ftype)
 					if(MAT_PHASE_GAS)
-						for(var/g in gas)
-							returned_list[g] += gas[g]
+						for(var/gas_type, amount in gas)
+							.[gas_type] += amount
 					if(MAT_PHASE_LIQUID)
-						for(var/g in liquids)
-							returned_list[g] += liquids[g]
+						for(var/gas_type, amount in liquids)
+							.[gas_type] += amount
 					if(MAT_PHASE_SOLID)
-						for(var/g in solids)
-							returned_list[g] += solids[g]
+						for(var/gas_type, amount in solids)
+							.[gas_type] += amount
+		return .
 	else if(fluid_types) // a single define
 		if(gasid)
 			switch(fluid_types)
 				if(MAT_PHASE_GAS)
-					returned_list[gasid] += gas[gasid]
+					return alist((gasid) = gas[gasid])
 				if(MAT_PHASE_LIQUID)
-					returned_list[gasid] += liquids[gasid]
+					return alist((gasid) = liquids[gasid])
 				if(MAT_PHASE_SOLID)
-					returned_list[gasid] += solids[gasid]
+					return alist((gasid) = solids[gasid])
 		else
 			switch(fluid_types)
 				if(MAT_PHASE_GAS)
-					for(var/g in gas)
-						returned_list[g] += gas[g]
+					return gas.Copy()
 				if(MAT_PHASE_LIQUID)
-					for(var/g in liquids)
-						returned_list[g] += liquids[g]
+					return liquids.Copy()
 				if(MAT_PHASE_SOLID)
-					for(var/g in solids)
-						returned_list[g] += solids[g]
+					return solids.Copy()
 	else // no specified filter, collect everything
 		if(gasid)
-			returned_list[gasid] += gas[gasid]
-			returned_list[gasid] += liquids[gasid]
-			returned_list[gasid] += solids[gasid]
+			return alist((gasid) = gas[gasid] + liquids[gasid] + solids[gasid])
 		else
-			for(var/g in gas)
-				returned_list[g] += gas[g]
-			for(var/g in liquids)
-				returned_list[g] += liquids[g]
-			for(var/g in solids)
-				returned_list[g] += solids[g]
-	return returned_list
+			. = gas.Copy()
+			for(var/gas_type, amount in liquids)
+				.[gas_type] += amount
+			for(var/gas_type, amount in solids)
+				.[gas_type] += amount
+
+/// Returns the fraction of each material in the fluid mixture that is a liquid.
+/datum/gas_mixture/proc/get_liquid_ratios()
+	var/alist/ratios = liquids.Copy()
+	for(var/gasid, amount in liquids) // everything not in liquids has a ratio of 0 aka null
+		ratios[gasid] /= (solids[gasid] + liquids[gasid] + amount)
+	return ratios
 
 /datum/gas_mixture/proc/get_gas(gasid)
 	if(!length(gas))
@@ -224,16 +231,20 @@
 			temperature = (giver.temperature*giver_heat_capacity + temperature*self_heat_capacity)/combined_heat_capacity
 
 	if((group_multiplier != 1)||(giver.group_multiplier != 1))
-		var/list/all_fluid = giver.get_fluid()
-		for(var/g in all_fluid)
-			adjust_gas(g, all_fluid[g] * giver.group_multiplier, update, update)
+		var/scale_factor = giver.group_multiplier / group_multiplier
+		for(var/gas_type, gas_amount in giver.gas)
+			gas[gas_type] += gas_amount * scale_factor
+		for(var/gas_type, gas_amount in giver.liquids)
+			liquids[gas_type] += gas_amount * scale_factor
+		for(var/gas_type, gas_amount in giver.solids)
+			solids[gas_type] += gas_amount * scale_factor
 	else
-		for(var/g in giver.gas)
-			gas[g] += giver.gas[g]
-		for(var/g in giver.liquids)
-			liquids[g] += giver.liquids[g]
-		for(var/g in giver.solids)
-			solids[g] += giver.solids[g]
+		for(var/gas_type, gas_amount in giver.gas)
+			gas[gas_type] += gas_amount
+		for(var/gas_type, gas_amount in giver.liquids)
+			liquids[gas_type] += gas_amount
+		for(var/gas_type, gas_amount in giver.solids)
+			solids[gas_type] += gas_amount
 
 	add_thermal_energy(0, TRUE, TRUE) // Allow for phase changes to happen
 
@@ -250,11 +261,13 @@
 		gas.Cut()
 		sharer.gas.Cut()
 
-	for(var/g in gas|sharer.gas)
-		var/comb = gas[g] + sharer.gas[g]
-		comb /= volume + sharer.volume
-		gas[g] = comb * volume
-		sharer.gas[g] = comb * sharer.volume
+	var/scale_factor = volume + sharer.volume
+	var/origin_scale_factor = volume / scale_factor
+	var/sharer_scale_factor = sharer.volume / scale_factor
+	for(var/gas_type in gas|sharer.gas) // we can only iterate keys here since merging alists doesn't combine values
+		var/comb = gas[gas_type] + sharer.gas[gas_type]
+		gas[gas_type] = comb * origin_scale_factor
+		sharer.gas[gas_type] = comb * sharer_scale_factor
 
 	if(our_heatcap + share_heatcap)
 		temperature = ((temperature * our_heatcap) + (sharer.temperature * share_heatcap)) / (our_heatcap + share_heatcap)
@@ -272,14 +285,7 @@
 	return heat_capacity
 
 /datum/gas_mixture/proc/cache_heat_capacity()
-	heat_capacity = 0
-	var/list/all_fluid = get_fluid()
-	for(var/g in all_fluid)
-		var/decl/material/mat = GET_DECL(g)
-		if(!mat)
-			return
-		heat_capacity += mat.gas_specific_heat * all_fluid[g]
-	heat_capacity *= max(1, group_multiplier)
+	heat_capacity = max(1, group_multiplier) * (values_dot(gas, global.cached_specific_heat) + values_dot(liquids, global.cached_specific_heat) + values_dot(solids, global.cached_specific_heat))
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
 /datum/gas_mixture/proc/add_thermal_energy(thermal_energy=0, calculate_phase_change=TRUE, forced=FALSE, boiling_coef = BOILING_RATE_COEF)
@@ -354,41 +360,19 @@
 /datum/gas_mixture/proc/update_values()
 	total_moles = 0
 	gas_moles = 0
-	var/liquid_volume = 0
-	var/solid_volume = 0
-	prune_empty_values()
-	var/amt
-	for(var/g in liquids)
-		var/decl/material/mat = GET_DECL(g)
-		amt = liquids[g]
-		total_moles += amt
-		liquid_volume += amt * mat.molar_mass / mat.liquid_density * 1000
-	for(var/g in solids)
-		var/decl/material/mat = GET_DECL(g)
-		amt = solids[g]
-		total_moles += amt
-		liquid_volume += amt * mat.molar_mass / mat.solid_density * 1000
-	for(var/g in gas)
-		gas_moles += gas[g]
-	total_moles += gas_moles
-	available_volume = max(volume * 0.01, volume - liquid_volume - solid_volume)
+	values_cut_under(gas, ATMOS_PRECISION)
+	values_cut_under(liquids, ATMOS_PRECISION)
+	values_cut_under(solids, ATMOS_PRECISION)
+	var/displaced_volume = (values_dot(liquids, global.cached_liquid_volume_coefficient) + values_dot(solids, global.cached_solid_volume_coefficient)) * 1000
+	gas_moles = values_sum(gas)
+	total_moles = gas_moles + values_sum(liquids) + values_sum(solids)
+	available_volume = max(volume * 0.01, volume - displaced_volume)
 	cache_heat_capacity()
 	cache_pressure()
 	add_thermal_energy(0, TRUE, TRUE)
 	if(temperature < 0)
 		PRINT_STACK_TRACE("Negative temperature in update_values()")
 		temperature = TCMB
-
-/datum/gas_mixture/proc/prune_empty_values()
-	for(var/g in gas)
-		if(gas[g] <= 0 || isnull(g))
-			gas -= g
-	for(var/g in liquids)
-		if(liquids[g] <= 0 || isnull(g))
-			liquids -= g
-	for(var/g in solids)
-		if(solids[g] <= 0 || isnull(g))
-			solids -= g
 
 //Returns the pressure of the gas mix.
 /datum/gas_mixture/proc/return_pressure()
@@ -402,11 +386,11 @@
 			pressure_to_cache = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
 		else
 			pressure_to_cache = total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
-		var/list/all_fluid = get_fluid()
-		for(var/g in liquids)
-			var/decl/material/mat = GET_DECL(g)
+		var/alist/ratios = get_liquid_ratios()
+		for(var/gasid in liquids)
+			var/decl/material/mat = GET_DECL(gasid)
 			var/temperature_factor = Clamp(((temperature - mat.melting_point) / (mat.boiling_point - mat.melting_point))**2, 0.1, 1)
-			pressure_to_cache += ONE_ATMOSPHERE * temperature_factor * (liquids[g]/all_fluid[g])
+			pressure_to_cache += ONE_ATMOSPHERE * temperature_factor * ratios[gasid]
 	pressure = max(pressure_to_cache, 0)
 	if(pressure_to_cache < 0)
 		PRINT_STACK_TRACE("Negative pressure result in cache_pressure()")
@@ -420,11 +404,12 @@
 	if(amount <= 0)
 		return null
 
-	var/list/new_gas = list()
-	var/list/new_liquids = list()
-	var/list/new_solids = list()
+	var/datum/gas_mixture/removed = new(_volume = volume, _temperature = temperature)
+	var/alist/new_gas = removed.gas
+	var/alist/new_liquids = removed.liquids
+	var/alist/new_solids = removed.solids
 
-	var/list/all_fluid = get_fluid()
+	var/alist/all_fluid = get_fluid()
 	for(var/g in all_fluid)
 		var/moles_left_to_remove = QUANTIZE((all_fluid[g] / total_moles) * amount)
 		var/moles_taken
@@ -448,11 +433,7 @@
 		new_gas[g] = moles_taken
 		if(moles_left_to_remove >= 0.01)
 			PRINT_STACK_TRACE("Fluid loss in gas_mixture/remove()")
-
-	var/datum/gas_mixture/removed = new(_volume = volume, _temperature = temperature)
-	removed.gas = new_gas
-	removed.liquids = new_liquids
-	removed.solids = new_solids
+	// todo: may need to set removed.temperature here if the update_values in New() messed it up before we added gases
 
 	if(update)
 		update_values()
@@ -473,17 +454,17 @@
 
 	switch(phase)
 		if(MAT_PHASE_GAS)
-			for(var/g in gas)
-				removed.gas[g] = QUANTIZE((gas[g] / gas_moles) * amount)
-				gas[g] -= removed.gas[g] / group_multiplier
+			for(var/gasid, gasamount in gas)
+				removed.gas[gasid] = QUANTIZE((gasamount / gas_moles) * amount)
+				gas[gasid] -= removed.gas[gasid] / group_multiplier
 		if(MAT_PHASE_LIQUID)
-			for(var/g in liquids)
-				removed.liquids[g] = QUANTIZE((liquids[g] / total_moles) * amount)
-				liquids[g] -= removed.liquids[g] / group_multiplier
+			for(var/gasid, gasamount in liquids)
+				removed.liquids[gasid] = QUANTIZE((gasamount / total_moles) * amount)
+				liquids[gasid] -= removed.liquids[gasid] / group_multiplier
 		if(MAT_PHASE_SOLID)
-			for(var/g in solids)
-				removed.solids[g] = QUANTIZE((solids[g] / total_moles) * amount)
-				solids[g] -= removed.solids[g] / group_multiplier
+			for(var/gasid, gasamount in solids)
+				removed.solids[gasid] = QUANTIZE((gasamount / total_moles) * amount)
+				solids[gasid] -= removed.solids[gasid] / group_multiplier
 
 	if(update)
 		update_values()
@@ -503,9 +484,9 @@
 	var/list/removed_gas_list = list()
 	var/list/all_fluid = get_fluid()
 
-	for(var/g in all_fluid)
-		removed_gas_list[g] = (all_fluid[g] * ratio * group_multiplier / out_group_multiplier)
-		adjust_gas(g, -removed_gas_list[g])
+	for(var/gasid, amount in all_fluid)
+		removed_gas_list[gasid] = (amount * ratio * group_multiplier / out_group_multiplier)
+		adjust_gas(gasid, -removed_gas_list[gasid])
 
 	var/datum/gas_mixture/removed = new(_volume = volume * group_multiplier / out_group_multiplier, _temperature = temperature, _group_multiplier = out_group_multiplier, initial_gas = removed_gas_list)
 
@@ -532,18 +513,18 @@
 		return removed
 
 	var/sum = 0
-	for(var/g in gas)
-		var/decl/material/mat = GET_DECL(g)
+	for(var/gasid, gasamount in gas)
+		var/decl/material/mat = GET_DECL(gasid)
 		var/list/check = mat_flag ? mat.flags : mat.gas_flags
 		if(check & flag)
-			sum += gas[g]
+			sum += gasamount
 
-	for(var/g in gas)
-		var/decl/material/mat = GET_DECL(g)
+	for(var/gasid, gasamount in gas)
+		var/decl/material/mat = GET_DECL(gasid)
 		var/list/check = mat_flag ? mat.flags : mat.gas_flags
 		if(check & flag)
-			removed.gas[g] = QUANTIZE((gas[g] / sum) * amount)
-			gas[g] -= removed.gas[g] / group_multiplier
+			removed.gas[gasid] = QUANTIZE((gasamount / sum) * amount)
+			gas[gasid] -= removed.gas[gasid] / group_multiplier
 
 	removed.temperature = temperature
 	update_values()
@@ -554,10 +535,10 @@
 //Returns the amount of gas that has the given flag, in moles
 /datum/gas_mixture/proc/get_by_flag(flag)
 	. = 0
-	for(var/g in gas)
-		var/decl/material/mat = GET_DECL(g)
+	for(var/gasid, amount in gas)
+		var/decl/material/mat = GET_DECL(gasid)
 		if(mat.gas_flags & flag)
-			. += gas[g]
+			. += amount
 
 //Copies gas and temperature from another gas_mixture.
 /datum/gas_mixture/proc/copy_from(const/datum/gas_mixture/sample)
@@ -579,21 +560,21 @@
 			return 0
 
 	var/list/marked = list()
-	for(var/g in gas)
-		if((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
-		((gas[g] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g]) || \
-		(gas[g] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g])))
+	for(var/gasid, amount in gas)
+		if((abs(amount - sample.gas[gasid]) > MINIMUM_AIR_TO_SUSPEND) && \
+		((amount < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[gasid]) || \
+		(amount > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[gasid])))
 			return 0
-		marked[g] = 1
+		marked[gasid] = 1
 
 	if(abs(return_pressure() - sample.return_pressure()) > MINIMUM_PRESSURE_DIFFERENCE_TO_SUSPEND)
 		return 0
 
-	for(var/g in sample.gas)
-		if(!marked[g])
-			if((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
-			((gas[g] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g]) || \
-			(gas[g] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g])))
+	for(var/gasid, amount in sample.gas)
+		if(!marked[gasid])
+			if((abs(gas[gasid] - amount) > MINIMUM_AIR_TO_SUSPEND) && \
+			((gas[gasid] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * amount) || \
+			(gas[gasid] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * amount)))
 				return 0
 
 	if(total_moles > MINIMUM_AIR_TO_SUSPEND)
@@ -645,8 +626,8 @@
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.
 /datum/gas_mixture/proc/add(datum/gas_mixture/right_side)
 	var/list/all_fluid = right_side.get_fluid()
-	for(var/g in all_fluid)
-		gas[g] += all_fluid[g]
+	for(var/gasid, amount in all_fluid)
+		gas[gasid] += amount
 
 	update_values()
 	return 1
@@ -654,8 +635,8 @@
 //Simpler version of remove(), adjusts gas amounts directly and doesn't account for group_multiplier.
 /datum/gas_mixture/proc/subtract(datum/gas_mixture/right_side)
 	var/list/all_fluid = right_side.get_fluid()
-	for(var/g in all_fluid)
-		remove_gas(g, all_fluid[g])
+	for(var/gasid, amount in all_fluid)
+		gas[gasid] -= amount
 
 	update_values()
 	return 1
@@ -748,20 +729,20 @@
 	var/total_thermal_energy = 0
 	var/total_heat_capacity = 0
 
-	var/list/total_gas = list()
-	var/list/total_liquids = list()
-	var/list/total_solids = list()
+	var/alist/total_gas = alist()
+	var/alist/total_liquids = alist()
+	var/alist/total_solids = alist()
 	for(var/datum/gas_mixture/gasmix in gases)
 		total_volume += gasmix.volume
 		var/temp_heatcap = gasmix.heat_capacity()
 		total_thermal_energy += gasmix.temperature * temp_heatcap
 		total_heat_capacity += temp_heatcap
-		for(var/g in gasmix.gas)
-			total_gas[g] += gasmix.gas[g]
-		for(var/g in gasmix.liquids)
-			total_liquids[g] += gasmix.liquids[g]
-		for(var/g in gasmix.solids)
-			total_solids[g] += gasmix.solids[g]
+		for(var/gasid, amount in gasmix.gas)
+			total_gas[gasid] += amount
+		for(var/gasid, amount in gasmix.liquids)
+			total_liquids[gasid] += amount
+		for(var/gasid, amount in gasmix.solids)
+			total_solids[gasid] += amount
 
 	if(total_volume > 0)
 		var/resulting_temperature = T20C
@@ -797,9 +778,9 @@
 	var/combined_moles = 0
 	var/combined_suction = 0
 
-	var/list/combined_gas = list()
-	var/list/combined_liquids = list()
-	var/list/combined_solids = list()
+	var/alist/combined_gas = alist()
+	var/alist/combined_liquids = alist()
+	var/alist/combined_solids = alist()
 
 	for(var/datum/gas_mixture/gasmix in gases)
 		var/temp_heatcap = gasmix.heat_capacity()
@@ -808,12 +789,12 @@
 		combined_heat_capacity += temp_heatcap
 		combined_moles += gasmix.total_moles
 		combined_suction += gasmix.suction_moles
-		for(var/g in gasmix.gas)
-			combined_gas[g] += gasmix.gas[g]
-		for(var/g in gasmix.liquids)
-			combined_liquids[g] += gasmix.liquids[g]
-		for(var/g in gasmix.solids)
-			combined_solids[g] += gasmix.solids[g]
+		for(var/gasid, amount in gasmix.gas)
+			combined_gas[gasid] += amount
+		for(var/gasid, amount in gasmix.liquids)
+			combined_liquids[gasid] += amount
+		for(var/gasid, amount in gasmix.solids)
+			combined_solids[gasid] += amount
 
 	if(combined_volume <= 0)
 		return
@@ -847,33 +828,16 @@
 	return 1
 
 /datum/gas_mixture/proc/get_mass()
-	var/list/all_fluid = get_fluid()
-	for(var/g in all_fluid)
-		var/decl/material/mat = GET_DECL(g)
-		. += all_fluid[g] * mat.molar_mass * group_multiplier
+	return (values_dot(gas, global.cached_molar_mass) + values_dot(liquids, global.cached_molar_mass) + values_dot(solids, global.cached_molar_mass)) * group_multiplier
 
 // Returns the average density of all materials in this fluidmix in kg/m^3
 /datum/gas_mixture/proc/get_density()
-	var/total_mass = 0
-	var/total_volume = 0
-	for(var/g in gas)
-		var/decl/material/mat = GET_DECL(g)
-		var/ind_mass = gas[g] * mat.molar_mass
-		var/ind_volume = ind_mass / 1
-		total_mass += ind_mass
-		total_volume += ind_volume
-	for(var/g in liquids)
-		var/decl/material/mat = GET_DECL(g)
-		var/ind_mass = liquids[g] * mat.molar_mass
-		var/ind_volume = ind_mass / mat.liquid_density
-		total_mass += ind_mass
-		total_volume += ind_volume
-	for(var/g in solids)
-		var/decl/material/mat = GET_DECL(g)
-		var/ind_mass = solids[g] * mat.molar_mass
-		var/ind_volume = ind_mass / mat.solid_density
-		total_mass += ind_mass
-		total_volume += ind_volume
+	var/total_mass = values_dot(gas, global.cached_molar_mass)
+	var/total_volume = total_mass // for some reason we assume 1kg/m^3 for gases
+	total_mass += values_dot(liquids, global.cached_molar_mass)
+	total_volume += values_dot(liquids, global.cached_liquid_volume_coefficient)
+	total_mass += values_dot(solids, global.cached_molar_mass)
+	total_volume += values_dot(solids, global.cached_solid_volume_coefficient)
 	if(!total_volume)
 		return 0
 	return total_mass/total_volume
