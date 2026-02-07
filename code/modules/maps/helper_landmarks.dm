@@ -12,7 +12,12 @@
 	load_subtemplate()
 
 /obj/abstract/landmark/map_load_mark/proc/get_subtemplate()
-	. = LAZYLEN(map_template_names) && pick(map_template_names)
+	if(isnull(map_template_names))
+		return null
+	if(istext(map_template_names))
+		return map_template_names
+	if(length(map_template_names))
+		return pick(map_template_names)
 
 /obj/abstract/landmark/map_load_mark/proc/load_subtemplate()
 	// Commenting this out temporarily as DMMS breaks when asychronously
@@ -22,14 +27,14 @@
 	var/datum/map_template/template = get_subtemplate()
 	var/turf/spawn_loc = get_turf(src)
 
-	if(!QDELETED(src))
-		qdel(src)
-
 	if(istype(spawn_loc))
 		if(istext(template))
 			template = SSmapping.get_template(template)
 		if(istype(template))
 			template.load(spawn_loc, TRUE)
+
+	if(!QDELETED(src))
+		qdel(src)
 
 //Throw things in the area around randomly
 /obj/abstract/landmark/carnage_mark
