@@ -4,7 +4,7 @@
 	density = TRUE
 	var/base_icon_state = "dhum"
 	var/is_active = FALSE
-	var/alist/associative_stage_materials = list(
+	var/alist/associative_stage_materials = alist(
 		1 = list(/decl/material/gas/hydrogen = 0.8, /decl/material/liquid/water = 0.2),
 		2 = list(/decl/material/gas/carbon_dioxide = 0.5, /decl/material/gas/ammonia = 0.2, /decl/material/gas/sulfur_dioxide = 0.3),
 		3 = list(/decl/material/gas/carbon_dioxide = 0.1, /decl/material/gas/hydrogen = 0.1, /decl/material/liquid/acetone = 0.8),
