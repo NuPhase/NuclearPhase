@@ -137,7 +137,7 @@
 	var/icon
 	var/name
 
-	// These values are primarily for station alarms and status displays, and which light colors and overlays to use
+	// These values are primarily for shelter alarms and status displays, and which light colors and overlays to use
 	var/light_range
 	var/light_power
 	var/light_color_alarm
@@ -187,14 +187,14 @@
 /decl/security_level/default/switching_up_to()
 	if(up_description)
 		security_announcement_up.Announce(up_description, "Attention! Alert level elevated to [name]!")
-	notify_station()
+	notify_shelter()
 
 /decl/security_level/default/switching_down_to()
 	if(down_description)
 		security_announcement_down.Announce(down_description, "Attention! Alert level changed to [name]!")
-	notify_station()
+	notify_shelter()
 
-/decl/security_level/default/proc/notify_station()
+/decl/security_level/default/proc/notify_shelter()
 	for(var/obj/machinery/firealarm/FA in SSmachines.machinery)
 		if(isContactLevel(FA.z))
 			FA.update_icon()
@@ -214,7 +214,7 @@
 
 	alarm_appearance = /datum/alarm_appearance/green
 
-	down_description = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	down_description = "All threats to the shelter have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 
 /decl/security_level/default/code_blue
 	name = "code blue"
@@ -229,7 +229,7 @@
 
 	alarm_appearance = /datum/alarm_appearance/blue
 
-	up_description = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	up_description = "The shelter has received reliable information about possible hostile activity on the shelter. Security staff may have weapons visible, random searches are permitted."
 	down_description = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
 
 /decl/security_level/default/code_red
@@ -245,8 +245,8 @@
 
 	alarm_appearance = /datum/alarm_appearance/red
 
-	up_description = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	down_description = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	up_description = "There is an immediate serious threat to the shelter. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	down_description = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the shelter. Security may have weapons unholstered at all times, random searches are allowed and advised."
 
 /decl/security_level/default/code_amber
 	name = "code amber"
@@ -281,7 +281,7 @@
 
 /decl/security_level/default/code_delta/switching_up_to()
 	security_announcement_delta.Announce("The self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.", "Attention! Delta security level reached!")
-	notify_station()
+	notify_shelter()
 
 /datum/alarm_appearance
 	var/display_icon //The icon_state for the displays. Normally only one is used, unless uses_twotone_displays is TRUE.
