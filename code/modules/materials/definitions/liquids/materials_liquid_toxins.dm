@@ -257,6 +257,18 @@
 	taste_mult = 1.2
 	metabolism = REM * 0.25
 
+/decl/material/liquid/bromide/isotope87
+	name = "bromide-87"
+	uid = "bromide87"
+	lore_text = "A radioactive isotope of Bromine. A common fission product, decays into krypton. A source of delayed neutrons."
+	fission_energy = 186000000000
+	fission_neutrons = 1
+	fission_products = list(/decl/material/gas/krypton = 1)
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_DECAY = 0.05
+		))
+
 /decl/material/liquid/mercury
 	name = "mercury"
 	uid = "liquid_mercury"

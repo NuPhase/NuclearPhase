@@ -380,7 +380,8 @@
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 400000,
-			INTERACTION_ABSORPTION = 2000000
+			INTERACTION_ABSORPTION = 2000000,
+			INTERACTION_DECAY = 0.01
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 5,
@@ -390,6 +391,7 @@
 	neutron_absorption = 150
 	neutron_production = 10
 	absorption_products = list(/decl/material/solid/caesium = 1)
+	fission_products = list(/decl/material/solid/caesium = 1)
 
 /decl/material/gas/xenon/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/dosage = LAZYACCESS(M.chem_doses, type)

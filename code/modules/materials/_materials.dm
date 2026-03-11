@@ -827,15 +827,15 @@ var/decl/material/boil_mat = null
 		switch(reaction_type)
 			if(INTERACTION_SCATTER)
 				var/scattered_neutrons = get_nuclear_reaction_rate(container, INTERACTION_SCATTER, slow_neutrons, fast_neutrons)
-				scattered_neutrons = min(fast_neutrons, scattered_neutrons)
+				scattered_neutrons = min(fast_neutrons*0.33, scattered_neutrons)
 				fast_neutrons -= scattered_neutrons
 				slow_neutrons += scattered_neutrons
 			if(INTERACTION_ABSORPTION)
 				var/absorbed_neutrons = get_nuclear_reaction_rate(container, INTERACTION_ABSORPTION, slow_neutrons, fast_neutrons)
 				var/list/all_fluid = container.get_fluid()
-				absorbed_neutrons = min(fast_neutrons + slow_neutrons, absorbed_neutrons, all_fluid[src.type])
-				fast_neutrons -= absorbed_neutrons * 0.5
-				slow_neutrons -= absorbed_neutrons * 0.5
+				absorbed_neutrons = min((fast_neutrons + slow_neutrons)*0.05, absorbed_neutrons, all_fluid[src.type])
+				fast_neutrons -= min(absorbed_neutrons, fast_neutrons) * 0.5
+				slow_neutrons -= min(absorbed_neutrons, slow_neutrons) * 0.5
 				energy_delta += absorbed_neutrons * SLOW_NEUTRON_ENERGY
 				if(absorption_products)
 					container.adjust_gas(src.type, absorbed_neutrons * -1, FALSE)
@@ -844,16 +844,24 @@ var/decl/material/boil_mat = null
 			if(INTERACTION_FISSION)
 				var/fission_reactions = get_nuclear_reaction_rate(container, INTERACTION_FISSION, slow_neutrons, fast_neutrons)
 				var/list/all_fluid = container.get_fluid()
-				fission_reactions = min(all_fluid[src.type], fission_reactions)
-				if(slow_neutrons > fast_neutrons)
-					slow_neutrons -= fission_reactions
-				else
-					fast_neutrons -= fission_reactions
+				fission_reactions = min(all_fluid[src.type], fission_reactions, fast_neutrons + slow_neutrons)
+				var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
+				slow_neutrons -= fission_reactions * (1 - interpolation_weight)
+				fast_neutrons -= fission_reactions * interpolation_weight
 				container.adjust_gas(src.type, fission_reactions * -1, FALSE)
 				for(var/waste_type in fission_products)
 					container.adjust_gas(waste_type, fission_reactions*fission_products[waste_type], FALSE)
 				fast_neutrons += fission_reactions * fission_neutrons
 				energy_delta += fission_reactions * fission_energy
+			if(INTERACTION_DECAY)
+				var/list/all_fluid = container.get_fluid()
+				var/decayed_amount = all_fluid[src.type] * neutron_interactions["slow"][INTERACTION_DECAY]
+				decayed_amount = min(all_fluid[src.type], decayed_amount)
+				container.adjust_gas(src.type, decayed_amount * -1, FALSE)
+				for(var/waste_type in fission_products)
+					container.adjust_gas(waste_type, decayed_amount*fission_products[waste_type], FALSE)
+				fast_neutrons += decayed_amount * fission_neutrons
+				energy_delta += decayed_amount * fission_energy
 
 	return list(
 		"slow_neutrons_changed" = max(slow_neutrons, 0),
@@ -861,14 +869,23 @@ var/decl/material/boil_mat = null
 		"thermal_energy_released" = energy_delta
 	)
 
+#define SLOW_NEUTRON_SPEED 2200
+#define FAST_NEUTRON_SPEED 10000000
 /decl/material/proc/get_nuclear_reaction_rate(datum/gas_mixture/container, reaction_type, slow_neutrons, fast_neutrons)
-	var/interpolation_weight = 0
-	if(slow_neutrons)
-		interpolation_weight = CLAMP01((fast_neutrons / slow_neutrons) * 0.1)
-
+	var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
 	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
 
 	var/list/all_fluid = container.get_fluid()
-	return ((slow_neutrons + fast_neutrons)/sqrt(container.volume)*2) * actual_cross_section * all_fluid[src.type]/container.volume
+	var/target_density = all_fluid[src.type] / container.volume
+	var/macro_xs = target_density * actual_cross_section
+
+	var/slow_density = slow_neutrons / container.volume
+	var/fast_density = fast_neutrons / container.volume
+	var/flux = slow_density * SLOW_NEUTRON_SPEED + fast_density * FAST_NEUTRON_SPEED
+
+	var/rate_per_volume = macro_xs * flux
+	return rate_per_volume * container.volume
 
 #undef SLOW_NEUTRON_ENERGY
+#undef SLOW_NEUTRON_SPEED
+#undef FAST_NEUTRON_SPEED

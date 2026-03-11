@@ -68,3 +68,27 @@
 			final_energy += liquid_moles_freezed * liquid_mat.fusion_enthalpy
 
 	return final_energy
+
+// Splits heat equally between two gas mixtures.
+/datum/gas_mixture/proc/exchange_heat(datum/gas_mixture/partner)
+	if(!partner)
+		return 0
+
+	var/other_heat_capacity = partner.heat_capacity()
+	var/combined_heat_capacity = other_heat_capacity + heat_capacity
+
+	var/old_temperature = temperature
+	var/other_old_temperature = partner.temperature
+
+	if(combined_heat_capacity > 0)
+		var/combined_energy = partner.temperature*other_heat_capacity + heat_capacity*temperature
+
+		var/new_temperature = combined_energy/combined_heat_capacity
+		temperature = new_temperature
+		partner.temperature = new_temperature
+
+	if(abs(old_temperature-temperature) > 1)
+		update_values()
+
+	if(abs(other_old_temperature-partner.temperature) > 1)
+		partner.update_values()

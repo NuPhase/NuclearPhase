@@ -48,3 +48,10 @@
 	pressure = max(pressure_to_cache, 0)
 	if(pressure_to_cache < 0)
 		PRINT_STACK_TRACE("Negative pressure result in cache_pressure()")
+
+// Doesn't update it's heat capacity on its own. Useful for reactor interiors with high specific heats, for example.
+/datum/gas_mixture/constant_heat_capacity/heat_capacity()
+	return heat_capacity
+
+/datum/gas_mixture/constant_heat_capacity/cache_heat_capacity()
+	return

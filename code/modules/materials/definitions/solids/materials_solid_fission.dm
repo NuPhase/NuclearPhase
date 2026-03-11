@@ -34,7 +34,8 @@
 		/decl/material/solid/metal/nuclear_waste/transuranic = 0.6,
 		/decl/material/solid/metal/nuclear_waste/actinides = 0.05,
 		/decl/material/liquid/acid/hydrofluoric = 0.2,
-		/decl/material/gas/xenon = 0.05
+		/decl/material/gas/xenon = 0.05,
+		/decl/material/liquid/bromide/isotope87 = 0.006
 	)
 	absorption_products = list(
 		/decl/material/solid/metal/neptunium = 1
@@ -66,7 +67,7 @@
 
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 10,
+			INTERACTION_SCATTER = 4,
 			INTERACTION_ABSORPTION = 99,
 			INTERACTION_FISSION = 583
 		),
@@ -77,10 +78,11 @@
 		)
 	)
 	fission_products = list(
-		/decl/material/solid/metal/depleted_uranium = 0.3,
-		/decl/material/solid/metal/nuclear_waste/transuranic = 0.6,
-		/decl/material/solid/metal/nuclear_waste/actinides = 0.05,
-		/decl/material/gas/xenon = 0.05
+		/decl/material/solid/metal/nuclear_waste/high_level = 0.92,
+		/decl/material/solid/metal/nuclear_waste/transuranic = 0.02,
+		/decl/material/solid/metal/nuclear_waste/actinides = 0.01,
+		/decl/material/solid/iodine/isotope135 = 0.063,
+		/decl/material/liquid/bromide/isotope87 = 0.0006
 	)
 	absorption_products = list(
 		/decl/material/solid/metal/neptunium = 1
@@ -109,7 +111,7 @@
 
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 9,
+			INTERACTION_SCATTER = 5,
 			INTERACTION_ABSORPTION = 2,
 			INTERACTION_FISSION = 0.00002
 		),
@@ -122,11 +124,11 @@
 	fission_products = list(
 		/decl/material/solid/metal/plutonium = 0.8,
 		/decl/material/solid/metal/radium = 0.1,
-		/decl/material/gas/xenon = 0.05
+		/decl/material/solid/iodine/isotope135 = 0.05
 	)
 	fission_heat = 35000
 	fission_energy = 81080100000.0
-	fission_neutrons = 0.001
+	fission_neutrons = 1
 	neutron_absorption = 950
 	neutron_production = 900
 
@@ -191,9 +193,9 @@
 		)
 	)
 	fission_products = list(
-		/decl/material/solid/metal/nuclear_waste/high_level = 0.85,
-		/decl/material/solid/metal/nuclear_waste/actinides = 0.05,
-		/decl/material/gas/xenon = 0.1
+		/decl/material/solid/metal/nuclear_waste/high_level = 0.94,
+		/decl/material/solid/metal/nuclear_waste/actinides = 0.02,
+		/decl/material/solid/iodine/isotope135 = 0.065
 	)
 	neutron_production = 1200
 	neutron_absorption = 30

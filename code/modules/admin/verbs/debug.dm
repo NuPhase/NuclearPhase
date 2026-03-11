@@ -487,6 +487,17 @@
 	trap = GET_DECL(trap)
 	trap.forced(mob)
 
+#ifdef DEBUG_ENVIRONMENT
+/client/proc/debug_n_economy()
+	set category = "Debug"
+	set name = "Debug Neutron Economy"
+	if(!check_rights(R_DEBUG)) return
+	var/enrichment = tgui_input_number(usr, "Select enrichment percentage", "U-235 percentage", default = 15, max_value = 100, min_value = 0) * 0.01
+	var/neutron_flux = tgui_input_number(usr, "Select neutron count", "Neutron count", 1, 1000000, 0) * 0.001
+	var/fuel_amount = tgui_input_number(usr, "Select fuel amount", "Fuel amount", 10000, 10000000, 1)
+	debug_neutron_economy(enrichment, neutron_flux, fuel_amount)
+#endif
+
 /client/proc/spawn_exoplanet(exoplanet_type as anything in subtypesof(/obj/effect/overmap/visitable/sector/exoplanet))
 	set category = "Debug"
 	set name = "Create Exoplanet"

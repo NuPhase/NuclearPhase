@@ -28,6 +28,15 @@
 	electrolysis_difficulty = 2
 	electrolysis_energy = 285830
 
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 8
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 8
+		)
+	)
+
 	var/dirty_stage = 0 //0-5
 
 /decl/material/liquid/water/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)

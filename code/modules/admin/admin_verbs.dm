@@ -213,6 +213,7 @@ var/global/list/admin_verbs_debug = list(
 	/client/proc/spawn_material,
 	/client/proc/verb_adjust_tank_bomb_severity,
 	/client/proc/force_ghost_trap_trigger,
+	/client/proc/debug_n_economy,
 	/client/proc/spawn_quantum_mechanic,
 	/client/proc/spawn_exoplanet,
 	/client/proc/print_cargo_prices,

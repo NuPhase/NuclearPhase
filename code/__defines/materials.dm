@@ -73,6 +73,7 @@
 #define INTERACTION_FISSION        "fission"
 #define INTERACTION_ABSORPTION     "absorption"
 #define INTERACTION_SCATTER        "scatter"
+#define INTERACTION_DECAY          "decay"
 
 #define MAT_RARITY_NOWHERE  0
 #define MAT_RARITY_EXOTIC   5

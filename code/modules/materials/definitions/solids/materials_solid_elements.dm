@@ -124,6 +124,21 @@
 	color = "#663a66"
 	value = 1
 
+/decl/material/solid/iodine/isotope135
+	name = "iodine-135"
+	uid = "iodine135"
+	lore_text = "A radioactive isotope of Iodine. A common fission product, decays into xenon."
+	fission_energy = 186000000000
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_DECAY = 0.001
+		)
+	)
+	fission_products = list(
+		/decl/material/gas/xenon = 1
+	)
+	radioactivity = 100000 //death
+
 /decl/material/solid/sulfur
 	name = "sulfur"
 	uid = "solid_sulfur"
