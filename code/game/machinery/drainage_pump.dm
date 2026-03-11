@@ -35,8 +35,17 @@
 		icon_state = "siphon:T"
 		return
 	icon_state = "siphon:1"
-	T.remove_fluid(CEILING(fluid_here*0.5 + 5))
-	T.show_bubbles()
+	drain_tile(T)
+	for(var/sdir in alldirs)
+		var/turf/AT = get_step(src, sdir)
+		drain_tile(AT)
 	if(world.time > last_gurgle + 80)
 		last_gurgle = world.time
 		playsound(T, pick(SSfluids.gurgles), 50, 1)
+
+/obj/machinery/drainage_pump/proc/drain_tile(turf/T)
+	var/fluid_here = T.get_fluid_depth()
+	if(fluid_here <= 0)
+		return
+	T.remove_fluid(CEILING(fluid_here*0.5 + 5000))
+	T.show_bubbles()
