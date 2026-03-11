@@ -1,4 +1,4 @@
-	PROCESSING_SUBSYSTEM_DEF(fission)
+PROCESSING_SUBSYSTEM_DEF(fission)
 	name = "Fission Matrices"
 	priority = SS_PRIORITY_MOB
 	flags = SS_NO_INIT
