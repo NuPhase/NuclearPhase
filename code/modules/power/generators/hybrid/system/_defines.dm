@@ -15,7 +15,6 @@
 	var/semiautocontrol_available = TRUE
 	var/autocontrol_available = FALSE
 	var/scram_control = FALSE //should we autoscram?
-	var/closed_governor_cycle = FALSE
 
 	var/list/all_messages = list()
 	var/list/cleared_messages = list()

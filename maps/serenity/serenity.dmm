@@ -48,6 +48,18 @@
 	pixel_x = 10;
 	pixel_y = -3
 	},
+/obj/machinery/reactor_button/rswitch/autoscram{
+	pixel_x = 17;
+	pixel_y = -3
+	},
+/obj/machinery/reactor_button/protected/scram{
+	pixel_y = -11;
+	pixel_x = 23
+	},
+/obj/machinery/reactor_button/protected/containment{
+	pixel_x = 23;
+	pixel_y = -3
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "abG" = (
@@ -21620,24 +21632,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/laboratory)
 "jRt" = (
-/obj/structure/reactor_table{
-	dir = 10;
-	pixel_y = 5
-	},
-/obj/machinery/reactor_button/protected/scram{
-	pixel_y = -11;
-	pixel_x = -9
-	},
-/obj/machinery/reactor_button/protected/containment{
-	pixel_x = -9;
-	pixel_y = -3
-	},
-/obj/machinery/reactor_button/rswitch/autoscram{
-	pixel_x = -15;
-	pixel_y = -3
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in,
+/turf/simulated/floor/concrete,
+/area/serenity/shelter/engineering/electrical/turbinehall)
 "jRx" = (
 /obj/effect/paint_stripe/blue,
 /turf/simulated/wall/concrete/nano,
@@ -23354,7 +23351,7 @@
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "kIB" = (
 /obj/machinery/atmospherics/binary/relief_valve{
-	starting_volume = 5000;
+	starting_volume = 15000;
 	open_pressure = 18000
 	},
 /turf/simulated/floor/concrete,
@@ -28405,10 +28402,6 @@
 	dir = 6;
 	pixel_x = -19;
 	pixel_y = 5
-	},
-/obj/machinery/reactor_monitor/general{
-	pixel_y = 10;
-	layer = 2.221
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -35176,6 +35169,11 @@
 	icon_state = "switch4-0";
 	pixel_x = -2;
 	pixel_y = -3
+	},
+/obj/machinery/reactor_monitor/general{
+	pixel_y = 10;
+	layer = 2.221;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -42097,7 +42095,7 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab)
 "sYR" = (
-/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/machinery/modernsuit_storage/engineering,
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/reactor_operations)
 "sZa" = (
@@ -254154,7 +254152,7 @@ efk
 bXg
 gJo
 nSl
-avQ
+jRt
 tZH
 hIo
 fme
@@ -254928,7 +254926,7 @@ mEO
 mEO
 mEO
 mEO
-mEO
+avQ
 mEO
 vmf
 vmf
@@ -335814,7 +335812,7 @@ mza
 gmv
 xqL
 mdy
-jRt
+xFr
 bxk
 rUR
 lmr

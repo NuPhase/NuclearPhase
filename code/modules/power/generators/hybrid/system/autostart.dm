@@ -26,7 +26,7 @@
 	P.update_mode(REACTOR_PUMP_MODE_MAX)
 	P.rpm = REACTOR_PUMP_RPM_MAX
 
-	P.air2.adjust_gas_temp(/decl/material/liquid/water, 800000, 350) //add wotah to the loop
+	P.air2.adjust_gas_temp(/decl/material/liquid/water, 400000, 350) //add wotah to the loop
 
 	P = rcontrol.reactor_pumps["F-CP 1"]
 	P.update_mode(REACTOR_PUMP_MODE_MAX)
@@ -45,7 +45,7 @@
 	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 10, 0)
 	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 5, 0)
 	R.containment_field.adjust_gas(/decl/material/gas/xenon, 1)
-	R.containment_field.temperature = 105 MEGAKELVIN
+	R.containment_field.temperature = 115 MEGAKELVIN
 	R.fast_neutrons = 70
 	R.moderator_position = 0.05
 

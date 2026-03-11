@@ -27,14 +27,14 @@ PROCESSING_SUBSYSTEM_DEF(fission)
 	generate_matrix()
 	assign_neighbors()
 
-	fuel = new(15000, T20C)
+	fuel = new(15000, 43 CELSIUS)
 	fuel.solids[/decl/material/solid/metal/depleted_uranium] = 300000 * 0.85
 	fuel.solids[/decl/material/solid/metal/uranium] = 300000 * 0.15
 	fuel.gas[/decl/material/gas/oxygen] = 1
 	fuel.update_values()
 	fuel.heat_capacity = 400000000 // 0.4GJ/K
 
-	vessel = new(500000, T20C)
+	vessel = new(500000, 43 CELSIUS)
 	vessel.liquids[/decl/material/liquid/water] = 11111111 // almost exactly 200 tons of water
 	vessel.gas[/decl/material/gas/oxygen] = 1
 	vessel.update_values()

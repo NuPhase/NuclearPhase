@@ -61,7 +61,11 @@
 	current_switch = reactor_buttons["TURB V-BYPASS"]
 
 	if(current_switch && current_switch.state)
-		do_message("TURBINES ON BYPASS", 1)
+		do_message("BYPASS VALVE OPEN", 1)
+
+	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
+	if(!R.containment)
+		do_message("CONTAINMENT FIELD OFFLINE", 2)
 
 	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
 	current_gate = reactor_valves["T-COOLANT V-IN"]
@@ -138,13 +142,13 @@
 			make_log("CONDENSER OVERPRESSURE.")
 
 	if(get_pump_flow_rate("F-CP 1") < 50)
-		do_message("REACTOR LOOP PUMP #1 MASS FLOW < 25KG/S", 1)
+		do_message("REACTOR LOOP PUMP #1 FLOW LOW", 1)
 	if(get_pump_flow_rate("F-CP 2") < 50)
-		do_message("REACTOR LOOP PUMP #2 MASS FLOW < 25KG/S", 1)
+		do_message("REACTOR LOOP PUMP #2 FLOW LOW", 1)
 	if(get_pump_flow_rate("T-CP 1") < 50)
-		do_message("TURBINE LOOP PUMP #1 MASS FLOW < 50KG/S", 1)
+		do_message("TURBINE LOOP PUMP #1 FLOW LOW", 1)
 	if(get_pump_flow_rate("T-CP 2") < 50)
-		do_message("TURBINE LOOP PUMP #2 MASS FLOW < 50KG/S", 1)
+		do_message("TURBINE LOOP PUMP #2 FLOW LOW", 1)
 
 	if(get_meter_temperature("T-M-TURB EX") > 450 && get_meter_pressure("T-M-TURB EX") > 200 && !(current_switch && current_switch.state))
 		do_message("VAPOR IN CONDENSER", 2)
@@ -167,6 +171,10 @@
 	current_switch = reactor_buttons["EP-SCRAM"]
 	playsound(current_switch.loc, 'sound/machines/switchbuzzer.ogg', 50)
 	current_switch = reactor_buttons["AUTOSCRAM"]
+	current_switch.state = 0
+	current_switch.icon_state = current_switch.off_icon_state
+
+	current_switch = reactor_buttons["BATTERY CHARGER"]
 	current_switch.state = 0
 	current_switch.icon_state = current_switch.off_icon_state
 
