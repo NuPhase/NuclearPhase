@@ -447,3 +447,47 @@
 	taste_description = "chlorine"
 	color = "#86ffbd"
 	uid = "water_purifier_first"
+
+/decl/material/liquid/mineral_oil
+	name = "mineral oil"
+	lore_text = "Mineral oil, also known as transformer oil or insulating/lubricating oil, is a highly refined petroleum distillate consisting of complex mixtures of hydrocarbons (primarily paraffinic, naphthenic, and low-aromatic chains). It appears as a clear to pale amber/yellow transparent liquid with a mild petroleum odor, prized for its excellent electrical insulation, thermal stability, and heat transfer properties in high-voltage equipment and machinery."
+	mechanics_text = "Used as both dielectric coolant in transformers and as hydrodynamic lubricant in steam turbine bearings. It offers good viscosity stability across operating temperatures but degrades over time with heat/oxygen exposure, forming sludge or acids."
+	uid = "mineral_oil"
+
+	ignition_point = 638
+	boiling_point = 573
+	melting_point = 233
+	latent_heat = 250000
+	molar_mass = 0.35
+	gas_specific_heat = 25
+	combustion_energy = 46000000
+	combustion_activation_energy = 75300
+	combustion_products = list(/decl/material/gas/oxygen = /decl/material/liquid/water)
+	oxidizer_to_fuel_ratio = 3.5
+	liquid_density = 870
+	solid_density = 900
+
+	taste_description = "bitter petroleum, chemical solvent"
+	taste_mult = 5  // Highly noticeable and unpleasant
+
+	color = "#daa520ff"
+	fire_color = "#FF8C00"
+	fire_alpha = 220
+
+	dirtiness = 5
+	slipperiness = 3
+
+	scent = "faint chemical solvent"
+	turf_touch_threshold = 0.1
+
+	heating_point = 473
+	heating_products = list(
+		/decl/material/liquid/ethanol = 0.35,
+		/decl/material/liquid/acetone = 0.20,
+		/decl/material/liquid/acid/hydrogen_peroxide = 0.10,
+		/decl/material/liquid/plasticide = 0.15,
+		/decl/material/solid/sulfur = 0.05,
+		/decl/material/solid/carbon = 0.03,
+		/decl/material/gas/methane = 0.02
+	)
+	reactivity_coefficient = 0.001

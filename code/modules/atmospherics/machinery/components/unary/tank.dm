@@ -7,6 +7,7 @@
 
 	var/volume = 10000 //in liters, 1 meters by 1 meters by 2 meters ~tweaked it a little to simulate a pressure tank without needing to recode them yet
 	var/start_pressure = 25*ONE_ATMOSPHERE
+	var/start_temperature = T20C
 	var/filling // list of gas ratios to use.
 
 	layer = STRUCTURE_LAYER
@@ -27,14 +28,26 @@
 /obj/machinery/atmospherics/unary/tank/Initialize()
 	. = ..()
 	air_contents.volume = volume
-	air_contents.temperature = T20C
+	air_contents.temperature = start_temperature
+	air_contents.pressure = start_pressure
 	if(filling)
-		var/list/gases = list()
-		for(var/gas in filling)
-			gases += gas
-			gases += start_pressure * filling[gas] * (air_contents.volume)/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-		air_contents.adjust_multi(arglist(gases))
+		for(var/gasid in filling)
+			var/decl/material/mat = GET_DECL(gasid)
+			var/mole_count
+			if(mat.phase_at_temperature(start_temperature, start_pressure) == MAT_PHASE_GAS)
+				mole_count = MolesForPressure(start_pressure) * filling[gasid]
+			else
+				mole_count = MolesForVolume(gasid) * filling[gasid]
+			air_contents.adjust_gas(gasid, mole_count, FALSE)
+		air_contents.update_values()
 		update_icon()
+
+/obj/machinery/atmospherics/unary/tank/proc/MolesForPressure(var/target_pressure = start_pressure)
+	return (target_pressure * volume) / (R_IDEAL_GAS_EQUATION * start_temperature)
+
+/obj/machinery/atmospherics/unary/tank/proc/MolesForVolume(var/decl/material/mat)
+	mat = GET_DECL(mat)
+	return volume * 0.001 * mat.liquid_density / mat.gas_molar_mass
 
 /obj/machinery/atmospherics/unary/tank/set_initial_level()
 	level = 1 // Always on top, apparently.
@@ -94,7 +107,8 @@
 /obj/machinery/atmospherics/unary/tank/large/water
 	name = "Large Tank (Water)"
 	icon_state = "water"
-	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/water = 0.99)
+	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/water = 0.9)
+	start_pressure = ONE_ATMOSPHERE
 
 /obj/machinery/atmospherics/unary/tank/large/nitrogen
 	name = "Large Tank (Nitrogen)"
@@ -104,12 +118,21 @@
 /obj/machinery/atmospherics/unary/tank/large/diesel
 	name = "Large Tank (Diesel)"
 	icon_state = "diesel"
-	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/diesel = 0.99)
+	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/diesel = 0.9)
+	start_pressure = ONE_ATMOSPHERE
+
+/obj/machinery/atmospherics/unary/tank/large/oil
+	name = "Large Tank (Oil)"
+	icon_state = "piss"
+	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/mineral_oil = 0.9)
+	start_temperature = 60 CELSIUS
+	start_pressure = ONE_ATMOSPHERE
 
 /obj/machinery/atmospherics/unary/tank/large/decontamination
 	name = "Large Tank (Decontamination)"
 	icon_state = "decontamination"
-	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/solid/metal/nuclear_waste/actinides = 0.0003)
+	filling = list(/decl/material/gas/nitrogen = 1, /decl/material/solid/metal/nuclear_waste/actinides = 0.0003)
+	start_pressure = ONE_ATMOSPHERE
 
 /obj/item/pipe/tank
 	icon = 'icons/obj/atmospherics/stationary_canisters.dmi'
