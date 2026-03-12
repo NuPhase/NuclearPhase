@@ -661,12 +661,110 @@
 
 //FEMALE HAIR
 /decl/sprite_accessory/hair/female
+	name = "Shaved"
 	icon = 'icons/mob/species/human/hair_female.dmi'
+	icon_state = "hair_shaved_slim"
 	gender = FEMALE
+
+/decl/sprite_accessory/hair/female/spike
+	name = "Spike"
+	icon_state = "hair_d_slim"
+
+/decl/sprite_accessory/hair/female/skinhead
+	name = "Skinhead"
+	icon_state = "hair_skinhead_slim"
+
+/decl/sprite_accessory/hair/female/spikey
+	name = "Spikey"
+	icon_state = "hair_spikey_slim"
+
+/decl/sprite_accessory/hair/female/bun2
+	name = "Bun 2"
+	icon_state = "hair_bun2_slim"
+
+/decl/sprite_accessory/hair/female/lowfade
+	name = "Low Fade"
+	icon_state = "hair_lowfade_slim"
+
+/decl/sprite_accessory/hair/female/medfade
+	name = "Medium Fade"
+	icon_state = "hair_medfade_slim"
+
+/decl/sprite_accessory/hair/female/highfade
+	name = "High Fade"
+	icon_state = "hair_highfade_slim"
+
+/decl/sprite_accessory/hair/female/baldfade
+	name = "Bald Fade"
+	icon_state = "hair_baldfade_slim"
+
+/decl/sprite_accessory/hair/female/nofade
+	name = "No Fade"
+	icon_state = "hair_nofade_slim"
+
+/decl/sprite_accessory/hair/female/trimflat
+	name = "Trim Flat"
+	icon_state = "hair_trimflat_slim"
+
+/decl/sprite_accessory/hair/female/trimmed
+	name = "Trimmed"
+	icon_state = "hair_trimmed_slim"
+
+/decl/sprite_accessory/hair/female/tightbun
+	name = "Tight Bun"
+	icon_state = "hair_tightbun_slim"
+
+/decl/sprite_accessory/hair/female/coffeehouse
+	name = "Coffee House"
+	icon_state = "hair_coffeehouse_slim"
+
+/decl/sprite_accessory/hair/female/shavedpart
+	name = "Shaved Part"
+	icon_state = "hair_shavedpart_slim"
+
+/decl/sprite_accessory/hair/female/shavedmohawk
+	name = "Shaved Mohawk"
+	icon_state = "hair_shavedmohawk_slim"
+
+/decl/sprite_accessory/hair/female/thinningrear
+	name = "Thinning Rear"
+	icon_state = "hair_thinningrear_slim"
+
+/decl/sprite_accessory/hair/female/thinningfront
+	name = "Thinning Front"
+	icon_state = "hair_thinningfront_slim"
+
+/decl/sprite_accessory/hair/female/slick
+	name = "Slick"
+	icon_state = "hair_slick_slim"
+
+/decl/sprite_accessory/hair/female/shavedmohawk2
+	name = "Shaved Mohawk 2"
+	icon_state = "hair_mohawkshaved2_slim"
+
+/decl/sprite_accessory/hair/female/buzzcut2
+	name = "Buzzcut 2"
+	icon_state = "hair_buzzcut2_slim"
+
+/decl/sprite_accessory/hair/female/balding
+	name = "Balding"
+	icon_state = "hair_balding_slim"
+
+/decl/sprite_accessory/hair/female/cossack
+	name = "Cossack"
+	icon_state = "hair_cossack_slim"
+
+/decl/sprite_accessory/hair/female/cossack2
+	name = "Cossack 2"
+	icon_state = "hair_cossack2_slim"
 
 /decl/sprite_accessory/hair/female/longstraightponytail
 	name = "Long Straight Ponytail"
 	icon_state = "hair_longstraightponytail_slim"
+
+/decl/sprite_accessory/hair/female/monk_tonsure
+	name = "Monk Tonsure"
+	icon_state = "hair_monk_tonsure_slim"
 
 /decl/sprite_accessory/hair/female/sick
 	name = "Sick"
@@ -675,6 +773,10 @@
 /decl/sprite_accessory/hair/female/bowie
 	name = "Bowie"
 	icon_state = "hair_bowie_slim"
+
+/decl/sprite_accessory/hair/female/undercut
+	name = "Undercut 1"
+	icon_state = "hair_undercut1_slim"
 
 /decl/sprite_accessory/hair/female/wolfmane
 	name = "Wolfmane"
@@ -696,17 +798,37 @@
 	name = "Ladylike 1"
 	icon_state = "hair_ladylike_slim"
 
-/decl/sprite_accessory/hair/female/ladylike_two
-	name = "Ladylike 2"
-	icon_state = "hair_ladylike2_slim"
-
 /decl/sprite_accessory/hair/female/bluntbangs
 	name = "Bluntbangs"
 	icon_state = "hair_bluntbangs_slim"
 
+/decl/sprite_accessory/hair/female/viking
+	name = "Viking"
+	icon_state = "hair_viking_slim"
+
+/decl/sprite_accessory/hair/female/protagonist
+	name = "Protagonist"
+	icon_state = "hair_protagonist_slim"
+
+/decl/sprite_accessory/hair/female/samurai
+	name = "Samurai"
+	icon_state = "hair_samurai_slim"
+
+/decl/sprite_accessory/hair/female/qing_dynasty
+	name = "Qing Dynasty"
+	icon_state = "hair_qing_dynasty_slim"
+
+/decl/sprite_accessory/hair/female/ming_dynasty
+	name = "Ming Dynasty"
+	icon_state = "hair_ming_dynasty_slim"
+
 /decl/sprite_accessory/hair/female/antenna
 	name = "Antenna"
 	icon_state = "hair_antenna_slim"
+
+/decl/sprite_accessory/hair/female/viking2
+	name = "Viking 2"
+	icon_state = "hair_viking2_slim"
 
 /decl/sprite_accessory/hair/female/zone
 	name = "Zone"
@@ -715,6 +837,14 @@
 /decl/sprite_accessory/hair/female/ziegler
 	name = "Ziegler"
 	icon_state = "hair_ziegler_slim"
+
+/decl/sprite_accessory/hair/female/shortovereye
+	name = "Short Overeye"
+	icon_state = "hair_veryshortovereyealternate_slim"
+
+/decl/sprite_accessory/hair/female/shortovereye2
+	name = "Short Overeye 2"
+	icon_state = "hair_veryshortovereye_slim"
 
 /decl/sprite_accessory/hair/female/spikyponytail
 	name = "Ponytail Spiky"
@@ -728,31 +858,221 @@
 	name = "Stylo"
 	icon_state = "hair_stylo_slim"
 
-/decl/sprite_accessory/hair/female/messy
-	name = "Messy"
+/decl/sprite_accessory/hair/female/smessy
+	name = "S Messy"
 	icon_state = "hair_smessy_slim"
 
-/decl/sprite_accessory/hair/female/shoulder
-	name = "Shoulder 1"
+/decl/sprite_accessory/hair/female/ressshoulder
+	name = "Ress Shoulder"
 	icon_state = "hair_tressshoulder_slim"
 
-/decl/sprite_accessory/hair/female/shoulder_two
-	name = "Shoulder 2"
+/decl/sprite_accessory/hair/female/oneshoulder
+	name = "One Shoulder"
 	icon_state = "hair_oneshoulder_slim"
+
+/decl/sprite_accessory/hair/female/sidepart
+	name = "Side Part"
+	icon_state = "hair_sidepart_slim"
+
+/decl/sprite_accessory/hair/female/short2
+	name = "Short 2"
+	icon_state = "hair_short2_slim"
+
+/decl/sprite_accessory/hair/female/ramona
+	name = "Ramona"
+	icon_state = "hair_ramona_slim"
+
+/decl/sprite_accessory/hair/female/ponytail7
+	name = "Ponytail 7"
+	icon_state = "hair_ponytail7_slim"
+
+/decl/sprite_accessory/hair/female/nia
+	name = "Nia"
+	icon_state = "hair_nia_slim"
 
 /decl/sprite_accessory/hair/female/modern
 	name = "Modern"
 	icon_state = "hair_modern_slim"
 
-/decl/sprite_accessory/hair/female/medium_braid
+/decl/sprite_accessory/hair/female/messybun
+	name = "Messy Bun"
+	icon_state = "hair_messybun_slim"
+
+/decl/sprite_accessory/hair/female/mediumbraid
 	name = "Medium Braid"
 	icon_state = "hair_mediumbraid_slim"
 
-/decl/sprite_accessory/hair/female/ponytail_high
+/decl/sprite_accessory/hair/female/ladylike2
+	name = "Ladylike 2"
+	icon_state = "hair_ladylike2_slim"
+
+/decl/sprite_accessory/hair/female/kusanagi
+	name = "Kusanagi"
+	icon_state = "hair_kusanagi_slim"
+
+/decl/sprite_accessory/hair/female/highponytail
 	name = "Ponytail High"
 	icon_state = "hair_highponytail_slim"
 
+/decl/sprite_accessory/hair/female/hbangs
+	name = "Headbangs"
+	icon_state = "hair_hbangs_slim"
 
+/decl/sprite_accessory/hair/female/hbangs2
+	name = "Headbangs 2"
+	icon_state = "hair_hbangs_alt_slim"
+
+/decl/sprite_accessory/hair/female/hamasaki
+	name = "Hamasaki"
+	icon_state = "hair_hamasaki_slim"
+
+/decl/sprite_accessory/hair/female/emofringe
+	name = "Emo Fringe"
+	icon_state = "hair_emofringe_slim"
+
+/decl/sprite_accessory/hair/female/femc
+	name = "Fem C"
+	icon_state = "hair_femc_slim"
+
+/decl/sprite_accessory/hair/female/flowhair
+	name = "Flow Hair"
+	icon_state = "hair_flowhair_slim"
+
+/decl/sprite_accessory/hair/female/slim80s
+	name = "80s"
+	icon_state = "hair_80s_slim"
+
+/decl/sprite_accessory/hair/female/curls
+	name = "Curls"
+	icon_state = "hair_curls_slim"
+
+/decl/sprite_accessory/hair/female/chop
+	name = "Chop"
+	icon_state = "hair_chop_slim"
+
+/decl/sprite_accessory/hair/female/birdnest
+	name = "Birdnest 1"
+	icon_state = "hair_birdnest_slim"
+
+/decl/sprite_accessory/hair/female/birdnest2
+	name = "Birdnest 2"
+	icon_state = "hair_birdnest2_slim"
+
+/decl/sprite_accessory/hair/female/bun3
+	name = "Bun 3"
+	icon_state = "hair_bun3_slim"
+
+/decl/sprite_accessory/hair/female/business4
+	name = "Business 4"
+	icon_state = "hair_business4_slim"
+
+/decl/sprite_accessory/hair/female/business3
+	name = "Business 3"
+	icon_state = "hair_business3_slim"
+
+/decl/sprite_accessory/hair/female/business2
+	name = "Business 2"
+	icon_state = "hair_business2_slim"
+
+/decl/sprite_accessory/hair/female/business1
+	name = "Business 1"
+	icon_state = "hair_business_slim"
+
+/decl/sprite_accessory/hair/female/asymmbob
+	name = "Asymmetric Bob"
+	icon_state = "hair_asymmbob_slim"
+
+/decl/sprite_accessory/hair/female/messyhair2
+	name = "Messy Hair 2"
+	icon_state = "hair_messyhair2_slim"
+
+/decl/sprite_accessory/hair/female/marysue
+	name = "Mary Sue"
+	icon_state = "hair_marysue_slim"
+
+/decl/sprite_accessory/hair/female/straightlong
+	name = "Straight Long"
+	icon_state = "hair_straightlong_slim"
+
+/decl/sprite_accessory/hair/female/amazon
+	name = "Amazon"
+	icon_state = "hair_amazon_slim"
+
+/decl/sprite_accessory/hair/female/sideswept
+	name = "Sideswept"
+	icon_state = "hair_sideswept_slim"
+
+/decl/sprite_accessory/hair/female/messyhair
+	name = "Messy"
+	icon_state = "hair_messyhair_slim"
+
+/decl/sprite_accessory/hair/female/rightside
+	name = "Right Side"
+	icon_state = "hair_rightside_slim"
+
+/decl/sprite_accessory/hair/female/leftside
+	name = "Left Side"
+	icon_state = "hair_leftside_slim"
+
+/decl/sprite_accessory/hair/female/topknot
+	name = "Top Knot"
+	icon_state = "hair_topknot_slim"
+
+/decl/sprite_accessory/hair/female/rowbraid
+	name = "Row Braid"
+	icon_state = "hair_rowbraid_slim"
+
+/decl/sprite_accessory/hair/female/fringetail
+	name = "Fringe Tail"
+	icon_state = "hair_fringetail_slim"
+
+/decl/sprite_accessory/hair/female/grande
+	name = "Grande"
+	icon_state = "hair_grande_slim"
+
+/decl/sprite_accessory/hair/female/doublebun
+	name = "Double Bun"
+	icon_state = "hair_doublebun_slim"
+
+/decl/sprite_accessory/hair/female/emo2
+	name = "Emo 2"
+	icon_state = "hair_emo2_slim"
+
+/decl/sprite_accessory/hair/female/twintail
+	name = "Twin Tail"
+	icon_state = "hair_twintail_slim"
+
+/decl/sprite_accessory/hair/female/bun
+	name = "Bun"
+	icon_state = "hair_bun_slim"
+
+/decl/sprite_accessory/hair/female/volaju
+	name = "Volaju"
+	icon_state = "hair_volaju_slim"
+
+/decl/sprite_accessory/hair/female/emolong
+	name = "Emo Long"
+	icon_state = "hair_emolong_slim"
+
+/decl/sprite_accessory/hair/female/pixie
+	name = "Pixie"
+	icon_state = "hair_pixie_slim"
+
+/decl/sprite_accessory/hair/female/nitori
+	name = "Nitori"
+	icon_state = "hair_nitori_slim"
+
+/decl/sprite_accessory/hair/female/cia
+	name = "CIA"
+	icon_state = "hair_cia_slim"
+
+/decl/sprite_accessory/hair/female/drillruru
+	name = "Drillruru"
+	icon_state = "hair_drillruru_slim"
+
+/decl/sprite_accessory/hair/female/longovereye
+	name = "Long Overeye"
+	icon_state = "hair_longovereye_slim"
 
 /decl/sprite_accessory/hair_gradient
 	icon = 'icons/mob/species/human/hair_gradients.dmi'
