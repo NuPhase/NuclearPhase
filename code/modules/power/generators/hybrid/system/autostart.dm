@@ -51,7 +51,8 @@
 
 	turbine1.kin_energy = 94298145000.0
 	turbine1.feeder_valve_openage = 0.2
-	turbine1.air1.adjust_gas_temp(/decl/material/liquid/water, 150000, 741)
+	var/datum/gas_mixture/air1 = turbine1.port_gases["Steam In"]
+	air1.adjust_gas_temp(/decl/material/liquid/water, 150000, 741)
 	mode = REACTOR_CONTROL_MODE_SEMIAUTO
 
 	spawn(30 SECONDS)

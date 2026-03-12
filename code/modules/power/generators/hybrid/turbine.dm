@@ -3,24 +3,29 @@
 #define TURBINE_ABNORMAL_RPM 4000
 #define TURBINE_MAX_RPM 10000
 
-/obj/machinery/atmospherics/binary/turbinestage
-	name = "turbine stage"
-	desc = "A steam turbine section. Converting pressure into energy since 1884."
-	//icon = 'icons/obj/machines/power/turbine.dmi'
-	//icon_state = "off"
-	dir = 1
-	layer = BELOW_OBJ_LAYER
+#define PORT_STEAM_IN "Steam In"
+#define PORT_STEAM_OUT "Steam Out"
+
+/obj/machinery/multitile/steam_turbine
+	name = "steam turbine"
+	desc = "A gas turbine. Converting pressure into energy since 1884."
+	icon = 'icons/obj/engine/turbine_stage.dmi'
+	icon_state = "off"
+	layer = ABOVE_OBJ_LAYER
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
-	level = 1
-	density = 1
-	anchored = 1
+	dir = 8
+
+	map_ports = list(
+		list(13, 1, EAST, PORT_STEAM_OUT),
+		list(12, 1, SOUTH, PORT_STEAM_IN)
+	)
+	map_port_volume = 40000
+	width = 13
+	height = 3
 
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 2000 //we have to keep it warm
 	active_power_usage = 40000 //balancing systems, hydraulics, computing, etc
-	identifier = "TURBINE0"
-
-	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
 	uncreated_component_parts = null
 	construct_state = /decl/machine_construction/noninteractive
@@ -52,14 +57,16 @@
 	var/rotor_integrity = 100
 	var/shaft_integrity = 100
 
-	var/obj/structure/turbine_visual/visual = null
 	var/obj/machinery/power/generator/turbine_generator/generator = null
 
 	var/valve_id = ""
 
 	failure_chance = 10
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/get_vibration_flavor()
+	var/datum/sound_token/sound_token
+	var/sound_id
+
+/obj/machinery/multitile/steam_turbine/proc/get_vibration_flavor()
 	switch(vibration)
 		if(0 to 25)
 			return "low"
@@ -68,27 +75,26 @@
 		if(51 to INFINITY)
 			return "high"
 
-/obj/machinery/atmospherics/binary/turbinestage/Initialize()
+/obj/machinery/multitile/steam_turbine/Initialize()
 	. = ..()
-	air1.volume = 120000
-	air2.volume = 120000
+	sound_id = "[/obj/machinery/multitile/steam_turbine]_[sequential_id(/obj/machinery/multitile/steam_turbine)]"
 	reactor_components[uid] = src
 
-/obj/machinery/atmospherics/binary/turbinestage/fail_roundstart()
+/obj/machinery/multitile/steam_turbine/fail_roundstart()
 	rotor_integrity = 100 - (SSticker.mode.difficulty / rand(1,3))
 	shaft_integrity = 100 - (SSticker.mode.difficulty / 2)
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/get_specific_enthalpy(npres, ntemp)
+/obj/machinery/multitile/steam_turbine/proc/get_specific_enthalpy(npres, ntemp)
 	if(ntemp > 450)
 		return 4127119 //Hooked to steam table API
 	return 40000
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/get_density(npres, ntemp)
+/obj/machinery/multitile/steam_turbine/proc/get_density(npres, ntemp)
 	return 2.16 //Hooked to steam table API
 
-/obj/machinery/atmospherics/binary/turbinestage/Process()
-	. = ..()
-	update_networks()
+/obj/machinery/multitile/steam_turbine/Process()
+	var/datum/gas_mixture/air1 = port_gases[PORT_STEAM_IN]
+	var/datum/gas_mixture/air2 = port_gases[PORT_STEAM_OUT]
 
 	if(air1.total_moles)
 		process_steam()
@@ -117,16 +123,19 @@
 	apply_vibration_effects()
 	calculate_efficiency()
 
-	if(rpm > 800)
+	if(rpm > 200)
 		use_power = POWER_USE_ACTIVE
-		if(!visual.sound_token)
-			visual.spool_up()
-		visual.on_rpm_change(rpm)
+		if(!sound_token)
+			spool_up()
+		on_rpm_change(rpm)
 	else
-		visual.spool_down()
+		spool_down()
 		use_power = POWER_USE_IDLE
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/process_steam()
+/obj/machinery/multitile/steam_turbine/proc/process_steam()
+	var/datum/gas_mixture/air1 = port_gases[PORT_STEAM_IN]
+	var/datum/gas_mixture/air2 = port_gases[PORT_STEAM_OUT]
+
 	var/air1_density = get_density(air1.return_pressure() * 0.001, air1.temperature - 273.15)
 
 	//calculate flow velocity
@@ -179,7 +188,7 @@
 	calculate_vibration(air_all)
 	air2.merge(air_all)
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/calculate_efficiency()
+/obj/machinery/multitile/steam_turbine/proc/calculate_efficiency()
 	efficiency = 0.23
 	if(water_grates_open)
 		efficiency -= 0.15
@@ -187,11 +196,11 @@
 	efficiency += rpm * 0.00025
 	efficiency = Clamp(efficiency, 0.23, initial(efficiency))
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
+/obj/machinery/multitile/steam_turbine/proc/calculate_vibration(var/datum/gas_mixture/turbine_internals)
 	var/tvibration = 0
 	//if(turbine_internals.liquids[/decl/material/liquid/water] > 100) //condensing inside of the turbine is incredibly dangerous
 	//	tvibration += total_mass_flow * 0.004 * turbine_internals.liquids[/decl/material/liquid/water]
-	if(total_mass_flow > 1000 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
+	if(total_mass_flow > 100 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
 		tvibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
 		tvibration += 35
@@ -199,10 +208,10 @@
 		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.12
 	tvibration += water_level * 0.7
 	tvibration += total_mass_flow * 0.005
-	tvibration += (1 - (rotor_integrity/100)) * rpm * 0.01
+	tvibration += (1 - (rotor_integrity/100)) * rpm * 0.005
 	vibration = Interpolate(vibration, tvibration, 0.1)
 
-/obj/machinery/atmospherics/binary/turbinestage/proc/apply_vibration_effects()
+/obj/machinery/multitile/steam_turbine/proc/apply_vibration_effects()
 	switch(vibration)
 		if(26 to 51)
 			for(var/mob/living/carbon/human/H in range(world.view, loc))
@@ -229,6 +238,17 @@
 				smoke.set_up(10, 0, loc)
 				smoke.start()
 
+/obj/machinery/multitile/steam_turbine/proc/on_rpm_change(new_rpm)
+	if(sound_token)
+		sound_token.SetVolume((new_rpm / TURBINE_ABNORMAL_RPM) * 300)
+		sound_token.sound.frequency = max(new_rpm / TURBINE_PERFECT_RPM, 0.1)
+
+/obj/machinery/multitile/steam_turbine/proc/spool_up()
+	sound_token = play_looping_sound(src, sound_id, 'sound/machines/turbine_mid.ogg', 30, 15, 7)
+
+/obj/machinery/multitile/steam_turbine/proc/spool_down()
+	QDEL_NULL(sound_token)
+
 /obj/machinery/power/generator/turbine_generator
 	name = "motor"
 	desc = "Electrogenerator. Converts rotation into power."
@@ -236,8 +256,9 @@
 	icon_state = "motor"
 	anchored = 1
 	density = 1
+	dir = 4
 
-	var/obj/machinery/atmospherics/binary/turbinestage/turbine
+	var/obj/machinery/multitile/steam_turbine/turbine
 
 	uncreated_component_parts = null
 	construct_state = /decl/machine_construction/noninteractive
@@ -254,7 +275,7 @@
 /obj/machinery/power/generator/turbine_generator/proc/updateConnection()
 	turbine = null
 	if(src.loc && anchored)
-		turbine = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_step(src,dir)
+		turbine = locate(/obj/machinery/multitile/steam_turbine) in get_step(src,dir)
 		if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
 			turbine = null
 		turbine.generator = src
@@ -277,44 +298,5 @@
 		turbine.kin_energy -= w //i trust the power controller to not draw more than what's available
 		last_load = w
 
-/obj/structure/turbine_visual
-	name = "steam turbine"
-	desc = "A gas turbine. Converting pressure into energy since 1884."
-	icon = 'icons/obj/machines/power/turbine.dmi'
-	icon_state = "off"
-	layer = ABOVE_OBJ_LAYER
-	appearance_flags = PIXEL_SCALE | LONG_GLIDE
-	anchored = 1
-	level = 2
-	density = 1
-	pixel_x = -32
-	pixel_y = -64
-	var/datum/sound_token/sound_token
-	var/sound_id
-	var/obj/machinery/atmospherics/binary/turbinestage/turbine_stage
-
-/obj/structure/turbine_visual/Initialize()
-	. = ..()
-	sound_id = "[/obj/structure/turbine_visual]_[sequential_id(/obj/structure/turbine_visual)]"
-	turbine_stage = locate(/obj/machinery/atmospherics/binary/turbinestage) in get_turf(loc)
-	turbine_stage.visual = src
-
-/obj/structure/turbine_visual/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/crowbar/brace_jack) && turbine_stage.braking)
-		visible_message(SPAN_NOTICE("[user] starts resetting the emergency brakes on \the [src]."))
-		if(!do_after(user, 5 SECONDS, src))
-			visible_message(SPAN_WARNING("[user] fails to reset the emergency brakes!"))
-			return
-		visible_message(SPAN_NOTICE("[user] resets the emergency brakes on \the [src]."))
-		turbine_stage.braking = FALSE
-	. = ..()
-
-/obj/structure/turbine_visual/proc/on_rpm_change(new_rpm)
-	if(sound_token)
-		sound_token.SetVolume((new_rpm / TURBINE_ABNORMAL_RPM) * 150)
-
-/obj/structure/turbine_visual/proc/spool_up()
-	sound_token = play_looping_sound(src, sound_id, 'sound/machines/turbine_mid.ogg', 30, 15, 7)
-
-/obj/structure/turbine_visual/proc/spool_down()
-	QDEL_NULL(sound_token)
+#undef PORT_STEAM_IN
+#undef PORT_STEAM_OUT

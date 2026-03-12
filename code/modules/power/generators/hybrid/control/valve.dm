@@ -56,7 +56,7 @@
 
 /obj/machinery/reactor_button/turn_switch/turbine_valve/do_action(mob/user)
 	..()
-	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
+	var/obj/machinery/multitile/steam_turbine/tst = reactor_components[id]
 	var/openage = tgui_input_number(user, "Select a new openage percentage for this turbine.", "Turbine intake regulation", 0, 100, 0)
 	if(isnum(openage))
 		tst.feeder_valve_openage = Clamp(openage * 0.01, 0, 1)
@@ -87,7 +87,7 @@
 
 /obj/machinery/reactor_button/rswitch/turbine_expansion/do_action(mob/user)
 	..()
-	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components[id]
+	var/obj/machinery/multitile/steam_turbine/tst = reactor_components[id]
 	var/expansion = tgui_input_number(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation", 0, 100, 0)
 	if(isnum(expansion))
 		tst.expansion_ratio = Clamp(expansion * 0.01, 0.65, 0.87)
@@ -98,7 +98,7 @@
 
 /obj/machinery/reactor_button/rswitch/turbine_grates/do_action(mob/user)
 	..()
-	var/obj/machinery/atmospherics/binary/turbinestage/tst = reactor_components["turbine1"]
+	var/obj/machinery/multitile/steam_turbine/tst = reactor_components["turbine1"]
 	tst.water_grates_open = state
 	tst = reactor_components["turbine2"]
 	tst.water_grates_open = state

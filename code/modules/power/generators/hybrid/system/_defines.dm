@@ -27,8 +27,8 @@
 	var/list/reactor_meters = list()
 	var/list/reactor_valves = list()
 	var/list/announcement_monitors = list() //list of monitors we should announce warnings on
-	var/obj/machinery/atmospherics/binary/turbinestage/turbine1 = null
-	var/obj/machinery/atmospherics/binary/turbinestage/turbine2 = null
+	var/obj/machinery/multitile/steam_turbine/turbine1 = null
+	var/obj/machinery/multitile/steam_turbine/turbine2 = null
 	var/obj/machinery/power/generator/turbine_generator/generator1 = null
 	var/obj/machinery/power/generator/turbine_generator/generator2 = null
 	var/last_message_clearing = 0
