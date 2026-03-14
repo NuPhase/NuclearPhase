@@ -1,6 +1,6 @@
 /decl/emote/audible
 	key = "burp"
-	emote_message_3p = "USER отрыгается."
+	emote_message_3p = "USER burps."
 	message_type = AUDIBLE_MESSAGE
 
 /decl/emote/audible/do_extra(atom/user)
@@ -12,16 +12,16 @@
 
 /decl/emote/audible/deathgasp_alien
 	key = "deathgasp"
-	emote_message_3p = "USER издает слабеющий гортанный визг, зеленая кровь пузырится из его пасти."
+	emote_message_3p = "USER dies."
 
 /decl/emote/audible/gasp
 	key ="gasp"
-	emote_message_3p = "USER задыхается!"
+	emote_message_3p = "USER gasps!"
 	conscious = 0
 
 /decl/emote/audible/agony
 	key = "agony"
-	emote_message_3p = "USER кричит в агонии!"
+	emote_message_3p = "USER screams in agony!"
 	emote_sound = list(
 		FEMALE = list('sound/voice/firescream_female1.ogg', 'sound/voice/firescream_female2.ogg', 'sound/voice/emotes/agony_female_1.ogg', 'sound/voice/emotes/agony_female_2.ogg', 'sound/voice/emotes/agony_female_3.ogg', 'sound/voice/emotes/agony_female_4.ogg', 'sound/voice/emotes/agony_female_5.ogg'),
 		MALE = list('sound/voice/firescream1.ogg', 'sound/voice/firescream2.ogg', 'sound/voice/firescream3.ogg', 'sound/voice/emotes/agony_male_1.ogg')
@@ -29,36 +29,36 @@
 
 /decl/emote/audible/scretch
 	key ="scretch"
-	emote_message_3p = "USER чешется."
+	emote_message_3p = "USER scratches."
 
 /decl/emote/audible/choke
 	key ="choke"
-	emote_message_3p = "USER давится!"
+	emote_message_3p = "USER chokes!"
 	conscious = 0
 
 /decl/emote/audible/gnarl
 	key ="gnarl"
-	emote_message_3p = "USER скалится и показывает свои зубы."
+	emote_message_3p = "USER gnarls."
 
 /decl/emote/audible/alarm
 	key = "alarm"
-	emote_message_1p = "You подал сигнал тревоги."
-	emote_message_3p = "USER подаёт сигнал тревоги."
+	emote_message_1p = "You sounded an alarm."
+	emote_message_3p = "USER sounds an alarm."
 
 /decl/emote/audible/alert
 	key = "alert"
-	emote_message_1p = "You издаёте огорченный звук."
-	emote_message_3p = "USER издал огорченный звук."
+	emote_message_1p = "You sounded an alert."
+	emote_message_3p = "USER sounds an alert."
 
 /decl/emote/audible/notice
 	key = "notice"
-	emote_message_1p = "You включаете громкий сигнал."
-	emote_message_3p = "USER проигрывает громкий сигнал."
+	emote_message_1p = "You sounded a notice."
+	emote_message_3p = "USER plays a loud chime."
 
 /decl/emote/audible/whistle
 	key = "whistle"
-	emote_message_1p = "Вы свистите!"
-	emote_message_3p = "USER свистит!"
+	emote_message_1p = "You whistle!"
+	emote_message_3p = "USER whistles!"
 
 /decl/emote/audible/boop
 	key = "boop"
@@ -67,90 +67,90 @@
 
 /decl/emote/audible/sneeze
 	key = "sneeze"
-	emote_message_3p = "USER чихает!"
+	emote_message_3p = "USER sneezes!"
 
 /decl/emote/audible/sniff
 	key = "sniff"
-	emote_message_3p = "USER нюхает."
+	emote_message_3p = "USER sniffs."
 
 /decl/emote/audible/snore
 	key = "snore"
-	emote_message_3p = "USER храпит."
+	emote_message_3p = "USER snores."
 	conscious = 0
 
 /decl/emote/audible/whimper
 	key = "whimper"
-	emote_message_3p = "USER хнычет."
+	emote_message_3p = "USER whimpers."
 
 /decl/emote/audible/yawn
 	key = "yawn"
-	emote_message_3p = "USER зевает."
+	emote_message_3p = "USER yawns."
 
 /decl/emote/audible/clap
 	key = "clap"
-	emote_message_3p = "USER хлопает."
+	emote_message_3p = "USER claps."
 
 /decl/emote/audible/chuckle
 	key = "chuckle"
-	emote_message_3p = "USER усмехается."
+	emote_message_3p = "USER chuckles."
 
 /decl/emote/audible/cough
 	key = "cough"
-	emote_message_3p = "USER кашляет!"
+	emote_message_3p = "USER coughs!"
 	conscious = 0
 
 /decl/emote/audible/cry
 	key = "cry"
-	emote_message_3p = "USER плачет..."
+	emote_message_3p = "USER cries..."
 
 /decl/emote/audible/sigh
 	key = "sigh"
-	emote_message_3p = "USER вздыхает."
+	emote_message_3p = "USER sighs."
 
 /decl/emote/audible/laugh
 	key = "laugh"
-	emote_message_3p = "USER смеется!"
-	emote_message_3p_target = "USER смеется над TARGET!"
+	emote_message_3p = "USER laughs!"
+	emote_message_3p_target = "USER laughs at TARGET!"
 
 /decl/emote/audible/mumble
 	key = "mumble"
-	emote_message_3p = "USER бормочет."
+	emote_message_3p = "USER mumbles."
 
 /decl/emote/audible/grumble
 	key = "grumble"
-	emote_message_3p = "USER бурчит."
+	emote_message_3p = "USER grumbles."
 
 /decl/emote/audible/groan
 	key = "groan"
-	emote_message_3p = "USER болезненно стонет!"
+	emote_message_3p = "USER groans!"
 	conscious = 0
 
 /decl/emote/audible/moan
 	key = "moan"
-	emote_message_3p = "USER стонет!"
+	emote_message_3p = "USER moans!"
 	conscious = 0
 
 /decl/emote/audible/giggle
 	key = "giggle"
-	emote_message_3p = "USER хихикает."
+	emote_message_3p = "USER giggles."
 
 /decl/emote/audible/finger_snap
 	key = "snap"
-	emote_message_3p = "USER щёлкает пальцами."
+	emote_message_3p = "USER snaps."
 	// emote_sound = 'sound/voice/emotes/fingersnap.ogg'
 
 /decl/emote/audible/scream
 	key = "scream"
-	emote_message_3p = "USER кричит!"
+	emote_message_3p = "USER screams!"
 
 /decl/emote/audible/grunt
 	key = "grunt"
-	emote_message_3p = "USER ворчит."
+	emote_message_3p = "USER grunts."
 
 
 /decl/emote/audible/roar
 	key = "roar"
-	emote_message_3p = "USER рычит!"
+	emote_message_3p = "USER roars!"
 
 /decl/emote/audible/bellow
 	key = "bellow"
@@ -158,11 +158,11 @@
 
 /decl/emote/audible/howl
 	key = "howl"
-	emote_message_3p = "USER воет!"
+	emote_message_3p = "USER howls!"
 
 /decl/emote/audible/wheeze
 	key = "wheeze"
-	emote_message_3p = "USER хрипит."
+	emote_message_3p = "USER wheezes."
 
 /decl/emote/audible/gasp
 	emote_sound = list(
