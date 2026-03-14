@@ -61,7 +61,7 @@
 		return ..()
 	var/obj/item/organ/internal/stomach/stomach = get_organ(BP_STOMACH, /obj/item/organ/internal/stomach)
 	if(stomach)
-		return nutrition + (stomach.ingested?.total_volume * 10)
+		return nutrition + (stomach.ingested?.total_volume * 0.1)
 	return 0 //Always hungry, but you can't actually eat. :(
 
 /mob/living/carbon/human/Stat()

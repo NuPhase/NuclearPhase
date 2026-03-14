@@ -243,7 +243,7 @@ GLOBAL_GETTER_PROTECTED(job_whitelist, /datum/whitelist/job, new)
 	if(!wl.check_entry(ckey(key)))
 		src << link("https://discord.gg/XwQPp5nMjE")
 		message_admins(SPAN_CUMZONE("[src] joined without a whitelist."))
-		show_browser(src, "Вас нет в вайтлисте. Вам будет доступна только одна роль, почти не покрывающая широкий геймплей нашего сервера. Для получения доступа к остальным ролям зайдите в наш дискорд сервер(https://discord.gg/XwQPp5nMjE) и пройдите верификацию. Приятной смерти.", "window=whitelisted;size=900x480")
+		show_browser(src, "You're not whitelisted, thus, your jobs are gonna be severely limited. To get access, join our discord server(https://discord.gg/XwQPp5nMjE) and verify yourself. Have a nice death.", "window=whitelisted;size=900x480")
 	else //хуй был тут
 		is_wl = TRUE
 	. = ..()

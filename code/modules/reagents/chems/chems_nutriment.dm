@@ -75,6 +75,7 @@
 	color = "#ffffff"
 	scannable = 1
 	injectable = 1
+	nutriment_factor = 10
 	uid = "chem_nutriment_glucose"
 	drug_category = DRUG_CATEGORY_MISC
 

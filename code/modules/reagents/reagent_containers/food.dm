@@ -99,7 +99,7 @@
 		//TODO: replace with standard_feed_mob() call.
 		var/mob/living/carbon/C = M
 		var/fullness = C.get_fullness()
-		if (fullness > 550)
+		if (fullness > 750)
 			var/message = C == user ? "You cannot force any more of [src] to go down your throat." : "[user] cannot force anymore of [src] down [M]'s throat."
 			to_chat(user, SPAN_WARNING(message))
 			return 0

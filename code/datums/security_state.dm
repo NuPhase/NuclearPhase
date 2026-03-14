@@ -176,7 +176,7 @@
 * The default security state and levels setup
 */
 /decl/security_state/default
-	all_security_levels = list(/decl/security_level/default/code_green, /decl/security_level/default/code_blue, /decl/security_level/default/code_red, /decl/security_level/default/code_delta)
+	all_security_levels = list(/decl/security_level/default/code_green, /decl/security_level/default/code_blue, /decl/security_level/default/code_red, /decl/security_level/default/code_amber, /decl/security_level/default/code_delta)
 
 /decl/security_level/default
 	icon = 'icons/misc/security_state.dmi'
