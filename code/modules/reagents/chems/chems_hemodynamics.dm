@@ -58,7 +58,7 @@
 	color = "#ce3f2c"
 	scannable = 1
 	overdose = 5
-	metabolism = 0.05
+	metabolism = 0.01
 	value = 1.5
 	uid = "chem_atropine"
 	drug_category = DRUG_CATEGORY_RESUSCITATION
@@ -105,15 +105,15 @@
 	color = "#353535"
 	scannable = 1
 	overdose = 15
-	metabolism = 0.05
+	metabolism = 0.01
 	value = 1.5
 	uid = "chem_betapace"
 	drug_category = DRUG_CATEGORY_CARDIAC
 
 /decl/material/solid/betapace/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	heart.bpm_modifiers[name] = removed * -20
-	heart.stability_modifiers[name] = removed * 700
+	heart.bpm_modifiers[name] = removed * -300
+	heart.stability_modifiers[name] = removed * 2500
 
 /decl/material/liquid/dronedarone
 	name = "dronedarone"
@@ -122,14 +122,14 @@
 	color = "#321f35"
 	scannable = 1
 	overdose = 10
-	metabolism = 0.05
+	metabolism = 0.01
 	value = 1.5
 	uid = "chem_dronedarone"
 	drug_category = DRUG_CATEGORY_CARDIAC
 
 /decl/material/liquid/dronedarone/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-	heart.stability_modifiers[name] = removed * 1000
+	heart.stability_modifiers[name] = removed * 3000
 
 /decl/material/liquid/heparin
 	name = "heparin"
