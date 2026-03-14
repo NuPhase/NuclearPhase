@@ -188,17 +188,24 @@ var/global/list/asset_datums = list()
 var/global/template_file_name = "all_templates.json"
 
 /datum/asset/simple/tgui
-	verify = FALSE
+	verify = TRUE
 	assets = list(
 		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
 		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
 	)
 
 /datum/asset/simple/tgui_panel
-	verify = FALSE
+	verify = TRUE
 	assets = list(
 		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
 		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
+	)
+
+/datum/asset/simple/tgfont
+	verify = TRUE
+	assets = list(
+		"tgfont.woff2" = 'tgui/packages/tgfont/static/tgfont.woff2',
+		"tgfont.css" = 'tgui/packages/tgfont/static/tgfont.css'
 	)
 
 /datum/asset/nanoui
@@ -310,7 +317,7 @@ var/global/template_file_name = "all_templates.json"
 	)
 
 /datum/asset/simple/fontawesome
-	verify = FALSE
+	verify = TRUE
 	assets = list(
 		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
 		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
