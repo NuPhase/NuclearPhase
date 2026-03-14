@@ -254,6 +254,16 @@
 		"LO General Surgeon",
 		"LO Therapist"
 	)
+	allowed_branches = list(
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e3,
+		/datum/mil_rank/army/e4,
+		/datum/mil_rank/army/e5
+		)
 	access = list(
 		access_medical,
 		access_medical_equip,
@@ -313,6 +323,16 @@
 		"LO Medical Doctor",
 		"LO	Research Specialist"
 	)
+	allowed_branches = list(
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3,
+		/datum/mil_rank/army/e4
+		)
 	access = list(
 		access_medical,
 		access_medical_equip,
@@ -368,6 +388,16 @@
 		"LO Candidate",
 		"LO ICU Nurse"
 	)
+	allowed_branches = list(
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e1,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
+		)
 	access = list(
 		access_medical,
 		access_medical_equip,

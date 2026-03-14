@@ -163,7 +163,10 @@
 	icon_state = "heads_ce"
 
 /area/serenity/shelter/engineering/electrical
-	name = "Electrical Centre"
+	name = "Electrical Centre - Main"
+	icon_state = "substation"
+/area/serenity/shelter/engineering/electrical/aux
+	name = "Electrical Centre - Auxillary"
 	icon_state = "substation"
 /area/serenity/shelter/engineering/service_tunnels
 	name = "Service Tunnels"

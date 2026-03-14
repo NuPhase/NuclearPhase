@@ -108,6 +108,16 @@
 		access_engine,
 		access_engine_equip
 	)
+	allowed_branches = list(
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3,
+		/datum/mil_rank/army/e4
+		)
 	skill_points = 35
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
@@ -141,6 +151,16 @@
 		access_emergency_storage,
 		access_lab_alpha
 	)
+	allowed_branches = list(
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e1,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
+		)
 	skill_points = 35
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
@@ -185,10 +205,14 @@
 	)
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
 	allowed_branches = list(
-		/datum/mil_branch/civ
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/civ/civ
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e1,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
 		)
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT
@@ -215,10 +239,14 @@
 	alt_titles = list("Cook")
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 	allowed_branches = list(
-		/datum/mil_branch/civ
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/civ/civ
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e1,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
 		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
@@ -247,10 +275,14 @@
 	alt_titles = list("Logistician", "Logistics Specialist", "Logistics Coordinator")
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 	allowed_branches = list(
-		/datum/mil_branch/civ
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/civ/civ
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e1,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
 		)
 	min_skill = list(
 		SKILL_LITERACY  = SKILL_ADEPT,
