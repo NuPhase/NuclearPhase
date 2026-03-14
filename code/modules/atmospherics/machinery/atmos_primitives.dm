@@ -524,6 +524,10 @@
 
 	return (source_pressure - sink_pressure)/(R_IDEAL_GAS_EQUATION * (source.temperature/source_volume + sink.temperature/sink_volume))
 
+// Calculates the moles that should be transferred with that pressure difference.
+/proc/calculate_pressure_flow(pressure_delta, discharge_volume)
+	return 0.05 * sqrt(pressure_delta) * discharge_volume
+
 //Determines if the atmosphere is safe (for humans). Safe atmosphere:
 // - Is between 80 and 120kPa
 // - Has between 17% and 30% oxygen

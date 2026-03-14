@@ -80,7 +80,7 @@
 
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
-	flow_capacity = 1500 //kgs
+	flow_capacity = 3000 //kgs
 	power_rating = 15000000
 	start_sound = 'sound/machines/pumpstart.ogg'
 	start_length = 460

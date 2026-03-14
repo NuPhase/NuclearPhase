@@ -445,14 +445,6 @@
 		if(moles_left_to_remove >= ATMOS_PRECISION)
 			PRINT_STACK_TRACE("Fluid loss in gas_mixture/remove()")
 
-/*
-	var/list/removed_gas_list = list()
-	var/list/all_fluid = get_fluid()
-
-	for(var/g in all_fluid)
-		removed_gas_list[g] = QUANTIZE((all_fluid[g] / total_moles) * amount)
-		adjust_gas(g, -removed_gas_list[g], FALSE)
-*/
 	var/datum/gas_mixture/removed = new(_volume = volume, _temperature = temperature)
 	removed.gas = new_gas
 	removed.liquids = new_liquids
@@ -464,6 +456,36 @@
 
 	return removed
 
+//Removes moles of a SPECIFIC PHASE from the gas mixture and returns a gas_mixture containing the removed air.
+/datum/gas_mixture/proc/remove_phase(amount, phase, update = TRUE)
+	if(amount < 0)
+		PRINT_STACK_TRACE("Negative value supplied to remove_phase()")
+		return
+	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
+	if(amount <= 0)
+		return null
+
+	var/datum/gas_mixture/removed = new(_volume = volume, _temperature = temperature)
+
+	switch(phase)
+		if(MAT_PHASE_GAS)
+			for(var/g in gas)
+				removed.gas[g] = QUANTIZE((gas[g] / total_moles) * amount)
+				gas[g] -= removed.gas[g] / group_multiplier
+		if(MAT_PHASE_LIQUID)
+			for(var/g in liquids)
+				removed.liquids[g] = QUANTIZE((liquids[g] / total_moles) * amount)
+				liquids[g] -= removed.liquids[g] / group_multiplier
+		if(MAT_PHASE_SOLID)
+			for(var/g in solids)
+				removed.solids[g] = QUANTIZE((solids[g] / total_moles) * amount)
+				solids[g] -= removed.solids[g] / group_multiplier
+
+	if(update)
+		update_values()
+		removed.update_values()
+
+	return removed
 
 //Removes a ratio of gas from the mixture and returns a gas_mixture containing the removed air.
 /datum/gas_mixture/proc/remove_ratio(ratio, out_group_multiplier = 1)

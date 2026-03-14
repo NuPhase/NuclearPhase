@@ -20,6 +20,28 @@
 	liquids = cached_liquids
 	solids = cached_solids
 
+/datum/gas_mixture/surface/share_ratio(datum/gas_mixture/other, connecting_tiles, share_size, one_way)
+	var/list/cached_gas = gas.Copy()
+	var/list/cached_liquids = liquids.Copy()
+	var/list/cached_solids = solids.Copy()
+	var/cached_temperature = temperature
+	. = ..()
+	gas = cached_gas
+	liquids = cached_liquids
+	solids = cached_solids
+	temperature = cached_temperature
+
+/datum/gas_mixture/surface/equalize(datum/gas_mixture/sharer)
+	var/list/cached_gas = gas.Copy()
+	var/list/cached_liquids = liquids.Copy()
+	var/list/cached_solids = solids.Copy()
+	var/cached_temperature = temperature
+	. = ..()
+	gas = cached_gas
+	liquids = cached_liquids
+	solids = cached_solids
+	temperature = cached_temperature
+
 /datum/gas_mixture/surface/merge(datum/gas_mixture/giver, update)
 	return
 

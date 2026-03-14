@@ -1,14 +1,11 @@
 /obj/machinery/atmospherics/binary/regulated_valve
 	name = "valve"
 	desc = "A remote controlled valve."
-	var/manual = FALSE
 	var/open_to = 0 //0-1
 	icon = 'icons/obj/atmospherics/components/binary/regulated_valve.dmi'
 	icon_state = "map_off"
 	level = 2
-	var/last_mass_flow = 0
 	var/portvolume = 2000
-	var/forced_mass_flow = 0
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 120
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_WATER
@@ -49,17 +46,19 @@
 
 /obj/machinery/atmospherics/binary/regulated_valve/Process()
 	..()
-	//flow rate limit
-	var/transfer_moles = air1.total_moles * open_to
-	if(!transfer_moles)
+	var/pressure_delta = air1.pressure - air2.pressure
+	if(pressure_delta < 0)
 		return
-	var/transfer_mass = (air1.net_flow_mass + forced_mass_flow) * open_to
+	var/target_mole_flow = calculate_pressure_flow(pressure_delta, air2.volume) * open_to
+	var/mole_flow_diff = target_mole_flow - air1.total_moles
+	if(mole_flow_diff > 0)
+		air1.suction_moles = mole_flow_diff
+	else
+		air1.suction_moles = 0
 
-	pump_gas_passive(src, air1, air2, transfer_moles)
-	pump_fluid_passive(src, air1, air2, transfer_mass)
+	air2.merge(air1.remove(target_mole_flow))
 	update_networks()
 	update_icon()
-	last_mass_flow = transfer_mass
 
 /obj/machinery/atmospherics/binary/regulated_valve/inconel
 	icon_state = "reactor_off"
