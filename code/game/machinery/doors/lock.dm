@@ -94,7 +94,7 @@
 	lock_data = rand(11111, 55555)
 
 /datum/lock/keypad/can_open(var/mob/user)
-	var/user_input = tgui_input_number(user, "Enter a 5-digit code.", "Keycode Access", max_value = 99999, min_value = 11111, timeout = 20 SECONDS)
+	var/user_input = tgui_input_number(user, "Enter a 5-digit code.", "Keycode Access", max_value = 99999, min_value = 11111, default = null, timeout = 20 SECONDS)
 	return user_input == lock_data
 
 /datum/lock/keypad/success_open()

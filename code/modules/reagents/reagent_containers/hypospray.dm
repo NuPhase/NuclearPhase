@@ -198,6 +198,11 @@
 	band_color = COLOR_AMBER
 	starts_with = list(/decl/material/liquid/potassium_iodide = 3, /decl/material/liquid/pentenate_calcium_trisodium = 2)
 
+/obj/item/chems/hypospray/autoinjector/glucose
+	name = "autoinjector (glucose)"
+	band_color = COLOR_AMBER
+	starts_with = list(/decl/material/liquid/nutriment/glucose = 30)
+
 /obj/item/chems/hypospray/autoinjector/srec
 	name = "autoinjector (SREC-I)"
 	band_color = COLOR_GREEN

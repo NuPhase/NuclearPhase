@@ -158,7 +158,8 @@
 		/obj/item/clothing/gloves/latex,
 		/obj/item/flashlight/flare/glowstick,
 		/obj/item/storage/pill_bottle/foil_pack/tramadol,
-		/obj/item/storage/pill_bottle/foil_pack/amicile
+		/obj/item/storage/pill_bottle/foil_pack/amicile,
+		/obj/item/chems/hypospray/autoinjector/glucose
 		)
 
 /obj/item/storage/firstaid/stab
