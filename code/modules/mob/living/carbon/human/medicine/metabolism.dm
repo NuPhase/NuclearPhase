@@ -44,7 +44,7 @@
 				"Your stomach cramps in hunger.",
 				"You want to eat something.")
 			cur_heart.bpm_modifiers["Starvation Mode"] = rand(20, 30)
-			vessel.remove_any(1) //anemia
+			vessel.remove_any(0.5) //anemia
 		if(0 to 50)
 			var/obj/item/organ/internal/heart/cur_heart = GET_INTERNAL_ORGAN(src, BP_HEART)
 			cooldown = 100
@@ -54,7 +54,7 @@
 				"You crave food!",
 				"You have to eat!",
 				"You feel your body dying of hunger!")
-			vessel.remove_any(2) //anemia
+			vessel.remove_any(1) //anemia
 			cur_heart.bpm_modifiers["Starvation"] = rand(30, 40)
 			add_chemical_effect(CE_PRESSURE, -30)
 			var/datum/reagents/ingested = get_ingested_reagents()
@@ -62,6 +62,8 @@
 				cur_heart.stability_modifiers["Refeeding Syndrome"] = -25
 				cur_heart.bpm_modifiers["Refeeding Syndrome"] = -60
 				add_chemical_effect(CE_PRESSURE, -50)
+	if(nutrition < 100 && prob((100 - nutrition)*0.2))
+		playsound(src, pick('sound/voice/hunger1.mp3', 'sound/voice/hunger2.mp3'), 30, 0, -5)
 
 	if(message && world.time > hunger_mes_cooldown)
 		to_chat(src, SPAN_WARNING(message))
