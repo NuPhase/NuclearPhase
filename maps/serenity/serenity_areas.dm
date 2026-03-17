@@ -77,8 +77,18 @@
 
 /area/serenity/shelter/entrance_zone
 	name = "Entrance Zone"
+/area/serenity/shelter/entrance_zone/main_hallway
+	name = "Entrance Zone Main Hallway"
+/area/serenity/shelter/entrance_zone/elevators
+	name = "Entrance Zone Elevators"
+/area/serenity/shelter/entrance_zone/maintenance
+	name = "Entrance Zone Maintenance"
+/area/serenity/shelter/entrance_zone/offices
+	name = "Entrance Zone Offices"
 /area/serenity/shelter/entrance_zone/viewing_area
 	name = "Viewing Area"
+/area/serenity/shelter/entrance_zone/checkpoint
+	name = "Medical Checkpoint"
 
 /area/serenity/shelter/staircase
 	name = "Staircase"
