@@ -93,6 +93,14 @@
 	fission_heat = 35000
 	fission_energy = 21080100000.0
 	fission_neutrons = 2.45
+	melting_point = 1132 CELSIUS
+	boiling_point = 4131 CELSIUS
+	fusion_enthalpy = 14000
+	latent_heat = 335000
+	molar_mass = 0.23504
+	gas_specific_heat = 27.7
+	solid_density = 19050
+	liquid_density = 17300
 
 /decl/material/solid/metal/depleted_uranium
 	name = "uranium 238"
@@ -131,6 +139,14 @@
 	fission_neutrons = 1
 	neutron_absorption = 950
 	neutron_production = 900
+	melting_point = 1132 CELSIUS
+	boiling_point = 4131 CELSIUS
+	fusion_enthalpy = 14000
+	latent_heat = 335000
+	molar_mass = 0.23803
+	gas_specific_heat = 27.7
+	solid_density = 19050
+	liquid_density = 17300
 
 /decl/material/solid/metal/neptunium // Np-237.
 	name = "neptunium"
@@ -164,6 +180,14 @@
 	fission_products = list(
 		/decl/material/solid/metal/plutonium = 1
 	)
+	melting_point = 644 CELSIUS
+	boiling_point = 4174 CELSIUS
+	fusion_enthalpy = 14000
+	latent_heat = 335000
+	molar_mass = 0.23705
+	gas_specific_heat = 27.7
+	solid_density = 20470
+	liquid_density = 20470
 
 /decl/material/solid/metal/plutonium
 	name = "plutonium"
@@ -202,6 +226,14 @@
 	fission_heat = 60000
 	fission_energy = 83917914000.0
 	fission_neutrons = 3
+	melting_point = 640 CELSIUS
+	boiling_point = 3228 CELSIUS
+	fusion_enthalpy = 2800
+	latent_heat = 335000
+	molar_mass = 0.24406
+	gas_specific_heat = 35
+	solid_density = 19816
+	liquid_density = 17600
 
 /decl/material/solid/metal/plutonium/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
 	. = ..()

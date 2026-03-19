@@ -19,6 +19,14 @@
 		/decl/material/gas/helium = 0.5
 	)
 	neutron_absorption = 2000
+	melting_point = 2076 CELSIUS
+	boiling_point = 3927 CELSIUS
+	fusion_enthalpy = 50200
+	latent_heat = 508000
+	molar_mass = 0.01081
+	gas_specific_heat = 11.1
+	solid_density = 2340
+	liquid_density = 2080
 
 /decl/material/solid/lithium
 	name = "lithium"
@@ -45,7 +53,14 @@
 			INTERACTION_ABSORPTION = 0.13
 		)
 	)
-
+	melting_point = 180.5 CELSIUS
+	boiling_point = 1342 CELSIUS
+	fusion_enthalpy = 3000
+	latent_heat = 147000
+	molar_mass = 0.00694
+	gas_specific_heat = 24.9
+	solid_density = 535
+	liquid_density = 512
 
 /decl/material/solid/carbon
 	name = "carbon"
@@ -72,6 +87,12 @@
 	combustion_activation_energy = 150000
 	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
 	oxidizer_to_fuel_ratio = 2
+	fusion_enthalpy = 117000
+	latent_heat = 710000
+	molar_mass = 0.01201
+	gas_specific_heat = 8.5
+	solid_density = 2260
+	liquid_density = 2500
 
 /decl/material/solid/carbon/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	var/datum/reagents/ingested = M.get_ingested_reagents()
@@ -92,6 +113,14 @@
 	color = "#832828"
 	fire_color = "#ffd271"
 	value = 0.5
+	melting_point = 44.1 CELSIUS
+	boiling_point = 280.5 CELSIUS
+	fusion_enthalpy = 640
+	latent_heat = 12400
+	molar_mass = 0.03097
+	gas_specific_heat = 24
+	solid_density = 1820
+	liquid_density = 1740
 
 /decl/material/solid/silicon
 	name = "silicon"
@@ -99,6 +128,14 @@
 	lore_text = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
 	color = "#a8a8a8"
 	value = 0.5
+	melting_point = 1414 CELSIUS
+	boiling_point = 3265 CELSIUS
+	fusion_enthalpy = 50200
+	latent_heat = 383000
+	molar_mass = 0.02809
+	gas_specific_heat = 19.8
+	solid_density = 2330
+	liquid_density = 2570
 
 /decl/material/solid/sodium
 	name = "sodium"
@@ -107,6 +144,14 @@
 	taste_description = "salty metal"
 	color = "#808080"
 	value = 0.5
+	melting_point = 97.8 CELSIUS
+	boiling_point = 883 CELSIUS
+	fusion_enthalpy = 2600
+	latent_heat = 97400
+	molar_mass = 0.02299
+	gas_specific_heat = 28.2
+	solid_density = 968
+	liquid_density = 927
 
 /decl/material/solid/caesium
 	name = "caesium"
@@ -115,6 +160,14 @@
 	taste_description = "nothing"
 	color = "#585858"
 	value = 1
+	melting_point = 28.4 CELSIUS
+	boiling_point = 671 CELSIUS
+	fusion_enthalpy = 2100
+	latent_heat = 64000
+	molar_mass = 0.13291
+	gas_specific_heat = 32
+	solid_density = 1879
+	liquid_density = 1840
 
 /decl/material/solid/iodine
 	name = "iodine"
@@ -123,6 +176,14 @@
 	taste_description = "fish"
 	color = "#663a66"
 	value = 1
+	melting_point = 113.7 CELSIUS
+	boiling_point = 184.3 CELSIUS
+	fusion_enthalpy = 15200
+	latent_heat = 41800
+	molar_mass = 0.25381
+	gas_specific_heat = 36
+	solid_density = 4930
+	liquid_density = 3100
 
 /decl/material/solid/iodine/isotope135
 	name = "iodine-135"
@@ -146,6 +207,14 @@
 	taste_description = "old eggs"
 	color = "#bf8c00"
 	value = 0.5
+	melting_point = 115.2 CELSIUS
+	boiling_point = 444.6 CELSIUS
+	fusion_enthalpy = 1700
+	latent_heat = 25800
+	molar_mass = 0.03207
+	gas_specific_heat = 22
+	solid_density = 2070
+	liquid_density = 1800
 
 /decl/material/solid/potassium
 	name = "potassium"
@@ -154,6 +223,14 @@
 	taste_description = "sweetness" //potassium is bitter in higher doses but sweet in lower ones.
 	color = "#a0a0a0"
 	value = 0.5
+	melting_point = 63.5 CELSIUS
+	boiling_point = 759 CELSIUS
+	fusion_enthalpy = 2300
+	latent_heat = 79000
+	molar_mass = 0.03910
+	gas_specific_heat = 29
+	solid_density = 862
+	liquid_density = 820
 
 /decl/material/solid/potassium/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	var/volume = REAGENT_VOLUME(holder, type)

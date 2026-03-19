@@ -166,7 +166,14 @@
 		/decl/material/solid/carbon = 0.02
 	)
 	default_solid_form = /obj/item/stack/material/sheet
-	melting_point = 1710
+	melting_point = 1510 CELSIUS
+	boiling_point = 2800 CELSIUS
+	fusion_enthalpy = 270000
+	latent_heat = 335000
+	molar_mass = 0.056
+	gas_specific_heat = 25
+	solid_density = 7800
+	liquid_density = 7000
 
 /decl/material/solid/metal/steel/generate_recipes(var/reinforce_material)
 	. = ..()
@@ -239,6 +246,14 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	taste_description = "metal"
 	default_solid_form = /obj/item/stack/material/shiny
+	melting_point = 660.3 CELSIUS
+	boiling_point = 2519 CELSIUS
+	fusion_enthalpy = 10700
+	latent_heat = 294000
+	molar_mass = 0.02698
+	gas_specific_heat = 24.2
+	solid_density = 2700
+	liquid_density = 2375
 
 /decl/material/solid/metal/aluminium/generate_recipes(var/reinforce_material)
 	. = ..()
@@ -295,8 +310,6 @@
 	brute_armor = 10
 	burn_armor = 8
 	integrity = 200
-	melting_point = 1940
-	boiling_point = 3560
 	weight = MAT_VALUE_LIGHT
 	icon_base = 'icons/turf/walls/metal.dmi'
 	wall_flags = PAINT_PAINTABLE
@@ -311,6 +324,14 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	reflectiveness = MAT_VALUE_MATTE
 	default_solid_form = /obj/item/stack/material/reinforced
+	melting_point = 1668 CELSIUS
+	boiling_point = 3287 CELSIUS
+	fusion_enthalpy = 14800
+	latent_heat = 425000
+	molar_mass = 0.04787
+	gas_specific_heat = 25.1
+	solid_density = 4506
+	liquid_density = 4110
 
 /decl/material/solid/metal/titanium/generate_recipes(var/reinforce_material)
 	. = ..()
@@ -386,6 +407,14 @@
 			INTERACTION_ABSORPTION = 0.003
 		)
 	)
+	melting_point = 1538 CELSIUS
+	boiling_point = 2862 CELSIUS
+	fusion_enthalpy = 13800
+	latent_heat = 340000
+	molar_mass = 0.05585
+	gas_specific_heat = 25.1
+	solid_density = 7874
+	liquid_density = 6980
 
 /decl/material/solid/metal/iron/affect_ingest(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(M.HasTrait(/decl/trait/metabolically_inert))
@@ -472,12 +501,14 @@
 	taste_mult = 0 //no taste
 	color = "#8a91a1"
 	value = 0.5
-	liquid_density = 19250
-	melting_point = 3695
-	latent_heat = 824000
-	boiling_point = 5828
-	molar_mass = 0.183
+	melting_point = 3695 CELSIUS
+	boiling_point = 5825 CELSIUS
+	fusion_enthalpy = 824000
+	latent_heat = 335000
+	molar_mass = 0.18385
 	gas_specific_heat = 24.8
+	solid_density = 19250
+	liquid_density = 17600
 
 /decl/material/solid/metal/inconel
 	name = "inconel"

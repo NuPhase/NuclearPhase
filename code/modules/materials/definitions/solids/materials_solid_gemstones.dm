@@ -34,6 +34,14 @@
 	ore_type_value = ORE_PRECIOUS
 	ore_data_value = 2
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
+	melting_point = 3550 CELSIUS
+	boiling_point = 4000 CELSIUS
+	fusion_enthalpy = 71000
+	latent_heat = 335000
+	molar_mass = 0.01201
+	gas_specific_heat = 6.2
+	solid_density = 3515
+	liquid_density = 3515
 
 /decl/material/solid/gemstone/crystal
 	name = "crystal"

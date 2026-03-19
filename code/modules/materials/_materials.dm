@@ -135,7 +135,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	/// kg/mol, molar mass of the element
 	var/molar_mass = 0.06
 	var/gas_molar_mass //placeholder, to be removed
-	/// ml/mol, multiply moles by this to get mL. Divide mL by this to get moles.
+	/// ml/mol, multiply moles by this to get mL. Divide mL by this to get moles. Autoset.
 	var/molar_volume
 	/// j/mol*k, how much joules we need to heat up one mol of material by one degree
 	var/gas_specific_heat = 20

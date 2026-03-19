@@ -38,9 +38,10 @@
 				material_info += "</ul>"
 
 			material_info += "<br>This substance has the following properties in standard temperature and pressure:<ul>"
-			material_info += "<li>Its melting point  is [mat.melting_point] K.</li>"
-			material_info += "<li>Its boiling point  is [mat.boiling_point] K.</li>"
-			material_info += "<li>Its solid density  is [round(mat.solid_density, 0.1)] kg/m3.</li>"
+			material_info += "<li>Its melting point is [round(mat.melting_point, 0.1)] K.</li>"
+			material_info += "<li>Its boiling point is [round(mat.boiling_point, 0.1)] K.</li>"
+			material_info += "<li>Its critical point is [round(mat.critical_point, 0.1)] K.</li>"
+			material_info += "<li>Its solid density is [round(mat.solid_density, 0.1)] kg/m3.</li>"
 			material_info += "<li>Its liquid density is [round(mat.liquid_density, 0.1)] kg/m3.</li>"
 			if(mat.solvent_power > MAT_SOLVENT_NONE)
 				if(mat.solvent_power <= MAT_SOLVENT_MILD)
@@ -81,21 +82,20 @@
 
 			material_info += "</ul>"
 
-			material_info += "As a gas or vapor, it has the following properties:<ul>"
-			var/list/gas_info = list()
-			gas_info+= "<li>It has a specific heat of [mat.gas_specific_heat] J/(mol*K).</li>"
-			gas_info+= "<li>It has a molar mass of [mat.molar_mass] kg/mol.</li>"
+			material_info+= "<li>It has a specific heat of [mat.gas_specific_heat] J/(mol*K).</li>"
+			material_info+= "<li>It has a boiling heat of [mat.latent_heat] J/mol.</li>"
+			material_info+= "<li>It has a melting heat of [mat.fusion_enthalpy] J/mol.</li>"
+			material_info+= "<li>It has a molar mass of [mat.molar_mass] kg/mol.</li>"
+			material_info+= "<li>It has a molar volume of [round(mat.molar_volume, 0.0001)] ml/mol.</li>"
 			if(mat.gas_flags & XGM_GAS_FUEL)
-				gas_info+= "<li>It is flammable.</li>"
+				material_info+= "<li>It is flammable.</li>"
 				if(mat.combustion_products)
 					var/decl/material/firemat = GET_DECL(mat.combustion_products[/decl/material/gas/oxygen])
-					gas_info+= "<li>It produces [firemat.gas_name] when burned in oxygen.</li>"
+					material_info+= "<li>It produces [firemat.gas_name] when burned in oxygen.</li>"
 			if(mat.gas_flags & XGM_GAS_OXIDIZER)
-				gas_info+= "<li>It is an oxidizer, required to sustain fire.</li>"
+				material_info+= "<li>It is an oxidizer, required to sustain fire.</li>"
 			if(mat.gas_flags & XGM_GAS_CONTAMINANT)
-				gas_info+= "<li>It contaminates exposed clothing with residue.</li>"
-			if(!isnull(mat.gas_condensation_point) && mat.gas_condensation_point < INFINITY)
-				gas_info += "<li>It condenses at [mat.gas_condensation_point] K.</li>"
+				material_info+= "<li>It contaminates exposed clothing with residue.</li>"
 			material_info += "</ul>"
 
 			material_info += "As a building or crafting material, it has the following properties:<ul>"
