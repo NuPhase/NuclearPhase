@@ -2,6 +2,7 @@
 	name = null
 	melting_point = 70
 	boiling_point = 180 // -90 C - cryogenic liquid threshold
+	critical_point = 270
 	color = COLOR_GRAY80
 	shard_type = SHARD_NONE
 	conductive = 0

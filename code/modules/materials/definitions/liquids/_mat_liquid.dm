@@ -2,6 +2,7 @@
 	name = null
 	melting_point = T0C
 	boiling_point = T100C
+	critical_point = 927
 	opacity = 0.5
 	molar_mass = 0.018 //water
 	latent_heat = 40650

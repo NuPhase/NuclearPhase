@@ -11,6 +11,7 @@
 	solvent_melt_dose = 60
 	solvent_max_damage = 30
 	boiling_point = 290 CELSIUS
+	critical_point = 927
 	melting_point = 10 CELSIUS
 	latent_heat = 25730
 	molar_mass = 0.098
@@ -26,6 +27,7 @@
 	solvent_max_damage = 30
 	value = 1.5
 	boiling_point = 48 CELSIUS
+	critical_point = 325
 	melting_point = -30 CELSIUS
 	molar_mass = 0.036
 
@@ -40,6 +42,7 @@
 	solvent_max_damage = 10
 	value = 1.5
 	boiling_point = 19.5 CELSIUS
+	critical_point = 461
 	melting_point = -30 CELSIUS
 	molar_mass = 0.02
 	liquid_density = 999
@@ -54,6 +57,7 @@
 	solvent_melt_dose = 48
 	solvent_max_damage = 30
 	boiling_point = 82.6 CELSIUS
+	critical_point = 648
 	melting_point = -41.59 CELSIUS
 	molar_mass = 0.063012
 	liquid_density = 1513
@@ -89,6 +93,7 @@
 	liquid_density = 1450
 	melting_point = 272.72
 	boiling_point = 423.3
+	critical_point = 728
 	molar_mass = 0.034014
 	gas_specific_heat = 98
 	gas_flags = XGM_GAS_OXIDIZER
@@ -132,6 +137,7 @@
 	solvent_power = MAT_SOLVENT_MODERATE
 	toxicity = 3
 	boiling_point = 56 CELSIUS
+	critical_point = 508.1
 	melting_point = -95 CELSIUS
 	latent_heat = 32000
 	molar_mass = 0.058

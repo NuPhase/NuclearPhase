@@ -126,6 +126,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/boiling_point = 3000
 	/// K, point that material will become a liquid.
 	var/melting_point = 700
+	/// K. Also serves as the maximum boiling temperature.
+	var/critical_point = 6000
 	/// J/mol, enthalpy of vaporization
 	var/latent_heat = 7000
 	/// J/mol, enthalpy of fusion (solid into liquid). Calculates itself, don't set unless you have an exact value for a specific material.
@@ -418,7 +420,6 @@ var/decl/material/boil_mat = null
 	to_world("---------------------------")
 #endif
 
-#define MAX_BOILING_POINT 100000
 
 //Clausius–Clapeyron relation
 /decl/material/proc/get_boiling_temp(var/pressure = ONE_ATMOSPHERE)
@@ -426,11 +427,10 @@ var/decl/material/boil_mat = null
 		pressure = 0.00001
 	var/denominator = (1/boiling_point) - ((R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat)
 	if(denominator <= 0)
-		return MAX_BOILING_POINT
+		return critical_point
 	else
-		return (1 / denominator)
+		return min(1 / denominator, critical_point)
 
-#undef MAX_BOILING_POINT
 
 // Returns the phase of the matterial at the given temperature and pressure
 /decl/material/proc/phase_at_temperature(var/temperature = T20C, var/pressure = ONE_ATMOSPHERE)

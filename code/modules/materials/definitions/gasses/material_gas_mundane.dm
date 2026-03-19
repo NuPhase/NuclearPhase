@@ -9,6 +9,7 @@
 	molar_mass = 0.032
 	latent_heat = 3409
 	boiling_point = -183 CELSIUS
+	critical_point = 154.6
 	melting_point = 54.36
 	liquid_density = 1140
 	gas_flags = XGM_GAS_OXIDIZER
@@ -37,6 +38,7 @@
 	molar_mass = 0.004
 	latent_heat = 84.5
 	boiling_point = 4.21
+	critical_point = 5.19
 	melting_point = 0.95
 	liquid_density = 113.9
 	taste_description = "nothing"
@@ -66,6 +68,7 @@
 	molar_mass = 0.044
 	latent_heat = 15550
 	boiling_point = -78 CELSIUS
+	critical_point = 304.2
 	melting_point = 140 //an arbitrary value since we don't have sublimation yet
 	liquid_density = 1190
 	color = "#272727"
@@ -143,6 +146,7 @@
 	molar_mass = 0.028
 	latent_heat = 6040
 	boiling_point = 82
+	critical_point = 132.9
 	melting_point = 68
 	liquid_density = 790
 	taste_description = "stale air"
@@ -191,6 +195,7 @@
 	molar_mass = 0.095
 	latent_heat = 25210
 	boiling_point = 4 CELSIUS
+	critical_point = 427
 	liquid_density = 1720
 	taste_description = "pestkiller"
 	vapor_products = list(
@@ -221,6 +226,7 @@
 	molar_mass = 0.044
 	latent_heat = 3760
 	boiling_point = -90 CELSIUS
+	critical_point = 309.6
 	liquid_density = 1000
 	gas_tile_overlay = "sleeping_agent"
 	gas_overlay_limit = 1
@@ -256,6 +262,7 @@
 	molar_mass = 0.028
 	latent_heat = 2792
 	boiling_point = -195 CELSIUS
+	critical_point = 126.2
 	melting_point = -210 CELSIUS
 	liquid_density = 804.3
 	gas_metabolically_inert = TRUE
@@ -271,6 +278,7 @@
 	molar_mass = 0.054
 	latent_heat = 5200
 	boiling_point = -9 CELSIUS
+	critical_point = 431
 	liquid_density = 1439
 	gas_flags = XGM_GAS_OXIDIZER
 	oxidizer_power = 6
@@ -286,6 +294,7 @@
 	molar_mass = 0.030
 	latent_heat = 3900
 	boiling_point = -152 CELSIUS
+	critical_point = 180
 	liquid_density = 1269
 	gas_flags = XGM_GAS_OXIDIZER
 	oxidizer_power = 8
@@ -300,6 +309,7 @@
 	molar_mass = 0.016
 	latent_heat = 8519
 	boiling_point = 111
+	critical_point = 190.6
 	melting_point = 86
 	liquid_density = 415
 	gas_flags = XGM_GAS_FUEL
@@ -320,6 +330,7 @@
 	molar_mass = 0.039
 	latent_heat = 6506
 	boiling_point = -185 CELSIUS
+	critical_point = 150.8
 	liquid_density = 1373.9
 	value = 0.25
 
@@ -333,6 +344,7 @@
 	molar_mass = 0.083
 	latent_heat = 9029
 	boiling_point = -153 CELSIUS
+	critical_point = 209.4
 	liquid_density = 2370.7
 	value = 0.25
 
@@ -345,6 +357,7 @@
 	molar_mass = 0.02
 	latent_heat = 1732
 	boiling_point = -246 CELSIUS
+	critical_point = 44.4
 	liquid_density = 1204
 	value = 0.25
 
@@ -357,6 +370,7 @@
 	molar_mass = 0.017
 	latent_heat = 23400
 	boiling_point = -33 CELSIUS
+	critical_point = 405.5
 	liquid_density = 682.6
 	metabolism = REM * 5 // So that low dosages have a chance to build up in the body.
 	taste_description = "mordant"
@@ -375,6 +389,7 @@
 	molar_mass = 0.131
 	latent_heat = 12600
 	boiling_point = -108 CELSIUS
+	critical_point = 289.7
 	liquid_density = 3520
 	value = 0.25
 	neutron_interactions = list(
@@ -416,6 +431,7 @@
 	molar_mass = 0.071 //Cl2 gas
 	latent_heat = 10200
 	boiling_point = -34 CELSIUS
+	critical_point = 417
 	gas_flags = XGM_GAS_CONTAMINANT
 	taste_description = "bleach"
 	metabolism = REM
@@ -432,6 +448,7 @@
 	molar_mass = 0.064
 	latent_heat = 389
 	boiling_point = -10 CELSIUS
+	critical_point = 430.8
 	liquid_density = 1461
 	dissolves_into = list(
 		/decl/material/solid/sulfur = 0.5,
@@ -452,6 +469,7 @@
 	molar_mass = 0.002
 	latent_heat = 449
 	boiling_point = 20.2
+	critical_point = 33.2
 	melting_point = 13.9
 	liquid_density = 70.516
 	gas_flags = XGM_GAS_FUEL
@@ -488,6 +506,7 @@
 	mechanics_text = "Tritium is useable as a fuel in some forms of portable generator. It can also be converted into a fuel rod suitable for a R-UST fusion plant injector by using a fuel compressor. It fuses hotter than deuterium but is correspondingly more unstable."
 	color = "#bcffba"
 	boiling_point = -233 CELSIUS
+	critical_point = 42
 	neutron_absorption = 70
 	liquid_density = 202
 	stack_origin_tech = @'{"materials":5}'
@@ -505,6 +524,7 @@
 	flags = MAT_FLAG_FUSION_FUEL | MAT_FLAG_FISSIBLE
 	color = "#ffbaba"
 	boiling_point = -250 CELSIUS
+	critical_point = 38.3
 	liquid_density = 180
 	stack_origin_tech = @'{"materials":3}'
 	value = 0.5
@@ -535,6 +555,7 @@
 	gas_specific_heat = 100
 	melting_point = 275
 	boiling_point = 290
+	critical_point = 470
 	neutron_absorption = 6000
 	toxicity = 15
 	dissolves_in = MAT_SOLVENT_MILD

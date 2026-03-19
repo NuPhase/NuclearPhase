@@ -9,6 +9,7 @@
 	gas_specific_heat = 36.5
 	molar_mass = 0.018
 	boiling_point = 100 CELSIUS
+	critical_point = 647.1
 	melting_point = 0 CELSIUS
 	latent_heat = 40800
 	gas_condensation_point = 308.15 // 35C. Dew point is ~20C but this is better for gameplay considerations.
