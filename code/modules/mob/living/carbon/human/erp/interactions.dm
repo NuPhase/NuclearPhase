@@ -254,7 +254,7 @@
 				P.adjust_pleasure(80)
 				P.adjust_arousal(20)
 				if (P.pleasure >= 1000)
-					P.climax(src, "oral")
+					P.climax(H, "oral")
 				else
 					P.moan()
 			if(prob(75))
@@ -282,7 +282,7 @@
 				P.adjust_pleasure(70)
 				P.adjust_arousal(30)
 				if (P.pleasure >= 1000)
-					P.climax(src, "surface")
+					P.climax(H, "surface")
 				else
 					P.moan()
 
@@ -323,7 +323,7 @@
 				P.adjust_pleasure(70)
 				P.adjust_arousal(40)
 				if (P.pleasure >= 1000)
-					P.climax(src, "oral")
+					P.climax(H, "oral")
 				else
 					P.moan()
 
@@ -409,14 +409,14 @@
 			H.adjust_pleasure(80)
 			H.adjust_arousal(40)
 			if (H.pleasure >= 1000)
-				H.climax(src, "vaginal")
+				H.climax(P, "vaginal")
 			else
 				H.moan(P.potenzia)
 			if (P.stat != DEAD)
 				P.adjust_pleasure(80)
 				P.adjust_arousal(60)
 				if (P.pleasure >= 1000)
-					P.climax(src, "vaginal")
+					P.climax(H, "vaginal")
 				else
 					P.moan(P.potenzia)
 			H.do_fucking_animation(P)
@@ -443,15 +443,15 @@
 			H.adjust_pleasure(70)
 			H.adjust_arousal(30)
 			if (H.pleasure >= 1000)
-				H.climax(src, "anal")
+				H.climax(P, "anal")
 			else
-				P.moan(H.potenzia)
+				H.moan(H.potenzia)
 
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
 				P.adjust_pleasure(80)
 				P.adjust_arousal(40)
 				if (P.pleasure >= 1000)
-					P.climax(src, "anal")
+					P.climax(get_turf(P), "anal")
 				else
 					P.moan(H.potenzia)
 			H.do_fucking_animation(P)
@@ -476,7 +476,7 @@
 			H.adjust_pleasure(70)
 			H.adjust_arousal(50)
 			if (H.pleasure >= 1000)
-				H.climax(src, "oral")
+				H.climax(P, "oral")
 
 			if (prob(H.potenzia))
 				sound_path = "honk/sound/new/ACTIONS/MOUTH/SWALLOW/"
@@ -492,7 +492,7 @@
 /mob/living/carbon/human/proc/moan(var/size = 0)
 	var/mob/living/carbon/human/H = src
 	if (species.name == "Human")
-		if (prob(H.pleasure / 1000))
+		if(prob(H.pleasure / 10))
 			var/message = pick("moans", "moans in pleasure")
 			H.visible_message(SPAN_ERPBOLD("[H] ") + SPAN_ERP(message))
 			var/g = H.gender == FEMALE ? "f" : "m"
