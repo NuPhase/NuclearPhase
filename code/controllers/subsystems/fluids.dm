@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(fluids)
 			continue
 
 		// Evaporation: todo, move liquid into current_turf.zone air contents if applicable.
-		if(current_depth <= FLUID_PUDDLE)
+		if(current_depth <= FLUID_EVAPORATION_CAP)
 			current_fluid.evaporate()
 		if(current_depth <= FLUID_QDEL_POINT)
 			qdel(current_fluid)

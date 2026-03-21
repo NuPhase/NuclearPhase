@@ -193,20 +193,16 @@ Class Procs:
 	if(!checking.should_condense)
 		return //this will stop further condensation processing
 
+	var/turf_count = length(contents)
 	for(var/g in air.liquids)
 		var/decl/material/mat = GET_DECL(g)
 		var/condense_amt = air.liquids[g] * air.group_multiplier
 		var/reagent_condense_amt = condense_amt * mat.molar_volume
-		if(reagent_condense_amt < FLUID_PUDDLE)
-			break
-		var/condensing_iterations = reagent_condense_amt/FLUID_PUDDLE
-		var/condense_amt_per_iteration = reagent_condense_amt/condensing_iterations
-		for(var/i=0, i <= condensing_iterations, i++)
-			var/turf/flooding = pick(contents)
-			var/obj/effect/fluid/F = locate() in flooding
-			if(!F) F = new(flooding)
-			F.temperature = air.temperature-1
-			F.reagents.add_reagent(g, condense_amt_per_iteration)
+		if(reagent_condense_amt < FLUID_EVAPORATION_CAP * turf_count)
+			continue
+		var/condense_amt_per_iteration = reagent_condense_amt/turf_count
+		for(var/turf/flooding in contents)
+			flooding.add_fluid(g, condense_amt_per_iteration, ntemperature = air.temperature)
 		#ifdef CONDENSATION_DEBUG
 		to_world("******CONDENSATION DEBUG******")
 		to_world("Condensed [mat.name]")
@@ -215,6 +211,8 @@ Class Procs:
 		air.liquids[g] = 0
 		CHECK_TICK
 	for(var/g in air.solids)
+		if((air.solids[g] / air.total_moles) < 0.0001)
+			continue
 		for(var/i=0, i < length(contents)*0.1, i++)
 			if(!air.solids[g])
 				break // no more gas to condense
@@ -231,8 +229,8 @@ Class Procs:
 			spawned_dust.color = mat.color
 			var/area/A = get_area(T)
 			A.background_radiation += mat.radioactivity * condense_amt * 0.01
-		CHECK_TICK
 		air.solids[g] = 0
+		CHECK_TICK
 
 	condensing = FALSE
 
