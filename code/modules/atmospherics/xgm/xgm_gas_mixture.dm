@@ -879,8 +879,20 @@
 	if(M)
 		return get_mass()/M
 
+// Takes in moles that are in 'volume_to_return' space in the mix.
+// Warning: Scales with pressure.
 /datum/gas_mixture/proc/remove_air_volume(volume_to_return)
 	var/datum/gas_mixture/removed = remove(return_pressure()*volume_to_return*((R_IDEAL_GAS_EQUATION*temperature)**-1))
+	if(removed)
+		removed.volume = volume_to_return
+		removed.available_volume = volume_to_return
+		removed.update_values()
+	return removed
+
+// Like the above, but doesn't scale with pressure, treating volume as if it was STP
+/datum/gas_mixture/proc/remove_air_volume_iso(volume_to_return, target_pressure)
+	var/req_moles = (target_pressure * volume_to_return) / (R_IDEAL_GAS_EQUATION * temperature)
+	var/datum/gas_mixture/removed = remove(req_moles)
 	if(removed)
 		removed.volume = volume_to_return
 		removed.available_volume = volume_to_return

@@ -52,7 +52,7 @@
 		if(internal)
 			if (internals)
 				internals.icon_state = "internal1"
-			return internal.air_contents.remove_air_volume(volume_needed)
+			return internal.air_contents.remove_air_volume_iso(volume_needed, internal.distribute_pressure)
 		else
 			if (internals)
 				internals.icon_state = "internal0"
