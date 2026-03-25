@@ -183,7 +183,7 @@
 					/decl/material/solid/carbon = MATTER_AMOUNT_TRACE*800)
 
 // TURBINES
-// 4 supersized superalloy blocks. Restored 6% of the turbine integrity
+// 4 supersized superalloy blocks. Restores 6% of the turbine integrity
 /obj/item/crafting_component/turbine_blades
 	name = "turbine blade pack"
 	icon_state = "turb_blades"

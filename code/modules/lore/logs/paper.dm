@@ -93,3 +93,36 @@
 			They're routed through the main government data center, but are actually going elsewhere.<BR> \
 			There's a small building connected to an underground tunnel on highway 23.<BR> \
 			The answer is there.<BR>"
+
+/obj/item/paper/cargo_missing
+	name = "supply deficit manifest"
+
+/obj/item/paper/cargo_missing/Initialize(mapload, text, title, list/md)
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/paper/cargo_missing/LateInitialize()
+	if(!length(SSpersistence.deficit_items))
+		return
+	var/info_list = list()
+	info_list += "Item deficits: <BR>"
+	for(var/item_type in SSpersistence.deficit_items)
+		var/obj/item/O = item_type
+		var/item_name = O::name
+		info_list += "[capitalize(item_name)] - [SSpersistence.deficit_items[item_type]]"
+
+	info_list += "<BR>Material deficits: <BR>"
+	for(var/mat_type in SSpersistence.deficit_fluids)
+		var/decl/material/mat = GET_DECL(mat_type)
+		var/tot_deficit = SSpersistence.deficit_fluids[mat_type]
+		var/amount_string
+		switch(tot_deficit)
+			if(0 to 1000)
+				amount_string = "[round(tot_deficit)]g"
+			if(1000 to 1000000)
+				amount_string = "[round(tot_deficit / 1000, 0.1)]kg"
+			if(1000000 to INFINITY)
+				amount_string = "[round(tot_deficit / 1000000, 0.1)]t"
+		info_list += "[capitalize(mat.name)] - [amount_string]"
+
+	info = jointext(info_list, "<BR>")

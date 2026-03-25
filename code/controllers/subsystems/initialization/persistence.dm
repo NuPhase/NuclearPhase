@@ -25,13 +25,11 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/stock_parts,
 										/obj/item/stack/package_wrap,
 										/obj/item/stack/tape_roll/barricade_tape/toilet, //infinite toilet paper
-										/obj/item/stack/material, //for now ---
 										/obj/item/stack/net_cable_coil,
 										/obj/item/cell/crap,
 										/obj/item/tank/firefighting,
 										/obj/item/chems/condiment,
 										/obj/item/storage/mirror,
-										/obj/item/storage/lockbox/vials,
 										/obj/random/mre,
 										/obj/item/ammo_casing,
 										/obj/item/storage/internal, //how
@@ -39,6 +37,10 @@ SUBSYSTEM_DEF(persistence)
 	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
 										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
 	var/list/fluid_pool = null
+
+	// for things we didn't have when asked
+	var/list/deficit_items = list()
+	var/list/deficit_fluids = list()
 
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
@@ -131,6 +133,15 @@ SUBSYSTEM_DEF(persistence)
 	popup.open()
 
 /datum/controller/subsystem/persistence/proc/collect_object_fluids(obj/O)
+	if(istype(O, /obj/item/stack/material))
+		var/obj/item/stack/material/mat_stack = O
+		fluid_pool[mat_stack.material.type] += mat_stack.amount * SHEET_MATERIAL_AMOUNT
+		return
+	if(istype(O, /obj/machinery/fabricator))
+		var/obj/machinery/fabricator/fab = O
+		for(var/mat_type in fab.stored_material)
+			fluid_pool[mat_type] += fab.stored_material[mat_type]
+		return
 	if(!O.reagents)
 		return
 	for(var/reagent_type in O.reagents.reagent_volumes)
@@ -169,6 +180,9 @@ SUBSYSTEM_DEF(persistence)
 		for(var/obj/structure/reagent_dispensers/D in A.contents)
 			collect_object_fluids(D)
 
+		for(var/obj/machinery/fabricator/D in A.contents)
+			collect_object_fluids(D)
+
 		for(var/obj/machinery/drug_dispenser/D in A.contents)
 			for(var/reagent_type in D.reagent_volumes)
 				fluid_pool[reagent_type] += D.reagent_volumes[reagent_type]
@@ -183,28 +197,33 @@ SUBSYSTEM_DEF(persistence)
 	for(var/b_type in item_pool_blacklist)
 		if(istype(I, b_type))
 			return
-	return_list += I.type
 	collect_object_fluids(I)
+	if(istype(I, /obj/item/stack/material))
+		return
+	return_list += I.type
 
 // Returns the amount of items of that type in the pool, FALSE if there aren't any
 /datum/controller/subsystem/persistence/proc/has_item(item_type)
+	if(item_type in item_pool_blacklist)
+		return INFINITY
 	if(item_type in loaded_item_pool)
 		return loaded_item_pool[item_type]
 	return FALSE
 
 // Returns TRUE if there is an item of that type, and removes it from the pool. Returns FALSE if the item is missing
 /datum/controller/subsystem/persistence/proc/take_item(item_type)
+	if(item_type in item_pool_blacklist)
+		return TRUE
 	if(item_type in loaded_item_pool)
 		loaded_item_pool[item_type] -= 1
 		if(loaded_item_pool[item_type] < 1)
 			loaded_item_pool -= item_type
 		return TRUE
+	deficit_items[item_type] += 1
 	return FALSE
 
 // Returns the amount removed if there is a reagent of that type, and removes it from the pool. Returns 0 if the item is missing
 /datum/controller/subsystem/persistence/proc/take_reagent(rtype, amount)
-	if(!fluid_pool)
-		return amount
 	if(rtype in fluid_pool)
 		if(fluid_pool[rtype] >= amount)
 			fluid_pool[rtype] -= amount
@@ -213,4 +232,7 @@ SUBSYSTEM_DEF(persistence)
 			var/return_amount = fluid_pool[rtype]
 			fluid_pool -= rtype
 			return return_amount
+	else
+		return amount
+	deficit_fluids[rtype] += amount
 	return 0

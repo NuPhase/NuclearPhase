@@ -244,7 +244,7 @@
 	composition = list(
 		/decl/material/solid/bauxite = 0.98,
 		/decl/material/gas/oxygen = 0.01,
-		/decl/material/solid/metal/rare_metals = 0.01
+		/decl/material/solid/rare_earth = 0.01
 	)
 	yield_divisor = 0.5
 	material = /decl/material/solid/bauxite
@@ -256,7 +256,7 @@
 		/decl/material/solid/metal/iron = 0.19,
 		/decl/material/solid/metal/titanium = 0.2,
 		/decl/material/gas/oxygen = 0.6,
-		/decl/material/solid/metal/rare_metals = 0.01
+		/decl/material/solid/rare_earth = 0.01
 	)
 	yield_divisor = 1
 	material = /decl/material/solid/metal/titanium

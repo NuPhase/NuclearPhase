@@ -388,10 +388,7 @@
 	if(pressure_delta > 200)
 		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
 		moles_to_remove = min(moles_to_remove, connected_canister.air_contents.gas_moles * 0.7)
-		for(var/g in connected_canister.air_contents.gas)
-			connected_canister.air_contents.adjust_gas(g, -moles_to_remove)
-			air_contents.adjust_gas(g, moles_to_remove)
-			break
+		air_contents.merge(connected_canister.air_contents.remove_phase(moles_to_remove, MAT_PHASE_GAS))
 		playsound(src, 'sound/machines/thruster.ogg', 70)
 	else if(pressure_delta < 50)
 		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)

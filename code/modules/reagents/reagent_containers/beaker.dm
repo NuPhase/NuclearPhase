@@ -74,7 +74,7 @@
 	desc = "A large beaker."
 	icon = 'icons/obj/items/chem/beakers/large.dmi'
 	center_of_mass = @'{"x":16,"y":10}'
-	volume = 800
+	volume = 1500
 	amount_per_transfer_from_this = 50
 	possible_transfer_amounts = @"[5,10,15,25,30,60,120]"
 	material_force_multiplier = 0.5

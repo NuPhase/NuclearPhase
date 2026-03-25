@@ -128,7 +128,7 @@
 
 /obj/item/chems/ivbag/sodium_bicarbonate
 	name = "sodium bicarbonate infusion pack"
-	additional_examine_info = "85% saline|15% sodium_bicarbonate."
+	additional_examine_info = "85% saline|15% sodium bicarbonate."
 	volume = 800
 
 /obj/item/chems/ivbag/sodium_bicarbonate/Initialize()

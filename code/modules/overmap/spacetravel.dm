@@ -17,6 +17,7 @@ var/global/list/cached_temporary_sectors = list()
 		testing("Temporary sector at [x],[y],[z] was created, corresponding zlevel is [nz].")
 
 /obj/effect/overmap/visitable/sector/temporary/Destroy()
+	. = ..()
 	return
 
 /obj/effect/overmap/visitable/sector/temporary/proc/can_die(var/mob/observer)

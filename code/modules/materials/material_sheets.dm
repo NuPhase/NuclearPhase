@@ -20,6 +20,10 @@
 	. = ..(mapload, amount, _material)
 	if(!istype(material))
 		return INITIALIZE_HINT_QDEL
+	if(mapload)
+		src.amount = SSpersistence.take_reagent(material.type, src.amount * SHEET_MATERIAL_AMOUNT) / SHEET_MATERIAL_AMOUNT
+		if(!src.amount)
+			return INITIALIZE_HINT_QDEL
 	if(!_reinf_material)
 		_reinf_material = reinf_material
 	if(_reinf_material)

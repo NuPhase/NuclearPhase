@@ -103,7 +103,7 @@
 
 /obj/machinery/fabricator/proc/fill_to_capacity()
 	for(var/mat in storage_capacity)
-		stored_material[mat] = storage_capacity[mat]
+		stored_material[mat] = SSpersistence.take_reagent(mat, storage_capacity[mat])
 
 /obj/machinery/fabricator/proc/refresh_design_cache(var/list/known_tech)
 
