@@ -610,11 +610,6 @@ SUBSYSTEM_DEF(jobs)
 	H.mind.assigned_role = rank
 	alt_title = H.mind.role_alt_title
 
-	var/mob/other_mob = job.handle_variant_join(H, alt_title)
-	if(other_mob)
-		job.post_equip_rank(other_mob, alt_title || rank)
-		return other_mob
-
 	to_chat(H, "<font size = 3><B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B></font>")
 
 	if(H.needs_wheelchair())
@@ -623,8 +618,6 @@ SUBSYSTEM_DEF(jobs)
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
-
-	job.post_equip_rank(H, alt_title || rank)
 
 	H.client.show_location_blurb(30)
 

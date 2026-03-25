@@ -12,7 +12,7 @@
 /turf/exterior/open_ocean/setup_environmental_lighting()
 	return
 
-/turf/exterior/open_ocean/set_ambient_light()
+/turf/exterior/open_ocean/set_ambient_light(color, multiplier)
 	return
 
 /turf/exterior/open_ocean/return_air()

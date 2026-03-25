@@ -156,10 +156,6 @@
 		_strata = GET_DECL(_strata)
 	strata = _strata
 
-///Sets the xenoarch engraving generator for the planet. The argument can be either an instance, or a type path.
-/datum/planetoid_data/proc/set_engraving_generator(var/datum/xenoarch_engraving_flavor/X)
-	return
-
 ///Set the id of the topmost level of the planetoid. Argument can be a level_data, or level_id string. Should only be set once during setup ideally.
 /datum/planetoid_data/proc/set_topmost_level(var/datum/level_data/LD)
 	topmost_level_id = istext(LD)? LD : LD.level_id

@@ -2,7 +2,7 @@
 /datum/gas_mixture/surface/cache_pressure()
 	pressure = total_moles * R_IDEAL_GAS_EQUATION / (temperature / T0C)
 
-/datum/gas_mixture/surface/add_thermal_energy(thermal_energy, calculate_phase_change, forced)
+/datum/gas_mixture/surface/add_thermal_energy(thermal_energy, calculate_phase_change, forced, boiling_coef = BOILING_RATE_COEF)
 	return
 
 /datum/gas_mixture/surface/adjust_gas(gasid, moles, update, calculate_phase_change)

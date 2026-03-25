@@ -30,7 +30,7 @@ var/global/list/natural_walls = list()
 /turf/exterior/wall/setup_environmental_lighting()
 	return
 
-/turf/exterior/wall/set_ambient_light()
+/turf/exterior/wall/set_ambient_light(color, multiplier)
 	return
 
 /turf/exterior/wall/Initialize(var/ml, var/materialtype, var/rmaterialtype, should_override = TRUE)

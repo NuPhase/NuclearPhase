@@ -37,7 +37,6 @@
 	. = ..(mapload) // avoid passing newseed as dir
 	if(!newseed)
 		CRASH("Invisible soil tried to spawn without a seed.")
-		return
 	seed = newseed
 	dead = 0
 	age = start_mature ? seed.get_trait(TRAIT_MATURATION) : 1

@@ -291,8 +291,6 @@ var/global/savefile/iconCache = new("data/iconCache.sav")
 		target = resolve_client(target)
 	if(!target)
 		return
-	if(!target.message_cooldown.Find(id))
-		forced = TRUE
 
 	if(forced || (target.message_cooldown[id] < world.time) )
 		to_chat(target, message)
