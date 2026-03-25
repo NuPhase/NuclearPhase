@@ -64,7 +64,7 @@
 /datum/facility_ai/New()
 	id = rand(111, 999)
 	boot()
-	START_PROCESSING(SSprocessing, src)
+	START_PROCESSING(SSai, src)
 
 /datum/facility_ai/Process()
 	if(prob(0.33))

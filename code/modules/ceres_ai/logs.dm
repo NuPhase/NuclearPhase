@@ -151,3 +151,6 @@
 		var/chosen_message = pick(normal_messages)
 		var/class = normal_messages[chosen_message]
 		make_log(chosen_message, class)
+
+/datum/facility_ai/proc/compile_logs()
+	return jointext(logs, "<BR>")
