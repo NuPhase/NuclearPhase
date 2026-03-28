@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/canister
 	name = "\improper Canister: \[CAUTION\]"
-	desc = "A 700L canister. 61kg empty weight."
+	desc = "A 1100L canister. 61kg empty weight."
 	icon = 'icons/obj/atmospherics/canisters.dmi'
 	icon_state = "yellow"
 	density = 1
@@ -549,3 +549,21 @@ update_flag
 	canister_color = "black"
 	can_label = 0
 	initial_gas = list(/decl/material/gas/chlorine = 1)
+
+/obj/machinery/portable_atmospherics/canister/casting
+	name = "\improper Casting Vessel"
+	desc = "A large casting vessel. 10m3 volume, 500kg empty weight. Has wheels."
+	icon_state = "black"
+	canister_color = "black"
+	can_label = 0
+	initial_gas = list(/decl/material/gas/nitrogen = 1)
+	volume = 10000
+	start_pressure = ONE_ATMOSPHERE
+	weight = 500
+	pull_coefficient = 0.01
+
+/obj/machinery/portable_atmospherics/canister/casting/Initialize(mapload, material)
+	. = ..()
+	set_scale(1.5, 1.5)
+	default_pixel_y = 8
+	pixel_y = 8

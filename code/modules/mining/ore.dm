@@ -13,7 +13,7 @@
 	melee_accuracy_bonus = -20
 	throw_speed = 5
 	throw_range = 20
-	max_amount = 800 //800kg in one item, should be okay
+	max_amount = 5000 //5000kg in one item, should be okay
 	amount = 100
 	weight = 100
 	var/processing_flags

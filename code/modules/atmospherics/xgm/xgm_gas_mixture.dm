@@ -470,7 +470,7 @@
 	switch(phase)
 		if(MAT_PHASE_GAS)
 			for(var/g in gas)
-				removed.gas[g] = QUANTIZE((gas[g] / total_moles) * amount)
+				removed.gas[g] = QUANTIZE((gas[g] / gas_moles) * amount)
 				gas[g] -= removed.gas[g] / group_multiplier
 		if(MAT_PHASE_LIQUID)
 			for(var/g in liquids)

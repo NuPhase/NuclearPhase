@@ -7,7 +7,6 @@
 	active_power_usage = 2000
 	clicksound = "keyboard"
 	clickvol = 30
-	base_type =       /obj/machinery/processor
 	construct_state = /decl/machine_construction/default/panel_closed
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
@@ -44,6 +43,7 @@
 	if(initial_tank_path)
 		connected_tank = new initial_tank_path
 	update_recipe_cache()
+	update_icon()
 
 /obj/machinery/processor/on_update_icon()
 	if(!is_functioning())
@@ -145,7 +145,7 @@
 /obj/machinery/processor/Process()
 	if(!operating)
 		return
-	recipe_time += 2
+	recipe_time += 1
 	if(recipe_time >= current_recipe.recipe_time)
 		stop_processing()
 		current_recipe.finish_processing(src)

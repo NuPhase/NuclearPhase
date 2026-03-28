@@ -110,7 +110,7 @@
 			electrode_integrity_message = "It's in excellent condition."
 	to_chat(user, SPAN_NOTICE(electrode_integrity_message))
 	if(coke_content > 25)
-		to_chat(user, SPAN_NOTICE("It has considerable amounts of gray dust accumulated on it. It can probably be burned off."))
+		to_chat(user, SPAN_WARNING("It has considerable amounts of gray dust accumulated on it. It can probably be burned off."))
 
 /obj/item/arc_electrode/attackby(obj/item/I, mob/user)
 	if(IS_WELDER(I))
@@ -130,7 +130,7 @@
 
 
 #define MINIMUM_ARCING_CONDUCTIVITY 0.05
-#define HEAT_LEAK_COEF 0.0001
+#define HEAT_LEAK_COEF 0.001
 /obj/structure/arc_furnace_overlay
 	name = "arc furnace"
 	desc = "A giant electric furnace."
@@ -299,9 +299,14 @@
 	return (coef_sum / length(inserted_electrodes)) - solid_factor
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/lose_electrode_integrity(conduction_coefficient)
+	var/coke_adj
+	if(connected_canister.air_contents.temperature > 3000)
+		coke_adj = -0.1
+	else
+		coke_adj = 0.1
 	for(var/obj/item/arc_electrode/cur_electrode in inserted_electrodes)
 		cur_electrode.integrity = max(0, cur_electrode.integrity - cur_electrode.integrity_loss_per_cycle * conduction_coefficient)
-		cur_electrode.coke_content = min(100, cur_electrode.coke_content + 0.1)
+		cur_electrode.coke_content = min(100, cur_electrode.coke_content + coke_adj)
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/process_stability()
 	var/ninstability = instability * 0.5
@@ -371,10 +376,22 @@
 		stop_arcing()
 		return
 
-	var/total_heat_capacity = connected_canister.air_contents.heat_capacity()
+	var/list/all_liquids = connected_canister.air_contents.get_fluid(fluid_types = MAT_PHASE_LIQUID)
+	var/list/all_solids = connected_canister.air_contents.get_fluid(fluid_types = MAT_PHASE_SOLID)
+	var/total_latent_heat = 0
+	for(var/f_type in all_liquids)
+		var/decl/material/mat = GET_DECL(f_type)
+		if(connected_canister.air_contents.temperature > mat.boiling_point)
+			total_latent_heat += all_liquids[f_type] * mat.latent_heat * 0.05
+	for(var/f_type in all_solids)
+		var/decl/material/mat = GET_DECL(f_type)
+		if(connected_canister.air_contents.temperature > mat.melting_point)
+			total_latent_heat += all_solids[f_type] * mat.fusion_enthalpy * 0.05
+
+	var/total_heat_capacity = heat_capacity()
 
 	firelevel = air_contents.fire_react()
-	var/actually_used_power = min(nominal_power_usage * conductivity_coefficient, total_heat_capacity * rand(50, 100) * conductivity_coefficient)
+	var/actually_used_power = min(nominal_power_usage * conductivity_coefficient, total_latent_heat + (total_heat_capacity * rand(50, 100) * conductivity_coefficient))
 	heat_up(actually_used_power)
 	change_power_consumption(actually_used_power, POWER_USE_ACTIVE)
 	lose_electrode_integrity(conductivity_coefficient)
@@ -387,7 +404,7 @@
 	var/pressure_delta = connected_canister.air_contents.return_pressure() - 303
 	if(pressure_delta > 200)
 		var/moles_to_remove = (pressure_delta * connected_canister.volume) / (R_IDEAL_GAS_EQUATION * connected_canister.air_contents.temperature)
-		moles_to_remove = min(moles_to_remove, connected_canister.air_contents.gas_moles * 0.7)
+		moles_to_remove = min(moles_to_remove, connected_canister.air_contents.gas_moles * 0.99)
 		air_contents.merge(connected_canister.air_contents.remove_phase(moles_to_remove, MAT_PHASE_GAS))
 		playsound(src, 'sound/machines/thruster.ogg', 70)
 	else if(pressure_delta < 50)
@@ -399,7 +416,9 @@
 		do_melt(connected_canister.air_contents)
 
 /obj/machinery/atmospherics/unary/furnace/arc/heat_up(joules)
+	connected_canister.air_contents.heat_capacity = heat_capacity()
 	connected_canister.air_contents.add_thermal_energy(joules, TRUE, TRUE)
+	connected_canister.air_contents.update_values()
 	temperature = air_contents.temperature
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
@@ -410,6 +429,7 @@
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/heat_capacity()
 	. = heat_capacity
+	. += connected_canister.air_contents.heat_capacity()
 	for(var/obj/item/stack/ore/O in contents)
 		. += O.amount * 1000
 	return .

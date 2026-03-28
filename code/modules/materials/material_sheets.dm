@@ -160,6 +160,7 @@
 	plural_icon_state = "ingot-mult"
 	max_icon_state = "ingot-max"
 	stack_merge_type = /obj/item/stack/material/ingot
+	max_amount = 200
 
 /obj/item/stack/material/sheet
 	name = "sheets"

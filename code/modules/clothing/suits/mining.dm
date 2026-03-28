@@ -1,6 +1,6 @@
 /obj/item/clothing/under/hevacs
 	name = "HevACS undersuit"
-	desc = "It's a tight-fitting undersuit consisting of layers of airtight fabric and thermal insulation."
+	desc = "It's a tight-fitting undersuit consisting of layers of watertight fabric and thermal insulation."
 	icon = 'icons/clothing/under/jumpsuits/hevacs.dmi'
 	min_cold_protection_temperature = 170
 	max_heat_protection_temperature = 410

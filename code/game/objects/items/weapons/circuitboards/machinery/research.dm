@@ -299,6 +299,20 @@
 		/obj/item/stock_parts/power/apc/buildable = 1
 	)
 
+/obj/item/stock_parts/circuitboard/furnace
+	name = "circuitboard (induction furnace)"
+	build_path = /obj/machinery/processor/furnace
+	board_type = "machine"
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/capacitor = 3,
+		/obj/item/stock_parts/engine = 2)
+	additional_spawn_components = list(
+		/obj/item/stock_parts/console_screen = 1,
+		/obj/item/stock_parts/keyboard = 1,
+		/obj/item/stock_parts/power/apc/buildable = 1
+	)
+
 /obj/item/stock_parts/circuitboard/assembler
 	name = "circuitboard (precision assembler)"
 	build_path = /obj/machinery/processor/assembler

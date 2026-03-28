@@ -138,3 +138,5 @@
 		var/casted_volume = mat.molar_volume * contained_canister.air_contents.liquids[mat_type]
 		contained_canister.air_contents.liquids[mat_type] = 0
 		SSmaterials.create_object(mat_type, get_turf(src), casted_volume / SHEET_MATERIAL_AMOUNT, cast_type)
+	contained_canister.air_contents.temperature = T100C
+	contained_canister.air_contents.update_values()
