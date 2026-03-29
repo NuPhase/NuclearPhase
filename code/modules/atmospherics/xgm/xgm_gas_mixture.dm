@@ -46,8 +46,9 @@
 	update_values()
 
 // Returns a list of specified fluid states.
+// if fluid_types isn't specified, returns all gases
 // if gasid isn't specified, returns a list of all gases with specified states
-// fluid_types can be a list or a single define.
+// fluid_types can be a list or a single define or null.
 /datum/gas_mixture/proc/get_fluid(gasid, list/fluid_types)
 	var/list/returned_list = list()
 	if(islist(fluid_types))

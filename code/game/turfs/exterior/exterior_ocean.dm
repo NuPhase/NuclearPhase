@@ -37,3 +37,13 @@
 	update_icon()
 	fluid_update(TRUE)
 	add_vis_contents(src, global.flood_object)
+
+/turf/simulated/open/ocean
+	name = "underwater cavern"
+	desc = "Looks very deep."
+	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2MINE, /decl/material/gas/nitrogen = MOLES_N2MINE, /decl/material/gas/carbon_dioxide = 2, /decl/material/gas/sulfur_dioxide = 1)
+	flooded = TRUE
+
+/turf/simulated/open/asteroid
+	temperature = T20C-15
+	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2MINE, /decl/material/gas/nitrogen = MOLES_N2MINE, /decl/material/gas/carbon_dioxide = 2)
