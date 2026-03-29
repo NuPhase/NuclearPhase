@@ -144,7 +144,7 @@ var/global/obj/abstract/landmark/sky_tag/sky_alt_tag
 	set category = "CTS Control"
 	set src in view(0)
 	var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
-	if(cur_vehicle.orbiting || cur_vehicle.busy)
+	if(cur_vehicle.busy)
 		return
 	if(!cur_vehicle.has_updated_navigation)
 		to_chat(usr, SPAN_WARNING("Navigation systems are outdated!"))
@@ -160,6 +160,7 @@ var/global/obj/abstract/landmark/sky_tag/sky_alt_tag
 	var/confirmation = tgui_alert(usr, "Are you sure you want to perform an ascent to 'Icarus'?", "Ascent and Rendezvous", list("Blast it!", "I'm a pussy..."))
 	if(!confirmation || confirmation == "I'm a pussy...")
 		return
+	cur_vehicle.busy = TRUE
 	cur_vehicle.acceleration = 0
 	visible_message(SPAN_NOTICE("FNAV states: 'Confirmation received, beginning automatic orbital ascent."))
 	cur_vehicle.orbiting = TRUE
@@ -191,13 +192,15 @@ var/global/obj/abstract/landmark/sky_tag/sky_alt_tag
 	sleep(10)
 	for(var/mob/living/carbon/human/H in view(9, src))
 		shake_camera(H, 1200, 0.2)
-	sleep(30 SECONDS)
+	sleep(120 SECONDS)
 	QDEL_NULL(ascent_loop)
 	visible_message(SPAN_WARNING("The main engines shut down, transitioning into idle mode."))
-	cur_vehicle.acceleration = 0.1
+	cur_vehicle.acceleration = initial(cur_vehicle.acceleration) * 0.3
+	cur_vehicle.filled_tank_volume -= 2
 	cur_vehicle.entrypoint.can_use = TRUE
 	cur_vehicle.forceMove(get_turf(icarus_alt_tag))
 	animate(cur_vehicle, alpha = 255, 20, easing = SINE_EASING)
+	cur_vehicle.busy = FALSE
 
 /obj/structure/bed/chair/comfy/vehicle/cts
 	var/datum/composite_sound/cts_ascent/ascent_loop = null
@@ -210,18 +213,19 @@ var/global/obj/abstract/landmark/sky_tag/sky_alt_tag
 	volume = 30
 	sfalloff = 9
 
-//Ascent takes 4 minutes. Average acceleration is 3G
 /obj/structure/bed/chair/comfy/vehicle/cts/verb/ascent_to_altitude()
 	set name = "Ascent to Altitude"
 	set category = "CTS Control"
 	set src in view(0)
 	var/obj/multitile_vehicle/aerial/lander/cur_vehicle = vehicle
-	if(cur_vehicle.orbiting || cur_vehicle.busy)
+	if(cur_vehicle.busy)
 		return
 	if(!cur_vehicle.has_updated_navigation)
 		to_chat(usr, SPAN_WARNING("Navigation systems are outdated!"))
-	if(cur_vehicle.filled_tank_volume < 8)
+		return
+	if(cur_vehicle.filled_tank_volume < 2)
 		to_chat(usr, SPAN_WARNING("Insufficient LCH2 levels!"))
+		return
 	var/altitude = input(usr, "Select desired ascent altitude in KM", "Orbital Ascent") as null|num
 	if(altitude != 170)
 		to_chat(usr, SPAN_WARNING("There's nothing of interest there."))
@@ -230,6 +234,7 @@ var/global/obj/abstract/landmark/sky_tag/sky_alt_tag
 	var/confirmation = tgui_alert(usr, "Are you sure you want to perform an ascent to 'Typhos'?", "Ascent and Rendezvous", list("Blast it!", "I'm a pussy..."))
 	if(!confirmation || confirmation == "I'm a pussy...")
 		return
+	cur_vehicle.busy = TRUE
 	cur_vehicle.acceleration = 0
 	visible_message(SPAN_NOTICE("FNAV states: 'Confirmation received, beginning automatic ascent to: 170KM ASL.'."))
 	cur_vehicle.orbiting = TRUE
@@ -261,10 +266,12 @@ var/global/obj/abstract/landmark/sky_tag/sky_alt_tag
 	sleep(10)
 	for(var/mob/living/carbon/human/H in view(9, src))
 		shake_camera(H, 1200, 0.2)
-	sleep(30 SECONDS)
+	sleep(120 SECONDS)
 	QDEL_NULL(ascent_loop)
 	visible_message(SPAN_WARNING("The main engines shut down, transitioning into idle mode."))
-	cur_vehicle.acceleration = 0.1
+	cur_vehicle.acceleration = initial(cur_vehicle.acceleration) * 0.3
+	cur_vehicle.filled_tank_volume -= 2
 	cur_vehicle.entrypoint.can_use = TRUE
 	cur_vehicle.forceMove(get_turf(typhos_alt_tag))
 	animate(cur_vehicle, alpha = 255, 20, easing = SINE_EASING)
+	cur_vehicle.busy = FALSE

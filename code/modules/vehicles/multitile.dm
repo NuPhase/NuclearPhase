@@ -179,9 +179,6 @@ var/global/list/DIR2DEGREES = list(
 	var/list/required_components = list()
 	var/list/installed_components = list()
 
-/obj/multitile_vehicle/proc/set_bound_box()
-	density = !active
-
 /obj/multitile_vehicle/Initialize()
 	. = ..()
 	uid = "[type]_[sequential_id(type)]"
@@ -224,18 +221,17 @@ var/global/list/DIR2DEGREES = list(
 	dir = NORTH
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
 	pixel_step_size = 1
+	density = 0
 	var/drag_multiplier = 0.99
 
 /obj/multitile_vehicle/aerial/proc/liftoff()
 	START_PROCESSING(SSvehicles, src)
 	active = TRUE
-	set_bound_box()
 	animate(src, pixel_y = pixel_y + 8, time = 20, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/proc/land()
 	STOP_PROCESSING(SSvehicles, src)
 	active = FALSE
-	set_bound_box()
 	animate(src, pixel_y = pixel_y - 8, time = 20, easing = SINE_EASING)
 
 /obj/multitile_vehicle/aerial/Process()
