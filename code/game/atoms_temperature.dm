@@ -58,24 +58,24 @@
 	. = ..()
 	temperature_coefficient = isnull(temperature_coefficient) ? Clamp(MAX_TEMPERATURE_COEFFICIENT - FLOOR(mob_size/4), MIN_TEMPERATURE_COEFFICIENT, MAX_TEMPERATURE_COEFFICIENT) : temperature_coefficient
 
+/// Returns the 'ambient temperature' used for temperature equalisation.
+/atom/proc/get_ambient_temperature()
+	if(isturf(loc))
+		return loc.return_air().temperature
+	else if(ismob(loc))
+		return loc.get_ambient_temperature()
+	else if(loc)
+		return loc.temperature
+	// Nullspace is room temperature, clearly.
+	return T20C
+
 // TODO: move mob bodytemperature onto this proc.
 /atom/proc/ProcessAtomTemperature()
 	SHOULD_NOT_SLEEP(TRUE)
 
 	// Get our location temperature if possible.
 	// Nullspace is room temperature, clearly.
-	var/adjust_temp
-	if(loc)
-		if(!istype(loc, /turf/simulated))
-			adjust_temp = loc.temperature
-		else
-			var/turf/simulated/T = loc
-			if(T.zone && T.zone.air)
-				adjust_temp = T.zone.air.temperature
-			else
-				adjust_temp = T20C
-	else
-		adjust_temp = T20C
+	var/adjust_temp = get_ambient_temperature()
 
 	// Determine if our temperature needs to change.
 	var/old_temp = temperature

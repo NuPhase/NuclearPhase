@@ -387,7 +387,7 @@
 	return !failed_last_breath
 
 #define DEFAULT_HUMAN_INSULATION_COEF 0.02
-#define BURN_DAMAGE_FACTOR (1 - DEFAULT_HUMAN_INSULATION_COEF)
+#define BURN_DAMAGE_FACTOR 0.18
 #define BURN_DAMAGE_INSULATION_DIVISOR 600 // this much burn damage will cause us to completely lose skin insulation
 /mob/living/carbon/human/proc/get_insulation_coef()
 	return min(MAX_TEMPERATURE_COEFFICIENT, DEFAULT_HUMAN_INSULATION_COEF + (getFireLoss() / BURN_DAMAGE_INSULATION_DIVISOR * BURN_DAMAGE_FACTOR))
@@ -456,6 +456,7 @@
 			bodytemperature += temperature_gain //temperature_gain will often be negative
 
 	heat_clothing()
+	var/env_temp = get_adjusted_environment_temp(environment)
 
 	var/relative_density = (environment.total_moles/environment.volume) / (MOLES_CELLSTANDARD/CELL_VOLUME)
 	if(relative_density > 0.02) //don't bother if we are in vacuum or near-vacuum
@@ -466,24 +467,29 @@
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-		var/temp_diff = get_adjusted_environment_temp(environment) - bodytemperature
+		var/temp_diff = env_temp - bodytemperature
 		var/insulation_coef = get_insulation_coef()
 		bodytemperature += insulation_coef * temp_diff
 
+	var/obj/item/organ/internal/heart/H = GET_INTERNAL_ORGAN(src, BP_HEART)
+	if(H)
+		var/temp_diff = bodytemperature - species.body_temperature
+		H.bpm_modifiers["bodytemp"] = temp_diff*3.4
+
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
-	if(bodytemperature >= getSpeciesOrSynthTemp(HEAT_LEVEL_1))
+	if(env_temp >= getSpeciesOrSynthTemp(HEAT_LEVEL_1))
 		//Body temperature is too hot.
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)	return 1	//godmode
-		var/burn_dam = (bodytemperature - species.heat_level_1) * 0.03
+		var/burn_dam = (env_temp - species.heat_level_1) * 0.03
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature", armor_pen = 200)
 		fire_alert = max(fire_alert, 2)
 
-	else if(bodytemperature <= getSpeciesOrSynthTemp(COLD_LEVEL_1))
+	else if(env_temp <= getSpeciesOrSynthTemp(COLD_LEVEL_1))
 		fire_alert = max(fire_alert, 1)
 		if(status_flags & GODMODE)	return 1	//godmode
 
-		var/burn_dam = (species.heat_level_1 - bodytemperature) * 0.02
+		var/burn_dam = (species.heat_level_1 - env_temp) * 0.02
 		take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature", armor_pen = 200)
 		var/obj/item/organ/external/victim = pick(internal_organs)
 		victim.germ_level += burn_dam
@@ -548,7 +554,7 @@
 		add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] is covered in sweat."), DESCRIPTOR_DIRTINESS)
 
 	var/old_bodytemp = bodytemperature
-	bodytemperature = Interpolate(bodytemperature, 310.15, 0.5 / abs(body_temperature_difference))
+	bodytemperature = Interpolate(bodytemperature, species.body_temperature, 0.5 / abs(body_temperature_difference))
 
 	var/actual_change = old_bodytemp - bodytemperature
 	if(actual_change > 0) // Cooled

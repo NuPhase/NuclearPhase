@@ -131,7 +131,7 @@ var/global/const/DEFAULT_SPECIES_HEALTH = 200
 	var/warning_high_pressure = WARNING_HIGH_PRESSURE           // High pressure warning.
 	var/warning_low_pressure = WARNING_LOW_PRESSURE             // Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE               // Dangerously low pressure.
-	var/body_temperature = 310.15	                            // Species will try to stabilize at this temperature.
+	var/body_temperature = 309.05	                            // Species will try to stabilize at this temperature.
 	                                                            // (also affects temperature processing)
 	var/heat_discomfort_level = 315                             // Aesthetic messages about feeling warm.
 	var/cold_discomfort_level = 285                             // Aesthetic messages about feeling chilly.
