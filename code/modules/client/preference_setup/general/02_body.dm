@@ -5,8 +5,10 @@
 	var/h_style = /decl/sprite_accessory/hair/bald
 	var/f_style = /decl/sprite_accessory/facial_hair/shaved
 	var/g_style = /decl/sprite_accessory/hair_gradient/none
+	var/e_style = /decl/sprite_accessory/ears/none
 
 	var/gradient_color = COLOR_BLACK
+	var/ear_color = COLOR_WHITE
 	var/hair_colour = COLOR_BLACK
 	var/skin_colour = COLOR_BLACK
 	var/facial_hair_colour = COLOR_BLACK
@@ -28,6 +30,7 @@
 	pref.hair_colour =            R.read("hair_colour")
 	pref.facial_hair_colour =     R.read("facial_hair_colour")
 	pref.gradient_color = 		  R.read("gradient_color")
+	pref.ear_color = 		  	  R.read("ear_color")
 	pref.skin_colour =            R.read("skin_colour")
 	pref.eye_colour =             R.read("eye_colour")
 	pref.skin_tone =              R.read("skin_tone")
@@ -38,6 +41,7 @@
 	pref.h_style =                R.read("hair_style_name")
 	pref.f_style =                R.read("facial_style_name")
 	pref.g_style =                R.read("gradient_style_name")
+	pref.e_style =                R.read("ear_style_name")
 	pref.body_markings =          R.read("body_markings")
 	pref.virginity =              R.read("virginity")
 
@@ -65,6 +69,14 @@
 			pref.g_style = accessory
 			break
 
+	// Get e_style type.
+	all_sprite_accessories = decls_repository.get_decls_of_subtype(/decl/sprite_accessory/ears)
+	for(var/accessory in all_sprite_accessories)
+		var/decl/sprite_accessory/sprite = all_sprite_accessories[accessory]
+		if(sprite.name == pref.e_style)
+			pref.e_style = accessory
+			break
+
 	// Get markings type.
 	all_sprite_accessories = decls_repository.get_decls_of_subtype(/decl/sprite_accessory/marking)
 	for(var/marking in pref.body_markings)
@@ -80,6 +92,7 @@
 	W.write("hair_colour",            pref.hair_colour)
 	W.write("facial_hair_colour",     pref.facial_hair_colour)
 	W.write("gradient_color", 		  pref.gradient_color)
+	W.write("ear_color", 		  	  pref.ear_color)
 	W.write("skin_colour",            pref.skin_colour)
 	W.write("eye_colour",             pref.eye_colour)
 	W.write("b_type",                 pref.b_type)
@@ -94,6 +107,8 @@
 	W.write("facial_style_name", sprite.name)
 	sprite = GET_DECL(pref.g_style)
 	W.write("gradient_style_name", sprite.name)
+	sprite = GET_DECL(pref.e_style)
+	W.write("ear_style_name", sprite.name)
 	var/list/body_marking_names = list()
 	for(var/marking in pref.body_markings)
 		sprite = GET_DECL(marking)
@@ -210,6 +225,11 @@
 		. += "<td><b>Eyes</b></td>"
 		. += "<td>[COLORED_SQUARE(pref.eye_colour)] <a href='?src=\ref[src];eye_color=1'>Change</a></td>"
 		. += "</tr>"
+	. += "<tr>"
+	. += "<td><b>Ears</b></td>"
+	. += "<td><a href='?src=\ref[src];ear_style=1'>[GET_DECL(pref.e_style)]</a></td>"
+	. += "<td>[COLORED_SQUARE(pref.ear_color)] <a href='?src=\ref[src];ear_color=1'>Change</a></td>"
+	. += "</tr>"
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<tr>"
 		. += "<td><b>Body</b></td>"
@@ -339,6 +359,21 @@
 		mob_species = get_species_by_key(pref.species)
 		if(new_f_style && CanUseTopic(user) && (new_f_style in mob_species.get_facial_hair_styles(B?.associated_gender)))
 			pref.f_style = new_f_style.type
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["ear_style"])
+		var/list/ears_to_display = list()
+		for(var/style in subtypesof(/decl/sprite_accessory/ears))
+			ears_to_display += GET_DECL(style)
+		var/decl/sprite_accessory/new_ear_style = input(user, "Choose your character's ear style:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.e_style)  as null|anything in ears_to_display
+		if(new_ear_style && CanUseTopic(user))
+			pref.e_style = new_ear_style.type
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["ear_color"])
+		var/new_ear = input(user, "Choose your character's ear color:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.ear_color) as color|null
+		if(new_ear && CanUseTopic(user))
+			pref.ear_color = new_ear
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	//TODO SPRITE ACCESSORY UPDATE

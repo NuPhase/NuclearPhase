@@ -202,6 +202,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			_wear_mask = W
 			if(_wear_mask.flags_inv & BLOCK_ALL_HAIR)
 				update_hair(redraw_mob)	//rebuild hair
+				update_ears(redraw_mob)
 				update_inv_ears(0)
 			W.equipped(src, slot)
 			update_inv_wear_mask(redraw_mob)
@@ -237,6 +238,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			_head = W
 			if(_head.flags_inv & (BLOCK_ALL_HAIR|HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
+				update_ears(redraw_mob)
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
 			if(istype(W,/obj/item/clothing/head/kitty))

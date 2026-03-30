@@ -127,15 +127,16 @@ Please contact me on #coderbus IRC. ~Carn x
 #define HO_BACK_LAYER       16
 #define HO_TAIL_OVER_LAYER  17 //bs12 specific. this hack is probably gonna come back to haunt me
 #define HO_HAIR_LAYER       18 //TODO: make part of head layer?
-#define HO_GOGGLES_LAYER    19
-#define HO_EARS_LAYER       20
-#define HO_FACEMASK_LAYER   21
-#define HO_HEAD_LAYER       22
-#define HO_COLLAR_LAYER     23
-#define HO_HANDCUFF_LAYER   24
-#define HO_INHAND_LAYER     25
-#define HO_FIRE_LAYER       26 //If you're on fire
-#define TOTAL_LAYERS        26
+#define HO_EARH_LAYER       19
+#define HO_GOGGLES_LAYER    20
+#define HO_EARS_LAYER       21
+#define HO_FACEMASK_LAYER   22
+#define HO_HEAD_LAYER       23
+#define HO_COLLAR_LAYER     24
+#define HO_HANDCUFF_LAYER   25
+#define HO_INHAND_LAYER     26
+#define HO_FIRE_LAYER       27 //If you're on fire
+#define TOTAL_LAYERS        27
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -152,6 +153,7 @@ Please contact me on #coderbus IRC. ~Carn x
 	update_skin(FALSE)
 	update_underwear(FALSE)
 	update_hair(FALSE)
+	update_ears(FALSE)
 	update_inv_w_uniform(FALSE)
 	update_inv_wear_id(FALSE)
 	update_inv_gloves(FALSE)
@@ -496,6 +498,24 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)
 		queue_icon_update()
 
+/mob/living/carbon/human/proc/update_ears(var/update_icons=1)
+	overlays_standing[HO_EARH_LAYER]	= null
+	//masks and helmets can obscure our ears.
+	for(var/slot in global.airtight_slots)
+		var/obj/item/gear = get_equipped_item(slot)
+		if(gear && (gear.flags_inv & BLOCK_ALL_HAIR))
+			if(update_icons)
+				queue_icon_update()
+			return
+	if(ear_style)
+		var/decl/sprite_accessory/ears = GET_DECL(ear_style)
+		var/mutable_appearance/ear_overlay = mutable_appearance(ears.icon, ears.icon_state, ear_color, layer = HO_EARH_LAYER)
+		overlays_standing[HO_EARH_LAYER] = list(ear_overlay)
+	else
+		return
+	if(update_icons)
+		queue_icon_update()
+
 /mob/living/carbon/human/update_mutations(var/update_icons=1)
 
 	var/image/standing	= overlay_image('icons/effects/genetics.dmi', flags=RESET_COLOR)
@@ -680,6 +700,7 @@ var/global/list/damage_icon_parts = list()
 	var/obj/item/mask = get_equipped_item(slot_wear_mask_str)
 	var/obj/item/head = get_equipped_item(slot_head_str)
 	update_hair(0)	//rebuild hair
+	update_ears()
 	update_inv_ears(0)
 
 	if(!(mask && (mask.item_flags & ITEM_FLAG_AIRTIGHT)))

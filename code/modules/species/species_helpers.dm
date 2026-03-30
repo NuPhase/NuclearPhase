@@ -75,6 +75,7 @@ var/global/list/stored_shock_by_ref = list()
 	mannequin.update_body(0)
 	mannequin.update_underwear(0)
 	mannequin.update_hair(0)
+	mannequin.update_ears()
 	mannequin.update_icon()
 	mannequin.update_transform()
 

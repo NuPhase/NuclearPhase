@@ -806,6 +806,7 @@ var/global/list/admin_verbs_mod = list(
 			M.set_gender(NEUTER)
 
 	M.update_hair()
+	M.update_ears()
 	M.update_body()
 	M.check_dna(M)
 

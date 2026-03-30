@@ -288,7 +288,7 @@
 	var/spawn_branches = mil_branches.spawn_branches(S)
 	for(var/branch_type in allowed_branches)
 		var/datum/mil_branch/branch = mil_branches.get_branch_by_type(branch_type)
-		if(branch.name in spawn_branches)
+		if(branch && (branch.name in spawn_branches))
 			if(!allowed_ranks || !(global.using_map.flags & MAP_HAS_RANK))
 				LAZYADD(., branch.name)
 				continue // Screw this rank stuff, we're good.

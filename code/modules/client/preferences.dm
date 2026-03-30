@@ -379,6 +379,8 @@ var/global/list/time_prefs_fixed = list()
 	character.f_style = f_style
 	character.grad_style = g_style
 	character.grad_color = gradient_color
+	character.ear_style = e_style
+	character.ear_color = ear_color
 
 	character.virgin = virginity
 
@@ -419,6 +421,7 @@ var/global/list/time_prefs_fixed = list()
 	character.update_body(0)
 	character.update_underwear(0)
 	character.update_hair(0)
+	character.update_ears()
 	character.update_icon()
 	character.update_transform()
 
