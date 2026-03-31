@@ -133,6 +133,7 @@
 	SSradiation.radiate(superstructure, panel_multiplier * total_radiation / (1 + (REACTOR_SHIELDING_DIVISOR * blanket_integrity)))
 
 	handle_magnets()
+	update_fuel_status()
 
 	if(meltdown_state)
 		process_meltdown()

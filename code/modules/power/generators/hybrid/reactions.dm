@@ -32,7 +32,7 @@
 /decl/thermonuclear_reaction/deuterium_deuterium
 	first_reactant = /decl/material/gas/hydrogen/deuterium
 	second_reactant = /decl/material/gas/hydrogen/deuterium
-	product = /decl/material/gas/hydrogen/tritium
+	product = /decl/material/gas/helium
 	mean_energy = 352000
 	minimum_temperature = 130 MEGAKELVIN
 	free_neutron_moles = 0
