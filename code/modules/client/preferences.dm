@@ -381,6 +381,7 @@ var/global/list/time_prefs_fixed = list()
 	character.grad_color = gradient_color
 	character.ear_style = e_style
 	character.ear_color = ear_color
+	character.ear_color_inner = ear_color_inner
 
 	character.virgin = virginity
 

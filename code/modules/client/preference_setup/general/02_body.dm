@@ -9,6 +9,7 @@
 
 	var/gradient_color = COLOR_BLACK
 	var/ear_color = COLOR_WHITE
+	var/ear_color_inner = COLOR_WHITE
 	var/hair_colour = COLOR_BLACK
 	var/skin_colour = COLOR_BLACK
 	var/facial_hair_colour = COLOR_BLACK
@@ -31,6 +32,7 @@
 	pref.facial_hair_colour =     R.read("facial_hair_colour")
 	pref.gradient_color = 		  R.read("gradient_color")
 	pref.ear_color = 		  	  R.read("ear_color")
+	pref.ear_color_inner = 		  R.read("ear_color_inner")
 	pref.skin_colour =            R.read("skin_colour")
 	pref.eye_colour =             R.read("eye_colour")
 	pref.skin_tone =              R.read("skin_tone")
@@ -93,6 +95,7 @@
 	W.write("facial_hair_colour",     pref.facial_hair_colour)
 	W.write("gradient_color", 		  pref.gradient_color)
 	W.write("ear_color", 		  	  pref.ear_color)
+	W.write("ear_color_inner", 		  pref.ear_color_inner)
 	W.write("skin_colour",            pref.skin_colour)
 	W.write("eye_colour",             pref.eye_colour)
 	W.write("b_type",                 pref.b_type)
@@ -229,6 +232,7 @@
 	. += "<td><b>Ears</b></td>"
 	. += "<td><a href='?src=\ref[src];ear_style=1'>[GET_DECL(pref.e_style)]</a></td>"
 	. += "<td>[COLORED_SQUARE(pref.ear_color)] <a href='?src=\ref[src];ear_color=1'>Change</a></td>"
+	. += "<td>[COLORED_SQUARE(pref.ear_color_inner)] <a href='?src=\ref[src];ear_color_inner=1'>Change</a></td>"
 	. += "</tr>"
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<tr>"
@@ -374,6 +378,12 @@
 		var/new_ear = input(user, "Choose your character's ear color:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.ear_color) as color|null
 		if(new_ear && CanUseTopic(user))
 			pref.ear_color = new_ear
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["ear_color_inner"])
+		var/new_ear = input(user, "Choose your character's inner ear color:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.ear_color_inner) as color|null
+		if(new_ear && CanUseTopic(user))
+			pref.ear_color_inner = new_ear
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	//TODO SPRITE ACCESSORY UPDATE

@@ -2,6 +2,7 @@
 	icon                 = 'icons/mob/species/human/default_ears.dmi'
 	abstract_type        = /decl/sprite_accessory/ears
 	blend          = ICON_MULTIPLY
+	var/female_icon_path = 'icons/mob/species/human/default_ears_female.dmi'
 
 /decl/sprite_accessory/ears/none
 	name                        = "Standard Ears"

@@ -17,8 +17,9 @@
 	var/datum/gas_mixture/environment = T.return_air()
 	var/datum/gas_mixture/filtered = air1.remove(500)
 	for(var/g in environment.solids)
-		filtered.adjust_gas(g, environment.solids[g], FALSE)
-		environment.adjust_gas(g, environment.solids[g] * -1, FALSE)
+		var/amount = environment.solids[g] * environment.group_multiplier
+		filtered.adjust_gas(g, amount, FALSE)
+		environment.adjust_gas(g, amount * -1, FALSE)
 	filtered.update_values()
 	environment.update_values()
 	air2.merge(filtered)

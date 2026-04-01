@@ -508,9 +508,15 @@ var/global/list/damage_icon_parts = list()
 				queue_icon_update()
 			return
 	if(ear_style)
-		var/decl/sprite_accessory/ears = GET_DECL(ear_style)
-		var/mutable_appearance/ear_overlay = mutable_appearance(ears.icon, ears.icon_state, ear_color, layer = HO_EARH_LAYER)
-		overlays_standing[HO_EARH_LAYER] = list(ear_overlay)
+		var/decl/sprite_accessory/ears/ears = GET_DECL(ear_style)
+		var/icon_path
+		if(gender == FEMALE)
+			icon_path = ears.female_icon_path
+		else
+			icon_path = ears.icon
+		var/mutable_appearance/ear_overlay = mutable_appearance(icon_path, ears.icon_state, ear_color)
+		var/mutable_appearance/inner_overlay = mutable_appearance(icon_path, "[ears.icon_state]_inner", ear_color_inner)
+		overlays_standing[HO_EARH_LAYER] = list(ear_overlay, inner_overlay)
 	else
 		return
 	if(update_icons)

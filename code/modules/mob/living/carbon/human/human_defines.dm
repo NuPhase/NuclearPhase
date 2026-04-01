@@ -14,6 +14,7 @@
 	var/grad_style
 
 	var/ear_color = "000"
+	var/ear_color_inner = "000"
 	var/ear_style
 
 	var/regenerate_body_icon = FALSE // If true, the next icon update will also regenerate the body.
