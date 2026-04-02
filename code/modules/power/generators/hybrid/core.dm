@@ -168,7 +168,6 @@
 		meltdown_state = TRUE
 		start_meltdown()
 
-
 #define RADIATIVE_LOSS_K 10700
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	if(slow_neutrons || fast_neutrons)

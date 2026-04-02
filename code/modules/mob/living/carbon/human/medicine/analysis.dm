@@ -88,7 +88,7 @@
 		for(var/T in chem_data)
 			var/decl/material/R = T
 			if(initial(R.scannable))
-				value_table += get_blood_analysis_line(capitalize(initial(R.name)), floor(LAZYACCESS(chem_data, T), 0.001), "ml")
+				value_table += get_blood_analysis_line(capitalize(initial(R.name)), round(LAZYACCESS(chem_data, T), 0.001), "ml")
 
 	var/joined_table = jointext(list(get_analysis_header(patient_name, patient_age, patient_gender, performer_name, name), "<table>", get_blood_analysis_row(), jointext(value_table, ""), "<\table>"), "")
 	return joined_table

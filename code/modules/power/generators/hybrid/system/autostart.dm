@@ -9,6 +9,14 @@
 	current_switch.do_action()
 	current_switch = reactor_buttons["F-CP 1V-EX"]
 	current_switch.do_action()
+	current_switch = reactor_buttons["T-CP 2V-IN"]
+	current_switch.do_action()
+	current_switch = reactor_buttons["T-CP 2V-EX"]
+	current_switch.do_action()
+	current_switch = reactor_buttons["F-CP 2V-IN"]
+	current_switch.do_action()
+	current_switch = reactor_buttons["F-CP 2V-EX"]
+	current_switch.do_action()
 	current_switch = reactor_buttons["perimeter"] //lights
 	current_switch.do_action()
 
@@ -43,19 +51,19 @@
 
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 10, 0)
-	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 5, 0)
+	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 4, 0)
 	R.containment_field.adjust_gas(/decl/material/gas/xenon, 1)
 	R.containment_field.temperature = 115 MEGAKELVIN
-	R.fast_neutrons = 70
+	R.fast_neutrons = 0.007
 	R.moderator_position = 0.05
 
 	turbine1.kin_energy = 94298145000.0
 	turbine1.feeder_valve_openage = 0.2
 	var/datum/gas_mixture/air1 = turbine1.port_gases["Steam In"]
-	air1.adjust_gas_temp(/decl/material/liquid/water, 150000, 741)
+	air1.adjust_gas_temp(/decl/material/liquid/water, 110000, 741)
 	mode = REACTOR_CONTROL_MODE_SEMIAUTO
 
-	spawn(30 SECONDS)
+	spawn(20 SECONDS)
 		current_switch = reactor_buttons["AUTOSCRAM"]
 		current_switch.do_action()
 		current_switch = reactor_buttons["BATTERY CHARGER"]

@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aai" = (
-/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "aan" = (
@@ -408,6 +408,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "ajh" = (
@@ -849,6 +850,9 @@
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
 "atV" = (
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 10
+	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "auv" = (
@@ -2171,6 +2175,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
+"aYc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "aYe" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/visible/violet{
@@ -2910,7 +2921,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "boj" = (
-/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 6
+	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "bok" = (
@@ -5335,6 +5348,13 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
+"cuV" = (
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/obj/machinery/meter{
+	uid = "T-M EXCHANGER"
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "cuW" = (
 /obj/structure/table,
 /obj/item/book/skill/medical/medicine/basic,
@@ -6276,6 +6296,14 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/maintenance/sublevel_one)
+"cRf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "cRk" = (
 /obj/structure/railing/mapped,
 /obj/structure/reagent_dispensers/fueltank/newtank/diesel,
@@ -7957,6 +7985,13 @@
 	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/brig)
+"dCP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "dCW" = (
 /obj/structure/bed/chair/office{
 	dir = 4
@@ -11300,11 +11335,9 @@
 /turf/simulated/floor/wood/yew,
 /area/serenity/shelter/admin/operations_rod)
 "eWL" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "eWN" = (
@@ -11676,6 +11709,14 @@
 /obj/structure/reagent_dispensers/fueltank/newtank/methanol,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical)
+"ffv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "ffy" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/paper_bin,
@@ -15758,7 +15799,8 @@
 /area/serenity/shelter/engineering/reactor_operations)
 "gTb" = (
 /obj/machinery/atmospherics/unary/tank/large{
-	name = "Large Tank (Waste Steam)"
+	name = "Large Tank (Waste Steam)";
+	volume = 15000000
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
@@ -16449,6 +16491,11 @@
 /obj/effect/paint_stripe/white,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels)
+"hlc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "hlG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3{
 	dir = 9
@@ -18881,6 +18928,13 @@
 /obj/structure/railing/mapped,
 /turf/simulated/open,
 /area/serenity/maintenance/sublevel_one)
+"inY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "iob" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -20846,10 +20900,10 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/habitationdeck/messhall)
 "jhZ" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 10
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/meter{
 	uid = "F-M HEATEXCHANGER"
 	},
@@ -22747,9 +22801,11 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/space)
 "kdt" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 5
+	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "kdz" = (
@@ -25620,12 +25676,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/mining)
 "lyQ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
-/obj/machinery/meter{
-	uid = "T-M EXCHANGER"
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "lyR" = (
@@ -26337,6 +26390,10 @@
 /obj/effect/floor_decal/sign/a,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/mining/processing)
+"lOg" = (
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "lOB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply/layer1{
 	dir = 4
@@ -29842,6 +29899,11 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"nrH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "nrQ" = (
 /obj/effect/floor_decal/industrial/traffic{
 	dir = 4
@@ -31489,6 +31551,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/blue2,
 /area/serenity/shelter/habitationdeck/messhall)
+"nZm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "nZp" = (
 /obj/effect/floor_decal/corner/beige/full,
 /obj/effect/floor_decal/corner/brown{
@@ -37987,6 +38056,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
+"qFn" = (
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "qFq" = (
 /obj/effect/floor_decal/corner/blue/three_quarters,
 /turf/simulated/floor/tiled/dark/textured/corner{
@@ -38575,6 +38648,13 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor3)
+"qRe" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "qRi" = (
 /obj/machinery/floodlight,
 /obj/effect/decal/cleanable/dirt,
@@ -38878,6 +38958,13 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
+"qXW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "qYa" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 9
@@ -39815,6 +39902,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
+"rtb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "rtj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -40893,6 +40987,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/engineering/reactor_operations/office)
+"rTu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "rUb" = (
 /obj/structure/railing/mapped,
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
@@ -41876,6 +41977,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/space)
+"sov" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "soJ" = (
 /obj/structure/sign/directions/evac{
 	pixel_y = 32
@@ -48582,6 +48689,11 @@
 /obj/structure/lattice,
 /turf/simulated/open/exterior,
 /area/surface)
+"voV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "vpf" = (
 /obj/structure/largecrate,
 /turf/simulated/floor/concrete/gray,
@@ -49254,6 +49366,15 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
+"vHk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "vHs" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -50878,11 +50999,9 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_one)
 "wqC" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 9
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "wqK" = (
@@ -52169,6 +52288,14 @@
 "wSs" = (
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/medbay/floor3/shift_director_office)
+"wSw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "wSH" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -53820,9 +53947,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/space)
 "xCA" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "xCC" = (
@@ -327134,12 +327260,12 @@ rcL
 aan
 tee
 yfw
-atV
-rBo
-anW
+boj
+lyQ
+sov
 aja
-anW
-jLk
+qXW
+nZm
 jLk
 rQh
 hDm
@@ -327328,14 +327454,14 @@ pnN
 pnN
 pnN
 yfw
-anW
-rBo
-rBo
-anW
-rBo
-jLk
-atV
-rQh
+vHk
+ffv
+xCA
+dCP
+wqC
+cRf
+tCW
+inY
 hDm
 ppH
 cTf
@@ -327522,14 +327648,14 @@ moC
 moC
 kYS
 jhZ
-xfH
-xfH
-xfH
-boj
+nrH
+qRe
+tCW
+tCW
 kdt
+rTu
+aai
 xfH
-xfH
-eWL
 xtR
 euC
 xVM
@@ -327714,16 +327840,16 @@ cOG
 fHc
 fHc
 fHc
-vVn
-tUA
-tCW
+cuV
+rtb
+eWL
 lyQ
-tUA
+voV
 aai
-tCW
-tUA
-xCA
-wqC
+xtR
+aYc
+rBo
+rBo
 hDm
 kGJ
 ldE
@@ -327910,11 +328036,11 @@ rUZ
 moC
 kYS
 atV
-jLk
-rBo
-jLk
-rBo
-rBo
+hlc
+wqC
+xCA
+wqC
+wSw
 rBo
 jLk
 anW
@@ -328688,7 +328814,7 @@ iqB
 ojy
 ojy
 ojy
-ojy
+qFn
 ojy
 ojy
 bBo
@@ -328882,7 +329008,7 @@ wFN
 kED
 kFD
 kIq
-ojy
+lOg
 ojy
 rSu
 nbr

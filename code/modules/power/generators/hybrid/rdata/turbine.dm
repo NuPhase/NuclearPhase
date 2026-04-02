@@ -25,7 +25,9 @@
 						"static_expansion" = round(rcontrol.turbine1.expansion_ratio, 0.01),
 						"real_expansion" = round(rcontrol.turbine1.real_expansion, 0.01),
 						"kinetic_delta" = round(rcontrol.turbine1.kinetic_energy_delta, 1),
-						"valve_position" = round(rcontrol.turbine1.feeder_valve_openage * 100, 0.01)
+						"valve_position" = round(rcontrol.turbine1.feeder_valve_openage * 100, 0.01),
+						"shaft_integrity" = round(rcontrol.turbine1.shaft_integrity, 1),
+						"rotor_integrity" = round(rcontrol.turbine1.rotor_integrity, 1)
 						),
 		"turb2" = list(
 						"rpm" = round(rcontrol.turbine2.rpm),
@@ -41,7 +43,9 @@
 						"static_expansion" = round(rcontrol.turbine2.expansion_ratio, 0.01),
 						"real_expansion" = round(rcontrol.turbine2.real_expansion, 0.01),
 						"kinetic_delta" = round(rcontrol.turbine2.kinetic_energy_delta, 1),
-						"valve_position" = round(rcontrol.turbine2.feeder_valve_openage * 100, 0.01)
+						"valve_position" = round(rcontrol.turbine2.feeder_valve_openage * 100, 0.01),
+						"shaft_integrity" = round(rcontrol.turbine2.shaft_integrity, 1),
+						"rotor_integrity" = round(rcontrol.turbine2.rotor_integrity, 1)
 						)
 	)
 	return data
@@ -93,7 +97,9 @@
 						"static_expansion" = round(rcontrol.turbine1.expansion_ratio, 0.01),
 						"real_expansion" = round(rcontrol.turbine1.real_expansion, 0.01),
 						"kinetic_delta" = round(rcontrol.turbine1.kinetic_energy_delta, 1),
-						"valve_position" = round(rcontrol.turbine1.feeder_valve_openage * 100, 0.01)
+						"valve_position" = round(rcontrol.turbine1.feeder_valve_openage * 100, 0.01),
+						"shaft_integrity" = round(rcontrol.turbine1.shaft_integrity, 1),
+						"rotor_integrity" = round(rcontrol.turbine1.rotor_integrity, 1)
 						),
 		"turb2" = list(
 						"rpm" = round(rcontrol.turbine2.rpm),
@@ -109,7 +115,9 @@
 						"static_expansion" = round(rcontrol.turbine2.expansion_ratio, 0.01),
 						"real_expansion" = round(rcontrol.turbine2.real_expansion, 0.01),
 						"kinetic_delta" = round(rcontrol.turbine2.kinetic_energy_delta, 1),
-						"valve_position" = round(rcontrol.turbine2.feeder_valve_openage * 100, 0.01)
+						"valve_position" = round(rcontrol.turbine2.feeder_valve_openage * 100, 0.01),
+						"shaft_integrity" = round(rcontrol.turbine2.shaft_integrity, 1),
+						"rotor_integrity" = round(rcontrol.turbine2.rotor_integrity, 1)
 						)
 	)
 	return data

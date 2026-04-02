@@ -23,6 +23,8 @@ type TurbineData = {
   real_expansion: number;
   kinetic_delta: number;
   valve_position: number;
+  shaft_integrity: number;
+  rotor_integrity: number;
 }
 
 export const TurbineMonitor = (props: any) => {
@@ -66,10 +68,10 @@ export const TurbineMonitor = (props: any) => {
                         {data.turb1.vibration} mm/s
                       </LabeledList.Item>
                       <LabeledList.Item label="Shaft Integrity">
-                        {100}%
+                        {Math.round(data.turb1.shaft_integrity)}%
                       </LabeledList.Item>
                       <LabeledList.Item label="Rotor Integrity">
-                        {100}%
+                        {Math.round(data.turb1.rotor_integrity)}%
                       </LabeledList.Item>
                       <LabeledList.Item label="Static Expansion">
                         {data.turb1.static_expansion * 100}%
@@ -142,14 +144,15 @@ export const TurbineMonitor = (props: any) => {
             TRIP
           </Button.Confirm>
           <NumberInput
-            animated = {1}
+            animated = {true}
             value = {data.turb1.valve_position}
             fontSize = {1.5}
             stepPixelSize = {6}
+            step = {0.1}
             minValue = {0}
             maxValue = {100}
             unit = "%"
-            onChange = {(_, value) => act('turb1adjust', { entry: value })}
+            onChange = {(value) => act('turb1adjust', { entry: value })}
           ></NumberInput>
         </Section>
 
@@ -189,10 +192,10 @@ export const TurbineMonitor = (props: any) => {
                         {data.turb2.vibration} mm/s
                       </LabeledList.Item>
                       <LabeledList.Item label="Shaft Integrity">
-                        {100}%
+                        {Math.round(data.turb2.shaft_integrity)}%
                       </LabeledList.Item>
                       <LabeledList.Item label="Rotor Integrity">
-                        {100}%
+                        {Math.round(data.turb2.rotor_integrity)}%
                       </LabeledList.Item>
                       <LabeledList.Item label="Static Expansion">
                         {data.turb2.static_expansion * 100}%
@@ -265,14 +268,15 @@ export const TurbineMonitor = (props: any) => {
             TRIP
           </Button.Confirm>
           <NumberInput
-            animated = {1}
+            animated = {true}
             value = {data.turb2.valve_position}
             fontSize = {1.5}
             stepPixelSize = {6}
+            step = {0.1}
             minValue = {0}
             maxValue = {100}
             unit = "%"
-            onChange = {(_, value) => act('turb2adjust', { entry: value })}
+            onChange = {(value) => act('turb2adjust', { entry: value })}
           ></NumberInput>
         </Section>
       </Window.Content>

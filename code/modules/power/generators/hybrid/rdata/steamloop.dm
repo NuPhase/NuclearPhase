@@ -22,9 +22,9 @@
 /obj/machinery/reactor_display/group/steamloop/proc/assemble_tgui_meter_list()
 	var/return_list = list()
 	var/meter_list = list(
-		"T-M EXCHANGER" = "Reactor heat exchanger.",
-		"T-M-TURB IN" = "Turbine inlet.",
-		"T-M-TURB EX" = "Turbine condenser.",
+		"T-M EXCHANGER" = "Steam Generator Inlet.",
+		"T-M-TURB IN" = "Turbine Inlet.",
+		"T-M-TURB EX" = "Turbine Outlet.",
 		"T-M-COOLANT" = "Condenser cooling circuit."
 	)
 	for(var/meter_id in meter_list)

@@ -37,7 +37,7 @@
 		"chamber_temperature" = core_air.temperature,
 		"containment_consumption" = round(rcore.field_power_consumption),
 		"containment_temperature" = round(rcore.shield_temperature),
-		"containment_charge" = round(rcore.field_battery_charge / MAX_MAGNET_CHARGE * 100, 0.1), //not implemented
+		"containment_charge" = round(rcore.field_battery_charge / MAX_MAGNET_CHARGE * 100, 0.1),
 		"containment_volume" = round(rcore.containment_field.volume / 1000, 0.1),
 		"moderator_position" = rcore.moderator_position,
 		"reflector_position" = rcore.reflector_position

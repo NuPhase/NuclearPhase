@@ -23,8 +23,8 @@
 	var/return_list = list()
 	var/meter_list = list(
 		"F-M EXCHANGER" = "Reactor heat exchanger.",
-		"F-M IN" = "Reactor inlet.",
-		"F-M OUT" = "Reactor outlet."
+		"F-M IN" = "Cold Salt Tank.",
+		"F-M OUT" = "Hot Salt Tank."
 	)
 	for(var/meter_id in meter_list)
 		return_list += list(list("name" = meter_id,
