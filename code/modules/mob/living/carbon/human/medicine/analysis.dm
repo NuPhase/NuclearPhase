@@ -65,6 +65,34 @@
 	var/joined_table = jointext(list(get_analysis_header(patient_name, patient_age, patient_gender, performer_name, name), "<table>", get_blood_analysis_row(), jointext(value_table, ""), "<\table>"), "")
 	return joined_table
 
+/decl/blood_analysis/chem_dose
+	name = "Chemical Metabolites Test"
+	time = 20 SECONDS
+
+/decl/blood_analysis/chem_dose/return_analysis(mob/living/carbon/human/H, blood_data)
+	var/list/value_table = list()
+	var/list/chem_data = blood_data["dose_chem"]
+
+	var/patient_name = "UNKNOWN"
+	var/patient_age = "UNKNOWN"
+	var/patient_gender = "UNKNOWN"
+	var/performer_name = "UNKNOWN"
+	var/weakref/W = blood_data["donor"]
+	var/mob/living/carbon/human/donor = W.resolve()
+	if(donor)
+		patient_name = donor.real_name
+		patient_age = donor.get_age()
+		patient_gender = capitalize(donor.gender)
+
+	if(length(chem_data))
+		for(var/T in chem_data)
+			var/decl/material/R = T
+			if(initial(R.scannable))
+				value_table += get_blood_analysis_line(capitalize(initial(R.name)), floor(LAZYACCESS(chem_data, T), 0.001), "ml")
+
+	var/joined_table = jointext(list(get_analysis_header(patient_name, patient_age, patient_gender, performer_name, name), "<table>", get_blood_analysis_row(), jointext(value_table, ""), "<\table>"), "")
+	return joined_table
+
 /decl/blood_analysis/blood
 	name = "Blood Type Analysis"
 
