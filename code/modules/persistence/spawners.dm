@@ -45,14 +45,23 @@
 	if(!SSpersistence.loaded_item_pool)
 		return
 	spawn(100)
-		var/spawn_type = pick(SSpersistence.loaded_item_pool)
+		var/obj/spawn_type = pick(SSpersistence.loaded_item_pool)
+		var/spawn_amount = SSpersistence.loaded_item_pool[spawn_type]
 		var/list_to_spawn = list()
-		list_to_spawn[spawn_type] = SSpersistence.loaded_item_pool[spawn_type]
+		list_to_spawn[spawn_type] = spawn_amount
 
 		create_objects_in_loc_pooled(loc, list_to_spawn)
+		switch(spawn_amount)
+			if(5 to 30)
+				crate_type = /obj/structure/closet/crate
+			if(30 to INFINITY)
+				crate_type = /obj/structure/largecrate
 		if(crate_type)
 			var/obj/spawned_crate = new crate_type(loc)
-			spawned_crate.name = "[spawned_crate.name] - [sup_name]"
+			spawned_crate.name = "[spawned_crate.name] - [initial(spawn_type.name)]"
+			if(crate_type == /obj/structure/closet/crate)
+				var/obj/structure/closet/crate/cc = spawned_crate
+				cc.store_contents()
 
 /obj/effect/item_spawner/trash
 	max_items = 1

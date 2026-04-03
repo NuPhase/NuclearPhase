@@ -21,6 +21,7 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/book,
 										/obj/item/stool,
 										/obj/item/pen,
+										/obj/item/stack/ore,
 										/obj/item/wrapping_paper,
 										/obj/item/stock_parts,
 										/obj/item/stack/package_wrap,
@@ -230,7 +231,7 @@ SUBSYSTEM_DEF(persistence)
 			return amount
 		else if(fluid_pool[rtype] > 0)
 			var/return_amount = fluid_pool[rtype]
-			fluid_pool -= rtype
+			fluid_pool[rtype] = 0
 			return return_amount
 	else
 		return amount

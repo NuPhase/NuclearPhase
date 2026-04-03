@@ -111,3 +111,20 @@
 /obj/structure/reagent_dispensers/barrel/cornoil
 	initial_reagent_types = list(/decl/material/liquid/nutriment/cornoil = 0.6)
 	color = COLOR_PALE_GREEN_GRAY
+
+/obj/structure/reagent_dispensers/barrel/random/Initialize()
+	. = ..()
+	if(!SSpersistence.fluid_pool.len)
+		return INITIALIZE_HINT_QDEL
+	var/reagent_type = pick(SSpersistence.fluid_pool)
+	for(var/rtype in SSpersistence.fluid_pool)
+		if(SSpersistence.fluid_pool[rtype] > 0)
+			reagent_type = rtype
+			break
+	if(!SSpersistence.fluid_pool[reagent_type])
+		return INITIALIZE_HINT_QDEL
+	var/reagent_amount = SSpersistence.take_reagent(reagent_type, initial_capacity)
+	var/decl/material/mat = GET_DECL(reagent_type)
+	color = mat.color
+	name = "[name] - [mat.name]"
+	reagents.add_reagent(reagent_type, reagent_amount)
