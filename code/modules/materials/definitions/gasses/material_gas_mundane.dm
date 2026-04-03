@@ -478,9 +478,6 @@
 	oxidizer_to_fuel_ratio = 0.5
 	burn_product = /decl/material/liquid/water
 	combustion_products = list(/decl/material/gas/oxygen = /decl/material/liquid/water, /decl/material/gas/chlorine = /decl/material/liquid/acid/hydrochloric)
-	dissolves_into = list(
-		/decl/material/liquid/fuel/hydrazine = 1
-	)
 	value = 0.4
 	color = "#e4baff"
 	fire_color = "#0077ff"
@@ -529,21 +526,6 @@
 	stack_origin_tech = @'{"materials":3}'
 	value = 0.5
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
-	absorption_products = list(
-		/decl/material/gas/hydrogen/tritium = 1
-	)
-	neutron_absorption = 70
-	neutron_cross_section = 3
-	neutron_interactions = list(
-		"slow" = list(
-			INTERACTION_SCATTER = 4,
-			INTERACTION_ABSORPTION = 0.0003
-		),
-		"fast" = list(
-			INTERACTION_SCATTER = 3,
-			INTERACTION_ABSORPTION = 0.000007
-		)
-	)
 
 /decl/material/gas/tungstenhexafluoride
 	name = "tungsten hexafluoride"

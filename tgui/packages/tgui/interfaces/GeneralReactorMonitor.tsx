@@ -18,6 +18,7 @@ type Gas = {
 
 type InputData = {
   gases: Gas[];
+  total_gas: number;
   alarmlist: Alarm[];
   power_load: number;
   thermal_load: number;
@@ -38,7 +39,7 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
   const { act, data } = useBackend<InputData>(context);
   const gasMaxAmount = Math.max(1, ...data.gases.map((Gas) => Gas.amount));
   return (
-    <Window width = {700} height = {530} theme="ntos">
+    <Window width = {800} height = {530} theme="ntos">
       <Window.Content>
         <Flex>
           <Flex.Item height={40}>
@@ -135,7 +136,7 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                         value={Gas.amount}
                         minValue={0}
                         maxValue={gasMaxAmount}>
-                        {toFixed(Gas.amount/gasMaxAmount, 2) + '%'}
+                        {toFixed(Gas.amount/data.total_gas * 100, 2) + '%'}
                       </ProgressBar>
                     </LabeledList.Item>
                 ))}

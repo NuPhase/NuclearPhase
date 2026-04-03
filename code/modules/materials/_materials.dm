@@ -820,6 +820,9 @@ var/decl/material/boil_mat = null
 	if(!neutron_interactions)
 		return null
 
+	if(slow_neutrons + fast_neutrons <= 0)
+		return null
+
 	var/list/slow_list = neutron_interactions["slow"]
 	var/energy_delta = 0
 

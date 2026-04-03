@@ -31,5 +31,7 @@
 								"description" = meter_list[meter_id],
 								"pressure" = rcontrol.get_meter_pressure(meter_id),
 								"temperature" = rcontrol.get_meter_temperature(meter_id),
-								"mass" = rcontrol.get_meter_mass(meter_id)))
+								"mass" = rcontrol.get_meter_mass(meter_id),
+								"level" = rcontrol.get_meter_level(meter_id)
+								))
 	return return_list

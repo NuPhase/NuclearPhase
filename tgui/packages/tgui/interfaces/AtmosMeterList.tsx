@@ -9,7 +9,8 @@ type Meter = {
   description: string;
   pressure: number;
   temperature: number;
-  mass: number
+  mass: number;
+  level: number
 }
 
 type InputData = {
@@ -31,7 +32,7 @@ export const AtmosMeterList = (props: any, context: any) => {
   const { act, data } = useBackend<InputData>(context);
 
   return (
-    <Window width={400} height={300} theme="ntos">
+    <Window width={450} height={300} theme="ntos">
       <Window.Content>
             <Table>
               <Table.Row header>
@@ -39,6 +40,7 @@ export const AtmosMeterList = (props: any, context: any) => {
                 <Table.Cell collapsing textAlign="center">Pressure</Table.Cell>
                 <Table.Cell collapsing textAlign="center">Temperature</Table.Cell>
                 <Table.Cell collapsing textAlign="center">Mass</Table.Cell>
+                <Table.Cell collapsing textAlign="center">Liquid Level</Table.Cell>
               </Table.Row>
               {data.meterlist.map(meter => (
                 <Table.Row key={meter}>
@@ -46,6 +48,7 @@ export const AtmosMeterList = (props: any, context: any) => {
                   <Table.Cell>{formatPressure(meter.pressure)}</Table.Cell>
                   <Table.Cell>{formatTemperature(meter.temperature)}</Table.Cell>
                   <Table.Cell>{Math.round(meter.mass)}kg</Table.Cell>
+                  <Table.Cell>{meter.level}%</Table.Cell>
                 </Table.Row>
               ))}
             </Table>

@@ -67,16 +67,6 @@
 	if(!R.containment)
 		do_message("CONTAINMENT FIELD OFFLINE", 2)
 
-	var/obj/machinery/atmospherics/binary/passive_gate/current_gate
-	current_gate = reactor_valves["T-COOLANT V-IN"]
-	if(current_gate && !current_gate.unlocked)
-		do_message("T-COOLANT V-IN CLOSED", 2)
-	if(current_gate && current_gate.air1.pressure < ONE_ATMOSPHERE * 10)
-		do_message("LOW COOLANT SUPPLY", 2)
-	current_gate = reactor_valves["T-COOLANT V-OUT"]
-	if(current_gate && !current_gate.unlocked)
-		do_message("T-COOLANT V-OUT CLOSED", 2)
-
 	if(generator1.connected && generator1.last_load < 50000)
 		do_message("GENERATOR #1 FULL LOAD REJECTION", 3)
 	if(generator2.connected && generator2.last_load < 50000)
@@ -217,6 +207,7 @@
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	playsound(rcore.superstructure, 'sound/effects/purge.ogg', 100, FALSE, 50, 1, ignore_walls = TRUE)
 	var/datum/gas_mixture/total_mixture = rcore.containment_field.remove_ratio(0.9)
+	total_mixture.temperature = T100C
 	var/turf/sT = get_turf(rcore.superstructure)
 	var/datum/gas_mixture/senvironment = sT.return_air()
 	senvironment.merge(total_mixture.remove_ratio(0.05))
@@ -268,6 +259,13 @@
 	if(rmeter)
 		var/datum/gas_mixture/gm = rmeter.return_air()
 		return round(gm.get_mass())
+	return 0
+
+/datum/reactor_control_system/proc/get_meter_level(meterid)
+	var/obj/machinery/meter/rmeter = reactor_meters[meterid]
+	if(rmeter)
+		var/datum/gas_mixture/gm = rmeter.return_air()
+		return round((1 - (gm.available_volume / gm.volume)) * 100)
 	return 0
 
 /datum/reactor_control_system/proc/perform_laser_ignition()

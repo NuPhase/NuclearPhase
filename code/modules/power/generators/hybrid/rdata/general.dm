@@ -28,6 +28,7 @@
 	var/list/data = list(
 		"alarmlist" = assemble_tgui_alarm_list(),
 		"gases" = assemble_tgui_gas_list(core_air),
+		"total_gas" = core_air.total_moles,
 		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
 		"neutron_rate" = round(rcore.neutron_rate, 0.01),

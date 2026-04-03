@@ -652,6 +652,14 @@
 /obj/machinery/rotating_alarm/reactor,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"aod" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "aok" = (
 /obj/structure/flora/pottedplant/tall,
 /obj/effect/decal/cleanable/dirt,
@@ -894,14 +902,10 @@
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "avQ" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 1;
-	starting_volume = 12500;
-	uid = "T-COOLANT V-IN";
-	set_flow_rate = 12500
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "awk" = (
 /obj/effect/paint_stripe/blue,
 /obj/effect/paint,
@@ -2175,13 +2179,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical)
-"aYc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 9
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "aYe" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/visible/violet{
@@ -2921,8 +2918,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
 "boj" = (
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 6
+	dir = 9
 	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
@@ -3878,6 +3876,13 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"bLV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "bMk" = (
 /obj/effect/floor_decal/corner/white/line{
 	dir = 1
@@ -5018,6 +5023,13 @@
 "ckY" = (
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/entrance_zone/elevators)
+"clx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "clC" = (
 /obj/structure/door_assembly,
 /turf/simulated/floor/concrete/gray,
@@ -5348,13 +5360,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/climatecontrol)
-"cuV" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
-/obj/machinery/meter{
-	uid = "T-M EXCHANGER"
-	},
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "cuW" = (
 /obj/structure/table,
 /obj/item/book/skill/medical/medicine/basic,
@@ -6296,14 +6301,6 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/maintenance/sublevel_one)
-"cRf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "cRk" = (
 /obj/structure/railing/mapped,
 /obj/structure/reagent_dispensers/fueltank/newtank/diesel,
@@ -6784,6 +6781,10 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
+"cZq" = (
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "cZI" = (
 /obj/structure/railing/mapped,
 /obj/structure/railing/mapped{
@@ -7614,6 +7615,15 @@
 /obj/effect/fluid_mapped,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/service_tunnels)
+"dtm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "dtr" = (
 /obj/machinery/firealarm,
 /turf/simulated/floor/concrete,
@@ -7985,13 +7995,6 @@
 	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/brig)
-"dCP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "dCW" = (
 /obj/structure/bed/chair/office{
 	dir = 4
@@ -10360,6 +10363,13 @@
 /obj/structure/bed/chair/office/comfy/beige,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"eyX" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 9
+	},
+/obj/effect/catwalk_plated/white,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "ezl" = (
 /obj/structure/bed/chair/office/comfy/beige{
 	dir = 4
@@ -11335,9 +11345,9 @@
 /turf/simulated/floor/wood/yew,
 /area/serenity/shelter/admin/operations_rod)
 "eWL" = (
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 10
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "eWN" = (
@@ -11709,14 +11719,6 @@
 /obj/structure/reagent_dispensers/fueltank/newtank/methanol,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical)
-"ffv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 6
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "ffy" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/paper_bin,
@@ -14499,6 +14501,13 @@
 	},
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/it_operations)
+"gsP" = (
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/obj/machinery/meter{
+	uid = "T-M EXCHANGER"
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "gtl" = (
 /obj/structure/railing/mapped,
 /obj/structure/railing/mapped{
@@ -16476,6 +16485,13 @@
 	},
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/engineering/reactor_operations/office)
+"hjP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "hka" = (
 /obj/machinery/atmospherics/valve/shutoff,
 /obj/structure/catwalk,
@@ -16491,11 +16507,6 @@
 /obj/effect/paint_stripe/white,
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/service_tunnels)
-"hlc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "hlG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/layer3{
 	dir = 9
@@ -16968,6 +16979,13 @@
 "hwU" = (
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/admin/operations_hq)
+"hwV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "hxg" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -18928,13 +18946,6 @@
 /obj/structure/railing/mapped,
 /turf/simulated/open,
 /area/serenity/maintenance/sublevel_one)
-"inY" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 9
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "iob" = (
 /obj/structure/cable/heavy{
 	icon_state = "4-8"
@@ -19121,6 +19132,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/crew)
+"ire" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "irZ" = (
 /obj/structure/table/woodentable/walnut,
 /turf/simulated/floor/carpet/blue2,
@@ -20340,6 +20358,12 @@
 /obj/effect/item_spawner/everything,
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/cargo)
+"iUb" = (
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "iUd" = (
 /obj/machinery/atmospherics/pipe/zpipe/down/steam,
 /obj/structure/cable/heavy{
@@ -20627,14 +20651,12 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/cargo)
 "jbd" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4
-	},
-/obj/machinery/meter{
-	uid = "T-M-COOLANT"
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "jbk" = (
 /turf/simulated/open,
 /area/serenity/maintenance/sublevel_one)
@@ -21737,6 +21759,13 @@
 /obj/machinery/atmospherics/pipe/zpipe/up,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations)
+"jBT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "jCr" = (
 /obj/machinery/floodlight,
 /obj/effect/decal/cleanable/dirt,
@@ -25540,6 +25569,11 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/diagnostics_room)
+"lsw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "lsx" = (
 /obj/effect/floor_decal/carpet/purple,
 /obj/structure/bed,
@@ -26390,10 +26424,6 @@
 /obj/effect/floor_decal/sign/a,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/mining/processing)
-"lOg" = (
-/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam,
-/turf/simulated/floor/concrete/black,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "lOB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply/layer1{
 	dir = 4
@@ -29899,11 +29929,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
-"nrH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "nrQ" = (
 /obj/effect/floor_decal/industrial/traffic{
 	dir = 4
@@ -31154,6 +31179,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
+"nRB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "nRL" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
 	dir = 4
@@ -31551,13 +31584,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/blue2,
 /area/serenity/shelter/habitationdeck/messhall)
-"nZm" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 5
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "nZp" = (
 /obj/effect/floor_decal/corner/beige/full,
 /obj/effect/floor_decal/corner/brown{
@@ -33497,6 +33523,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/reactor_operations)
+"oRr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/steam{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "oRG" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
@@ -35340,15 +35374,10 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor_operations/cavern)
 "pHl" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 2;
-	regulate_mode = 1;
-	starting_volume = 15000;
-	uid = "T-COOLANT V-OUT";
-	set_flow_rate = 25000
-	},
-/turf/simulated/floor/concrete,
-/area/serenity/shelter/engineering/electrical/turbinehall)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "pHm" = (
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/dark/monotile,
@@ -36494,6 +36523,11 @@
 /obj/machinery/detector/radiation_intoxication,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/atmos)
+"qaQ" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/water/tall,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "qbv" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/violet,
 /obj/machinery/light/ceiling,
@@ -38056,10 +38090,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/serenity/shelter/entrance_zone)
-"qFn" = (
-/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
-/turf/simulated/floor/concrete/black,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "qFq" = (
 /obj/effect/floor_decal/corner/blue/three_quarters,
 /turf/simulated/floor/tiled/dark/textured/corner{
@@ -38648,13 +38678,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor3)
-"qRe" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 10
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "qRi" = (
 /obj/machinery/floodlight,
 /obj/effect/decal/cleanable/dirt,
@@ -38958,13 +38981,6 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/service_tunnels)
-"qXW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "qYa" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 9
@@ -39115,6 +39131,12 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
+"rbU" = (
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "rct" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/computer/modular/preset/aislot/sysadmin{
@@ -39902,13 +39924,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/concrete/black,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
-"rtb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 5
-	},
-/turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "rtj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -40987,13 +41002,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/green,
 /area/serenity/shelter/engineering/reactor_operations/office)
-"rTu" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "rUb" = (
 /obj/structure/railing/mapped,
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
@@ -41977,12 +41985,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/space)
-"sov" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "soJ" = (
 /obj/structure/sign/directions/evac{
 	pixel_y = 32
@@ -42890,6 +42892,13 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"sJu" = (
+/obj/machinery/atmospherics/pipe/simple/visible/steam,
+/obj/machinery/meter{
+	uid = "T-M VAPORIZER"
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "sJw" = (
 /obj/structure/bed/sofa/m/black{
 	dir = 9
@@ -48689,11 +48698,6 @@
 /obj/structure/lattice,
 /turf/simulated/open/exterior,
 /area/surface)
-"voV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "vpf" = (
 /obj/structure/largecrate,
 /turf/simulated/floor/concrete/gray,
@@ -49366,15 +49370,6 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs/biolab_annex)
-"vHk" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "vHs" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -52288,14 +52283,6 @@
 "wSs" = (
 /turf/simulated/floor/wood/walnut,
 /area/serenity/shelter/medbay/floor3/shift_director_office)
-"wSw" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 9
-	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "wSH" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -52543,6 +52530,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office)
+"wXr" = (
+/obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten,
+/turf/simulated/floor/concrete/black,
+/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "wXz" = (
 /obj/structure/ladder,
 /turf/simulated/open/asteroid,
@@ -255693,7 +255684,7 @@ mEO
 vmf
 vmf
 aqi
-jbd
+tZs
 mEO
 vat
 jXx
@@ -256665,7 +256656,7 @@ mEO
 mEO
 mEO
 mEO
-avQ
+mEO
 mEO
 vmf
 vmf
@@ -256859,7 +256850,7 @@ mEO
 mEO
 mEO
 mEO
-pHl
+mEO
 mEO
 vmf
 vmf
@@ -327260,12 +327251,12 @@ rcL
 aan
 tee
 yfw
-boj
+rbU
 lyQ
-sov
+eWL
 aja
-qXW
-nZm
+hjP
+hwV
 jLk
 rQh
 hDm
@@ -327454,14 +327445,14 @@ pnN
 pnN
 pnN
 yfw
-vHk
-ffv
+dtm
+nRB
 xCA
-dCP
+jbd
 wqC
-cRf
+aod
 tCW
-inY
+ire
 hDm
 ppH
 cTf
@@ -327648,12 +327639,12 @@ moC
 moC
 kYS
 jhZ
-nrH
-qRe
-tCW
+pHl
+clx
+sJu
 tCW
 kdt
-rTu
+jBT
 aai
 xfH
 xtR
@@ -327840,14 +327831,14 @@ cOG
 fHc
 fHc
 fHc
-cuV
-rtb
-eWL
+gsP
+bLV
+iUb
 lyQ
-voV
+lsw
 aai
 xtR
-aYc
+boj
 rBo
 rBo
 hDm
@@ -328036,11 +328027,11 @@ rUZ
 moC
 kYS
 atV
-hlc
+avQ
 wqC
 xCA
 wqC
-wSw
+oRr
 rBo
 jLk
 anW
@@ -328814,7 +328805,7 @@ iqB
 ojy
 ojy
 ojy
-qFn
+wXr
 ojy
 ojy
 bBo
@@ -329008,7 +328999,7 @@ wFN
 kED
 kFD
 kIq
-lOg
+cZq
 ojy
 rSu
 nbr
@@ -400647,7 +400638,7 @@ mqC
 oJW
 thI
 thI
-thI
+uSn
 wTs
 thI
 thI
@@ -400841,7 +400832,7 @@ sIO
 eMu
 eMu
 eMu
-eMu
+bTC
 hdO
 eMu
 eMu
@@ -401034,11 +401025,11 @@ eMu
 liq
 eMu
 eMu
-eMu
-pbR
+ahh
+mil
 hdO
 eMu
-jYP
+qaQ
 qLY
 mil
 eMu
@@ -401229,7 +401220,7 @@ bTC
 eMu
 eMu
 eMu
-eMu
+bTC
 hdO
 eMu
 eMu
@@ -401423,7 +401414,7 @@ oWs
 eMu
 eMu
 eMu
-eMu
+bTC
 hdO
 eMu
 eMu
@@ -401616,11 +401607,11 @@ eMu
 eMu
 eMu
 eMu
-eMu
-eMu
+ahh
+eyX
 hdO
 eMu
-jYP
+qaQ
 aLx
 sIO
 eMu

@@ -50,14 +50,10 @@
 	var/laser_animating = FALSE
 	var/obj/neutron_marker
 
-	var/list/pressure_valves_to_check = list(
-		"T-COOLANT V-IN",
-		"T-COOLANT V-OUT"
-	)
+	var/list/pressure_valves_to_check = list()
 	var/list/meters_to_check = list(
 		"T-M-TURB IN",
 		"T-M-TURB EX",
-		"T-M-COOLANT",
 		"F-M IN",
 		"F-M OUT"
 	)

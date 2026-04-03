@@ -17,7 +17,7 @@
 	product = /decl/material/gas/helium
 	mean_energy = 2580000
 	minimum_temperature = 110 MEGAKELVIN
-	free_neutron_moles = 1
+	free_neutron_moles = 0
 	s_factor = 1
 
 /decl/thermonuclear_reaction/deuterium_tritium
@@ -26,7 +26,7 @@
 	product = /decl/material/gas/helium
 	mean_energy = 1700000
 	minimum_temperature = 90 MEGAKELVIN
-	free_neutron_moles = 1.5
+	free_neutron_moles = 1
 	s_factor = 10
 
 /decl/thermonuclear_reaction/deuterium_deuterium
@@ -35,7 +35,7 @@
 	product = /decl/material/gas/helium
 	mean_energy = 352000
 	minimum_temperature = 130 MEGAKELVIN
-	free_neutron_moles = 0
+	free_neutron_moles = 0.5
 	s_factor = 3
 
 /decl/thermonuclear_reaction/helium3_helium3
@@ -44,7 +44,7 @@
 	product = /decl/material/gas/helium
 	mean_energy = 1240000
 	minimum_temperature = 170 MEGAKELVIN
-	free_neutron_moles = 3
+	free_neutron_moles = 0
 	s_factor = 5
 
 /decl/thermonuclear_reaction/helium4_helium4

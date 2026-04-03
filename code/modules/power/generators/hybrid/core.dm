@@ -260,7 +260,7 @@
 		rcontrol.do_message("PURGE ATTEMPT UNSUCCESSFUL", 3)
 
 /obj/machinery/power/hybrid_reactor/proc/process_meltdown()
-	damage_structure(0.25)
+	damage_structure(1)
 	process_meltdown_messages()
 	process_meltdown_visuals()
 	if(!point_of_no_return && field_battery_charge > 1)
@@ -286,22 +286,22 @@
 				ann_count = 2
 		if(2)
 			if(structure_integrity < 0.7)
-				rcontrol.do_message("THE WINDOW TO REPAIR THE PURGE SYSTEM WILL CLOSE IN: ■■■■■■■■■■")
+				rcontrol.do_message("THE WINDOW TO REPAIR THE PURGE SYSTEM WILL CLOSE IN: ■■■■■■■■■■", 3)
 				ann_count = 3
 		if(3)
 			if(structure_integrity < 0.5)
-				rcontrol.do_message("CONTROLS IRRESPONSIVE. PURGE SYSTEM COMPROMISED.")
+				rcontrol.do_message("CONTROLS IRRESPONSIVE. PURGE SYSTEM COMPROMISED.", 3)
 				point_of_no_return = TRUE
 				var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
 				for(var/id_to_check in ids_to_check)
 					var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]
 					fuelport.melted = TRUE
 				spawn(50)
-					rcontrol.do_message("PRIMARY CONTROL NODE FAILURE. CONTAINMENT LOSS IMMINENT.")
+					rcontrol.do_message("PRIMARY CONTROL NODE FAILURE. CONTAINMENT LOSS IMMINENT.", 3)
 				ann_count = 4
 		if(4)
 			if(structure_integrity < 0.45)
-				rcontrol.do_message("FUEL INJECTION FAILURE. THERMAL RUNAWAY IN PROGRESS.")
+				rcontrol.do_message("FUEL INJECTION FAILURE. THERMAL RUNAWAY IN PROGRESS.", 3)
 				ann_count = 5
 				sleep(50)
 				radio_announce("ATTENTION ALL REACTOR OPERATIONS PERSONNEL.", ann_name)
@@ -318,9 +318,9 @@
 		if(5)
 			if(structure_integrity < 0.3)
 				ann_count = 6
-				rcontrol.do_message("PRESSURE CONTROL INEFFECTIVE. PRESSURE ABOVE DESIGN LIMITS.")
+				rcontrol.do_message("PRESSURE CONTROL INEFFECTIVE. PRESSURE ABOVE DESIGN LIMITS.", 3)
 				sleep(10)
-				rcontrol.do_message("INTEGRITY MONITORING SYSTEM FAILURE. CANNOT PREDICT REACTOR DETONATION.")
+				rcontrol.do_message("INTEGRITY MONITORING SYSTEM FAILURE. CANNOT PREDICT REACTOR DETONATION.", 3)
 				sleep(50)
 				radio_announce("SITEWIDE RADIATION INTERLOCKS WILL CLOSE IN: 1 MINUTE.", rcontrol.name)
 				addtimer(CALLBACK(src, PROC_REF(close_radlocks)), 1 MINUTE)
@@ -419,6 +419,7 @@
 	radio_announce("RADIATION LOCKS: CLOSED.", rcontrol.name)
 
 /obj/machinery/power/hybrid_reactor/proc/make_plasmaball()
+	superstructure.cut_overlays()
 	superstructure.icon = 'icons/obj/engine/energy_ball.dmi'
 	superstructure.icon_state = "energy_ball_fast"
 	superstructure.color = LIGHT_COLOR_BLUE

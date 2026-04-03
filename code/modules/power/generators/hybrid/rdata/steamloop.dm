@@ -23,6 +23,7 @@
 	var/return_list = list()
 	var/meter_list = list(
 		"T-M EXCHANGER" = "Steam Generator Inlet.",
+		"T-M VAPORIZER" = "Steam Generator Stage.",
 		"T-M-TURB IN" = "Turbine Inlet.",
 		"T-M-TURB EX" = "Turbine Outlet.",
 		"T-M-COOLANT" = "Condenser cooling circuit."
@@ -32,5 +33,7 @@
 								"description" = meter_list[meter_id],
 								"pressure" = rcontrol.get_meter_pressure(meter_id),
 								"temperature" = rcontrol.get_meter_temperature(meter_id),
-								"mass" = rcontrol.get_meter_mass(meter_id)))
+								"mass" = rcontrol.get_meter_mass(meter_id),
+								"level" = rcontrol.get_meter_level(meter_id)
+								))
 	return return_list

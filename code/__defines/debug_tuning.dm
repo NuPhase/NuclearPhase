@@ -15,7 +15,6 @@ var/global/debug_tuning/debug_tuner = new
 
 #define NORMAL_MCV debug_tuner.med_normal_mcv
 #define HEMODYNAMICS_INTERPOLATE_FACTOR debug_tuner.med_hemo_interp
-
 #define REACTOR_REACTIVITY_MULT debug_tuner.eng_reactivity_multiplier
 
 #else
