@@ -11,6 +11,10 @@
 	drug_category = DRUG_CATEGORY_RESUSCITATION
 
 /decl/material/liquid/adrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
+	var/met_amount = H.bloodstr.has_reagent(/decl/material/solid/metoprolol, removed)
+	if(met_amount > 1) // metoprolol inhibits us
+		removed /= (1 + (met_amount*0.25))
+
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_BREATHLOSS, removed * 1100)
 	H.add_chemical_effect(CE_PAINKILLER, removed * 12500)
@@ -42,7 +46,11 @@
 	uid = "chem_noradrenaline"
 	drug_category = DRUG_CATEGORY_RESUSCITATION
 
-/decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
+/decl/material/liquid/noradrenaline/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
+	var/met_amount = H.bloodstr.has_reagent(/decl/material/solid/metoprolol, removed)
+	if(met_amount > 1) // metoprolol inhibits us
+		removed /= (1 + (met_amount*0.25))
+
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	H.add_chemical_effect(CE_PRESSURE, removed * 1550)
 	heart.cardiac_output_modifiers[name] = 1 + removed * 0.3
@@ -69,7 +77,7 @@
 
 /decl/material/liquid/dopamine
 	name = "dopamine"
-	lore_text = "Inreases cardiac output."
+	lore_text = "Increases cardiac output."
 	color = "#ffd448"
 	scannable = 1
 	overdose = 8
@@ -97,6 +105,61 @@
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
 	heart.cardiac_output_modifiers[name] = 1 - removed * 3
 	heart.oxygen_deprivation = max(0, heart.oxygen_deprivation - removed * 5)
+
+/decl/material/solid/metoprolol
+	name = "metoprolol"
+	lore_text = "Decreases BPM, decreases contractility."
+	color = "#ddbcdd"
+	scannable = 1
+	overdose = 20
+	metabolism = 0.005
+	uid = "chem_metoprolol"
+	drug_category = DRUG_CATEGORY_CARDIAC
+
+/decl/material/solid/metoprolol/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	heart.bpm_modifiers[name] = removed * -600
+	heart.cardiac_output_modifiers[name] = 1 - removed
+	heart.stability_modifiers[name] = removed * 200
+
+/decl/material/liquid/lidocaine
+	name = "lidocaine"
+	lore_text = "Stabilizes the heart, can be toxic in blood."
+	color = "#ffffff70"
+	scannable = 1
+	overdose = 5
+	metabolism = REM
+	uid = "chem_lidocaine"
+	drug_category = DRUG_CATEGORY_PAIN_SLEEP
+
+/decl/material/liquid/lidocaine/affect_blood(var/mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	heart.bpm_modifiers[name] = removed * -20
+	heart.stability_modifiers[name] = removed * 600
+
+/decl/material/liquid/lidocaine/affect_overdose(mob/living/M, datum/reagents/holder)
+	. = ..()
+	if(prob(5))
+		M.seizure()
+
+/decl/material/solid/amiodarone
+	name = "amiodarone"
+	lore_text = "Decreases BPM, majorly increases stability. Big gun drug, use with caution."
+	color = "#ddbcdd"
+	scannable = 1
+	overdose = 15
+	metabolism = 0.005
+	uid = "chem_amiodarone"
+	drug_category = DRUG_CATEGORY_CARDIAC
+
+/decl/material/solid/amiodarone/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	heart.bpm_modifiers[name] = removed * -600
+	heart.stability_modifiers[name] = removed * 2000
+	H.add_chemical_effect(CE_PRESSURE, 100 * removed)
+
+/decl/material/solid/amiodarone/affect_overdose(mob/living/M, datum/reagents/holder)
+	M.add_chemical_effect(CE_PRESSURE, -30)
 
 /decl/material/solid/betapace
 	name = "betapace"
@@ -142,8 +205,28 @@
 	uid = "chem_heparin"
 	drug_category = DRUG_CATEGORY_MISC
 
-/decl/material/liquid/heparin/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder) //UNCONFIRMED VALUES
+/decl/material/liquid/heparin/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
 	H.add_chemical_effect(CE_BLOOD_THINNING, removed)
+
+/decl/material/liquid/tranexamic_acid
+	name = "tranexamic acid"
+	lore_text = "Encourages blood clots. Causes heart instability because of microclots."
+	color = "#ddc2c2"
+	scannable = 1
+	overdose = 50
+	metabolism = 0.005
+	value = 1.5
+	uid = "chem_tranexamic_acid"
+	drug_category = DRUG_CATEGORY_MISC
+
+/decl/material/liquid/tranexamic_acid/affect_blood(var/mob/living/carbon/human/H, var/removed, var/datum/reagents/holder)
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	H.add_chemical_effect(CE_BLOOD_THINNING, removed * -12)
+	heart.stability_modifiers[name] = removed * -100
+	if(removed > 0.05)
+		H.add_client_color(/datum/client_color/bluish)
+	else
+		H.remove_client_color(/datum/client_color/bluish)
 
 /decl/material/liquid/adenosine
 	name = "adenosine"

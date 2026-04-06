@@ -139,7 +139,7 @@
 /obj/item/chems/pill/painkillers
 	name = "tramadol (50mg)"
 	desc = "A simple painkiller."
-	icon_state = "pill3"
+	icon_state = "pill2"
 /obj/item/chems/pill/painkillers/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/opium/tramadol, 50)
 
@@ -153,16 +153,23 @@
 /obj/item/chems/pill/fentanyl
 	name = "fentanyl (250mcg)"
 	desc = "An extremely strong painkiller with a lot of side effects."
-	icon_state = "pill3"
+	icon_state = "pill2"
 /obj/item/chems/pill/fentanyl/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/opium/fentanyl, 0.25)
 
 /obj/item/chems/pill/oxycodone
 	name = "oxycodone (20mg)"
 	desc = "An opioid painkiller. It stronger than morphine by a factor of 1.5."
-	icon_state = "pill3"
+	icon_state = "pill2"
 /obj/item/chems/pill/oxycodone/initialize_reagents()
 	reagents.add_reagent(/decl/material/liquid/opium/oxycodone, 20)
+
+/obj/item/chems/pill/ketorolac
+	name = "ketorolac (30mg)"
+	desc = "Used for treating moderate to severe pain. Dosed in 30mg."
+	icon_state = "pill3"
+/obj/item/chems/pill/ketorolac/initialize_reagents()
+	reagents.add_reagent(/decl/material/solid/ketorolac, 30)
 
 /obj/item/chems/pill/antitoxins
 	name = "antitoxins (15u)"
@@ -286,7 +293,7 @@
 
 /obj/item/chems/pill/betapace
 	name = "betapace pill"
-	desc = "Commonly used to treat tachycardia and arrythmias. Dosed in 5ml."
+	desc = "Commonly used to treat tachycardia and arrythmias. Dosed in 5mg."
 	icon_state = "pill3"
 
 /obj/item/chems/pill/betapace/initialize_reagents()

@@ -65,5 +65,12 @@
 
 /obj/item/storage/pill_bottle/foil_pack/tramadol
 	pill_type = /obj/item/chems/pill/painkillers
+
 /obj/item/storage/pill_bottle/foil_pack/amicile
 	pill_type = /obj/item/chems/pill/amicile
+
+/obj/item/storage/pill_bottle/foil_pack/betapace
+	pill_type = /obj/item/chems/pill/betapace
+
+/obj/item/storage/pill_bottle/foil_pack/ketorolac
+	pill_type = /obj/item/chems/pill/ketorolac

@@ -150,6 +150,8 @@
 		/decl/material/liquid/opium/morphine = 144,
 		/decl/material/liquid/opium/fentanyl = 63.1,
 		/decl/material/liquid/opium = 800,
+		/decl/material/liquid/lidocaine = 93,
+		/decl/material/solid/ketorolac = 130,
 		/decl/material/liquid/ethanol = 720,
 		/decl/material/liquid/nitroglycerin = 182,
 		/decl/material/liquid/potassium_iodide = 409,
@@ -158,10 +160,13 @@
 		/decl/material/liquid/suxamethonium = 34,
 		/decl/material/liquid/heparin = 94,
 		/decl/material/liquid/adenosine = 56,
+		/decl/material/liquid/tranexamic_acid = 190,
 		/decl/material/liquid/dopamine = 83,
 		/decl/material/liquid/metoclopramide = 146,
 		/decl/material/liquid/naloxone = 42,
 		/decl/material/liquid/dronedarone = 33,
+		/decl/material/solid/amiodarone = 41,
 		/decl/material/solid/betapace = 96,
+		/decl/material/solid/metoprolol = 113,
 		/decl/material/liquid/nutriment/glucose = 130
 	)

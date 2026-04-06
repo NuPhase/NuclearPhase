@@ -40,8 +40,11 @@
 	return list(
 		/obj/item/chems/hypospray/autoinjector/srec = 4,
 		/obj/item/chems/hypospray/autoinjector/pain = 3,
+		/obj/item/chems/hypospray/autoinjector/tranexamic_acid = 3,
 		/obj/item/storage/pill_bottle/foil_pack/tramadol = 3,
-		/obj/item/storage/pill_bottle/foil_pack/amicile = 3
+		/obj/item/storage/pill_bottle/foil_pack/amicile = 3,
+		/obj/item/storage/pill_bottle/foil_pack/betapace = 3,
+		/obj/item/storage/pill_bottle/foil_pack/ketorolac = 3
 	)
 
 

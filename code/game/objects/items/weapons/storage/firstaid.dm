@@ -156,11 +156,35 @@
 		/obj/item/chest_tube,
 		/obj/item/knife/combat,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/flashlight/flare/glowstick,
+		/obj/item/flashlight/flare,
 		/obj/item/storage/pill_bottle/foil_pack/tramadol,
-		/obj/item/storage/pill_bottle/foil_pack/amicile,
-		/obj/item/chems/hypospray/autoinjector/glucose
+		/obj/item/storage/pill_bottle/foil_pack/betapace,
+		/obj/item/chems/hypospray/autoinjector/glucose,
+		/obj/item/chems/hypospray/autoinjector/tranexamic_acid
 		)
+	var/instructions = {"
+	1) Open the pack.\n\
+	\t2) Carefully remove all items from the pouch and discard the pouch.\n\
+	\t3) Give a tramadol pill if patient is conscious.\n\
+	\t4) Use the trauma kit to stop bleeding if required.\n\
+	\t5) If bleeding can't be stopped, inject blood clotter.\n\
+	\t6) Use the burn kit on any burns if required\n\
+	\t7) Contact the medical team with your location.
+	8) Stay in place once they respond.\
+		"}
+
+/obj/item/storage/firstaid/ifak/examine(mob/user)
+	. = ..()
+	to_chat(user, "<A href='?src=\ref[src];show_info=1'>Please read instructions before use.</A>")
+
+/obj/item/storage/firstaid/ifak/CanUseTopic()
+	return STATUS_INTERACTIVE
+
+/obj/item/storage/firstaid/ifak/OnTopic(var/user, var/list/href_list)
+	if(href_list["show_info"])
+		to_chat(user, instructions)
+		return TOPIC_HANDLED
+
 
 /obj/item/storage/firstaid/stab
 	name = "stabilisation first aid"

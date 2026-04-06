@@ -73,6 +73,10 @@
 		"yellow" =  "gray"
 	)
 
+/datum/client_color/bluish
+	client_color = list(0.8,0.0,0.0, 0.0,0.8,0.0, 0.2,0.2,1.0)
+	priority = 100
+
 //Similar to monochrome but shouldn't look as flat, same priority
 /datum/client_color/noir
 	client_color = list(0.299,0.299,0.299, 0.587,0.587,0.587, 0.114,0.114,0.114)

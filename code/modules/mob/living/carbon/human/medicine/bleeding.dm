@@ -55,7 +55,7 @@
 	return total_blood_lost
 
 /mob/living/carbon/human/proc/get_bleeding_modifier(obj/item/organ/internal/liver/cL)
-	var/cur_modifier = 0.5
+	var/cur_modifier = 1
 	cur_modifier *= mcv / NORMAL_MCV
 	cur_modifier *= 1 + GET_CHEMICAL_EFFECT(src, CE_BLOOD_THINNING) * 0.2
 	if(cL)

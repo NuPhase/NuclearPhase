@@ -250,7 +250,8 @@
 /area/hallway)
 "kw" = (
 /obj/machinery/smartfridge/secure/medbay/stocked/blood{
-	pixel_y = 32
+	pixel_y = 32;
+	density = 0
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -616,7 +617,7 @@
 /turf/simulated/floor/plating,
 /area/hallway)
 "wP" = (
-/obj/structure/rack,
+/obj/structure/closet/crate/medical/expendables,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "xb" = (
@@ -936,6 +937,10 @@
 /obj/machinery/atmospherics/unary/caster,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
+"IJ" = (
+/obj/structure/closet/secure_closet/consumables,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "IK" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on,
 /turf/simulated/floor/tiled/monotile,
@@ -1183,8 +1188,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Qc" = (
-/obj/machinery/smartfridge/secure/medbay/stocked{
-	pixel_y = 32
+/obj/machinery/drug_dispenser/stocked{
+	pixel_y = 32;
+	density = 0
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -1198,6 +1204,10 @@
 "Qr" = (
 /obj/item/stack/material/strut/mapped/steel/thirty,
 /obj/item/stack/material/strut/mapped/steel/thirty,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"Qu" = (
+/obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Qz" = (
@@ -2876,7 +2886,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+Qu
 sT
 Bs
 WW
@@ -3006,8 +3016,8 @@ Bs
 Bs
 Bs
 Bs
-Bs
-rg
+Qu
+IJ
 Bs
 KJ
 Bs
@@ -3135,8 +3145,8 @@ EM
 Bs
 Bs
 EM
-Qc
 Bs
+Qu
 wP
 Bs
 nL
@@ -3266,12 +3276,12 @@ Bs
 Bs
 EM
 Qc
-Bs
+Qu
 mc
 Bs
 OI
 gT
-Bs
+rg
 Bs
 la
 EM
@@ -3525,7 +3535,7 @@ Bs
 Bs
 Bs
 EM
-kw
+Bs
 Bs
 Bs
 Bs

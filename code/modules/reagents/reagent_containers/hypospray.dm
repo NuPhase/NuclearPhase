@@ -148,7 +148,7 @@
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	icon_state = "injector"
 	item_state = "autoinjector"
-	amount_per_transfer_from_this = 5
+	amount_per_transfer_from_this = 30
 	volume = 30
 	origin_tech = @'{"materials":2,"biotech":2}'
 	slot_flags = SLOT_LOWER_BODY | SLOT_EARS
@@ -184,7 +184,7 @@
 	starts_with = list(/decl/material/liquid/antitoxins/charcoal = 5)
 
 /obj/item/chems/hypospray/autoinjector/pain
-	name = "autoinjector (painkiller)"
+	name = "autoinjector (morphine)"
 	band_color = COLOR_PURPLE
 	starts_with = list(/decl/material/liquid/opium/morphine = 2)
 
@@ -202,6 +202,11 @@
 	name = "autoinjector (glucose)"
 	band_color = COLOR_AMBER
 	starts_with = list(/decl/material/liquid/nutriment/glucose = 30)
+
+/obj/item/chems/hypospray/autoinjector/tranexamic_acid
+	name = "autoinjector (blood clotter)"
+	band_color = COLOR_RED
+	starts_with = list(/decl/material/liquid/tranexamic_acid = 30)
 
 /obj/item/chems/hypospray/autoinjector/srec
 	name = "autoinjector (SREC-I)"

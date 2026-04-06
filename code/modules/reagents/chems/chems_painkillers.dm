@@ -118,3 +118,19 @@
 			. = 1
 			if(booze.strength < 40) //liquor stuff hits harder
 				return 2
+
+
+
+/decl/material/solid/ketorolac
+	name = "ketorolac"
+	lore_text = "A painkiller for moderate to severe pain. Not addictive. Increases bleeding risk."
+	color = "#bcddc9"
+	scannable = 1
+	overdose = 70
+	metabolism = 0.005
+	uid = "chem_ketorolac"
+	drug_category = DRUG_CATEGORY_PAIN_SLEEP
+
+/decl/material/solid/ketorolac/affect_blood(mob/living/carbon/human/H, removed, datum/reagents/holder)
+	H.add_chemical_effect(CE_PAINKILLER, min(2000 * removed, 600))
+	H.add_chemical_effect(CE_BLOOD_THINNING, 1)
