@@ -60,12 +60,16 @@
 
 	compile_overlays()
 
-/obj/item/chems/glass/bottle/Initialize()
+/obj/item/chems/glass/bottle/Initialize(mapload)
 	. = ..()
 	if(LAZYLEN(initial_reagents))
-		for(var/R in initial_reagents)
-			var/actually_added = SSpersistence.take_reagent(R, initial_reagents[R])
-			reagents.add_reagent(R, actually_added)
+		if(mapload)
+			for(var/R in initial_reagents)
+				var/actually_added = SSpersistence.take_reagent(R, initial_reagents[R])
+				reagents.add_reagent(R, actually_added)
+		else
+			for(var/R in initial_reagents)
+				reagents.add_reagent(R, initial_reagents[R])
 		if(autolabel && !label_text) // don't override preset labels
 			var/decl/material/R = GET_DECL(initial_reagents[1])
 			label_text = R.name

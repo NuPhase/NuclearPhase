@@ -114,6 +114,9 @@
 
 /obj/structure/reagent_dispensers/barrel/random/Initialize()
 	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/reagent_dispensers/barrel/random/LateInitialize()
 	if(!SSpersistence.fluid_pool.len)
 		return INITIALIZE_HINT_QDEL
 	var/reagent_type = pick(SSpersistence.fluid_pool)

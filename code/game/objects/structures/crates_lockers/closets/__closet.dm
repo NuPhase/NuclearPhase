@@ -36,7 +36,7 @@ var/global/list/closets = list()
 	global.closets -= src
 	. = ..()
 
-/obj/structure/closet/Initialize()
+/obj/structure/closet/Initialize(mapload)
 	..()
 	global.closets += src
 	if((setup & CLOSET_HAS_LOCK))

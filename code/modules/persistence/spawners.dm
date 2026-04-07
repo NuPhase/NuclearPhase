@@ -15,7 +15,7 @@
 	mouse_opacity = MOUSE_OPACITY_UNCLICKABLE
 	alpha = 30
 
-/obj/effect/item_spawner/Initialize()
+/obj/effect/item_spawner/Initialize(mapload)
 	. = ..()
 	SSpersistence.item_pool_spawners[spawn_paths] += 1
 	return INITIALIZE_HINT_LATELOAD

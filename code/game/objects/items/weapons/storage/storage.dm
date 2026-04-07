@@ -394,7 +394,7 @@
 				var/qty = data[1]
 				var/list/argsl = data.Copy()
 				argsl[1] = src
-				if(!SSpersistence.loaded_item_pool || mapload) //NO POOL???
+				if(!SSpersistence.loaded_item_pool || !mapload) //NO POOL???
 					for(var/i in 1 to qty)
 						new item_path(arglist(argsl))
 					continue
@@ -404,7 +404,7 @@
 					else
 						continue
 			else
-				if(!SSpersistence.loaded_item_pool || mapload) //NO POOL???
+				if(!SSpersistence.loaded_item_pool || !mapload) //NO POOL???
 					for(var/i in 1 to (isnull(data)? 1 : data))
 						new item_path(src)
 					continue

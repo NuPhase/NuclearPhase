@@ -13,16 +13,20 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = @"[10,25,50,100,500]"
 
-/obj/structure/reagent_dispensers/Initialize()
+/obj/structure/reagent_dispensers/Initialize(mapload)
 	. = ..()
 	create_reagents(initial_capacity)
 	if (!possible_transfer_amounts)
 		verbs -= /obj/structure/reagent_dispensers/verb/set_amount_per_transfer_from_this
-	for(var/reagent_type in initial_reagent_types)
-		var/reagent_ratio = initial_reagent_types[reagent_type]
-		var/reagent_amount = reagent_ratio * initial_capacity
-		var/actually_present = SSpersistence.take_reagent(reagent_type, reagent_amount)
-		reagents.add_reagent(reagent_type, actually_present)
+	if(mapload)
+		for(var/reagent_type in initial_reagent_types)
+			var/reagent_ratio = initial_reagent_types[reagent_type]
+			var/reagent_amount = reagent_ratio * initial_capacity
+			var/actually_present = SSpersistence.take_reagent(reagent_type, reagent_amount)
+			reagents.add_reagent(reagent_type, actually_present)
+	else
+		for(var/reagent_type in initial_reagent_types)
+			reagents.add_reagent(reagent_type, initial_reagent_types[reagent_type])
 
 /obj/structure/reagent_dispensers/is_pressurized_fluid_source()
 	return TRUE

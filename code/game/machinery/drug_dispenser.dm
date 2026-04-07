@@ -28,10 +28,11 @@
 
 	var/dosage = 0.5 //0.01 - 1
 
-/obj/machinery/drug_dispenser/Initialize()
+/obj/machinery/drug_dispenser/Initialize(mapload)
 	. = ..()
-	for(var/reagent_type in reagent_volumes)
-		reagent_volumes[reagent_type] = SSpersistence.take_reagent(reagent_type, reagent_volumes[reagent_type])
+	if(mapload)
+		for(var/reagent_type in reagent_volumes)
+			reagent_volumes[reagent_type] = SSpersistence.take_reagent(reagent_type, reagent_volumes[reagent_type])
 	prune_reagents()
 
 /obj/machinery/drug_dispenser/attackby(obj/item/I, mob/user)
