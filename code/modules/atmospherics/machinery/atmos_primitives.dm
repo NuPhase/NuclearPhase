@@ -67,31 +67,34 @@
 
 	return power_draw
 
+// Returns a list(power_draw, mass_flow)
 /proc/pump_fluid(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0, var/kgs_rating = 0, var/npower_rating = 0, var/efficiency = 0.79)
 	var/source_mass = source.get_mass()
 	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing
-		return -1
+		return list(0, 0)
 
 	if(isnull(transfer_mass))
 		transfer_mass = source_mass
 	var/source_density = source.get_density()
 	var/source_specific_mass = source.specific_mass()
 	if(!source_density || !source_specific_mass)
-		return -1
+		return list(0, 0)
 
 	var/power_per_kg = (100000 * (1/source_density) / efficiency)
 
-	transfer_mass = min(npower_rating/power_per_kg, transfer_mass, kgs_rating, sink.available_volume * 0.001 * source_density)
+	transfer_mass = min(npower_rating/power_per_kg, transfer_mass, kgs_rating, (sink.available_volume - (sink.volume*0.01)) * 0.001 * source_density)
+	if(!transfer_mass)
+		return list(0, 0)
 
 	var/datum/gas_mixture/removed = source.remove(transfer_mass / source_specific_mass, FALSE)
 	if (!removed) //Just in case
-		return -1
+		return list(0, 0)
 
 	var/power_draw = transfer_mass * power_per_kg
 
 	sink.merge(removed)
 
-	return power_draw
+	return list(power_draw, transfer_mass)
 
 /proc/pump_fluid_passive(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0)
 	var/source_mass = source.get_mass()
@@ -105,7 +108,7 @@
 	var/decl/material/mat = GET_DECL(pick(source.liquids))
 	if(!mat)
 		return
-	transfer_mass = min(transfer_mass, sink.available_volume * 0.001 * mat.liquid_density)
+	transfer_mass = min(transfer_mass, (sink.available_volume - (sink.volume*0.01)) * 0.001 * mat.liquid_density)
 	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.gas_molar_mass, FALSE)
 	if (!removed) //Just in case
 		return -1

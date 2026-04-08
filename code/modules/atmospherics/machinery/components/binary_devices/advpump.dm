@@ -127,9 +127,9 @@
 
 /obj/machinery/atmospherics/binary/pump/adv/proc/change_volume(new_volume, change_input = TRUE, change_output = TRUE)
 	if(change_input)
-		air1.volume = new_volume
+		air1.volume = Interpolate(air1.volume, new_volume, 0.1)
 	if(change_output)
-		air2.volume = new_volume
+		air2.volume = Interpolate(air2.volume, new_volume, 0.1)
 
 /obj/machinery/atmospherics/binary/pump/adv/Initialize()
 	. = ..()
@@ -217,8 +217,9 @@
 			molar_mass = 0.06
 		air1.suction_moles = deficit / molar_mass
 
-	power_draw = pump_fluid(src, air1, air2, mass_transfer, flow_capacity, power_rating)
-	last_mass_flow = min(air1_mass, flow_capacity)
+	var/list/return_list = pump_fluid(src, air1, air2, mass_transfer, flow_capacity, power_rating)
+	power_draw = return_list[1]
+	last_mass_flow = return_list[2]
 
 	var/flow_coefficient = last_mass_flow / initial_flow_capacity
 
