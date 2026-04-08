@@ -610,3 +610,27 @@
 	electrolysis_energy = 158000
 	melting_point = 1400
 	boiling_point = 2835
+
+/decl/material/solid/uraborate
+	name = "uraborate"
+	uid = "solid_uraborate"
+	lore_text = "A bright green secondary uranium borate mineral."
+	color = "#2e9e4e"
+	molar_mass = 0.714
+	liquid_density = 3400
+	solid_density = 3200
+	melting_point = 1200
+	dissolves_in = MAT_SOLVENT_STRONG
+	dissolves_into = list(
+		/decl/material/solid/yellowcake = 0.46,
+		/decl/material/liquid/acid/boric = 0.3
+	)
+
+/decl/material/solid/yellowcake
+	name = "yellowcake"
+	uid = "solid_yellowcake"
+	lore_text = "Concentrated uranium oxide (U3O8)."
+	color = "#ff0"
+	molar_mass = 0.842
+	liquid_density = 8400
+	solid_density = 8200

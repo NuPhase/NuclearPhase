@@ -252,6 +252,17 @@ SUBSYSTEM_DEF(reactions)
 			for(var/waste_type in mat.absorption_products)
 				moles[waste_type] += mat.absorption_products[waste_type] * absorb_moles
 
+	for(var/mat_type in moles)
+		var/decl/material/mat = GET_DECL(mat_type)
+		if(!mat.neutron_interactions || !mat.neutron_interactions["slow"][INTERACTION_DECAY])
+			continue
+		var/decay_moles = moles[mat_type] * mat.neutron_interactions["slow"][INTERACTION_DECAY]
+		fast_neutrons += mat.fission_neutrons * decay_moles
+		thermal_energy += mat.fission_energy * decay_moles
+		if(mat.fission_products)
+			for(var/waste_type in mat.fission_products)
+				moles[waste_type] += mat.fission_products[waste_type] * decay_moles
+
 	temperature = thermal_energy / heat_capacity
 	return list(moles, temperature, fast_neutrons, slow_neutrons)
 
@@ -276,7 +287,7 @@ SUBSYSTEM_DEF(reactions)
 
 /datum/controller/subsystem/reactions/proc/test_nuclear()
 	to_chat(usr, "--------------------")
-	var/fast_neutrons = 0.1
+	var/fast_neutrons = 0.01
 	var/slow_neutrons = 0
 	var/temperature = T20C
 	for(var/i=1, i<100, i++)
@@ -290,7 +301,7 @@ SUBSYSTEM_DEF(reactions)
 		slow_neutrons = react_result[4]
 		to_chat(usr, "T: [round(react_result[2])] | FN: [round(react_result[3], 0.0001)] | SN: [round(react_result[4], 0.0001)]")
 	to_chat(usr, "--------------------")
-	fast_neutrons = 0.1
+	fast_neutrons = 0.01
 	slow_neutrons = 0
 	temperature = T20C
 	var/list/moles = list(
@@ -299,6 +310,21 @@ SUBSYSTEM_DEF(reactions)
 			)
 	for(var/i=1, i<100, i++)
 		var/list/react_result = process_reaction_nuclear(moles, temperature, 10000000, 100, fast_neutrons, slow_neutrons)
+		moles = react_result[1]
+		temperature = react_result[2]
+		fast_neutrons = react_result[3]
+		slow_neutrons = react_result[4]
+		to_chat(usr, "T: [round(react_result[2])] | FN: [round(react_result[3], 0.0001)] | SN: [round(react_result[4], 0.0001)]")
+	to_chat(usr, "--------------------")
+	fast_neutrons = 0.01
+	slow_neutrons = 0
+	temperature = 1900
+	moles = list(
+			/decl/material/solid/metal/uranium = 12,
+			/decl/material/solid/uranium_tetrafluoride = 50
+			)
+	for(var/i=1, i<100, i++)
+		var/list/react_result = process_reaction_nuclear(moles, temperature, 10000000, 2000, fast_neutrons, slow_neutrons)
 		moles = react_result[1]
 		temperature = react_result[2]
 		fast_neutrons = react_result[3]

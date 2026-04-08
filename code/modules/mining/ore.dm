@@ -313,3 +313,12 @@
 	)
 	yield_divisor = 10
 	material = /decl/material/solid/metal/tungsten
+
+/obj/item/stack/ore/uraborate
+	color = "#2e9e4e"
+	true_mineral_name = "uraborate"
+	composition = list(
+		/decl/material/solid/uraborate = 1
+	)
+	yield_divisor = 4
+	material = /decl/material/solid/uraborate

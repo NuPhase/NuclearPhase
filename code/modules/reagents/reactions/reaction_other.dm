@@ -154,3 +154,10 @@
 	result = /decl/material/solid/water_purifier_first
 	required_reagents = list(/decl/material/gas/chlorine = 1, /decl/material/solid/potash = 2)
 	result_amount = 1
+
+/decl/chemical_reaction/hydrogen_peroxide
+	name = "Uranium Tetrafluoride"
+	result = /decl/material/solid/uranium_tetrafluoride
+	required_reagents = list(/decl/material/solid/yellowcake = 5, /decl/material/liquid/acid/hydrofluoric = 1)
+	minimum_temperature = 400 CELSIUS
+	result_amount = 4

@@ -18,12 +18,12 @@
 
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 30,
+			INTERACTION_SCATTER = 4,
 			INTERACTION_ABSORPTION = 99,
-			INTERACTION_FISSION = 583
+			INTERACTION_FISSION = 58
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 30,
+			INTERACTION_SCATTER = 4,
 			INTERACTION_ABSORPTION = 0.09,
 			INTERACTION_FISSION = 1
 		)
@@ -39,6 +39,13 @@
 	)
 	absorption_products = list(
 		/decl/material/solid/metal/neptunium = 1
+	)
+
+	electrolysis_difficulty = 5
+	electrolysis_energy = 25000
+	electrolysis_products = list(
+		/decl/material/solid/metal/depleted_uranium = 0.9928,
+		/decl/material/solid/metal/uranium = 0.0072
 	)
 
 	fission_energy = 21080100000.0
