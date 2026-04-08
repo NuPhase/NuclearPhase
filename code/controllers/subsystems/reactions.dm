@@ -167,3 +167,140 @@ SUBSYSTEM_DEF(reactions)
 		var/list/react_result = process_reactions(list(/decl/material/gas/hydrogen = 300/i, /decl/material/gas/oxygen = 30), 3500, 6600, volume = 1000)
 		to_chat(user, "T: 3500 ===> T: [round(react_result[2], 0.1)] H: [round(react_result[1][/decl/material/gas/hydrogen], 0.1)] O: [round(react_result[1][/decl/material/gas/oxygen], 0.1)]")
 	to_chat(user, "--------------------")
+
+
+
+// Nuclear code starts here
+
+/*
+	ALL nuclear reactions should only be handled here.
+	First, we calculate the reaction probability per cm, then apply length to get the probability of fission, capture or escape
+	To get reaction probabilities, we first get the fraction of neutrons that get moderated
+	s - scatter rate, u - fission rate, t - absorption rate, x - distance
+	z_{moderated}=sx
+	Then we interpolate the cross sections based on the moderated fraction
+	After that, we can calculate the fractions of other reactions
+	z_{fission}=\frac{u}{t+u}\cdot\left(1-e^{-\left(t+u\right)x}\right)
+	z_{absorb}=\frac{t}{t+u}\cdot\left(1-e^{-\left(t+u\right)x}\right)
+	z_{escape}=e^{-\left(t+u\right)x}
+	The fission fraction generates more fast neutrons and energy
+	The absorb fraction simply removes neutrons
+	The escape fraction contributes to var/escaped_n which is used in some places
+*/
+
+/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(list/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons)
+	var/thermal_energy = temperature * heat_capacity
+	var/radial_distance = sphere_radius_from_volume(volume)
+
+	var/scatter_prob = get_average_cross_section(moles, INTERACTION_SCATTER, fast_neutrons, slow_neutrons, volume)
+	var/z_scatter = min(scatter_prob * radial_distance, 1)
+
+	var/scattered = fast_neutrons * z_scatter
+	fast_neutrons -= scattered
+	slow_neutrons += scattered
+
+	var/fission_prob = get_average_cross_section(moles, INTERACTION_FISSION, fast_neutrons, slow_neutrons, volume)
+	var/absorb_prob = get_average_cross_section(moles, INTERACTION_ABSORPTION, fast_neutrons, slow_neutrons, volume)
+
+	var/euler_exp = EULER**(-(absorb_prob+fission_prob)*radial_distance)
+	var/z_fission = (fission_prob/(absorb_prob+fission_prob)) * (1-euler_exp)
+	var/z_absorb = (absorb_prob/(absorb_prob+fission_prob)) * (1-euler_exp)
+	var/z_escape = euler_exp
+
+	var/total_neutrons = fast_neutrons + slow_neutrons
+	var/n_fission = z_fission * total_neutrons
+	var/n_absorb = z_absorb * total_neutrons
+	var/n_escape = z_escape * total_neutrons
+
+	var/fast_absorb_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
+	fast_neutrons -= fast_absorb_fraction * n_escape
+	slow_neutrons -= (1 - fast_absorb_fraction) * n_escape
+
+	var/list/fissile_moles = list()
+	var/fissile_total = 0
+	for(var/mat_type in moles)
+		var/decl/material/mat = GET_DECL(mat_type)
+		if(!mat.neutron_interactions || !mat.neutron_interactions["slow"][INTERACTION_FISSION])
+			continue
+		fissile_moles[mat_type] = moles[mat_type]
+		fissile_total += moles[mat_type]
+
+	for(var/mat_type in fissile_moles)
+		var/decl/material/mat = GET_DECL(mat_type)
+		var/fraction = fissile_moles[mat_type] / fissile_total
+		var/fission_moles = n_fission * fraction
+		var/fast_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
+		fast_neutrons -= fast_fraction * fission_moles
+		slow_neutrons -= (1 - fast_fraction) * fission_moles
+		fast_neutrons += mat.fission_neutrons * fission_moles
+		thermal_energy += mat.fission_energy * fission_moles
+		if(mat.fission_products)
+			for(var/waste_type in mat.fission_products)
+				moles[waste_type] += mat.fission_products[waste_type] * fission_moles
+
+	var/total_moles = 0
+	for(var/mat_type in moles)
+		total_moles += moles[mat_type]
+
+	for(var/mat_type in moles)
+		var/decl/material/mat = GET_DECL(mat_type)
+		var/fraction = moles[mat_type] / total_moles
+		var/absorb_moles = n_absorb * fraction
+		fast_neutrons -= fast_absorb_fraction * absorb_moles
+		slow_neutrons -= (1 - fast_absorb_fraction) * absorb_moles
+		if(mat.absorption_products)
+			for(var/waste_type in mat.absorption_products)
+				moles[waste_type] += mat.absorption_products[waste_type] * absorb_moles
+
+	temperature = thermal_energy / heat_capacity
+	return list(moles, temperature, fast_neutrons, slow_neutrons)
+
+// Goes through all moles and constructs an average probability per cm3
+/datum/controller/subsystem/reactions/proc/get_average_cross_section(list/moles, reaction_type, fast_neutrons, slow_neutrons, volume)
+	var/total_moles = 0
+	for(var/mat_type in moles)
+		total_moles += moles[mat_type]
+
+	if(total_moles <= 0)
+		return 0
+
+	var/average_prob_per_cm = 0
+	for(var/mat_type in moles)
+		var/decl/material/mat = GET_DECL(mat_type)
+		var/mat_prob_cm = mat.get_nuclear_cross_section(moles, reaction_type, fast_neutrons, slow_neutrons, volume)
+		if(mat_prob_cm)
+			var/fraction = moles[mat_type] / total_moles
+			average_prob_per_cm += fraction * mat_prob_cm
+
+	return average_prob_per_cm
+
+/datum/controller/subsystem/reactions/proc/test_nuclear()
+	to_chat(usr, "--------------------")
+	var/fast_neutrons = 0.1
+	var/slow_neutrons = 0
+	var/temperature = T20C
+	for(var/i=1, i<100, i++)
+		var/list/moles = list(
+			/decl/material/solid/metal/depleted_uranium = 85,
+			/decl/material/solid/metal/uranium = 15
+			)
+		var/list/react_result = process_reaction_nuclear(moles, temperature, 10000000, 100, fast_neutrons, slow_neutrons)
+		temperature = react_result[2]
+		fast_neutrons = react_result[3]
+		slow_neutrons = react_result[4]
+		to_chat(usr, "T: [round(react_result[2])] | FN: [round(react_result[3], 0.0001)] | SN: [round(react_result[4], 0.0001)]")
+	to_chat(usr, "--------------------")
+	fast_neutrons = 0.1
+	slow_neutrons = 0
+	temperature = T20C
+	var/list/moles = list(
+			/decl/material/solid/metal/depleted_uranium = 85,
+			/decl/material/solid/metal/uranium = 15
+			)
+	for(var/i=1, i<100, i++)
+		var/list/react_result = process_reaction_nuclear(moles, temperature, 10000000, 100, fast_neutrons, slow_neutrons)
+		moles = react_result[1]
+		temperature = react_result[2]
+		fast_neutrons = react_result[3]
+		slow_neutrons = react_result[4]
+		to_chat(usr, "T: [round(react_result[2])] | FN: [round(react_result[3], 0.0001)] | SN: [round(react_result[4], 0.0001)]")

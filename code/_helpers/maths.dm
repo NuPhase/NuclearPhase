@@ -120,6 +120,9 @@
 /proc/RoundUpToPowerOfTwo(var/val)
 	return 2 ** -round(-log(2,val))
 
+/proc/sphere_radius_from_volume(volume)
+    return (3 * volume / (4 * M_PI)) ** (1/3)
+
 /matrix/proc/get_angle()
 	return Atan2(b,a)
 

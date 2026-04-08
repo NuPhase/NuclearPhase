@@ -889,6 +889,22 @@ var/decl/material/boil_mat = null
 	var/rate_per_volume = macro_xs * flux
 	return rate_per_volume * container.volume
 
+/decl/material/proc/get_nuclear_cross_section(moles, reaction_type, slow_neutrons, fast_neutrons, volume)
+	if(!neutron_interactions["fast"])
+		return 0
+
+	var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
+	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
+
+	var/target_density = moles[src.type] / volume
+	var/macro_xs = target_density * actual_cross_section
+
+	var/slow_density = slow_neutrons / volume
+	var/fast_density = fast_neutrons / volume
+	var/flux = slow_density * SLOW_NEUTRON_SPEED + fast_density * FAST_NEUTRON_SPEED
+
+	return macro_xs * flux
+
 #undef SLOW_NEUTRON_ENERGY
 #undef SLOW_NEUTRON_SPEED
 #undef FAST_NEUTRON_SPEED
