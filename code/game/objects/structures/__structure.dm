@@ -13,6 +13,7 @@
 	var/mob_offset
 	weight = 20
 	explosion_resistance = 20
+	temperature_sensitive = TRUE
 
 /obj/structure/create_matter()
 	..()

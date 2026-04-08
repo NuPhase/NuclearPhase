@@ -192,6 +192,10 @@ steam.start() -- spawns the effect
 	particles = SSparticles.get_particle(/particles/smoke_continuous)
 	QDEL_IN(src, time_to_live)
 
+/obj/effect/effect/smoke/Destroy()
+	. = ..()
+	particles = null
+
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M)
 	..()
 	if(istype(M))

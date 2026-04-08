@@ -3,6 +3,7 @@
 	level = 1
 
 	layer = TURF_LAYER
+	temperature_sensitive = TRUE
 
 	var/turf_flags
 

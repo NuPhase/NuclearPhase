@@ -20,6 +20,8 @@
 	var/explosion_resistance = 0
 	/// (BOOL) If it can be spawned normally
 	var/is_spawnable_type = FALSE
+	/// (BOOL) Does this atom respond to changes in local temperature via the `temperature` var?
+	var/temperature_sensitive = FALSE
 
 
 	/// (DICTIONARY) A lazy map. The `key` is a MD5 player name and the `value` is the blood type.

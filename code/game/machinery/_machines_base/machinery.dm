@@ -85,6 +85,7 @@ Class Procs:
 	matter = list(
 		/decl/material/solid/metal/steel = MATTER_AMOUNT_PRIMARY
 	)
+	temperature_sensitive = TRUE
 
 	var/stat = 0
 	var/waterproof = TRUE

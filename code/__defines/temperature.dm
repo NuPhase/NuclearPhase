@@ -1,4 +1,4 @@
-#define ATOM_IS_TEMPERATURE_SENSITIVE(A) (A?.simulated)
+#define ATOM_IS_TEMPERATURE_SENSITIVE(A) (istype(A) && A.simulated && A.temperature_sensitive)
 #define ATOM_SHOULD_TEMPERATURE_ENQUEUE(A) (ATOM_IS_TEMPERATURE_SENSITIVE(A) && !QDELETED(A))
 #define ATOM_TEMPERATURE_EQUILIBRIUM_THRESHOLD 5
 #define ATOM_TEMPERATURE_EQUILIBRIUM_CONSTANT 0.15
@@ -8,6 +8,11 @@
 	HANDLE_REACTIONS(_atom.reagents); \
 	QUEUE_TEMPERATURE_ATOMS(_atom);
 
+#define QUEUE_TEMPERATURE_ATOM(_atom) \
+	if(ATOM_SHOULD_TEMPERATURE_ENQUEUE(_atom)) { \
+		SStemperature.processing[_atom] = TRUE; \
+	}
+
 #define QUEUE_TEMPERATURE_ATOMS(_atoms) \
 	if(islist(_atoms)) { \
 		for(var/thing in _atoms) { \
@@ -16,11 +21,6 @@
 		} \
 	} else { \
 		QUEUE_TEMPERATURE_ATOM(_atoms); \
-	}
-
-#define QUEUE_TEMPERATURE_ATOM(_atom) \
-	if(ATOM_SHOULD_TEMPERATURE_ENQUEUE(_atom)) { \
-		SStemperature.processing[_atom] = TRUE; \
 	}
 
 #define UNQUEUE_TEMPERATURE_ATOMS(_atoms) \
