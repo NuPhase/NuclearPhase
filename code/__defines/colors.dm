@@ -245,3 +245,5 @@
 #define COLOR_INPUT_ENABLED "#d3b5b5"
 
 #define COLORED_SQUARE(COLOR) "<span style='font-face: fixedsys; font-size: 14px; background-color: [COLOR]; color: [COLOR]'>___</span>"
+
+#define hsv(args...) rgb(args, space = COLORSPACE_HSV)
