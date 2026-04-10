@@ -77,40 +77,24 @@ More than one HSV color can match the same RGB color.
 
 Here are some procs you can use for color management:
 
-ReadRGB(rgb)
-	Takes an RGB string like "#ffaa55" and converts it to a list such as list(255,170,85). If an RGBA format is used
-	that includes alpha, the list will have a fourth item for the alpha value.
-hsv(hue, sat, val, apha)
+hsv(hue, sat, val)
 	Counterpart to rgb(), this takes the values you input and converts them to a string in "#hhhssvv" or "#hhhssvvaa"
 	format. Alpha is not included in the result if null.
-ReadHSV(rgb)
-	Takes an HSV string like "#100ff80" and converts it to a list such as list(256,255,128). If an HSVA format is used that
-	includes alpha, the list will have a fourth item for the alpha value.
-RGBtoHSV(rgb)
-	Takes an RGB or RGBA string like "#ffaa55" and converts it into an HSV or HSVA color such as "#080aaff".
-HSVtoRGB(hsv)
-	Takes an HSV or HSVA string like "#080aaff" and converts it into an RGB or RGBA color such as "#ff55aa".
 BlendRGB(rgb1, rgb2, amount)
 	Blends between two RGB or RGBA colors using regular RGB blending. If amount is 0, the first color is the result;
 	if 1, the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
 	The returned value is an RGB or RGBA color.
 BlendHSV(hsv1, hsv2, amount)
-	Blends between two HSV or HSVA colors using HSV blending, which tends to produce nicer results than regular RGB
+	Blends between two RGB or RGBA colors using HSV blending, which tends to produce nicer results than regular RGB
 	blending because the brightness of the color is left intact. If amount is 0, the first color is the result; if 1,
 	the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
-	The returned value is an HSV or HSVA color.
-BlendRGBasHSV(rgb1, rgb2, amount)
-	Like BlendHSV(), but the colors used and the return value are RGB or RGBA colors. The blending is done in HSV form.
-HueToAngle(hue)
-	Converts a hue to an angle range of 0 to 360. Angle 0 is red, 120 is green, and 240 is blue.
-AngleToHue(hue)
-	Converts an angle to a hue in the valid range.
+	The returned value is an RGB or RGBA color.
 RotateHue(hsv, angle)
 	Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
 	(Rotating red by 60 degrees produces yellow.) The result is another HSV or HSVA color with the same saturation and value
 	as the original, but a different hue.
 GrayScale(rgb)
-	Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
+	Takes an RGB or RGBA color and converts it to grayscale, preserving perceptual lightness. Returns an RGB or RGBA string.
 ColorTone(rgb, tone)
 	Similar to GrayScale(), this proc converts an RGB or RGBA color to a range of black -> tone -> white instead of
 	using strict shades of gray. The tone value is an RGB color; any alpha value is ignored.
@@ -163,7 +147,7 @@ mob
 			// Send the icon to src's local cache
 			send_rsc(src, getFlatIcon(src), iconName)
 			// Display the icon in their browser
-			direct_output(src, browse("<body bgcolor='#000000'><p><img src='[iconName]'></p></body>"))
+			show_browser(src, "<body bgcolor='#000000'><p><img src='[iconName]'></p></body>")
 
 		Output_Icon()
 			set name = "2. Output Icon"
@@ -216,18 +200,13 @@ world
 
 #define TO_HEX_DIGIT(n) ascii2text((n&15) + ((n&15)<10 ? 48 : 87))
 
-/icon/proc/MakeLying()
-	var/icon/I = new(src,dir=SOUTH)
-	I.BecomeLying()
-	return I
-
 /icon/proc/BecomeLying()
 	Turn(90)
 	Shift(SOUTH,6)
 	Shift(EAST,1)
 
 // Multiply all alpha values by this float
-/icon/proc/ChangeOpacity(opacity = 1.0)
+/icon/proc/ChangeOpacity(opacity = TRUE)
 	MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,opacity, 0,0,0,0)
 
 // Convert to grayscale
@@ -237,7 +216,7 @@ world
 /icon/proc/ColorTone(tone)
 	GrayScale()
 
-	var/list/TONE = ReadRGB(tone)
+	var/list/TONE = rgb2num(tone)
 	var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
 
 	var/icon/upper = (255-gray) ? new(src) : null
@@ -276,8 +255,8 @@ world
 
 // make this icon fully opaque--transparent pixels become black
 /icon/proc/Opaque(background = "#000000")
-		SwapColor(null, background)
-		MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,1)
+	SwapColor(null, background)
+	MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,1)
 
 // Change a grayscale icon into a white icon where the original color becomes the alpha
 // I.e., black -> transparent, gray -> translucent white, white -> solid white
@@ -316,56 +295,6 @@ world
 
 		Higher value means brighter color
  */
-
-/proc/ReadRGB(rgb)
-	if(!rgb) return
-
-	// interpret the HSV or HSVA value
-	var/i=1,start=1
-	if(text2ascii(rgb) == 35) ++start // skip opening #
-	var/ch,which=0,r=0,g=0,b=0,alpha=0,usealpha
-	var/digits=0
-	for(i=start, i<=length(rgb), ++i)
-		ch = text2ascii(rgb, i)
-		if(ch < 48 || (ch > 57 && ch < 65) || (ch > 70 && ch < 97) || ch > 102) break
-		++digits
-		if(digits == 8) break
-
-	var/single = digits < 6
-	if(digits != 3 && digits != 4 && digits != 6 && digits != 8) return
-	if(digits == 4 || digits == 8) usealpha = 1
-	for(i=start, digits>0, ++i)
-		ch = text2ascii(rgb, i)
-		if(ch >= 48 && ch <= 57) ch -= 48
-		else if(ch >= 65 && ch <= 70) ch -= 55
-		else if(ch >= 97 && ch <= 102) ch -= 87
-		else break
-		--digits
-		switch(which)
-			if(0)
-				r = BITSHIFT_LEFT(r, 4) | ch
-				if(single)
-					r |= BITSHIFT_LEFT(r, 4)
-					++which
-				else if(!(digits & 1)) ++which
-			if(1)
-				g = BITSHIFT_LEFT(g, 4) | ch
-				if(single)
-					g |= BITSHIFT_LEFT(g, 4)
-					++which
-				else if(!(digits & 1)) ++which
-			if(2)
-				b = BITSHIFT_LEFT(b, 4) | ch
-				if(single)
-					b |= BITSHIFT_LEFT(b, 4)
-					++which
-				else if(!(digits & 1)) ++which
-			if(3)
-				alpha = BITSHIFT_LEFT(alpha, 4) | ch
-				if(single) alpha |= BITSHIFT_LEFT(alpha, 4)
-
-	. = list(r, g, b)
-	if(usealpha) . += alpha
 
 /proc/ReadHSV(hsv)
 	if(!hsv) return
@@ -406,220 +335,34 @@ world
 	. = list(hue, sat, val)
 	if(usealpha) . += alpha
 
-/proc/HSVtoRGB(hsv)
-	if(!hsv) return "#000000"
-	var/list/HSV = ReadHSV(hsv)
-	if(!HSV) return "#000000"
-
-	var/hue = HSV[1]
-	var/sat = HSV[2]
-	var/val = HSV[3]
-
-	// Compress hue into easier-to-manage range
-	hue -= BITSHIFT_RIGHT(hue, 8)
-	if(hue >= 0x5fa) hue -= 0x5fa
-
-	var/hi,mid,lo,r,g,b
-	hi = val
-	lo = round((255 - sat) * val / 255, 1)
-	mid = lo + round(abs(round(hue, 510) - hue) * (hi - lo) / 255, 1)
-	if(hue >= 765)
-		if(hue >= 1275)      {r=hi;  g=lo;  b=mid}
-		else if(hue >= 1020) {r=mid; g=lo;  b=hi }
-		else                 {r=lo;  g=mid; b=hi }
-	else
-		if(hue >= 510)       {r=lo;  g=hi;  b=mid}
-		else if(hue >= 255)  {r=mid; g=hi;  b=lo }
-		else                 {r=hi;  g=mid; b=lo }
-
-	return (HSV.len > 3) ? rgb(r,g,b,HSV[4]) : rgb(r,g,b)
-
-/proc/RGBtoHSV(rgb)
-	if(!rgb) return "#0000000"
-	var/list/RGB = ReadRGB(rgb)
-	if(!RGB) return "#0000000"
-
-	var/r = RGB[1]
-	var/g = RGB[2]
-	var/b = RGB[3]
-	var/hi = max(r,g,b)
-	var/lo = min(r,g,b)
-
-	var/val = hi
-	var/sat = hi ? round((hi-lo) * 255 / hi, 1) : 0
-	var/hue = 0
-
-	if(sat)
-		var/dir
-		var/mid
-		if(hi == r)
-			if(lo == b) {hue=0; dir=1; mid=g}
-			else {hue=1535; dir=-1; mid=b}
-		else if(hi == g)
-			if(lo == r) {hue=512; dir=1; mid=b}
-			else {hue=511; dir=-1; mid=r}
-		else if(hi == b)
-			if(lo == g) {hue=1024; dir=1; mid=r}
-			else {hue=1023; dir=-1; mid=g}
-		hue += dir * round((mid-lo) * 255 / (hi-lo), 1)
-
-	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
-
-/proc/hsv(hue, sat, val, alpha)
-	if(hue < 0 || hue >= 1536) hue %= 1536
-	if(hue < 0) hue += 1536
-	if((hue & 0xFF) == 0xFF)
-		++hue
-		if(hue >= 1536) hue = 0
-	if(sat < 0) sat = 0
-	if(sat > 255) sat = 255
-	if(val < 0) val = 0
-	if(val > 255) val = 255
-	. = "#"
-	. += TO_HEX_DIGIT(BITSHIFT_RIGHT(hue, 8))
-	. += TO_HEX_DIGIT(BITSHIFT_RIGHT(hue, 4))
-	. += TO_HEX_DIGIT(hue)
-	. += TO_HEX_DIGIT(BITSHIFT_RIGHT(sat, 4))
-	. += TO_HEX_DIGIT(sat)
-	. += TO_HEX_DIGIT(BITSHIFT_RIGHT(val, 4))
-	. += TO_HEX_DIGIT(val)
-	if(!isnull(alpha))
-		if(alpha < 0) alpha = 0
-		if(alpha > 255) alpha = 255
-		. += TO_HEX_DIGIT(BITSHIFT_RIGHT(alpha, 4))
-		. += TO_HEX_DIGIT(alpha)
-
 /*
-	Smooth blend between HSV colors
+	Blend two RGB colors in RGB color space
 
 	amount=0 is the first color
 	amount=1 is the second color
 	amount=0.5 is directly between the two colors
-
-	amount<0 or amount>1 are allowed
- */
-/proc/BlendHSV(hsv1, hsv2, amount)
-	var/list/HSV1 = ReadHSV(hsv1)
-	var/list/HSV2 = ReadHSV(hsv2)
-
-	// add missing alpha if needed
-	if(HSV1.len < HSV2.len) HSV1 += 255
-	else if(HSV2.len < HSV1.len) HSV2 += 255
-	var/usealpha = HSV1.len > 3
-
-	// normalize hsv values in case anything is screwy
-	if(HSV1[1] > 1536) HSV1[1] %= 1536
-	if(HSV2[1] > 1536) HSV2[1] %= 1536
-	if(HSV1[1] < 0) HSV1[1] += 1536
-	if(HSV2[1] < 0) HSV2[1] += 1536
-	if(!HSV1[3]) {HSV1[1] = 0; HSV1[2] = 0}
-	if(!HSV2[3]) {HSV2[1] = 0; HSV2[2] = 0}
-
-	// no value for one color means don't change saturation
-	if(!HSV1[3]) HSV1[2] = HSV2[2]
-	if(!HSV2[3]) HSV2[2] = HSV1[2]
-	// no saturation for one color means don't change hues
-	if(!HSV1[2]) HSV1[1] = HSV2[1]
-	if(!HSV2[2]) HSV2[1] = HSV1[1]
-
-	// Compress hues into easier-to-manage range
-	HSV1[1] -= BITSHIFT_RIGHT(HSV1[1], 8)
-	HSV2[1] -= BITSHIFT_RIGHT(HSV2[1], 8)
-
-	var/hue_diff = HSV2[1] - HSV1[1]
-	if(hue_diff > 765) hue_diff -= 1530
-	else if(hue_diff <= -765) hue_diff += 1530
-
-	var/hue = round(HSV1[1] + hue_diff * amount, 1)
-	var/sat = round(HSV1[2] + (HSV2[2] - HSV1[2]) * amount, 1)
-	var/val = round(HSV1[3] + (HSV2[3] - HSV1[3]) * amount, 1)
-	var/alpha = usealpha ? round(HSV1[4] + (HSV2[4] - HSV1[4]) * amount, 1) : null
-
-	// normalize hue
-	if(hue < 0 || hue >= 1530) hue %= 1530
-	if(hue < 0) hue += 1530
-	// decompress hue
-	hue += round(hue / 255)
-
-	return hsv(hue, sat, val, alpha)
-
-/*
-	Smooth blend between RGB colors
-
-	amount=0 is the first color
-	amount=1 is the second color
-	amount=0.5 is directly between the two colors
-
-	amount<0 or amount>1 are allowed
  */
 /proc/BlendRGB(rgb1, rgb2, amount)
-	var/list/RGB1 = ReadRGB(rgb1)
-	var/list/RGB2 = ReadRGB(rgb2)
+	return gradient(rgb1, rgb2, index = amount)
 
-	// add missing alpha if needed
-	if(RGB1.len < RGB2.len) RGB1 += 255
-	else if(RGB2.len < RGB1.len) RGB2 += 255
-	var/usealpha = RGB1.len > 3
-
-	var/r = round(RGB1[1] + (RGB2[1] - RGB1[1]) * amount, 1)
-	var/g = round(RGB1[2] + (RGB2[2] - RGB1[2]) * amount, 1)
-	var/b = round(RGB1[3] + (RGB2[3] - RGB1[3]) * amount, 1)
-	var/alpha = usealpha ? round(RGB1[4] + (RGB2[4] - RGB1[4]) * amount, 1) : null
-
-	return isnull(alpha) ? rgb(r, g, b) : rgb(r, g, b, alpha)
-
-/proc/BlendRGBasHSV(rgb1, rgb2, amount)
-	return HSVtoRGB(RGBtoHSV(rgb1), RGBtoHSV(rgb2), amount)
-
-/proc/HueToAngle(hue)
-	// normalize hsv in case anything is screwy
-	if(hue < 0 || hue >= 1536) hue %= 1536
-	if(hue < 0) hue += 1536
-	// Compress hue into easier-to-manage range
-	hue -= BITSHIFT_RIGHT(hue, 8)
-	return hue / (1530/360)
-
-/proc/AngleToHue(angle)
-	// normalize hsv in case anything is screwy
-	if(angle < 0 || angle >= 360) angle -= 360 * round(angle / 360)
-	var/hue = angle * (1530/360)
-	// Decompress hue
-	hue += round(hue / 255)
-	return hue
-
+/// Blend two RGB colors in HSV space
+/proc/BlendHSV(rgb1, rgb2, amount)
+	return gradient(rgb1, rgb2, index = amount, space = COLORSPACE_HSV)
 
 // positive angle rotates forward through red->green->blue
-/proc/RotateHue(hsv, angle)
-	var/list/HSV = ReadHSV(hsv)
+/proc/RotateHue(rgb, angle)
+	. = rgb2num(rgb, COLORSPACE_HSV)
+	.[1] = (.[1] + angle) % 360
 
-	// normalize hsv in case anything is screwy
-	if(HSV[1] >= 1536) HSV[1] %= 1536
-	if(HSV[1] < 0) HSV[1] += 1536
-
-	// Compress hue into easier-to-manage range
-	HSV[1] -= BITSHIFT_RIGHT(HSV[1], 8)
-
-	if(angle < 0 || angle >= 360) angle -= 360 * round(angle / 360)
-	HSV[1] = round(HSV[1] + angle * (1530/360), 1)
-
-	// normalize hue
-	if(HSV[1] < 0 || HSV[1] >= 1530) HSV[1] %= 1530
-	if(HSV[1] < 0) HSV[1] += 1530
-	// decompress hue
-	HSV[1] += round(HSV[1] / 255)
-
-	return hsv(HSV[1], HSV[2], HSV[3], (HSV.len > 3 ? HSV[4] : null))
-
-// Convert an rgb color to grayscale
+// Convert an rgb color to grayscale, preserving luminance
 /proc/GrayScale(rgb)
-	var/list/RGB = ReadRGB(rgb)
-	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
-	return (RGB.len > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
+	var/list/HCY = rgb2num(rgb, COLORSPACE_HCY)
+	return rgb(hue = HCY[1], chroma = 0, y = HCY[3])
 
 // Change grayscale color to black->tone->white range
 /proc/ColorTone(rgb, tone)
-	var/list/RGB = ReadRGB(rgb)
-	var/list/TONE = ReadRGB(tone)
+	var/list/RGB = rgb2num(rgb)
+	var/list/TONE = rgb2num(tone)
 
 	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
 	var/tone_gray = TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11
@@ -635,7 +378,7 @@ The _flatIcons list is a cache for generated icon files.
 */
 
 // Creates a single icon from a given /atom or /image.  Only the first argument is required.
-/proc/getFlatIcon(image/A, defdir=2, deficon=null, defstate="", defblend=BLEND_DEFAULT, always_use_defdir = 0)
+/proc/getFlatIcon(image/A, defdir = SOUTH, deficon = null, defstate = "", defblend = BLEND_DEFAULT, always_use_defdir = FALSE)
 	// We start with a blank canvas, otherwise some icon procs crash silently
 	var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
 	if(!A || A.alpha <= 0)
@@ -643,7 +386,7 @@ The _flatIcons list is a cache for generated icon files.
 
 	var/curicon =  A.icon || deficon
 	var/curstate = A.icon_state || defstate
-	var/curdir =   (A.dir != SOUTH && !always_use_defdir) ? A.dir : defdir
+	var/curdir =   (A.dir != defdir && !always_use_defdir) ? A.dir : defdir
 	var/curblend = (A.blend_mode == BLEND_DEFAULT) ? defblend : A.blend_mode
 
 	if(curicon && !check_state_in_icon(curstate, curicon))
@@ -724,7 +467,7 @@ The _flatIcons list is a cache for generated icon files.
 			add = icon(I.icon, I.icon_state, I.dir)
 			// This checks for a silent failure mode of the icon routine. If the requested dir
 			// doesn't exist in this icon state it returns a 32x32 icon with 0 alpha.
-			if (I.dir != SOUTH && add.Width() == 32 && add.Height() == 32)
+			if (I.dir != defdir && add.Width() == 32 && add.Height() == 32)
 				// Check every pixel for blank (computationally expensive, but the process is limited
 				// by the amount of film on the station, only happens when we hit something that's
 				// turned, and bails at the very first pixel it sees.
@@ -740,19 +483,18 @@ The _flatIcons list is a cache for generated icon files.
 				if (blankpixel)
 					// Pull the default direction.
 					add = icon(I.icon, I.icon_state)
-		else // 'I' is an appearance object.
-			if(istype(A,/obj/machinery/atmospherics) && (I in A.underlays))
-				add = getFlatIcon(new /image(I), I.dir, curicon, null, curblend, 1)
-			else
-				/*
-				The state var is null so that it uses the appearance's state, not ours or the default
-				Falling back to our state if state is null would be incorrect overlay logic (overlay with null state does not inherit it from parent to which it is attached)
+		// 'I' is an appearance object.
+		else if(istype(A,/obj/machinery/atmospherics) && (I in A.underlays))
+			add = getFlatIcon(new /image(I), I.dir, curicon, null, curblend, 1)
+		else
+			/*
+			The state var is null so that it uses the appearance's state, not ours or the default
+			Falling back to our state if state is null would be incorrect overlay logic (overlay with null state does not inherit it from parent to which it is attached)
 
-				If icon is null on an overlay it will inherit the icon from the attached parent, so we _do_ pass curicon ...
-				but it does not do so if its icon_state is ""/null, so we check beforehand to exclude this
-				*/
-				var/icon_to_pass = (!I.icon_state && !I.icon) ? null : curicon
-				add = getFlatIcon(new/image(I), curdir, icon_to_pass, null, curblend, always_use_defdir)
+			If icon is null on an overlay it will inherit the icon from the attached parent, so we _do_ pass curicon ...
+			but it does not do so if its icon_state is ""/null, so we check beforehand to exclude this
+			*/
+			add = getFlatIcon(new/image(I), curdir, (!I.icon_state && !I.icon) ? null : curicon, null, curblend, always_use_defdir)
 
 		// Find the new dimensions of the flat icon to fit the added overlay
 		addX1 = min(flatX1, I.pixel_x + 1)
@@ -803,22 +545,6 @@ The _flatIcons list is a cache for generated icon files.
 		alpha_mask.Blend(image_overlay,ICON_OR)//OR so they are lumped together in a nice overlay.
 	return alpha_mask//And now return the mask.
 
-/mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
-	var/icon/opacity_icon = new(A.icon, A.icon_state)//Don't really care for overlays/underlays.
-	//Now we need to culculate overlays+underlays and add them together to form an image for a mask.
-	//var/icon/alpha_mask = getFlatIcon(src)//Accurate but SLOW. Not designed for running each tick. Could have other uses I guess.
-	var/icon/alpha_mask = getIconMask(src)//Which is why I created that proc. Also a little slow since it's blending a bunch of icons together but good enough.
-	opacity_icon.AddAlphaMask(alpha_mask)//Likely the main source of lag for this proc. Probably not designed to run each tick.
-	opacity_icon.ChangeOpacity(0.4)//Front end for MapColors so it's fast. 0.5 means half opacity and looks the best in my opinion.
-	for(var/i=0,i<5,i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
-		var/image/I = image("icon" = opacity_icon, "icon_state" = A.icon_state, "layer" = layer+0.8)//So it's above other stuff but below weapons and the like.
-		switch(i)//Now to determine offset so the result is somewhat blurred.
-			if(1)	I.pixel_x--
-			if(2)	I.pixel_x++
-			if(3)	I.pixel_y--
-			if(4)	I.pixel_y++
-		overlays += I//And finally add the overlay.
-
 #define HOLOPAD_SHORT_RANGE 1 //For determining the color of holopads based on whether they're short or long range.
 #define HOLOPAD_LONG_RANGE 2
 
@@ -836,22 +562,14 @@ The _flatIcons list is a cache for generated icon files.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon
 
-//For photo camera.
-/proc/build_composite_icon(atom/A)
-	var/icon/composite = icon(A.icon, A.icon_state, A.dir, 1)
-	for(var/O in A.overlays)
-		var/image/I = O
-		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
-	return composite
-
 /proc/adjust_brightness(var/color, var/value)
 	if (!color) return "#ffffff"
 	if (!value) return color
 
-	var/list/RGB = ReadRGB(color)
-	RGB[1] = Clamp(RGB[1]+value,0,255)
-	RGB[2] = Clamp(RGB[2]+value,0,255)
-	RGB[3] = Clamp(RGB[3]+value,0,255)
+	var/list/RGB = rgb2num(color)
+	RGB[1] = clamp(RGB[1]+value,0,255)
+	RGB[2] = clamp(RGB[2]+value,0,255)
+	RGB[3] = clamp(RGB[3]+value,0,255)
 	return rgb(RGB[1],RGB[2],RGB[3])
 
 /proc/sort_atoms_by_layer(var/list/atoms)
@@ -894,7 +612,7 @@ The _flatIcons list is a cache for generated icon files.
 			var/turf/T = locate(target_x + x_offset, target_y + y_offset, target_z)
 			if(checker && !checker?.can_capture_turf(T))
 				continue
-			else
+			else if(T)
 				render_turfs.Add(T)
 
 	// - Collecting list of atoms to render -
@@ -913,7 +631,7 @@ The _flatIcons list is a cache for generated icon files.
 					render_lighting.Add(A)
 				continue
 
-			if(!A.alpha || (A.invisibility > 15))
+			if(!A.alpha || (A.invisibility > SEE_INVISIBLE_LIVING))
 				continue
 
 			render_atoms.Add(A)
@@ -945,3 +663,62 @@ The _flatIcons list is a cache for generated icon files.
 			capture.Blend(lighting_overlay_icon, ICON_MULTIPLY, lighting_overlay.pixel_x + x_offset, lighting_overlay.pixel_y + y_offset)
 
 	return capture
+
+/proc/HSVtoRGB(hsv)
+	if(!hsv) return "#000000"
+	var/list/HSV = ReadHSV(hsv)
+	if(!HSV) return "#000000"
+
+	var/hue = HSV[1]
+	var/sat = HSV[2]
+	var/val = HSV[3]
+
+	// Compress hue into easier-to-manage range
+	hue -= BITSHIFT_RIGHT(hue, 8)
+	if(hue >= 0x5fa) hue -= 0x5fa
+
+	var/hi,mid,lo,r,g,b
+	hi = val
+	lo = round((255 - sat) * val / 255, 1)
+	mid = lo + round(abs(round(hue, 510) - hue) * (hi - lo) / 255, 1)
+	if(hue >= 765)
+		if(hue >= 1275)      {r=hi;  g=lo;  b=mid}
+		else if(hue >= 1020) {r=mid; g=lo;  b=hi }
+		else                 {r=lo;  g=mid; b=hi }
+	else
+		if(hue >= 510)       {r=lo;  g=hi;  b=mid}
+		else if(hue >= 255)  {r=mid; g=hi;  b=lo }
+		else                 {r=hi;  g=mid; b=lo }
+
+	return (HSV.len > 3) ? rgb(r,g,b,HSV[4]) : rgb(r,g,b)
+
+/proc/RGBtoHSV(rgb)
+	if(!rgb) return "#0000000"
+	var/list/RGB = rgb2num(rgb)
+	if(!RGB) return "#0000000"
+
+	var/r = RGB[1]
+	var/g = RGB[2]
+	var/b = RGB[3]
+	var/hi = max(r,g,b)
+	var/lo = min(r,g,b)
+
+	var/val = hi
+	var/sat = hi ? round((hi-lo) * 255 / hi, 1) : 0
+	var/hue = 0
+
+	if(sat)
+		var/dir
+		var/mid
+		if(hi == r)
+			if(lo == b) {hue=0; dir=1; mid=g}
+			else {hue=1535; dir=-1; mid=b}
+		else if(hi == g)
+			if(lo == r) {hue=512; dir=1; mid=b}
+			else {hue=511; dir=-1; mid=r}
+		else if(hi == b)
+			if(lo == g) {hue=1024; dir=1; mid=r}
+			else {hue=1023; dir=-1; mid=g}
+		hue += dir * round((mid-lo) * 255 / (hi-lo), 1)
+
+	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))

@@ -187,11 +187,9 @@ var/global/list/natural_walls = list()
 	var/material_icon_base = material.icon_base_natural || 'icons/turf/walls/natural.dmi'
 	var/base_color = paint_color ? paint_color : material.color
 
-	var/max_shine
 	var/shine
 	if(material?.reflectiveness > 0)
-		max_shine = 0.6 * ReadHSV(RGBtoHSV(material.color))[3] // patened formula based on color's Value (in HSV)
-		shine = Clamp((material.reflectiveness * 0.01) * 255, 10, max_shine)
+		shine = clamp((material.reflectiveness * 0.01) * 255, 10, (0.6 * rgb2num(material.color, COLORSPACE_HSV)[3]))
 
 	var/image/I
 	for(var/i = 1 to 4)
