@@ -1,6 +1,6 @@
 /decl/loadout_category/suit
 	name = "Suits"
-	
+
 /decl/loadout_option/suit
 	slot = slot_wear_suit_str
 	category = /decl/loadout_category/suit
@@ -39,6 +39,19 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/coat
 	flags = GEAR_HAS_COLOR_SELECTION
 
+/decl/loadout_option/suit/labcoat
+	name = "labcoat selection"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat
+
+/decl/loadout_option/suit/labcoat/get_gear_tweak_options()
+	. = ..()
+	LAZYINITLIST(.[/datum/gear_tweak/path/specified_types_list])
+	.[/datum/gear_tweak/path/specified_types_list] |= list(
+		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/toggle/labcoat/blue
+	)
+
+
 /decl/loadout_option/suit/leather
 	name = "jacket selection"
 	path = /obj/item/clothing/suit
@@ -50,6 +63,18 @@
 		/obj/item/clothing/suit/storage/toggle/bomber,
 		/obj/item/clothing/suit/storage/leather_jacket,
 		/obj/item/clothing/suit/storage/toggle/brown_jacket
+	)
+
+/decl/loadout_option/suit/hazard
+	name = "hazard vest selection"
+	path = /obj/item/clothing/suit/storage/hazardvest
+
+/decl/loadout_option/suit/hazard/get_gear_tweak_options()
+	. = ..()
+	LAZYINITLIST(.[/datum/gear_tweak/path/specified_types_list])
+	.[/datum/gear_tweak/path/specified_types_list] |= list(
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/suit/storage/hazardvest/green
 	)
 
 /decl/loadout_option/suit/wintercoat
