@@ -55,7 +55,7 @@
 	if (SSatoms.atom_init_stage == INITIALIZATION_INSSATOMS)
 		return // let proper initialisation handle it later
 
-	SSatoms.InitializeAtoms() // The atoms should have been getting queued there. This flushes the queue.
+	SSatoms.InitializeAtoms(atoms)
 
 	for(var/obj/abstract/landmark/map_load_mark/landmark in atoms)
 		subtemplates_to_spawn += landmark

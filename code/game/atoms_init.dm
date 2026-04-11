@@ -6,16 +6,11 @@
 		global._preloader.load(src)
 
 	var/do_initialize = SSatoms.atom_init_stage
-	var/list/created = SSatoms.created_atoms
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
 			return
-	else if(length(args) > 1)
-		created[++created.len] = list(src, args.Copy(2))
-	else
-		created[++created.len] = list(src, null)
 	if(atom_flags & ATOM_FLAG_CLIMBABLE)
 		verbs += /atom/proc/climb_on
 

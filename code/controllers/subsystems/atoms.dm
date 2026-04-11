@@ -27,46 +27,47 @@ SUBSYSTEM_DEF(atoms)
 	InitializeAtoms()
 	return ..()
 
-/datum/controller/subsystem/atoms/proc/InitializeAtoms()
+/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms_to_create)
 	if(atom_init_stage <= INITIALIZATION_INSSATOMS)
 		return
 
 	atom_init_stage = INITIALIZATION_INNEW_MAPLOAD
 
-	var/list/mapload_arg = list(TRUE)
+	var/static/list/mapload_arg = list(TRUE)
 
-	var/index = 1
-	// Things can add to the end of this list while we iterate, so we can't use a for loop.
-	while(index <= length(created_atoms))
-		// Don't remove from this list while we run, that's expensive.
-		// That would also make it harder to handle things added while we iterate.
-		var/list/creation_packet = created_atoms[index++]
-		var/atom/A = creation_packet[1]
-		var/list/atom_args = creation_packet[2]
-		// I sure hope nothing in this list is ever hard-deleted, or else QDELING will runtime.
-		// If you get a null reference runtime error, just change it back to QDELETED.
-		// The ATOM_FLAG_INITIALIZED check is because of INITIALIZE_IMMEDIATE().
-		if(!QDELING(A) && !(A.atom_flags & ATOM_FLAG_INITIALIZED))
-			if(atom_args)
-				atom_args.Insert(1, TRUE)
-				InitAtom(A, atom_args)
-			else
+	if(atoms_to_create)
+		// This list will not change while we loop over it.
+		for(var/atom/atom_to_create as anything in atoms_to_create)
+			// I sure hope nothing in this list is ever hard-deleted, or else QDELING will runtime.
+			// If you get a null reference runtime error, just change it back to QDELETED.
+			// The ATOM_FLAG_INITIALIZED check is because of INITIALIZE_IMMEDIATE().
+			if(!QDELING(atom_to_create) && !(atom_to_create.atom_flags & ATOM_FLAG_INITIALIZED))
+				InitAtom(atom_to_create, mapload_arg)
+				CHECK_TICK
+		report_progress("Initialized [length(atoms_to_create)] atom\s")
+	else // just loop over everything in world
+		var/count = 1
+		for(var/atom/A as anything in world)
+			if(!(A.atom_flags & ATOM_FLAG_INITIALIZED)) // don't double-init anything using INITIALIZE_IMMEDIATE
 				InitAtom(A, mapload_arg)
-			CHECK_TICK
+				count++
+				CHECK_TICK
+			continue
+		report_progress("Initialized [count] atom\s in world")
 
-	report_progress("Initialized [index] atom\s")
 	created_atoms.Cut()
 
 	atom_init_stage = INITIALIZATION_INNEW_REGULAR
 
 	if(length(late_loaders))
-		index = 1
-		while(index <= length(late_loaders))
-			var/list/creation_packet = late_loaders[index++]
+		var/count = 1
+		// This list may expand while we loop over it.
+		while(count <= length(late_loaders))
+			var/list/creation_packet = late_loaders[count++]
 			var/atom/A = creation_packet[1]
 			A.LateInitialize(arglist(creation_packet[2]))
 			CHECK_TICK
-		report_progress("Late initialized [index] atom\s")
+		report_progress("Late initialized [count] atom\s")
 		late_loaders.Cut()
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
