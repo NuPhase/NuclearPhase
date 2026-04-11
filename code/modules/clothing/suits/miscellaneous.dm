@@ -331,3 +331,21 @@
 	ironed_state = WRINKLES_NONE
 	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
 	protects_against_weather = TRUE
+
+/obj/item/clothing/suit/custom/naomi_coat
+	name = "ROD coat"
+	desc = "A custom crafted coat for a single person."
+	icon = 'icons/clothing/suit/labcoat/naomi.dmi'
+	siemens_coefficient = 0.7
+	material = /decl/material/solid/graphene_cloth
+	armor = list(
+		melee = ARMOR_MELEE_SMALL,
+		bullet = ARMOR_BALLISTIC_SMALL,
+		laser = ARMOR_LASER_MINOR,
+		energy = ARMOR_ENERGY_SMALL,
+		bio = ARMOR_BIO_SMALL,
+		rad = ARMOR_RAD_MINOR
+	)
+	ironed_state = WRINKLES_NONE
+	temperature_coefficient = CLOTHING_TEMP_COEF_ABOVE_AVG
+	protects_against_weather = TRUE
