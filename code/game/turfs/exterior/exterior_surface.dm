@@ -120,6 +120,8 @@
 	..()
 	if(!ismob(C) && !isitem(C))
 		return
+	if(!simulated)
+		return // don't let ghosts set it off
 	playsound(src, 'sound/chemistry/bufferadd.ogg', 30)
 	new /obj/effect/effect/smoke/bad/evaporation(src)
 	if(!iscarbon(C))
