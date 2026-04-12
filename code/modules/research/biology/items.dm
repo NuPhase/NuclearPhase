@@ -13,6 +13,7 @@
 	w_class = ITEM_SIZE_SMALL
 
 /obj/item/dna_container/on_update_icon()
+	. = ..()
 	if(dna_owner || installed_pattern)
 		icon_state = "container_loaded"
 	else
@@ -28,6 +29,7 @@
 	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/dna_kit/on_update_icon()
+	. = ..()
 	if(installed_pattern)
 		icon_state = "dna_kit_loaded"
 	else
@@ -43,6 +45,7 @@
 	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/dna_disk/on_update_icon()
+	. = ..()
 	if(installed_pattern)
 		icon_state = "harddisk_loaded"
 	else

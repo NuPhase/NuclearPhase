@@ -220,7 +220,7 @@ var/global/list/DIR2DEGREES = list(
 /obj/multitile_vehicle/aerial
 	dir = NORTH
 	appearance_flags = PIXEL_SCALE | LONG_GLIDE
-	pixel_step_size = 1
+	glide_size = 1
 	density = 0
 	var/drag_multiplier = 0.99
 

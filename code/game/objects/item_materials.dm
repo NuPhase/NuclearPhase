@@ -1,6 +1,6 @@
 /obj/item/on_update_icon()
-	. = ..()
 	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
 	cut_overlays()
 	if(applies_material_colour && material)
 		color = material.color
