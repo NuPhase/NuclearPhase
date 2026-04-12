@@ -65,6 +65,7 @@
 	failure_chance = 10
 
 /obj/machinery/power/hybrid_reactor/fail_roundstart()
+	. = ..()
 	field_battery_charge = MAX_MAGNET_CHARGE * (100 - SSticker.mode.difficulty) * 0.01 * magnet_integrity
 
 /obj/machinery/power/hybrid_reactor/Initialize()

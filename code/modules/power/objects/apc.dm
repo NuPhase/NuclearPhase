@@ -151,8 +151,10 @@ var/global/list/all_apcs = list()
 	)
 	stock_part_presets = list(/decl/stock_part_preset/terminal_setup)
 	failure_chance = 0.1
+	fail_critical = TRUE
 
 /obj/machinery/power/apc/fail_roundstart()
+	. = ..()
 	if(prob(30))
 		critical_failure(2)
 	else

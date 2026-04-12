@@ -81,6 +81,7 @@
 	reactor_components[uid] = src
 
 /obj/machinery/multitile/steam_turbine/fail_roundstart()
+	. = ..()
 	rotor_integrity = 100 - (SSticker.mode.difficulty / rand(1,3))
 	shaft_integrity = 100 - (SSticker.mode.difficulty / 2)
 
