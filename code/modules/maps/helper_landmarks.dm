@@ -19,6 +19,9 @@
 	if(length(map_template_names))
 		return pick(map_template_names)
 
+/obj/abstract/landmark/map_load_mark/proc/after_load()
+	return
+
 /obj/abstract/landmark/map_load_mark/proc/load_subtemplate()
 	// Commenting this out temporarily as DMMS breaks when asychronously
 	// loading overlapping map templates. TODO: more robust queuing behavior
@@ -33,8 +36,22 @@
 		if(istype(template))
 			template.load(spawn_loc, TRUE)
 
+	after_load(template)
+
 	if(!QDELETED(src))
 		qdel(src)
+
+/obj/abstract/landmark/map_load_mark/interior
+	var/obj/multitile_vehicle/vehicle
+
+/obj/abstract/landmark/map_load_mark/interior/Initialize(mapload, template_to_use, obj/multitile_vehicle/_vehicle)
+	map_template_names = template_to_use
+	vehicle = _vehicle
+	return ..()
+
+/obj/abstract/landmark/map_load_mark/interior/after_load(datum/map_template/template)
+	var/turf/place = template.load_interior_level()
+	vehicle.after_interior_load(template, place)
 
 //Throw things in the area around randomly
 /obj/abstract/landmark/carnage_mark
