@@ -94,7 +94,6 @@
 
 /obj/machinery/multitile/steam_turbine/Process()
 	var/datum/gas_mixture/air1 = port_gases[PORT_STEAM_IN]
-	var/datum/gas_mixture/air2 = port_gases[PORT_STEAM_OUT]
 
 	if(air1.total_moles)
 		process_steam()
@@ -102,13 +101,6 @@
 		total_mass_flow = 0
 		steam_velocity = 0
 		kin_total = 0
-
-	var/air2_pressure = air2.return_pressure()
-	if(air2_pressure)
-		real_expansion = air1.return_pressure() / air2_pressure
-	else
-		real_expansion = air1.return_pressure() / 0.001
-	real_expansion = min(real_expansion, expansion_ratio)
 
 	kinetic_energy_delta = kin_total - generator.last_load
 
@@ -184,9 +176,19 @@
 		water_level -= 0.05
 	water_level = CLAMP01(water_level)
 
+	var/windage_coef = rpm/3600
+	kin_total -= (20 - (60 * windage_coef) + (60 * windage_coef * windage_coef)) * 300000
+
 	kin_energy += kin_total * (rotor_integrity * 0.01)
 	calculate_vibration(air_all)
 	air2.merge(air_all)
+
+	var/air2_pressure = air2.return_pressure()
+	if(air2_pressure)
+		real_expansion = air1.return_pressure() / air2_pressure
+	else
+		real_expansion = air1.return_pressure() / 0.001
+	real_expansion = min(real_expansion, expansion_ratio)
 
 /obj/machinery/multitile/steam_turbine/proc/calculate_efficiency()
 	efficiency = 0.23
