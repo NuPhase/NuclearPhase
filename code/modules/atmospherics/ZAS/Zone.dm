@@ -49,6 +49,7 @@ Class Procs:
 	var/name
 	var/invalid = 0
 	var/list/contents = list()
+	var/planet_heating_coefficient = 0.0
 	var/list/fire_tiles = list()
 	var/needs_update = 0
 	var/list/edges = list()
@@ -76,6 +77,12 @@ Class Procs:
 	var/datum/gas_mixture/turf_air = T.return_air()
 	add_tile_air(turf_air)
 	T.zone = src
+	if(istype(T.loc, /area/serenity))
+		var/area/serenity/serenity_area = T.loc
+		if(serenity_area.temperature_interpolation_coefficient)
+			if(!planet_heating_coefficient) // not already interpolating, add to list
+				SSplanet.interpolating_zones += src
+			planet_heating_coefficient += serenity_area.temperature_interpolation_coefficient
 	contents.Add(T)
 	if(T.fire)
 		fire_tiles.Add(T)
@@ -92,6 +99,12 @@ Class Procs:
 	T.c_copy_air()
 	contents.Remove(T)
 	fire_tiles.Remove(T)
+	if(planet_heating_coefficient && istype(T.loc, /area/serenity))
+		var/area/serenity/serenity_area = T.loc
+		planet_heating_coefficient -= serenity_area.temperature_interpolation_coefficient
+		planet_heating_coefficient = max(0, planet_heating_coefficient)
+		if(!planet_heating_coefficient)
+			SSplanet.interpolating_zones -= src
 	T.zone = null
 	T.update_graphic(graphic_remove = air.graphic)
 	if(contents.len)
@@ -124,6 +137,8 @@ Class Procs:
 /zone/proc/c_invalidate()
 	invalid = 1
 	SSair.remove_zone(src)
+	if(planet_heating_coefficient)
+		SSplanet.interpolating_zones -= src
 	#ifdef ZASDBG
 	for(var/turf/simulated/T in contents)
 		T.dbg(invalid_zone)

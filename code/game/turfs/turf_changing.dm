@@ -56,14 +56,8 @@
 
 	changing_turf = TRUE
 
-	var/area/old_area = get_area(src)
-	old_area.all_turfs -= src
-
 	qdel(src)
 	. = new N(src)
-
-	var/area/new_area = get_area(src)
-	new_area.all_turfs |= src
 
 	var/turf/W = .
 	W.above =            old_above     // Multiz ref tracking.
