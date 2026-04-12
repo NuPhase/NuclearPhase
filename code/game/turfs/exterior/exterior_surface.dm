@@ -120,7 +120,7 @@
 	..()
 	if(!ismob(C) && !isitem(C))
 		return
-	if(!simulated)
+	if(!C.simulated)
 		return // don't let ghosts set it off
 	playsound(src, 'sound/chemistry/bufferadd.ogg', 30)
 	new /obj/effect/effect/smoke/bad/evaporation(src)
@@ -146,11 +146,11 @@
 	return global.using_map.exterior_atmosphere
 
 /turf/exterior/open/canyon/Initialize()
+	. = ..()
 	//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
 	if(global.using_map.planetary_area && istype(loc, world.area))
 		ChangeArea(src, locate(global.using_map.planetary_area))
 	setup_environmental_lighting()
-	. = ..()
 
 /turf/exterior/open/canyon/setup_environmental_lighting(var/ncolor = COLOR_COLD_SURFACE)
 	if (is_outside())
@@ -176,8 +176,6 @@
 	if(ishuman(O))
 		var/mob/living/carbon/human/H = O
 		H.dust()
-
-
 
 /turf/exterior/surface/sand
 	name = "frosted sand"
