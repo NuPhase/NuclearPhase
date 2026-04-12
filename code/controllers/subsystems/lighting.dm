@@ -75,6 +75,12 @@ SUBSYSTEM_DEF(lighting)
 
 	log_ss("lighting", "NOv:[overlaycount] L:[processed_lights] C:[processed_corners] O:[processed_overlays]")
 
+	// Update starlight once lighting has been initialized
+	for(var/datum/level_data/level in SSmapping.levels_by_z)
+		for(var/turf/space/space_turf in block(level.level_inner_min_x, level.level_inner_min_y, level.level_z, level.level_inner_max_x, level.level_inner_max_y))
+			space_turf.update_starlight()
+			CHECK_TICK
+
 	..()
 
 /datum/controller/subsystem/lighting/proc/InitializeZlev(zlev)

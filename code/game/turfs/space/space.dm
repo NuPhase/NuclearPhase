@@ -17,11 +17,7 @@
 	var/forced_dirs = 0
 
 /turf/space/proc/update_starlight()
-	for (var/turf/T in RANGE_TURFS(src, 1))
-		// Fuck if I know how these turfs are located in an area that is not an area.
-		if (!isloc(T.loc) || !TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
-			continue
-
+	if(corners && (corners[1] || corners[2] || corners[3] || corners[4]))
 		set_ambient_light(SSskybox.background_color)
 		return
 
@@ -32,8 +28,6 @@
 
 	SHOULD_CALL_PARENT(FALSE)
 	atom_flags |= ATOM_FLAG_INITIALIZED
-
-	update_starlight()
 
 	//We might be an edge
 	if(y == world.maxy || forced_dirs & NORTH)
