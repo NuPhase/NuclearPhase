@@ -18,4 +18,5 @@
 	icon_state = "abcs-on"
 
 /obj/machinery/medical/blood_purifier/Process()
+	. = ..()
 	connected.bloodstr.remove_any(1)

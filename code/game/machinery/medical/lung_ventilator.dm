@@ -125,6 +125,7 @@
 			connected.set_internals(mixture_holder)
 
 /obj/machinery/medical/lung_ventilator/Process()
+	. = ..()
 	if(operating)
 		mixture_holder.air_contents.remove(mixture_holder.air_contents.total_moles)
 		if(pressure_o2)
