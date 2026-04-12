@@ -8,7 +8,9 @@
 	var/due_temperature = temperature + (final_energy / total_system_heat_capacity)
 	var/recalculate_due_temp = FALSE
 
-	var/phase_damp = min(BOILING_RATE_COEF, 1.0 / (1 + abs(thermal_energy_change) / total_system_heat_capacity))
+	var/phase_damp = boiling_coef
+	if(boiling_coef <= BOILING_RATE_COEF)
+		phase_damp = min(BOILING_RATE_COEF, 1.0 / (1 + abs(thermal_energy_change) / total_system_heat_capacity))
 
 	//evaporation
 	for(var/liquid in liquids)

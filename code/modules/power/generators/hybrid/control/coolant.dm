@@ -100,6 +100,7 @@
 	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator1
 	if(state == 1)
 		gen.connected = TRUE
+		gen.last_load = 100000
 		rcontrol.make_log("GENERATOR #1 CONNECTED.", 1)
 	else
 		gen.connected = FALSE
@@ -110,6 +111,7 @@
 	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator2
 	if(state == 1)
 		gen.connected = TRUE
+		gen.last_load = 100000
 		rcontrol.make_log("GENERATOR #2 CONNECTED.", 1)
 	else
 		gen.connected = FALSE

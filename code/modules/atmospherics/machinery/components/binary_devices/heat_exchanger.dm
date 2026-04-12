@@ -37,26 +37,32 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 		if(connected)
 			break
 
+/obj/machinery/atmospherics/binary/heat_exchanger/Destroy()
+	. = ..()
+	QDEL_NULL(connected)
+
 /obj/machinery/atmospherics/binary/heat_exchanger/Process()
 	. = ..()
 
-	if(!connected || !air1.total_moles || !engaged)
+	if(!engaged || !connected || !air1.total_moles)
 		return
+	// We are the processing side.
+	// We need to see how much energy is available, then how much we need, and then apply that
 
+	// First of all, just pass fluid if conditions we need are already met
 	if(heating)
-		if(connected.air1.temperature < wanted_temperature)
-			return FALSE
+		if(air1.temperature > wanted_temperature)
+			pass_fluid()
+			return
 	else
-		if(connected.air1.temperature > wanted_temperature)
-			return FALSE
+		if(air1.temperature < wanted_temperature)
+			pass_fluid()
+			return
 
+	// Second, get all the needed data for calcs
 	var/our_heat_capacity = air1.heat_capacity()
 	var/their_heat_capacity = connected.air1.heat_capacity()
 
-	if(!their_heat_capacity || !our_heat_capacity)
-		return FALSE
-
-	// Account for latent heat
 	var/latent_heat_energy = 0
 	var/latent_heat_capacity = 0
 	var/list/all_fluid = air1.get_fluid()
@@ -75,7 +81,7 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 	var/connected_latent_heat_energy = 0
 	var/connected_latent_heat_capacity = 0
 	var/list/connected_fluid = connected.air1.get_fluid()
-	if(heating)
+	if(connected.heating)
 		for(var/f_type in connected_fluid)
 			var/decl/material/mat = GET_DECL(f_type)
 			if(connected.air1.temperature < mat.boiling_point && wanted_temperature > mat.boiling_point)
@@ -83,10 +89,11 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 	else
 		for(var/f_type in connected_fluid)
 			var/decl/material/mat = GET_DECL(f_type)
-			if(connected.air1.temperature > mat.boiling_point && wanted_temperature < mat.boiling_point)
+			if(connected.air1.temperature > mat.boiling_point && connected.minimum_temperature < mat.boiling_point)
 				connected_latent_heat_energy -= connected_fluid[f_type] * mat.latent_heat
 	connected_latent_heat_capacity = connected_latent_heat_energy / connected.air1.total_moles
 
+	// If this is negative, then give energy to connected. If positive, take from connected
 	var/temperature_delta = wanted_temperature - air1.temperature
 	var/required_energy_delta = (temperature_delta * our_heat_capacity) + latent_heat_energy
 
@@ -98,20 +105,24 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 	else
 		actual_energy_delta = max(available_energy_delta, required_energy_delta)
 
-	//var/moles_to_transfer = abs(actual_energy_delta) / max(our_heat_capacity, their_heat_capacity)
-
 	var/energy_per_mole = ((our_heat_capacity/air1.total_moles) * temperature_delta) + latent_heat_capacity
 	var/energy_per_mole_conn = ((their_heat_capacity/connected.air1.total_moles) * (wanted_temperature - connected.air1.temperature)) + connected_latent_heat_capacity
 
-	air2.merge(air1.remove(abs(actual_energy_delta/energy_per_mole)))
-	air2.add_thermal_energy(actual_energy_delta, boiling_coef = 0.999)
+	var/datum/gas_mixture/removed = air1.remove(abs(actual_energy_delta/energy_per_mole))
+	removed.add_thermal_energy(actual_energy_delta, boiling_coef = 0.999)
+	air2.merge(removed)
 
-	connected.air2.merge(connected.air1.remove(abs(actual_energy_delta/energy_per_mole_conn)))
-	connected.air2.add_thermal_energy(actual_energy_delta * -1, boiling_coef = 0.999)
+	removed = connected.air1.remove(abs(actual_energy_delta/energy_per_mole_conn))
+	removed.add_thermal_energy(actual_energy_delta * -1, boiling_coef = 0.999)
+	connected.air2.merge(removed)
 
 	update_networks()
 
 	return 1
+
+// Just pass fluid without heating it
+/obj/machinery/atmospherics/binary/heat_exchanger/proc/pass_fluid()
+	pump_fluid_passive(src, air1, air2, air1.get_mass())
 
 /obj/machinery/atmospherics/binary/heat_exchanger/return_air()
 	if(air1.return_pressure() > air2.return_pressure())
