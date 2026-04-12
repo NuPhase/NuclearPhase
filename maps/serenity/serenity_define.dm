@@ -44,7 +44,7 @@
 		/decl/spawnpoint/arrivals
 	)
 
-	default_job_type = /datum/job/site_operations/sme
+	default_job_type = /datum/job/reactor_operations/sme
 
 	shuttle_docked_message = "The shuttle has docked."
 	shuttle_leaving_dock = "The shuttle has departed from home dock."
