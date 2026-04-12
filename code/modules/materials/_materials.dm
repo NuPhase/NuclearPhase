@@ -424,8 +424,11 @@ var/decl/material/boil_mat = null
 //Clausius–Clapeyron relation
 /decl/material/proc/get_boiling_temp(var/pressure = ONE_ATMOSPHERE)
 	if(!pressure)
-		pressure = 0.00001
-	var/denominator = (1/boiling_point) - ((R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat)
+		// limit theorem, denominator approaches -inf as pressure approaches 0 from the right
+		// so 1/denominator is ~0, in pure vacuum it will always boil
+		return 0
+	// log(ONE_ATMOSPHERE) will const fold, avoiding division
+	var/denominator = (1/boiling_point) - ((R_IDEAL_GAS_EQUATION*(log(pressure) - log(ONE_ATMOSPHERE))) / latent_heat)
 	if(denominator <= 0)
 		return critical_point
 	else
