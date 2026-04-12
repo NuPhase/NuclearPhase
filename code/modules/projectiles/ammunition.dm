@@ -171,6 +171,10 @@
 		SetName("[name] ([english_list(labels, and_text = ", ")])")
 	update_icon()
 
+/obj/item/ammo_magazine/Destroy()
+	stored_ammo.Cut()
+	return ..()
+
 /obj/item/ammo_magazine/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W

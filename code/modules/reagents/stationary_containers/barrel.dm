@@ -117,7 +117,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/reagent_dispensers/barrel/random/LateInitialize()
-	if(!SSpersistence.fluid_pool.len)
+	if(!LAZYLEN(SSpersistence.fluid_pool))
 		return INITIALIZE_HINT_QDEL
 	var/reagent_type = pick(SSpersistence.fluid_pool)
 	for(var/rtype in SSpersistence.fluid_pool)

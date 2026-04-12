@@ -52,7 +52,8 @@
 		reagents.remove_reagent(reagent_type, amount)
 		var/decl/material/mat = GET_DECL(reagent_type)
 		var/turf/T = get_turf(src)
-		T.assume_gas(reagent_type, amount/mat.molar_volume, temperature)
+		if(T)
+			T.assume_gas(reagent_type, amount/mat.molar_volume, temperature)
 		offgassed = amount
 	if(offgassed)
 		playsound(src, 'sound/chemistry/heatdam.ogg', min(offgassed, 80))

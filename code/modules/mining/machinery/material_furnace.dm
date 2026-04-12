@@ -238,11 +238,11 @@
 	var/sound_id
 
 /obj/machinery/atmospherics/unary/furnace/arc/Initialize()
+	sound_id = "[type]_[sequential_id(type)]" // do this early to avoid runtimes
 	. = ..()
 	overlay = new(get_turf(src))
 	overlay.our_furnace = src
 	overlay.update_icon()
-	sound_id = "[type]_[sequential_id(type)]"
 
 /obj/structure/arc_furnace_overlay/attackby(obj/item/I, mob/user)
 	. = ..()
