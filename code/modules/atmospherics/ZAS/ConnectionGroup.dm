@@ -46,11 +46,6 @@ Class Procs:
 	tick()
 		Called every air tick on edges in the processing list. Equalizes gas.
 
-	flow(list/movable, differential, repelled)
-		Airflow proc causing all objects in movable to be checked against a pressure differential.
-		If repelled is true, the objects move away from any turf in connecting_turfs, otherwise they approach.
-		A check against vsc.lightest_airflow_pressure should generally be performed before calling this.
-
 	get_connected_zone(zone/from)
 		Helper proc that allows getting the other zone of an edge given one of them.
 		Only on /connection_edge/zone, otherwise use A.
@@ -94,11 +89,6 @@ Class Procs:
 
 /connection_edge/proc/recheck()
 
-/connection_edge/proc/flow(list/movable, differential, repelled)
-	for(var/atom/movable/M as anything in movable)
-		//If they're already being tossed, don't do it again.
-		M.handle_airflow(differential, connecting_turfs, repelled)
-
 /connection_edge/zone/var/zone/B
 
 /connection_edge/zone/New(zone/A, zone/B)
@@ -136,17 +126,8 @@ Class Procs:
 
 	var/differential = A.air.return_pressure() - B.air.return_pressure()
 	if(abs(differential) >= vsc.airflow_lightest_pressure)
-		var/list/attracted
-		var/list/repelled
-		if(differential > 0)
-			attracted = A.movables()
-			repelled = B.movables()
-		else
-			attracted = B.movables()
-			repelled = A.movables()
-
-		flow(attracted, abs(differential), 0)
-		flow(repelled, abs(differential), 1)
+		A.flow(connecting_turfs, abs(differential), differential < 0)
+		B.flow(connecting_turfs, abs(differential), differential > 0)
 
 	if(equiv)
 		if(direct)
@@ -208,7 +189,7 @@ Class Procs:
 
 	var/differential = A.air.return_pressure() - air.return_pressure()
 	if(abs(differential) >= vsc.airflow_lightest_pressure)
-		flow(A.movables(), abs(differential), differential < 0)
+		A.flow(connecting_turfs, abs(differential), differential < 0)
 
 	if(equiv)
 		A.air.copy_from(air)
