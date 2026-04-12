@@ -66,7 +66,11 @@
 
 /obj/item/organ/internal/lungs/Destroy()
 	. = ..()
-	qdel(soundloop)
+	QDEL_NULL(soundloop)
+
+/obj/item/organ/internal/lungs/die()
+	. = ..()
+	QDEL_NULL(soundloop)
 
 /obj/item/organ/internal/lungs/rejuvenate(ignore_prosthetic_prefs)
 	. = ..()
