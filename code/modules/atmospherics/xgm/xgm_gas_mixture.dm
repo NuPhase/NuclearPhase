@@ -904,17 +904,32 @@
 	return volume - available_volume
 
 /datum/gas_mixture/proc/handle_nuclear_reactions(slow_neutrons, fast_neutrons)
-	var/energy_delta = 0
 	var/list/all_fluid = get_fluid()
-	for(var/g in all_fluid)
-		var/decl/material/mat = GET_DECL(g)
-		if(!mat.neutron_interactions)
+	if(!length(all_fluid))
+		return list(
+		"slow_neutrons_changed" = slow_neutrons,
+		"fast_neutrons_changed" = fast_neutrons
+	)
+
+	var/list/react_list = SSreactions.process_reaction_nuclear(all_fluid, temperature, heat_capacity(), volume, fast_neutrons, slow_neutrons)
+	var/list/result_fluid = react_list[1]
+
+	var/list/combined_list = result_fluid.Copy()
+
+	for(var/f_type in all_fluid)
+		if((f_type in combined_list))
 			continue
-		var/list/returned_list = mat.handle_nuclear_fission(src, slow_neutrons, fast_neutrons)
-		slow_neutrons = returned_list["slow_neutrons_changed"]
-		fast_neutrons = returned_list["fast_neutrons_changed"]
-		energy_delta += returned_list["thermal_energy_released"]
-	add_thermal_energy(energy_delta)
+		combined_list.Add(f_type)
+
+	for(var/f_type in combined_list)
+		if(result_fluid[f_type] == all_fluid[f_type]) // no change
+			continue
+		var/difference = result_fluid[f_type] - all_fluid[f_type]
+		adjust_gas(f_type, difference, FALSE)
+
+	temperature = react_list[2]
+	fast_neutrons = react_list[3]
+	slow_neutrons = react_list[4]
 	update_values()
 	return list(
 		"slow_neutrons_changed" = slow_neutrons,

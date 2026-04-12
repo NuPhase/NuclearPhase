@@ -157,11 +157,14 @@
 
 	var/obj/machinery/power/hybrid_reactor/reactor = reactor_components["core"]
 
+	if(!reactor.containment)
+		return // we're venting
+
 	if(inserted.reagents.total_volume != inserted.reagents.maximum_volume) //we're not full of sticky white liquid some engineer left in us
 		for(var/g in reactor.containment_field.gas)
 			if(g in rcontrol.unwanted_materials)
 				var/decl/material/mat = GET_DECL(g)
-				var/removed = reactor.containment_field.gas[g] * 0.1 + 0.1
+				var/removed = min((reactor.containment_field.gas[g] * 0.01 + 0.001) * reactor.divertor_integrity, reactor.containment_field.gas[g])
 				reactor.containment_field.adjust_gas(g, removed * -1)
 				inserted.reagents.add_reagent(g, removed * mat.molar_volume)
 

@@ -89,7 +89,7 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                     minValue = {-5}
                     maxValue = {5}
                     value={data.energy_rate}>
-                  {data.energy_rate} eV/s ({(data.chamber_temperature*0.00008).toFixed(1)} eV)
+                  {data.energy_rate} eV/s ({(data.chamber_temperature*0.00000008).toFixed(1)} keV)
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item label = "External Radiation Level">

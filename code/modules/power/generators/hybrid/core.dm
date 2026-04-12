@@ -1,8 +1,4 @@
-#define FISSION_RATE 0.01 //General modifier of fission speed
-#define NEUTRON_FLUX_RATE 0.001 //Neutron flux per neutron mole
-#define NEUTRON_MOLE_ENERGY 1000 //J per neutron mole
-#define RADS_PER_NEUTRON 125
-#define REACTOR_POWER_MODIFIER 10 //Currently unused
+#define RADS_PER_NEUTRON 125000
 #define WATTS_PER_KPA 5
 #define REACTOR_SHIELDING_DIVISOR 20
 #define REACTOR_MODERATOR_POWER 0.27
@@ -119,10 +115,10 @@
 	slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
 	fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 
-	handle_control_panels()
-
 	process_fusion(containment_field)
 	process_plasma_instability()
+
+	handle_control_panels()
 
 	total_neutrons = slow_neutrons + fast_neutrons
 

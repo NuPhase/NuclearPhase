@@ -41,6 +41,7 @@
 	var/list/unwanted_materials = list(
 		/decl/material/gas/oxygen,
 		/decl/material/gas/nitrogen,
+		/decl/material/gas/helium,
 		/decl/material/solid/caesium,
 		/decl/material/solid/metal/nuclear_waste/actinides,
 		/decl/material/solid/metal/beryllium
