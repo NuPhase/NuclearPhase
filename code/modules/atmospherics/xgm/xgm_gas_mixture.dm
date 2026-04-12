@@ -357,17 +357,20 @@
 	var/liquid_volume = 0
 	var/solid_volume = 0
 	prune_empty_values()
-	var/list/all_fluid = get_fluid()
-	for(var/g in all_fluid)
-		total_moles += all_fluid[g]
+	var/amt
 	for(var/g in liquids)
 		var/decl/material/mat = GET_DECL(g)
-		liquid_volume += liquids[g] * mat.molar_mass / mat.liquid_density * 1000
+		amt = liquids[g]
+		total_moles += amt
+		liquid_volume += amt * mat.molar_mass / mat.liquid_density * 1000
 	for(var/g in solids)
 		var/decl/material/mat = GET_DECL(g)
-		liquid_volume += solids[g] * mat.molar_mass / mat.solid_density * 1000
+		amt = solids[g]
+		total_moles += amt
+		liquid_volume += amt * mat.molar_mass / mat.solid_density * 1000
 	for(var/g in gas)
 		gas_moles += gas[g]
+	total_moles += gas_moles
 	available_volume = max(volume * 0.01, volume - liquid_volume - solid_volume)
 	cache_heat_capacity()
 	cache_pressure()
