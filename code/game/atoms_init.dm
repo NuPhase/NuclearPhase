@@ -88,6 +88,9 @@
 
 
 // Movable level stuff
+/atom/movable/EarlyDestroy(force = FALSE) // Fix the 'should be in nullspace' errors
+	loc = null // should NOT use forceMove, in order to avoid events
+	return ..()
 
 /atom/movable/Initialize(ml, ...)
 	. = ..()

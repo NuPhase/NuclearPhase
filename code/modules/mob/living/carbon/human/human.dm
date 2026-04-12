@@ -1409,7 +1409,7 @@
 	for(var/obj/item/clothing/C in contents)
 		pickup_capacity += C.lifting_strength_boost
 		drag_capacity += C.lifting_strength_boost * 2.5
-	for(var/obj/item/organ/external/O in organs_by_tag)
+	for(var/obj/item/organ/external/O in get_external_organs())
 		pickup_capacity *= O.lifting_strength_boost
 		drag_capacity *= O.lifting_strength_boost
 

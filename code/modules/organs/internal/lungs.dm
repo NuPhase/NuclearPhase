@@ -12,6 +12,12 @@
 	our_lungs = _our_lungs
 	start()
 
+/datum/composite_sound/breath_sound/Destroy()
+	if(our_lungs?.soundloop == src)
+		our_lungs.soundloop = null
+	our_lungs = null
+	return ..()
+
 /datum/composite_sound/breath_sound/play(soundfile)
 	if(!soundfile)
 		return
@@ -77,6 +83,8 @@
 	QDEL_NULL(chest_tube)
 	breath_rate = initial(breath_rate)
 	ruptured = FALSE
+	if(!soundloop)
+		soundloop = new(_output_atoms=list(src), _our_lungs=src)
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
