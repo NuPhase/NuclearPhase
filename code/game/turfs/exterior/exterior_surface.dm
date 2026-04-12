@@ -7,8 +7,6 @@
 	possible_states = 13
 	color = "#bdb3c2"
 	dirt_color = "#4c454e"
-	var/datum/map/mapowner = null
-
 	var/day_icon = 'icons/turf/exterior/volcanic.dmi'
 	var/day_icon_state = "0"
 	var/day_states = 0 // possible states
@@ -23,20 +21,18 @@
 	return
 
 /turf/exterior/surface/get_air_graphic()
-	return mapowner.exterior_atmosphere?.graphic
+	return global.using_map.exterior_atmosphere?.graphic
 
 /turf/exterior/surface/Initialize(mapload, no_update_icon)
-	mapowner = global.using_map
-
 	if(possible_states > 0)
 		icon_state = "[rand(0, possible_states)]"
 
-	if(!istype(mapowner))
+	if(!istype(global.using_map))
 		owner = null
 	else
 		//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
-		if(mapowner.planetary_area && istype(loc, world.area))
-			ChangeArea(src, mapowner.planetary_area)
+		if(global.using_map.planetary_area && istype(loc, world.area))
+			ChangeArea(src, locate(global.using_map.planetary_area))
 
 	//. = ..(mapload)	// second param is our own, don't pass to children
 	setup_environmental_lighting()
@@ -64,9 +60,8 @@
 /turf/exterior/surface/setup_environmental_lighting(var/ncolor = COLOR_COLD_SURFACE)
 	if (is_outside())
 		surface_turfs += src
-		if (mapowner)
-			set_ambient_light(ncolor, mapowner.lightlevel)
-			return
+		set_ambient_light(ncolor, global.using_map.lightlevel)
+		return
 	else if (ambient_light)
 		clear_ambient_light()
 
@@ -133,38 +128,34 @@
 	C.set_status(STAT_BLURRY, 5)
 	SET_STATUS_MAX(C, STAT_WEAK, 2)
 	var/temp_adj = 0
-	var/thermal_protection = max(0, C.get_cold_protection(mapowner.exterior_atmosphere.temperature) - 0.5) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+	var/thermal_protection = max(0, C.get_cold_protection(global.using_map.exterior_atmosphere.temperature) - 0.5) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 	if(thermal_protection < 1)
-		temp_adj = (1-thermal_protection) * ((mapowner.exterior_atmosphere.temperature - C.bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
+		temp_adj = (1-thermal_protection) * ((global.using_map.exterior_atmosphere.temperature - C.bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
 	C.bodytemperature += between(-100, temp_adj, 500)
 
 /turf/exterior/surface/lake/is_flooded(lying_mob, absolute)
 	. = absolute ? ..() : lying_mob
 
-/turf/simulated/open/exterior
+/turf/exterior/open/canyon
 	name = "canyon"
 	desc = "Looks very deep..."
-	var/datum/map/mapowner = null
 
-/turf/simulated/open/exterior/return_air()
-	return mapowner.exterior_atmosphere
+/turf/exterior/open/canyon/return_air()
+	return global.using_map.exterior_atmosphere
 
-/turf/simulated/open/exterior/Initialize()
-	..()
-	mapowner = global.using_map
+/turf/exterior/open/canyon/Initialize()
+	//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
+	if(global.using_map.planetary_area && istype(loc, world.area))
+		ChangeArea(src, locate(global.using_map.planetary_area))
 	setup_environmental_lighting()
+	. = ..()
 
-/turf/simulated/open/exterior/proc/setup_environmental_lighting(var/ncolor = COLOR_COLD_SURFACE)
+/turf/exterior/open/canyon/setup_environmental_lighting(var/ncolor = COLOR_COLD_SURFACE)
 	if (is_outside())
 		surface_turfs += src
-		if (mapowner)
-			set_ambient_light(ncolor, mapowner.lightlevel)
-			return
+		set_ambient_light(ncolor, global.using_map.lightlevel)
 	else if (ambient_light)
 		clear_ambient_light()
-
-/turf/simulated/open/exterior/proc/switch_cracks()
-	return
 
 /obj/effect/fake_fluid
 	name = "liquid gas"
