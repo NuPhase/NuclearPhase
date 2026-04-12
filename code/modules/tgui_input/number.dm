@@ -108,7 +108,7 @@
 	closed = TRUE
 
 /datum/tgui_input_number/tgui_state(mob/user)
-	return GLOB.tgui_always_state
+	return global.tgui_always_state
 
 /datum/tgui_input_number/tgui_static_data(mob/user)
 	var/list/data = list()

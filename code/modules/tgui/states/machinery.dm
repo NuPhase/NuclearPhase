@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(tgui_machinery_state, /datum/ui_state/machinery, new)
+var/global/datum/ui_state/machinery/tgui_machinery_state = new
 
 /datum/ui_state/machinery/can_use_topic(obj/machinery/src_object, mob/user)
 	ASSERT(istype(src_object))
