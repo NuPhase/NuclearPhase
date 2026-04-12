@@ -15,13 +15,13 @@ Contains helper procs for airflow, called by /connection_group.
 		for(var/turf/connecting_turf as anything in connecting_turfs)
 			if(get_dist(src, connecting_turf) < 15)
 				LAZYADD(close_turfs, connecting_turf)
-			if(LAZYLEN(close_turfs))
-				airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
+		if(LAZYLEN(close_turfs))
+			airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
 
-				if(repelled)
-					RepelAirflowDest(differential/5)
-				else
-					GotoAirflowDest(differential/10)
+			if(repelled)
+				RepelAirflowDest(differential/5)
+			else
+				GotoAirflowDest(differential/10)
 
 /atom/movable/proc/handle_airflow_stun(var/differential)
 	return
