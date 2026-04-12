@@ -34,6 +34,11 @@ Class Procs:
 	tick()
 		Called only when the gas content is changed. Archives values and changes gas graphics.
 
+	flow(list/connecting_turfs, differential, repelled)
+		Airflow proc causing all objects in the zone to be checked against a pressure differential.
+		If repelled is true, the objects move away from any turf in connecting_turfs, otherwise they approach.
+		A check against vsc.lightest_airflow_pressure should generally be performed before calling this.
+
 	dbg_data(mob/M)
 		Sends M a printout of important figures for the zone.
 
@@ -52,9 +57,6 @@ Class Procs:
 	var/list/graphic_remove = list()
 	var/last_air_temperature = TCMB
 	var/condensing = TRUE
-
-	var/last_movable_calc = 0 //last world.time of movables indexation
-	var/list/movables = list()
 
 /zone/New()
 	SSair.add_zone(src)
@@ -168,10 +170,6 @@ Class Procs:
 		if(E.sleeping)
 			E.recheck()
 			CHECK_TICK
-
-	// Update movables list
-	if(last_movable_calc + 10 SECONDS < world.time)
-		INVOKE_ASYNC(src, PROC_REF(cache_movables))
 
 	// Handle condensation from the air.
 	if(!condensing && air.total_moles)

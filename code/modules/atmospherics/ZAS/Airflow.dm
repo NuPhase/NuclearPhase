@@ -161,13 +161,17 @@ Contains helper procs for airflow, called by /connection_group.
 	. = ..()
 
 /zone/proc/movables()
-	return movables
-
-/zone/proc/cache_movables()
-	movables.Cut()
-	for(var/turf/simulated/T in contents)
-		for(var/atom/movable/A in T)
+	. = list()
+	for(var/turf/simulated/T as anything in contents) // will never contain non-simulated turfs
+		for(var/atom/movable/A as anything in T) // will never contain non-movables
 			if(!A.simulated || A.anchored)
 				continue
-			movables += A
-	last_movable_calc = world.time
+			. += A
+
+/zone/proc/flow(list/turf/connecting_turfs, differential, repelled)
+	for(var/turf/simulated/target_turf as anything in contents) // these cannot have non-simulated turfs
+		for(var/atom/movable/target_movable as anything in target_turf) // these cannot have non-movable contents
+			if(!target_movable.simulated || target_movable.anchored)
+				continue
+			//If they're already being tossed, don't do it again.
+			target_movable.handle_airflow(differential, connecting_turfs, repelled)
