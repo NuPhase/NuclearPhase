@@ -60,6 +60,15 @@
 	pixel_x = 23;
 	pixel_y = -3
 	},
+/obj/machinery/reactor_button/rswitch/intake_valves{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/machinery/reactor_button/moderator{
+	icon_state = "switch4-0";
+	pixel_x = -8;
+	pixel_y = -3
+	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "abG" = (
@@ -16942,27 +16951,6 @@
 /obj/effect/catwalk_plated/white,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/atmos/cryogenic)
-"ilB" = (
-/obj/structure/reactor_table{
-	pixel_y = 6
-	},
-/obj/machinery/reactor_monitor/turbine{
-	pixel_y = 10
-	},
-/obj/machinery/reactor_button/rswitch/preheat/coolant{
-	pixel_x = -19;
-	pixel_y = -4
-	},
-/obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvin{
-	pixel_x = -12;
-	pixel_y = -4
-	},
-/obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvout{
-	pixel_x = -6;
-	pixel_y = -4
-	},
-/turf/simulated/floor/tiled/dark/monotile,
-/area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "ilG" = (
 /obj/structure/rack,
 /turf/simulated/floor/tiled/dark/textured/monotile,
@@ -32660,10 +32648,6 @@
 /obj/structure/reactor_table{
 	pixel_y = 6
 	},
-/obj/machinery/reactor_button/rswitch/intake_valves{
-	pixel_x = 4;
-	pixel_y = -3
-	},
 /obj/machinery/reactor_button/lasomode{
 	pixel_x = -6;
 	pixel_y = 14
@@ -32679,11 +32663,6 @@
 /obj/machinery/reactor_button/rswitch/lasprime{
 	pixel_y = 7
 	},
-/obj/machinery/reactor_button/moderator{
-	icon_state = "switch4-0";
-	pixel_x = -8;
-	pixel_y = -3
-	},
 /obj/machinery/reactor_button/fuel{
 	icon_state = "switch4-0";
 	pixel_x = -2;
@@ -32693,6 +32672,20 @@
 	pixel_y = 10;
 	layer = 2.221;
 	pixel_x = -32
+	},
+/obj/machinery/reactor_button/fuel_select{
+	pixel_x = 4;
+	pixel_y = -3;
+	icon_state = "switch4-0"
+	},
+/obj/machinery/reactor_button/fuel_read{
+	pixel_x = 11;
+	pixel_y = -3;
+	icon_state = "switch4-0"
+	},
+/obj/machinery/reactor_button/protected/chamber_quench{
+	pixel_x = -20;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -330401,7 +330394,7 @@ ekV
 ekV
 hSl
 pDp
-ilB
+vDt
 uYr
 xqL
 mdy

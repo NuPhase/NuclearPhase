@@ -35,9 +35,6 @@
 /obj/machinery/reactor_button/rswitch/valve/pump4v2
 	name = "T-CP 2V-EX"
 	id = "T-CP 2V-EX"
-/obj/machinery/reactor_button/turn_switch/presvalve/tprescontrol
-	name = "T-PRES-CONTROL"
-	id = "T-PRES-CONTROL"
 
 /obj/machinery/reactor_button/rswitch/valve/feedmakeup
 	name = "T-FEEDWATER V-MAKEUP"
@@ -62,30 +59,6 @@
 		heater.use_power = POWER_USE_OFF
 		heater.power_rating = 0
 		rcontrol.make_log("[id] STOPPED.", 1)
-
-/obj/machinery/reactor_button/rswitch/preheat/coolant
-	name = "T-COOLANT PREHEAT"
-	id = "T-COOLANT PREHEAT"
-
-/obj/machinery/reactor_button/turn_switch/regvalve/reactorfvin
-	name = "REACTOR-F-V-IN"
-	id = "REACTOR-F-V-IN"
-
-/obj/machinery/reactor_button/turn_switch/regvalve/reactorfvout
-	name = "REACTOR-F-V-OUT"
-	id = "REACTOR-F-V-OUT"
-
-/obj/machinery/reactor_button/turn_switch/regvalve/heatexchangervin
-	name = "HEATEXCHANGER V-IN"
-	id = "HEATEXCHANGER V-IN"
-
-/obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvin
-	name = "T-COOLANT V-IN"
-	id = "T-COOLANT V-IN"
-
-/obj/machinery/reactor_button/turn_switch/presvalve/tcoolantvout
-	name = "T-COOLANT V-OUT"
-	id = "T-COOLANT V-OUT"
 
 /obj/machinery/reactor_button/rswitch/generator_connection/first
 	name = "TURB 1-GRID"
