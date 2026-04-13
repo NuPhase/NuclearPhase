@@ -458,6 +458,7 @@ var/global/list/all_apcs = list()
 	queue_icon_update()
 
 /obj/machinery/power/apc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	. = ..()
 	if(exposed_temperature > 700 && !cover_removed)
 		critical_failure(3)
 

@@ -44,7 +44,7 @@
 		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 
 /obj/item/casting_shape/on_update_icon()
-	cut_overlays()
+	. = ..()
 	if(filled)
 		var/image/I = image(icon, filled_icon_state)
 		if(hot)

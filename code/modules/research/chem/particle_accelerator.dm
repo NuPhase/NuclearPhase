@@ -75,12 +75,12 @@
 			contained.reagents.add_reagent(mtype, all_fluid[mtype] * mat.molar_volume)
 
 /obj/machinery/linear_accelerator/attackby(obj/item/I, mob/user)
+	if((. = ..()))
+		return
 	if(contained)
 		return
 	contained = I
 	user.drop_from_inventory(I, src)
-	return
-	. = ..()
 
 /obj/machinery/linear_accelerator/get_alt_interactions(mob/user)
 	. = ..()

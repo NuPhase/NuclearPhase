@@ -143,10 +143,10 @@
 	var/fuckcooldown = 0
 
 /mob/living/carbon/human/AltClick(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	if(src != user)
 		. = ..()
 		return
-	SHOULD_CALL_PARENT(FALSE)
 	masturbate()
 
 /mob/living/carbon/human/proc/masturbate()
