@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(radiation)
 		// Okay, now ray trace to find resistance!
 		var/turf/origin = source.source_turf
 		var/working = source.rad_power
-		var/datum/point/vector/tracing = new(origin.x, origin.y, origin.z, 0, 0, get_projectile_angle(origin, T))
+		var/datum/point/vector/tracing = new(origin.x, origin.y, T.z, 0, 0, get_projectile_angle(origin, T))
 		for(var/i=0, i < get_dist(origin, T), i++)
 			var/turf/blocking = tracing.return_turf()
 			tracing.increment()
