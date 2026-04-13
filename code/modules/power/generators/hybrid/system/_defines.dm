@@ -44,7 +44,8 @@
 		/decl/material/gas/helium,
 		/decl/material/solid/caesium,
 		/decl/material/solid/metal/nuclear_waste/actinides,
-		/decl/material/solid/metal/beryllium
+		/decl/material/solid/metal/beryllium,
+		/decl/material/gas/tungstenhexafluoride
 	)
 
 	var/obj/laser_marker

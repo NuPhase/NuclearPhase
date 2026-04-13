@@ -492,3 +492,8 @@
 /obj/item/paper/aromatherapy_disclaimer
 	name = "aromatherapy disclaimer"
 	info = "<I>The manufacturer and the retailer make no claims of the contained products' effacy.</I> <BR><BR><B>Use at your own risk.</B>"
+
+/obj/item/paper/inoperative
+	name = "INOP notice"
+	info = "This piece of equipment is malfunctioning or broken. Maintenance is required. Do not use.<BR><BR> Данная экипировка неисправна или сломана. Требуется обслуживание. Не использовать."
+	color = COLOR_DARK_RED

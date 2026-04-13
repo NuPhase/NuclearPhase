@@ -45,6 +45,7 @@
 		reagents.splash(hit_atom, rand(reagents.total_volume*0.25,reagents.total_volume), min_spill = 1000, max_spill = volume)
 
 /obj/item/chems/fuel_cell/fail_roundstart()
+	. = ..()
 	name = "empty [initial(name)]"
 	reagents.remove_any(volume)
 

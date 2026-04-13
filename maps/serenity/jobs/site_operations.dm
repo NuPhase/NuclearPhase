@@ -125,59 +125,6 @@
 	)
 	required_whitelists = list(/decl/whitelist/command_executive)
 
-/datum/job/site_operations/sme
-	title = "Site Maintenance Engineer"
-	total_positions = 10
-	spawn_positions = 10
-	supervisors = "the Chief Architect, Laboratory Operations Director and Reactor Maintenance Director"
-	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer
-	access = list(
-		access_eva,
-		access_tech_storage,
-		access_maint_tunnels,
-		access_external_airlocks,
-		access_construction,
-		access_engine,
-		access_emergency_storage,
-		access_lab_alpha
-	)
-	minimal_access = list(
-		access_eva,
-		access_tech_storage,
-		access_maint_tunnels,
-		access_external_airlocks,
-		access_construction,
-		access_engine,
-		access_emergency_storage,
-		access_lab_alpha
-	)
-	allowed_branches = list(
-		/datum/mil_branch/civ,
-		/datum/mil_branch/army
-	)
-	allowed_ranks = list(
-		/datum/mil_rank/civ/civ,
-		/datum/mil_rank/army/e1,
-		/datum/mil_rank/army/e2,
-		/datum/mil_rank/army/e3
-		)
-	skill_points = 35
-	min_skill = list(
-		SKILL_LITERACY = SKILL_ADEPT,
-		SKILL_CONSTRUCTION = SKILL_ADEPT,
-		SKILL_DEVICES = SKILL_ADEPT,
-		SKILL_FITNESS  = SKILL_BASIC,
-	    SKILL_STRENGTH = SKILL_BASIC,
-		SKILL_ELECTRICAL = SKILL_BASIC,
-		SKILL_ATMOS = SKILL_BASIC
-	)
-	description = "You are the backbone of the facility's technical systems."
-	goals = list(
-		"Repair broken equipment and machinery.",
-		"Coordinate with the Reactor Operations team.",
-		"Assist other departments when no other work is available."
-	)
-
 /datum/job/site_operations/janitor
 	title = "Sanitation Specialist"
 	total_positions = 2
@@ -236,7 +183,7 @@
 		access_kitchen
 	)
 	minimal_access = list(access_kitchen)
-	alt_titles = list("Cook")
+	alt_titles = list("Cook", "Bartender")
 	outfit_type = /decl/hierarchy/outfit/job/service/chef
 	allowed_branches = list(
 		/datum/mil_branch/civ,

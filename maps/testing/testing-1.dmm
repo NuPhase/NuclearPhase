@@ -174,8 +174,7 @@
 "hl" = (
 /obj/machinery/atmospherics/binary/heat_exchanger/condenser_steam{
 	dir = 1;
-	wanted_temperature = 300;
-	engaged = 1
+	wanted_temperature = 300
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -929,8 +928,8 @@
 "Iv" = (
 /obj/machinery/atmospherics/unary/debug/infinite_outlet{
 	dir = 1;
-	fluid_temperature = 80;
-	fluid_type = /decl/material/gas/methane
+	fluid_type = /decl/material/liquid/water;
+	fluid_temperature = 280
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -1235,6 +1234,14 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Rk" = (
+/obj/machinery/atmospherics/binary/heat_exchanger/condenser_steam{
+	dir = 1;
+	wanted_temperature = 333.15;
+	engaged = 1
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "Rt" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
@@ -1403,7 +1410,8 @@
 /area/hallway)
 "Xp" = (
 /obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam{
-	dir = 1
+	dir = 1;
+	engaged = 0
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -6621,7 +6629,7 @@ Bs
 EM
 tl
 mS
-hl
+Rk
 mS
 ln
 Bs

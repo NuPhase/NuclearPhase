@@ -56,6 +56,7 @@ var/global/datum/composite_sound/light/light_soundloop = new
 	failure_chance = 1
 
 /obj/machinery/light/fail_roundstart()
+	. = ..()
 	broken(TRUE)
 
 /obj/machinery/light/start_ambience()

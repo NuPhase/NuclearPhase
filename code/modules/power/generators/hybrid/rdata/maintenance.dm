@@ -15,8 +15,22 @@
 
 /obj/machinery/reactor_monitor/maintenance/tgui_data(mob/user)
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	var/las_energy_delta = 0
+	for(var/tag in reactor_components)
+		var/obj/machinery/rlaser/las = reactor_components[tag]
+		if(!istype(las, /obj/machinery/rlaser))
+			continue
+		las_energy_delta += las.capacitor_charge * las.active_power_usage
+
 	var/list/data = list(
 		"loglist" = assemble_tgui_log_list(),
+		"projected_tdelta" = las_energy_delta / (rcore.containment_field.heat_capacity() + 1)
+	)
+	return data
+
+/obj/machinery/reactor_monitor/maintenance/tgui_static_data(mob/user)
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	var/list/data = list(
 		"blanket_integrity" = round(rcore.blanket_integrity * 100),
 		"divertor_integrity" = round(rcore.divertor_integrity * 100),
 		"magnet_integrity" = round(rcore.magnet_integrity * 100),
