@@ -25,3 +25,18 @@
 					The SAF is one of the most modern armies in the world. \
 					Large-scale mechanization and autonomous units have made it possible to reduce the density of human personnel to one soldier per seven hundred people. \
 					SAF provided immense support during the initial hours of the catastrophe, allowing the shelters to be built or retrofitted."
+
+/decl/cultural_info/faction/adc
+	name = "Aether Dynamics Collective"
+	description = "A conglomerate of energy firms and engineering associations governing the energy economics of Sirius. It's huge, way too big to efficiently manage itself. Most of the work is given to private contractors with their own safety standards, which often aren't properly cross-verified."
+	subversive_potential = 40
+
+/decl/cultural_info/faction/novagene
+	name = "NovaGene Syndicate"
+	description = "A biotech/pharma cartel rival to WEHS, specializing in mass-market genetic mods and anti-aging for the middle class. They have huge traction on the market, but their technologies are quite a bit riskier than what WEHS uses."
+	subversive_potential = 5
+
+/decl/cultural_info/faction/scp
+	name = "Sirius Communist Party"
+	description = "The Sirius Communist Party was a small but ideologically rigid political formation that emerged during the early colonization phase of Sirius (~2190s–early 2200s). It positioned itself as the authentic heir to 20th–21st century Marxist–Leninist thought, adapted to the material conditions of interstellar settler-colonialism, corporate feudalism, and the realities of a new planetary frontier."
+	subversive_potential = 70
