@@ -158,12 +158,12 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 /turf/Entered(obj/item/I)
 	. = ..()
 	//Items that are in contaminants, but not on a mob, can still be contaminated.
-	if(istype(I) && vsc && vsc.contaminant_control.CLOTH_CONTAMINATION && I.can_contaminate())
-		var/datum/gas_mixture/env = return_air(1)
+	if(istype(I) && vsc?.contaminant_control.CLOTH_CONTAMINATION && I.can_contaminate())
+		var/datum/gas_mixture/env = return_air()
 		if(!env)
 			return
-		for(var/g in env.gas)
-			var/decl/material/mat = GET_DECL(g)
-			if((mat.gas_flags & XGM_GAS_CONTAMINANT) && env.gas[g] > mat.gas_overlay_limit + 1)
+		for(var/gas_type, gas_amount in env.gas)
+			var/decl/material/mat = GET_DECL(gas_type)
+			if((mat.gas_flags & XGM_GAS_CONTAMINANT) && gas_amount > mat.gas_overlay_limit + 1)
 				I.contaminate()
 				break

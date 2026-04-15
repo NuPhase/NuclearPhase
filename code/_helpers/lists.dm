@@ -239,7 +239,21 @@ Checks if a list has the same entries and values as an element of big.
 		else
 			.[key] = call(merge_method)(.[key], b_value)
 
-//Pretends to pick an element based on its weight but really just seems to pick a random element.
+// Picks a key in an alist. This is awful but hey, what can you do?
+/proc/apick(alist/target_alist)
+	var/index = rand(1, length(target_alist))
+	for(var/key in target_alist)
+		if(--index == 0)
+			return key
+
+/// Like pickweight() but faster because it uses alist(). Requires integer weights.
+/proc/apickweight(alist/target_alist)
+	var/rolled_weight = rand(1, values_sum(target_alist))
+	for(var/item, value in target_alist)
+		rolled_weight -= value
+		if(rolled_weight <= 0)
+			return item
+
 /proc/pickweight(list/L)
 	var/total = 0
 	var/item

@@ -439,9 +439,9 @@
 	var/adjusted_pressure = calculate_affecting_pressure(pressure)
 
 	//Check for contaminants before anything else because we don't want to skip it.
-	for(var/g in environment.gas)
-		var/decl/material/mat = GET_DECL(g)
-		if((mat.gas_flags & XGM_GAS_CONTAMINANT) && environment.gas[g] > mat.gas_overlay_limit + 1)
+	for(var/gasid, amount in environment.gas)
+		var/decl/material/mat = GET_DECL(gasid)
+		if((mat.gas_flags & XGM_GAS_CONTAMINANT) && amount > mat.gas_overlay_limit + 1)
 			handle_contaminants()
 			break
 

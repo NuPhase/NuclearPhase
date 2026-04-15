@@ -2,6 +2,7 @@
 
 
 	var/target_temp = get_target_temperature()
+	var/target_pressure = get_target_pressure()
 
 	//Make sure temperature can't damage people on casual planets
 	if(habitability_class <= HABITABILITY_OKAY)
@@ -12,7 +13,7 @@
 	if(habitability_class == HABITABILITY_IDEAL)
 		for(var/datum/level_data/level_data in zlevels)
 			level_data.exterior_atmos_temp = target_temp
-			level_data.exterior_atmosphere = list(
+			level_data.exterior_atmosphere = alist(
 				/decl/material/gas/oxygen = MOLES_O2STANDARD,
 				/decl/material/gas/nitrogen = MOLES_N2STANDARD
 			)
@@ -36,15 +37,19 @@
 	if(habitability_class == HABITABILITY_OKAY)
 		badflag |= XGM_GAS_CONTAMINANT
 
-	var/list/newgases = list()
+	var/alist/newgases = alist()
 	var/list/all_materials = decls_repository.get_decls_of_subtype(/decl/material)
 	for(var/mat_type in all_materials)
 		var/decl/material/mat = all_materials[mat_type]
 		if(mat.exoplanet_rarity == MAT_RARITY_NOWHERE)
 			continue
-		if(isnull(mat.boiling_point) || mat.boiling_point > target_temp)
+		// don't allow non-gaseous phases
+		// this may be overly strict? in theory we could have vapor as long as it won't condense
+		if(mat.phase_at_temperature(target_temp, target_pressure) != MAT_PHASE_GAS)
 			continue
 		if(!isnull(mat.gas_condensation_point) && mat.gas_condensation_point <= target_temp)
+			continue
+		if(mat.gas_flags & badflag)
 			continue
 		newgases[mat.type] = mat.exoplanet_rarity
 
@@ -60,31 +65,41 @@
 	if(length(newgases))
 		var/gasnum = rand(1,4)
 		var/i = 1
+		// unrolling apickweight here to make it faster
+		// plus adding a bit of pick_and_take
+		var/sum = values_sum(newgases)
 		while(i <= gasnum && total_moles && newgases.len)
-			if(badflag)
-				for(var/g in newgases)
-					var/decl/material/mat = GET_DECL(g)
-					if(mat.gas_flags & badflag)
-						newgases -= g
-			var/ng = pickweight(newgases)	//pick a gas
-			newgases -= ng
+			var/index_picked = rand(1, sum)
+			var/chosen_gas = null
+			for(var/newgas, amount in newgases)
+				index_picked -= amount
+				if(index_picked <= 0)
+					sum -= amount // can't re-roll it
+					chosen_gas = newgas
+					break
+			newgases -= chosen_gas
 
 			// Make sure atmosphere is not flammable
-			var/decl/material/mat = GET_DECL(ng)
-			if(mat.gas_flags & XGM_GAS_OXIDIZER)
-				badflag |= XGM_GAS_FUEL
-			if(mat.gas_flags & XGM_GAS_FUEL)
-				badflag |= XGM_GAS_OXIDIZER
+			var/decl/material/chosen_mat = GET_DECL(chosen_gas)
+			if(chosen_mat.gas_flags & XGM_GAS_OXIDIZER)
+				for(var/g in newgases)
+					var/decl/material/other_mat = GET_DECL(g)
+					if(other_mat.gas_flags & XGM_GAS_FUEL)
+						newgases -= g
+			if(chosen_mat.gas_flags & XGM_GAS_FUEL)
+				for(var/g in newgases)
+					var/decl/material/other_mat = GET_DECL(g)
+					if(other_mat.gas_flags & XGM_GAS_OXIDIZER)
+						newgases -= g
 
 			var/part = total_moles * rand(20,80)/100 //allocate percentage to it
 			if(i == gasnum || !newgases.len) //if it's last gas, let it have all remaining moles
 				part = total_moles
-			gas_list[ng] += part
+			gas_list[chosen_gas] += part
 			total_moles = max(total_moles - part, 0)
 			i++
 
 	// Add all gasses, adjusted for target temperature and pressure
-	var/target_pressure = get_target_pressure()
 	var/target_moles = target_pressure * CELL_VOLUME / (target_temp * R_IDEAL_GAS_EQUATION)
 	var/list/set_gasmix = list()
 	for(var/g in gas_list)

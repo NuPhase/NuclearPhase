@@ -1,6 +1,6 @@
 /turf/unsimulated
 	name = "command"
-	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2STANDARD, /decl/material/gas/nitrogen = MOLES_N2STANDARD)
+	initial_gas = GAS_STANDARD_AIRMIX
 
 /turf/unsimulated/get_lumcount(var/minlum = 0, var/maxlum = 1)
 	return 0.8

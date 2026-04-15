@@ -180,10 +180,10 @@
 	initial_gas = null
 
 /turf/simulated/floor/reinforced/airmix
-	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2ATMOS, /decl/material/gas/nitrogen = MOLES_N2ATMOS)
+	initial_gas = alist(/decl/material/gas/oxygen = MOLES_O2ATMOS, /decl/material/gas/nitrogen = MOLES_N2ATMOS)
 
 /turf/simulated/floor/reinforced/reactor
-	initial_gas = list(/decl/material/gas/hydrogen = 50, /decl/material/solid/metal/uranium = 10)
+	initial_gas = alist(/decl/material/gas/hydrogen = 50, /decl/material/solid/metal/uranium = 10)
 
 /turf/simulated/floor/reinforced/reactor/Initialize(ml, floortype)
 	. = ..()
@@ -192,33 +192,33 @@
 		gm.temperature = 110000
 
 /turf/simulated/floor/reinforced/he
-	initial_gas = list(/decl/material/gas/hydrogen = 20)
+	initial_gas = alist(/decl/material/gas/hydrogen = 20)
 
 /turf/simulated/floor/reinforced/he/Initialize(ml, floortype)
 	. = ..()
 	air.temperature = 500
 
 /turf/simulated/floor/reinforced/nitrogen
-	initial_gas = list(/decl/material/gas/nitrogen = ATMOSTANK_NITROGEN)
+	initial_gas = alist(/decl/material/gas/nitrogen = ATMOSTANK_NITROGEN)
 
 /turf/simulated/floor/reinforced/hydrogen
-	initial_gas = list(/decl/material/gas/hydrogen = ATMOSTANK_HYDROGEN)
+	initial_gas = alist(/decl/material/gas/hydrogen = ATMOSTANK_HYDROGEN)
 
 /turf/simulated/floor/reinforced/oxygen
-	initial_gas = list(/decl/material/gas/oxygen = ATMOSTANK_OXYGEN)
+	initial_gas = alist(/decl/material/gas/oxygen = ATMOSTANK_OXYGEN)
 
 /turf/simulated/floor/reinforced/nitrogen/engine
 	name = "engine floor"
-	initial_gas = list(/decl/material/gas/nitrogen = MOLES_N2STANDARD)
+	initial_gas = alist(/decl/material/gas/nitrogen = MOLES_N2STANDARD)
 
 /turf/simulated/floor/reinforced/hydrogen/fuel
-	initial_gas = list(/decl/material/gas/hydrogen = ATMOSTANK_HYDROGEN_FUEL)
+	initial_gas = alist(/decl/material/gas/hydrogen = ATMOSTANK_HYDROGEN_FUEL)
 
 /turf/simulated/floor/reinforced/carbon_dioxide
-	initial_gas = list(/decl/material/gas/carbon_dioxide = ATMOSTANK_CO2)
+	initial_gas = alist(/decl/material/gas/carbon_dioxide = ATMOSTANK_CO2)
 
 /turf/simulated/floor/reinforced/n20
-	initial_gas = list(/decl/material/gas/nitrous_oxide = ATMOSTANK_NITROUSOXIDE)
+	initial_gas = alist(/decl/material/gas/nitrous_oxide = ATMOSTANK_NITROUSOXIDE)
 
 
 /turf/simulated/floor/cult
@@ -309,7 +309,7 @@
 	initial_gas = null
 
 /turf/simulated/floor/tiled/white/monotile/hydroponics
-	initial_gas = list(/decl/material/gas/nitrogen = MOLES_N2STANDARD, /decl/material/gas/carbon_dioxide = MOLES_O2STANDARD)
+	initial_gas = alist(/decl/material/gas/nitrogen = MOLES_N2STANDARD, /decl/material/gas/carbon_dioxide = MOLES_O2STANDARD)
 
 /turf/simulated/floor/tiled/monofloor
 	name = "floor"
@@ -416,7 +416,7 @@
 	temperature = TCMB
 
 /turf/simulated/floor/greengrid/nitrogen
-	initial_gas = list(/decl/material/gas/nitrogen = MOLES_N2STANDARD)
+	initial_gas = alist(/decl/material/gas/nitrogen = MOLES_N2STANDARD)
 
 // Placeholders
 /turf/simulated/floor/airless/lava
