@@ -6,9 +6,8 @@ EX - Exhaust<BR>\
 OUT - Outtake<BR>\
 IN - Intake<BR>\
 L - Lights<BR>\
-FL - Floodlights<BR>\
-F - Feed loop<BR>\
-T - Turbine loop<BR>\
+F - Reactor loop (molten metal)<BR>\
+T - Turbine loop (water&steam)<BR>\
 M - Meter<BR>\
 CP - Coolant Pump<BR>\
 EP - Emergency Protocol<BR>\
@@ -16,18 +15,21 @@ AP - Automated Protocol<BR>\
 RPM - Rotations Per Minute<BR>\
 MOD - Moderator<BR>\
 LAS - Laser<BR>\
+GRID - Generator Switch<BR>\
 TURB - Turbine<BR>\
+EFSS - Emergency Fire Supression System<BR>\
 kgs - kg per second<BR>\
 		<BR>\
 		<BR>\
 		<BR>\
 		Examples:<BR>\
 		F-CP 1V-IN - Feed loop-Coolant Pump 1 Valve-Intake<BR>\
+		T-CP 2V-EX - Reactor loop-Coolant Pump 2 Valve-Exhaust<BR>\
 		FL-MAIN - Floodlights-MAIN<BR>"
 
 /obj/item/clipboard/reactor
 	name = "personal reactor operations clipboard"
-	var/list/new_papers = list(/obj/item/paper/reactor/general, /obj/item/paper/reactor/coldstart, /obj/item/paper/reactor/coldstartauto, /obj/item/paper/reactor/reignition, /obj/item/paper/reactor/fueling_shutdown, /obj/item/paper/reactor/full_shutdown, /obj/item/paper/reactor/training_prep)
+	var/list/new_papers = list(/obj/item/paper/reactor/general, /obj/item/paper/reactor/coldstart, /obj/item/paper/reactor/coldstartauto, /obj/item/paper/reactor/turbinerunup, /obj/item/paper/reactor/reignition, /obj/item/paper/reactor/fueling_shutdown, /obj/item/paper/reactor/full_shutdown, /obj/item/paper/reactor/training_prep)
 
 /obj/item/clipboard/reactor/Initialize()
 	for(var/P in new_papers)

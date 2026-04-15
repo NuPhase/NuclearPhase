@@ -90,7 +90,7 @@
 	var/obj/machinery/multitile/steam_turbine/tst = reactor_components[id]
 	var/expansion = tgui_input_number(user, "Select a new expansion percentage for this turbine.", "Turbine expansion regulation", 0, 100, 0)
 	if(isnum(expansion))
-		tst.expansion_ratio = Clamp(expansion * 0.01, 0.65, 0.87)
+		tst.expansion_ratio = Clamp(expansion * 0.01, 0.15, 0.5)
 
 /obj/machinery/reactor_button/rswitch/turbine_grates
 	name = "TURB V-GRATES"

@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/loaded_item_pool = null //An actual item pool loaded from the previous round in Initialize(). Null if there isn't one
 	var/list/item_pool_areas = list() //Areas which should be used when creating an item pool
 	var/list/item_pool_blacklist = list(/obj/item/paper,
+										/obj/item/clipboard/reactor,
 										/obj/item/paper_bin,
 										/obj/item/chems/chem_disp_cartridge,
 										/obj/item/toy,
