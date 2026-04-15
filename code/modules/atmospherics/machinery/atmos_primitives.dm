@@ -96,27 +96,6 @@
 
 	return list(power_draw, transfer_mass)
 
-/proc/pump_fluid_passive(var/obj/machinery/M, var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0)
-	var/source_mass = source.get_mass()
-	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing
-		return -1
-
-	if(isnull(transfer_mass))
-		transfer_mass = source_mass
-	if(!length(source.liquids))
-		return
-	// hey why does this move only 1 liquid instead of a proportion of each
-	// i guess it's unused so it's nbd but that's still weird
-	var/decl/material/mat = GET_DECL(apick(source.liquids))
-	if(!mat)
-		return
-	transfer_mass = min(transfer_mass, (sink.available_volume - (sink.volume*0.01)) * 0.001 * mat.liquid_density)
-	var/datum/gas_mixture/removed = source.remove(transfer_mass / mat.gas_molar_mass, FALSE)
-	if (!removed) //Just in case
-		return -1
-
-	sink.merge(removed)
-
 /proc/pump_passive(var/datum/gas_mixture/source, var/datum/gas_mixture/sink, var/transfer_mass = 0)
 	var/source_mass = source.get_mass()
 	if(source_mass < MINIMUM_MOLES_TO_PUMP) //if we cant transfer enough fluid just stop to avoid further processing

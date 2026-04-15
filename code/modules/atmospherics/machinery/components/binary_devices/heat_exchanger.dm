@@ -122,7 +122,7 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 
 // Just pass fluid without heating it
 /obj/machinery/atmospherics/binary/heat_exchanger/proc/pass_fluid()
-	pump_fluid_passive(src, air1, air2, air1.get_mass())
+	pump_passive(air1, air2, air1.get_mass())
 
 /obj/machinery/atmospherics/binary/heat_exchanger/return_air()
 	if(air1.return_pressure() > air2.return_pressure())
