@@ -85,16 +85,10 @@
 	SSshuttle.block_queue = pre_init_state
 	SSshuttle.clear_init_queue() // We will flush the queue unless there were other blockers, in which case they will do it.
 
-/datum/map_template/proc/get_next_interior_turf()
-	if(!SSmapping.interior_zlevel)
-		var/datum/level_data/interior_level_data = SSmapping.increment_world_z_size(/datum/level_data) // todo: interior z-level
-		SSmapping.interior_zlevel = locate(9, 9, interior_level_data.level_z)
-	return SSmapping.interior_zlevel
-
 /datum/map_template/proc/load_interior_level()
 	ASSERT(height < MAX_INTERIOR_HEIGHT)
 	var/xmod = 1
-	var/turf/interior_location = get_next_interior_turf()
+	var/turf/interior_location = SSmapping.get_next_interior_turf()
 	if(interior_location.x+xmod+width > world.maxx-9)
 		interior_location = new(locate(9, interior_location.y+1+MAX_INTERIOR_HEIGHT, interior_location.z))
 		xmod = 0

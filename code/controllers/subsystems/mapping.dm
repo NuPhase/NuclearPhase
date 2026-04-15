@@ -388,3 +388,10 @@ SUBSYSTEM_DEF(mapping)
 /hook/roundstart/proc/start_processing_all_planets()
 	SSmapping.start_processing_all_planets()
 	return TRUE
+
+// Used for multitile vehicle interiors.
+/datum/controller/subsystem/mapping/proc/get_next_interior_turf()
+	if(!SSmapping.interior_zlevel)
+		var/datum/level_data/interior_level_data = SSmapping.increment_world_z_size(/datum/level_data) // todo: interior z-level
+		SSmapping.interior_zlevel = locate(9, 9, interior_level_data.level_z)
+	return SSmapping.interior_zlevel

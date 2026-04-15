@@ -182,9 +182,8 @@ var/global/list/DIR2DEGREES = list(
 /obj/multitile_vehicle/Initialize()
 	. = ..()
 	uid = "[type]_[sequential_id(type)]"
-	var/datum/map_template/templ = SSmapping.get_template(interior_template)
-	var/turf/place = templ.get_next_interior_turf()
-	new /obj/abstract/landmark/map_load_mark/interior(place, templ, src)
+	var/turf/place = SSmapping.get_next_interior_turf()
+	new /obj/abstract/landmark/map_load_mark/interior(place, interior_template, src)
 
 /obj/multitile_vehicle/proc/after_interior_load(datum/map_template/templ, turf/place)
 	STOP_PROCESSING(SSobj, src)

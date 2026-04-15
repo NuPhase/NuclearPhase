@@ -1,15 +1,18 @@
 //Load a random map template from the list. Maploader handles it to avoid order of init madness
 /obj/abstract/landmark/map_load_mark
 	name = "map loader landmark"
+	var/centered = TRUE
 	var/list/map_template_names	//list of template names to pick from
 
-/obj/abstract/landmark/map_load_mark/Initialize(var/mapload)
+INITIALIZE_IMMEDIATE(/obj/abstract/landmark/map_load_mark)
+/obj/abstract/landmark/map_load_mark/Initialize()
 	. = ..()
-	if(!mapload)
-		return INITIALIZE_HINT_LATELOAD
-
-/obj/abstract/landmark/map_load_mark/LateInitialize()
-	load_subtemplate()
+	if(Master.map_loading) // If we're created while a map is being loaded
+		return // Let after_load() handle us
+	if(!SSmapping.initialized) // If we're being created prior to SSmapping
+		SSmapping.queued_markers += src // Then run after SSmapping
+	else // created by something during init, like a multitile vehicle
+		init_load_subtemplate()
 
 /obj/abstract/landmark/map_load_mark/proc/get_subtemplate()
 	if(isnull(map_template_names))
@@ -21,6 +24,10 @@
 
 /obj/abstract/landmark/map_load_mark/proc/after_load()
 	return
+
+/obj/abstract/landmark/map_load_mark/proc/init_load_subtemplate()
+	set waitfor = FALSE
+	load_subtemplate()
 
 /obj/abstract/landmark/map_load_mark/proc/load_subtemplate()
 	// Commenting this out temporarily as DMMS breaks when asychronously
@@ -34,18 +41,18 @@
 		if(istext(template))
 			template = SSmapping.get_template(template)
 		if(istype(template))
-			template.load(spawn_loc, TRUE)
-
-	after_load(template)
+			template.load(spawn_loc, centered = centered)
+			after_load(template)
 
 	if(!QDELETED(src))
 		qdel(src)
 
 /obj/abstract/landmark/map_load_mark/interior
+	centered = FALSE
 	var/obj/multitile_vehicle/vehicle
 
-/obj/abstract/landmark/map_load_mark/interior/Initialize(mapload, template_to_use, obj/multitile_vehicle/_vehicle)
-	map_template_names = template_to_use
+/obj/abstract/landmark/map_load_mark/interior/Initialize(mapload, template_name, obj/multitile_vehicle/_vehicle)
+	map_template_names = template_name
 	vehicle = _vehicle
 	return ..()
 
