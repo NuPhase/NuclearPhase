@@ -16,6 +16,7 @@
 
 	map_port_volume = 500
 	spawn_power_terminal = TRUE
+	interact_offline = TRUE
 
 	width = 1
 	height = 2
@@ -101,7 +102,7 @@
 	if(exhaust.pressure > 100 * ONE_ATMOSPHERE)
 		trip("High exhaust pressure")
 		return FALSE
-	if(start_air.pressure < ONE_ATMOSPHERE)
+	if(start_air.pressure < ONE_ATMOSPHERE && mode != GEN_MODE_SYNC)
 		trip("Low start air pressure")
 		return FALSE
 	if(gen_temp > GEN_MAX_WORK_TEMP)
@@ -116,7 +117,7 @@
 	if(nmode == GEN_MODE_SYNC)
 		rpm = GEN_SYNC_RPM
 		if(!sound_token)
-			sound_token = play_looping_sound(src, sound_id, 'sound/machines/gas_turbine/run.mp3', 50)
+			sound_token = play_looping_sound(src, sound_id, 'sound/machines/gas_turbine/run.mp3', 50, 10)
 	if(nmode == GEN_MODE_OFF)
 		QDEL_NULL(sound_token)
 
@@ -185,7 +186,7 @@
 	var/t_diff = gen_temp - 334
 	if(abs(t_diff) < 10)
 		return
-	var/heat_transfer = t_diff * (GEN_POWER_LIMIT / 70)
+	var/heat_transfer = min(t_diff * (GEN_POWER_LIMIT / 70), coolant.heat_capacity*100)
 	coolant.add_thermal_energy(heat_transfer)
 	gen_temp -= heat_transfer / GEN_HEAT_CAPACITY
 

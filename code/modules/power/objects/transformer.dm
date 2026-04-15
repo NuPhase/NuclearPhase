@@ -58,10 +58,10 @@
 /obj/machinery/power/generator/transformer/available_power()
 	if(!should_transfer_demand || !powernet || !connected.powernet || !connected.on)
 		return 0
-	return min(max_cap, connected.powernet.last_surplus())
+	return min(max_cap, connected.powernet.max_power)
 
 /obj/machinery/power/generator/transformer/on_power_drain(w)
-	if(!powernet || !connected.powernet)
+	if(!should_transfer_demand || !powernet || !connected.powernet)
 		return 0
 	return connected.draw_power(w)
 
