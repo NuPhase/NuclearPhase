@@ -2,7 +2,6 @@
 
 var/global/list/default_strata_type_by_z = list()
 var/global/list/default_material_by_strata_and_z = list()
-var/global/list/natural_walls = list()
 
 /turf/exterior/wall
 	name = "wall"
@@ -44,8 +43,6 @@ var/global/list/natural_walls = list()
 	// Init materials.
 	material = SSmaterials.get_strata_material(src)
 
-	global.natural_walls += src
-
 	set_extension(src, /datum/extension/geological_data)
 	if(!ispath(material, /decl/material))
 		material = materialtype || get_default_material()
@@ -69,10 +66,6 @@ var/global/list/natural_walls = list()
 /turf/exterior/wall/explosion_act(severity)
 	if(severity > 1000 || (severity > 500 && prob(40)))
 		dismantle_wall()
-
-/turf/exterior/wall/Destroy()
-	global.natural_walls -= src
-	. = ..()
 
 /turf/exterior/wall/proc/set_material(var/decl/material/newmaterial, var/decl/material/newrmaterial)
 	material = newmaterial
