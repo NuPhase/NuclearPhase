@@ -56,14 +56,8 @@
 
 	changing_turf = TRUE
 
-	var/area/old_area = get_area(src)
-	old_area.all_turfs -= src
-
 	qdel(src)
 	. = new N(src)
-
-	var/area/new_area = get_area(src)
-	new_area.all_turfs |= src
 
 	var/turf/W = .
 	W.above =            old_above     // Multiz ref tracking.
@@ -111,7 +105,7 @@
 	if ((old_opacity != opacity) || (tidlu != old_dynamic_lighting) || force_lighting_update)
 		reconsider_lights()
 
-	if (tidlu != old_dynamic_lighting)
+	if (tidlu != old_dynamic_lighting && SSlighting.initialized) // don't fuck with lighting before lighting flush
 		if (tidlu)
 			lighting_build_overlay()
 		else

@@ -19,6 +19,7 @@
 	name = "mask"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rockvault"
+	dynamic_lighting = FALSE
 
 /turf/unsimulated/floor/rescue_base
 	icon_state = "asteroidfloor"

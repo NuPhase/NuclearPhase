@@ -107,7 +107,7 @@
  * This is a proc over a var for memory reasons
  */
 /datum/proc/tgui_state(mob/user)
-	return GLOB.tgui_default_state
+	return global.tgui_default_state
 
 /**
  * global

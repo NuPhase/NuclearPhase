@@ -184,8 +184,6 @@ var/global/dmm_suite/preloader/_preloader = new
 							maxx = max(maxx, xcrd)
 							++xcrd
 					--ycrd
-				if (zexpansion && SSlighting.initialized)
-					SSlighting.InitializeZlev(zcrd)
 
 			bounds[MAP_MAXX] = Clamp(max(bounds[MAP_MAXX], cropMap ? min(maxx, world.maxx) : maxx), x_lower, x_upper)
 

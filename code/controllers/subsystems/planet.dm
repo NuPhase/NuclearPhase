@@ -6,27 +6,22 @@ SUBSYSTEM_DEF(planet)
 	priority = SS_PRIORITY_PLANET
 	init_order = SS_INIT_MISC_LATE
 
-	var/list/interpolating_areas = list()
+	var/list/zone/interpolating_zones = list()
 	var/surface_time = 0
 
 	var/weather_volatility = 0
 	var/weather_volatility_mod = 1
 
-/datum/controller/subsystem/planet/Initialize(start_timeofday)
-	for(var/area/serenity/A in interpolating_areas)
-		if(!length(A.contents))
-			interpolating_areas -= A
-
 #define TEMPERATURE_INTERPOLATION_MOD 0.1
 /datum/controller/subsystem/planet/fire(resumed)
-	//first of all, handle the heating of areas
-	for(var/area/serenity/A in interpolating_areas)
-		var/turf/T = pick(A.all_turfs)
-		if(istype(T, /turf/simulated/wall))
-			continue //yeah we'd like to not heat up a wall
-		var/datum/gas_mixture/environment = T.return_air()
-		var/temperature_delta = using_map.exterior_atmosphere.temperature - environment.temperature
-		environment.temperature += temperature_delta * A.temperature_interpolation_coefficient * TEMPERATURE_INTERPOLATION_MOD
+	//first of all, handle the heating of zones
+	var/exterior_temperature = global.using_map.exterior_atmosphere.temperature
+	for(var/zone/zone in SSair.zones)
+		if(!zone.planet_heating_coefficient)
+			continue
+		var/zone_coefficient = zone.planet_heating_coefficient / length(zone.contents)
+		var/datum/gas_mixture/environment = zone.air
+		environment.temperature += (exterior_temperature - environment.temperature) * zone_coefficient * TEMPERATURE_INTERPOLATION_MOD
 		environment.update_values()
 
 	//weather next

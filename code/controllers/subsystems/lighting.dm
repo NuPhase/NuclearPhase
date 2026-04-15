@@ -60,7 +60,15 @@ SUBSYSTEM_DEF(lighting)
 
 	// Generate overlays.
 	for (var/zlevel = 1 to world.maxz)
-		overlaycount += InitializeZlev(zlevel)
+		var/datum/level_data/level = SSmapping.levels_by_z[zlevel]
+		for (var/turf/tile as anything in block(1, 1, zlevel, level.level_max_width, level.level_max_height)) // include TRANSITIONEDGE turfs
+			if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(tile))
+				if(!isnull(tile.lighting_overlay))
+					log_warning("Attempted to create lighting_overlay on [tile.get_log_info_line()] when it already had one.")
+					continue
+				new /atom/movable/lighting_overlay(tile)
+				overlaycount++
+			CHECK_TICK
 
 	admin_notice(SPAN_DANGER("Created [overlaycount] lighting overlays in [(REALTIMEOFDAY - starttime)/10] seconds."), R_DEBUG)
 
@@ -75,25 +83,13 @@ SUBSYSTEM_DEF(lighting)
 
 	log_ss("lighting", "NOv:[overlaycount] L:[processed_lights] C:[processed_corners] O:[processed_overlays]")
 
+	// Update starlight once lighting has been initialized
+	for(var/datum/level_data/level in SSmapping.levels_by_z)
+		for(var/turf/space/space_turf in block(level.level_inner_min_x, level.level_inner_min_y, level.level_z, level.level_inner_max_x, level.level_inner_max_y))
+			space_turf.update_starlight()
+			CHECK_TICK
+
 	..()
-
-/datum/controller/subsystem/lighting/proc/InitializeZlev(zlev)
-	for (var/thing in Z_ALL_TURFS(zlev))
-		var/turf/T = thing
-		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T) && !T.lighting_overlay)	// Can't assume that one hasn't already been created on bay/neb.
-			new /atom/movable/lighting_overlay(T)
-			. += 1
-
-		CHECK_TICK
-
-// It's safe to pass a list of non-turfs to this list - it'll only check turfs.
-/datum/controller/subsystem/lighting/proc/InitializeTurfs(list/targets)
-	for (var/turf/T in (targets || world))
-		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
-			T.lighting_build_overlay()
-
-		// If this isn't here, BYOND will set-background us.
-		CHECK_TICK
 
 /datum/controller/subsystem/lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
 	if (!resumed)

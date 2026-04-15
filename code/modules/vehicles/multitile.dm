@@ -182,27 +182,27 @@ var/global/list/DIR2DEGREES = list(
 /obj/multitile_vehicle/Initialize()
 	. = ..()
 	uid = "[type]_[sequential_id(type)]"
-	spawn(0)
-		var/datum/map_template/templ = SSmapping.get_template(interior_template)
-		var/turf/place = templ.load_interior_level()
+	var/turf/place = SSmapping.get_next_interior_turf()
+	new /obj/abstract/landmark/map_load_mark/interior(place, interior_template, src)
 
-		STOP_PROCESSING(SSobj, src)
-		global.vehicles += src
+/obj/multitile_vehicle/proc/after_interior_load(datum/map_template/templ, turf/place)
+	STOP_PROCESSING(SSobj, src)
+	global.vehicles += src
 
-		for(var/obj/effect/interior_entrypoint/vehicle/nentrypoint in range(5, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
-			entrypoint = nentrypoint
-			entrypoint.vehicle = src
+	for(var/obj/effect/interior_entrypoint/vehicle/nentrypoint in range(5, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
+		entrypoint = nentrypoint
+		entrypoint.vehicle = src
 
-		if(!templ.pilot_seat_offset)
-			return
+	if(!templ.pilot_seat_offset)
+		return
 
-		for(var/obj/structure/bed/chair/comfy/vehicle/pilotseat in view(2, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
-			if(pilotseat)
-				pilotseat.vehicle = src
-				break
+	for(var/obj/structure/bed/chair/comfy/vehicle/pilotseat in view(2, locate(place.x-templ.width+templ.pilot_seat_offset["x"], place.y-templ.height+templ.pilot_seat_offset["y"], place.z)))
+		if(pilotseat)
+			pilotseat.vehicle = src
+			break
 
-		comp = new(null)
-		move_vector = new()
+	comp = new(null)
+	move_vector = new()
 
 /obj/multitile_vehicle/attack_hand(mob/user)
 	. = ..()

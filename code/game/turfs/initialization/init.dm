@@ -6,7 +6,7 @@
 
 /area/Initialize()
 	. = ..()
-	for(var/turf/T in src)
-		if(turf_initializer)
-			var/decl/turf_initializer/ti = GET_DECL(turf_initializer)
+	if(turf_initializer)
+		var/decl/turf_initializer/ti = GET_DECL(turf_initializer)
+		for(var/turf/T in src)
 			ti.InitializeTurf(T)

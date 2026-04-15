@@ -16,6 +16,8 @@
 	var/color
 	var/footstep_type = /decl/footsteps/blank
 
+	var/neighbour_type
+
 	var/has_base_range
 	var/has_damage_range
 	var/has_burn_range
@@ -38,20 +40,42 @@
 
 	//How we smooth with other flooring
 	var/decal_layer = DECAL_LAYER
-	var/floor_smooth = SMOOTH_ALL
-	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
-	var/list/flooring_blacklist = list() //Smooth with everything except the contents of this list
 
-	//How we smooth with walls
-	var/wall_smooth = SMOOTH_ALL
-	//There are no lists for walls at this time
+	/// Smooth with nothing except the types in this list. Turned into a typecache for performance reasons.
+	var/list/flooring_whitelist = list()
+	/// Smooth with everything except the types in this list. Turned into a typecache for performance reasons.
+	var/list/flooring_blacklist = list()
 
-	//How we smooth with space and openspace tiles
-	var/space_smooth = SMOOTH_ALL
-	//There are no lists for spaces
+	/// How we smooth with other flooring
+	var/floor_smooth
+	/// How we smooth with walls
+	var/wall_smooth
+	/// How we smooth with space and openspace tiles
+	var/space_smooth
+	/// If we smooth with everything, we can skip a bunch of other smoothing checks. This is a bool and not an enum.
+	var/omni_smooth
+
 	var/z_flags //same z flags used for turfs, i.e ZMIMIC_DEFAULT etc
 
 	var/height = 0
+
+/decl/flooring/Initialize()
+	. = ..()
+
+	neighbour_type ||= type
+
+	flooring_whitelist = typecacheof(flooring_whitelist)
+	flooring_blacklist = typecacheof(flooring_blacklist)
+
+	var/default_smooth = (flags & (TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS)) ? SMOOTH_NONE : SMOOTH_ALL
+	if(isnull(wall_smooth))
+		wall_smooth =  default_smooth
+	if(isnull(space_smooth))
+		space_smooth = default_smooth
+	if(isnull(floor_smooth))
+		floor_smooth = default_smooth
+	if(isnull(omni_smooth) && floor_smooth == wall_smooth && wall_smooth == space_smooth)
+		omni_smooth = (floor_smooth == SMOOTH_ALL) // bool, not enum
 
 /decl/flooring/proc/on_remove()
 	return

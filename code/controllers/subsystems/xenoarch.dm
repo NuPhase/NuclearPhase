@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(xenoarch)
 	return pickweight(digsite_types_weighted)
 
 /datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
-	for(var/turf/exterior/wall/M in global.natural_walls)
+	for(var/turf/exterior/wall/M in world) // yes, this is faster than creating a giant list
 		if(!M.density)
 			continue
 
