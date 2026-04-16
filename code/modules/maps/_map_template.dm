@@ -90,11 +90,11 @@
 	var/xmod = 1
 	var/turf/interior_location = SSmapping.get_next_interior_turf()
 	if(interior_location.x+xmod+width > world.maxx-9)
-		interior_location = new(locate(9, interior_location.y+1+MAX_INTERIOR_HEIGHT, interior_location.z))
+		interior_location = locate(9, interior_location.y+1+MAX_INTERIOR_HEIGHT, interior_location.z)
 		xmod = 0
 	ASSERT(interior_location.y+1+height < world.maxy-9)
 	// update the next interior turf
-	SSmapping.interior_zlevel = new(locate(interior_location.x+xmod, interior_location.y-height, interior_location.z))
+	SSmapping.interior_zlevel = locate(interior_location.x+xmod, interior_location.y-height, interior_location.z)
 	return interior_location
 
 /datum/map_template/proc/load_new_z(no_changeturf = TRUE, var/x=null, var/y=null, var/reinit_lighting=FALSE)

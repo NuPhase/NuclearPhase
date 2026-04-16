@@ -122,6 +122,9 @@ SUBSYSTEM_DEF(mapping)
 	set_config_value(/decl/config/toggle/roundstart_level_generation, FALSE) //#FIXME: Shouldn't this be set before running level_data/setup_level_data()?
 #endif
 
+	// Create the interior Z-level in case we need it later.
+	get_next_interior_turf()
+
 	. = ..()
 
 /datum/controller/subsystem/mapping/Recover()
@@ -392,6 +395,6 @@ SUBSYSTEM_DEF(mapping)
 // Used for multitile vehicle interiors.
 /datum/controller/subsystem/mapping/proc/get_next_interior_turf()
 	if(!SSmapping.interior_zlevel)
-		var/datum/level_data/interior_level_data = SSmapping.increment_world_z_size(/datum/level_data) // todo: interior z-level
+		var/datum/level_data/interior_level_data = SSmapping.increment_world_z_size(/datum/level_data) // todo: interior z-level subtype
 		SSmapping.interior_zlevel = locate(9, 9, interior_level_data.level_z)
 	return SSmapping.interior_zlevel
