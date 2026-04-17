@@ -1,5 +1,5 @@
 #define RADS_PER_NEUTRON 125000
-#define WATTS_PER_KPA 5
+#define WATTS_PER_KPA 50
 #define REACTOR_SHIELDING_DIVISOR 20
 #define REACTOR_MODERATOR_POWER 0.27
 #define REACTOR_FIELD_VOLUME 50000
@@ -37,7 +37,6 @@
 
 	// Containment data
 	var/containment = TRUE // Whether the containment is active in the first place. Often disabled after full purges.
-	var/magnets_quenched = FALSE // Whether the magnets overheated. Needs manual resetting.
 	var/field_power_consumption = 0 // How much power the containment is requiring per tick.
 	var/shield_temperature = 36 // Actual temperature of the magnets.
 	var/field_battery_charge = MAX_MAGNET_CHARGE
@@ -51,10 +50,12 @@
 	var/slow_neutrons = 0
 	var/fast_neutrons = 0
 	var/total_neutrons = 0
-	var/neutrons_absorbed = 0
 	var/xray_flux = 0 // A direct measure of fusion speed.
+	var/fusion_mass_flux = 0 // mg/s of fusion
 	var/last_temperature = T0C
-	var/energy_rate = 0 // The rate of change in neutrons. eV/tick
+	var/energy_rate = 0 // The rate of change in thermal energy. eV/tick
+
+	var/radiative_heat_loss = 0 // The amount of energy lost to radiation in the last tick
 
 	var/moderator_position = 0 //0-1. 1 means it scatters most of the neutrons.
 	var/reflector_position = 1 //0-1. 1 means it reflects most of the neutrons.
@@ -112,11 +113,11 @@
 #undef ELM_HEAT_LOSS_COEF
 
 /obj/machinery/power/hybrid_reactor/Process()
-	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
-	slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
-	fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
-
 	process_fusion(containment_field)
+	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+	if(returned_list)
+		slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
+		fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 	process_plasma_instability()
 
 	handle_control_panels()
@@ -165,7 +166,7 @@
 		meltdown_state = TRUE
 		start_meltdown()
 
-#define RADIATIVE_LOSS_K 10700
+#define RADIATIVE_LOSS_K 1070000
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	if(slow_neutrons || fast_neutrons)
 		var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
@@ -178,12 +179,13 @@
 		fast_neutrons -= fast_neutrons_moderated
 		slow_neutrons += fast_neutrons_moderated
 
-	var/radiative_heat_loss = (containment_field.get_mass() * sqrt(containment_field.temperature) * RADIATIVE_LOSS_K * (containment_field.volume*0.01)) * (1.1 - reflector_position)
+	radiative_heat_loss = (containment_field.get_mass() * sqrt(containment_field.temperature) * RADIATIVE_LOSS_K * (containment_field.volume*0.01)) * (1.1 - reflector_position)
 	containment_field.add_thermal_energy(-radiative_heat_loss)
 #undef RADIATIVE_LOSS_K
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
 	xray_flux = 0
+	fusion_mass_flux = 0
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
 		var/decl/thermonuclear_reaction/cur_reaction = GET_DECL(cur_reaction_type)
 
@@ -211,7 +213,10 @@
 		containment_field.adjust_gas(cur_reaction.product, resulting_mass / product.molar_mass)
 		containment_field.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
+		fusion_mass_flux += uptake_moles
 		xray_flux += uptake_moles * 17400
+	fusion_mass_flux *= containment_field.specific_mass()
+	fusion_mass_flux *= 1000000
 	plasma_instability += xray_flux * 0.01
 
 #define PASSIVE_INSTABILITY_DECAY 0.15 // coefficient

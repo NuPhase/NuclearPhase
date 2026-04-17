@@ -24,7 +24,8 @@
 
 	var/list/data = list(
 		"loglist" = assemble_tgui_log_list(),
-		"projected_tdelta" = las_energy_delta / (rcore.containment_field.heat_capacity() + 1)
+		"projected_tdelta" = las_energy_delta / (rcore.containment_field.heat_capacity() + 1),
+		"fusion_mass_flux" = rcore.fusion_mass_flux
 	)
 	return data
 

@@ -28,7 +28,7 @@
 	P.update_mode(REACTOR_PUMP_MODE_MAX)
 	P.rpm = REACTOR_PUMP_RPM_MAX
 
-	P.air2.adjust_gas_temp(/decl/material/liquid/water, 200000, 350) //add wotah to the loop
+	P.air2.adjust_gas_temp(/decl/material/liquid/water, 90000, 350) //add wotah to the loop
 
 	P = rcontrol.reactor_pumps["F-CP 1"]
 	P.update_mode(REACTOR_PUMP_MODE_MAX)

@@ -1,3 +1,4 @@
+import { toFixed } from 'tgui-core/math';
 import { useBackend} from "../backend";
 import { LabeledList, Box, Section, Flex, ProgressBar, BlockQuote } from 'tgui-core/components';
 import { Window } from "../layouts";
@@ -14,6 +15,7 @@ type InputData = {
   divertor_integrity: number;
   magnet_integrity: number;
   structure_integrity: number;
+  fusion_mass_flux: number;
 }
 
 export const MaintenanceReactorMonitor = (props: any, context: any) => {
@@ -95,7 +97,12 @@ export const MaintenanceReactorMonitor = (props: any, context: any) => {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-            <Section title = " Fuel Data">
+            <Section title = " Misc Data">
+              <LabeledList>
+                <LabeledList.Item label = "Fusion Mass Flux">
+                  {toFixed(data.fusion_mass_flux, 1)}mg/s
+                </LabeledList.Item>
+              </LabeledList>
             </Section>
           </Flex.Item>
         </Flex>

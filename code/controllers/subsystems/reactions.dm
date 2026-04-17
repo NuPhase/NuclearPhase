@@ -201,6 +201,8 @@ SUBSYSTEM_DEF(reactions)
 
 	var/fission_prob = get_average_cross_section(moles, INTERACTION_FISSION, fast_neutrons, slow_neutrons, volume)
 	var/absorb_prob = get_average_cross_section(moles, INTERACTION_ABSORPTION, fast_neutrons, slow_neutrons, volume)
+	if(!fission_prob)
+		return list(moles, temperature, fast_neutrons, slow_neutrons)
 
 	var/euler_exp = EULER**(-(absorb_prob+fission_prob)*radial_distance)
 	var/z_fission = (fission_prob/(absorb_prob+fission_prob)) * (1-euler_exp)
