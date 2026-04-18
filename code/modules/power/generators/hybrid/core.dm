@@ -113,8 +113,9 @@
 
 /obj/machinery/power/hybrid_reactor/Process()
 	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
-	slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
-	fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
+	if(returned_list)
+		slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
+		fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 
 	process_fusion(containment_field)
 	process_plasma_instability()
