@@ -166,6 +166,17 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		processing_fires = active_fire_zones.Copy()
 		processing_hotspots = active_hotspots.Copy()
 
+	// phases:
+	// 1. tiles
+	// 2. deferred
+	// 3. edges
+	// 4. fires
+	// 5. hotspots
+	// 6. zones
+	MC_SPLIT_TICK_INIT(6)
+	if (!no_mc_tick)
+		MC_SPLIT_TICK
+
 	var/list/curr_tiles = tiles_to_update
 	var/list/curr_defer = deferred
 	var/list/curr_edges = processing_edges
@@ -181,8 +192,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			if (no_mc_tick)
 				CHECK_TICK
 			else if (MC_TICK_CHECK)
-				return
-
+				break
 			continue
 
 		//check if the turf is self-zone-blocked
@@ -193,7 +203,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			if (no_mc_tick)
 				CHECK_TICK
 			else if (MC_TICK_CHECK)
-				return
+				break
 			continue
 
 		T.update_air_properties()
@@ -207,7 +217,10 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if (no_mc_tick)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
-			return
+			break
+
+	if (!no_mc_tick)
+		MC_SPLIT_TICK
 
 	while (curr_defer.len)
 		var/turf/T = curr_defer[curr_defer.len]
@@ -224,7 +237,10 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if (no_mc_tick)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
-			return
+			break
+
+	if (!no_mc_tick)
+		MC_SPLIT_TICK
 
 	while (curr_edges.len)
 		var/connection_edge/edge = curr_edges[curr_edges.len]
@@ -234,7 +250,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			if (no_mc_tick)
 				CHECK_TICK
 			else if (MC_TICK_CHECK)
-				return
+				break
 			continue
 
 		edge.tick()
@@ -242,7 +258,10 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if (no_mc_tick)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
-			return
+			break
+
+	if (!no_mc_tick)
+		MC_SPLIT_TICK
 
 	while (curr_fire.len)
 		var/zone/Z = curr_fire[curr_fire.len]
@@ -253,7 +272,10 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if (no_mc_tick)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
-			return
+			break
+
+	if (!no_mc_tick)
+		MC_SPLIT_TICK
 
 	while (curr_hotspot.len)
 		var/obj/fire/F = curr_hotspot[curr_hotspot.len]
@@ -264,7 +286,10 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if (no_mc_tick)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
-			return
+			break
+
+	if (!no_mc_tick)
+		MC_SPLIT_TICK
 
 	while (curr_zones.len)
 		var/zone/Z = curr_zones[curr_zones.len]
@@ -276,7 +301,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if (no_mc_tick)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
-			return
+			break
 
 /datum/controller/subsystem/air/proc/add_zone(zone/z)
 	zones += z
