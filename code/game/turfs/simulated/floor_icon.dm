@@ -28,18 +28,18 @@ var/global/list/flooring_cache = list()
 		var/has_border = 0
 		//Check the cardinal turfs
 		for(var/step_dir in global.cardinal)
-			var/turf/simulated/floor/T = get_step(src, step_dir)
-			var/is_linked = flooring.symmetric_test_link(src, T)
+			var/turf/simulated/floor/T = get_step_resolving_mimic(src, step_dir)
+			if(!istype(T) || flooring.test_link(src, T))
+				continue
 
 			//Alright we've figured out whether or not we smooth with this turf
-			if (!is_linked)
-				has_border |= step_dir
+			has_border += step_dir // these are always powers of two which we loop over once, so no need for bitmath
 
-				//Now, if we don't, then lets add a border
-				if(check_state_in_icon("[flooring.icon_base]_edges", flooring.icon))
-					add_overlay(get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir, (flooring.flags & TURF_HAS_EDGES)))
+			//Now, if we don't, then lets add a border
+			if(check_state_in_icon("[flooring.icon_base]_edges", flooring.icon))
+				add_overlay(get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir, (flooring.flags & TURF_HAS_EDGES)))
 
-		has_smooth = ~(has_border & (NORTH | SOUTH | EAST | WEST))
+		has_smooth = ~(has_border) & (NORTH | SOUTH | EAST | WEST)
 
 		if(flooring.can_paint && LAZYLEN(decals))
 			add_overlay(decals.Copy())
@@ -48,14 +48,14 @@ var/global/list/flooring_cache = list()
 		if (has_smooth && flooring.flags & TURF_HAS_INNER_CORNERS)
 			for(var/direction in global.cornerdirs)
 				if((has_smooth & direction) == direction)
-					if(!flooring.symmetric_test_link(src, get_step(src, direction)) && check_state_in_icon("[flooring.icon_base]_corners", flooring.icon))
+					if(!flooring.test_link(src, get_step_resolving_mimic(src, direction)) && check_state_in_icon("[flooring.icon_base]_corners", flooring.icon))
 						add_overlay(get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-corner-[direction]", "[flooring.icon_base]_corners", direction))
 
 		//Next up, outer corners
 		if (has_border && flooring.flags & TURF_HAS_CORNERS)
 			for(var/direction in global.cornerdirs)
 				if((has_border & direction) == direction)
-					if(!flooring.symmetric_test_link(src, get_step(src, direction)) && check_state_in_icon("[flooring.icon_base]_edges", flooring.icon))
+					if(!flooring.test_link(src, get_step_resolving_mimic(src, direction)) && check_state_in_icon("[flooring.icon_base]_edges", flooring.icon))
 						add_overlay(get_flooring_overlay("[flooring.icon]_[flooring.icon_base]-edge-[direction]", "[flooring.icon_base]_edges", direction,(flooring.flags & TURF_HAS_EDGES)))
 
 	for(var/image/I in decals)
@@ -107,46 +107,36 @@ var/global/list/flooring_cache = list()
 		flooring_cache[cache_key] = I
 	return flooring_cache[cache_key]
 
-/decl/flooring/proc/test_link(var/turf/origin, var/turf/T)
-	var/is_linked = FALSE
-	if(istype(origin) && istype(T))
-		//is_wall is true for wall turfs and for floors containing a low wall
-		if(T.is_wall())
-			if(wall_smooth == SMOOTH_ALL)
-				is_linked = TRUE
-		//If is_hole is true, then it's space or openspace
-		else if(T.is_open())
-			if(space_smooth == SMOOTH_ALL)
-				is_linked = TRUE
-
-		//If we get here then its a normal floor
-		else if (istype(T, /turf/simulated/floor))
-			var/turf/simulated/floor/t = T
-			//Check for window frames.
-			if(wall_smooth == SMOOTH_ALL)
-				for(var/obj/structure/wall_frame/WF in T.contents)
-					is_linked = TRUE
-			//If the floor is the same as us,then we're linked,
-			if (istype(src, t.flooring))
-				is_linked = TRUE
-			else if (floor_smooth == SMOOTH_ALL)
-				is_linked = TRUE
-			else if (floor_smooth != SMOOTH_NONE)
-				//If we get here it must be using a whitelist or blacklist
-				if (floor_smooth == SMOOTH_WHITELIST)
-					for (var/v in flooring_whitelist)
-						if (istype(t.flooring, v))
-							//Found a match on the list
-							is_linked = TRUE
-							break
-				else if(floor_smooth == SMOOTH_BLACKLIST)
-					is_linked = TRUE //Default to true for the blacklist, then make it false if a match comes up
-					for (var/v in flooring_whitelist)
-						if (istype(t.flooring, v))
-							//Found a match on the list
-							is_linked = FALSE
-							break
-	return is_linked
-
-/decl/flooring/proc/symmetric_test_link(var/turf/A, var/turf/B)
-	return test_link(A, B) && test_link(B,A)
+/decl/flooring/proc/test_link(var/turf/opponent)
+	if(omni_smooth) // override EVERYTHING
+		return TRUE
+	// Just a normal floor
+	if (istype(opponent, /turf/simulated/floor))
+		if (floor_smooth == SMOOTH_ALL)
+			return TRUE
+		var/turf/simulated/floor/floor_opponent = opponent
+		var/decl/flooring/opponent_flooring = floor_opponent.flooring
+		//If the floor is the same as us,then we're linked,
+		if (istype(opponent_flooring, neighbour_type))
+			return TRUE
+		//If we get here it must be using a whitelist or blacklist
+		if (floor_smooth == SMOOTH_WHITELIST)
+			if (flooring_whitelist[opponent_flooring.type])
+				//Found a match on the typecache
+				return TRUE
+		else if(floor_smooth == SMOOTH_BLACKLIST)
+			if (flooring_blacklist[opponent_flooring.type]) {EMPTY_BLOCK_GUARD} else
+				//No match on the typecache
+				return TRUE
+		//Check for window frames.
+		if (wall_smooth == SMOOTH_ALL && locate(/obj/structure/wall_frame) in opponent)
+			return TRUE
+	// Wall turf
+	else if(opponent.is_wall()) // don't combine these so that we don't check if a wall is space just because we don't smooth with walls
+		if(wall_smooth == SMOOTH_ALL)
+			return TRUE
+	//If is_open is true, then it's space or openspace
+	else if(opponent.is_open())
+		if(space_smooth == SMOOTH_ALL)
+			return TRUE
+	return FALSE

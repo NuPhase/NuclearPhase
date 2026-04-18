@@ -19,6 +19,9 @@
 	// A list of port air_contents datum references
 	var/list/port_gases
 
+	var/spawn_power_terminal = FALSE
+	var/obj/machinery/power/generator/terminal/power_port
+
 /obj/machinery/multitile/Initialize()
 	. = ..()
 	port_refs = list()
@@ -35,12 +38,26 @@
 		port_refs[port_data[4]] = nport
 		port_gases[port_data[4]] = nport.air_contents
 
+	if(spawn_power_terminal)
+		power_port = new(loc)
+		power_port.our_daddy = src
+
 /obj/machinery/multitile/Destroy()
 	. = ..()
 	for(var/obj/port in port_refs)
 		qdel(port)
 	port_refs.Cut()
 	port_gases.Cut()
+	QDEL_NULL(power_port)
+
+/obj/machinery/multitile/proc/available_power()
+	return 0
+
+/obj/machinery/multitile/proc/get_voltage()
+	return 0
+
+/obj/machinery/multitile/proc/on_power_drain(w)
+	return
 
 /obj/machinery/multitile/test
 	map_ports = list(

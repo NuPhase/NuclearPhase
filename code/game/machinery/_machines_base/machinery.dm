@@ -124,6 +124,8 @@ Class Procs:
 	var/list/initial_access		// Used to setup network locks on machinery at populate_parts.
 	var/list/mob/living/electrocuting = list()
 
+	var/fail_critical = FALSE // Is this machine important to the functioning of the shelter? If so, spawn an INOP notice if it fails.
+
 /obj/machinery/Initialize(mapload, d=0, populate_parts = TRUE)
 	. = ..()
 	if(d)
@@ -143,6 +145,12 @@ Class Procs:
 	QDEL_NULL_LIST(component_parts) // Further handling is done via destroyed events.
 	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_ALL)
 	. = ..()
+
+/obj/machinery/fail_roundstart()
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	if(fail_critical)
+		new /obj/item/paper/inoperative(loc)
 
 /obj/machinery/proc/ProcessAll(var/wait)
 	SHOULD_NOT_SLEEP(TRUE)

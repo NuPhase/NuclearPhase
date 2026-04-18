@@ -2,7 +2,6 @@
 
 var/global/list/default_strata_type_by_z = list()
 var/global/list/default_material_by_strata_and_z = list()
-var/global/list/natural_walls = list()
 
 /turf/exterior/wall
 	name = "wall"
@@ -44,8 +43,6 @@ var/global/list/natural_walls = list()
 	// Init materials.
 	material = SSmaterials.get_strata_material(src)
 
-	global.natural_walls += src
-
 	set_extension(src, /datum/extension/geological_data)
 	if(!ispath(material, /decl/material))
 		material = materialtype || get_default_material()
@@ -69,10 +66,6 @@ var/global/list/natural_walls = list()
 /turf/exterior/wall/explosion_act(severity)
 	if(severity > 1000 || (severity > 500 && prob(40)))
 		dismantle_wall()
-
-/turf/exterior/wall/Destroy()
-	global.natural_walls -= src
-	. = ..()
 
 /turf/exterior/wall/proc/set_material(var/decl/material/newmaterial, var/decl/material/newrmaterial)
 	material = newmaterial
@@ -186,22 +179,13 @@ var/global/list/natural_walls = list()
 
 	var/material_icon_base = material.icon_base_natural || 'icons/turf/walls/natural.dmi'
 	var/base_color = paint_color ? paint_color : material.color
-
 	var/shine
 	if(material?.reflectiveness > 0)
 		shine = clamp((material.reflectiveness * 0.01) * 255, 10, (0.6 * rgb2num(material.color, COLORSPACE_HSV)[3]))
 
-	var/image/I
-	for(var/i = 1 to 4)
-		var/apply_state = "[wall_connections[i]]"
-		I = image(material_icon_base, apply_state, dir = BITFLAG(i-1))
-		I.color = base_color
-		add_overlay(I)
-		if(shine)
-			I = image(material_icon_base, "shine[wall_connections[i]]", dir = BITFLAG(i-1))
-			I.appearance_flags |= RESET_ALPHA
-			I.alpha = shine
-			add_overlay(I)
+	icon = get_combined_wall_icon(wall_connections, null, material_icon_base, base_color, shine_value = shine)
+	icon_state = ""
+	color = null
 
 	if(ore_overlay)
 		add_overlay(ore_overlay)

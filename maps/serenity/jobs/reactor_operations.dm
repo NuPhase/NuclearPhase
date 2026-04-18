@@ -55,7 +55,7 @@
 	)
 
 /datum/job/reactor_operations/rod
-	title = "Reactor Operations Director"
+	title = "RO Director"
 	head_position = 1
 	supervisors = "the CEO"
 	selection_color = "#d5d82d"
@@ -110,7 +110,7 @@
 	)
 
 /datum/job/reactor_operations/road
-	title = "Reactor Operations Assistant Director"
+	title = "RO Assistant Director"
 	head_position = 1
 	supervisors = "the Reactor Operations Director"
 	selection_color = "#d5d82d"
@@ -166,7 +166,7 @@
 	)
 
 /datum/job/reactor_operations/rce
-	title = "Reactor Chief Engineer"
+	title = "RO Chief Engineer"
 	head_position = 1
 	supervisors = "the Reactor Operations Director or their assistant"
 	selection_color = "#c8ca2a"
@@ -180,7 +180,7 @@
 	)
 
 /datum/job/reactor_operations/rmd
-	title = "Reactor Maintenance Director"
+	title = "RO Maintenance Director"
 	head_position = 1
 	supervisors = "the Reactor Operations Director or their assistant"
 	selection_color = "#c8ca2a"
@@ -195,7 +195,7 @@
 	)
 
 /datum/job/reactor_operations/ros
-	title = "Reactor Operations Specialist"
+	title = "RO Specialist"
 	total_positions = 10
 	spawn_positions = 10
 	supervisors = "the Reactor Chief Engineer"
@@ -205,7 +205,60 @@
 	description = "You are one of many legs of the Reactor Operations team. You operate the facility's systems."
 	goals = list(
 		"Keep the reactor running.",
-		"Refuel the backup diesel generators.",
+		"Refuel the backup generators.",
 		"Communicate with Site Maintenance Technicians about ongoing technical issues.",
 		"Handle service outage requests."
+	)
+
+/datum/job/reactor_operations/sme
+	title = "Site Maintenance Engineer"
+	total_positions = 10
+	spawn_positions = 10
+	supervisors = "the Chief Architect, Laboratory Operations Director and Reactor Maintenance Director"
+	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer
+	access = list(
+		access_eva,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_external_airlocks,
+		access_construction,
+		access_engine,
+		access_emergency_storage,
+		access_lab_alpha
+	)
+	minimal_access = list(
+		access_eva,
+		access_tech_storage,
+		access_maint_tunnels,
+		access_external_airlocks,
+		access_construction,
+		access_engine,
+		access_emergency_storage,
+		access_lab_alpha
+	)
+	allowed_branches = list(
+		/datum/mil_branch/civ,
+		/datum/mil_branch/army
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/civ/civ,
+		/datum/mil_rank/army/e1,
+		/datum/mil_rank/army/e2,
+		/datum/mil_rank/army/e3
+		)
+	skill_points = 35
+	min_skill = list(
+		SKILL_LITERACY = SKILL_ADEPT,
+		SKILL_CONSTRUCTION = SKILL_ADEPT,
+		SKILL_DEVICES = SKILL_ADEPT,
+		SKILL_FITNESS  = SKILL_BASIC,
+	    SKILL_STRENGTH = SKILL_BASIC,
+		SKILL_ELECTRICAL = SKILL_BASIC,
+		SKILL_ATMOS = SKILL_BASIC
+	)
+	description = "You are the backbone of the facility's technical systems."
+	goals = list(
+		"Repair broken equipment and machinery.",
+		"Coordinate with the Reactor Operations team.",
+		"Assist other departments when no other work is available."
 	)

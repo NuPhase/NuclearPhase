@@ -364,6 +364,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	global.materials_by_gas_symbol[gas_symbol] = type
 	generate_armor_values()
 
+	global.cached_specific_heat[type] = gas_specific_heat
+	global.cached_molar_mass[type] = molar_mass
+	global.cached_liquid_volume_coefficient[type] = molar_mass/liquid_density
+	global.cached_solid_volume_coefficient[type] = molar_mass/solid_density
+
 	var/list/cocktails = decls_repository.get_decls_of_subtype(/decl/cocktail)
 	for(var/ctype in cocktails)
 		var/decl/cocktail/cocktail = cocktails[ctype]
@@ -424,8 +429,11 @@ var/decl/material/boil_mat = null
 //Clausius–Clapeyron relation
 /decl/material/proc/get_boiling_temp(var/pressure = ONE_ATMOSPHERE)
 	if(!pressure)
-		pressure = 0.00001
-	var/denominator = (1/boiling_point) - ((R_IDEAL_GAS_EQUATION*log(pressure/ONE_ATMOSPHERE)) / latent_heat)
+		// limit theorem, denominator approaches -inf as pressure approaches 0 from the right
+		// so 1/denominator is ~0, in pure vacuum it will always boil
+		return 0
+	// log(ONE_ATMOSPHERE) will const fold, avoiding division
+	var/denominator = (1/boiling_point) - ((R_IDEAL_GAS_EQUATION*(log(pressure) - log(ONE_ATMOSPHERE))) / latent_heat)
 	if(denominator <= 0)
 		return critical_point
 	else

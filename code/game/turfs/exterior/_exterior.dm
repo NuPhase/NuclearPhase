@@ -14,7 +14,7 @@
 	var/icon_has_corners = FALSE
 	var/list/affecting_heat_sources
 	var/obj/effect/overmap/visitable/sector/exoplanet/owner
-	initial_gas = list(/decl/material/gas/oxygen = MOLES_O2STANDARD, /decl/material/gas/nitrogen = MOLES_N2STANDARD)
+	initial_gas = GAS_STANDARD_AIRMIX
 
 /turf/exterior/Initialize(mapload, no_update_icon = FALSE, should_override = FALSE)
 	. = ..()

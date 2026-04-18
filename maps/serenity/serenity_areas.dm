@@ -59,9 +59,7 @@
 
 /area/serenity/Initialize()
 	. = ..()
-	SSplanet.interpolating_areas += src
 	SSpersistence.item_pool_areas += src
-	START_PROCESSING(SSsound, src)
 
 /area/serenity/has_gravity()
 	return TRUE

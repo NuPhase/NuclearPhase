@@ -1,20 +1,14 @@
-/area
+/zone
 	var/datum/composite_sound/metal_groan/groan_loop
 	var/datum/composite_sound/fire_noise/fire_loop
 
-/area/proc/process_ambience()
-	var/turf/simulated/floor/T = pick(all_turfs)
-	if(!istype(T))
-		return
-	var/datum/gas_mixture/environment = T.return_air()
-	if(environment.pressure > ONE_ATMOSPHERE*5)
-		if(!groan_loop)
-			groan_loop = new(list(T), TRUE)
+/zone/proc/update_ambience()
+	if(air.return_pressure() > ONE_ATMOSPHERE*5)
+		groan_loop ||= new(list(pick(contents)), TRUE)
 	else if(groan_loop)
 		QDEL_NULL(groan_loop)
-	if(T.zone && length(T.zone.fire_tiles))
-		if(!fire_loop)
-			fire_loop = new(list(T), TRUE)
+	if(length(fire_tiles))
+		fire_loop ||= new(list(pick(contents)), TRUE)
 	else if(fire_loop)
 		QDEL_NULL(fire_loop)
 

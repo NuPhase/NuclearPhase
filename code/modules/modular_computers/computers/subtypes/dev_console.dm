@@ -3,6 +3,8 @@
 	maximum_component_parts = list(/obj/item/stock_parts = 14)	//There's a lot of stuff that goes in these
 	var/list/interact_sounds = list("keyboard", "keystroke")
 	var/wired_connection = FALSE // Whether or not this console will start with a wired connection beneath it.
+	failure_chance = 0.3
+	fail_critical = TRUE
 
 /obj/machinery/computer/modular/Initialize()
 	set_extension(src, /datum/extension/interactive/os/console)

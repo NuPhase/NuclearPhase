@@ -16,5 +16,4 @@ SUBSYSTEM_DEF(misc)
 	setupgenetics()
 
 	transfer_controller = new
-	GLOB = new
 	. = ..()

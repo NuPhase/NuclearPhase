@@ -400,7 +400,7 @@
 	for(var/slot in global.standard_clothing_slots)
 		var/obj/item/clothing/C = get_equipped_item(slot)
 		if(istype(C) && C.temperature < bodytemperature)
-			ADJUST_ATOM_TEMPERATURE(C, species.passive_temp_gain)
+			ADJUST_ATOM_TEMPERATURE(C, C.temperature + species.passive_temp_gain)
 
 /mob/living/carbon/human/proc/get_adjusted_environment_temp(datum/gas_mixture/environment)
 	var/body_covered_coef = 0 // coefficient representing the percentage of body covered with clothing
@@ -439,9 +439,9 @@
 	var/adjusted_pressure = calculate_affecting_pressure(pressure)
 
 	//Check for contaminants before anything else because we don't want to skip it.
-	for(var/g in environment.gas)
-		var/decl/material/mat = GET_DECL(g)
-		if((mat.gas_flags & XGM_GAS_CONTAMINANT) && environment.gas[g] > mat.gas_overlay_limit + 1)
+	for(var/gasid, amount in environment.gas)
+		var/decl/material/mat = GET_DECL(gasid)
+		if((mat.gas_flags & XGM_GAS_CONTAMINANT) && amount > mat.gas_overlay_limit + 1)
 			handle_contaminants()
 			break
 

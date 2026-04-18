@@ -191,7 +191,6 @@
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 	R.containment = FALSE
 	if(emergency)
-		R.magnets_quenched = TRUE
 		purge()
 
 /datum/reactor_control_system/proc/delayed_purge()

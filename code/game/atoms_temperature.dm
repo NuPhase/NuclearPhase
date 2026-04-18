@@ -12,7 +12,7 @@
 	var/temperature = T20C
 	/// How rapidly does this atom equalize with ambient temperature?
 	var/temperature_coefficient = MAX_TEMPERATURE_COEFFICIENT
-	var/failure_chance = FALSE // Can fail at roundstart, and if so, at which coefficient of probability?
+	var/failure_chance = 0 // Can fail at roundstart, and if so, at which coefficient of probability?
 
 /atom/movable/Entered(var/atom/movable/atom, var/atom/old_loc)
 	. = ..()

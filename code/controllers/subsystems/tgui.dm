@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(tgui)
 	ntos_error = "<style type='text/css'>\n[ntos_error]\n</style>"
 	basehtml = replacetextEx(basehtml, "<!-- tgui:ntos-error -->", ntos_error)
 
-	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2206") // This can't use the GLOB as it runs before those are populated
+	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2206") // This can't use using_map as it runs before that's populated
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()

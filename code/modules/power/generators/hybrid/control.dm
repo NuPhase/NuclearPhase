@@ -65,6 +65,23 @@
 	var/covered_state = "button1-cover_closed"
 	var/uncovered_state = "button1-cover_open"
 
+/obj/machinery/reactor_button/protected/can_use()
+	return cover_status
+
+/obj/machinery/reactor_button/protected/on_update_icon()
+	if(cover_status)
+		icon_state = uncovered_state
+	else
+		icon_state = covered_state
+
+/obj/machinery/reactor_button/protected/AltClick(mob/user)
+	cover_status = !cover_status
+	playsound(src, 'sound/foley/donk2.ogg', 50, 0, -5)
+	update_icon()
+
+/obj/machinery/reactor_button/proc/can_use()
+	return TRUE
+
 /obj/machinery/reactor_button/Initialize()
 	. = ..()
 	if(id)
@@ -78,6 +95,8 @@
 	var/obj/machinery/reactor_control_node/cnode = reactor_components["control_node"]
 	if(needs_control_node && cnode && !cnode.check_controllability())
 		return
+	if(!can_use())
+		return
 
 	do_action(user)
 	if(action_sounds)
@@ -86,6 +105,8 @@
 	used = TRUE
 	spawn(cooldown)
 		used = FALSE
+
+	update_icon()
 
 /obj/machinery/reactor_button/proc/do_action(mob/user)
 	return

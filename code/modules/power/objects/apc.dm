@@ -151,8 +151,10 @@ var/global/list/all_apcs = list()
 	)
 	stock_part_presets = list(/decl/stock_part_preset/terminal_setup)
 	failure_chance = 0.1
+	fail_critical = TRUE
 
 /obj/machinery/power/apc/fail_roundstart()
+	. = ..()
 	if(prob(30))
 		critical_failure(2)
 	else
@@ -456,6 +458,7 @@ var/global/list/all_apcs = list()
 	queue_icon_update()
 
 /obj/machinery/power/apc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	. = ..()
 	if(exposed_temperature > 700 && !cover_removed)
 		critical_failure(3)
 

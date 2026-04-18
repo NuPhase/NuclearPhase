@@ -9,8 +9,8 @@
 
 	var/holy = 0
 
-	// Initial air contents (in moles)
-	var/list/initial_gas
+	/// Either a mapping of material decls to mol amounts, or a reserved initial gas define like GAS_STANDARD_AIRMIX.
+	var/alist/initial_gas
 
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
@@ -89,16 +89,18 @@
 	else if (permit_ao)
 		queue_ao()
 
-	updateVisibility(src, FALSE)
+	// we're being loaded in a new z-level, we need to build lighting
+	if(mapload && !changing_turf && SSlighting.initialized)
+		lighting_build_overlay()
+
+	if(simulated)
+		updateVisibility(src, FALSE)
 
 	if (z_flags & ZM_MIMIC_BELOW)
 		setup_zmimic(mapload)
 
 	if(flooded && !density)
 		make_flooded(TRUE)
-
-	var/area/new_area = get_area(src)
-	new_area.all_turfs |= src
 
 	return INITIALIZE_HINT_NORMAL
 

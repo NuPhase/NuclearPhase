@@ -76,3 +76,9 @@
 	STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
 	QDEL_NULL(connection_beam)
 	return
+
+/obj/machinery/medical/Process()
+	if(!connected)
+		return
+	if(get_dist(src, connected) > max_distance)
+		disconnect(connected)

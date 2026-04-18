@@ -15,8 +15,10 @@ SUBSYSTEM_DEF(atoms)
 	var/atom_init_stage = INITIALIZATION_INSSATOMS
 	var/old_init_stage
 
-	var/list/late_loaders
+	/// A non-associative list of lists, with the format list(list(atom, list(Initialize arguments))).
 	var/list/created_atoms = list()
+	/// A non-associative list of lists, with the format list(list(atom, list(LateInitialize arguments))).
+	var/list/late_loaders = list()
 
 	var/list/BadInitializeCalls = list()
 
@@ -25,48 +27,47 @@ SUBSYSTEM_DEF(atoms)
 	InitializeAtoms()
 	return ..()
 
-/datum/controller/subsystem/atoms/proc/InitializeAtoms()
-	if(atom_init_stage <= INITIALIZATION_INSSATOMS_LATE)
+/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms_to_create)
+	if(atom_init_stage <= INITIALIZATION_INSSATOMS)
 		return
 
 	atom_init_stage = INITIALIZATION_INNEW_MAPLOAD
 
-	LAZYINITLIST(late_loaders)
+	var/static/list/mapload_arg = list(TRUE)
 
-	var/list/mapload_arg = list(TRUE)
-
-	var/count = created_atoms.len
-	while(created_atoms.len)
-		var/atom/A = created_atoms[created_atoms.len]
-		var/list/atom_args = created_atoms[A]
-		created_atoms.len--
-		if(!QDELETED(A) && !(A.atom_flags & ATOM_FLAG_INITIALIZED))
-			if(atom_args)
-				atom_args.Insert(1, TRUE)
-				InitAtom(A, atom_args)
-			else
-				InitAtom(A, mapload_arg)
-			CHECK_TICK
-
-	// If wondering why not just store all atoms in created_atoms and use the block above: that turns out unbearably expensive.
-	// Instead, atoms without extra arguments in New created on server start are fished out of world directly.
-	// We do this exactly once.
-	if(!initialized)
-		for(var/atom/A in world)
-			if(!QDELETED(A) && !(A.atom_flags & ATOM_FLAG_INITIALIZED))
-				InitAtom(A, mapload_arg)
-				++count
+	if(atoms_to_create)
+		// This list will not change while we loop over it.
+		for(var/atom/atom_to_create as anything in atoms_to_create)
+			// I sure hope nothing in this list is ever hard-deleted, or else QDELING will runtime.
+			// If you get a null reference runtime error, just change it back to QDELETED.
+			// The ATOM_FLAG_INITIALIZED check is because of INITIALIZE_IMMEDIATE().
+			if(!QDELING(atom_to_create) && !(atom_to_create.atom_flags & ATOM_FLAG_INITIALIZED))
+				InitAtom(atom_to_create, mapload_arg)
 				CHECK_TICK
+		report_progress("Initialized [length(atoms_to_create)] atom\s")
+	else // just loop over everything in world
+		var/count = 1
+		for(var/atom/A as anything in world)
+			if(!(A.atom_flags & ATOM_FLAG_INITIALIZED)) // don't double-init anything using INITIALIZE_IMMEDIATE
+				InitAtom(A, mapload_arg)
+				count++
+				CHECK_TICK
+			continue
+		report_progress("Initialized [count] atom\s in world")
 
-	report_progress("Initialized [count] atom\s")
+	created_atoms.Cut()
 
 	atom_init_stage = INITIALIZATION_INNEW_REGULAR
 
-	if(late_loaders.len)
-		for(var/I in late_loaders)
-			var/atom/A = I
-			A.LateInitialize(arglist(late_loaders[A]))
-		report_progress("Late initialized [late_loaders.len] atom\s")
+	if(length(late_loaders))
+		var/count = 1
+		// This list may expand while we loop over it.
+		while(count <= length(late_loaders))
+			var/list/creation_packet = late_loaders[count++]
+			var/atom/A = creation_packet[1]
+			A.LateInitialize(arglist(creation_packet[2]))
+			CHECK_TICK
+		report_progress("Late initialized [count] atom\s")
 		late_loaders.Cut()
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
@@ -75,27 +76,34 @@ SUBSYSTEM_DEF(atoms)
 		BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
 		return TRUE
 
+	// This is handled and battle tested by dreamchecker. Limit to UNIT_TEST just in case that ever fails.
+	#ifdef UNIT_TEST
 	var/start_tick = world.time
+	#endif
 
 	var/result = A.Initialize(arglist(arguments))
 
+	#ifdef UNIT_TEST
 	if(start_tick != world.time)
 		BadInitializeCalls[the_type] |= BAD_INIT_SLEPT
+	#endif
 
 	var/qdeleted = FALSE
 
-	if(result != INITIALIZE_HINT_NORMAL)
-		switch(result)
-			if(INITIALIZE_HINT_LATELOAD)
-				if(arguments[1])	//mapload
-					late_loaders[A] = arguments
-				else
-					A.LateInitialize(arglist(arguments))
-			if(INITIALIZE_HINT_QDEL)
-				qdel(A)
-				qdeleted = TRUE
+	switch(result)
+		if(INITIALIZE_HINT_NORMAL)
+			EMPTY_BLOCK_GUARD
+		if(INITIALIZE_HINT_LATELOAD)
+			if(arguments[1])	//mapload
+				late_loaders[++late_loaders.len] = list(A, arguments)
 			else
-				BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
+				A.LateInitialize(arglist(arguments))
+		if(INITIALIZE_HINT_QDEL)
+			A.atom_flags |= ATOM_FLAG_INITIALIZED // never call EarlyDestroy if we return this hint
+			qdel(A)
+			qdeleted = TRUE
+		else
+			BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
 
 	if(!A)	//possible harddel
 		qdeleted = TRUE
@@ -111,7 +119,7 @@ SUBSYSTEM_DEF(atoms)
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin()
 	old_init_stage = atom_init_stage
-	atom_init_stage = INITIALIZATION_INSSATOMS_LATE
+	atom_init_stage = INITIALIZATION_INSSATOMS
 
 /datum/controller/subsystem/atoms/proc/map_loader_stop()
 	atom_init_stage = old_init_stage

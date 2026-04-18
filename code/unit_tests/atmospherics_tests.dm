@@ -64,7 +64,7 @@
 	test_cases = list(
 		uphill = list(
 			source = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 5,
 					/decl/material/gas/nitrogen       = 10,
 					/decl/material/gas/carbon_dioxide = 5,
@@ -74,7 +74,7 @@
 				temperature = T20C - 5,
 			),
 			sink = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 10,
 					/decl/material/gas/nitrogen       = 20,
 					/decl/material/gas/carbon_dioxide = 10,
@@ -86,7 +86,7 @@
 		),
 		downhill = list(
 			source = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 10,
 					/decl/material/gas/nitrogen       = 20,
 					/decl/material/gas/carbon_dioxide = 10,
@@ -96,7 +96,7 @@
 				temperature = T20C + 5,
 			),
 			sink = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 5,
 					/decl/material/gas/nitrogen       = 10,
 					/decl/material/gas/carbon_dioxide = 5,
@@ -108,7 +108,7 @@
 		),
 		flat = list(
 			source = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 10,
 					/decl/material/gas/nitrogen       = 20,
 					/decl/material/gas/carbon_dioxide = 10,
@@ -118,7 +118,7 @@
 				temperature = T20C,
 			),
 			sink = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 10,
 					/decl/material/gas/nitrogen       = 20,
 					/decl/material/gas/carbon_dioxide = 10,
@@ -130,7 +130,7 @@
 		),
 		vacuum_sink = list(
 			source = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 10,
 					/decl/material/gas/nitrogen       = 20,
 					/decl/material/gas/carbon_dioxide = 10,
@@ -140,17 +140,17 @@
 				temperature = T20C,
 			),
 			sink = list(
-				initial_gas = list(),
+				initial_gas = alist(),
 				temperature = 0,
 			),
 		),
 		vacuum_source = list(
 			source = list(
-				initial_gas = list(),
+				initial_gas = alist(),
 				temperature = 0,
 			),
 			sink = list(
-				initial_gas = list(
+				initial_gas = alist(
 					/decl/material/gas/oxygen         = 10,
 					/decl/material/gas/nitrogen       = 20,
 					/decl/material/gas/carbon_dioxide = 10,

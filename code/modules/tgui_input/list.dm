@@ -80,7 +80,7 @@
 
 /datum/tgui_list_input/Destroy(force, ...)
 	SStgui.close_uis(src)
-	QDEL_NULL(items)
+	items.Cut()
 	return ..()
 
 /**
@@ -102,7 +102,7 @@
 	closed = TRUE
 
 /datum/tgui_list_input/tgui_state(mob/user)
-	return GLOB.tgui_always_state
+	return global.tgui_always_state
 
 /datum/tgui_list_input/tgui_static_data(mob/user)
 	var/list/data = list()

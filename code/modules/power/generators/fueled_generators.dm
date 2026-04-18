@@ -144,6 +144,7 @@
 	var/obj/item/tank/oxidizer_tank = null
 	var/obj/item/tank/waste_tank = null
 	failure_chance = 1
+	fail_critical = TRUE
 	var/button_sound = 'sound/machines/quiet_beep.ogg'
 	var/alarm_sound = 'sound/effects/alarms/buzzer.mp3'
 	var/start_sound = 'sound/items/ignition.ogg'
@@ -161,6 +162,7 @@
 		return
 
 /obj/machinery/power/generator/port_gen/liquid/fail_roundstart()
+	. = ..()
 	stat &= BROKEN
 
 /obj/machinery/power/generator/port_gen/liquid/Initialize()

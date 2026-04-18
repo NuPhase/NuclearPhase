@@ -41,14 +41,14 @@
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/nitrous_oxide = 1)
+	initial_gas = alist(/decl/material/gas/nitrous_oxide = 1)
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "\improper Canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/nitrogen = 1)
+	initial_gas = alist(/decl/material/gas/nitrogen = 1)
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/prechilled
 	name = "\improper Canister: \[N2 (Cooling)\]"
@@ -59,7 +59,7 @@
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/oxygen = 1)
+	initial_gas = alist(/decl/material/gas/oxygen = 1)
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled
 	name = "\improper Canister: \[O2 (Cryo)\]"
@@ -70,14 +70,14 @@
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/hydrogen = 1)
+	initial_gas = alist(/decl/material/gas/hydrogen = 1)
 
 /obj/machinery/portable_atmospherics/canister/argon
 	name = "\improper Canister \[Ar\]"
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/argon = 1)
+	initial_gas = alist(/decl/material/gas/argon = 1)
 	start_pressure = ONE_ATMOSPHERE
 
 /obj/machinery/portable_atmospherics/canister/water
@@ -85,7 +85,7 @@
 	icon_state = "water"
 	can_label = 0
 	start_pressure = ONE_ATMOSPHERE*1.5
-	initial_gas = list(/decl/material/liquid/water = 0.99, /decl/material/gas/nitrogen = 0.01)
+	initial_gas = alist(/decl/material/liquid/water = 0.99, /decl/material/gas/nitrogen = 0.01)
 
 /obj/machinery/portable_atmospherics/canister/water/tall
 	name = "\improper Industrial Tank: \[Water\]"
@@ -106,14 +106,14 @@
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/carbon_dioxide = 1)
+	initial_gas = alist(/decl/material/gas/carbon_dioxide = 1)
 
 /obj/machinery/portable_atmospherics/canister/tungstenhexafluoride
 	name = "\improper Canister \[WF6\]"
 	icon_state = "wf6"
 	canister_color = "wf6"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/tungstenhexafluoride = 1)
+	initial_gas = alist(/decl/material/gas/tungstenhexafluoride = 1)
 
 /obj/machinery/portable_atmospherics/canister/empty/tungstenhexafluoride
 	icon_state = "wf6"
@@ -124,7 +124,7 @@
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/solid/metal/tungsten = 0.95, /decl/material/gas/nitrogen = 0.05)
+	initial_gas = alist(/decl/material/solid/metal/tungsten = 0.95, /decl/material/gas/nitrogen = 0.05)
 	start_temperature = 4200
 
 /obj/machinery/portable_atmospherics/canister/empty/reactor
@@ -506,14 +506,14 @@ update_flag
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/helium = 1)
+	initial_gas = alist(/decl/material/gas/helium = 1)
 
 /obj/machinery/portable_atmospherics/canister/liquid_helium
 	name = "\improper Canister \[LHe2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/helium = 1)
+	initial_gas = alist(/decl/material/gas/helium = 1)
 	start_temperature = 3
 
 /obj/machinery/portable_atmospherics/canister/liquid_hydrogen
@@ -521,7 +521,7 @@ update_flag
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/hydrogen = 0.95, /decl/material/gas/helium = 0.05)
+	initial_gas = alist(/decl/material/gas/hydrogen = 0.95, /decl/material/gas/helium = 0.05)
 	start_temperature = 15
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane
@@ -529,7 +529,7 @@ update_flag
 	icon_state = "purple"
 	canister_color = "purple"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/methane = 0.99, /decl/material/gas/helium = 0.001)
+	initial_gas = alist(/decl/material/gas/methane = 0.99, /decl/material/gas/helium = 0.001)
 	start_temperature = 93
 
 /obj/machinery/portable_atmospherics/canister/liquid_methane/central
@@ -541,14 +541,14 @@ update_flag
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/methyl_bromide = 1)
+	initial_gas = alist(/decl/material/gas/methyl_bromide = 1)
 
 /obj/machinery/portable_atmospherics/canister/chlorine
 	name = "\improper Canister \[Cl\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/chlorine = 1)
+	initial_gas = alist(/decl/material/gas/chlorine = 1)
 
 /obj/machinery/portable_atmospherics/canister/casting
 	name = "\improper Casting Vessel"
@@ -556,7 +556,7 @@ update_flag
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
-	initial_gas = list(/decl/material/gas/nitrogen = 1)
+	initial_gas = alist(/decl/material/gas/nitrogen = 1)
 	volume = 10000
 	start_pressure = ONE_ATMOSPHERE
 	weight = 500

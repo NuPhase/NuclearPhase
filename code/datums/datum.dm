@@ -8,9 +8,14 @@
 	/// Lazy, since this case is semi rare
 	var/list/open_tguis
 
-#ifdef TESTING
+#ifdef REFTRACKING_ENABLED
 	var/tmp/running_find_references
+	/// When was this datum last touched by a reftracker?
+	/// If this value doesn't match with the start of the search
+	/// We know this datum has never been seen before, and we should check it
 	var/tmp/last_find_references = 0
+	/// How many references we're trying to find when searching
+	var/tmp/references_to_clear = 0
 #endif
 
 // The following vars cannot be edited by anyone

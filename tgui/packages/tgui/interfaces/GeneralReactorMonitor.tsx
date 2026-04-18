@@ -22,6 +22,7 @@ type InputData = {
   alarmlist: Alarm[];
   power_load: number;
   thermal_load: number;
+  thermal_power: number;
   neutron_rate: number;
   energy_rate: number;
   xray_flux: number;
@@ -59,11 +60,14 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
           <Flex.Item height={20}>
             <Section title = " General Data">
               <LabeledList>
-                <LabeledList.Item label = "Total Power Generation">
-                  {formatSiUnit(data.power_load, 1, "W")}
+                <LabeledList.Item label = "Reactor Thermal Power">
+                  {formatSiUnit(data.thermal_power, 1, "W")}
                 </LabeledList.Item>
                 <LabeledList.Item label = "Turbine Energy Flow">
                   {formatSiUnit(data.thermal_load, 1, "W")}
+                </LabeledList.Item>
+                <LabeledList.Item label = "Total Power Generation">
+                  {formatSiUnit(data.power_load, 1, "W")}
                 </LabeledList.Item>
                 <LabeledList.Item label = "Neutron Generation Rate">
                   <ProgressBar
@@ -89,7 +93,7 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                     minValue = {-5}
                     maxValue = {5}
                     value={data.energy_rate}>
-                  {data.energy_rate} eV/s ({(data.chamber_temperature*0.00008).toFixed(1)} eV)
+                  {data.energy_rate} eV/s ({(data.chamber_temperature*0.00000008).toFixed(1)} keV)
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item label = "External Radiation Level">

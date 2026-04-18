@@ -239,15 +239,8 @@
 	return 0
 
 /turf/return_air()
-	//Create gas mixture to hold data for passing
-	var/datum/gas_mixture/GM = new
-
-	if(initial_gas)
-		GM.gas = initial_gas.Copy()
-	GM.temperature = temperature
-	GM.update_values()
-
-	return GM
+	// TODO: immutable gas mixtures for stuff like this, to avoid creating new datums every time.
+	return make_air()
 
 /turf/remove_air(amount as num)
 	var/datum/gas_mixture/GM = return_air()
@@ -282,12 +275,18 @@
 			make_air()
 		return air
 
+#define STANDARD_AIRMIX_ALIST alist(/decl/material/gas/oxygen = MOLES_O2STANDARD, /decl/material/gas/nitrogen = MOLES_N2STANDARD)
 /turf/proc/make_air()
-	air = new/datum/gas_mixture
+	air = new /datum/gas_mixture
 	air.temperature = temperature
 	if(initial_gas)
-		air.gas = initial_gas.Copy()
+		if(initial_gas == GAS_STANDARD_AIRMIX)
+			air.gas = STANDARD_AIRMIX_ALIST
+		else
+			air.gas = initial_gas.Copy()
 	air.update_values()
+	return air
+#undef STANDARD_AIRMIX_ALIST
 
 /turf/simulated/proc/c_copy_air()
 	if(!air) air = new/datum/gas_mixture

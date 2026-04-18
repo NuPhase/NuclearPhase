@@ -12,6 +12,12 @@
 	our_lungs = _our_lungs
 	start()
 
+/datum/composite_sound/breath_sound/Destroy()
+	if(our_lungs?.soundloop == src)
+		our_lungs.soundloop = null
+	our_lungs = null
+	return ..()
+
 /datum/composite_sound/breath_sound/play(soundfile)
 	if(!soundfile)
 		return
@@ -66,13 +72,19 @@
 
 /obj/item/organ/internal/lungs/Destroy()
 	. = ..()
-	qdel(soundloop)
+	QDEL_NULL(soundloop)
+
+/obj/item/organ/internal/lungs/die()
+	. = ..()
+	QDEL_NULL(soundloop)
 
 /obj/item/organ/internal/lungs/rejuvenate(ignore_prosthetic_prefs)
 	. = ..()
 	QDEL_NULL(chest_tube)
 	breath_rate = initial(breath_rate)
 	ruptured = FALSE
+	if(!soundloop)
+		soundloop = new(_output_atoms=list(src), _our_lungs=src)
 
 /obj/item/organ/internal/lungs/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
@@ -241,9 +253,9 @@
 	if(!failed_inhale) // Enough gas to tell we're being poisoned via chemical burns or whatever.
 		var/poison_total = 0
 		if(poison_types)
-			for(var/gname in breath.gas)
-				if(poison_types[gname])
-					poison_total += breath.gas[gname]
+			for(var/gas_type, gas_amount in breath.gas)
+				if(poison_types[gas_type])
+					poison_total += gas_amount
 		if(((poison_total/breath.total_moles)*breath_pressure) > safe_toxins_max)
 			owner.toxins_alert = 1
 

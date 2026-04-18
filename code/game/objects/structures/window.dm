@@ -11,7 +11,9 @@
 	obj_flags = OBJ_FLAG_ROTATABLE | OBJ_FLAG_MOVES_UNSUPPORTED
 	alpha = 180
 	material = /decl/material/solid/glass
-	rad_resistance_modifier = 0.5
+	rad_resistance_modifier = 1
+	weight = 80
+	pull_coefficient = 0.05
 	atmos_canpass = CANPASS_PROC
 	handle_generic_blending = TRUE
 	hitsound = 'sound/effects/Glasshit.ogg'

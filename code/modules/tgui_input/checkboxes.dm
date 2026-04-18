@@ -64,7 +64,7 @@
 
 /datum/tgui_checkbox_input/Destroy(force, ...)
 	SStgui.close_uis(src)
-	QDEL_NULL(items)
+	items.Cut()
 	return ..()
 
 /datum/tgui_checkbox_input/proc/wait()
@@ -82,7 +82,7 @@
 	closed = TRUE
 
 /datum/tgui_checkbox_input/tgui_state(mob/user)
-	return GLOB.tgui_always_state
+	return global.tgui_always_state
 
 /datum/tgui_checkbox_input/tgui_data(mob/user)
 	var/list/data = list()

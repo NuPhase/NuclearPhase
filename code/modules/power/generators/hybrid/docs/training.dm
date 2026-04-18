@@ -16,6 +16,6 @@
 	Adjust the turbine load bank(located in electrical center) to the desired load from the chart:<BR>\
 	Operations training - 100MW<BR>\
 	Normal training     - 500MW<BR>\
-	Exam training       - 980MW<BR>\
+	Exam training       - 700MW<BR>\
 	<BR>\
 	"

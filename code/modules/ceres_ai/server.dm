@@ -13,6 +13,7 @@
 	var/corruption = 0
 
 /obj/machinery/ai_server/fail_roundstart()
+	. = ..()
 	if(prob(SSticker.mode.difficulty))
 		set_corruption(1)
 	else

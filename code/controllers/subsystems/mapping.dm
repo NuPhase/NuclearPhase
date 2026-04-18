@@ -73,6 +73,13 @@ SUBSYSTEM_DEF(mapping)
 	for(var/datum/map_template/MT as anything in get_all_template_instances())
 		register_map_template(MT)
 
+	// Load any queued map template markers.
+	for(var/obj/abstract/landmark/map_load_mark/queued_mark in queued_markers)
+		queued_mark.load_subtemplate()
+		if(!QDELETED(queued_mark)) // for if the tile that lands on the landmark is a no-op tile
+			qdel(queued_mark)
+	queued_markers.Cut()
+
 	// Populate overmap.
 	if(length(global.using_map.overmap_ids))
 		for(var/overmap_id in global.using_map.overmap_ids)
@@ -114,6 +121,9 @@ SUBSYSTEM_DEF(mapping)
 #ifdef UNIT_TEST
 	set_config_value(/decl/config/toggle/roundstart_level_generation, FALSE) //#FIXME: Shouldn't this be set before running level_data/setup_level_data()?
 #endif
+
+	// Create the interior Z-level in case we need it later.
+	get_next_interior_turf()
 
 	. = ..()
 
@@ -381,3 +391,10 @@ SUBSYSTEM_DEF(mapping)
 /hook/roundstart/proc/start_processing_all_planets()
 	SSmapping.start_processing_all_planets()
 	return TRUE
+
+// Used for multitile vehicle interiors.
+/datum/controller/subsystem/mapping/proc/get_next_interior_turf()
+	if(!SSmapping.interior_zlevel)
+		var/datum/level_data/interior_level_data = SSmapping.increment_world_z_size(/datum/level_data) // todo: interior z-level subtype
+		SSmapping.interior_zlevel = locate(9, 9, interior_level_data.level_z)
+	return SSmapping.interior_zlevel

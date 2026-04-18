@@ -32,7 +32,7 @@
 		return TRUE
 	return FALSE
 
-#define IDEAL_EXHAUST_TEMP 390
+#define IDEAL_EXHAUST_TEMP 375
 /datum/reactor_control_system/proc/control_turbine_rpm()
 	var/obj/machinery/reactor_button/rswitch/current_switch
 	var/rpm_difference = 0
@@ -85,15 +85,6 @@
 	current_switch.update_icon(turbine1.feeder_valve_openage)
 	current_switch = reactor_buttons["turbine2"]
 	current_switch.update_icon(turbine2.feeder_valve_openage)
-
-	generator1.connected = FALSE
-	generator2.connected = FALSE
-	current_switch = reactor_buttons["generator1"]
-	current_switch.state = 1
-	current_switch.do_action()
-	current_switch = reactor_buttons["generator2"]
-	current_switch.state = 1
-	current_switch.do_action()
 
 	current_switch = reactor_buttons["TURB V-BYPASS"]
 	current_switch.state = 0

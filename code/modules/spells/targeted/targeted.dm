@@ -99,8 +99,8 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 			possible_targets += target
 
 		if(spell_flags & SELECTABLE)
-			for(var/i = 1; i<=max_targets, i++)
-				if(!possible_targets.len)
+			for(var/i in 1 to max_targets)
+				if(!length(possible_targets))
 					break
 				var/mob/M = input(user, "Choose the target for the spell.", "Targeting") as null|mob in possible_targets
 				if(!M)
@@ -111,13 +111,11 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 				targets += M
 				possible_targets -= M
 		else
-			for(var/i=1,i<=max_targets,i++)
-				if(!possible_targets.len)
+			for(var/i in 1 to max_targets)
+				if(!length(possible_targets))
 					break
 				if(target_ignore_prev)
-					var/target = pick(possible_targets)
-					possible_targets -= target
-					targets += target
+					targets += pick_n_take(possible_targets)
 				else
 					targets += pick(possible_targets)
 

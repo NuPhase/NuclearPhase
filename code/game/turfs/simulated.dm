@@ -1,9 +1,6 @@
 /turf/simulated
 	name = "station"
-	initial_gas = list(
-		/decl/material/gas/oxygen = MOLES_O2STANDARD,
-		/decl/material/gas/nitrogen = MOLES_N2STANDARD
-	)
+	initial_gas = GAS_STANDARD_AIRMIX
 	open_turf_type = /turf/simulated/open
 
 	var/wet = 0

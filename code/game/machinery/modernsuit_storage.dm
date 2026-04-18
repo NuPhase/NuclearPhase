@@ -22,6 +22,7 @@
 
 	stat_immune = 0
 	failure_chance = 1
+	fail_critical = TRUE
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	base_type = /obj/machinery/modernsuit_storage
@@ -246,6 +247,7 @@
 	return
 
 /obj/machinery/modernsuit_storage/fail_roundstart()
+	. = ..()
 	locked = TRUE
 
 /obj/machinery/modernsuit_storage/research_cold/Initialize()

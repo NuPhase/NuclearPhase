@@ -10,7 +10,7 @@
  * and view for robots.
  */
 
-GLOBAL_DATUM_INIT(tgui_default_state, /datum/ui_state/default, new)
+var/global/datum/ui_state/default/tgui_default_state = new
 
 /datum/ui_state/default/can_use_topic(src_object, mob/user)
 	return user.tgui_default_can_use_topic(src_object) // Call the individual mob-overridden procs.
