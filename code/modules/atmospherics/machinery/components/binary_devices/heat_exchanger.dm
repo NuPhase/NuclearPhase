@@ -44,7 +44,7 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 /obj/machinery/atmospherics/binary/heat_exchanger/Process()
 	. = ..()
 
-	if(!engaged || !connected || !air1.total_moles)
+	if(!engaged || !connected?.air1.total_moles || !air1.total_moles)
 		return
 	// We are the processing side.
 	// We need to see how much energy is available, then how much we need, and then apply that
@@ -65,17 +65,17 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 
 	var/latent_heat_energy = 0
 	var/latent_heat_capacity = 0
-	var/list/all_fluid = air1.get_fluid()
+	var/alist/all_fluid = air1.get_fluid()
 	if(heating)
-		for(var/f_type in all_fluid)
+		for(var/f_type, f_amount in all_fluid)
 			var/decl/material/mat = GET_DECL(f_type)
 			if(air1.temperature < mat.boiling_point && wanted_temperature > mat.boiling_point)
-				latent_heat_energy += all_fluid[f_type] * mat.latent_heat
+				latent_heat_energy += f_amount * mat.latent_heat
 	else
-		for(var/f_type in all_fluid)
+		for(var/f_type, f_amount in all_fluid)
 			var/decl/material/mat = GET_DECL(f_type)
 			if(air1.temperature > mat.boiling_point && wanted_temperature < mat.boiling_point)
-				latent_heat_energy -= all_fluid[f_type] * mat.latent_heat
+				latent_heat_energy -= f_amount * mat.latent_heat
 	latent_heat_capacity = latent_heat_energy / air1.total_moles
 
 	var/connected_latent_heat_energy = 0
