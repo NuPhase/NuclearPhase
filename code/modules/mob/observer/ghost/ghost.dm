@@ -148,10 +148,7 @@ Works together with spawning an observer, noted above.
 		var/mob/observer/ghost/G = teleop
 		if(G.admin_ghosted)
 			return
-	if(ghosting_now)
-		return
 	if(key)
-		ghosting_now = TRUE
 		hide_fullscreens()
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse

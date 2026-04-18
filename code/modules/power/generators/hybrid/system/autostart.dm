@@ -48,6 +48,7 @@
 	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 2, 0)
 	R.containment_field.adjust_gas(/decl/material/solid/metal/depleted_uranium, 0.01, 0)
 	R.containment_field.temperature = 215 MEGAKELVIN
+	R.containment_field.update_values()
 	R.fast_neutrons = 0.0007
 	R.moderator_position = 0
 
