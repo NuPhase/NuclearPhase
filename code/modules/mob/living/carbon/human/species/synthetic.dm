@@ -24,89 +24,13 @@ We have a very powerful computer system that allows our neural network to fully 
 		dyspressure = 0
 		mcv = 0
 
-/mob/living/carbon/human/synthetic/setup(var/datum/dna/new_dna = null)
-	dna = new_dna
-
-	set_species()
-
-	if(new_dna)
-		set_real_name(new_dna.real_name)
-	else
-		try_generate_default_name()
-
-	species.handle_pre_spawn(src)
-	if(!LAZYLEN(get_external_organs()))
-		species.create_missing_organs(src) //Syncs DNA when adding organs
-	apply_species_cultural_info()
-	apply_species_appearance()
-	species.handle_post_spawn(src)
-
-	UpdateAppearance() //Apply dna appearance to mob, causes DNA to change because filler values are regenerated
-
+/mob/living/carbon/human/synthetic/setup(var/species_name = null, var/datum/dna/new_dna = null)
+	. = ..(species_name = /decl/species/human/synth::name, new_dna = new_dna)
 	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] skin looks unnaturally clean."), DESCRIPTOR_CLEAN)
 	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] smells like fresh plastic."), DESCRIPTOR_TRAIT)
 
 /mob/living/carbon/human/synthetic/set_species(var/new_species_name, var/new_bodytype = null)
-	var/new_species = GET_DECL(/decl/species/human/synth)
-	if(!new_species)
-		CRASH("set_species on mob '[src]' was passed a bad species name!")
-
-	//Handle old species transition
-	if(species)
-		species.remove_base_auras(src)
-		species.remove_inherent_verbs(src)
-
-	//Update our species
-	species = new_species
-	if(dna)
-		dna.species = new_species_name
-	holder_type = null
-	if(species.holder_type)
-		holder_type = species.holder_type
-	maxHealth = species.total_health
-	mob_size = species.mob_size
-	remove_extension(src, /datum/extension/armor)
-	if(species.natural_armour_values)
-		set_extension(src, /datum/extension/armor, species.natural_armour_values)
-
-	var/decl/pronouns/new_pronouns = get_pronouns_by_gender(get_sex())
-	if(!istype(new_pronouns) || !(new_pronouns in species.available_pronouns))
-		new_pronouns = species.default_pronouns
-		set_gender(new_pronouns.name)
-
-	//Handle bodytype
-	if(!new_bodytype)
-		new_bodytype = species.get_bodytype_by_pronouns(new_pronouns)
-	set_bodytype(new_bodytype, FALSE)
-
-	available_maneuvers = species.maneuvers.Copy()
-
-	meat_type =     species.meat_type
-	meat_amount =   species.meat_amount
-	skin_material = species.skin_material
-	skin_amount =   species.skin_amount
-	bone_material = species.bone_material
-	bone_amount =   species.bone_amount
-
-	full_prosthetic = null //code dum thinks ur robot always
-	default_walk_intent = null
-	default_run_intent = null
-	move_intent = null
-	move_intents = species.move_intents.Copy()
-	set_move_intent(GET_DECL(move_intents[1]))
-	if(!istype(move_intent))
-		set_next_usable_move_intent()
-	update_emotes()
-
-	// Update codex scannables.
-	if(species.secret_codex_info)
-		var/datum/extension/scannable/scannable = get_or_create_extension(src, /datum/extension/scannable)
-		scannable.associated_entry = "[lowertext(species.name)] (species)"
-		scannable.scan_delay = 5 SECONDS
-	else if(has_extension(src, /datum/extension/scannable))
-		remove_extension(src, /datum/extension/scannable)
-
-	return TRUE
+	return ..(/decl/species/human/synth::name, new_bodytype)
 
 /mob/living/carbon/human/synthetic/handle_mutations_and_radiation()
 	if(radiation)
