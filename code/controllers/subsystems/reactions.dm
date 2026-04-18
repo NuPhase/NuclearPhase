@@ -188,7 +188,10 @@ SUBSYSTEM_DEF(reactions)
 	The escape fraction contributes to var/escaped_n which is used in some places
 */
 
-/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(list/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons)
+/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(alist/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons, handle_escape = TRUE)
+	if((slow_neutrons + fast_neutrons) == 0)
+		return list(moles, temperature, fast_neutrons, slow_neutrons)
+
 	var/thermal_energy = temperature * heat_capacity
 	var/radial_distance = sphere_radius_from_volume(volume)
 
@@ -212,11 +215,15 @@ SUBSYSTEM_DEF(reactions)
 	var/total_neutrons = fast_neutrons + slow_neutrons
 	var/n_fission = z_fission * total_neutrons
 	var/n_absorb = z_absorb * total_neutrons
-	var/n_escape = z_escape * total_neutrons
+	var/fast_absorb_fraction
 
-	var/fast_absorb_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
-	fast_neutrons -= fast_absorb_fraction * n_escape
-	slow_neutrons -= (1 - fast_absorb_fraction) * n_escape
+	if(handle_escape)
+		fast_absorb_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
+		var/n_escape = z_escape * total_neutrons
+		fast_neutrons -= fast_absorb_fraction * n_escape
+		slow_neutrons -= (1 - fast_absorb_fraction) * n_escape
+		if((slow_neutrons + fast_neutrons) == 0) // all escaped
+			return list(moles, temperature, fast_neutrons, slow_neutrons)
 
 	var/list/fissile_moles = list()
 	var/fissile_total = 0
@@ -236,6 +243,7 @@ SUBSYSTEM_DEF(reactions)
 		slow_neutrons -= (1 - fast_fraction) * fission_moles
 		fast_neutrons += mat.fission_neutrons * fission_moles
 		thermal_energy += mat.fission_energy * fission_moles
+		moles[mat_type] -= fission_moles
 		if(mat.fission_products)
 			for(var/waste_type in mat.fission_products)
 				moles[waste_type] += mat.fission_products[waste_type] * fission_moles
@@ -244,6 +252,7 @@ SUBSYSTEM_DEF(reactions)
 	for(var/mat_type in moles)
 		total_moles += moles[mat_type]
 
+	fast_absorb_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
 	for(var/mat_type in moles)
 		var/decl/material/mat = GET_DECL(mat_type)
 		var/fraction = moles[mat_type] / total_moles
@@ -251,6 +260,7 @@ SUBSYSTEM_DEF(reactions)
 		fast_neutrons -= fast_absorb_fraction * absorb_moles
 		slow_neutrons -= (1 - fast_absorb_fraction) * absorb_moles
 		if(mat.absorption_products)
+			moles[mat_type] -= absorb_moles
 			for(var/waste_type in mat.absorption_products)
 				moles[waste_type] += mat.absorption_products[waste_type] * absorb_moles
 
@@ -261,6 +271,7 @@ SUBSYSTEM_DEF(reactions)
 		var/decay_moles = moles[mat_type] * mat.neutron_interactions["slow"][INTERACTION_DECAY]
 		fast_neutrons += mat.fission_neutrons * decay_moles
 		thermal_energy += mat.fission_energy * decay_moles
+		moles[mat_type] -= decay_moles
 		if(mat.fission_products)
 			for(var/waste_type in mat.fission_products)
 				moles[waste_type] += mat.fission_products[waste_type] * decay_moles
@@ -269,7 +280,7 @@ SUBSYSTEM_DEF(reactions)
 	return list(moles, temperature, fast_neutrons, slow_neutrons)
 
 // Goes through all moles and constructs an average probability per cm3
-/datum/controller/subsystem/reactions/proc/get_average_cross_section(list/moles, reaction_type, fast_neutrons, slow_neutrons, volume)
+/datum/controller/subsystem/reactions/proc/get_average_cross_section(alist/moles, reaction_type, fast_neutrons, slow_neutrons, volume)
 	var/total_moles = 0
 	for(var/mat_type in moles)
 		total_moles += moles[mat_type]
@@ -292,16 +303,13 @@ SUBSYSTEM_DEF(reactions)
 	var/fast_neutrons = 0.01
 	var/slow_neutrons = 0
 	var/temperature = T20C
+	var/datum/gas_mixture/constant_heat_capacity/xgm_testbed = new(100, T20C, 1, alist(/decl/material/solid/metal/depleted_uranium = 85, /decl/material/solid/metal/uranium = 15))
+	xgm_testbed.heat_capacity = 10000000
 	for(var/i=1, i<100, i++)
-		var/list/moles = list(
-			/decl/material/solid/metal/depleted_uranium = 85,
-			/decl/material/solid/metal/uranium = 15
-			)
-		var/list/react_result = process_reaction_nuclear(moles, temperature, 10000000, 100, fast_neutrons, slow_neutrons)
-		temperature = react_result[2]
-		fast_neutrons = react_result[3]
-		slow_neutrons = react_result[4]
-		to_chat(usr, "T: [round(react_result[2])] | FN: [round(react_result[3], 0.0001)] | SN: [round(react_result[4], 0.0001)]")
+		var/list/react_result = xgm_testbed.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+		fast_neutrons = react_result["fast_neutrons_changed"]
+		slow_neutrons = react_result["slow_neutrons_changed"]
+		to_chat(usr, "T: [round(xgm_testbed.temperature)] | FN: [round(react_result["fast_neutrons_changed"], 0.0001)] | SN: [round(react_result["slow_neutrons_changed"], 0.0001)]")
 	to_chat(usr, "--------------------")
 	fast_neutrons = 0.01
 	slow_neutrons = 0

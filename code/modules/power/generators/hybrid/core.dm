@@ -113,12 +113,13 @@
 #undef ELM_HEAT_LOSS_COEF
 
 /obj/machinery/power/hybrid_reactor/Process()
-	process_fusion(containment_field)
-	var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
-	if(returned_list)
-		slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
-		fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
-	process_plasma_instability()
+	if(containment_field.total_moles) // Don't process if we don't have anything
+		process_fusion(containment_field)
+		var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons, FALSE)
+		if(returned_list)
+			slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
+			fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
+		process_plasma_instability()
 
 	handle_control_panels()
 
@@ -169,10 +170,10 @@
 #define RADIATIVE_LOSS_K 1070000
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	if(slow_neutrons || fast_neutrons)
-		var/slow_neutrons_lost = sqrt(slow_neutrons) * (1.001 - reflector_position)
-		var/fast_neutrons_lost = sqrt(fast_neutrons) * (1.001 - reflector_position)
-		slow_neutrons -= slow_neutrons_lost
-		fast_neutrons -= fast_neutrons_lost
+		var/slow_neutrons_lost = slow_neutrons * (1.01 - reflector_position)
+		var/fast_neutrons_lost = fast_neutrons * (1.01 - reflector_position)
+		slow_neutrons -= min(slow_neutrons_lost, slow_neutrons)
+		fast_neutrons -= min(fast_neutrons_lost, fast_neutrons)
 
 	if(fast_neutrons)
 		var/fast_neutrons_moderated = sqrt(fast_neutrons) * REACTOR_MODERATOR_POWER * moderator_position * blanket_integrity

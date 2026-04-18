@@ -898,7 +898,7 @@ var/decl/material/boil_mat = null
 	return rate_per_volume * container.volume
 
 /decl/material/proc/get_nuclear_cross_section(moles, reaction_type, slow_neutrons, fast_neutrons, volume)
-	if(!neutron_interactions["fast"])
+	if(!neutron_interactions || !neutron_interactions["fast"])
 		return 0
 
 	var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
