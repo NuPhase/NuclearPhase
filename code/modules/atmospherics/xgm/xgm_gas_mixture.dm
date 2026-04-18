@@ -400,7 +400,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 	if(amount < 0)
 		PRINT_STACK_TRACE("Negative value supplied to remove()")
 		return
-	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
+	amount = min(amount, get_total_moles()) //Can not take more air than the gas mixture has!
 	if(amount <= 0)
 		return null
 
@@ -416,23 +416,23 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		if(solids[g])
 			moles_taken = min(solids[g], moles_left_to_remove)
 			solids[g] -= moles_taken/group_multiplier
-			moles_left_to_remove -= moles_taken
+			moles_left_to_remove -= moles_taken * group_multiplier
 			new_solids[g] = moles_taken
 		if(0 >= moles_left_to_remove)
 			continue
 		if(liquids[g])
 			moles_taken = min(liquids[g], moles_left_to_remove)
 			liquids[g] -= moles_taken/group_multiplier
-			moles_left_to_remove -= moles_taken
+			moles_left_to_remove -= moles_taken * group_multiplier
 			new_liquids[g] = moles_taken
 		if(0 >= moles_left_to_remove)
 			continue
 		moles_taken = min(gas[g], moles_left_to_remove)
 		gas[g] -= moles_taken/group_multiplier
-		moles_left_to_remove -= moles_taken
+		moles_left_to_remove -= moles_taken * group_multiplier
 		new_gas[g] = moles_taken
 		if(moles_left_to_remove >= 0.01)
-			PRINT_STACK_TRACE("Fluid loss in gas_mixture/remove()")
+			PRINT_STACK_TRACE("Fluid loss of [moles_left_to_remove]mol in gas_mixture/remove()")
 	// todo: may need to set removed.temperature here if the update_values in New() messed it up before we added gases
 
 	if(update)
@@ -692,6 +692,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 			var/moles_to_transfer = pressure_diff / pressure_per_mole * share_ratio
 			var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
 			other.merge(taken_gas)
+			return compare(other)
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * temperature / volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = other_pressure / pressure_coeff
 		var/free_moles = (total_moles * group_multiplier) - minimum_moles_to_keep

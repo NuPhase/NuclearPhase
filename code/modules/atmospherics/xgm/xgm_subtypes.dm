@@ -101,7 +101,7 @@
 	if(amount < 0)
 		PRINT_STACK_TRACE("Negative value supplied to remove()")
 		return
-	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
+	amount = min(amount, get_total_moles()) //Can not take more air than the gas mixture has!
 	if(amount <= 0)
 		return null
 
@@ -116,21 +116,21 @@
 		var/moles_taken
 		if(solids[g])
 			moles_taken = min(solids[g], moles_left_to_remove)
-			moles_left_to_remove -= moles_taken
+			moles_left_to_remove -= moles_taken * group_multiplier
 			new_solids[g] = moles_taken
 		if(0 >= moles_left_to_remove)
 			continue
 		if(liquids[g])
 			moles_taken = min(liquids[g], moles_left_to_remove)
-			moles_left_to_remove -= moles_taken
+			moles_left_to_remove -= moles_taken * group_multiplier
 			new_liquids[g] = moles_taken
 		if(0 >= moles_left_to_remove)
 			continue
 		moles_taken = min(gas[g], moles_left_to_remove)
-		moles_left_to_remove -= moles_taken
+		moles_left_to_remove -= moles_taken * group_multiplier
 		new_gas[g] = moles_taken
 		if(moles_left_to_remove >= 0.01)
-			PRINT_STACK_TRACE("Fluid loss in gas_mixture/surface/remove()")
+			PRINT_STACK_TRACE("Fluid loss of [moles_left_to_remove]mol in gas_mixture/surface/remove()")
 
 	if(update)
 		removed.update_values()
