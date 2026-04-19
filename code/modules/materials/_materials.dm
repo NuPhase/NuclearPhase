@@ -833,6 +833,7 @@ var/decl/material/boil_mat = null
 
 	var/list/slow_list = neutron_interactions["slow"]
 	var/energy_delta = 0
+	var/our_amt = (container.solids[type] + container.liquids[type] + container.gas[type])
 
 	for(var/reaction_type in slow_list)
 		switch(reaction_type)
@@ -843,8 +844,7 @@ var/decl/material/boil_mat = null
 				slow_neutrons += scattered_neutrons
 			if(INTERACTION_ABSORPTION)
 				var/absorbed_neutrons = get_nuclear_reaction_rate(container, INTERACTION_ABSORPTION, slow_neutrons, fast_neutrons)
-				var/list/all_fluid = container.get_fluid()
-				absorbed_neutrons = min((fast_neutrons + slow_neutrons)*0.05, absorbed_neutrons, all_fluid[src.type])
+				absorbed_neutrons = min((fast_neutrons + slow_neutrons)*0.05, absorbed_neutrons, our_amt)
 				fast_neutrons -= min(absorbed_neutrons, fast_neutrons) * 0.5
 				slow_neutrons -= min(absorbed_neutrons, slow_neutrons) * 0.5
 				energy_delta += absorbed_neutrons * SLOW_NEUTRON_ENERGY
@@ -854,8 +854,7 @@ var/decl/material/boil_mat = null
 						container.adjust_gas(abs_type, absorbed_neutrons * absorption_products[abs_type], FALSE)
 			if(INTERACTION_FISSION)
 				var/fission_reactions = get_nuclear_reaction_rate(container, INTERACTION_FISSION, slow_neutrons, fast_neutrons)
-				var/list/all_fluid = container.get_fluid()
-				fission_reactions = min(all_fluid[src.type], fission_reactions, fast_neutrons + slow_neutrons)
+				fission_reactions = min(our_amt, fission_reactions, fast_neutrons + slow_neutrons)
 				var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
 				slow_neutrons -= fission_reactions * (1 - interpolation_weight)
 				fast_neutrons -= fission_reactions * interpolation_weight
@@ -865,9 +864,8 @@ var/decl/material/boil_mat = null
 				fast_neutrons += fission_reactions * fission_neutrons
 				energy_delta += fission_reactions * fission_energy
 			if(INTERACTION_DECAY)
-				var/list/all_fluid = container.get_fluid()
-				var/decayed_amount = all_fluid[src.type] * neutron_interactions["slow"][INTERACTION_DECAY]
-				decayed_amount = min(all_fluid[src.type], decayed_amount)
+				var/decayed_amount = our_amt * neutron_interactions["slow"][INTERACTION_DECAY]
+				decayed_amount = min(our_amt, decayed_amount)
 				container.adjust_gas(src.type, decayed_amount * -1, FALSE)
 				for(var/waste_type in fission_products)
 					container.adjust_gas(waste_type, decayed_amount*fission_products[waste_type], FALSE)
@@ -888,8 +886,7 @@ var/decl/material/boil_mat = null
 	var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
 	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
 
-	var/list/all_fluid = container.get_fluid()
-	var/target_density = all_fluid[src.type] / container.volume
+	var/target_density = (container.solids[type] + container.liquids[type] + container.gas[type]) / container.volume
 	var/macro_xs = target_density * actual_cross_section
 
 	var/slow_density = slow_neutrons / container.volume

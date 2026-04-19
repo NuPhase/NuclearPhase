@@ -80,17 +80,17 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 
 	var/connected_latent_heat_energy = 0
 	var/connected_latent_heat_capacity = 0
-	var/list/connected_fluid = connected.air1.get_fluid()
+	var/alist/connected_fluid = connected.air1.get_fluid()
 	if(connected.heating)
-		for(var/f_type in connected_fluid)
+		for(var/f_type, amt in connected_fluid)
 			var/decl/material/mat = GET_DECL(f_type)
 			if(connected.air1.temperature < mat.boiling_point && wanted_temperature > mat.boiling_point)
-				connected_latent_heat_energy += connected_fluid[f_type] * mat.latent_heat
+				connected_latent_heat_energy += amt * mat.latent_heat
 	else
-		for(var/f_type in connected_fluid)
+		for(var/f_type, amt in connected_fluid)
 			var/decl/material/mat = GET_DECL(f_type)
 			if(connected.air1.temperature > mat.boiling_point && connected.minimum_temperature < mat.boiling_point)
-				connected_latent_heat_energy -= connected_fluid[f_type] * mat.latent_heat
+				connected_latent_heat_energy -= amt * mat.latent_heat
 	connected_latent_heat_capacity = connected_latent_heat_energy / connected.air1.total_moles
 
 	// If this is negative, then give energy to connected. If positive, take from connected

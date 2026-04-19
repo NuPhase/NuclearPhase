@@ -20,8 +20,7 @@
 	ratio = min(ratio, 1)
 	var/datum/gas_mixture/removed = new(_volume = volume * group_multiplier / out_group_multiplier, _temperature = temperature, _group_multiplier = out_group_multiplier)
 	var/alist/removed_gas_list = removed.gas
-	var/list/all_fluid = get_fluid()
-	for(var/gasid, amount in all_fluid)
+	for(var/gasid, amount in get_fluid())
 		removed_gas_list[gasid] = (amount * ratio * group_multiplier / out_group_multiplier)
 	removed.update_values()
 	return removed
