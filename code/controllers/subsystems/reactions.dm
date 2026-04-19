@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(reactions)
 	The escape fraction contributes to var/escaped_n which is used in some places
 */
 
-/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(alist/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons, handle_escape = TRUE)
+/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(alist/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons, handle_escape = TRUE, add_absorbption)
 	if((slow_neutrons + fast_neutrons) == 0)
 		return list(moles, temperature, fast_neutrons, slow_neutrons)
 
@@ -207,12 +207,15 @@ SUBSYSTEM_DEF(reactions)
 	if(!fission_prob)
 		return list(moles, temperature, fast_neutrons, slow_neutrons)
 
+	if(add_absorbption)
+		absorb_prob *= add_absorbption
+
+	var/total_neutrons = fast_neutrons + slow_neutrons
 	var/euler_exp = EULER**(-(absorb_prob+fission_prob)*radial_distance)
 	var/z_fission = (fission_prob/(absorb_prob+fission_prob)) * (1-euler_exp)
 	var/z_absorb = (absorb_prob/(absorb_prob+fission_prob)) * (1-euler_exp)
 	var/z_escape = euler_exp
 
-	var/total_neutrons = fast_neutrons + slow_neutrons
 	var/n_fission = z_fission * total_neutrons
 	var/n_absorb = z_absorb * total_neutrons
 	var/fast_absorb_fraction

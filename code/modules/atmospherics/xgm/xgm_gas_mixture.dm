@@ -870,7 +870,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 /datum/gas_mixture/proc/get_taken_volume()
 	return volume - available_volume
 
-/datum/gas_mixture/proc/handle_nuclear_reactions(slow_neutrons, fast_neutrons, handle_escape = TRUE)
+/datum/gas_mixture/proc/handle_nuclear_reactions(slow_neutrons, fast_neutrons, handle_escape = TRUE, add_absorbption)
 	var/alist/all_fluid = get_fluid()
 	if(!length(all_fluid))
 		return list(
@@ -878,10 +878,10 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		"fast_neutrons_changed" = fast_neutrons
 	)
 
-	var/list/react_list = SSreactions.process_reaction_nuclear(all_fluid, temperature, heat_capacity(), volume, fast_neutrons, slow_neutrons, handle_escape)
+	var/list/react_list = SSreactions.process_reaction_nuclear(all_fluid.Copy(), temperature, heat_capacity(), volume, fast_neutrons, slow_neutrons, handle_escape, add_absorbption)
 	var/alist/result_fluid = react_list[1]
 
-	var/list/combined_list = result_fluid.Copy()
+	var/alist/combined_list = result_fluid.Copy()
 
 	for(var/f_type in all_fluid)
 		if((f_type in combined_list))
@@ -891,7 +891,9 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 	for(var/f_type in combined_list)
 		if(result_fluid[f_type] == all_fluid[f_type]) // no change
 			continue
-		var/difference = result_fluid[f_type] - all_fluid[f_type]
+		var/t1 = result_fluid[f_type]
+		var/t2 = all_fluid[f_type]
+		var/difference = t1 - t2
 		adjust_gas(f_type, difference, FALSE)
 
 	temperature = react_list[2]
