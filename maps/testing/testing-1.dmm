@@ -9,21 +9,8 @@
 /obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark,
 /area/hallway)
-"bd" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "bn" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer1{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"br" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/blue/layer1{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/monotile,
@@ -62,17 +49,6 @@
 /obj/machinery/cardiac_monitor,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"cR" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/helium{
-	start_pressure = 8000;
-	start_temperature = 700;
-	initial_gas = list(/decl/material/solid/metal/copper=0.001)
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "da" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
 	dir = 1
@@ -84,9 +60,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "dp" = (
-/obj/machinery/atmospherics/binary/pump/adv{
-	dir = 4
-	},
+/obj/machinery/multitile/research_reactor,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "dt" = (
@@ -125,12 +99,6 @@
 /obj/machinery/ai_mainframe,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"eC" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "eF" = (
 /obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/monotile,
@@ -144,29 +112,15 @@
 /obj/structure/reagent_dispensers/watertank/newtank,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"fI" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan/layer3{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"gH" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue/layer1{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"gM" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "gO" = (
 /obj/machinery/light/spot{
 	dir = 8
 	},
 /turf/simulated/wall/r_wall,
+/area/hallway)
+"gP" = (
+/obj/machinery/portable_atmospherics/canister/reactor_vessel/heu,
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "gS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer3{
@@ -210,28 +164,12 @@
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer3,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"in" = (
-/obj/machinery/atmospherics/pipe/simple/visible/general{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "ip" = (
 /obj/machinery/processor/cutter,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"iB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "iH" = (
 /obj/machinery/processor/assembler,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"jy" = (
-/obj/machinery/atmospherics/unary/tank/large,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "jB" = (
@@ -283,11 +221,6 @@
 /obj/machinery/portable_atmospherics/canister/water{
 	can_explode = 0
 	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"kn" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "kw" = (
@@ -366,10 +299,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
-"mF" = (
-/obj/machinery/atmospherics/unary/tank/oxygen,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "mS" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/meter,
@@ -391,9 +320,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
 "nb" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 6
-	},
+/obj/machinery/atmospherics/pipe/simple/visible/blue,
+/obj/machinery/meter,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "nr" = (
@@ -420,11 +348,6 @@
 /obj/machinery/portable_atmospherics/canister/argon,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"od" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/blue,
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "ol" = (
 /obj/machinery/fabricator/pipe/filled,
 /turf/simulated/floor/tiled/monotile,
@@ -438,12 +361,6 @@
 "oB" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/gun/projectile/pistol/military_service,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"oH" = (
-/obj/machinery/atmospherics/unary/heat_exchanger{
-	initial_volume = 2000
-	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "oZ" = (
@@ -498,6 +415,10 @@
 /obj/effect/item_spawner/everything,
 /turf/simulated/floor/tiled/dark/monotile,
 /area/hallway)
+"qN" = (
+/obj/machinery/portable_atmospherics/canister/reactor_vessel/srec_breeder,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "qW" = (
 /obj/item/stack/material/shiny/mapped/aluminium/forty,
 /obj/item/stack/material/shiny/mapped/aluminium/forty,
@@ -536,24 +457,6 @@
 /obj/item/storage/box/ammo/shotgunammo,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"rP" = (
-/obj/machinery/atmospherics/omni/filter{
-	tag_north = 1;
-	tag_south = 8;
-	tag_east = 2;
-	tag_filter_gas_south = "gas_carbon_monoxide"
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"sa" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/hydrogen{
-	can_explode = 0
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "sx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer1,
 /turf/simulated/floor/tiled/monotile,
@@ -573,10 +476,6 @@
 /obj/item/chest_tube,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"tb" = (
-/obj/machinery/atmospherics/pipe/manifold4w/visible/blue,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "tc" = (
 /obj/item/stack/ore/ilmenite,
 /obj/item/stack/ore/ilmenite,
@@ -585,15 +484,6 @@
 /area/hallway)
 "tl" = (
 /obj/machinery/atmospherics/unary/debug/infinite_sink,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"tE" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/cyan/layer3{
-	dir = 5
-	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "tK" = (
@@ -613,13 +503,6 @@
 "tZ" = (
 /obj/machinery/material_processing/separator,
 /turf/simulated/floor/tiled/white/monotile,
-/area/hallway)
-"uu" = (
-/obj/machinery/atmospherics/pipe/simple/visible/general{
-	dir = 4
-	},
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "uI" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer1{
@@ -664,24 +547,12 @@
 /obj/item/stack/ore/gold,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
-"vN" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "vZ" = (
 /mob/living/carbon/human{
 	teleop = "aboba"
 	},
 /obj/machinery/light/spot{
 	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"wg" = (
-/obj/machinery/atmospherics/unary/debug/infinite_outlet{
-	fluid_type = /decl/material/liquid/water
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -704,46 +575,15 @@
 /obj/structure/closet/crate/medical/expendables,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"xb" = (
-/obj/machinery/atmospherics/binary/pump/adv/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "xq" = (
 /obj/abstract/level_data_spawner/main_level,
 /turf/simulated/wall/r_wall,
-/area/hallway)
-"xt" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"xB" = (
-/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow,
-/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "xJ" = (
 /obj/item/stack/ore/bauxite,
 /obj/item/stack/ore/bauxite,
 /obj/item/stack/ore/bauxite,
 /turf/simulated/floor/tiled/white/monotile,
-/area/hallway)
-"yj" = (
-/obj/machinery/atmospherics/omni/filter{
-	tag_north = 1;
-	tag_west = 8;
-	tag_filter_gas_west = "methanol";
-	tag_east = 2
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"yk" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan/layer3{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "yn" = (
 /obj/machinery/power/debug_items/infinite_cable_powersink{
@@ -789,18 +629,10 @@
 /obj/structure/reagent_dispensers/barrel/water,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Ac" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Al" = (
 /obj/machinery/atmospherics/binary/heat_exchanger/exchanger_tungsten{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Az" = (
-/obj/machinery/atmospherics/unary/tank/large/oil,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "AI" = (
@@ -809,19 +641,6 @@
 /obj/item/stack/ore/wolfurine,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
-"AJ" = (
-/obj/machinery/atmospherics/unary/freezer{
-	dir = 1;
-	use_power = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"AK" = (
-/obj/machinery/atmospherics/unary/debug/infinite_outlet{
-	fluid_type = /decl/material/gas/carbon_dioxide
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Bo" = (
 /obj/machinery/atmospherics/binary/extruder,
 /turf/simulated/floor/tiled/monotile,
@@ -829,23 +648,14 @@
 "Bs" = (
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"BA" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/black{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"BI" = (
-/obj/machinery/atmospherics/unary/heat_exchanger{
-	dir = 1;
-	initial_volume = 2000
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "BR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer1{
 	dir = 9
 	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"Cs" = (
+/obj/machinery/portable_atmospherics/canister/reactor_vessel/mox,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "CB" = (
@@ -862,11 +672,6 @@
 /obj/machinery/defibrillator,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Dq" = (
-/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow,
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "DA" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/ammo_magazine/rifle,
@@ -878,36 +683,14 @@
 /obj/item/ammo_magazine/rifle,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"DB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "DR" = (
 /obj/machinery/atmospherics/unary/furnace/arc,
 /obj/structure/arc_furnace_overlay,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
-"DT" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/red,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Ed" = (
 /obj/structure/target_stake,
 /obj/item/target,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Ee" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Ej" = (
@@ -934,14 +717,6 @@
 "EM" = (
 /turf/simulated/wall/r_wall,
 /area/hallway)
-"Fo" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Fs" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "FH" = (
 /obj/machinery/atmospherics/unary/debug/infinite_outlet{
 	dir = 1;
@@ -966,16 +741,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"GY" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/blue,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Hi" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Hk" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/storage/firstaid/surgery,
@@ -994,11 +759,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Hs" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan,
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Hv" = (
 /obj/structure/cable/superconductor{
 	icon_state = "4-8"
@@ -1010,18 +770,6 @@
 	dir = 9
 	},
 /obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Il" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Im" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 5
-	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "In" = (
@@ -1045,13 +793,6 @@
 "IB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer3{
 	dir = 10
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"IC" = (
-/obj/machinery/multitile/backup_generator,
-/obj/structure/cable/heavy{
-	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -1098,13 +839,6 @@
 /obj/machinery/light/spot{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"JK" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/cyan/layer3,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "JS" = (
@@ -1158,25 +892,6 @@
 /obj/machinery/light/spot,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Li" = (
-/obj/machinery/atmospherics/unary/heater{
-	set_temperature = 700;
-	use_power = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Ll" = (
-/obj/structure/cable/heavy{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"LG" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "LI" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1186,26 +901,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
-"LR" = (
-/obj/machinery/atmospherics/valve/open{
-	dir = 4
-	},
+"LT" = (
+/obj/machinery/portable_atmospherics/canister/reactor_vessel/uranium,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "LY" = (
 /obj/machinery/material_processing/sifter,
 /turf/simulated/floor/tiled/white/monotile,
-/area/hallway)
-"Mg" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Mj" = (
-/obj/machinery/atmospherics/unary/electrolyzer/on,
-/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Mo" = (
 /obj/machinery/fabricator/industrial/filled,
@@ -1235,26 +937,9 @@
 /obj/item/stack/ore/sphalerite,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
-"Oa" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Oe" = (
-/obj/machinery/atmospherics/pipe/simple/visible/black,
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Oi" = (
 /obj/item/stack/material/strut/mapped/aluminium/thirty,
 /obj/item/stack/material/strut/mapped/aluminium/thirty,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Oo" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
-	dir = 6
-	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "OD" = (
@@ -1262,15 +947,6 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/hallway)
-"OH" = (
-/obj/machinery/atmospherics/omni/filter{
-	tag_north = 8;
-	tag_south = 1;
-	tag_west = 2;
-	tag_filter_gas_north = "gas_oxygen"
-	},
-/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "OI" = (
 /obj/structure/rack,
@@ -1289,16 +965,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"OM" = (
-/obj/machinery/atmospherics/omni/mixer{
-	tag_north = 1;
-	tag_east = 1;
-	tag_west = 2;
-	tag_north_con = 0.667;
-	tag_east_con = 0.333
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "OU" = (
 /obj/machinery/atmospherics/unary/debug/infinite_outlet{
 	dir = 1;
@@ -1312,42 +978,14 @@
 /obj/item/stack/material/puck/mapped/carbon/forty,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Pt" = (
-/obj/machinery/atmospherics/unary/tank/large/nitrogen{
-	filling = list(/decl/material/gas/oxygen=1);
-	start_temperature = 75
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Pv" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Px" = (
-/obj/machinery/atmospherics/omni/filter{
-	tag_north = 2;
-	tag_south = 8;
-	tag_west = 1;
-	tag_east = 8;
-	tag_filter_gas_south = "gas_hydrogen";
-	tag_filter_gas_east = "gas_oxygen"
-	},
+/obj/machinery/atmospherics/pipe/simple/visible/blue,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "PJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer3{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"PL" = (
-/obj/machinery/atmospherics/pipe/manifold/visible,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"PN" = (
-/obj/machinery/atmospherics/unary/tank/large/diesel,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Qc" = (
@@ -1402,24 +1040,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Rt" = (
-/obj/machinery/atmospherics/unary/tank/air{
-	start_pressure = 100
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Ru" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"RQ" = (
-/obj/machinery/atmospherics/valve{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "RV" = (
 /obj/machinery/medical/lung_ventilator,
 /obj/machinery/light/spot{
@@ -1439,12 +1059,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"SD" = (
-/obj/machinery/atmospherics/pipe/simple/visible/black{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "SQ" = (
 /obj/item/arc_electrode/ultrahigh_quality,
 /obj/item/arc_electrode/ultrahigh_quality,
@@ -1453,26 +1067,9 @@
 /obj/item/arc_electrode/ultrahigh_quality,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Tf" = (
-/obj/machinery/atmospherics/unary/freezer{
-	use_power = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Ts" = (
 /obj/machinery/light/spot{
 	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"TK" = (
-/obj/machinery/atmospherics/unary/tank/large/nitrogen,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"TZ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3,
-/obj/machinery/atmospherics/binary/pump/on{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -1495,30 +1092,9 @@
 /obj/abstract/landmark/latejoin,
 /turf/simulated/floor/tiled/dark,
 /area/hallway)
-"Vs" = (
-/obj/machinery/atmospherics/pipe/simple/visible/black{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "VO" = (
 /obj/machinery/atmospherics/binary/pump/adv/large/on{
 	dir = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"VR" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/blue/layer1{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"VU" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 5
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -1526,10 +1102,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"VW" = (
-/obj/machinery/atmospherics/binary/pump/high_power/on/max_pressure,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "VZ" = (
@@ -1593,12 +1165,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
-"XC" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "XE" = (
 /obj/machinery/atmospherics/binary/pump/adv/on{
 	dir = 4
@@ -1611,13 +1177,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"Yu" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow,
-/obj/machinery/meter,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
 "Yv" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3,
+/obj/machinery/atmospherics/unary/debug/infinite_sink{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Zi" = (
@@ -1637,17 +1200,12 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "ZI" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow/layer3,
+/obj/machinery/atmospherics/pipe/simple/visible/red,
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "ZO" = (
 /obj/machinery/medical/blood_circulator,
-/turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"ZY" = (
-/obj/structure/cable/heavy,
-/obj/machinery/power/load_bank/reactor,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "ZZ" = (
@@ -3983,8 +3541,8 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
+LT
+LT
 Bs
 Bs
 Bs
@@ -4106,15 +3664,15 @@ Bs
 Bs
 Bs
 Bs
+dp
+kL
+Pv
+nb
+Zo
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+gP
+gP
 Bs
 Bs
 Bs
@@ -4243,8 +3801,8 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
+Cs
+Cs
 Bs
 Bs
 Bs
@@ -4367,14 +3925,14 @@ Bs
 Bs
 Bs
 Bs
+CB
+CB
+ZI
+Yv
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+qN
+qN
 Bs
 Bs
 Bs
@@ -4626,11 +4184,11 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+dp
+kL
+Pv
+nb
+Zo
 Bs
 Bs
 Bs
@@ -4887,10 +4445,10 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
+CB
+CB
+ZI
+Yv
 Bs
 Bs
 Bs
@@ -5015,16 +4573,16 @@ Bs
 Bs
 Bs
 Bs
-TK
-in
 Bs
 Bs
 Bs
 Bs
 Bs
 Bs
-Az
-Oa
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5147,14 +4705,14 @@ Bs
 Bs
 Bs
 dp
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+kL
 Pv
+nb
+Zo
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5275,16 +4833,16 @@ Bs
 Bs
 Bs
 Bs
-Rt
-PL
 Bs
 Bs
 Bs
 Bs
 Bs
-Ts
 Bs
-Pv
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5406,15 +4964,15 @@ Bs
 Bs
 Bs
 Bs
-uu
-Oo
-Yv
+Bs
+CB
+CB
 ZI
 Yv
-Yv
-Yv
-Yv
-Hi
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5536,8 +5094,8 @@ Bs
 Bs
 Bs
 Bs
-LR
-LR
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5668,10 +5226,10 @@ Bs
 Bs
 Bs
 Bs
-IC
-Ll
-Ll
-ZY
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5792,10 +5350,10 @@ Bs
 Bs
 Bs
 Bs
-uK
-Oe
-BA
-kL
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5924,11 +5482,11 @@ Bs
 Bs
 Bs
 Bs
-SD
 Bs
 Bs
-LR
-LR
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6054,11 +5612,11 @@ Bs
 Bs
 Bs
 Bs
-Vs
-BI
-oH
-Hs
-Mg
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6186,9 +5744,9 @@ Bs
 Bs
 Bs
 Bs
-mF
-Ac
-Ru
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6317,8 +5875,8 @@ Bs
 Bs
 Bs
 Bs
-xb
-Ru
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6446,9 +6004,9 @@ Bs
 Bs
 Bs
 Bs
-Pt
-kn
-Ru
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6577,8 +6135,8 @@ Bs
 Bs
 Bs
 Bs
-bt
-Ru
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6708,7 +6266,7 @@ Bs
 Bs
 Bs
 Bs
-Ru
+Bs
 Bs
 Bs
 Bs
@@ -6818,9 +6376,9 @@ Bs
 Bs
 Ts
 Bs
-gH
-Fs
-Im
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6836,9 +6394,9 @@ Bs
 Bs
 Bs
 Bs
-PN
-vN
-Il
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6948,14 +6506,6 @@ Bs
 Bs
 Bs
 Bs
-br
-Yv
-TZ
-Fs
-VU
-Bs
-jy
-DB
 Bs
 Bs
 Bs
@@ -6967,7 +6517,15 @@ Bs
 Bs
 Bs
 Bs
-sa
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7078,14 +6636,14 @@ Bs
 Bs
 Bs
 Bs
-Ee
-Mj
-tb
-AJ
-XE
 Bs
 Bs
-gM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7208,14 +6766,14 @@ Bs
 Bs
 Bs
 Bs
-Ee
-Mj
-GY
-Tf
-Fo
-Li
-vN
-yj
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7338,14 +6896,14 @@ Bs
 Bs
 Bs
 Bs
-Ee
-Mj
-GY
-Mj
-Yu
-Li
-Dq
-Il
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7466,17 +7024,17 @@ Bs
 Bs
 Bs
 Bs
-AK
-Fs
-VR
-Mj
-od
-nb
-Fo
-Li
-xB
-vN
-cR
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7596,16 +7154,16 @@ Bs
 Bs
 Bs
 Bs
-wg
-Fs
-Hi
-iB
-GY
-eC
-Px
-VW
-OM
-RQ
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7726,16 +7284,16 @@ Bs
 Bs
 Bs
 Bs
-tl
-bd
-LG
-OH
-tb
-rP
-DT
-VW
-uO
-Ru
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7858,14 +7416,14 @@ Bs
 Bs
 Bs
 Bs
-XC
-Fs
-JK
-tE
-xt
 Bs
 Bs
-Mg
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -7991,11 +7549,11 @@ Bs
 Bs
 Bs
 Bs
-yk
-fI
 Bs
-uK
-Fo
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -8125,7 +7683,7 @@ Bs
 Bs
 Bs
 Bs
-RQ
+Bs
 Bs
 Bs
 Bs

@@ -79,8 +79,8 @@
 			INTERACTION_FISSION = 583
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 4,
-			INTERACTION_ABSORPTION = 0.09,
+			INTERACTION_SCATTER = 6,
+			INTERACTION_ABSORPTION = 0.3,
 			INTERACTION_FISSION = 1
 		)
 	)
@@ -128,19 +128,21 @@
 		"slow" = list(
 			INTERACTION_SCATTER = 5,
 			INTERACTION_ABSORPTION = 2,
-			INTERACTION_FISSION = 0.00002
+			INTERACTION_FISSION = 0
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 5,
-			INTERACTION_ABSORPTION = 0.07,
-			INTERACTION_FISSION = 0.3
+			INTERACTION_ABSORPTION = 0.4,
+			INTERACTION_FISSION = 0.2
 		)
 	)
 	fission_products = list(
 		/decl/material/solid/metal/plutonium = 0.8,
 		/decl/material/solid/metal/radium = 0.1,
-		/decl/material/solid/iodine/isotope135 = 0.05
+		/decl/material/solid/iodine/isotope135 = 0.05,
+		/decl/material/liquid/bromide/isotope87 = 0.0006
 	)
+	absorption_products = list(/decl/material/solid/metal/plutonium = 1)
 	fission_heat = 35000
 	fission_energy = 81080100000.0
 	fission_neutrons = 1

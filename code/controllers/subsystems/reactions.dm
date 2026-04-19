@@ -202,7 +202,7 @@ SUBSYSTEM_DEF(reactions)
 	fast_neutrons -= scattered
 	slow_neutrons += scattered
 
-	var/fission_prob = get_average_cross_section(moles, INTERACTION_FISSION, fast_neutrons, slow_neutrons, volume)
+	var/fission_prob = get_average_cross_section(moles, INTERACTION_FISSION, fast_neutrons, slow_neutrons, volume, TRUE)
 	var/absorb_prob = get_average_cross_section(moles, INTERACTION_ABSORPTION, fast_neutrons, slow_neutrons, volume)
 	if(!fission_prob)
 		return list(moles, temperature, fast_neutrons, slow_neutrons)
@@ -283,23 +283,41 @@ SUBSYSTEM_DEF(reactions)
 	return list(moles, temperature, fast_neutrons, slow_neutrons)
 
 // Goes through all moles and constructs an average probability per cm3
-/datum/controller/subsystem/reactions/proc/get_average_cross_section(alist/moles, reaction_type, fast_neutrons, slow_neutrons, volume)
-	var/total_moles = 0
-	for(var/mat_type in moles)
-		total_moles += moles[mat_type]
+/datum/controller/subsystem/reactions/proc/get_average_cross_section(alist/moles, reaction_type, fast_neutrons, slow_neutrons, volume, fissile_only)
+	if(fissile_only)
+		var/list/fissile_moles = list()
+		var/fissile_total = 0
+		for(var/mat_type in moles)
+			var/decl/material/mat = GET_DECL(mat_type)
+			if(!mat.neutron_interactions || !mat.neutron_interactions["slow"][INTERACTION_FISSION])
+				continue
+			fissile_moles[mat_type] = moles[mat_type]
+			fissile_total += moles[mat_type]
 
-	if(total_moles <= 0)
-		return 0
+		var/average_prob_per_cm = 0
+		for(var/mat_type in fissile_moles)
+			var/decl/material/mat = GET_DECL(mat_type)
+			var/mat_prob_cm = mat.get_nuclear_cross_section(fissile_moles, reaction_type, slow_neutrons, fast_neutrons, volume)
+			if(mat_prob_cm)
+				var/fraction = fissile_moles[mat_type] / fissile_total
+				average_prob_per_cm += fraction * mat_prob_cm
+		return average_prob_per_cm
+	else
+		var/total_moles = 0
+		for(var/mat_type in moles)
+			total_moles += moles[mat_type]
 
-	var/average_prob_per_cm = 0
-	for(var/mat_type in moles)
-		var/decl/material/mat = GET_DECL(mat_type)
-		var/mat_prob_cm = mat.get_nuclear_cross_section(moles, reaction_type, fast_neutrons, slow_neutrons, volume)
-		if(mat_prob_cm)
-			var/fraction = moles[mat_type] / total_moles
-			average_prob_per_cm += fraction * mat_prob_cm
+		if(total_moles <= 0)
+			return 0
 
-	return average_prob_per_cm
+		var/average_prob_per_cm = 0
+		for(var/mat_type in moles)
+			var/decl/material/mat = GET_DECL(mat_type)
+			var/mat_prob_cm = mat.get_nuclear_cross_section(moles, reaction_type, fast_neutrons, slow_neutrons, volume)
+			if(mat_prob_cm)
+				var/fraction = moles[mat_type] / total_moles
+				average_prob_per_cm += fraction * mat_prob_cm
+		return average_prob_per_cm
 
 /datum/controller/subsystem/reactions/proc/test_nuclear()
 	to_chat(usr, "--------------------")

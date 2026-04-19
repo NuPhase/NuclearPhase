@@ -902,7 +902,9 @@ var/decl/material/boil_mat = null
 		return 0
 
 	var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
-	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
+	var/slow_cc = neutron_interactions["slow"][reaction_type]
+	var/fast_cc = neutron_interactions["fast"][reaction_type]
+	var/actual_cross_section = Interpolate(slow_cc, fast_cc, interpolation_weight)
 	var/target_density = moles[src.type] / volume
 
 	return target_density * actual_cross_section
