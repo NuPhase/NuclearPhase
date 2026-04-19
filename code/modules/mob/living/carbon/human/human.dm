@@ -1404,6 +1404,8 @@
 	drag_capacity = initial(drag_capacity)
 
 /mob/living/carbon/human/calculate_strength_coefficients()
+	if(!istype(skillset))
+		return ..() // fall back to defaults if our skills haven't been initialized yet
 	pickup_capacity = get_skill_value(SKILL_STRENGTH) * 7
 	drag_capacity = get_skill_value(SKILL_STRENGTH) * 35
 	for(var/obj/item/clothing/C in contents)

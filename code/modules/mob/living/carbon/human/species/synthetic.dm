@@ -26,8 +26,9 @@ We have a very powerful computer system that allows our neural network to fully 
 
 /mob/living/carbon/human/synthetic/setup(var/species_name = null, var/datum/dna/new_dna = null)
 	. = ..(species_name = /decl/species/human/synth::name, new_dna = new_dna)
-	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] skin looks unnaturally clean."), DESCRIPTOR_CLEAN)
-	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] smells like fresh plastic."), DESCRIPTOR_TRAIT)
+	var/decl/pronouns/synth_pronouns = get_pronouns() // the pronouns variable may not be set by this point so we need the helper
+	add_examine_descriptor(SPAN_DESCRIPTION("[synth_pronouns.His] skin looks unnaturally clean."), DESCRIPTOR_CLEAN)
+	add_examine_descriptor(SPAN_DESCRIPTION("[synth_pronouns.His] smells like fresh plastic."), DESCRIPTOR_TRAIT)
 
 /mob/living/carbon/human/synthetic/set_species(var/new_species_name, var/new_bodytype = null)
 	return ..(/decl/species/human/synth::name, new_bodytype)
