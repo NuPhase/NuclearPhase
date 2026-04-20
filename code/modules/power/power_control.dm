@@ -14,7 +14,7 @@
 	var/list/sector_transformers = list() // BUS to SEC A/B/C/D/E
 	var/list/all_transformers = list() // All switchable transformers. Not associative.
 
-	var/list/sector_ids = list("A", "B", "C", "D", "E")
+	var/list/sector_ids = list("A", "B", "C", "D")
 
 /datum/power_control_system/New()
 	. = ..()
@@ -122,8 +122,8 @@
 /datum/power_control_system/proc/assess_gen()
 	var/obj/machinery/power/generator/transformer/switchable/our_trans = feeder_transformers["GEN to BUS"]
 	var/has_active_generator = FALSE
-	for(var/obj/machinery/power/generator/port_gen/our_gen in our_trans.powernet.nodes)
-		if(our_gen.active)
+	for(var/obj/machinery/power/generator/our_gen in our_trans.powernet.nodes)
+		if(our_gen.available_power() > 1000000)
 			has_active_generator = TRUE
 			break
 	if(!has_active_generator)
