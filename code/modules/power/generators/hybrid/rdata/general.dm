@@ -31,6 +31,7 @@
 		"total_gas" = core_air.total_moles,
 		"power_load" = (rcontrol.generator1?.last_load + rcontrol.generator2?.last_load),
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
+		"thermal_power" = rcore.radiative_heat_loss,
 		"neutron_rate" = round(rcore.neutron_rate, 0.01),
 		"energy_rate" = round(rcore.energy_rate, 0.01),
 		"xray_flux" = round(rcore.xray_flux, 0.01),
@@ -83,7 +84,7 @@
 					continue
 				var/decl/material/mat = GET_DECL(mix)
 				. += "[capitalize(mat.gas_name)]: [round(mixture.gas[mix] * mat.molar_mass * 1000, 0.1)]g | [round(mixture.gas[mix] * mat.molar_volume)]ml | [percentage]%"
-			var/totalGas_add_string = "Total mass: [round(mixture.get_mass(), 0.01)]kg"
+			var/totalGas_add_string = "Total mass: [round(mixture.get_mass()*1000, 0.001)]g"
 			. += "[totalGas_add_string]"
 			return
 	return "<span class='warning'>The chamber has no gases!</span>"

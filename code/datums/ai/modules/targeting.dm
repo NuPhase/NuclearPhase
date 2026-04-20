@@ -1,8 +1,9 @@
 //This should find our target MOB
 
 /decl/ai_module/find_target_simple/process(datum/ai/parent)
-	if(world.time > parent.last_seen_mob + AI_TARGET_TIMEOUT)
+	if(parent.mob_target && world.time > parent.last_seen_mob + AI_TARGET_TIMEOUT)
 		parent.mob_target = null // forget about them
+		playsound(parent.body, 'sound/voice/combat_drone/transmit.mp3', 100, 0)
 	for(var/mob/living/L in oview(world.view, parent.body))
 		if(L == parent.mob_target && !L.incapacitated(INCAPACITATION_UNRESISTING))
 			parent.last_seen_mob = world.time
@@ -11,11 +12,13 @@
 			continue
 		parent.mob_target = L
 		parent.last_seen_mob = world.time
+		playsound(parent.body, 'sound/voice/combat_drone/siren.mp3', 100, 0)
 		return TRUE
 
 /decl/ai_module/find_target_ff/process(datum/ai/parent)
-	if(world.time > parent.last_seen_mob + AI_TARGET_TIMEOUT)
+	if(parent.mob_target && world.time > parent.last_seen_mob + AI_TARGET_TIMEOUT)
 		parent.mob_target = null // forget about them
+		playsound(parent.body, 'sound/voice/combat_drone/transmit.mp3', 100, 0)
 	for(var/mob/living/L in oview(world.view, parent.body))
 		if(L == parent.mob_target && !L.incapacitated(INCAPACITATION_UNRESISTING))
 			parent.last_seen_mob = world.time
@@ -26,11 +29,13 @@
 			continue
 		parent.mob_target = L
 		parent.last_seen_mob = world.time
+		playsound(parent.body, 'sound/voice/combat_drone/siren.mp3', 100, 0)
 	return TRUE
 
 /decl/ai_module/find_target_from_list/process(datum/ai/parent) // weakref list
-	if(world.time > parent.last_seen_mob + AI_TARGET_TIMEOUT)
+	if(parent.mob_target && world.time > parent.last_seen_mob + AI_TARGET_TIMEOUT)
 		parent.mob_target = null // forget about them
+		playsound(parent.body, 'sound/voice/combat_drone/transmit.mp3', 100, 0)
 	for(var/mob/living/L in oview(world.view, parent.body))
 		if(L == parent.mob_target && !L.incapacitated(INCAPACITATION_UNRESISTING))
 			parent.last_seen_mob = world.time
@@ -41,5 +46,6 @@
 			continue
 		parent.mob_target = L
 		parent.last_seen_mob = world.time
+		playsound(parent.body, 'sound/voice/combat_drone/siren.mp3', 100, 0)
 		return TRUE
 	return FALSE
