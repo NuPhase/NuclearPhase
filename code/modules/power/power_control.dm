@@ -1,10 +1,10 @@
 #define MODE_NOMINAL  "NOMINAL"  // Steady power supply from turbines.
 #define MODE_NO_MAIN  "BACKUP"   // No turbines, generators provide enough power.
-#define MODE_RESERVE  "BATTERIES"// No generators, running on batteries.
+#define MODE_RESERVE  "RESERVE"// No generators, running on batteries.
 #define MODE_OFFLINE  "OFFLINE"  // No active control measures.
 
 /datum/power_control_system
-	var/mode = MODE_NOMINAL // Current mode of operation
+	var/mode = MODE_NO_MAIN // Current mode of operation
 	var/list/log_messages = list() // All active, non-cleared messages
 	var/list/log_archive = list() // All messages
 
@@ -72,6 +72,7 @@
 		return
 	mode = new_mode
 	make_report("Mode switched to [new_mode]")
+	fcontrol.make_log("Power control reports mode switch to: [new_mode].", LOG_CLASS_SYSTEM)
 	if(new_mode == MODE_OFFLINE)
 		for(var/obj/machinery/power/generator/transformer/switchable/our_trans in all_transformers)
 			our_trans.busy = FALSE

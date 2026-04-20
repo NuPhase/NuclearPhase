@@ -44,6 +44,17 @@
 	var/obj/item/gun/projectile/automatic/snapdragon/robot/nonlethal_rifle
 	var/obj/item/gun/projectile/automatic/smg/robot/lethal_rifle
 
+/mob/living/simple_animal/robot/Life()
+	. = ..()
+	if(!our_ai)
+		return
+	if(our_ai.mob_target)
+		playsound(src, 'sound/voice/combat_drone/processing.mp3', 100, 0)
+
+/mob/living/simple_animal/robot/Move(NewLoc, Dir)
+	. = ..()
+	playsound(src, 'sound/voice/combat_drone/step.mp3', 100)
+
 /mob/living/simple_animal/robot/default_help_interaction(mob/user)
 	. = ..()
 	if(istype(user, /mob/living/carbon/human/synthetic))
@@ -62,6 +73,7 @@
 	if(!our_ai)
 		return
 	user.visible_message(SPAN_NOTICE("[user] directs \the [src] towards \the [over]."))
+	playsound(src, 'sound/voice/combat_drone/confirm.mp3', 100, 0)
 	our_ai.target = over
 	if(ismob(over))
 		our_ai.mob_target = over
@@ -97,7 +109,7 @@
 /mob/living/simple_animal/robot/death(gibbed, deathmessage, show_dead_message)
 	. = ..()
 	QDEL_NULL(our_ai)
-	cell_explosion(get_turf(src), 300, 60)
+	cell_explosion(get_turf(src), 100, 60)
 	qdel(src)
 
 /obj/item/natural_weapon/robot
@@ -123,6 +135,7 @@
 	QDEL_NULL(our_ai)
 	anchored = TRUE
 	update_icon()
+	playsound(src, 'sound/voice/combat_drone/blip2.mp3', 100, 0)
 
 /mob/living/simple_animal/robot/on_update_icon()
 	. = ..()

@@ -14,12 +14,12 @@
 /datum/facility_ai/proc/check_server(obj/machinery/ai_server/target)
 	return target.powered()
 
-// Sets the amount of server power available and updates server_corruption.
+// Sets the amount of server power available and updates corruption_level.
 /datum/facility_ai/proc/check_all_servers()
 	var/working_servers = 0
-	server_corruption = 0
+	corruption_level = 0
 	for(var/obj/machinery/ai_server/target in servers)
-		server_corruption += target.corruption / length(servers)
+		corruption_level += target.corruption / length(servers)
 		if(check_server(target))
 			working_servers++
 	computational_power = working_servers * COMP_POWER_PER_SERVER
