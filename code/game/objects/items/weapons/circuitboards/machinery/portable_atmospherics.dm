@@ -6,7 +6,7 @@
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 2,
 		/obj/item/stock_parts/matter_bin = 2,
-		/obj/item/stock_parts/engine/medium = 1,
+		/obj/item/stock_parts/motor/medium = 1,
 		/obj/item/pipe = 2)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
@@ -29,7 +29,7 @@
 	req_components = list(
 							/obj/item/stock_parts/capacitor = 4,
 							/obj/item/stock_parts/matter_bin = 2,
-							/obj/item/stock_parts/engine/large = 1,
+							/obj/item/stock_parts/motor/large = 1,
 							/obj/item/pipe = 4)
 
 /obj/item/stock_parts/circuitboard/portable_scrubber/huge/stationary

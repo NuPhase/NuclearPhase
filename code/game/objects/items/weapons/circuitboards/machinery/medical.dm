@@ -61,7 +61,7 @@
 	build_path = /obj/machinery/blood_analysis
 	board_type = "machine"
 	req_components = list(
-		/obj/item/stock_parts/engine = 1,
+		/obj/item/stock_parts/motor = 1,
 		/obj/item/stock_parts/micro_laser = 2,
 		/obj/item/stock_parts/scanning_module = 2
 	)

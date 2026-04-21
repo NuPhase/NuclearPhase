@@ -174,7 +174,7 @@
 							/obj/item/stock_parts/scanning_module/adv = 2,
 							/obj/item/stock_parts/micro_laser/ultra = 5,
 							/obj/item/stock_parts/console_screen = 1,
-							/obj/item/stock_parts/engine/superconducting = 1,
+							/obj/item/stock_parts/motor/superconducting = 1,
 							/obj/item/stock_parts/shielding/heat = 2,
 							/obj/item/stack/cable_coil = 120
 							)
@@ -206,7 +206,7 @@
 	req_components = list(
 							/obj/item/crafting_component/turbine_rotor = 1,
 							/obj/item/crafting_component/industrial_components = 4,
-							/obj/item/stock_parts/engine/large = 1,
+							/obj/item/stock_parts/motor/large = 1,
 							/obj/item/stock_parts/capacitor = 4,
 							/obj/item/stock_parts/shielding/heat = 1,
 							/obj/item/stack/cable_coil = 30

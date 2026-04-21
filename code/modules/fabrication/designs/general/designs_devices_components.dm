@@ -101,6 +101,12 @@
 /datum/fabricator_recipe/device_component/heatsink
 	path = /obj/item/stock_parts/shielding/heat
 
+/datum/fabricator_recipe/device_component/motor
+	path = /obj/item/stock_parts/motor
+
+/datum/fabricator_recipe/device_component/contactor
+	path = /obj/item/stock_parts/contactor
+
 /datum/fabricator_recipe/device_component/comp_accessory
 	category = "Computer Components"
 	path = /obj/item/stock_parts/computer/ai_slot

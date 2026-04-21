@@ -11,4 +11,4 @@
 	build_path = /obj/machinery/atmospherics/binary/cryocooler
 	req_components = list(
 							/obj/item/stack/cable_coil = 20,
-							/obj/item/stock_parts/engine = 3)
+							/obj/item/stock_parts/motor = 3)

@@ -5,7 +5,7 @@
 /decl/processing_recipe/assembler/electric_motor
 	name = "Assemble an Electric Motor"
 	required_items = list(/obj/item/crafting_component/motor_case, /obj/item/crafting_component/motor_shaft)
-	item_result_type = /obj/item/stock_parts/engine/medium
+	item_result_type = /obj/item/stock_parts/motor/medium
 
 /decl/processing_recipe/assembler/molten_sword
 	name = "Assemble a Molten Sword"
@@ -18,7 +18,7 @@
 // GUNS
 /decl/processing_recipe/assembler/mx16
 	name = "Assemble an MX16 SMG"
-	required_items = list(/obj/item/crafting_component/components, /obj/item/crafting_component/miniature_components, /obj/item/crafting_component/carbon_composite, /obj/item/stock_parts/engine)
+	required_items = list(/obj/item/crafting_component/components, /obj/item/crafting_component/miniature_components, /obj/item/crafting_component/carbon_composite, /obj/item/stock_parts/motor)
 	item_result_type = /obj/item/gun/projectile/automatic/smg
 	recipe_time = 60
 
@@ -30,7 +30,7 @@
 
 /decl/processing_recipe/assembler/snapdragon
 	name = "Assemble a Snapdragon Rifle"
-	required_items = list(/obj/item/crafting_component/components, /obj/item/crafting_component/components, /obj/item/crafting_component/carbon_composite, /obj/item/stock_parts/engine)
+	required_items = list(/obj/item/crafting_component/components, /obj/item/crafting_component/components, /obj/item/crafting_component/carbon_composite, /obj/item/stock_parts/motor)
 	item_result_type = /obj/item/gun/projectile/automatic/snapdragon
 	recipe_time = 60
 
@@ -42,7 +42,7 @@
 
 /decl/processing_recipe/assembler/cef
 	name = "Assemble a VPS Pistol"
-	required_items = list(/obj/item/crafting_component/components, /obj/item/stock_parts/shielding/heat, /obj/item/stock_parts/engine)
+	required_items = list(/obj/item/crafting_component/components, /obj/item/stock_parts/shielding/heat, /obj/item/stock_parts/motor)
 	item_result_type = /obj/item/gun/projectile/pistol/low_caliber
 	recipe_time = 60
 
@@ -60,6 +60,6 @@
 
 /decl/processing_recipe/assembler/auto_sniper
 	name = "Assemble an AMR Sniper Rifle"
-	required_items = list(/obj/item/crafting_component/aerospace_components, /obj/item/crafting_component/components, /obj/item/stock_parts/engine)
+	required_items = list(/obj/item/crafting_component/aerospace_components, /obj/item/crafting_component/components, /obj/item/stock_parts/motor)
 	item_result_type = /obj/item/gun/projectile/sniper/semiauto
 	recipe_time = 60
