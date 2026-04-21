@@ -134,7 +134,7 @@
 	board_type = "machine"
 	origin_tech = @'{"powerstorage":4,"engineering":4}'
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/contactor = 2,
 		/obj/item/stock_parts/capacitor = 2
 	)
 	additional_spawn_components = list(
@@ -185,6 +185,7 @@
 	board_type = "machine"
 	req_components = list(
 							/obj/item/stock_parts/capacitor = 2,
+							/obj/item/stock_parts/contactor = 2,
 							/obj/item/stack/cable_coil = 30
 							)
 
@@ -194,6 +195,7 @@
 	board_type = "machine"
 	req_components = list(
 							/obj/item/stock_parts/capacitor = 2,
+							/obj/item/stock_parts/contactor = 2,
 							/obj/item/stock_parts/scanning_module = 1,
 							/obj/item/stock_parts/console_screen = 1,
 							/obj/item/stack/cable_coil = 30
@@ -204,10 +206,26 @@
 	build_path = /obj/machinery/power/generator/port_gen/liquid/diesel/large
 	board_type = "machine"
 	req_components = list(
-							/obj/item/crafting_component/turbine_rotor = 1,
 							/obj/item/crafting_component/industrial_components = 4,
 							/obj/item/stock_parts/motor/large = 1,
 							/obj/item/stock_parts/capacitor = 4,
+							/obj/item/stack/cable_coil = 30
+							)
+	additional_spawn_components = list(
+		/obj/item/stock_parts/console_screen = 1
+	)
+
+/obj/item/stock_parts/circuitboard/hybridgenerator
+	name = "circuitboard (hybrid generator)"
+	build_path = /obj/machinery/multitile/backup_generator
+	board_type = "machine"
+	req_components = list(
+							/obj/item/crafting_component/turbine_rotor = 1,
+							/obj/item/crafting_component/industrial_components = 2,
+							/obj/item/crafting_component/aerospace_components = 2,
+							/obj/item/stock_parts/motor/large = 1,
+							/obj/item/stock_parts/contactor = 1,
+							/obj/item/stock_parts/capacitor = 2,
 							/obj/item/stock_parts/shielding/heat = 1,
 							/obj/item/stack/cable_coil = 30
 							)

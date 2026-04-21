@@ -107,6 +107,9 @@
 /datum/fabricator_recipe/device_component/contactor
 	path = /obj/item/stock_parts/contactor
 
+/datum/fabricator_recipe/device_component/miniature_components
+	path = /obj/item/crafting_component/miniature_components
+
 /datum/fabricator_recipe/device_component/comp_accessory
 	category = "Computer Components"
 	path = /obj/item/stock_parts/computer/ai_slot

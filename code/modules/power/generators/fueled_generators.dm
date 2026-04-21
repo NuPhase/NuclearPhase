@@ -314,7 +314,7 @@
 /obj/machinery/power/generator/port_gen/liquid/diesel/large
 	name = "industrial diesel generator"
 	desc = "You feel more and more deaf even when this beast is turned off."
-	power_gen = 3000000 //3MW
+	power_gen = 1000000 //1MW
 	icon = 'icons/obj/machines/diesel_generator.dmi'
 	icon_state = "large"
 	tank_volume = 120000 //120 liters

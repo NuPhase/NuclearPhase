@@ -16,7 +16,7 @@
 	icon_state = "medium"
 	matter = list(/decl/material/solid/metal/steel = 400, /decl/material/solid/metal/copper = 2000)
 	w_class = ITEM_SIZE_NORMAL
-	weight = 0.5
+	weight = 2
 	rating = 1
 
 /obj/item/stock_parts/motor/large
@@ -25,7 +25,7 @@
 	icon_state = "large"
 	matter = list(/decl/material/solid/metal/stainlesssteel = 4000, /decl/material/solid/metal/silver = 8000)
 	w_class = ITEM_SIZE_LARGE
-	weight = 3
+	weight = 10
 	rating = 3
 
 /obj/item/stock_parts/motor/superconducting

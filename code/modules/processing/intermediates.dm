@@ -111,6 +111,7 @@
 /obj/item/crafting_component/miniature_components
 	name = "miniaturized components"
 	desc = "Very small, power-dense mechanical components."
+	icon_state = "comp_mini"
 	weight = 0.1
 	w_class = ITEM_SIZE_SMALL
 	material = /decl/material/solid/plastic
@@ -118,21 +119,24 @@
 /obj/item/crafting_component/components
 	name = "mechanical components"
 	desc = "General use mechanical components."
-	weight = 0.4
+	icon_state = "comp_norm"
+	weight = 1
 	w_class = ITEM_SIZE_NORMAL
 	material = /decl/material/solid/metal/aluminium
 
 /obj/item/crafting_component/industrial_components
 	name = "industrial components"
 	desc = "Extremely heavy-duty components. Used in the most powerful of machinery."
-	weight = 2
+	icon_state = "comp_heavy"
+	weight = 5
 	w_class = ITEM_SIZE_LARGE
 	material = /decl/material/solid/metal/steel
 
 /obj/item/crafting_component/aerospace_components
 	name = "aerospace components"
 	desc = "Heavy-duty, lightweight mechanical components. Used for the most demanding applications."
-	weight = 0.5
+	icon_state = "comp_aerospace"
+	weight = 2.5
 	w_class = ITEM_SIZE_NORMAL
 	material = /decl/material/solid/metal/stainlesssteel
 

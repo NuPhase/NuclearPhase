@@ -45,6 +45,12 @@
 	update_recipe_cache()
 	update_icon()
 
+/obj/machinery/processor/Destroy()
+	. = ..()
+	stored_items.Cut()
+	QDEL_NULL(connected_tank)
+	QDEL_NULL(sound_token)
+
 /obj/machinery/processor/on_update_icon()
 	if(!is_functioning())
 		icon_state = "[root_icon_state]_off"

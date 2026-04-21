@@ -25,3 +25,10 @@
 	temperature_step = 5
 	progress_step = 5
 	minimum_skill = SKILL_ADEPT
+
+/decl/extruder_recipe/components
+	name = "Mechanical Components"
+	input_material = /decl/material/solid/metal/steel
+	input_amount = SHEET_MATERIAL_AMOUNT*2.5
+	output_item = /obj/item/crafting_component/components
+	output_amount = 1
