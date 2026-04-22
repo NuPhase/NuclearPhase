@@ -28,6 +28,7 @@
 /obj/machinery/space_heater/on
 	on = TRUE
 	icon_state = "sheater-standby"
+	base_type = /obj/machinery/space_heater
 
 /obj/machinery/space_heater/on_update_icon(var/rebuild_overlay = 0)
 	if(!on)
