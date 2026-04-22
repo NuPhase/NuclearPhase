@@ -286,7 +286,7 @@
 	if (source.total_moles < MINIMUM_MOLES_TO_FILTER) //if we cant transfer enough gas just stop to avoid further processing
 		return -1
 
-	var/list/source_fluid = source.get_fluid()
+	var/alist/source_fluid = source.get_fluid()
 	filtering = filtering & source_fluid //only filter gasses that are actually there. DO NOT USE &=
 
 	var/power_per_mol = 0
@@ -322,7 +322,7 @@
 	if (!removed) //Just in case
 		return -1
 
-	var/list/removed_fluid = removed.get_fluid()
+	var/alist/removed_fluid = removed.get_fluid()
 	// for some reason we used to separate filtered and unfiltered power but then we just added it back up anyway??
 	var/power_draw = power_per_mol * removed.total_moles
 	for (var/gas_type, gas_amount in removed_fluid & filtering) // keys in both with the values of the former

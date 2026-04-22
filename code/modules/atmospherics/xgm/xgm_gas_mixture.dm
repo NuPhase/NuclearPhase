@@ -322,9 +322,8 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		return SPECIFIC_ENTROPY_VACUUM
 
 	. = 0
-	var/list/all_fluid = get_fluid()
-	for(var/g in all_fluid)
-		. += all_fluid[g] * specific_entropy_gas(g, all_fluid)
+	for(var/g, amt in get_fluid())
+		. += amt * specific_entropy_gas(g, amt)
 	. /= total_moles
 
 
@@ -342,15 +341,15 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 /datum/gas_mixture/proc/get_decl_for_rust(var/gasid) // shitty shit
 	return GET_DECL(gasid)
 
-/datum/gas_mixture/proc/specific_entropy_gas(var/gasid, var/list/all_fluid)
-	if (!(gasid in all_fluid) || all_fluid[gasid] == 0)
+/datum/gas_mixture/proc/specific_entropy_gas(var/gasid, gasamt = solids[gasid] + liquids[gasid] + gas[gasid])
+	if (!gasamt)
 		return SPECIFIC_ENTROPY_VACUUM	//that gas isn't here
 
 	//group_multiplier gets divided out in volume/gas[gasid] - also, V/(m*T) = R/(partial pressure)
 	var/decl/material/mat = GET_DECL(gasid)
 	var/specific_heat = mat.gas_specific_heat
 	var/safe_temp = max(temperature, TCMB) // We're about to divide by this.
-	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(all_fluid[gasid] * safe_temp)) * (mat.molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
+	return R_IDEAL_GAS_EQUATION * ( log( (IDEAL_GAS_ENTROPY_CONSTANT*volume/(gasamt * safe_temp)) * (mat.molar_mass*specific_heat*safe_temp)**(2/3) + 1 ) +  15 )
 
 	//alternative, simpler equation
 	//var/partial_pressure = gas[gasid] * R_IDEAL_GAS_EQUATION * temperature / volume
@@ -400,7 +399,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 	if(amount < 0)
 		PRINT_STACK_TRACE("Negative value supplied to remove()")
 		return
-	amount = min(amount, total_moles * group_multiplier) //Can not take more air than the gas mixture has!
+	amount = min(amount, get_total_moles()) //Can not take more air than the gas mixture has!
 	if(amount <= 0)
 		return null
 
@@ -416,23 +415,23 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		if(solids[g])
 			moles_taken = min(solids[g], moles_left_to_remove)
 			solids[g] -= moles_taken/group_multiplier
-			moles_left_to_remove -= moles_taken
+			moles_left_to_remove -= moles_taken * group_multiplier
 			new_solids[g] = moles_taken
 		if(0 >= moles_left_to_remove)
 			continue
 		if(liquids[g])
 			moles_taken = min(liquids[g], moles_left_to_remove)
 			liquids[g] -= moles_taken/group_multiplier
-			moles_left_to_remove -= moles_taken
+			moles_left_to_remove -= moles_taken * group_multiplier
 			new_liquids[g] = moles_taken
 		if(0 >= moles_left_to_remove)
 			continue
 		moles_taken = min(gas[g], moles_left_to_remove)
 		gas[g] -= moles_taken/group_multiplier
-		moles_left_to_remove -= moles_taken
+		moles_left_to_remove -= moles_taken * group_multiplier
 		new_gas[g] = moles_taken
 		if(moles_left_to_remove >= 0.01)
-			PRINT_STACK_TRACE("Fluid loss in gas_mixture/remove()")
+			PRINT_STACK_TRACE("Fluid loss of [moles_left_to_remove]mol in gas_mixture/remove()")
 	// todo: may need to set removed.temperature here if the update_values in New() messed it up before we added gases
 
 	if(update)
@@ -481,10 +480,8 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 
 	ratio = min(ratio, 1)
 
-	var/list/removed_gas_list = list()
-	var/list/all_fluid = get_fluid()
-
-	for(var/gasid, amount in all_fluid)
+	var/alist/removed_gas_list = alist()
+	for(var/gasid, amount in get_fluid())
 		removed_gas_list[gasid] = (amount * ratio * group_multiplier / out_group_multiplier)
 		adjust_gas(gasid, -removed_gas_list[gasid])
 
@@ -588,14 +585,14 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 //Rechecks the gas_mixture and adjusts the graphic list if needed.
 //Two lists can be passed by reference if you need know specifically which graphics were added and removed.
 /datum/gas_mixture/proc/check_tile_graphic(list/graphic_add = null, list/graphic_remove = null)
-	var/list/all_fluid = get_fluid()
+	var/alist/all_fluid = get_fluid()
 	for(var/obj/effect/gas_overlay/O in graphic)
 		if(all_fluid[O.material.type] <= O.material.gas_overlay_limit)
 			LAZYADD(graphic_remove, O)
-	for(var/g in all_fluid)
+	for(var/g, amt in all_fluid)
 		//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 		var/decl/material/mat = GET_DECL(g)
-		if(!isnull(mat.gas_overlay_limit) && all_fluid[g] > mat.gas_overlay_limit)
+		if(!isnull(mat.gas_overlay_limit) && amt > mat.gas_overlay_limit)
 			if(!LAZYACCESS(tile_overlay_cache, g))
 				LAZYSET(tile_overlay_cache, g, new /obj/effect/gas_overlay(null, g))
 			var/tile_overlay = tile_overlay_cache[g]
@@ -625,8 +622,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.
 /datum/gas_mixture/proc/add(datum/gas_mixture/right_side)
-	var/list/all_fluid = right_side.get_fluid()
-	for(var/gasid, amount in all_fluid)
+	for(var/gasid, amount in right_side.get_fluid())
 		gas[gasid] += amount
 
 	update_values()
@@ -634,8 +630,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 
 //Simpler version of remove(), adjusts gas amounts directly and doesn't account for group_multiplier.
 /datum/gas_mixture/proc/subtract(datum/gas_mixture/right_side)
-	var/list/all_fluid = right_side.get_fluid()
-	for(var/gasid, amount in all_fluid)
+	for(var/gasid, amount in right_side.get_fluid())
 		gas[gasid] -= amount
 
 	update_values()
@@ -692,6 +687,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 			var/moles_to_transfer = pressure_diff / pressure_per_mole * share_ratio
 			var/datum/gas_mixture/taken_gas = remove(moles_to_transfer)
 			other.merge(taken_gas)
+			return compare(other)
 		var/pressure_coeff = R_IDEAL_GAS_EQUATION * temperature / volume //Pressure per mole of gas
 		var/minimum_moles_to_keep = other_pressure / pressure_coeff
 		var/free_moles = (total_moles * group_multiplier) - minimum_moles_to_keep

@@ -55,13 +55,13 @@
 	QDEL_NULL_SCREEN(zone_sel)
 
 /mob/Initialize()
-	. = ..()
 	if(ispath(skillset))
 		skillset = new skillset(src)
 	if(!move_intent)
 		move_intent = move_intents[1]
 	if(ispath(move_intent))
 		move_intent = GET_DECL(move_intent)
+	. = ..()
 	var/ai_type = get_ai_type()
 	if(ai_type)
 		ai = new ai_type(src)

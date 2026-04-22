@@ -59,7 +59,7 @@
 				. += "<span class='warning'>Pressure: [round(pressure,0.01)] kPa</span>"
 
 			var/perGas_add_string = ""
-			var/list/all_fluid = mixture.get_fluid()
+			var/alist/all_fluid = mixture.get_fluid()
 			for(var/gas_type, mix_moles in all_fluid)
 				var/percentage = round(mix_moles/total_moles * 100, 0.001)
 				if(!percentage)

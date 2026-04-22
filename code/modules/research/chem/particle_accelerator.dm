@@ -69,10 +69,10 @@
 		cur_tank.air_contents.temperature = T0C
 		cur_tank.air_contents.update_values()
 	else if(contained.reagents)
-		var/list/all_fluid = gasmix.get_fluid()
-		for(var/mtype in all_fluid)
+		var/alist/all_fluid = gasmix.get_fluid()
+		for(var/mtype, amt in all_fluid)
 			var/decl/material/mat = GET_DECL(mtype)
-			contained.reagents.add_reagent(mtype, all_fluid[mtype] * mat.molar_volume)
+			contained.reagents.add_reagent(mtype, amt * mat.molar_volume)
 
 /obj/machinery/linear_accelerator/attackby(obj/item/I, mob/user)
 	if((. = ..()))

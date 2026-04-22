@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(reactions)
 	var/list/fusion_reactions = list()
 
 /datum/controller/subsystem/reactions/proc/process_gasmix(datum/gas_mixture/gasmix, firelevel)
-	var/list/all_fluid = gasmix.get_fluid()
+	var/alist/all_fluid = gasmix.get_fluid()
 	if(!length(all_fluid))
 		return
 
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(reactions)
 		gasmix.temperature = reacted_list[2]
 	*/
 
-/datum/controller/subsystem/reactions/proc/process_reactions(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
+/datum/controller/subsystem/reactions/proc/process_reactions(alist/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
 	var/has_fuel = FALSE
 	var/has_oxidizer = FALSE
 	var/old_temperature = temperature
@@ -59,9 +59,9 @@ SUBSYSTEM_DEF(reactions)
 			has_oxidizer = TRUE
 	if(!heat_capacity)
 		heat_capacity = 0
-		for(var/g in moles)
-			var/decl/material/mat = GET_DECL(g)
-			heat_capacity += moles[g] * mat.gas_specific_heat
+		for(var/gasid, amt in moles)
+			var/decl/material/mat = GET_DECL(gasid)
+			heat_capacity += amt * mat.gas_specific_heat
 
 	var/list/chem_return_list = process_reaction_chem(moles, temperature, heat_capacity, pressure, volume)
 	moles = chem_return_list[1]
@@ -92,13 +92,13 @@ SUBSYSTEM_DEF(reactions)
 
 #undef PRE_EXPONENTIAL_FACTOR
 
-/datum/controller/subsystem/reactions/proc/process_reaction_chem(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
+/datum/controller/subsystem/reactions/proc/process_reaction_chem(alist/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
 	reactions_reagents_holder.temperature = temperature
 	var/datum/reagents/pressurized/temp_holder = new(10000000000000, reactions_reagents_holder)
 	temp_holder.pressure = pressure
-	for(var/mat_type in moles)
+	for(var/mat_type, amt in moles)
 		var/decl/material/mat = GET_DECL(mat_type)
-		LAZYSET(temp_holder.reagent_volumes, mat_type, moles[mat_type] * mat.molar_volume)
+		LAZYSET(temp_holder.reagent_volumes, mat_type, amt * mat.molar_volume)
 	temp_holder.update_total()
 	temp_holder.process_reactions()
 	moles.Cut()
@@ -107,17 +107,17 @@ SUBSYSTEM_DEF(reactions)
 		moles[mat_type] = temp_holder.reagent_volumes[mat_type] / mat.molar_volume
 	return list(moles, reactions_reagents_holder.temperature)
 
-/datum/controller/subsystem/reactions/proc/process_reaction_oxidation(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
-	var/list/oxidizers = list()
-	var/list/oxidizers_by_power = list()
-	var/list/fuels = list()
+/datum/controller/subsystem/reactions/proc/process_reaction_oxidation(alist/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
+	var/alist/oxidizers = alist()
+	var/alist/oxidizers_by_power = alist()
+	var/alist/fuels = alist()
 	var/thermal_energy = temperature * heat_capacity
 	var/total_moles = 0
-	for(var/g in moles)
-		total_moles += moles[g]
+	for(var/g, amt in moles)
+		total_moles += amt
 		var/decl/material/mat = GET_DECL(g)
 		if(mat.combustion_energy && mat.combustion_products)
-			fuels[g] = moles[g]
+			fuels[g] = amt
 		if(mat.oxidizer_power)
 			oxidizers_by_power[g] = mat.oxidizer_power
 
@@ -129,13 +129,13 @@ SUBSYSTEM_DEF(reactions)
 	// Remove all reactants from the fuel list temporarily
 	moles.Remove(oxidizers, fuels)
 
-	for(var/g in oxidizers)
-		for(var/f in fuels)
+	for(var/g, oxi_amt in oxidizers)
+		for(var/f, fuel_amt in fuels)
 			var/decl/material/fuel_mat = GET_DECL(f)
-			if((thermal_energy * fuels[f] < fuel_mat.combustion_activation_energy * total_moles) && !firelevel)
+			if((thermal_energy * fuel_amt < fuel_mat.combustion_activation_energy * total_moles) && !firelevel)
 				continue
-			var/need_fuel_moles = oxidizers[g] / fuel_mat.oxidizer_to_fuel_ratio
-			var/actually_spent_fuel = min(fuels[f], need_fuel_moles, oxidizers_by_power[g] * get_reaction_rate(fuels[f], fuel_mat.combustion_activation_energy, temperature, volume, firelevel))
+			var/need_fuel_moles = oxi_amt / fuel_mat.oxidizer_to_fuel_ratio
+			var/actually_spent_fuel = min(fuel_amt, need_fuel_moles, oxidizers_by_power[g] * get_reaction_rate(fuel_amt, fuel_mat.combustion_activation_energy, temperature, volume, firelevel))
 			var/actually_spent_oxidizer = actually_spent_fuel * fuel_mat.oxidizer_to_fuel_ratio
 			var/product
 			if(fuel_mat.combustion_products[g])
@@ -149,10 +149,10 @@ SUBSYSTEM_DEF(reactions)
 			if(!oxidizers[g])
 				break
 
-	for(var/g in oxidizers)
-		moles[g] += oxidizers[g]
-	for(var/g in fuels)
-		moles[g] += fuels[g]
+	for(var/g, amt in oxidizers)
+		moles[g] += amt
+	for(var/g, amt in fuels)
+		moles[g] += amt
 	temperature = thermal_energy / heat_capacity
 
 	return list(moles, temperature, heat_capacity, pressure)
@@ -160,11 +160,11 @@ SUBSYSTEM_DEF(reactions)
 /datum/controller/subsystem/reactions/proc/test_combustion(mob/user)
 	to_chat(user, "--------------------")
 	for(var/i=1, i<20, i++)
-		var/list/react_result = process_reactions(list(/decl/material/gas/hydrogen = 60, /decl/material/gas/oxygen = 30), 100*i, 6600, volume = 1000)
+		var/list/react_result = process_reactions(alist(/decl/material/gas/hydrogen = 60, /decl/material/gas/oxygen = 30), 100*i, 6600, volume = 1000)
 		to_chat(user, "T: [100*i] ===> T: [round(react_result[2], 0.1)] H: [round(react_result[1][/decl/material/gas/hydrogen], 0.1)] O: [round(react_result[1][/decl/material/gas/oxygen], 0.1)]")
 	to_chat(user, "--------------------")
 	for(var/i=1, i<20, i++)
-		var/list/react_result = process_reactions(list(/decl/material/gas/hydrogen = 300/i, /decl/material/gas/oxygen = 30), 3500, 6600, volume = 1000)
+		var/list/react_result = process_reactions(alist(/decl/material/gas/hydrogen = 300/i, /decl/material/gas/oxygen = 30), 3500, 6600, volume = 1000)
 		to_chat(user, "T: 3500 ===> T: [round(react_result[2], 0.1)] H: [round(react_result[1][/decl/material/gas/hydrogen], 0.1)] O: [round(react_result[1][/decl/material/gas/oxygen], 0.1)]")
 	to_chat(user, "--------------------")
 
