@@ -11,6 +11,7 @@
 	atom_flags = ATOM_FLAG_CLIMBABLE
 	movable_flags = MOVABLE_FLAG_WHEELED
 	pull_coefficient = 0.01
+	weight = 10
 	clicksound = "switch"
 
 	light_power = 0.5
@@ -23,6 +24,10 @@
 	var/set_temperature = T0C + 20	//K
 	var/active = 0
 	var/heating_power = 50 KILOWATTS
+
+/obj/machinery/space_heater/on
+	on = TRUE
+	icon_state = "sheater-standby"
 
 /obj/machinery/space_heater/on_update_icon(var/rebuild_overlay = 0)
 	if(!on)
