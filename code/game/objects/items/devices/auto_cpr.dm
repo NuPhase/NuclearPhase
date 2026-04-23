@@ -59,3 +59,11 @@
 		E.fracture()
 	else
 		H.add_mcv += rand(250, 500)
+
+	if(H.stat == DEAD || !H.is_asystole())
+		return
+	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
+	if(heart)
+		var/resuscitation_chance = 1 - (heart.oxygen_deprivation * 0.05)
+		if(prob(resuscitation_chance))
+			H.resuscitate()
