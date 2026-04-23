@@ -11,6 +11,9 @@ We have a very powerful computer system that allows our neural network to fully 
 	lying_pull_coefficient = 0.9
 	faction = "silicon"
 
+	// DOKTOR, TURN OFF MY PAIN INHIBITORS
+	var/pain_inhibitors = TRUE
+
 /mob/living/carbon/human/synthetic/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 	bpm = heart.pulse + heart.external_pump
@@ -65,7 +68,7 @@ We have a very powerful computer system that allows our neural network to fully 
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(get_shock() >= 1000  && a_intent != I_HURT)
+		if(get_shock() >= 1000 && !pain_inhibitors)
 			if(!stat)
 				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
 				src.visible_message("<B>[src]</B> [species.halloss_message]")
@@ -113,6 +116,12 @@ We have a very powerful computer system that allows our neural network to fully 
 			adjust_hydration(-species.thirst_factor)
 	return 1
 
+/mob/living/carbon/human/synthetic/can_feel_pain(obj/item/organ/check_organ)
+	if(pain_inhibitors)
+		return FALSE
+	else
+		return ..()
+
 /mob/living/carbon/human/synthetic/handle_shock()
 	if(!can_feel_pain() || (status_flags & GODMODE))
 		shock_stage = 0
@@ -139,9 +148,6 @@ We have a very powerful computer system that allows our neural network to fully 
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nohalloss = TRUE in these cases!
 		custom_pain("[pick("Pain imitation active")]!", 150, nohalloss = TRUE)
-
-	if(a_intent == I_HURT)
-		return
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30)
@@ -180,17 +186,6 @@ We have a very powerful computer system that allows our neural network to fully 
 
 /mob/living/carbon/human/synthetic/consume_oxygen(amount)
 	return 1
-
-/mob/living/carbon/human/synthetic/jostle_internal_object(var/obj/item/organ/external/organ, var/obj/item/O)
-	if(!organ.can_feel_pain())
-		to_chat(src, SPAN_DANGER("Something is moving inside your [organ.name]."))
-	else
-		var/msg = pick( \
-			SPAN_DANGER("Your [organ.name] sends warning messages as you bump [O] inside."), \
-			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."),       \
-			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."))
-		custom_pain(msg,450,affecting = organ)
-	organ.take_external_damage(rand(1,3) + O.w_class, DAM_EDGE, 0)
 
 /mob/living/carbon/human/synthetic/help_shake_act(mob/living/carbon/M)
 	if(src != M)
@@ -292,7 +287,7 @@ We have a very powerful computer system that allows our neural network to fully 
 	tally -= GET_CHEMICAL_EFFECT(src, CE_SPEEDBOOST)
 	tally += GET_CHEMICAL_EFFECT(src, CE_SLOWDOWN)
 
-	if(can_feel_pain() && a_intent != I_HURT)
+	if(can_feel_pain())
 		if(get_shock() >= 50) tally += (get_shock() / 100) //pain shouldn't slow you down if you can't even feel it
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
@@ -491,3 +486,14 @@ We have a very powerful computer system that allows our neural network to fully 
 	set category = "Synthetic"
 
 	tgui_interact(usr)
+
+/mob/living/carbon/human/synthetic/verb/toggle_pain_inhibitors()
+	set name = "Toggle Pain Inhibitors"
+	set category = "Synthetic"
+
+	if(pain_inhibitors)
+		pain_inhibitors = FALSE
+		to_chat(usr, SPAN_WARNING("You disable your pain inhibitors."))
+	else
+		pain_inhibitors = TRUE
+		to_chat(usr, SPAN_NOTICE("You enable your pain inhibitors."))
