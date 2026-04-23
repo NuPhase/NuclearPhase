@@ -25,7 +25,8 @@
 /obj/machinery/defibrillator/Process()
 	if(pacing && pace_sync && pads)
 		var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
-		heart.external_pump += pace_rate
+		var/rate_diff = pace_rate - heart.pulse
+		heart.bpm_modifiers["Pacing"] = rate_diff * 2
 		playsound(get_turf(src), "bodyfall", 25, 1)
 
 /obj/machinery/defibrillator/proc/announce(var/message)
