@@ -239,7 +239,7 @@
 			return TRUE
 	else if(should_have_organ(BP_HEART))
 		var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-		if(!istype(heart) || !heart.is_working())
+		if(!istype(heart) || !heart.pulse)
 			return TRUE
 	return FALSE
 
