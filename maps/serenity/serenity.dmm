@@ -3626,6 +3626,12 @@
 "bVi" = (
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/space)
+"bVv" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/dark/textured/monotile,
+/area/serenity/shelter/engineering/electrical/generator_bay)
 "bVO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/general{
 	dir = 4
@@ -11885,14 +11891,14 @@
 	icon_state = "1-2";
 	name = "BACKUP cable"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
@@ -12816,9 +12822,6 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2";
 	name = "BACKUP cable"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -15244,9 +15247,6 @@
 /obj/structure/cable/heavy{
 	icon_state = "1-2";
 	name = "BACKUP cable"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -21208,7 +21208,6 @@
 	layer = 3.01;
 	pixel_x = -32;
 	pixel_y = -32;
-	uid = "T-CP 1";
 	map_on = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -27620,11 +27619,22 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/labs)
 "opq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+/obj/effect/overmap_edge{
+	edge_id = "reactor_chamber";
+	teleport_to_id = "reactor_insides";
+	icon = 'icons/obj/structures/ladders.dmi';
+	icon_state = "ladder01";
+	color = null
+	},
+/obj/structure/railing/mapped{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/serenity/shelter/engineering/electrical/generator_bay)
+/obj/structure/railing/mapped{
+	dir = 8
+	},
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/serenity/shelter/engineering/reactor)
 "opt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -28492,6 +28502,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
 	},
+/obj/structure/lattice,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
 "oQm" = (
@@ -32573,6 +32584,9 @@
 /obj/effect/floor_decal/corner/yellow/half,
 /obj/effect/floor_decal/corner/yellow{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/dark/textured/corner{
 	dir = 4
@@ -39581,6 +39595,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated{
 	dir = 4
 	},
+/obj/structure/lattice,
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
 "uno" = (
@@ -41898,6 +41913,9 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1;
 	alpha = 255
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/dark/textured/corner,
 /area/serenity/shelter/engineering/electrical/generator_bay)
@@ -328374,8 +328392,8 @@ jAH
 uHo
 fIX
 pSe
-pSe
 kQd
+opq
 unn
 vmU
 pSe
@@ -356676,7 +356694,7 @@ xXu
 mjw
 uCl
 dGJ
-opq
+nyU
 onY
 eTs
 fKh
@@ -357840,7 +357858,7 @@ xXu
 dGJ
 roF
 oaN
-dGJ
+bVv
 vwv
 qLD
 mvq

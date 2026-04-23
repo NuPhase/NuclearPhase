@@ -11,8 +11,14 @@
 	name = "reactor superstructure"
 	icon = 'icons/obj/machines/power/fission.dmi'
 	icon_state = "fission_core"
-	density = 1
+	appearance_flags = PIXEL_SCALE | LONG_GLIDE
 	anchored = 1
+	pixel_x = -64
+	pixel_y = -64
+	bound_x = -64
+	bound_y = -64
+	bound_width = 160
+	bound_height = 160
 
 	// Meltdown stuff
 	var/meltdown_state = FALSE // On-off, to prevent some actions
@@ -71,8 +77,8 @@
 
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
-	blanket_integrity = rand(70, 100) * 0.01
-	divertor_integrity = rand(80, 100) * 0.01
+	blanket_integrity = rand(50, 100) * 0.01
+	divertor_integrity = rand(50, 100) * 0.01
 	magnet_integrity = rand(90, 100) * 0.01
 	containment_field = new(REACTOR_FIELD_VOLUME, 4500)
 	reactor_components["core"] += src
@@ -84,6 +90,21 @@
 /obj/machinery/power/hybrid_reactor/Destroy()
 	. = ..()
 	reactor_components["core"] = null
+
+/obj/machinery/power/hybrid_reactor/on_update_icon()
+	cut_overlays()
+	var/chamber_icon = 'icons/obj/machines/fusion_core.dmi'
+	add_overlay(image(chamber_icon, icon_state = "background"))
+	if(blanket_integrity < 0.5)
+		add_overlay(image(chamber_icon, icon_state = "blanket_broken"))
+	else
+		add_overlay(image(chamber_icon, icon_state = "blanket_intact"))
+	if(divertor_integrity < 0.5)
+		add_overlay(image(chamber_icon, icon_state = "divertors_broken"))
+	else
+		add_overlay(image(chamber_icon, icon_state = "divertors_intact"))
+	if(containment && containment_field.temperature > 10000)
+		add_overlay(emissive_overlay('icons/effects/160x160.dmi', "emfield_s5"))
 
 #define ELM_HEAT_LOSS_COEF 0.95
 #define ELM_HEAT_DAMAGE_DIVISOR 75000000
@@ -123,12 +144,14 @@
 
 	handle_control_panels()
 
+	update_icon()
+
 	total_neutrons = slow_neutrons + fast_neutrons
 
 	var/total_radiation = (total_neutrons * RADS_PER_NEUTRON) + xray_flux * RADS_PER_NEUTRON
 	var/panel_multiplier = 2 - reflector_position
 	last_radiation = total_radiation
-	SSradiation.radiate(src, panel_multiplier * total_radiation)
+	SSradiation.radiate(src, total_radiation)
 	SSradiation.radiate(superstructure, panel_multiplier * total_radiation / (1 + (REACTOR_SHIELDING_DIVISOR * blanket_integrity)))
 
 	handle_magnets()
@@ -182,6 +205,9 @@
 
 	radiative_heat_loss = (containment_field.get_mass() * sqrt(containment_field.temperature) * RADIATIVE_LOSS_K * (containment_field.volume*0.01)) * (1.1 - reflector_position)
 	containment_field.add_thermal_energy(-radiative_heat_loss)
+	if(radiative_heat_loss > 1000000)
+		damage_blanket(radiative_heat_loss / 250000000000)
+		damage_divertor(radiative_heat_loss / 100000000000000)
 #undef RADIATIVE_LOSS_K
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
@@ -400,6 +426,13 @@
 
 /obj/machinery/power/hybrid_reactor/proc/damage_blanket(amount)
 	blanket_integrity = Clamp(blanket_integrity - amount * 0.01 * (blanket_integrity + 0.1), 0, 1)
+	switch(blanket_integrity)
+		if(0.0 to 0.1)
+			containment_field.adjust_gas(/decl/material/solid/boron, amount * 0.09)
+		if(0.1 to 0.5)
+			containment_field.adjust_gas(/decl/material/solid/silicon, amount * 0.035)
+		if(0.5 to 1.0)
+			containment_field.adjust_gas(/decl/material/solid/metal/tungsten, amount* 0.005)
 
 /obj/machinery/power/hybrid_reactor/proc/damage_divertor(amount)
 	divertor_integrity = Clamp(divertor_integrity - amount * 0.01 * (divertor_integrity + 0.1), 0, 1)
