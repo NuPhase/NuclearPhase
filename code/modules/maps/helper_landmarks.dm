@@ -12,7 +12,8 @@ INITIALIZE_IMMEDIATE(/obj/abstract/landmark/map_load_mark)
 	if(!SSmapping.initialized) // If we're being created prior to SSmapping
 		SSmapping.queued_markers += src // Then run after SSmapping
 	else // created by something during init, like a multitile vehicle
-		init_load_subtemplate()
+		// we have to queue these on SSatoms instead
+		SSatoms.queued_markers += src
 
 /obj/abstract/landmark/map_load_mark/proc/get_subtemplate()
 	if(isnull(map_template_names))
