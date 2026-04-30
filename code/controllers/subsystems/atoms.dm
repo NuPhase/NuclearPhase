@@ -19,6 +19,8 @@ SUBSYSTEM_DEF(atoms)
 	var/list/created_atoms = list()
 	/// A non-associative list of lists, with the format list(list(atom, list(LateInitialize arguments))).
 	var/list/late_loaders = list()
+	/// A list of mapload markers created during SSatoms init that need to be resolved after all other initialization.
+	var/list/queued_markers = list()
 
 	var/list/BadInitializeCalls = list()
 
@@ -69,6 +71,17 @@ SUBSYSTEM_DEF(atoms)
 			CHECK_TICK
 		report_progress("Late initialized [count] atom\s")
 		late_loaders.Cut()
+
+	// Load any queued map template markers.
+	if(length(queued_markers))
+		// We're sort of stealing SSmapping's job here, but I didn't want to add a 'very late loaders' feature
+		var/list/cached_markers = queued_markers
+		queued_markers = list()
+		for(var/obj/abstract/landmark/map_load_mark/queued_mark as anything in cached_markers)
+			queued_mark.load_subtemplate()
+			if(!QDELETED(queued_mark)) // for if the tile that lands on the landmark is a no-op tile
+				qdel(queued_mark)
+		cached_markers.Cut()
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type
