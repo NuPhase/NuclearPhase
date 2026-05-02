@@ -9,8 +9,11 @@
 	var/frequency = "172.9"
 
 	var/intercom_handling = FALSE
+	var/on = TRUE
 
 /obj/item/communications/proc/transmit(var/message, mob/user)
+	if(!on)
+		return
 	var/obj/machinery/communications/relay/cur_relay = try_find_relay()
 	playsound(loc, pick('sound/effects/radio1.mp3', 'sound/effects/radio2.mp3'), 20, 0, -1)
 	if(cur_relay && cur_relay.is_functioning())
@@ -19,6 +22,14 @@
 	else
 		for(var/mob/M in human_mob_list)
 			var/obj/item/communications/receiving_radio = locate(/obj/item/communications) in M.contents
+			if(!receiving_radio)
+				continue
+			var/quality = get_signal_quality(get_turf(user), get_turf(M), free_penetration, penetration_modifier, receiving_radio.receiving_boost)
+			if(!quality)
+				continue
+			receive_comm_message(M, apply_message_quality(message, quality, M), frequency, user.voice_flavor)
+		for(var/mob/living/silicon/M in silicon_mob_list)
+			var/obj/item/communications/receiving_radio = M.silicon_radio
 			if(!receiving_radio)
 				continue
 			var/quality = get_signal_quality(get_turf(user), get_turf(M), free_penetration, penetration_modifier, receiving_radio.receiving_boost)
@@ -35,6 +46,14 @@
 		if(cur_relay.z == our_turf.z)
 			return cur_relay
 	return null
+
+/obj/item/communications/robot_radio
+	name = "robot radio"
+	icon = 'icons/obj/robot_component.dmi' // Cyborgs radio icons should look like the component.
+	icon_state = "radio"
+	free_penetration = 5
+	penetration_modifier = 1
+	receiving_boost = 50
 
 /obj/item/communications/pocket_radio
 	name = "handheld radio"

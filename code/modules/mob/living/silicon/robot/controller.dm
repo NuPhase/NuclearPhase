@@ -31,7 +31,10 @@
 		controlled = weakref(our_robot)
 		user.teleop = "robot"
 		our_robot.controller = weakref(user)
-		our_robot.ckey = user.ckey
+		if(user.mind)
+			user.mind.transfer_to(our_robot)
+		else
+			our_robot.ckey = user.ckey
 		addtimer(CALLBACK(our_robot, TYPE_PROC_REF(/mob/living/silicon/robot, set_stat), CONSCIOUS), 5 SECONDS)
 	else
 		. = ..()
@@ -51,6 +54,9 @@
 	var/mob/living/silicon/robot/engineering/controlled_mob = controlled.resolve()
 	if(!controlled_mob)
 		return
-	controlled_mob.controller = null
-	user.ckey = controlled_mob.ckey
 	user.teleop = null
+	controlled_mob.controller = null
+	if(controlled_mob.mind)
+		controlled_mob.mind.transfer_to(user)
+	else
+		user.ckey = controlled_mob.ckey

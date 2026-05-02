@@ -46,7 +46,10 @@
 	set category = "Remote Control"
 
 	var/mob/controller_mob = controller.resolve()
-	controller_mob.ckey = ckey
+	if(mind)
+		mind.transfer_to(controller_mob)
+	else
+		controller_mob.ckey = ckey
+		ckey = null
 	controller_mob.teleop = null
-	ckey = null
 	controller = null

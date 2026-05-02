@@ -15,7 +15,9 @@
 	var/const/MAIN_CHANNEL = "Main Frequency"
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
 	var/list/stating_laws = list()// Channels laws are currently being stated on
-	var/obj/item/radio/silicon_radio
+	var/obj/item/communications/silicon_radio
+	voice_flavor = "robotic"
+	custom_voice_flavor = "robotic"
 
 	var/list/hud_list[10]
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
