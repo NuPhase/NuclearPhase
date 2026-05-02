@@ -67,7 +67,7 @@
 	systemic_oxygen_saturation = 0
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(src, BP_HEART)
 	if(heart)
-		heart.pulse = 0
+		heart.pulse = PULSE_NONE
 		heart.damage = heart.max_damage
 
 /mob/living/carbon/human/proc/is_husked()
