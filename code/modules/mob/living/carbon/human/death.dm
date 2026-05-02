@@ -63,6 +63,8 @@
 	mcv = 0
 	tpvr = initial(tpvr)
 	oxygen_amount = 0
+	blood_perfusion = 0
+	systemic_oxygen_saturation = 0
 	var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(src, BP_HEART)
 	if(heart)
 		heart.pulse = 0
