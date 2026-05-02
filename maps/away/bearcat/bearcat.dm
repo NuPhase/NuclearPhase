@@ -108,10 +108,11 @@
 	return INITIALIZE_HINT_LATELOAD
 
 // chair may need to init first
+// todo: replace this with a corpse spawner subtype?
 /obj/abstract/landmark/deadcap/LateInitialize()
 	..()
 	var/turf/T = get_turf(src)
-	var/mob/living/carbon/human/corpse = new(T)
+	var/mob/living/carbon/human/corpse = new(T, global.using_map.default_species)
 	scramble(1,corpse,100)
 	corpse.real_name = "Captain"
 	corpse.name = "Captain"

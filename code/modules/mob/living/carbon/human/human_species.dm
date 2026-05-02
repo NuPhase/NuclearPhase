@@ -16,9 +16,8 @@
 /mob/living/carbon/human/corpse
 	real_name = "corpse"
 
-/mob/living/carbon/human/corpse/Initialize(mapload, new_species, obj/abstract/landmark/corpse/corpse)
-
-	. = ..(mapload, new_species)
+/mob/living/carbon/human/corpse/Initialize(mapload, var/species_name = null, var/datum/dna/new_dna = null, obj/abstract/landmark/corpse/corpse)
+	. = ..(mapload, species_name, new_dna)
 
 	var/decl/cultural_info/culture = get_cultural_value(TAG_CULTURE)
 	if(culture)
@@ -28,16 +27,16 @@
 			SetName(newname)
 			if(mind)
 				mind.name = real_name
+	if(corpse)
+		corpse.randomize_appearance(src, species_name)
+		corpse.equip_outfit(src)
+	return INITIALIZE_HINT_LATELOAD
 
+/mob/living/carbon/human/corpse/LateInitialize()
+	. = ..()
 	adjustOxyLoss(maxHealth)//cease life functions
 	setBrainLoss(maxHealth)
-	death()
-	var/obj/item/organ/internal/heart/corpse_heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
-	if(corpse_heart)
-		corpse_heart.pulse = PULSE_NONE//actually stops heart to make worried explorers not care too much
-	if(corpse)
-		corpse.randomize_appearance(src, new_species)
-		corpse.equip_outfit(src)
+	death() // since for some reason they weren't actually getting stat = 2; this also handles stopping their heart
 	update_icon()
 
 /mob/living/carbon/human/dummy/mannequin/add_to_living_mob_list()
