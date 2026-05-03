@@ -1,34 +1,34 @@
-/obj/item/stock_parts/engine
+/obj/item/stock_parts/motor
 	name = "tiny electric motor"
-	desc = "A tiny copper-wire engine for small applications."
+	desc = "A tiny copper-wire motor for small applications."
 	icon = 'icons/obj/items/stock_parts/electric_motor.dmi'
 	icon_state = "tiny"
 	material = /decl/material/solid/metal/steel
 	matter = list(/decl/material/solid/metal/steel = 100, /decl/material/solid/metal/copper = 200)
-	base_type = /obj/item/stock_parts/engine
+	base_type = /obj/item/stock_parts/motor
 	w_class = ITEM_SIZE_TINY
 	weight = 0.2
 	rating = 0.5
 
-/obj/item/stock_parts/engine/medium
+/obj/item/stock_parts/motor/medium
 	name = "electric motor"
 	desc = "A medium-sized copper-wire electric motor for various applications."
 	icon_state = "medium"
 	matter = list(/decl/material/solid/metal/steel = 400, /decl/material/solid/metal/copper = 2000)
 	w_class = ITEM_SIZE_NORMAL
-	weight = 0.5
+	weight = 2
 	rating = 1
 
-/obj/item/stock_parts/engine/large
+/obj/item/stock_parts/motor/large
 	name = "large electric motor"
-	desc = "This motor is large and heavy."
+	desc = "A large silver-wire electric motor. Overengineered enough to be used as a generator."
 	icon_state = "large"
 	matter = list(/decl/material/solid/metal/stainlesssteel = 4000, /decl/material/solid/metal/silver = 8000)
 	w_class = ITEM_SIZE_LARGE
-	weight = 3
+	weight = 10
 	rating = 3
 
-/obj/item/stock_parts/engine/superconducting
+/obj/item/stock_parts/motor/superconducting
 	name = "superconducting electric motor"
 	desc = "An exotic superconducting motor with extreme power density."
 	icon_state = "superconducting"

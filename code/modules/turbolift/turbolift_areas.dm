@@ -94,14 +94,17 @@
 
 /area/turbolift/serenity/ro_staircase
 	name = "RO Elevator"
+/area/turbolift/serenity/ro_staircase/a3
+	lift_floor_label = "3"
+	lift_floor_name = "RO Entrance; Atmos Annex"
 
 /area/turbolift/serenity/ro_staircase/a2
 	lift_floor_label = "2"
-	lift_floor_name = "RO Entrance; Atmos Annex"
+	lift_floor_name = "Electrical; Turbine Hall"
 
 /area/turbolift/serenity/ro_staircase/a1
 	lift_floor_label = "1"
-	lift_floor_name = "RO Offices; Main Catwalks"
+	lift_floor_name = "Reactor Control; Reactor Systems"
 
 /area/turbolift/serenity/ro_control
 	name = "RO Elevator"

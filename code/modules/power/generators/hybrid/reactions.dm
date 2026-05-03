@@ -38,6 +38,42 @@
 	free_neutron_moles = 0.5
 	s_factor = 3
 
+/decl/thermonuclear_reaction/tritium_tritium
+	first_reactant = /decl/material/gas/hydrogen/tritium
+	second_reactant = /decl/material/gas/hydrogen/tritium
+	product = /decl/material/gas/helium
+	mean_energy = 660000
+	minimum_temperature = 130 MEGAKELVIN
+	free_neutron_moles = 2
+	s_factor = 4
+
+/decl/thermonuclear_reaction/deuterium_lithium
+	first_reactant = /decl/material/gas/hydrogen/deuterium
+	second_reactant = /decl/material/solid/lithium
+	product = /decl/material/gas/helium
+	mean_energy = 2300000
+	minimum_temperature = 150 MEGAKELVIN
+	free_neutron_moles = 0
+	s_factor = 6
+
+/decl/thermonuclear_reaction/proton_lithium
+	first_reactant = /decl/material/gas/hydrogen
+	second_reactant = /decl/material/solid/lithium
+	product = /decl/material/gas/helium
+	mean_energy = 4020000
+	minimum_temperature = 180 MEGAKELVIN
+	free_neutron_moles = 0
+	s_factor = 5
+
+/decl/thermonuclear_reaction/proton_boron
+	first_reactant = /decl/material/gas/hydrogen
+	second_reactant = /decl/material/solid/boron
+	product = /decl/material/gas/helium
+	mean_energy = 840000
+	minimum_temperature = 410 MEGAKELVIN
+	free_neutron_moles = 0
+	s_factor = 2.5
+
 /decl/thermonuclear_reaction/helium3_helium3
 	first_reactant = /decl/material/gas/helium/isotopethree
 	second_reactant = /decl/material/gas/helium/isotopethree

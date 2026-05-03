@@ -23,7 +23,7 @@
 		/obj/item/chems/glass/beaker/vial/adenosine,
 		/obj/item/chems/glass/bottle/dronedarone,
 		/obj/item/chems/ivbag/emergency_antibiotics,
-		/obj/item/stock_parts/engine/superconducting,
+		/obj/item/stock_parts/motor/superconducting,
 		/obj/item/stock_parts/capacitor/super,
 		/obj/item/stock_parts/micro_laser/high,
 		/obj/item/stock_parts/radio/transmitter,

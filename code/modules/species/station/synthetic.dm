@@ -61,8 +61,6 @@
 
 	darksight_range = 4
 
-	slowdown = -1 //We have to think about this
-
 	stomach_capacity = 3
 	rarity_value = 3
 

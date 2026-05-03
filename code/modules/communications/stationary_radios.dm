@@ -54,3 +54,10 @@
 		if(!receiving_radio)
 			continue
 		receive_comm_message(M, message, frequency, flavor)
+	for(var/mob/living/silicon/M in silicon_mob_list)
+		if(M.z != src.z)
+			continue
+		var/obj/item/communications/receiving_radio = M.silicon_radio
+		if(!receiving_radio)
+			continue
+		receive_comm_message(M, message, frequency, flavor)

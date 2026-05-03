@@ -1,11 +1,13 @@
+#define MODE_DEFIB "Defibrillation"
+#define MODE_CARDIOVERT "Cardioversion"
+#define MODE_PACING "Pacing"
+
 /obj/machinery/defibrillator
 	name = "manual external defibrillator"
 	desc = "A very expensive and fragile device that is capable of defibrillation, cardioversion and heart pacing."
 	icon = 'icons/obj/medicine.dmi'
 	icon_state = "defib_deployed"
-	var/mode = "Defibrillation" //defibrillation, cardioversion, pacing
-
-	var/joule_setting = 240
+	var/mode = MODE_DEFIB //defibrillation, cardioversion, pacing
 
 	var/shock_charged = FALSE
 
@@ -21,12 +23,14 @@
 /obj/machinery/defibrillator/Destroy()
 	. = ..()
 	QDEL_NULL(connection_beam)
+	QDEL_NULL(pads)
+	options = null
 
 /obj/machinery/defibrillator/Process()
 	if(pacing && pace_sync && pads)
 		var/obj/item/organ/internal/heart/heart = GET_INTERNAL_ORGAN(pads.attached, BP_HEART)
-		heart.external_pump += pace_rate
-		playsound(get_turf(src), "bodyfall", 25, 1)
+		var/rate_diff = pace_rate - heart.pulse
+		heart.bpm_modifiers["Pacing"] = rate_diff * 2
 
 /obj/machinery/defibrillator/proc/announce(var/message)
 	visible_message(SPAN_NOTICE("The defibrillator states: '[message]'"))
@@ -43,13 +47,13 @@
 		shock_charged = FALSE
 		return
 	if(!user.skill_check(SKILL_MEDICAL, SKILL_BASIC))
-		to_chat(user,"<span class='warning'>You don't know what to do with it!</span>")
+		to_chat(user, SPAN_WARNING("You don't know what to do with it!"))
 		return
 
-	visible_message("<span class='danger'>\The [src] weeps: STAND BACK FROM THE PATIENT!</span>")
+	visible_message(SPAN_DANGER("\The [src] weeps: STAND BACK FROM THE PATIENT!"))
 	sleep(10)
-	pads.attached.visible_message("<span class='warning'>\The [pads.attached]'s body convulses violently!</span>")
-	playsound(get_turf(src), "bodyfall", 50, 1)
+	pads.attached.visible_message(SPAN_WARNING("\The [pads.attached]'s body convulses violently!"))
+	playsound(get_turf(src), 'sound/effects/bodyfall2.ogg',, 50, 1)
 	playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 50, 1, -1)
 	pads.attached.apply_damage(rand(5, 10), BURN, BP_CHEST)
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
@@ -66,7 +70,7 @@
 	log_and_message_admins("used \a [src] to electrocute [key_name(pads.attached)].")
 
 /obj/machinery/defibrillator/proc/charge(mob/user)
-	user.visible_message("<span class='notice'>\The [user] charges [src].</span>", "<span class='notice'>You charge the [src].</span>")
+	user.visible_message(SPAN_NOTICE("\The [user] charges [src]."), SPAN_NOTICE("You charge the [src]."))
 	playsound(get_turf(src), 'sound/machines/defib_charge.ogg', 50, 0)
 	spawn(20)
 		shock_charged = TRUE
@@ -84,10 +88,10 @@
 		shock_charged = FALSE
 		return
 
-	visible_message("<span class='warning'>\The [src] weeps: STAND BACK FROM THE PATIENT!</span>")
+	visible_message(SPAN_DANGER("\The [src] weeps: STAND BACK FROM THE PATIENT!"))
 	sleep(20)
-	pads.attached.visible_message("<span class='notice'>\The [pads.attached]'s body convulses slightly.</span>")
-	playsound(get_turf(src), "bodyfall", 50, 1)
+	pads.attached.visible_message(SPAN_NOTICE("\The [pads.attached]'s body convulses slightly."))
+	playsound(get_turf(src), 'sound/effects/bodyfall2.ogg',, 50, 1)
 	playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 50, 1, -1)
 	pads.attached.apply_damage(rand(1, 5), BURN, BP_CHEST)
 	playsound(get_turf(src), 'sound/machines/defib_success.ogg', 50, 0)
@@ -104,7 +108,7 @@
 /obj/machinery/defibrillator/proc/change_pacing_rate(mob/user)
 	var/pace_rate_new = input(user, "Select a pacing rate in beats per minute", "Pacing rate") as null|num
 	pace_rate = clamp(pace_rate_new, 1, 300)
-	user.visible_message("<span class='notice'>\The [user] changed the pacing rate of [src] to [pace_rate].</span>", "<span class='warning'>You change the pace rate of [src] to [pace_rate].</span>")
+	user.visible_message(SPAN_NOTICE("\The [user] changed the pacing rate of [src] to [pace_rate]."), SPAN_NOTICE("You change the pace rate of [src] to [pace_rate]."))
 
 /obj/machinery/defibrillator/proc/sync_pacer()
 	announce("Beginning pacer synchronization...")
@@ -135,36 +139,35 @@
 		return
 	pads.forceMove(src.loc)
 	pads = null
-	user.visible_message("<span class='notice'>\The [user] removes the [src] pads.</span>", "<span class='warning'>You remove the defibrillator pads.</span>")
+	user.visible_message(SPAN_NOTICE("\The [user] removes the [src] pads."), SPAN_NOTICE("You remove the defibrillator pads."))
 	playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
 	QDEL_NULL(connection_beam)
 
-/obj/machinery/defibrillator/attack_hand(mob/user)
-	. = ..()
+/obj/machinery/defibrillator/physical_attack_hand(mob/user)
 	if(pads && pads.taken_out == FALSE)
 		pads.taken_out = TRUE
 		pads.loc = user.loc
 		user.put_in_active_hand(pads)
-		user.visible_message("<span class='notice'>\The [user] takes out the [src] pads.</span>", "<span class='warning'>You take out the defibrillator pads.</span>")
+		user.visible_message(SPAN_NOTICE("\The [user] takes out the [src] pads."), SPAN_NOTICE("You take out the defibrillator pads."))
 		connection_beam = Beam(pads, "1-full", time = INFINITY, beam_color = COLOR_BLUE_LIGHT)
-		return
+		return TRUE
 
 	options.Cut()
 	options += "Switch mode"
 	if(pads)
 		options += "Disconnect pads"
 	switch(mode)
-		if("Defibrillation")
+		if(MODE_DEFIB)
 			if(shock_charged)
 				options += "Deliver shock"
 			else
 				options += "Charge for shock"
-		if("Cardioversion")
+		if(MODE_CARDIOVERT)
 			if(shock_charged)
 				options += "Cardiovert"
 			else
 				options += "Charge for shock"
-		if("Pacing")
+		if(MODE_PACING)
 			options += "Change pacing rate"
 			if(!pace_sync)
 				options += "Synchronize pacer"
@@ -195,6 +198,7 @@
 			switch_mode(user)
 		if("Disconnect pads")
 			detach_pads(user)
+	return TRUE
 
 /obj/machinery/defibrillator/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/clothing/under/electrode_pads))
@@ -203,7 +207,7 @@
 			if(ismob(pads.loc))
 				var/mob/M = pads.loc
 				if(M.drop_from_inventory(pads, src))
-					to_chat(user, "<span class='notice'>\The [pads] snap back into the main unit.</span>")
+					to_chat(user, SPAN_NOTICE("\The [pads] snap back into the main unit."))
 					playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
 			else
 				pads.forceMove(src)
@@ -214,7 +218,7 @@
 			if(pads)
 				pads.forceMove(src.loc)
 			pads = P
-			user.visible_message("<span class='notice'>\The [user] replaces the [src] pads.</span>", "<span class='warning'>You replace the defibrillator pads.</span>")
+			user.visible_message(SPAN_NOTICE("\The [user] replaces the [src] pads."), SPAN_NOTICE("You replace the defibrillator pads."))
 			playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 50, 0)
 			QDEL_NULL(connection_beam)
 		return
@@ -237,6 +241,10 @@
 	..()
 	attached = null
 
+/obj/item/clothing/under/electrode_pads/Destroy()
+	. = ..()
+	attached = null
+
 /obj/item/clothing/under/electrode_pads/attack(mob/living/carbon/human/M, mob/living/user, var/target_zone)
 	if(istype(M) && user.a_intent == I_HELP)
 		var/obj/item/suit = M.get_equipped_item(slot_w_uniform_str)
@@ -256,3 +264,7 @@
 			return 1
 	else
 		return ..()
+
+#undef MODE_DEFIB
+#undef MODE_CARDIOVERT
+#undef MODE_PACING

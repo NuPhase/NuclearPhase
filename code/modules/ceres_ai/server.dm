@@ -14,10 +14,11 @@
 
 /obj/machinery/ai_server/fail_roundstart()
 	. = ..()
-	if(prob(SSticker.mode.difficulty))
-		set_corruption(1)
+	if(prob(SSticker.mode.difficulty)) // direct sets so we that we don't call 60 AI updates
+		corruption = 1
 	else
-		set_corruption(rand(25, 75)*0.01)
+		corruption = rand(25, 75)*0.01
+	update_icon()
 
 /obj/machinery/ai_server/on_update_icon()
 	cut_overlays()

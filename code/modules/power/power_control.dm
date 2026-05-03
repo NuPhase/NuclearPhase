@@ -1,10 +1,10 @@
 #define MODE_NOMINAL  "NOMINAL"  // Steady power supply from turbines.
 #define MODE_NO_MAIN  "BACKUP"   // No turbines, generators provide enough power.
-#define MODE_RESERVE  "BATTERIES"// No generators, running on batteries.
+#define MODE_RESERVE  "RESERVE"// No generators, running on batteries.
 #define MODE_OFFLINE  "OFFLINE"  // No active control measures.
 
 /datum/power_control_system
-	var/mode = MODE_NOMINAL // Current mode of operation
+	var/mode = MODE_NO_MAIN // Current mode of operation
 	var/list/log_messages = list() // All active, non-cleared messages
 	var/list/log_archive = list() // All messages
 
@@ -14,7 +14,7 @@
 	var/list/sector_transformers = list() // BUS to SEC A/B/C/D/E
 	var/list/all_transformers = list() // All switchable transformers. Not associative.
 
-	var/list/sector_ids = list("A", "B", "C", "D", "E")
+	var/list/sector_ids = list("A", "B", "C", "D")
 
 /datum/power_control_system/New()
 	. = ..()
@@ -72,6 +72,7 @@
 		return
 	mode = new_mode
 	make_report("Mode switched to [new_mode]")
+	fcontrol.make_log("Power control reports mode switch to: [new_mode].", LOG_CLASS_SYSTEM)
 	if(new_mode == MODE_OFFLINE)
 		for(var/obj/machinery/power/generator/transformer/switchable/our_trans in all_transformers)
 			our_trans.busy = FALSE
@@ -121,8 +122,8 @@
 /datum/power_control_system/proc/assess_gen()
 	var/obj/machinery/power/generator/transformer/switchable/our_trans = feeder_transformers["GEN to BUS"]
 	var/has_active_generator = FALSE
-	for(var/obj/machinery/power/generator/port_gen/our_gen in our_trans.powernet.nodes)
-		if(our_gen.active)
+	for(var/obj/machinery/power/generator/our_gen in our_trans.powernet.nodes)
+		if(our_gen.available_power() > 1000000)
 			has_active_generator = TRUE
 			break
 	if(!has_active_generator)

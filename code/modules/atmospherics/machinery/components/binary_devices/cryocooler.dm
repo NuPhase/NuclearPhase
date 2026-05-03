@@ -23,7 +23,7 @@
 	to_chat(user, SPAN_NOTICE("-----------------------"))
 
 /obj/machinery/atmospherics/binary/cryocooler/RefreshParts()
-	power_rating = initial(power_rating) * total_component_rating_of_type(/obj/item/stock_parts/engine)
+	power_rating = initial(power_rating) * total_component_rating_of_type(/obj/item/stock_parts/motor)
 
 /obj/machinery/atmospherics/binary/cryocooler/Initialize()
 	. = ..()

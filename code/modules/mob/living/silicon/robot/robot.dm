@@ -51,7 +51,7 @@
 	var/obj/item/module_state_3
 
 	silicon_camera = /obj/item/camera/siliconcam/robot_camera
-	silicon_radio = /obj/item/radio/borg
+	silicon_radio = /obj/item/communications/robot_radio
 
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/cell/cell = /obj/item/cell/high

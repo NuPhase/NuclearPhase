@@ -159,8 +159,11 @@
 	background_radiation = 0.07
 
 /area/serenity/shelter/engineering/reactor_operations/office
-	name = "Reactor Operations Offices"
+	name = "RO Offices"
 	icon_state = "heads"
+
+/area/serenity/shelter/engineering/reactor_operations/office/changing_room
+	name = "RO Changing Room"
 
 /area/serenity/shelter/engineering/reactor_operations/office/chief_engineer
 	name = "Chief Engineer Office"
@@ -175,6 +178,12 @@
 	icon_state = "substation"
 /area/serenity/shelter/engineering/electrical/aux
 	name = "Electrical Centre - Auxillary"
+	icon_state = "substation"
+/area/serenity/shelter/engineering/electrical/substation
+	name = "Electrical Centre - Substation"
+	icon_state = "substation"
+/area/serenity/shelter/engineering/electrical/generator_bay
+	name = "Electrical Centre - Backup Generator Bay"
 	icon_state = "substation"
 /area/serenity/shelter/engineering/service_tunnels
 	name = "Service Tunnels"

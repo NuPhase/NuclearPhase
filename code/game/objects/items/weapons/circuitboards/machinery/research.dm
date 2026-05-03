@@ -92,7 +92,7 @@
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 2,
-							/obj/item/stock_parts/engine/medium = 1)
+							/obj/item/stock_parts/motor/medium = 1)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
 		/obj/item/stock_parts/keyboard = 1,
@@ -306,7 +306,7 @@
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/capacitor = 3,
-		/obj/item/stock_parts/engine = 2)
+		/obj/item/stock_parts/motor = 2)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
 		/obj/item/stock_parts/keyboard = 1,
@@ -320,7 +320,7 @@
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/manipulator = 3,
-		/obj/item/stock_parts/engine = 4)
+		/obj/item/stock_parts/motor = 4)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
 		/obj/item/stock_parts/keyboard = 1,
@@ -334,7 +334,7 @@
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/shielding/heat = 1,
-		/obj/item/stock_parts/engine/medium = 1)
+		/obj/item/stock_parts/motor/medium = 1)
 	additional_spawn_components = list(
 		/obj/item/stock_parts/console_screen = 1,
 		/obj/item/stock_parts/keyboard = 1,

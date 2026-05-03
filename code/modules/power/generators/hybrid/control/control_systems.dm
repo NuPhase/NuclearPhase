@@ -95,7 +95,7 @@
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	if(rcore.meltdown_state)
 		return
-	rcore.containment_field.adjust_gas_temp(/decl/material/gas/tungstenhexafluoride, 20, T0C)
+	rcore.containment_field.adjust_gas_temp(/decl/material/gas/tungstenhexafluoride, 2, T0C)
 	playsound(loc, 'sound/machines/switchbuzzer.ogg', 50)
 
 /obj/machinery/reactor_button/protected/efss_discharge

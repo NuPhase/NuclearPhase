@@ -40,3 +40,22 @@
 	item_result_type = /obj/item/crafting_component/turbine_blades
 	item_result_amount = 1
 	recipe_time = 30
+
+/decl/processing_recipe/cutter/make_comp_norm
+	name = "Make Mechanical Components"
+	required_items = list(/obj/item/crafting_component/mill_block_basic)
+	item_result_type = /obj/item/crafting_component/components
+	item_result_amount = 5
+
+/decl/processing_recipe/cutter/make_comp_heavy
+	name = "Make Industrial Components"
+	required_items = list(/obj/item/crafting_component/mill_block_basic)
+	item_result_type = /obj/item/crafting_component/industrial_components
+	item_result_amount = 1
+
+/decl/processing_recipe/cutter/make_comp_aerospace
+	name = "Make Aerospace Components"
+	required_items = list(/obj/item/crafting_component/mill_block_super)
+	required_gas = list(/decl/material/gas/xenon = 1)
+	item_result_type = /obj/item/crafting_component/aerospace_components
+	item_result_amount = 2

@@ -106,7 +106,6 @@
 /mob/living/silicon/proc/law_channels()
 	var/list/channels = new()
 	channels += MAIN_CHANNEL
-	channels += silicon_radio.channels
 	channels += additional_law_channels
 	channels += "Binary"
 	return channels

@@ -43,8 +43,11 @@
 		/decl/material/gas/nitrogen,
 		/decl/material/gas/helium,
 		/decl/material/solid/caesium,
+		/decl/material/solid/silicon,
+		/decl/material/solid/carbon,
 		/decl/material/solid/metal/nuclear_waste/actinides,
 		/decl/material/solid/metal/beryllium,
+		/decl/material/solid/metal/tungsten,
 		/decl/material/gas/tungstenhexafluoride
 	)
 

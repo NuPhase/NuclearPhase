@@ -39,3 +39,17 @@
 	icon = 'icons/mob/robots/robot_engineer_drake.dmi'
 	icon_selected = TRUE
 	default_pixel_x = -16
+	var/weakref/controller
+
+/mob/living/silicon/robot/engineering/verb/stop_control()
+	set name = "Stop Remote Control"
+	set category = "Remote Control"
+
+	var/mob/controller_mob = controller.resolve()
+	if(mind)
+		mind.transfer_to(controller_mob)
+	else
+		controller_mob.ckey = ckey
+		ckey = null
+	controller_mob.teleop = null
+	controller = null

@@ -76,7 +76,7 @@
 	build_path = /obj/machinery/centrifuge
 	board_type = "machine"
 	req_components = list(
-		/obj/item/stock_parts/engine/medium = 1,
+		/obj/item/stock_parts/motor/medium = 1,
 		/obj/item/stock_parts/micro_laser = 1
 	)
 	additional_spawn_components = list(

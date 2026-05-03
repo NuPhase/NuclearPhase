@@ -42,7 +42,6 @@
 
 	// 0 - 1
 	var/corruption_level = 0
-	var/server_corruption = 0
 
 	var/pcd_connected = FALSE
 
@@ -73,6 +72,8 @@
 		compute.handle_compute(computational_power)
 
 /datum/facility_ai/proc/boot()
+	computational_power = check_all_servers()
+
 	write_message(LOG_MACROS_SEPARATOR)
 	write_message("ID: AI-SCS-P[id]")
 	write_message("MODEL: Sitewide Control System \[SCS\]")
@@ -82,11 +83,9 @@
 	make_log("Memory map initialized", LOG_CLASS_SYSTEM)
 	make_log("Cognitive module loaded", LOG_CLASS_CORE)
 	make_log("Subnet integrity: 100.00%", LOG_CLASS_NETWORK)
-	var/defective_racks = 0
+	var/defective_racks = round(length(servers) * corruption_level)
 	make_log("Corrupted servers: [defective_racks]", LOG_CLASS_CORE, CREEPY_FLAG_DAMAGE)
 	write_message(LOG_MACROS_SEPARATOR)
-
-	computational_power = check_all_servers()
 
 /datum/facility_ai/proc/connect_pcd()
 	if(pcd_connected)
@@ -94,7 +93,6 @@
 
 	pcd_connected = TRUE
 	corruption_level = 0
-	server_corruption = 0
 	disengage_drones()
 
 	write_message(LOG_MACROS_SEPARATOR)
@@ -116,7 +114,6 @@
 
 	name = FAULTY_NAME
 	corruption_level = 1
-	server_corruption = 1
 	agro_level = AGRO_LEVEL_BASE
 	engage_drones()
 

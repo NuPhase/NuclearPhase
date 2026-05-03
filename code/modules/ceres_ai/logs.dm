@@ -2,7 +2,7 @@
 	logs += "[message]"
 
 /datum/facility_ai/proc/make_log(message, class, special_flag)
-	var/time = duration2stationtime(TimeOfGame)
+	var/time = stationtime2text()
 	if(prob(corruption_level * 50))
 		message = insert_creepy_comment(message, special_flag)
 		if(prob(corruption_level * 20))

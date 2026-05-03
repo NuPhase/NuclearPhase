@@ -143,25 +143,25 @@
 	var/oxidizer_ratio_sum = 0
 	var/largest_fuel_type
 	var/largest_fuel_amount = 0
-	var/list/all_fuel = fuel.get_fluid()
-	for(var/mat_type in all_fuel)
+	var/alist/all_fuel = fuel.get_fluid()
+	for(var/mat_type, mat_amt in all_fuel)
 		var/decl/material/mat = GET_DECL(mat_type)
 		if(!mat.combustion_energy)
 			continue
-		if(all_fuel[mat_type] > largest_fuel_amount)
+		if(mat_amt > largest_fuel_amount)
 			largest_fuel_type = mat_type
-		combustion_value_sum += mat.combustion_energy * all_fuel[mat_type]
-		oxidizer_ratio_sum += mat.oxidizer_to_fuel_ratio * all_fuel[mat_type]
+		combustion_value_sum += mat.combustion_energy * mat_amt
+		oxidizer_ratio_sum += mat.oxidizer_to_fuel_ratio * mat_amt
 	var/combustion_energy = combustion_value_sum / fuel.total_moles
 	var/ox_to_fuel_ratio = oxidizer_ratio_sum / fuel.total_moles
 
 	var/oxidizer_moles = 0
-	var/list/all_oxidizer = oxidizer.get_fluid()
-	for(var/mat_type in all_oxidizer)
+	var/alist/all_oxidizer = oxidizer.get_fluid()
+	for(var/mat_type, mat_amt in all_oxidizer)
 		var/decl/material/mat = GET_DECL(mat_type)
 		if(!mat.oxidizer_power)
 			continue
-		oxidizer_moles += all_oxidizer[mat_type]
+		oxidizer_moles += mat_amt
 	var/oxidizer_ratio = oxidizer_moles / oxidizer.total_moles
 
 	var/our_efficiency = get_efficiency()

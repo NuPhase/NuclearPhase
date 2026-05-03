@@ -1,4 +1,4 @@
-/datum/map/avalon
+/datum/map/serenity
 	default_job_type = /datum/job/reactor_operations/sme
 	default_department_type = /decl/department/site_operations
 	allowed_jobs = list(

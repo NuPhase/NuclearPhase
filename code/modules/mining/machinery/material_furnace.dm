@@ -289,10 +289,7 @@
 		if(cur_electrode.integrity == 0) //dead electrode
 			continue
 		coef_sum += 1 - cur_electrode.coke_content * 0.01
-	var/list/solid_mats = connected_canister.air_contents.get_fluid(fluid_types = MAT_PHASE_SOLID)
-	var/mole_sum = 0
-	for(var/g in solid_mats)
-		mole_sum += solid_mats[g]
+	var/mole_sum = values_sum(connected_canister.air_contents.solids)
 	var/solid_factor = 1
 	if(connected_canister.air_contents.total_moles)
 		solid_factor = mole_sum / connected_canister.air_contents.total_moles * 0.5
@@ -376,17 +373,15 @@
 		stop_arcing()
 		return
 
-	var/list/all_liquids = connected_canister.air_contents.get_fluid(fluid_types = MAT_PHASE_LIQUID)
-	var/list/all_solids = connected_canister.air_contents.get_fluid(fluid_types = MAT_PHASE_SOLID)
 	var/total_latent_heat = 0
-	for(var/f_type in all_liquids)
-		var/decl/material/mat = GET_DECL(f_type)
+	for(var/l_type, l_amt in connected_canister.air_contents.liquids)
+		var/decl/material/mat = GET_DECL(l_type)
 		if(connected_canister.air_contents.temperature > mat.boiling_point)
-			total_latent_heat += all_liquids[f_type] * mat.latent_heat * 0.05
-	for(var/f_type in all_solids)
-		var/decl/material/mat = GET_DECL(f_type)
+			total_latent_heat += l_amt * mat.latent_heat * 0.05
+	for(var/s_type, s_amt in connected_canister.air_contents.solids)
+		var/decl/material/mat = GET_DECL(s_type)
 		if(connected_canister.air_contents.temperature > mat.melting_point)
-			total_latent_heat += all_solids[f_type] * mat.fusion_enthalpy * 0.05
+			total_latent_heat += s_amt * mat.fusion_enthalpy * 0.05
 
 	var/total_heat_capacity = heat_capacity()
 

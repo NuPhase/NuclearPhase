@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(reactions)
 	var/list/fusion_reactions = list()
 
 /datum/controller/subsystem/reactions/proc/process_gasmix(datum/gas_mixture/gasmix, firelevel)
-	var/list/all_fluid = gasmix.get_fluid()
+	var/alist/all_fluid = gasmix.get_fluid()
 	if(!length(all_fluid))
 		return
 
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(reactions)
 		gasmix.temperature = reacted_list[2]
 	*/
 
-/datum/controller/subsystem/reactions/proc/process_reactions(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
+/datum/controller/subsystem/reactions/proc/process_reactions(alist/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
 	var/has_fuel = FALSE
 	var/has_oxidizer = FALSE
 	var/old_temperature = temperature
@@ -59,9 +59,9 @@ SUBSYSTEM_DEF(reactions)
 			has_oxidizer = TRUE
 	if(!heat_capacity)
 		heat_capacity = 0
-		for(var/g in moles)
-			var/decl/material/mat = GET_DECL(g)
-			heat_capacity += moles[g] * mat.gas_specific_heat
+		for(var/gasid, amt in moles)
+			var/decl/material/mat = GET_DECL(gasid)
+			heat_capacity += amt * mat.gas_specific_heat
 
 	var/list/chem_return_list = process_reaction_chem(moles, temperature, heat_capacity, pressure, volume)
 	moles = chem_return_list[1]
@@ -92,13 +92,13 @@ SUBSYSTEM_DEF(reactions)
 
 #undef PRE_EXPONENTIAL_FACTOR
 
-/datum/controller/subsystem/reactions/proc/process_reaction_chem(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
+/datum/controller/subsystem/reactions/proc/process_reaction_chem(alist/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume)
 	reactions_reagents_holder.temperature = temperature
 	var/datum/reagents/pressurized/temp_holder = new(10000000000000, reactions_reagents_holder)
 	temp_holder.pressure = pressure
-	for(var/mat_type in moles)
+	for(var/mat_type, amt in moles)
 		var/decl/material/mat = GET_DECL(mat_type)
-		LAZYSET(temp_holder.reagent_volumes, mat_type, moles[mat_type] * mat.molar_volume)
+		LAZYSET(temp_holder.reagent_volumes, mat_type, amt * mat.molar_volume)
 	temp_holder.update_total()
 	temp_holder.process_reactions()
 	moles.Cut()
@@ -107,17 +107,17 @@ SUBSYSTEM_DEF(reactions)
 		moles[mat_type] = temp_holder.reagent_volumes[mat_type] / mat.molar_volume
 	return list(moles, reactions_reagents_holder.temperature)
 
-/datum/controller/subsystem/reactions/proc/process_reaction_oxidation(list/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
-	var/list/oxidizers = list()
-	var/list/oxidizers_by_power = list()
-	var/list/fuels = list()
+/datum/controller/subsystem/reactions/proc/process_reaction_oxidation(alist/moles, temperature, heat_capacity, pressure = ONE_ATMOSPHERE, volume, firelevel)
+	var/alist/oxidizers = alist()
+	var/alist/oxidizers_by_power = alist()
+	var/alist/fuels = alist()
 	var/thermal_energy = temperature * heat_capacity
 	var/total_moles = 0
-	for(var/g in moles)
-		total_moles += moles[g]
+	for(var/g, amt in moles)
+		total_moles += amt
 		var/decl/material/mat = GET_DECL(g)
 		if(mat.combustion_energy && mat.combustion_products)
-			fuels[g] = moles[g]
+			fuels[g] = amt
 		if(mat.oxidizer_power)
 			oxidizers_by_power[g] = mat.oxidizer_power
 
@@ -129,13 +129,13 @@ SUBSYSTEM_DEF(reactions)
 	// Remove all reactants from the fuel list temporarily
 	moles.Remove(oxidizers, fuels)
 
-	for(var/g in oxidizers)
-		for(var/f in fuels)
+	for(var/g, oxi_amt in oxidizers)
+		for(var/f, fuel_amt in fuels)
 			var/decl/material/fuel_mat = GET_DECL(f)
-			if((thermal_energy * fuels[f] < fuel_mat.combustion_activation_energy * total_moles) && !firelevel)
+			if((thermal_energy * fuel_amt < fuel_mat.combustion_activation_energy * total_moles) && !firelevel)
 				continue
-			var/need_fuel_moles = oxidizers[g] / fuel_mat.oxidizer_to_fuel_ratio
-			var/actually_spent_fuel = min(fuels[f], need_fuel_moles, oxidizers_by_power[g] * get_reaction_rate(fuels[f], fuel_mat.combustion_activation_energy, temperature, volume, firelevel))
+			var/need_fuel_moles = oxi_amt / fuel_mat.oxidizer_to_fuel_ratio
+			var/actually_spent_fuel = min(fuel_amt, need_fuel_moles, oxidizers_by_power[g] * get_reaction_rate(fuel_amt, fuel_mat.combustion_activation_energy, temperature, volume, firelevel))
 			var/actually_spent_oxidizer = actually_spent_fuel * fuel_mat.oxidizer_to_fuel_ratio
 			var/product
 			if(fuel_mat.combustion_products[g])
@@ -149,10 +149,10 @@ SUBSYSTEM_DEF(reactions)
 			if(!oxidizers[g])
 				break
 
-	for(var/g in oxidizers)
-		moles[g] += oxidizers[g]
-	for(var/g in fuels)
-		moles[g] += fuels[g]
+	for(var/g, amt in oxidizers)
+		moles[g] += amt
+	for(var/g, amt in fuels)
+		moles[g] += amt
 	temperature = thermal_energy / heat_capacity
 
 	return list(moles, temperature, heat_capacity, pressure)
@@ -160,11 +160,11 @@ SUBSYSTEM_DEF(reactions)
 /datum/controller/subsystem/reactions/proc/test_combustion(mob/user)
 	to_chat(user, "--------------------")
 	for(var/i=1, i<20, i++)
-		var/list/react_result = process_reactions(list(/decl/material/gas/hydrogen = 60, /decl/material/gas/oxygen = 30), 100*i, 6600, volume = 1000)
+		var/list/react_result = process_reactions(alist(/decl/material/gas/hydrogen = 60, /decl/material/gas/oxygen = 30), 100*i, 6600, volume = 1000)
 		to_chat(user, "T: [100*i] ===> T: [round(react_result[2], 0.1)] H: [round(react_result[1][/decl/material/gas/hydrogen], 0.1)] O: [round(react_result[1][/decl/material/gas/oxygen], 0.1)]")
 	to_chat(user, "--------------------")
 	for(var/i=1, i<20, i++)
-		var/list/react_result = process_reactions(list(/decl/material/gas/hydrogen = 300/i, /decl/material/gas/oxygen = 30), 3500, 6600, volume = 1000)
+		var/list/react_result = process_reactions(alist(/decl/material/gas/hydrogen = 300/i, /decl/material/gas/oxygen = 30), 3500, 6600, volume = 1000)
 		to_chat(user, "T: 3500 ===> T: [round(react_result[2], 0.1)] H: [round(react_result[1][/decl/material/gas/hydrogen], 0.1)] O: [round(react_result[1][/decl/material/gas/oxygen], 0.1)]")
 	to_chat(user, "--------------------")
 
@@ -188,7 +188,10 @@ SUBSYSTEM_DEF(reactions)
 	The escape fraction contributes to var/escaped_n which is used in some places
 */
 
-/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(list/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons)
+/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(alist/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons, handle_escape = TRUE, add_absorbption)
+	if((slow_neutrons + fast_neutrons) == 0)
+		return list(moles, temperature, fast_neutrons, slow_neutrons)
+
 	var/thermal_energy = temperature * heat_capacity
 	var/radial_distance = sphere_radius_from_volume(volume)
 
@@ -199,24 +202,31 @@ SUBSYSTEM_DEF(reactions)
 	fast_neutrons -= scattered
 	slow_neutrons += scattered
 
-	var/fission_prob = get_average_cross_section(moles, INTERACTION_FISSION, fast_neutrons, slow_neutrons, volume)
+	var/fission_prob = get_average_cross_section(moles, INTERACTION_FISSION, fast_neutrons, slow_neutrons, volume, TRUE)
 	var/absorb_prob = get_average_cross_section(moles, INTERACTION_ABSORPTION, fast_neutrons, slow_neutrons, volume)
 	if(!fission_prob)
 		return list(moles, temperature, fast_neutrons, slow_neutrons)
 
+	if(add_absorbption)
+		absorb_prob *= add_absorbption
+
+	var/total_neutrons = fast_neutrons + slow_neutrons
 	var/euler_exp = EULER**(-(absorb_prob+fission_prob)*radial_distance)
 	var/z_fission = (fission_prob/(absorb_prob+fission_prob)) * (1-euler_exp)
 	var/z_absorb = (absorb_prob/(absorb_prob+fission_prob)) * (1-euler_exp)
 	var/z_escape = euler_exp
 
-	var/total_neutrons = fast_neutrons + slow_neutrons
 	var/n_fission = z_fission * total_neutrons
 	var/n_absorb = z_absorb * total_neutrons
-	var/n_escape = z_escape * total_neutrons
+	var/fast_absorb_fraction
 
-	var/fast_absorb_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
-	fast_neutrons -= fast_absorb_fraction * n_escape
-	slow_neutrons -= (1 - fast_absorb_fraction) * n_escape
+	if(handle_escape)
+		fast_absorb_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
+		var/n_escape = z_escape * total_neutrons
+		fast_neutrons -= fast_absorb_fraction * n_escape
+		slow_neutrons -= (1 - fast_absorb_fraction) * n_escape
+		if((slow_neutrons + fast_neutrons) == 0) // all escaped
+			return list(moles, temperature, fast_neutrons, slow_neutrons)
 
 	var/list/fissile_moles = list()
 	var/fissile_total = 0
@@ -236,6 +246,7 @@ SUBSYSTEM_DEF(reactions)
 		slow_neutrons -= (1 - fast_fraction) * fission_moles
 		fast_neutrons += mat.fission_neutrons * fission_moles
 		thermal_energy += mat.fission_energy * fission_moles
+		moles[mat_type] -= fission_moles
 		if(mat.fission_products)
 			for(var/waste_type in mat.fission_products)
 				moles[waste_type] += mat.fission_products[waste_type] * fission_moles
@@ -244,6 +255,7 @@ SUBSYSTEM_DEF(reactions)
 	for(var/mat_type in moles)
 		total_moles += moles[mat_type]
 
+	fast_absorb_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
 	for(var/mat_type in moles)
 		var/decl/material/mat = GET_DECL(mat_type)
 		var/fraction = moles[mat_type] / total_moles
@@ -251,6 +263,7 @@ SUBSYSTEM_DEF(reactions)
 		fast_neutrons -= fast_absorb_fraction * absorb_moles
 		slow_neutrons -= (1 - fast_absorb_fraction) * absorb_moles
 		if(mat.absorption_products)
+			moles[mat_type] -= absorb_moles
 			for(var/waste_type in mat.absorption_products)
 				moles[waste_type] += mat.absorption_products[waste_type] * absorb_moles
 
@@ -261,6 +274,7 @@ SUBSYSTEM_DEF(reactions)
 		var/decay_moles = moles[mat_type] * mat.neutron_interactions["slow"][INTERACTION_DECAY]
 		fast_neutrons += mat.fission_neutrons * decay_moles
 		thermal_energy += mat.fission_energy * decay_moles
+		moles[mat_type] -= decay_moles
 		if(mat.fission_products)
 			for(var/waste_type in mat.fission_products)
 				moles[waste_type] += mat.fission_products[waste_type] * decay_moles
@@ -269,39 +283,54 @@ SUBSYSTEM_DEF(reactions)
 	return list(moles, temperature, fast_neutrons, slow_neutrons)
 
 // Goes through all moles and constructs an average probability per cm3
-/datum/controller/subsystem/reactions/proc/get_average_cross_section(list/moles, reaction_type, fast_neutrons, slow_neutrons, volume)
-	var/total_moles = 0
-	for(var/mat_type in moles)
-		total_moles += moles[mat_type]
+/datum/controller/subsystem/reactions/proc/get_average_cross_section(alist/moles, reaction_type, fast_neutrons, slow_neutrons, volume, fissile_only)
+	if(fissile_only)
+		var/list/fissile_moles = list()
+		var/fissile_total = 0
+		for(var/mat_type in moles)
+			var/decl/material/mat = GET_DECL(mat_type)
+			if(!mat.neutron_interactions || !mat.neutron_interactions["slow"][INTERACTION_FISSION])
+				continue
+			fissile_moles[mat_type] = moles[mat_type]
+			fissile_total += moles[mat_type]
 
-	if(total_moles <= 0)
-		return 0
+		var/average_prob_per_cm = 0
+		for(var/mat_type in fissile_moles)
+			var/decl/material/mat = GET_DECL(mat_type)
+			var/mat_prob_cm = mat.get_nuclear_cross_section(fissile_moles, reaction_type, slow_neutrons, fast_neutrons, volume)
+			if(mat_prob_cm)
+				var/fraction = fissile_moles[mat_type] / fissile_total
+				average_prob_per_cm += fraction * mat_prob_cm
+		return average_prob_per_cm
+	else
+		var/total_moles = 0
+		for(var/mat_type in moles)
+			total_moles += moles[mat_type]
 
-	var/average_prob_per_cm = 0
-	for(var/mat_type in moles)
-		var/decl/material/mat = GET_DECL(mat_type)
-		var/mat_prob_cm = mat.get_nuclear_cross_section(moles, reaction_type, fast_neutrons, slow_neutrons, volume)
-		if(mat_prob_cm)
-			var/fraction = moles[mat_type] / total_moles
-			average_prob_per_cm += fraction * mat_prob_cm
+		if(total_moles <= 0)
+			return 0
 
-	return average_prob_per_cm
+		var/average_prob_per_cm = 0
+		for(var/mat_type in moles)
+			var/decl/material/mat = GET_DECL(mat_type)
+			var/mat_prob_cm = mat.get_nuclear_cross_section(moles, reaction_type, fast_neutrons, slow_neutrons, volume)
+			if(mat_prob_cm)
+				var/fraction = moles[mat_type] / total_moles
+				average_prob_per_cm += fraction * mat_prob_cm
+		return average_prob_per_cm
 
 /datum/controller/subsystem/reactions/proc/test_nuclear()
 	to_chat(usr, "--------------------")
 	var/fast_neutrons = 0.01
 	var/slow_neutrons = 0
 	var/temperature = T20C
+	var/datum/gas_mixture/constant_heat_capacity/xgm_testbed = new(100, T20C, 1, alist(/decl/material/solid/metal/depleted_uranium = 85, /decl/material/solid/metal/uranium = 15))
+	xgm_testbed.heat_capacity = 10000000
 	for(var/i=1, i<100, i++)
-		var/list/moles = list(
-			/decl/material/solid/metal/depleted_uranium = 85,
-			/decl/material/solid/metal/uranium = 15
-			)
-		var/list/react_result = process_reaction_nuclear(moles, temperature, 10000000, 100, fast_neutrons, slow_neutrons)
-		temperature = react_result[2]
-		fast_neutrons = react_result[3]
-		slow_neutrons = react_result[4]
-		to_chat(usr, "T: [round(react_result[2])] | FN: [round(react_result[3], 0.0001)] | SN: [round(react_result[4], 0.0001)]")
+		var/list/react_result = xgm_testbed.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+		fast_neutrons = react_result["fast_neutrons_changed"]
+		slow_neutrons = react_result["slow_neutrons_changed"]
+		to_chat(usr, "T: [round(xgm_testbed.temperature)] | FN: [round(react_result["fast_neutrons_changed"], 0.0001)] | SN: [round(react_result["slow_neutrons_changed"], 0.0001)]")
 	to_chat(usr, "--------------------")
 	fast_neutrons = 0.01
 	slow_neutrons = 0

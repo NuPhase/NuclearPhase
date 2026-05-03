@@ -12,7 +12,7 @@
 			return 0
 		if(message_mode == "general")
 			message_mode = null
-		return silicon_radio.talk_into(src,message,message_mode,verb,speaking)
+		return silicon_radio.transmit(message, src)
 
 /mob/living/silicon/ai/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	..()
@@ -31,7 +31,7 @@
 	if(message_mode)
 		if(message_mode == "general")
 			message_mode = null
-		return silicon_radio.talk_into(src,message,message_mode,verb,speaking)
+		return silicon_radio.transmit(message, src)
 
 /mob/living/silicon/say_quote(var/text)
 	var/ending = copytext(text, length(text))

@@ -11,6 +11,9 @@ We have a very powerful computer system that allows our neural network to fully 
 	lying_pull_coefficient = 0.9
 	faction = "silicon"
 
+	// DOKTOR, TURN OFF MY PAIN INHIBITORS
+	var/pain_inhibitors = TRUE
+
 /mob/living/carbon/human/synthetic/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 	bpm = heart.pulse + heart.external_pump
@@ -24,89 +27,14 @@ We have a very powerful computer system that allows our neural network to fully 
 		dyspressure = 0
 		mcv = 0
 
-/mob/living/carbon/human/synthetic/setup(var/datum/dna/new_dna = null)
-	dna = new_dna
-
-	set_species()
-
-	if(new_dna)
-		set_real_name(new_dna.real_name)
-	else
-		try_generate_default_name()
-
-	species.handle_pre_spawn(src)
-	if(!LAZYLEN(get_external_organs()))
-		species.create_missing_organs(src) //Syncs DNA when adding organs
-	apply_species_cultural_info()
-	apply_species_appearance()
-	species.handle_post_spawn(src)
-
-	UpdateAppearance() //Apply dna appearance to mob, causes DNA to change because filler values are regenerated
-
-	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] skin looks unnaturally clean."), DESCRIPTOR_CLEAN)
-	add_examine_descriptor(SPAN_DESCRIPTION("[pronouns.His] smells like fresh plastic."), DESCRIPTOR_TRAIT)
+/mob/living/carbon/human/synthetic/setup(var/species_name = null, var/datum/dna/new_dna = null)
+	. = ..(species_name = /decl/species/human/synth::name, new_dna = new_dna)
+	var/decl/pronouns/synth_pronouns = get_pronouns() // the pronouns variable may not be set by this point so we need the helper
+	add_examine_descriptor(SPAN_DESCRIPTION("[synth_pronouns.His] skin looks unnaturally clean."), DESCRIPTOR_CLEAN)
+	add_examine_descriptor(SPAN_DESCRIPTION("[synth_pronouns.His] smells like fresh plastic."), DESCRIPTOR_TRAIT)
 
 /mob/living/carbon/human/synthetic/set_species(var/new_species_name, var/new_bodytype = null)
-	var/new_species = GET_DECL(/decl/species/human/synth)
-	if(!new_species)
-		CRASH("set_species on mob '[src]' was passed a bad species name!")
-
-	//Handle old species transition
-	if(species)
-		species.remove_base_auras(src)
-		species.remove_inherent_verbs(src)
-
-	//Update our species
-	species = new_species
-	if(dna)
-		dna.species = new_species_name
-	holder_type = null
-	if(species.holder_type)
-		holder_type = species.holder_type
-	maxHealth = species.total_health
-	mob_size = species.mob_size
-	remove_extension(src, /datum/extension/armor)
-	if(species.natural_armour_values)
-		set_extension(src, /datum/extension/armor, species.natural_armour_values)
-
-	var/decl/pronouns/new_pronouns = get_pronouns_by_gender(get_sex())
-	if(!istype(new_pronouns) || !(new_pronouns in species.available_pronouns))
-		new_pronouns = species.default_pronouns
-		set_gender(new_pronouns.name)
-
-	//Handle bodytype
-	if(!new_bodytype)
-		new_bodytype = species.get_bodytype_by_pronouns(new_pronouns)
-	set_bodytype(new_bodytype, FALSE)
-
-	available_maneuvers = species.maneuvers.Copy()
-
-	meat_type =     species.meat_type
-	meat_amount =   species.meat_amount
-	skin_material = species.skin_material
-	skin_amount =   species.skin_amount
-	bone_material = species.bone_material
-	bone_amount =   species.bone_amount
-
-	full_prosthetic = null //code dum thinks ur robot always
-	default_walk_intent = null
-	default_run_intent = null
-	move_intent = null
-	move_intents = species.move_intents.Copy()
-	set_move_intent(GET_DECL(move_intents[1]))
-	if(!istype(move_intent))
-		set_next_usable_move_intent()
-	update_emotes()
-
-	// Update codex scannables.
-	if(species.secret_codex_info)
-		var/datum/extension/scannable/scannable = get_or_create_extension(src, /datum/extension/scannable)
-		scannable.associated_entry = "[lowertext(species.name)] (species)"
-		scannable.scan_delay = 5 SECONDS
-	else if(has_extension(src, /datum/extension/scannable))
-		remove_extension(src, /datum/extension/scannable)
-
-	return TRUE
+	return ..(/decl/species/human/synth::name, new_bodytype)
 
 /mob/living/carbon/human/synthetic/handle_mutations_and_radiation()
 	if(radiation)
@@ -140,7 +68,7 @@ We have a very powerful computer system that allows our neural network to fully 
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(get_shock() >= 1000  && a_intent != I_HURT)
+		if(get_shock() >= 1000 && !pain_inhibitors)
 			if(!stat)
 				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
 				src.visible_message("<B>[src]</B> [species.halloss_message]")
@@ -188,6 +116,12 @@ We have a very powerful computer system that allows our neural network to fully 
 			adjust_hydration(-species.thirst_factor)
 	return 1
 
+/mob/living/carbon/human/synthetic/can_feel_pain(obj/item/organ/check_organ)
+	if(pain_inhibitors)
+		return FALSE
+	else
+		return ..()
+
 /mob/living/carbon/human/synthetic/handle_shock()
 	if(!can_feel_pain() || (status_flags & GODMODE))
 		shock_stage = 0
@@ -214,9 +148,6 @@ We have a very powerful computer system that allows our neural network to fully 
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with nohalloss = TRUE in these cases!
 		custom_pain("[pick("Pain imitation active")]!", 150, nohalloss = TRUE)
-
-	if(a_intent == I_HURT)
-		return
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30)
@@ -255,17 +186,6 @@ We have a very powerful computer system that allows our neural network to fully 
 
 /mob/living/carbon/human/synthetic/consume_oxygen(amount)
 	return 1
-
-/mob/living/carbon/human/synthetic/jostle_internal_object(var/obj/item/organ/external/organ, var/obj/item/O)
-	if(!organ.can_feel_pain())
-		to_chat(src, SPAN_DANGER("Something is moving inside your [organ.name]."))
-	else
-		var/msg = pick( \
-			SPAN_DANGER("Your [organ.name] sends warning messages as you bump [O] inside."), \
-			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."),       \
-			SPAN_DANGER("Your movement jostles [O] in your [organ.name]. Sensors report damage."))
-		custom_pain(msg,450,affecting = organ)
-	organ.take_external_damage(rand(1,3) + O.w_class, DAM_EDGE, 0)
 
 /mob/living/carbon/human/synthetic/help_shake_act(mob/living/carbon/M)
 	if(src != M)
@@ -367,7 +287,7 @@ We have a very powerful computer system that allows our neural network to fully 
 	tally -= GET_CHEMICAL_EFFECT(src, CE_SPEEDBOOST)
 	tally += GET_CHEMICAL_EFFECT(src, CE_SLOWDOWN)
 
-	if(can_feel_pain() && a_intent != I_HURT)
+	if(can_feel_pain())
 		if(get_shock() >= 50) tally += (get_shock() / 100) //pain shouldn't slow you down if you can't even feel it
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
@@ -566,3 +486,14 @@ We have a very powerful computer system that allows our neural network to fully 
 	set category = "Synthetic"
 
 	tgui_interact(usr)
+
+/mob/living/carbon/human/synthetic/verb/toggle_pain_inhibitors()
+	set name = "Toggle Pain Inhibitors"
+	set category = "Synthetic"
+
+	if(pain_inhibitors)
+		pain_inhibitors = FALSE
+		to_chat(usr, SPAN_WARNING("You disable your pain inhibitors."))
+	else
+		pain_inhibitors = TRUE
+		to_chat(usr, SPAN_NOTICE("You enable your pain inhibitors."))

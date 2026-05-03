@@ -19,7 +19,7 @@
 	board_type = "machine"
 	origin_tech = @'{"programming":2,"engineering":2}'
 	req_components = list(
-		/obj/item/stock_parts/engine = 6,
+		/obj/item/stock_parts/motor = 6,
 		/obj/item/stock_parts/micro_laser = 1,
 		)
 	additional_spawn_components = list(

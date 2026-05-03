@@ -165,7 +165,7 @@
 		for(var/g in reactor.containment_field.gas)
 			if(g in rcontrol.unwanted_materials)
 				var/decl/material/mat = GET_DECL(g)
-				var/removed = min((reactor.containment_field.gas[g] * 0.01 + 0.001) * reactor.divertor_integrity, reactor.containment_field.gas[g])
+				var/removed = min((reactor.containment_field.gas[g] * 0.001 + 0.0000000001) * reactor.divertor_integrity, reactor.containment_field.gas[g])
 				reactor.containment_field.adjust_gas(g, removed * -1)
 				inserted.reagents.add_reagent(g, removed * mat.molar_volume)
 

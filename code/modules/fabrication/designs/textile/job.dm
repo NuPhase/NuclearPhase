@@ -159,6 +159,33 @@
 /datum/fabricator_recipe/textiles/job/security/securityhos
 	path = /obj/item/clothing/under/head_of_security
 
+/datum/fabricator_recipe/textiles/job/security/holster_shoulder
+	path = /obj/item/clothing/accessory/storage/holster
+
+/datum/fabricator_recipe/textiles/job/security/holster_armpit
+	path = /obj/item/clothing/accessory/storage/holster/armpit
+
+/datum/fabricator_recipe/textiles/job/security/holster_waist
+	path = /obj/item/clothing/accessory/storage/holster/waist
+
+/datum/fabricator_recipe/textiles/job/security/holster_hip
+	path = /obj/item/clothing/accessory/storage/holster/hip
+
+/datum/fabricator_recipe/textiles/job/security/holster_thigh
+	path = /obj/item/clothing/accessory/storage/holster/thigh
+
+/datum/fabricator_recipe/textiles/job/security/holster_machete
+	path = /obj/item/clothing/accessory/storage/holster/machete
+
+/datum/fabricator_recipe/textiles/job/security/holster_knife
+	path = /obj/item/clothing/accessory/storage/holster/knife
+
+/datum/fabricator_recipe/textiles/job/security/holster_knife_polymer
+	path = /obj/item/clothing/accessory/storage/holster/knife/polymer
+
+/datum/fabricator_recipe/textiles/job/security/belt
+	path = /obj/item/storage/belt/holster/security
+
 // Tacticool
 /datum/fabricator_recipe/textiles/job/security/tactical
 	path = /obj/item/clothing/under/syndicate

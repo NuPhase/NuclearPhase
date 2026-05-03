@@ -14,7 +14,8 @@
 
 /obj/item/organ/internal/brain/synthetic/do_install(mob/living/carbon/target, affected, in_place, update_icon, detached)
 	. = ..()
-	target.key = brainmob.last_ckey
+	if(brainmob?.last_ckey)
+		target.key = brainmob.last_ckey
 
 /obj/item/organ/internal/brain/synthetic/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()

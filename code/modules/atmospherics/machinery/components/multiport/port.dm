@@ -2,7 +2,7 @@
 	name = "machine port"
 	icon = 'icons/obj/atmospherics/components/unary/connector.dmi'
 	icon_state = "map_connector"
-	layer = STRUCTURE_LAYER
+	layer = BELOW_TABLE_LAYER
 	density = 1
 	anchored = 1
 	stat_immune = 0

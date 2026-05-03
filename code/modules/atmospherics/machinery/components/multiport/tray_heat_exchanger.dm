@@ -39,11 +39,11 @@
 	// Account for latent heat
 	var/latent_heat_energy = 0
 	var/latent_heat_capacity = 0
-	var/list/all_fluid = air1.get_fluid()
-	for(var/f_type in all_fluid)
+	var/alist/all_fluid = air1.get_fluid()
+	for(var/f_type, f_amt in all_fluid)
 		var/decl/material/mat = GET_DECL(f_type)
 		if(air1.temperature > mat.boiling_point && wanted_temperature < mat.boiling_point)
-			latent_heat_energy -= all_fluid[f_type] * mat.latent_heat
+			latent_heat_energy -= f_amt * mat.latent_heat
 	latent_heat_capacity = latent_heat_energy / air1.total_moles
 
 	var/temperature_delta = wanted_temperature - air1.temperature
