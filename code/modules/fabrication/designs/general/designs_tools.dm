@@ -18,6 +18,9 @@
 /datum/fabricator_recipe/tool/t_scanner
 	path = /obj/item/t_scanner
 
+/datum/fabricator_recipe/tool/mass_scanner
+	path = /obj/item/scanner/weight
+
 /datum/fabricator_recipe/tool/weldertool
 	path = /obj/item/weldingtool
 

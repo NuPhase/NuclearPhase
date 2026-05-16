@@ -74,7 +74,7 @@
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY
 	mob_swap_flags = ~HEAVY
-	weight = 70 //placeholder value for now
+	weight = 62
 	pull_coefficient = 0.1
 	lying_pull_coefficient = 0.8
 

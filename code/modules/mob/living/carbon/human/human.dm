@@ -1465,7 +1465,22 @@ var/global/decl/spawnpoint/limb/spawnpoint_limb
 		addtimer(CALLBACK(src, GLOBAL_PROC_REF(tgui_alert), src, "You're conscious again. Remember that it's best to not use any meta information you may have received in the limbo.", "Limbo"), 0)
 
 /mob/living/carbon/human/update_weight()
-	. = ..()
+	var/sex_base = initial(weight)
+	if(gender == MALE)
+		sex_base *= 1.16
+	var/strength_bonus
+	switch(get_skill_value(SKILL_STRENGTH))
+		if(SKILL_NONE)
+			strength_bonus = -4
+		if(SKILL_BASIC)
+			strength_bonus = 0
+		if(SKILL_ADEPT)
+			strength_bonus = 5
+		if(SKILL_EXPERT)
+			strength_bonus = 11
+		if(SKILL_MAX)
+			strength_bonus = 18
+	weight = sex_base + strength_bonus
 	for(var/obj/item/I in contents)
 		I.update_weight()
 		weight += I.weight
