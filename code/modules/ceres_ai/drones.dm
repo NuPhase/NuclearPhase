@@ -18,10 +18,12 @@
 	for(var/mob/living/simple_animal/robot/drone)
 		drone.activate()
 		drone.our_ai.target_list = targets.Copy()
+	make_log("Engaging all combat units. Units connected: [length(combat_drones)]", LOG_CLASS_DRONES, CREEPY_FLAG_COMBAT)
 
 /datum/facility_ai/proc/disengage_drones()
 	for(var/mob/living/simple_animal/robot/drone)
 		drone.deactivate()
+	make_log("Disengaging all combat units", LOG_CLASS_DRONES)
 
 /datum/facility_ai/proc/add_drone(var/mob/living/simple_animal/robot/drone)
 	combat_drones += drone
