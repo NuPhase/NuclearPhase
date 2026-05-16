@@ -220,3 +220,16 @@
 	result = /decl/material/liquid/potassium_iodide
 	required_reagents = list(/decl/material/solid/potassium = 1, /decl/material/solid/iodine = 2)
 	result_amount = 1
+
+/decl/chemical_reaction/neuroreparin
+	name = "Neuroreparin Synthesis"
+	result = /decl/material/liquid/neuroreparin
+	required_reagents = list(/decl/material/solid/vector_rna = 1, /decl/material/liquid/adrenaline = 1, /decl/material/liquid/nutriment/protein = 10, /decl/material/liquid/nutriment/glucose = 10)
+	result_amount = 1
+
+/decl/chemical_reaction/vector_rna
+	name = "Vector mRNA Synthesis"
+	result = /decl/material/solid/vector_rna
+	required_reagents = list(/decl/material/liquid/coagulated_blood = 100, /decl/material/liquid/tyrosine = 10, /decl/material/liquid/ethanol = 10, /decl/material/solid/sodium = 10)
+	result_amount = 1
+	maximum_temperature = T0C

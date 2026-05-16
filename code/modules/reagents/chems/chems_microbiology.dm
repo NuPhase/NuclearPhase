@@ -61,7 +61,7 @@
 	dissolves_in = MAT_SOLVENT_MODERATE
 	dissolves_into = list(/decl/material/liquid/tyrosine = 0.25)
 
-/decl/chemical_reaction/tyrosinebreeding
+/decl/chemical_reaction/tyrosine_breeding
 	name = "Tyrosine Breeding"
 	result = /decl/material/solid/bacteria/tyrosine
 	required_reagents = list(/decl/material/solid/bacteria/tyrosine = 1, /decl/material/liquid/nutriment/glucose = 1)
@@ -69,3 +69,15 @@
 	result_amount = 2
 	reaction_sound = null
 	mix_message = null
+
+
+
+// GENETICS
+/decl/material/solid/vector_rna
+	name = "viral-vector mRNA"
+	uid = "vector_rna"
+	lore_text = "Monopolar messenger RNA. Acts as a delivery vehicle for genes. Incredibly toxic when not targeted."
+	color = "#ff1313"
+	taste_description = "acid"
+	toxicity = 10000 // We have only tiny amounts of it
+	overdose = 0.01
