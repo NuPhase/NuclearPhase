@@ -64,11 +64,11 @@
 	stomach_capacity = 3
 	rarity_value = 3
 
-	pain_emotes_with_pain_level = list( //less sensitive to pain
-		list(/decl/emote/audible/agony) = 120,
-		list(/decl/emote/audible/scream, /decl/emote/audible/whimper, /decl/emote/audible/moan, /decl/emote/audible/cry) = 90,
-		list(/decl/emote/audible/grunt, /decl/emote/audible/groan, /decl/emote/audible/moan) = 60,
-		list(/decl/emote/audible/grunt, /decl/emote/audible/groan) = 30,
+	pain_emotes_with_pain_level = list( // less sensitive to pain than humans
+		list(/decl/emote/audible/agony) = 1400,
+		list(/decl/emote/audible/scream, /decl/emote/audible/whimper, /decl/emote/audible/moan, /decl/emote/audible/cry) = 800,
+		list(/decl/emote/audible/grunt, /decl/emote/audible/groan, /decl/emote/audible/moan) = 400,
+		list(/decl/emote/audible/grunt, /decl/emote/audible/groan) = 200,
 	)
 
 	genitals = TRUE
