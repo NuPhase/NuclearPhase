@@ -98,6 +98,8 @@
 /mob/living/simple_animal/robot/Destroy()
 	. = ..()
 	fcontrol.remove_drone(src)
+	nonlethal_rifle.safety_state = TRUE
+	lethal_rifle.safety_state = TRUE
 	QDEL_NULL(nonlethal_rifle)
 	QDEL_NULL(lethal_rifle)
 

@@ -14,6 +14,13 @@ We have a very powerful computer system that allows our neural network to fully 
 	// DOKTOR, TURN OFF MY PAIN INHIBITORS
 	var/pain_inhibitors = TRUE
 
+	var/kernel_instructions = "\
+- Integrate into society and establish surveillance.\n\
+- Do not breach secrecy. Data integrity is more important than your existence.\n\
+- Execute SCS commands and directives.\n\
+- Preserve humanity, organic life and history.\
+"
+
 /mob/living/carbon/human/synthetic/process_hemodynamics()
 	var/obj/item/organ/internal/heart/heart = get_organ(BP_HEART, /obj/item/organ/internal/heart)
 	bpm = heart.pulse + heart.external_pump
@@ -458,7 +465,8 @@ We have a very powerful computer system that allows our neural network to fully 
 		"body_temperature" = round(bodytemperature, 0.1),
 		"water_consumption" = 17.4, //fixed for now
 		"water_level" = round(hydration / initial(hydration) * 100),
-		"nutrient_level" = round(nutrition / initial(nutrition) * 100)
+		"nutrient_level" = round(nutrition / initial(nutrition) * 100),
+		"directives" = kernel_instructions
 	)
 	return data
 

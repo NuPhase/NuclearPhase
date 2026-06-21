@@ -1,4 +1,4 @@
-import { useBackend, useSharedState } from '../backend';
+import { useBackend, useLocalState } from '../backend';
 import { Flex, Section, Tabs, Box, BlockQuote, Dimmer, LabeledList, ProgressBar } from 'tgui-core/components';
 import { Window } from "../layouts";
 
@@ -22,19 +22,20 @@ type Organ = {
   dead: boolean;
 }
 
-type InputData = {
+type Data = {
   externalorganlist: Organ[];
   internalorganlist: Organ[];
   body_temperature: number;
   water_consumption: number;
   water_level: number;
   nutrient_level: number;
+  directives: string;
 }
 
-export const SynthOSContent = (props, context) => {
-  const { data } = useBackend<InputData>(context);
-  const [tab_main, setTab_main] = useSharedState(context, 'tab_main', 1);
-  const [tab_sub, setTab_sub] = useSharedState(context, 'tab_sub', 1);
+export const SynthOSContent = (props) => {
+  const { act, data } = useBackend<Data>();
+  const [tab, setTab] = useLocalState('main', "Status");
+  const [subTab, setSubTab] = useLocalState('sub', "Internal");
   const cooling_pressure:number = Math.round(117 + Math.random() * 5);
   return (
     <Flex
@@ -46,20 +47,20 @@ export const SynthOSContent = (props, context) => {
           <Tabs.Tab
             icon="list"
             lineHeight="23px"
-            selected={tab_main === 1}
-            onClick={() => setTab_main(1)}>
+            selected={tab === "Status"}
+            onClick={() => setTab("Status")}>
             Status
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
             lineHeight="23px"
-            selected={tab_main === 2}
-            onClick={() => setTab_main(2)}>
+            selected={tab === "Configuration"}
+            onClick={() => setTab("Configuration")}>
             Configuration
           </Tabs.Tab>
         </Tabs>
       </Flex.Item>
-      {tab_main === 1 && (
+      {tab === "Status" && (
         <>
           <Flex
             direction={"row"}>
@@ -128,8 +129,8 @@ export const SynthOSContent = (props, context) => {
                         {data.nutrient_level}%
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label = "Current Directive">
-                      <Box bold = {1}>NONE</Box>
+                    <LabeledList.Item label = "Current Directives">
+                      {data.directives}
                     </LabeledList.Item>
                     <LabeledList.Item label = "Assigned Authority">
                       <Box>NONE</Box>
@@ -152,20 +153,20 @@ export const SynthOSContent = (props, context) => {
                   <Tabs.Tab
                     icon=""
                     lineHeight="23px"
-                    selected={tab_sub === 1}
-                    onClick={() => setTab_sub(1)}>
+                    selected={subTab === "External"}
+                    onClick={() => setSubTab("External")}>
                     External
                   </Tabs.Tab>
                   <Tabs.Tab
                     icon=""
                     lineHeight="23px"
-                    selected={tab_sub === 2}
-                    onClick={() => setTab_sub(2)}>
+                    selected={subTab === "Internal"}
+                    onClick={() => setSubTab("Internal")}>
                     Internal
                   </Tabs.Tab>
                 </Tabs>
               </Section>
-              {tab_sub === 1 && (
+              {subTab === "External" && (
                 <Section>
                   {data.externalorganlist.map(Organ => (
                     <Box
@@ -176,7 +177,7 @@ export const SynthOSContent = (props, context) => {
                   ))}
                 </Section>
               )}
-              {tab_sub === 2 && (
+              {subTab === "Internal" && (
                 <Section>
                   {data.internalorganlist.map(Organ => (
                     <Box
@@ -191,7 +192,7 @@ export const SynthOSContent = (props, context) => {
           </Flex>
         </>
       )}
-      {tab_main === 2 && (
+      {tab === "Configuration" && (
         <Flex.Item
           height={40}>
           CONTENT

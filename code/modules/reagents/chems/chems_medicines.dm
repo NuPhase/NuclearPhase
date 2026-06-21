@@ -294,5 +294,27 @@
 
 /decl/material/liquid/neuroreparin
 	name = "neuroreparin"
+	lore_text = "A complex mix of polymers, RNA and proteins. Allows the brain to somewhat recover from damage."
 	uid = "neuroreparin"
 	metabolism = 0.01
+	euphoriant = 2
+	narcosis = 5
+	overdose = 2
+
+/decl/material/liquid/neuroreparin/affect_blood(mob/living/M, removed, datum/reagents/holder)
+	. = ..()
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	var/obj/item/organ/internal/brain/E = GET_INTERNAL_ORGAN(H, BP_EYES)
+	if(E)
+		E.damage = max(E.damage - 50 * removed, 0)
+	var/side_effect_prob = (H.max_oxygen_capacity - H.oxygen_amount) * removed
+	if(prob(side_effect_prob))
+		H.adjust_hallucination(5, 30)
+	else if(prob(side_effect_prob))
+		H.seizure()
+
+/decl/material/liquid/neuroreparin/affect_overdose(mob/living/M, datum/reagents/holder)
+	. = ..()
+	M.add_chemical_effect(CE_BREATHLOSS, 10)
