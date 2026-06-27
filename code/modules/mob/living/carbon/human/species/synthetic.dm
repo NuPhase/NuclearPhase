@@ -185,6 +185,38 @@ We have a very powerful computer system that allows our neural network to fully 
 	if(shock_stage >= 150)
 		SET_STATUS_MAX(src, STAT_WEAK, 3)
 
+// Very fast spreading, glitching, and no way to stop it. Brutal.
+/mob/living/carbon/human/synthetic/handle_srec()
+	if(srec_dose > 160) //Replicate
+		srec_dose *= 1.003
+	if(srec_dose > 2000)
+		var/list/limbs = get_external_organs()
+		var/list/shuffled_limbs = LAZYLEN(limbs) ? shuffle(limbs.Copy()) : null
+		for(var/obj/item/organ/external/E in shuffled_limbs)
+			if(BP_IS_PROSTHETIC(E))
+				continue
+
+			if(BP_IS_CRYSTAL(E))
+				if((E.brute_dam + E.burn_dam) > 0)
+					if(prob(35))
+						to_chat(src, SPAN_NOTICE("You feel a crawling sensation as fresh crystal grows over your [E.name]."))
+					E.heal_damage(rand(5,8), rand(5,8))
+					break
+				if(BP_IS_BRITTLE(E))
+					E.status &= ~ORGAN_BRITTLE
+					break
+			else if(E.organ_tag != BP_CHEST && E.organ_tag != BP_GROIN && prob(15))
+				E.take_external_damage(rand(20,30), 0)
+				BP_SET_CRYSTAL(E)
+				E.status |= ORGAN_BRITTLE
+				break
+	else
+		return
+	if(srec_dose > 5000) //we explodeee
+		var/turf/T = get_turf(src)
+		gib()
+		new /obj/effect/crystal_growth(T)
+
 /mob/living/carbon/human/synthetic/get_blood_saturation()
 	return 1
 

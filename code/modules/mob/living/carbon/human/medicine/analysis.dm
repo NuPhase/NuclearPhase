@@ -136,17 +136,19 @@
 /obj/machinery/blood_analysis/proc/start(decl/blood_analysis/chosen_analysis)
 	running = TRUE
 	update_icon()
-	spawn((35 - REAGENT_VOLUME(inserted_vial.reagents, /decl/material/liquid/separated_blood)) SECONDS)
-		visible_message(SPAN_NOTICE("The blood analyzer finishes running."))
-		running = FALSE
-		var/list/blood_data = inserted_vial.reagents.reagent_data[/decl/material/liquid/separated_blood]
-		var/weakref/W = LAZYACCESS(blood_data, "donor")
-		if(!W)
-			return
-		var/mob/living/carbon/human/H = W.resolve()
-		new /obj/item/paper(get_turf(src), chosen_analysis.return_analysis(H, blood_data), "Analysis Results for [H.real_name]")
-		inserted_vial.reagents.remove_any(inserted_vial.reagents.maximum_volume)
-		update_icon()
+	addtimer(CALLBACK(src, PROC_REF(finish_analysis), chosen_analysis), (35 - REAGENT_VOLUME(inserted_vial.reagents, /decl/material/liquid/separated_blood)) SECONDS)
+
+/obj/machinery/blood_analysis/proc/finish_analysis(decl/blood_analysis/chosen_analysis)
+	visible_message(SPAN_NOTICE("The blood analyzer finishes running."))
+	running = FALSE
+	var/list/blood_data = inserted_vial.reagents.reagent_data[/decl/material/liquid/separated_blood]
+	var/weakref/W = LAZYACCESS(blood_data, "donor")
+	if(!W)
+		return
+	var/mob/living/carbon/human/H = W.resolve()
+	new /obj/item/paper(get_turf(src), chosen_analysis.return_analysis(H, blood_data), "Analysis Results for [H.real_name]")
+	inserted_vial.reagents.remove_any(inserted_vial.reagents.maximum_volume)
+	update_icon()
 
 /obj/machinery/blood_analysis/physical_attack_hand(user)
 	. = ..()
@@ -163,6 +165,8 @@
 	expected_target_type = /obj/machinery/blood_analysis
 
 /decl/interaction_handler/blood_analysis_start/invoked(obj/machinery/blood_analysis/target, mob/user)
+	if(target.running)
+		return
 	if(!do_after(user, 5, target))
 		return
 	if(!target.powered(EQUIP))
@@ -185,10 +189,10 @@
 	expected_target_type = /obj/machinery/blood_analysis
 
 /decl/interaction_handler/blood_analysis_remove_vial/invoked(obj/machinery/blood_analysis/target, mob/user)
+	if(target.running)
+		return
 	if(!target.inserted_vial)
 		to_chat(user, SPAN_NOTICE("There are no vial in the blood analyzer."))
-		return
-	if(target.running)
 		return
 	var/obj/item/chems/glass/beaker/vial/cur_vial = target.inserted_vial
 	user.put_in_hands(cur_vial)

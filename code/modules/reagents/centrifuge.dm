@@ -34,15 +34,17 @@
 
 /obj/machinery/centrifuge/proc/start()
 	running = TRUE
-	spawn(15 SECONDS)
-		visible_message(SPAN_NOTICE("The centrifuge finishes running."))
-		running = FALSE
-		for(var/obj/item/chems/glass/beaker/vial/cur_vial in inserted_vials)
-			if(cur_vial.reagents.has_reagent(/decl/material/liquid/blood))
-				var/transfer_data = cur_vial.reagents.reagent_data[/decl/material/liquid/blood]
-				var/transfer_volume = REAGENT_VOLUME(cur_vial.reagents, /decl/material/liquid/blood)
-				cur_vial.reagents.remove_any(cur_vial.reagents.maximum_volume)
-				cur_vial.reagents.add_reagent(/decl/material/liquid/separated_blood, transfer_volume, transfer_data)
+	addtimer(CALLBACK(src, PROC_REF(finish_running)), 15 SECONDS)
+
+/obj/machinery/centrifuge/proc/finish_running()
+	visible_message(SPAN_NOTICE("The centrifuge finishes running."))
+	running = FALSE
+	for(var/obj/item/chems/glass/beaker/vial/cur_vial in inserted_vials)
+		if(cur_vial.reagents.has_reagent(/decl/material/liquid/blood))
+			var/transfer_data = cur_vial.reagents.reagent_data[/decl/material/liquid/blood]
+			var/transfer_volume = REAGENT_VOLUME(cur_vial.reagents, /decl/material/liquid/blood)
+			cur_vial.reagents.remove_any(cur_vial.reagents.maximum_volume)
+			cur_vial.reagents.add_reagent(/decl/material/liquid/separated_blood, transfer_volume, transfer_data)
 
 /obj/machinery/centrifuge/physical_attack_hand(user)
 	. = ..()
@@ -63,6 +65,8 @@
 	expected_target_type = /obj/machinery/centrifuge
 
 /decl/interaction_handler/centrifuge_close/invoked(obj/machinery/centrifuge/target, mob/user)
+	if(target.running || !target.open)
+		return
 	if(!do_after(user, 15, target))
 		return
 	target.visible_message(SPAN_NOTICE("[user] closes the centrifuge."))
@@ -74,6 +78,8 @@
 	expected_target_type = /obj/machinery/centrifuge
 
 /decl/interaction_handler/centrifuge_open/invoked(obj/machinery/centrifuge/target, mob/user)
+	if(target.running || target.open)
+		return
 	if(!do_after(user, 10, target))
 		return
 	target.visible_message(SPAN_NOTICE("[user] opens the centrifuge."))
@@ -85,6 +91,8 @@
 	expected_target_type = /obj/machinery/centrifuge
 
 /decl/interaction_handler/centrifuge_start/invoked(obj/machinery/centrifuge/target, mob/user)
+	if(target.running)
+		return
 	if(!do_after(user, 5, target))
 		return
 	if(!target.powered(EQUIP))
@@ -97,6 +105,8 @@
 	expected_target_type = /obj/machinery/centrifuge
 
 /decl/interaction_handler/centrifuge_remove_vial/invoked(obj/machinery/centrifuge/target, mob/user)
+	if(target.running)
+		return
 	if(!length(target.inserted_vials))
 		to_chat(user, SPAN_NOTICE("There are no vials in the centrifuge."))
 		return
