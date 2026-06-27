@@ -82,7 +82,7 @@
 
 	var/power_per_kg = (100000 * (1/source_density) / efficiency)
 
-	transfer_mass = min(npower_rating/power_per_kg, transfer_mass, kgs_rating, (sink.available_volume - (sink.volume*0.01)) * 0.001 * source_density)
+	transfer_mass = min(npower_rating/power_per_kg, transfer_mass, kgs_rating, (sink.available_volume - (sink.volume*0.001)) * 0.001 * source_density)
 	if(!transfer_mass)
 		return list(0, 0)
 

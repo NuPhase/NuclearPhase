@@ -430,6 +430,13 @@
 	hardness = MAT_VALUE_SOFT + 10
 	construction_difficulty = MAT_VALUE_EASY_DIY
 	reflectiveness = MAT_VALUE_MATTE
+	melting_point = 505.08
+	boiling_point = 2875
+	liquid_density = 6990
+	solid_density = 7289
+	latent_heat = 296100
+	fusion_enthalpy = 7030
+	gas_specific_heat = 27.112
 
 /decl/material/solid/metal/lead
 	name = "lead"

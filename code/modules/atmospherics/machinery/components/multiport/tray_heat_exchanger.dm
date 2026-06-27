@@ -58,3 +58,15 @@
 	air2.add_thermal_energy(actual_energy_delta, boiling_coef = 0.999)
 
 	air_contents.add_thermal_energy(actual_energy_delta * -1, boiling_coef = 0.01)
+
+/obj/machinery/multitile/tray_heat_exchanger/steam_generator
+	name = "steam generator"
+	wanted_temperature = 3900
+
+/obj/machinery/multitile/tray_heat_exchanger/steam_generator/Initialize()
+	. = ..()
+	var/datum/gas_mixture/air_contents = port_gases["Tank"]
+	air_contents.volume = 300000
+	air_contents.adjust_gas(/decl/material/gas/nitrogen, 1)
+	air_contents.adjust_gas(/decl/material/liquid/water, (300000 * 0.5) / 0.018)
+	air_contents.temperature = 410

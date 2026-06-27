@@ -365,7 +365,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 	var/displaced_volume = (values_dot(liquids, global.cached_liquid_volume_coefficient) + values_dot(solids, global.cached_solid_volume_coefficient)) * 1000
 	gas_moles = values_sum(gas)
 	total_moles = gas_moles + values_sum(liquids) + values_sum(solids)
-	available_volume = max(volume * 0.01, volume - displaced_volume)
+	available_volume = max(volume * 0.001, volume - displaced_volume)
 	cache_heat_capacity()
 	cache_pressure()
 	add_thermal_energy(0, TRUE, TRUE)
@@ -818,6 +818,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		gasmix.liquids = list()
 		gasmix.solids = list()
 		gasmix.heat_capacity = 0
+		gasmix.pressure = 0
 		gasmix.total_moles = 0
 		gasmix.gas_moles = 0
 		gasmix.merge(combined.remove(moles_to_transfer))

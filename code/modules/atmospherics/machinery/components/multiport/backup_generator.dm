@@ -6,6 +6,7 @@
 #define GEN_HEAT_CAPACITY 20000000
 #define GEN_SYNC_RPM 1800
 
+#define GEN_IDEAL_TEMP	  350
 #define GEN_MAX_SAFE_TEMP 390
 #define GEN_MAX_WORK_TEMP 490
 
@@ -41,6 +42,9 @@
 
 	var/datum/sound_token/sound_token
 	var/sound_id
+
+/obj/machinery/multitile/backup_generator/get_mechanics_info()
+	return "Uses compressed air for startup. Runs at max efficiency at a load below 1MW and at temperatures close to 75C."
 
 /obj/machinery/multitile/backup_generator/on/Initialize()
 	. = ..()
@@ -120,11 +124,21 @@
 			sound_token = play_looping_sound(src, sound_id, 'sound/machines/gas_turbine/run.mp3', 50, 10)
 	if(nmode == GEN_MODE_OFF)
 		QDEL_NULL(sound_token)
+		cur_fuel_consumption = 0
+		lerp_fuel_consumption = 0
+		last_load = 0
 
+#define EFF_COEF_POWER (0.073 / 9000000)
+#define EFF_COEF_TEMP (0.15 / 180)
+// The generator will run at max efficiency at a load below 1MW and a temperature near 75C
 /obj/machinery/multitile/backup_generator/proc/get_efficiency()
-	if(last_load > 1000000)
-		return 0.37
-	return 0.443
+	var/eff_penalty_temp = abs(gen_temp - GEN_IDEAL_TEMP) * EFF_COEF_TEMP // Penalty for temp, low/high oil viscosity
+	if(last_load < 1000000)
+		return 0.443 - eff_penalty_temp
+	var/eff_penalty_power = (GEN_POWER_LIMIT - 1000000) * EFF_COEF_POWER // Penalty for power, turbine generation is less efficient
+	return 0.443 - eff_penalty_power - eff_penalty_temp
+#undef EFF_COEF_POWER
+#undef EFF_COEF_TEMP
 
 /obj/machinery/multitile/backup_generator/available_power()
 	if(mode == GEN_MODE_SYNC)

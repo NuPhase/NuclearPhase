@@ -7,13 +7,23 @@
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_WATER
 
 	var/filtering_phase
+	var/port_volume = 200
+
+/obj/machinery/atmospherics/binary/phase_filter/Initialize()
+	. = ..()
+	air1.volume = port_volume
+	air2.volume = port_volume
 
 /obj/machinery/atmospherics/binary/phase_filter/Process()
 	. = ..()
 	var/pressure_delta = air1.pressure - air2.pressure
 	if(pressure_delta < 0)
+		update_networks()
 		return
-	var/target_mole_flow = calculate_pressure_flow(pressure_delta, air2.volume)
+	var/datum/pipe_network/output = network_in_dir(dir)
+	var/target_moles = calculate_transfer_moles(air1, air2, pressure_delta, output?.volume)
+	var/pressure_moles = calculate_pressure_flow(pressure_delta, air2.volume)
+	var/target_mole_flow = min(target_moles, pressure_moles)
 	var/mole_flow_diff = target_mole_flow - air1.total_moles
 	if(mole_flow_diff > 0)
 		air1.suction_moles = mole_flow_diff

@@ -49,6 +49,9 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 	// We are the processing side.
 	// We need to see how much energy is available, then how much we need, and then apply that
 
+	if(air2.pressure > air1.pressure) // backpressure, can't move fluid
+		return
+
 	// First of all, just pass fluid if conditions we need are already met
 	if(heating)
 		if(air1.temperature > wanted_temperature)

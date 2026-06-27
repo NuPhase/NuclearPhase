@@ -27,6 +27,7 @@
 		rcontrol.reactor_valves[uid] = src
 	air1.volume = portvolume
 	air2.volume = portvolume
+	update_icon()
 
 /obj/machinery/atmospherics/binary/regulated_valve/on_update_icon()
 	. = ..()
@@ -48,6 +49,7 @@
 	..()
 	var/pressure_delta = air1.pressure - air2.pressure
 	if(pressure_delta < 0)
+		update_networks()
 		return
 	var/target_mole_flow = calculate_pressure_flow(pressure_delta, air2.volume) * open_to
 	var/mole_flow_diff = target_mole_flow - air1.total_moles
