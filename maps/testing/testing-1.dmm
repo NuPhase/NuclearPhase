@@ -49,6 +49,10 @@
 /obj/machinery/cardiac_monitor,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"cL" = (
+/obj/machinery/multitile/cflow_heat_exchanger,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "da" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
 	dir = 1
@@ -147,6 +151,12 @@
 /area/hallway)
 "he" = (
 /obj/structure/bed,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"hj" = (
+/obj/machinery/atmospherics/unary/debug/infinite_sink{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "hl" = (
@@ -575,9 +585,23 @@
 /obj/structure/closet/crate/medical/expendables,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"xk" = (
+/obj/machinery/atmospherics/unary/debug/infinite_outlet/water{
+	dir = 8;
+	fluid_type = /decl/material/gas/methane;
+	fluid_temperature = 93
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "xq" = (
 /obj/abstract/level_data_spawner/main_level,
 /turf/simulated/wall/r_wall,
+/area/hallway)
+"xt" = (
+/obj/machinery/atmospherics/unary/debug/infinite_sink{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "xJ" = (
 /obj/item/stack/ore/bauxite,
@@ -640,6 +664,10 @@
 /obj/item/stack/ore/wolfurine,
 /obj/item/stack/ore/wolfurine,
 /turf/simulated/floor/tiled/white/monotile,
+/area/hallway)
+"AW" = (
+/obj/machinery/atmospherics/unary/debug/infinite_outlet/water,
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Bo" = (
 /obj/machinery/atmospherics/binary/extruder,
@@ -825,6 +853,10 @@
 /mob/living/simple_animal/robot{
 	dir = 8
 	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"Jf" = (
+/obj/machinery/multitile/cflow_heat_exchanger/large,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Jr" = (
@@ -1105,6 +1137,14 @@
 "VV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"VW" = (
+/obj/machinery/atmospherics/unary/debug/infinite_outlet{
+	dir = 8;
+	fluid_temperature = 4200;
+	fluid_type = /decl/material/solid/metal/tungsten
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -5487,7 +5527,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+Re
 Bs
 Bs
 Bs
@@ -5617,7 +5657,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+OU
 Bs
 Bs
 Bs
@@ -5871,15 +5911,15 @@ Bs
 Bs
 Bs
 Bs
+xt
 Bs
 Bs
 Bs
+kE
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+AW
+cL
+Yv
 Bs
 Bs
 Bs
@@ -6005,7 +6045,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+Jf
 Bs
 Bs
 Bs
@@ -6131,15 +6171,15 @@ Bs
 Bs
 Bs
 Bs
+xk
 Bs
 Bs
 Bs
+hj
 Bs
+tl
 Bs
-Bs
-Bs
-Bs
-Bs
+Re
 Bs
 Bs
 Bs
@@ -6397,9 +6437,9 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
+AW
+cL
+Yv
 Bs
 Bs
 Bs
@@ -6521,11 +6561,11 @@ Bs
 Bs
 Bs
 Bs
+xt
 Bs
 Bs
 Bs
-Bs
-Bs
+kE
 Bs
 Bs
 Bs
@@ -6655,11 +6695,11 @@ Bs
 Bs
 Bs
 Bs
+Jf
 Bs
+tl
 Bs
-Bs
-Bs
-Bs
+OU
 Bs
 Bs
 Bs
@@ -6781,11 +6821,11 @@ Bs
 Bs
 Bs
 Bs
+VW
 Bs
 Bs
 Bs
-Bs
-Bs
+hj
 Bs
 Bs
 Bs
