@@ -5,8 +5,20 @@
 
 /obj/machinery/reactor_button/protected/scram/do_action(mob/user)
 	..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	rcontrol.scram("OPERATOR REQUEST")
 	visible_message(SPAN_WARNING("[user] SCRAMs the reactor!"))
+
+/obj/machinery/reactor_button/protected/reset_trip
+	name = "RESET TRIP"
+	id = "RESET TRIP"
+
+/obj/machinery/reactor_button/protected/reset_trip/do_action(mob/user)
+	..()
+	var/chosen_trip = tgui_input_list(user, "Choose a trip to reset", "Reset trip", rcontrol.trip_list)
+	rcontrol.clear_trip(chosen_trip)
 
 /obj/machinery/reactor_button/protected/mode_of_operation
 	name = "CONTROL MODE"
@@ -14,6 +26,9 @@
 
 /obj/machinery/reactor_button/protected/mode_of_operation/do_action(mob/user)
 	..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	var/newmode = tgui_input_list(user, "Select a new reactor system mode", "Control Mode", list(REACTOR_CONTROL_MODE_MANUAL, REACTOR_CONTROL_MODE_SEMIAUTO, REACTOR_CONTROL_MODE_AUTO))
 	var/response = rcontrol.switch_mode(newmode)
 	if(!response)
@@ -32,6 +47,9 @@
 
 /obj/machinery/reactor_button/protected/containment/do_action(mob/user)
 	..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	if(rcore.containment)
 		return
@@ -44,6 +62,9 @@
 	cooldown = 5 SECONDS
 
 /obj/machinery/reactor_button/rswitch/autoscram/do_action(mob/user)
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	..()
 	rcontrol.scram_control = state
 	if(state)
@@ -82,6 +103,9 @@
 	cooldown = 5 MINUTES
 
 /obj/machinery/reactor_button/protected/purge/do_action(mob/user)
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	..()
 	rcontrol.delayed_purge()
 
@@ -91,6 +115,9 @@
 	cooldown = 1 MINUTE
 
 /obj/machinery/reactor_button/protected/chamber_quench/do_action(mob/user)
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	..()
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	if(rcore.meltdown_state)
@@ -108,6 +135,9 @@
 	id = "BATTERY CHARGER"
 
 /obj/machinery/reactor_button/rswitch/battery_charging/do_action(mob/user)
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	..()
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
 	rcore.field_charging = state

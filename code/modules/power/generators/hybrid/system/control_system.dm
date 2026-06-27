@@ -61,87 +61,102 @@
 	current_switch = reactor_buttons["TURB V-BYPASS"]
 
 	if(current_switch && current_switch.state)
-		do_message("BYPASS VALVE OPEN", 1)
+		register_alarm("BYPASS VALVE OPENED", "BYPASS VALVE OPEN")
+	else
+		clear_alarm("BYPASS VALVE OPEN")
 
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 	if(!R.containment)
-		do_message("CONTAINMENT FIELD OFFLINE", 2)
+		register_alarm("CONTAINMENT FIELD DISABLED", "CONTAINMENT FIELD OFFLINE")
+	else
+		clear_alarm("CONTAINMENT FIELD OFFLINE")
 
 	if(generator1.connected && generator1.last_load < 50000)
-		do_message("GENERATOR #1 FULL LOAD REJECTION", 3)
+		register_alarm("GENERATOR #1 FULL LOAD REJECTION", "GENERATOR #1 FULL LOAD REJECTION", 3)
+	else
+		clear_alarm("GENERATOR #1 FULL LOAD REJECTION")
+
 	if(generator2.connected && generator2.last_load < 50000)
-		do_message("GENERATOR #2 FULL LOAD REJECTION", 3)
+		register_alarm("GENERATOR #2 FULL LOAD REJECTION", "GENERATOR #2 FULL LOAD REJECTION", 3)
+	else
+		clear_alarm("GENERATOR #2 FULL LOAD REJECTION")
 
 	if(turbine1.braking)
-		do_message("TURBINE #1 BRAKING ACTION", 2)
+		register_alarm("TURBINE #1 BRAKING ACTION", "TURBINE #1 BRAKING ACTION", 2)
 	else
-		remove_message("TURBINE #1 BRAKING ACTION")
+		clear_alarm("TURBINE #1 BRAKING ACTION")
 	if(turbine2.braking)
-		do_message("TURBINE #2 BRAKING ACTION", 2)
+		register_alarm("TURBINE #2 BRAKING ACTION", "TURBINE #2 BRAKING ACTION", 2)
 	else
-		remove_message("TURBINE #2 BRAKING ACTION")
+		clear_alarm("TURBINE #2 BRAKING ACTION")
 
 	switch(turbine1.vibration)
 		if(10 to 25)
-			do_message("EXCESSIVE VIBRATION IN TURBINE #1", 1)
+			register_alarm("EXCESSIVE VIBRATION IN TURBINE #1: [round(turbine1.vibration, 0.1)]mm/s", "EXCESSIVE VIBRATION IN TURBINE #1", 1)
 		if(26 to 50)
-			do_message("HIGH VIBRATION IN TURBINE #1", 2)
-			remove_message("EXCESSIVE VIBRATION IN TURBINE #1")
+			register_alarm("HIGH VIBRATION IN TURBINE #1: [round(turbine1.vibration, 0.1)]mm/s", "HIGH VIBRATION IN TURBINE #1", 2)
+			clear_alarm("EXCESSIVE VIBRATION IN TURBINE #1")
 		if(51 to INFINITY)
-			do_message("CRITICAL VIBRATION IN TURBINE #1", 3)
-			remove_message("EXCESSIVE VIBRATION IN TURBINE #1")
-			remove_message("HIGH VIBRATION IN TURBINE #1")
+			register_alarm("CRITICAL VIBRATION IN TURBINE #1: [round(turbine1.vibration, 0.1)]mm/s", "CRITICAL VIBRATION IN TURBINE #1", 3)
+			clear_alarm("EXCESSIVE VIBRATION IN TURBINE #1")
+			clear_alarm("HIGH VIBRATION IN TURBINE #1")
 	switch(turbine2.vibration)
 		if(10 to 25)
-			do_message("EXCESSIVE VIBRATION IN TURBINE #2", 1)
+			register_alarm("EXCESSIVE VIBRATION IN TURBINE #2: [round(turbine2.vibration, 0.1)]mm/s", "EXCESSIVE VIBRATION IN TURBINE #2", 1)
 		if(26 to 50)
-			do_message("HIGH VIBRATION IN TURBINE #2", 2)
-			remove_message("EXCESSIVE VIBRATION IN TURBINE #2")
+			register_alarm("HIGH VIBRATION IN TURBINE #2: [round(turbine2.vibration, 0.1)]mm/s", "HIGH VIBRATION IN TURBINE #2", 2)
+			clear_alarm("EXCESSIVE VIBRATION IN TURBINE #2")
 		if(51 to INFINITY)
-			do_message("CRITICAL VIBRATION IN TURBINE #2", 3)
-			remove_message("EXCESSIVE VIBRATION IN TURBINE #2")
-			remove_message("HIGH VIBRATION IN TURBINE #2")
-	if(world.time + log_timeout > last_vibration_log)
-		if(turbine1.vibration > 10)
-			make_log("EXCESS TURBINE #1 VIBRATION: [round(turbine1.vibration, 0.1)]mm/s.", 2)
-			last_vibration_log = world.time
-		if(turbine2.vibration > 10)
-			make_log("EXCESS TURBINE #2 VIBRATION: [round(turbine2.vibration, 0.1)]mm/s.", 2)
-			last_vibration_log = world.time
+			register_alarm("CRITICAL VIBRATION IN TURBINE #2: [round(turbine2.vibration, 0.1)]mm/s", "CRITICAL VIBRATION IN TURBINE #2", 3)
+			clear_alarm("EXCESSIVE VIBRATION IN TURBINE #2")
+			clear_alarm("HIGH VIBRATION IN TURBINE #2")
 
 	if(get_meter_temperature("T-M-TURB IN") > MAX_REACTOR_STEAM_TEMP)
-		do_message("TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
+		register_alarm("TURBINE HEATEXCHANGER TEMPERATURE HIGH", "TURBINE HEATEXCHANGER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
-		if(world.time + log_timeout > last_temperature_log)
-			make_log("TURBINE HEATEXCHANGER OVERHEAT.")
+	else
+		clear_alarm("TURBINE HEATEXCHANGER TEMPERATURE HIGH")
+
 	if(get_meter_temperature("T-M-TURB EX") > 500 && !(current_switch && current_switch.state))
-		do_message("TURBINE CONDENSER TEMPERATURE HIGH", 2)
+		register_alarm("TURBINE CONDENSER TEMPERATURE HIGH", "TURBINE CONDENSER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
-		if(world.time + log_timeout > last_temperature_log)
-			make_log("TURBINE CONDENSER OVERHEAT.")
+	else
+		clear_alarm("TURBINE CONDENSER TEMPERATURE HIGH")
 
 	if(get_meter_pressure("T-M-TURB IN") > 8500)
-		do_message("STEAM DRUM OVERPRESSURE", 2)
+		register_alarm("STEAM DRUM OVERPRESSURE", "STEAM DRUM OVERPRESSURE", 2)
 		pressure_temperature_should_alarm = TRUE
-		if(world.time + log_timeout > last_pressure_log)
-			make_log("STEAM DRUM OVERPRESSURE.")
+	else
+		clear_alarm("STEAM DRUM OVERPRESSURE")
+
 	if(get_meter_pressure("T-M-TURB EX") > 1000)
-		do_message("CONDENSER OVERPRESSURE", 2)
+		register_alarm("CONDENSER OVERPRESSURE", "CONDENSER OVERPRESSURE", 2)
 		pressure_temperature_should_alarm = TRUE
-		if(world.time + log_timeout > last_pressure_log)
-			make_log("CONDENSER OVERPRESSURE.")
+	else
+		clear_alarm("CONDENSER OVERPRESSURE")
+
 
 	if(get_pump_flow_rate("F-CP 1") < 50)
-		do_message("REACTOR LOOP PUMP #1 FLOW LOW", 1)
+		register_alarm("REACTOR LOOP PUMP #1 FLOW LOW", "REACTOR LOOP PUMP #1 FLOW LOW", 1)
+	else
+		clear_alarm("REACTOR LOOP PUMP #1 FLOW LOW")
 	if(get_pump_flow_rate("F-CP 2") < 50)
-		do_message("REACTOR LOOP PUMP #2 FLOW LOW", 1)
+		register_alarm("REACTOR LOOP PUMP #2 FLOW LOW", "REACTOR LOOP PUMP #2 FLOW LOW", 1)
+	else
+		clear_alarm("REACTOR LOOP PUMP #2 FLOW LOW")
 	if(get_pump_flow_rate("T-CP 1") < 50)
-		do_message("TURBINE LOOP PUMP #1 FLOW LOW", 1)
+		register_alarm("TURBINE LOOP PUMP #1 FLOW LOW", "TURBINE LOOP PUMP #1 FLOW LOW", 1)
+	else
+		clear_alarm("TURBINE LOOP PUMP #1 FLOW LOW")
 	if(get_pump_flow_rate("T-CP 2") < 50)
-		do_message("TURBINE LOOP PUMP #2 FLOW LOW", 1)
+		register_alarm("TURBINE LOOP PUMP #2 FLOW LOW", "TURBINE LOOP PUMP #2 FLOW LOW", 1)
+	else
+		clear_alarm("TURBINE LOOP PUMP #2 FLOW LOW")
 
 	if(get_meter_temperature("T-M-TURB EX") > 450 && get_meter_pressure("T-M-TURB EX") > 200 && !(current_switch && current_switch.state))
-		do_message("VAPOR IN CONDENSER", 2)
+		register_alarm("VAPOR IN CONDENSER", "VAPOR IN CONDENSER", 2)
+	else
+		clear_alarm("VAPOR IN CONDENSER")
 
 /datum/reactor_control_system/proc/auto_control()
 	if(current_running_program)
@@ -152,9 +167,9 @@
 	return
 
 /datum/reactor_control_system/proc/scram(cause)
-	do_message("SCRAM: [capitalize(cause)].", 3)
-	make_log("SCRAM: [capitalize(cause)].", 3)
-	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve
+	if(has_trip("SCRAM"))
+		return
+	register_trip("SCRAM: [capitalize(cause)].", "SCRAM")
 	var/obj/machinery/reactor_button/rswitch/current_switch
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
 
@@ -168,14 +183,6 @@
 	current_switch.state = 0
 	current_switch.icon_state = current_switch.off_icon_state
 
-	//shutting down reactor
-	current_valve = reactor_valves["REACTOR-F-V-IN"]
-	current_valve.set_openage(0)
-	current_valve = reactor_valves["REACTOR-F-V-OUT"]
-	current_valve.set_openage(100)
-
-	spawn(2 SECONDS)
-		turbine_trip("SCRAM")
 	spawn(4 SECONDS)
 		containment_shutdown(TRUE)
 
@@ -244,6 +251,16 @@
 	if(rmeter)
 		var/datum/gas_mixture/gm = rmeter.return_air()
 		return round(gm.return_pressure())
+	return 0
+
+// Get steam quality at meter
+/datum/reactor_control_system/proc/get_meter_steam_quality(meterid)
+	var/obj/machinery/meter/rmeter = reactor_meters[meterid]
+	if(rmeter)
+		var/datum/gas_mixture/gm = rmeter.return_air()
+		if(!gm.liquids[/decl/material/liquid/water])
+			return 100
+		return round(Clamp(gm.gas[/decl/material/liquid/water] / gm.liquids[/decl/material/liquid/water] * 100, 0, 100), 0.1)
 	return 0
 
 /datum/reactor_control_system/proc/get_meter_temperature(meterid)

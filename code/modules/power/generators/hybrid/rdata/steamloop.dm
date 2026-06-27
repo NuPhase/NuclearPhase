@@ -23,11 +23,18 @@
 	var/return_list = list()
 	var/meter_list = list(
 		"T-M EXCHANGER" = "Steam Generator Inlet.",
-		"T-M VAPORIZER" = "Steam Generator Stage.",
 		"T-M-TURB IN" = "Turbine Inlet.",
 		"T-M-TURB EX" = "Turbine Outlet.",
 		"T-M-COOLANT" = "Condenser cooling circuit."
 	)
+	var/obj/machinery/multitile/steam_generator/sg = reactor_components["steam_generator"]
+	return_list += list(list("name" = "T-M STEAM GEN",
+							"description" = "Steam Generator",
+							"pressure" = sg.air_contents.pressure,
+							"temperature" = sg.air_contents.temperature,
+							"mass" = sg.air_contents.get_mass(),
+							"level" = round((1 - (sg.air_contents.available_volume / sg.air_contents.volume)) * 100)
+							))
 	for(var/meter_id in meter_list)
 		return_list += list(list("name" = meter_id,
 								"description" = meter_list[meter_id],

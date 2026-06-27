@@ -2,7 +2,10 @@
 	name = "FUEL V-MAIN"
 
 /obj/machinery/reactor_button/fuel/do_action(mob/user)
-	. = ..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
+	..()
 	var/injection_setting = tgui_input_number(user, "Select a new injection speed in milligrams per second.", "Fuel Injection Speed", min_value = 0, max_value = 1000)
 	if(isnull(injection_setting))
 		return
@@ -16,7 +19,10 @@
 	name = "FUEL V-SELECT"
 
 /obj/machinery/reactor_button/fuel_select/do_action(mob/user)
-	. = ..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
+	..()
 	var/list/ids_to_check = tgui_input_checkboxes(user, "Select the fuel ports to affect.", "Fuel Port Selection", list("fuel1", "fuel2", "fuel3"))
 	if(!LAZYLEN(ids_to_check))
 		return
@@ -52,7 +58,10 @@
 	name = "MOD MAIN"
 
 /obj/machinery/reactor_button/moderator/do_action(mob/user)
-	. = ..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
+	..()
 	var/panel_type = tgui_input_list(user, "Select a panel type.", "Reactor Moderation", list("Reflectors", "Moderators"))
 	if(isnull(panel_type))
 		return

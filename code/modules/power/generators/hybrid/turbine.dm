@@ -48,6 +48,8 @@
 	var/exhaust_temperature = T20C
 	var/inlet_pressure = 0
 	var/exhaust_pressure = 0
+	var/inlet_enthalpy = 0
+	var/exhaust_enthalpy = 0
 	var/real_expansion = 1 //inlet_pressure / exhaust_pressure
 	var/kinetic_energy_delta = 0 // (kin_total - generator.last_load) * 3600
 
@@ -85,14 +87,6 @@
 	rotor_integrity = 100 - (SSticker.mode.difficulty / rand(1,3))
 	shaft_integrity = 100 - (SSticker.mode.difficulty / 2)
 
-/obj/machinery/multitile/steam_turbine/proc/get_specific_enthalpy(npres, ntemp)
-	if(ntemp > 450)
-		return 4127119 //Hooked to steam table API
-	return 40000
-
-/obj/machinery/multitile/steam_turbine/proc/get_density(npres, ntemp)
-	return 2.16 //Hooked to steam table API
-
 /obj/machinery/multitile/steam_turbine/Process()
 	var/datum/gas_mixture/air1 = port_gases[PORT_STEAM_IN]
 
@@ -129,13 +123,10 @@
 	var/datum/gas_mixture/air1 = port_gases[PORT_STEAM_IN]
 	var/datum/gas_mixture/air2 = port_gases[PORT_STEAM_OUT]
 
-	var/air1_density = get_density(air1.return_pressure() * 0.001, air1.temperature - 273.15)
-
 	//calculate flow velocity
-	// sqrt((2 * (P1 - P2) / rho) + (2 * g * (h1 - h2)))
 	if(feeder_valve_openage)
 		pressure_difference = max(air1.return_pressure() - air2.return_pressure(), 0)
-		steam_velocity = sqrt((2 * pressure_difference / air1_density) + (2 * GRAVITY_CONSTANT))
+		steam_velocity = min((pressure_difference / 7000) * 370, 570)
 	else
 		steam_velocity = 0
 
@@ -150,22 +141,24 @@
 	total_mass_flow = min(total_mass_flow, air1.get_mass())
 
 	//create the internal gas mixture and transfer inlet steam to it
-	var/datum/gas_mixture/air_all = new(air1.volume * (feeder_valve_openage + 0.05))
+	var/datum/gas_mixture/air_all = new(air1.volume * (feeder_valve_openage + 0.05), _temperature = air1.temperature)
 	pump_passive(air1, air_all, total_mass_flow)
 
 	//logging
-	inlet_temperature = air_all.temperature
+	inlet_temperature = air1.temperature
 	inlet_pressure = air1.return_pressure()
 
-	//get the kinetic energy received from steam and cool it down
-	var/end_temperature = max(inlet_temperature * expansion_ratio, 390)
-	var/temp_delta = inlet_temperature - end_temperature
-	kin_total = (air_all.heat_capacity() * temp_delta) * efficiency
+	var/end_temperature = max(inlet_temperature * expansion_ratio, 290)
+	inlet_enthalpy = steam_enthalpy(inlet_pressure, inlet_temperature)
+	exhaust_enthalpy = steam_enthalpy(exhaust_pressure, end_temperature)
+	var/enthalpy_drop = (inlet_enthalpy - exhaust_enthalpy)
+
+	kin_total = enthalpy_drop * air_all.total_moles * efficiency
 	air_all.temperature = end_temperature
 
 	//logging
 	exhaust_temperature = air_all.temperature
-	exhaust_pressure = air_all.return_pressure()
+	exhaust_pressure = air2.return_pressure()
 
 	//let water accumulate inside the turbine if the exhaust steam is too cold
 	if(air_all.temperature < 340)
@@ -203,7 +196,7 @@
 	var/tvibration = 0
 	//if(turbine_internals.liquids[/decl/material/liquid/water] > 100) //condensing inside of the turbine is incredibly dangerous
 	//	tvibration += total_mass_flow * 0.004 * turbine_internals.liquids[/decl/material/liquid/water]
-	if(total_mass_flow > 100 && rpm < 50) //that implies sudden increase in load on the generator and subsequent turbine stall
+	if(total_mass_flow > 100 && rpm < 150) //that implies sudden increase in load on the generator and subsequent turbine stall
 		tvibration += total_mass_flow * 0.06
 	if(braking && total_mass_flow > 100) //hellish braking means hellish vibrations
 		tvibration += 35
@@ -211,7 +204,7 @@
 		tvibration += (rpm - TURBINE_ABNORMAL_RPM)*0.12
 	tvibration += water_level * 0.7
 	tvibration += total_mass_flow * 0.005
-	tvibration += (1 - (rotor_integrity/100)) * rpm * 0.005
+	tvibration += (1.1 - (rotor_integrity/100)) * rpm * 0.005
 	vibration = Interpolate(vibration, tvibration, 0.1)
 
 /obj/machinery/multitile/steam_turbine/proc/apply_vibration_effects()

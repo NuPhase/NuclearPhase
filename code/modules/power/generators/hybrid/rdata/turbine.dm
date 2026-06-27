@@ -10,6 +10,8 @@
 		ui.set_autoupdate(1)
 
 /obj/machinery/reactor_monitor/turbine/tgui_data(mob/user)
+	var/obj/machinery/multitile/steam_generator/sg = reactor_components["steam_generator"]
+	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve = rcontrol.reactor_valves["T-V-EXCHANGER"]
 	var/list/data = list(
 		"turb1" = list(
 						"rpm" = round(rcontrol.turbine1.rpm),
@@ -46,7 +48,15 @@
 						"valve_position" = round(rcontrol.turbine2.feeder_valve_openage * 100, 0.01),
 						"shaft_integrity" = round(rcontrol.turbine2.shaft_integrity, 1),
 						"rotor_integrity" = round(rcontrol.turbine2.rotor_integrity, 1)
-						)
+						),
+		"sg_inlet_valve" = round(current_valve.open_to * 100),
+		"sg_temp" = round(sg.air_contents.temperature),
+		"sg_pressure" = round(sg.air_contents.pressure),
+		"sg_level" = round((0.5 - (sg.air_contents.available_volume / sg.air_contents.volume)) * 5, 0.1),
+		"sg_header_temp" = round(current_valve.air2.temperature),
+		"steam_quality" = rcontrol.get_meter_steam_quality("T-M-TURB IN"),
+		"condenser_pressure" = rcontrol.get_meter_pressure("T-M-TURB EX")
+
 	)
 	return data
 
@@ -60,10 +70,10 @@
 			rcontrol.turbine2.braking = TRUE
 			return
 		if("tripturb1")
-			rcontrol.turbine_trip("OPERATOR REQUEST")
+			rcontrol.turbine_trip("OPERATOR REQUEST", 1)
 			return
 		if("tripturb2")
-			rcontrol.turbine_trip("OPERATOR REQUEST")
+			rcontrol.turbine_trip("OPERATOR REQUEST", 2)
 			return
 		if("turb1adjust")
 			rcontrol.turbine1.feeder_valve_openage = params["entry"] * 0.01
@@ -82,6 +92,8 @@
 		ui.set_autoupdate(1)
 
 /obj/machinery/reactor_monitor/turbine/tgui_data(mob/user)
+	var/obj/machinery/multitile/steam_generator/sg = reactor_components["steam_generator"]
+	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve = rcontrol.reactor_valves["T-V-EXCHANGER"]
 	var/list/data = list(
 		"turb1" = list(
 						"rpm" = round(rcontrol.turbine1.rpm),
@@ -118,7 +130,14 @@
 						"valve_position" = round(rcontrol.turbine2.feeder_valve_openage * 100, 0.01),
 						"shaft_integrity" = round(rcontrol.turbine2.shaft_integrity, 1),
 						"rotor_integrity" = round(rcontrol.turbine2.rotor_integrity, 1)
-						)
+						),
+		"sg_inlet_valve" = round(current_valve.open_to * 100),
+		"sg_temp" = round(sg.air_contents.temperature),
+		"sg_pressure" = round(sg.air_contents.pressure),
+		"sg_level" = round((0.5 - (sg.air_contents.available_volume / sg.air_contents.volume)) * 5, 0.1),
+		"sg_header_temp" = round(current_valve.air2.temperature),
+		"steam_quality" = rcontrol.get_meter_steam_quality("T-M-TURB IN"),
+		"condenser_pressure" = rcontrol.get_meter_pressure("T-M-TURB EX")
 	)
 	return data
 

@@ -69,7 +69,10 @@
 	id = "generator2"
 
 /obj/machinery/reactor_button/rswitch/generator_connection/first/do_action(mob/user)
-	. = ..()
+	if(rcontrol.has_trip("TURBINE #1 TRIP"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
+	..()
 	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator1
 	if(state == 1)
 		gen.connected = TRUE
@@ -80,6 +83,9 @@
 		rcontrol.make_log("GENERATOR #1 DISCONNECTED.", 2)
 
 /obj/machinery/reactor_button/rswitch/generator_connection/second/do_action(mob/user)
+	if(rcontrol.has_trip("TURBINE #2 TRIP"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	..()
 	var/obj/machinery/power/generator/turbine_generator/gen = rcontrol.generator2
 	if(state == 1)

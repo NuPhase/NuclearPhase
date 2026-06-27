@@ -7,6 +7,9 @@
 
 /obj/machinery/reactor_button/rswitch/lasarm/do_action(mob/user)
 	..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	visible_message(SPAN_WARNING("[user] switches [src] to [state ? "ARMED" : "DISARMED"]!"))
 	for(var/tag in reactor_components)
 		var/obj/machinery/rlaser/las = reactor_components[tag]
@@ -32,6 +35,9 @@
 
 /obj/machinery/reactor_button/rswitch/lasprime/do_action(mob/user)
 	..()
+	if(rcontrol.has_trip("SCRAM"))
+		to_chat(user, SPAN_WARNING("Locked out by trip."))
+		return
 	visible_message(SPAN_WARNING("[user] switches [src] to [state ? "PRIMED" : "ABORT"]!"))
 	if(state == 1)
 		var/primed = FALSE

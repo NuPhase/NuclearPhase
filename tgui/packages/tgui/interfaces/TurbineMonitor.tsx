@@ -1,11 +1,19 @@
-import { useBackend, useLocalState } from "../backend";
-import { LabeledList, Button, ProgressBar, NoticeBox, Section, Divider, NumberInput, Flex } from 'tgui-core/components';
+import { useBackend, useSharedState } from "../backend";
+import { Box, Tabs, LabeledList, LabeledControls, RoundGauge, Button, ProgressBar, NoticeBox, Section, Divider, NumberInput, Flex } from 'tgui-core/components';
 import { formatSiUnit } from "tgui-core/format";
+import { toFixed } from 'tgui-core/math';
 import { Window } from "../layouts";
 
 type InputData = {
   turb1: TurbineData;
   turb2: TurbineData;
+  sg_inlet_valve: number;
+  sg_temp: number;
+  sg_pressure: number;
+  sg_level: number;
+  sg_header_temp: number;
+  steam_quality: number;
+  condenser_pressure: number;
 }
 
 type TurbineData = {
@@ -27,11 +35,167 @@ type TurbineData = {
   rotor_integrity: number;
 }
 
-export const TurbineMonitor = (props: any) => {
+const formatPressure = value => {
+  if (value < 10000) {
+    return toFixed(value) + ' kPa';
+  }
+  return formatSiUnit(value * 1000, 1, 'Pa');
+};
+
+export const TurbineMonitor = (props) => {
+  const { act, data } = useBackend<InputData>();
+  const [tab, setTab] = useSharedState('turbines', "Turbines");
+  return (
+    <Window width={570} height={600} theme = "ntos">
+      <Window.Content fitted>
+    <Flex
+      direction={"column"}>
+      <Flex.Item
+        position="relative"
+        mb={1}>
+        <Tabs>
+          <Tabs.Tab
+            icon="list"
+            lineHeight="23px"
+            selected={tab === "Turbines"}
+            onClick={() => setTab("Turbines")}>
+            Turbines
+          </Tabs.Tab>
+          <Tabs.Tab
+            icon="list"
+            lineHeight="23px"
+            selected={tab === "Steam Loop"}
+            onClick={() => setTab("Steam Loop")}>
+            Steam Loop
+          </Tabs.Tab>
+        </Tabs>
+      </Flex.Item>
+      {tab === "Turbines" && <TurbineTab/>}
+      {tab === "Steam Loop" && <SteamTab/>}
+    </Flex>
+      </Window.Content>
+      </Window>
+  );
+};
+
+const SteamTab = (props) => {
+    const { act, data } = useBackend<InputData>();
+    return (
+        <Box>
+          <LabeledList>
+            <LabeledList.Item label="SG Inlet Valve">
+              <ProgressBar
+                ranges={{
+                teal: [0, 100],
+                }}
+                minValue = {0}
+                maxValue = {100}
+                value={data.sg_inlet_valve}>
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Divider></LabeledList.Divider>
+          </LabeledList>
+            <LabeledControls>
+                <LabeledControls.Item label = "SG Temp">
+                    <RoundGauge
+                    size={3}
+                    value = {data.sg_temp}
+                    minValue= {300}
+                    maxValue= {600}
+                    ranges={{
+                        "average": [300, 470],
+                        "good": [470, 560],
+                        "bad": [560, 600],
+                    }}
+                    alertAfter={560}
+                    >
+                    </RoundGauge>
+                </LabeledControls.Item>
+                <LabeledControls.Item label = "SG Pressure">
+                    <RoundGauge
+                    size={3}
+                    value = {data.sg_pressure}
+                    format = {formatPressure}
+                    minValue= {0}
+                    maxValue= {9000}
+                    ranges={{
+                        "average": [0, 6500],
+                        "good": [6500, 7500],
+                        "bad": [7500, 9000],
+                    }}
+                    alertAfter={9000}
+                    >
+                    </RoundGauge>
+                </LabeledControls.Item>
+                <LabeledControls.Item label = "SG Level">
+                    <RoundGauge
+                    size={3}
+                    value = {data.sg_level}
+                    minValue= {-5}
+                    maxValue= {5}
+                    alertBefore={-3}
+                    alertAfter={3}
+                    ranges={{
+                        "bad": [-5, 1],
+                        "good": [-1, 1],
+                        "average": [1, 5],
+                    }}
+                    >
+                    </RoundGauge>
+                </LabeledControls.Item>
+                <LabeledControls.Item label = "SG Header Temp">
+                    <RoundGauge
+                    size={3}
+                    value = {data.sg_header_temp}
+                    minValue= {500}
+                    maxValue= {2800}
+                    ranges={{
+                        "bad": [500, 700],
+                        "good": [700, 2800],
+                    }}
+                    >
+                    </RoundGauge>
+                </LabeledControls.Item>
+            </LabeledControls>
+            <LabeledControls>
+                <LabeledControls.Item label = "Steam Quality">
+                    <RoundGauge
+                    size={3}
+                    value = {data.steam_quality}
+                    minValue= {80}
+                    maxValue= {100}
+                    ranges={{
+                        "bad": [80, 98],
+                        "good": [98, 100],
+                    }}
+                    alertBefore={98}
+                    >
+                    </RoundGauge>
+                </LabeledControls.Item>
+                <LabeledControls.Item label = "Condenser Pressure">
+                    <RoundGauge
+                    size={3}
+                    value = {data.condenser_pressure}
+                    minValue= {0}
+                    maxValue= {200}
+                    format = {formatPressure}
+                    ranges={{
+                        "good": [0, 150],
+                        "bad": [150, 200],
+                    }}
+                    alertAfter={150}
+                    >
+                    </RoundGauge>
+                </LabeledControls.Item>
+            </LabeledControls>
+        </Box>
+    );
+};
+
+export const TurbineTab = (props) => {
   const { act, data } = useBackend<InputData>();
   return (
-    <Window width={570} height={570} theme = "ntos">
-      <Window.Content fitted>
+      <Box>
         <Section title="Turbine 1">
           <LabeledList>
             <LabeledList.Item label="RPM">
@@ -279,7 +443,6 @@ export const TurbineMonitor = (props: any) => {
             onChange = {(value) => act('turb2adjust', { entry: value })}
           ></NumberInput>
         </Section>
-      </Window.Content>
-    </Window>
+      </Box>
   );
 };

@@ -51,7 +51,7 @@ var/list/global/reactor_ports = list()
 	build_icon_state = "connector"
 
 	pipe_class = PIPE_CLASS_UNARY
-	var/target_temperature = 4500
+	var/target_temperature = 2800
 
 /obj/machinery/atmospherics/unary/reactor_exchanger/Initialize()
 	. = ..()

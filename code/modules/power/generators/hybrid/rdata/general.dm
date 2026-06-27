@@ -57,6 +57,17 @@
 			mcolor = COLOR_RED
 			is_bold = TRUE
 		alarm_list += list(list("content" = message, "alarm_color" = mcolor, "is_bold" = is_bold))
+	for(var/message in rcontrol.alarm_list)
+		var/mcolor = COLOR_BLUE_LIGHT
+		var/is_bold = FALSE
+		if(rcontrol.alarm_list[message] == 2)
+			mcolor = COLOR_RED
+		else if(rcontrol.alarm_list[message] == 3)
+			mcolor = COLOR_RED
+			is_bold = TRUE
+		alarm_list += list(list("content" = message, "alarm_color" = mcolor, "is_bold" = is_bold))
+	for(var/message in rcontrol.trip_list)
+		alarm_list += list(list("content" = message, "alarm_color" = COLOR_RED, "is_bold" = TRUE))
 	return alarm_list
 
 /obj/machinery/reactor_monitor/general/proc/assemble_tgui_gas_list(datum/gas_mixture/core_air)
