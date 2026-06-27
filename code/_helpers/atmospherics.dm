@@ -15,5 +15,15 @@
 	for(var/line in result)
 		to_chat(user, "<span class='notice'>[line]</span>")
 
+// Returns the steam enthalpy at a specific steam table point in J/mol
+// Uses curve fitting, so only accurate between 450K to 1050K and between 1MPa and 7MPa
+/proc/steam_enthalpy(pressure, temperature)
+	var/p_7000 = pressure/7000
+	var/a = 896 * (1.55 - (0.55*p_7000))
+	var/b = 6.3
+	var/c = 1.17 + 0.019*(1 - p_7000)
+	var/kj_kg = a + (b*temperature) - (temperature**c) //kj/kg
+	return kj_kg * 1000 * 0.018015 // convert to j/mol
+
 #define KJ * 1000
 #define MJ * 1000000
