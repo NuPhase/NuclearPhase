@@ -92,6 +92,19 @@
 	amperage = 1400
 	efficiency = 0.9
 
+// It's a battery? No, it's a battery disguised as a voltage reactor!
+/obj/machinery/power/generator/battery/voltage_reactor //0.7Wh/l capacity
+	name = "voltage reactor"
+	desc = "A medium-sized voltage reactor decided to dampen voltage spikes in the power grid. Rated for a 1 megawatt, 1 second pulse."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "smes"
+	max_capacity = 280
+	capacity = 280
+	voltage = 440
+	amperage = 2270
+	efficiency = 0.1
+	weight = 70
+
 /obj/machinery/power/generator/battery/quantum //1270Wh/l capacity, found in a sus document. 800l volume
 	name = "quantum battery" //IMPOSSIBLE to manufacture
 	desc = "Despite the pseudosciencey name, this is real technology, it's just top-level semiconductor exploitation. Not every millionaire was able to afford these, though... Be careful with one."

@@ -39,6 +39,15 @@
 /obj/machinery/power/generator/transformer/stop_ambience()
 	QDEL_NULL(soundloop)
 
+/obj/machinery/power/generator/transformer/attackby(obj/item/W, mob/user)
+	if(IS_MULTITOOL(W))
+		var/chosen_limit = tgui_input_number(user, "Select a new load limit for \the [src] (in megawatts).", "Load Limit Config", round(max_cap / 1000000, 0.01), 2000, 0)
+		if(!chosen_limit)
+			return
+		max_cap = chosen_limit * 1000000
+		return
+	. = ..()
+
 /obj/machinery/power/generator/transformer/large
 	icon_state = "transformer_back"
 	should_transfer_demand = TRUE

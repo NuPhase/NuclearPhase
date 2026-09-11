@@ -3245,6 +3245,18 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers/layer3,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2)
+"bKc" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4;
+	volume = 1500
+	},
+/obj/effect/catwalk_plated/dark,
+/obj/structure/cable/heavy{
+	icon_state = "1-4";
+	name = "BUS cable"
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical/substation)
 "bKe" = (
 /obj/structure/railing/mapped,
 /turf/simulated/floor/concrete/gray,
@@ -4079,6 +4091,16 @@
 	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/reactor_operations)
+"ceP" = (
+/obj/machinery/power/generator/battery/voltage_reactor,
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/concrete/gray,
+/area/serenity/shelter/staircase)
 "ceU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 5;
@@ -6074,6 +6096,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/serenity/shelter/engineering/reactor_operations)
+"dfp" = (
+/obj/structure/cable/blue{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/blue{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/medbay/floor3)
 "dfs" = (
 /obj/structure/rack,
 /obj/machinery/camera/network/cargo,
@@ -14266,6 +14297,13 @@
 	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/service_tunnels)
+"hdf" = (
+/obj/machinery/power/generator/battery/voltage_reactor,
+/obj/structure/cable/blue{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/serenity/shelter/medbay/floor3)
 "hdg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/concrete/gray,
@@ -15161,6 +15199,9 @@
 /obj/effect/floor_decal/corner/yellow/half,
 /obj/effect/floor_decal/corner/yellow{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/dark/textured/corner{
 	dir = 4
@@ -16194,6 +16235,22 @@
 	},
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
+"iaT" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4;
+	volume = 1500
+	},
+/obj/effect/catwalk_plated/dark,
+/obj/machinery/power/generator/battery/lithium_ion/prebuilt,
+/obj/structure/cable/heavy{
+	icon_state = "4-8";
+	name = "BUS cable"
+	},
+/obj/structure/cable/heavy{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical/substation)
 "iaU" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -21958,6 +22015,10 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/generator/battery/voltage_reactor,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/tiled/dark/textured/corner{
 	dir = 8
 	},
@@ -23560,6 +23621,9 @@
 	icon_state = "1-8"
 	},
 /obj/structure/catwalk,
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
 "may" = (
@@ -23741,6 +23805,10 @@
 	dir = 9
 	},
 /obj/effect/catwalk_plated/dark,
+/obj/machinery/power/generator/battery/lithium_ion/prebuilt,
+/obj/structure/cable/heavy{
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/substation)
 "meM" = (
@@ -25367,8 +25435,9 @@
 /turf/simulated/open,
 /area/serenity/maintenance/sublevel_one)
 "mSl" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
+/obj/machinery/power/generator/battery/voltage_reactor,
+/obj/structure/cable/cyan{
+	dir = 4
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity)
@@ -34220,7 +34289,7 @@
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "rev" = (
-/obj/effect/floor_decal/industrial/warning/dust/corner{
+/obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
 /turf/simulated/floor/concrete/gray,
@@ -40039,6 +40108,18 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
+"tWW" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4;
+	volume = 1500
+	},
+/obj/effect/catwalk_plated/dark,
+/obj/structure/cable/heavy{
+	icon_state = "1-2";
+	name = "BUS cable"
+	},
+/turf/simulated/floor/plating,
+/area/serenity/shelter/engineering/electrical/substation)
 "tXW" = (
 /obj/machinery/atmospherics/valve/digital{
 	dir = 4;
@@ -42075,6 +42156,24 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/engineering/atmos)
+"uXc" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8";
+	name = "BUS cable"
+	},
+/obj/structure/cable/heavy{
+	icon_state = "1-8";
+	name = "BUS cable"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/cable/heavy{
+	icon_state = "2-8";
+	name = "BUS cable"
+	},
+/turf/simulated/floor/tiled/dark/textured/half,
+/area/serenity/shelter/engineering/electrical/substation)
 "uXo" = (
 /obj/machinery/medical_scanner{
 	pixel_x = -12
@@ -361276,9 +361375,9 @@ mvP
 pgL
 tYP
 bjm
-faq
-nBX
-nBX
+uXc
+tWW
+bKc
 cmS
 fDP
 eOr
@@ -361472,7 +361571,7 @@ tRg
 tRg
 vyH
 nBX
-nBX
+iaT
 cmS
 fDP
 eOr
@@ -361666,7 +361765,7 @@ dsJ
 okN
 faq
 nBX
-nBX
+iaT
 cmS
 fDP
 eOr
@@ -361860,7 +361959,7 @@ enU
 xyq
 faq
 nBX
-nBX
+iaT
 cmS
 fDP
 tsZ
@@ -362054,7 +362153,7 @@ vaZ
 rYt
 faq
 nBX
-nBX
+iaT
 cmS
 fDP
 eOr
@@ -398696,7 +398795,7 @@ wJG
 wJG
 xXf
 kAM
-vGD
+hdf
 riS
 jpC
 obl
@@ -398890,7 +398989,7 @@ ufb
 ufb
 ufb
 efh
-gAn
+dfp
 bhY
 gfF
 rho
@@ -400690,7 +400789,7 @@ vOg
 vOg
 vOg
 iyD
-mSZ
+ceP
 doY
 glo
 glo

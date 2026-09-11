@@ -106,7 +106,7 @@
 			if(newvoltage == 0)
 				newvoltage = G.get_voltage()
 			else
-				newvoltage = Interpolate(voltage, G.get_voltage(), interp_coef)
+				newvoltage = Interpolate(newvoltage, G.get_voltage(), interp_coef)
 	else if(length(generators))
 		var/obj/machinery/power/generator/G = generators[1]
 		var/power_to_draw = projected_demand
@@ -118,8 +118,8 @@
 
 	if(!length(batteries)) // NO BATTERIES??
 		return
-	if((projected_demand - battery_demand) > (available - battery_demand)) // We still don't have enough power, UNLEASH BATTERIES
-		var/deficit = (projected_demand - battery_demand) - (available - battery_demand)
+	if((projected_demand - battery_demand) > available) // We still don't have enough power, UNLEASH BATTERIES
+		var/deficit = (projected_demand - battery_demand) - available
 		var/actually_drawn = discharge_batteries(batteries, deficit)
 		available += actually_drawn
 	else // We've got excess
@@ -129,10 +129,15 @@
 /datum/powernet/proc/discharge_batteries(list/batteries, power_demand)
 	var/power_per_battery = power_demand/length(batteries)
 	var/actually_drawn = 0
+	var/interp_coef = 1/length(batteries)
 	for(var/obj/machinery/power/generator/battery/B in batteries)
 		var/available_power = B.available_power()
 		if(!available_power)
 			continue
+		if(newvoltage == 0)
+			newvoltage = B.get_voltage()
+		else
+			newvoltage = Interpolate(newvoltage, B.get_voltage(), interp_coef)
 		B.on_power_drain(power_per_battery)
 		actually_drawn += power_per_battery
 	return actually_drawn
