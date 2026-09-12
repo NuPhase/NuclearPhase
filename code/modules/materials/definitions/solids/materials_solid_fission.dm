@@ -18,12 +18,12 @@
 
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 4,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 99,
 			INTERACTION_FISSION = 58
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 4,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 0.09,
 			INTERACTION_FISSION = 1
 		)
@@ -74,12 +74,12 @@
 
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 4,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 99,
 			INTERACTION_FISSION = 583
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 6,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 0.3,
 			INTERACTION_FISSION = 1
 		)
@@ -126,12 +126,12 @@
 
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 5,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 2,
 			INTERACTION_FISSION = 0
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 5,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 0.4,
 			INTERACTION_FISSION = 0.2
 		)
@@ -173,12 +173,12 @@
 	exoplanet_rarity = MAT_RARITY_UNCOMMON
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 9,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 0.07,
 			INTERACTION_FISSION = 0.00002
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 3,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 0.14,
 			INTERACTION_FISSION = 348
 		)
@@ -215,12 +215,12 @@
 
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 8,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 269,
 			INTERACTION_FISSION = 748
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 5,
+			INTERACTION_SCATTER = 0.35,
 			INTERACTION_ABSORPTION = 0.05,
 			INTERACTION_FISSION = 2
 		)
@@ -271,7 +271,7 @@
 /decl/material/solid/metal/nuclear_waste/transuranic
 	name = "transuranic nuclear waste"
 	uid = "nuclear_waste_tu"
-	radioactivity = 37
+	radioactivity = 370
 	fission_neutrons = 0.2
 	fission_energy = 51080100000.0
 	color = "#d8881e"
@@ -295,7 +295,7 @@
 /decl/material/solid/metal/nuclear_waste/high_level
 	name = "high level nuclear waste"
 	uid = "nuclear_waste_hl"
-	radioactivity = 42
+	radioactivity = 420
 	fission_neutrons = 0.01
 	fission_energy = 15080100000.0
 	color = "#704d1f"
@@ -320,7 +320,7 @@
 /decl/material/solid/metal/nuclear_waste/actinides
 	name = "nuclear actinides"
 	uid = "nuclear_waste_act"
-	radioactivity = 11
+	radioactivity = 110
 	color = "#4b371e"
 	neutron_interactions = list(
 		"slow" = list(

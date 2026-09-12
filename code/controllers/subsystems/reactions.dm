@@ -195,7 +195,7 @@ SUBSYSTEM_DEF(reactions)
 	var/thermal_energy = temperature * heat_capacity
 	var/radial_distance = sphere_radius_from_volume(volume)
 
-	var/scatter_prob = get_average_cross_section(moles, INTERACTION_SCATTER, fast_neutrons, slow_neutrons, volume)
+	var/scatter_prob = get_average_cross_section(moles, INTERACTION_SCATTER, fast_neutrons, slow_neutrons, volume) * 0.002
 	var/z_scatter = min(scatter_prob * radial_distance, 1)
 
 	var/scattered = fast_neutrons * z_scatter
@@ -361,3 +361,15 @@ SUBSYSTEM_DEF(reactions)
 		fast_neutrons = react_result[3]
 		slow_neutrons = react_result[4]
 		to_chat(usr, "T: [round(react_result[2])] | FN: [round(react_result[3], 0.0001)] | SN: [round(react_result[4], 0.0001)]")
+
+/datum/controller/subsystem/reactions/proc/test_moderation()
+	to_chat(usr, "--------------------")
+	for(var/i=1, i<50, i++)
+		var/fast_neutrons = 1
+		var/slow_neutrons = 0
+		var/datum/gas_mixture/xgm_testbed = new(100, T20C, 1, alist(/decl/material/solid/graphite = 100 * i))
+		var/list/react_result = xgm_testbed.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+		fast_neutrons = react_result["fast_neutrons_changed"]
+		slow_neutrons = react_result["slow_neutrons_changed"]
+		to_chat(usr, "T: [round(xgm_testbed.temperature)] | FN: [round(react_result["fast_neutrons_changed"], 0.0001)] | SN: [round(react_result["slow_neutrons_changed"], 0.0001)]")
+	to_chat(usr, "--------------------")

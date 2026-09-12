@@ -72,7 +72,8 @@
 		fast_neutrons += 0.000001
 	last_neutrons = total_neutrons
 	last_temperature = loaded_core.air_contents.temperature
-	var/rod_power = 1 + (1500 * (rod_position**2)) + max((last_temperature - T100C) * 0.03, 0) // doppler effect
+	var/doppler_broadening_effect = max((last_temperature - T100C) * 0.03, 0)
+	var/rod_power = 1 + (1500 * (rod_position**2)) + doppler_broadening_effect
 	var/list/return_list = loaded_core.air_contents.handle_nuclear_reactions(slow_neutrons, fast_neutrons, TRUE, rod_power)
 	if(!return_list)
 		return
@@ -190,9 +191,10 @@
 /obj/machinery/portable_atmospherics/canister/reactor_vessel/uranium
 	name = "reactor vessel (LEU)"
 	initial_gas = alist(
-		/decl/material/gas/krypton = 0.01,
+		/decl/material/gas/krypton = 0.001,
 		/decl/material/solid/metal/uranium = 0.03,
-		/decl/material/solid/metal/depleted_uranium = 0.97
+		/decl/material/solid/metal/depleted_uranium = 0.97,
+		/decl/material/solid/graphite = 5
 	)
 
 /obj/machinery/portable_atmospherics/canister/reactor_vessel/heu

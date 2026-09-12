@@ -3,6 +3,7 @@
 	mid_length = 49
 	volume = 10
 
+#define TRANSFORMER_HEAT_CAPACITY 5000000
 /obj/machinery/power/generator/transformer
 	name = "power transformer"
 	icon = 'icons/obj/power.dmi'
@@ -15,14 +16,49 @@
 	var/on = 1
 	var/critical = FALSE
 
-	efficiency = 0.998
-	should_heat = TRUE
+	efficiency = 0.995
+	should_heat = FALSE // we process it ourselves
 
 	var/off_icon_state
 	var/on_icon_state
 	var/open_icon_state
 
 	var/datum/composite_sound/transformer/soundloop = null
+
+	var/obj/machinery/atmospherics/unary/multiport/cooling_port
+	var/internal_temp = T20C
+
+/obj/machinery/power/generator/transformer/Initialize()
+	. = ..()
+	cooling_port = new(loc)
+	cooling_port.our_daddy = src
+	cooling_port.dir = EAST
+	cooling_port.set_dir(EAST)
+	cooling_port.atmos_init()
+	cooling_port.air_contents.volume = 2000
+	cooling_port.name = "fluid port(Coolant)"
+	if(on)
+		internal_temp = 60 CELSIUS
+
+/obj/machinery/power/generator/transformer/Destroy()
+	. = ..()
+	QDEL_NULL(cooling_port)
+
+/obj/machinery/power/generator/transformer/draw_power(amount)
+	if(powernet)
+		var/heat_draw = powernet.draw_power(amount * (1 - efficiency))
+		internal_temp += POWER2HEAT(heat_draw) / TRANSFORMER_HEAT_CAPACITY
+		powernet.losses += heat_draw
+		return powernet.draw_power(amount)
+	return 0
+
+/obj/machinery/power/generator/transformer/proc/handle_cooling()
+	var/t_diff = internal_temp - cooling_port.air_contents.temperature
+	if(abs(t_diff) < 10)
+		return
+	var/heat_transfer = min(t_diff * (max_cap * (1-efficiency) / 80), cooling_port.air_contents.heat_capacity*100)
+	cooling_port.air_contents.add_thermal_energy(heat_transfer)
+	internal_temp -= heat_transfer / TRANSFORMER_HEAT_CAPACITY
 
 /obj/machinery/power/generator/transformer/examine(mob/user)
 	. = ..()
@@ -31,6 +67,7 @@
 	else
 		to_chat(user, SPAN_INFO("It will decrease the opposite voltage by a factor of [round(1 / coef, 0.001)]."))
 	to_chat(user, SPAN_INFO("It's rated to transfer [watts_to_text(max_cap)]."))
+	to_chat(user, SPAN_WARNING("It's temperature is [round(internal_temp-T0C, 0.1)]C."))
 
 /obj/machinery/power/generator/transformer/start_ambience()
 	if(!soundloop && on)
@@ -53,6 +90,7 @@
 	should_transfer_demand = TRUE
 
 /obj/machinery/power/generator/transformer/Process()
+	handle_cooling()
 	if(connected)
 		return
 	connected = locate(/obj/machinery/power/generator/transformer, get_step(src, dir))
@@ -79,15 +117,14 @@
 	var/RCon_tag = "NO_TAG"
 	var/update_locked = 0
 	var/busy = 0
-	var/max_temperature = 368
+	var/max_temperature = 160 CELSIUS
 	on = 0
 
 /obj/machinery/power/generator/transformer/switchable/Process()
 	process_electrocution()
 
 	if(on)
-		var/datum/gas_mixture/environment = loc.return_air()
-		if(environment.temperature > max_temperature)
+		if(internal_temp > max_temperature)
 			trip()
 
 	. = ..()
@@ -206,3 +243,5 @@
 	off_icon_state = "transformer_front_off"
 	on_icon_state = "transformer_front_on"
 	open_icon_state = "transformer_front_open"
+
+#undef TRANSFORMER_HEAT_CAPACITY

@@ -124,7 +124,7 @@
 /obj/machinery/atmospherics/unary/tank/large/oil
 	name = "Large Tank (Oil)"
 	icon_state = "piss"
-	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/mineral_oil = 0.9)
+	filling = list(/decl/material/gas/nitrogen = 0.6, /decl/material/liquid/mineral_oil = 0.4)
 	start_temperature = 60 CELSIUS
 	start_pressure = ONE_ATMOSPHERE
 

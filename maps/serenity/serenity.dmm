@@ -1677,7 +1677,8 @@
 	pixel_x = -32;
 	pixel_y = -32;
 	uid = "F-CP 2";
-	color = "#353a42"
+	color = "#353a42";
+	flow_capacity = 9600
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/pumps_b)
@@ -2339,6 +2340,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2";
 	name = "BUS cable"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
@@ -3156,6 +3160,9 @@
 	},
 /obj/structure/door/fire{
 	dir = 8
+	},
+/obj/effect/floor_decal/corner/black/half{
+	dir = 4
 	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/electrical/substation)
@@ -4500,6 +4507,13 @@
 /obj/effect/catwalk_plated/white,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/atmos/cryogenic)
+"cqN" = (
+/obj/effect/paint_stripe/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 9
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/electrical/substation)
 "cra" = (
 /obj/machinery/alarm/warm{
 	dir = 8
@@ -4920,7 +4934,8 @@
 	pixel_x = -32;
 	pixel_y = -32;
 	uid = "F-CP 1";
-	color = "#353a42"
+	color = "#353a42";
+	flow_capacity = 9600
 	},
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/pumps_b)
@@ -8594,6 +8609,9 @@
 	coef = 0.01
 	},
 /obj/structure/cable/white,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
 "enW" = (
@@ -10088,6 +10106,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/engineering/electrical/substation)
 "fay" = (
@@ -10482,6 +10501,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2";
 	name = "TURBINE cable"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
@@ -11863,6 +11885,14 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2)
+"fWo" = (
+/obj/effect/floor_decal/corner/white/border{
+	color = "#C9612A";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/engineering/pumps_b)
 "fWA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/security{
@@ -14127,6 +14157,7 @@
 /obj/structure/sign/warning/high_voltage{
 	pixel_y = 28
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow,
 /turf/simulated/floor/tiled/dark/textured/edge{
 	dir = 1
 	},
@@ -15365,6 +15396,9 @@
 	coef = 0.01
 	},
 /obj/structure/cable/green,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
 "hFH" = (
@@ -17330,6 +17364,9 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/yellow/half,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 5
+	},
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/engineering/electrical/substation)
 "izX" = (
@@ -19395,6 +19432,9 @@
 	name = "BUS cable"
 	},
 /obj/effect/paint_stripe/yellow,
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
+	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/electrical/substation)
 "jHr" = (
@@ -20912,6 +20952,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2";
 	name = "BACKUP cable"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
@@ -22448,6 +22491,10 @@
 /obj/effect/paint_stripe/red,
 /turf/simulated/wall/concrete,
 /area/serenity/shelter/admin/security)
+"lqP" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/hafnium_carbide/inconel_coated,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/engineering/pumps_b)
 "lrm" = (
 /obj/effect/floor_decal/corner/mauve/bordercorner{
 	dir = 4
@@ -28721,6 +28768,13 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/serenity/maintenance/sublevel_one)
+"ovm" = (
+/obj/effect/paint_stripe/yellow,
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/electrical/substation)
 "ovI" = (
 /obj/structure/flora/bush/fullgrass,
 /obj/structure/flora/bush/sparsegrass,
@@ -28738,6 +28792,13 @@
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/laboratory)
+"owb" = (
+/obj/effect/paint_stripe/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/electrical/substation)
 "owz" = (
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
@@ -30378,6 +30439,9 @@
 	icon_state = "0-1";
 	name = "BUS cable"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
 "prc" = (
@@ -31143,6 +31207,7 @@
 	dir = 4;
 	color = "#C9612A"
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/hafnium_carbide/inconel_coated,
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/pumps_b)
 "pLK" = (
@@ -32936,6 +33001,17 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/dark/textured/corner,
 /area/serenity/shelter/engineering/reactor_operations)
+"qxF" = (
+/obj/structure/cable/heavy{
+	icon_state = "1-2";
+	name = "BUS cable"
+	},
+/obj/effect/paint_stripe/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
+/turf/simulated/wall/concrete/nano,
+/area/serenity/shelter/engineering/electrical/substation)
 "qxK" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -35842,6 +35918,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/yellow/half,
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/engineering/electrical/substation)
 "rUR" = (
@@ -36023,6 +36100,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2";
 	name = "BUS cable"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
@@ -40214,6 +40294,9 @@
 	coef = 0.5;
 	max_cap = 700000000
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
 "tYX" = (
@@ -42172,6 +42255,7 @@
 	icon_state = "2-8";
 	name = "BUS cable"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/engineering/electrical/substation)
 "uXo" = (
@@ -42366,6 +42450,9 @@
 	coef = 0.01
 	},
 /obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
 "vbi" = (
@@ -43219,6 +43306,7 @@
 /obj/structure/sign/warning/high_voltage{
 	pixel_y = 28
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
 /turf/simulated/floor/tiled/dark/textured/half,
 /area/serenity/shelter/engineering/electrical/substation)
 "vyQ" = (
@@ -43695,6 +43783,23 @@
 	},
 /turf/simulated/wall/concrete/nano,
 /area/serenity/shelter/engineering/reactor_operations/cavern)
+"vKZ" = (
+/obj/structure/cable/heavy{
+	icon_state = "4-8";
+	name = "BUS cable"
+	},
+/obj/structure/cable/heavy{
+	icon_state = "1-8";
+	name = "BUS cable"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/textured/half,
+/area/serenity/shelter/engineering/electrical/substation)
 "vLL" = (
 /obj/effect/floor_decal/floordetail/tiled,
 /obj/machinery/light/mood/blue{
@@ -45003,6 +45108,9 @@
 	icon_state = "0-2";
 	name = "BUS cable"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
 "wpZ" = (
@@ -45176,6 +45284,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-1";
 	name = "BUS cable"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
@@ -46565,6 +46676,12 @@
 	color = "#C9612A";
 	dir = 5
 	},
+/obj/machinery/atmospherics/unary/heater/reactor{
+	max_power_rating = 5000000;
+	uid = "F-COOLANT PREHEAT";
+	set_temperature = 2800;
+	max_temperature = 2800
+	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/pumps_b)
 "xff" = (
@@ -47332,6 +47449,9 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-2";
 	name = "BUS cable"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/substation)
@@ -48222,12 +48342,13 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/reactor_operations/reactormonitoring)
 "xSs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 6
-	},
 /obj/effect/floor_decal/corner/yellow/half{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 8
+	},
+/obj/machinery/meter,
 /turf/simulated/floor/tiled/dark/textured/half{
 	dir = 1
 	},
@@ -323173,9 +323294,9 @@ spl
 xPd
 vcG
 xeW
-xtb
+fWo
 pLH
-rtm
+lqP
 gqz
 gqz
 cAb
@@ -360985,7 +361106,7 @@ onY
 onY
 onY
 fbr
-jGO
+qxF
 jGO
 gYW
 xSs
@@ -361181,7 +361302,7 @@ mvP
 pgL
 qdy
 iYc
-faq
+vKZ
 jMV
 jMV
 cmS
@@ -361567,8 +361688,8 @@ fCJ
 fCJ
 fCJ
 xPd
-tRg
-tRg
+owb
+ovm
 vyH
 nBX
 iaT
@@ -361763,7 +361884,7 @@ oJE
 eUX
 dsJ
 okN
-faq
+vKZ
 nBX
 iaT
 cmS
@@ -362537,9 +362658,9 @@ tMc
 roV
 tFc
 xPd
-tRg
-tRg
-tRg
+owb
+ovm
+cqN
 tRg
 tRg
 yka

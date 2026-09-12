@@ -53,6 +53,12 @@
 /obj/machinery/multitile/cflow_heat_exchanger,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"cS" = (
+/obj/machinery/atmospherics/unary/reagent_outlet{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "da" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on{
 	dir = 1
@@ -62,6 +68,12 @@
 "dh" = (
 /obj/machinery/medical/blood_oxygenator,
 /turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"dm" = (
+/obj/machinery/atmospherics/binary/pump/adv/medium{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
 /area/hallway)
 "dp" = (
 /obj/machinery/multitile/research_reactor,
@@ -107,9 +119,22 @@
 /obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"eH" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "fa" = (
 /obj/machinery/centrifuge,
 /obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"ff" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "fh" = (
@@ -209,12 +234,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
 "jV" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/generator/transformer{
-	dir = 4;
-	should_transfer_demand = 1
+/obj/machinery/atmospherics/binary/pump/adv/medium{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
@@ -300,12 +321,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "mA" = (
-/obj/structure/cable/superconductor{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/generator/transformer{
-	dir = 4;
-	should_transfer_demand = 1
+/obj/machinery/atmospherics/unary/reagent_inlet{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
@@ -373,6 +390,13 @@
 /obj/item/gun/projectile/pistol/military_service,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"oR" = (
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/multitile/electrolyzer,
+/turf/simulated/floor/plating,
+/area/hallway)
 "oZ" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/ammo_magazine/pistol,
@@ -387,13 +411,6 @@
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"pj" = (
-/obj/structure/cable/heavy{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/generator/debug_items/infinite_generator,
-/turf/simulated/floor/plating,
 /area/hallway)
 "px" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer1{
@@ -497,10 +514,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "tK" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/generator/debug_items/infinite_generator,
+/obj/item/clothing/gloves/insulated,
 /turf/simulated/floor/plating,
 /area/hallway)
 "tV" = (
@@ -537,12 +551,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "vm" = (
-/obj/structure/cable{
-	icon_state = "0-4"
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8;
+	volume = 1000
 	},
-/obj/machinery/power/generator/transformer{
-	dir = 8
-	},
+/obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/hallway)
 "vu" = (
@@ -556,6 +569,15 @@
 /obj/item/stack/ore/gold,
 /obj/item/stack/ore/gold,
 /turf/simulated/floor/tiled/white/monotile,
+/area/hallway)
+"vE" = (
+/obj/machinery/atmospherics/unary/freezer{
+	dir = 1;
+	max_power_rating = 20000000;
+	power_setting = 20000000;
+	set_temperature = 1200
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "vZ" = (
 /mob/living/carbon/human{
@@ -573,13 +595,6 @@
 "wv" = (
 /obj/item/stack/material/strut/mapped/titanium/fifty,
 /turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"wF" = (
-/obj/structure/cable/superconductor{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/generator/debug_items/infinite_generator,
-/turf/simulated/floor/plating,
 /area/hallway)
 "wP" = (
 /obj/structure/closet/crate/medical/expendables,
@@ -610,11 +625,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
 "yn" = (
-/obj/machinery/power/debug_items/infinite_cable_powersink{
-	power_usage_rate = 1000000
-	},
-/obj/structure/cable/heavy{
-	icon_state = "0-4"
+/obj/structure/reagent_dispensers/barrel/water{
+	initial_reagent_types = list(/decl/material/solid/bauxite = 0.8)
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
@@ -638,6 +650,15 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"yX" = (
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/debug_items/infinite_cable_powersink{
+	power_usage_rate = 10000000000
+	},
+/turf/simulated/floor/plating,
 /area/hallway)
 "zk" = (
 /obj/structure/reagent_dispensers/barrel/random,
@@ -700,6 +721,14 @@
 /obj/machinery/defibrillator,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Dr" = (
+/obj/structure/cable/heavy,
+/obj/machinery/power/generator/transformer/large{
+	coef = 0.001;
+	max_cap = 4000000
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "DA" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/ammo_magazine/rifle,
@@ -726,11 +755,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Ex" = (
-/obj/structure/cable/superconductor{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/generator/transformer{
-	dir = 8
+/obj/machinery/atmospherics/unary/freezer{
+	dir = 1;
+	max_power_rating = 20000000;
+	power_setting = 20000000;
+	set_temperature = 1200
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
@@ -773,6 +802,14 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Gt" = (
+/obj/structure/cable/heavy,
+/obj/machinery/power/generator/transformer/large{
+	max_cap = 4000000;
+	coef = 0.5
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "Hk" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/storage/firstaid/surgery,
@@ -792,8 +829,12 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Hv" = (
-/obj/structure/cable/superconductor{
-	icon_state = "4-8"
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/generator/transformer/switchable/on/large{
+	coef = 1000;
+	max_cap = 4000000
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
@@ -860,12 +901,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Jr" = (
-/obj/machinery/power/generator/transformer{
-	dir = 4;
-	should_transfer_demand = 1
-	},
 /obj/structure/cable/heavy{
-	icon_state = "0-8"
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
@@ -928,15 +965,6 @@
 /obj/machinery/light/spot,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
-"LI" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/debug_items/infinite_cable_powersink{
-	power_usage_rate = 1000000
-	},
-/turf/simulated/floor/plating,
-/area/hallway)
 "LT" = (
 /obj/machinery/portable_atmospherics/canister/reactor_vessel/uranium,
 /turf/simulated/floor/tiled/monotile,
@@ -973,14 +1001,21 @@
 /obj/item/stack/ore/sphalerite,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
+"Oa" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4
+	},
+/turf/simulated/wall/r_wall,
+/area/hallway)
 "Oi" = (
 /obj/item/stack/material/strut/mapped/aluminium/thirty,
 /obj/item/stack/material/strut/mapped/aluminium/thirty,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "OD" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8;
+	volume = 1000
 	},
 /turf/simulated/floor/plating,
 /area/hallway)
@@ -1012,6 +1047,10 @@
 "OV" = (
 /obj/item/stack/material/puck/mapped/carbon/forty,
 /obj/item/stack/material/puck/mapped/carbon/forty,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"Pa" = (
+/obj/machinery/atmospherics/unary/tank/large/oil,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Pv" = (
@@ -1046,15 +1085,6 @@
 "Qu" = (
 /obj/structure/railing/mapped,
 /turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"Qz" = (
-/obj/structure/cable/superconductor{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/debug_items/infinite_cable_powersink{
-	power_usage_rate = 1000000
-	},
-/turf/simulated/floor/plating,
 /area/hallway)
 "Rd" = (
 /obj/machinery/portable_atmospherics/canister/argon,
@@ -1172,15 +1202,6 @@
 "WF" = (
 /turf/simulated/floor/tiled/dark,
 /area/hallway)
-"WM" = (
-/obj/machinery/power/generator/transformer{
-	dir = 8
-	},
-/obj/structure/cable/heavy{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/plating,
-/area/hallway)
 "WW" = (
 /obj/structure/rack,
 /obj/item/stack/medical/splint,
@@ -1196,6 +1217,15 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/white/monotile,
 /area/hallway)
+"Xn" = (
+/obj/structure/cable/heavy{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/generator/transformer/switchable/on/large{
+	max_cap = 4000000
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "Xp" = (
 /obj/machinery/atmospherics/binary/heat_exchanger/exchanger_steam{
 	dir = 1;
@@ -1204,9 +1234,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Xy" = (
-/obj/structure/cable/heavy{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
 	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor/plating,
 /area/hallway)
 "XE" = (
@@ -1243,6 +1274,11 @@
 /obj/machinery/fabricator/textile/filled,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"Zy" = (
+/obj/machinery/power/generator/debug_items/infinite_generator,
+/obj/structure/cable/heavy,
+/turf/simulated/floor/plating,
+/area/hallway)
 "ZI" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /obj/machinery/meter,
@@ -1251,15 +1287,6 @@
 "ZO" = (
 /obj/machinery/medical/blood_circulator,
 /turf/simulated/floor/tiled/monotile,
-/area/hallway)
-"ZZ" = (
-/obj/structure/cable/heavy{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/debug_items/infinite_cable_powersink{
-	power_usage_rate = 1000000
-	},
-/turf/simulated/floor/plating,
 /area/hallway)
 
 (1,1,1) = {"
@@ -1611,17 +1638,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -1741,17 +1768,17 @@ tl
 VO
 Re
 Bs
-EM
-yn
-Kj
-ZZ
-Kj
-LI
-Kj
-Qz
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 iH
 Bs
@@ -1871,17 +1898,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Xy
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Oi
@@ -2001,17 +2028,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Jr
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 lj
@@ -2131,17 +2158,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-WM
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Ej
 Bs
@@ -2261,17 +2288,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Xy
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -2391,17 +2418,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Jr
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -2521,17 +2548,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-WM
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Mo
 Bs
 Bs
@@ -2651,17 +2678,17 @@ Zo
 Bs
 Bs
 Bs
-EM
-Xy
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Ts
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 XO
@@ -2781,17 +2808,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Jr
-Kj
-Jr
-Kj
-jV
-Kj
-mA
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 gV
@@ -2911,17 +2938,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-WM
-Kj
-WM
-Kj
-vm
-Kj
-Ex
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 rn
@@ -3041,17 +3068,17 @@ Zo
 Ts
 Bs
 Bs
-EM
-Xy
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+yX
+Jr
+Jr
+Gt
+Xn
+Jr
+Jr
+Zy
+Bs
+Bs
+Bs
 Ts
 Bs
 Bs
@@ -3171,17 +3198,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Jr
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+gV
+eH
+vE
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -3301,17 +3328,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-WM
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+ff
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -3431,17 +3458,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Xy
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Pa
+yO
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -3561,17 +3588,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-Xy
-Kj
-Xy
-Kj
-OD
-Kj
-Hv
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -3691,17 +3718,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-pj
-Kj
-pj
-Kj
-tK
-Kj
-wF
-Kj
-Kj
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -3821,17 +3848,17 @@ Bs
 Bs
 Bs
 Bs
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
-EM
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -4228,11 +4255,11 @@ Bs
 Bs
 Bs
 Bs
-dp
-kL
-Pv
-nb
-Zo
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -4489,10 +4516,10 @@ Bs
 Bs
 Bs
 Bs
-CB
-CB
-ZI
-Yv
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -4748,11 +4775,11 @@ Bs
 Bs
 Bs
 Bs
-dp
-kL
-Pv
-nb
-Zo
+Bs
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -5009,10 +5036,10 @@ Bs
 Bs
 Bs
 Bs
-CB
-CB
-ZI
-Yv
+Bs
+Bs
+Bs
+Bs
 Bs
 Bs
 Bs
@@ -6160,15 +6187,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
 Bs
 Bs
 xk
@@ -6290,15 +6317,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+oR
+Jr
+Jr
+Dr
+Hv
+Jr
+Jr
+Zy
 Bs
 Bs
 Bs
@@ -6420,15 +6447,15 @@ Bs
 Bs
 Ts
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+vm
+OD
+OD
+Ex
+Kj
+Kj
+Kj
 Bs
 Bs
 Bs
@@ -6550,15 +6577,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+jV
+dm
+Xy
+Kj
+Kj
+Kj
+Kj
 Bs
 Bs
 xt
@@ -6680,15 +6707,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+cS
+mA
+Kj
+tK
+Kj
+Kj
+Kj
 Bs
 Bs
 Bs
@@ -6810,15 +6837,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
 Bs
 Bs
 VW
@@ -6940,15 +6967,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+yn
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
 Bs
 Bs
 Bs
@@ -7070,15 +7097,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
 Bs
 Bs
 Bs
@@ -7200,15 +7227,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
 Bs
 Bs
 Bs
@@ -7330,15 +7357,15 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
-Bs
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
+Kj
 Bs
 Bs
 Bs
@@ -7580,7 +7607,7 @@ Bs
 Bs
 Bs
 Bs
-EM
+Oa
 Bs
 Bs
 Bs

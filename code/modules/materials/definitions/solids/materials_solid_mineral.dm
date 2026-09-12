@@ -52,7 +52,7 @@
 			INTERACTION_ABSORPTION = 0.002
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 2,
+			INTERACTION_SCATTER = 5,
 			INTERACTION_ABSORPTION = 0.00001
 		)
 	)
@@ -63,6 +63,8 @@
 	melting_point = 3823
 	boiling_point = 5100
 	heating_point = 3970
+	solid_density = 2260
+	liquid_density = 1800
 	heating_products = list(
 		/decl/material/solid/carbon = 1
 	)
@@ -198,19 +200,13 @@
 	ore_scan_icon = "mineral_common"
 	ore_icon_overlay = "lump"
 	color = "#d8ad97"
-	heating_products = list(
-		/decl/material/solid/metal/aluminium = 0.8,
-		/decl/material/solid/slag = 0.2
-	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
-	heating_sound = null
-	heating_message = null
 	value = 0.8
 	sparse_material_weight = 3
 	rich_material_weight = 1
-	dissolves_into = list(
-		/decl/material/solid/metal/aluminium = 1
-	)
+	molar_mass = 0.02698
+	electrolysis_difficulty = 1
+	electrolysis_energy = 1500000
+	electrolysis_products = list(/decl/material/solid/metal/aluminium = 1)
 
 /decl/material/solid/sand
 	name = "sand"

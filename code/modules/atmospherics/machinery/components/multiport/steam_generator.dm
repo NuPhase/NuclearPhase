@@ -37,8 +37,8 @@
 
 	air_contents = new(300000)
 	air_contents.adjust_gas(/decl/material/gas/nitrogen, 10)
-	air_contents.adjust_gas(/decl/material/liquid/water, (300000 * 0.5) / 0.018)
-	air_contents.temperature = 410
+	air_contents.adjust_gas(/decl/material/liquid/water, (300000 * 0.6) / 0.018)
+	air_contents.temperature = 430
 	reactor_components["steam_generator"] = src
 
 /obj/machinery/multitile/steam_generator/Destroy()
@@ -59,13 +59,15 @@
 	if(air_contents.pressure > water_outlet.pressure)
 		water_outlet.merge(air_contents.remove_phase(8000, MAT_PHASE_LIQUID))
 
-	if(air_contents.pressure > steam_outlet.pressure)
+	if(abs(air_contents.pressure - steam_outlet.pressure) > 20)
 		var/obj/machinery/atmospherics/unary/multiport/outlet_port = port_refs["Steam OUT"]
 		var/datum/pipe_network/output = outlet_port.network_in_dir(outlet_port.dir)
-		var/pressure_delta = air_contents.pressure - steam_outlet.pressure
-		var/target_moles = calculate_transfer_moles(air_contents, steam_outlet, pressure_delta, output?.volume)
-		target_moles = min(target_moles, air_contents.gas_moles*0.5)
-		steam_outlet.merge(air_contents.remove_phase(target_moles, MAT_PHASE_GAS))
+		var/target_moles = calculate_equalize_moles(air_contents, steam_outlet, output?.volume)
+		//target_moles = min(target_moles, air_contents.gas_moles*0.5)
+		if(target_moles > 0)
+			steam_outlet.merge(air_contents.remove_phase(target_moles, MAT_PHASE_GAS))
+		else
+			air_contents.merge(steam_outlet.remove_phase(target_moles, MAT_PHASE_GAS))
 
 	if(!air1.total_moles)
 		return

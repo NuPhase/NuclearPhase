@@ -53,7 +53,8 @@
 		return
 	var/transfer_moles = 0
 	if(source.gas_moles > source.total_moles * 0.1)
-		transfer_moles = calculate_transfer_moles(source, sink, pressure_delta, sink_network?.volume)
+		//transfer_moles = calculate_transfer_moles(source, sink, pressure_delta, sink_network?.volume)
+		transfer_moles = calculate_equalize_moles(source, sink, sink_network?.volume)
 	else
 		transfer_moles = calculate_pressure_flow(pressure_delta, sink.volume)
 	var/datum/gas_mixture/transferred_fluid = source.remove(transfer_moles)

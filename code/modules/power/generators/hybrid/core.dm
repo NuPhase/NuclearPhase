@@ -60,6 +60,7 @@
 	var/fusion_mass_flux = 0 // mg/s of fusion
 	var/last_temperature = T0C
 	var/energy_rate = 0 // The rate of change in thermal energy. eV/tick
+	var/energy_rate_lerp = 0 // Former but interpolated
 
 	var/radiative_heat_loss = 0 // The amount of energy lost to radiation in the last tick
 
@@ -165,6 +166,7 @@
 
 	neutron_rate = total_neutrons - last_neutrons
 	energy_rate = (containment_field.temperature - last_temperature) * 0.00008 //kelvin difference to eV difference
+	energy_rate_lerp = Interpolate(energy_rate_lerp, energy_rate, 0.5)
 	last_neutrons = slow_neutrons + fast_neutrons
 	last_temperature = containment_field.temperature
 
@@ -190,7 +192,7 @@
 		meltdown_state = TRUE
 		start_meltdown()
 
-#define RADIATIVE_LOSS_K 1070000
+#define RADIATIVE_LOSS_K 0.000000000000000000002
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	if(slow_neutrons || fast_neutrons)
 		var/slow_neutrons_lost = slow_neutrons * (1.01 - reflector_position)
@@ -203,7 +205,10 @@
 		fast_neutrons -= fast_neutrons_moderated
 		slow_neutrons += fast_neutrons_moderated
 
-	radiative_heat_loss = (containment_field.get_mass() * sqrt(containment_field.temperature) * RADIATIVE_LOSS_K * (containment_field.volume*0.01)) * (1.1 - reflector_position)
+	if(containment_field.temperature < T100C)
+		radiative_heat_loss = 0
+		return
+	radiative_heat_loss = (containment_field.get_mass() * containment_field.temperature**4 * RADIATIVE_LOSS_K) * (1.1 - reflector_position)
 	containment_field.add_thermal_energy(-radiative_heat_loss)
 	if(radiative_heat_loss > 1000000)
 		damage_blanket(radiative_heat_loss / 250000000000)

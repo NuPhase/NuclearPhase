@@ -30,7 +30,7 @@ The heat exchanger takes in a fluid, exhanges its temperature with the connected
 /obj/machinery/atmospherics/binary/heat_exchanger/Initialize()
 	. = ..()
 	air1.volume = volume
-	air1.suction_moles = volume
+	air1.suction_moles = volume*10
 	air2.volume = volume
 	for(var/sdir in global.cardinal)
 		connected = locate(/obj/machinery/atmospherics/binary/heat_exchanger) in get_step(src,sdir)

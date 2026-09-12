@@ -33,7 +33,7 @@
 		"thermal_load" = (rcontrol.turbine1?.kin_total + rcontrol.turbine2?.kin_total),
 		"thermal_power" = rcore.radiative_heat_loss,
 		"neutron_rate" = round(rcore.neutron_rate, 0.01),
-		"energy_rate" = round(rcore.energy_rate, 0.01),
+		"energy_rate" = round(rcore.energy_rate_lerp, 0.01),
 		"xray_flux" = round(rcore.xray_flux, 0.01),
 		"radiation" = round(rcore.last_radiation * 0.01),
 		"chamber_temperature" = core_air.temperature,

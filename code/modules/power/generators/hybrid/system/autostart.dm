@@ -44,10 +44,9 @@
 	current_button.icon_state = "switch3-max"
 
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 5, 0)
-	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 2, 0)
-	R.containment_field.adjust_gas(/decl/material/solid/metal/depleted_uranium, 0.01, 0)
-	R.containment_field.temperature = 215 MEGAKELVIN
+	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 2.5, 0)
+	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 1.0, 0)
+	R.containment_field.temperature = 160 MEGAKELVIN
 	R.containment_field.update_values()
 	R.fast_neutrons = 0.0007
 	R.moderator_position = 0

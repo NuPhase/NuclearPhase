@@ -245,7 +245,7 @@
 		return
 	if(affecting.incapacitated(INCAPACITATION_KNOCKOUT | INCAPACITATION_STUNNED))
 		to_chat(G.affecting, SPAN_WARNING("You can't resist in your current state!"))
-	var/skill_mod = Clamp(affecting.get_skill_difference(SKILL_COMBAT, assailant), -1, 1)
+	var/skill_mod = Clamp(affecting.get_skill_difference(SKILL_COMBAT, assailant), -2, 2)
 	var/break_strength = breakability + size_difference(affecting, assailant) + skill_mod
 
 	if(affecting.incapacitated(INCAPACITATION_ALL))

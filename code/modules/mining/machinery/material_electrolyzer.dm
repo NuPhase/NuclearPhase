@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/unary/electrolyzer
-	name = "industrial electrolyzer"
+	name = "electrolyzer"
 	icon = 'icons/obj/atmospherics/components/unary/electrolyzer.dmi'
 	icon_state = "off"
 	anchored = 1
