@@ -20,6 +20,9 @@
 	current_switch = reactor_buttons["perimeter"] //lights
 	current_switch.do_action()
 
+	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve = rcontrol.reactor_valves["T-V-EXCHANGER"]
+	current_valve.set_openage(100)
+
 	var/obj/machinery/atmospherics/binary/pump/adv/P
 	P = rcontrol.reactor_pumps["T-CP 1"]
 	P.update_mode(REACTOR_PUMP_MODE_MAX)
@@ -42,10 +45,14 @@
 	current_button.icon_state = "switch3-max"
 	current_button = reactor_buttons["F-CP 1"]
 	current_button.icon_state = "switch3-max"
+	current_button = reactor_buttons["T-CP 2"]
+	current_button.icon_state = "switch3-max"
+	current_button = reactor_buttons["F-CP 2"]
+	current_button.icon_state = "switch3-max"
 
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
-	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 2.5, 0)
-	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 1.0, 0)
+	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/deuterium, 3, 0)
+	R.containment_field.adjust_gas(/decl/material/gas/hydrogen/tritium, 1, 0)
 	R.containment_field.temperature = 160 MEGAKELVIN
 	R.containment_field.update_values()
 	R.fast_neutrons = 0.0007
@@ -55,7 +62,9 @@
 	turbine1.feeder_valve_openage = 0.2
 	var/datum/gas_mixture/air1 = turbine1.port_gases["Steam In"]
 	air1.adjust_gas_temp(/decl/material/liquid/water, 40000, OPTIMAL_REACTOR_STEAM_TEMP)
-	mode = REACTOR_CONTROL_MODE_SEMIAUTO
+
+	autocontrol_available = TRUE
+	mode = REACTOR_CONTROL_MODE_AUTO
 
 	spawn(30 SECONDS)
 		current_switch = reactor_buttons["AUTOSCRAM"]
@@ -64,3 +73,4 @@
 		current_switch.do_action()
 		current_switch = reactor_buttons["generator1"]
 		current_switch.do_action()
+		switch_program(/decl/control_program/reduced_power)

@@ -42,6 +42,10 @@
 		air_contents.update_values()
 		update_icon()
 
+/obj/machinery/atmospherics/unary/tank/Process()
+	. = ..()
+	update_networks()
+
 /obj/machinery/atmospherics/unary/tank/proc/MolesForPressure(var/target_pressure = start_pressure)
 	return (target_pressure * volume) / (R_IDEAL_GAS_EQUATION * start_temperature)
 
@@ -80,6 +84,14 @@
 	name = "Pressure Tank (Nitrogen)"
 	icon_state = "n2"
 	filling = list(/decl/material/gas/nitrogen = 1)
+
+/obj/machinery/atmospherics/unary/tank/oil
+	name = "Pressure Tank (Oil)"
+	icon_state = "air"
+	color = COLOR_PALE_YELLOW
+	filling = list(/decl/material/gas/nitrogen = 0.6, /decl/material/liquid/mineral_oil = 0.4)
+	start_temperature = 60 CELSIUS
+	start_pressure = ONE_ATMOSPHERE
 
 /obj/machinery/atmospherics/unary/tank/carbon_dioxide
 	name = "Pressure Tank (Carbon Dioxide)"

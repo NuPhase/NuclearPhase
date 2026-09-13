@@ -24,11 +24,12 @@
 			else
 				return 0
 
-/datum/reactor_control_system/proc/run_program(var/decl/control_program/program)
+/datum/reactor_control_system/proc/switch_program(decl_path)
 	if(current_running_program)
-		stop_running_program()
-	program = GET_DECL(program)
-	current_running_program = program
-	program.initiated()
-
-/datum/reactor_control_system/proc/stop_running_program()
+		current_running_program.end()
+	var/decl/control_program/wanted_program = GET_DECL(decl_path)
+	if(!wanted_program.can_initiate())
+		return FALSE
+	current_running_program = wanted_program
+	current_running_program.initiated()
+	return TRUE

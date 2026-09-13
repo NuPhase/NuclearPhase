@@ -155,6 +155,8 @@ var/global/list/all_apcs = list()
 
 /obj/machinery/power/apc/fail_roundstart()
 	. = ..()
+	if(is_critical)
+		return
 	if(prob(30))
 		critical_failure(2)
 	else

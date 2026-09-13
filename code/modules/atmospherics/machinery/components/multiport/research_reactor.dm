@@ -186,14 +186,21 @@
 	weight = 500
 	volume = 100
 	pull_coefficient = 0.01
-	can_explode = FALSE
+
+/obj/machinery/portable_atmospherics/canister/reactor_vessel/Process()
+	. = ..()
+	if(loc.type == /obj/machinery/multitile/research_reactor)
+		return // don't process decay if we're already in the reactor
+	var/list/returned_list = air_contents.handle_nuclear_reactions(0.0000000000000000000000001, 0, FALSE)
+	var/escaping_rad = (returned_list["slow_neutrons_changed"] + returned_list["slow_neutrons_changed"]) * 125000
+	SSradiation.radiate(src, escaping_rad)
 
 /obj/machinery/portable_atmospherics/canister/reactor_vessel/uranium
 	name = "reactor vessel (LEU)"
 	initial_gas = alist(
 		/decl/material/gas/krypton = 0.001,
-		/decl/material/solid/metal/uranium = 0.03,
-		/decl/material/solid/metal/depleted_uranium = 0.97,
+		/decl/material/solid/metal/uranium = 0.035,
+		/decl/material/solid/metal/depleted_uranium = 0.965,
 		/decl/material/solid/graphite = 5
 	)
 
@@ -209,8 +216,8 @@
 	name = "reactor vessel (MOX)"
 	initial_gas = alist(
 		/decl/material/gas/krypton = 0.01,
-		/decl/material/solid/metal/plutonium = 0.03,
-		/decl/material/solid/metal/depleted_uranium = 0.97
+		/decl/material/solid/metal/plutonium = 0.11,
+		/decl/material/solid/metal/depleted_uranium = 0.89
 	)
 
 /obj/machinery/portable_atmospherics/canister/reactor_vessel/srec_breeder
