@@ -174,6 +174,7 @@
 	kin_total -= (20 - (60 * windage_coef) + (60 * windage_coef * windage_coef)) * 300000
 
 	kin_energy += kin_total * (rotor_integrity * 0.01)
+	kin_energy = max(1, kin_energy)
 	calculate_vibration(air_all)
 	air2.merge(air_all)
 
