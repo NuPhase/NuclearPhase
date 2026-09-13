@@ -25,7 +25,7 @@
 			. |= limb.unarmed_attacks
 
 /mob/living/carbon/human/default_help_interaction(mob/user)
-	if(user != src && ishuman(user) && incapacitated(INCAPACITATION_UNRESISTING) || failed_last_breath && !on_fire && !(user.zone_sel.selecting == BP_R_ARM || user.zone_sel.selecting == BP_L_ARM))
+	if(user != src && ishuman(user) && (incapacitated(INCAPACITATION_UNRESISTING) || failed_last_breath) && !on_fire && !(user.zone_sel.selecting == BP_R_ARM || user.zone_sel.selecting == BP_L_ARM))
 		if (performing_cpr)
 			performing_cpr = FALSE
 		else
