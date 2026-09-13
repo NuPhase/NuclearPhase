@@ -16,7 +16,7 @@
 
 /obj/machinery/atmospherics/binary/phase_filter/Process()
 	. = ..()
-	var/pressure_delta = air1.pressure - air2.pressure
+	var/pressure_delta = min(air1.pressure - air2.pressure, 20000)
 	if(pressure_delta < 0)
 		update_networks()
 		return
