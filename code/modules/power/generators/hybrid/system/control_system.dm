@@ -117,7 +117,8 @@
 	else
 		clear_alarm("TURBINE HEATEXCHANGER TEMPERATURE HIGH")
 
-	if(get_meter_temperature("T-M-TURB EX") > 500 && !(current_switch && current_switch.state))
+	var/obj/machinery/multitile/condenser/cond = reactor_components["condenser"]
+	if(cond.air_contents.temperature > 380 && !(current_switch && current_switch.state))
 		register_alarm("TURBINE CONDENSER TEMPERATURE HIGH", "TURBINE CONDENSER TEMPERATURE HIGH", 2)
 		pressure_temperature_should_alarm = TRUE
 	else
@@ -129,7 +130,7 @@
 	else
 		clear_alarm("STEAM DRUM OVERPRESSURE")
 
-	if(get_meter_pressure("T-M-TURB EX") > 1000)
+	if(cond.air_contents.pressure > 80)
 		register_alarm("CONDENSER OVERPRESSURE", "CONDENSER OVERPRESSURE", 2)
 		pressure_temperature_should_alarm = TRUE
 	else
@@ -152,11 +153,6 @@
 		register_alarm("TURBINE LOOP PUMP #2 FLOW LOW", "TURBINE LOOP PUMP #2 FLOW LOW", 1)
 	else
 		clear_alarm("TURBINE LOOP PUMP #2 FLOW LOW")
-
-	if(get_meter_temperature("T-M-TURB EX") > 450 && get_meter_pressure("T-M-TURB EX") > 200 && !(current_switch && current_switch.state))
-		register_alarm("VAPOR IN CONDENSER", "VAPOR IN CONDENSER", 2)
-	else
-		clear_alarm("VAPOR IN CONDENSER")
 
 /datum/reactor_control_system/proc/auto_control()
 	if(current_running_program)

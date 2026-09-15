@@ -24,7 +24,6 @@
 	var/meter_list = list(
 		"T-M EXCHANGER" = "Steam Generator Inlet.",
 		"T-M-TURB IN" = "Turbine Inlet.",
-		"T-M-TURB EX" = "Turbine Outlet.",
 		"T-M-COOLANT" = "Condenser cooling circuit."
 	)
 	var/obj/machinery/multitile/steam_generator/sg = reactor_components["steam_generator"]
@@ -43,4 +42,12 @@
 								"mass" = rcontrol.get_meter_mass(meter_id),
 								"level" = rcontrol.get_meter_level(meter_id)
 								))
+	var/obj/machinery/multitile/condenser/cond = reactor_components["condenser"]
+	return_list += list(list("name" = "T-M CONDENSER",
+							"description" = "Steam Condenser",
+							"pressure" = cond.air_contents.pressure,
+							"temperature" = cond.air_contents.temperature,
+							"mass" = cond.air_contents.get_mass(),
+							"level" = round((1 - (cond.air_contents.available_volume / cond.air_contents.volume)) * 100)
+							))
 	return return_list

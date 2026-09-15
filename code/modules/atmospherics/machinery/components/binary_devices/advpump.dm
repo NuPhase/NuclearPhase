@@ -80,8 +80,8 @@
 
 /obj/machinery/atmospherics/binary/pump/adv/turbineloop
 	name = "feedwater pump"
-	flow_capacity = 3000 //kgs
-	power_rating = 15000000
+	flow_capacity = 1000 //kgs
+	power_rating = 5000000
 	start_sound = 'sound/machines/pumpstart.ogg'
 	start_length = 460
 	running_sound = 'sound/machines/pumprunning.ogg'
@@ -90,19 +90,18 @@
 	sound_volume = 100
 
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
-	name = "molten metal pump"
-	desc = "Pumping high density and temperature fluids is hard and tricky, not mentioning the power cost. This pump is a monster."
-	//icon = 'icons/obj/atmospherics/components/binary/moltenpump.dmi'
+	name = "MHD pump"
+	desc = "A magnetohydrodynamic pump designed to pump hot metal."
+	icon = 'icons/obj/atmospherics/components/binary/magnetic_pump.dmi'
 	level = 2
-	//layer = STRUCTURE_LAYER
-	//icon_state = "off"
+	icon_state = "off"
 	flow_capacity = 9600 //kgs
-	power_rating = 15000000
-	start_sound = 'sound/machines/pumpstart.ogg'
-	start_length = 460
-	running_sound = 'sound/machines/pumprunning.ogg'
-	running_length = 75
-	start_speed_coeff = 0.1
+	power_rating = 5000000
+	start_sound = null
+	start_length = 0
+	running_sound = 'sound/machines/mhd_pump.ogg'
+	running_length = 286.95
+	start_speed_coeff = 1 // we don't have inertia
 	sound_volume = 80
 
 /obj/machinery/atmospherics/binary/pump/adv/on_update_icon()

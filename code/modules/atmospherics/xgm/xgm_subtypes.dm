@@ -159,3 +159,7 @@
 
 /datum/gas_mixture/constant_heat_capacity/cache_heat_capacity()
 	return
+
+// Doesn't update it's pressure on its own. Useful for condensers, for example.
+/datum/gas_mixture/constant_pressure/cache_pressure()
+	return

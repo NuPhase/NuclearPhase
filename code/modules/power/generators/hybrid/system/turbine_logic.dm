@@ -1,5 +1,6 @@
 /datum/reactor_control_system/proc/moderate_turbine_loop()
 	control_exchanging()
+	control_condenser()
 	if(turbine1.feeder_valve_openage || turbine2.feeder_valve_openage)
 		control_turbine_rpm()
 		check_trip_conditions()
@@ -14,7 +15,8 @@
 		should_trip = TRUE
 		trip_reason = "INTAKE CONDENSATION"
 
-	if(get_meter_pressure("T-M-TURB EX") > ONE_ATMOSPHERE*6) //low vacuum
+	var/obj/machinery/multitile/condenser/cond = reactor_components["condenser"]
+	if(cond.air_contents.pressure > ONE_ATMOSPHERE) //low vacuum
 		should_trip = TRUE
 		trip_reason = "LOW CONDENSER VACUUM"
 
@@ -79,6 +81,12 @@
 	var/obj/machinery/multitile/steam_generator/sg = reactor_components["steam_generator"]
 	var/pressure_diff = OPTIMAL_TURBINE_PRESSURE - sg.air_contents.pressure
 	current_valve.set_openage(Clamp(pressure_diff * 0.1, 0, 100))
+	return
+
+/datum/reactor_control_system/proc/control_condenser()
+	var/obj/machinery/multitile/condenser/cond = reactor_components["condenser"]
+	var/temp_diff = cond.air_contents.temperature - 350
+	cond.coolant_valve_coef = Clamp(temp_diff * 0.1, 0, 1)
 	return
 
 /datum/reactor_control_system/proc/turbine_trip(reason, turbine_number) // if turbine_number == 0, trip both turbines. Else, only one

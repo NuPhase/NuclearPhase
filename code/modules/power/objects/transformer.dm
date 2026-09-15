@@ -66,7 +66,7 @@
 		to_chat(user, SPAN_INFO("It will increase the opposite voltage by a factor of [round(coef, 0.001)]."))
 	else
 		to_chat(user, SPAN_INFO("It will decrease the opposite voltage by a factor of [round(1 / coef, 0.001)]."))
-	to_chat(user, SPAN_INFO("It's rated to transfer [watts_to_text(max_cap)]."))
+	to_chat(user, SPAN_INFO("Its rated to transfer [watts_to_text(max_cap)]."))
 	to_chat(user, SPAN_WARNING("It's temperature is [round(internal_temp-T0C, 0.1)]C."))
 
 /obj/machinery/power/generator/transformer/start_ambience()

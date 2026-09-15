@@ -49,6 +49,8 @@
 	var/field_charging = FALSE // Whether we pull power to charge the batteries.
 	var/balancing_magnet_power = 0 // Power fed to the balancing magnets. They lower the plasma instability. 0-70MW. Can also be used for heating.
 
+	var/vacuum_pump = FALSE
+
 	// Reaction data
 	var/last_radiation = 0
 	var/last_neutrons = 0
@@ -143,6 +145,11 @@
 			fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 		process_plasma_instability()
 
+	if(containment && vacuum_pump)
+		var/turf/T = get_turf(superstructure)
+		var/datum/gas_mixture/environment = T.return_air()
+		environment.merge(containment_field.remove(1))
+
 	handle_control_panels()
 
 	update_icon()
@@ -171,9 +178,6 @@
 	last_temperature = containment_field.temperature
 
 /obj/machinery/power/hybrid_reactor/proc/handle_magnets()
-	if(containment_field.temperature < 4900)
-		return
-
 	if(containment)
 		field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA * (2 - magnet_integrity)
 		field_battery_charge = max(0, field_battery_charge - (field_power_consumption + balancing_magnet_power) * CELLRATE)

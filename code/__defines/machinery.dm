@@ -99,7 +99,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 
 // The flow rate/effectiveness of various atmos devices is limited by their internal volume,
 // so for many atmos devices these will control maximum flow rates in L/s.
-#define ATMOS_DEFAULT_VOLUME_PUMP   5000 // Liters.
+#define ATMOS_DEFAULT_VOLUME_PUMP   1000 // Liters.
 #define ATMOS_DEFAULT_VOLUME_FILTER 500 // L.
 #define ATMOS_DEFAULT_VOLUME_MIXER  500 // L.
 #define ATMOS_DEFAULT_VOLUME_PIPE   78.54  // L. A pipe is 20cm in diameter.

@@ -1,63 +1,68 @@
+#define MIN_TEMP (0 CELSIUS)
+#define IDEAL_TEMP (35 CELSIUS)
+#define MAX_TEMP (60 CELSIUS)
+
+#define IDEAL_PRESSURE 500
+#define MAX_PRESSURE 1500
+
+#define STAGE_CYCLE_COUNT 120
+
 /obj/machinery/atmospherics/unary/dissolving_bioreactor
-	name = "Dissolving bio-reactor"
+	name = "bioreactor"
 	icon = 'icons/obj/atmospherics/atmos.dmi'
+	icon_state = "siphon:0"
 	density = TRUE
-	var/base_icon_state = "dhum"
-	var/is_active = FALSE
 	var/alist/associative_stage_materials = alist(
-		1 = list(/decl/material/gas/hydrogen = 0.8, /decl/material/liquid/water = 0.2),
-		2 = list(/decl/material/gas/carbon_dioxide = 0.5, /decl/material/gas/ammonia = 0.2, /decl/material/gas/sulfur_dioxide = 0.3),
-		3 = list(/decl/material/gas/carbon_dioxide = 0.1, /decl/material/gas/hydrogen = 0.1, /decl/material/liquid/acetone = 0.8),
-		4 = list(/decl/material/gas/methane = 0.5, /decl/material/gas/carbon_dioxide = 0.2, /decl/material/liquid/water = 0.3)
+		1 = list(/decl/material/gas/hydrogen = 0.04, /decl/material/liquid/water = 0.01),
+		2 = list(/decl/material/gas/carbon_dioxide = 0.011, /decl/material/gas/ammonia = 0.011, /decl/material/gas/sulfur_dioxide = 0.004),
+		3 = list(/decl/material/gas/carbon_dioxide = 0.002, /decl/material/gas/hydrogen = 0.05, /decl/material/liquid/acetone = 0.01),
+		4 = list(/decl/material/gas/methane = 0.03, /decl/material/gas/carbon_dioxide = 0.004, /decl/material/liquid/water = 0.01)
 	)
-	var/list/allowed = list(/obj/item/wrench = 100)
-	var/cur_material_amount = 0
-	var/min_matter = 5
-	var/fart_modifier = 1
+	var/sealed = FALSE
+	var/nutrient_amount = 0
+	var/current_stage = 1
+	var/current_cycle = 0
 
 /obj/machinery/atmospherics/unary/dissolving_bioreactor/Initialize()
 	. = ..()
-	update_icon()
+	air_contents.adjust_gas(/decl/material/gas/nitrogen, 2000)
 
 /obj/machinery/atmospherics/unary/dissolving_bioreactor/examine(mob/user)
 	. = ..()
-	to_chat(user, SPAN_INFO("The amount of reagent inside: [cur_material_amount]"))
-	if (is_active)
-		to_chat(user, SPAN_INFO("[src] is active."))
-
-/obj/machinery/atmospherics/unary/dissolving_bioreactor/on_update_icon()
-	icon_state = "[base_icon_state][is_active ? "-on" : "-off"]"
-	. = ..()
-
-/obj/machinery/atmospherics/unary/dissolving_bioreactor/attackby(obj/item/I, mob/user)
-	if(!is_type_in_list(I, allowed))
-		return
-
-	visible_message(SPAN_INFO("[user] loads \the [I] in [src]!"))
-	cur_material_amount += allowed[I.type]
-	qdel(I)
-	is_active = TRUE
-	update_icon()
-	START_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
-	. = ..()
+	if(!sealed)
+		to_chat(user, SPAN_NOTICE("It's open."))
+	else
+		to_chat(user, SPAN_NOTICE("It's closed."))
+	if(MIN_TEMP > air_contents.temperature || air_contents.temperature > MAX_TEMP)
+		to_chat(user, SPAN_WARNING("It doesn't work because of bad temperature."))
+	if(air_contents.pressure > MAX_PRESSURE)
+		to_chat(user, SPAN_WARNING("It doesn't work because of bad pressure."))
+	if(current_stage == 5)
+		to_chat(user, SPAN_NOTICE("It finished working."))
 
 /obj/machinery/atmospherics/unary/dissolving_bioreactor/Process()
-	if(cur_material_amount <= min_matter)
-		STOP_PROCESSING_MACHINE(src, MACHINERY_PROCESS_SELF)
-		is_active = FALSE
-		update_icon()
+	. = ..()
+	if(!sealed)
 		return
-	var/react_amount = fart_modifier * cur_material_amount
-	var/react_stage_amount = react_amount * 0.25
-
-	for(var/cur_stage in range(1, 4))
-		var/cur_react_amount = react_stage_amount
-		cur_material_amount -= cur_react_amount
-		while(cur_react_amount > 0)
-			cur_react_amount -= consoom_and_fart(cur_react_amount, associative_stage_materials[cur_stage])
-
-/obj/machinery/atmospherics/unary/dissolving_bioreactor/proc/consoom_and_fart(var/available_reactants = 0, var/list/released_materials)
-	var/to_fart = available_reactants * fart_modifier
-	for(var/mat_type in released_materials)
-		air_contents.adjust_gas_temp(mat_type, to_fart * released_materials[mat_type], 317)
-	return to_fart
+	update_networks()
+	if(MIN_TEMP > air_contents.temperature || air_contents.temperature > MAX_TEMP)
+		return
+	if(air_contents.pressure > MAX_PRESSURE)
+		return
+	if(current_stage == 5)
+		return
+	var/temp_coef = max(1 - (abs(air_contents.temperature - IDEAL_TEMP) * 0.002), 0.1)
+	var/pressure_coef = max(1 - (abs(air_contents.pressure - IDEAL_PRESSURE) * 0.01), 0.1)
+	if(!prob(100 * temp_coef * pressure_coef))
+		return
+	current_cycle++
+	if(current_cycle > STAGE_CYCLE_COUNT)
+		current_stage++
+		current_cycle = 0
+	if(current_stage == 5)
+		return
+	var/list/release_list = associative_stage_materials[current_stage]
+	for(var/gas_id in release_list)
+		air_contents.adjust_gas(gas_id, nutrient_amount * release_list[gas_id] / (STAGE_CYCLE_COUNT * 4), FALSE, FALSE)
+	air_contents.add_thermal_energy(nutrient_amount * 2)
+	air_contents.update_values()

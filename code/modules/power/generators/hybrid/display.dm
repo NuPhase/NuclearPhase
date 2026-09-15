@@ -64,6 +64,9 @@
 	var/list/data = list()
 	idle_power_usage = 150 //average monitor + low-end pc
 
+/obj/machinery/reactor_monitor/get_mechanics_info()
+	return "Alt+LMB to turn on/off"
+
 /obj/machinery/reactor_monitor/proc/get_display_data()
 	if(!powered())
 		return "<span class='warning'>The [name] is blank.</span>"
@@ -82,7 +85,7 @@
 	if(on)
 		turn_on()
 
-/obj/machinery/reactor_monitor/physical_attack_hand(user)
+/obj/machinery/reactor_monitor/AltClick(mob/user)
 	. = ..()
 	if(on)
 		turn_off()

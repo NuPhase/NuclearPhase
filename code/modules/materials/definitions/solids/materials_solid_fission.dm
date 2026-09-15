@@ -145,7 +145,7 @@
 	absorption_products = list(/decl/material/solid/metal/plutonium = 1)
 	fission_heat = 35000
 	fission_energy = 81080100000.0
-	fission_neutrons = 1
+	fission_neutrons = 2.8
 	neutron_absorption = 950
 	neutron_production = 900
 	melting_point = 1132 CELSIUS

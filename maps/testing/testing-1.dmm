@@ -107,6 +107,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"dz" = (
+/obj/machinery/atmospherics/pipe/manifold/visible,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "dE" = (
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/monotile,
@@ -123,6 +127,12 @@
 "dV" = (
 /mob/living/simple_animal/robot{
 	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"dX" = (
+/obj/machinery/atmospherics/pipe/simple/visible/general{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -156,6 +166,13 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"eW" = (
+/obj/machinery/atmospherics/pipe/simple/visible/general{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "eZ" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/general{
 	dir = 1
@@ -183,6 +200,12 @@
 /area/hallway)
 "fh" = (
 /obj/structure/reagent_dispensers/watertank/newtank,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"fJ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/general{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "fT" = (
@@ -301,6 +324,12 @@
 /area/hallway)
 "iS" = (
 /turf/exterior/wall,
+/area/hallway)
+"ji" = (
+/obj/machinery/atmospherics/binary/pump{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "jp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/general,
@@ -551,6 +580,12 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"ow" = (
+/obj/machinery/atmospherics/pipe/simple/visible/general{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "oB" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/gun/projectile/pistol/military_service,
@@ -562,6 +597,12 @@
 	},
 /obj/machinery/multitile/electrolyzer,
 /turf/simulated/floor/plating,
+/area/hallway)
+"oU" = (
+/obj/machinery/atmospherics/unary/freezer{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "oZ" = (
 /obj/structure/table/steel_reinforced,
@@ -733,6 +774,12 @@
 	},
 /obj/machinery/multitile/backup_generator/on,
 /turf/simulated/floor/tiled/techfloor/grid,
+/area/hallway)
+"vk" = (
+/obj/machinery/atmospherics/valve{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "vl" = (
 /obj/machinery/atmospherics/unary/debug/infinite_outlet{
@@ -962,6 +1009,12 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/hallway)
+"AA" = (
+/obj/machinery/atmospherics/pipe/simple/visible/general{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/hallway)
 "AI" = (
 /obj/item/stack/ore/wolfurine,
 /obj/item/stack/ore/wolfurine,
@@ -1054,6 +1107,10 @@
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"DG" = (
+/obj/machinery/atmospherics/unary/dissolving_bioreactor,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "DO" = (
@@ -1639,6 +1696,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"TU" = (
+/obj/machinery/atmospherics/unary/tank/large,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "Uc" = (
 /obj/structure/cable/heavy{
 	icon_state = "1-2"
@@ -1656,6 +1717,11 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/hallway)
+"Uf" = (
+/obj/machinery/atmospherics/pipe/manifold/visible,
+/obj/machinery/meter,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "Ug" = (
 /obj/structure/reagent_dispensers/barrel,
 /turf/simulated/floor/tiled/monotile,
@@ -1665,6 +1731,14 @@
 /obj/item/stack/ore/amorphous_carbon,
 /obj/item/stack/ore/amorphous_carbon,
 /turf/simulated/floor/tiled/white/monotile,
+/area/hallway)
+"Uo" = (
+/obj/machinery/atmospherics/binary/passive_gate/on{
+	dir = 4;
+	regulate_mode = 1;
+	target_pressure = 450
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Us" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
@@ -5009,7 +5083,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+oU
 Bs
 Bs
 Bs
@@ -5138,8 +5212,8 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
+DG
+Uf
 Bs
 Bs
 Bs
@@ -5261,15 +5335,15 @@ nb
 nb
 et
 Pf
-Pf
+AA
 Bs
 Bs
 Bs
 Bs
 Bs
 Bs
-Bs
-Bs
+fJ
+dz
 Bs
 Bs
 Bs
@@ -5398,8 +5472,8 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
+vk
+Uo
 Bs
 Bs
 Bs
@@ -5528,8 +5602,8 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
+dX
+dz
 Bs
 Bs
 Bs
@@ -5659,7 +5733,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+ji
 Bs
 Bs
 Bs
@@ -5789,7 +5863,7 @@ Bs
 Bs
 Bs
 Bs
-Bs
+eW
 Bs
 Bs
 Bs
@@ -5918,8 +5992,8 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
+TU
+ow
 Bs
 Bs
 Bs

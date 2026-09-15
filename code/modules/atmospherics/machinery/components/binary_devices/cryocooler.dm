@@ -5,8 +5,9 @@
 	var/default_efficiency = 4
 	var/actual_efficiency = 4
 	use_power = POWER_USE_IDLE
+	power_channel = EQUIP
 	idle_power_usage = 1500
-	power_rating = 500000
+	power_rating = 5000000
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL|CONNECT_TYPE_WATER
 	icon = 'icons/obj/machines/96x96.dmi'
 	icon_state = "cryocooler-off"

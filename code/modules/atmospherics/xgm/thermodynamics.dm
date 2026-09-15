@@ -22,7 +22,8 @@
 			var/liquid_boiling_energy = liquid_mat.get_boiling_temp(current_pressure) * total_system_heat_capacity
 			if(due_energy > liquid_boiling_energy)
 				var/excess_energy = due_energy - liquid_boiling_energy
-				var/liquid_moles_boiled = min(liquid_amount, excess_energy / liquid_mat.latent_heat) * phase_damp
+				var/pressure_damp = boiling_coef * (available_volume / volume)
+				var/liquid_moles_boiled = min(liquid_amount, excess_energy / liquid_mat.latent_heat) * pressure_damp
 				liquids[liquid] -= liquid_moles_boiled
 				gas[liquid] += liquid_moles_boiled
 				due_energy -= liquid_moles_boiled * liquid_mat.latent_heat
@@ -42,7 +43,8 @@
 			var/gas_boiling_energy = gas_mat.get_boiling_temp(current_pressure) * total_system_heat_capacity
 			if(due_energy < gas_boiling_energy)
 				var/short_energy = gas_boiling_energy - due_energy
-				var/gas_moles_condensed = min(gas_amount, short_energy / gas_mat.latent_heat) * phase_damp
+				var/pressure_damp = boiling_coef * (available_volume / volume)
+				var/gas_moles_condensed = min(gas_amount, short_energy / gas_mat.latent_heat) * pressure_damp
 				gas[gasid] -= gas_moles_condensed
 				liquids[gasid] += gas_moles_condensed
 				due_energy += gas_moles_condensed * gas_mat.latent_heat

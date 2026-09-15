@@ -40,10 +40,9 @@
 	visible_message(SPAN_WARNING("[user] switches [src] to [newmode]!"))
 
 /obj/machinery/reactor_button/protected/containment
-	name = "CONTAINMENT PRIMER"
-	desc = "Turns on the reactor's shields. Has a very large cooldown."
-	id = "CONTAINMENT PRIMER"
-	cooldown = 5 MINUTES
+	name = "CONTAINMENT ENERGIZER"
+	desc = "Turns on the reactor's magnets. Use after refueling."
+	id = "CONTAINMENT ENERGIZER"
 
 /obj/machinery/reactor_button/protected/containment/do_action(mob/user)
 	..()
@@ -55,6 +54,29 @@
 		return
 	rcore.containment = TRUE
 	rcontrol.make_log("CONTAINMENT STARTED.", 1)
+
+/obj/machinery/reactor_button/protected/containment_shutoff
+	name = "CONTAINMENT VENT"
+	desc = "Turns off the reactor's magnets. Will damage magnets and structure if done while hot!"
+	id = "CONTAINMENT VENT"
+
+/obj/machinery/reactor_button/protected/containment_shutoff/do_action(mob/user)
+	..()
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	if(!rcore.containment)
+		return
+	if(rcore.containment_field.temperature > 1000000)
+		var/response = tgui_alert(user, "THIS WILL DAMAGE CONTAINMENT!", "WARNING", list("Proceed", "Abort"))
+		if(response != "Proceed")
+			return
+	rcore.containment = FALSE
+	rcontrol.make_log("CONTAINMENT SHUTDOWN.", 3)
+	rcontrol.do_message("CONTAINMENT SHUTDOWN", 3)
+	if(rcore.containment_field.temperature > 1000000)
+		rcore.damage_blanket(20)
+		rcore.damage_divertor(20)
+		rcore.damage_magnets(30)
+		rcore.damage_structure(10)
 
 /obj/machinery/reactor_button/rswitch/autoscram
 	name = "AUTOSCRAM"
@@ -73,6 +95,15 @@
 	else
 		visible_message(SPAN_WARNING("[user] shuts down automatic SCRAM control."))
 		rcontrol.make_log("AUTOSCRAM DISABLED.", 3)
+
+/obj/machinery/reactor_button/rswitch/vacuum_pump
+	name = "CHAMBER VACUUM PUMP"
+	id = "CHAMBER VACUUM PUMP"
+
+/obj/machinery/reactor_button/rswitch/vacuum_pump/do_action(mob/user)
+	..()
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	rcore.vacuum_pump = state
 
 /obj/machinery/reactor_button/acknowledge_alarms
 	name = "ACKNOWLEDGE ALARMS"

@@ -70,6 +70,18 @@
 	name = "TURB 2V-IN"
 	id = "turbine2"
 
+/obj/machinery/reactor_button/turn_switch/condenser
+	name = "COND COOLANT-IN"
+	id = "cond-coolant"
+
+/obj/machinery/reactor_button/turn_switch/condenser/do_action(mob/user)
+	..()
+	var/obj/machinery/multitile/condenser/cond = reactor_components["condenser"]
+	var/openage = tgui_input_number(user, "Select a new openage percentage for this valve.", "Condenser cooling regulation", 0, 100, 0)
+	if(isnum(openage))
+		cond.coolant_valve_coef = Clamp(openage * 0.01, 0, 1)
+		update_icon(openage * 0.01)
+
 /obj/machinery/reactor_button/rswitch/valve/turbinebypass
 	name = "TURB V-BYPASS"
 	id = "TURB V-BYPASS"
