@@ -88,6 +88,42 @@
 	running_length = 75
 	start_speed_coeff = 0.1
 	sound_volume = 100
+	construct_state = /decl/machine_construction/default/panel_closed
+	base_type = null
+	var/leaking = FALSE
+	failure_chance = 1
+
+/obj/machinery/atmospherics/binary/pump/adv/turbineloop/fail_roundstart()
+	. = ..()
+	var/obj/item/stock_parts/victim = get_component_of_type(/obj/item/stock_parts/seal)
+	if(victim)
+		victim.take_damage(100, BRUTE)
+
+/obj/machinery/atmospherics/binary/pump/adv/turbineloop/examine(mob/user)
+	. = ..()
+	if(leaking)
+		to_chat(user, SPAN_WARNING("It is leaking around the seals. They need to be replaced."))
+
+/obj/machinery/atmospherics/binary/pump/adv/turbineloop/RefreshParts()
+	. = ..()
+	leaking = !total_component_rating_of_type(/obj/item/stock_parts/seal)
+
+/obj/machinery/atmospherics/binary/pump/adv/turbineloop/Process()
+	if(!air1.total_moles || !leaking) // leak from the inlet, that's where the shaft and rotary seal is
+		return ..()
+	var/datum/gas_mixture/air_sample = air1.remove_ratio(Clamp(rpm / REACTOR_PUMP_RPM_MAX * 0.1, 0.001, 0.1))
+	var/turf/T = get_turf(src)
+	for(var/g in air_sample.liquids)
+		var/obj/effect/fluid/F = locate() in T
+		var/decl/material/mat = GET_DECL(g)
+		if(!F) F = new(T)
+		var/condense_reagent_amt = air_sample.liquids[g] * mat.molar_volume
+		F.reagents.add_reagent(g, condense_reagent_amt)
+		F.temperature = air_sample.temperature
+		air_sample.liquids.Remove(g)
+	var/datum/gas_mixture/environment = T.return_air()
+	environment.merge(air_sample) //whatever's left
+	. = ..()
 
 /obj/machinery/atmospherics/binary/pump/adv/reactorloop
 	name = "MHD pump"

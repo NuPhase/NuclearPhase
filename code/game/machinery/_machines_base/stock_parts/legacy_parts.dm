@@ -29,6 +29,13 @@
 	base_type = /obj/item/stock_parts/micro_laser
 	w_class = ITEM_SIZE_TINY
 
+/obj/item/stock_parts/seal
+	name = "industrial seal"
+	desc = "A seal that's commonly used in machinery."
+	icon_state = "seal"
+	material = /decl/material/solid/plastic/polybenzimidazole
+	base_type = /obj/item/stock_parts/seal
+
 /obj/item/stock_parts/matter_bin
 	name = "matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."

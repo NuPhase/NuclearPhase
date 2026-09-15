@@ -19,6 +19,10 @@
 /obj/abstract/landmark/start,
 /turf/simulated/floor/tiled/dark,
 /area/hallway)
+"aS" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "bn" = (
 /obj/machinery/atmospherics/pipe/simple/visible/fuel/layer1{
 	dir = 4
@@ -121,6 +125,12 @@
 	},
 /obj/machinery/portable_atmospherics/canister/liquid_methane{
 	can_explode = 0
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"dN" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -841,6 +851,12 @@
 /obj/structure/bed/roller/hydraulic,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
+"wq" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "wv" = (
 /obj/item/stack/material/strut/mapped/titanium/fifty,
 /turf/simulated/floor/tiled/monotile,
@@ -885,6 +901,12 @@
 /obj/item/stack/ore/bauxite,
 /obj/item/stack/ore/bauxite,
 /turf/simulated/floor/tiled/white/monotile,
+/area/hallway)
+"xW" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "yn" = (
 /obj/structure/reagent_dispensers/barrel/water{
@@ -1156,6 +1178,12 @@
 /area/hallway)
 "EM" = (
 /turf/simulated/wall/r_wall,
+/area/hallway)
+"Fc" = (
+/obj/machinery/atmospherics/valve/digital/open{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "Fu" = (
 /obj/machinery/ai_server,
@@ -1655,6 +1683,17 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/hallway)
+"Rv" = (
+/obj/machinery/atmospherics/binary/pump/adv/turbineloop{
+	dir = 4;
+	icon = 'icons/obj/atmospherics/components/binary/waterpump.dmi';
+	layer = 3.01;
+	pixel_x = -32;
+	pixel_y = -32;
+	uid = "T-CP 1"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "RV" = (
 /obj/machinery/medical/lung_ventilator,
 /obj/machinery/light/spot{
@@ -1671,6 +1710,12 @@
 "Sv" = (
 /obj/machinery/light/spot{
 	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"SM" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 6
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
@@ -1814,6 +1859,12 @@
 "Wv" = (
 /obj/item/stack/material/reinforced/mapped/titanium/fifty,
 /obj/item/stack/material/reinforced/mapped/titanium/fifty,
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
+"Wz" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/blue{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "WF" = (
@@ -7415,9 +7466,9 @@ Bs
 OU
 Bs
 Bs
-Bs
-Bs
-Bs
+SM
+aS
+dN
 Bs
 Bs
 Bs
@@ -7545,9 +7596,9 @@ Bs
 Bs
 Bs
 Bs
+xW
 Bs
-Bs
-Bs
+Fc
 Bs
 Bs
 Bs
@@ -7675,9 +7726,9 @@ Bs
 Bs
 Bs
 Bs
+xW
 Bs
-Bs
-Bs
+xW
 Bs
 Bs
 Bs
@@ -7805,9 +7856,9 @@ Bs
 Bs
 Bs
 Bs
+xW
 Bs
-Bs
-Bs
+Rv
 Bs
 Bs
 Bs
@@ -7935,9 +7986,9 @@ Bs
 Bs
 Bs
 Bs
+xW
 Bs
-Bs
-Bs
+xW
 Bs
 Bs
 Bs
@@ -8064,10 +8115,10 @@ Bs
 Bs
 Bs
 Bs
-Bs
-Bs
-Bs
-Bs
+Pa
+Wz
+aS
+wq
 Bs
 Bs
 Bs

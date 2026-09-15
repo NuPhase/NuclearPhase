@@ -2203,6 +2203,18 @@
 /obj/effect/invisible_barrier,
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/electrical/turbinehall)
+"bhr" = (
+/obj/effect/floor_decal/corner/white/border{
+	color = "#2A91C9";
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/white/border{
+	color = "#2A91C9";
+	dir = 4
+	},
+/obj/structure/hygiene/drain,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "bhM" = (
 /obj/structure/catwalk,
 /obj/structure/railing/mapped{
@@ -8274,6 +8286,10 @@
 /obj/machinery/light/small/old,
 /turf/simulated/floor/concrete/black,
 /area/serenity/maintenance/sublevel_one)
+"ejT" = (
+/obj/item/stock_parts/seal,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "ejY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -21337,7 +21353,8 @@
 	layer = 3.01;
 	pixel_x = -32;
 	pixel_y = -32;
-	map_on = 1
+	map_on = 1;
+	flow_capacity = 8000
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/serenity/shelter/engineering/atmos/cryogenic)
@@ -21786,6 +21803,15 @@
 /obj/structure/fire_sprinkler,
 /turf/simulated/floor/tiled/dark/herringbone,
 /area/serenity/shelter/brig)
+"ljr" = (
+/obj/effect/floor_decal/corner/yellow/half,
+/obj/structure/rack,
+/obj/item/stock_parts/seal,
+/obj/item/stock_parts/seal,
+/obj/item/stock_parts/seal,
+/obj/item/stock_parts/seal,
+/turf/simulated/floor/tiled/dark/textured/half,
+/area/serenity/shelter/engineering/reactor_operations)
 "ljC" = (
 /obj/structure/railing/mapped{
 	dir = 4
@@ -24589,6 +24615,13 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/mining/processing)
+"mHs" = (
+/obj/effect/floor_decal/corner/white/mono{
+	color = "#2A91C9"
+	},
+/obj/structure/hygiene/drain,
+/turf/simulated/floor/tiled/white/monotile,
+/area/serenity/shelter/engineering/atmos/cryogenic)
 "mHy" = (
 /obj/structure/fire_sprinkler,
 /turf/simulated/floor/concrete/black,
@@ -29270,6 +29303,11 @@
 	},
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/medbay/floor2/admissions)
+"pdO" = (
+/obj/effect/floor_decal/corner/yellow/half,
+/obj/structure/rack,
+/turf/simulated/floor/tiled/dark/textured/half,
+/area/serenity/shelter/engineering/reactor_operations)
 "pdR" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/wood/walnut,
@@ -34926,6 +34964,13 @@
 /obj/machinery/light/ceiling,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/entrance_zone)
+"rMp" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/structure/hygiene/drain,
+/turf/simulated/floor/concrete/light_gray,
+/area/serenity/shelter/engineering/pumps_a)
 "rMG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -39183,6 +39228,7 @@
 	color = "#2A91C9";
 	dir = 1
 	},
+/obj/structure/hygiene/drain,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/engineering/atmos/cryogenic)
 "tPa" = (
@@ -44805,6 +44851,7 @@
 	dir = 4;
 	pixel_x = -34
 	},
+/obj/structure/rack,
 /turf/simulated/floor/tiled/dark/textured/corner,
 /area/serenity/shelter/engineering/reactor_operations)
 "wDZ" = (
@@ -287820,10 +287867,10 @@ jsh
 oKX
 dlX
 uSC
-dYd
+rMp
 dYd
 hOa
-dYd
+rMp
 jIx
 jDw
 gHs
@@ -357463,7 +357510,7 @@ pmh
 wDM
 nYj
 nYj
-moN
+pdO
 nNZ
 sEr
 laH
@@ -357657,7 +357704,7 @@ jRP
 mMo
 nYj
 nYj
-moN
+ljr
 nNZ
 hig
 cav
@@ -393393,7 +393440,7 @@ nBg
 tDf
 hdO
 eLt
-pbP
+bhr
 wBF
 bTC
 qDN
@@ -395906,7 +395953,7 @@ fpI
 rav
 cgF
 cMj
-eMu
+ejT
 eMu
 fSO
 juj
@@ -396109,7 +396156,7 @@ alm
 hQQ
 hdO
 nBg
-nBg
+mHs
 qsL
 hjr
 pbP
