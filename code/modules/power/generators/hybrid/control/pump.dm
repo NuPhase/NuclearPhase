@@ -1,10 +1,21 @@
 /obj/machinery/reactor_button/pump
 	name = "pump switch"
 	icon_state = "switch3-off"
+	var/memorized_mode = REACTOR_PUMP_MODE_OFF
 
 /obj/machinery/reactor_button/pump/Initialize()
 	. = ..()
 	name = "[id] MODE"
+
+/obj/machinery/reactor_button/pump/Process()
+	var/obj/machinery/atmospherics/binary/pump/adv/P = rcontrol.reactor_pumps[id]
+	if(!P || P.mode != memorized_mode || !P.powered())
+		if(!has_error)
+			has_error = TRUE
+			add_overlay(image(icon, icon_state = "switch3-error"))
+	else if(has_error)
+		has_error = FALSE
+		cut_overlays()
 
 /obj/machinery/reactor_button/pump/do_action(mob/user)
 	. = ..()
@@ -18,6 +29,7 @@
 			icon_state = "switch3-on"
 		if(REACTOR_PUMP_MODE_MAX)
 			icon_state = "switch3-max"
+	memorized_mode = mode
 	var/obj/machinery/atmospherics/binary/pump/adv/P = rcontrol.reactor_pumps[id]
 	P.update_mode(mode)
 	rcontrol.make_log("PUMP [id] MODE SWITCHED to [mode].", 1)

@@ -50,7 +50,7 @@
 
 	var/liquid_moles = air_contents.total_moles - air_contents.gas_moles
 	if(water_outlet.available_volume > 2000 && liquid_moles > WATER_MOLES_HALF)
-		water_outlet.merge(air_contents.remove(liquid_moles - WATER_MOLES_HALF))
+		water_outlet.merge(air_contents.remove(min(75000, liquid_moles - WATER_MOLES_HALF)))
 
 	var/noncondensible_moles = 0
 	for(var/g in air_contents.gas)

@@ -4,6 +4,16 @@
 	off_icon_state = "switch1-off"
 	on_icon_state = "switch1-on"
 
+/obj/machinery/reactor_button/rswitch/valve/Process()
+	var/obj/machinery/atmospherics/valve/V = rcontrol.reactor_valves[id]
+	if(!V || V.open != state)
+		if(!has_error)
+			has_error = TRUE
+			add_overlay(image(icon, icon_state = error_icon_state))
+	else if(has_error)
+		has_error = FALSE
+		cut_overlays()
+
 /obj/machinery/reactor_button/rswitch/valve/do_action()
 	. = ..()
 	var/obj/machinery/atmospherics/valve/V = rcontrol.reactor_valves[id]

@@ -4,24 +4,28 @@
 	icon_state = "switch2-off"
 	off_icon_state = "switch2-off"
 	on_icon_state = "switch2-on"
+	error_icon_state = "switch2-error"
 /obj/machinery/reactor_button/rswitch/valve/pump1v2
 	name = "F-CP 1V-EX"
 	id = "F-CP 1V-EX"
 	icon_state = "switch2-off"
 	off_icon_state = "switch2-off"
 	on_icon_state = "switch2-on"
+	error_icon_state = "switch2-error"
 /obj/machinery/reactor_button/rswitch/valve/pump2v1
 	name = "F-CP 2V-IN"
 	id = "F-CP 2V-IN"
 	icon_state = "switch2-off"
 	off_icon_state = "switch2-off"
 	on_icon_state = "switch2-on"
+	error_icon_state = "switch2-error"
 /obj/machinery/reactor_button/rswitch/valve/pump2v2
 	name = "F-CP 2V-EX"
 	id = "F-CP 2V-EX"
 	icon_state = "switch2-off"
 	off_icon_state = "switch2-off"
 	on_icon_state = "switch2-on"
+	error_icon_state = "switch2-error"
 
 /obj/machinery/reactor_button/rswitch/valve/pump3v1
 	name = "T-CP 1V-IN"

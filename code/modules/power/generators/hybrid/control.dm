@@ -51,6 +51,7 @@
 	var/used = FALSE
 	var/needs_control_node = TRUE
 	var/id
+	var/has_error = FALSE
 	var/action_sounds = list(
 	'sound/machines/button1.ogg',
 	'sound/machines/button2.ogg',
@@ -118,6 +119,7 @@
 	var/state = 0 //0-1
 	var/on_icon_state = "switch1-on"
 	var/off_icon_state = "switch1-off"
+	var/error_icon_state = "switch1-error"
 	action_sounds = list(
 	'sound/machines/switch1.ogg',
 	'sound/machines/switch2.ogg',
