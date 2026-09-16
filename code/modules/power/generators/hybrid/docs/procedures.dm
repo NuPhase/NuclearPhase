@@ -9,6 +9,7 @@
 <BR>\
 <BR>\
 <u>REQUEST CLEARANCE FROM FESS</u><BR>\
+Complete \[Chamber Baking Checklist\]<BR>\
 VERIFY BAT CHARGE<BR>\
 VERIFY CONTAINMENT STATUS<BR>\
 -LAS-ARM to ARMED<BR>\
@@ -20,6 +21,22 @@ VERIFY CONTAINMENT STATUS<BR>\
 <BR>\
 -AFTER IGNITION-<BR>\
 -LAS-ARM to DISARMED<BR>"
+
+/obj/item/paper/reactor/baking
+	name = "Chamber Baking Checklist"
+	info = "\
+<center><h3>CHAMBER BAKING PROCEDURE</h3></center><BR>\
+<center><b>Last revised: (10/01/2206)</b></center><BR>\
+<i>Rewritten to accomodate the newest modifications.</i><BR>\
+<i>Lines that are <u>underlined</u> should not be executed for unmentioned reasons.</i><BR>\
+<BR>\
+<BR>\
+<BR>\
+-Energize containment<BR>\
+-FUEL V-MAIN to 0mg/s<BR>\
+-CHAMBER VACUUM PUMP to ON<BR>\
+-AFTER CHAMBER MASS < 10mg<BR>\
+-CHAMBER VACUUM PUMP to OFF<BR>"
 
 /obj/item/paper/reactor/turbinerunup
 	name = "Turbine Runup Checklist"
@@ -34,23 +51,21 @@ VERIFY CONTAINMENT STATUS<BR>\
 	-START PREPARATIONS-<BR>\
 	Verify:<BR>\
 	-Steam pressure 6000-7500kPa<BR>\
-	-Steam temperature >980K<BR>\
+	-Steam temperature >520K<BR>\
 	-Coolant level >80%<BR>\
 	At all times during runup, maintain:<BR>\
 	-Steam pressure >6000kPa<BR>\
-	-Steam temperature >980K<BR>\
+	-Steam temperature >520K<BR>\
 	-Turbine exhaust temperature >340K<BR>\
 	<BR>\
 	-INITIAL RUNUP-<BR>\
 	Skip to HOT RUNUP if RPM > 800.<BR>\
 	-TURB V-GRATES to OPEN<BR>\
-	-TURB V-BYPASS to OPEN<BR>\
 	-TURB 1-EXPANSION to 26%<BR>\
 	-TURB 1V-IN to 10%<BR>\
 	Adjust expansion during runup to maintain an exhaust temperature of 375K<BR>\
 	If enabled, autocontrol will do this for you.<BR>\
 	Above 200RPM:<BR>\
-	-TURB V-BYPASS to CLOSED<BR>\
 	-TURB 1V-IN to 50%<BR>\
 	Above 800RPM:<BR>\
 	-TURB V-GRATES to CLOSED<BR>\

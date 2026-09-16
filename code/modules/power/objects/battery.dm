@@ -37,7 +37,7 @@
 	return voltage
 
 /obj/machinery/power/generator/battery/on_power_drain(w)
-	capacity -= w * CELLRATE
+	capacity = max(0, capacity - (w * CELLRATE))
 
 /obj/machinery/power/generator/battery/attackby(obj/item/W, mob/user)
 	if(IS_WRENCH(W))
