@@ -1,11 +1,11 @@
 /obj/item/gun/projectile/automatic/smg
-	name = "MX-16"
-	desc = "The MX-16 is a modern lightweight SMG."
+	name = "SMG 'Borschevik'"
+	desc = "A compact, modular machine of death. Modified versions of these are common in hands of radical communists."
 	icon = 'icons/obj/guns/mp16.dmi'
 	icon_state = ICON_STATE_WORLD
 	safety_icon = "safety"
 	w_class = ITEM_SIZE_NORMAL
-	caliber = "11x25"
+	caliber = CALIBER_PISTOL_SMG
 	origin_tech = @'{"combat":5,"materials":2}'
 	slot_flags = SLOT_LOWER_BODY|SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/caseless/c11x25

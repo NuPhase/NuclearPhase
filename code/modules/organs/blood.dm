@@ -186,6 +186,8 @@
 	return species.is_blood_incompatible(dna?.b_type, blood_type)
 
 /mob/living/carbon/human/proc/regenerate_blood(var/amount)
+	if(srec_dose > 140)
+		return
 	amount *= (species.blood_volume / SPECIES_BLOOD_DEFAULT)
 	var/blood_volume_raw = vessel.total_volume
 	amount = max(0,min(amount, species.blood_volume - blood_volume_raw))

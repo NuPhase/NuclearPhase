@@ -79,7 +79,7 @@
 	penetration_modifier = 1.5
 
 /obj/item/projectile/bullet/pistol/holdout
-	damage = 30
+	damage = 15
 	penetration_modifier = 0.5
 	distance_falloff = 2
 

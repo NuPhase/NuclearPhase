@@ -89,7 +89,7 @@
 	for(var/mob/living/carbon/human/M in view(3, user))
 		var/ear_safety = 0
 		if(istype(M))
-			if(M.get_sound_volume_multiplier() =< 0.5)
+			if(M.get_sound_volume_multiplier() <= 0.5)
 				ear_safety += 2
 			if(istype(M.get_equipped_item(slot_head_str), /obj/item/clothing/head/helmet))
 				ear_safety += 1

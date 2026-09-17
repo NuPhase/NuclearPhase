@@ -72,33 +72,25 @@
 	w_class = ITEM_SIZE_SMALL
 
 /obj/item/gun/projectile/pistol/military_service
-	name = "CEF-V1"
-	desc = "Cryogenic Expander Firearm. It's a pistol that can use both conventional and cryogenic ammunition. It has a compact cryogenic unit built into its hand grip, allowing it to cool its magazine down."
+	name = "SIG-M"
+	desc = "A modular pistol in 10x21mm. Widely used in militaries."
 	icon = 'icons/obj/guns/gyropistol.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	weight = 2.3
 	jam_chance = 1
 	magazine_type = null
-	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/cryogenic, /obj/item/ammo_magazine/pistol/rubber, /obj/item/ammo_magazine/pistol/srec) //GOD FORBID
+	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/rubber, /obj/item/ammo_magazine/pistol/srec) //GOD FORBID
 	ammo_indicator = FALSE
 	waterproof = TRUE
 	fire_delay = 5
 	muzzle_flash_intensity = 5
 
-/obj/item/gun/projectile/pistol/military_service/load_ammo(obj/item/A, mob/user)
-	. = ..()
-	if(istype(A, /obj/item/ammo_magazine/pistol))
-		fire_delay = 5
-	else if(istype(A, /obj/item/ammo_magazine/pistol/cryogenic))
-		fire_delay = 10
-		to_chat(user, SPAN_NOTICE("This technology isn't trusted around here, the barrel might overheat... It packs a punch, though."))
-
 /obj/item/gun/projectile/pistol/military_service/loadout
 	magazine_type = /obj/item/ammo_magazine/pistol/oneround
 
 /obj/item/gun/projectile/pistol/low_caliber
-	name = "VPS-V3"
-	desc = "A simple lower-caliber pistol with a large firing delay."
+	name = "RUG-V3"
+	desc = "A simple lower-caliber pistol with a large firing delay. Permitted for non-military personnel."
 	icon = 'icons/obj/guns/simplepistol.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	caliber = CALIBER_PISTOL_SMALL
