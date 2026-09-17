@@ -14,7 +14,7 @@
 	allowed_magazines = /obj/item/ammo_magazine/smg/c11x25
 	accuracy_power = 7
 	one_hand_penalty = 2
-	bulk = -1
+	bulk = 1.5
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	material = /decl/material/solid/metal/steel
 	matter = list(
@@ -53,7 +53,7 @@
 	accuracy = 2
 	accuracy_power = 7
 	one_hand_penalty = 4
-	bulk = GUN_BULK_RIFLE
+	bulk = 3
 	fire_delay = 2
 	burst_delay = 1
 	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
@@ -95,7 +95,7 @@
 	accuracy = 2
 	accuracy_power = 7
 	one_hand_penalty = 4
-	bulk = GUN_BULK_RIFLE
+	bulk = 3
 	fire_delay = 2
 	burst_delay = 2
 	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
@@ -134,7 +134,7 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol/small, /obj/item/ammo_magazine/pistol/small/shock)
 	accuracy_power = 7
 	one_hand_penalty = 2
-	bulk = -1
+	bulk = 1.5
 	fire_sound = 'sound/weapons/gunshot/gunshot.ogg'
 	material = /decl/material/solid/metal/steel
 

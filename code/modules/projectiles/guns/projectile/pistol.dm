@@ -9,6 +9,7 @@
 	accuracy_power = 7
 	safety_icon = "safety"
 	ammo_indicator = TRUE
+	bulk = 1
 
 /obj/item/gun/projectile/pistol/update_base_icon()
 	var/base_state = get_world_inventory_state()

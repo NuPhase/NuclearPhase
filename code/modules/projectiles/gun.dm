@@ -101,6 +101,7 @@
 
 	var/hot_color
 	npc_optimal_distance = 6
+	var/tmp/list/last_fire_coords = list(0, 0, 0) //X, Y, Z
 
 /obj/item/gun/Initialize()
 	. = ..()
@@ -185,12 +186,23 @@
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
-/obj/item/gun/proc/special_check(var/mob/user)
+/obj/item/gun/proc/special_check(var/mob/user, atom/target)
 
 	if(!istype(user, /mob/living))
 		return 0
 	if(!user.check_dexterity(DEXTERITY_WEAPONS))
 		return 0
+
+	if(bulk >= 1)
+		var/turf/past_target = locate(last_fire_coords[1], last_fire_coords[2], last_fire_coords[3])
+		var/turf/new_target = get_turf(target)
+		var/dist = get_dist(past_target, new_target)
+		if(dist > 2)
+			if(!do_after(user, min(1, dist * 0.1) * bulk))
+				return 0
+			last_fire_coords[1] = new_target.x
+			last_fire_coords[2] = new_target.y
+			last_fire_coords[3] = new_target.z
 
 	var/mob/living/M = user
 	if(!safety() && world.time > last_safety_check + 5 MINUTES && !user.skill_check(SKILL_WEAPONS, SKILL_BASIC))
@@ -257,7 +269,7 @@
 
 	add_fingerprint(user)
 
-	if((!waterproof && submerged()) || !special_check(user))
+	if((!waterproof && submerged()) || !special_check(user, target))
 		return
 
 	if(safety())
