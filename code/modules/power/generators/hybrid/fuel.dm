@@ -63,15 +63,15 @@
 	name = "D fuel cell"
 	spec_desc = "This fuel cell contains deuterium. Only deuterium."
 	initial_reagents = list(
-		/decl/material/gas/hydrogen/deuterium = 35000
+		/decl/material/gas/hydrogen/deuterium = 17500
 	)
 
 /obj/item/chems/fuel_cell/deuterium_tritium
 	name = "D-T fuel cell"
 	spec_desc = "This fuel cell contains a simple D-T fuel mixture. You are boring."
 	initial_reagents = list(
-		/decl/material/gas/hydrogen/deuterium = 30000,
-		/decl/material/gas/hydrogen/tritium = 5000
+		/decl/material/gas/hydrogen/deuterium = 15000,
+		/decl/material/gas/hydrogen/tritium = 15000
 	)
 
 /obj/item/chems/fuel_cell/deuterium_tritium/spent

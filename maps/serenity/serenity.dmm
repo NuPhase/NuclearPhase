@@ -2985,8 +2985,8 @@
 	dir = 8;
 	engaged = 1
 	},
+/obj/effect/floor_decal/industrial/outline/orange,
 /obj/structure/catwalk,
-/obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "bCP" = (
@@ -3242,15 +3242,14 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2)
 "bKc" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	volume = 1500
-	},
-/obj/effect/catwalk_plated/dark,
 /obj/structure/cable/heavy{
 	icon_state = "1-4";
 	name = "BUS cable"
 	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4
+	},
+/obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/substation)
 "bKe" = (
@@ -6150,8 +6149,8 @@
 	dir = 4;
 	engaged = 0
 	},
-/obj/structure/catwalk,
 /obj/effect/floor_decal/industrial/outline/orange,
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "dhN" = (
@@ -9708,8 +9707,8 @@
 /area/serenity/shelter/labs/biolab_annex)
 "eSn" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
-/obj/machinery/meter,
 /obj/structure/catwalk,
+/obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "eTb" = (
@@ -13309,10 +13308,10 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/icu)
 "gJc" = (
-/obj/machinery/atmospherics/binary/regulated_valve/on{
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 8
 	},
-/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "gJs" = (
@@ -16135,12 +16134,6 @@
 /turf/simulated/open,
 /area/serenity/shelter/engineering/reactor)
 "iaT" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	volume = 1500
-	},
-/obj/effect/catwalk_plated/dark,
-/obj/machinery/power/generator/battery/lithium_ion/prebuilt,
 /obj/structure/cable/heavy{
 	icon_state = "4-8";
 	name = "BUS cable"
@@ -16148,6 +16141,11 @@
 /obj/structure/cable/heavy{
 	icon_state = "0-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4
+	},
+/obj/effect/catwalk_plated/dark,
+/obj/machinery/power/generator/battery/lithium_ion/prebuilt,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/substation)
 "iaU" = (
@@ -18419,10 +18417,10 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
 "jiD" = (
-/obj/machinery/atmospherics/binary/pump/adv/medium/on{
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/binary/pump/adv/large/on{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/aux)
 "jiY" = (
@@ -21908,10 +21906,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 5
 	},
-/obj/structure/catwalk,
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "lfY" = (
@@ -23581,11 +23579,11 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/obj/effect/catwalk_plated/dark,
-/obj/machinery/power/generator/battery/lithium_ion/prebuilt,
 /obj/structure/cable/heavy{
 	icon_state = "0-8"
 	},
+/obj/effect/catwalk_plated/dark,
+/obj/machinery/power/generator/battery/lithium_ion/prebuilt,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/substation)
 "meM" = (
@@ -26630,8 +26628,7 @@
 /area/serenity/shelter/mining/staircase)
 "nBX" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	volume = 1500
+	dir = 4
 	},
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
@@ -28100,9 +28097,6 @@
 /turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/it_operations)
 "omM" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 5
 	},
@@ -28111,6 +28105,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
+	dir = 6
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
@@ -29376,7 +29373,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
 	},
-/obj/machinery/meter,
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
@@ -29884,11 +29880,11 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/engineering/reactor_operations/office/changing_room)
 "pku" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
-	dir = 9
+/obj/machinery/atmospherics/binary/pump/adv/medium/on{
+	dir = 8
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/dark/textured/monotile,
 /area/serenity/shelter/engineering/electrical/aux)
 "pkK" = (
 /obj/structure/rack/dark,
@@ -32926,10 +32922,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/ch4_in{
 	dir = 6
 	},
-/obj/structure/catwalk,
 /obj/machinery/alarm{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "qDq" = (
@@ -39901,19 +39897,21 @@
 	dir = 4
 	},
 /obj/structure/cable/yellow,
+/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
+	dir = 9
+	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "tWW" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	volume = 1500
-	},
-/obj/effect/catwalk_plated/dark,
 /obj/structure/cable/heavy{
 	icon_state = "1-2";
 	name = "BUS cable"
 	},
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4
+	},
+/obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/substation)
 "tXW" = (
@@ -48355,13 +48353,11 @@
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/pumps_b)
 "ych" = (
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_out/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/ch4_in/layer1{
-	dir = 6
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 8
 	},
 /obj/structure/catwalk,
+/obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/serenity/shelter/engineering/electrical/aux)
 "yci" = (
@@ -357623,8 +357619,8 @@ isk
 onY
 hlo
 hlo
-jiD
 brn
+ych
 uHa
 eGv
 dwL
@@ -357819,8 +357815,8 @@ hlo
 fKh
 eSn
 gJc
-ree
-ree
+uHa
+eGv
 dwL
 eIi
 eIi
@@ -358012,9 +358008,9 @@ onY
 hlo
 hlo
 jiD
-brn
-ych
 pku
+ree
+ree
 dwL
 eIi
 eIi

@@ -822,6 +822,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		gasmix.total_moles = 0
 		gasmix.gas_moles = 0
 		gasmix.merge(combined.remove(moles_to_transfer))
+		gasmix.temperature = resulting_temperature
 	return 1
 
 /datum/gas_mixture/proc/get_mass()

@@ -152,19 +152,17 @@
 	gas_symbol = "D2O"
 	glass_desc = "The father of all refreshments with a hint of nuclear power."
 	absorption_products = list(
-		/decl/material/gas/hydrogen/tritium = 0.3,
-		/decl/material/gas/hydrogen/deuterium = 0.2,
-		/decl/material/gas/oxygen = 0.1,
-		/decl/material/gas/hydrogen = 0.4
+		/decl/material/gas/hydrogen/tritium = 0.666666,
+		/decl/material/gas/oxygen = 0.333333
 	)
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 4,
-			INTERACTION_ABSORPTION = 0.003
+			INTERACTION_ABSORPTION = 0.0055
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 3,
-			INTERACTION_ABSORPTION = 3.1
+			INTERACTION_ABSORPTION = 0.0025
 		)
 	)
 

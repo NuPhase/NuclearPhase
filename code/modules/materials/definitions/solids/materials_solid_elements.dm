@@ -40,13 +40,12 @@
 	value = 0.5
 	narcosis = 5
 	absorption_products = list(
-		/decl/material/gas/hydrogen/tritium = 0.3,
-		/decl/material/gas/helium = 0.7
+		/decl/material/gas/hydrogen/tritium = 1
 	)
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 0.67,
-			INTERACTION_ABSORPTION = 0.03
+			INTERACTION_ABSORPTION = 940
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 0.03,
@@ -192,7 +191,7 @@
 	fission_energy = 186000000000
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_DECAY = 0.001
+			INTERACTION_DECAY = 0.0001
 		)
 	)
 	fission_products = list(

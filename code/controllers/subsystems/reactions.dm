@@ -204,9 +204,6 @@ SUBSYSTEM_DEF(reactions)
 
 	var/fission_prob = get_average_cross_section(moles, INTERACTION_FISSION, fast_neutrons, slow_neutrons, volume, TRUE)
 	var/absorb_prob = get_average_cross_section(moles, INTERACTION_ABSORPTION, fast_neutrons, slow_neutrons, volume)
-	if(!fission_prob)
-		return list(moles, temperature, fast_neutrons, slow_neutrons)
-
 	if(add_absorbption)
 		absorb_prob *= add_absorbption
 
@@ -237,19 +234,20 @@ SUBSYSTEM_DEF(reactions)
 		fissile_moles[mat_type] = moles[mat_type]
 		fissile_total += moles[mat_type]
 
-	for(var/mat_type in fissile_moles)
-		var/decl/material/mat = GET_DECL(mat_type)
-		var/fraction = fissile_moles[mat_type] / fissile_total
-		var/fission_moles = n_fission * fraction
-		var/fast_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
-		fast_neutrons -= fast_fraction * fission_moles
-		slow_neutrons -= (1 - fast_fraction) * fission_moles
-		fast_neutrons += mat.fission_neutrons * fission_moles
-		thermal_energy += mat.fission_energy * fission_moles
-		moles[mat_type] -= fission_moles
-		if(mat.fission_products)
-			for(var/waste_type in mat.fission_products)
-				moles[waste_type] += mat.fission_products[waste_type] * fission_moles
+	if(fission_prob)
+		for(var/mat_type in fissile_moles)
+			var/decl/material/mat = GET_DECL(mat_type)
+			var/fraction = fissile_moles[mat_type] / fissile_total
+			var/fission_moles = n_fission * fraction
+			var/fast_fraction = fast_neutrons / (slow_neutrons + fast_neutrons)
+			fast_neutrons -= fast_fraction * fission_moles
+			slow_neutrons -= (1 - fast_fraction) * fission_moles
+			fast_neutrons += mat.fission_neutrons * fission_moles
+			thermal_energy += mat.fission_energy * fission_moles
+			moles[mat_type] -= fission_moles
+			if(mat.fission_products)
+				for(var/waste_type in mat.fission_products)
+					moles[waste_type] += mat.fission_products[waste_type] * fission_moles
 
 	var/total_moles = 0
 	for(var/mat_type in moles)

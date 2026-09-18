@@ -10,7 +10,7 @@
 	molar_mass = 0.012
 	boiling_point = 163 CELSIUS
 	melting_point = -8.1 CELSIUS
-	latent_heat = 5000
+	latent_heat = 50000
 	gas_condensation_point = 149 CELSIUS
 	gas_symbol_html = "C<sub>12<sub>H<sub>23<sub>"
 	gas_symbol = "C12H23"
@@ -43,7 +43,7 @@
 	molar_mass = 0.012
 	boiling_point = 325 CELSIUS
 	melting_point = -35 CELSIUS
-	latent_heat = 5000
+	latent_heat = 50000
 	gas_condensation_point = 315 CELSIUS
 	gas_symbol_html = "C<sub>17<sub>H<sub>36<sub>"
 	gas_symbol = "C17H36"

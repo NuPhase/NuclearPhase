@@ -3,11 +3,11 @@
 	desc = "A very powerful electron gun."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "potato"
-	active_power_usage = 150000
+	active_power_usage = 5000000
 	idle_power_usage = 100
 	power_channel = EQUIP
 
-	var/max_capacity = 10000000
+	var/max_capacity = 1000000000
 	var/charge = 0
 
 	var/exposure_ticks = 10
@@ -21,7 +21,7 @@
 		return
 	if(charge == max_capacity)
 		if(use_power == POWER_USE_ACTIVE)
-			update_use_power(POWER_USE_ACTIVE)
+			update_use_power(POWER_USE_IDLE)
 		return
 	if(use_power == POWER_USE_IDLE)
 		update_use_power(POWER_USE_ACTIVE)
@@ -50,7 +50,7 @@
 	var/lost_neutrons = 0
 
 	for(var/index = 1 to exposure_ticks)
-		var/list/returned_list = gasmix.handle_nuclear_reactions(slow_neutrons, fast_neutrons)
+		var/list/returned_list = gasmix.handle_nuclear_reactions(slow_neutrons, fast_neutrons, FALSE)
 		slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
 		fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 		lost_neutrons += fast_neutrons * 0.01
