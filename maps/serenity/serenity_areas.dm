@@ -282,8 +282,28 @@
 	name = "Supply Operations Break Room"
 	icon_state = "auxstorage"
 
+/area/serenity/shelter/lab_airlock
+	name = "Lab Airlock"
+	icon_state = "research"
+
 /area/serenity/shelter/labs
-	name = "Laboratories"
+	name = "Laboratories Topside"
+	icon_state = "research"
+
+/area/serenity/shelter/labs/bottom
+	name = "Laboratories Bottomside"
+	icon_state = "research"
+
+/area/serenity/shelter/labs/alpha
+	name = "Lab Alpha"
+	icon_state = "research"
+
+/area/serenity/shelter/labs/bravo
+	name = "Lab Bravo"
+	icon_state = "research"
+
+/area/serenity/shelter/labs/charlie
+	name = "Lab Charlie"
 	icon_state = "research"
 
 /area/serenity/shelter/labs/biodome
