@@ -43,6 +43,7 @@
 	max_heat_protection_temperature = COLD_PRESSURE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	volume_multiplier = 0.3
 	weight = 40
+	camera = /obj/machinery/camera/network/security
 
 /obj/item/clothing/suit/modern/space/combat_specialized/cold
 	name = "CRICS-0.4V suit"

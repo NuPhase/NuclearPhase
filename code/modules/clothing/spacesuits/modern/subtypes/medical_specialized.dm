@@ -14,6 +14,7 @@
 		rad = ARMOR_RAD_RESISTANT
 	)
 	weight = 15
+	camera = /obj/machinery/camera/network/medbay
 
 /obj/item/clothing/suit/modern/space/medical
 	icon = 'icons/clothing/spacesuit/void/medical_alt/suit.dmi'

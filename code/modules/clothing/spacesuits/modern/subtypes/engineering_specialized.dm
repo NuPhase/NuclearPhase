@@ -18,6 +18,7 @@
 		bio = ARMOR_BIO_SHIELDED,
 		rad = ARMOR_RAD_SHIELDED
 	)
+	camera = /obj/machinery/camera/network/engineering
 
 /obj/item/clothing/suit/modern/space/engineering
 	icon = 'icons/clothing/spacesuit/void/engineering_new/suit.dmi'

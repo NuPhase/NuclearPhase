@@ -109,6 +109,11 @@
 ///obj/item/clothing/head/helmet/modern/space/mob_can_equip(mob/living/M, slot, disable_warning, force)
 //	return FALSE
 
+/datum/composite_sound/modernsuit
+	mid_sounds = list('sound/ambience/suit_background.mp3'=1)
+	mid_length = 199.3
+	volume = 80
+
 /obj/item/clothing/suit/modern/space
 	name = "pressure suit"
 	desc = "A pinnacle of past-laden engineering, this suit is capable of surviving a wide variety of temperatures and pressures. Doesn't look like it, though."
@@ -154,6 +159,8 @@
 	var/minimum_leak_damage = 10
 	var/windbreak_coefficient = 1 //basically suit aerodynamics and shockwave creation. A coefficient of 0.3 would mean that the suit receives x1.7 of convective heat and x0.3 of the wind
 	weight = 100
+
+	var/datum/composite_sound/modernsuit/soundloop
 
 /obj/item/clothing/suit/modern/space/get_pressure_weakness(pressure, zone)
 	. = ..()
@@ -241,9 +248,11 @@
 	user.playsound_local(user, 'sound/effects/scanbeep.ogg', 30, 0)
 	spawn(2 SECONDS)
 		user.playsound_local(user, 'sound/effects/internals.ogg', 70, 0)
+		soundloop = new(list(wearer), TRUE, TRUE)
 
 /obj/item/clothing/suit/modern/space/dropped(mob/user)
 	. = ..()
+	QDEL_NULL(soundloop)
 	STOP_PROCESSING(SSobj, src)
 	wearer?.msuit = null
 	wearer = null
