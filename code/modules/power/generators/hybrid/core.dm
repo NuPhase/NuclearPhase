@@ -53,13 +53,15 @@
 
 	// Reaction data
 	var/last_radiation = 0
-	var/last_neutrons = 0
-	var/neutron_rate = 0 // The rate of change of neutrons.
 	var/slow_neutrons = 0
 	var/fast_neutrons = 0
 	var/total_neutrons = 0
 	var/xray_flux = 0 // A direct measure of fusion speed.
+
 	var/fusion_mass_flux = 0 // mg/s of fusion
+	var/list/fusion_reaction_fractions = list() // reaction_decl = fraction of all uptake moles
+	var/list/fusion_energy_fractions = list() // reaction_decl = fraction of all energy output
+
 	var/last_temperature = T0C
 	var/energy_rate = 0 // The rate of change in thermal energy. eV/tick
 	var/energy_rate_lerp = 0 // Former but interpolated
@@ -171,10 +173,8 @@
 	// Adjust the field size based on power consumption if below 200MW.
 	containment_field.volume = Interpolate(containment_field.volume, Clamp((field_power_consumption / 200000000) * REACTOR_FIELD_VOLUME, 2500, REACTOR_FIELD_VOLUME), 0.2)
 
-	neutron_rate = total_neutrons - last_neutrons
 	energy_rate = (containment_field.temperature - last_temperature) * 0.00008 //kelvin difference to eV difference
 	energy_rate_lerp = Interpolate(energy_rate_lerp, energy_rate, 0.5)
-	last_neutrons = slow_neutrons + fast_neutrons
 	last_temperature = containment_field.temperature
 
 /obj/machinery/power/hybrid_reactor/proc/handle_magnets()
@@ -222,6 +222,9 @@
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
 	xray_flux = 0
 	fusion_mass_flux = 0
+	fusion_reaction_fractions.Cut()
+	fusion_energy_fractions.Cut()
+	var/total_energy_release = 0
 	for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
 		var/decl/thermonuclear_reaction/cur_reaction = GET_DECL(cur_reaction_type)
 
@@ -247,10 +250,18 @@
 		var/decl/material/product = GET_DECL(cur_reaction.product)
 		var/resulting_mass = (uptake_moles * 0.5 * first_reactant.molar_mass) + (uptake_moles * 0.5 * second_reactant.molar_mass)
 		containment_field.adjust_gas(cur_reaction.product, resulting_mass / product.molar_mass)
-		containment_field.add_thermal_energy(cur_reaction.mean_energy * uptake_moles)
+		var/energy_release = cur_reaction.mean_energy * uptake_moles
+		containment_field.add_thermal_energy(energy_release)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
 		fusion_mass_flux += uptake_moles
+		fusion_reaction_fractions[cur_reaction_type] = uptake_moles
+		fusion_energy_fractions[cur_reaction_type] = energy_release
+		total_energy_release += energy_release
 		xray_flux += uptake_moles * 17400
+	for(var/key in fusion_reaction_fractions)
+		fusion_reaction_fractions[key] /= fusion_mass_flux
+	for(var/key in fusion_energy_fractions)
+		fusion_energy_fractions[key] /= total_energy_release
 	fusion_mass_flux *= containment_field.specific_mass()
 	fusion_mass_flux *= 1000000
 	plasma_instability += xray_flux * 0.01

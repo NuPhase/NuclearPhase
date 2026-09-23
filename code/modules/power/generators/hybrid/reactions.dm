@@ -1,4 +1,5 @@
 /decl/thermonuclear_reaction
+	var/name
 	var/decl/material/first_reactant = null
 	var/decl/material/second_reactant = null
 	var/decl/material/product = null
@@ -12,6 +13,7 @@
 	mean_energy *= 1000000
 
 /decl/thermonuclear_reaction/hydrogen_hydrogen
+	name = "H-H"
 	first_reactant = /decl/material/gas/hydrogen
 	second_reactant = /decl/material/gas/hydrogen
 	product = /decl/material/gas/helium
@@ -21,6 +23,7 @@
 	s_factor = 1
 
 /decl/thermonuclear_reaction/deuterium_tritium
+	name = "D-T"
 	first_reactant = /decl/material/gas/hydrogen/deuterium
 	second_reactant = /decl/material/gas/hydrogen/tritium
 	product = /decl/material/gas/helium
@@ -30,6 +33,7 @@
 	s_factor = 10
 
 /decl/thermonuclear_reaction/deuterium_deuterium
+	name = "D-D"
 	first_reactant = /decl/material/gas/hydrogen/deuterium
 	second_reactant = /decl/material/gas/hydrogen/deuterium
 	product = /decl/material/gas/helium
@@ -39,6 +43,7 @@
 	s_factor = 3
 
 /decl/thermonuclear_reaction/tritium_tritium
+	name = "T-T"
 	first_reactant = /decl/material/gas/hydrogen/tritium
 	second_reactant = /decl/material/gas/hydrogen/tritium
 	product = /decl/material/gas/helium
@@ -48,6 +53,7 @@
 	s_factor = 4
 
 /decl/thermonuclear_reaction/deuterium_lithium
+	name = "D-Li"
 	first_reactant = /decl/material/gas/hydrogen/deuterium
 	second_reactant = /decl/material/solid/lithium
 	product = /decl/material/gas/helium
@@ -57,6 +63,7 @@
 	s_factor = 6
 
 /decl/thermonuclear_reaction/proton_lithium
+	name = "H-Li"
 	first_reactant = /decl/material/gas/hydrogen
 	second_reactant = /decl/material/solid/lithium
 	product = /decl/material/gas/helium
@@ -66,6 +73,7 @@
 	s_factor = 5
 
 /decl/thermonuclear_reaction/proton_boron
+	name = "H-Bo"
 	first_reactant = /decl/material/gas/hydrogen
 	second_reactant = /decl/material/solid/boron
 	product = /decl/material/gas/helium
@@ -75,6 +83,7 @@
 	s_factor = 2.5
 
 /decl/thermonuclear_reaction/helium3_helium3
+	name = "He3-He3"
 	first_reactant = /decl/material/gas/helium/isotopethree
 	second_reactant = /decl/material/gas/helium/isotopethree
 	product = /decl/material/gas/helium
@@ -84,6 +93,7 @@
 	s_factor = 5
 
 /decl/thermonuclear_reaction/helium4_helium4
+	name = "He4-He4"
 	first_reactant = /decl/material/gas/helium
 	second_reactant = /decl/material/gas/helium
 	product = /decl/material/solid/carbon
@@ -93,6 +103,7 @@
 	s_factor = 3
 
 /decl/thermonuclear_reaction/deuterium_helium3
+	name = "D-He3"
 	first_reactant = /decl/material/gas/hydrogen/deuterium
 	second_reactant = /decl/material/gas/helium/isotopethree
 	product = /decl/material/gas/helium
@@ -102,6 +113,7 @@
 	s_factor = 4
 
 /decl/thermonuclear_reaction/carbon_helium4
+	name = "C-He4"
 	first_reactant = /decl/material/solid/carbon
 	second_reactant = /decl/material/gas/helium
 	product = /decl/material/solid/metal/beryllium

@@ -11,6 +11,10 @@
 	var/fluid_pressure = ONE_ATMOSPHERE * 50
 	var/fluid_temperature = T20C
 
+/obj/machinery/atmospherics/unary/debug/infinite_outlet/Initialize()
+	. = ..()
+	air_contents.volume = 2500
+
 /obj/machinery/atmospherics/unary/debug/infinite_outlet/on_update_icon()
 	if(LAZYLEN(nodes_to_networks))
 		icon_state = "intact_off"

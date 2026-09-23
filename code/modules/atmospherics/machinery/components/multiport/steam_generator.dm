@@ -54,7 +54,7 @@
 
 	// Backpressure isn't influencing it atm since we don't simulate hydraulics
 	// TODO: Simulate hydraulics
-	air_contents.merge(water_inlet.remove_ratio(0.2))
+	air_contents.merge(water_inlet.remove_ratio(0.1))
 
 	if(air_contents.pressure > water_outlet.pressure)
 		water_outlet.merge(air_contents.remove_phase(8000, MAT_PHASE_LIQUID))

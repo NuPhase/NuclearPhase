@@ -130,8 +130,8 @@
 /obj/machinery/atmospherics/unary/tank/large/diesel
 	name = "Large Tank (Diesel)"
 	icon_state = "diesel"
-	filling = list(/decl/material/gas/nitrogen = 0.01, /decl/material/liquid/diesel = 0.9)
-	start_pressure = ONE_ATMOSPHERE
+	filling = list(/decl/material/gas/nitrogen = 1, /decl/material/liquid/diesel = 0.9)
+	start_pressure = ONE_ATMOSPHERE*10
 
 /obj/machinery/atmospherics/unary/tank/large/oil
 	name = "Large Tank (Oil)"

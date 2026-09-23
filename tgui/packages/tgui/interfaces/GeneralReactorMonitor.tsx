@@ -23,7 +23,6 @@ type InputData = {
   power_load: number;
   thermal_load: number;
   thermal_power: number;
-  neutron_rate: number;
   energy_rate: number;
   xray_flux: number;
   radiation: number;
@@ -68,20 +67,6 @@ export const GeneralReactorMonitor = (props: any, context: any) => {
                 </LabeledList.Item>
                 <LabeledList.Item label = "Total Power Generation">
                   {formatSiUnit(data.power_load, 1, "W")}
-                </LabeledList.Item>
-                <LabeledList.Item label = "Neutron Generation Rate">
-                  <ProgressBar
-                    ranges={{
-                    bad: [5, Infinity],
-                    good: [-1, 1],
-                    average: [-3, -1],
-                    teal: [-10, -3],
-                    }}
-                    minValue = {-10}
-                    maxValue = {10}
-                    value={data.neutron_rate}>
-                  {data.neutron_rate}
-                  </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item label = "Temperature Rate">
                   <ProgressBar
