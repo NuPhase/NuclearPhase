@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(planet)
 	var/weather_volatility = 0
 	var/weather_volatility_mod = 1
 
-#define TEMPERATURE_INTERPOLATION_MOD 0.1
+#define TEMPERATURE_INTERPOLATION_MOD 0.01
 /datum/controller/subsystem/planet/fire(resumed)
 	//first of all, handle the heating of zones
 	var/exterior_temperature = global.using_map.exterior_atmosphere.temperature
