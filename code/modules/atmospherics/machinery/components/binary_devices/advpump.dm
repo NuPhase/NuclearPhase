@@ -154,10 +154,13 @@
 			target_rpm = 0
 			QDEL_NULL(sound_token)
 			air1.suction_moles = 0
+			use_power = POWER_USE_OFF
 		if(REACTOR_PUMP_MODE_IDLE)
 			target_rpm = REACTOR_PUMP_RPM_SAFE * 0.3
+			use_power = POWER_USE_ACTIVE
 		if(REACTOR_PUMP_MODE_MAX)
 			target_rpm = REACTOR_PUMP_RPM_SAFE
+			use_power = POWER_USE_ACTIVE
 	mode = new_mode
 
 /obj/machinery/atmospherics/binary/pump/adv/proc/change_volume(new_volume, change_input = TRUE, change_output = TRUE)
@@ -176,7 +179,7 @@
 	change_volume(initial_volume)
 	if(map_on)
 		update_mode(REACTOR_PUMP_MODE_MAX)
-		use_power = POWER_USE_IDLE
+		use_power = POWER_USE_ACTIVE
 		playing_sound = TRUE
 		sound_token = play_looping_sound(src, sound_id, running_sound, 80, 10, 3)
 
@@ -266,8 +269,8 @@
 
 	if(power_draw >= 0)
 		last_power_draw = power_draw
-		change_power_consumption(power_draw, POWER_USE_IDLE)
+		change_power_consumption(power_draw, POWER_USE_ACTIVE)
 	else
-		change_power_consumption(0, POWER_USE_OFF)
+		change_power_consumption(0, POWER_USE_ACTIVE)
 
 	return 1
