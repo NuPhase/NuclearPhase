@@ -868,7 +868,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 /datum/gas_mixture/proc/get_taken_volume()
 	return volume - available_volume
 
-/datum/gas_mixture/proc/handle_nuclear_reactions(slow_neutrons, fast_neutrons, handle_escape = TRUE, add_absorbption)
+/datum/gas_mixture/proc/handle_nuclear_reactions(slow_neutrons, fast_neutrons, handle_escape = TRUE, add_absorbption, add_scatter)
 	var/alist/all_fluid = get_fluid()
 	if(!length(all_fluid))
 		return list(
@@ -876,7 +876,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		"fast_neutrons_changed" = fast_neutrons
 	)
 
-	var/list/react_list = SSreactions.process_reaction_nuclear(all_fluid.Copy(), temperature, heat_capacity(), volume, fast_neutrons, slow_neutrons, handle_escape, add_absorbption)
+	var/list/react_list = SSreactions.process_reaction_nuclear(all_fluid.Copy(), temperature, heat_capacity(), volume, fast_neutrons, slow_neutrons, handle_escape, add_absorbption, add_scatter)
 	var/alist/result_fluid = react_list[1]
 
 	var/alist/combined_list = result_fluid.Copy()

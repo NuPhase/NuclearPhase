@@ -7,7 +7,7 @@
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 2,
-			INTERACTION_ABSORPTION = 200
+			INTERACTION_ABSORPTION = 3840
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 2,

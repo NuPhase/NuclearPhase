@@ -48,7 +48,7 @@
 		/decl/material/solid/metal/uranium = 0.0072
 	)
 
-	fission_energy = 21080100000.0
+	fission_energy = 21080100000000.0
 	fission_neutrons = 2.45
 
 /decl/material/solid/metal/uranium
@@ -98,7 +98,7 @@
 	neutron_absorption = 60
 	moderation_target = 3000
 	fission_heat = 35000
-	fission_energy = 21080100000.0
+	fission_energy = 19080100000000.0
 	fission_neutrons = 2.45
 	melting_point = 1132 CELSIUS
 	boiling_point = 4131 CELSIUS
@@ -144,7 +144,7 @@
 	)
 	absorption_products = list(/decl/material/solid/metal/plutonium = 1)
 	fission_heat = 35000
-	fission_energy = 81080100000.0
+	fission_energy = 20270025000000.0
 	fission_neutrons = 2.8
 	neutron_absorption = 950
 	neutron_production = 900
@@ -183,7 +183,7 @@
 			INTERACTION_FISSION = 348
 		)
 	)
-	fission_energy = 13917914000.0
+	fission_energy = 18789183900000.0
 	fission_neutrons = 1.5
 	neutron_cross_section = 4 // Difficult to use as fuel.
 	fission_products = list(
@@ -233,7 +233,7 @@
 	neutron_production = 1200
 	neutron_absorption = 30
 	fission_heat = 60000
-	fission_energy = 83917914000.0
+	fission_energy = 20979478500000.0
 	fission_neutrons = 3
 	melting_point = 640 CELSIUS
 	boiling_point = 3228 CELSIUS
@@ -278,12 +278,12 @@
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 5,
-			INTERACTION_ABSORPTION = 2,
+			INTERACTION_ABSORPTION = 0.02,
 			INTERACTION_FISSION = 0.00002
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 5,
-			INTERACTION_ABSORPTION = 0.13,
+			INTERACTION_ABSORPTION = 0.013,
 			INTERACTION_FISSION = 0.15
 		)
 	)
@@ -302,12 +302,12 @@
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 3,
-			INTERACTION_ABSORPTION = 4,
+			INTERACTION_ABSORPTION = 0.04,
 			INTERACTION_FISSION = 0.00001
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 3,
-			INTERACTION_ABSORPTION = 0.17,
+			INTERACTION_ABSORPTION = 0.017,
 			INTERACTION_FISSION = 0.04
 		)
 	)
@@ -325,11 +325,11 @@
 	neutron_interactions = list(
 		"slow" = list(
 			INTERACTION_SCATTER = 1.2,
-			INTERACTION_ABSORPTION = 7
+			INTERACTION_ABSORPTION = 0.07
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 1.2,
-			INTERACTION_ABSORPTION = 0.26
+			INTERACTION_ABSORPTION = 0.026
 		)
 	)
 

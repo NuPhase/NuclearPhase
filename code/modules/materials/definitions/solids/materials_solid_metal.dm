@@ -557,6 +557,20 @@
 	weight = MAT_VALUE_VERY_LIGHT
 	hardness = MAT_VALUE_FLEXIBLE
 	reflectiveness = MAT_VALUE_SHINY
+	neutron_interactions = list(
+		"slow" = list(
+			INTERACTION_SCATTER = 2,
+			INTERACTION_ABSORPTION = 254000
+		),
+		"fast" = list(
+			INTERACTION_SCATTER = 2,
+			INTERACTION_ABSORPTION = 25400
+		)
+	)
+	absorption_products = list(
+		/decl/material/solid/boron = 0.5,
+		/decl/material/gas/helium = 0.5
+	)
 	default_solid_form = /obj/item/stack/material/shiny
 	color = "#af6161"
 	liquid_density = 2800

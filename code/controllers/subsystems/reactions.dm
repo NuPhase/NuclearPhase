@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(reactions)
 	The escape fraction contributes to var/escaped_n which is used in some places
 */
 
-/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(alist/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons, handle_escape = TRUE, add_absorbption)
+/datum/controller/subsystem/reactions/proc/process_reaction_nuclear(alist/moles, temperature, heat_capacity, volume, fast_neutrons, slow_neutrons, handle_escape = TRUE, add_absorbption, add_scatter)
 	if((slow_neutrons + fast_neutrons) == 0)
 		return list(moles, temperature, fast_neutrons, slow_neutrons)
 
@@ -196,6 +196,8 @@ SUBSYSTEM_DEF(reactions)
 	var/radial_distance = sphere_radius_from_volume(volume)
 
 	var/scatter_prob = get_average_cross_section(moles, INTERACTION_SCATTER, fast_neutrons, slow_neutrons, volume) * 0.002
+	if(add_scatter)
+		scatter_prob += add_scatter
 	var/z_scatter = min(scatter_prob * radial_distance, 1)
 
 	var/scattered = fast_neutrons * z_scatter
