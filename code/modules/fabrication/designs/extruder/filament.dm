@@ -32,3 +32,8 @@
 	name = "Carbon Filament"
 	input_material = /decl/material/solid/carbon
 	output_item = /obj/item/stack/material/filament/carbon/ten
+
+/decl/extruder_recipe/filament/copper
+	name = "Copper Filament"
+	input_material = /decl/material/solid/metal/copper
+	output_item = /obj/item/stack/material/filament/carbon/ten

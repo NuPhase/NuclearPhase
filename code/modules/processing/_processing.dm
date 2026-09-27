@@ -78,6 +78,12 @@
 		var/obj/item/chems/C = I
 		C.standard_pour_into(user, src)
 		return TRUE
+	if(IS_CROWBAR(I) && has_tank_slot)
+		to_chat(user, SPAN_NOTICE("You remove the tank from \the [src]."))
+		var/turf/T = get_turf(user)
+		connected_tank.forceMove(T)
+		connected_tank = null
+		return TRUE
 	if(length(stored_items) >= max_items)
 		to_chat(user, SPAN_NOTICE("\The [src] is already at max capacity."))
 		return TRUE
@@ -193,9 +199,6 @@
 /decl/interaction_handler/choose_recipe/invoked(obj/machinery/processor/target, mob/user)
 	if(target.operating)
 		to_chat(user, SPAN_NOTICE("\The [target] is busy."))
-		return TRUE
-	if(!length(target.stored_items))
-		to_chat(user, SPAN_NOTICE("\The [target] is empty."))
 		return TRUE
 	var/decl/processing_recipe/chosen_recipe = tgui_input_list(user, "Select an operation", "Operation selection", target.possible_recipes)
 	if(!chosen_recipe)

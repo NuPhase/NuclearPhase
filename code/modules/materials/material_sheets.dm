@@ -397,3 +397,7 @@
 /obj/item/stack/material/filament/carbon/ten
 	material = /decl/material/solid/carbon
 	amount = 10
+
+/obj/item/stack/material/filament/copper/ten
+	material = /decl/material/solid/metal/copper
+	amount = 10
