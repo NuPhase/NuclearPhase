@@ -294,28 +294,6 @@
 /mob/living/simple_animal/proc/audible_emote(var/act_desc)
 	custom_emote(2, act_desc)
 
-/mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj || Proj.nodamage)
-		return
-
-	var/damage = Proj.damage
-	if(Proj.damtype == STUN)
-		damage = Proj.damage / 6
-	if(Proj.damtype == BRUTE)
-		damage = Proj.damage / 2
-	if(Proj.damtype == BURN)
-		damage = Proj.damage / 1.5
-	if(Proj.agony)
-		damage += Proj.agony / 6
-		if(health < Proj.agony * 3)
-			SET_STATUS_MAX(src, STAT_PARA, Proj.agony / 20)
-			visible_message("<span class='warning'>[src] is stunned momentarily!</span>")
-
-	bullet_impact_visuals(Proj)
-	adjustBruteLoss(damage)
-	Proj.on_hit(src)
-	return 0
-
 /mob/living/simple_animal/get_hug_zone_messages(var/zone)
 	. = ..() || list(response_help_3p, response_help_1p)
 

@@ -133,7 +133,7 @@
 		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-	if(ruptured && !owner.is_asystole())
+	if(ruptured && !chest_tube && !owner.is_asystole())
 		if(prob(2))
 			if(active_breathing)
 				owner.visible_message(

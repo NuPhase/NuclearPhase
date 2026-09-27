@@ -1,5 +1,5 @@
 #define RADS_PER_NEUTRON 125000
-#define WATTS_PER_KPA 50
+#define WATTS_PER_KPA 100
 #define REACTOR_SHIELDING_DIVISOR 20
 #define REACTOR_MODERATOR_POWER 0.27
 #define REACTOR_FIELD_VOLUME 50000
@@ -36,6 +36,8 @@
 	var/magnet_integrity =    1 // Integrity of the magnets. Lowered by overheating. Affects plasma stability and power consumption. Very expensive to repair.
 	var/structure_integrity = 1 // Integrity of the entire reactor structure. Lowered in very extreme conditions, A.K.A. during a meltdown. Isn't persistent, can't be repaired.
 	// Divertor failure will cause the fuel cells to weld into place and start injecting fuel. That's the main condition for triggering a meltdown.
+
+	var/divertor_failure = FALSE
 
 	// Plasma instability data. Instability increases heat loss and can damage the reactor.
 	var/plasma_instability = 0 // A measure of turbulence in the plasma. The probability of an ELM is calculated with prob(plasma_instability * 0.1) if instability is greater than 30.
@@ -196,7 +198,7 @@
 		meltdown_state = TRUE
 		start_meltdown()
 
-#define RADIATIVE_LOSS_K 0.000000000000000000002
+#define RADIATIVE_LOSS_K 0.00000000000000000000000004
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	if(slow_neutrons || fast_neutrons)
 		var/slow_neutrons_lost = slow_neutrons * (1.01 - reflector_position)
@@ -212,7 +214,7 @@
 	if(containment_field.temperature < T100C)
 		radiative_heat_loss = 0
 		return
-	radiative_heat_loss = (containment_field.get_mass() * containment_field.temperature**4 * RADIATIVE_LOSS_K) * (1.1 - reflector_position)
+	radiative_heat_loss = (containment_field.get_mass() * containment_field.volume * containment_field.temperature**4 * RADIATIVE_LOSS_K) * (1.1 - reflector_position)
 	containment_field.add_thermal_energy(-radiative_heat_loss)
 	if(radiative_heat_loss > 1000000)
 		damage_blanket(radiative_heat_loss / 250000000000)
@@ -456,6 +458,12 @@
 
 /obj/machinery/power/hybrid_reactor/proc/damage_divertor(amount)
 	divertor_integrity = Clamp(divertor_integrity - amount * 0.01 * (divertor_integrity + 0.1), 0, 1)
+	if(!divertor_integrity && !divertor_failure)
+		divertor_failure = TRUE
+		var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
+		for(var/id_to_check in ids_to_check)
+			var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]
+			fuelport.melted = TRUE
 
 /obj/machinery/power/hybrid_reactor/proc/damage_magnets(amount)
 	magnet_integrity = Clamp(magnet_integrity - amount * 0.01 * (magnet_integrity + 0.1), 0, 1)

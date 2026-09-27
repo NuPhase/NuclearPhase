@@ -975,7 +975,7 @@
 		shock_stage = 0
 		return
 
-	var/traumatic_shock = get_shock() * 0.1
+	var/traumatic_shock = get_shock() * 0.2
 	if(traumatic_shock >= max(30, 0.8*shock_stage))
 		shock_stage += 1
 	else if (!is_asystole())

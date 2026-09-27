@@ -169,6 +169,8 @@
 				reactor.containment_field.adjust_gas(g, removed * -1)
 				inserted.reagents.add_reagent(g, removed * mat.molar_volume)
 
+	if(melted)
+		injection_ratio = 50
 	if(!injection_ratio)
 		return
 	var/removing = min(inserted.reagents.total_volume, injection_ratio / (1000000 * inserted.reagents.specific_mass()))

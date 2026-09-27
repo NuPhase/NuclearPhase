@@ -68,8 +68,7 @@
 	loaded_core.air_contents.add_thermal_energy(heat_transfer * -1)
 
 /obj/machinery/multitile/research_reactor/proc/process_fission()
-	if(total_neutrons < 0.000001)
-		fast_neutrons += 0.000001
+	fast_neutrons += 0.000000001
 	last_neutrons = total_neutrons
 	last_temperature = loaded_core.air_contents.temperature
 	var/doppler_broadening_effect = max((last_temperature - T100C) * 0.03, 0)
@@ -102,7 +101,7 @@
 	return list(
 		"actualRodPosition" = rod_position,
 		"targetRodPosition" = target_rod_position,
-		"srm" = Clamp(round(total_neutrons * 300000000), 0, 3000), // yep
+		"srm" = Clamp(round(total_neutrons * 30000000000), 0, 3000), // yep
 		"neutronK" = round(total_neutrons/last_neutrons, 0.001),
 		"fastFraction" = round(fast_neutrons / total_neutrons, 0.01),
 		"fuelTemperature" = round(loaded_core.air_contents.temperature - 273.15, 0.1),

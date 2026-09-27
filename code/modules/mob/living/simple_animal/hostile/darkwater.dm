@@ -99,6 +99,14 @@
 	walk(src,0)
 	kick_stance()
 
+var/list/oceanborn_hunter_armor = list(
+		melee = ARMOR_MELEE_KNIVES,
+		bullet = ARMOR_BALLISTIC_SMALL,
+		laser = ARMOR_LASER_HEAVY,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_MINOR
+	)
+
 // The main tank.
 /mob/living/simple_animal/hostile/darkwater/hunter
 	name = "oceanborn hunter"
@@ -115,11 +123,19 @@
 	speed = -3
 	natural_armor = list(
 		melee = ARMOR_MELEE_KNIVES,
-		bullet = ARMOR_BALLISTIC_SMALL,
+		bullet = ARMOR_BALLISTIC_PISTOL,
 		laser = ARMOR_LASER_HEAVY,
 		energy = ARMOR_ENERGY_MINOR,
 		bomb = ARMOR_BOMB_MINOR
 	)
+
+/mob/living/simple_animal/hostile/darkwater/hunter/Initialize()
+	natural_armor = oceanborn_hunter_armor
+	. = ..()
+
+/mob/living/simple_animal/hostile/darkwater/hunter/bullet_act(obj/item/projectile/Proj)
+	. = ..()
+	oceanborn_hunter_armor["bullet"] += 1
 
 /mob/living/simple_animal/hostile/darkwater/hunter/death(gibbed, deathmessage, show_dead_message)
 	. = ..()
