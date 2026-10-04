@@ -24,7 +24,7 @@
 
 /obj/structure/stairs/Bumped(atom/movable/A)
 	var/turf/myturf = get_turf(src)
-	var/turf/target = get_step(GetAbove(A), dir)
+	var/turf/target = get_step(GetAbove(src), dir)
 	var/turf/source = get_turf(A)
 	if(myturf.CanZPass(A, UP) && target.Enter(A, src))
 		A.forceMove(target)

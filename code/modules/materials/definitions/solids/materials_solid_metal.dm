@@ -124,6 +124,7 @@
 	color = COLOR_COPPER
 	weight = MAT_VALUE_NORMAL
 	hardness = MAT_VALUE_FLEXIBLE + 10
+	ore_spread_chance = 20
 	stack_origin_tech = @'{"materials":2}'
 
 /decl/material/solid/metal/silver
@@ -310,6 +311,7 @@
 	brute_armor = 10
 	burn_armor = 8
 	integrity = 200
+	ore_spread_chance = 20
 	weight = MAT_VALUE_LIGHT
 	icon_base = 'icons/turf/walls/metal.dmi'
 	wall_flags = PAINT_PAINTABLE
@@ -443,6 +445,7 @@
 	uid = "solid_lead"
 	lore_text = "A very soft, heavy and poisonous metal. You probably shouldn't lick it."
 	color = "#3f3f4d"
+	ore_spread_chance = 20
 	hardness = MAT_VALUE_SOFT
 	construction_difficulty = MAT_VALUE_NORMAL_DIY
 	reflectiveness = MAT_VALUE_MATTE
@@ -453,6 +456,7 @@
 	name = "zinc"
 	uid = "solid_zinc"
 	lore_text = "A dull-looking metal with some use in alloying."
+	ore_spread_chance = 20
 	color = "#92aae4"
 	construction_difficulty = MAT_VALUE_NORMAL_DIY
 	reflectiveness = MAT_VALUE_MATTE
@@ -508,6 +512,7 @@
 	taste_mult = 0 //no taste
 	color = "#8a91a1"
 	value = 0.5
+	ore_spread_chance = 20
 	melting_point = 3695 CELSIUS
 	boiling_point = 5825 CELSIUS
 	fusion_enthalpy = 824000

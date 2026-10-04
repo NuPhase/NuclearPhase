@@ -2,6 +2,7 @@
 /decl/chemical_reaction/synthesis
 	result = null
 	result_amount = 1
+	bypass_reaction_rate = TRUE
 	mix_message = "The solution hardens and begins to crystallize."
 
 /decl/chemical_reaction/synthesis/fiberglass

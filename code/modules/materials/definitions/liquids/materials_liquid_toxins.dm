@@ -85,6 +85,7 @@
 	lore_text = "A highly toxic chemical."
 	taste_mult = 0.6
 	color = "#cf3600"
+	ore_spread_chance = 20
 	toxicity = 20
 	metabolism = REM * 2
 	toxicity_targets_organ = BP_HEART

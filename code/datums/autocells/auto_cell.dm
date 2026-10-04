@@ -37,7 +37,7 @@
 	in_turf = T
 	LAZYADD(in_turf.autocells, src)
 
-	cellauto_cells += src
+	START_PROCESSING(SScellauto, src)
 
 	birth()
 
@@ -48,7 +48,7 @@
 		LAZYREMOVE(in_turf.autocells, src)
 		in_turf = null
 
-	cellauto_cells -= src
+	STOP_PROCESSING(SScellauto, src)
 
 	death()
 

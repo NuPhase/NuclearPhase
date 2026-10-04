@@ -1,6 +1,7 @@
 /decl/chemical_reaction/recipe/food
 	result = null
 	result_amount = 1
+	bypass_reaction_rate = TRUE
 	var/obj_result
 
 /decl/chemical_reaction/recipe/food/on_reaction(var/datum/reagents/holder, var/created_volume, var/reaction_flags)

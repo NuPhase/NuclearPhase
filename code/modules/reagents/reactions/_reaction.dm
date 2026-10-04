@@ -17,6 +17,7 @@
 
 	var/activation_energy = 0 // At which energy does the reaction begin to happen?
 	var/thermal_delta // How much of an energy change happens per reaction
+	var/bypass_reaction_rate = FALSE
 	var/minimum_pressure
 
 /decl/chemical_reaction/Initialize()
@@ -94,7 +95,8 @@
 	for(var/reactant in required_reagents)
 		var/decl/material/mat = GET_DECL(reactant)
 		reactivity_sum += mat.reactivity_coefficient
-	limit = limit / holder.get_reaction_speed_coef(null, minimum_temperature, temperature, reactivity_sum/length(required_reagents))
+	if(!bypass_reaction_rate)
+		limit = limit / holder.get_reaction_speed_coef(null, minimum_temperature, temperature, reactivity_sum/length(required_reagents))
 
 	var/reaction_volume = holder.maximum_volume
 	for(var/reactant in required_reagents)

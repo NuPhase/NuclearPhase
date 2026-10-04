@@ -80,6 +80,7 @@
 			INTERACTION_ABSORPTION = 0.00001
 		)
 	)
+	ore_spread_chance = 20
 	melting_point = 3823
 	boiling_point = 5100
 	combustion_energy = 393500
@@ -206,6 +207,7 @@
 	taste_description = "old eggs"
 	color = "#bf8c00"
 	value = 0.5
+	ore_spread_chance = 20
 	melting_point = 115.2 CELSIUS
 	boiling_point = 444.6 CELSIUS
 	fusion_enthalpy = 1700

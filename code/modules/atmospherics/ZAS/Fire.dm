@@ -72,8 +72,6 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 		for(var/turf/T in fire_tiles)
 			if(T.fire)
 				T.fire.firelevel = firelevel
-				if(firelevel > 100)
-					cell_explosion(T, firelevel, 1, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, temperature = burn_gas.temperature, is_atmos = TRUE)
 			else
 				fire_tiles -= T
 	else

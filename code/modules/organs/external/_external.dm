@@ -582,6 +582,7 @@ This function completely restores a damaged organ to perfect condition.
 
 	if(owner)
 		owner.updatehealth()
+		owner.UpdateDamageIcon()
 
 //#TODO: Rejuvination hacks should probably be removed
 /obj/item/organ/external/remove_rejuv()

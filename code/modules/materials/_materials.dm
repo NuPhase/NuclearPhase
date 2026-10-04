@@ -621,7 +621,7 @@ var/decl/material/boil_mat = null
 
 /decl/material/proc/affect_blood(var/mob/living/M, var/removed, var/datum/reagents/holder)
 	if(radioactivity)
-		M.apply_damage(radioactivity * removed, IRRADIATE, armor_pen = 100)
+		M.apply_radiation(radioactivity * removed * 1800)
 
 	if(toxicity)
 		M.add_chemical_effect(CE_TOXIN, toxicity)

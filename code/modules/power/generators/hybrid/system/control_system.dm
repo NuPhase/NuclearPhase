@@ -5,6 +5,16 @@
 	generator2 = reactor_components["generator2"]
 	if(!turbine1 || !turbine2)
 		spawn(50)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
+			make_log("CLEARED LOG.", 1)
 			make_log("START OF LOG.", 1)
 			initialize()
 

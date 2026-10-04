@@ -1,5 +1,6 @@
 /decl/chemical_reaction/grenade_reaction
 	result = null
+	bypass_reaction_rate = TRUE
 
 /decl/chemical_reaction/grenade_reaction/explosion_potassium
 	name = "Explosion"
