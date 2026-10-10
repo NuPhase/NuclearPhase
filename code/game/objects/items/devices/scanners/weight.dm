@@ -12,6 +12,9 @@
 		/decl/material/solid/plastic = MATTER_AMOUNT_TRACE
 	)
 
+/obj/item/scanner/weight/is_valid_scan_target(atom/O)
+	return TRUE
+
 /obj/item/scanner/weight/scan(atom/O, mob/user)
 	scan_title = "Weight scan data"
 	if(O.weight > 1)

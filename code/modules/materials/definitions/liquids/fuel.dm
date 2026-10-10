@@ -89,3 +89,5 @@
 	oxidizer_to_fuel_ratio = 12.5
 	combustion_products = list(/decl/material/gas/oxygen = /decl/material/gas/carbon_dioxide)
 	burn_product = /decl/material/gas/carbon_dioxide
+	toxicity_targets_organ = BP_EYES
+	toxicity = 10

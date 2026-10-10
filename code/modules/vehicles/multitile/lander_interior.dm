@@ -11,11 +11,17 @@
 	var/outside_flavor = "wind vortexes and barely visible ground"
 	bound_width = 160
 	bound_height = 320
+	var/obj/multitile_vehicle/vehicle = null
+
+/obj/effect/cts_floor/Destroy()
+	. = ..()
+	vehicle = null
 
 /obj/effect/cts_floor/examine(mob/user)
 	. = ..()
 	to_chat(user, SPAN_NOTICE("You can see [outside_flavor] outside of its windows."))
 	events_repository.register(/decl/observ/moved, user, src, TYPE_PROC_REF(/obj/effect/cts_floor, spectator_moved))
+	user.reset_view(vehicle)
 
 /obj/effect/cts_floor/proc/spectator_moved(mob/user)
 	user.reset_view(null)

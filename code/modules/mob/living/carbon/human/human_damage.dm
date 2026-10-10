@@ -506,5 +506,5 @@ This function restores all organs.
 		if(get_skill_value(SKILL_STRENGTH) < SKILL_BASIC) //you're a femboy, Jack!
 			apply_effect(3, WEAKEN)
 
-	var/blunt_damage = weight * speed * COLLISION_SEVERITY_MULTIPLIER
+	var/blunt_damage = collided_with.weight * speed * COLLISION_SEVERITY_MULTIPLIER
 	apply_damage(blunt_damage, BRUTE, target_bodypart)

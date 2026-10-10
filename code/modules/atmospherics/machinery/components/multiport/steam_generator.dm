@@ -39,6 +39,7 @@
 	air_contents.adjust_gas(/decl/material/gas/nitrogen, 10)
 	air_contents.adjust_gas(/decl/material/liquid/water, (300000 * 0.6) / 0.018)
 	air_contents.temperature = 550
+	air_contents.update_values()
 	reactor_components["steam_generator"] = src
 
 /obj/machinery/multitile/steam_generator/Destroy()

@@ -33,6 +33,7 @@
 	)
 
 	var/last_load = 0
+	var/last_trip_reason = "Manual shutoff"
 	var/mode = GEN_MODE_OFF
 	var/unburnt_fuel_ratio = 0.01
 	var/gen_temp = 30 CELSIUS
@@ -42,6 +43,11 @@
 
 	var/datum/sound_token/sound_token
 	var/sound_id
+
+/obj/machinery/multitile/backup_generator/examine(mob/user)
+	. = ..()
+	if(mode == GEN_MODE_OFF)
+		to_chat(user, SPAN_WARNING("Last trip reason: [last_trip_reason]"))
 
 /obj/machinery/multitile/backup_generator/get_mechanics_info()
 	return "Uses compressed air for startup. Runs at max efficiency at a load below 1MW and at temperatures close to 75C."
@@ -79,7 +85,7 @@
 		if(GEN_MODE_RUNUP)
 			var/datum/gas_mixture/start_air = port_gases["Startup Air"]
 			start_air.remove(35)
-			rpm += rand(30, 90)
+			rpm += 60
 			if(rpm > GEN_SYNC_RPM)
 				switch_mode(GEN_MODE_SYNC)
 		if(GEN_MODE_SYNC)
@@ -90,6 +96,7 @@
 		switch_mode(GEN_MODE_OFF)
 		playsound(src, 'sound/effects/alarms/buzzer.mp3', 100)
 		visible_message(SPAN_WARNING("[src] trips! Reason: [reason]."))
+		last_trip_reason = reason
 	return
 
 /obj/machinery/multitile/backup_generator/proc/check_trip()
@@ -219,6 +226,7 @@
 	. = ..()
 	if(action == "stop")
 		stop()
+		last_trip_reason = "Manual shutoff"
 		return
 	if(action == "start")
 		start()
@@ -239,5 +247,6 @@
 #undef GEN_POWER_LIMIT
 #undef GEN_HEAT_CAPACITY
 #undef GEN_SYNC_RPM
+#undef GEN_IDEAL_TEMP
 #undef GEN_MAX_SAFE_TEMP
 #undef GEN_MAX_WORK_TEMP
