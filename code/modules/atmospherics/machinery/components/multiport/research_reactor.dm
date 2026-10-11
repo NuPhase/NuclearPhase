@@ -71,7 +71,7 @@
 	fast_neutrons += 0.000000001
 	last_neutrons = total_neutrons
 	last_temperature = loaded_core.air_contents.temperature
-	var/doppler_broadening_effect = max((last_temperature - T100C) * 0.03, 0)
+	var/doppler_broadening_effect = max((last_temperature - T100C) * 0.01, 0)
 	var/rod_power = 1 + (1500 * (rod_position**2)) + doppler_broadening_effect
 	var/list/return_list = loaded_core.air_contents.handle_nuclear_reactions(slow_neutrons, fast_neutrons, TRUE, rod_power)
 	if(!return_list)

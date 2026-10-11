@@ -883,15 +883,17 @@ var/decl/material/boil_mat = null
 /decl/material/proc/get_nuclear_reaction_rate(datum/gas_mixture/container, reaction_type, slow_neutrons, fast_neutrons)
 	if(!neutron_interactions)
 		return 0
-	var/interpolation_weight = fast_neutrons / (slow_neutrons + fast_neutrons)
+
+	var/slow_flux = (slow_neutrons / container.volume) * SLOW_NEUTRON_SPEED
+	var/fast_flux = (fast_neutrons / container.volume) * FAST_NEUTRON_SPEED
+
+	var/interpolation_weight = fast_flux / (slow_flux + fast_flux)
 	var/actual_cross_section = Interpolate(neutron_interactions["slow"][reaction_type], neutron_interactions["fast"][reaction_type], interpolation_weight)
 
 	var/target_density = (container.solids[type] + container.liquids[type] + container.gas[type]) / container.volume
 	var/macro_xs = target_density * actual_cross_section
 
-	var/slow_density = slow_neutrons / container.volume
-	var/fast_density = fast_neutrons / container.volume
-	var/flux = slow_density * SLOW_NEUTRON_SPEED + fast_density * FAST_NEUTRON_SPEED
+	var/flux = slow_flux + fast_flux
 
 	var/rate_per_volume = macro_xs * flux
 	return rate_per_volume * container.volume
