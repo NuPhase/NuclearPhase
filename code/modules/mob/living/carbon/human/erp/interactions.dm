@@ -70,7 +70,7 @@
 
 	dat +=  {"<A href='?src=\ref[usr];interaction=bow'>Bow.</A><BR>"}
 	if (hashands)
-		if(H.partner.get_age() >= 16)
+		if(H.partner.get_age() >= 18)
 			if(H.partner.species.name == "Human")
 				dat +=  {"<font size=3><B>Hands:</B></font><BR>"}
 				if(get_dist(H,P) <= 1)
@@ -93,7 +93,7 @@
 				dat +=  {"<A href='?src=\ref[usr];interaction=threaten'><font color=red>Threaten.</font></A><BR>"}
 
 	if (mouthfree && (lying == P.lying || !lying))
-		if(H.partner.get_age() >= 16)
+		if(H.partner.get_age() >= 18)
 			if(H.partner.species.name == "Human")
 				dat += {"<font size=3><B>Mouth:</B></font><BR>"}
 				dat += {"<A href='?src=\ref[usr];interaction=kiss'><font color=purple>Kiss.</font></A><BR>"}
@@ -111,7 +111,7 @@
 					dat +=  {"<A href='?src=\ref[usr];interaction=tongue'><font color=red>Stick out tongue.</font></A><BR>"}
 
 	if (isnude && usr.loc == H.partner.loc)
-		if(H.partner.get_age() >= 16)
+		if(H.partner.get_age() >= 18)
 			if(H.partner.species.name == "Human")
 				if(get_dist(H,P) <= 1)
 					if (haspenis && hashands)
@@ -167,12 +167,13 @@
 	if(!hashands)
 		return
 
+	bloodstr.add_reagent_max(/decl/material/liquid/adrenaline, 0.01, 1)
 	if(zone_sel.selecting == BP_GROIN)
 		if(isnude)
 			if(haspenis && erpcooldown == 0)
 				message = pick("strokes his dick.", "masturbates his penis.")
 				adjust_pleasure(60)
-				adjust_arousal(-15)
+				adjust_arousal(5)
 				if (pleasure >= 1000)
 					climax(src)
 				else
@@ -238,7 +239,8 @@
 	var/sound_path
 	var/message = ""
 	SSmoods.mass_mood_give("fuck", list(H, P))
-	bloodstr.add_reagent(/decl/material/liquid/adrenaline, rand(0.01, 0.1))
+	bloodstr.add_reagent_max(/decl/material/liquid/adrenaline, 0.01, 1)
+	P.bloodstr.add_reagent_max(/decl/material/liquid/adrenaline, 0.01, 1)
 	switch(hole)
 		if("vaglick")
 			message = pick("licks [P].", "sucks [P]'s pussy.")
