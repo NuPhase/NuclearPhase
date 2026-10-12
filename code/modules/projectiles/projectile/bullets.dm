@@ -265,17 +265,17 @@
 	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
 	damage = 35
 /obj/item/projectile/bullet/modern/c6p8x51/ap
-	armor_penetration = ARMOR_BALLISTIC_RIFLE
+	armor_penetration = 60
 /obj/item/projectile/bullet/modern/c6p8x51/fmj
-	armor_penetration = ARMOR_BALLISTIC_RESISTANT
+	armor_penetration = 45
 /obj/item/projectile/bullet/modern/c6p8x51/hp
-	armor_penetration = ARMOR_BALLISTIC_SMALL
+	armor_penetration = 15
 	damage = 50
 
 /obj/item/projectile/bullet/modern/c11x25
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	damage = 35
-	armor_penetration = ARMOR_BALLISTIC_PISTOL
+	armor_penetration = 15
 /obj/item/projectile/bullet/modern/c11x25/srec //same armor penetration, larger damage and higher falloff
 	damage = 50
 	muzzle_type = /obj/effect/projectile/muzzle/gauss
