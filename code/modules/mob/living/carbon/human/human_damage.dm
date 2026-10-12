@@ -390,6 +390,8 @@ This function restores all organs.
 
 	if(organ.can_feel_pain())
 		release_adrenaline(damage/40)
+		if(organ.organ_tag in list(BP_L_LEG, BP_R_LEG))
+			apply_effect(damage/5, WEAKEN)
 
 	var/datum/wound/created_wound
 	damageoverlaytemp = 20
