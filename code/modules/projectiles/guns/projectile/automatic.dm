@@ -1,11 +1,11 @@
 /obj/item/gun/projectile/automatic/smg
-	name = "MX-16"
-	desc = "The MX-16 is a modern lightweight SMG."
+	name = "SMG 'Borschevik'"
+	desc = "A compact, modular machine of death. Modified versions of these are common in hands of radical communists."
 	icon = 'icons/obj/guns/mp16.dmi'
 	icon_state = ICON_STATE_WORLD
 	safety_icon = "safety"
 	w_class = ITEM_SIZE_NORMAL
-	caliber = "11x25"
+	caliber = CALIBER_PISTOL_SMG
 	origin_tech = @'{"combat":5,"materials":2}'
 	slot_flags = SLOT_LOWER_BODY|SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/caseless/c11x25
@@ -14,7 +14,7 @@
 	allowed_magazines = /obj/item/ammo_magazine/smg/c11x25
 	accuracy_power = 7
 	one_hand_penalty = 2
-	bulk = -1
+	bulk = 1.5
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	material = /decl/material/solid/metal/steel
 	matter = list(
@@ -53,7 +53,7 @@
 	accuracy = 2
 	accuracy_power = 7
 	one_hand_penalty = 4
-	bulk = GUN_BULK_RIFLE
+	bulk = 3
 	fire_delay = 2
 	burst_delay = 1
 	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
@@ -95,7 +95,7 @@
 	accuracy = 2
 	accuracy_power = 7
 	one_hand_penalty = 4
-	bulk = GUN_BULK_RIFLE
+	bulk = 3
 	fire_delay = 2
 	burst_delay = 2
 	mag_insert_sound = 'sound/weapons/guns/interaction/batrifle_magin.ogg'
@@ -134,7 +134,7 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol/small, /obj/item/ammo_magazine/pistol/small/shock)
 	accuracy_power = 7
 	one_hand_penalty = 2
-	bulk = -1
+	bulk = 1.5
 	fire_sound = 'sound/weapons/gunshot/gunshot.ogg'
 	material = /decl/material/solid/metal/steel
 

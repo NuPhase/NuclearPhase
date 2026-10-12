@@ -31,7 +31,7 @@
 	marking_color = COLOR_LUMINOL
 
 /obj/item/ammo_casing/pistol/small
-	desc = "A small pistol bullet casing."
+	desc = "A .23 (6x15mm) bullet casing."
 	color = COLOR_POLISHED_BRASS
 	icon = 'icons/obj/ammo/casings/small_pistol.dmi'
 	caliber = CALIBER_PISTOL_SMALL
@@ -249,22 +249,22 @@
 	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/hp
 
 /obj/item/ammo_casing/c11x25
-	name = "11x25 casing."
+	name = "10x21 casing."
 	caliber = CALIBER_PISTOL
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
 /obj/item/ammo_casing/caseless/c11x25
-	name = "11x25 CL casing."
-	caliber = CALIBER_PISTOL
+	name = "9x20mm CL casing."
+	caliber = CALIBER_PISTOL_SMG
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
 /obj/item/ammo_casing/caseless/c11x25/srec
-	name = "11x25 SREC shell."
+	name = "9x20mm SREC shell."
 	projectile_type = /obj/item/projectile/bullet/modern/c11x25/srec
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
-	caliber = CALIBER_PISTOL
+	caliber = CALIBER_PISTOL_SMG
 	color = COLOR_GUNMETAL
 	bullet_color = COLOR_GUNMETAL
 

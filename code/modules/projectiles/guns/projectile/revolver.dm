@@ -16,7 +16,7 @@
 	accuracy = 2
 	accuracy_power = 8
 	one_hand_penalty = 2
-	bulk = 3
+	bulk = 2
 
 /obj/item/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"

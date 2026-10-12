@@ -114,7 +114,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/smg
-	name = "top mounted magazine"
+	name = "top mounted 6mm magazine"
 	icon_state = "smg_top"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/pistol/small
@@ -135,8 +135,8 @@
 	ammo_type = /obj/item/ammo_casing/pistol/small/practice
 
 /obj/item/ammo_magazine/smg/c11x25
-	name = "11x25 CL SMG magazine"
-	caliber = "11x25"
+	name = "9x20mm CL SMG magazine"
+	caliber = CALIBER_PISTOL_SMG
 	ammo_type = /obj/item/ammo_casing/caseless/c11x25
 	max_ammo = 60
 
@@ -144,7 +144,7 @@
 	max_ammo = 180
 
 /obj/item/ammo_magazine/pistol
-	name = "11x25 pistol magazine"
+	name = "10x21mm pistol magazine"
 	icon_state = "pistol"
 	origin_tech = @'{"combat":2}'
 	mag_type = MAGAZINE
@@ -155,7 +155,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/pistol/srec
-	name = "11x25 SREC magazine"
+	name = "10x21mm SREC magazine"
 	desc = "What the fuck did you do???"
 	ammo_type = /obj/item/ammo_casing/caseless/c11x25/srec
 
@@ -177,7 +177,7 @@
 	max_ammo = 8
 
 /obj/item/ammo_magazine/pistol/small
-	name = "5mm pistol magazine"
+	name = "6mm pistol magazine"
 	icon_state = "holdout"
 	material = /decl/material/solid/metal/steel
 	caliber = CALIBER_PISTOL_SMALL
