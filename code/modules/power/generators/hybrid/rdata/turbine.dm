@@ -11,6 +11,7 @@
 
 /obj/machinery/reactor_monitor/turbine/tgui_data(mob/user)
 	var/obj/machinery/multitile/steam_generator/sg = reactor_components["steam_generator"]
+	var/obj/machinery/multitile/condenser/cond = reactor_components["condenser"]
 	var/obj/machinery/atmospherics/binary/regulated_valve/current_valve = rcontrol.reactor_valves["T-V-EXCHANGER"]
 	var/list/data = list(
 		"turb1" = list(
@@ -55,7 +56,7 @@
 		"sg_level" = round((0.5 - (sg.air_contents.available_volume / sg.air_contents.volume)) * 5, 0.1),
 		"sg_header_temp" = round(current_valve.air2.temperature),
 		"steam_quality" = rcontrol.get_meter_steam_quality("T-M-TURB IN"),
-		"condenser_pressure" = rcontrol.get_meter_pressure("T-M-TURB EX")
+		"condenser_pressure" = round(cond.air_contents.pressure, 0.01)
 
 	)
 	return data

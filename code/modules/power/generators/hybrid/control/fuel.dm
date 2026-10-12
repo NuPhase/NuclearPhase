@@ -13,7 +13,7 @@
 	var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
 	for(var/id_to_check in ids_to_check)
 		var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]
-		fuelport.injection_ratio = injection_setting
+		fuelport.injection_ratio = injection_setting/3
 
 /obj/machinery/reactor_button/fuel_select
 	name = "FUEL V-SELECT"
@@ -24,12 +24,12 @@
 		return
 	..()
 	var/list/ids_to_check = tgui_input_checkboxes(user, "Select the fuel ports to affect.", "Fuel Port Selection", list("fuel1", "fuel2", "fuel3"))
-	if(!LAZYLEN(ids_to_check))
+	if(!LAZYLEN(ids_to_check[1]))
 		return
 	var/injection_setting = tgui_input_number(user, "Select a new injection speed in milligrams per second.", "Fuel Injection Speed", min_value = 0, max_value = 1000)
 	if(isnull(injection_setting))
 		return
-	for(var/id_to_check in ids_to_check)
+	for(var/id_to_check in ids_to_check[1])
 		rcontrol.make_log("FUEL INJECTION FOR [id_to_check] SET TO [injection_setting]mg/s.", 1)
 		var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]
 		fuelport.injection_ratio = injection_setting

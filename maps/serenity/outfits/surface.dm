@@ -1,6 +1,5 @@
 /decl/hierarchy/outfit/hefamilitant
 	name = "HEFA Militant"
-	abstract_type = /decl/hierarchy/outfit/hefamilitant
 	uniform = /obj/item/clothing/under/tactical
 	glasses = /obj/item/clothing/glasses/tacgoggles
 	gloves = /obj/item/clothing/gloves/thick
@@ -12,7 +11,6 @@
 
 /decl/hierarchy/outfit/lima_guard
 	name = "LIMA Guard"
-	abstract_type = /decl/hierarchy/outfit/lima_guard
 	uniform = /obj/item/clothing/under/tactical/lima_guard
 	glasses = /obj/item/clothing/glasses/tacgoggles
 	gloves = /obj/item/clothing/gloves/thick/combat

@@ -31,7 +31,7 @@
 	name = "Reduced Power Operation"
 	code = "P12"
 	var/target_power = 1500000000
-	var/target_temp = 110000000 // D-T best temp
+	var/target_temp = 150000000 // D-T best temp
 
 /decl/control_program/reduced_power/can_initiate()
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
@@ -49,7 +49,7 @@
 		var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
 		for(var/id_to_check in ids_to_check)
 			var/obj/machinery/reactor_fuelport/fuelport = reactor_components[id_to_check]
-			fuelport.injection_ratio = 5 //mg/s
+			fuelport.injection_ratio = 3 //mg/s
 	else
 		var/list/ids_to_check = list("fuel1", "fuel2", "fuel3")
 		for(var/id_to_check in ids_to_check)

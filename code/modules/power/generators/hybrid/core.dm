@@ -1,5 +1,5 @@
 #define RADS_PER_NEUTRON 125000
-#define WATTS_PER_KPA 100
+#define WATTS_PER_KPA 500
 #define REACTOR_SHIELDING_DIVISOR 20
 #define REACTOR_MODERATOR_POWER 0.27
 #define REACTOR_FIELD_VOLUME 50000
@@ -68,6 +68,7 @@
 	var/energy_rate = 0 // The rate of change in thermal energy. eV/tick
 	var/energy_rate_lerp = 0 // Former but interpolated
 
+	var/fusion_heat_radiation = 0
 	var/radiative_heat_loss = 0 // The amount of energy lost to radiation in the last tick
 
 	var/moderator_position = 0 //0-1. 1 means it scatters most of the neutrons.
@@ -141,6 +142,7 @@
 #undef ELM_HEAT_LOSS_COEF
 
 /obj/machinery/power/hybrid_reactor/Process()
+	radiative_heat_loss = 0
 	if(containment_field.total_moles) // Don't process if we don't have anything
 		process_fusion(containment_field)
 		var/list/returned_list = containment_field.handle_nuclear_reactions(slow_neutrons, fast_neutrons, FALSE)
@@ -149,12 +151,17 @@
 			fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 		process_plasma_instability()
 
+	handle_control_panels()
+	containment_field.add_thermal_energy(-radiative_heat_loss)
+	radiative_heat_loss += fusion_heat_radiation
+	if(radiative_heat_loss > 1000000)
+		damage_blanket(radiative_heat_loss / 250000000000)
+		damage_divertor(radiative_heat_loss / 100000000000000)
+
 	if(containment && vacuum_pump)
 		var/turf/T = get_turf(superstructure)
 		var/datum/gas_mixture/environment = T.return_air()
 		environment.merge(containment_field.remove(1))
-
-	handle_control_panels()
 
 	update_icon()
 
@@ -198,7 +205,7 @@
 		meltdown_state = TRUE
 		start_meltdown()
 
-#define RADIATIVE_LOSS_K 0.00000000000000000000000004
+#define RADIATIVE_LOSS_K 50000000000000
 /obj/machinery/power/hybrid_reactor/proc/handle_control_panels()
 	if(slow_neutrons || fast_neutrons)
 		var/slow_neutrons_lost = slow_neutrons * (1.01 - reflector_position)
@@ -214,11 +221,7 @@
 	if(containment_field.temperature < T100C)
 		radiative_heat_loss = 0
 		return
-	radiative_heat_loss = (containment_field.get_mass() * containment_field.volume * containment_field.temperature**4 * RADIATIVE_LOSS_K) * (1.1 - reflector_position)
-	containment_field.add_thermal_energy(-radiative_heat_loss)
-	if(radiative_heat_loss > 1000000)
-		damage_blanket(radiative_heat_loss / 250000000000)
-		damage_divertor(radiative_heat_loss / 100000000000000)
+	radiative_heat_loss += (((containment_field.get_mass()**2)/containment_field.volume) * sqrt(containment_field.temperature) * RADIATIVE_LOSS_K) * (1.1 - (reflector_position * blanket_integrity))
 #undef RADIATIVE_LOSS_K
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
@@ -241,7 +244,7 @@
 		var/temp_factor = (containment_field.temperature - cur_reaction.minimum_temperature) / (cur_reaction.minimum_temperature/cur_reaction.s_factor)
 		var/damp_factor = 0.82 * temp_factor**2.1
 		var/instability_factor = ((0.05/(0.4*cur_reaction.s_factor)) * sin(1000*cur_reaction.s_factor*temp_factor) * cos(300*cur_reaction.s_factor*temp_factor)) + (0.18/cur_reaction.s_factor)
-		var/uptake_moles = (temp_factor**2 - damp_factor + instability_factor) * minimum_reactant * REACTOR_REACTIVITY_MULT
+		var/uptake_moles = (temp_factor**2 - damp_factor + instability_factor) * ((minimum_reactant**2)/containment_field.volume) * REACTOR_REACTIVITY_MULT
 		uptake_moles = min(uptake_moles, minimum_reactant)
 		if(uptake_moles < 0)
 			continue
@@ -253,7 +256,7 @@
 		var/resulting_mass = (uptake_moles * 0.5 * first_reactant.molar_mass) + (uptake_moles * 0.5 * second_reactant.molar_mass)
 		containment_field.adjust_gas(cur_reaction.product, resulting_mass / product.molar_mass)
 		var/energy_release = cur_reaction.mean_energy * uptake_moles
-		containment_field.add_thermal_energy(energy_release)
+		containment_field.add_thermal_energy(energy_release * 0.1)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
 		fusion_mass_flux += uptake_moles
 		fusion_reaction_fractions[cur_reaction_type] = uptake_moles
@@ -264,6 +267,7 @@
 		fusion_reaction_fractions[key] /= fusion_mass_flux
 	for(var/key in fusion_energy_fractions)
 		fusion_energy_fractions[key] /= total_energy_release
+	fusion_heat_radiation = total_energy_release * 0.9 // 10% go to plasma temp, 90% go to radiation
 	fusion_mass_flux *= containment_field.specific_mass()
 	fusion_mass_flux *= 1000000
 	plasma_instability += xray_flux * 0.01
@@ -450,11 +454,11 @@
 	blanket_integrity = Clamp(blanket_integrity - amount * 0.01 * (blanket_integrity + 0.1), 0, 1)
 	switch(blanket_integrity)
 		if(0.0 to 0.1)
-			containment_field.adjust_gas(/decl/material/solid/boron, amount * 0.09)
+			containment_field.adjust_gas(/decl/material/solid/boron, amount * 0.009)
 		if(0.1 to 0.5)
-			containment_field.adjust_gas(/decl/material/solid/silicon, amount * 0.035)
+			containment_field.adjust_gas(/decl/material/solid/silicon, amount * 0.0035)
 		if(0.5 to 1.0)
-			containment_field.adjust_gas(/decl/material/solid/metal/tungsten, amount* 0.005)
+			containment_field.adjust_gas(/decl/material/solid/metal/tungsten, amount* 0.0005)
 
 /obj/machinery/power/hybrid_reactor/proc/damage_divertor(amount)
 	divertor_integrity = Clamp(divertor_integrity - amount * 0.01 * (divertor_integrity + 0.1), 0, 1)

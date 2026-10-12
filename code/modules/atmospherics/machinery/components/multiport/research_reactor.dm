@@ -1,6 +1,6 @@
 /obj/machinery/multitile/research_reactor
 	name = "research reactor"
-	desc = "A reactor made to conduct research on fuel and neutron dynamics."
+	desc = "A reactor made to conduct research on fuel and neutron dynamics. Don't kick, may cause SCRAM."
 	icon = 'icons/obj/machines/research_reactor.dmi'
 	icon_state = "normal"
 	layer = STRUCTURE_LAYER
@@ -47,6 +47,7 @@
 	rod_position = Interpolate(rod_position, target_rod_position, 0.1)
 	process_fission()
 	process_cooling()
+	check_scram()
 
 /obj/machinery/multitile/research_reactor/proc/process_cooling()
 	var/datum/gas_mixture/coolant_in = port_gases["Coolant In"]
@@ -101,7 +102,7 @@
 	return list(
 		"actualRodPosition" = rod_position,
 		"targetRodPosition" = target_rod_position,
-		"srm" = Clamp(round(total_neutrons * 30000000000), 0, 3000), // yep
+		"srm" = Clamp(round(total_neutrons * 300000000000), 0, 3000), // yep
 		"neutronK" = round(total_neutrons/last_neutrons, 0.001),
 		"fastFraction" = round(fast_neutrons / total_neutrons, 0.01),
 		"fuelTemperature" = round(loaded_core.air_contents.temperature - 273.15, 0.1),
@@ -115,11 +116,33 @@
 	. = ..()
 	switch(action)
 		if("scram")
-			target_rod_position = 0
+			scram()
 			return TRUE
 		if("change_target_rod")
 			target_rod_position = Clamp(params["target_rod"], 0, 1)
 			return TRUE
+
+/obj/machinery/multitile/research_reactor/attackby(obj/item/I, mob/user)
+	. = ..()
+	scram("Earthquake detected") // bumping panel may cause trip meme
+
+/obj/machinery/multitile/research_reactor/proc/check_scram()
+	if(thermal_power > 100000 && (total_neutrons/last_neutrons) > 1.2)
+		scram("Prompt criticality")
+		return
+	if(thermal_power > 15000000)
+		scram("High power")
+		return
+	if(loaded_core.air_contents.temperature > 1500)
+		scram("High temperature")
+		return
+
+/obj/machinery/multitile/research_reactor/proc/scram(reason)
+	if(target_rod_position == 1)
+		return
+	playsound(loc, 'sound/machines/switchbuzzer.ogg', 100)
+	target_rod_position = 1
+	radio_announce("Research reactor trip. Reason: [reason].", "RPS")
 
 /obj/machinery/multitile/research_reactor/proc/assemble_tgui_gas_list()
 	var/gas_list = list()
