@@ -33,7 +33,7 @@
 #define  ARMOR_RAD_MINOR			10
 #define  ARMOR_RAD_SMALL			25
 #define  ARMOR_RAD_RESISTANT		90
-#define  ARMOR_RAD_SHIELDED			100
+#define  ARMOR_RAD_SHIELDED			99
 
 #define  ARMOR_BOMB_MINOR			10
 #define  ARMOR_BOMB_PADDED			30
