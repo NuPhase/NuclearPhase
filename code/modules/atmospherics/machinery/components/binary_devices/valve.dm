@@ -51,7 +51,8 @@
 	if(pressure_delta < 0)
 		update_networks()
 		return
-	var/target_mole_flow = calculate_pressure_flow(pressure_delta, air2.volume) * open_to
+	var/target_mole_flow = calculate_pressure_flow(pressure_delta, air2.volume) + (air1.net_flow_mass / air1.specific_mass())
+	target_mole_flow *= open_to
 	var/mole_flow_diff = target_mole_flow - air1.total_moles
 	if(mole_flow_diff > 0)
 		air1.suction_moles = mole_flow_diff
