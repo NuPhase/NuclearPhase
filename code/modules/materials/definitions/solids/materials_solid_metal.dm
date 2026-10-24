@@ -434,6 +434,7 @@
 	reflectiveness = MAT_VALUE_MATTE
 	melting_point = 505.08
 	boiling_point = 2875
+	molar_mass = 0.11871
 	liquid_density = 6990
 	solid_density = 7289
 	latent_heat = 296100

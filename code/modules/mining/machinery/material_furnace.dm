@@ -272,6 +272,7 @@
 		return
 	if(istype(I, /obj/item/stack/material))
 		our_furnace.add_mat_stack(I)
+	our_furnace.add_special_item(I)
 	our_furnace.attackby(I, user)
 
 /obj/structure/arc_furnace_overlay/examine(mob/user)
@@ -324,7 +325,7 @@
 			if(use_power == POWER_USE_ACTIVE)
 				if(sound_token.sound.file == 'sound/machines/arcing_cooling.wav')
 					QDEL_NULL(sound_token)
-					sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_start.ogg', 50, 10)
+					sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_start.ogg', 100, 15, 5)
 				sound_token.SetVolume((get_conductivity_coefficient() / 1) * 70)
 			else
 				if(connected_canister)
@@ -339,7 +340,7 @@
 	else
 		if(powered(EQUIP))
 			if(use_power == POWER_USE_ACTIVE)
-				sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_start.ogg', 50, 10)
+				sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_start.ogg', 100, 15, 5)
 			else
 				sound_token = play_looping_sound(src, sound_id, 'sound/machines/arcing_cooling.wav', 50, 6)
 
@@ -421,6 +422,16 @@
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/add_mat_stack(obj/item/stack/material/mat_stack)
 	mat_stack_to_gas(mat_stack, connected_canister.air_contents)
+
+/obj/machinery/atmospherics/unary/furnace/arc/proc/add_special_item(obj/item/spec_item)
+	if(istype(spec_item, /obj/item/fission_fuel))
+		for(var/reagent_type in spec_item.reagents.reagent_volumes)
+			var/decl/material/mat = GET_DECL(reagent_type)
+			connected_canister.air_contents.adjust_gas(reagent_type, spec_item.reagents.reagent_volumes[reagent_type] / mat.molar_volume)
+		connected_canister.air_contents.adjust_gas(/decl/material/solid/metal/tungsten, 2175) // 400kg tungsten
+		connected_canister.air_contents.adjust_gas(/decl/material/solid/carbon, 16652) // 200kg carbon
+		qdel(spec_item)
+		return
 
 /obj/machinery/atmospherics/unary/furnace/arc/proc/heat_capacity()
 	. = heat_capacity

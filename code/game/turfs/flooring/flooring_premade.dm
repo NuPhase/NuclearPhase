@@ -40,6 +40,9 @@
 /turf/simulated/floor/concrete/very_black
 	color = COLOR_GRAY20
 
+/turf/simulated/floor/concrete/black/flooded
+	flooded = TRUE
+
 /turf/simulated/floor/concrete/black/surface
 	name = "road"
 	exterior_turf = TRUE

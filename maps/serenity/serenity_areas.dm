@@ -131,6 +131,18 @@
 		forced_ambience = null
 		description = "You feel a strong metal smell in the still air of the vast space that you've entered. The entire chamber perimeter is dimly lit by small red lights, as if they were placed there specifically to be a little more sane in such an inconceivable environment. Everything below is completely dark, looks like it goes really deep..."
 
+/area/serenity/shelter/engineering/reactor_fission
+	sound_env = LARGE_ENCLOSED
+	name = "Fission Reactor"
+	icon_state = "engine"
+
+/area/serenity/shelter/engineering/reactor_fission/power_change()
+	. = ..()
+	if(power_equip)
+		forced_ambience = list('sound/ambience/ambiatm1.ogg')
+	else
+		forced_ambience = null
+
 /area/serenity/shelter/engineering
 	name = "Engineering"
 	icon_state = "engineering"

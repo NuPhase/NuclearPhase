@@ -263,7 +263,7 @@
 	uid = "bromide87"
 	lore_text = "A radioactive isotope of Bromine. A common fission product, decays into krypton. A source of delayed neutrons."
 	fission_energy = 186000000000
-	fission_neutrons = 1
+	fission_neutrons = 0.0236
 	fission_products = list(/decl/material/gas/krypton = 1)
 	neutron_interactions = list(
 		"slow" = list(

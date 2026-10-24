@@ -89,7 +89,7 @@
 		/decl/material/solid/metal/nuclear_waste/transuranic = 0.02,
 		/decl/material/solid/metal/nuclear_waste/actinides = 0.01,
 		/decl/material/solid/iodine/isotope135 = 0.063,
-		/decl/material/liquid/bromide/isotope87 = 0.0006
+		/decl/material/liquid/bromide/isotope87 = 0.006
 	)
 	absorption_products = list(
 		/decl/material/solid/metal/neptunium = 1
@@ -228,7 +228,8 @@
 	fission_products = list(
 		/decl/material/solid/metal/nuclear_waste/high_level = 0.94,
 		/decl/material/solid/metal/nuclear_waste/actinides = 0.02,
-		/decl/material/solid/iodine/isotope135 = 0.065
+		/decl/material/solid/iodine/isotope135 = 0.065,
+		/decl/material/liquid/bromide/isotope87 = 0.007
 	)
 	neutron_production = 1200
 	neutron_absorption = 30
@@ -262,10 +263,9 @@
 	icon_base = 'icons/turf/walls/natural.dmi' // So we can have corium
 	table_icon_base = "stone"
 	icon_reinf = 'icons/turf/walls/reinforced_stone.dmi'
-	dissolves_into = list(
-		/decl/material/solid/metal/radium = 0.5,
-		/decl/material/solid/lithium = 0.5
-	)
+	abstract_type = /decl/material/solid/metal/nuclear_waste
+	solid_density = 10500
+	liquid_density = 10000
 
 // Rich with plutonium and americium, burns quickly in fusion conditions
 /decl/material/solid/metal/nuclear_waste/transuranic
@@ -277,19 +277,20 @@
 	color = "#d8881e"
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 5,
-			INTERACTION_ABSORPTION = 0.02,
-			INTERACTION_FISSION = 0.00002
+			INTERACTION_SCATTER = 10,
+			INTERACTION_ABSORPTION = 450,
+			INTERACTION_FISSION = 300
 		),
 		"fast" = list(
 			INTERACTION_SCATTER = 5,
-			INTERACTION_ABSORPTION = 0.013,
-			INTERACTION_FISSION = 0.15
+			INTERACTION_ABSORPTION = 1.0,
+			INTERACTION_FISSION = 1.5
 		)
 	)
 	fission_products = list(
 		/decl/material/solid/metal/nuclear_waste/high_level = 0.8
 	)
+	molar_mass = 0.240
 
 // Rich with long lived isotopes that burn slowly in fusion conditions
 /decl/material/solid/metal/nuclear_waste/high_level
@@ -301,19 +302,20 @@
 	color = "#704d1f"
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 3,
-			INTERACTION_ABSORPTION = 0.04,
-			INTERACTION_FISSION = 0.00001
+			INTERACTION_SCATTER = 6,
+			INTERACTION_ABSORPTION = 25,
+			INTERACTION_FISSION = 0.1
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 3,
-			INTERACTION_ABSORPTION = 0.017,
-			INTERACTION_FISSION = 0.04
+			INTERACTION_SCATTER = 4,
+			INTERACTION_ABSORPTION = 0.5,
+			INTERACTION_FISSION = 0.25
 		)
 	)
 	fission_products = list(
 		/decl/material/solid/metal/nuclear_waste/actinides = 0.8
 	)
+	molar_mass = 0.120
 
 // A collection of extremely long half-life isotopes. Can only be completely burned off in a particle accelerator.
 // Bring the nuclear caskets
@@ -324,14 +326,15 @@
 	color = "#4b371e"
 	neutron_interactions = list(
 		"slow" = list(
-			INTERACTION_SCATTER = 1.2,
-			INTERACTION_ABSORPTION = 0.07
+			INTERACTION_SCATTER = 10,
+			INTERACTION_ABSORPTION = 100
 		),
 		"fast" = list(
-			INTERACTION_SCATTER = 1.2,
-			INTERACTION_ABSORPTION = 0.026
+			INTERACTION_SCATTER = 5,
+			INTERACTION_ABSORPTION = 2
 		)
 	)
+	molar_mass = 0.240
 
 /decl/material/solid/metal/nuclear_waste/affect_blood(mob/living/carbon/human/M, removed, datum/reagents/holder)
 	. = ..()
@@ -347,3 +350,5 @@
 	lore_text = "High-actinide nuclear waste that has been made into a glass."
 	radioactivity = 0.3
 	color = "#2c2823"
+	solid_density = 2700
+	liquid_density = 2500

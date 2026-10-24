@@ -34,6 +34,8 @@ var/global/list/reactor_buttons = list()
 var/global/list/reactor_floodlights = list()
 var/global/list/laser_receivers = list()
 
+var/global/list/fission_reactor_components = list()
+
 var/global/list/surface_mobs = list()
 var/global/list/surface_areas = list()
 var/global/list/surface_turfs = list()
