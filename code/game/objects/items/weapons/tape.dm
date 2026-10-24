@@ -12,6 +12,7 @@
 	w_class          = ITEM_SIZE_SMALL
 	material         = /decl/material/solid/plastic
 	weight = 0.2
+	singular_weight = 0.005
 
 /obj/item/stack/tape_roll/can_split()
 	return FALSE
