@@ -1,5 +1,5 @@
 import { useBackend } from "../backend";
-import { AnimatedNumber, Blink, Box, LabeledList, Section, Flex, Button} from 'tgui-core/components';
+import { AnimatedNumber, Blink, Box, LabeledList, Section, Flex, Button, Chart } from 'tgui-core/components';
 import { Window } from "../layouts";
 
 type InputData = {
@@ -20,12 +20,25 @@ type InputData = {
   breath_alarm: number;
   heart_alarm: number;
   muted: boolean;
+  history: History;
 }
+
+type History = {
+  bpm: number[];
+  saturation: number[];
+  pressure: number[];
+};
 
 export const CardiacMonitor = (props: any) => {
   const { act, data } = useBackend<InputData>();
+  const bpmData = data.history.bpm.map((value, i) => [i, value]);
+  const saturationData = data.history.saturation.map((value, i) => [i, value]);
+  const pressureData = data.history.pressure.map((value, i) => [i, value]);
+  const maxBpmValue = Math.max(1, ...data.history.bpm);
+  const maxSaturationValue = Math.max(0, ...data.history.saturation);
+  const maxPressureValue = Math.max(1, ...data.history.pressure);
   return (
-    <Window width={800} height={715}>
+    <Window width={800} height={750}>
       <Window.Content>
         <Section fontSize = {1.5}>
           <Flex>
@@ -59,7 +72,41 @@ export const CardiacMonitor = (props: any) => {
                 RR: <AnimatedNumber value={data.breath_rate}></AnimatedNumber>/m
               </Box>
             </Flex.Item>
-            <Flex.Item></Flex.Item>
+            <Flex.Item width="70%">
+              <Box height="125px" position="relative" overflow="visible">
+                <Chart.Line
+                fillPositionedParent
+                p={1}
+                data={bpmData}
+                rangeX={[0, bpmData.length - 1]}
+                rangeY={[20, maxBpmValue]}
+                strokeColor="rgb(150, 39, 39)"
+                fillColor="rgba(150, 39, 39, 0.5)"
+                />
+              </Box>
+              <Box height="125px" position="relative" overflow="visible">
+                <Chart.Line
+                fillPositionedParent
+                p={1}
+                data={saturationData}
+                rangeX={[0, saturationData.length - 1]}
+                rangeY={[0, maxSaturationValue]}
+                strokeColor="rgb(39, 143, 150)"
+                fillColor="rgba(39, 128, 150, 0.5)"
+                />
+              </Box>
+              <Box height="125px" position="relative" overflow="visible">
+                <Chart.Line
+                fillPositionedParent
+                p={1}
+                data={pressureData}
+                rangeX={[0, pressureData.length - 1]}
+                rangeY={[20, maxPressureValue]}
+                strokeColor="rgb(150, 148, 39)"
+                fillColor="rgba(143, 150, 39, 0.5)"
+                />
+              </Box>
+            </Flex.Item>
           </Flex>
         </Section>
         <Section title = "Advanced Data" fontSize = {1.3}>

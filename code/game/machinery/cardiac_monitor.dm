@@ -53,6 +53,12 @@
 	var/metronome = TRUE
 	var/muted_until = 0
 
+	var/last_connected_name
+	var/list/history = list()
+	var/record_size = 150
+	var/record_interval = 2 SECONDS
+	var/next_record = 0
+
 	//1 - light alarm, 2 - heavy alarm
 	var/pulse_alarm = 0
 	var/oxygen_alarm = 0
@@ -61,6 +67,12 @@
 	var/heart_alarm = 0 //arrythmias
 
 	var/datum/beam/connection_beam
+
+/obj/machinery/cardiac_monitor/Initialize()
+	. = ..()
+	history["bpm"] = list()
+	history["saturation"] = list()
+	history["pressure"] = list()
 
 /obj/machinery/cardiac_monitor/MouseDrop(mob/living/carbon/human/over_object, src_location, over_location)
 	. = ..()
@@ -84,6 +96,11 @@
 			return
 		visible_message("\The [usr] connects \the [over_object] up to \the [src].")
 		attached = over_object
+		if(attached.real_name != last_connected_name)
+			history["bpm"] = list()
+			history["saturation"] = list()
+			history["pressure"] = list()
+		last_connected_name = attached.real_name
 		START_PROCESSING(SSobj, src)
 		playsound(src, 'sound/machines/heart_monitor/on.wav', 50, 0)
 		connection_beam = Beam(attached, "1-full", time = INFINITY, beam_color = COLOR_GREEN_GRAY)
@@ -202,6 +219,7 @@
 		visible_message(SPAN_WARNING("\The [src] announces: \"ECG electrodes disconnected!\""))
 		return PROCESS_KILL
 	update_icon()
+	record()
 	if(metronome)
 		var/obj/item/organ/internal/heart/H = attached?.get_organ(BP_HEART, /obj/item/organ/internal/heart)
 		var/datum/timedevent/timer = gettimer(pulse_loop.timerid, SStimer)
@@ -213,6 +231,22 @@
 			timer.wait = 60 / cur_pulse * 10
 		else
 			timer.wait = 10000 //kinda bad
+
+/obj/machinery/cardiac_monitor/proc/record()
+	if(world.time >= next_record)
+		next_record = world.time + record_interval
+		var/list/bpm = history["bpm"]
+		bpm += attached.bpm
+		if(length(bpm) > record_size)
+			bpm.Cut(1, 2)
+		var/list/saturation = history["saturation"]
+		saturation += round(CLAMP01(attached.get_blood_saturation() * attached.get_blood_perfusion()) * 100)
+		if(length(saturation) > record_size)
+			saturation.Cut(1, 2)
+		var/list/pressure = history["pressure"]
+		pressure += attached.meanpressure
+		if(length(pressure) > record_size)
+			pressure.Cut(1, 2)
 
 /obj/machinery/cardiac_monitor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -251,7 +285,8 @@
 		"pressure_alarm" = pressure_alarm,
 		"breath_alarm" = breath_alarm,
 		"heart_alarm" = heart_alarm,
-		"muted" = world.time < muted_until
+		"muted" = world.time < muted_until,
+		"history" = history
 	)
 
 	if(attached.mcv > 800)
