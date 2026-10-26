@@ -131,6 +131,13 @@
 	material = /decl/material/solid/metal/aluminium
 	reinf_material = /decl/material/solid/cloth
 
+/obj/structure/bed/icu
+	name = "ICU bed"
+	desc = "An adjustable mechanized bed."
+	icon_state = "icu"
+	material_alteration = MAT_FLAG_ALTERATION_NONE
+	buckle_pixel_shift = list("x" = 0, "y" = 0, "z" = 11)
+
 /*
  * Roller beds
  */

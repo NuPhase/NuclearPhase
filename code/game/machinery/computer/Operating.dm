@@ -7,15 +7,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
 	var/mob/living/carbon/human/victim = null
-	var/obj/machinery/optable/table = null
-
-/obj/machinery/computer/operating/Initialize()
-	. = ..()
-	for(var/D in list(NORTH,EAST,SOUTH,WEST))
-		table = locate(/obj/machinery/optable, get_step(src, D))
-		if (table)
-			table.computer = src
-			break
+	var/obj/structure/optable/table = null
 
 /obj/machinery/computer/operating/interface_interact(user)
 	interact(user)

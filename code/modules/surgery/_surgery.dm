@@ -169,7 +169,7 @@ var/global/list/surgery_tool_exception_cache = list()
 		if(!target.lying)
 			. -= 30
 		var/turf/T = get_turf(target)
-		if(locate(/obj/machinery/optable, T))
+		if(locate(/obj/structure/optable, T))
 			. -= 0
 		else if(locate(/obj/structure/bed, T))
 			. -= 5
@@ -234,7 +234,7 @@ var/global/list/surgery_tool_exception_cache = list()
 	// We didn't find a surgery, or decided not to perform one.
 	if(!istype(S))
 		// If we're on an optable, we are protected from some surgery fails. Bypass this for some items (like health analyzers).
-		if((locate(/obj/machinery/optable) in get_turf(M)) && user.a_intent == I_HELP)
+		if((locate(/obj/structure/optable) in get_turf(M)) && user.a_intent == I_HELP)
 			// Keep track of which tools we know aren't appropriate for surgery on help intent.
 			if(global.surgery_tool_exception_cache[type])
 				return FALSE
@@ -281,7 +281,7 @@ var/global/list/surgery_tool_exception_cache = list()
 //check if mob is lying down on something we can operate him on.
 /proc/can_operate(mob/living/carbon/M, mob/living/carbon/user)
 	var/turf/T = get_turf(M)
-	if(locate(/obj/machinery/optable, T))
+	if(locate(/obj/structure/optable, T))
 		. = OPERATE_IDEAL
 	else if(locate(/obj/structure/table, T))
 		. = OPERATE_OKAY

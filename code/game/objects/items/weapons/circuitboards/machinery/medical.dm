@@ -1,16 +1,3 @@
-/obj/item/stock_parts/circuitboard/optable
-	name = "circuitboard (operating table)"
-	build_path = /obj/machinery/optable
-	board_type = "machine"
-	origin_tech = @'{"engineering":1,"biotech":3,"programming":3}'
-	req_components = list(
-		/obj/item/stock_parts/scanning_module = 1,
-		/obj/item/stock_parts/manipulator = 2,
-		/obj/item/stock_parts/capacitor  = 1)
-	additional_spawn_components = list(
-		/obj/item/stock_parts/power/apc/buildable = 1
-	)
-
 /obj/item/stock_parts/circuitboard/bodyscanner
 	name = "circuitboard (body scanner)"
 	build_path = /obj/machinery/bodyscanner

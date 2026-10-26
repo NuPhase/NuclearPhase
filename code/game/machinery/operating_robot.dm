@@ -1,15 +1,23 @@
 /obj/machinery/operating_robot
 	name = "operating robot"
 	desc = "An extremely complex operating robot for surgery. It uses high-precision tools that may need frequent replacement."
-	icon = 'icons/obj/artillery.dmi'
-	icon_state = "pointdefense"
+	icon = 'icons/obj/machines/operating_robot.dmi'
+	icon_state = "base"
+	layer = ABOVE_HUMAN_LAYER
+	pixel_x = -32
+	bound_x = -32
+	bound_width = 96
 	density = 1
 	anchored = TRUE
 	active_power_usage = 7000
-	obj_flags = OBJ_FLAG_ANCHORABLE
 	var/tools_condition = 150 //0-150. At below 100 will cause secondary damage during operations.
 	var/operating = null //reference to a mob we're currently operating
 	var/mythical_instrument = new /obj/item/incision_manager
+
+/obj/machinery/operating_robot/Destroy()
+	. = ..()
+	operating = null
+	QDEL_NULL(mythical_instrument)
 
 /obj/machinery/operating_robot/examine(mob/user)
 	. = ..()
@@ -33,12 +41,15 @@
 	if(!powered(EQUIP))
 		to_chat(user, SPAN_NOTICE("\The [src] doesn't have power."))
 		return
+	set_overlay("lasers")
 	var/chosen_bodypart = tgui_input_list(user, "Select a body part", "Bodypart Selection", all_limb_tags)
 	if(!chosen_bodypart)
+		set_overlay(null)
 		return
 	var/mob/surgery_target = find_target()
 	if(!surgery_target)
 		to_chat(user, "[SPAN_NOTICE("\The [src] couldn't find a target to operate on.")] [SPAN_INFO("Please make sure the patient is either attached to a surface or lying down.")]")
+		set_overlay(null)
 		return
 	var/possible_steps = list()
 	for(var/step_decl_type in subtypesof(/decl/surgery_step))
@@ -48,13 +59,22 @@
 	var/decl/surgery_step/chosen_operation = tgui_input_list(user, "Select a surgery operation.", "Operation Selection", possible_steps)
 	chosen_operation = possible_steps[chosen_operation]
 	if(!chosen_operation)
+		set_overlay(null)
 		return
 	operating = surgery_target
+	set_overlay("lights")
 	if(!conduct_operation(surgery_target, chosen_operation, chosen_bodypart))
 		visible_message(SPAN_WARNING("\The [src] has failed to conduct surgery. Please contact a system administrator."))
 	else
 		visible_message(SPAN_NOTICE("\The [src] finishes operating."))
+	set_overlay(null)
 	operating = null
+
+/obj/machinery/operating_robot/proc/set_overlay(state)
+	cut_overlays()
+	if(!state)
+		return
+	add_overlay(emissive_overlay(icon, state))
 
 /obj/machinery/operating_robot/proc/find_target()
 	for(var/mob/living/carbon/human/H in range(1, get_turf(src)))

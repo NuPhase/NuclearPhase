@@ -8,9 +8,6 @@
 /datum/fabricator_recipe/imprinter/circuit/oriontrail
 	path = /obj/item/stock_parts/circuitboard/arcade/orion_trail
 
-/datum/fabricator_recipe/imprinter/circuit/optable
-	path = /obj/item/stock_parts/circuitboard/optable
-
 /datum/fabricator_recipe/imprinter/circuit/bioprinter
 	path = /obj/item/stock_parts/circuitboard/bioprinter
 

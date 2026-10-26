@@ -21,6 +21,12 @@
 	},
 /turf/simulated/floor/concrete/black,
 /area/hallway)
+"aQ" = (
+/obj/structure/bed/icu{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/hallway)
 "aS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue,
 /turf/simulated/floor/tiled/monotile,
@@ -119,7 +125,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "dE" = (
-/obj/machinery/optable,
+/obj/structure/optable,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "dG" = (
@@ -242,7 +248,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "he" = (
-/obj/structure/bed,
+/obj/structure/optable,
+/obj/machinery/operating_robot,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "hj" = (
@@ -827,6 +834,13 @@
 /obj/item/stack/ore/bauxite,
 /obj/item/stack/ore/bauxite,
 /turf/simulated/floor/tiled/white/monotile,
+/area/hallway)
+"xT" = (
+/obj/machinery/cardiac_monitor,
+/obj/structure/bed/icu{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway)
 "xW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
@@ -3862,10 +3876,10 @@ Bs
 Bs
 EM
 Bs
-he
-JH
-he
 co
+xT
+JH
+aQ
 fa
 ck
 Bs
@@ -4258,7 +4272,7 @@ ou
 EM
 In
 Bs
-Bs
+he
 Bs
 EM
 "}

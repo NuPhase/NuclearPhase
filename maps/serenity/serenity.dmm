@@ -1417,9 +1417,6 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/admin/annex)
 "aMW" = (
-/obj/machinery/medical_scanner{
-	anchored = 1
-	},
 /obj/effect/floor_decal/corner/red/border{
 	dir = 9
 	},
@@ -2097,12 +2094,11 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/mining/drill)
 "bck" = (
-/obj/structure/bed/padded,
 /obj/structure/iv_drip{
 	pixel_y = 16;
 	pixel_x = -8
 	},
-/obj/item/bedsheet/medical,
+/obj/structure/bed/icu,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/icu)
 "bcn" = (
@@ -19114,10 +19110,11 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/habitationdeck/freezer)
 "jsc" = (
-/obj/machinery/optable,
+/obj/structure/optable,
 /obj/effect/floor_decal/corner/red/border{
 	dir = 1
 	},
+/obj/machinery/operating_robot,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_one)
 "jsf" = (
@@ -26304,9 +26301,6 @@
 /turf/simulated/floor/plating,
 /area/serenity/shelter/mining/processing)
 "neZ" = (
-/obj/machinery/medical_scanner{
-	pixel_x = -12
-	},
 /obj/effect/floor_decal/corner/red/border{
 	dir = 5
 	},
@@ -26831,10 +26825,11 @@
 /turf/simulated/floor/tiled/dark/textured,
 /area/serenity/shelter/entrance_zone)
 "nsJ" = (
-/obj/machinery/optable,
+/obj/structure/optable,
 /obj/effect/floor_decal/corner/red/border{
 	dir = 1
 	},
+/obj/machinery/operating_robot,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_two)
 "nsQ" = (
@@ -36474,11 +36469,9 @@
 /turf/simulated/floor/concrete/gray,
 /area/serenity/maintenance/sublevel_three)
 "rTn" = (
-/obj/machinery/operating_robot,
 /obj/effect/floor_decal/corner/red/border{
 	dir = 9
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_one)
 "rUc" = (
@@ -36934,12 +36927,13 @@
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/service_tunnels)
 "sdz" = (
-/obj/structure/bed/padded,
 /obj/structure/iv_drip{
 	pixel_y = 16;
 	pixel_x = 8
 	},
-/obj/item/bedsheet/medical,
+/obj/structure/bed/icu{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/icu)
 "sdD" = (
@@ -38118,11 +38112,9 @@
 /turf/simulated/floor/concrete/black,
 /area/serenity/shelter/engineering/reactor)
 "sHw" = (
-/obj/machinery/operating_robot,
 /obj/effect/floor_decal/corner/red/border{
 	dir = 5
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_two)
 "sHA" = (
@@ -42519,7 +42511,7 @@
 /area/serenity/shelter/medbay/floor3)
 "uOi" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/optable,
+/obj/structure/optable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -43615,6 +43607,10 @@
 "vps" = (
 /obj/effect/floor_decal/corner/red/border{
 	dir = 8
+	},
+/obj/machinery/medical_scanner{
+	anchored = 1;
+	pixel_x = -12
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_one)
@@ -46627,6 +46623,9 @@
 "wKb" = (
 /obj/effect/floor_decal/corner/red/border{
 	dir = 4
+	},
+/obj/machinery/medical_scanner{
+	anchored = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/serenity/shelter/medbay/floor2/surgery_two)

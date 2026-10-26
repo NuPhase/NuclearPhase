@@ -8,7 +8,7 @@
 	verb."
 
 /datum/codex_entry/optable
-	associated_paths = list(/obj/machinery/optable)
+	associated_paths = list(/obj/structure/optable)
 	mechanics_text = "Click your target with Grab intent, then click on the table with an empty hand, to place them on it.<br>Click on table after that to enable knockout function."
 
 /datum/codex_entry/operating

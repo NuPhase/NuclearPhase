@@ -6,7 +6,7 @@ var/global/debug_tuning/debug_tuner = new
 	var/med_normal_mcv = 5000 // Baseline blood circulation volume
 	var/med_hemo_interp = 0.3 // Interpolation factor for hemodynamics
 
-	var/eng_reactivity_multiplier = 250
+	var/eng_reactivity_multiplier = 300
 
 
 
@@ -21,6 +21,6 @@ var/global/debug_tuning/debug_tuner = new
 
 #define NORMAL_MCV 5000
 #define HEMODYNAMICS_INTERPOLATE_FACTOR 0.3
-#define REACTOR_REACTIVITY_MULT 250
+#define REACTOR_REACTIVITY_MULT 300
 
 #endif
