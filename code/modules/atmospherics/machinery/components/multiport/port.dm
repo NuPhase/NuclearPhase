@@ -8,6 +8,7 @@
 	stat_immune = 0
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
 	var/obj/machinery/multitile/our_daddy
+	var/daddy_forced_flow = 0
 
 /obj/machinery/atmospherics/unary/multiport/Destroy()
 	. = ..()

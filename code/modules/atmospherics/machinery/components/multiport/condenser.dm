@@ -38,7 +38,7 @@
 	air_contents = new(150000)
 	air_contents.adjust_gas(/decl/material/gas/nitrogen, 1)
 	air_contents.adjust_gas(/decl/material/liquid/water, (150000 * 0.7) / 0.018)
-	air_contents.temperature = 350
+	air_contents.temperature = 330
 	reactor_components["condenser"] = src
 
 /obj/machinery/multitile/condenser/Process()
@@ -63,8 +63,8 @@
 	if((steam_inlet.pressure - air_contents.pressure) > 10)
 		air_contents.merge(steam_inlet.remove_ratio(1))
 
-	if(coolant_valve_coef)
-		var/datum/gas_mixture/coolant_pass = coolant_inlet.remove_ratio(coolant_valve_coef)
+	if(coolant_valve_coef && coolant_outlet.available_volume > 2000)
+		var/datum/gas_mixture/coolant_pass = coolant_inlet.remove_ratio(coolant_valve_coef*0.5)
 		air_contents.exchange_heat(coolant_pass)
 		coolant_outlet.merge(coolant_pass)
 

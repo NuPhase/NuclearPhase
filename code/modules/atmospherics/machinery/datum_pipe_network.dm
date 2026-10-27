@@ -27,8 +27,14 @@
 		update = 0
 		equalize_gases_vacuum(gases)
 		net_flow_mass = 0
-		for(var/obj/machinery/atmospherics/binary/pump/adv/P in normal_members) //TODO: ACCOUNT FOR DIRECTION
-			net_flow_mass += P.last_mass_flow
+		for(var/obj/machinery/atmospherics/binary/pump/adv/P in normal_members)
+			if(P.network_in_dir(P.dir) == src)
+				net_flow_mass += P.last_mass_flow
+		for(var/obj/machinery/atmospherics/binary/regulated_valve/V in normal_members)
+			if(V.network_in_dir(V.dir) == src)
+				net_flow_mass += V.forced_flow
+		for(var/obj/machinery/atmospherics/unary/multiport/M in normal_members)
+			net_flow_mass += M.daddy_forced_flow
 		for(var/datum/gas_mixture/gm in gases)
 			gm.net_flow_mass = net_flow_mass
 

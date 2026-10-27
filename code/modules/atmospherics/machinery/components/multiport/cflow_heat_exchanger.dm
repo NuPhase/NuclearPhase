@@ -57,6 +57,12 @@
 		transfer_moles = calculate_equalize_moles(source, sink, sink_network?.volume)
 	else
 		transfer_moles = calculate_pressure_flow(pressure_delta, sink.volume)
+	transfer_moles += source.net_flow_mass / source.specific_mass()
+	var/mole_deficit = transfer_moles - source.total_moles
+	if(mole_deficit > 0)
+		source.suction_moles = mole_deficit
+	else
+		source.suction_moles = 0
 	var/datum/gas_mixture/transferred_fluid = source.remove(transfer_moles)
 	process_gasmix(transferred_fluid)
 	sink.merge(transferred_fluid)

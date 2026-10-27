@@ -6,6 +6,7 @@
 	icon_state = "map_off"
 	level = 2
 	var/portvolume = 2000
+	var/forced_flow = 0
 	use_power = POWER_USE_IDLE
 	idle_power_usage = 120
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_WATER
@@ -47,6 +48,8 @@
 
 /obj/machinery/atmospherics/binary/regulated_valve/Process()
 	..()
+	if(!open_to)
+		return
 	var/pressure_delta = air1.pressure - air2.pressure
 	if(pressure_delta < 0)
 		update_networks()
@@ -60,6 +63,7 @@
 		air1.suction_moles = 0
 
 	air2.merge(air1.remove(target_mole_flow))
+	forced_flow = air1.net_flow_mass*0.9
 	update_networks()
 	update_icon()
 
