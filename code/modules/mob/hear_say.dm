@@ -1,6 +1,6 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = "says", var/decl/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/proc/hear_say(var/message, var/verb = "says", var/decl/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol, translated=FALSE)
 	if(!client)
 		return
 
@@ -75,6 +75,8 @@
 		if (language)
 			var/nverb = verb
 			if (say_understands(speaker, language))
+				if(!translated && speaker != src && text_needs_translation(message, get_preference_value(/datum/client_preference/autotranslate)))
+					SSautotranslate.request_translation(message, client, "Say", weakref(speaker))
 				var/skip = FALSE
 				if (isliving(src))
 					var/mob/living/L = src
@@ -89,6 +91,8 @@
 							nverb = verb
 			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, nverb)]</span>")
 		else
+			if(!translated && speaker != src && text_needs_translation(message, get_preference_value(/datum/client_preference/autotranslate)))
+				SSautotranslate.request_translation(message, client, "Say", weakref(speaker))
 			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)

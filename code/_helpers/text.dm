@@ -66,6 +66,16 @@
 
 	return input
 
+/proc/text_needs_translation(text, preference)
+	if(preference == PREF_NO)
+		return FALSE
+	if(preference == "EN")
+		var/regex/russian_regex = regex(@"[\u0400-\u04FF]")
+		return russian_regex.Find(text)
+	if(preference == "RU")
+		var/regex/english_regex = regex(@"[a-zA-Z]")
+		return english_regex.Find(text)
+
 //Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places after html_encode().
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -

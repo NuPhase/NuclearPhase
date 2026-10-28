@@ -74,6 +74,7 @@
 	initial_gas = null
 
 /turf/simulated/open/skyscraper
+	dynamic_lighting = FALSE
 
 /turf/simulated/open/flooded
 	name = "open water"

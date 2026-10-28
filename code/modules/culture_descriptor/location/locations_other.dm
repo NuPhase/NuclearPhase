@@ -25,7 +25,7 @@
 
 /decl/cultural_info/location/sirius/on_spawn(mob/living/carbon/human/H)
 	var/obj/item/organ/external/head = GET_EXTERNAL_ORGAN(H, BP_HEAD)
-	var/obj/item/implant/neural_link/installed_implant = new
+	var/obj/item/implant/neural_link/installed_implant = new(H)
 	installed_implant.imp_in = H
 	installed_implant.implanted = TRUE
 	installed_implant.part = head

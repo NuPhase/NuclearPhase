@@ -53,6 +53,9 @@ We have a very powerful computer system that allows our neural network to fully 
 		if(radiation > 500)
 			add_chemical_effect(CE_GLOWINGEYES, 1)
 
+/mob/living/carbon/human/synthetic/handle_nutrition()
+	return
+
 /mob/living/carbon/human/synthetic/handle_regular_status_updates()
 	if(!handle_some_updates())
 		return 0

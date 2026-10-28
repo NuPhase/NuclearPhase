@@ -46,3 +46,7 @@
 			receive_communication(C, target, "<font color='[ooc_color]'><span class='ooc'>[sent_message]</font></span>")
 		else
 			receive_communication(C, target, "<span class='ooc'><span class='[ooc_style]'>[sent_message]</span></span>")
+		if(target == C)
+			continue // don't translate our own message
+		if(text_needs_translation(message, target.get_preference_value(/datum/client_preference/autotranslate)))
+			SSautotranslate.request_translation(message, target, "OOC", weakref(C))

@@ -711,3 +711,11 @@ var/global/const/MAX_VIEW = 41
 		winset(src, "mapwindow.map", "right-click=false")
 		winset(src, "default.Shift", "is-disabled=true")
 		winset(src, "default.ShiftUp", "is-disabled=true")
+
+/client/proc/receive_ooc_message(message, weakref/sender)
+	var/decl/communication_channel/comm = GET_DECL(/decl/communication_channel/ooc)
+	var/client/C = sender.resolve()
+	if(!C)
+		return
+	var/sent_message = "[create_text_tag("ooc", "OOC:", src)] (AT) <EM>[C.key]:</EM> <span class='message'>[message]</span>"
+	comm.receive_communication(C, src, "<span class='ooc'><span class='everyone'>[sent_message]</span></span>")

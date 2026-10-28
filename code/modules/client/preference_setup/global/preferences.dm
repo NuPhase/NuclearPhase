@@ -144,6 +144,11 @@ var/global/list/_client_preferences_by_type
 		PREF_NEARBY
 	)
 
+/datum/client_preference/autotranslate
+	description = "Auto Translation"
+	key = "AUTOTRANSLATE"
+	options = list(PREF_NO, "EN", "RU")
+
 /datum/client_preference/language_display
 	description = "Display Language Names"
 	key = "LANGUAGE_DISPLAY"
