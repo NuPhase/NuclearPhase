@@ -64,7 +64,9 @@
 		air_contents.merge(steam_inlet.remove_ratio(1))
 
 	if(coolant_valve_coef && coolant_outlet.available_volume > 2000)
+		var/obj/machinery/atmospherics/unary/multiport/outlet_port = port_refs["Coolant OUT"]
 		var/datum/gas_mixture/coolant_pass = coolant_inlet.remove_ratio(coolant_valve_coef*0.5)
+		outlet_port.daddy_forced_flow = coolant_pass.total_moles * coolant_pass.specific_mass()
 		air_contents.exchange_heat(coolant_pass)
 		coolant_outlet.merge(coolant_pass)
 

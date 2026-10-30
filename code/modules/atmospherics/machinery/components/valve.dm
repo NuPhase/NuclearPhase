@@ -200,3 +200,19 @@
 		"valve_close" = /decl/public_access/public_method/close_valve,
 		"valve_toggle" = /decl/public_access/public_method/toggle_valve
 	)
+
+/obj/machinery/atmospherics/valve/digital/steam
+	name = "large isolation valve"
+	icon = 'icons/obj/atmospherics/components/binary/steam_valve.dmi'
+	icon_state = "valve0"
+
+/obj/machinery/atmospherics/valve/digital/steam/toggle()
+	. = ..()
+	playsound(loc, 'sound/machines/transformerswitch.ogg', 100, 1, 5)
+
+/obj/machinery/atmospherics/valve/digital/steam/open
+	open = TRUE
+	icon_state = "valve1"
+
+/obj/machinery/atmospherics/valve/digital/steam/on_update_icon()
+	icon_state = "valve[open]"

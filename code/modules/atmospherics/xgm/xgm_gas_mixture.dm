@@ -384,7 +384,7 @@ var/global/alist/cached_solid_volume_coefficient = alist()
 		if(gas_moles)
 			pressure_to_cache = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
 		else
-			pressure_to_cache = total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
+			pressure_to_cache = 0
 		var/alist/ratios = get_liquid_ratios()
 		for(var/gasid in liquids)
 			var/decl/material/mat = GET_DECL(gasid)

@@ -52,7 +52,7 @@
 	if(!controlled)
 		return
 	var/mob/living/silicon/robot/engineering/controlled_mob = controlled.resolve()
-	if(!controlled_mob)
+	if(!controlled_mob || !controlled_mob.ckey)
 		return
 	user.teleop = null
 	controlled_mob.controller = null

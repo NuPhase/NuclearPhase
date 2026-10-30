@@ -1939,13 +1939,6 @@
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/entrance_zone)
-"aZv" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 4;
-	name = "Steam to Turbines"
-	},
-/turf/simulated/wall/concrete/nano,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "aZw" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 9
@@ -4829,10 +4822,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/staircase)
-"cxS" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam,
-/turf/simulated/floor/concrete/light_gray,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "cyr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/steam{
 	dir = 2;
@@ -12937,13 +12926,6 @@
 	},
 /turf/simulated/floor/concrete/gray,
 /area/serenity/shelter/cargo)
-"guC" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	dir = 10;
-	name = "Steam to Turbines"
-	},
-/turf/simulated/floor/concrete/light_gray,
-/area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "guI" = (
 /obj/structure/door/sliding{
 	lock_data = list("ACCESS_SECURITY");
@@ -43321,9 +43303,8 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/serenity/shelter/admin/security)
 "vgA" = (
-/obj/machinery/atmospherics/pipe/simple/visible/steam{
-	name = "Wet Steam to Condenser";
-	dir = 8
+/obj/machinery/atmospherics/valve/digital/steam/open{
+	dir = 4
 	},
 /turf/simulated/floor/concrete,
 /area/serenity/shelter/engineering/reactor_operations)
@@ -48549,11 +48530,8 @@
 /turf/simulated/floor/concrete/light_gray,
 /area/serenity/maintenance/sublevel_two)
 "xGh" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 8;
-	name = "Condensate to Feed Pumps"
-	},
-/turf/simulated/wall/concrete/nano,
+/obj/machinery/atmospherics/valve/digital/steam/open,
+/turf/simulated/floor/concrete/light_gray,
 /area/serenity/shelter/engineering/service_tunnels/heat_exchanger)
 "xGr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers/layer3{
@@ -361656,22 +361634,22 @@ vFk
 fCJ
 qMP
 vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
-vND
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
+wWF
 wyn
 lRG
 nQY
@@ -361856,6 +361834,7 @@ uXZ
 uXZ
 qZG
 kxG
+xGh
 kxG
 kxG
 kxG
@@ -361863,11 +361842,10 @@ kxG
 kxG
 kxG
 kxG
-wVW
-uXZ
-uXZ
-uXZ
-lRG
+kxG
+kxG
+kxG
+wfm
 xJn
 wyn
 wWF
@@ -362057,11 +362035,11 @@ kxG
 kxG
 kxG
 wVW
-lRG
 uXZ
 uXZ
 uXZ
-lRG
+uXZ
+uXZ
 nQY
 wyn
 wWF
@@ -362251,11 +362229,11 @@ uXZ
 uXZ
 uXZ
 rqI
-lRG
 uXZ
 uXZ
 uXZ
-lRG
+uXZ
+uXZ
 xJn
 wyn
 wWF
@@ -362445,11 +362423,11 @@ xuU
 ofA
 kLt
 wQx
-guC
-cxS
-cxS
-cxS
-wfm
+uXZ
+uXZ
+uXZ
+uXZ
+uXZ
 aps
 wyn
 wWF
@@ -363026,8 +363004,8 @@ wyn
 pvC
 pvC
 uXZ
-aZv
-xGh
+rqI
+nQY
 wyn
 wyn
 wyn
@@ -363993,7 +363971,7 @@ kxG
 kxG
 bQF
 bQF
-kxG
+xGh
 kxG
 mgu
 uRm

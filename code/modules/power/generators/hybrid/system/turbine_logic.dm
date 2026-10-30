@@ -85,7 +85,7 @@
 
 /datum/reactor_control_system/proc/control_condenser()
 	var/obj/machinery/multitile/condenser/cond = reactor_components["condenser"]
-	var/temp_diff = cond.air_contents.temperature - 350
+	var/temp_diff = cond.air_contents.temperature - 330
 	cond.coolant_valve_coef = Clamp(temp_diff * 0.1, 0, 1)
 	return
 

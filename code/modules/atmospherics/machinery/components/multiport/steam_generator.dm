@@ -38,7 +38,7 @@
 	air_contents = new(300000)
 	air_contents.adjust_gas(/decl/material/gas/nitrogen, 10)
 	air_contents.adjust_gas(/decl/material/liquid/water, (300000 * 0.6) / 0.018)
-	air_contents.temperature = 550
+	air_contents.temperature = 400
 	air_contents.update_values()
 	reactor_components["steam_generator"] = src
 
@@ -64,10 +64,10 @@
 		var/obj/machinery/atmospherics/unary/multiport/outlet_port = port_refs["Steam OUT"]
 		var/datum/pipe_network/output = outlet_port.network_in_dir(outlet_port.dir)
 		var/target_moles = calculate_equalize_moles(air_contents, steam_outlet, output?.volume)
-		//target_moles = min(target_moles, air_contents.gas_moles*0.5)
+		target_moles = min(target_moles, air_contents.gas_moles*0.9)
 		steam_outlet.merge(air_contents.remove_phase(target_moles, MAT_PHASE_GAS))
 		outlet_port.daddy_forced_flow = target_moles * steam_outlet.specific_mass()
-		air_contents.add_thermal_energy(0, TRUE, TRUE, 0.999)
+		air_contents.add_thermal_energy(0, TRUE, TRUE, 0.2)
 
 	if(!air1.total_moles)
 		air_contents.add_thermal_energy(0, TRUE, TRUE, 0.01)
