@@ -11,6 +11,7 @@
 /decl/bodytype/human/female
 	name =                "Female"
 	icon_base =           'icons/mob/species/human/body_female.dmi'
+	blood_overlays =      'icons/mob/species/human/blood_overlays_female.dmi'
 	icon_postfix = 		  "-female"
 	lip_icon = 			  null
 	associated_gender =   FEMALE
