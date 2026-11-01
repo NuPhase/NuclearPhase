@@ -12,6 +12,7 @@
 	var/shattered = 0
 	var/list/ui_users
 
+	ignore_persistence = TRUE
 	startswith = list(
 		/obj/item/haircomb/random,
 		/obj/item/haircomb/brush,

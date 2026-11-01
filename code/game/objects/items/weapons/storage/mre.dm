@@ -13,6 +13,7 @@ MRE Stuff
 	open_sound = 'sound/effects/rip1.ogg'
 	var/main_meal = /obj/item/storage/mrebag
 	var/meal_desc = "This one is menu 1, meat pizza."
+	ignore_persistence = TRUE
 	startswith = list(
 	/obj/item/storage/mrebag/dessert,
 	/obj/item/storage/fancy/crackers,

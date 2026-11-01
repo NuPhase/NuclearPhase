@@ -4,7 +4,6 @@
 	icon = 'icons/obj/guns/pistol.dmi'
 	load_method = MAGAZINE
 	caliber = CALIBER_PISTOL
-	magazine_type = /obj/item/ammo_magazine/pistol
 	allowed_magazines = /obj/item/ammo_magazine/pistol
 	accuracy_power = 7
 	safety_icon = "safety"
@@ -29,7 +28,6 @@
 	silenced = 0
 	fire_delay = 4
 	origin_tech = @'{"combat":2,"materials":2,"esoteric":8}'
-	magazine_type = /obj/item/ammo_magazine/pistol/small
 	allowed_magazines = /obj/item/ammo_magazine/pistol/small
 
 /obj/item/gun/projectile/pistol/holdout/attack_hand(mob/user)

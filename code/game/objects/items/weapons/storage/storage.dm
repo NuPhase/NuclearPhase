@@ -27,6 +27,7 @@
 	//initializes the contents of the storage with some items based on an assoc list. The assoc key must be an item path,
 	//the assoc value can either be the quantity, or a list whose first value is the quantity and the rest are args.
 	var/list/startswith
+	var/ignore_persistence = FALSE
 	var/datum/storage_ui/storage_ui = /datum/storage_ui/default
 	var/opened = null
 	var/open_sound = null
@@ -394,7 +395,7 @@
 				var/qty = data[1]
 				var/list/argsl = data.Copy()
 				argsl[1] = src
-				if(!SSpersistence.loaded_item_pool || !mapload) //NO POOL???
+				if(!SSpersistence.loaded_item_pool || !mapload || ignore_persistence) //NO POOL???
 					for(var/i in 1 to qty)
 						new item_path(arglist(argsl))
 					continue
@@ -404,7 +405,7 @@
 					else
 						continue
 			else
-				if(!SSpersistence.loaded_item_pool || !mapload) //NO POOL???
+				if(!SSpersistence.loaded_item_pool || !mapload || ignore_persistence) //NO POOL???
 					for(var/i in 1 to (isnull(data)? 1 : data))
 						new item_path(src)
 					continue

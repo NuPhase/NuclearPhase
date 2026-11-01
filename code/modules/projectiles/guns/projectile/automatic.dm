@@ -10,7 +10,6 @@
 	slot_flags = SLOT_LOWER_BODY|SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/caseless/c11x25
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/smg/c11x25
 	allowed_magazines = /obj/item/ammo_magazine/smg/c11x25
 	accuracy_power = 7
 	one_hand_penalty = 2
@@ -46,7 +45,6 @@
 	ammo_type = /obj/item/ammo_casing/c6p8x51/fmj
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c6p8x51/fmj
 	allowed_magazines = list(/obj/item/ammo_magazine/c6p8x51/ap, /obj/item/ammo_magazine/c6p8x51/fmj, /obj/item/ammo_magazine/c6p8x51/hp)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
@@ -90,7 +88,6 @@
 	ammo_type = /obj/item/ammo_casing/caseless/snapdragon
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/snapdragon
 	allowed_magazines = list(/obj/item/ammo_magazine/snapdragon)
 	accuracy = 2
 	accuracy_power = 7
@@ -130,7 +127,6 @@
 	slot_flags = SLOT_LOWER_BODY
 	ammo_type = /obj/item/ammo_casing/pistol/small
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/pistol/small
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol/small, /obj/item/ammo_magazine/pistol/small/shock)
 	accuracy_power = 7
 	one_hand_penalty = 2

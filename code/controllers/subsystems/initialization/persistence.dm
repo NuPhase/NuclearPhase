@@ -32,10 +32,14 @@ SUBSYSTEM_DEF(persistence)
 										/obj/item/tank/firefighting,
 										/obj/item/chems/condiment,
 										/obj/item/storage/mirror,
-										/obj/random/mre,
+										/obj/random,
 										/obj/item/ammo_casing,
 										/obj/item/storage/internal, //how
-										/obj/item/towel) //Blacklisted items
+										/obj/item/towel,
+										/obj/item/fission_fuel,
+										/obj/item/chems/food/checker,
+										/obj/item/organ/external,
+										/obj/item/chems/pill) //Blacklisted items
 	var/list/item_pool_spawners = list() //An associative list of item pool spawners. Should look like this:
 										 //item_pool_spawners[type] = amount_of_spawners_of_that_type
 	var/list/fluid_pool = null

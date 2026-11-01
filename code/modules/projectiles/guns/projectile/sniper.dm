@@ -14,7 +14,6 @@
 	ammo_type = /obj/item/ammo_casing/shell
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c127x99
 	allowed_magazines = list(
 		/obj/item/ammo_magazine/c127x99,
 		/obj/item/ammo_magazine/c127x99/ap,
@@ -74,7 +73,6 @@
 	ammo_type = /obj/item/ammo_casing/shell
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c127x99
 	allowed_magazines = list(
 		/obj/item/ammo_magazine/c127x99,
 		/obj/item/ammo_magazine/c127x99/ap,
