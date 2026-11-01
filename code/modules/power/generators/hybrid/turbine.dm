@@ -89,9 +89,12 @@
 
 /obj/machinery/multitile/steam_turbine/Process()
 	var/datum/gas_mixture/air1 = port_gases[PORT_STEAM_IN]
+	var/datum/gas_mixture/air2 = port_gases[PORT_STEAM_OUT]
 
 	if(air1.total_moles)
 		process_steam()
+		if(water_grates_open)
+			air2.merge(air1.remove_phase(5000, MAT_PHASE_LIQUID))
 	else
 		total_mass_flow = 0
 		steam_velocity = 0

@@ -48,8 +48,10 @@
 	temperature += heat_transfer / heat_capacity
 
 /obj/machinery/multitile/cflow_heat_exchanger/proc/process_flow(datum/gas_mixture/source, datum/gas_mixture/sink, datum/pipe_network/sink_network)
-	var/pressure_delta = source.pressure - sink.pressure
-	if(pressure_delta < 0)
+	var/datum/pipeline/pp = sink_network.line_members[1]
+	var/sink_pressure = pp.air.pressure
+	var/pressure_delta = source.pressure - sink_pressure
+	if(pressure_delta <= 0)
 		return
 	var/transfer_moles = 0
 	if(source.gas_moles > source.total_moles * 0.1)

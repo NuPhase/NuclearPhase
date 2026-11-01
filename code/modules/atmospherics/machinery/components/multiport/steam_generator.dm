@@ -60,16 +60,19 @@
 	if(air_contents.pressure > water_outlet.pressure)
 		water_outlet.merge(air_contents.remove_phase(8000, MAT_PHASE_LIQUID))
 
-	if(air_contents.pressure - steam_outlet.pressure > 20)
-		var/obj/machinery/atmospherics/unary/multiport/outlet_port = port_refs["Steam OUT"]
-		var/datum/pipe_network/output = outlet_port.network_in_dir(outlet_port.dir)
+	var/obj/machinery/atmospherics/unary/multiport/outlet_port = port_refs["Steam OUT"]
+	var/datum/pipe_network/output = outlet_port.network_in_dir(outlet_port.dir)
+	outlet_port.daddy_forced_flow = 0
+	var/datum/pipeline/pp = output.line_members[1]
+	var/outlet_pressure = pp.air.pressure
+	if(air_contents.pressure - outlet_pressure > 20)
 		var/target_moles = calculate_equalize_moles(air_contents, steam_outlet, output?.volume)
 		target_moles = min(target_moles, air_contents.gas_moles*0.9)
 		steam_outlet.merge(air_contents.remove_phase(target_moles, MAT_PHASE_GAS))
 		outlet_port.daddy_forced_flow = target_moles * steam_outlet.specific_mass()
 		air_contents.add_thermal_energy(0, TRUE, TRUE, 0.2)
 
-	if(!air1.total_moles)
+	if(!air1.total_moles || air2.pressure > MAX_PUMP_PRESSURE)
 		air_contents.add_thermal_energy(0, TRUE, TRUE, 0.01)
 		air_contents.update_values()
 		return

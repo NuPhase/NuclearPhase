@@ -141,9 +141,9 @@
 	var/pressure_to_cache = 0
 	if(volume)
 		if(gas_moles)
-			pressure_to_cache = gas_moles * R_IDEAL_GAS_EQUATION * temperature / available_volume
+			pressure_to_cache = (max(gas_moles-suction_moles, gas_moles*0.01)) * R_IDEAL_GAS_EQUATION * temperature / available_volume
 		else
-			pressure_to_cache = total_moles * R_IDEAL_GAS_EQUATION * temperature / volume
+			pressure_to_cache = 0
 		var/alist/ratios = get_liquid_ratios()
 		for(var/gasid in liquids)
 			var/decl/material/mat = GET_DECL(gasid)
