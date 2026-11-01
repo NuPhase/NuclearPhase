@@ -165,7 +165,6 @@
 				h_b = 64 + (h_b - 64)*scale
 			var/scale_color = rgb(h_r, h_g, h_b)
 			color = scale_color
-			add_filter("glow",1, list(type="drop_shadow", color = scale_color, x = 0, y = 0, offset = 4, size = round(scale), blend_mode = BLEND_ADD))
 			set_light(min(3, scale*2.5), min(3, scale*2.5), scale_color)
 		else if(light_power)
 			set_light(0)

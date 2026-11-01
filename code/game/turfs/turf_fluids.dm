@@ -117,17 +117,18 @@
 			if(!QDELETED(other.reagents))
 				SSfluids.holders_to_update[other.reagents] = TRUE
 
-		var/obj/effect/overlay/T = new /obj/effect/overlay/space_wind(src)
-		var/ddir = get_dir(src, target)
-		T.dir = ddir
-		T.color = F.color
-		QDEL_IN(T, 10)
-		switch(ddir)
-			if(NORTH)
-				animate(T, pixel_y = 32, 10, easing = SINE_EASING)
-			if(SOUTH)
-				animate(T, pixel_y = -32, 10, easing = SINE_EASING)
-			if(WEST)
-				animate(T, pixel_x = -32, 10, easing = SINE_EASING)
-			if(EAST)
-				animate(T, pixel_x = 32, 10, easing = SINE_EASING)
+		if(amount > 10000)
+			var/obj/effect/overlay/T = new /obj/effect/overlay/space_wind(src)
+			var/ddir = get_dir(src, target)
+			T.dir = ddir
+			T.color = F.color
+			QDEL_IN(T, 10)
+			switch(ddir)
+				if(NORTH)
+					animate(T, pixel_y = 32, 10, easing = SINE_EASING)
+				if(SOUTH)
+					animate(T, pixel_y = -32, 10, easing = SINE_EASING)
+				if(WEST)
+					animate(T, pixel_x = -32, 10, easing = SINE_EASING)
+				if(EAST)
+					animate(T, pixel_x = 32, 10, easing = SINE_EASING)

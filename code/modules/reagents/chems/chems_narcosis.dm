@@ -6,6 +6,7 @@
 	metabolism = 0.05
 	overdose = 20
 	value = 1.5
+	scannable = TRUE
 	uid = "chem_propofol"
 	drug_category = DRUG_CATEGORY_PAIN_SLEEP
 
@@ -36,6 +37,7 @@
 	taste_description = "metallic"
 	color = "#962850"
 	metabolism = REM * 3
+	scannable = TRUE
 	overdose = REAGENTS_OVERDOSE
 	value = 1.5
 	uid = "chem_suxamethonium"

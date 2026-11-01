@@ -272,6 +272,7 @@
 	name = "electrolytes"
 	lore_text = "A mixture of vital electrolytes used to counter starvation and hyponatremia."
 	uid = "electrolytes"
+	scannable = TRUE
 	metabolism = 0.01
 
 /decl/material/liquid/srec_inhibitor
@@ -280,6 +281,7 @@
 	uid = "SREC_inhibitor"
 	metabolism = 0.0015
 	overdose = 50
+	scannable = TRUE
 	color = "#7700ff"
 
 /decl/material/liquid/srec_inhibitor/affect_blood(mob/living/M, removed, datum/reagents/holder)
@@ -300,6 +302,7 @@
 	euphoriant = 2
 	narcosis = 5
 	overdose = 2
+	scannable = TRUE
 
 /decl/material/liquid/neuroreparin/affect_blood(mob/living/M, removed, datum/reagents/holder)
 	. = ..()

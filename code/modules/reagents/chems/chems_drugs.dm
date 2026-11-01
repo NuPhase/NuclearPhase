@@ -235,6 +235,7 @@
 	lore_text = "Unrefined substance extracted from opium poppy flowers."
 	color = "#ccccff"
 	metabolism = REM * 0.2
+	scannable = TRUE
 	overdose = 60
 	uid = "chem_opium"
 	var/addictiveness = 10 //addiction gained per unit consumed

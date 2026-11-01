@@ -5,7 +5,7 @@
 	color = "#c1c1c1"
 	metabolism = REM * 0.1
 	overdose = 5
-	scannable = 1
+	scannable = TRUE
 	value = 1.5
 	uid = "chem_antibiotics"
 	var/strength = 0.3 //per unit
