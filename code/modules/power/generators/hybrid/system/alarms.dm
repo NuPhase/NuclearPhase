@@ -28,10 +28,11 @@
 /datum/reactor_control_system/proc/has_alarm(alarm_type)
 	return (alarm_type in alarm_list)
 
-/datum/reactor_control_system/proc/register_alarm(alarm_message, alarm_type, severity)
+/datum/reactor_control_system/proc/register_alarm(alarm_message, alarm_type, severity, logless)
 	if((alarm_type in alarm_list))
 		return // already have one
-	make_log(alarm_message, severity)
+	if(!logless)
+		make_log(alarm_message, severity, logless)
 	alarm_list[alarm_type] = severity
 
 /datum/reactor_control_system/proc/clear_alarm(alarm_type)

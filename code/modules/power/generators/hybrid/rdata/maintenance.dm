@@ -15,19 +15,36 @@
 
 /obj/machinery/reactor_monitor/maintenance/tgui_data(mob/user)
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	var/obj/machinery/rlaser/rlaser
 	var/las_energy_delta = 0
 	for(var/tag in reactor_components)
 		var/obj/machinery/rlaser/las = reactor_components[tag]
 		if(!istype(las, /obj/machinery/rlaser))
 			continue
+		rlaser = las
 		las_energy_delta += las.capacitor_charge * las.active_power_usage
 
 	var/list/data = list(
 		"loglist" = assemble_tgui_log_list(),
 		"projected_tdelta" = las_energy_delta / (rcore.containment_field.heat_capacity() + 1),
-		"fusion_mass_flux" = rcore.fusion_mass_flux
+		"laser_total_charge" = las_energy_delta,
+		"laser_charge_percent" = rlaser.capacitor_charge/LASER_MAX_CHARGE*100,
+		"laser_omode" = rlaser.omode,
+		"laser_nmode" = rlaser.nmode,
+		"fusion_mass_flux" = rcore.fusion_mass_flux,
+		"temperature" = rcore.containment_field.temperature,
+		"plasma_instability" = rcore.plasma_instability,
+		"graphs" = rcore.graphs,
+		"fractions" = assemble_tgui_fraction_list()
 	)
 	return data
+
+/obj/machinery/reactor_monitor/maintenance/proc/assemble_tgui_fraction_list()
+	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]
+	var/fraction_list = list()
+	for(var/reaction_name in rcore.fusion_energy_fractions)
+		fraction_list += list(list("name" = reaction_name, "energyFraction" = rcore.fusion_energy_fractions[reaction_name], "massFraction" = rcore.fusion_reaction_fractions[reaction_name]))
+	return fraction_list
 
 /obj/machinery/reactor_monitor/maintenance/tgui_static_data(mob/user)
 	var/obj/machinery/power/hybrid_reactor/rcore = reactor_components["core"]

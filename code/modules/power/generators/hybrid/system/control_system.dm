@@ -148,19 +148,19 @@
 
 
 	if(get_pump_flow_rate("F-CP 1") < 50)
-		register_alarm("REACTOR LOOP PUMP #1 FLOW LOW", "REACTOR LOOP PUMP #1 FLOW LOW", 1)
+		register_alarm("REACTOR LOOP PUMP #1 FLOW LOW", "REACTOR LOOP PUMP #1 FLOW LOW", 1, TRUE)
 	else
 		clear_alarm("REACTOR LOOP PUMP #1 FLOW LOW")
 	if(get_pump_flow_rate("F-CP 2") < 50)
-		register_alarm("REACTOR LOOP PUMP #2 FLOW LOW", "REACTOR LOOP PUMP #2 FLOW LOW", 1)
+		register_alarm("REACTOR LOOP PUMP #2 FLOW LOW", "REACTOR LOOP PUMP #2 FLOW LOW", 1, TRUE)
 	else
 		clear_alarm("REACTOR LOOP PUMP #2 FLOW LOW")
 	if(get_pump_flow_rate("T-CP 1") < 50)
-		register_alarm("TURBINE LOOP PUMP #1 FLOW LOW", "TURBINE LOOP PUMP #1 FLOW LOW", 1)
+		register_alarm("TURBINE LOOP PUMP #1 FLOW LOW", "TURBINE LOOP PUMP #1 FLOW LOW", 1, TRUE)
 	else
 		clear_alarm("TURBINE LOOP PUMP #1 FLOW LOW")
 	if(get_pump_flow_rate("T-CP 2") < 50)
-		register_alarm("TURBINE LOOP PUMP #2 FLOW LOW", "TURBINE LOOP PUMP #2 FLOW LOW", 1)
+		register_alarm("TURBINE LOOP PUMP #2 FLOW LOW", "TURBINE LOOP PUMP #2 FLOW LOW", 1, TRUE)
 	else
 		clear_alarm("TURBINE LOOP PUMP #2 FLOW LOW")
 

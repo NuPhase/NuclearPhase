@@ -21,7 +21,7 @@
 	name = "Full Power Operation"
 	code = "P11"
 	var/target_power = 3000000000
-	var/target_temp = 110000000 // D-T best temp
+	var/target_temp = 140000000 // D-T best temp
 
 /decl/control_program/full_power/can_initiate()
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]
@@ -31,7 +31,7 @@
 	name = "Reduced Power Operation"
 	code = "P12"
 	var/target_power = 1500000000
-	var/target_temp = 150000000 // D-T best temp
+	var/target_temp = 140000000 // D-T best temp
 
 /decl/control_program/reduced_power/can_initiate()
 	var/obj/machinery/power/hybrid_reactor/R = reactor_components["core"]

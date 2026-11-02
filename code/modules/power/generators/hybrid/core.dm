@@ -61,8 +61,11 @@
 	var/xray_flux = 0 // A direct measure of fusion speed.
 
 	var/fusion_mass_flux = 0 // mg/s of fusion
-	var/list/fusion_reaction_fractions = list() // reaction_decl = fraction of all uptake moles
-	var/list/fusion_energy_fractions = list() // reaction_decl = fraction of all energy output
+	var/list/fusion_reaction_fractions = list() // reaction name = fraction of all uptake moles
+	var/list/fusion_energy_fractions = list() // reaction name = fraction of all energy output
+	var/list/graphs = list()
+	var/record_interval = 20 SECONDS
+	var/next_record = 0
 
 	var/last_temperature = T0C
 	var/energy_rate = 0 // The rate of change in thermal energy. eV/tick
@@ -85,6 +88,9 @@
 
 /obj/machinery/power/hybrid_reactor/Initialize()
 	. = ..()
+	graphs["thermal_power"] = list()
+	graphs["field_energy"] = list()
+	graphs["energy_loss"] = list()
 	blanket_integrity = rand(50, 100) * 0.01
 	divertor_integrity = rand(50, 100) * 0.01
 	magnet_integrity = rand(90, 100) * 0.01
@@ -150,6 +156,7 @@
 			slow_neutrons = max(returned_list["slow_neutrons_changed"], 0)
 			fast_neutrons = max(returned_list["fast_neutrons_changed"], 0)
 		process_plasma_instability()
+		make_fusion_projections()
 
 	handle_control_panels()
 	containment_field.add_thermal_energy(-radiative_heat_loss)
@@ -190,7 +197,7 @@
 	if(containment)
 		field_power_consumption = containment_field.return_pressure() * WATTS_PER_KPA * (2 - magnet_integrity)
 		field_battery_charge = max(0, field_battery_charge - (field_power_consumption + balancing_magnet_power) * CELLRATE)
-		containment_field.add_thermal_energy((field_power_consumption + balancing_magnet_power) * CELLRATE) // magnet waste heat
+		containment_field.add_thermal_energy(field_power_consumption + balancing_magnet_power) // magnet waste heat
 	else
 		vent()
 	if(field_charging && powered(EQUIP) && MAX_MAGNET_CHARGE > field_battery_charge)
@@ -222,7 +229,6 @@
 		radiative_heat_loss = 0
 		return
 	radiative_heat_loss += (((containment_field.get_mass()**2)/containment_field.volume) * sqrt(containment_field.temperature) * RADIATIVE_LOSS_K) * (1.1 - (reflector_position * blanket_integrity))
-#undef RADIATIVE_LOSS_K
 
 /obj/machinery/power/hybrid_reactor/proc/process_fusion(datum/gas_mixture/containment_field)
 	xray_flux = 0
@@ -241,10 +247,7 @@
 			continue
 
 		var/minimum_reactant = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant])
-		var/temp_factor = (containment_field.temperature - cur_reaction.minimum_temperature) / (cur_reaction.minimum_temperature/cur_reaction.s_factor)
-		var/damp_factor = 0.82 * temp_factor**2.1
-		var/instability_factor = ((0.05/(0.4*cur_reaction.s_factor)) * sin(1000*cur_reaction.s_factor*temp_factor) * cos(300*cur_reaction.s_factor*temp_factor)) + (0.18/cur_reaction.s_factor)
-		var/uptake_moles = (temp_factor**2 - damp_factor + instability_factor) * ((minimum_reactant**2)/containment_field.volume) * REACTOR_REACTIVITY_MULT
+		var/uptake_moles = get_reaction_rate(minimum_reactant, containment_field.temperature, cur_reaction)
 		uptake_moles = min(uptake_moles, minimum_reactant)
 		if(uptake_moles < 0)
 			continue
@@ -259,8 +262,8 @@
 		containment_field.add_thermal_energy(energy_release * 0.1)
 		fast_neutrons += cur_reaction.free_neutron_moles * uptake_moles
 		fusion_mass_flux += uptake_moles
-		fusion_reaction_fractions[cur_reaction_type] = uptake_moles
-		fusion_energy_fractions[cur_reaction_type] = energy_release
+		fusion_reaction_fractions[cur_reaction.name] = uptake_moles
+		fusion_energy_fractions[cur_reaction.name] = energy_release
 		total_energy_release += energy_release
 		xray_flux += uptake_moles * 17400
 	for(var/key in fusion_reaction_fractions)
@@ -271,6 +274,47 @@
 	fusion_mass_flux *= containment_field.specific_mass()
 	fusion_mass_flux *= 1000000
 	plasma_instability += xray_flux * 0.01
+
+/obj/machinery/power/hybrid_reactor/proc/get_reaction_rate(minimum_reactant, plasma_temp, var/decl/thermonuclear_reaction/reaction)
+	var/temp_factor = (plasma_temp - reaction.minimum_temperature) / (reaction.minimum_temperature/reaction.s_factor)
+	var/damp_factor = 0.82 * temp_factor**2.1
+	var/instability_factor = ((0.05/(0.4*reaction.s_factor)) * sin(1000*reaction.s_factor*temp_factor) * cos(300*reaction.s_factor*temp_factor)) + (0.18/reaction.s_factor)
+	var/uptake_moles = (temp_factor**2 - damp_factor + instability_factor) * ((minimum_reactant**2)/containment_field.volume) * REACTOR_REACTIVITY_MULT
+	uptake_moles = min(uptake_moles, minimum_reactant)
+	return uptake_moles
+
+/obj/machinery/power/hybrid_reactor/proc/make_fusion_projections()
+	if(world.time >= next_record)
+		next_record = world.time + record_interval
+		var/list/t_power = graphs["thermal_power"]
+		t_power.Cut()
+		var/list/field_energy = graphs["field_energy"]
+		field_energy.Cut()
+		var/list/energy_loss = graphs["energy_loss"]
+		energy_loss.Cut()
+		for(var/temp_point in 90 to 490)
+			var/actual_temp = temp_point * 1000000
+			var/total_energy_release = 0
+			var/field_energy_release = 0
+			for(var/cur_reaction_type in subtypesof(/decl/thermonuclear_reaction))
+				var/decl/thermonuclear_reaction/cur_reaction = GET_DECL(cur_reaction_type)
+				if(!(cur_reaction.first_reactant in containment_field.gas))
+					continue
+				if(!(cur_reaction.second_reactant in containment_field.gas))
+					continue
+				if(cur_reaction.minimum_temperature > actual_temp)
+					continue
+				var/minimum_reactant = min(containment_field.gas[cur_reaction.first_reactant], containment_field.gas[cur_reaction.second_reactant])
+				var/uptake_moles = get_reaction_rate(minimum_reactant, actual_temp, cur_reaction)
+				uptake_moles = min(uptake_moles, minimum_reactant)
+				if(uptake_moles < 0)
+					continue
+				total_energy_release += cur_reaction.mean_energy * uptake_moles
+				field_energy_release += total_energy_release * 0.1
+			t_power += total_energy_release
+			field_energy += field_energy_release
+			energy_loss += (((containment_field.get_mass()**2)/containment_field.volume) * sqrt(actual_temp) * RADIATIVE_LOSS_K) * (1.1 - (reflector_position * blanket_integrity))
+#undef RADIATIVE_LOSS_K
 
 #define PASSIVE_INSTABILITY_DECAY 0.15 // coefficient
 /obj/machinery/power/hybrid_reactor/proc/process_plasma_instability()
