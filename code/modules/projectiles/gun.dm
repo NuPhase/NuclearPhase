@@ -192,7 +192,7 @@
 		return 0
 	if(!user.check_dexterity(DEXTERITY_WEAPONS))
 		return 0
-
+/* //TEST: we need to see if legacy bay aiming exists
 	if(bulk >= 1)
 		var/turf/past_target = locate(last_fire_coords[1], last_fire_coords[2], last_fire_coords[3])
 		var/turf/new_target = get_turf(target)
@@ -203,7 +203,7 @@
 			last_fire_coords[1] = new_target.x
 			last_fire_coords[2] = new_target.y
 			last_fire_coords[3] = new_target.z
-
+*/
 	var/mob/living/M = user
 	if(!safety() && world.time > last_safety_check + 5 MINUTES && !user.skill_check(SKILL_WEAPONS, SKILL_BASIC))
 		if(prob(30))

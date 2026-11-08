@@ -97,13 +97,13 @@
 		//Now applying sound
 		if(ear_safety)
 			if(ear_safety < 2 && get_dist(M, T) <= 2)
-				SET_STATUS_MAX(M, STAT_CONFUSE, 3)
+				//SET_STATUS_MAX(M, STAT_CONFUSE, 3)
 				SET_STATUS_MAX(M, STAT_TINNITUS, rand(0, 5))
 				SET_STATUS_MAX(M, STAT_DEAF, 10)
 
 		else if(get_dist(M, T) <= 2)
-			SET_STATUS_MAX(M, STAT_STUN, 3)
-			SET_STATUS_MAX(M, STAT_CONFUSE, 8)
+			//SET_STATUS_MAX(M, STAT_STUN, 3)
+			//SET_STATUS_MAX(M, STAT_CONFUSE, 8)
 			SET_STATUS_MAX(M, STAT_TINNITUS, rand(0, 5))
 			SET_STATUS_MAX(M, STAT_DEAF, 10)
 
