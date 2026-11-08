@@ -435,7 +435,7 @@
 
 /obj/item/storage/belt/holster/security/tactical/full
 	startswith = list(
-		/obj/item/ammo_magazine/c6p8x51/fmj = 3,
+		/obj/item/ammo_magazine/medium_rifle = 3,
 		/obj/item/telebaton = 1
 	)
 

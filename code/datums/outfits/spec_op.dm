@@ -53,7 +53,7 @@
 	id_type = /obj/item/card/id/syndicate
 	id_pda_assignment = "Mercenary"
 
-	backpack_contents = list(/obj/item/clothing/mask/gas/syndicate = 1, /obj/item/gun/projectile/automatic/smg = 1, /obj/item/ammo_magazine/smg/c11x25 = 2, /obj/item/gun/projectile/pistol/military_service = 1, /obj/item/ammo_magazine/pistol/srec = 2)
+	backpack_contents = list(/obj/item/clothing/mask/gas/syndicate = 1, /obj/item/gun/projectile/automatic/smg = 1, /obj/item/ammo_magazine/smg/light_pistol = 2, /obj/item/gun/projectile/pistol/military_service = 1, /obj/item/ammo_magazine/pistol/srec = 2)
 
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_RESET_EQUIPMENT
 

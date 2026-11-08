@@ -14,12 +14,13 @@
 	ammo_type = /obj/item/ammo_casing/shell
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/heavy_sniper
 	allowed_magazines = list(
-		/obj/item/ammo_magazine/c127x99,
-		/obj/item/ammo_magazine/c127x99/ap,
-		/obj/item/ammo_magazine/c127x99/tracer,
-		/obj/item/ammo_magazine/c127x99/tracer/heavy,
-		/obj/item/ammo_magazine/c127x99/tracer/explosive
+		/obj/item/ammo_magazine/heavy_sniper,
+		/obj/item/ammo_magazine/heavy_sniper/ap,
+		/obj/item/ammo_magazine/heavy_sniper/tracer,
+		/obj/item/ammo_magazine/heavy_sniper/tracer/heavy,
+		/obj/item/ammo_magazine/heavy_sniper/tracer/explosive
 	)
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
@@ -73,12 +74,13 @@
 	ammo_type = /obj/item/ammo_casing/shell
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/heavy_sniper
 	allowed_magazines = list(
-		/obj/item/ammo_magazine/c127x99,
-		/obj/item/ammo_magazine/c127x99/ap,
-		/obj/item/ammo_magazine/c127x99/tracer,
-		/obj/item/ammo_magazine/c127x99/tracer/heavy,
-		/obj/item/ammo_magazine/c127x99/tracer/explosive
+		/obj/item/ammo_magazine/heavy_sniper,
+		/obj/item/ammo_magazine/heavy_sniper/ap,
+		/obj/item/ammo_magazine/heavy_sniper/tracer,
+		/obj/item/ammo_magazine/heavy_sniper/tracer/heavy,
+		/obj/item/ammo_magazine/heavy_sniper/tracer/explosive
 	)
 	auto_eject = 0
 	accuracy = 5

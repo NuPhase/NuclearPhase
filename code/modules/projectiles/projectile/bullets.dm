@@ -261,28 +261,94 @@
 	penetrating = FALSE
 	impact_sounds = list(BULLET_IMPACT_MEAT = SOUNDS_LASER_MEAT, BULLET_IMPACT_METAL = SOUNDS_LASER_METAL)
 
-/obj/item/projectile/bullet/modern/c6p8x51
+// 6mm caseless medium rifle
+/obj/item/projectile/bullet/modern/medium_rifle
 	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
 	damage = 35
-/obj/item/projectile/bullet/modern/c6p8x51/ap
-	armor_penetration = 60
-/obj/item/projectile/bullet/modern/c6p8x51/fmj
-	armor_penetration = 45
-/obj/item/projectile/bullet/modern/c6p8x51/hp
-	armor_penetration = 15
+	armor_penetration = ARMOR_BALLISTIC_RESISTANT
+/obj/item/projectile/bullet/modern/medium_rifle/ap
+	armor_penetration = ARMOR_BALLISTIC_RIFLE
+/obj/item/projectile/bullet/modern/medium_rifle/hp
+	armor_penetration = ARMOR_BALLISTIC_SMALL
 	damage = 50
 
-/obj/item/projectile/bullet/modern/c11x25
+//7.62 heavy rifle
+/obj/item/projectile/bullet/modern/heavy_rifle
+	fire_sound = 'sound/weapons/gunshot/gunshot_heavy.ogg'
+	damage = 45
+	armor_penetration = ARMOR_BALLISTIC_RIFLE
+/obj/item/projectile/bullet/modern/heavy_rifle/ap
+	armor_penetration = ARMOR_BALLISTIC_AP
+/obj/item/projectile/bullet/modern/heavy_rifle/hp
+	armor_penetration = ARMOR_BALLISTIC_SMALL
+	damage = 65
+
+/obj/item/projectile/bullet/modern/plinker_pistol
+	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
+	damage = 13
+	penetration_modifier = 0.5
+	distance_falloff = 2
+
+/obj/item/projectile/bullet/modern/plinker_pistol/rubber
+	damage = 8
+	agony = 20
+	penetration_modifier = 0.3
+
+// 9mm Borschevik
+/obj/item/projectile/bullet/modern/light_pistol //this is AP by default
 	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
 	damage = 35
 	armor_penetration = 15
 /obj/item/projectile/bullet/modern/c11x25/srec //same armor penetration, larger damage and higher falloff
+	armor_penetration = ARMOR_BALLISTIC_RESISTANT
+
+/obj/item/projectile/bullet/modern/light_pistol/fhp
+	armor_penetration = ARMOR_BALLISTIC_MINOR
+	damage = 50
+	penetration_modifier = 2
+
+/obj/item/projectile/bullet/modern/light_pistol/srec
 	damage = 50
 	muzzle_type = /obj/effect/projectile/muzzle/gauss
-/obj/item/projectile/bullet/modern/c11x25/srec/launch(atom/target, target_zone, mob/user, params, Angle_override, forced_spread)
+
+/obj/item/projectile/bullet/modern/light_pistol/srec/launch(atom/target, target_zone, mob/user, params, Angle_override, forced_spread)
 	. = ..()
 	for(var/mob/living/L in view(1, user))
 		L.apply_damage(150, IRRADIATE)
+
+// .40 Auto
+/obj/item/projectile/bullet/modern/medium_pistol
+	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
+	damage = 40
+	armor_penetration = ARMOR_BALLISTIC_SMALL
+
+/obj/item/projectile/bullet/modern/medium_pistol/ap
+	armor_penetration = ARMOR_BALLISTIC_PISTOL
+
+/obj/item/projectile/bullet/modern/medium_pistol/fhp
+	armor_penetration = ARMOR_BALLISTIC_MINOR
+	damage = 50
+	penetration_modifier = 2
+
+/obj/item/projectile/bullet/modern/medium_pistol/srec
+	damage = 50
+	muzzle_type = /obj/effect/projectile/muzzle/gauss
+
+/obj/item/projectile/bullet/modern/medium_pistol/srec/launch(atom/target, target_zone, mob/user, params, Angle_override, forced_spread)
+	. = ..()
+	for(var/mob/living/L in view(1, user))
+		L.apply_damage(150, IRRADIATE)
+
+// .45 Nitro Magnum
+/obj/item/projectile/bullet/modern/heavy_pistol
+	fire_sound = 'sound/weapons/gunshot/gunshot_smg.ogg'
+	armor_penetration = ARMOR_BALLISTIC_SMALL
+	damage = 60
+
+/obj/item/projectile/bullet/modern/heavy_pistol/jhp
+	armor_penetration = ARMOR_BALLISTIC_MINOR
+	damage = 70
+	penetration_modifier = 2
 
 /obj/item/projectile/bullet/modern/c10x77
 	fire_sound = 'sound/weapons/gunshot/m82.ogg'
@@ -293,7 +359,7 @@
 	penetration_modifier = 1.5
 	distance_falloff = 0.5
 
-/obj/item/projectile/bullet/modern/c127x99 //.50 BMG
+/obj/item/projectile/bullet/modern/heavy_sniper
 	fire_sound = 'sound/weapons/gunshot/m82.ogg'
 	damage = 60
 	stun = 3
@@ -303,21 +369,21 @@
 	distance_falloff = 0.5
 	agony = 650
 
-/obj/item/projectile/bullet/modern/c127x99/ap
+/obj/item/projectile/bullet/modern/heavy_sniper/ap
 	armor_penetration = ARMOR_BALLISTIC_HEAVY
 	damage = 50
 
 //light incendiary for setting stuff on fire, etc
-/obj/item/projectile/bullet/modern/c127x99/tracer
+/obj/item/projectile/bullet/modern/heavy_sniper/tracer
 	damage = 50
 	var/fire_stacks = 2
 	armor_penetration = ARMOR_BALLISTIC_RIFLE
 
-/obj/item/projectile/bullet/modern/c127x99/tracer/after_move()
+/obj/item/projectile/bullet/modern/heavy_sniper/tracer/after_move()
 	. = ..()
 	new /obj/effect/fake_fire/dragon_breath(loc)
 
-/obj/item/projectile/bullet/modern/c127x99/tracer/on_hit(atom/target, blocked)
+/obj/item/projectile/bullet/modern/heavy_sniper/tracer/on_hit(atom/target, blocked)
 	if(..(target, blocked))
 		if(isliving(target))
 			var/mob/living/L = target
@@ -325,15 +391,15 @@
 			L.IgniteMob()
 
 //heavy incendiary for setting stuff on fire, etc
-/obj/item/projectile/bullet/modern/c127x99/tracer/heavy
+/obj/item/projectile/bullet/modern/heavy_sniper/tracer/heavy
 	damage = 45
 	fire_stacks = 10
 
 //explosive round
-/obj/item/projectile/bullet/modern/c127x99/tracer/explosive
+/obj/item/projectile/bullet/modern/heavy_sniper/tracer/explosive
 	damage = 90
 	fire_stacks = 5
 
-/obj/item/projectile/bullet/modern/c127x99/tracer/explosive/on_hit(atom/target, blocked)
+/obj/item/projectile/bullet/modern/heavy_sniper/tracer/explosive/on_hit(atom/target, blocked)
 	cell_explosion(target, 200, 150, z_transfer = null)
 	. = ..()

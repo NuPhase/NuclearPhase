@@ -172,7 +172,7 @@
 
 /obj/item/storage/guncase
 	name = "gun case"
-	desc = "A sturdy storage case for weapons."
+	desc = "A sturdy storage case for firearms."
 	icon = 'icons/obj/items/storage/guncase.dmi'
 	icon_state = "guncase"
 	w_class = ITEM_SIZE_HUGE
@@ -193,40 +193,54 @@
 		icon_state = "[initial(icon_state)]_e"
 
 /obj/item/storage/guncase/service_pistol
-	name = "CEF pistol case"
+	name = "service pistol case"
+	desc = "A sturdy storage case for firearms. This one is labeled \"HAMMER .40 Auto\"."
 	max_storage_space = DEFAULT_LARGEBOX_STORAGE
 	startswith = list(
-		/obj/item/gun/projectile/pistol/military_service = 1,
+		/obj/item/gun/projectile/pistol/military_service/empty = 1,
 		/obj/item/ammo_magazine/pistol = 6
 	)
 
 /obj/item/storage/guncase/small_pistol
-	name = "VPS pistol case"
+	name = "plinker pistol case"
+	desc = "A sturdy storage case for firearms. This one is labeled \"Mk. VI .23 Plinker\"."
 	max_storage_space = DEFAULT_LARGEBOX_STORAGE
 	startswith = list(
-		/obj/item/gun/projectile/pistol/low_caliber = 1,
+		/obj/item/gun/projectile/pistol/low_caliber/empty = 1,
 		/obj/item/ammo_magazine/pistol/small = 6
 	)
 
 /obj/item/storage/guncase/blue/smg
-	name = "SMG case"
+	name = "police SMG case"
+	desc = "A sturdy storage case for firearms. This one is labeled \"Viper 7 .40 Auto\"."
 	startswith = list(
 		/obj/item/gun/projectile/automatic/smg = 1,
-		/obj/item/ammo_magazine/smg/c11x25 = 6
+		/obj/item/ammo_magazine/smg/medium_pistol = 6
+	)
+
+/obj/item/storage/guncase/blue/smg_piercer
+	name = "special SMG case"
+	desc = "A sturdy storage case for firearms. This one is labeled \"Borschevik .35\"."
+	startswith = list(
+		/obj/item/gun/projectile/automatic/smg/piercer = 1,
+		/obj/item/ammo_magazine/smg/light_pistol = 4,
+		/obj/item/ammo_magazine/smg/light_pistol/fhp = 2
 	)
 
 /obj/item/storage/guncase/blue/assault_rifle
-	name = "assault rifle case"
+	name = "automatic carbine case"
+	desc = "A sturdy storage case for firearms. This one is labeled \"M8 Carbine .255 SSA\"."
 	startswith = list(
-		/obj/item/gun/projectile/automatic/assault_rifle = 1,
-		/obj/item/ammo_magazine/c6p8x51/fmj = 3,
-		/obj/item/ammo_magazine/c6p8x51/ap = 2,
-		/obj/item/ammo_magazine/c6p8x51/hp = 1
+		/obj/item/gun/projectile/automatic/assault_rifle/empty = 1,
+		/obj/item/ammo_magazine/medium_rifle = 3,
+		/obj/item/ammo_magazine/medium_rifle/ap = 2,
+		/obj/item/ammo_magazine/medium_rifle/hp = 1
 	)
-
+/*
 /obj/item/storage/guncase/blue/snapdragon
 	name = "snapdragon rifle case"
 	startswith = list(
 		/obj/item/gun/projectile/automatic/snapdragon = 1,
 		/obj/item/ammo_magazine/snapdragon = 4
 	)
+*/

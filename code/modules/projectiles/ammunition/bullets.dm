@@ -69,8 +69,8 @@
 	icon = 'icons/obj/ammo/casings/magnum.dmi'
 
 /obj/item/ammo_casing/shotgun
-	name = "shotgun slug"
-	desc = "A shotgun slug."
+	name = "slug shell"
+	desc = "A 12 gauge slug shell."
 	icon_state = "slshell"
 	spent_icon = "slshell-spent"
 	caliber = CALIBER_SHOTGUN
@@ -80,7 +80,7 @@
 
 /obj/item/ammo_casing/shotgun/pellet
 	name = "shotgun shell"
-	desc = "A shotshell."
+	desc = "A 12 gauge buckshot shell."
 	icon_state = "gshell"
 	spent_icon = "gshell-spent"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
@@ -88,7 +88,7 @@
 
 /obj/item/ammo_casing/shotgun/blank
 	name = "shotgun shell"
-	desc = "A blank shell."
+	desc = "A 12 gauge blank shell."
 	icon_state = "blshell"
 	spent_icon = "blshell-spent"
 	projectile_type = /obj/item/projectile/bullet/blank
@@ -96,7 +96,7 @@
 
 /obj/item/ammo_casing/shotgun/practice
 	name = "shotgun shell"
-	desc = "A practice shell."
+	desc = "A 12 gauge practice shell packed with slow, frangible shot."
 	icon_state = "pshell"
 	spent_icon = "pshell-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/practice
@@ -104,7 +104,7 @@
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag shell"
-	desc = "A beanbag shell."
+	desc = "A 12 gauge less-than-lethal shell with a pellet-filled soft bag."
 	icon_state = "bshell"
 	spent_icon = "bshell-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
@@ -112,7 +112,7 @@
 
 /obj/item/ammo_casing/shotgun/dragon_breath
 	name = "dragon breath shell"
-	desc = "A dragon breath shell."
+	desc = "A 12 gauge shell packed with magnesium pellets that create a fiery blast."
 	icon_state = "pshell"
 	spent_icon = "pshell-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/incendiary
@@ -120,7 +120,7 @@
 
 /obj/item/ammo_casing/shotgun/riot
 	name = "riot shell"
-	desc = "A riot shell."
+	desc = "A 12 gauge riot shell."
 	icon_state = "stunshell"
 	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/riot
@@ -130,7 +130,7 @@
 //is blocked by clothing that stops tasers and is vulnerable to EMP
 /obj/item/ammo_casing/shotgun/stunshell
 	name = "stun shell"
-	desc = "An energy stun cartridge."
+	desc = "A 12 gauge shell with a pair of electrodes packed inside to shock on hit."
 	icon_state = "stunshell"
 	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
@@ -146,7 +146,7 @@
 //Does not stun, only blinds, but has area of effect.
 /obj/item/ammo_casing/shotgun/flash
 	name = "flash shell"
-	desc = "A chemical shell used to signal distress or provide illumination."
+	desc = "A 12 gauge chemical shell used to signal distress or provide illumination."
 	icon_state = "fshell"
 	spent_icon = "fshell-spent"
 	projectile_type = /obj/item/projectile/energy/flash/flare
@@ -155,7 +155,7 @@
 
 /obj/item/ammo_casing/shotgun/emp
 	name = "haywire slug"
-	desc = "A 12-gauge shotgun slug fitted with a single-use ion pulse generator."
+	desc = "A 12 gauge shotgun slug fitted with a single-use ion pulse generator."
 	icon_state = "empshell"
 	spent_icon = "empshell-spent"
 	projectile_type  = /obj/item/projectile/ion
@@ -164,33 +164,32 @@
 	origin_tech = @'{"combat":4,"materials":3}'
 
 /obj/item/ammo_casing/shell
-	name = "50 BMG casing"
-	desc = "An anti-materiel shell casing."
+	desc = "A .416 (10.56x66mm) full metal jacket bullet casing."
 	caliber = CALIBER_ANTI_MATERIEL
-	projectile_type = /obj/item/projectile/bullet/modern/c127x99
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_sniper
 	material = /decl/material/solid/metal/steel
 	color = COLOR_POLISHED_BRASS
 	icon = 'icons/obj/ammo/casings/anti_materiel.dmi'
 
 /obj/item/ammo_casing/shell/ap
-	name = "50 BMG AP casing"
+	desc = "A .416 (10.56x66mm) cemented-core armour-piercing bullet casing."
 	marking_color = COLOR_GUNMETAL
-	projectile_type = /obj/item/projectile/bullet/modern/c127x99/ap
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_sniper/ap
 
 /obj/item/ammo_casing/shell/tracer
-	name = "50 BMG Tracer casing"
-	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer
+	desc = "A .416 (10.56x66mm) tracer bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_sniper/tracer
 	bullet_color = COLOR_RED_GRAY
 	marking_color = COLOR_NT_RED
 
 /obj/item/ammo_casing/shell/tracer/heavy
-	name = "50 BMG Incendiary casing"
-	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer/heavy
+	desc = "A .416 (10.56x66mm) immediate action incendiary tracer bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_sniper/tracer/heavy
 	marking_color = COLOR_ORANGE
 
 /obj/item/ammo_casing/shell/tracer/explosive
-	name = "50 BMG Explosive casing"
-	projectile_type = /obj/item/projectile/bullet/modern/c127x99/tracer/explosive
+	desc = "A .416 (10.56x66mm) high explosive tracer bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_sniper/tracer/explosive
 	marking_color = COLOR_RED
 
 /obj/item/ammo_casing/rifle
@@ -232,41 +231,80 @@
 	material = /decl/material/solid/glass
 	matter = list(/decl/material/solid/plastic = MATTER_AMOUNT_REINFORCEMENT)
 
-//For rifles
-/obj/item/ammo_casing/c6p8x51
-	name = "6.8x51 casing."
+// Assault and Marksman rifle rounds
+/obj/item/ammo_casing/medium_rifle
+	desc = "A .255 (6.5x35mm) SSA Caseless full metal jacket cartridge."
 	caliber = CALIBER_RIFLE
-	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51
+	projectile_type = /obj/item/projectile/bullet/modern/medium_rifle
 	icon = 'icons/obj/ammo/casings/rifle.dmi'
-/obj/item/ammo_casing/c6p8x51/ap
-	name = "6.8x51 AP casing."
-	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/ap
-/obj/item/ammo_casing/c6p8x51/fmj
-	name = "6.8x51 FMJ casing."
-	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/fmj
-/obj/item/ammo_casing/c6p8x51/hp
-	name = "6.8x51 HP casing."
-	projectile_type = /obj/item/projectile/bullet/modern/c6p8x51/hp
+/obj/item/ammo_casing/medium_rifle/ap
+	desc = "A .255 (6.5x35mm) SSA Caseless tungsten-tipped armour-piercing cartridge."
+	projectile_type = /obj/item/projectile/bullet/modern/medium_rifle/ap
+/obj/item/ammo_casing/medium_rifle/hp
+	desc = "A .255 (6.5x35mm) SSA Caseless hollow-point cartridge."
+	projectile_type = /obj/item/projectile/bullet/modern/medium_rifle/hp
 
-/obj/item/ammo_casing/c11x25
-	name = "10x21 casing."
+/obj/item/ammo_casing/heavy_rifle
+	desc = "A .308 (7.62x40mm) SSA full metal jacket bullet casing."
+	caliber = CALIBER_RIFLE_HEAVY
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_rifle
+	icon = 'icons/obj/ammo/casings/rifle.dmi'
+
+/obj/item/ammo_casing/heavy_rifle/ap
+	desc = "A .308 (7.62x40mm) SSA tungsten-tipped armour-piercing bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_rifle/ap
+
+/obj/item/ammo_casing/heavy_rifle/hp
+	desc = "A .308 (7.62x40mm) SSA hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_rifle/hp
+
+// Pistol rounds
+/obj/item/ammo_casing/medium_pistol
+	desc = "A .40 (10x21mm) Auto full metal jacket bullet casing."
 	caliber = CALIBER_PISTOL
-	projectile_type = /obj/item/projectile/bullet/modern/c11x25
+	projectile_type = /obj/item/projectile/bullet/modern/medium_pistol
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
-/obj/item/ammo_casing/caseless/c11x25
-	name = "9x20mm CL casing."
+/obj/item/ammo_casing/medium_pistol/ap
+	desc = "A .40 (10x21mm) Auto armour-piercing bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/medium_pistol/ap
+
+/obj/item/ammo_casing/medium_pistol/fhp
+	desc = "A .40 (10x21mm) Auto frangible hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/medium_pistol/fhp
+
+/obj/item/ammo_casing/medium_pistol/srec
+	desc = "A .40 (10x21mm) Auto SREC-core bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/medium_pistol/srec
+
+/obj/item/ammo_casing/light_pistol
+	desc = "A .35 (9x20mm) Borschevik subcaliber armour-piercing bullet casing."
 	caliber = CALIBER_PISTOL_SMG
-	projectile_type = /obj/item/projectile/bullet/modern/c11x25
+	projectile_type = /obj/item/projectile/bullet/modern/light_pistol
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 
-/obj/item/ammo_casing/caseless/c11x25/srec
-	name = "9x20mm SREC shell."
-	projectile_type = /obj/item/projectile/bullet/modern/c11x25/srec
+/obj/item/ammo_casing/light_pistol/fhp
+	desc = "A .35 (9x20mm) Borschevik frangible hollow-point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/light_pistol/fhp
+
+/obj/item/ammo_casing/caseless/light_pistol/srec
+	desc = "A .35 (9x20mm) Borschevik SREC-core bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/light_pistol/srec
 	icon = 'icons/obj/ammo/casings/pistol.dmi'
 	caliber = CALIBER_PISTOL_SMG
 	color = COLOR_GUNMETAL
 	bullet_color = COLOR_GUNMETAL
+
+/obj/item/ammo_casing/heavy_pistol
+	desc = "A .45 (11x33mmRB) Nitro Magnum full metal jacket bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_pistol
+	icon = 'icons/obj/ammo/casings/pistol.dmi'
+	caliber = CALIBER_PISTOL_MAGNUM
+	color = COLOR_GUNMETAL
+
+/obj/item/ammo_casing/heavy_pistol/jhp
+	desc = "A .45 (11x33mmRB) Nitro Magnum jacketed hollow point bullet casing."
+	projectile_type = /obj/item/projectile/bullet/modern/heavy_pistol/jhp
 
 /obj/item/ammo_casing/caseless/snapdragon
 	caliber = CALIBER_RIFLE_SNAPDRAGON

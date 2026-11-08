@@ -54,7 +54,7 @@
 /decl/loadout_option/weaponry/smgmagazine
 	name = "MX-16 caseless magazine"
 	description = "An 11x25 60-round magazine."
-	path = /obj/item/ammo_magazine/smg/c11x25
+	path = /obj/item/ammo_magazine/smg/light_pistol
 	cost = 60
 
 /decl/loadout_option/weaponry/mpat

@@ -114,7 +114,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/smg
-	name = "top mounted 6mm magazine"
+	name = ".23 Plinker top-mounted magazine"
 	icon_state = "smg_top"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/pistol/small
@@ -134,30 +134,61 @@
 	labels = list("practice")
 	ammo_type = /obj/item/ammo_casing/pistol/small/practice
 
-/obj/item/ammo_magazine/smg/c11x25
-	name = "9x20mm CL SMG magazine"
+/obj/item/ammo_magazine/smg/light_pistol
+	name = ".35 Borschevik SMG magazine"
+	icon_state = "machine_pistol"
 	caliber = CALIBER_PISTOL_SMG
-	ammo_type = /obj/item/ammo_casing/caseless/c11x25
-	max_ammo = 60
+	ammo_type = /obj/item/ammo_casing/light_pistol
+	max_ammo = 32
 
-/obj/item/ammo_magazine/smg/c11x25/robot
+/obj/item/ammo_magazine/smg/light_pistol/fhp
+	labels = list("FHP")
+	ammo_type = /obj/item/ammo_casing/light_pistol/fhp
+
+/obj/item/ammo_magazine/smg/light_pistol/robot
+	name = ".35 Borschevik SMG box"
 	max_ammo = 180
 
+/obj/item/ammo_magazine/smg/medium_pistol
+	name = ".40 Auto stick magazine"
+	icon_state = "smg"
+	caliber = CALIBER_PISTOL
+	labels = list("FMJ")
+	ammo_type = /obj/item/ammo_casing/medium_pistol
+	max_ammo = 30
+
+/obj/item/ammo_magazine/smg/medium_pistol/ap
+	labels = list("AP")
+	ammo_type = /obj/item/ammo_casing/medium_pistol/ap
+
+/obj/item/ammo_magazine/smg/medium_pistol/fhp
+	labels = list("FHP")
+	ammo_type = /obj/item/ammo_casing/medium_pistol/fhp
+
 /obj/item/ammo_magazine/pistol
-	name = "10x21mm pistol magazine"
-	icon_state = "pistol"
+	name = ".40 Auto pistol magazine"
+	icon_state = "pistolds"
 	origin_tech = @'{"combat":2}'
 	mag_type = MAGAZINE
 	caliber = CALIBER_PISTOL
+	labels = list("FMJ")
 	material = /decl/material/solid/metal/steel
-	ammo_type = /obj/item/ammo_casing/c11x25
-	max_ammo = 10
+	ammo_type = /obj/item/ammo_casing/medium_pistol
+	max_ammo = 16
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/pistol/ap
+	labels = list("AP")
+	ammo_type = /obj/item/ammo_casing/medium_pistol/ap
+
+/obj/item/ammo_magazine/pistol/fhp
+	labels = list("FHP")
+	ammo_type = /obj/item/ammo_casing/medium_pistol/fhp
+
 /obj/item/ammo_magazine/pistol/srec
-	name = "10x21mm SREC magazine"
+	name = ".40 Auto SREC magazine"
 	desc = "What the fuck did you do???"
-	ammo_type = /obj/item/ammo_casing/caseless/c11x25/srec
+	ammo_type = /obj/item/ammo_casing/medium_pistol/srec
 
 /obj/item/ammo_magazine/pistol/oneround
 	initial_ammo = 1
@@ -177,19 +208,35 @@
 	max_ammo = 8
 
 /obj/item/ammo_magazine/pistol/small
-	name = "6mm pistol magazine"
+	name = ".23 Plinker pistol magazine"
 	icon_state = "holdout"
 	material = /decl/material/solid/metal/steel
 	caliber = CALIBER_PISTOL_SMALL
 	ammo_type = /obj/item/ammo_casing/pistol/small
-	max_ammo = 30
+	max_ammo = 12
 
 /obj/item/ammo_magazine/pistol/small/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/pistol/small/shock
-	name = "5mm shock pistol magazine"
+	labels = list("shock")
 	ammo_type = /obj/item/ammo_casing/pistol/small/shock
+
+/obj/item/ammo_magazine/pistol/heavy
+	name = ".45 Magnum pistol magazine"
+	icon_state = "pistolds"
+	caliber = CALIBER_PISTOL_MAGNUM
+	labels = list("FMJ")
+	material = /decl/material/solid/metal/steel
+	ammo_type = /obj/item/ammo_casing/heavy_pistol
+	max_ammo = 9
+
+/obj/item/ammo_magazine/pistol/heavy/jhp
+	labels = list("JHP")
+	ammo_type = /obj/item/ammo_casing/heavy_pistol/jhp
+
+/obj/item/ammo_magazine/pistol/heavy/empty
+	initial_ammo = 0
 
 /obj/item/ammo_magazine/box/smallpistol
 	name = "ammunition box (pistol, small)"
@@ -230,7 +277,7 @@
 	max_ammo = 8
 	origin_tech = @'{"combat":2,"magnets":2,"powerstorage":2}'
 
-/obj/item/ammo_magazine/rifle
+/obj/item/ammo_magazine/rifle //LEGACY, DO NOT USE
 	name = "assault rifle magazine"
 	icon_state = "bullup"
 	origin_tech = @'{"combat":2}'
@@ -248,22 +295,20 @@
 	labels = list("practice")
 	ammo_type = /obj/item/ammo_casing/rifle/practice
 
-/obj/item/ammo_magazine/c6p8x51
-	name = "6.8x51 rifle magazine"
-	caliber = "6.8x51"
-	ammo_type = /obj/item/ammo_casing/c6p8x51
+/obj/item/ammo_magazine/medium_rifle
+	name = ".255 SSA rifle magazine"
+	caliber = CALIBER_RIFLE
+	labels = list("FMJ")
+	ammo_type = /obj/item/ammo_casing/medium_rifle
 	max_ammo = 25
 	icon_state = "assault_rifle"
 	mag_type = MAGAZINE
-/obj/item/ammo_magazine/c6p8x51/ap
-	name = "6.8x51 AP magazine"
-	ammo_type = /obj/item/ammo_casing/c6p8x51/ap
-/obj/item/ammo_magazine/c6p8x51/fmj
-	name = "6.8x51 FMJ magazine"
-	ammo_type = /obj/item/ammo_casing/c6p8x51/fmj
-/obj/item/ammo_magazine/c6p8x51/hp
-	name = "6.8x51 HP magazine"
-	ammo_type = /obj/item/ammo_casing/c6p8x51/hp
+/obj/item/ammo_magazine/medium_rifle/ap
+	labels = list("AP")
+	ammo_type = /obj/item/ammo_casing/medium_rifle/ap
+/obj/item/ammo_magazine/medium_rifle/hp
+	labels = list("HP")
+	ammo_type = /obj/item/ammo_casing/medium_rifle/hp
 
 /obj/item/ammo_magazine/snapdragon
 	name = "snapdragon rifle magazine"
@@ -276,24 +321,30 @@
 /obj/item/ammo_magazine/snapdragon/robot
 	max_ammo = 180
 
-/obj/item/ammo_magazine/c127x99
-	name = "50 BMG sniper magazine"
+/obj/item/ammo_magazine/heavy_sniper
+	name = ".416 sniper magazine"
+	desc = "A heavy box with some heavy ammo, intended for sniper rifles. This one is marked as Full Metal Jacket."
 	caliber = CALIBER_ANTI_MATERIEL
+	labels = list("FMJ")
 	ammo_type = /obj/item/ammo_casing/shell
 	max_ammo = 5
 	icon_state = "bullup"
 	mag_type = MAGAZINE
-/obj/item/ammo_magazine/c127x99/ap
-	name = "50 BMG AP sniper magazine"
+/obj/item/ammo_magazine/heavy_sniper/ap
+	labels = list("AP")
+	desc = "A heavy box with some heavy ammo, intended for sniper rifles. This one is marked as Armor Piercing."
 	ammo_type = /obj/item/ammo_casing/shell/ap
-/obj/item/ammo_magazine/c127x99/tracer
-	name = "50 BMG Tracer sniper magazine"
+/obj/item/ammo_magazine/heavy_sniper/tracer
+	labels = list("FMJ-T")
+	desc = "A heavy box with some heavy ammo, intended for sniper rifles. This one is marked as Full Metal Jacket Tracer."
 	ammo_type = /obj/item/ammo_casing/shell/tracer
-/obj/item/ammo_magazine/c127x99/tracer/heavy
-	name = "50 BMG Incendiary sniper magazine"
+/obj/item/ammo_magazine/heavy_sniper/tracer/heavy
+	labels = list("IAI-T")
+	desc = "A heavy box with some heavy ammo, intended for sniper rifles. This one is marked as Immediate Action Incendiary Tracer."
 	ammo_type = /obj/item/ammo_casing/shell/tracer/heavy
-/obj/item/ammo_magazine/c127x99/tracer/explosive
-	name = "50 BMG Explosive sniper magazine"
+/obj/item/ammo_magazine/heavy_sniper/tracer/explosive
+	labels = list("HE-T")
+	desc = "A heavy box with some heavy ammo, intended for sniper rifles. This one is marked as High Explosive Tracer."
 	ammo_type = /obj/item/ammo_casing/shell/tracer/explosive
 
 /obj/item/ammo_magazine/caps

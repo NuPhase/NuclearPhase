@@ -12,8 +12,11 @@
 
 /obj/item/gun/projectile/pistol/update_base_icon()
 	var/base_state = get_world_inventory_state()
-	if(!length(ammo_magazine?.stored_ammo) && check_state_in_icon("[base_state]-e", icon))
-		icon_state = "[base_state]-e"
+	if(ammo_magazine)
+		if(ammo_magazine.stored_ammo.len)
+			icon_state = "[base_state]-loaded"
+		else
+			icon_state = "[base_state]-empty"
 	else
 		icon_state = base_state
 
@@ -71,13 +74,14 @@
 	w_class = ITEM_SIZE_SMALL
 
 /obj/item/gun/projectile/pistol/military_service
-	name = "SIG-M"
-	desc = "A modular pistol in 10x21mm. Widely used in militaries."
+	name = "HAMMER service pistol"
+	desc = "A BlasTech HAMMER Gen II. A modular polymer-frame pistol chambered in 10x21mm Auto, widely recognised as the singular most popular firearm on Sirius. Thought to be so robust you can drive nails with it just fine! Probably."
+	russian_desc = "БласТэк HAMMER II-го поколения. Модульный пистолет с полимерной рамой под патрон 10x21мм Авто, известный, как самое популярное стрелковое оружие Сириуса. Говорят, что он настолько крепкий, что им можно забивать гвозди! Наверное."
 	icon = 'icons/obj/guns/gyropistol.dmi'
 	w_class = ITEM_SIZE_NORMAL
-	weight = 2.3
-	jam_chance = 1
-	magazine_type = null
+	weight = 0.82
+//	jam_chance = 1 //find out later if it's supposed to be that
+	magazine_type = /obj/item/ammo_magazine/pistol //ffs just use var/starts_loaded
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol, /obj/item/ammo_magazine/pistol/rubber, /obj/item/ammo_magazine/pistol/srec) //GOD FORBID
 	ammo_indicator = FALSE
 	waterproof = TRUE
@@ -87,21 +91,30 @@
 /obj/item/gun/projectile/pistol/military_service/loadout
 	magazine_type = /obj/item/ammo_magazine/pistol/oneround
 
+/obj/item/gun/projectile/pistol/military_service/empty
+	starts_loaded = 0
+
 /obj/item/gun/projectile/pistol/low_caliber
-	name = "RUG-V3"
-	desc = "A simple lower-caliber pistol with a large firing delay. Permitted for non-military personnel."
+	name = "Mk. VI V/T pistol"
+	desc = "A Polaris Arms Mark 6 Varmint/Target. A simple pistol chambered in 6x15mm Plinker, well-suited for practice shooting as well as hunting rats."
+	russian_desc = "Полярис Армс Марк 6 Варминт/Таргет. Простой пистолет под маломощный патрон 6x15мм, рассчитанный на тренировочную стрельбу и отстрел крыс."
 	icon = 'icons/obj/guns/simplepistol.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	caliber = CALIBER_PISTOL_SMALL
-	weight = 1
-	magazine_type = null
+	silenced = 1
+	weight = 0.85
+	magazine_type = /obj/item/ammo_magazine/pistol/small
 	allowed_magazines = list(/obj/item/ammo_magazine/pistol/small)
 	ammo_indicator = FALSE
+	waterproof = TRUE
 	fire_delay = 2
-	muzzle_flash_intensity = 5
+	muzzle_flash_intensity = 3
 
 /obj/item/gun/projectile/pistol/low_caliber/loadout
 	magazine_type = /obj/item/ammo_magazine/pistol/small
+
+/obj/item/gun/projectile/pistol/low_caliber/empty
+	starts_loaded = 0
 
 /obj/item/gun/projectile/pistol/gyro_rocket
 	name = "REF-V4"

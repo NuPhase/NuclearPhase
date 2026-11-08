@@ -1,22 +1,24 @@
 /obj/item/gun/projectile/revolver
-	name = "revolver"
-	desc = "The al-Maliki & Mosley Magnum Double Action is a choice revolver for when you absolutely, positively need to put a hole in the other guy."
-	icon = 'icons/obj/guns/revolvers.dmi'
+	name = "M33 Harry revolver"
+	desc = "An Arisaka Arms M33 Harry. A shiny, robust, bulky revolver chambered in 11x33mmRB Nitro Magnum. Meant to stop charging bulls and opiate addicts... and breaking untrained wrists."
+	icon = 'icons/obj/guns/revolver_heavy.dmi'
 	icon_state = ICON_STATE_WORLD
 	safety_icon = "safety"
 	caliber = CALIBER_PISTOL_MAGNUM
 	origin_tech = @'{"combat":2,"materials":2}'
 	handle_casings = CYCLE_CASINGS
 	max_shells = 6
-	fire_delay = 12 //Revolvers are naturally slower-firing
-	ammo_type = /obj/item/ammo_casing/pistol/magnum
+	fire_delay = 10 //slightly slower than semi-auto due to having to cycle action
+	ammo_type = /obj/item/ammo_casing/heavy_pistol
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	mag_insert_sound = 'sound/weapons/guns/interaction/rev_magin.ogg'
 	mag_remove_sound = 'sound/weapons/guns/interaction/rev_magout.ogg'
+	screen_shake = 5
 	accuracy = 2
 	accuracy_power = 8
 	one_hand_penalty = 2
 	bulk = 2
+	weight = 1.82
 
 /obj/item/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"
@@ -44,6 +46,7 @@
 /obj/item/gun/projectile/revolver/capgun
 	name = "cap gun"
 	desc = "Looks almost like the real thing! Ages 8 and up."
+	icon = 'icons/obj/guns/revolvers.dmi'
 	caliber = CALIBER_CAPS
 	origin_tech = @'{"combat":1,"materials":1}'
 	ammo_type = /obj/item/ammo_casing/cap
@@ -75,3 +78,24 @@
 /decl/interaction_handler/revolver_spin_cylinder/invoked(var/atom/target, var/mob/user)
 	var/obj/item/gun/projectile/revolver/R = target
 	R.spin_cylinder()
+
+/obj/item/gun/projectile/revolver/pocket
+	name = "Pocket Special revolver"
+	desc = "A Polaris Arms Pocket Special. An easily concealable revolver chambered in 10x21mm Auto. The go-to gun for surprising a mugger with five bits of lead at a time."
+	icon = 'icons/obj/guns/revolver_pocket.dmi'
+	icon_state = ICON_STATE_WORLD
+	safety_icon = "safety"
+	caliber = CALIBER_PISTOL
+	w_class = ITEM_SIZE_SMALL
+	origin_tech = @'{"combat":2,"materials":2}'
+	handle_casings = CYCLE_CASINGS
+	max_shells = 5
+	ammo_type = /obj/item/ammo_casing/medium_pistol
+	mag_insert_sound = 'sound/weapons/guns/interaction/rev_magin.ogg'
+	mag_remove_sound = 'sound/weapons/guns/interaction/rev_magout.ogg'
+	screen_shake = 1
+	accuracy = 2
+	accuracy_power = 6
+	one_hand_penalty = 2
+	bulk = 1
+	weight = 0.47

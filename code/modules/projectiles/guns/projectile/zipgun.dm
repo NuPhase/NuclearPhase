@@ -20,8 +20,7 @@
 		/obj/item/ammo_casing/shotgun/beanbag ,
 		/obj/item/ammo_casing/shotgun/stunshell,
 		/obj/item/ammo_casing/shotgun/flash,
-		/obj/item/ammo_casing/rifle,
-		/obj/item/ammo_casing/rifle
+		/obj/item/ammo_casing/heavy_rifle
 		)
 
 /obj/item/gun/projectile/zipgun/toggle_safety(var/mob/user)
