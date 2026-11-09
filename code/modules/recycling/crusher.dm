@@ -1,6 +1,6 @@
 /obj/machinery/crusher
-	name = "delivery chute"
-	desc = "A chute for big and small packages alike!"
+	name = "crusher"
+	desc = "A heavy machine that crushes items down into their materials."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'

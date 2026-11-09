@@ -72,13 +72,13 @@ export const ResearchReactor = (props) => {
                 key = "Reactor"
                 selected={tab === "Reactor"}
                 onClick={() => setTab("Reactor")}>
-                Tab Test
+                Reactor
             </Tabs.Tab>
             <Tabs.Tab
                 key = "Fuel"
                 selected={tab === "Fuel"}
                 onClick={() => setTab("Fuel")}>
-                Tab two
+                Fuel
             </Tabs.Tab>
         </Section>
         <Section>
